@@ -86,22 +86,33 @@ function findTermInExample(term, example) {
 function generateFillBlankContent(slug, data) {
   if (!data || !data.words) return {};
   const sentences = data.words.map((word, idx) => {
-    const found = findTermInExample(word.term, word.ex);
     let sentence;
-    if (found && word.ex) {
-      const before = word.ex.substring(0, found.start);
-      const after = word.ex.substring(found.end);
-      sentence = before + "_____" + after;
+    if (word.fillBlank && word.fillBlank.text) {
+      sentence = word.fillBlank.text;
     } else {
-      sentence = `Fill in the blank: ${word.term} means ${word.def}.`;
+      const found = findTermInExample(word.term, word.ex);
+      if (found && word.ex) {
+        const before = word.ex.substring(0, found.start);
+        const after = word.ex.substring(found.end);
+        sentence = before + "_____" + after;
+      } else {
+        sentence = `Fill in the blank: ${word.term} means ${word.def}.`;
+      }
     }
-    const availableWords = data.words.filter((w) => w.term !== word.term);
-    const numWrong = Math.min(3, availableWords.length);
-    const wrongOptions = availableWords
-      .sort(() => 0.5 - Math.random())
-      .slice(0, numWrong)
-      .map((w) => w.term);
-    const allOptions = [word.term, ...wrongOptions].sort(() => 0.5 - Math.random());
+
+    let allOptions;
+    if (word.fillBlank && Array.isArray(word.fillBlank.options) && word.fillBlank.options.length > 0) {
+      allOptions = [...word.fillBlank.options];
+    } else {
+      const availableWords = data.words.filter((w) => w.term !== word.term);
+      const numWrong = Math.min(3, availableWords.length);
+      const wrongOptions = availableWords
+        .sort(() => 0.5 - Math.random())
+        .slice(0, numWrong)
+        .map((w) => w.term);
+      allOptions = [word.term, ...wrongOptions].sort(() => 0.5 - Math.random());
+    }
+
     return {
       id: `sentence-${idx}`,
       text: sentence,

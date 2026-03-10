@@ -469,18 +469,11 @@ function ChecklistAssignments({
     ) => (
         <div
             key={row.assignment.id}
-            className={`relative group/row pl-3 pr-2 py-2.5 sm:px-4 flex flex-col gap-1 sm:gap-0 transition-all duration-200 border-b border-border/10 last:border-0 hover:bg-[var(--color-checklist-hover)] ${row.isCompleted ? 'opacity-75' : ''}`}
+            className={`checklist-row-premium relative group/row flex flex-col gap-2 border-b px-4 py-3 last:border-0 ${row.isCompleted ? 'opacity-70' : ''}`}
             style={{
-                borderLeft: '3px solid transparent',
-            }}
-            onMouseEnter={(e) => {
-                if (!row.isCompleted) {
-                    e.currentTarget.style.borderLeftColor = categoryStyle.accent;
-                }
-            }}
-            onMouseLeave={(e) => {
-                e.currentTarget.style.borderLeftColor = 'transparent';
-            }}
+                '--row-accent': categoryStyle.accent,
+                borderColor: 'var(--dashboard-divider)',
+            } as React.CSSProperties}
         >
             <div className="flex items-center gap-3 min-w-0">
                 <div className="shrink-0 flex items-center justify-center w-5 h-5">
@@ -538,27 +531,11 @@ function ChecklistAssignments({
                         activityId={row.assignment.activityId}
                         assignmentId={row.assignment.id}
                         href={row.assignment.href}
-                        className="inline-flex items-center justify-center !min-h-0 min-w-[82px] sm:min-w-[92px] h-9 sm:h-10 px-3 sm:px-4 text-[13px] sm:text-sm font-semibold tracking-tight transition-[color,background-color,border-color,transform,box-shadow] duration-200 rounded-full whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
-                        style={isGameGroup ? {
-                            color: categoryStyle.text,
-                            borderWidth: '1.5px',
-                            borderStyle: 'solid',
-                            borderColor: categoryStyle.accent,
-                            backgroundColor: categoryStyle.bg,
-                        } : row.isCompleted ? {
-                            color: categoryStyle.text,
-                            borderWidth: '1.5px',
-                            borderStyle: 'solid',
-                            borderColor: categoryStyle.accent,
-                            backgroundColor: categoryStyle.bg,
-                        } : {
-                            color: 'var(--text-on-accent)',
-                            borderWidth: '1.5px',
-                            borderStyle: 'solid',
-                            borderColor: categoryStyle.accent,
-                            backgroundColor: categoryStyle.accent,
-                            boxShadow: '0 1px 3px rgba(13, 22, 32, 0.18)',
-                        }}
+                        className="dashboard-accent-button inline-flex items-center justify-center !min-h-0 min-w-[82px] h-9 rounded-full px-3 text-[13px] font-semibold tracking-tight whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 sm:min-w-[92px] sm:h-10 sm:px-4 sm:text-sm"
+                        style={{
+                            '--dashboard-button-accent': categoryStyle.accent,
+                            '--dashboard-button-text': isGameGroup || row.isCompleted ? categoryStyle.text : categoryStyle.accent,
+                        } as React.CSSProperties}
                         aria-label={`${row.actionLabel} ${row.displayTitle}`}
                     >
                         <span>{row.actionLabel}</span>
@@ -566,7 +543,7 @@ function ChecklistAssignments({
                 </div>
             </div>
 
-            <div className="min-w-0 flex flex-col gap-0.5 pl-8">
+            <div className="min-w-0 flex flex-col gap-1 pl-8">
                 <div className="flex flex-wrap items-center gap-2">
                     {(() => {
                         const vocabType = getVocabActivityType(row.assignment.activityId);
@@ -593,19 +570,15 @@ function ChecklistAssignments({
                 ) : !row.isCompleted && row.progressValue > 0 ? (
                     <div className="mt-1.5">
                         <div
-                            className="h-1.5 w-24 max-w-full rounded-full overflow-hidden"
-                            style={{
-                                backgroundColor: `color-mix(in srgb, ${categoryStyle.accent} 15%, var(--surface-subtle))`,
-                                boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.06)',
-                            }}
+                            className="dashboard-progress-track h-1.5 w-24 max-w-full"
+                            style={{ '--dashboard-progress-accent': categoryStyle.accent } as React.CSSProperties}
                         >
                             <div
-                                className="h-full rounded-full transition-[width] duration-300"
+                                className="dashboard-progress-fill progress-glow transition-[width] duration-300"
                                 style={{
                                     width: `${row.progressValue}%`,
-                                    background: `linear-gradient(90deg, ${categoryStyle.accent} 0%, color-mix(in srgb, ${categoryStyle.accent} 75%, var(--accent)) 100%)`,
-                                    boxShadow: `0 0 4px color-mix(in srgb, ${categoryStyle.accent} 40%, transparent)`,
-                                }}
+                                    '--dashboard-progress-accent': categoryStyle.accent,
+                                } as React.CSSProperties}
                             />
                         </div>
                     </div>
@@ -698,17 +671,11 @@ function ChecklistAssignments({
                         activityId={row.assignment.activityId}
                         assignmentId={row.assignment.id}
                         href={row.assignment.href}
-                        className="shrink-0 inline-flex min-h-[32px] items-center gap-1.5 rounded-full border px-3.5 py-1 text-[13px] font-semibold transition-[transform,background-color,border-color,color,box-shadow] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                        style={row.isCompleted || row.isGameRow ? {
-                            backgroundColor: `color-mix(in srgb, ${row.categoryStyle.accent} 10%, transparent)`,
-                            borderColor: `color-mix(in srgb, ${row.categoryStyle.accent} 30%, transparent)`,
-                            color: row.categoryStyle.accent,
-                        } : {
-                            backgroundColor: `color-mix(in srgb, ${row.categoryStyle.accent} 14%, transparent)`,
-                            borderColor: `color-mix(in srgb, ${row.categoryStyle.accent} 38%, transparent)`,
-                            color: row.categoryStyle.accent,
-                            boxShadow: `0 2px 8px color-mix(in srgb, ${row.categoryStyle.accent} 12%, transparent)`,
-                        }}
+                        className="dashboard-accent-button shrink-0 inline-flex min-h-[32px] items-center gap-1.5 rounded-full px-3.5 py-1 text-[13px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                        style={{
+                            '--dashboard-button-accent': row.categoryStyle.accent,
+                            '--dashboard-button-text': row.isCompleted || row.isGameRow ? row.categoryStyle.text : row.categoryStyle.accent,
+                        } as React.CSSProperties}
                         aria-label={`${row.actionLabel} ${row.displayTitle}`}
                     >
                         <span>{row.actionLabel}</span>
@@ -721,13 +688,10 @@ function ChecklistAssignments({
 
     const renderResumeCard = (row: NormalizedChecklistRow) => (
         <div
-            className="relative overflow-hidden rounded-2xl border px-3.5 py-2.5"
+            className="dashboard-panel relative overflow-hidden rounded-2xl px-4 py-3"
             style={{
-                borderColor: `color-mix(in srgb, ${row.categoryStyle.accent} 30%, var(--border-subtle))`,
-                background: 'linear-gradient(135deg, color-mix(in srgb, var(--surface-elevated) 96%, transparent) 0%, color-mix(in srgb, var(--surface-overlay) 94%, transparent) 100%)',
-                boxShadow: `0 8px 20px rgba(4, 10, 18, 0.16), inset 0 0 0 1px color-mix(in srgb, ${row.categoryStyle.accent} 8%, transparent)`,
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
+                borderColor: `color-mix(in srgb, ${row.categoryStyle.accent} 24%, var(--dashboard-border))`,
+                background: `linear-gradient(180deg, color-mix(in srgb, ${row.categoryStyle.accent} 6%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, ${row.categoryStyle.accent} 2%, var(--dashboard-surface-end)) 100%)`,
             }}
         >
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1 rounded-full" style={{ background: row.categoryStyle.accent }} />
@@ -770,10 +734,16 @@ function ChecklistAssignments({
                         </div>
                     ) : !row.isCompleted && row.progressValue > 0 ? (
                         <div className="mt-1 flex items-center gap-1.5">
-                            <div className="h-1 w-16 overflow-hidden rounded-full" style={{ backgroundColor: `color-mix(in srgb, ${row.categoryStyle.accent} 12%, transparent)` }}>
+                            <div
+                                className="dashboard-progress-track h-1 w-16"
+                                style={{ '--dashboard-progress-accent': row.categoryStyle.accent } as React.CSSProperties}
+                            >
                                 <div
-                                    className="h-full rounded-full transition-[width] duration-300"
-                                    style={{ width: `${row.progressValue}%`, backgroundColor: row.categoryStyle.accent }}
+                                    className="dashboard-progress-fill progress-glow transition-[width] duration-300"
+                                    style={{
+                                        width: `${row.progressValue}%`,
+                                        '--dashboard-progress-accent': row.categoryStyle.accent,
+                                    } as React.CSSProperties}
                                 />
                             </div>
                             <span className="text-[10px] font-medium text-text-muted whitespace-nowrap">{row.progressSummary}</span>
@@ -785,13 +755,11 @@ function ChecklistAssignments({
                     activityId={row.assignment.activityId}
                     assignmentId={row.assignment.id}
                     href={row.assignment.href}
-                    className="shrink-0 inline-flex min-h-[32px] items-center gap-1.5 rounded-full border px-3.5 py-1 text-[13px] font-semibold transition-[transform,background-color,border-color,color,box-shadow] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                    className="dashboard-accent-button shrink-0 inline-flex min-h-[32px] items-center gap-1.5 rounded-full px-3.5 py-1 text-[13px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                     style={{
-                        backgroundColor: `color-mix(in srgb, ${row.categoryStyle.accent} 14%, transparent)`,
-                        borderColor: `color-mix(in srgb, ${row.categoryStyle.accent} 38%, transparent)`,
-                        color: row.categoryStyle.accent,
-                        boxShadow: `0 2px 8px color-mix(in srgb, ${row.categoryStyle.accent} 12%, transparent)`,
-                    }}
+                        '--dashboard-button-accent': row.categoryStyle.accent,
+                        '--dashboard-button-text': row.categoryStyle.accent,
+                    } as React.CSSProperties}
                     aria-label={`Resume ${row.displayTitle}`}
                 >
                     <span>Resume</span>
@@ -803,11 +771,23 @@ function ChecklistAssignments({
 
     return (
         <div className="mb-8">
-            <div className={`rounded-3xl overflow-hidden border surface-elevated surface-card-shadow ${isFullyComplete ? 'ring-2 ring-[var(--tone-speaking-border)]' : ''}`} style={{ borderColor: isFullyComplete ? 'var(--tone-speaking-border)' : 'var(--border-subtle)' }}>
-                <div className="px-4 py-2.5 border-b border-border/15 surface-elevated">
-                    <div className="flex items-center justify-between gap-3 mb-2">
+            <div
+                className={`overflow-hidden rounded-2xl border surface-card-shadow ${isFullyComplete ? 'ring-2 ring-[var(--tone-speaking-border)] celebrate-complete' : ''}`}
+                style={{
+                    borderColor: isFullyComplete ? 'var(--tone-speaking-border)' : 'var(--dashboard-border)',
+                    background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)',
+                }}
+            >
+                <div
+                    className="relative z-10 border-b px-4 py-4 sm:px-6 sm:py-5"
+                    style={{
+                        borderColor: 'var(--dashboard-divider)',
+                        background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, color-mix(in srgb, var(--dashboard-surface-end) 92%, var(--dashboard-shell-bg)) 100%)',
+                    }}
+                >
+                    <div className="mb-3.5 flex items-center justify-between gap-3">
                         <div className="flex items-center gap-2.5">
-                            <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-base ${isFullyComplete ? 'border shadow-sm' : 'bg-primary/10 text-primary'}`} style={isFullyComplete ? { backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)' } : undefined}>
+                            <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-lg transition-all duration-300 ${isFullyComplete ? 'border shadow-[0_2px_8px_rgba(181,110,26,0.15)]' : 'bg-primary/10 text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]'}`} style={isFullyComplete ? { backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)' } : undefined}>
                                 {isFullyComplete ? '🏆' : '📋'}
                             </div>
                             {resolvedTitle ? (
@@ -832,9 +812,9 @@ function ChecklistAssignments({
                             )}
                         </div>
                     </div>
-                    <div className="flex items-center gap-2.5">
-                        <div className="flex-1">
-                            <div className={`relative overflow-hidden rounded-full border h-4 ${
+                    <div className="relative z-20 flex items-center gap-2.5">
+                        <div className="min-w-0 flex-1">
+                            <div className={`relative z-20 w-full overflow-hidden rounded-full border h-4 ${
                                 isFullyComplete
                                     ? 'border-[#d7c09a]/50 shadow-[inset_0_1px_2px_rgba(138,91,61,0.06)] dark:border-[rgba(245,217,138,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.3)]'
                                     : 'border-[#e8e0d4]/50 shadow-[inset_0_1px_2px_rgba(78,57,39,0.04)] dark:border-[rgba(226,232,240,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.32)]'
@@ -845,36 +825,28 @@ function ChecklistAssignments({
                                     : 'var(--checklist-track-bg)',
                             }}>
                                 <div
-                                    className={`absolute inset-y-0 left-0 rounded-[999px] transition-[width] duration-700 ease-out ${percent >= 90 && !isFullyComplete ? 'animate-pulse-subtle' : ''}`}
+                                    className={`absolute inset-y-0 left-0 z-10 rounded-[999px] transition-[width] duration-700 ease-out ${percent >= 90 && !isFullyComplete ? 'progress-liquid' : ''}`}
                                     style={{
                                         width: `${percent}%`,
                                         background: isFullyComplete
-                                            ? 'linear-gradient(90deg, #c7523a 0%, #e8804a 30%, #f5a623 60%, #ffd04e 100%)'
-                                            : 'linear-gradient(90deg, #d05a3e 0%, #e87c4a 35%, #f0a030 70%, #f4c245 100%)',
+                                            ? 'linear-gradient(90deg, #b8442a 0%, #d96838 35%, #e8933a 70%, #f5c842 100%)'
+                                            : 'linear-gradient(90deg, #c8552e 0%, #dd6b36 40%, #e8882e 75%, #f0a832 100%)',
                                         boxShadow: isFullyComplete
-                                            ? '0 0 20px rgba(232,128,74,0.4), inset 0 1px 1px rgba(255,255,255,0.35)'
+                                            ? '0 0 12px rgba(217,119,87,0.4), inset 0 1px 0 rgba(255,255,255,0.3)'
                                             : percent >= 90
-                                                ? '0 0 18px rgba(232,128,74,0.38), inset 0 1px 1px rgba(255,255,255,0.28)'
-                                                : '0 0 14px rgba(232,128,74,0.28), inset 0 1px 1px rgba(255,255,255,0.28)',
-                                    }}
-                                />
-
-                                <div
-                                    className="absolute inset-y-[2px] left-2 rounded-full opacity-50"
-                                    style={{
-                                        width: `max(12%, min(${percent}%, calc(100% - 16px)))`,
-                                        background: 'linear-gradient(90deg, rgba(255,255,255,0.45), rgba(255,255,255,0.06))',
+                                                ? '0 0 10px rgba(217,119,87,0.35), inset 0 1px 0 rgba(255,255,255,0.25)'
+                                                : '0 0 8px rgba(217,119,87,0.3), inset 0 1px 0 rgba(255,255,255,0.2)',
                                     }}
                                 />
 
                                 {percent > 0 && (
                                     <div
-                                        className={`absolute top-1/2 z-10 flex h-6 w-6 -translate-y-1/2 -translate-x-1/2 items-center justify-center rounded-full border text-[11px] transition-all duration-300 ${
+                                        className={`absolute top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 -translate-x-1/2 items-center justify-center rounded-full border text-[12px] transition-all duration-300 ${
                                             isFullyComplete
-                                                ? 'border-amber-300/90 bg-gradient-to-b from-amber-50 to-amber-100 shadow-[0_0_12px_rgba(245,158,11,0.35),0_4px_10px_rgba(93,67,46,0.18)] animate-bounce-subtle'
-                                                : 'border-white/80 bg-white/95 shadow-[0_4px_10px_rgba(93,67,46,0.14)]'
+                                                ? 'border-amber-300 bg-gradient-to-b from-amber-50 to-amber-100 shadow-[0_0_16px_rgba(245,158,11,0.4),0_2px_6px_rgba(93,67,46,0.2)] animate-bounce-subtle'
+                                                : 'border-white bg-gradient-to-b from-white to-gray-50 shadow-[0_2px_8px_rgba(93,67,46,0.18),inset_0_1px_0_rgba(255,255,255,1)]'
                                         }`}
-                                        style={{ left: `clamp(12px, ${percent}%, calc(100% - 12px))` }}
+                                        style={{ left: `clamp(14px, ${percent}%, calc(100% - 14px))` }}
                                     >
                                         {isFullyComplete ? '🏆' : percent >= 75 ? '🔥' : percent >= 40 ? '✨' : '🌱'}
                                     </div>
@@ -883,10 +855,10 @@ function ChecklistAssignments({
                         </div>
 
                         <span
-                            className={`shrink-0 px-2.5 py-1 rounded-full border text-[12px] font-bold leading-none tabular-nums shadow-sm ${
+                            className={`shrink-0 px-2.5 py-1 rounded-full border text-[12px] font-bold leading-none tabular-nums transition-all duration-300 ${
                                 isFullyComplete
-                                    ? 'bg-[#f8f3ec] border-[#d7c09a]/60 text-[#8a5b3d]'
-                                    : 'bg-[linear-gradient(180deg,#fffdfa_0%,#f6efe6_100%)] border-[#dcccbc] text-[#8f5d4e]'
+                                    ? 'bg-gradient-to-b from-[#faf6f0] to-[#f4ebe0] border-[#d7c09a]/70 text-[#8a5b3d] shadow-[0_1px_2px_rgba(138,91,61,0.1),inset_0_1px_0_rgba(255,255,255,0.8)]'
+                                    : 'bg-gradient-to-b from-[#fffdfa] to-[#f6efe6] border-[#dcccbc]/80 text-[#8f5d4e] shadow-[0_1px_2px_rgba(78,57,39,0.08),inset_0_1px_0_rgba(255,255,255,0.7)]'
                             }`}
                         >
                             {percent}%
@@ -894,7 +866,7 @@ function ChecklistAssignments({
                     </div>
                 </div>
 
-                <div className="lg:hidden border-b border-border/5" style={{ backgroundColor: 'var(--surface-subtle)' }}>
+                <div className="lg:hidden border-b" style={{ backgroundColor: 'var(--surface-subtle)', borderColor: 'var(--dashboard-divider)' }}>
                     <div className="flex items-center gap-2 px-3 py-2.5 overflow-x-auto no-scrollbar mask-edges">
                         <button
                             onClick={() => setActiveFilter('all')}
@@ -949,7 +921,7 @@ function ChecklistAssignments({
                                 {filteredTaskRows.map(renderCondensedRow)}
                             </div>
                         ) : (
-                            <div className="rounded-xl border px-4 py-8 text-center" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-base)' }}>
+                            <div className="rounded-xl border px-4 py-8 text-center" style={{ borderColor: 'var(--dashboard-divider)', backgroundColor: 'var(--dashboard-surface-start)' }}>
                                 <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-black/5 text-2xl">
                                     🔍
                                 </div>
@@ -965,18 +937,22 @@ function ChecklistAssignments({
                         )}
                     </div>
 
-                <div className="hidden lg:block p-2.5 sm:p-4" style={{ backgroundColor: 'var(--surface-base)' }}>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:auto-rows-fr">
+                <div
+                    className="hidden lg:block px-6 pb-6 pt-7"
+                    style={{ background: 'linear-gradient(180deg, color-mix(in srgb, var(--dashboard-surface-start) 94%, var(--dashboard-shell-bg)) 0%, var(--dashboard-surface-end) 100%)' }}
+                >
+                    <div className="grid grid-cols-1 gap-x-7 gap-y-7 lg:auto-rows-fr lg:grid-cols-2">
                         {groups.map((group) => {
                             const groupStyle = getCategoryStyle(group.key);
                             return (
                                 <div
                                     key={group.key}
-                                    className="relative rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col group/card surface-card-shadow hover:shadow-lg hover:-translate-y-0.5"
+                                    className={`relative flex flex-col overflow-hidden rounded-2xl border surface-card-shadow category-card-polish paper-texture stagger-in group/card category-glow-${group.key}`}
                                     style={{
-                                        background: `linear-gradient(145deg, ${groupStyle.pastelBg || 'rgba(255,255,255,0.95)'} 0%, color-mix(in srgb, ${groupStyle.pastelBg || 'rgba(255,255,255,0.95)'} 92%, white) 100%)`,
-                                        borderColor: `color-mix(in srgb, ${groupStyle.accent} 35%, var(--border-subtle))`,
-                                    }}
+                                        background: `linear-gradient(to bottom, color-mix(in srgb, ${groupStyle.accent} 4%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, ${groupStyle.accent} 1.5%, var(--dashboard-surface-end)) 100%)`,
+                                        borderColor: `color-mix(in srgb, ${groupStyle.accent} 14%, var(--dashboard-border))`,
+                                        '--card-glow-color': `color-mix(in srgb, ${groupStyle.accent} 12%, transparent)`,
+                                    } as React.CSSProperties}
                                 >
                                     {/* Decorative accent blob */}
                                     <div
@@ -984,21 +960,23 @@ function ChecklistAssignments({
                                         style={{ background: groupStyle.accent }}
                                     />
                                     <div
-                                        className="relative w-full px-3.5 py-2.5 flex items-center justify-between"
+                                        className="relative w-full px-4 py-3 flex items-center justify-between"
                                         style={{
-                                            borderLeft: `5px solid ${groupStyle.accent}`,
-                                            background: `linear-gradient(90deg, ${groupStyle.bg} 0%, color-mix(in srgb, ${groupStyle.bg} 85%, transparent) 100%)`,
+                                            borderLeft: `4px solid ${groupStyle.accent}`,
+                                            background: `linear-gradient(90deg, color-mix(in srgb, ${groupStyle.accent} 9%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, ${groupStyle.accent} 3%, var(--dashboard-surface-end)) 100%)`,
+                                            boxShadow: 'inset 0 -1px 0 var(--dashboard-divider)',
                                         }}
                                     >
-                                        <div className="flex items-center gap-2.5">
+                                        <div className="flex items-center gap-3">
                                             <span
-                                                className="flex items-center justify-center w-7 h-7 rounded-full"
+                                                className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-300 group-hover/card:scale-110 group-hover/card:rotate-3"
                                                 style={{
-                                                    backgroundColor: `color-mix(in srgb, ${groupStyle.accent} 15%, transparent)`,
+                                                    backgroundColor: `color-mix(in srgb, ${groupStyle.accent} 15%, var(--dashboard-surface-start))`,
                                                     color: groupStyle.accent,
+                                                    boxShadow: `inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 4px color-mix(in srgb, ${groupStyle.accent} 20%, transparent), 0 4px 8px color-mix(in srgb, ${groupStyle.accent} 10%, transparent)`,
                                                 }}
                                             >
-                                                {group.renderIcon('w-4 h-4')}
+                                                    {group.renderIcon('w-4.5 h-4.5')}
                                             </span>
                                             <Link
                                                 href={`/dashboard/activities?category=${group.key === 'activity' ? 'games' : group.key}`}
@@ -1008,15 +986,20 @@ function ChecklistAssignments({
                                                 {group.label}
                                             </Link>
                                             <span
-                                                className="text-[11px] font-bold px-2 py-0.5 rounded-md tabular-nums"
-                                                style={{ backgroundColor: `${groupStyle.accent}20`, color: groupStyle.text, border: `1px solid ${groupStyle.accent}30` }}
+                                                className="text-[11px] font-bold px-2.5 py-1 rounded-lg tabular-nums"
+                                                style={{
+                                                    backgroundColor: `color-mix(in srgb, ${groupStyle.accent} 12%, var(--dashboard-surface-start))`,
+                                                    color: groupStyle.text,
+                                                    border: `1px solid color-mix(in srgb, ${groupStyle.accent} 25%, transparent)`,
+                                                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.4)',
+                                                }}
                                             >
                                                 {group.isGameGroup ? `${group.items.length}` : `${group.doneInGroup}/${group.items.length}`}
                                             </span>
                                         </div>
                                     </div>
 
-                                    <div className="relative divide-y divide-border/10 flex-1">
+                                    <div className="relative flex-1 divide-y" style={{ borderColor: 'var(--dashboard-divider)' }}>
                                         {group.items.map((row) => renderChecklistRow(row, group.isGameGroup, groupStyle))}
                                     </div>
                                 </div>
@@ -1084,8 +1067,8 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (loading) {
         return (
             <div className="mb-8">
-                <div className="surface-elevated rounded-3xl border surface-card-shadow overflow-hidden" style={{ borderColor: 'var(--border-subtle)' }}>
-                    <div className="p-4 border-b border-border/30" style={{ background: 'linear-gradient(135deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)' }}>
+                <div className="overflow-hidden rounded-2xl border surface-card-shadow" style={{ borderColor: 'var(--dashboard-border)', backgroundColor: 'var(--dashboard-surface-start)' }}>
+                    <div className="border-b p-6" style={{ borderColor: 'var(--dashboard-border)', background: 'linear-gradient(135deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)' }}>
                         <div className="flex items-center justify-between gap-3">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-xl skeleton"></div>
@@ -1099,7 +1082,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                         <div className="mt-4 h-2.5 skeleton rounded-full"></div>
                     </div>
 
-                    <div className="divide-y divide-border/20">
+                    <div className="divide-y" style={{ borderColor: 'var(--dashboard-divider)' }}>
                         {[1, 2, 3].map((item) => (
                             <div key={item} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4" style={{ borderLeft: '6px solid var(--color-border-subtle)' }}>
                                 <div className="flex items-start gap-3 flex-1">
@@ -1123,8 +1106,8 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (assignments.length === 0) {
         return (
             <div className="mb-8">
-                <div className="surface-elevated rounded-3xl border surface-card-shadow overflow-hidden" style={{ borderColor: 'var(--border-subtle)' }}>
-                    <div className="px-4 py-3 border-b border-border/10 surface-elevated flex items-center gap-3">
+                <div className="overflow-hidden rounded-2xl border surface-card-shadow" style={{ borderColor: 'var(--dashboard-border)', backgroundColor: 'var(--dashboard-surface-start)' }}>
+                    <div className="flex items-center gap-3 border-b px-6 py-6" style={{ borderColor: 'var(--dashboard-border)', backgroundColor: 'var(--dashboard-surface-start)' }}>
                         <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-lg">
                             📋
                         </div>
@@ -1179,8 +1162,8 @@ export const TodaysAssignments: React.FC<Props> = ({
                 <span className="w-1 h-6 rounded-full bg-primary"></span>
                 {title}
             </h2>
-            <div className="bg-gradient-to-br from-orange-50/40 via-amber-50/30 to-yellow-50/20 rounded-2xl p-4 sm:p-5 border border-orange-100/50 shadow-sm">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+            <div className="rounded-2xl border p-6 shadow-[inset_0_1px_0_var(--dashboard-inset-highlight),0_1px_0_rgba(0,0,0,0.05),0_12px_30px_rgba(0,0,0,0.06)]" style={{ background: 'linear-gradient(135deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)', borderColor: 'var(--dashboard-border)' }}>
+                <div className="grid grid-cols-1 gap-x-7 gap-y-7 lg:grid-cols-2">
                     {assignments.map((assignment, index) => {
                         const submission = assignment.submissions[0];
                         const isCompleted = !!submission?.completedAt || assignment.progressStatus === 'completed';
@@ -1192,8 +1175,8 @@ export const TodaysAssignments: React.FC<Props> = ({
                         return (
                             <div
                                 key={assignment.id}
-                                className="relative bg-white rounded-xl border border-border/20 hover:border-border/40 shadow-sm hover:shadow-md transition-[border-color,box-shadow] duration-200 overflow-hidden group"
-                                style={{ animationDelay: `${index * 40}ms` }}
+                                className="dashboard-panel-hover relative overflow-hidden rounded-2xl border surface-card-shadow group"
+                                style={{ animationDelay: `${index * 40}ms`, backgroundColor: 'var(--dashboard-surface-start)', borderColor: 'var(--dashboard-border)' }}
                             >
                                 <div
                                     className="absolute left-0 top-0 bottom-0 w-1 transition-[width] duration-200 group-hover:w-1.5"
@@ -1255,21 +1238,12 @@ export const TodaysAssignments: React.FC<Props> = ({
                                     <ActivityLink
                                         activityId={assignment.activityId}
                                         assignmentId={assignment.id}
-                                        className="inline-flex items-center justify-center px-4 py-2 min-h-11 text-sm font-semibold rounded-2xl border transition-[color,background-color,border-color,transform] duration-200 active:scale-95 whitespace-nowrap sm:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                                        className="dashboard-accent-button inline-flex min-h-11 items-center justify-center rounded-2xl px-4 py-2 text-sm font-semibold whitespace-nowrap active:scale-95 sm:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                                         aria-label={`${isCompleted ? 'Review' : ctaLabel} ${displayTitle}`}
                                         style={{
-                                            color: categoryStyle.text,
-                                            borderColor: `${categoryStyle.accent}90`,
-                                            backgroundColor: `${categoryStyle.accent}08`,
-                                        }}
-                                        onMouseEnter={(event) => {
-                                            event.currentTarget.style.borderColor = categoryStyle.accent;
-                                            event.currentTarget.style.backgroundColor = `${categoryStyle.accent}15`;
-                                        }}
-                                        onMouseLeave={(event) => {
-                                            event.currentTarget.style.borderColor = `${categoryStyle.accent}90`;
-                                            event.currentTarget.style.backgroundColor = `${categoryStyle.accent}08`;
-                                        }}
+                                            '--dashboard-button-accent': categoryStyle.accent,
+                                            '--dashboard-button-text': categoryStyle.text,
+                                        } as React.CSSProperties}
                                     >
                                         {isCompleted ? 'Review' : ctaLabel}
                                     </ActivityLink>

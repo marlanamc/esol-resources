@@ -30,7 +30,7 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
     const chips: ReactNode[] = [];
 
     const isHotStreak = summary.effectiveCurrentStreak >= 7;
-    const shellClass = "surface-elevated surface-card-shadow border";
+    const shellClass = "dashboard-pill stats-badge-polish";
 
     const pad = tight ? "px-2.5 py-1 gap-1" : compact ? "px-3 py-1.5 gap-1.5" : mobile ? "pl-2 pr-3 py-1.5 gap-2" : "pl-2.5 pr-4 py-2 gap-2";
     const iconBox = tight ? "w-4 h-4" : compact ? "w-5 h-5" : mobile ? "w-7 h-7" : "w-8 h-8";
@@ -45,21 +45,24 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
                 className={`flex items-center ${pad} ${shellClass} rounded-full transition-shadow duration-300`}
                 style={{
                     background: (compact || tight)
-                        ? 'linear-gradient(135deg, var(--surface-elevated) 0%, var(--tone-quizzes-surface-muted, var(--surface-subtle)) 100%)'
+                        ? 'linear-gradient(135deg, color-mix(in srgb, var(--tone-quizzes-surface) 18%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-quizzes-surface) 10%, var(--dashboard-surface-end)) 100%)'
                         : isHotStreak
-                            ? 'linear-gradient(90deg, var(--tone-speaking-chip-bg) 0%, var(--tone-quizzes-chip-bg) 100%)'
-                            : 'var(--surface-elevated)',
-                    borderColor: (compact || tight) ? 'var(--tone-quizzes-border)' : isHotStreak ? 'var(--tone-speaking-border)' : 'var(--border-subtle)',
-                    boxShadow: isHotStreak && !compact && !tight ? '0 0 12px rgba(245, 217, 138, 0.18)' : undefined,
+                            ? 'linear-gradient(90deg, color-mix(in srgb, var(--tone-speaking-surface) 18%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-quizzes-surface) 14%, var(--dashboard-surface-end)) 100%)'
+                            : 'linear-gradient(135deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)',
+                    borderColor: (compact || tight)
+                        ? 'color-mix(in srgb, var(--tone-quizzes-border) 72%, var(--dashboard-border))'
+                        : isHotStreak
+                            ? 'var(--tone-speaking-border)'
+                            : 'var(--dashboard-border)',
                 }}
             >
                 <div className={`${iconBox} rounded-full flex items-center justify-center`}
                 style={{
                     background: (compact || tight)
-                        ? 'linear-gradient(135deg, var(--tone-quizzes-chip-bg) 0%, var(--tone-quizzes-surface) 100%)'
+                        ? 'linear-gradient(135deg, color-mix(in srgb, var(--tone-quizzes-chip-bg) 42%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-quizzes-surface) 28%, var(--dashboard-surface-end)) 100%)'
                         : isHotStreak
-                            ? 'linear-gradient(135deg, var(--tone-speaking-chip-bg) 0%, var(--tone-speaking-bg, var(--tone-speaking-surface)) 100%)'
-                            : 'var(--surface-subtle)',
+                            ? 'linear-gradient(135deg, color-mix(in srgb, var(--tone-speaking-chip-bg) 48%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-speaking-surface) 26%, var(--dashboard-surface-end)) 100%)'
+                            : 'color-mix(in srgb, var(--tone-quizzes-surface) 18%, var(--dashboard-surface-start))',
                 }}>
                     <FlameIcon className={(compact || tight) ? "text-[var(--tone-quizzes-accent)]" : isHotStreak ? "text-[var(--tone-speaking-accent)]" : "text-[var(--tone-quizzes-accent)]"} size={iconSz} />
                 </div>
@@ -87,9 +90,9 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
                 className={`flex items-center ${pad} ${shellClass} rounded-full`}
                 style={{
                     background: compact
-                        ? 'linear-gradient(135deg, var(--surface-elevated) 0%, var(--tone-speaking-surface-muted) 100%)'
-                        : 'linear-gradient(90deg, var(--surface-elevated) 0%, var(--tone-speaking-surface-muted) 100%)',
-                    borderColor: 'var(--tone-speaking-border)',
+                        ? 'linear-gradient(135deg, color-mix(in srgb, var(--tone-speaking-surface) 16%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-speaking-surface-muted) 18%, var(--dashboard-surface-end)) 100%)'
+                        : 'linear-gradient(90deg, color-mix(in srgb, var(--tone-speaking-surface) 14%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-speaking-surface-muted) 20%, var(--dashboard-surface-end)) 100%)',
+                    borderColor: 'color-mix(in srgb, var(--tone-speaking-border) 84%, var(--dashboard-border))',
                 }}
             >
                 <div
@@ -117,12 +120,15 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
             <Link
                 key="total"
                 href="/dashboard/profile"
-                className={`flex items-center gap-2 ${mobile ? "pl-2 pr-3 py-1.5" : "pl-2.5 pr-4 py-2"} ${shellClass} rounded-full`}
-                style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--tone-grammar-border)' }}
+                className={`flex items-center gap-2 ${mobile ? "pl-2 pr-3 py-1.5" : "pl-2.5 pr-4 py-2"} ${shellClass}`}
+                style={{
+                    background: 'linear-gradient(135deg, color-mix(in srgb, var(--tone-grammar-surface) 14%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-grammar-surface) 8%, var(--dashboard-surface-end)) 100%)',
+                    borderColor: 'color-mix(in srgb, var(--tone-grammar-border) 84%, var(--dashboard-border))',
+                }}
             >
                 <div
                     className={`${mobile ? "w-7 h-7" : "w-8 h-8"} rounded-full flex items-center justify-center`}
-                    style={{ backgroundColor: 'var(--tone-grammar-chip-bg)' }}
+                    style={{ backgroundColor: 'color-mix(in srgb, var(--tone-grammar-chip-bg) 50%, var(--dashboard-surface-start))' }}
                 >
                     <TrophyIcon className="text-[var(--tone-grammar-accent)]" size={mobile ? 14 : 16} />
                 </div>

@@ -122,9 +122,9 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                 </div>
             )}
             {events.length === 0 ? (
-                <p className="text-sm text-text-muted italic bg-bg-light/60 border border-border/30 rounded-lg px-3 py-2">No dates yet.</p>
+                <p className="rounded-2xl border px-4 py-3 text-sm italic text-text-muted surface-card-shadow" style={{ borderColor: 'var(--dashboard-divider)', backgroundColor: 'var(--dashboard-surface-start)' }}>No dates yet.</p>
             ) : (
-                <div className="space-y-2">
+                <div className="space-y-4">
                     {events.slice(0, 6).map((ev, idx) => {
                         const startDate = new Date(ev.date);
                         const endDate = ev.endDate ? new Date(ev.endDate) : startDate;
@@ -151,10 +151,10 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                         return (
                             <div
                                 key={`${ev.title}-${idx}`}
-                                className="relative rounded-xl border px-3 py-2.5 surface-card-shadow transition-transform transition-shadow duration-200 hover:-translate-y-[1px]"
+                                className="dashboard-panel-hover relative rounded-2xl border px-4 py-4 surface-card-shadow"
                                 style={{
-                                    borderColor: "var(--border-subtle)",
-                                    backgroundColor: "var(--surface-elevated)",
+                                    borderColor: "var(--dashboard-border)",
+                                    background: "linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)",
                                 }}
                             >
                                 <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r" style={{ backgroundColor: colors.accent }} aria-hidden="true" />
@@ -211,7 +211,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                         <button
                                             type="button"
                                             onClick={() => startEditing(ev)}
-                                            className="text-[11px] text-sky-700 hover:text-sky-800 border border-sky-100 px-2.5 py-1.5 rounded-md bg-sky-50 min-h-[36px] touch-manipulation font-medium"
+                                            className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-sky-100 bg-sky-50 px-2.5 py-1.5 text-[11px] font-medium text-sky-700 hover:text-sky-800"
                                             aria-label={`Edit ${ev.title}`}
                                         >
                                             Edit
@@ -219,7 +219,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                     </div>
                                 )}
                                 {canManage && editingId === ev.id && (
-                                    <div className="mt-3 ml-5 rounded-lg border border-border/50 bg-bg-light/40 p-3 space-y-2">
+                                    <div className="dashboard-panel mt-4 ml-5 space-y-3 rounded-2xl p-4" style={{ borderColor: 'var(--dashboard-divider)', backgroundColor: 'var(--dashboard-surface-start)' }}>
                                         <div className="space-y-1">
                                             <label htmlFor={`event-title-${ev.id}`} className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Title</label>
                                             <input
@@ -286,7 +286,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                                 type="button"
                                                 onClick={() => handleSave(ev.id)}
                                                 disabled={isSaving === ev.id}
-                                                className="text-[11px] text-white border border-primary px-2.5 py-1.5 rounded-md bg-primary disabled:opacity-50 min-h-[36px] touch-manipulation font-medium"
+                                                className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-primary bg-primary px-2.5 py-1.5 text-[11px] font-medium text-white disabled:opacity-50"
                                             >
                                                 {isSaving === ev.id ? "Saving\u2026" : "Save"}
                                             </button>
@@ -296,7 +296,8 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                                     setEditingId(null);
                                                     setError("");
                                                 }}
-                                                className="text-[11px] text-text border border-border px-2.5 py-1.5 rounded-md bg-white min-h-[36px] touch-manipulation font-medium"
+                                                className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-border px-2.5 py-1.5 text-[11px] font-medium text-text"
+                                                style={{ backgroundColor: 'var(--dashboard-surface-start)' }}
                                             >
                                                 Cancel
                                             </button>
@@ -304,7 +305,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                                 type="button"
                                                 onClick={() => handleDelete(ev.id)}
                                                 disabled={isDeleting === ev.id}
-                                                className="text-[11px] text-red-600 hover:text-red-700 border border-red-100 px-2.5 py-1.5 rounded-md bg-red-50 disabled:opacity-50 min-h-[36px] touch-manipulation font-medium"
+                                                className="dashboard-soft-button min-h-[36px] touch-manipulation rounded-lg border border-red-100 bg-red-50 px-2.5 py-1.5 text-[11px] font-medium text-red-600 hover:text-red-700 disabled:opacity-50"
                                             >
                                                 {isDeleting === ev.id ? "Deleting\u2026" : "Delete"}
                                             </button>

@@ -100,11 +100,12 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                         type="button"
                         aria-label="Previous month"
                         onClick={() => setViewDate(new Date(viewYear, viewMonth - 1, 1))}
-                        className={`inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors hover:border-border touch-manipulation focus-visible:outline-none focus-visible:ring-2 ${
-                            resolvedTheme === 'dark'
-                                ? 'border-white/10 bg-[#1e3a4d] text-gray-400 hover:text-white focus-visible:ring-primary-light/40'
-                                : 'border-border/70 bg-white text-text-muted hover:text-text focus-visible:ring-primary/40'
-                        }`}
+                        className="dashboard-soft-button inline-flex h-9 w-9 items-center justify-center rounded-2xl border touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                        style={{
+                            borderColor: 'color-mix(in srgb, var(--dashboard-divider) 82%, transparent)',
+                            background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)',
+                            color: resolvedTheme === 'dark' ? 'rgba(226, 232, 240, 0.76)' : 'var(--text-color-muted)',
+                        }}
                     >
                         <span aria-hidden="true">←</span>
                     </button>
@@ -112,22 +113,25 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                         type="button"
                         aria-label="Next month"
                         onClick={() => setViewDate(new Date(viewYear, viewMonth + 1, 1))}
-                        className={`inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors hover:border-border touch-manipulation focus-visible:outline-none focus-visible:ring-2 ${
-                            resolvedTheme === 'dark'
-                                ? 'border-white/10 bg-[#1e3a4d] text-gray-400 hover:text-white focus-visible:ring-primary-light/40'
-                                : 'border-border/70 bg-white text-text-muted hover:text-text focus-visible:ring-primary/40'
-                        }`}
+                        className="dashboard-soft-button inline-flex h-9 w-9 items-center justify-center rounded-2xl border touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                        style={{
+                            borderColor: 'color-mix(in srgb, var(--dashboard-divider) 82%, transparent)',
+                            background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)',
+                            color: resolvedTheme === 'dark' ? 'rgba(226, 232, 240, 0.76)' : 'var(--text-color-muted)',
+                        }}
                     >
                         <span aria-hidden="true">→</span>
                     </button>
                 </div>
             </div>
 
-            <div className={`rounded-xl border p-3 sm:p-4 ${
-                resolvedTheme === 'dark'
-                    ? 'border-white/10 bg-gradient-to-b from-[#162b3d] to-[#0d1620] shadow-[0_3px_10px_rgba(13,22,32,0.3)]'
-                    : 'border-[#d9cec0] bg-gradient-to-b from-white to-[#fcf8f2] shadow-[0_3px_10px_rgba(43,33,24,0.08)]'
-            }`}>
+            <div
+                className="dashboard-panel rounded-2xl p-4"
+                style={{
+                    borderColor: 'var(--dashboard-divider)',
+                    background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)',
+                }}
+            >
                 <div className="grid grid-cols-7 gap-1 text-center mb-2">
                     {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, idx) => (
                         <div key={`${day}-${idx}`} className={`text-[10px] font-semibold uppercase tracking-[0.16em] ${
@@ -158,8 +162,10 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                                         : 'text-text'
                                 }`}
                                 style={{
-                                    backgroundColor: isToday ? 'var(--color-primary)' : 'var(--surface-elevated)',
-                                    borderColor: isToday ? 'var(--color-primary)' : 'var(--border-subtle)',
+                                    background: isToday
+                                        ? 'linear-gradient(180deg, var(--color-primary) 0%, color-mix(in srgb, var(--color-primary) 88%, #000) 100%)'
+                                        : 'linear-gradient(180deg, color-mix(in srgb, var(--dashboard-surface-start) 96%, var(--dashboard-shell-bg)) 0%, var(--dashboard-surface-end) 100%)',
+                                    borderColor: isToday ? 'var(--color-primary)' : 'var(--dashboard-divider)',
                                 }}
                             >
                                 <div className="h-full flex flex-col items-center justify-center">
@@ -182,7 +188,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
             </div>
 
             <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px]" aria-hidden="true">
-                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ backgroundColor: 'var(--surface-subtle)', borderColor: 'var(--border-subtle)', color: 'var(--text-color-muted)' }}>
+                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ backgroundColor: 'color-mix(in srgb, var(--dashboard-shell-bg) 52%, var(--dashboard-surface-start))', borderColor: 'var(--dashboard-divider)', color: 'var(--text-color-muted)' }}>
                     <span className="w-2 h-2 rounded-full bg-primary ring-1 ring-white/50 shadow-sm shrink-0" /> Today
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ backgroundColor: getLearnerEventTone('quiz').bg, borderColor: getLearnerEventTone('quiz').border, color: getLearnerEventTone('quiz').text }}>

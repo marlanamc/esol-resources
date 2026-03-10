@@ -18,7 +18,7 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
 
     return (
         <section>
-            <div className="relative overflow-hidden glass-card rounded-2xl p-4 sm:p-5 border border-amber-200/40 bg-gradient-to-br from-amber-50/80 to-yellow-50/80 shadow-md transition-all duration-300 max-w-4xl">
+            <div className="dashboard-panel paper-texture relative max-w-4xl overflow-hidden rounded-2xl p-6" style={{ borderColor: 'var(--dashboard-border)', background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, color-mix(in srgb, #d97706 2%, var(--dashboard-surface-end)) 100%)' }}>
                 {/* Decorative Elements */}
                 <div className="absolute -top-6 -right-6 w-24 h-24 bg-amber-200/20 rounded-full blur-2xl pointer-events-none"></div>
                 <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -40,7 +40,8 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
                         </div>
                         <button
                             onClick={() => setIsCollapsed(!isCollapsed)}
-                            className="p-1.5 sm:p-2 rounded-lg hover:bg-amber-100/50 text-amber-700 transition-colors flex items-center gap-1 text-xs sm:text-sm font-semibold border border-amber-200/30 bg-white/40"
+                            className="dashboard-soft-button flex items-center gap-1 rounded-lg border border-amber-200/30 p-1.5 text-xs font-semibold text-amber-700 transition-colors sm:p-2 sm:text-sm"
+                            style={{ backgroundColor: 'color-mix(in srgb, var(--dashboard-surface-start) 90%, transparent)' }}
                             aria-label={isCollapsed ? "Show announcements" : "Hide announcements"}
                         >
                             <span className="hidden sm:inline">{isCollapsed ? "Show" : "Hide"}</span>
@@ -55,7 +56,13 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
                                     key={`${announcement.className}-${index}`}
                                     className="group relative"
                                 >
-                                    <div className="flex items-start gap-4 p-4 rounded-xl bg-white/60 border border-white/80 shadow-sm hover:shadow-md hover:bg-white/90 transition-all duration-300">
+                                    <div
+                                        className="dashboard-panel dashboard-panel-hover flex items-start gap-4 rounded-2xl p-4 sm:p-5"
+                                        style={{
+                                            borderColor: 'var(--dashboard-divider)',
+                                            background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, color-mix(in srgb, #d97706 1.5%, var(--dashboard-surface-end)) 100%)',
+                                        }}
+                                    >
                                         <div className="flex-1">
                                             <div className="flex items-center gap-2 mb-2">
                                                 <span className="handwritten text-primary text-xs sm:text-sm font-bold bg-primary/5 px-2 py-0.5 rounded-md">
@@ -64,7 +71,7 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
                                                 <div className="h-[1px] flex-1 bg-gradient-to-r from-amber-100 to-transparent"></div>
                                             </div>
                                             <div
-                                                className="text-sm sm:text-base text-amber-950/90 announcement-markdown prose prose-sm max-w-prose"
+                                                className="announcement-markdown prose prose-sm max-w-prose text-sm sm:text-base text-text/85"
                                                 dangerouslySetInnerHTML={{ __html: announcement.messageHtml }}
                                             />
                                         </div>

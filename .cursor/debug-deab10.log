@@ -1,0 +1,2 @@
+{"sessionId":"deab10","location":"TodaysAssignments.tsx:variant-check","message":"Rendering checklist","data":{"variant":"checklist","assignmentsCount":7},"timestamp":1773106555006,"hypothesisId":"B"}
+{"sessionId":"deab10","location":"TodaysAssignments.tsx:ChecklistAssignments","message":"Progress bar state","data":{"percent":60,"isFullyComplete":false,"completedCount":3,"checklistRowsLength":5,"assignmentsLength":7,"rowsWithProgressCount":5,"sampleProgressValues":[25,0,100,100,100]},"timestamp":1773106555008,"hypothesisId":"A"}

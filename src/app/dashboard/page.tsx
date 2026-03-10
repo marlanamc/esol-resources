@@ -362,7 +362,7 @@ export default async function DashboardPage() {
         return (
             <div className="min-h-screen bg-bg">
                 <main id="main-content" className="container mx-auto pt-4 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <div className="dashboard-shell grid grid-cols-1 gap-6 p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
                         {/* Main Content Area - Left Side */}
                         <div className="md:col-span-8 lg:col-span-9 space-y-6 sm:space-y-8">
                             {/* Welcome Header */}
@@ -378,7 +378,7 @@ export default async function DashboardPage() {
 
                                     <div className="flex items-center gap-3">
                                         {/* Total Students */}
-                                        <div className="flex items-center gap-2.5 bg-white/90 dark:bg-[var(--surface-elevated)] border border-emerald-200/50 dark:border-emerald-800/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-[box-shadow]">
+                                        <div className="dashboard-pill flex items-center gap-2.5 border-emerald-200/50 dark:border-emerald-800/50 pl-2.5 pr-4 py-2">
                                             <div className="w-8 h-8 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
                                                 <UsersIcon className="text-secondary" size={16} />
                                             </div>
@@ -389,7 +389,7 @@ export default async function DashboardPage() {
                                         </div>
 
                                         {/* Total Classes */}
-                                        <div className="flex items-center gap-2.5 bg-white/90 dark:bg-[var(--surface-elevated)] border border-blue-200/50 dark:border-blue-800/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-[box-shadow]">
+                                        <div className="dashboard-pill flex items-center gap-2.5 border-blue-200/50 dark:border-blue-800/50 pl-2.5 pr-4 py-2">
                                             <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-blue-50 rounded-full flex items-center justify-center">
                                                 <StarIcon className="text-info" size={16} />
                                             </div>
@@ -404,7 +404,7 @@ export default async function DashboardPage() {
                                         {isTeacherUser && (
                                             <Link
                                                 href="/dashboard/backend"
-                                                className="inline-flex items-center gap-2 rounded-full border border-primary/30 dark:border-primary/50 bg-white/90 dark:bg-[var(--surface-elevated)] px-4 py-2 text-sm font-semibold text-primary shadow-sm hover:shadow-md hover:border-primary/50 transition-[box-shadow,border-color]"
+                                                className="dashboard-soft-button inline-flex items-center gap-2 rounded-full border border-primary/30 bg-[var(--dashboard-surface-start)] px-4 py-2 text-sm font-semibold text-primary hover:border-primary/50 dark:border-primary/50 dark:bg-[var(--surface-elevated)]"
                                             >
                                                 <UsersIcon size={14} />
                                                 Backend Users
@@ -423,7 +423,7 @@ export default async function DashboardPage() {
                                     </h1>
 
                                     <div className="flex items-center gap-3">
-                                        <div className="flex items-center gap-2 bg-white/90 dark:bg-[var(--surface-elevated)] border border-emerald-200/50 dark:border-emerald-800/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
+                                        <div className="dashboard-pill flex items-center gap-2 border-emerald-200/50 dark:border-emerald-800/50 pl-2 pr-3 py-1.5">
                                             <div className="w-7 h-7 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
                                                 <UsersIcon className="text-secondary" size={14} />
                                             </div>
@@ -438,7 +438,7 @@ export default async function DashboardPage() {
                                         {isTeacherUser && (
                                             <Link
                                                 href="/dashboard/backend"
-                                                className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 dark:border-primary/50 bg-white/90 dark:bg-[var(--surface-elevated)] px-3 py-1.5 text-xs font-semibold text-primary shadow-sm"
+                                                className="dashboard-soft-button inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-[var(--dashboard-surface-start)] px-3 py-1.5 text-xs font-semibold text-primary dark:border-primary/50 dark:bg-[var(--surface-elevated)]"
                                             >
                                                 <UsersIcon size={12} />
                                                 Backend Users
@@ -451,38 +451,38 @@ export default async function DashboardPage() {
                             {/* Mobile Quick Actions - Only visible on mobile */}
                             <section className="md:hidden">
                                 <h2 className="text-lg font-bold font-display text-text mb-3">Quick Actions</h2>
-                                <div className="grid grid-cols-2 gap-3">
+                                <div className="grid grid-cols-2 gap-7">
                                     <Link
                                         href="/dashboard/classes"
-                                        className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[var(--surface-elevated)] border-2 border-primary/20 dark:border-primary/40 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-[box-shadow,border-color]"
+                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-primary/20 dark:border-primary/40 hover:border-primary/40"
                                     >
                                         <UsersIcon className="w-6 h-6 text-primary mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Classes</span>
                                     </Link>
                                     <Link
                                         href="/dashboard/activities/new"
-                                        className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[var(--surface-elevated)] border-2 border-secondary/20 dark:border-secondary/40 rounded-xl shadow-sm hover:shadow-md hover:border-secondary/40 transition-[box-shadow,border-color]"
+                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-secondary/20 dark:border-secondary/40 hover:border-secondary/40"
                                     >
                                         <BookOpenIcon className="w-6 h-6 text-secondary mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Create Activity</span>
                                     </Link>
                                     <Link
                                         href="/dashboard/stats"
-                                        className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[var(--surface-elevated)] border-2 border-accent/20 dark:border-accent/40 rounded-xl shadow-sm hover:shadow-md hover:border-accent/40 transition-[box-shadow,border-color]"
+                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-accent/20 dark:border-accent/40 hover:border-accent/40"
                                     >
                                         <BarChartIcon className="w-6 h-6 text-accent mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Student Stats</span>
                                     </Link>
                                     <Link
                                         href="/dashboard/calendar/new"
-                                        className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[var(--surface-elevated)] border-2 border-primary/20 dark:border-primary/40 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-[box-shadow,border-color]"
+                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-primary/20 dark:border-primary/40 hover:border-primary/40"
                                     >
                                         <CalendarIcon className="w-6 h-6 text-primary mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Add Event</span>
                                     </Link>
                                     <Link
                                         href="/dashboard/teaching-schedule"
-                                        className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[var(--surface-elevated)] border-2 border-primary/20 dark:border-primary/40 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-[box-shadow,border-color]"
+                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-primary/20 dark:border-primary/40 hover:border-primary/40"
                                     >
                                         <CalendarIcon className="w-6 h-6 text-primary mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Teaching Schedule</span>
@@ -503,24 +503,28 @@ export default async function DashboardPage() {
 
                             {/* Browse All Activities CTA */}
                             <section>
-                                <div className="glass-card rounded-2xl p-6 group cursor-pointer transition-[transform] duration-300 hover:scale-[1.01] relative overflow-hidden">
+                                <div className="dashboard-panel dashboard-panel-hover paper-texture rounded-2xl p-6 group relative overflow-hidden">
                                     {/* Decorative gradient blob */}
-                                    <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                                    <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-primary/14 via-accent/18 to-secondary/14 rounded-full blur-3xl opacity-55 group-hover:opacity-75 transition-opacity duration-500"></div>
 
                                     <div className="flex items-start justify-between gap-4 relative z-10">
                                         <div className="min-w-0 pr-2">
-                                            <p className="text-xs font-bold text-secondary tracking-widest uppercase flex items-center gap-2">
-                                                <span className="w-6 h-[2px] bg-secondary rounded-full"></span>
+                                            <p className="text-xs font-bold text-text-muted tracking-widest uppercase flex items-center gap-2">
+                                                <span className="w-8 h-[2px] rounded-full bg-gradient-to-r from-primary/60 to-secondary/40"></span>
                                                 Explore
                                             </p>
-                                            <h2 className="text-2xl font-bold font-display text-[#1f2633] mt-2">All Activities</h2>
-                                            <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed truncate">
+                                            <h2 className="text-2xl font-bold font-display text-text mt-2">All Activities</h2>
+                                            <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed">
                                                 Browse all activities organized by category. Feature assignments for your classes and create new content.
                                             </p>
                                         </div>
                                         <Link
                                             href="/dashboard/activities"
-                                            className="shrink-0 px-5 py-2.5 rounded-xl bg-primary text-white hover:brightness-110 transition-[filter,box-shadow,transform] font-bold text-sm shadow-md hover:shadow-lg active:scale-95 flex items-center gap-2"
+                                            className="btn-polish dashboard-soft-button shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-b from-primary to-[color-mix(in_srgb,var(--primary-color)_88%,#000)] text-[color:var(--text-on-accent)] border border-primary/80 font-semibold text-sm flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+                                            style={{
+                                                '--dashboard-button-shadow-override': '0 1px 2px rgba(0,0,0,0.1), 0 4px 12px rgba(176,87,64,0.25), inset 0 1px 0 rgba(255,255,255,0.2)',
+                                                '--dashboard-button-shadow-hover-override': '0 2px 4px rgba(0,0,0,0.12), 0 8px 18px rgba(176,87,64,0.32), inset 0 1px 0 rgba(255,255,255,0.24)',
+                                            } as React.CSSProperties}
                                         >
                                             Browse
                                             <span className="arrow-animate">→</span>
@@ -531,8 +535,8 @@ export default async function DashboardPage() {
                         </div>
 
                         {/* Calendar & Important Pages Sidebar (hidden on mobile) */}
-                        <aside className="hidden md:block md:col-span-4 lg:col-span-3">
-                            <div className="sticky top-24 space-y-8 rounded-2xl border p-6 surface-card-shadow" style={{ borderColor: 'var(--border-subtle)', background: 'linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)' }}>
+                        <aside className="hidden md:block md:col-span-4 md:-mt-2 lg:col-span-3 lg:-mt-3">
+                            <div className="dashboard-panel paper-texture sticky top-2 space-y-8 p-6 md:top-4">
                                 <MiniCalendar events={calendarEvents} />
 
                                 <UpcomingEventsList
@@ -546,7 +550,7 @@ export default async function DashboardPage() {
                                     allowDelete={true}
                                 />
 
-                                <div className="pt-4 mt-4 border-t border-border/40 space-y-4">
+                                <div className="mt-8 border-t pt-8 space-y-4" style={{ borderColor: 'var(--dashboard-divider)' }}>
                                     <h3 className="text-sm font-semibold text-text">Important Pages</h3>
                                     <p className="text-xs text-text-muted">
                                         Organized by task so you can find tools faster.
@@ -563,7 +567,8 @@ export default async function DashboardPage() {
                                                         <Link
                                                             key={`${section.heading}-${link.title}`}
                                                             href={link.href}
-                                                            className="quick-link w-full px-3 py-2 text-text border border-border/50 rounded-lg flex items-start gap-2.5"
+                                                            className="quick-link w-full rounded-2xl border px-4 py-3 text-text flex items-start gap-3"
+                                                            style={{ borderColor: 'var(--dashboard-divider)' }}
                                                         >
                                                             <Icon className="w-4 h-4 mt-0.5 shrink-0" />
                                                             <div className="leading-tight">
@@ -820,9 +825,9 @@ export default async function DashboardPage() {
         return (
             <div className="min-h-screen bg-bg">
                 <main id="main-content" className="container mx-auto pt-2 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <div className="dashboard-shell grid grid-cols-1 gap-6 p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
                         {/* Main Content Area - Left Side */}
-                        <div className="md:col-span-8 lg:col-span-9 space-y-3 sm:space-y-6">
+                        <div className="md:col-span-8 lg:col-span-9 space-y-6 sm:space-y-8">
                             {/* Welcome Header */}
                             <div className="hidden lg:flex items-center gap-6">
                                 <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight" style={{ textWrap: 'balance' }}>
@@ -838,7 +843,7 @@ export default async function DashboardPage() {
                             <ClassAnnouncement announcements={classAnnouncements} />
 
                             {/* This Week's Activities */}
-                            <section className="mt-2 sm:mt-4">
+                            <section>
                                 <TodaysAssignments
                                     initialAssignments={featuredAssignments}
                                     title="Weekly Checklist"
@@ -849,15 +854,15 @@ export default async function DashboardPage() {
                             </section>
 
                             {/* Browse All Activities CTA */}
-                            <section className="hidden md:block mt-6">
-                                <div className="rounded-2xl p-4 sm:p-6 border surface-card-shadow group transition-[transform] duration-300 hover:scale-[1.005] relative overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)', borderColor: 'var(--border-subtle)' }}>
+                            <section className="hidden md:block">
+                                <div className="dashboard-panel dashboard-panel-hover paper-texture p-6 group relative overflow-hidden">
                                     {/* Decorative gradient blob */}
-                                    <div className="absolute -top-10 -right-10 w-36 h-36 bg-gradient-to-br from-primary/10 via-accent/15 to-secondary/10 rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                                    <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-primary/12 via-accent/18 to-secondary/12 rounded-full blur-3xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
 
                                     <div className="flex items-start justify-between gap-4 relative z-10">
                                         <div className="min-w-0 pr-2">
-                                            <p className="text-xs font-semibold text-text-muted tracking-widest uppercase flex items-center gap-2">
-                                                <span className="w-6 h-[2px] rounded-full" style={{ backgroundColor: 'var(--tone-default-accent)' }}></span>
+                                            <p className="text-xs font-bold text-text-muted tracking-widest uppercase flex items-center gap-2">
+                                                <span className="w-8 h-[2px] rounded-full bg-gradient-to-r from-primary/60 to-secondary/40"></span>
                                                 Explore
                                             </p>
                                             <h2 className="text-2xl font-bold font-display text-text mt-2">All Activities</h2>
@@ -865,7 +870,7 @@ export default async function DashboardPage() {
                                                 Keep building your skills — browse by category and track your progress.
                                             </p>
                                             {/* Category quick-jump chips */}
-                                            <div className="flex flex-wrap gap-2.5 mt-4">
+                                            <div className="flex flex-wrap gap-2 mt-4">
                                                 {[
                                                     { label: 'Grammar', href: '/dashboard/activities?category=grammar', tone: getLearnerCategoryTone('grammar') },
                                                     { label: 'Vocabulary', href: '/dashboard/activities?category=vocabulary', tone: getLearnerCategoryTone('vocabulary') },
@@ -876,18 +881,28 @@ export default async function DashboardPage() {
                                                     <Link
                                                         key={chip.label}
                                                         href={chip.href}
-                                                        className="inline-flex items-center gap-1 px-3.5 py-2 rounded-lg text-xs font-bold border transition-[transform,box-shadow,background-color] duration-200 hover:shadow-md hover:scale-[1.02] active:scale-95"
-                                                        style={{ color: chip.tone.chipText, backgroundColor: chip.tone.chipBg, borderColor: chip.tone.border }}
+                                                        className="dashboard-soft-button inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border active:scale-95 transition-all duration-200"
+                                                        style={{
+                                                            color: chip.tone.chipText,
+                                                            backgroundColor: chip.tone.chipBg,
+                                                            borderColor: chip.tone.border,
+                                                            '--dashboard-button-shadow-override': 'inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.05), 0 6px 14px rgba(40,31,23,0.05)',
+                                                            '--dashboard-button-shadow-hover-override': 'inset 0 1px 0 rgba(255,255,255,0.45), 0 2px 4px rgba(0,0,0,0.06), 0 10px 18px rgba(40,31,23,0.08)',
+                                                        } as React.CSSProperties}
                                                     >
                                                         {chip.label}
-                                                        <span className="text-[10px] opacity-50 ml-0.5">›</span>
+                                                        <span className="text-[10px] opacity-60">→</span>
                                                     </Link>
                                                 ))}
                                             </div>
                                         </div>
                                         <Link
                                             href="/dashboard/activities"
-                                            className="shrink-0 px-5 py-2.5 rounded-lg bg-primary text-[color:var(--text-on-accent)] border border-primary hover:brightness-110 transition-[filter,transform] font-semibold text-sm active:scale-95 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+                                            className="btn-polish dashboard-soft-button shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-b from-primary to-[color-mix(in_srgb,var(--primary-color)_88%,#000)] text-[color:var(--text-on-accent)] border border-primary/80 font-semibold text-sm flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+                                            style={{
+                                                '--dashboard-button-shadow-override': '0 1px 2px rgba(0,0,0,0.1), 0 4px 12px rgba(176,87,64,0.25), inset 0 1px 0 rgba(255,255,255,0.2)',
+                                                '--dashboard-button-shadow-hover-override': '0 2px 4px rgba(0,0,0,0.12), 0 8px 18px rgba(176,87,64,0.32), inset 0 1px 0 rgba(255,255,255,0.24)',
+                                            } as React.CSSProperties}
                                         >
                                             Browse
                                             <span className="arrow-animate">→</span>
@@ -898,8 +913,8 @@ export default async function DashboardPage() {
                         </div>
 
                         {/* Calendar Sidebar - Right Side (hidden on mobile) */}
-                        <aside className="hidden md:block md:col-span-4 lg:col-span-3">
-                            <div className="sticky top-24 space-y-8 rounded-2xl border p-6 surface-card-shadow" style={{ borderColor: 'var(--border-subtle)', background: 'linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)' }}>
+                        <aside className="hidden md:block md:col-span-4 md:-mt-2 lg:col-span-3 lg:-mt-3">
+                            <div className="dashboard-panel paper-texture sticky top-2 space-y-8 p-6 md:top-4">
                                 <MiniCalendar events={calendarEvents} />
 
                                 <UpcomingEventsList

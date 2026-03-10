@@ -12,8 +12,8 @@ export const Card: React.FC<CardProps> & {
   Body: typeof CardBody;
   Footer: typeof CardFooter;
 } = ({ children, className = '', hover = false, onClick }) => {
-  const baseClass = 'bg-white dark:bg-[#162b3d] border border-border/40 dark:border-white/10 shadow-[0_2px_12px_rgba(52,43,34,0.05)] dark:shadow-[0_2px_12px_rgba(13,22,32,0.3)] rounded-2xl';
-  const hoverClass = hover ? 'hover:shadow-[0_8px_24px_rgba(52,43,34,0.08)] dark:hover:shadow-[0_8px_24px_rgba(13,22,32,0.4)] hover:-translate-y-0.5 transition-all duration-250 cursor-pointer' : '';
+  const baseClass = 'bg-[var(--dashboard-surface-start)] dark:bg-[var(--dashboard-surface-start)] border border-[var(--dashboard-border)] dark:border-[var(--dashboard-border)] shadow-[inset_0_1px_0_var(--dashboard-inset-highlight),0_0_0_1px_rgba(0,0,0,0.02),0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.03)] dark:shadow-[inset_0_1px_0_var(--dashboard-inset-highlight),0_0_0_1px_rgba(255,255,255,0.03),0_1px_2px_rgba(0,0,0,0.12),0_4px_12px_rgba(6,12,18,0.18),0_8px_24px_rgba(6,12,18,0.22)] rounded-2xl';
+  const hoverClass = hover ? 'hover:shadow-[inset_0_1px_0_var(--dashboard-inset-highlight),0_0_0_1px_rgba(0,0,0,0.02),0_2px_4px_rgba(0,0,0,0.04),0_8px_20px_rgba(0,0,0,0.06),0_12px_32px_rgba(0,0,0,0.04)] dark:hover:shadow-[inset_0_1px_0_var(--dashboard-inset-highlight),0_0_0_1px_rgba(255,255,255,0.04),0_2px_4px_rgba(0,0,0,0.15),0_8px_20px_rgba(6,12,18,0.22),0_12px_32px_rgba(6,12,18,0.26)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer' : '';
 
   if (onClick) {
     return (
@@ -43,7 +43,7 @@ export const Card: React.FC<CardProps> & {
 };
 
 const CardHeader: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
-  <div className={`p-6 border-b border-border dark:border-white/10 ${className}`}>
+  <div className={`p-6 border-b border-[var(--dashboard-divider)] ${className}`}>
     {children}
   </div>
 );
@@ -55,7 +55,7 @@ const CardBody: React.FC<{ children: React.ReactNode; className?: string }> = ({
 );
 
 const CardFooter: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
-  <div className={`p-6 border-t border-border dark:border-white/10 ${className}`}>
+  <div className={`p-6 border-t border-[var(--dashboard-divider)] ${className}`}>
     {children}
   </div>
 );
