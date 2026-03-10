@@ -65,6 +65,8 @@ interface Props {
     ctaLabel?: string;
     variant?: 'cards' | 'checklist';
     actions?: React.ReactNode;
+    mobileTasksLinkHref?: string;
+    mobileTasksLinkLabel?: string;
     refreshOnMount?: boolean;
     /** Show streak and points badges in checklist header (student dashboard) */
     showStudentStats?: boolean;
@@ -333,12 +335,16 @@ function CompactVocabTracker({ vocabProgress }: { vocabProgress: VocabProgressIn
 function ChecklistAssignments({
     assignments,
     actions,
+    mobileTasksLinkHref,
+    mobileTasksLinkLabel,
     resolvedTitle,
     weeklyRangeLabel,
     showStudentStats = false,
 }: {
     assignments: FeaturedAssignment[];
     actions?: React.ReactNode;
+    mobileTasksLinkHref?: string;
+    mobileTasksLinkLabel?: string;
     resolvedTitle: string | null;
     weeklyRangeLabel: string | null;
     showStudentStats?: boolean;
@@ -912,8 +918,17 @@ function ChecklistAssignments({
                 <div className="lg:hidden px-3 py-3 space-y-2.5" style={{ backgroundColor: 'var(--surface-subtle)' }}>
                         {showResumeCard ? renderResumeCard(resumeRow!) : null}
 
-                        <div className="px-0.5 pt-1">
+                        <div className="flex items-center justify-between gap-3 px-0.5 pt-1">
                             <h3 className="text-[17px] font-bold text-text tracking-tight">Your tasks</h3>
+                            {mobileTasksLinkHref ? (
+                                <Link
+                                    href={mobileTasksLinkHref}
+                                    className="inline-flex shrink-0 items-center gap-1 text-[13px] font-semibold text-text-muted transition-colors hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 rounded"
+                                >
+                                    <span>{mobileTasksLinkLabel ?? 'All Activities'}</span>
+                                    <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                                </Link>
+                            ) : null}
                         </div>
 
                         {filteredTaskRows.length > 0 ? (
@@ -1018,6 +1033,8 @@ export const TodaysAssignments: React.FC<Props> = ({
     ctaLabel = 'Start Activity',
     variant = 'cards',
     actions,
+    mobileTasksLinkHref,
+    mobileTasksLinkLabel,
     refreshOnMount = false,
     showStudentStats = false,
 }) => {
@@ -1149,6 +1166,8 @@ export const TodaysAssignments: React.FC<Props> = ({
             <ChecklistAssignments
                 assignments={assignments}
                 actions={actions}
+                mobileTasksLinkHref={mobileTasksLinkHref}
+                mobileTasksLinkLabel={mobileTasksLinkLabel}
                 resolvedTitle={resolvedTitle}
                 weeklyRangeLabel={weeklyRangeLabel}
                 showStudentStats={showStudentStats}
