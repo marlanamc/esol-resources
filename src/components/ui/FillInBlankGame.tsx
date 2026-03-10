@@ -33,6 +33,11 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
     const currentQuestion = questions[currentIndex];
     const isLastQuestion = currentIndex === questions.length - 1;
     const isComplete = selectedAnswer !== null && isLastQuestion;
+    const correctOptionStateClasses = "bg-emerald-50 border-emerald-300 text-emerald-950 dark:bg-emerald-950/40 dark:border-emerald-500/60 dark:text-emerald-50";
+    const wrongOptionStateClasses = "bg-rose-50 border-rose-300 text-rose-950 dark:bg-rose-950/40 dark:border-rose-500/60 dark:text-rose-100";
+    const feedbackPanelClasses = isCorrect
+        ? "bg-emerald-50 border-2 border-emerald-300 text-emerald-950 dark:bg-emerald-950/40 dark:border-emerald-500/60 dark:text-emerald-50"
+        : "bg-rose-50 border-2 border-rose-300 text-rose-950 dark:bg-rose-950/40 dark:border-rose-500/60 dark:text-rose-100";
 
     // Calculate progress: count answered questions (current + 1 if answered)
     const answeredCount = currentIndex + (selectedAnswer ? 1 : 0);
@@ -46,7 +51,7 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
         setIsCorrect(correct);
 
         if (correct) {
-            setScore(score + 1);
+            setScore((prev) => prev + 1);
         }
     };
 
@@ -98,7 +103,7 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
 
     const handleNext = () => {
         if (currentIndex < questions.length - 1) {
-            setCurrentIndex(currentIndex + 1);
+            setCurrentIndex((prev) => prev + 1);
             setSelectedAnswer(null);
             setIsCorrect(null);
             setShowExplanation(false);
@@ -146,7 +151,7 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                             Question <span className="text-[var(--color-primary)] font-bold">{currentIndex + 1}</span> of {questions.length}
                         </div>
                         <div className="text-sm font-medium text-[var(--color-text-muted)]">
-                            Score: <span className="text-green-600 font-bold">{score}</span> / {questions.length}
+                            Score: <span className="font-bold text-emerald-600 dark:text-emerald-300">{score}</span> / {questions.length}
                         </div>
                     </div>
                     {/* Progress Bar */}
@@ -188,17 +193,17 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
 
                         if (selectedAnswer) {
                             if (isSelected && isCorrect) {
-                                bgColor = "bg-green-50 dark:bg-green-900/30";
-                                borderColor = "border-green-500";
-                                textColor = "text-green-900";
+                                bgColor = correctOptionStateClasses;
+                                borderColor = "";
+                                textColor = "";
                             } else if (isSelected && !isCorrect) {
-                                bgColor = "bg-red-50 dark:bg-red-900/30";
-                                borderColor = "border-red-500 dark:border-red-700";
-                                textColor = "text-red-900 dark:text-red-200";
+                                bgColor = wrongOptionStateClasses;
+                                borderColor = "";
+                                textColor = "";
                             } else if (isCorrectOption) {
-                                bgColor = "bg-green-50 dark:bg-green-900/30";
-                                borderColor = "border-green-400 dark:border-green-600";
-                                textColor = "text-green-900 dark:text-green-200";
+                                bgColor = correctOptionStateClasses;
+                                borderColor = "";
+                                textColor = "";
                             }
                         }
 
@@ -216,10 +221,10 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                                     </span>
                                     <span className="text-lg">{option}</span>
                                     {selectedAnswer && isCorrectOption && (
-                                        <span className="ml-auto text-green-600">✓</span>
+                                        <span className="ml-auto text-emerald-600 dark:text-emerald-300">✓</span>
                                     )}
                                     {selectedAnswer && isSelected && !isCorrect && (
-                                        <span className="ml-auto text-red-600">✗</span>
+                                        <span className="ml-auto text-rose-600 dark:text-rose-300">✗</span>
                                     )}
                                 </div>
                             </button>
@@ -229,12 +234,12 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
 
                 {/* Feedback */}
                 {selectedAnswer && (
-                    <div className={`p-4 rounded-xl mb-4 ${isCorrect ? "bg-green-50 border-2 border-green-300" : "bg-red-50 border-2 border-red-300"}`}>
-                        <p className={`font-bold text-lg mb-2 ${isCorrect ? "text-green-900" : "text-red-900"}`}>
+                    <div className={`p-4 rounded-xl mb-4 ${feedbackPanelClasses}`}>
+                        <p className="font-bold text-lg mb-2">
                             {isCorrect ? "🎉 Correct!" : "❌ Not quite right"}
                         </p>
                         {!isCorrect && (
-                            <p className="text-[var(--color-text)]">
+                            <p>
                                 The correct answer is: <strong>{currentQuestion.correctAnswer}</strong>
                             </p>
                         )}
@@ -242,12 +247,12 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                             <div className="mt-3">
                                 <button
                                     onClick={() => setShowExplanation(!showExplanation)}
-                                    className="text-sm underline text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
+                                    className="text-sm underline decoration-current/60 underline-offset-2 opacity-80 transition-opacity hover:opacity-100"
                                 >
                                     {showExplanation ? "Hide explanation" : "Why?"}
                                 </button>
                                 {showExplanation && (
-                                    <p className="mt-2 text-sm italic text-[var(--color-text)]">
+                                    <p className="mt-2 text-sm italic">
                                         {currentQuestion.explanation}
                                     </p>
                                 )}
@@ -258,12 +263,12 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
 
                 {/* Completion Message */}
                 {isComplete && (
-                    <div className="bg-[var(--color-secondary)] text-white rounded-xl p-6 text-center mb-4">
+                    <div className="mb-4 rounded-xl border border-[var(--color-border-strong)] bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-light)] p-6 text-center text-[var(--color-text-on-accent)] shadow-lg">
                         <h2 className="text-3xl font-bold mb-2">🎊 Complete!</h2>
                         <p className="text-xl">
                             You scored <strong>{score}</strong> out of <strong>{questions.length}</strong>
                         </p>
-                        <p className="mt-2 text-white/80">
+                        <p className="mt-2 opacity-80">
                             {score === questions.length
                                 ? "Perfect score! Excellent work!"
                                 : score >= questions.length * 0.7

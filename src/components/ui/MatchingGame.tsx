@@ -30,6 +30,32 @@ interface Props {
     vocabType?: string;
 }
 
+const VOCAB_MATCH_CARD_STYLES = {
+    idle: {
+        backgroundColor: "var(--color-surface-elevated)",
+        borderColor: "var(--color-border-subtle)",
+        color: "var(--color-text)",
+    },
+    selected: {
+        backgroundColor: "var(--tone-vocabulary-surface-muted)",
+        borderColor: "var(--color-primary)",
+        color: "var(--color-text)",
+        boxShadow: "0 8px 18px rgba(15, 23, 42, 0.12)",
+    },
+    matched: {
+        backgroundColor: "rgba(34, 197, 94, 0.16)",
+        borderColor: "rgba(34, 197, 94, 0.52)",
+        color: "var(--color-text)",
+        boxShadow: "0 8px 18px rgba(34, 197, 94, 0.10)",
+    },
+    wrong: {
+        backgroundColor: "rgba(244, 63, 94, 0.14)",
+        borderColor: "rgba(244, 63, 94, 0.5)",
+        color: "var(--color-text)",
+        boxShadow: "0 8px 18px rgba(244, 63, 94, 0.10)",
+    },
+} satisfies Record<string, React.CSSProperties>;
+
 enum InteractionMode {
     Idle = "idle",
     WordSelected = "word-selected",
@@ -830,10 +856,27 @@ function VocabMatchingUI({
         () => deterministicShuffle([...pairs], shuffleSeed + 1),
         [pairs, shuffleSeed]
     );
+    const pairMap = useMemo(
+        () => new Map(pairs.map((pair) => [pair.id, pair])),
+        [pairs]
+    );
     const [selectedTermId, setSelectedTermId] = useState<number | null>(null);
     const [matchedTermIds, setMatchedTermIds] = useState<Set<number>>(new Set());
     const [wrongFlash, setWrongFlash] = useState<number | null>(null);
     const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
+    const selectedPair = selectedTermId != null ? pairMap.get(selectedTermId) ?? null : null;
+
+    const getTermCardStyle = (pairId: number): React.CSSProperties => {
+        if (matchedTermIds.has(pairId)) return VOCAB_MATCH_CARD_STYLES.matched;
+        if (selectedTermId === pairId) return VOCAB_MATCH_CARD_STYLES.selected;
+        return VOCAB_MATCH_CARD_STYLES.idle;
+    };
+
+    const getDefinitionCardStyle = (pairId: number): React.CSSProperties => {
+        if (matchedTermIds.has(pairId)) return VOCAB_MATCH_CARD_STYLES.matched;
+        if (wrongFlash === pairId) return VOCAB_MATCH_CARD_STYLES.wrong;
+        return VOCAB_MATCH_CARD_STYLES.idle;
+    };
 
     const progressPercent =
         pairs.length > 0 ? Math.round((matchedTermIds.size / pairs.length) * 100) : 0;
@@ -869,8 +912,8 @@ function VocabMatchingUI({
             return;
         }
         if (selectedTermId != null) {
-            const firstPair = pairs.find((p) => p.id === selectedTermId);
-            const secondPair = pairs.find((p) => p.id === pairId);
+            const firstPair = pairMap.get(selectedTermId);
+            const secondPair = pairMap.get(pairId);
             if (firstPair && secondPair && firstPair.id === secondPair.id) {
                 setMatchedTermIds((prev) => new Set([...prev, pairId]));
                 setSelectedTermId(null);
@@ -887,8 +930,8 @@ function VocabMatchingUI({
     const handleDefClick = (pairId: number) => {
         if (matchedTermIds.has(pairId)) return;
         if (selectedTermId == null) return;
-        const firstPair = pairs.find((p) => p.id === selectedTermId);
-        const secondPair = pairs.find((p) => p.id === pairId);
+        const firstPair = pairMap.get(selectedTermId);
+        const secondPair = pairMap.get(pairId);
         if (firstPair && secondPair && firstPair.id === secondPair.id) {
             setMatchedTermIds((prev) => new Set([...prev, pairId]));
             setSelectedTermId(null);
@@ -942,21 +985,23 @@ function VocabMatchingUI({
             </div>
 
             {isComplete ? (
-                <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl p-8 text-center shadow-xl">
+                <div className="rounded-2xl border border-[var(--color-border-strong)] bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-light)] p-8 text-center text-[var(--color-text-on-accent)] shadow-xl">
                     <div className="text-5xl mb-3">🎉</div>
                     <h2 className="text-2xl font-bold mb-2">All matched!</h2>
-                    <p className="text-white/90">You matched all {pairs.length} words correctly.</p>
+                    <p className="opacity-80">You matched all {pairs.length} words correctly.</p>
                 </div>
             ) : (
                 <div className="space-y-6">
                     {/* Mobile: Selected term display */}
-                    {selectedTermId != null && (
-                        <div className="md:hidden bg-blue-50 border-2 border-blue-400 rounded-xl p-4 shadow-sm">
-                            <p className="text-sm text-blue-600 mb-2 font-medium">Selected Word:</p>
-                            <p className="text-xl font-bold text-blue-900">
-                                {pairs.find((p) => p.id === selectedTermId)?.term}
+                    {selectedPair && (
+                        <div className="md:hidden rounded-xl border-2 border-[var(--tone-vocabulary-border)] bg-[var(--tone-vocabulary-surface)] p-5 shadow-sm">
+                            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.08em] text-[var(--tone-vocabulary-accent-strong)]">
+                                Selected word
                             </p>
-                            <p className="text-xs text-blue-600 mt-2">Now tap the correct definition below</p>
+                            <p className="text-3xl font-bold tracking-tight text-[var(--color-text)]">
+                                {selectedPair.term}
+                            </p>
+                            <p className="mt-3 text-sm text-[var(--color-text-muted)]">Now tap the correct definition below.</p>
                         </div>
                     )}
 
@@ -972,18 +1017,14 @@ function VocabMatchingUI({
                                         type="button"
                                         {...handlers}
                                         className={`
-                                            w-full text-left px-4 py-3 min-h-[48px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer
-                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-[#14532d]" : ""}
-                                            ${selectedTermId === p.id ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-text)]" : "border-[var(--color-border-subtle)] hover:border-[var(--color-border-strong)] text-[var(--color-text)]"}
+                                            w-full min-h-[48px] rounded-lg border-2 px-4 py-3 text-left transition-[border-color,background-color,color,box-shadow,transform] touch-manipulation cursor-pointer
+                                            ${matchedTermIds.has(p.id) || selectedTermId === p.id
+                                                ? ""
+                                                : "hover:border-[var(--color-border-strong)]"}
                                         `}
-                                        style={{
-                                            borderStyle: 'solid',
-                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (selectedTermId === p.id ? 'rgba(176, 87, 64, 0.1)' : 'var(--color-surface-elevated)'),
-                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (selectedTermId === p.id ? 'var(--color-primary)' : 'var(--color-border-subtle)'),
-                                            borderWidth: '2px'
-                                        }}
+                                        style={getTermCardStyle(p.id)}
                                     >
-                                        <span className={`font-medium ${matchedTermIds.has(p.id) ? 'text-[#14532d]' : 'text-[var(--color-text)]'}`}>{p.term}</span>
+                                        <span className="font-medium">{p.term}</span>
                                     </button>
                                 );
                             })}
@@ -998,18 +1039,15 @@ function VocabMatchingUI({
                                         type="button"
                                         {...handlers}
                                         className={`
-                                            w-full text-left px-4 py-3 min-h-[48px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer text-sm
-                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-[#14532d]" : ""}
-                                            ${wrongFlash === p.id ? "border-red-400 bg-red-50 animate-pulse text-[var(--color-text)]" : "border-[var(--color-border-subtle)] hover:border-[var(--color-border-strong)] text-[var(--color-text)]"}
+                                            w-full min-h-[48px] rounded-lg border-2 px-4 py-3 text-left text-sm transition-[border-color,background-color,color,box-shadow,transform] touch-manipulation cursor-pointer
+                                            ${wrongFlash === p.id ? "animate-pulse" : ""}
+                                            ${matchedTermIds.has(p.id) || wrongFlash === p.id
+                                                ? ""
+                                                : "hover:border-[var(--color-border-strong)]"}
                                         `}
-                                        style={{
-                                            borderStyle: 'solid',
-                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (wrongFlash === p.id ? '#fef2f2' : 'var(--color-surface-elevated)'),
-                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (wrongFlash === p.id ? '#f87171' : 'var(--color-border-subtle)'),
-                                            borderWidth: '2px'
-                                        }}
+                                        style={getDefinitionCardStyle(p.id)}
                                     >
-                                        <span className={`${matchedTermIds.has(p.id) ? 'text-[#14532d]' : 'text-[var(--color-text)]'}`}>{p.definition}</span>
+                                        <span>{p.definition}</span>
                                     </button>
                                 );
                             })}
@@ -1031,18 +1069,14 @@ function VocabMatchingUI({
                                         type="button"
                                         {...handlers}
                                         className={`
-                                            w-full text-left px-4 py-4 min-h-[60px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer text-base
-                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-[#14532d]" : ""}
-                                            ${selectedTermId === p.id ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-text)]" : "border-[var(--color-border-subtle)] hover:border-[var(--color-border-strong)] text-[var(--color-text)]"}
+                                            w-full min-h-[60px] rounded-lg border-2 px-4 py-4 text-left text-base transition-[border-color,background-color,color,box-shadow,transform] touch-manipulation cursor-pointer
+                                            ${matchedTermIds.has(p.id) || selectedTermId === p.id
+                                                ? ""
+                                                : "hover:border-[var(--color-border-strong)]"}
                                         `}
-                                        style={{
-                                            borderStyle: 'solid',
-                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (selectedTermId === p.id ? 'rgba(176, 87, 64, 0.1)' : 'var(--color-surface-elevated)'),
-                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (selectedTermId === p.id ? 'var(--color-primary)' : 'var(--color-border-subtle)'),
-                                            borderWidth: '2px'
-                                        }}
+                                        style={getTermCardStyle(p.id)}
                                     >
-                                        <span className={`font-medium text-lg ${matchedTermIds.has(p.id) ? 'text-[#14532d]' : 'text-[var(--color-text)]'}`}>{p.term}</span>
+                                        <span className="text-lg font-medium">{p.term}</span>
                                     </button>
                                 );
                             })}
@@ -1060,18 +1094,15 @@ function VocabMatchingUI({
                                             type="button"
                                             {...handlers}
                                             className={`
-                                                w-full text-left px-4 py-4 min-h-[60px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer text-base
-                                                ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-[#14532d]" : ""}
-                                                ${wrongFlash === p.id ? "border-red-400 bg-red-50 animate-pulse text-[var(--color-text)]" : "border-[var(--color-border-subtle)] hover:border-[var(--color-border-strong)] text-[var(--color-text)]"}
+                                                w-full min-h-[60px] rounded-lg border-2 px-4 py-4 text-left text-base transition-[border-color,background-color,color,box-shadow,transform] touch-manipulation cursor-pointer
+                                                ${wrongFlash === p.id ? "animate-pulse" : ""}
+                                                ${matchedTermIds.has(p.id) || wrongFlash === p.id
+                                                    ? ""
+                                                    : "hover:border-[var(--color-border-strong)]"}
                                             `}
-                                            style={{
-                                                borderStyle: 'solid',
-                                                backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (wrongFlash === p.id ? '#fef2f2' : 'var(--color-surface-elevated)'),
-                                                borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (wrongFlash === p.id ? '#f87171' : 'var(--color-border-subtle)'),
-                                                borderWidth: '2px'
-                                            }}
+                                            style={getDefinitionCardStyle(p.id)}
                                         >
-                                            <span className={`text-base ${matchedTermIds.has(p.id) ? 'text-[#14532d]' : 'text-[var(--color-text)]'}`}>{p.definition}</span>
+                                            <span className="text-base">{p.definition}</span>
                                         </button>
                                     );
                                 })}
