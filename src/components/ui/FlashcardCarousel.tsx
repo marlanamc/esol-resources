@@ -44,6 +44,23 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
     const total = cards.length;
     const currentCard = cards[order[currentIndex]];
 
+    // Simple audio player for term pronunciation
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    const playTermAudio = useCallback(
+        (term: string) => {
+            const audioUrl = `/audio/vocab/${encodeURIComponent(term)}.mp3`;
+
+            // Recreate the element each time so we always pick up latest src
+            audioRef.current = new Audio(audioUrl);
+            audioRef.current.currentTime = 0;
+            void audioRef.current.play().catch(() => {
+                // Silently ignore missing audio or playback errors
+            });
+        },
+        []
+    );
+
     const getSideContent = (side: "front" | "back") => {
         const isTermSide = (mode === "term-first" && side === "front") || (mode === "def-first" && side === "back");
 
@@ -335,6 +352,7 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
                                 content={currentFront}
                                 variant="front"
                                 theme="light"
+                                onPlayTerm={playTermAudio}
                             />
                         </div>
 
@@ -344,6 +362,7 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
                                 content={currentBack}
                                 variant="back"
                                 theme="colored"
+                                onPlayTerm={playTermAudio}
                             />
                         </div>
                     </div>
@@ -395,7 +414,17 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
 }
 
 // Subcomponent for Card Face to reduce duplication
-function CardFace({ content, variant, theme }: { content: { type: string; text: string; example?: string | null }; variant: "front" | "back"; theme: "light" | "colored" }) {
+function CardFace({
+    content,
+    variant,
+    theme,
+    onPlayTerm,
+}: {
+    content: { type: string; text: string; example?: string | null };
+    variant: "front" | "back";
+    theme: "light" | "colored";
+    onPlayTerm?: (term: string) => void;
+}) {
 
     const containerClasses = "bg-[var(--color-surface-elevated)] text-[var(--color-text)] shadow-[0_10px_30px_rgba(0,0,0,0.14)] border border-[var(--color-border-subtle)]";
 
@@ -415,11 +444,24 @@ function CardFace({ content, variant, theme }: { content: { type: string; text: 
             className={`h-full w-full rounded-3xl flex flex-col items-center justify-center p-6 sm:p-10 md:p-12 transition-[opacity,transform] ${containerClasses}`}
             style={containerStyle}
         >
-            {/* Top Label */}
-            <div className="absolute top-4 sm:top-6 left-4 sm:left-6">
+            {/* Top Label + optional audio button */}
+            <div className="absolute top-4 sm:top-6 left-4 sm:left-6 flex items-center gap-2">
                 <span className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm ${labelClasses}`}>
                     {content.type}
                 </span>
+                {content.type === "Term" && typeof onPlayTerm === "function" && (
+                    <button
+                        type="button"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onPlayTerm(content.text);
+                        }}
+                        className="inline-flex items-center justify-center rounded-full bg-[var(--color-bg-light)] text-[var(--color-text-muted)] hover:bg-[var(--color-border-subtle)] hover:text-[var(--color-text)] shadow-sm p-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                        aria-label={`Play pronunciation for ${content.text}`}
+                    >
+                        <SpeakerIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    </button>
+                )}
             </div>
 
             {/* Content */}
@@ -494,6 +536,25 @@ function SettingsIcon({ className }: { className?: string }) {
             <path d="m4.93 4.93 4.24 4.24m5.66 5.66 4.24 4.24"/>
             <path d="M1 12h6m6 0h6"/>
             <path d="m4.93 19.07 4.24-4.24m5.66-5.66 4.24-4.24"/>
+        </svg>
+    );
+}
+
+function SpeakerIcon({ className }: { className?: string }) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={className}
+        >
+            <path d="M11 5L6 9H3v6h3l5 4V5z" />
+            <path d="M15.54 8.46a5 5 0 010 7.07" />
+            <path d="M18.07 5.93a9 9 0 010 12.73" />
         </svg>
     );
 }
