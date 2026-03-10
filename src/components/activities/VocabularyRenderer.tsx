@@ -552,6 +552,15 @@ function WordListRenderer({ content, activityId, assignmentId, vocabType }: Word
         return parsePlainVocabulary(extractRawString(content));
     }, [content]);
 
+    const playTermAudio = (term: string) => {
+        const audioUrl = `/audio/vocab/${encodeURIComponent(term)}.mp3`;
+        const audio = new Audio(audioUrl);
+        audio.currentTime = 0;
+        void audio.play().catch(() => {
+            // Ignore missing files or playback errors
+        });
+    };
+
     // Auto-save progress when word list is viewed (mark as complete)
     useEffect(() => {
         if (entries.length > 0) {
@@ -585,9 +594,32 @@ function WordListRenderer({ content, activityId, assignmentId, vocabType }: Word
                     <div className="relative z-10">
                         {/* Term & POS */}
                         <div className="flex items-baseline gap-2 md:gap-3 mb-1 md:mb-2 flex-wrap">
-                            <h3 className="text-lg md:text-2xl font-bold text-text tracking-tight">
-                                {entry.term}
-                            </h3>
+                            <div className="flex items-center gap-2">
+                                <h3 className="text-lg md:text-2xl font-bold text-text tracking-tight">
+                                    {entry.term}
+                                </h3>
+                                <button
+                                    type="button"
+                                    onClick={() => playTermAudio(entry.term)}
+                                    className="inline-flex items-center justify-center rounded-full bg-bg-light text-text-muted hover:bg-border hover:text-text shadow-sm p-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                                    aria-label={`Play pronunciation for ${entry.term}`}
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="w-4 h-4"
+                                    >
+                                        <path d="M11 5L6 9H3v6h3l5 4V5z" />
+                                        <path d="M15.54 8.46a5 5 0 010 7.07" />
+                                        <path d="M18.07 5.93a9 9 0 010 12.73" />
+                                    </svg>
+                                </button>
+                            </div>
                             {entry.pos && (
                                 <span className="px-2 py-0.5 rounded-full bg-bg-light text-text-muted text-[10px] md:text-xs font-semibold italic border border-border">
                                     {entry.pos}
