@@ -95,7 +95,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <p>In this guide, you'll learn the most important modals for work: <strong>must</strong>, <strong>have to</strong>, <strong>should</strong>, <strong>can</strong>, <strong>may</strong>, and <strong>could</strong>.</p>
 
                 <h4>🎯 The One Rule You Need:</h4>
-                <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 2px solid #7ba884;">
+                <div style="margin: 1rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 2px solid #7ba884;">
                     <p style="margin: 0; font-size: 1.125rem; text-align: center;">
                         <span style="color: #3b82f6;">Subject</span> +
                         <span style="color: #d97757; font-weight: 600;"> Modal </span> +
@@ -380,7 +380,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <h3>Should = Good Idea, Recommended (But Not Required)</h3>
                 <p><strong>Should</strong> expresses advice, recommendations, or expectations - but NOT obligations. It means "this is the right thing to do" or "this is expected."</p>
 
-                <div style="margin: 1.5rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                <div style="margin: 1.5rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
                     <h4>Giving Advice:</h4>
                     <ul>
                         <li>You <strong>should</strong> arrive 10 minutes early on your first day.</li>
@@ -389,7 +389,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                <div style="margin: 1rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
                     <h4>Asking for Advice:</h4>
                     <ul>
                         <li><strong>Should I</strong> email my boss or call?</li>
@@ -398,7 +398,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                <div style="margin: 1rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
                     <h4>Expectations:</h4>
                     <ul>
                         <li>The package <strong>should</strong> arrive by Friday. (we expect it to)</li>
@@ -760,28 +760,28 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <p>Let's apply what you learned to real workplace situations:</p>
 
                 <div style="margin: 1.5rem 0;">
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid rgba(0,0,0,0.1);">
+                    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
                         <h4 style="margin-top: 0; color: #d97757;">Scenario 1: You're sick and need to call in</h4>
                         <p><strong>❌ Too casual:</strong> "I can't come in today."</p>
                         <p><strong>✓ Professional:</strong> "I'm not feeling well. I won't be able to come in today."</p>
                         <p><strong>✓ Very professional:</strong> "I'm ill and won't be able to work today. Should I find someone to cover my shift?"</p>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid rgba(0,0,0,0.1);">
+                    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
                         <h4 style="margin-top: 0; color: #d97757;">Scenario 2: You need help with a task</h4>
                         <p><strong>❌ Too direct:</strong> "Help me with this."</p>
                         <p><strong>✓ Polite:</strong> "Could you help me with this when you have a moment?"</p>
                         <p><strong>✓ More polite:</strong> "I was wondering if you could help me understand how to do this?"</p>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid rgba(0,0,0,0.1);">
+                    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
                         <h4 style="margin-top: 0; color: #d97757;">Scenario 3: You want to leave early</h4>
                         <p><strong>❌ Too casual:</strong> "Can I go now?"</p>
                         <p><strong>✓ Better:</strong> "Would it be okay if I left a bit early today?"</p>
                         <p><strong>✓ Best:</strong> "I have an appointment. Would it be possible for me to leave 30 minutes early today?"</p>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
                         <h4 style="margin-top: 0; color: #d97757;">Scenario 4: You don't understand instructions</h4>
                         <p><strong>❌ Vague:</strong> "I don't get it."</p>
                         <p><strong>✓ Professional:</strong> "Could you explain that again?"</p>
@@ -1047,7 +1047,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 </table>
 
                 <h3>Politeness Scale for Requests</h3>
-                <ol style="background: white; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                <ol style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1.5rem; border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
                     <li>Can you...? (casual)</li>
                     <li>Could you...? (polite)</li>
                     <li>Would you...? (more polite)</li>
