@@ -461,9 +461,9 @@ function PinnedDailyHabitRow({
                                     <span
                                         className="inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-semibold"
                                         style={{
-                                            backgroundColor: tone.chipBg,
-                                            borderColor: tone.border,
-                                            color: tone.chipText,
+                                            backgroundColor: `color-mix(in srgb, ${tone.accent} 18%, var(--surface-elevated))`,
+                                            borderColor: `color-mix(in srgb, ${tone.accent} 30%, var(--border-subtle))`,
+                                            color: tone.accentStrong,
                                         }}
                                     >
                                         Done today
@@ -479,9 +479,9 @@ function PinnedDailyHabitRow({
                                     <span
                                         className="inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-semibold"
                                         style={{
-                                            backgroundColor: `color-mix(in srgb, ${tone.accent} 12%, white)`,
-                                            borderColor: tone.border,
-                                            color: tone.chipText,
+                                            backgroundColor: `color-mix(in srgb, ${tone.accent} 18%, var(--surface-elevated))`,
+                                            borderColor: `color-mix(in srgb, ${tone.accent} 30%, var(--border-subtle))`,
+                                            color: tone.accentStrong,
                                         }}
                                     >
                                         Done today
