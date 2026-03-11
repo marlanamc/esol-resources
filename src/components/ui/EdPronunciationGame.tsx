@@ -819,7 +819,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                     onClick={() => handleMinimalPairAnswer(choice)}
                     disabled={state.showFeedback}
                     className={`
-                      p-4 sm:p-6 rounded-2xl font-black text-xl sm:text-2xl transition-all border-2
+                      min-h-[6.5rem] p-5 sm:min-h-[7.5rem] sm:p-6 rounded-2xl font-black text-2xl sm:text-3xl md:text-4xl leading-none tracking-tight transition-all border-2
                       ${state.showFeedback
                         ? isCorrect
                           ? 'bg-emerald-500 text-white border-emerald-600 scale-105'
