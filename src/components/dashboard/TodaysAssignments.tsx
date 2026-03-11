@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { ActivityLink } from '@/components/navigation/ActivityLink';
 import { StudentQuickStats } from '@/components/dashboard/StudentQuickStats';
+import type { DailyChecklistHabit } from '@/lib/daily-habits';
 import { getLearnerCategoryTone } from '@/lib/learner-theme';
 
 const FEATURED_NEW_BADGE_CLASS_NAME = 'inline-flex items-center gap-1 rounded-full border';
@@ -61,6 +62,7 @@ interface FeaturedAssignment {
 
 interface Props {
     initialAssignments?: FeaturedAssignment[];
+    pinnedHabit?: DailyChecklistHabit | null;
     title?: string;
     ctaLabel?: string;
     variant?: 'cards' | 'checklist';
@@ -332,8 +334,207 @@ function CompactVocabTracker({ vocabProgress }: { vocabProgress: VocabProgressIn
     );
 }
 
+function PinnedDailyHabitRow({
+    habit,
+    compact = false,
+    embedded = false,
+}: {
+    habit: DailyChecklistHabit;
+    compact?: boolean;
+    embedded?: boolean;
+}) {
+    const tone = getLearnerCategoryTone("vocabulary");
+    const isDoneToday = habit.status === "done-today";
+    const hasActionableCards = habit.dueCount > 0 || habit.newCount > 0;
+    const useCondensedDoneLayout = compact || isDoneToday;
+    const ctaLabel = isDoneToday
+        ? "Open review"
+        : !hasActionableCards
+            ? "View review"
+            : "Start";
+
+    if (embedded) {
+        return (
+            <Link
+                href={habit.href}
+                className={`checklist-row-premium relative block border-b px-4 py-3 transition-colors hover:bg-black/[0.015] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isDoneToday ? "opacity-80" : ""}`}
+                style={{ borderColor: 'var(--dashboard-divider)' }}
+            >
+                <div className="flex items-center gap-3 min-w-0">
+                    <div className="shrink-0 flex items-center justify-center w-5 h-5">
+                        <div
+                            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
+                                isDoneToday
+                                    ? 'bg-secondary/15 border-secondary/45 text-secondary'
+                                    : 'text-transparent shadow-sm'
+                            }`}
+                            style={isDoneToday ? undefined : { backgroundColor: 'var(--surface-base)', borderColor: 'var(--border-strong)' }}
+                        >
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3} aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                        <div className="text-[13px] sm:text-sm font-semibold leading-tight text-text">
+                            {habit.title}
+                        </div>
+                        <div className="mt-1.5 flex flex-wrap items-center gap-2">
+                            <span
+                                className="inline-flex px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide"
+                                style={{ backgroundColor: tone.chipBg, color: tone.chipText }}
+                            >
+                                {isDoneToday ? "Done today" : "Daily habit"}
+                            </span>
+                            {!isDoneToday && habit.newCount > 0 ? (
+                                <span className="inline-flex rounded-full border px-2 py-0.5 text-[9px] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
+                                    {habit.newCount} new
+                                </span>
+                            ) : null}
+                            {!isDoneToday && habit.dueCount > 0 ? (
+                                <span className="inline-flex rounded-full border px-2 py-0.5 text-[9px] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
+                                    {habit.dueCount} due
+                                </span>
+                            ) : null}
+                        </div>
+                    </div>
+
+                    <div className="shrink-0 pl-1">
+                        <span
+                            className="dashboard-accent-button inline-flex items-center justify-center !min-h-0 min-w-[82px] h-9 rounded-full px-3 text-[13px] font-semibold tracking-tight whitespace-nowrap sm:min-w-[92px] sm:h-10 sm:px-4 sm:text-sm"
+                            style={{
+                                '--dashboard-button-accent': tone.accent,
+                                '--dashboard-button-text': tone.chipText,
+                            } as React.CSSProperties}
+                        >
+                            <span>{ctaLabel}</span>
+                        </span>
+                    </div>
+                </div>
+            </Link>
+        );
+    }
+
+    return (
+        <Link
+            href={habit.href}
+            className={`group block rounded-2xl border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(31,24,18,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${isDoneToday ? "opacity-80" : ""}`}
+            style={{
+                borderColor: isDoneToday ? `color-mix(in srgb, ${tone.border} 72%, var(--border-subtle))` : tone.border,
+                background: isDoneToday
+                    ? `linear-gradient(135deg, color-mix(in srgb, ${tone.surfaceMuted} 28%, white) 0%, color-mix(in srgb, ${tone.surfaceMuted} 14%, var(--surface-subtle)) 100%)`
+                    : `linear-gradient(135deg, color-mix(in srgb, ${tone.surfaceMuted} 76%, white) 0%, color-mix(in srgb, ${tone.surfaceMuted} 42%, var(--surface-elevated)) 100%)`,
+                boxShadow: isDoneToday
+                    ? `inset 0 1px 0 rgba(255,255,255,0.45), 0 1px 2px color-mix(in srgb, ${tone.accent} 6%, transparent)`
+                    : `inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 3px color-mix(in srgb, ${tone.accent} 10%, transparent)`,
+            }}
+        >
+            <div className={`${useCondensedDoneLayout ? "px-3.5 py-3" : "px-4 py-4"}`}>
+                <div className={`flex justify-between gap-3 ${useCondensedDoneLayout ? "items-center" : "items-start"}`}>
+                    <div className={`flex min-w-0 gap-3 ${useCondensedDoneLayout ? "items-center" : "items-start"}`}>
+                        <div
+                            className={`flex shrink-0 items-center justify-center rounded-xl ${useCondensedDoneLayout ? "h-9 w-9" : "h-10 w-10"}`}
+                            style={{
+                                backgroundColor: `color-mix(in srgb, ${tone.accent} 14%, white)`,
+                                color: tone.accent,
+                            }}
+                        >
+                            {isDoneToday ? <CheckCircle2 className={`${useCondensedDoneLayout ? "h-4.5 w-4.5" : "h-5 w-5"}`} /> : <BookOpen className={`${useCondensedDoneLayout ? "h-4.5 w-4.5" : "h-5 w-5"}`} />}
+                        </div>
+
+                        <div className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-2">
+                                {!useCondensedDoneLayout ? (
+                                    <span
+                                        className="inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em]"
+                                        style={{
+                                            backgroundColor: tone.chipBg,
+                                            borderColor: tone.border,
+                                            color: tone.chipText,
+                                        }}
+                                    >
+                                        Daily Habit
+                                    </span>
+                                ) : null}
+                                {!useCondensedDoneLayout && isDoneToday ? (
+                                    <span
+                                        className="inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-semibold"
+                                        style={{
+                                            backgroundColor: `color-mix(in srgb, ${tone.accent} 12%, white)`,
+                                            borderColor: tone.border,
+                                            color: tone.chipText,
+                                        }}
+                                    >
+                                        Done today
+                                    </span>
+                                ) : null}
+                            </div>
+
+                            <h3 className={`${useCondensedDoneLayout ? "mt-1 text-[14px] sm:text-[15px]" : "mt-2 text-[15px] sm:text-base"} font-display font-bold leading-tight text-text`}>
+                                {habit.title}
+                            </h3>
+                            {useCondensedDoneLayout && isDoneToday ? (
+                                <div className="mt-1">
+                                    <span
+                                        className="inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-semibold"
+                                        style={{
+                                            backgroundColor: `color-mix(in srgb, ${tone.accent} 12%, white)`,
+                                            borderColor: tone.border,
+                                            color: tone.chipText,
+                                        }}
+                                    >
+                                        Done today
+                                    </span>
+                                </div>
+                            ) : null}
+                            {!useCondensedDoneLayout ? (
+                                <p className="mt-1 text-xs leading-relaxed text-text-muted sm:text-sm">
+                                    {habit.description}
+                                </p>
+                            ) : null}
+
+                            <div className={`${useCondensedDoneLayout ? "mt-1" : "mt-2"} flex flex-wrap items-center gap-2`}>
+                                {!isDoneToday && habit.dueCount > 0 ? (
+                                    <span className="inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
+                                        {habit.dueCount} due today
+                                    </span>
+                                ) : null}
+                                {!isDoneToday && habit.newCount > 0 ? (
+                                    <span className="inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
+                                        {habit.newCount} new
+                                    </span>
+                                ) : null}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="shrink-0">
+                        <span
+                            className={`dashboard-accent-button inline-flex items-center justify-center gap-1.5 !min-h-0 rounded-full font-semibold tracking-tight whitespace-nowrap transition-transform duration-200 group-hover:translate-x-0.5 ${
+                                useCondensedDoneLayout
+                                    ? "min-w-[82px] h-9 px-3 text-[13px] sm:min-w-[92px] sm:h-10 sm:px-4 sm:text-sm"
+                                    : "min-w-[96px] h-10 px-4 text-sm"
+                            }`}
+                            style={{
+                                '--dashboard-button-accent': tone.accent,
+                                '--dashboard-button-text': tone.chipText,
+                                borderColor: tone.border,
+                            } as React.CSSProperties}
+                        >
+                            {ctaLabel}
+                            <ArrowRight className="h-3.5 w-3.5" />
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </Link>
+    );
+}
+
 function ChecklistAssignments({
     assignments,
+    pinnedHabit,
     actions,
     mobileTasksLinkHref,
     mobileTasksLinkLabel,
@@ -342,6 +543,7 @@ function ChecklistAssignments({
     showStudentStats = false,
 }: {
     assignments: FeaturedAssignment[];
+    pinnedHabit?: DailyChecklistHabit | null;
     actions?: React.ReactNode;
     mobileTasksLinkHref?: string;
     mobileTasksLinkLabel?: string;
@@ -466,6 +668,20 @@ function ChecklistAssignments({
     }, [activeFilter, taskGroups]);
 
     const filteredTaskRows = taskRows.filter((row) => activeFilter === 'all' || row.groupKey === activeFilter);
+    const pinnedHabitNeedsAttention = Boolean(pinnedHabit && pinnedHabit.status !== 'done-today');
+    const pinnedHabitDoneToday = Boolean(pinnedHabit && pinnedHabit.status === 'done-today');
+    const vocabularyGroupTemplate = CHECKLIST_GROUPS.find((group) => group.key === 'vocabulary');
+    const desktopGroups = pinnedHabit && vocabularyGroupTemplate && !groups.some((group) => group.key === 'vocabulary')
+        ? [
+            ...groups,
+            {
+                ...vocabularyGroupTemplate,
+                items: [],
+                doneInGroup: 0,
+                isGameGroup: false,
+            },
+        ].sort((left, right) => CHECKLIST_GROUPS.findIndex((group) => group.key === left.key) - CHECKLIST_GROUPS.findIndex((group) => group.key === right.key))
+        : groups;
 
     const renderChecklistRow = (
         row: NormalizedChecklistRow,
@@ -926,6 +1142,10 @@ function ChecklistAssignments({
                             ) : null}
                         </div>
 
+                        {pinnedHabitNeedsAttention && pinnedHabit ? (
+                            <PinnedDailyHabitRow habit={pinnedHabit} compact />
+                        ) : null}
+
                         {filteredTaskRows.length > 0 ? (
                             <div className="space-y-2">
                                 {filteredTaskRows.map(renderCondensedRow)}
@@ -945,6 +1165,10 @@ function ChecklistAssignments({
                                 </button>
                             </div>
                         )}
+
+                        {pinnedHabitDoneToday && pinnedHabit ? (
+                            <PinnedDailyHabitRow habit={pinnedHabit} compact />
+                        ) : null}
                     </div>
 
                 <div
@@ -952,8 +1176,10 @@ function ChecklistAssignments({
                     style={{ background: 'linear-gradient(180deg, color-mix(in srgb, var(--dashboard-surface-start) 94%, var(--dashboard-shell-bg)) 0%, var(--dashboard-surface-end) 100%)' }}
                 >
                     <div className="grid grid-cols-1 gap-x-7 gap-y-7 lg:auto-rows-fr lg:grid-cols-2">
-                        {groups.map((group) => {
+                        {desktopGroups.map((group) => {
                             const groupStyle = getCategoryStyle(group.key);
+                            const showPinnedHabitAtTop = group.key === 'vocabulary' && pinnedHabitNeedsAttention && pinnedHabit;
+                            const showPinnedHabitAtBottom = group.key === 'vocabulary' && pinnedHabitDoneToday && pinnedHabit;
                             return (
                                 <div
                                     key={group.key}
@@ -1010,7 +1236,13 @@ function ChecklistAssignments({
                                     </div>
 
                                     <div className="relative flex-1 divide-y" style={{ borderColor: 'var(--dashboard-divider)' }}>
+                                        {showPinnedHabitAtTop ? (
+                                            <PinnedDailyHabitRow habit={pinnedHabit} embedded />
+                                        ) : null}
                                         {group.items.map((row) => renderChecklistRow(row, group.isGameGroup, groupStyle))}
+                                        {showPinnedHabitAtBottom ? (
+                                            <PinnedDailyHabitRow habit={pinnedHabit} embedded />
+                                        ) : null}
                                     </div>
                                 </div>
                             );
@@ -1024,6 +1256,7 @@ function ChecklistAssignments({
 
 export const TodaysAssignments: React.FC<Props> = ({
     initialAssignments,
+    pinnedHabit = null,
     title,
     ctaLabel = 'Start Activity',
     variant = 'cards',
@@ -1115,7 +1348,7 @@ export const TodaysAssignments: React.FC<Props> = ({
         );
     }
 
-    if (assignments.length === 0) {
+    if (assignments.length === 0 && !pinnedHabit) {
         return (
             <div className="mb-8">
                 <div className="overflow-hidden rounded-2xl border surface-card-shadow" style={{ borderColor: 'var(--dashboard-border)', backgroundColor: 'var(--dashboard-surface-start)' }}>
@@ -1160,6 +1393,7 @@ export const TodaysAssignments: React.FC<Props> = ({
         return (
             <ChecklistAssignments
                 assignments={assignments}
+                pinnedHabit={pinnedHabit}
                 actions={actions}
                 mobileTasksLinkHref={mobileTasksLinkHref}
                 mobileTasksLinkLabel={mobileTasksLinkLabel}

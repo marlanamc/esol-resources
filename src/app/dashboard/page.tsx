@@ -31,7 +31,7 @@ import {
 import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
 import { isTeacherAdmin } from "@/lib/roles";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
-import { getVocabReviewSummaryForUser } from "@/lib/vocab-review";
+import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 
 type TeacherAssignment = {
@@ -359,7 +359,6 @@ export default async function DashboardPage() {
                 icon: UsersIcon,
             });
         }
-
 
         return (
             <div className="min-h-screen bg-bg">
@@ -769,17 +768,18 @@ export default async function DashboardPage() {
             new Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>()
         );
 
-        let vocabReviewSummary = null;
+        let dailyVocabHabit = null;
         try {
-            vocabReviewSummary = await getVocabReviewSummaryForUser(prisma, userId);
+            dailyVocabHabit = await getDailyVocabHabitForUser(prisma, userId);
         } catch (error) {
-            logger.warn("Failed to load vocab review dashboard summary", {
+            logger.warn("Failed to load daily vocab habit for student dashboard", {
                 userId,
                 error: String(error),
             });
         }
 
         const featuredAssignments = featuredAssignmentsRaw
+            .filter((a) => a.activityId !== "vocab-daily-review")
             .map((a) => {
                 const p = featuredProgressMap.get(a.activityId);
                 const isGrammarGuide =
@@ -788,25 +788,15 @@ export default async function DashboardPage() {
                 const hasPassedMiniQuiz = isGrammarGuide && a.submissions.some(
                     (s) => !!s.completedAt && typeof s.score === "number" && s.score > 70
                 );
-                
-                const isDailyVocab = a.activityId === 'vocab-daily-review';
-                
+
                 return {
                     ...a,
-                    href: isDailyVocab ? "/dashboard/vocab-review" : undefined,
                     featuredAt: a.updatedAt ?? a.createdAt,
                     isNewRelease: isWithinNewReleaseWindow(a.updatedAt ?? a.createdAt),
                     progress: hasPassedMiniQuiz ? 100 : (p?.progress ?? 0),
                     progressStatus: hasPassedMiniQuiz ? "completed" : (p?.status ?? "in_progress"),
                     categoryData: p?.categoryData ?? null,
                 };
-            })
-            .filter((a) => {
-                // If it's the daily vocab assignment, hide it if there's nothing left to review today
-                if (a.activityId === 'vocab-daily-review' && vocabReviewSummary) {
-                    return vocabReviewSummary.dueCount > 0 || vocabReviewSummary.newCount > 0;
-                }
-                return true;
             });
 
         const calendarEvents: CalendarEvent[] = [
@@ -863,6 +853,7 @@ export default async function DashboardPage() {
                                     title="Weekly Checklist"
                                     ctaLabel="Start"
                                     variant="checklist"
+                                    pinnedHabit={dailyVocabHabit}
                                     mobileTasksLinkHref="/dashboard/activities"
                                     mobileTasksLinkLabel="All Activities"
                                     showStudentStats

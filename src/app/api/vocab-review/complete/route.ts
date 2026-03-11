@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { requireAuth } from "@/lib/api-auth";
+import { prisma } from "@/lib/prisma";
+import { DAILY_HABIT_KEYS, markDailyHabitCompleted } from "@/lib/daily-habits";
 import { awardPoints, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
 import { POINTS } from "@/lib/gamification/constants";
 
@@ -39,6 +41,7 @@ export async function POST(request: Request) {
     POINTS.VOCAB_REVIEW_MAX_PER_SESSION
   );
 
+  await markDailyHabitCompleted(prisma, userId, DAILY_HABIT_KEYS.vocabReview);
   await awardPoints(userId, points, `Vocab review: ${cardsReviewed} card${cardsReviewed === 1 ? "" : "s"}`);
   const streakResult = await updateStreak(userId, points);
   await checkAndAwardAchievements(userId);

@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
-import Link from "next/link";
 import { ArrowLeft, CheckCircle2, ChevronDown, RotateCcw, Volume2, X } from "lucide-react";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import type {
@@ -19,12 +18,7 @@ type SessionCard = VocabReviewCard & {
 };
 
 type ReviewButtonRating = Exclude<VocabReviewRating, "again">;
-
-const SESSION_LIMITS = [
-  { value: 3, label: "Quick 3" },
-  { value: 6, label: "Standard 6" },
-  { value: 10, label: "Extra 10" },
-] as const;
+const DEFAULT_SESSION_LIMIT = 6;
 
 const RATING_BUTTONS: Array<{
   rating: ReviewButtonRating;
@@ -142,7 +136,6 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [sessionLimit, setSessionLimit] = useState(initialQueue.limit || 6);
   const [againCardIds, setAgainCardIds] = useState<Set<string>>(() => new Set());
   const [sessionCompleteResult, setSessionCompleteResult] = useState<{
     points: number;
@@ -167,6 +160,12 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
   const hasFinishedSession = sessionCards.length > 0 && currentIndex >= sessionCards.length;
   const isBusy = isLoading || isSubmitting || isPending;
   const againCount = againCardIds.size;
+  const remainingActionableCount = queue.dueCount + queue.newCount;
+  const canStartAnotherSession = queue.cards.length > 0;
+
+  const navigateToDashboard = useCallback(() => {
+    window.location.assign("/dashboard");
+  }, []);
 
   // Call complete API when session finishes (once per session)
   useEffect(() => {
@@ -174,18 +173,29 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
       return;
     }
     completedSessionRef.current = true;
-    fetchJson<{ ok: boolean; points: number; streakUpdated: boolean; newStreak: number }>(
-      "/api/vocab-review/complete",
-      {
-        method: "POST",
-        body: JSON.stringify({ cardsReviewed: sessionCards.length }),
-      }
-    )
-      .then((res) => setSessionCompleteResult({ points: res.points, streakUpdated: res.streakUpdated, newStreak: res.newStreak }))
+    Promise.all([
+      fetchJson<{ ok: boolean; points: number; streakUpdated: boolean; newStreak: number }>(
+        "/api/vocab-review/complete",
+        {
+          method: "POST",
+          body: JSON.stringify({ cardsReviewed: sessionCards.length }),
+        }
+      ),
+      fetchJson<VocabReviewSummary>("/api/vocab-review/summary"),
+      fetchJson<VocabReviewQueue>(`/api/vocab-review/queue?${new URLSearchParams({
+        source: selectedSource,
+        limit: String(DEFAULT_SESSION_LIMIT),
+      }).toString()}`),
+    ])
+      .then(([res, nextSummary, nextQueue]) => {
+        setSessionCompleteResult({ points: res.points, streakUpdated: res.streakUpdated, newStreak: res.newStreak });
+        setSummary(nextSummary);
+        setQueue(nextQueue);
+      })
       .catch(() => {
         completedSessionRef.current = false;
       });
-  }, [hasFinishedSession, sessionCards.length]);
+  }, [hasFinishedSession, selectedSource, sessionCards.length]);
 
   const audioPlayedRef = useRef<string | null>(null);
 
@@ -208,17 +218,16 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
     });
   }, []);
 
-  const loadSession = useCallback(async (source: string, limit?: number) => {
+  const loadSession = useCallback(async (source: string) => {
     const requestId = requestIdRef.current + 1;
     requestIdRef.current = requestId;
     setIsLoading(true);
     setError(null);
 
-    const effectiveLimit = limit ?? sessionLimit;
     try {
       const query = new URLSearchParams({
         source,
-        limit: String(effectiveLimit),
+        limit: String(DEFAULT_SESSION_LIMIT),
       });
 
       const [nextQueue, nextSummary] = await Promise.all([
@@ -239,7 +248,6 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
       setAgainCardIds(new Set());
       setSessionCompleteResult(null);
       completedSessionRef.current = false;
-      setSessionLimit(effectiveLimit);
       setIsFilterOpen(false);
     } catch (nextError) {
       if (requestId !== requestIdRef.current) {
@@ -251,7 +259,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
         setIsLoading(false);
       }
     }
-  }, [sessionLimit]);
+  }, []);
 
   const handleSelectSource = useCallback((source: string) => {
     if (source === selectedSource) {
@@ -366,7 +374,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
           background: `linear-gradient(160deg, color-mix(in srgb, ${tone.surface} 80%, transparent) 0%, color-mix(in srgb, var(--surface-elevated) 80%, transparent) 100%)`,
         }}
       >
-        <ContextualBackButton fallbackHref="/dashboard" className="shrink-0" aria-label="Back to dashboard" />
+        <ContextualBackButton fallbackHref="/dashboard" onClick={navigateToDashboard} className="shrink-0" aria-label="Back to dashboard" />
 
         <div className="h-2 min-w-0 flex-1 overflow-hidden rounded-full bg-black/5 dark:bg-white/10">
           <div
@@ -550,14 +558,15 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                 Pick a filter
                 <ChevronDown className="h-4 w-4" />
               </button>
-              <Link
-                href="/dashboard"
+              <button
+                type="button"
+                onClick={navigateToDashboard}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl border px-5 py-3 text-sm font-semibold text-text transition-[background-color] hover:bg-white/70 focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 dark:hover:bg-white/5"
                 style={{ borderColor: tone.border }}
               >
                 <ArrowLeft className="h-4 w-4" />
                 Back to dashboard
-              </Link>
+              </button>
             </div>
           </div>
         </section>
@@ -578,6 +587,11 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                   {againCount} need more practice—you&apos;ll see them again soon.
                 </span>
               ) : null}
+              <span className="mt-2 block font-medium text-text/80">
+                {remainingActionableCount > 0
+                      ? `${remainingActionableCount} card${remainingActionableCount === 1 ? "" : "s"} are still ready in this set (${queue.dueCount} due, ${queue.newCount} new).`
+                      : "No due or new cards are left in this set right now."}
+              </span>
             </p>
             {sessionCompleteResult ? (
               <p className="mt-2 flex items-center justify-center gap-2 text-base font-bold" style={{ color: tone.accent }}>
@@ -590,12 +604,12 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
               </p>
             ) : null}
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-              {queue.hasMore ? (
+              {canStartAnotherSession ? (
                 <button
                   type="button"
                   onClick={() => {
                     startTransition(() => {
-                      void loadSession(selectedSource, sessionLimit);
+                      void loadSession(selectedSource);
                     });
                   }}
                   className="inline-flex items-center justify-center gap-2 rounded-2xl border px-5 py-3 text-sm font-semibold text-[color:var(--text-on-accent)] transition-[transform] focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 active:scale-[0.98]"
@@ -605,16 +619,17 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                   }}
                 >
                   <RotateCcw className="h-4 w-4" />
-                  Review more
+                  Start next session
                 </button>
               ) : null}
-              <Link
-                href="/dashboard"
+              <button
+                type="button"
+                onClick={navigateToDashboard}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl border px-5 py-3 text-sm font-semibold text-text transition-[background-color] hover:bg-white/70 focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 dark:hover:bg-white/5"
                 style={{ borderColor: tone.border }}
               >
                 Back to dashboard
-              </Link>
+              </button>
             </div>
           </div>
         </section>
@@ -648,36 +663,6 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
               >
                 <X className="h-4 w-4" />
               </button>
-            </div>
-
-            <div className="mt-6">
-              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-text/55">Session size</h3>
-              <div className="mt-2 flex gap-2">
-                {SESSION_LIMITS.map((opt) => {
-                  const isActive = sessionLimit === opt.value;
-                  return (
-                    <button
-                      key={opt.value}
-                      type="button"
-                      onClick={() => {
-                        setSessionLimit(opt.value);
-                        startTransition(() => {
-                          void loadSession(selectedSource, opt.value);
-                        });
-                      }}
-                      className={`flex-1 rounded-2xl border-2 px-4 py-3 text-sm font-bold transition-all focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 ${
-                        isActive ? "shadow-md" : "hover:bg-white/50 dark:hover:bg-white/5"
-                      }`}
-                      style={{
-                        borderColor: isActive ? tone.accent : tone.border,
-                        background: isActive ? tone.surfaceMuted : "var(--surface-elevated)",
-                      }}
-                    >
-                      {opt.label}
-                    </button>
-                  );
-                })}
-              </div>
             </div>
 
             {[

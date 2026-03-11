@@ -6,13 +6,19 @@ import { useResolvedLearnerReturnHref } from "@/hooks/useResolvedLearnerReturnHr
 
 type ContextualBackButtonProps = Omit<BackButtonProps, "href" | "onClick"> & {
     fallbackHref?: string;
+    onClick?: () => void;
 };
 
 export function ContextualBackButton({
     fallbackHref = "/dashboard",
+    onClick,
     ...props
 }: ContextualBackButtonProps) {
     const href = useResolvedLearnerReturnHref({ fallbackHref });
+
+    if (onClick) {
+        return <BackButton onClick={onClick} {...props} />;
+    }
 
     return <BackButton href={href} {...props} />;
 }
