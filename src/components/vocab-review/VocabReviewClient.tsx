@@ -46,6 +46,35 @@ const RATING_BUTTONS: Array<{
   },
 ];
 
+const RATING_STYLES: Record<
+  Exclude<VocabReviewRating, "again">,
+  {
+    background: string;
+    borderColor: string;
+    color: string;
+    boxShadow: string;
+  }
+> = {
+  hard: {
+    background: "color-mix(in srgb, #f87171 18%, var(--surface-elevated))",
+    borderColor: "color-mix(in srgb, #dc2626 36%, var(--border-subtle))",
+    color: "color-mix(in srgb, #7f1d1d 78%, var(--text))",
+    boxShadow: "inset 0 1px 0 color-mix(in srgb, white 30%, transparent)",
+  },
+  good: {
+    background: "color-mix(in srgb, #60a5fa 18%, var(--surface-elevated))",
+    borderColor: "color-mix(in srgb, #2563eb 36%, var(--border-subtle))",
+    color: "color-mix(in srgb, #1e3a8a 78%, var(--text))",
+    boxShadow: "inset 0 1px 0 color-mix(in srgb, white 30%, transparent)",
+  },
+  easy: {
+    background: "color-mix(in srgb, #34d399 20%, var(--surface-elevated))",
+    borderColor: "color-mix(in srgb, #059669 38%, var(--border-subtle))",
+    color: "color-mix(in srgb, #064e3b 78%, var(--text))",
+    boxShadow: "inset 0 1px 0 color-mix(in srgb, white 30%, transparent)",
+  },
+};
+
 function makeSessionCards(cards: VocabReviewCard[]): SessionCard[] {
   return cards.map((card, index) => ({
     ...card,
@@ -391,7 +420,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
             </div>
 
             {/* Audio button – top-right */}
-            {currentCard.audioPath ? (
+            {currentCard.audioPath && !isFlipped ? (
               <button
                 type="button"
                 onClick={(event) => {
@@ -457,18 +486,10 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                   type="button"
                   onClick={() => void handleRate(button.rating)}
                   disabled={isBusy}
-                  className={`group/btn relative flex flex-col items-center justify-center gap-1 overflow-hidden rounded-2xl border-2 py-3.5 transition-all focus-visible:ring-2 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 sm:flex-row sm:gap-2.5 ${
-                    button.rating === "hard" 
-                      ? "bg-red-50 text-red-900 border-red-100 hover:bg-red-100 dark:bg-red-950/30 dark:text-red-300 dark:border-red-900/40" 
-                      : button.rating === "good"
-                      ? "bg-blue-50 text-blue-900 border-blue-100 hover:bg-blue-100 dark:bg-blue-950/30 dark:text-blue-300 dark:border-blue-900/40"
-                      : "bg-emerald-50 text-emerald-900 border-emerald-100 hover:bg-emerald-100 dark:bg-emerald-950/30 dark:text-emerald-300 dark:border-emerald-900/40"
-                  }`}
+                  className="group/btn relative flex min-h-[76px] items-center justify-center overflow-hidden rounded-2xl border-2 px-3 py-3.5 transition-all duration-200 focus-visible:ring-2 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+                  style={RATING_STYLES[button.rating]}
                 >
                   <span className="text-[13px] font-black uppercase tracking-wider sm:text-[14px]">{button.label}</span>
-                  <span className="rounded-md bg-black/5 px-1.5 py-0.5 text-[9px] font-bold tabular-nums opacity-40 dark:bg-white/10 sm:text-[10px]">
-                    {button.shortcut}
-                  </span>
                 </button>
               ))}
             </div>

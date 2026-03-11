@@ -9,8 +9,6 @@ import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import NetworkStatusBanner from "@/components/NetworkStatusBanner";
 import SubmissionOutboxManager from "@/components/SubmissionOutboxManager";
-import { VocabReviewNotification } from "@/components/VocabReviewNotification";
-import { getVocabReviewSummaryForUser } from "@/lib/vocab-review";
 
 async function getStudentLeaderboardRank(userId: string): Promise<number | null> {
     const enrollment = await prisma.classEnrollment.findFirst({
@@ -28,16 +26,9 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     const session = await getServerSession(authOptions);
 
     let leaderboardRank: number | null = null;
-    let vocabSummary = null;
     
     if (session?.user?.role === "student" && session.user?.id) {
         leaderboardRank = await getStudentLeaderboardRank(session.user.id);
-        try {
-            vocabSummary = await getVocabReviewSummaryForUser(prisma, session.user.id);
-        } catch (error) {
-            // Gracefully handle if vocab review isn't available yet
-            console.error('Failed to load vocab review summary:', error);
-        }
     }
 
     return (
@@ -62,12 +53,6 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                 <>
                     <NetworkStatusBanner />
                     <SubmissionOutboxManager />
-                    {vocabSummary && (
-                        <VocabReviewNotification 
-                            dueCount={vocabSummary.dueCount} 
-                            newCount={vocabSummary.newCount} 
-                        />
-                    )}
                 </>
             )}
             <PWAInstallPrompt />
