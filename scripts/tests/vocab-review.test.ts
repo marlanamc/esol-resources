@@ -136,8 +136,8 @@ test("buildVocabReviewSummary and queue apply all-vs-source ordering rules", () 
   assert.equal(summary.totalCount, 3);
 
   const allQueue = buildVocabReviewQueue(cards, states, ALL_VOCAB_SOURCE_KEY, 12, now);
-  assert.deepEqual(allQueue.cards.map((card) => card.id), ["due-card", "new-card"]);
-  assert.equal(allQueue.totalCount, 2);
+  assert.deepEqual(allQueue.cards.map((card) => card.id), ["due-card", "new-card", "scheduled-card"]);
+  assert.equal(allQueue.totalCount, 3);
 
   const octoberQueue = buildVocabReviewQueue(cards, states, "october", 12, now);
   assert.deepEqual(octoberQueue.cards.map((card) => card.id), ["due-card", "scheduled-card"]);

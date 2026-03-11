@@ -468,11 +468,9 @@ function orderQueueCards(
     .filter(item => item.isNew)
     .map(item => item.card);
 
-  const scheduledCards = source === ALL_VOCAB_SOURCE_KEY
-    ? []
-    : cardsWithPriority
-        .filter(item => !item.isDue && !item.isNew)
-        .map(item => item.card);
+  const scheduledCards = cardsWithPriority
+    .filter(item => !item.isDue && !item.isNew)
+    .map(item => item.card);
 
   return {
     dueCards: shuffle(dueCards),
