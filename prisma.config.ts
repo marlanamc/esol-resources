@@ -11,6 +11,7 @@ export default defineConfig({
   },
   engine: "classic",
   datasource: {
-    url: process.env.POSTGRES_URL || "file:./dev.db",
+    // Use DATABASE_URL (Vercel/restored DB) or POSTGRES_URL (local fallback)
+    url: process.env.DATABASE_URL || process.env.POSTGRES_URL || "file:./dev.db",
   },
 });

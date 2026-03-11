@@ -4,7 +4,7 @@ const isVercel = Boolean(process.env.VERCEL);
 const isProd = process.env.NODE_ENV === "production";
 
 if (isVercel || isProd) {
-  required.push("POSTGRES_URL");
+  required.push("POSTGRES_URL|DATABASE_URL");
   required.push("NEXTAUTH_SECRET|AUTH_SECRET");
   required.push("NEXTAUTH_URL|VERCEL_URL");
 }

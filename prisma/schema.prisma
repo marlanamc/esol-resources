@@ -4,37 +4,37 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("POSTGRES_URL")
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id                    String               @id @default(cuid())
-  username              String               @unique
+  id                    String                 @id @default(cuid())
+  username              String                 @unique
   name                  String?
   password              String
-  role                  String               @default("student")
-  isSystemAccount       Boolean              @default(false)
-  mustChangePassword    Boolean              @default(true)
-  createdAt             DateTime             @default(now())
-  updatedAt             DateTime             @updatedAt
-  points                Int                  @default(0)
-  currentStreak         Int                  @default(0)
-  longestStreak         Int                  @default(0)
+  role                  String                 @default("student")
+  mustChangePassword    Boolean                @default(true)
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  points                Int                    @default(0)
+  currentStreak         Int                    @default(0)
+  longestStreak         Int                    @default(0)
   lastActivityDate      DateTime?
-  weeklyPoints          Int                  @default(0)
+  weeklyPoints          Int                    @default(0)
   lastWeekRank          Int?
   avatar                String?
   avatarColor           String?
+  isSystemAccount       Boolean                @default(false)
   activityProgress      ActivityProgress[]
   calendarEventsCreated CalendarEvent[]
-  createdClasses        Class[]              @relation("ClassTeacher")
+  createdClasses        Class[]                @relation("ClassTeacher")
   classes               ClassEnrollment[]
+  feedbackEntries       Feedback[]
   pointsLedger          PointsLedger[]
   quizResponses         QuizResponse[]
   speakingSubmissions   SpeakingSubmission[]
   submissions           Submission[]
   achievements          UserAchievement[]
-  feedbackEntries       Feedback[]
   preferences           UserPreferences?
   vocabReviewStates     UserVocabReviewState[]
 
@@ -49,11 +49,11 @@ model Class {
   name           String
   description    String?
   code           String            @unique
-  sectionGroupId String?
   teacherId      String
   createdAt      DateTime          @default(now())
   updatedAt      DateTime          @updatedAt
   announcement   String?
+  sectionGroupId String?
   assignments    Assignment[]
   calendarEvents CalendarEvent[]
   teacher        User              @relation("ClassTeacher", fields: [teacherId], references: [id])
@@ -113,7 +113,7 @@ model ActivityProgress {
   updatedAt    DateTime    @updatedAt
   categoryData String?
   assignmentId String?
-  activity     Activity    @relation(fields: [activityId], references: [id], onDelete: Restrict)
+  activity     Activity    @relation(fields: [activityId], references: [id])
   assignment   Assignment? @relation(fields: [assignmentId], references: [id])
   user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -135,7 +135,7 @@ model SpeakingSubmission {
   speakingCompletedStepIds String[]
   submittedAt              DateTime    @default(now())
   status                   String      @default("submitted")
-  activity                 Activity    @relation(fields: [activityId], references: [id], onDelete: Restrict)
+  activity                 Activity    @relation(fields: [activityId], references: [id])
   assignment               Assignment? @relation(fields: [assignmentId], references: [id])
   user                     User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -195,7 +195,7 @@ model Submission {
   completedAt   DateTime?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  activity      Activity    @relation(fields: [activityId], references: [id], onDelete: Restrict)
+  activity      Activity    @relation(fields: [activityId], references: [id])
   assignment    Assignment? @relation(fields: [assignmentId], references: [id])
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -276,7 +276,7 @@ model QuizResponse {
   difficulty   String?
   topic        String?
   createdAt    DateTime    @default(now())
-  activity     Activity    @relation(fields: [activityId], references: [id], onDelete: Restrict)
+  activity     Activity    @relation(fields: [activityId], references: [id])
   assignment   Assignment? @relation(fields: [assignmentId], references: [id])
   user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -299,40 +299,46 @@ model UserPreferences {
 }
 
 model VocabCard {
-  id               String                 @id @default(cuid())
-  term             String
-  normalizedTerm   String                 @unique
-  definition       String
-  example          String?
-  audioPath        String?
-  sourceKeys       String[]
-  sourceLabels     String[]
-  unitNumbers      Int[]
-  topics           String[]
-  sortOrder        Int
-  createdAt        DateTime               @default(now())
-  updatedAt        DateTime               @updatedAt
-  reviewStates     UserVocabReviewState[]
+  id             String                 @id @default(cuid())
+  term           String
+  normalizedTerm String                 @unique
+  definition     String
+  example        String?
+  audioPath      String?
+  sourceKeys     String[]
+  sourceLabels   String[]
+  unitNumbers    Int[]
+  topics         String[]
+  sortOrder      Int
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+  reviewStates   UserVocabReviewState[]
 
   @@index([sortOrder])
 }
 
 model UserVocabReviewState {
-  id             String    @id @default(cuid())
-  userId         String
-  vocabCardId    String
-  step           Int       @default(0)
-  dueAt          DateTime
-  lastReviewedAt DateTime?
-  lastRating     String?
-  totalReviews   Int       @default(0)
-  lapses         Int       @default(0)
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  vocabCard      VocabCard @relation(fields: [vocabCardId], references: [id], onDelete: Cascade)
+  id                 String    @id @default(cuid())
+  userId             String
+  vocabCardId        String
+  step               Int       @default(0)
+  dueAt              DateTime
+  lastReviewedAt     DateTime?
+  lastRating         String?
+  totalReviews       Int       @default(0)
+  lapses             Int       @default(0)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  difficulty         Float     @default(0.0)
+  easeFactor         Float     @default(2.5)
+  lastInterval       Int       @default(0)
+  performanceHistory Float[]  @default([])
+  stability          Float     @default(0.0)
+  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vocabCard          VocabCard @relation(fields: [vocabCardId], references: [id], onDelete: Cascade)
 
   @@unique([userId, vocabCardId])
   @@index([userId, dueAt])
   @@index([userId, updatedAt])
+  @@index([userId, difficulty])
 }

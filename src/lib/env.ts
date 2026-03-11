@@ -15,8 +15,14 @@ export function buildEnvVarConfig(nodeEnv = process.env.NODE_ENV): EnvVar[] {
   return [
     {
       key: 'POSTGRES_URL',
-      required: true,
+      required: false, // DATABASE_URL is an alternative (validated below)
       description: 'PostgreSQL database connection string',
+      validate: (value) => value.startsWith('postgresql://') || value.startsWith('postgres://'),
+    },
+    {
+      key: 'DATABASE_URL',
+      required: false, // POSTGRES_URL is an alternative
+      description: 'PostgreSQL database connection string (alternative to POSTGRES_URL)',
       validate: (value) => value.startsWith('postgresql://') || value.startsWith('postgres://'),
     },
     {
@@ -99,6 +105,13 @@ export function validateEnv(): void {
         `❌ Invalid value for ${envVar.key}\n   ${envVar.description}\n   Current value: ${value.substring(0, 20)}...`
       );
     }
+  }
+
+  // Special validation: Ensure at least one database URL is set
+  if (!process.env.POSTGRES_URL && !process.env.DATABASE_URL) {
+    errors.push(
+      `❌ Missing database connection\n   Set either POSTGRES_URL or DATABASE_URL`
+    );
   }
 
   // Special validation: Ensure at least one auth secret is set

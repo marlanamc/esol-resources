@@ -32,7 +32,7 @@ export const prisma =
     new PrismaClient({
         datasources: {
             db: {
-                url: withSafePoolDefaults(process.env.POSTGRES_URL),
+                url: withSafePoolDefaults(process.env.DATABASE_URL || process.env.POSTGRES_URL),
             },
         },
         log: process.env.NODE_ENV === "development" ? ["query"] : [],
