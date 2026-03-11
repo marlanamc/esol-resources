@@ -419,15 +419,15 @@ function PinnedDailyHabitRow({
     return (
         <Link
             href={habit.href}
-            className={`group block rounded-2xl border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(31,24,18,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${isDoneToday ? "opacity-80" : ""}`}
+            className="group block rounded-2xl border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(31,24,18,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             style={{
                 borderColor: isDoneToday ? `color-mix(in srgb, ${tone.border} 72%, var(--border-subtle))` : tone.border,
                 background: isDoneToday
-                    ? `linear-gradient(135deg, color-mix(in srgb, ${tone.surfaceMuted} 28%, white) 0%, color-mix(in srgb, ${tone.surfaceMuted} 14%, var(--surface-subtle)) 100%)`
-                    : `linear-gradient(135deg, color-mix(in srgb, ${tone.surfaceMuted} 76%, white) 0%, color-mix(in srgb, ${tone.surfaceMuted} 42%, var(--surface-elevated)) 100%)`,
+                    ? `linear-gradient(135deg, color-mix(in srgb, ${tone.surface} 72%, var(--surface-elevated)) 0%, color-mix(in srgb, ${tone.surfaceMuted} 34%, var(--surface-subtle)) 100%)`
+                    : `linear-gradient(135deg, color-mix(in srgb, ${tone.surfaceMuted} 74%, var(--surface-elevated)) 0%, color-mix(in srgb, ${tone.surface} 46%, var(--surface-overlay)) 100%)`,
                 boxShadow: isDoneToday
-                    ? `inset 0 1px 0 rgba(255,255,255,0.45), 0 1px 2px color-mix(in srgb, ${tone.accent} 6%, transparent)`
-                    : `inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 3px color-mix(in srgb, ${tone.accent} 10%, transparent)`,
+                    ? `inset 0 1px 0 color-mix(in srgb, white 10%, transparent), 0 1px 2px color-mix(in srgb, ${tone.accent} 8%, transparent)`
+                    : `inset 0 1px 0 color-mix(in srgb, white 14%, transparent), 0 1px 3px color-mix(in srgb, ${tone.accent} 10%, transparent)`,
             }}
         >
             <div className={`${useCondensedDoneLayout ? "px-3.5 py-3" : "px-4 py-4"}`}>
@@ -436,7 +436,7 @@ function PinnedDailyHabitRow({
                         <div
                             className={`flex shrink-0 items-center justify-center rounded-xl ${useCondensedDoneLayout ? "h-9 w-9" : "h-10 w-10"}`}
                             style={{
-                                backgroundColor: `color-mix(in srgb, ${tone.accent} 14%, white)`,
+                                backgroundColor: `color-mix(in srgb, ${tone.accent} 16%, var(--surface-elevated))`,
                                 color: tone.accent,
                             }}
                         >
@@ -461,7 +461,7 @@ function PinnedDailyHabitRow({
                                     <span
                                         className="inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-semibold"
                                         style={{
-                                            backgroundColor: `color-mix(in srgb, ${tone.accent} 12%, white)`,
+                                            backgroundColor: tone.chipBg,
                                             borderColor: tone.border,
                                             color: tone.chipText,
                                         }}
