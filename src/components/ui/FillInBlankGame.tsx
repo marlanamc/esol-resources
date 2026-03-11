@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { BackButton } from "@/components/ui/BackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
@@ -29,6 +29,8 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
     const [score, setScore] = useState(0);
     const [showExplanation, setShowExplanation] = useState(false);
     const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const isInitialMount = useRef(true);
 
     const currentQuestion = questions[currentIndex];
     const isLastQuestion = currentIndex === questions.length - 1;
@@ -101,6 +103,15 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
         }
     }, [isComplete, activityId, assignmentId, vocabType]);
 
+    // Auto-scroll to top when advancing to next question (reduces mobile scroll fatigue)
+    useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            return;
+        }
+        scrollRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, [currentIndex]);
+
     const handleNext = () => {
         if (currentIndex < questions.length - 1) {
             setCurrentIndex((prev) => prev + 1);
@@ -165,7 +176,10 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
             </div>
 
             {/* Question Card - Scrollable on mobile */}
-            <div className="flex-1 overflow-y-auto px-4 py-4 md:overflow-visible md:px-0 md:py-0">
+            <div
+                ref={scrollRef}
+                className={`flex-1 overflow-y-auto px-4 py-4 md:overflow-visible md:px-0 md:py-0 ${!isLastQuestion && selectedAnswer ? "pb-20" : ""}`}
+            >
                 <div className="mb-6 border-0 border-border/40 bg-[var(--color-surface-elevated)] p-6 shadow-lg md:rounded-2xl md:border sm:p-8">
                 {/* Question Text */}
                 <div className="mb-8">
@@ -279,12 +293,12 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                 )}
                 </div>
 
-                {/* Navigation Buttons */}
+                {/* Navigation Buttons - Next hidden on mobile (sticky bar shows it) */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
                     {!isLastQuestion && selectedAnswer && (
                         <button
                             onClick={handleNext}
-                            className="w-full sm:w-auto px-8 py-3 bg-[var(--color-text)] text-white font-semibold rounded-lg hover:bg-black transition-[background-color,box-shadow,transform] shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                            className="hidden md:inline-flex w-full sm:w-auto px-8 py-3 bg-[var(--color-text)] text-white font-semibold rounded-lg hover:bg-black transition-[background-color,box-shadow,transform] shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         >
                             Next Question →
                         </button>
@@ -299,6 +313,18 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                     )}
                 </div>
             </div>
+
+            {/* Sticky Next bar (mobile only) - keeps Next visible without scrolling */}
+            {!isLastQuestion && selectedAnswer && (
+                <div className="fixed bottom-0 left-0 right-0 z-10 p-4 md:hidden border-t border-border/40 bg-[var(--color-bg)] safe-area-bottom-padding-mobile-lg">
+                    <button
+                        onClick={handleNext}
+                        className="w-full px-8 py-3 bg-[var(--color-text)] text-white font-semibold rounded-lg hover:bg-black transition-[background-color,box-shadow,transform] shadow-lg active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                    >
+                        Next Question →
+                    </button>
+                </div>
+            )}
         </div>
     );
 }
