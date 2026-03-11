@@ -18,6 +18,8 @@ type SessionCard = VocabReviewCard & {
   sessionKey: string;
 };
 
+type ReviewButtonRating = Exclude<VocabReviewRating, "again">;
+
 const SESSION_LIMITS = [
   { value: 3, label: "Quick 3" },
   { value: 6, label: "Standard 6" },
@@ -25,7 +27,7 @@ const SESSION_LIMITS = [
 ] as const;
 
 const RATING_BUTTONS: Array<{
-  rating: VocabReviewRating;
+  rating: ReviewButtonRating;
   label: string;
   shortcut: string;
 }> = [
@@ -47,7 +49,7 @@ const RATING_BUTTONS: Array<{
 ];
 
 const RATING_STYLES: Record<
-  Exclude<VocabReviewRating, "again">,
+  ReviewButtonRating,
   {
     background: string;
     borderColor: string;
