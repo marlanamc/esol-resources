@@ -317,13 +317,17 @@ function parseQuestions(content: string): FillInBlankQuestion[] {
                     "correctAnswers" in sentence &&
                     "options" in sentence
                 )
-                .map((sentence: { id?: unknown; text: unknown; correctAnswers: unknown; options: unknown; explanation?: unknown }, index: number) => ({
-                    id: sentence.id ?? index + 1,
-                    sentence: String(sentence.text).trim(),
-                    correctAnswer: Array.isArray(sentence.correctAnswers) ? sentence.correctAnswers[0] : String(sentence.correctAnswers),
-                    options: Array.isArray(sentence.options) ? sentence.options.map((option: unknown) => String(option).trim()) : [],
-                    explanation: sentence.explanation ? String(sentence.explanation).trim() : ''
-                }));
+                .map((sentence: { id?: unknown; text: unknown; correctAnswers: unknown; options: unknown; explanation?: unknown }, index: number) => {
+                    const rawOptions = Array.isArray(sentence.options) ? sentence.options.map((option: unknown) => String(option).trim()) : [];
+                    const correctAnswer = Array.isArray(sentence.correctAnswers) ? sentence.correctAnswers[0] : String(sentence.correctAnswers);
+                    return {
+                        id: sentence.id ?? index + 1,
+                        sentence: String(sentence.text).trim(),
+                        correctAnswer,
+                        options: shuffleArray(rawOptions),
+                        explanation: sentence.explanation ? String(sentence.explanation).trim() : ''
+                    };
+                });
         }
     } catch {
         // Not JSON, fall through to plain text parsing
@@ -357,7 +361,7 @@ function parseQuestions(content: string): FillInBlankQuestion[] {
         }
 
         if (sentence && correctAnswer && options.length > 0) {
-            questions.push({ id: id++, sentence, correctAnswer, options, explanation });
+            questions.push({ id: id++, sentence, correctAnswer, options: shuffleArray(options), explanation });
         }
     }
 

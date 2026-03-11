@@ -112,13 +112,13 @@ export function LearnerSearchProvider({ children }: { children: React.ReactNode 
                         }}
                         aria-hidden="true"
                     />
-                    <div className="absolute inset-x-0 bottom-0 top-auto sm:inset-0 sm:flex sm:items-start sm:justify-center sm:px-4 sm:pt-[12vh]">
+                    <div className="absolute inset-x-0 top-[calc(env(safe-area-inset-top,0px)+8px)] bottom-auto max-h-[min(75dvh,80vh)] sm:inset-0 sm:top-auto sm:max-h-none sm:flex sm:items-start sm:justify-center sm:px-4 sm:pt-[12vh]">
                         <div
                             ref={dialogRef}
                             role="dialog"
                             aria-modal="true"
                             aria-label="Learner search"
-                            className="mx-auto flex max-h-[88vh] w-full max-w-3xl flex-col rounded-t-[28px] border px-4 pb-[calc(env(safe-area-inset-bottom,0px)+16px)] pt-4 shadow-2xl sm:max-h-[78vh] sm:rounded-[32px] sm:px-6 sm:pb-6"
+                            className="mx-auto flex h-full max-h-full w-full max-w-3xl flex-col overflow-hidden rounded-[28px] border px-4 pb-[calc(env(safe-area-inset-bottom,0px)+16px)] pt-4 shadow-2xl sm:h-auto sm:max-h-[78vh] sm:rounded-[32px] sm:px-6 sm:pb-6"
                             style={{ borderColor: "var(--border-subtle)", backgroundColor: "var(--color-bg)" }}
                         >
                             <div className="mb-4 flex items-center justify-between gap-3">
