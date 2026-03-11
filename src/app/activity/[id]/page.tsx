@@ -13,6 +13,7 @@ import NetworkStatusBanner from "@/components/NetworkStatusBanner";
 import SubmissionOutboxManager from "@/components/SubmissionOutboxManager";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
+import { LearnerSearchTrigger } from "@/components/search/LearnerSearchTrigger";
 import { loadActivityPageData } from "./activity-page-data";
 
 interface Props {
@@ -127,6 +128,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                         <div className="flex items-center justify-between gap-2">
                             <div className="flex items-center gap-2">
                                 <LearnerMenu mode="quiet" />
+                                <LearnerSearchTrigger />
                                 <ContextualBackButton className="flex-shrink-0" aria-label="Return to previous page" />
                             </div>
                             <h1 className="text-lg font-bold text-gray-900 dark:text-white truncate flex-1 min-w-0 text-center px-2">
@@ -146,6 +148,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-4 mb-1">
                                 <LearnerMenu mode="quiet" />
+                                <LearnerSearchTrigger />
                                 <ContextualBackButton aria-label="Return to previous page" />
                                 <h1 className="text-xl font-bold text-gray-900 dark:text-white truncate">{activity.title}</h1>
                             </div>
@@ -187,6 +190,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                         <div className="flex items-center justify-between gap-2">
                             <div className="flex items-center gap-2">
                                 <LearnerMenu mode="quiet" />
+                                <LearnerSearchTrigger />
                                 <ContextualBackButton className="flex-shrink-0" aria-label="Return to previous page" />
                             </div>
                             {shouldShowHeaderProgressBadge && (
@@ -202,6 +206,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     <div className="hidden sm:flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <LearnerMenu mode="quiet" />
+                            <LearnerSearchTrigger />
                             <ContextualBackButton aria-label="Return to previous page" />
                         </div>
 
@@ -286,6 +291,7 @@ function renderImmersiveActivity(
                             <div className="flex items-center justify-between gap-2">
                                 <div className="flex items-center gap-2">
                                     <LearnerMenu mode="quiet" />
+                                    <LearnerSearchTrigger />
                                     <ContextualBackButton className="flex-shrink-0" aria-label="Return to previous page" />
                                 </div>
                                 {shouldShowHeaderProgressBadge && (
@@ -300,6 +306,7 @@ function renderImmersiveActivity(
                         <div className="hidden sm:flex items-center justify-between">
                             <div className="flex items-center gap-3">
                                 <LearnerMenu mode="quiet" />
+                                <LearnerSearchTrigger />
                                 <ContextualBackButton aria-label="Return to previous page" />
                             </div>
 

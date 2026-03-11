@@ -214,10 +214,10 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 <div style="overflow-x: auto;">
                     <table style="width: 100%; min-width: 700px; border-collapse: collapse; border: 1px solid #dbeafe;">
                         <thead>
-                            <tr style="background: #ecfeff;">
-                                <th style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Use</th>
-                                <th style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Best Form</th>
-                                <th style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Example</th>
+                            <tr class="gc-bg-slate" style="background: #ecfeff;">
+                                <th class="gc-text-dark gc-table-border" style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Use</th>
+                                <th class="gc-text-dark gc-table-border" style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Best Form</th>
+                                <th class="gc-text-dark gc-table-border" style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Example</th>
                             </tr>
                         </thead>
                         <tbody>

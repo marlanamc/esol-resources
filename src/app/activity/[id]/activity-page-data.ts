@@ -9,6 +9,7 @@ import { grammarTopics } from "@/data/grammar-map";
 import { RETURN_TO_QUERY_PARAM, sanitizeInternalHref } from "@/lib/learner-navigation";
 import { isTeacherAdmin } from "@/lib/roles";
 import { type ActivityContent, parseActivityContent } from "@/types/activity";
+import { assertLearnerCanAccessActivity } from "@/lib/learner-visibility";
 
 type SessionUser = Session["user"];
 
@@ -126,16 +127,7 @@ function assertReleasedSpeakingAccess(
   activity: Prisma.ActivityGetPayload<object>,
   userRole: SessionUser["role"]
 ) {
-  if (userRole !== "student" || activity.type !== "speaking") {
-    return;
-  }
-
-  try {
-    const content = JSON.parse(activity.content) as { released?: boolean };
-    if (content.released !== true) {
-      redirect("/dashboard");
-    }
-  } catch {
+  if (!assertLearnerCanAccessActivity(activity, userRole)) {
     redirect("/dashboard");
   }
 }

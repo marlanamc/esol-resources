@@ -10,9 +10,9 @@ export const pastPerfectContent: InteractiveGuideContent = {
             title: "Past Perfect: When Time Goes Backward",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin-top: 0; color: #f59e0b; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Past Perfect is your <strong style="color: #f59e0b;">time machine for TWO past actions</strong>: it shows which one happened FIRST when you're telling a story about the past.</p>
+                <div class="gc-grad-amber" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h3 class="gc-text-amber" style="margin-top: 0; font-size: 1.25rem;">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0;">Past Perfect is your <strong class="gc-text-amber">time machine for TWO past actions</strong>: it shows which one happened FIRST when you're telling a story about the past.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -20,13 +20,13 @@ export const pastPerfectContent: InteractiveGuideContent = {
 
                 <h3>The Golden Rule</h3>
                 <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">✓ <strong>Almost ALWAYS uses TWO verbs</strong></li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #14b8a6; border-radius: 0.25rem;">✓ <strong>Shows which action happened FIRST</strong></li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">✓ <strong>Formula: had + past participle</strong></li>
+                    <li class="gc-bg-amber gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">✓ <strong>Almost ALWAYS uses TWO verbs</strong></li>
+                    <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #14b8a6; border-radius: 0.25rem;">✓ <strong>Shows which action happened FIRST</strong></li>
+                    <li class="gc-bg-amber gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">✓ <strong>Formula: had + past participle</strong></li>
                 </ul>
 
-	                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-	                    <p style="margin: 0; font-weight: 600;">📝 Quick Preview:<br/><span style="color: #f59e0b;">had + past participle</span> (FIRST action) → <span style="color: #14b8a6;">past simple</span> (SECOND action)</p>
+	                <div class="gc-bg-amber gc-box-amber-500" style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
+	                    <p class="gc-text-dark" style="margin: 0; font-weight: 600;">📝 Quick Preview:<br/><span class="gc-text-amber">had + past participle</span> (FIRST action) → <span class="gc-text-cyan">past simple</span> (SECOND action)</p>
 	                </div>
 	            `,
             exercises: [
@@ -1091,11 +1091,11 @@ export const pastPerfectContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
-                <div style="background: #fee2e2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin-top: 1.5rem;">
-                    <h4 style="margin-top: 0; color: #ef4444;">❌ Common Mistakes to Avoid</h4>
+                <div class="gc-bg-red gc-callout-red" style="background: #fee2e2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin-top: 1.5rem;">
+                    <h4 class="gc-text-red" style="margin-top: 0;">❌ Common Mistakes to Avoid</h4>
                     <div style="margin-top: 0.75rem;">
                         <div style="background: white; padding: 0.75rem; border-radius: 0.25rem; margin-bottom: 0.75rem;">
-                            <p style="margin: 0; color: #ef4444; font-weight: 600;">❌ "I have checked the apartment before I signed the lease."</p>
+                            <p class="gc-text-red" style="margin: 0; font-weight: 600;">❌ "I have checked the apartment before I signed the lease."</p>
                             <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ "I <strong>had checked</strong> the apartment before I signed the lease."</p>
                             <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Use past perfect (had + past participle) for the earlier action, not present perfect.</p>
                         </div>

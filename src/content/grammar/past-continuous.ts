@@ -9,24 +9,24 @@ export const pastContinuousContent: InteractiveGuideContent = {
             title: "Past Continuous: What Was Going On",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin-top: 0; color: #f0b45a; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Past Continuous is your <strong style="color: #c86b51;">storytelling tense</strong>—it sets the scene for what was happening at a specific moment, shows background actions that got interrupted, and paints a picture of the past in motion.</p>
+                <div class="gc-grad-amber" style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h3 class="gc-text-amber" style="margin-top: 0; font-size: 1.25rem;">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0;">Past Continuous is your <strong class="gc-text-terracotta">storytelling tense</strong>—it sets the scene for what was happening at a specific moment, shows background actions that got interrupted, and paints a picture of the past in motion.</p>
                 </div>
 
                 <h3>Real-Life Uses</h3>
                 <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Interrupted actions</strong>: "I was walking home when it started raining."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Specific past time</strong>: "At midnight, my neighbors were playing loud music."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Setting the scene</strong>: "The sun was setting. People were walking home from work."</li>
+                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Interrupted actions</strong>: "I was walking home when it started raining."</li>
+                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Specific past time</strong>: "At midnight, my neighbors were playing loud music."</li>
+                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Setting the scene</strong>: "The sun was setting. People were walking home from work."</li>
                 </ul>
 
-                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p style="margin: 0; font-weight: 600;">📝 Formula: <span style="color: #f0b45a; font-size: 1.125rem;">was/were + verb-ing</span></p>
+                <div class="gc-bg-amber gc-box-amber-500" style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
+                    <p class="gc-text-dark" style="margin: 0; font-weight: 600;">📝 Formula: <span class="gc-text-amber" style="font-size: 1.125rem;">was/were + verb-ing</span></p>
                 </div>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
                     <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
                     <ul style="margin: 0.5rem 0;">
                         <li>Telling detailed housing problem stories</li>
@@ -40,7 +40,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                         <li><strong>Housing complaints</strong>: "At midnight, my neighbors were playing loud music."</li>
                         <li><strong>Workplace explanations</strong>: "I wasn't ignoring you—I was helping another customer."</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🎬 Past Continuous adds drama to your stories—it sets the scene!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">🎬 Past Continuous adds drama to your stories—it sets the scene!</p>
                 </div>
             `,
             exercises: [
@@ -273,7 +273,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             <div style="width: 3px; height: 80px; background: #d97757; position: relative;">
                                 <div style="position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #d97757;"></div>
                             </div>
-                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: #d97757; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(217, 119, 87, 0.4); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 1.5rem;">
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: #d97757; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(217, 119, 87, 0.4); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #1f2937; font-size: 1.5rem;">
                                 ⚡
                             </div>
                             <div style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); white-space: nowrap; background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; color: #d97757; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
@@ -532,9 +532,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 title: "💡 Stative Reminder",
                 content: `Common stative verbs that usually take Past Simple (not continuous):
                 <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div><strong style="color: #c2410c;">Mental</strong> <span style="color: #d97757; font-weight: 600;">→</span> know, believe, understand</div>
-                    <div><strong style="color: #c2410c;">Emotional</strong> <span style="color: #d97757; font-weight: 600;">→</span> love, hate</div>
-                    <div><strong style="color: #c2410c;">Possession</strong> <span style="color: #d97757; font-weight: 600;">→</span> own, belong</div>
+                    <div><strong class="gc-text-terracotta">Mental</strong> <span style="color: #d97757; font-weight: 600;">→</span> know, believe, understand</div>
+                    <div><strong class="gc-text-terracotta">Emotional</strong> <span style="color: #d97757; font-weight: 600;">→</span> love, hate</div>
+                    <div><strong class="gc-text-terracotta">Possession</strong> <span style="color: #d97757; font-weight: 600;">→</span> own, belong</div>
                 </div>`,
             },
             exercises: [

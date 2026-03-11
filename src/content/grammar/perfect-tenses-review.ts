@@ -10,32 +10,32 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
             title: "Perfect Tenses Review: Connecting Time Periods",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 50%, rgba(6, 182, 212, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 50%, rgba(6, 182, 212, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
                     <p style="font-size: 1.125rem; margin-bottom: 0;">Perfect tenses are your tools for <strong>connecting different time periods</strong>. They show how actions in one time affect another time—past to present, earlier past to later past, or present to future.</p>
                 </div>
 
                 <h3>The Three Perfect Tenses</h3>
                 <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(99, 102, 241, 0.1); border-left: 4px solid #6366f1; border-radius: 0.25rem;">
-                        <strong style="color: #6366f1;">Present Perfect:</strong> Past action → connects to NOW<br/>
-                        <span style="font-size: 0.9rem; color: #64748b;">"I have worked here for 5 years." (still working now)</span>
+                    <li class="gc-bg-purple-alpha gc-callout-left" style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(99, 102, 241, 0.1); border-left: 4px solid #6366f1; border-radius: 0.25rem;">
+                        <strong class="gc-text-purple">Present Perfect:</strong> Past action → connects to NOW<br/>
+                        <span class="gc-text-muted" style="font-size: 0.9rem;">"I have worked here for 5 years." (still working now)</span>
                     </li>
-                    <li style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
-                        <strong style="color: #f59e0b;">Past Perfect:</strong> Earlier past action → before later past action<br/>
-                        <span style="font-size: 0.9rem; color: #64748b;">"I had finished work before she arrived." (finished first, then she arrived)</span>
+                    <li class="gc-bg-amber-alpha gc-callout-left" style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                        <strong class="gc-text-amber">Past Perfect:</strong> Earlier past action → before later past action<br/>
+                        <span class="gc-text-muted" style="font-size: 0.9rem;">"I had finished work before she arrived." (finished first, then she arrived)</span>
                     </li>
-                    <li style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(6, 182, 212, 0.1); border-left: 4px solid #06b6d4; border-radius: 0.25rem;">
-                        <strong style="color: #06b6d4;">Future Perfect:</strong> Action complete → before a future point<br/>
-                        <span style="font-size: 0.9rem; color: #64748b;">"I will have finished by 5 PM." (done before 5 PM)</span>
+                    <li class="gc-bg-cyan-alpha gc-callout-left" style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(6, 182, 212, 0.1); border-left: 4px solid #06b6d4; border-radius: 0.25rem;">
+                        <strong class="gc-text-cyan">Future Perfect:</strong> Action complete → before a future point<br/>
+                        <span class="gc-text-muted" style="font-size: 0.9rem;">"I will have finished by 5 PM." (done before 5 PM)</span>
                     </li>
                 </ul>
 
-                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p style="margin: 0; font-weight: 600;">📝 The Pattern: <span style="font-size: 1.125rem;">have/has/had/will have + past participle</span></p>
+                <div class="gc-bg-amber gc-box-amber-500" style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
+                    <p class="gc-text-dark" style="margin: 0; font-weight: 600;">📝 The Pattern: <span class="gc-text-dark" style="font-size: 1.125rem;">have/has/had/will have + past participle</span></p>
                 </div>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
                     <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
                     <ul style="margin: 0.5rem 0 0 0;">
                         <li>Year-in-Review Carousel: Telling your story using all tenses together</li>
@@ -43,7 +43,7 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                         <li>Creating coherent narratives that connect past, present, and future</li>
                         <li>Final review: Using perfect tenses for real-life speaking</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🎓 This is it - you're combining EVERYTHING you've learned to tell your complete story!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">🎓 This is it - you're combining EVERYTHING you've learned to tell your complete story!</p>
                 </div>
             `,
             exercises: [
@@ -116,7 +116,7 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Duration form (Present Perfect Continuous): Duration or visible result now</h3>
-                <p style="margin-bottom: 0.5rem; font-size: 0.9375rem; color: #5e6b7d;">In the perfect family guides we call these the <strong>result form</strong> (Present Perfect) and <strong>duration form</strong> (Present Perfect Continuous) so they're not confused with Present Simple or Present Continuous.</p>
+                <p class="gc-text-muted" style="margin-bottom: 0.5rem; font-size: 0.9375rem;">In the perfect family guides we call these the <strong>result form</strong> (Present Perfect) and <strong>duration form</strong> (Present Perfect Continuous) so they're not confused with Present Simple or Present Continuous.</p>
                 <ul>
                     <li><strong>Duration:</strong> for, since<br/>Example: "I've been studying for three hours."</li>
                     <li><strong>Visible results:</strong> explain what students can see now<br/>Example: "You're tired." "Yes, I've been working all day."</li>

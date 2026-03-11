@@ -23,8 +23,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     <li><strong>Avoid misunderstandings</strong> - Clarify details before it's too late</li>
                 </ul>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
                     <p style="margin: 1rem 0 0.5rem 0;"><strong>Throughout the course, you'll also use this when:</strong></p>
                     <ul style="margin: 0.5rem 0 0 0;">
                         <li><strong> Asking your landlord questions (rent, repairs, rules)</li>
@@ -33,7 +33,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                         <li><strong> Talking to your doctor (symptoms, medications, appointments)</li>
                         <li><strong> Getting information about community resources</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">✨ This is one of the MOST IMPORTANT grammar topics - that's why we practice it 6 times this course!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">✨ This is one of the MOST IMPORTANT grammar topics - that's why we practice it 6 times this course!</p>
                 </div>
             `,
             exercises: [
@@ -479,17 +479,17 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
-                <div style="background: #ebf8ff; padding: 1.5rem; border-radius: 1rem; border: 1px solid #bee3f8; margin-bottom: 2rem;">
-                    <h4 style="color: #2b6cb0; margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">✨ A Helpful Trick</h4>
+                <div class="gc-bg-blue gc-border-slate" style="background: #ebf8ff; padding: 1.5rem; border-radius: 1rem; border: 1px solid #bee3f8; margin-bottom: 2rem;">
+                    <h4 class="gc-text-dark" style="margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">✨ A Helpful Trick</h4>
                     <p>Try to answer the question in a full sentence:</p>
                     <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
-                        <div style="display: flex; align-items: center; gap: 1rem; background: white; padding: 0.75rem; border-radius: 0.5rem;">
-                            <div style="flex: 1;"><strong>Who pays the rent?</strong><br><span style="color: #718096;">→ Someone pays the rent.</span></div>
-                            <div style="color: #38a169; font-weight: bold; font-size: 0.9rem;">✔️ No do</div>
+                        <div class="gc-bg-white" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 0.75rem; border-radius: 0.5rem;">
+                            <div style="flex: 1;"><strong>Who pays the rent?</strong><br><span class="gc-text-muted" style="color: #718096;">→ Someone pays the rent.</span></div>
+                            <div class="gc-text-sage" style="color: #38a169; font-weight: bold; font-size: 0.9rem;">✔️ No do</div>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 1rem; background: white; padding: 0.75rem; border-radius: 0.5rem;">
-                            <div style="flex: 1;"><strong>Who do you pay?</strong><br><span style="color: #718096;">→ I pay someone.</span></div>
-                            <div style="color: #3182ce; font-weight: bold; font-size: 0.9rem;">✔️ Use do</div>
+                        <div class="gc-bg-white" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 0.75rem; border-radius: 0.5rem;">
+                            <div style="flex: 1;"><strong>Who do you pay?</strong><br><span class="gc-text-muted" style="color: #718096;">→ I pay someone.</span></div>
+                            <div class="gc-text-dark" style="color: #3182ce; font-weight: bold; font-size: 0.9rem;">✔️ Use do</div>
                         </div>
                     </div>
                 </div>

@@ -32,6 +32,7 @@ import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPending
 import { isTeacherAdmin } from "@/lib/roles";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import { getVocabReviewSummaryForUser } from "@/lib/vocab-review";
+import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 
 type TeacherAssignment = {
     id: string;
@@ -627,6 +628,7 @@ export default async function DashboardPage() {
                                                     description: true,
                                                     type: true,
                                                     category: true,
+                                                    isReleased: true,
                                                     content: true,
                                                 },
                                             },
@@ -654,25 +656,14 @@ export default async function DashboardPage() {
         type ReleasableAssignment = {
             activity: {
                 type: string;
+                category?: string | null;
+                isReleased?: boolean;
                 content?: string | null;
             };
         };
 
-        // Filter out unreleased speaking activities from assignments
         const filterReleasedActivities = (assignment: ReleasableAssignment) => {
-            if (assignment.activity.type !== "speaking") {
-                return true; // Show all non-speaking activities
-            }
-            if (!assignment.activity.content) {
-                return false;
-            }
-            // For speaking activities, check if released
-            try {
-                const content = JSON.parse(assignment.activity.content);
-                return content.released === true;
-            } catch {
-                return false; // Hide if content is malformed
-            }
+            return isLearnerVisibleActivity(assignment.activity);
         };
 
         const allAssignments = enrollments.flatMap((enrollment: StudentEnrollment) =>
@@ -712,11 +703,12 @@ export default async function DashboardPage() {
                         id: true,
                         title: true,
                         description: true,
-                        type: true,
-                        category: true,
-                        content: true,
-                    },
-                },
+                                        type: true,
+                                        category: true,
+                                        isReleased: true,
+                                        content: true,
+                                    },
+                                },
                 submissions: {
                     where: { userId },
                     select: {
@@ -733,7 +725,6 @@ export default async function DashboardPage() {
             (result) => result.length
         );
 
-        // Filter out unreleased speaking activities from featured assignments
         const featuredAssignmentsRaw = featuredAssignmentsRawUnfiltered.filter(filterReleasedActivities);
 
         const featuredActivityIds = Array.from(new Set(featuredAssignmentsRaw.map((a) => a.activityId)));

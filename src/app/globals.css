@@ -712,16 +712,6 @@ button {
   color: inherit;
 }
 
-/* Preserve borders and backgrounds for buttons that explicitly have them */
-button[class*="border-"] {
-  border: inherit;
-  background: inherit;
-}
-
-button[class*="bg-"] {
-  background: inherit;
-}
-
 input,
 select,
 textarea {
@@ -2297,9 +2287,12 @@ textarea {
 
 /* ── Background: white / near-white ── */
 .dark .grammar-reader-container .explanation-content .gc-bg-white {
-  background: #d7dce2 !important;
-  color: #1f2937 !important;
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.45);
+  background: rgba(30, 58, 77, 0.84) !important;
+  color: var(--color-text) !important;
+  border-color: rgba(148, 163, 184, 0.34) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(148, 163, 184, 0.22),
+    0 10px 24px rgba(5, 12, 18, 0.18);
 }
 
 
@@ -2379,6 +2372,10 @@ textarea {
 .dark .grammar-reader-container .explanation-content .gc-bg-cyan * {
   color: #e2e8f0 !important;
 }
+.dark .grammar-reader-container .explanation-content .gc-bg-cyan,
+.dark .grammar-reader-container .explanation-content .gc-bg-cyan * {
+  color: #f8fafc !important;
+}
 
 /* ── Background: violet (#ede9fe) ── */
 .dark .grammar-reader-container .explanation-content .gc-bg-violet {
@@ -2408,13 +2405,27 @@ textarea {
 .dark .grammar-reader-container .explanation-content .gc-bg-cyan-alpha,
 .dark .grammar-reader-container .explanation-content .gc-bg-purple-alpha,
 .dark .grammar-reader-container .explanation-content .gc-bg-orange-alpha,
-.dark .grammar-reader-container .explanation-content .gc-bg-amber-alpha {
+.dark .grammar-reader-container .explanation-content .gc-bg-amber-alpha,
+.dark .grammar-reader-container .explanation-content .gc-bg-sage-alpha,
+.dark .grammar-reader-container .explanation-content .gc-bg-terracotta-alpha {
+  background: rgba(30, 58, 77, 0.78) !important;
+  border-color: rgba(148, 163, 184, 0.3) !important;
   color: var(--color-text) !important;
 }
 .dark .grammar-reader-container .explanation-content .gc-bg-cyan-alpha .gc-text-dark,
 .dark .grammar-reader-container .explanation-content .gc-bg-purple-alpha .gc-text-dark,
 .dark .grammar-reader-container .explanation-content .gc-bg-orange-alpha .gc-text-dark,
-.dark .grammar-reader-container .explanation-content .gc-bg-amber-alpha .gc-text-dark {
+.dark .grammar-reader-container .explanation-content .gc-bg-amber-alpha .gc-text-dark,
+.dark .grammar-reader-container .explanation-content .gc-bg-sage-alpha .gc-text-dark,
+.dark .grammar-reader-container .explanation-content .gc-bg-terracotta-alpha .gc-text-dark {
+  color: var(--color-text) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-cyan-alpha *,
+.dark .grammar-reader-container .explanation-content .gc-bg-purple-alpha *,
+.dark .grammar-reader-container .explanation-content .gc-bg-orange-alpha *,
+.dark .grammar-reader-container .explanation-content .gc-bg-amber-alpha *,
+.dark .grammar-reader-container .explanation-content .gc-bg-sage-alpha *,
+.dark .grammar-reader-container .explanation-content .gc-bg-terracotta-alpha * {
   color: var(--color-text) !important;
 }
 
@@ -2566,18 +2577,31 @@ textarea {
 
 /* ── Callout borders (left / top accents) ── */
 .dark .grammar-reader-container .explanation-content .gc-callout-left {
-  background: rgba(22, 43, 61, 0.6) !important;
+  background: rgba(24, 46, 64, 0.72) !important;
 }
 .dark .grammar-reader-container .explanation-content .gc-callout-top {
-  background: rgba(22, 43, 61, 0.6) !important;
+  background: rgba(24, 46, 64, 0.72) !important;
 }
 .dark .grammar-reader-container .explanation-content .gc-callout-left *,
 .dark .grammar-reader-container .explanation-content .gc-callout-top * {
-  color: #e2e8f0 !important;
+  color: var(--color-text) !important;
 }
 .dark .grammar-reader-container .explanation-content .gc-callout-red {
   background: rgba(40, 25, 25, 0.85) !important;
   border-left-color: rgba(239, 68, 68, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-red.gc-callout-red,
+.dark .grammar-reader-container .explanation-content .gc-callout-red.gc-bg-red {
+  background: rgba(40, 25, 25, 0.88) !important;
+  color: #e2e8f0 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-red.gc-callout-red *,
+.dark .grammar-reader-container .explanation-content .gc-callout-red.gc-bg-red * {
+  color: #e2e8f0 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-red.gc-callout-red .gc-text-red,
+.dark .grammar-reader-container .explanation-content .gc-callout-red.gc-bg-red .gc-text-red {
+  color: #fca5a5 !important;
 }
 .dark .grammar-reader-container .explanation-content .gc-callout-green {
   background: rgba(22, 45, 35, 0.85) !important;
@@ -2621,7 +2645,7 @@ textarea {
   color: var(--color-text) !important;
 }
 .dark .grammar-reader-container .explanation-content .gc-text-muted {
-  color: #94a3b8 !important;
+  color: #cbd5e1 !important;
 }
 .dark .grammar-reader-container .explanation-content h4.gc-text-muted {
   color: #cbd5e1 !important;
@@ -2636,8 +2660,60 @@ textarea {
 .dark .grammar-reader-container .explanation-content .gc-text-amber {
   color: #fbbf24 !important;
 }
+.dark .grammar-reader-container .explanation-content .gc-bg-white .gc-text-amber,
+.dark .grammar-reader-container .explanation-content .gc-bg-slate .gc-text-amber,
+.dark .grammar-reader-container .explanation-content .gc-callout-left .gc-text-amber,
+.dark .grammar-reader-container .explanation-content .gc-callout-top .gc-text-amber,
+.dark .grammar-reader-container .explanation-content .gc-bg-sage-alpha .gc-text-amber,
+.dark .grammar-reader-container .explanation-content .gc-bg-terracotta-alpha .gc-text-amber {
+  color: #fbbf24 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-text-sage {
+  color: #b8d9c0 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-white .gc-text-sage,
+.dark .grammar-reader-container .explanation-content .gc-bg-slate .gc-text-sage,
+.dark .grammar-reader-container .explanation-content .gc-callout-left .gc-text-sage,
+.dark .grammar-reader-container .explanation-content .gc-callout-top .gc-text-sage,
+.dark .grammar-reader-container .explanation-content .gc-bg-sage-alpha .gc-text-sage,
+.dark .grammar-reader-container .explanation-content .gc-bg-terracotta-alpha .gc-text-sage {
+  color: #b8d9c0 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-text-terracotta {
+  color: #f2b8a8 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-white .gc-text-terracotta,
+.dark .grammar-reader-container .explanation-content .gc-bg-slate .gc-text-terracotta,
+.dark .grammar-reader-container .explanation-content .gc-callout-left .gc-text-terracotta,
+.dark .grammar-reader-container .explanation-content .gc-callout-top .gc-text-terracotta,
+.dark .grammar-reader-container .explanation-content .gc-bg-sage-alpha .gc-text-terracotta,
+.dark .grammar-reader-container .explanation-content .gc-bg-terracotta-alpha .gc-text-terracotta {
+  color: #f2b8a8 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-text-brown {
+  color: #d5dee8 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-white .gc-text-brown,
+.dark .grammar-reader-container .explanation-content .gc-bg-slate .gc-text-brown,
+.dark .grammar-reader-container .explanation-content .gc-callout-left .gc-text-brown,
+.dark .grammar-reader-container .explanation-content .gc-callout-top .gc-text-brown,
+.dark .grammar-reader-container .explanation-content .gc-bg-sage-alpha .gc-text-brown,
+.dark .grammar-reader-container .explanation-content .gc-bg-terracotta-alpha .gc-text-brown {
+  color: #d5dee8 !important;
+}
 .dark .grammar-reader-container .explanation-content .gc-text-purple {
   color: #c4b5fd !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-text-cyan {
+  color: #8fe7f5 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-white .gc-text-cyan,
+.dark .grammar-reader-container .explanation-content .gc-bg-slate .gc-text-cyan,
+.dark .grammar-reader-container .explanation-content .gc-callout-left .gc-text-cyan,
+.dark .grammar-reader-container .explanation-content .gc-callout-top .gc-text-cyan,
+.dark .grammar-reader-container .explanation-content .gc-bg-sage-alpha .gc-text-cyan,
+.dark .grammar-reader-container .explanation-content .gc-bg-terracotta-alpha .gc-text-cyan {
+  color: #8fe7f5 !important;
 }
 .dark .grammar-reader-container .explanation-content .gc-text-red {
   color: #fca5a5 !important;
@@ -2682,8 +2758,9 @@ textarea {
 
 /* ── Badge spans ── */
 .dark .grammar-reader-container .explanation-content .gc-badge-blue {
-  background: rgba(59, 130, 246, 0.35) !important;
-  color: #93c5fd !important;
+  background: rgba(30, 58, 77, 0.86) !important;
+  border: 1px solid rgba(96, 165, 250, 0.45) !important;
+  color: #dbeafe !important;
 }
 .dark .grammar-reader-container .explanation-content .gc-badge-orange {
   background: rgba(251, 146, 60, 0.35) !important;
@@ -2696,18 +2773,19 @@ textarea {
   color: #fca5a5 !important;
 }
 .dark .grammar-reader-container .explanation-content .gc-badge-cyan {
-  background: rgba(6, 182, 212, 0.35) !important;
-  border-color: rgba(6, 182, 212, 0.6) !important;
-  color: #67e8f9 !important;
+  background: rgba(14, 116, 144, 0.32) !important;
+  border: 1px solid rgba(34, 211, 238, 0.45) !important;
+  color: #cffafe !important;
 }
 .dark .grammar-reader-container .explanation-content .gc-badge-purple-light {
-  background: rgba(168, 85, 247, 0.35) !important;
-  border-color: rgba(168, 85, 247, 0.6) !important;
-  color: #c4b5fd !important;
+  background: rgba(88, 28, 135, 0.38) !important;
+  border: 1px solid rgba(196, 181, 253, 0.45) !important;
+  color: #ede9fe !important;
 }
 .dark .grammar-reader-container .explanation-content .gc-badge-purple-med {
-  background: rgba(139, 92, 246, 0.3) !important;
-  color: #ddd6fe !important;
+  background: rgba(76, 29, 149, 0.42) !important;
+  border: 1px solid rgba(196, 181, 253, 0.45) !important;
+  color: #ede9fe !important;
 }
 .dark .grammar-reader-container .explanation-content span.gc-bg-violet {
   background: rgba(139, 92, 246, 0.35) !important;
@@ -3270,6 +3348,25 @@ kbd {
 
   .bottom-nav {
     /* Padding removed to prevent "big" look on iOS safe areas */
+  }
+}
+
+.safe-area-top-offset {
+  margin-top: env(safe-area-inset-top, 0px);
+}
+
+.safe-area-bottom-padding-mobile {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-area-bottom-padding-mobile-lg {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+}
+
+@media (min-width: 640px) {
+  .safe-area-bottom-padding-mobile,
+  .safe-area-bottom-padding-mobile-lg {
+    padding-bottom: 0;
   }
 }
 /* ========== Interactive Guide Rich Content ========== */

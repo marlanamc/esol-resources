@@ -17,8 +17,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 <h3>Why This Matters</h3>
                 <p>Past Simple is for actions that are finished. They're done, over, in the past. You use it every time you tell someone what happened yesterday, explain why you're late, or share what you did last weekend.</p>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
                     <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
                     <ul style="margin: 0.5rem 0;">
                         <li>Telling problem stories about banking and shopping ("I went to the bank, but they charged me a fee")</li>
@@ -30,7 +30,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         <li><strong>Telling detailed housing problem stories</strong> (past continuous + past simple together)</li>
                         <li><strong>Weeks 9 & 14:</strong> Talking about your work experience and health history</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">📖 Past Simple is the storytelling tense - every story needs it!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">📖 Past Simple is the storytelling tense - every story needs it!</p>
                 </div>
             `,
             exercises: [
@@ -185,17 +185,17 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         <div style="position: absolute; top: 56px; left: 7%; right: 7%; height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #fb923c 100%); border-radius: 99px;"></div>
 
                         <div style="position: absolute; top: 34px; left: 15%; text-align: center;">
-                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #f59e0b; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.35);">1</div>
+                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #f59e0b; color: #1e293b; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.35);">1</div>
                             <div style="font-size: 0.78rem; margin-top: 0.35rem;">called</div>
                         </div>
 
                         <div style="position: absolute; top: 34px; left: 42%; text-align: center;">
-                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #fb923c; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(251, 146, 60, 0.35);">2</div>
+                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #fb923c; color: #1e293b; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(251, 146, 60, 0.35);">2</div>
                             <div style="font-size: 0.78rem; margin-top: 0.35rem;">waited</div>
                         </div>
 
                         <div style="position: absolute; top: 34px; left: 69%; text-align: center;">
-                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #d97757; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(217, 119, 87, 0.35);">3</div>
+                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #d97757; color: #1e293b; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(217, 119, 87, 0.35);">3</div>
                             <div style="font-size: 0.78rem; margin-top: 0.35rem;">resolved</div>
                         </div>
                     </div>
@@ -412,9 +412,9 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 title: "📝 Spelling Rules for Regular Verbs",
                 content: `Three main rules for -ed endings:
                 <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div><strong style="color: #c2410c;">Most verbs</strong> <span style="color: #d97757; font-weight: 600;">→</span> add -ed <span style="font-size: 0.9rem;">(work → worked)</span></div>
-                    <div><strong style="color: #c2410c;">Ends in -e</strong> <span style="color: #d97757; font-weight: 600;">→</span> add -d only <span style="font-size: 0.9rem;">(live → lived)</span></div>
-                    <div><strong style="color: #c2410c;">Consonant + y</strong> <span style="color: #d97757; font-weight: 600;">→</span> change y to i, add -ed <span style="font-size: 0.9rem;">(study → studied)</span></div>
+                    <div><strong class="gc-text-terracotta">Most verbs</strong> <span style="color: #d97757; font-weight: 600;">→</span> add -ed <span style="font-size: 0.9rem;">(work → worked)</span></div>
+                    <div><strong class="gc-text-terracotta">Ends in -e</strong> <span style="color: #d97757; font-weight: 600;">→</span> add -d only <span style="font-size: 0.9rem;">(live → lived)</span></div>
+                    <div><strong class="gc-text-terracotta">Consonant + y</strong> <span style="color: #d97757; font-weight: 600;">→</span> change y to i, add -ed <span style="font-size: 0.9rem;">(study → studied)</span></div>
                 </div>`,
             },
             exercises: [

@@ -139,14 +139,14 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <h3>See the Difference</h3>
                 <p>Both forms look forward to a future moment, but they show different things. Think of it like this:</p>
 
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-slate" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <p style="margin: 0;"><strong>Completion = Checkpoint:</strong> "Will this be done by then?" ✓</p>
                     <p style="margin: 0.5rem 0 0 0;"><strong>Duration = Journey:</strong> "How long will I have been doing this?"</p>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
                     <!-- Goal Timeline -->
-                    <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.25rem;">
+                    <div class="gc-bg-white" style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.25rem;">
                         <h4 style="text-align: center; margin: 0 0 1rem 0; color: #0e7490;">Completion Focus: Done by the Deadline</h4>
                         <div style="position: relative; height: 80px; margin: 1rem 0;">
                             <!-- Timeline line -->
@@ -169,7 +169,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     </div>
 
                     <!-- Duration Timeline -->
-                    <div style="background: white; border: 2px solid #a855f7; border-radius: 0.75rem; padding: 1.25rem;">
+                    <div class="gc-bg-white" style="background: white; border: 2px solid #a855f7; border-radius: 0.75rem; padding: 1.25rem;">
                         <h4 style="text-align: center; margin: 0 0 1rem 0; color: #7c3aed;">Duration Focus</h4>
                         <div style="position: relative; height: 80px; margin: 1rem 0;">
                             <!-- Timeline line -->
@@ -193,10 +193,10 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
 
                 <h3>More Examples Side by Side</h3>
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-                    <tr style="background: #f8fafc;">
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Future Moment</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4; color: #0e7490;">The Completion (Done)</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">The Duration (How Long)</th>
+                    <tr class="gc-bg-slate" style="background: #f8fafc;">
+                        <th class="gc-text-dark gc-table-divider" style="padding: 0.75rem; text-align: left;">Future Moment</th>
+                        <th class="gc-table-divider gc-text-cyan" style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4;">The Completion (Done)</th>
+                        <th class="gc-table-divider" style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">The Duration (How Long)</th>
                     </tr>
                     <tr>
                         <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">By next year...</td>
@@ -326,7 +326,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <h3>What Will Be Done By Then?</h3>
                 <p>Use <strong>The Future Perfect (Goal)</strong> (will have + V3) to talk about actions that will be <strong>completed before</strong> a future deadline or moment.</p>
 
-                <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
+                <div class="gc-bg-white" style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #0e7490;">The Goal Setter's Formula</h4>
                     <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0;">
                         <span style="background: #fef3c7; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600;">By + future time</span>
@@ -457,7 +457,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <h3>How Long Will It Have Been Happening?</h3>
                 <p>Use <strong>The Future Perfect (Duration)</strong> (will have been + V1-ing) to emphasize <strong>how long</strong> an activity will have been going on by a future point. This is perfect for anniversaries and milestones!</p>
 
-                <div style="background: white; border: 2px solid #a855f7; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
+                <div class="gc-bg-white" style="background: white; border: 2px solid #a855f7; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #7c3aed;">The Journey Tracker's Formula</h4>
                     <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0;">
                         <span style="background: #fef3c7; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600;">By + future time</span>
@@ -617,7 +617,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Same Verb, Two Meanings</h3>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-slate" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; font-weight: 600;">WORK 💼</p>
                         <p style="margin: 0.25rem 0 0 0; color: #0e7490;"><strong>Goal Form:</strong> "By Friday, I <strong>will have finished</strong> the report." → <em>Report is done!</em></p>
@@ -707,7 +707,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Using Negatives in Context</h3>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-slate" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; font-weight: 600;">Setting realistic expectations:</p>
                         <p style="margin: 0.25rem 0 0 0;">"I <strong>won't have finished</strong> the whole book by tomorrow, but I'll be halfway through."</p>
@@ -891,7 +891,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Signal Words in Sentences</h3>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-slate" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; color: #0e7490;"><strong>Result form:</strong> "By Friday, I <strong>will have already finished</strong> the report."</p>
                         <p style="margin: 0.25rem 0 0 0; color: #0e7490;">"<strong>How many</strong> pages <strong>will</strong> you <strong>have written</strong> by then?"</p>
@@ -1098,7 +1098,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Put It All Together!</h3>
                 <p>The Future Perfect Family is perfect for talking about your goals, plans, and milestones.</p>
 
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #64748b;">
+                <div class="gc-bg-slate gc-callout-left" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #64748b;">
                     <h4 style="margin: 0 0 0.5rem 0; color: #475569;">Example: Career Goals</h4>
                     <p style="margin: 0; line-height: 1.8;">
                         "By next December, I <span style="color: #06b6d4; font-weight: 600;">will have completed</span> my ESOL certification.
@@ -1217,13 +1217,13 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             explanation: `
                 <h3>What You've Learned</h3>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #06b6d4;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #0e7490;">The Goal Setter (result form)</h4>
+                    <div class="gc-bg-white gc-callout-top" style="background: white; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #06b6d4;">
+                        <h4 class="gc-text-cyan" style="margin: 0 0 0.5rem 0;">The Goal Setter (result form)</h4>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> will have + V3</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Completed BY deadline</p>
                         <p style="margin: 0;"><strong>Key words:</strong> by, before, by the time, already, how many</p>
                     </div>
-                    <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #a855f7;">
+                    <div class="gc-badge-purple-light gc-callout-top" style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #a855f7;">
                         <h4 style="margin: 0 0 0.5rem 0; color: #7c3aed;">The Journey Tracker (duration form)</h4>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> will have been + V1-ing</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Duration UP TO that point</p>
@@ -1238,10 +1238,10 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
 
                 <h3>Quick Reference Chart</h3>
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-                    <tr style="background: #f8fafc;">
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Use...</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #06b6d4; color: #0e7490;">Result form</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">Duration form</th>
+                    <tr class="gc-bg-slate" style="background: #f8fafc;">
+                        <th class="gc-text-dark gc-table-divider" style="padding: 0.5rem; text-align: left;">Use...</th>
+                        <th class="gc-table-divider gc-text-cyan" style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #06b6d4;">Result form</th>
+                        <th class="gc-table-divider" style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">Duration form</th>
                     </tr>
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 0.5rem;">Completion by deadline</td>
@@ -1279,7 +1279,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>One Final Example</h3>
-                <div style="background: linear-gradient(135deg, #cffafe 0%, #f3e8ff 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-grad-cyan" style="background: linear-gradient(135deg, #cffafe 0%, #f3e8ff 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <p style="margin: 0; font-style: italic; font-size: 1.05rem; line-height: 1.7;">
                         "By this time next year, I <strong style="color: #06b6d4;">will have saved</strong> $10,000 <span style="color: #6b7280;">(completion)</span>.
                         I <strong style="color: #a855f7;">will have been saving</strong> for 2 years by then <span style="color: #6b7280;">(duration)</span>.

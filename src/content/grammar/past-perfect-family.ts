@@ -139,14 +139,14 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>See the Difference</h3>
                 <p>Both forms look backward from a past moment, but they focus on different things. Think of it like this:</p>
 
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-slate" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <p style="margin: 0;"><strong>Order = Sequence:</strong> "This happened, THEN that happened." (1st → 2nd)</p>
                     <p style="margin: 0.5rem 0 0 0;"><strong>Duration = Background:</strong> "Something WAS happening before that moment."</p>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
                     <!-- Order Timeline -->
-                    <div style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.25rem;">
+                    <div class="gc-bg-white" style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.25rem;">
                         <h4 style="text-align: center; margin: 0 0 1rem 0; color: #b45309;">Order: Which Happened First?</h4>
                         <div style="position: relative; height: 80px; margin: 1rem 0;">
                             <!-- Timeline line -->
@@ -170,7 +170,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
 
                     <!-- Duration Timeline -->
-                    <div style="background: white; border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.25rem;">
+                    <div class="gc-bg-white" style="background: white; border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.25rem;">
                         <h4 style="text-align: center; margin: 0 0 1rem 0; color: #6d28d9;">Duration: How Long Before?</h4>
                         <div style="position: relative; height: 80px; margin: 1rem 0;">
                             <!-- Timeline line -->
@@ -190,10 +190,10 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
 
                 <h3>More Examples Side by Side</h3>
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-                    <tr style="background: #f8fafc;">
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Story Context</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; color: #b45309;">The Order (What First)</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">The Duration (How Long)</th>
+                    <tr class="gc-bg-slate" style="background: #f8fafc;">
+                        <th class="gc-text-dark gc-table-divider" style="padding: 0.75rem; text-align: left;">Story Context</th>
+                        <th class="gc-table-divider gc-text-amber" style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b;">The Order (What First)</th>
+                        <th class="gc-table-divider" style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">The Duration (How Long)</th>
                     </tr>
                     <tr>
                         <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">The movie started...</td>
@@ -323,7 +323,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>What Happened First?</h3>
                 <p>Use <strong>The Past Perfect (Order)</strong> (had + V3) to show which action happened <strong>FIRST</strong> when telling a story about two past events.</p>
 
-                <div style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
+                <div class="gc-bg-white" style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #b45309;">The Two-Verb Rule</h4>
                     <p style="margin: 0.5rem 0;">This tense almost ALWAYS needs TWO past events:</p>
                     <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
@@ -347,7 +347,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 </ul>
 
                 <h4>More Example Sentences</h4>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-slate" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.95rem;">
                         <li>"The streets were wet because it <strong>had rained</strong> earlier." <span style="color: #6b7280;">(Rain → wet streets)</span></li>
                         <li>"She knew the answer because she <strong>had studied</strong> hard." <span style="color: #6b7280;">(Study → knew)</span></li>
@@ -447,7 +447,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>How Long Before That Moment?</h3>
                 <p>Use <strong>The Past Perfect (Duration)</strong> (had been + V1-ing) to show <strong>how long</strong> something was happening before another past event, or to paint background for your story.</p>
 
-                <div style="background: white; border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
+                <div class="gc-bg-white" style="background: white; border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #6d28d9;">Duration Before a Past Moment</h4>
                     <div style="position: relative; margin: 1.5rem auto; max-width: 450px;">
                         <!-- Duration bar -->
@@ -696,7 +696,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Understanding Negative Meanings</h3>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-slate" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; font-weight: 600;">Explaining lack of experience:</p>
                         <p style="margin: 0.25rem 0 0 0;">"She was nervous because she <strong>hadn't flown</strong> before."</p>
@@ -878,7 +878,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Signal Words in Sentences</h3>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-slate" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; color: #b45309;"><strong>Result form:</strong> "I <strong>had already finished</strong> when you called."</p>
                         <p style="margin: 0.25rem 0 0 0; color: #b45309;">"She <strong>had never seen</strong> snow before that trip."</p>
@@ -999,7 +999,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>More Wrong vs Right Examples</h3>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-slate" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; color: #dc2626;">❌ "I went to the cinema after I had been finishing work."</p>
                         <p style="margin: 0; color: #16a34a;">✓ "I went to the cinema after I had finished work." <span style="font-size: 0.85rem; color: #6b7280;">(finish = completion)</span></p>
@@ -1206,13 +1206,13 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             explanation: `
                 <h3>What You've Learned</h3>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f59e0b;">
+                    <div class="gc-bg-amber gc-callout-top" style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f59e0b;">
                         <h4 style="margin: 0 0 0.5rem 0; color: #b45309;">The Time Traveler (result form)</h4>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> had + V3</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> What happened FIRST</p>
                         <p style="margin: 0;"><strong>Key words:</strong> already, just, before, after, by the time, when, never</p>
                     </div>
-                    <div style="background: #ede9fe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #8b5cf6;">
+                    <div class="gc-badge-purple-light gc-callout-top" style="background: #ede9fe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #8b5cf6;">
                         <h4 style="margin: 0 0 0.5rem 0; color: #6d28d9;">The Background Painter (duration form)</h4>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> had been + V1-ing</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> How LONG before</p>
@@ -1232,10 +1232,10 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
 
                 <h3>Quick Reference Chart</h3>
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-                    <tr style="background: #f8fafc;">
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Use...</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #f59e0b; color: #b45309;">Result form</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">Duration form</th>
+                    <tr class="gc-bg-slate" style="background: #f8fafc;">
+                        <th class="gc-text-dark gc-table-divider" style="padding: 0.5rem; text-align: left;">Use...</th>
+                        <th class="gc-table-divider gc-text-amber" style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #f59e0b;">Result form</th>
+                        <th class="gc-table-divider" style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">Duration form</th>
                     </tr>
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 0.5rem;">Sequence (first action)</td>

@@ -18,8 +18,8 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 <p><strong>Past Simple:</strong> Finished actions with a clear time stamp (yesterday, last week, in 2020)</p>
                 <p><strong>Future Simple:</strong> Quick decisions and promises about tomorrow (I'll help, we'll meet)</p>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
                     <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
                     <ul style="margin: 0.5rem 0;">
                         <li>Asking questions about community resources ("Where is the library?" "When do they open?")</li>
@@ -27,7 +27,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                         <li>Reflecting on wellness changes ("Before, I ate junk food. Now, I cook at home. Next year, I'll run a 5K.")</li>
                         <li>Mixed-tense error correction practice</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🔄 This is SPIRAL REVIEW #5 - we're combining questions with all the simple tenses!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">🔄 This is SPIRAL REVIEW #5 - we're combining questions with all the simple tenses!</p>
                 </div>
             `,
             exercises: [
@@ -979,11 +979,11 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 title: "🚨 Common Mistakes to Avoid",
                 content: `Common simple tense mistakes and fixes:
                 <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div>❌ She work downtown <span style="color: #d97757; font-weight: 600;">→</span> ✅ She works downtown <span style="font-size: 0.875rem; color: #4b5563;">(add -s for he/she/it)</span></div>
-                    <div>❌ He don't like coffee <span style="color: #d97757; font-weight: 600;">→</span> ✅ He doesn't like coffee <span style="font-size: 0.875rem; color: #4b5563;">(doesn't with he/she/it)</span></div>
-                    <div>❌ Does she works? <span style="color: #d97757; font-weight: 600;">→</span> ✅ Does she work? <span style="font-size: 0.875rem; color: #4b5563;">(base verb in questions)</span></div>
-                    <div>❌ She didn't worked <span style="color: #d97757; font-weight: 600;">→</span> ✅ She didn't work <span style="font-size: 0.875rem; color: #4b5563;">(base verb after didn't)</span></div>
-                    <div>❌ I will going <span style="color: #d97757; font-weight: 600;">→</span> ✅ I will go <span style="font-size: 0.875rem; color: #4b5563;">(no -ing with will)</span></div>
+                    <div>❌ She work downtown <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ She works downtown <span class="gc-text-muted" style="font-size: 0.875rem;">(add -s for he/she/it)</span></div>
+                    <div>❌ He don't like coffee <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ He doesn't like coffee <span class="gc-text-muted" style="font-size: 0.875rem;">(doesn't with he/she/it)</span></div>
+                    <div>❌ Does she works? <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ Does she work? <span class="gc-text-muted" style="font-size: 0.875rem;">(base verb in questions)</span></div>
+                    <div>❌ She didn't worked <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ She didn't work <span class="gc-text-muted" style="font-size: 0.875rem;">(base verb after didn't)</span></div>
+                    <div>❌ I will going <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ I will go <span class="gc-text-muted" style="font-size: 0.875rem;">(no -ing with will)</span></div>
                 </div>`,
             },
             exercises: [

@@ -3,6 +3,7 @@ import { Lora, DM_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { LearnerSearchProvider } from "@/components/search/LearnerSearchProvider";
 import { cookies } from "next/headers";
 
 const lora = Lora({
@@ -111,7 +112,7 @@ export default async function RootLayout({
         className={`${lora.variable} ${dmSans.variable} ${caveat.variable} antialiased`}
       >
         <ThemeProvider>
-          {children}
+          <LearnerSearchProvider>{children}</LearnerSearchProvider>
         </ThemeProvider>
         <Analytics />
       </body>

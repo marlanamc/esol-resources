@@ -16,6 +16,7 @@ import type { ExerciseCompletionInfo } from "./exercises/ExerciseSection";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { useResolvedLearnerReturnHref } from "@/hooks/useResolvedLearnerReturnHref";
 import { RETURN_TO_QUERY_PARAM } from "@/lib/learner-navigation";
+import { NotepadTextDashed } from "lucide-react";
 
 interface GrammarReaderProps {
     content: InteractiveGuideContent;
@@ -594,14 +595,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                             onClick={() => setShowTOC(!showTOC)}
                                             className="grammar-reader-toc-toggle flex-shrink-0 text-xs text-primary hover:text-primary-dark flex items-center gap-1 px-2 py-1 rounded transition-colors"
                                         >
-                                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth={2}
-                                                    d="M4 6h16M4 10h16M4 14h16M4 18h16"
-                                                />
-                                            </svg>
+                                            <NotepadTextDashed className="w-3.5 h-3.5" aria-hidden="true" />
                                             {showTOC ? "Hide" : "Show"} TOC
                                         </button>
                                     )}

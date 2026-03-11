@@ -15,6 +15,7 @@
 
 # next.js
 /.next/
+/.next-audit-grammar-dark-mode*/
 /out/
 
 # production

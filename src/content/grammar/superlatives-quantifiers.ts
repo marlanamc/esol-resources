@@ -23,8 +23,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     <li><strong>Negotiate effectively</strong> - At work, at stores, with landlords</li>
                 </ul>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
                     <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
                     <ul style="margin: 0.5rem 0 0 0;">
                         <li>Describing your home ("My apartment is the quietest one in the building")</li>
@@ -32,7 +32,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                         <li>Talking about food and restaurants ("Which restaurant has the best prices?")</li>
                         <li>Speaking game: Comparing homes and neighborhoods</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💡 Tip: When you're apartment hunting or job searching, these comparisons help you explain your choices and find the best option!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">💡 Tip: When you're apartment hunting or job searching, these comparisons help you explain your choices and find the best option!</p>
                 </div>
             `,
             exercises: [
@@ -686,10 +686,10 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 <h3>Quantifiers Cheat Sheet</h3>
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
                     <thead>
-                        <tr style="background: rgba(200, 107, 81, 0.1);">
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Quantifier</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Use With</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Example</th>
+                        <tr class="gc-bg-slate" style="background: rgba(200, 107, 81, 0.1);">
+                            <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Quantifier</th>
+                            <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Use With</th>
+                            <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Example</th>
                         </tr>
                     </thead>
                     <tbody>

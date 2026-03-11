@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
-import { BookOpen, ClipboardList, Gamepad2, Map, Menu, Mic, PenLine, PenTool, Volume2, X } from "lucide-react";
+import { BookOpen, ClipboardList, Gamepad2, Map, Menu, Mic, PenLine, PenTool, Search, Volume2, X } from "lucide-react";
 import { BookOpenIcon, HomeIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
 import { useDocumentScrollLock } from "@/hooks/useDocumentScrollLock";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 
 const MEDAL_EMOJI: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 
@@ -20,10 +21,19 @@ let cacheTimestamp = 0;
 let inflight: Promise<Record<string, boolean>> | null = null;
 
 function parseSubjects(activities: Array<Record<string, unknown>>): Record<string, boolean> {
+    const visibleActivities = activities.filter((activity) =>
+        isLearnerVisibleActivity({
+            type: typeof activity.type === "string" ? activity.type : null,
+            category: typeof activity.category === "string" ? activity.category : null,
+            isReleased: activity.isReleased === true,
+            content: typeof activity.content === "string" ? activity.content : null,
+        })
+    );
+
     return {
-        vocabulary: activities.some((a) => typeof a.id === "string" && a.id.startsWith("vocab-")),
-        grammar: activities.some((a) => a.category === "grammar"),
-        games: activities.some((a) => {
+        vocabulary: visibleActivities.some((a) => typeof a.id === "string" && a.id.startsWith("vocab-")),
+        grammar: visibleActivities.some((a) => a.category === "grammar"),
+        games: visibleActivities.some((a) => {
             if (a.type !== "game") return false;
             if (typeof a.id === "string" && a.id.startsWith("vocab-")) return false;
             return (
@@ -32,16 +42,10 @@ function parseSubjects(activities: Array<Record<string, unknown>>): Record<strin
                 a.category === "games"
             );
         }),
-        quizzes: activities.some((a) => {
-            if (a.category !== "quizzes") return false;
-            try { return JSON.parse((a.content as string) || "{}").released === true; } catch { return false; }
-        }),
-        speaking: activities.some((a) => {
-            if (a.category !== "speaking") return false;
-            try { return JSON.parse((a.content as string) || "{}").released === true; } catch { return false; }
-        }),
-        writing: activities.some((a) => a.category === "writing" || a.category === "writing-reading"),
-        pronunciation: activities.some(
+        quizzes: visibleActivities.some((a) => a.category === "quizzes"),
+        speaking: visibleActivities.some((a) => a.category === "speaking"),
+        writing: visibleActivities.some((a) => a.category === "writing" || a.category === "writing-reading"),
+        pronunciation: visibleActivities.some(
             (a) => a.category === "pronunciation" || a.ui === "ed-pronunciation" || a.ui === "minimal-pairs"
         ),
     };
@@ -74,6 +78,7 @@ interface LearnerMenuProps {
     mode?: "brand" | "quiet";
     userName?: string;
     className?: string;
+    showSearch?: boolean;
     /** Student's weekly leaderboard rank (1–3) to show medal next to name */
     leaderboardRank?: number | null;
     /** Show 🙋🏻‍♀️ next to name (Marlie test account) to indicate medal placement */
@@ -84,6 +89,7 @@ export function LearnerMenu({
     mode = "quiet",
     userName = "",
     className = "",
+    showSearch = false,
     leaderboardRank = null,
     showMarlieEmoji = false,
 }: LearnerMenuProps) {
@@ -223,7 +229,7 @@ export function LearnerMenu({
                       aria-label="Navigation Menu"
                       aria-hidden={!isOpen}
                   >
-                      <div className="p-5 border-b flex items-center justify-between mt-[env(safe-area-inset-top,0px)]" style={{ borderColor: 'var(--border-subtle)' }}>
+                      <div className="safe-area-top-offset p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border-subtle)' }}>
                           <Link
                               href="/dashboard"
                               onClick={closeMenu}
@@ -259,6 +265,14 @@ export function LearnerMenu({
                           <nav className="flex flex-col gap-1.5" aria-label="Main navigation">
                               <MenuLink href="/dashboard" label="Home" icon={<HomeIcon className="w-5 h-5 text-secondary" />} onNavigate={closeMenu} />
                               <MenuLink href="/dashboard/activities" label="All Activities" icon={<BookOpenIcon className="w-5 h-5 text-[#b86a56]" />} onNavigate={closeMenu} />
+                              {showSearch ? (
+                                  <MenuLink
+                                      href="/dashboard/search"
+                                      label="Search"
+                                      icon={<Search className="w-5 h-5 text-[#b98916]" />}
+                                      onNavigate={closeMenu}
+                                  />
+                              ) : null}
                               <MenuLink href="/grammar-map" label="Grammar Map" icon={<Map className="w-5 h-5 text-[#6f9c76]" />} onNavigate={closeMenu} />
                               <MenuLink href="/dashboard/leaderboard" label="Leaderboard" icon={<TrophyIcon className="w-5 h-5 text-[#cda46f]" />} onNavigate={closeMenu} />
                               <MenuLink href="/dashboard/profile" label="My Profile" icon={<StarIcon className="w-5 h-5 text-[#88A392]" />} onNavigate={closeMenu} />
@@ -290,7 +304,7 @@ export function LearnerMenu({
                                   <MenuLink href="/dashboard/activities?category=writing" label="Writing" icon={<PenTool className="w-5 h-5" style={{ color: getLearnerCategoryTone('writing').accent }} strokeWidth={1.5} />} onNavigate={closeMenu} light toneKey="writing" />
                               ) : null}
                               {availableSubjects.pronunciation ? (
-                                  <MenuLink href="/dashboard/activities?category=pronunciation" label="Pronunciation" icon={<Volume2 className="w-5 h-5" style={{ color: getLearnerCategoryTone('games').accent }} strokeWidth={1.5} />} onNavigate={closeMenu} light toneKey="games" />
+                                  <MenuLink href="/dashboard/activities?category=pronunciation" label="Pronunciation" icon={<Volume2 className="w-5 h-5" style={{ color: getLearnerCategoryTone('pronunciation').accent }} strokeWidth={1.5} />} onNavigate={closeMenu} light toneKey="pronunciation" />
                               ) : null}
                           </nav>
                       </div>
@@ -321,7 +335,7 @@ interface MenuLinkProps {
     icon: ReactNode;
     onNavigate: () => void;
     light?: boolean;
-    toneKey?: "grammar" | "vocabulary" | "games" | "quizzes" | "speaking" | "writing";
+    toneKey?: "grammar" | "vocabulary" | "games" | "quizzes" | "speaking" | "writing" | "pronunciation";
 }
 
 function MenuLink({ href, label, icon, onNavigate, light = false, toneKey }: MenuLinkProps) {
@@ -332,7 +346,7 @@ function MenuLink({ href, label, icon, onNavigate, light = false, toneKey }: Men
             className={`flex items-center gap-3 rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                 light ? "px-4 py-2.5 font-medium text-text active:bg-black/10" : "px-4 py-3 font-semibold text-text active:bg-black/10"
             }`}
-            style={tone ? { backgroundColor: tone.surfaceMuted, border: `1px solid ${tone.border}` } : undefined}
+            style={tone ? { backgroundColor: tone.surface, border: `1px solid ${tone.border}` } : undefined}
             onClick={onNavigate}
         >
             {icon}

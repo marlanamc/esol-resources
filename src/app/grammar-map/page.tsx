@@ -6,6 +6,7 @@ import GrammarMapClient from '@/components/grammar-map/GrammarMapClient';
 import { Map } from 'lucide-react';
 import { grammarTopics } from '@/data/grammar-map';
 import { LearnerMenu } from '@/components/navigation/LearnerMenu';
+import { LearnerSearchTrigger } from '@/components/search/LearnerSearchTrigger';
 
 export const metadata = {
     title: 'Grammar Map | Class Companion',
@@ -99,6 +100,7 @@ export default async function GrammarMapPage() {
             <header className="sticky top-0 backdrop-blur-lg border-b z-40 bg-[var(--surface-elevated)]/95 dark:bg-[var(--color-glass-bg)] border-[var(--border-subtle)] shadow-sm">
                 <div className="container mx-auto py-4 px-4 sm:px-6 flex items-center gap-4">
                     <LearnerMenu mode="quiet" />
+                    <LearnerSearchTrigger />
                     <Map className="w-7 h-7 shrink-0 text-[var(--primary-color)]" />
                     <div>
                         <h1 className="text-2xl md:text-3xl font-bold font-display text-[var(--text)]">

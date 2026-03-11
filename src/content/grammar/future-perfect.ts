@@ -10,32 +10,32 @@ export const futurePerfectContent: InteractiveGuideContent = {
             title: "Future Perfect: The Deadline Machine",
             icon: "⏰",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(203, 213, 225, 0.2) 0%, rgba(6, 182, 212, 0.2) 50%, rgba(34, 197, 94, 0.2) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin-top: 0; color: #06b6d4; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Future Perfect is like standing at a <strong style="color: #a855f7;">deadline in the future</strong> and looking back: <strong style="color: #06b6d4;">"By then, this will be DONE."</strong> It's the tense for talking about what you'll have accomplished by a specific time.</p>
+                <div class="gc-grad-cyan" style="background: linear-gradient(135deg, rgba(203, 213, 225, 0.2) 0%, rgba(6, 182, 212, 0.2) 50%, rgba(34, 197, 94, 0.2) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h3 class="gc-text-dark" style="margin-top: 0; font-size: 1.25rem;">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0;">Future Perfect is like standing at a <strong class="gc-text-purple">deadline in the future</strong> and looking back: <strong class="gc-text-cyan">"By then, this will be DONE."</strong> It's the tense for talking about what you'll have accomplished by a specific time.</p>
                 </div>
 
                 <h3>The Time Machine to Your Deadlines</h3>
                 <p>Imagine you can travel to a future moment—next Friday at 5 PM, next year, graduation day. You look back and ask: "What will I have completed by then?"</p>
 
-                <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
-                    <h4 style="text-align: center; margin-top: 0; color: #06b6d4;">Real-Life Uses</h4>
+                <div class="gc-bg-white gc-box-cyan" style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
+                    <h4 class="gc-text-cyan" style="text-align: center; margin-top: 0;">Real-Life Uses</h4>
                     <ul style="list-style: none; padding-left: 0; margin: 0;">
-                        <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">⏰ <strong>Deadlines</strong>: "By 6 PM, I will have finished my homework."</li>
-                        <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">📅 <strong>Milestones</strong>: "By next year, I will have lived here for 10 years."</li>
-                        <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">🔮 <strong>Predictions</strong>: "They will have left by the time we arrive."</li>
-                        <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">🎯 <strong>Goals</strong>: "By summer, I will have saved $2,000."</li>
+                        <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">⏰ <strong>Deadlines</strong>: "By 6 PM, I will have finished my homework."</li>
+                        <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">📅 <strong>Milestones</strong>: "By next year, I will have lived here for 10 years."</li>
+                        <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">🔮 <strong>Predictions</strong>: "They will have left by the time we arrive."</li>
+                        <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">🎯 <strong>Goals</strong>: "By summer, I will have saved $2,000."</li>
                     </ul>
                 </div>
 
-                <div style="background: linear-gradient(135deg, rgba(244, 211, 94, 0.15) 0%, rgba(249, 115, 22, 0.15) 100%); padding: 1.25rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <h4 style="margin-top: 0; color: #f59e0b; font-size: 1.125rem;">📝 The Formula</h4>
+                <div class="gc-grad-amber gc-box-amber-500" style="background: linear-gradient(135deg, rgba(244, 211, 94, 0.15) 0%, rgba(249, 115, 22, 0.15) 100%); padding: 1.25rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
+                    <h4 class="gc-text-amber" style="margin-top: 0; font-size: 1.125rem;">📝 The Formula</h4>
                     <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-                        <span style="background: white; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Subject</span>
+                        <span class="gc-badge-blue gc-text-cyan" style="background: white; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Subject</span>
                         <span style="font-size: 1.5rem; color: #f59e0b; font-weight: 600;">+</span>
-                        <span style="background: white; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">will have</span>
+                        <span class="gc-badge-blue gc-text-cyan" style="background: white; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">will have</span>
                         <span style="font-size: 1.5rem; color: #f59e0b; font-weight: 600;">+</span>
-                        <span style="background: white; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
+                        <span class="gc-badge-blue gc-text-cyan" style="background: white; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
                     </div>
                 </div>
             `,
@@ -745,16 +745,16 @@ export const futurePerfectContent: InteractiveGuideContent = {
                     <h4 style="margin-top: 0; color: #06b6d4;">🎯 Resume & Cover Letter Power Phrases</h4>
                     <p>Make your application stand out with Future Perfect to show forward-thinking:</p>
 
-                    <div style="background: #f0fdfa; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                        <p style="margin: 0; font-weight: 600; color: #06b6d4;">In Your Cover Letter:</p>
+                    <div class="gc-bg-cyan" style="background: #f0fdfa; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                        <p class="gc-text-cyan" style="margin: 0; font-weight: 600;">In Your Cover Letter:</p>
                         <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem; list-style-type: disc;">
                             <li>"By the time I begin this role, I <strong>will have completed</strong> specialized training in [skill]."</li>
                             <li>"With this opportunity, by year's end I <strong>will have contributed</strong> to [specific company goal]."</li>
                         </ul>
                     </div>
 
-                    <div style="background: #f0fdfa; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #06b6d4;">In Your Interview:</p>
+                    <div class="gc-bg-cyan" style="background: #f0fdfa; padding: 1rem; border-radius: 0.5rem;">
+                        <p class="gc-text-cyan" style="margin: 0; font-weight: 600;">In Your Interview:</p>
                         <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem; list-style-type: disc;">
                             <li>"If hired, by the end of my first 90 days I <strong>will have learned</strong> all key systems and processes."</li>
                                 <li>"By my one-year anniversary, I <strong>will have built</strong> strong relationships with my supervisors and coworkers."</li>

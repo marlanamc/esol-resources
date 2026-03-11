@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import { ensureTeacher } from "@/lib/policies";
+import { filterLearnerVisibleActivities } from "@/lib/learner-visibility";
 
 export async function POST(request: NextRequest) {
     try {
@@ -63,43 +64,11 @@ export async function GET() {
             const activities = await prisma.activity.findMany({
                 where: {
                     deletedAt: null,
-                    OR: [
-                        // Released grammar guides only
-                        {
-                            type: "guide",
-                            category: "grammar",
-                            isReleased: true
-                        },
-                        // Non-grammar activities (speaking filtered below)
-                        {
-                            NOT: {
-                                AND: [
-                                    { type: "guide" },
-                                    { category: "grammar" }
-                                ]
-                            }
-                        }
-                    ]
                 },
                 orderBy: { createdAt: "desc" },
             });
 
-            // Filter speaking activities by content.released (existing pattern)
-            const filteredActivities = activities.filter((activity) => {
-                if (activity.type !== "speaking") {
-                    return true;
-                }
-
-                // For speaking activities, check if released
-                try {
-                    const content = JSON.parse(activity.content);
-                    return content.released === true;
-                } catch {
-                    return false; // Hide if content is malformed
-                }
-            });
-
-            return NextResponse.json(collapseEdPronunciationActivities(filteredActivities));
+            return NextResponse.json(collapseEdPronunciationActivities(filterLearnerVisibleActivities(activities)));
         }
 
         const teacherCheck = ensureTeacher(session.user);

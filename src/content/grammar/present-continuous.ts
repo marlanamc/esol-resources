@@ -9,24 +9,24 @@ export const presentContinuousContent: InteractiveGuideContent = {
             title: "Present Continuous: What's Happening Right Now",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin-top: 0; color: #8b5cf6; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Present Continuous captures <strong style="color: #c86b51;">actions in motion</strong>—what's happening right this second, temporary situations that won't last forever, and plans you've already arranged. Look around: the TV is playing, someone is cooking, your phone is charging. That's Present Continuous!</p>
+                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h3 class="gc-text-purple" style="margin-top: 0; font-size: 1.25rem;">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0;">Present Continuous captures <strong class="gc-text-terracotta">actions in motion</strong>—what's happening right this second, temporary situations that won't last forever, and plans you've already arranged. Look around: the TV is playing, someone is cooking, your phone is charging. That's Present Continuous!</p>
                 </div>
 
                 <h3>Real-Life Uses</h3>
                 <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #8b5cf6; border-radius: 0.25rem;">✓ <strong>Right now</strong>: "I'm waiting for the bus—it's late again."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #8b5cf6; border-radius: 0.25rem;">✓ <strong>Temporary situations</strong>: "I'm staying with my sister this month."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #8b5cf6; border-radius: 0.25rem;">✓ <strong>Arranged plans</strong>: "We're meeting the landlord tomorrow at 10."</li>
+                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #8b5cf6; border-radius: 0.25rem;">✓ <strong>Right now</strong>: "I'm waiting for the bus—it's late again."</li>
+                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #8b5cf6; border-radius: 0.25rem;">✓ <strong>Temporary situations</strong>: "I'm staying with my sister this month."</li>
+                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #8b5cf6; border-radius: 0.25rem;">✓ <strong>Arranged plans</strong>: "We're meeting the landlord tomorrow at 10."</li>
                 </ul>
 
-                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p style="margin: 0; font-weight: 600;">📝 Formula: <span style="color: #8b5cf6; font-size: 1.125rem;">am/is/are + verb-ing</span></p>
+                <div class="gc-bg-amber gc-box-amber-500" style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
+                    <p class="gc-text-dark" style="margin: 0; font-weight: 600;">📝 Formula: <span class="gc-text-purple" style="font-size: 1.125rem;">am/is/are + verb-ing</span></p>
                 </div>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
                     <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
                     <ul style="margin: 0.5rem 0;">
                         <li>Describing what's happening in pictures or videos</li>
@@ -40,7 +40,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         <li><strong>Healthcare</strong>: "I'm feeling much better today"</li>
                         <li><strong>Family</strong>: "She's picking up the kids because I'm working late"</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">⏱️ Present Continuous = in motion NOW or just for a while!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">⏱️ Present Continuous = in motion NOW or just for a while!</p>
                 </div>
             `,
             exercises: [
@@ -393,7 +393,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
 
                         <!-- NOW marker -->
                         <div style="position: absolute; top: calc(50% - 45px); left: calc(60% - 30px); text-align: center; z-index: 2;">
-                            <div style="width: 60px; height: 60px; border-radius: 50%; background: #8b5cf6; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); margin: 0 auto;">
+                            <div style="width: 60px; height: 60px; border-radius: 50%; background: #8b5cf6; color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); margin: 0 auto; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
                                 NOW
                             </div>
                         </div>

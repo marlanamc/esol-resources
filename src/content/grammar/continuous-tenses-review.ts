@@ -9,16 +9,16 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             title: "Continuous Tenses Review: The -ing Action Tenses",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(6, 182, 212, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.25rem;">
-                    <h3 style="margin-top: 0; color: #7c3aed; font-size: 1.2rem;">🎯 The Big Idea</h3>
-                    <p style="margin-bottom: 0;">Continuous tenses are one family: <strong style="color: #c86b51;">be + verb-ing</strong>. The structure stays consistent, but the time perspective changes: present, past, or future.</p>
+                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(6, 182, 212, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.25rem;">
+                    <h3 class="gc-text-purple" style="margin-top: 0; font-size: 1.2rem;">🎯 The Big Idea</h3>
+                    <p style="margin-bottom: 0;">Continuous tenses are one family: <strong class="gc-text-terracotta">be + verb-ing</strong>. The structure stays consistent, but the time perspective changes: present, past, or future.</p>
                 </div>
 
                 <p>All the "-ing" tenses in one place: what's happening now, what was happening then, and what will be happening later.</p>
                 <p><strong>Continuous Tenses:</strong> Present (now/temporary), Past (in progress in the past), Future (in progress at a future time)</p>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.25rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.05rem;">🗣️ When You'll Use This Review</h3>
+                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.25rem;">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.05rem;">🗣️ When You'll Use This Review</h3>
                     <ul style="margin: 0;">
                         <li>Switching tenses clearly while telling a full story</li>
                         <li>Reporting incidents ("I was walking when...", "I'm still recovering...", "I'll be meeting...")</li>
@@ -1382,11 +1382,11 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 title: "🚨 Common Continuous Mistakes to Avoid",
                 content: `Common continuous tense mistakes and fixes:
                 <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div>❌ I am work <span style="color: #d97757; font-weight: 600;">→</span> ✅ I am working <span style="font-size: 0.875rem; color: #4b5563;">(must add -ing)</span></div>
-                    <div>❌ I was ran <span style="color: #d97757; font-weight: 600;">→</span> ✅ I was running <span style="font-size: 0.875rem; color: #4b5563;">(verb-ing, not past form)</span></div>
-                    <div>❌ I will working <span style="color: #d97757; font-weight: 600;">→</span> ✅ I will be working <span style="font-size: 0.875rem; color: #4b5563;">(will be + verb-ing)</span></div>
-                    <div>❌ She was study <span style="color: #d97757; font-weight: 600;">→</span> ✅ She was studying <span style="font-size: 0.875rem; color: #4b5563;">(-ying for study)</span></div>
-                    <div>❌ They are run <span style="color: #d97757; font-weight: 600;">→</span> ✅ They are running <span style="font-size: 0.875rem; color: #4b5563;">(double consonant + -ing)</span></div>
+                    <div>❌ I am work <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ I am working <span class="gc-text-muted" style="font-size: 0.875rem;">(must add -ing)</span></div>
+                    <div>❌ I was ran <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ I was running <span class="gc-text-muted" style="font-size: 0.875rem;">(verb-ing, not past form)</span></div>
+                    <div>❌ I will working <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ I will be working <span class="gc-text-muted" style="font-size: 0.875rem;">(will be + verb-ing)</span></div>
+                    <div>❌ She was study <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ She was studying <span class="gc-text-muted" style="font-size: 0.875rem;">(-ying for study)</span></div>
+                    <div>❌ They are run <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ They are running <span class="gc-text-muted" style="font-size: 0.875rem;">(double consonant + -ing)</span></div>
                 </div>`,
             },
             exercises: [

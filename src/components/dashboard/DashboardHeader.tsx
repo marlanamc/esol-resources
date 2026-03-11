@@ -6,17 +6,25 @@ import { Calendar } from "lucide-react";
 import { TrophyIcon } from "@/components/icons/Icons";
 import UserProfileDropdown from "@/components/UserProfileDropdown";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
+import { LearnerSearchTrigger } from "@/components/search/LearnerSearchTrigger";
 
 interface DashboardHeaderProps {
     userName?: string;
     variant?: "default" | "dashboardv2";
+    enableSearch?: boolean;
     /** Student's weekly leaderboard rank (1–3) to show medal in header. Only for students. */
     leaderboardRank?: number | null;
     /** Show 🙋🏻‍♀️ next to name (Marlie test account) to indicate medal placement */
     showMarlieEmoji?: boolean;
 }
 
-export function DashboardHeader({ userName = "", variant = "default", leaderboardRank = null, showMarlieEmoji = false }: DashboardHeaderProps) {
+export function DashboardHeader({
+    userName = "",
+    variant = "default",
+    enableSearch = false,
+    leaderboardRank = null,
+    showMarlieEmoji = false,
+}: DashboardHeaderProps) {
     const handleCalendarOpen = () => {
         if (typeof window !== "undefined") {
             window.dispatchEvent(new CustomEvent("dashboardv2:open-calendar"));
@@ -39,9 +47,10 @@ export function DashboardHeader({ userName = "", variant = "default", leaderboar
         >
             <div className="max-w-[1800px] mx-auto py-4 sm:py-5 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                 <div className="flex-1">
-                    <LearnerMenu mode="brand" userName={userName} leaderboardRank={leaderboardRank} showMarlieEmoji={showMarlieEmoji} />
+                    <LearnerMenu mode="brand" userName={userName} showSearch={enableSearch} leaderboardRank={leaderboardRank} showMarlieEmoji={showMarlieEmoji} />
                 </div>
                 <div className="flex items-center gap-3">
+                    {enableSearch ? <LearnerSearchTrigger /> : null}
                     {variant === "dashboardv2" ? (
                         <button
                             type="button"

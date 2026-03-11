@@ -1,5 +1,5 @@
 import React from "react";
-import { Brain } from "lucide-react";
+import { Brain, NotepadTextDashed } from "lucide-react";
 import type { InteractiveGuideSection } from "@/types/activity";
 
 interface TableOfContentsProps {
@@ -26,14 +26,7 @@ export const TableOfContents = React.memo(function TableOfContents({
     return (
         <div className="table-of-contents bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-primary rounded-lg p-6">
             <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2 font-display">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 6h16M4 10h16M4 14h16M4 18h16"
-                    />
-                </svg>
+                <NotepadTextDashed className="w-6 h-6" aria-hidden="true" />
                 Table of Contents
             </h3>
 

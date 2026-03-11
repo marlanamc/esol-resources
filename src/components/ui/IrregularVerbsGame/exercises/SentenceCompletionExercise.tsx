@@ -155,7 +155,7 @@ export function SentenceCompletionExercise({
 
       {/* Submit Button - Pushed to bottom on mobile */}
       {!submitted && (
-        <div className="mt-auto pt-2 sm:pt-0 pb-[env(safe-area-inset-bottom)] sm:pb-0">
+        <div className="safe-area-bottom-padding-mobile mt-auto pt-2 sm:pt-0">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

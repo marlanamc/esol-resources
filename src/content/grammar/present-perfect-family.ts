@@ -58,9 +58,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             title: "Core Idea Lens: What Two Times Are Connected?",
             icon: "🧠",
             explanation: `
-                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-6">
-                    <p class="font-medium text-base mb-2" style="color: #1f2937;"><strong style="color: #1f2937;">Core idea:</strong> Perfect tenses connect <strong style="color: #1f2937;">two times</strong>. Here, the connection is <strong style="color: #1f2937;">past → now</strong>.</p>
-                    <p class="text-sm mb-0" style="color: #334155;"><strong style="color: #334155;">Ask yourself:</strong> Do I want to emphasize the <strong style="color: #334155;">result now</strong>, or the <strong style="color: #334155;">activity/duration up to now</strong>?</p>
+                <div class="gc-bg-white border border-slate-200 rounded-xl p-4 mb-6">
+                    <p class="font-medium text-base mb-2 gc-text-dark" style=""><strong class="gc-text-dark">Core idea:</strong> Perfect tenses connect <strong class="gc-text-dark">two times</strong>. Here, the connection is <strong class="gc-text-dark">past → now</strong>.</p>
+                    <p class="text-sm mb-0 gc-text-muted"><strong class="gc-text-dark">Ask yourself:</strong> Do I want to emphasize the <strong class="gc-text-dark">result now</strong>, or the <strong class="gc-text-dark">activity/duration up to now</strong>?</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
@@ -705,10 +705,10 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <p>The question you ask depends on what answer you want. Choose the right form to get the information you need!</p>
 
                 <table style="width: 100%; text-align: left; border-collapse: collapse; margin: 1rem 0;">
-                    <tr style="border-bottom: 2px solid #e5e7eb;">
-                        <th style="padding: 0.5rem; color: #cbd5e1;">If you want to know...</th>
-                        <th style="padding: 0.5rem; color: #cbd5e1;">Use...</th>
-                        <th style="padding: 0.5rem; color: #cbd5e1;">Question Word</th>
+                    <tr class="gc-bg-slate" style="border-bottom: 2px solid #e5e7eb; background: #f8fafc;">
+                        <th class="gc-text-dark gc-table-divider" style="padding: 0.5rem; text-align: left;">If you want to know...</th>
+                        <th class="gc-text-dark gc-table-divider" style="padding: 0.5rem; text-align: left;">Use...</th>
+                        <th class="gc-text-dark gc-table-divider" style="padding: 0.5rem; text-align: left;">Question Word</th>
                     </tr>
                     <tr style="background-color: #fff7ed;">
                         <td style="padding: 0.75rem; font-weight: 500;">If it is DONE</td>

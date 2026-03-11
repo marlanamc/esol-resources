@@ -10,24 +10,24 @@ export const presentPerfectContent: InteractiveGuideContent = {
             title: "Present Perfect: Past Meets Right Now",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin-top: 0; color: #6366f1; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Present Perfect <strong style="color: #c86b51;">connects your past experiences to right now</strong>: places you've been, things you've done, changes that happened and you can still see the results.</p>
+                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h3 class="gc-text-purple" style="margin-top: 0; font-size: 1.25rem;">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0;">Present Perfect <strong class="gc-text-terracotta">connects your past experiences to right now</strong>: places you've been, things you've done, changes that happened and you can still see the results.</p>
                 </div>
 
                 <h3>Real-Life Uses</h3>
                 <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Experiences</strong> (no specific time): "I've walked along the East Boston Harborwalk three times this year."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Actions that continue</strong> to now: "She has worked at the community health center since 2021."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Recent actions with present results</strong>: "I've just submitted my housing renewal form."</li>
+                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Experiences</strong> (no specific time): "I've walked along the East Boston Harborwalk three times this year."</li>
+                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Actions that continue</strong> to now: "She has worked at the community health center since 2021."</li>
+                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Recent actions with present results</strong>: "I've just submitted my housing renewal form."</li>
                 </ul>
 
-                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p style="margin: 0; font-weight: 600;">📝 Formula: <span style="color: #c86b51; font-size: 1.125rem;">have/has + past participle</span></p>
+                <div class="gc-bg-amber gc-box-amber-500" style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
+                    <p class="gc-text-dark" style="margin: 0; font-weight: 600;">📝 Formula: <span class="gc-text-terracotta" style="font-size: 1.125rem;">have/has + past participle</span></p>
                 </div>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
                     <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
                     <ul style="margin: 0.5rem 0;">
                         <li>Answering "How long have you lived here?" ("I've lived here for 6 months")</li>
@@ -40,7 +40,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         <li><strong>Talking about health history</strong> ("I've had this pain for two weeks")</li>
                         <li><strong>Review:</strong> Telling coherent stories with all tenses</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">⏱️ Present Perfect connects your past to right now - it shows what's still relevant!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">⏱️ Present Perfect connects your past to right now - it shows what's still relevant!</p>
                 </div>
             `,
             exercises: [
@@ -284,7 +284,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         </div>
 
                         <div style="position: relative; z-index: 1; text-align: center; flex: 1;">
-                            <div style="width: 90px; height: 90px; border-radius: 50%; background: #6366f1; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.125rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); margin: 0 auto;">
+                            <div style="width: 90px; height: 90px; border-radius: 50%; background: #4338ca; color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.125rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); margin: 0 auto; text-shadow: 0 1px 2px rgba(0,0,0,0.45);">
                                 PAST
                             </div>
                             <div style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #6366f1;">Past Action</div>
@@ -292,7 +292,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         </div>
 
                         <div style="position: relative; z-index: 1; text-align: center; flex: 1;">
-                            <div style="width: 110px; height: 110px; border-radius: 50%; background: #8b5cf6; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; border: 5px solid white; box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4); margin: 0 auto;">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: #6d28d9; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem; border: 5px solid white; box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4); margin: 0 auto; text-shadow: 0 1px 2px rgba(0,0,0,0.45);">
                                 <div>NOW</div>
                                 <div style="font-size: 0.75rem; font-weight: 500; margin-top: 0.25rem;">Present Result</div>
                             </div>
