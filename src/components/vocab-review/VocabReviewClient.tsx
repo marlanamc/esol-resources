@@ -302,37 +302,42 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
     <main id="main-content" className="fixed inset-0 z-[300] flex flex-col gap-4 overflow-y-auto bg-bg px-3 pb-24 pt-4 sm:relative sm:z-auto sm:mx-auto sm:min-h-[calc(100vh-6rem)] sm:w-full sm:max-w-2xl sm:overflow-visible sm:px-6">
       {/* ── Compact toolbar ── */}
       <nav
-        className="flex items-center gap-3 rounded-2xl border px-3 py-2.5 sm:px-4"
+        className="flex items-center gap-3 rounded-2xl border px-3 py-2.5 shadow-sm backdrop-blur-md sm:px-4"
         style={{
           borderColor: tone.border,
-          background: `linear-gradient(160deg, ${tone.surface} 0%, var(--surface-elevated) 100%)`,
+          background: `linear-gradient(160deg, color-mix(in srgb, ${tone.surface} 80%, transparent) 0%, color-mix(in srgb, var(--surface-elevated) 80%, transparent) 100%)`,
         }}
       >
         <ContextualBackButton fallbackHref="/dashboard" className="shrink-0" aria-label="Back to dashboard" />
 
-        <div className="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full bg-black/5 dark:bg-white/10">
+        <div className="h-2 min-w-0 flex-1 overflow-hidden rounded-full bg-black/5 dark:bg-white/10">
           <div
-            className="h-full rounded-full transition-[width] duration-300"
+            className="h-full rounded-full transition-all duration-500 ease-out"
             style={{
               width: `${progressPercent}%`,
               background: `linear-gradient(90deg, ${tone.accent} 0%, ${tone.accentStrong} 100%)`,
+              boxShadow: `0 0 12px ${tone.accent}40`,
             }}
           />
         </div>
 
-        <span className="shrink-0 text-sm font-bold tabular-nums text-text/65" style={{ fontVariantNumeric: "tabular-nums" }}>
-          {reviewedCount}/{sessionCards.length}
+        <span className="shrink-0 text-xs font-bold tabular-nums text-text/65 sm:text-sm">
+          {reviewedCount} <span className="opacity-40">/</span> {sessionCards.length}
         </span>
 
         <button
           type="button"
           onClick={() => setIsFilterOpen(true)}
-          className="inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold text-text transition-[background-color,box-shadow] hover:bg-white/70 focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 dark:hover:bg-white/5"
-          style={{ borderColor: tone.border, background: "var(--surface-elevated)" }}
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-bold text-text transition-all hover:scale-105 active:scale-95 sm:px-4 sm:text-sm"
+          style={{ 
+            borderColor: tone.border, 
+            background: "var(--surface-elevated)",
+            boxShadow: "var(--shadow-sm)"
+          }}
         >
           <span className="hidden sm:inline">Filters</span>
           <span className="sm:hidden">Set</span>
-          <ChevronDown className="h-3.5 w-3.5" />
+          <ChevronDown className="h-3.5 w-3.5 opacity-60" />
         </button>
       </nav>
 
@@ -355,23 +360,30 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
 
       {/* ── Active card ── */}
       {!isBusy && currentCard ? (
-        <section className="flex flex-1 flex-col gap-4">
+        <section className="flex flex-1 flex-col gap-5">
           <div
             role="button"
             tabIndex={0}
             onClick={handleToggleFlip}
             onKeyDown={handleFlipKeyDown}
             aria-label={isFlipped ? "Show vocab prompt" : "Show vocab answer"}
-            className="relative flex min-h-[360px] flex-1 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[32px] border bg-[var(--surface-elevated)] p-6 text-center shadow-[0_18px_44px_rgba(29,53,56,0.08)] transition-[transform,box-shadow] focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 active:scale-[0.995] sm:p-10"
-            style={{ borderColor: tone.border }}
+            className="group relative flex min-h-[380px] flex-1 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[32px] border bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface-subtle)] p-6 text-center shadow-xl transition-all duration-500 hover:shadow-2xl active:scale-[0.99] sm:p-10"
+            style={{ 
+              borderColor: tone.border,
+            }}
           >
+            {/* Background flourish */}
+            <div 
+              className="absolute -right-20 -top-20 h-64 w-64 rounded-full opacity-5 blur-3xl transition-opacity group-hover:opacity-10"
+              style={{ background: tone.accent }}
+            />
             {/* Top Bar (Chip + Audio) */}
-            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2 z-10">
+            <div className="absolute left-4 top-4 z-10 flex items-center gap-2 sm:left-8 sm:top-8">
               <span 
-                className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm border ${
+                className={`rounded-full border px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] shadow-sm transition-all duration-500 sm:text-xs ${
                   !isFlipped
-                    ? "bg-[var(--color-primary)] text-white border-[var(--color-primary-dark)]"
-                    : "bg-[#8DAA91] text-white border-[#6E8C7C]"
+                    ? "bg-primary text-white border-primary-dark"
+                    : "bg-secondary text-white border-secondary-dark"
                 }`}
               >
                 {!isFlipped ? "Term" : "Definition"}
@@ -386,73 +398,84 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                   event.stopPropagation();
                   handlePlayAudio(currentCard.term, currentCard.id);
                 }}
-                className="absolute right-4 top-4 sm:right-6 sm:top-6 z-10 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border bg-[var(--surface-overlay)] text-text shadow-sm transition-[background-color,transform] hover:bg-white/70 focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 active:scale-95 dark:hover:bg-white/5"
+                className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/60 text-text shadow-sm backdrop-blur-sm transition-all hover:bg-white/90 active:scale-90 sm:right-8 sm:top-8 sm:h-14 sm:w-14"
                 style={{ borderColor: tone.border }}
                 aria-label={`Play audio for ${currentCard.term}`}
-              >
-                <Volume2 className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
             ) : null}
 
-            {/* Card content */}
-            <div className="relative flex w-full max-w-lg flex-col items-center gap-5 mt-8 sm:mt-10">
+            {/* Card Content – with transition wrap */}
+            <div className="relative flex w-full max-w-lg flex-col items-center gap-6 mt-4 transition-all duration-300">
               {!isFlipped ? (
-
-                  <h2 className="font-display text-4xl font-bold leading-tight text-text sm:text-5xl" style={{ textWrap: "balance" }}>
+                <div className="animate-in fade-in zoom-in-95 duration-500">
+                  <h2 className="font-display text-4xl font-extrabold leading-[1.1] text-text sm:text-6xl" style={{ textWrap: "balance" }}>
                     {currentCard.term}
                   </h2>
+                  <div className="mx-auto mt-6 h-1 w-12 rounded-full opacity-20" style={{ background: tone.accent }} />
+                </div>
               ) : (
-                <>
-                  <h2 className="font-display text-3xl font-bold leading-tight text-text sm:text-4xl" style={{ textWrap: "balance" }}>
+                <div className="flex w-full flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <h2 className="font-display text-2xl font-bold leading-tight text-text sm:text-4xl" style={{ textWrap: "balance" }}>
                     {currentCard.definition}
                   </h2>
+                  
                   {currentCard.example ? (
-                    <div className="w-full rounded-2xl border-2 px-4 py-3.5" style={{ borderColor: tone.border, background: "color-mix(in srgb, var(--surface-overlay) 80%, white)" }}>
-                      <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-text/55">Example</p>
-                      <p className="mt-1.5 text-base font-medium italic leading-relaxed text-text/90">
+                    <div 
+                      className="group/example relative w-full overflow-hidden rounded-3xl border-2 px-5 py-4 text-left transition-colors sm:px-8" 
+                      style={{ 
+                        borderColor: tone.border, 
+                        background: `color-mix(in srgb, var(--surface-overlay) 60%, white)` 
+                      }}
+                    >
+                      <div className="absolute left-0 top-0 h-full w-1.5" style={{ background: tone.accent }} />
+                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-text/40">Example Context</p>
+                      <p className="mt-2 text-base font-medium leading-relaxed text-text/90 italic">
                         &ldquo;{currentCard.example}&rdquo;
                       </p>
                     </div>
                   ) : null}
-                </>
+                </div>
               )}
             </div>
 
-
-
-
-            {/* Flip hint – only when front is showing */}
-            {!isFlipped ? (
-              <p className="absolute bottom-4 text-[11px] font-bold uppercase tracking-[0.2em] text-text/30">
-                Tap to flip
+            {/* Flip hint */}
+            <div className="absolute bottom-6 left-0 w-full animate-pulse transition-opacity duration-300">
+               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-text/25 sm:text-[11px]">
+                {isFlipped ? "Tap to return" : "Tap to reveal"}
               </p>
-            ) : null}
+            </div>
           </div>
 
           {/* ── Rating buttons ── */}
           {isFlipped ? (
-            <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+            <div className="grid grid-cols-3 gap-2.5 sm:gap-3 px-1">
               {RATING_BUTTONS.map((button) => (
                 <button
                   key={button.rating}
                   type="button"
                   onClick={() => void handleRate(button.rating)}
                   disabled={isBusy}
-                  className={`rounded-2xl py-3.5 px-2 flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 text-center transition-[transform,opacity] focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50 border-2 ${
-                    button.rating === "hard" ? "bg-red-100 text-red-800 border-red-300 dark:bg-red-950/40 dark:text-red-300 dark:border-red-800/60" :
-                    button.rating === "good" ? "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/60" :
-                    "bg-green-100 text-green-800 border-green-300 dark:bg-green-950/40 dark:text-green-300 dark:border-green-800/60"
+                  className={`group/btn relative flex flex-col items-center justify-center gap-1 overflow-hidden rounded-2xl border-2 py-3.5 transition-all focus-visible:ring-2 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 sm:flex-row sm:gap-2.5 ${
+                    button.rating === "hard" 
+                      ? "bg-red-50 text-red-900 border-red-100 hover:bg-red-100 dark:bg-red-950/30 dark:text-red-300 dark:border-red-900/40" 
+                      : button.rating === "good"
+                      ? "bg-blue-50 text-blue-900 border-blue-100 hover:bg-blue-100 dark:bg-blue-950/30 dark:text-blue-300 dark:border-blue-900/40"
+                      : "bg-emerald-50 text-emerald-900 border-emerald-100 hover:bg-emerald-100 dark:bg-emerald-950/30 dark:text-emerald-300 dark:border-emerald-900/40"
                   }`}
                 >
-                  <span className="text-[14px] sm:text-[15px] font-bold">{button.label}</span>
-                  <span className="text-[10px] sm:text-[11px] font-bold opacity-60 px-1.5 py-0.5 rounded-md bg-white/40 dark:bg-black/10 tabular-nums">[{button.shortcut}]</span>
+                  <span className="text-[13px] font-black uppercase tracking-wider sm:text-[14px]">{button.label}</span>
+                  <span className="rounded-md bg-black/5 px-1.5 py-0.5 text-[9px] font-bold tabular-nums opacity-40 dark:bg-white/10 sm:text-[10px]">
+                    {button.shortcut}
+                  </span>
                 </button>
               ))}
             </div>
           ) : (
-            <p className="py-3 text-center text-sm font-medium text-text/40">
-              Flip the card, then rate how well you knew it
-            </p>
+            <div className="flex h-[72px] items-center justify-center">
+              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-text/20 sm:text-[11px]">
+                Reveal to rate
+              </p>
+            </div>
           )}
         </section>
       ) : null}

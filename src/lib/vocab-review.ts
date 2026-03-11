@@ -1,6 +1,6 @@
 import type { PrismaClient, UserVocabReviewState, VocabCard } from "@prisma/client";
 import { isVocabularyContent, parseActivityContent, type VocabularyContent } from "@/types/activity";
-import { parseFlashcards } from "@/lib/vocab-parser";
+import { parseFlashcards, parsePlainVocabulary } from "@/lib/vocab-parser";
 import {
   ALL_VOCAB_SOURCE_KEY,
   getVocabReviewSourceByKey,
@@ -8,7 +8,7 @@ import {
   VOCAB_REVIEW_SOURCE_DEFINITIONS,
   type VocabReviewSourceDefinition,
 } from "@/lib/vocab-review-sources";
-import { applyFSRSRating, calculateCardPriority, estimateOptimalDailyLimit, type FSRSResult } from "@/lib/fsrs-algorithm";
+import { applyFSRSRating, estimateOptimalDailyLimit } from "@/lib/fsrs-algorithm";
 import type {
   VocabReviewCard,
   VocabReviewFilter,
@@ -17,8 +17,6 @@ import type {
   VocabReviewSummary,
 } from "@/types/vocab-review";
 
-const REVIEW_INTERVALS_DAYS = [1, 3, 7, 14, 30, 60, 120] as const;
-const AGAIN_DELAY_HOURS = 4;
 export const DEFAULT_VOCAB_REVIEW_LIMIT = 6;
 
 type VocabReviewDbClient = Pick<PrismaClient, "activity" | "vocabCard" | "userVocabReviewState">;
@@ -131,10 +129,21 @@ function extractEntriesFromActivity(activity: ActivityCatalogRow): RawVocabEntry
     }
   }
 
-  return parseFlashcards(activity.content).map((card) => ({
-    term: card.term.trim(),
-    definition: card.definition.trim(),
-    example: card.example?.trim() || null,
+  // Fallback to text parsing
+  const flashcards = parseFlashcards(activity.content);
+  if (flashcards.length > 0) {
+    return flashcards.map((card) => ({
+      term: card.term.trim(),
+      definition: card.definition.trim(),
+      example: card.example?.trim() || null,
+    }));
+  }
+
+  // Try plain vocab parsing if flashcards fail (handles simpler lists)
+  return parsePlainVocabulary(activity.content).map(item => ({
+    term: item.term.trim(),
+    definition: item.definition.trim(),
+    example: item.example?.trim() || null
   }));
 }
 
@@ -332,13 +341,6 @@ export async function syncVocabReviewCatalog(db: VocabReviewDbClient): Promise<{
   };
 }
 
-async function ensureCatalogAvailable(db: VocabReviewDbClient) {
-  const count = await db.vocabCard.count();
-  if (count === 0) {
-    await syncVocabReviewCatalog(db);
-  }
-}
-
 function toStateMap(states: VocabReviewStateLike[]): Map<string, VocabReviewStateLike> {
   return new Map(states.map((state) => [state.vocabCardId, state]));
 }
@@ -491,7 +493,7 @@ export function getOptimalDailyLimit(
     const state = stateByCardId.get(card.id);
     const isDue = state ? state.dueAt.getTime() <= now.getTime() : false;
     const isNew = !state;
-    const difficulty = (state as any)?.difficulty ?? 0.0;
+    const difficulty = (state as { difficulty?: number })?.difficulty ?? 0.0;
     
     return {
       difficulty,
@@ -583,7 +585,11 @@ export function applyVocabReviewRating(
 }
 
 async function loadCardsAndStates(db: VocabReviewDbClient, userId: string) {
-  await ensureCatalogAvailable(db);
+  const cardsCount = await db.vocabCard.count();
+  if (cardsCount === 0) {
+    console.log("Vocab catalog empty, triggering sync...");
+    await syncVocabReviewCatalog(db);
+  }
 
   const [cards, states] = await Promise.all([
     db.vocabCard.findMany({

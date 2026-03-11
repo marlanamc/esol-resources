@@ -369,9 +369,25 @@ function buildSearchText(record: {
     );
 }
 
+/**
+ * Resolve a valid grammar-reader slug for a grammar guide activity.
+ * Only returns slugs that exist in grammarContentRegistry to prevent 404 links.
+ */
+function resolveGrammarSlugForSearch(activity: SearchActivitySource): string | null {
+    if (!activity.id || !activity.title) return null;
+    const slugs = new Set(grammarContentSlugs);
+    if (slugs.has(activity.id)) return activity.id;
+    const topic = grammarTopics.find((t) =>
+        t.activityTitles?.some((at) => at.toLowerCase() === (activity.title ?? "").toLowerCase())
+    );
+    if (topic && slugs.has(topic.id)) return topic.id;
+    const derived = completionKeyFromActivityTitle(activity.title);
+    return slugs.has(derived) ? derived : null;
+}
+
 function buildActivityRecord(activity: SearchActivitySource): LearnerSearchIndexRecord {
     const isGrammarGuide = (activity.type || "").toLowerCase() === "guide" && (activity.category || "").toLowerCase() === "grammar";
-    const grammarSlug = isGrammarGuide ? completionKeyFromActivityTitle(activity.title) : null;
+    const grammarSlug = isGrammarGuide ? resolveGrammarSlugForSearch(activity) : null;
     const href = activity.id === "vocab-daily-review"
         ? "/dashboard/vocab-review"
         : isGrammarGuide && grammarSlug
@@ -501,6 +517,14 @@ function buildToolRecord(tool: (typeof TOOL_RECORDS)[number]): LearnerSearchInde
     };
 }
 
+const GRAMMAR_SLUG_SET = new Set(grammarContentSlugs);
+
+function isValidGrammarReaderHref(href: string): boolean {
+    if (!href.startsWith("/grammar-reader/")) return true;
+    const slug = href.replace("/grammar-reader/", "").split("?")[0];
+    return GRAMMAR_SLUG_SET.has(slug);
+}
+
 export function buildCanonicalLearnerSearchDataset(params: {
     activities: SearchActivitySource[];
 }): LearnerSearchIndexRecord[] {
@@ -509,7 +533,8 @@ export function buildCanonicalLearnerSearchDataset(params: {
     const grammarRecords = grammarContentSlugs.map((slug) => buildGrammarRegistryRecord(slug));
     const toolRecords = TOOL_RECORDS.map((tool) => buildToolRecord(tool));
 
-    return [...toolRecords, ...grammarRecords, ...activityRecords];
+    const allRecords = [...toolRecords, ...grammarRecords, ...activityRecords];
+    return allRecords.filter((r) => isValidGrammarReaderHref(r.href));
 }
 
 async function fetchActivitySources(): Promise<SearchActivitySource[]> {
