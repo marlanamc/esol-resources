@@ -806,7 +806,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             </motion.div>
 
             {/* Choice buttons */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full max-w-md mb-2">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full max-w-lg mb-2 px-4 sm:px-0">
               {(['base', 'past'] as const).map((choice) => {
                 const word = choice === 'base' ? currentVerb.base : currentVerb.past;
                 const isSelected = state.selectedAnswer === choice;
@@ -819,7 +819,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                     onClick={() => handleMinimalPairAnswer(choice)}
                     disabled={state.showFeedback}
                     className={`
-                      min-h-[6.5rem] p-5 sm:min-h-[7.5rem] sm:p-6 rounded-2xl font-black text-2xl sm:text-3xl md:text-4xl leading-none tracking-tight transition-all border-2
+                      min-h-[8.5rem] p-5 sm:min-h-[9.5rem] sm:p-6 rounded-2xl font-black text-4xl sm:text-5xl leading-none tracking-tight transition-all border-2
                       ${state.showFeedback
                         ? isCorrect
                           ? 'bg-emerald-500 text-white border-emerald-600 scale-105'
