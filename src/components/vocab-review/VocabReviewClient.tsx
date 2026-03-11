@@ -401,6 +401,8 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                 className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/60 text-text shadow-sm backdrop-blur-sm transition-all hover:bg-white/90 active:scale-90 sm:right-8 sm:top-8 sm:h-14 sm:w-14"
                 style={{ borderColor: tone.border }}
                 aria-label={`Play audio for ${currentCard.term}`}
+              >
+                <Volume2 className="h-5 w-5 opacity-70 sm:h-6 sm:w-6" />
               </button>
             ) : null}
 
