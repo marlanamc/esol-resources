@@ -615,7 +615,7 @@ async function loadCardsAndStates(db: VocabReviewDbClient, userId: string) {
         difficulty: true,
         stability: true,
         lastInterval: true,
-        performanceHistory: true,
+        // performanceHistory omitted on read to avoid TEXT[] vs Float[] mismatch on some DBs
       },
     }),
   ]);
