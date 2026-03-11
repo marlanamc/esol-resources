@@ -520,16 +520,53 @@ function ChecklistAssignments({
                     <div className={`text-[13px] sm:text-sm font-semibold leading-tight truncate transition-colors ${row.isCompleted ? 'text-text/85' : 'text-text'}`}>
                         {row.displayTitle}
                     </div>
-                    {showCategoryChip && (
-                        <div className="mt-1">
+                    <div className="mt-1.5 flex flex-wrap items-center gap-2">
+                        {showCategoryChip && (
                             <span
                                 className="inline-flex px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide"
                                 style={{ backgroundColor: showCategoryChip.bg, color: showCategoryChip.text }}
                             >
                                 {showCategoryChip.label}
                             </span>
+                        )}
+                        {(() => {
+                            const vocabType = getVocabActivityType(row.assignment.activityId);
+                            if (!vocabType) return null;
+                            const chip = VOCAB_CHIP_CONFIG[vocabType];
+                            return (
+                                <span className={`inline-flex items-center px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded border ${chip.className.replace('text-[10px]', '')} opacity-90`}>
+                                    {chip.label}
+                                </span>
+                            );
+                        })()}
+
+                        {!isGameGroup && row.dueMeta?.tone === 'overdue' && !row.isCompleted && (
+                            <span className="text-[9px] font-semibold text-red-500">
+                                {row.dueMeta.label}
+                            </span>
+                        )}
+                    </div>
+
+                    {isGameGroup ? null : row.vocabProgress && row.vocabProgress.completed < row.vocabProgress.total ? (
+                        <div className="mt-2">
+                            <CompactVocabTracker vocabProgress={row.vocabProgress} />
                         </div>
-                    )}
+                    ) : !row.isCompleted && row.progressValue > 0 ? (
+                        <div className="mt-2">
+                            <div
+                                className="dashboard-progress-track h-1.5 w-24 max-w-full"
+                                style={{ '--dashboard-progress-accent': categoryStyle.accent } as React.CSSProperties}
+                            >
+                                <div
+                                    className="dashboard-progress-fill progress-glow transition-[width] duration-300"
+                                    style={{
+                                        width: `${row.progressValue}%`,
+                                        '--dashboard-progress-accent': categoryStyle.accent,
+                                    } as React.CSSProperties}
+                                />
+                            </div>
+                        </div>
+                    ) : null}
                 </div>
 
                 <div className="shrink-0 pl-1">
@@ -547,48 +584,6 @@ function ChecklistAssignments({
                         <span>{row.actionLabel}</span>
                     </ActivityLink>
                 </div>
-            </div>
-
-            <div className="min-w-0 flex flex-col gap-1 pl-8">
-                <div className="flex flex-wrap items-center gap-2">
-                    {(() => {
-                        const vocabType = getVocabActivityType(row.assignment.activityId);
-                        if (!vocabType) return null;
-                        const chip = VOCAB_CHIP_CONFIG[vocabType];
-                        return (
-                            <span className={`inline-flex items-center px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded border ${chip.className.replace('text-[10px]', '')} opacity-90`}>
-                                {chip.label}
-                            </span>
-                        );
-                    })()}
-
-                    {!isGameGroup && row.dueMeta?.tone === 'overdue' && !row.isCompleted && (
-                        <span className="text-[9px] font-semibold text-red-500">
-                            {row.dueMeta.label}
-                        </span>
-                    )}
-                </div>
-
-                {isGameGroup ? null : row.vocabProgress && row.vocabProgress.completed < row.vocabProgress.total ? (
-                    <div className="mt-1.5">
-                        <CompactVocabTracker vocabProgress={row.vocabProgress} />
-                    </div>
-                ) : !row.isCompleted && row.progressValue > 0 ? (
-                    <div className="mt-1.5">
-                        <div
-                            className="dashboard-progress-track h-1.5 w-24 max-w-full"
-                            style={{ '--dashboard-progress-accent': categoryStyle.accent } as React.CSSProperties}
-                        >
-                            <div
-                                className="dashboard-progress-fill progress-glow transition-[width] duration-300"
-                                style={{
-                                    width: `${row.progressValue}%`,
-                                    '--dashboard-progress-accent': categoryStyle.accent,
-                                } as React.CSSProperties}
-                            />
-                        </div>
-                    </div>
-                ) : null}
             </div>
         </div>
     );
