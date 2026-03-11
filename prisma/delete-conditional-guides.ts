@@ -1,6 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 
+const { requireSafeDbTarget } = require('../scripts/lib/require-safe-db-target');
 const prisma = new PrismaClient();
+
+requireSafeDbTarget('delete conditional guides');
 
 async function main() {
   console.log('Deleting conditional guides from database...');

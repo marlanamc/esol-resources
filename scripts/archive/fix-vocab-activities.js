@@ -1,6 +1,9 @@
 const { PrismaClient } = require("@prisma/client");
+const { requireSafeDbTarget } = require("../lib/require-safe-db-target");
 
 const prisma = new PrismaClient();
+
+requireSafeDbTarget("fix vocab activities");
 
 const oldIds = [
    "vocab-september",
@@ -134,4 +137,3 @@ main()
    .finally(async () => {
       await prisma.$disconnect();
    });
-

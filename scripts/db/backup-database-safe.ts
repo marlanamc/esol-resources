@@ -37,9 +37,10 @@ async function main() {
 
   fs.mkdirSync(outputDir, { recursive: true });
 
-  console.log('Starting safe database backup...');
+  console.log('Starting application data export...');
   console.log(`Output directory: ${outputDir}`);
   console.log(`Encryption: ${encryptionKey ? 'enabled' : 'disabled'}`);
+  console.log('WARNING: This is not a full PostgreSQL restore dump. Use the GitHub pg_dump workflow for disaster recovery.');
 
   const [
     users,
@@ -55,6 +56,10 @@ async function main() {
     achievements,
     userAchievements,
     calendarEvents,
+    feedback,
+    userPreferences,
+    vocabCards,
+    userVocabReviewStates,
   ] = await Promise.all([
     prisma.user.findMany(),
     prisma.class.findMany(),
@@ -69,6 +74,10 @@ async function main() {
     prisma.achievement.findMany(),
     prisma.userAchievement.findMany(),
     prisma.calendarEvent.findMany(),
+    prisma.feedback.findMany(),
+    prisma.userPreferences.findMany(),
+    prisma.vocabCard.findMany(),
+    prisma.userVocabReviewState.findMany(),
   ]);
 
   const payload = {
@@ -76,7 +85,8 @@ async function main() {
       version: 1,
       timestamp,
       encrypted: Boolean(encryptionKey),
-      note: 'Contains sensitive data (including password hashes). Keep secure.',
+      scope: 'application-export',
+      note: 'Contains sensitive data (including password hashes). Keep secure. This file is not a full PostgreSQL restore dump.',
     },
     data: {
       users,
@@ -92,6 +102,10 @@ async function main() {
       achievements,
       userAchievements,
       calendarEvents,
+      feedback,
+      userPreferences,
+      vocabCards,
+      userVocabReviewStates,
     },
   };
 
@@ -108,7 +122,7 @@ async function main() {
   const checksum = sha256(contentBuffer);
   fs.writeFileSync(`${finalPath}.sha256`, `${checksum}  ${path.basename(finalPath)}\n`, 'utf8');
 
-  console.log('Backup complete.');
+  console.log('Application data export complete.');
   console.log(`File: ${finalPath}`);
   console.log(`Size: ${(contentBuffer.length / 1024 / 1024).toFixed(2)} MB`);
   console.log(`SHA256: ${checksum}`);
@@ -118,6 +132,9 @@ async function main() {
   console.log(`  assignments: ${assignments.length}`);
   console.log(`  submissions: ${submissions.length}`);
   console.log(`  activityProgress: ${activityProgress.length}`);
+  console.log(`  feedback: ${feedback.length}`);
+  console.log(`  vocabCards: ${vocabCards.length}`);
+  console.log(`  userVocabReviewStates: ${userVocabReviewStates.length}`);
 }
 
 main()

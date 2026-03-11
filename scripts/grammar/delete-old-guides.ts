@@ -1,6 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 
+const { requireSafeDbTarget } = require('../lib/require-safe-db-target');
 const prisma = new PrismaClient();
+
+requireSafeDbTarget('delete old guides');
 
 async function main() {
   console.log('🗑️  Deleting old redundant guides...\n');

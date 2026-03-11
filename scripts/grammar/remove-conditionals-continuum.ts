@@ -1,6 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 
+const { requireSafeDbTarget } = require('../lib/require-safe-db-target');
 const prisma = new PrismaClient();
+
+requireSafeDbTarget('remove conditionals continuum guide');
 
 async function main() {
   console.log('🧹 Removing Conditionals Continuum Guide...');

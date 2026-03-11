@@ -1,5 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
+const { requireSafeDbTarget } = require('../lib/require-safe-db-target');
 const prisma = new PrismaClient();
+
+requireSafeDbTarget('delete student account');
 
 async function deleteStudent(username) {
     try {
@@ -84,5 +87,4 @@ if (!username) {
 }
 
 deleteStudent(username);
-
 

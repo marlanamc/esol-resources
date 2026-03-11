@@ -447,7 +447,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                   <div className="mx-auto mt-6 h-1 w-12 rounded-full opacity-20" style={{ background: tone.accent }} />
                 </div>
               ) : (
-                <div className="flex w-full flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="flex w-full flex-col gap-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
                   <h2 className="font-display text-2xl font-bold leading-tight text-text sm:text-4xl" style={{ textWrap: "balance" }}>
                     {currentCard.definition}
                   </h2>

@@ -1,6 +1,9 @@
 const { PrismaClient } = require('@prisma/client');
+const { requireSafeDbTarget } = require('../lib/require-safe-db-target');
 
 const prisma = new PrismaClient();
+
+requireSafeDbTarget('remove old guides archive cleanup');
 
 const TITLES_TO_REMOVE = [
   'Future Simple - Complete Guide & Practice | ESOL Teacher Resources',
@@ -64,4 +67,3 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
-

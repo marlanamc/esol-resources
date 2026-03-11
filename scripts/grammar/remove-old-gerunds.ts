@@ -1,6 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 
+const { requireSafeDbTarget } = require('../lib/require-safe-db-target');
 const prisma = new PrismaClient();
+
+requireSafeDbTarget('remove old gerund guides');
 
 async function main() {
   console.log('🧹 Removing old gerund and infinitive guides...');

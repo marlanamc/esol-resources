@@ -54,38 +54,42 @@ async function main() {
 
   const backupSearchDirs = [projectRoot, backupDir];
 
-  const jsonPatterns = [
+  const appExportPatterns = [
     /^backup-.*\.json$/i,
     /^backup-.*\.json\.gz$/i,
     /^backup-.*\.json\.gz\.enc$/i,
   ];
-  const sqlPatterns = [/^backup-.*\.sql$/i];
-  const checksumPatterns = [/^backup-.*\.sha256$/i, /^backup-.*\.json\.gz(\.enc)?\.sha256$/i];
+  const restoreDumpPatterns = [/^backup-.*\.dump$/i, /^backup-.*\.dump\.enc$/i, /^backup-.*\.sql$/i];
+  const manifestPatterns = [/^backup-.*\.manifest\.json$/i];
+  const checksumPatterns = [/^backup-.*\.sha256$/i, /^backup-.*\.(json\.gz|dump|sql)(\.enc)?\.sha256$/i];
 
-  const jsonBackups = backupSearchDirs.flatMap((dir) => listFilesInDir(dir, jsonPatterns));
-  const sqlBackups = backupSearchDirs.flatMap((dir) => listFilesInDir(dir, sqlPatterns));
+  const appExports = backupSearchDirs.flatMap((dir) => listFilesInDir(dir, appExportPatterns));
+  const restoreDumps = backupSearchDirs.flatMap((dir) => listFilesInDir(dir, restoreDumpPatterns));
+  const manifests = backupSearchDirs.flatMap((dir) => listFilesInDir(dir, manifestPatterns));
   const checksums = backupSearchDirs.flatMap((dir) => listFilesInDir(dir, checksumPatterns));
   const sqliteBackups = listFilesInDir(sqliteBackupDir, [/\.db$/i, /\.db\.bak$/i, /\.sqlite$/i]);
 
-  printFiles('📦 JSON/GZIP backups', jsonBackups);
-  printFiles('🗄️ SQL dump backups', sqlBackups);
+  printFiles('📦 App export backups (JSON/GZIP)', appExports);
+  printFiles('🗄️ Restore-grade dump backups', restoreDumps);
+  printFiles('🧾 Backup manifests', manifests);
   printFiles('🔐 Checksum files', checksums);
   printFiles('💾 SQLite backups', sqliteBackups);
 
-  const total = jsonBackups.length + sqlBackups.length;
+  const total = appExports.length + restoreDumps.length;
   console.log('📋 Summary:');
-  console.log(`   JSON/GZIP backups: ${jsonBackups.length}`);
-  console.log(`   SQL backups: ${sqlBackups.length}`);
+  console.log(`   App export backups: ${appExports.length}`);
+  console.log(`   Restore-grade dumps: ${restoreDumps.length}`);
+  console.log(`   Manifests: ${manifests.length}`);
   console.log(`   Checksum files: ${checksums.length}`);
   console.log(`   Total backup files: ${total}`);
 
   if (total === 0) {
     console.log('\n❌ No backups found.');
-    console.log('   Suggested next step: run `npm run db:backup:safe`.');
+    console.log('   Suggested next steps: run `npm run db:export:app-data` locally or trigger the GitHub backup workflow.');
     return;
   }
 
-  const latest = [...jsonBackups, ...sqlBackups]
+  const latest = [...appExports, ...restoreDumps]
     .sort((a, b) => b.modified.getTime() - a.modified.getTime())[0];
 
   if (latest) {

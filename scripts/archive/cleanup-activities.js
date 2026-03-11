@@ -1,5 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
+const { requireSafeDbTarget } = require('../lib/require-safe-db-target');
 const prisma = new PrismaClient();
+
+requireSafeDbTarget('cleanup activities');
 
 async function main() {
     console.log('🧹 Cleaning up all activities except Present Perfect guide...');

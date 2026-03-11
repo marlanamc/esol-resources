@@ -1,7 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 import * as readline from 'readline';
 
+const { requireSafeDbTarget } = require('../scripts/lib/require-safe-db-target');
 const prisma = new PrismaClient();
+
+requireSafeDbTarget('full database reset seed');
 
 async function confirm(message: string): Promise<boolean> {
   const rl = readline.createInterface({

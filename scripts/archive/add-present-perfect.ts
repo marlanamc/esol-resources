@@ -1,6 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 
+const { requireSafeDbTarget } = require('../lib/require-safe-db-target');
 const prisma = new PrismaClient();
+
+requireSafeDbTarget('replace activities with present perfect guide');
 
 async function main() {
   console.log('🧹 Cleaning up placeholder activities...');

@@ -133,7 +133,29 @@ npx tsx prisma/seed-achievements.ts
 
 ### Database Backup Strategy
 
-**Daily Backups Recommended:**
+**Daily Backups Required:**
+
+Primary:
+- Prisma-managed backups on the active Prisma Postgres instance
+
+Independent second copy:
+- GitHub Actions workflow in `.github/workflows/backup.yml`
+- Daily `pg_dump` uploaded to S3-compatible storage
+- Optional AES-256-GCM encryption via `BACKUP_ENCRYPTION_KEY`
+
+Required GitHub secrets:
+- `BACKUP_DATABASE_URL`
+- `BACKUP_ENCRYPTION_KEY`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+
+Required GitHub variables:
+- `BACKUP_S3_BUCKET`
+- `BACKUP_S3_REGION`
+- `BACKUP_S3_ENDPOINT`
+- `BACKUP_S3_PREFIX`
+
+`DATABASE_URL` remains the app runtime override and takes precedence over `POSTGRES_URL`. This is the correct way to point Vercel at a restored Prisma database when the managed `POSTGRES_URL` cannot be edited.
 
 For Neon/Supabase:
 - Enable automatic backups in dashboard
@@ -147,6 +169,8 @@ pg_dump $POSTGRES_URL > backup-$(date +%Y%m%d).sql
 # Automated daily backup (crontab)
 0 2 * * * pg_dump $POSTGRES_URL > /backups/db-$(date +\%Y\%m\%d).sql
 ```
+
+See `docs/setup/DATABASE_BACKUP_AND_RECOVERY.md` for the recovery runbook and restore procedure.
 
 ---
 

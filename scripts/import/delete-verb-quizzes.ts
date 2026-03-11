@@ -1,6 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 
+const { requireSafeDbTarget } = require('../lib/require-safe-db-target');
 const prisma = new PrismaClient();
+
+requireSafeDbTarget('delete verb quizzes');
 
 async function main() {
   console.log('🗑️  Deleting verb quizzes...\n');

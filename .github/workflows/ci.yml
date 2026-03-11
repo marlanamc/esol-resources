@@ -87,6 +87,9 @@ jobs:
       - name: Critical tests - validators env
         run: npm run test:validators-env
 
+      - name: Critical tests - DB guard
+        run: npm run test:db-guard
+
       - name: Vitest coverage
         run: npm run test:coverage
 

@@ -1,5 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
+const { requireSafeDbTarget } = require('../lib/require-safe-db-target');
 const prisma = new PrismaClient();
+
+requireSafeDbTarget('reset weekly points');
 
 /**
  * Reset weekly points for all students
