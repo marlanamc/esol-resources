@@ -19,30 +19,30 @@ type SessionCard = VocabReviewCard & {
 };
 
 const SESSION_LIMITS = [
-  { value: 5, label: "Quick 5" },
-  { value: 12, label: "Standard 12" },
-  { value: 20, label: "Full 20" },
+  { value: 3, label: "Quick 3" },
+  { value: 6, label: "Standard 6" },
+  { value: 10, label: "Extra 10" },
 ] as const;
 
 const RATING_BUTTONS: Array<{
   rating: VocabReviewRating;
   label: string;
-  colors: { bg: string; text: string; border: string };
+  shortcut: string;
 }> = [
   {
     rating: "hard",
     label: "😓 Hard",
-    colors: { bg: "#ffedd5", text: "#9a3412", border: "#fdba74" },
+    shortcut: "1"
   },
   {
     rating: "good",
-    label: "😊 Good",
-    colors: { bg: "#dcfce7", text: "#166534", border: "#86efac" },
+    label: "🤔 OK",
+    shortcut: "2"
   },
   {
     rating: "easy",
-    label: "🤩 Easy",
-    colors: { bg: "#dbeafe", text: "#1e40af", border: "#93c5fd" },
+    label: "😊 Easy",
+    shortcut: "3"
   },
 ];
 
@@ -84,7 +84,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [sessionLimit, setSessionLimit] = useState(initialQueue.limit);
+  const [sessionLimit, setSessionLimit] = useState(initialQueue.limit || 6);
   const [againCardIds, setAgainCardIds] = useState<Set<string>>(() => new Set());
   const [sessionCompleteResult, setSessionCompleteResult] = useState<{
     points: number;
@@ -129,6 +129,8 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
       });
   }, [hasFinishedSession, sessionCards.length]);
 
+  const audioPlayedRef = useRef<string | null>(null);
+
   const groupedFilters = useMemo(() => {
     const monthFilters = summary.filters.filter((filter) => filter.group === "month");
     const weekFilters = summary.filters.filter((filter) => filter.group === "week");
@@ -139,20 +141,14 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
     };
   }, [summary.filters]);
 
-  const handlePlayAudio = useCallback((term: string) => {
+  const handlePlayAudio = useCallback((term: string, cardId: string) => {
+    audioPlayedRef.current = cardId;
     const audio = new Audio(`/audio/vocab/${encodeURIComponent(term)}.mp3`);
     audio.currentTime = 0;
     void audio.play().catch(() => {
       // Audio is optional (file may not exist)
     });
   }, []);
-
-  // Auto-play pronunciation when card flips to show definition
-  useEffect(() => {
-    if (isFlipped && currentCard?.audioPath) {
-      handlePlayAudio(currentCard.term);
-    }
-  }, [isFlipped, currentCard?.id, currentCard?.term, currentCard?.audioPath, handlePlayAudio]);
 
   const loadSession = useCallback(async (source: string, limit?: number) => {
     const requestId = requestIdRef.current + 1;
@@ -280,6 +276,28 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
     handleToggleFlip();
   }, [handleToggleFlip]);
 
+  // Keyboard shortcuts for ratings
+  useEffect(() => {
+    if (!isFlipped || isBusy) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (document.activeElement?.tagName === "INPUT" || document.activeElement?.tagName === "TEXTAREA") {
+        return;
+      }
+
+      if (event.key === "1") {
+        void handleRate("hard");
+      } else if (event.key === "2") {
+        void handleRate("good");
+      } else if (event.key === "3") {
+        void handleRate("easy");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isFlipped, isBusy, handleRate]);
+
   return (
     <main id="main-content" className="fixed inset-0 z-[300] flex flex-col gap-4 overflow-y-auto bg-bg px-3 pb-24 pt-4 sm:relative sm:z-auto sm:mx-auto sm:min-h-[calc(100vh-6rem)] sm:w-full sm:max-w-2xl sm:overflow-visible sm:px-6">
       {/* ── Compact toolbar ── */}
@@ -347,9 +365,18 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
             className="relative flex min-h-[360px] flex-1 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[32px] border bg-[var(--surface-elevated)] p-6 text-center shadow-[0_18px_44px_rgba(29,53,56,0.08)] transition-[transform,box-shadow] focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 active:scale-[0.995] sm:p-10"
             style={{ borderColor: tone.border }}
           >
-            {/* Decorative glow */}
-            <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-40 blur-3xl" style={{ background: tone.accent }} />
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.45),transparent_70%)]" />
+            {/* Top Bar (Chip + Audio) */}
+            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2 z-10">
+              <span 
+                className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm border ${
+                  !isFlipped
+                    ? "bg-[var(--color-primary)] text-white border-[var(--color-primary-dark)]"
+                    : "bg-[#8DAA91] text-white border-[#6E8C7C]"
+                }`}
+              >
+                {!isFlipped ? "Term" : "Definition"}
+              </span>
+            </div>
 
             {/* Audio button – top-right */}
             {currentCard.audioPath ? (
@@ -357,25 +384,25 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                 type="button"
                 onClick={(event) => {
                   event.stopPropagation();
-                  handlePlayAudio(currentCard.term);
+                  handlePlayAudio(currentCard.term, currentCard.id);
                 }}
-                className="absolute right-4 top-4 inline-flex h-12 w-12 items-center justify-center rounded-full border text-text transition-[background-color,transform] hover:bg-white/70 focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 active:scale-95 dark:hover:bg-white/5"
-                style={{ borderColor: tone.border, background: "var(--surface-overlay)" }}
+                className="absolute right-4 top-4 sm:right-6 sm:top-6 z-10 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border bg-[var(--surface-overlay)] text-text shadow-sm transition-[background-color,transform] hover:bg-white/70 focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 active:scale-95 dark:hover:bg-white/5"
+                style={{ borderColor: tone.border }}
                 aria-label={`Play audio for ${currentCard.term}`}
               >
-                <Volume2 className="h-5 w-5" />
+                <Volume2 className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
             ) : null}
 
             {/* Card content */}
-            <div className="relative flex w-full max-w-lg flex-col items-center gap-5">
+            <div className="relative flex w-full max-w-lg flex-col items-center gap-5 mt-8 sm:mt-10">
               {!isFlipped ? (
+
                   <h2 className="font-display text-4xl font-bold leading-tight text-text sm:text-5xl" style={{ textWrap: "balance" }}>
                     {currentCard.term}
                   </h2>
               ) : (
                 <>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-text/45">Definition</p>
                   <h2 className="font-display text-3xl font-bold leading-tight text-text sm:text-4xl" style={{ textWrap: "balance" }}>
                     {currentCard.definition}
                   </h2>
@@ -411,10 +438,14 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                   type="button"
                   onClick={() => void handleRate(button.rating)}
                   disabled={isBusy}
-                  style={{ backgroundColor: button.colors.bg, color: button.colors.text, borderWidth: 2, borderStyle: "solid", borderColor: button.colors.border }}
-                  className="rounded-2xl py-3.5 text-center text-[15px] font-bold transition-[transform,opacity] focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50"
+                  className={`rounded-2xl py-3.5 px-2 flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 text-center transition-[transform,opacity] focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50 border-2 ${
+                    button.rating === "hard" ? "bg-red-100 text-red-800 border-red-300 dark:bg-red-950/40 dark:text-red-300 dark:border-red-800/60" :
+                    button.rating === "good" ? "bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/60" :
+                    "bg-green-100 text-green-800 border-green-300 dark:bg-green-950/40 dark:text-green-300 dark:border-green-800/60"
+                  }`}
                 >
-                  {button.label}
+                  <span className="text-[14px] sm:text-[15px] font-bold">{button.label}</span>
+                  <span className="text-[10px] sm:text-[11px] font-bold opacity-60 px-1.5 py-0.5 rounded-md bg-white/40 dark:bg-black/10 tabular-nums">[{button.shortcut}]</span>
                 </button>
               ))}
             </div>
@@ -525,7 +556,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
             aria-label="Close filter picker"
           />
           <div
-            className="fixed inset-x-0 bottom-0 z-[330] mx-auto max-h-[82vh] max-w-lg overflow-y-auto rounded-t-[32px] border border-b-0 bg-[var(--surface-elevated)] px-4 pb-[calc(env(safe-area-inset-bottom,0px)+1rem)] pt-4 shadow-[0_-18px_42px_rgba(0,0,0,0.16)] sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 sm:rounded-[32px] sm:border-b sm:shadow-[0_24px_56px_rgba(0,0,0,0.2)]"
+            className="safe-area-bottom-padding-mobile-lg fixed inset-x-0 bottom-0 z-[330] mx-auto max-h-[82vh] max-w-lg overflow-y-auto rounded-t-[32px] border border-b-0 bg-[var(--surface-elevated)] px-4 pt-4 shadow-[0_-18px_42px_rgba(0,0,0,0.16)] sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 sm:rounded-[32px] sm:border-b sm:shadow-[0_24px_56px_rgba(0,0,0,0.2)]"
             style={{ overscrollBehavior: "contain" }}
           >
             <div className="mx-auto mb-4 h-1.5 w-16 rounded-full bg-black/10 dark:bg-white/10" />

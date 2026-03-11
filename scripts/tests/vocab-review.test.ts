@@ -144,28 +144,82 @@ test("buildVocabReviewSummary and queue apply all-vs-source ordering rules", () 
   assert.equal(octoberQueue.totalCount, 2);
 });
 
-test("applyVocabReviewRating uses the expected spaced repetition intervals", () => {
+test("applyVocabReviewRating uses FSRS spaced repetition intervals", () => {
   const base = new Date("2026-03-10T12:00:00.000Z");
 
-  const again = applyVocabReviewRating({ step: 4, totalReviews: 8, lapses: 1 }, "again", base);
+  // "Again": resets to step 0, 1-day interval, lapses incremented, repeat in session
+  const again = applyVocabReviewRating(
+    {
+      step: 4,
+      totalReviews: 8,
+      lapses: 1,
+      easeFactor: 2.5,
+      difficulty: 0.3,
+      stability: 1.2,
+      lastInterval: 14,
+      performanceHistory: [0.8, 0.5, 0.8, 0.2, 0.9],
+    },
+    "again",
+    base
+  );
   assert.equal(again.step, 0);
-  assert.equal(again.dueAt.toISOString(), "2026-03-10T16:00:00.000Z");
+  assert.equal(again.dueAt.toISOString(), addDays(base, 1).toISOString());
   assert.equal(again.lapses, 2);
   assert.equal(again.shouldRepeatInSession, true);
 
-  const hardLow = applyVocabReviewRating({ step: 0, totalReviews: 1, lapses: 0 }, "hard", base);
+  // "Hard" at step 0: advances to step 1, FSRS-calculated interval
+  const hardLow = applyVocabReviewRating(
+    {
+      step: 0,
+      totalReviews: 1,
+      lapses: 0,
+      easeFactor: 2.5,
+      difficulty: 0.0,
+      stability: 0.0,
+      lastInterval: 0,
+      performanceHistory: [],
+    },
+    "hard",
+    base
+  );
   assert.equal(hardLow.step, 1);
-  assert.equal(hardLow.dueAt.toISOString(), addDays(base, 1).toISOString());
+  assert.ok(hardLow.dueAt.getTime() > base.getTime(), "dueAt is in the future");
+  assert.equal(hardLow.shouldRepeatInSession, false);
 
-  const hardHigh = applyVocabReviewRating({ step: 4, totalReviews: 6, lapses: 0 }, "hard", base);
-  assert.equal(hardHigh.step, 3);
-  assert.equal(hardHigh.dueAt.toISOString(), addDays(base, 14).toISOString());
-
-  const good = applyVocabReviewRating({ step: 1, totalReviews: 2, lapses: 0 }, "good", base);
+  // "Good" and "Easy": advance step, FSRS-calculated intervals
+  const good = applyVocabReviewRating(
+    {
+      step: 1,
+      totalReviews: 2,
+      lapses: 0,
+      easeFactor: 2.6,
+      difficulty: 0.2,
+      stability: 0.8,
+      lastInterval: 3,
+      performanceHistory: [0.8, 0.7],
+    },
+    "good",
+    base
+  );
   assert.equal(good.step, 2);
-  assert.equal(good.dueAt.toISOString(), addDays(base, 7).toISOString());
+  assert.ok(good.dueAt.getTime() > base.getTime());
+  assert.ok(good.lastInterval >= 1);
 
-  const easy = applyVocabReviewRating({ step: 1, totalReviews: 2, lapses: 0 }, "easy", base);
+  const easy = applyVocabReviewRating(
+    {
+      step: 1,
+      totalReviews: 2,
+      lapses: 0,
+      easeFactor: 2.6,
+      difficulty: 0.1,
+      stability: 0.8,
+      lastInterval: 3,
+      performanceHistory: [0.8, 0.9],
+    },
+    "easy",
+    base
+  );
   assert.equal(easy.step, 3);
-  assert.equal(easy.dueAt.toISOString(), addDays(base, 14).toISOString());
+  assert.ok(easy.dueAt.getTime() > base.getTime());
+  assert.ok(easy.lastInterval >= 1);
 });

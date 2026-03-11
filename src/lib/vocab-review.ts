@@ -8,6 +8,7 @@ import {
   VOCAB_REVIEW_SOURCE_DEFINITIONS,
   type VocabReviewSourceDefinition,
 } from "@/lib/vocab-review-sources";
+import { applyFSRSRating, calculateCardPriority, estimateOptimalDailyLimit, type FSRSResult } from "@/lib/fsrs-algorithm";
 import type {
   VocabReviewCard,
   VocabReviewFilter,
@@ -18,7 +19,7 @@ import type {
 
 const REVIEW_INTERVALS_DAYS = [1, 3, 7, 14, 30, 60, 120] as const;
 const AGAIN_DELAY_HOURS = 4;
-export const DEFAULT_VOCAB_REVIEW_LIMIT = 12;
+export const DEFAULT_VOCAB_REVIEW_LIMIT = 6;
 
 type VocabReviewDbClient = Pick<PrismaClient, "activity" | "vocabCard" | "userVocabReviewState">;
 
@@ -431,47 +432,92 @@ function orderQueueCards(
     ? cards
     : cards.filter((card) => card.sourceKeys.includes(source));
 
-  const dueCards = shuffle(
-    relevantCards
-      .filter((card) => isDue(stateByCardId.get(card.id), now))
-      .sort((left, right) => left.sortOrder - right.sortOrder)
-  );
+  // Calculate priorities for all cards
+  const cardsWithPriority = relevantCards.map(card => {
+    const state = stateByCardId.get(card.id);
+    const isDue = state ? state.dueAt.getTime() <= now.getTime() : false;
+    const isNew = !state;
+    
+    let priority = 0;
+    if (isDue) {
+      const overdueHours = (now.getTime() - state!.dueAt.getTime()) / (1000 * 60 * 60);
+      priority = 1000 + overdueHours; // Higher priority for more overdue
+    } else if (isNew) {
+      priority = 500; // New cards get medium-high priority
+    } else {
+      priority = 100; // Future cards get lower priority
+    }
+    
+    return { card, state, isDue, isNew, priority };
+  });
 
-  const newCards = shuffle(
-    relevantCards
-      .filter((card) => !stateByCardId.has(card.id))
-      .sort((left, right) => left.sortOrder - right.sortOrder)
-  );
+  // Sort by priority (descending), then by sort order for ties
+  cardsWithPriority.sort((a, b) => {
+    if (b.priority !== a.priority) {
+      return b.priority - a.priority;
+    }
+    return a.card.sortOrder - b.card.sortOrder;
+  });
 
-  const scheduledCards =
-    source === ALL_VOCAB_SOURCE_KEY
-      ? createEmptyArray<VocabReviewCardLike>()
-      : shuffle(
-          relevantCards
-            .filter((card) => {
-              const state = stateByCardId.get(card.id);
-              return !!state && !isDue(state, now);
-            })
-            .sort((left, right) => left.sortOrder - right.sortOrder)
-        );
+  // Separate into categories
+  const dueCards = cardsWithPriority
+    .filter(item => item.isDue)
+    .map(item => item.card);
+
+  const newCards = cardsWithPriority
+    .filter(item => item.isNew)
+    .map(item => item.card);
+
+  const scheduledCards = source === ALL_VOCAB_SOURCE_KEY
+    ? []
+    : cardsWithPriority
+        .filter(item => !item.isDue && !item.isNew)
+        .map(item => item.card);
 
   return {
-    dueCards,
-    newCards,
-    scheduledCards,
+    dueCards: shuffle(dueCards),
+    newCards: shuffle(newCards),
+    scheduledCards: shuffle(scheduledCards),
     combined: [...dueCards, ...newCards, ...scheduledCards],
   };
+}
+
+export function getOptimalDailyLimit(
+  cards: VocabReviewCardLike[],
+  states: VocabReviewStateLike[],
+  now = new Date()
+): number {
+  const stateByCardId = toStateMap(states);
+  
+  const cardAnalysis = cards.map(card => {
+    const state = stateByCardId.get(card.id);
+    const isDue = state ? state.dueAt.getTime() <= now.getTime() : false;
+    const isNew = !state;
+    const difficulty = (state as any)?.difficulty ?? 0.0;
+    
+    return {
+      difficulty,
+      isDue,
+      isNew,
+    };
+  });
+
+  return estimateOptimalDailyLimit(cardAnalysis);
 }
 
 export function buildVocabReviewQueue(
   cards: VocabReviewCardLike[],
   states: VocabReviewStateLike[],
   source: string,
-  limit = DEFAULT_VOCAB_REVIEW_LIMIT,
+  limit?: number,
   now = new Date()
 ): VocabReviewQueue {
   const stateByCardId = toStateMap(states);
-  const safeLimit = Number.isFinite(limit) ? Math.max(1, Math.min(50, Math.floor(limit))) : DEFAULT_VOCAB_REVIEW_LIMIT;
+  
+  // Use optimal limit if none provided, otherwise use provided limit
+  const optimalLimit = limit ?? getOptimalDailyLimit(cards, states, now);
+  const safeLimit = Number.isFinite(optimalLimit) ? Math.max(1, Math.min(50, Math.floor(optimalLimit))) : DEFAULT_VOCAB_REVIEW_LIMIT;
+  
   const { dueCards, newCards, combined } = orderQueueCards(cards, stateByCardId, source, now);
   const selectedCards = combined.slice(0, safeLimit);
   const sourceLabel = source === ALL_VOCAB_SOURCE_KEY
@@ -503,7 +549,7 @@ export function addHours(date: Date, hours: number): Date {
 }
 
 export function applyVocabReviewRating(
-  currentState: Pick<UserVocabReviewState, "step" | "totalReviews" | "lapses"> | null,
+  currentState: Pick<UserVocabReviewState, "step" | "totalReviews" | "lapses" | "easeFactor" | "difficulty" | "stability" | "lastInterval" | "performanceHistory"> | null,
   rating: VocabReviewRating,
   now = new Date()
 ): {
@@ -514,46 +560,27 @@ export function applyVocabReviewRating(
   lastRating: VocabReviewRating;
   lastReviewedAt: Date;
   shouldRepeatInSession: boolean;
+  easeFactor: number;
+  difficulty: number;
+  stability: number;
+  lastInterval: number;
+  performanceHistory: number[];
 } {
-  const currentStep = currentState?.step ?? -1;
-  const currentTotalReviews = currentState?.totalReviews ?? 0;
-  const currentLapses = currentState?.lapses ?? 0;
-  const maxStep = REVIEW_INTERVALS_DAYS.length - 1;
-
-  let step = currentStep;
-  let dueAt = new Date(now);
-  let lapses = currentLapses;
-
-  if (rating === "again") {
-    step = 0;
-    dueAt = addHours(now, AGAIN_DELAY_HOURS);
-    lapses += 1;
-  } else if (rating === "hard") {
-    if (currentStep <= 1) {
-      step = 1;
-      dueAt = addDays(now, 1);
-    } else {
-      step = Math.max(1, currentStep - 1);
-      dueAt = addDays(now, REVIEW_INTERVALS_DAYS[step]);
-    }
-  } else if (rating === "good") {
-    step = Math.min(maxStep, currentStep + 1);
-    if (step < 0) step = 0;
-    dueAt = addDays(now, REVIEW_INTERVALS_DAYS[step]);
-  } else {
-    step = Math.min(maxStep, currentStep + 2);
-    if (step < 1) step = 1;
-    dueAt = addDays(now, REVIEW_INTERVALS_DAYS[step]);
-  }
-
+  const fsrsResult = applyFSRSRating(currentState, rating, now);
+  
   return {
-    step,
-    dueAt,
-    totalReviews: currentTotalReviews + 1,
-    lapses,
-    lastRating: rating,
-    lastReviewedAt: now,
-    shouldRepeatInSession: rating === "again",
+    step: fsrsResult.step,
+    dueAt: fsrsResult.dueAt,
+    totalReviews: fsrsResult.totalReviews,
+    lapses: fsrsResult.lapses,
+    lastRating: fsrsResult.lastRating,
+    lastReviewedAt: fsrsResult.lastReviewedAt,
+    shouldRepeatInSession: fsrsResult.shouldRepeatInSession,
+    easeFactor: fsrsResult.easeFactor,
+    difficulty: fsrsResult.difficulty,
+    stability: fsrsResult.stability,
+    lastInterval: fsrsResult.lastInterval,
+    performanceHistory: fsrsResult.performanceHistory,
   };
 }
 
@@ -586,6 +613,11 @@ async function loadCardsAndStates(db: VocabReviewDbClient, userId: string) {
         lastReviewedAt: true,
         totalReviews: true,
         lapses: true,
+        easeFactor: true,
+        difficulty: true,
+        stability: true,
+        lastInterval: true,
+        performanceHistory: true,
       },
     }),
   ]);
@@ -644,6 +676,11 @@ export async function saveVocabReviewRating(
       step: true,
       totalReviews: true,
       lapses: true,
+      easeFactor: true,
+      difficulty: true,
+      stability: true,
+      lastInterval: true,
+      performanceHistory: true,
     },
   });
 
@@ -663,6 +700,11 @@ export async function saveVocabReviewRating(
       lastReviewedAt: nextState.lastReviewedAt,
       totalReviews: nextState.totalReviews,
       lapses: nextState.lapses,
+      easeFactor: nextState.easeFactor,
+      difficulty: nextState.difficulty,
+      stability: nextState.stability,
+      lastInterval: nextState.lastInterval,
+      performanceHistory: nextState.performanceHistory,
     },
     create: {
       userId,
@@ -673,6 +715,11 @@ export async function saveVocabReviewRating(
       lastReviewedAt: nextState.lastReviewedAt,
       totalReviews: nextState.totalReviews,
       lapses: nextState.lapses,
+      easeFactor: nextState.easeFactor,
+      difficulty: nextState.difficulty,
+      stability: nextState.stability,
+      lastInterval: nextState.lastInterval,
+      performanceHistory: nextState.performanceHistory,
     },
     select: {
       step: true,
