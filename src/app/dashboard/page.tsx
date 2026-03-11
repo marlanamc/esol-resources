@@ -31,6 +31,7 @@ import {
 import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
 import { isTeacherAdmin } from "@/lib/roles";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { getVocabReviewSummaryForUser } from "@/lib/vocab-review";
 
 type TeacherAssignment = {
     id: string;
@@ -777,23 +778,45 @@ export default async function DashboardPage() {
             new Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>()
         );
 
-        const featuredAssignments = featuredAssignmentsRaw.map((a) => {
-            const p = featuredProgressMap.get(a.activityId);
-            const isGrammarGuide =
-                (a.activity.type || "").toLowerCase() === "guide" &&
-                (a.activity.category || "").toLowerCase() === "grammar";
-            const hasPassedMiniQuiz = isGrammarGuide && a.submissions.some(
-                (s) => !!s.completedAt && typeof s.score === "number" && s.score > 70
-            );
-            return {
-                ...a,
-                featuredAt: a.updatedAt ?? a.createdAt,
-                isNewRelease: isWithinNewReleaseWindow(a.updatedAt ?? a.createdAt),
-                progress: hasPassedMiniQuiz ? 100 : (p?.progress ?? 0),
-                progressStatus: hasPassedMiniQuiz ? "completed" : (p?.status ?? "in_progress"),
-                categoryData: p?.categoryData ?? null,
-            };
-        });
+        let vocabReviewSummary = null;
+        try {
+            vocabReviewSummary = await getVocabReviewSummaryForUser(prisma, userId);
+        } catch (error) {
+            logger.warn("Failed to load vocab review dashboard summary", {
+                userId,
+                error: String(error),
+            });
+        }
+
+        const featuredAssignments = featuredAssignmentsRaw
+            .map((a) => {
+                const p = featuredProgressMap.get(a.activityId);
+                const isGrammarGuide =
+                    (a.activity.type || "").toLowerCase() === "guide" &&
+                    (a.activity.category || "").toLowerCase() === "grammar";
+                const hasPassedMiniQuiz = isGrammarGuide && a.submissions.some(
+                    (s) => !!s.completedAt && typeof s.score === "number" && s.score > 70
+                );
+                
+                const isDailyVocab = a.activityId === 'vocab-daily-review';
+                
+                return {
+                    ...a,
+                    href: isDailyVocab ? "/dashboard/vocab-review" : undefined,
+                    featuredAt: a.updatedAt ?? a.createdAt,
+                    isNewRelease: isWithinNewReleaseWindow(a.updatedAt ?? a.createdAt),
+                    progress: hasPassedMiniQuiz ? 100 : (p?.progress ?? 0),
+                    progressStatus: hasPassedMiniQuiz ? "completed" : (p?.status ?? "in_progress"),
+                    categoryData: p?.categoryData ?? null,
+                };
+            })
+            .filter((a) => {
+                // If it's the daily vocab assignment, hide it if there's nothing left to review today
+                if (a.activityId === 'vocab-daily-review' && vocabReviewSummary) {
+                    return vocabReviewSummary.dueCount > 0 || vocabReviewSummary.newCount > 0;
+                }
+                return true;
+            });
 
         const calendarEvents: CalendarEvent[] = [
             ...allAssignments

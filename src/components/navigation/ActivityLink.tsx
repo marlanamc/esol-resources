@@ -20,7 +20,14 @@ export function ActivityLink({
     ...props
 }: ActivityLinkProps) {
     const currentHref = useCurrentAppHref();
-    const resolvedHref = withReturnTo(href ?? buildActivityHref(activityId, assignmentId), currentHref);
+    
+    // Override the built href if this is the daily vocab review activity
+    let defaultHref = buildActivityHref(activityId, assignmentId);
+    if (activityId === 'vocab-daily-review') {
+        defaultHref = '/dashboard/vocab-review';
+    }
+    
+    const resolvedHref = withReturnTo(href ?? defaultHref, currentHref);
 
     return (
         <Link href={resolvedHref} {...props}>

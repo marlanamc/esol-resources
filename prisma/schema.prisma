@@ -36,6 +36,7 @@ model User {
   achievements          UserAchievement[]
   feedbackEntries       Feedback[]
   preferences           UserPreferences?
+  vocabReviewStates     UserVocabReviewState[]
 
   @@index([role])
   @@index([isSystemAccount])
@@ -295,4 +296,43 @@ model UserPreferences {
   user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@index([userId])
+}
+
+model VocabCard {
+  id               String                 @id @default(cuid())
+  term             String
+  normalizedTerm   String                 @unique
+  definition       String
+  example          String?
+  audioPath        String?
+  sourceKeys       String[]
+  sourceLabels     String[]
+  unitNumbers      Int[]
+  topics           String[]
+  sortOrder        Int
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  reviewStates     UserVocabReviewState[]
+
+  @@index([sortOrder])
+}
+
+model UserVocabReviewState {
+  id             String    @id @default(cuid())
+  userId         String
+  vocabCardId    String
+  step           Int       @default(0)
+  dueAt          DateTime
+  lastReviewedAt DateTime?
+  lastRating     String?
+  totalReviews   Int       @default(0)
+  lapses         Int       @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vocabCard      VocabCard @relation(fields: [vocabCardId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, vocabCardId])
+  @@index([userId, dueAt])
+  @@index([userId, updatedAt])
 }

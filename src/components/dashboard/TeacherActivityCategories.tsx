@@ -616,6 +616,10 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                 color: '#f4a261', // warm orange
                 subCategories: [
                     {
+                        name: 'Daily Review',
+                        activities: activities.filter((a: Activity) => a.id === 'vocab-daily-review')
+                    },
+                    {
                         name: 'Cycle 1',
                         activities: vocabCycle1.flatMap(month =>
                             activities.filter((a: Activity) => a.id === `vocab-${month.id}`)

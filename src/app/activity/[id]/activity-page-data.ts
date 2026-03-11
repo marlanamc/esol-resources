@@ -6,7 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { logger } from "@/lib/logger";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { grammarTopics } from "@/data/grammar-map";
-import { RETURN_TO_QUERY_PARAM } from "@/lib/learner-navigation";
+import { RETURN_TO_QUERY_PARAM, sanitizeInternalHref } from "@/lib/learner-navigation";
 import { isTeacherAdmin } from "@/lib/roles";
 import { type ActivityContent, parseActivityContent } from "@/types/activity";
 
@@ -46,6 +46,8 @@ export async function loadActivityPageData(args: {
   assignmentId?: string;
   returnTo?: string;
 }): Promise<ActivityPageData> {
+  redirectSpecialActivityIfNeeded(args.activityId, args.assignmentId, args.returnTo);
+
   const session = await getServerSession(authOptions);
   if (!session?.user) {
     redirect("/login");
@@ -82,6 +84,22 @@ export async function loadActivityPageData(args: {
       admin: isTeacherAdmin(user),
     },
   };
+}
+
+function redirectSpecialActivityIfNeeded(
+  activityId: string,
+  assignmentId?: string,
+  returnTo?: string
+) {
+  if (activityId !== "vocab-daily-review") {
+    return;
+  }
+
+  const qs = new URLSearchParams();
+  if (assignmentId) qs.set("assignment", assignmentId);
+  const sanitizedReturnTo = sanitizeInternalHref(returnTo);
+  if (sanitizedReturnTo) qs.set(RETURN_TO_QUERY_PARAM, sanitizedReturnTo);
+  redirect(`/dashboard/vocab-review${qs.toString() ? `?${qs.toString()}` : ""}`);
 }
 
 async function loadActivityOrRedirect(activityId: string) {

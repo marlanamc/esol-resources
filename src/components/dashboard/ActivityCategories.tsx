@@ -1900,6 +1900,10 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 color: '#f4a261', // warm orange
                 subCategories: [
                     {
+                        name: 'Daily Review',
+                        activities: [activityIndex.vocabById.get('vocab-daily-review')].filter((a): a is Activity => Boolean(a))
+                    },
+                    {
                         name: 'Cycle 1',
                         activities: vocabCycle1
                             .map((month) => activityIndex.vocabById.get(`vocab-${month.id}`))
