@@ -295,6 +295,32 @@ test("grammar registry entries are included once and linked to grammar-reader pa
   assert.equal(matches[0].record.href, "/grammar-reader/present-simple");
 });
 
+test("grammar guide activity titles dedupe to the canonical grammar topic slug", () => {
+  const dataset = filterVisibleLearnerSearchRecords(buildCanonicalLearnerSearchDataset({
+    activities: [
+      {
+        id: "modals-obligation-permission-guide-legacy",
+        title: "Modals for Obligation & Permission Guide",
+        description: "Use must/have to/should and can/may/could for permission and requests.",
+        type: null,
+        category: "grammar",
+        level: null,
+        ui: null,
+        content: "{}",
+        isReleased: true,
+        deletedAt: null,
+        createdBy: null,
+      },
+    ],
+  }));
+
+  const ranked = dedupeRankedLearnerSearchRecords(rankLearnerSearchRecords(dataset, "modals"));
+  const matches = ranked.filter((entry) => entry.record.href === "/grammar-reader/modals-obligation-permission");
+
+  assert.equal(matches.length, 1);
+  assert.equal(matches[0].record.canonicalKey, "grammar:modals-obligation-permission");
+});
+
 test("learner tools appear with expected labels", () => {
   const visible = filterVisibleLearnerSearchRecords(buildCanonicalLearnerSearchDataset({ activities: [] }));
   const ranked = dedupeRankedLearnerSearchRecords(rankLearnerSearchRecords(visible, "grammar map"));

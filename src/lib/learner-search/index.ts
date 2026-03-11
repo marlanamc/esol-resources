@@ -96,6 +96,20 @@ const TOOL_RECORDS: Array<{
 
 let cachedDataset: { expiresAt: number; records: LearnerSearchIndexRecord[] } | null = null;
 let inflightDataset: Promise<LearnerSearchIndexRecord[]> | null = null;
+const GRAMMAR_SLUG_SET = new Set(grammarContentSlugs);
+const NORMALIZED_GRAMMAR_TOPIC_TITLE_MAP = new Map<string, string>(
+    grammarTopics.flatMap((topic) => {
+        const labels = [
+            topic.title,
+            ...(topic.activityTitles ?? []),
+        ];
+
+        return labels
+            .map((label) => normalizeText(label))
+            .filter(Boolean)
+            .map((label) => [label, topic.id] as const);
+    })
+);
 
 function normalizeText(value: string): string {
     return value
@@ -374,20 +388,31 @@ function buildSearchText(record: {
  * Only returns slugs that exist in grammarContentRegistry to prevent 404 links.
  */
 function resolveGrammarSlugForSearch(activity: SearchActivitySource): string | null {
-    if (!activity.id || !activity.title) return null;
-    const slugs = new Set(grammarContentSlugs);
-    if (slugs.has(activity.id)) return activity.id;
-    const topic = grammarTopics.find((t) =>
-        t.activityTitles?.some((at) => at.toLowerCase() === (activity.title ?? "").toLowerCase())
-    );
-    if (topic && slugs.has(topic.id)) return topic.id;
+    if (!activity.id || !activity.title) {
+        return null;
+    }
+
+    if (GRAMMAR_SLUG_SET.has(activity.id)) {
+        return activity.id;
+    }
+
+    const normalizedTitle = normalizeText(activity.title);
+    const mappedSlug = NORMALIZED_GRAMMAR_TOPIC_TITLE_MAP.get(normalizedTitle);
+    if (mappedSlug && GRAMMAR_SLUG_SET.has(mappedSlug)) {
+        return mappedSlug;
+    }
+
     const derived = completionKeyFromActivityTitle(activity.title);
-    return slugs.has(derived) ? derived : null;
+    return GRAMMAR_SLUG_SET.has(derived) ? derived : null;
 }
 
 function buildActivityRecord(activity: SearchActivitySource): LearnerSearchIndexRecord {
-    const isGrammarGuide = (activity.type || "").toLowerCase() === "guide" && (activity.category || "").toLowerCase() === "grammar";
-    const grammarSlug = isGrammarGuide ? resolveGrammarSlugForSearch(activity) : null;
+    const normalizedCategory = (activity.category || "").toLowerCase();
+    const normalizedType = (activity.type || "").toLowerCase();
+    const grammarSlug = resolveGrammarSlugForSearch(activity);
+    const isGrammarGuide =
+        Boolean(grammarSlug) &&
+        (normalizedCategory === "grammar" || normalizedType === "guide");
     const href = activity.id === "vocab-daily-review"
         ? "/dashboard/vocab-review"
         : isGrammarGuide && grammarSlug
@@ -516,8 +541,6 @@ function buildToolRecord(tool: (typeof TOOL_RECORDS)[number]): LearnerSearchInde
         searchText: buildSearchText(record),
     };
 }
-
-const GRAMMAR_SLUG_SET = new Set(grammarContentSlugs);
 
 function isValidGrammarReaderHref(href: string): boolean {
     if (!href.startsWith("/grammar-reader/")) return true;

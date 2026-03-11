@@ -19,6 +19,40 @@ import type {
 
 export const DEFAULT_VOCAB_REVIEW_LIMIT = 6;
 
+const LEGACY_REVIEW_STATE_SELECT = {
+  vocabCardId: true,
+  step: true,
+  dueAt: true,
+  lastRating: true,
+  lastReviewedAt: true,
+  totalReviews: true,
+  lapses: true,
+} as const;
+
+const FSRS_REVIEW_STATE_SELECT = {
+  ...LEGACY_REVIEW_STATE_SELECT,
+  easeFactor: true,
+  difficulty: true,
+  stability: true,
+  lastInterval: true,
+  // Omitted on read to avoid TEXT[] vs Float[] mismatch on some DBs
+} as const;
+
+const LEGACY_EXISTING_STATE_SELECT = {
+  step: true,
+  totalReviews: true,
+  lapses: true,
+} as const;
+
+const FSRS_EXISTING_STATE_SELECT = {
+  ...LEGACY_EXISTING_STATE_SELECT,
+  easeFactor: true,
+  difficulty: true,
+  stability: true,
+  lastInterval: true,
+  performanceHistory: true,
+} as const;
+
 type VocabReviewDbClient = Pick<PrismaClient, "activity" | "vocabCard" | "userVocabReviewState">;
 
 type ActivityCatalogRow = {
@@ -38,6 +72,11 @@ export type VocabReviewStateLike = Pick<
   UserVocabReviewState,
   "vocabCardId" | "step" | "dueAt" | "lastRating" | "lastReviewedAt" | "totalReviews" | "lapses"
 >;
+
+type VocabReviewPersistedStateLike = Pick<UserVocabReviewState, "step" | "totalReviews" | "lapses"> &
+  Partial<
+    Pick<UserVocabReviewState, "easeFactor" | "difficulty" | "stability" | "lastInterval" | "performanceHistory">
+  >;
 
 export type VocabReviewCardLike = Pick<
   VocabCard,
@@ -349,6 +388,27 @@ function isRating(value: string | null | undefined): value is VocabReviewRating 
   return value === "again" || value === "hard" || value === "good" || value === "easy";
 }
 
+function isMissingFsrsColumnError(error: unknown): boolean {
+  if (!error || typeof error !== "object") {
+    return false;
+  }
+
+  const maybePrismaError = error as {
+    code?: unknown;
+    meta?: { column?: unknown };
+  };
+
+  const column = maybePrismaError.meta?.column;
+  return (
+    maybePrismaError.code === "P2022" &&
+    typeof column === "string" &&
+    column.startsWith("UserVocabReviewState.") &&
+    ["easeFactor", "difficulty", "stability", "lastInterval", "performanceHistory"].includes(
+      column.replace("UserVocabReviewState.", "")
+    )
+  );
+}
+
 function isDue(state: VocabReviewStateLike | undefined, now: Date): boolean {
   return !!state && state.dueAt.getTime() <= now.getTime();
 }
@@ -549,7 +609,7 @@ export function addHours(date: Date, hours: number): Date {
 }
 
 export function applyVocabReviewRating(
-  currentState: Pick<UserVocabReviewState, "step" | "totalReviews" | "lapses" | "easeFactor" | "difficulty" | "stability" | "lastInterval" | "performanceHistory"> | null,
+  currentState: VocabReviewPersistedStateLike | null,
   rating: VocabReviewRating,
   now = new Date()
 ): {
@@ -584,6 +644,185 @@ export function applyVocabReviewRating(
   };
 }
 
+async function loadReviewStates(db: VocabReviewDbClient, userId: string): Promise<VocabReviewStateLike[]> {
+  try {
+    return await db.userVocabReviewState.findMany({
+      where: { userId },
+      select: FSRS_REVIEW_STATE_SELECT,
+    });
+  } catch (error) {
+    if (!isMissingFsrsColumnError(error)) {
+      throw error;
+    }
+
+    return db.userVocabReviewState.findMany({
+      where: { userId },
+      select: LEGACY_REVIEW_STATE_SELECT,
+    });
+  }
+}
+
+async function loadExistingReviewState(
+  db: VocabReviewDbClient,
+  userId: string,
+  cardId: string
+): Promise<{ state: VocabReviewPersistedStateLike | null; hasFsrsColumns: boolean }> {
+  try {
+    const state = await db.userVocabReviewState.findUnique({
+      where: {
+        userId_vocabCardId: {
+          userId,
+          vocabCardId: cardId,
+        },
+      },
+      select: FSRS_EXISTING_STATE_SELECT,
+    });
+
+    return {
+      state,
+      hasFsrsColumns: true,
+    };
+  } catch (error) {
+    if (!isMissingFsrsColumnError(error)) {
+      throw error;
+    }
+
+    const state = await db.userVocabReviewState.findUnique({
+      where: {
+        userId_vocabCardId: {
+          userId,
+          vocabCardId: cardId,
+        },
+      },
+      select: LEGACY_EXISTING_STATE_SELECT,
+    });
+
+    return {
+      state,
+      hasFsrsColumns: false,
+    };
+  }
+}
+
+async function persistReviewState(
+  db: VocabReviewDbClient,
+  userId: string,
+  cardId: string,
+  nextState: ReturnType<typeof applyVocabReviewRating>,
+  hasFsrsColumns: boolean
+) {
+  if (!hasFsrsColumns) {
+    return db.userVocabReviewState.upsert({
+      where: {
+        userId_vocabCardId: {
+          userId,
+          vocabCardId: cardId,
+        },
+      },
+      update: {
+        step: nextState.step,
+        dueAt: nextState.dueAt,
+        lastRating: nextState.lastRating,
+        lastReviewedAt: nextState.lastReviewedAt,
+        totalReviews: nextState.totalReviews,
+        lapses: nextState.lapses,
+      },
+      create: {
+        userId,
+        vocabCardId: cardId,
+        step: nextState.step,
+        dueAt: nextState.dueAt,
+        lastRating: nextState.lastRating,
+        lastReviewedAt: nextState.lastReviewedAt,
+        totalReviews: nextState.totalReviews,
+        lapses: nextState.lapses,
+      },
+      select: {
+        step: true,
+        dueAt: true,
+      },
+    });
+  }
+
+  try {
+    return await db.userVocabReviewState.upsert({
+      where: {
+        userId_vocabCardId: {
+          userId,
+          vocabCardId: cardId,
+        },
+      },
+      update: {
+        step: nextState.step,
+        dueAt: nextState.dueAt,
+        lastRating: nextState.lastRating,
+        lastReviewedAt: nextState.lastReviewedAt,
+        totalReviews: nextState.totalReviews,
+        lapses: nextState.lapses,
+        easeFactor: nextState.easeFactor,
+        difficulty: nextState.difficulty,
+        stability: nextState.stability,
+        lastInterval: nextState.lastInterval,
+        performanceHistory: nextState.performanceHistory,
+      },
+      create: {
+        userId,
+        vocabCardId: cardId,
+        step: nextState.step,
+        dueAt: nextState.dueAt,
+        lastRating: nextState.lastRating,
+        lastReviewedAt: nextState.lastReviewedAt,
+        totalReviews: nextState.totalReviews,
+        lapses: nextState.lapses,
+        easeFactor: nextState.easeFactor,
+        difficulty: nextState.difficulty,
+        stability: nextState.stability,
+        lastInterval: nextState.lastInterval,
+        performanceHistory: nextState.performanceHistory,
+      },
+      select: {
+        step: true,
+        dueAt: true,
+      },
+    });
+  } catch (error) {
+    if (!isMissingFsrsColumnError(error)) {
+      throw error;
+    }
+
+    return db.userVocabReviewState.upsert({
+      where: {
+        userId_vocabCardId: {
+          userId,
+          vocabCardId: cardId,
+        },
+      },
+      update: {
+        step: nextState.step,
+        dueAt: nextState.dueAt,
+        lastRating: nextState.lastRating,
+        lastReviewedAt: nextState.lastReviewedAt,
+        totalReviews: nextState.totalReviews,
+        lapses: nextState.lapses,
+      },
+      create: {
+        userId,
+        vocabCardId: cardId,
+        step: nextState.step,
+        dueAt: nextState.dueAt,
+        lastRating: nextState.lastRating,
+        lastReviewedAt: nextState.lastReviewedAt,
+        totalReviews: nextState.totalReviews,
+        lapses: nextState.lapses,
+      },
+      select: {
+        step: true,
+        dueAt: true,
+      },
+    });
+  }
+}
+
 async function loadCardsAndStates(db: VocabReviewDbClient, userId: string) {
   const cardsCount = await db.vocabCard.count();
   if (cardsCount === 0) {
@@ -607,23 +846,7 @@ async function loadCardsAndStates(db: VocabReviewDbClient, userId: string) {
         sortOrder: true,
       },
     }),
-    db.userVocabReviewState.findMany({
-      where: { userId },
-      select: {
-        vocabCardId: true,
-        step: true,
-        dueAt: true,
-        lastRating: true,
-        lastReviewedAt: true,
-        totalReviews: true,
-        lapses: true,
-        easeFactor: true,
-        difficulty: true,
-        stability: true,
-        lastInterval: true,
-        // performanceHistory omitted on read to avoid TEXT[] vs Float[] mismatch on some DBs
-      },
-    }),
+    loadReviewStates(db, userId),
   ]);
 
   return { cards, states };
@@ -669,67 +892,11 @@ export async function saveVocabReviewRating(
     return null;
   }
 
-  const existing = await db.userVocabReviewState.findUnique({
-    where: {
-      userId_vocabCardId: {
-        userId,
-        vocabCardId: cardId,
-      },
-    },
-    select: {
-      step: true,
-      totalReviews: true,
-      lapses: true,
-      easeFactor: true,
-      difficulty: true,
-      stability: true,
-      lastInterval: true,
-      performanceHistory: true,
-    },
-  });
+  const { state: existing, hasFsrsColumns } = await loadExistingReviewState(db, userId, cardId);
 
   const nextState = applyVocabReviewRating(existing, rating, now);
 
-  const saved = await db.userVocabReviewState.upsert({
-    where: {
-      userId_vocabCardId: {
-        userId,
-        vocabCardId: cardId,
-      },
-    },
-    update: {
-      step: nextState.step,
-      dueAt: nextState.dueAt,
-      lastRating: nextState.lastRating,
-      lastReviewedAt: nextState.lastReviewedAt,
-      totalReviews: nextState.totalReviews,
-      lapses: nextState.lapses,
-      easeFactor: nextState.easeFactor,
-      difficulty: nextState.difficulty,
-      stability: nextState.stability,
-      lastInterval: nextState.lastInterval,
-      performanceHistory: nextState.performanceHistory,
-    },
-    create: {
-      userId,
-      vocabCardId: cardId,
-      step: nextState.step,
-      dueAt: nextState.dueAt,
-      lastRating: nextState.lastRating,
-      lastReviewedAt: nextState.lastReviewedAt,
-      totalReviews: nextState.totalReviews,
-      lapses: nextState.lapses,
-      easeFactor: nextState.easeFactor,
-      difficulty: nextState.difficulty,
-      stability: nextState.stability,
-      lastInterval: nextState.lastInterval,
-      performanceHistory: nextState.performanceHistory,
-    },
-    select: {
-      step: true,
-      dueAt: true,
-    },
-  });
+  const saved = await persistReviewState(db, userId, cardId, nextState, hasFsrsColumns);
 
   return {
     step: saved.step,

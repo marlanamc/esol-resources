@@ -9,7 +9,9 @@ import {
   buildVocabReviewQueue,
   buildVocabReviewSeedCards,
   buildVocabReviewSummary,
+  getVocabReviewSummaryForUser,
   normalizeVocabTerm,
+  saveVocabReviewRating,
   type VocabReviewCardLike,
   type VocabReviewStateLike,
 } from "@/lib/vocab-review";
@@ -222,4 +224,93 @@ test("applyVocabReviewRating uses FSRS spaced repetition intervals", () => {
   assert.equal(easy.step, 3);
   assert.ok(easy.dueAt.getTime() > base.getTime());
   assert.ok(easy.lastInterval >= 1);
+});
+
+test("getVocabReviewSummaryForUser falls back when FSRS columns are missing", async () => {
+  const card: VocabReviewCardLike = {
+    id: "due-card",
+    term: "obstacle",
+    definition: "something that blocks your way",
+    example: null,
+    audioPath: "/audio/vocab/obstacle.mp3",
+    sourceKeys: ["october"],
+    sourceLabels: ["Unit 2: October"],
+    unitNumbers: [2],
+    topics: ["Daily Life in the Community"],
+    sortOrder: 1,
+  };
+
+  const legacyState: VocabReviewStateLike = {
+    vocabCardId: "due-card",
+    step: 1,
+    dueAt: new Date("2026-03-09T12:00:00.000Z"),
+    lastRating: "good",
+    lastReviewedAt: new Date("2026-03-08T12:00:00.000Z"),
+    totalReviews: 2,
+    lapses: 0,
+  };
+
+  const db = {
+    activity: {
+      findMany: async () => [],
+    },
+    vocabCard: {
+      count: async () => 1,
+      findMany: async () => [card],
+    },
+    userVocabReviewState: {
+      findMany: async ({ select }: { select: Record<string, boolean> }) => {
+        if ("easeFactor" in select) {
+          throw { code: "P2022", meta: { column: "UserVocabReviewState.easeFactor" } };
+        }
+        return [legacyState];
+      },
+    },
+  };
+
+  const summary = await getVocabReviewSummaryForUser(db as never, "student-1", new Date("2026-03-10T12:00:00.000Z"));
+  assert.equal(summary.totalCount, 1);
+  assert.equal(summary.dueCount, 1);
+  assert.equal(summary.newCount, 0);
+});
+
+test("saveVocabReviewRating falls back to legacy writes when FSRS columns are missing", async () => {
+  const recordedUpserts: Array<{ update: Record<string, unknown>; create: Record<string, unknown> }> = [];
+
+  const db = {
+    activity: {
+      findMany: async () => [],
+    },
+    vocabCard: {
+      findUnique: async () => ({ id: "card-1" }),
+    },
+    userVocabReviewState: {
+      findUnique: async ({ select }: { select: Record<string, boolean> }) => {
+        if ("easeFactor" in select) {
+          throw { code: "P2022", meta: { column: "UserVocabReviewState.easeFactor" } };
+        }
+        return {
+          step: 1,
+          totalReviews: 2,
+          lapses: 0,
+        };
+      },
+      upsert: async (args: { update: Record<string, unknown>; create: Record<string, unknown> }) => {
+        recordedUpserts.push({
+          update: args.update,
+          create: args.create,
+        });
+        return {
+          step: 2,
+          dueAt: new Date("2026-03-15T12:00:00.000Z"),
+        };
+      },
+    },
+  };
+
+  const saved = await saveVocabReviewRating(db as never, "student-1", "card-1", "good", new Date("2026-03-10T12:00:00.000Z"));
+  assert.ok(saved);
+  assert.equal(recordedUpserts.length, 1);
+  assert.equal("easeFactor" in recordedUpserts[0].update, false);
+  assert.equal("performanceHistory" in recordedUpserts[0].create, false);
 });
