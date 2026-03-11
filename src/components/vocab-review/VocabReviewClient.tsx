@@ -84,6 +84,33 @@ function makeSessionCards(cards: VocabReviewCard[]): SessionCard[] {
   }));
 }
 
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function renderExampleWithHighlightedTerm(example: string, term: string) {
+  const trimmedTerm = term.trim();
+  if (!trimmedTerm) {
+    return example;
+  }
+
+  const pattern = new RegExp(`(${escapeRegExp(trimmedTerm)})`, "gi");
+  const parts = example.split(pattern);
+  if (parts.length === 1) {
+    return example;
+  }
+
+  return parts.map((part, index) => (
+    part.toLowerCase() === trimmedTerm.toLowerCase() ? (
+      <strong key={`${part}-${index}`} className="font-extrabold not-italic text-text">
+        {part}
+      </strong>
+    ) : (
+      <span key={`${part}-${index}`}>{part}</span>
+    )
+  ));
+}
+
 async function fetchJson<T>(input: RequestInfo, init?: RequestInit): Promise<T> {
   const response = await fetch(input, {
     ...init,
@@ -447,23 +474,22 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                   <div className="mx-auto mt-6 h-1 w-12 rounded-full opacity-20" style={{ background: tone.accent }} />
                 </div>
               ) : (
-                <div className="flex w-full flex-col gap-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="flex w-full flex-col gap-14 animate-in fade-in slide-in-from-bottom-4 duration-500">
                   <h2 className="font-display text-2xl font-bold leading-tight text-text sm:text-4xl" style={{ textWrap: "balance" }}>
                     {currentCard.definition}
                   </h2>
                   
                   {currentCard.example ? (
                     <div 
-                      className="group/example relative w-full overflow-hidden rounded-3xl border-2 px-5 py-4 text-left transition-colors sm:px-8" 
+                      className="group/example relative w-full overflow-hidden rounded-3xl border px-5 py-5 text-left transition-colors sm:px-8 sm:py-6" 
                       style={{ 
                         borderColor: tone.border, 
-                        background: `color-mix(in srgb, var(--surface-overlay) 60%, white)` 
+                        background: `color-mix(in srgb, var(--surface-overlay) 38%, var(--surface-elevated))` 
                       }}
                     >
-                      <div className="absolute left-0 top-0 h-full w-1.5" style={{ background: tone.accent }} />
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-text/40">Example Context</p>
-                      <p className="mt-2 text-base font-medium leading-relaxed text-text/90 italic">
-                        &ldquo;{currentCard.example}&rdquo;
+                      <div className="absolute left-0 top-5 h-[calc(100%-2.5rem)] w-1" style={{ background: tone.accent }} />
+                      <p className="pl-4 text-base font-medium leading-relaxed text-text/78 italic sm:text-[1.05rem]">
+                        &ldquo;{renderExampleWithHighlightedTerm(currentCard.example, currentCard.term)}&rdquo;
                       </p>
                     </div>
                   ) : null}
