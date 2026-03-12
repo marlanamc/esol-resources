@@ -230,12 +230,16 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
           prev.categoryData
         );
         const bestStreak = calculateBestStreak(newResults);
+        const updatedCategoryData = results.updatedCategoryData
+          ? normalizeProgressData(results.updatedCategoryData)
+          : prev.categoryData;
 
         return {
           ...prev,
           currentExerciseIndex: newIndex,
           exerciseResults: newResults,
           roundResults: { ...results, streak: bestStreak },
+          categoryData: updatedCategoryData,
           phase: 'results',
         };
       }
@@ -321,6 +325,9 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
 
     const selectedGroup = state.selectedGroup;
     const nextAction = state.roundResults?.nextStep;
+    const effectiveCategoryData = state.roundResults?.updatedCategoryData
+      ? normalizeProgressData(state.roundResults.updatedCategoryData)
+      : state.categoryData;
 
     if (selectedGroup.id === ALL_PATTERNS_GROUP_ID) {
       setState((prev) => ({
@@ -352,10 +359,11 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
     const currentIndex = VERB_GROUPS.findIndex((g) => g.id === selectedGroup.id);
     const nextGroup = VERB_GROUPS[currentIndex + 1];
 
-    if (nextGroup && isGroupUnlocked(nextGroup.id, state.categoryData)) {
-      const nextRoundMode = getDefaultRoundMode(nextGroup, state.categoryData);
+    if (nextGroup && isGroupUnlocked(nextGroup.id, effectiveCategoryData)) {
+      const nextRoundMode = getDefaultRoundMode(nextGroup, effectiveCategoryData);
       setState((prev) => ({
         ...prev,
+        categoryData: effectiveCategoryData,
         selectedGroup: nextGroup,
         selectedRoundMode: nextRoundMode,
         phase: 'intro',
@@ -370,6 +378,7 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
 
     setState((prev) => ({
       ...prev,
+      categoryData: effectiveCategoryData,
       phase: 'selection',
       selectedGroup: null,
       exercises: [],
