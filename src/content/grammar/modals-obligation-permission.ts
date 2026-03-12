@@ -668,7 +668,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             <span><strong>COMFORTABLE:</strong> "Would you...?" / "Could you...?"</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
-                            <span style="font-size: 1.25rem;">😐</span>
+                            <span style="font-size: 1.25rem;">☺️</span>
                             <span><strong>ROOM TEMP:</strong> "Can you...?"</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
@@ -718,7 +718,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Asking your close coworker (a friend) to cover your shift:",
                             options: [
-                                { value: "can", label: "😐 Can you cover my shift?" },
+                                { value: "can", label: "☺️ Can you cover my shift?" },
                                 { value: "could", label: "🔥 Could you possibly cover my shift?" },
                                 { value: "wondering", label: "🔥🔥🔥 I was wondering if you might be able to..." },
                             ],
@@ -728,7 +728,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Asking your supervisor for a day off next week:",
                             options: [
-                                { value: "can", label: "😐 Can I have Friday off?" },
+                                { value: "can", label: "☺️ Can I have Friday off?" },
                                 { value: "could", label: "🔥 Could I have Friday off?" },
                                 { value: "wondering", label: "🔥🔥🔥 I was wondering if I could have Friday off?" },
                             ],
@@ -738,7 +738,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Asking the company CEO for a meeting about your idea:",
                             options: [
-                                { value: "can", label: "😐 Can I meet with you?" },
+                                { value: "can", label: "☺️ Can I meet with you?" },
                                 { value: "could", label: "🔥 Could I meet with you?" },
                                 { value: "wondering", label: "🔥🔥🔥 I was wondering if I might be able to schedule a brief meeting..." },
                             ],
