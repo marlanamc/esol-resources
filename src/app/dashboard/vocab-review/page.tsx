@@ -11,6 +11,7 @@ function createEmptySummary(): VocabReviewSummary {
   return {
     dueCount: 0,
     newCount: 0,
+    masteredCount: 0,
     totalCount: 0,
     filters: [
       {
@@ -21,6 +22,7 @@ function createEmptySummary(): VocabReviewSummary {
         unitNumber: null,
         dueCount: 0,
         newCount: 0,
+        masteredCount: 0,
         totalCount: 0,
       },
     ],
