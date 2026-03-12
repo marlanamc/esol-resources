@@ -4,6 +4,7 @@ export interface VerbData {
   v1_ing: string;    // present participle
   v2: string;        // simple past
   v3: string;        // past participle
+  definition?: string;
 }
 
 export interface VerbQuizContent {

@@ -55,9 +55,17 @@ export function PointsToast({ points, onComplete }: PointsToastProps) {
             role="status"
             aria-live="polite"
         >
-            <div className="bg-gradient-to-r from-accent to-yellow-400 text-text px-6 py-3 rounded-full shadow-lg flex items-center gap-2 font-bold">
-                <span className="text-2xl">+{points}</span>
-                <span className="text-sm">points!</span>
+            <div
+                className="mx-4 flex min-w-[11rem] max-w-[calc(100vw-2rem)] items-center justify-center gap-2 rounded-full border px-5 py-3 font-bold shadow-[0_14px_36px_rgba(13,22,32,0.22)] backdrop-blur-sm sm:px-6"
+                style={{
+                    background:
+                        "linear-gradient(135deg, color-mix(in srgb, var(--accent-color-light) 68%, var(--accent-color)) 0%, var(--accent-color) 55%, color-mix(in srgb, var(--accent-color-dark) 80%, #8a5a12) 100%)",
+                    color: "var(--text-on-accent)",
+                    borderColor: "color-mix(in srgb, var(--text-on-accent) 24%, transparent)",
+                }}
+            >
+                <span className="text-2xl leading-none drop-shadow-[0_1px_1px_rgba(8,16,24,0.28)]">+{points}</span>
+                <span className="text-sm leading-none opacity-95">points!</span>
             </div>
         </div>,
         document.body

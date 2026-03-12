@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { VerbQuizContent, VerbQuizAnswers } from '@/types/verb-quiz';
 import { CheckCircle2, Loader2 } from 'lucide-react';
+import { getVerbDefinition } from '@/lib/verb-definitions';
 
 interface VerbQuizProps {
   content: VerbQuizContent;
@@ -113,69 +114,80 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
               </tr>
             </thead>
             <tbody>
-              {Object.entries(content.verbs).map(([verb, verbData], idx) => (
-                <tr
-                  key={verb}
-                  className={`border-b border-[var(--color-border-subtle)] transition-colors ${
-                    idx % 2 === 0 ? 'bg-[var(--color-surface-elevated)]' : 'bg-[var(--color-bg-light)]/45'
-                  }`}
-                >
-                  <td className="px-6 py-4 font-medium text-[var(--color-text)] capitalize">To {verb}</td>
-                  <td className="px-6 py-4">
-                    <div className="px-3 py-2 bg-[var(--color-bg-light)] rounded-lg text-[var(--color-text)] font-mono text-sm border border-[var(--color-border-subtle)]">
-                      {verbData.v1}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <input
-                      type="text"
-                      value={answers[verb].v1_3rd}
-                      onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
-                      autoCapitalize="none"
-                      autoCorrect="off"
-                      spellCheck={false}
-                      className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
-                      disabled={isSubmitting}
-                    />
-                  </td>
-                  <td className="px-6 py-4">
-                    <input
-                      type="text"
-                      value={answers[verb].v1_ing}
-                      onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
-                      autoCapitalize="none"
-                      autoCorrect="off"
-                      spellCheck={false}
-                      className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
-                      disabled={isSubmitting}
-                    />
-                  </td>
-                  <td className="px-6 py-4">
-                    <input
-                      type="text"
-                      value={answers[verb].v2}
-                      onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
-                      autoCapitalize="none"
-                      autoCorrect="off"
-                      spellCheck={false}
-                      className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
-                      disabled={isSubmitting}
-                    />
-                  </td>
-                  <td className="px-6 py-4">
-                    <input
-                      type="text"
-                      value={answers[verb].v3}
-                      onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}
-                      autoCapitalize="none"
-                      autoCorrect="off"
-                      spellCheck={false}
-                      className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
-                      disabled={isSubmitting}
-                    />
-                  </td>
-                </tr>
-              ))}
+              {Object.entries(content.verbs).map(([verb, verbData], idx) => {
+                const definition = getVerbDefinition(verb, verbData);
+
+                return (
+                  <tr
+                    key={verb}
+                    className={`border-b border-[var(--color-border-subtle)] transition-colors ${
+                      idx % 2 === 0 ? 'bg-[var(--color-surface-elevated)]' : 'bg-[var(--color-bg-light)]/45'
+                    }`}
+                  >
+                    <td className="px-6 py-4">
+                      <div className="font-medium capitalize text-[var(--color-text)]">To {verb}</div>
+                      {definition && (
+                        <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-muted)]">
+                          {definition}
+                        </p>
+                      )}
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="px-3 py-2 bg-[var(--color-bg-light)] rounded-lg text-[var(--color-text)] font-mono text-sm border border-[var(--color-border-subtle)]">
+                        {verbData.v1}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <input
+                        type="text"
+                        value={answers[verb].v1_3rd}
+                        onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck={false}
+                        className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
+                        disabled={isSubmitting}
+                      />
+                    </td>
+                    <td className="px-6 py-4">
+                      <input
+                        type="text"
+                        value={answers[verb].v1_ing}
+                        onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck={false}
+                        className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
+                        disabled={isSubmitting}
+                      />
+                    </td>
+                    <td className="px-6 py-4">
+                      <input
+                        type="text"
+                        value={answers[verb].v2}
+                        onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck={false}
+                        className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
+                        disabled={isSubmitting}
+                      />
+                    </td>
+                    <td className="px-6 py-4">
+                      <input
+                        type="text"
+                        value={answers[verb].v3}
+                        onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck={false}
+                        className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
+                        disabled={isSubmitting}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -183,92 +195,106 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
 
       {/* Quiz Cards - Mobile */}
       <div className="md:hidden space-y-4">
-        {Object.entries(content.verbs).map(([verb, verbData], idx) => (
-          <motion.div
-            key={verb}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 + idx * 0.05 }}
-            className="bg-[var(--color-surface-elevated)] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] p-4"
-          >
-            <h3 className="text-lg font-bold text-[var(--color-text)] mb-3 capitalize">To {verb}</h3>
+        {Object.entries(content.verbs).map(([verb, verbData], idx) => {
+          const definition = getVerbDefinition(verb, verbData);
 
-            <div className="space-y-3">
-              <div className="bg-[var(--color-bg-light)] rounded-lg p-3 border border-[var(--color-border-subtle)]">
-                <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
-                  V1 (Base Form)
-                </label>
-                <div className="px-3 py-2 bg-[var(--color-surface-elevated)] rounded-lg text-[var(--color-text)] font-mono text-sm border border-[var(--color-border-subtle)]">
-                  {verbData.v1}
+          return (
+            <motion.div
+              key={verb}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + idx * 0.05 }}
+              className="bg-[var(--color-surface-elevated)] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] p-4"
+            >
+              <h3 className="text-lg font-bold text-[var(--color-text)] mb-3 capitalize">To {verb}</h3>
+              {definition && (
+                <div className="mb-3 rounded-xl border border-[var(--tone-vocabulary-border)] bg-[var(--tone-vocabulary-surface)] px-3 py-2">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--tone-vocabulary-chip-text)]">
+                    Meaning
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-[var(--color-text)]">
+                    {definition}
+                  </p>
+                </div>
+              )}
+
+              <div className="space-y-3">
+                <div className="bg-[var(--color-bg-light)] rounded-lg p-3 border border-[var(--color-border-subtle)]">
+                  <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
+                    V1 (Base Form)
+                  </label>
+                  <div className="px-3 py-2 bg-[var(--color-surface-elevated)] rounded-lg text-[var(--color-text)] font-mono text-sm border border-[var(--color-border-subtle)]">
+                    {verbData.v1}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
+                    V1 (3rd person) - he/she/it
+                  </label>
+                  <input
+                    type="text"
+                    value={answers[verb].v1_3rd}
+                    onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    spellCheck={false}
+                    className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
+                    V1-ing (Present Participle)
+                  </label>
+                  <input
+                    type="text"
+                    value={answers[verb].v1_ing}
+                    onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    spellCheck={false}
+                    className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
+                    V2 (Simple Past)
+                  </label>
+                  <input
+                    type="text"
+                    value={answers[verb].v2}
+                    onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    spellCheck={false}
+                    className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
+                    V3 (Past Participle)
+                  </label>
+                  <input
+                    type="text"
+                    value={answers[verb].v3}
+                    onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    spellCheck={false}
+                    className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
+                    disabled={isSubmitting}
+                  />
                 </div>
               </div>
-
-              <div>
-                <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
-                  V1 (3rd person) - he/she/it
-                </label>
-                <input
-                  type="text"
-                  value={answers[verb].v1_3rd}
-                  onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  spellCheck={false}
-                  className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
-                  disabled={isSubmitting}
-                />
-              </div>
-
-              <div>
-                <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
-                  V1-ing (Present Participle)
-                </label>
-                <input
-                  type="text"
-                  value={answers[verb].v1_ing}
-                  onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  spellCheck={false}
-                  className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
-                  disabled={isSubmitting}
-                />
-              </div>
-
-              <div>
-                <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
-                  V2 (Simple Past)
-                </label>
-                <input
-                  type="text"
-                  value={answers[verb].v2}
-                  onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  spellCheck={false}
-                  className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
-                  disabled={isSubmitting}
-                />
-              </div>
-
-              <div>
-                <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
-                  V3 (Past Participle)
-                </label>
-                <input
-                  type="text"
-                  value={answers[verb].v3}
-                  onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  spellCheck={false}
-                  className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
-                  disabled={isSubmitting}
-                />
-              </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Submit Button */}

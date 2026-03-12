@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { VerbQuizContent, VerbQuizSubmission } from '@/types/verb-quiz';
 import { CheckCircle2, XCircle, Trophy, RotateCcw, Star } from 'lucide-react';
+import { getVerbDefinition } from '@/lib/verb-definitions';
 
 interface VerbQuizResultsProps {
   content: VerbQuizContent;
@@ -87,6 +88,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
             const verbCorrect = Object.values(results).filter(Boolean).length;
             const verbTotal = 4;
             const isVerbPerfect = verbCorrect === verbTotal;
+            const definition = getVerbDefinition(verb, correctAnswers);
             const verbCardStyle = isVerbPerfect
               ? {
                   borderColor: 'var(--tone-grammar-border)',
@@ -119,21 +121,28 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                       >
                         Term
                       </span>
-                      <span
-                        className="inline-flex rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em]"
-                        style={{
-                          borderColor: 'var(--tone-quizzes-border)',
-                          backgroundColor: 'var(--tone-quizzes-chip-bg)',
-                          color: 'var(--tone-quizzes-chip-text)',
-                        }}
-                      >
-                        Definition
-                      </span>
+                      {definition && (
+                        <span
+                          className="inline-flex rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em]"
+                          style={{
+                            borderColor: 'var(--tone-quizzes-border)',
+                            backgroundColor: 'var(--tone-quizzes-chip-bg)',
+                            color: 'var(--tone-quizzes-chip-text)',
+                          }}
+                        >
+                          Definition
+                        </span>
+                      )}
                     </div>
                     <div>
                       <h4 className="text-xl font-bold capitalize text-[var(--color-text)]">
                         To {verb}
                       </h4>
+                      {definition && (
+                        <p className="mt-1 text-sm leading-relaxed text-[var(--color-text)]">
+                          {definition}
+                        </p>
+                      )}
                       <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                         {correctAnswers.v1} • {correctAnswers.v1_3rd} • {correctAnswers.v1_ing} • {correctAnswers.v2} • {correctAnswers.v3}
                       </p>
