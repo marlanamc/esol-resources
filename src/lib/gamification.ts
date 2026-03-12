@@ -3,8 +3,10 @@ import type { Prisma } from "@prisma/client";
 import { logger } from './logger';
 import { POINTS } from "./gamification/constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./gamification/streak-utils";
+import { buildLeaderboardEligibleUserWhere, EXCLUDED_LEADERBOARD_USERNAMES } from "./gamification/leaderboard-filter";
 export { POINTS } from "./gamification/constants";
 export { getActivityPoints, resolveActivityGameUi } from "./gamification/activity-points";
+export { EXCLUDED_LEADERBOARD_USERNAMES } from "./gamification/leaderboard-filter";
 
 /**
  * Award points to a user and update their total
@@ -186,7 +188,6 @@ export function calculateQuizPoints(score: number | null): number {
 }
 
 export type LeaderboardRange = 'day' | 'week' | 'month';
-export const EXCLUDED_LEADERBOARD_USERNAMES = ["marlie", "daniel", "leah"];
 
 function getRangeStart(range: LeaderboardRange) {
   const now = new Date();
@@ -238,11 +239,7 @@ export async function getTimeframedLeaderboard(
     : (classId ? { classes: { some: { classId } } } : undefined);
 
   // First, get all students (excluding test accounts and admin accounts)
-  const studentWhere: Prisma.UserWhereInput = {
-    role: "student",
-    username: { notIn: EXCLUDED_LEADERBOARD_USERNAMES },
-    ...(classFilter || {}),
-  };
+  const studentWhere = buildLeaderboardEligibleUserWhere(classFilter);
 
   const allStudents = await prisma.user.findMany({
     where: studentWhere,
@@ -261,9 +258,7 @@ export async function getTimeframedLeaderboard(
   const whereLedger: Prisma.PointsLedgerWhereInput = {
     createdAt: { gte: since },
     user: {
-      role: "student",
-      username: { notIn: EXCLUDED_LEADERBOARD_USERNAMES },
-      ...(classFilter || {}),
+      ...buildLeaderboardEligibleUserWhere(classFilter),
     },
   };
 
@@ -411,10 +406,7 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
   // Sanitize limit to prevent excessive queries (1-100)
   const safeLimit = Math.min(Math.max(1, Math.floor(limit)), 100);
 
-  const whereClause: Prisma.UserWhereInput = {
-    role: 'student',
-    username: { notIn: EXCLUDED_LEADERBOARD_USERNAMES },
-  };
+  const whereClause = buildLeaderboardEligibleUserWhere();
 
   // If classId provided, filter by students in that class
   if (classId) {
@@ -529,8 +521,7 @@ export async function getUserGamificationStats(userId: string) {
   // Get user's rank in weekly leaderboard (single count query instead of loading all students)
   const usersAheadOfMe = await prisma.user.count({
     where: {
-      role: 'student',
-      username: { notIn: EXCLUDED_LEADERBOARD_USERNAMES },
+      ...buildLeaderboardEligibleUserWhere(),
       OR: [
         { weeklyPoints: { gt: user.weeklyPoints } },
         { weeklyPoints: user.weeklyPoints, id: { lt: userId } },

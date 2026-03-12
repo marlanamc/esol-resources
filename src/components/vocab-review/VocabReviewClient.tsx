@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
-import { ArrowLeft, CheckCircle2, ChevronDown, RotateCcw, Volume2, X } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ChevronDown, HelpCircle, RotateCcw, Volume2, X, Sparkles, BrainCircuit, CalendarSync } from "lucide-react";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import type {
   VocabReviewCard,
@@ -136,6 +136,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [againCardIds, setAgainCardIds] = useState<Set<string>>(() => new Set());
   const [sessionCompleteResult, setSessionCompleteResult] = useState<{
     points: number;
@@ -405,6 +406,20 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
           <span className="sm:hidden">Set</span>
           <ChevronDown className="h-3.5 w-3.5 opacity-60" />
         </button>
+
+        <button
+          type="button"
+          onClick={() => setIsHelpOpen(true)}
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border text-text transition-all hover:scale-105 active:scale-95"
+          style={{
+            borderColor: tone.border,
+            background: "var(--surface-elevated)",
+            boxShadow: "var(--shadow-sm)",
+          }}
+          aria-label="How daily vocab review works"
+        >
+          <HelpCircle className="h-4.5 w-4.5 opacity-80" />
+        </button>
       </nav>
 
       {/* ── Error banner ── */}
@@ -641,73 +656,280 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
         <>
           <button
             type="button"
-            className="fixed inset-0 z-[320] bg-black/45 backdrop-blur-[2px]"
+            className="fixed inset-0 z-[320] bg-black/45 backdrop-blur-md transition-all duration-500 animate-in fade-in"
             onClick={() => setIsFilterOpen(false)}
             aria-label="Close filter picker"
           />
           <div
-            className="safe-area-bottom-padding-mobile-lg fixed inset-x-0 bottom-0 z-[330] mx-auto max-h-[82vh] max-w-lg overflow-y-auto rounded-t-[32px] border border-b-0 bg-[var(--surface-elevated)] px-4 pt-4 shadow-[0_-18px_42px_rgba(0,0,0,0.16)] sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 sm:rounded-[32px] sm:border-b sm:shadow-[0_24px_56px_rgba(0,0,0,0.2)]"
-            style={{ overscrollBehavior: "contain" }}
+            className="safe-area-bottom-padding-mobile-lg fixed inset-x-0 bottom-0 z-[330] mx-auto max-h-[85vh] max-w-lg overflow-y-auto rounded-t-[36px] border border-white/10 bg-[var(--surface-elevated)]/90 px-5 pt-5 shadow-[0_-24px_64px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 animate-in slide-in-from-bottom-8 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 sm:rounded-[36px] sm:border sm:shadow-[0_32px_80px_rgba(0,0,0,0.25)]"
+            style={{ 
+              overscrollBehavior: "contain",
+              background: `linear-gradient(180deg, color-mix(in srgb, var(--surface-elevated) 95%, transparent) 0%, color-mix(in srgb, var(--surface-subtle) 90%, transparent) 100%)`, 
+            }}
           >
-            <div className="mx-auto mb-4 h-1.5 w-16 rounded-full bg-black/10 dark:bg-white/10" />
-            <div className="flex items-start justify-between gap-3">
+            {/* Background glowing orb */}
+            <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: tone.accent }} />
+
+            <div className="mx-auto mb-5 h-1.5 w-16 rounded-full bg-black/10 dark:bg-white/10" />
+            <div className="relative flex items-start justify-between gap-3">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-text/55">Study filters</p>
-                <h2 className="mt-1 font-display text-2xl font-bold text-text">Choose a vocab set</h2>
+                <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-text/50">
+                  <Sparkles className="h-3.5 w-3.5" style={{ color: tone.accent }} />
+                  Study filters
+                </p>
+                <h2 className="mt-1.5 font-display text-3xl font-extrabold tracking-tight text-text">Choose a vocab set</h2>
               </div>
               <button
                 type="button"
                 onClick={() => setIsFilterOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2"
-                style={{ borderColor: tone.border }}
+                className="group relative inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/5 backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/10 active:scale-95 focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2"
+                style={{ borderColor: "color-mix(in srgb, var(--border-subtle) 50%, transparent)" }}
                 aria-label="Close filter picker"
               >
-                <X className="h-4 w-4" />
+                <X className="h-4.5 w-4.5 opacity-70 transition-opacity group-hover:opacity-100" />
               </button>
             </div>
 
-            {[
-              { title: "All review", filters: groupedFilters.all },
-              { title: "Monthly units", filters: groupedFilters.months },
-              { title: "Weekly sets", filters: groupedFilters.weeks },
-            ].map((section) =>
-              section.filters.length > 0 ? (
-                <div key={section.title} className="mt-6 space-y-3">
-                  <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-text/55">{section.title}</h3>
-                  <div className="space-y-2">
-                    {section.filters.map((filter) => {
-                      const isActive = filter.key === selectedSource;
-                      return (
-                        <button
-                          key={filter.key}
-                          type="button"
-                          onClick={() => handleSelectSource(filter.key)}
-                          className={`flex w-full items-center justify-between rounded-3xl border px-4 py-4 text-left transition-[background-color,border-color,box-shadow] focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 ${
-                            isActive ? "shadow-[0_10px_24px_rgba(34,65,58,0.08)]" : "hover:bg-white/70 dark:hover:bg-white/5"
-                          }`}
-                          style={{
-                            borderColor: isActive ? tone.accent : tone.border,
-                            background: isActive ? tone.surfaceMuted : "var(--surface-elevated)",
-                          }}
-                        >
-                          <div>
-                            <div className="text-sm font-bold text-text">{filter.label}</div>
-                            <div className="mt-1 text-xs font-medium text-text/65">
-                              {filter.dueCount} due · {filter.newCount} new · {filter.totalCount} total
+            <div className="relative pb-8">
+              {[
+                { title: "All review", filters: groupedFilters.all },
+                { title: "Monthly units", filters: groupedFilters.months },
+                { title: "Weekly sets", filters: groupedFilters.weeks },
+              ].map((section) =>
+                section.filters.length > 0 ? (
+                  <div key={section.title} className="mt-8 space-y-3">
+                    <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-text/50">{section.title}</h3>
+                    <div className="space-y-2">
+                      {section.filters.map((filter) => {
+                        const isActive = filter.key === selectedSource;
+                        return (
+                          <button
+                            key={filter.key}
+                            type="button"
+                            onClick={() => handleSelectSource(filter.key)}
+                            className={`group relative flex w-full items-center justify-between overflow-hidden rounded-[24px] border px-4 py-4 text-left transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 ${
+                              isActive ? "scale-[1.02] shadow-[0_12px_32px_rgba(20,20,20,0.12)]" : "hover:scale-[1.01]"
+                            }`}
+                            style={{
+                              borderColor: isActive ? `color-mix(in srgb, ${tone.accent} 40%, transparent)` : "color-mix(in srgb, var(--border-subtle) 50%, transparent)",
+                              background: isActive ? `linear-gradient(135deg, color-mix(in srgb, ${tone.surfaceMuted} 80%, var(--surface-elevated)) 0%, color-mix(in srgb, ${tone.surface} 50%, var(--surface-subtle)) 100%)` : "color-mix(in srgb, var(--surface-elevated) 45%, transparent)",
+                              boxShadow: isActive ? `inset 0 1px 0 color-mix(in srgb, white 20%, transparent), 0 8px 24px ${tone.accent}15` : undefined,
+                            }}
+                          >
+                            {isActive && (
+                              <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full opacity-20 blur-2xl pointer-events-none" style={{ background: tone.accent }} />
+                            )}
+                            
+                            <div className="relative z-10">
+                              <div className="text-[15px] font-bold tracking-tight text-text">{filter.label}</div>
+                              <div className="mt-1 flex items-center gap-1.5 text-[12px] font-medium text-text/60">
+                                <span>{filter.dueCount} ready now</span>
+                                <span className="opacity-40">•</span>
+                                <span>{Math.max(filter.totalCount - filter.newCount, 0)} still learning</span>
+                                <span className="opacity-40">•</span>
+                                <span>{filter.totalCount} all words</span>
+                              </div>
                             </div>
-                          </div>
-                          {isActive ? (
-                            <span className="rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.16em]" style={{ background: tone.chipBg, color: tone.chipText }}>
-                              Active
-                            </span>
-                          ) : null}
-                        </button>
-                      );
-                    })}
+                            {isActive ? (
+                              <span 
+                                className="relative z-10 rounded-full px-3.5 py-1 text-[11px] font-black uppercase tracking-[0.15em] shadow-sm transform transition-transform group-hover:scale-105" 
+                                style={{ 
+                                  background: tone.chipBg, 
+                                  color: tone.chipText,
+                                  border: `1px solid color-mix(in srgb, white 20%, transparent)`
+                                }}
+                              >
+                                Active
+                              </span>
+                            ) : null}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
+                ) : null
+              )}
+            </div>
+          </div>
+        </>
+      ) : null}
+
+      {isHelpOpen ? (
+        <>
+          <button
+            type="button"
+            className="fixed inset-0 z-[320] bg-black/45 backdrop-blur-md transition-all duration-500 animate-in fade-in"
+            onClick={() => setIsHelpOpen(false)}
+            aria-label="Close review help"
+          />
+          <div
+            className="safe-area-bottom-padding-mobile-lg fixed inset-x-0 bottom-0 z-[330] mx-auto max-h-[85vh] max-w-lg overflow-y-auto rounded-t-[36px] border border-white/10 bg-[var(--surface-elevated)]/90 px-5 pt-5 shadow-[0_-24px_64px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-500 animate-in slide-in-from-bottom-8 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 sm:rounded-[36px] sm:border sm:shadow-[0_32px_80px_rgba(0,0,0,0.25)]"
+            style={{ 
+              overscrollBehavior: "contain",
+              background: `linear-gradient(180deg, color-mix(in srgb, var(--surface-elevated) 95%, transparent) 0%, color-mix(in srgb, var(--surface-subtle) 90%, transparent) 100%)`, 
+            }}
+          >
+            {/* Background glowing orb */}
+            <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: tone.accent }} />
+
+            <div className="mx-auto mb-5 h-1.5 w-16 rounded-full bg-black/10 dark:bg-white/10" />
+            <div className="relative flex items-start justify-between gap-3">
+              <div>
+                <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-text/50">
+                  <Sparkles className="h-3.5 w-3.5" style={{ color: tone.accent }} />
+                  Quick help
+                </p>
+                <h2 className="mt-1.5 font-display text-3xl font-extrabold tracking-tight text-text">Daily Vocab Review</h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsHelpOpen(false)}
+                className="group relative inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/5 backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/10 active:scale-95 focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2"
+                style={{ borderColor: "color-mix(in srgb, var(--border-subtle) 50%, transparent)" }}
+                aria-label="Close review help"
+              >
+                <X className="h-4.5 w-4.5 opacity-70 transition-opacity group-hover:opacity-100" />
+              </button>
+            </div>
+
+            <div className="relative mt-6 space-y-4 pb-8">
+              {/* Session size + steps — glossy card */}
+              <div
+                className="group relative overflow-hidden rounded-[28px] border p-5 transition-all duration-500 hover:shadow-lg"
+                style={{
+                  borderColor: `color-mix(in srgb, ${tone.accent} 30%, var(--border-subtle))`,
+                  background: `linear-gradient(135deg, color-mix(in srgb, ${tone.surfaceMuted} 85%, var(--surface-elevated)) 0%, color-mix(in srgb, ${tone.surface} 70%, var(--surface-subtle)) 100%)`,
+                  boxShadow: `inset 0 1px 0 color-mix(in srgb, white 20%, transparent)`,
+                }}
+              >
+                <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-25 blur-3xl transition-opacity group-hover:opacity-40" style={{ background: tone.accent }} />
+
+                <div className="relative flex items-center gap-3">
+                  <span
+                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl font-display text-[15px] font-black shadow-sm ring-1 ring-inset"
+                    style={{ background: tone.chipBg, color: tone.chipText, border: `1px solid color-mix(in srgb, white 20%, transparent)` }}
+                  >
+                    6
+                  </span>
+                  <p className="text-[15px] font-bold tracking-tight text-text">Study a few words each day.<br />
+                    <span className="text-xs font-semibold text-text/60">A quick, focused session.</span>
+                  </p>
                 </div>
-              ) : null
-            )}
+
+                <div className="relative mt-4 space-y-2">
+                  {[
+                    { n: "1", text: "Read the word", icon: <BrainCircuit className="h-3.5 w-3.5 opacity-60 ml-auto" /> },
+                    { n: "2", text: "Listen to the word if needed", icon: <Volume2 className="h-3.5 w-3.5 opacity-60 ml-auto" /> },
+                    { n: "3", text: "Tap to flip the card", icon: <RotateCcw className="h-3.5 w-3.5 opacity-60 ml-auto" /> },
+                    { n: "4", text: "Choose how it felt", icon: <CheckCircle2 className="h-3.5 w-3.5 opacity-60 ml-auto" /> },
+                  ].map(({ n, text, icon }) => (
+                    <div 
+                      key={n} 
+                      className="flex items-center gap-3.5 rounded-2xl border px-3.5 py-3 transition-colors hover:bg-white/40 dark:hover:bg-black/10" 
+                      style={{ 
+                        background: "color-mix(in srgb, var(--surface-elevated) 45%, transparent)",
+                        borderColor: "color-mix(in srgb, var(--border-subtle) 40%, transparent)",
+                      }}
+                    >
+                      <span
+                        className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-xs font-black shadow-sm"
+                        style={{ background: tone.chipBg, color: tone.chipText, opacity: 0.9, border: `1px solid color-mix(in srgb, white 15%, transparent)` }}
+                      >
+                        {n}
+                      </span>
+                      <p className="text-[13px] font-bold text-text/90 tracking-tight">{text}</p>
+                      {icon}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Rating buttons explanation */}
+              <div 
+                className="overflow-hidden rounded-[28px] border p-5" 
+                style={{ 
+                  borderColor: "color-mix(in srgb, var(--border-subtle) 80%, transparent)", 
+                  background: "color-mix(in srgb, var(--surface-elevated) 80%, transparent)",
+                  backdropFilter: "blur(12px)"
+                }}
+              >
+                <div className="mb-3.5 flex items-center justify-between">
+                  <h3 className="text-xs font-black uppercase tracking-[0.2em] text-text/65">Rating the Words</h3>
+                </div>
+                <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+                  {[
+                    { label: "😓 Hard", hint: "see again sooner", border: "color-mix(in srgb, #dc2626 36%, var(--border-subtle))", bg: "color-mix(in srgb, #f87171 18%, var(--surface-elevated))", textColor: "color-mix(in srgb, #7f1d1d 78%, var(--text))" },
+                    { label: "🤔 OK",   hint: "see again later",  border: "color-mix(in srgb, #2563eb 36%, var(--border-subtle))", bg: "color-mix(in srgb, #60a5fa 18%, var(--surface-elevated))", textColor: "color-mix(in srgb, #1e3a8a 78%, var(--text))" },
+                    { label: "😊 Easy", hint: "see much later",   border: "color-mix(in srgb, #059669 38%, var(--border-subtle))", bg: "color-mix(in srgb, #34d399 20%, var(--surface-elevated))", textColor: "color-mix(in srgb, #064e3b 78%, var(--text))" },
+                  ].map(({ label, hint, border, bg, textColor }) => (
+                    <div key={label} className="flex flex-col items-center gap-2.5">
+                      <div 
+                        className="group flex w-full cursor-default relative items-center justify-center overflow-hidden rounded-2xl border-2 px-1 py-3.5 transition-transform hover:scale-[1.02] min-h-[76px]" 
+                        style={{ 
+                          borderColor: border, 
+                          background: bg,
+                          boxShadow: `inset 0 1px 0 color-mix(in srgb, white 30%, transparent), 0 4px 12px ${border}20` 
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 mix-blend-overlay transition-opacity duration-300 group-hover:opacity-100" />
+                        <span className="relative z-10 text-[13px] font-black uppercase tracking-wider sm:text-[14px]" style={{ color: textColor }}>{label}</span>
+                      </div>
+                      <span className="text-[11px] font-bold text-center leading-tight" style={{ color: textColor, opacity: 0.85 }}>{hint}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Due / New + filters tip — glossy duo */}
+              <div className="grid grid-cols-2 gap-3">
+                <div 
+                  className="group rounded-[28px] border px-4 py-4 transition-transform hover:scale-[1.02]" 
+                  style={{ 
+                    borderColor: tone.border, 
+                    background: "color-mix(in srgb, var(--surface-subtle) 90%, var(--surface-elevated))",
+                    boxShadow: "inset 0 1px 0 color-mix(in srgb, white 15%, transparent)"
+                  }}
+                >
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <CalendarSync className="h-4 w-4 opacity-50 text-text" />
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-text/50">Due Words</p>
+                  </div>
+                  <p className="text-[15px] font-bold tracking-tight text-text">Ready now</p>
+                  <p className="mt-1 text-[12px] font-medium leading-relaxed text-text/65">Words you studied before that need review.</p>
+                </div>
+                <div 
+                  className="group rounded-[28px] border px-4 py-4 transition-transform hover:scale-[1.02]" 
+                  style={{ 
+                    borderColor: tone.border, 
+                    background: "color-mix(in srgb, var(--surface-subtle) 90%, var(--surface-elevated))",
+                    boxShadow: "inset 0 1px 0 color-mix(in srgb, white 15%, transparent)"
+                  }}
+                >
+                   <div className="flex items-center gap-1.5 mb-1.5">
+                    <Sparkles className="h-4 w-4 opacity-50 text-[color:var(--tone-vocabulary-accentStrong)]" />
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-text/50">New Words</p>
+                  </div>
+                  <p className="text-[15px] font-bold tracking-tight text-text">First time</p>
+                  <p className="mt-1 text-[12px] font-medium leading-relaxed text-text/65">Fresh words you haven&apos;t seen yet.</p>
+                </div>
+              </div>
+
+              {/* Filter tip */}
+              {/* Filter tip */}
+              <div className="mt-2 flex items-center justify-center gap-2 rounded-[20px] bg-black/5 px-4 py-3 dark:bg-white/5">
+                <span className="text-[13px] font-semibold text-text/75">
+                  Want to practice one unit? <span className="font-bold text-text">Tap Filters.</span>
+                </span>
+              </div>
+
+              {/* Daily Habit tip */}
+              <div className="flex items-center justify-center px-4 pt-2">
+                <p className="text-center text-[12px] font-medium leading-relaxed text-text/60">
+                  Make this a daily habit. <br className="sm:hidden" />
+                  We&apos;ll choose the best words for you to review each day.
+                </p>
+              </div>
+            </div>
           </div>
         </>
       ) : null}

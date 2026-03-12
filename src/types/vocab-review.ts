@@ -10,6 +10,7 @@ export interface VocabReviewFilter {
   unitNumber: number | null;
   dueCount: number;
   newCount: number;
+  masteredCount: number;
   totalCount: number;
 }
 
@@ -34,6 +35,7 @@ export interface VocabReviewCard {
 export interface VocabReviewSummary {
   dueCount: number;
   newCount: number;
+  masteredCount: number;
   totalCount: number;
   filters: VocabReviewFilter[];
   updatedAt: string;

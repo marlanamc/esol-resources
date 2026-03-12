@@ -5,7 +5,7 @@ import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { isTeacherAdmin } from "@/lib/roles";
-import { EXCLUDED_LEADERBOARD_USERNAMES } from "@/lib/gamification";
+import { isLeaderboardExcludedUser } from "@/lib/gamification/leaderboard-filter";
 
 type UserRow = {
     id: string;
@@ -136,7 +136,7 @@ export default async function BackendUsersPage() {
                             </thead>
                             <tbody>
                                 {users.map((user) => {
-                                    const isExcluded = EXCLUDED_LEADERBOARD_USERNAMES.includes(user.username);
+                                    const isExcluded = isLeaderboardExcludedUser(user);
                                     const sectionNames = user.role === "student"
                                         ? user.classes.map((entry) => entry.class.name)
                                         : user.createdClasses.map((entry) => entry.name);

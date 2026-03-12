@@ -18,6 +18,8 @@ import type {
 } from "@/types/vocab-review";
 
 export const DEFAULT_VOCAB_REVIEW_LIMIT = 6;
+const MASTERED_STEP_THRESHOLD = 5;
+const MASTERED_DAYS_THRESHOLD = 21;
 
 const LEGACY_REVIEW_STATE_SELECT = {
   vocabCardId: true,
@@ -413,6 +415,15 @@ function isDue(state: VocabReviewStateLike | undefined, now: Date): boolean {
   return !!state && state.dueAt.getTime() <= now.getTime();
 }
 
+function isMastered(state: VocabReviewStateLike | undefined, now: Date): boolean {
+  if (!state || isDue(state, now)) {
+    return false;
+  }
+
+  const daysUntilDue = (state.dueAt.getTime() - now.getTime()) / 86_400_000;
+  return state.step >= MASTERED_STEP_THRESHOLD || daysUntilDue >= MASTERED_DAYS_THRESHOLD;
+}
+
 function toReviewCard(card: VocabReviewCardLike, state: VocabReviewStateLike | undefined, now: Date): VocabReviewCard {
   const due = isDue(state, now);
   const isNew = !state;
@@ -445,6 +456,7 @@ export function buildVocabReviewSummary(
 
   const dueCount = cards.filter((card) => isDue(stateByCardId.get(card.id), now)).length;
   const newCount = cards.filter((card) => !stateByCardId.has(card.id)).length;
+  const masteredCount = cards.filter((card) => isMastered(stateByCardId.get(card.id), now)).length;
 
   const filters: VocabReviewFilter[] = [
     {
@@ -455,12 +467,14 @@ export function buildVocabReviewSummary(
       unitNumber: null,
       dueCount,
       newCount,
+      masteredCount,
       totalCount: cards.length,
     },
     ...VOCAB_REVIEW_SOURCE_DEFINITIONS.map((source) => {
       const matchingCards = cards.filter((card) => card.sourceKeys.includes(source.key));
       const sourceDueCount = matchingCards.filter((card) => isDue(stateByCardId.get(card.id), now)).length;
       const sourceNewCount = matchingCards.filter((card) => !stateByCardId.has(card.id)).length;
+      const sourceMasteredCount = matchingCards.filter((card) => isMastered(stateByCardId.get(card.id), now)).length;
 
       return {
         key: source.key,
@@ -470,6 +484,7 @@ export function buildVocabReviewSummary(
         unitNumber: source.unitNumber,
         dueCount: sourceDueCount,
         newCount: sourceNewCount,
+        masteredCount: sourceMasteredCount,
         totalCount: matchingCards.length,
       };
     }).filter((filter) => filter.totalCount > 0),
@@ -478,6 +493,7 @@ export function buildVocabReviewSummary(
   return {
     dueCount,
     newCount,
+    masteredCount,
     totalCount: cards.length,
     filters,
     updatedAt: now.toISOString(),
