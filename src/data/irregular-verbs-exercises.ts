@@ -3,7 +3,7 @@
  * Creates varied exercises across 5 types for each verb group
  */
 
-import type { VerbExercise, ExerciseType, VerbGroup, IrregularVerb } from '@/types/irregular-verbs';
+import type { VerbExercise, ExerciseType, VerbGroup, IrregularVerb, VerbPerformance } from '@/types/irregular-verbs';
 import { VERB_GROUPS } from '@/data/irregular-verbs-groups';
 
 /**
@@ -75,6 +75,69 @@ function createExercise(
     default:
       return null;
   }
+}
+
+export function generateTargetedRound2Exercises(
+  group: VerbGroup,
+  verbStats: Record<string, VerbPerformance> = {},
+  count: number = 8,
+  hideExplanations: boolean = false
+): VerbExercise[] {
+  const prioritized = [...group.verbs].sort((a, b) => {
+    const aStats = verbStats[a.base];
+    const bStats = verbStats[b.base];
+    const aScore = (aStats?.round1Misses ?? 0) * 4 + (aStats?.misses ?? 0) * 2 - (aStats?.correct ?? 0);
+    const bScore = (bStats?.round1Misses ?? 0) * 4 + (bStats?.misses ?? 0) * 2 - (bStats?.correct ?? 0);
+    return bScore - aScore;
+  });
+
+  const selectedVerbs: IrregularVerb[] = [];
+  while (selectedVerbs.length < count && prioritized.length > 0) {
+    const verb = prioritized[selectedVerbs.length % prioritized.length];
+    selectedVerbs.push(verb);
+
+    // Repeat missed verbs later in the round for another retrieval attempt.
+    if ((verbStats[verb.base]?.round1Misses ?? 0) > 0 && selectedVerbs.length < count) {
+      selectedVerbs.push(verb);
+    }
+  }
+
+  const plan: ExerciseType[] = [
+    'fill-in-blank',
+    'sentence-completion',
+    'fill-in-blank',
+    'sentence-completion',
+    'multiple-choice',
+    'fill-in-blank',
+    'sentence-completion',
+    'speed-matching',
+  ];
+
+  return selectedVerbs.slice(0, count).map((verb, index) => {
+    const type = plan[index] ?? 'fill-in-blank';
+    return createExercise(type, group, verb, hideExplanations) ?? createFillInBlankExercise(verb, group, hideExplanations);
+  });
+}
+
+export function generateMixedReviewExercises(
+  groups: VerbGroup[],
+  verbStatsByBase: Record<string, VerbPerformance> = {},
+  count: number = 12,
+  hideExplanations: boolean = false
+): VerbExercise[] {
+  const reviewPool = groups.flatMap((group) => group.verbs.map((verb) => ({ group, verb })));
+  const prioritized = reviewPool.sort(({ verb: a }, { verb: b }) => {
+    const aStats = verbStatsByBase[a.base];
+    const bStats = verbStatsByBase[b.base];
+    const aScore = (aStats?.round2Misses ?? 0) * 4 + (aStats?.misses ?? 0) * 2 - (aStats?.correct ?? 0);
+    const bScore = (bStats?.round2Misses ?? 0) * 4 + (bStats?.misses ?? 0) * 2 - (bStats?.correct ?? 0);
+    return bScore - aScore;
+  });
+
+  return prioritized.slice(0, count).map(({ group, verb }, index) => {
+    const type: ExerciseType = index % 3 === 0 ? 'sentence-completion' : index % 2 === 0 ? 'fill-in-blank' : 'multiple-choice';
+    return createExercise(type, group, verb, hideExplanations) ?? createFillInBlankExercise(verb, group, hideExplanations);
+  });
 }
 
 /**

@@ -2,15 +2,39 @@
 
 import { motion } from 'framer-motion';
 import { PlayCircle, ArrowLeft } from 'lucide-react';
-import type { VerbGroup } from '@/types/irregular-verbs';
+import type { VerbGroup, VerbRoundMode } from '@/types/irregular-verbs';
 
 interface IntroScreenProps {
   group: VerbGroup;
+  roundMode: VerbRoundMode;
   onStartChallenge: () => void;
   onBack?: () => void;
 }
 
-export function IntroScreen({ group, onStartChallenge, onBack }: IntroScreenProps) {
+const ROUND_COPY: Record<VerbRoundMode, { eyebrow: string; title: string; description: string; cta: string }> = {
+  round1: {
+    eyebrow: 'Round 1',
+    title: 'Discover the Pattern',
+    description: 'This first pass introduces the pattern family and gives you a broad look at the verbs in this group.',
+    cta: 'Start Round 1'
+  },
+  round2: {
+    eyebrow: 'Round 2',
+    title: 'Lock It In',
+    description: 'This round is shorter and more targeted. You will see productive practice focused on the verbs that need reinforcement.',
+    cta: 'Start Lock It In'
+  },
+  review: {
+    eyebrow: 'Review',
+    title: 'Mixed Retrieval',
+    description: 'This review round revisits passed patterns so the verb forms stay active and accurate.',
+    cta: 'Start Review'
+  }
+};
+
+export function IntroScreen({ group, roundMode, onStartChallenge, onBack }: IntroScreenProps) {
+  const copy = ROUND_COPY[roundMode];
+
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Top header */}
@@ -25,7 +49,7 @@ export function IntroScreen({ group, onStartChallenge, onBack }: IntroScreenProp
           </button>
         )}
         <div className="min-w-0">
-          <p className="text-xs uppercase tracking-wide font-semibold text-text-muted">Pattern Preview</p>
+          <p className="text-xs uppercase tracking-wide font-semibold text-text-muted">{copy.eyebrow}</p>
           <h1 className="font-display text-xl sm:text-2xl font-semibold text-text truncate">{group.title}</h1>
         </div>
       </div>
@@ -35,6 +59,8 @@ export function IntroScreen({ group, onStartChallenge, onBack }: IntroScreenProp
         animate={{ opacity: 1, y: 0 }}
         className="rounded-2xl border border-border/60 bg-[var(--color-surface-elevated)] p-4 sm:border-2 sm:p-7"
       >
+        <p className="text-sm sm:text-lg text-text-muted mb-3">{copy.title}</p>
+        <p className="text-sm sm:text-base text-text-muted mb-4">{copy.description}</p>
         <p className="text-sm sm:text-lg text-text-muted mb-4">{group.pattern}</p>
 
         <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-accent/20 border border-accent/40">
@@ -73,7 +99,7 @@ export function IntroScreen({ group, onStartChallenge, onBack }: IntroScreenProp
       >
         <span className="inline-flex items-center gap-2">
           <PlayCircle size={20} />
-          Start Challenge
+          {copy.cta}
         </span>
       </motion.button>
     </div>

@@ -9,6 +9,9 @@ export interface IrregularVerb {
   pastParticiple: string;
 }
 
+export type VerbRoundMode = 'round1' | 'round2' | 'review';
+export type VerbGroupStage = 'not-started' | 'passed' | 'mastered';
+
 export interface VerbGroup {
   id: string; // e.g., "group-1", "group-2a"
   title: string; // e.g., "No change (cost-cost-cost)"
@@ -39,6 +42,25 @@ export interface VerbExercise {
   showPattern: boolean; // Whether to show pattern hint
 }
 
+export interface VerbPerformance {
+  seen: number;
+  correct: number;
+  misses: number;
+  round1Misses: number;
+  round2Misses: number;
+  lastSeenAt?: string;
+  lastMissedAt?: string;
+  needsReview?: boolean;
+}
+
+export interface VerbRoundProgress {
+  attempts: number;
+  bestAccuracy: number;
+  lastAccuracy: number;
+  lastAttemptDate?: string;
+  passed: boolean;
+}
+
 export interface GroupProgress {
   completed: boolean;
   accuracy: number; // 0-100
@@ -50,6 +72,11 @@ export interface GroupProgress {
   locked?: boolean; // true if prerequisites not met
   streak?: number; // Correct in a row
   unlocked?: boolean; // Flag for newly unlocked
+  stage?: VerbGroupStage;
+  round1?: VerbRoundProgress;
+  round2?: VerbRoundProgress;
+  verbStats?: Record<string, VerbPerformance>;
+  reviewDue?: boolean;
 }
 
 export interface UserVerbPreferences {
@@ -87,6 +114,7 @@ export interface VerbGameState {
 
 export interface VerbGameRoundResults {
   groupId: string;
+  roundMode: VerbRoundMode;
   exercisesCompleted: number;
   correctAnswers: number;
   accuracy: number; // 0-100
@@ -95,4 +123,9 @@ export interface VerbGameRoundResults {
   pointsAwarded: number;
   unlocked?: boolean; // true if group unlocked (prerequisite for next)
   newAchievements?: string[]; // Achievement IDs earned
+  updatedCategoryData?: Record<string, GroupProgress>;
+  missedVerbBases?: string[];
+  nextStep?: 'round2' | 'selection' | 'next-group' | 'finish';
+  masteryAchieved?: boolean;
+  reviewDue?: boolean;
 }

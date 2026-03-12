@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Lock, CheckCircle, ChevronRight, RotateCcw } from 'lucide-react';
 import type { VerbGroup, GroupProgress } from '@/types/irregular-verbs';
+import { getGroupStage } from '@/lib/irregular-verbs-progress';
 
 interface GroupCardProps {
   group: VerbGroup;
@@ -91,6 +92,12 @@ export function GroupCard({
 }: GroupCardProps) {
   const accuracy = progress?.accuracy ?? 0;
   const colors = PATTERN_COLORS[group.id] || PATTERN_COLORS['group-1'];
+  const stage = getGroupStage(progress);
+  const isMastered = stage === 'mastered';
+  const isPassed = stage === 'passed';
+  const ctaLabel = isMastered ? 'Review' : isPassed ? 'Lock It In' : 'Start Round 1';
+  const statusLabel = isMastered ? 'Mastered' : isPassed ? 'Passed' : unlocked ? 'Unlocked' : 'Locked';
+  const statusTone = isMastered ? 'bg-secondary text-white' : isPassed ? 'bg-accent/90 text-primary-dark' : 'bg-white/80 text-text-muted';
 
   return (
     <motion.button
@@ -142,14 +149,29 @@ export function GroupCard({
           <div className={`w-1.5 h-12 rounded-full ${colors.accent} flex-shrink-0`} />
 
           <div className="flex-1 min-w-0">
-            <h3 className="font-display text-lg text-text font-semibold leading-tight mb-1">
-              {group.title}
-            </h3>
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="font-display text-lg text-text font-semibold leading-tight">
+                {group.title}
+              </h3>
+              <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold uppercase tracking-wide ${statusTone}`}>
+                {statusLabel}
+              </span>
+            </div>
             <p className="text-sm text-text-muted line-clamp-2 leading-snug">
               {group.pattern}
             </p>
           </div>
         </div>
+
+        {unlocked && group.id !== 'all-patterns-quiz' && (
+          <div className="text-xs text-text-muted">
+            {isMastered
+              ? 'Targeted review available any time.'
+              : isPassed
+                ? 'Round 2 is ready with focused retrieval on missed verbs.'
+                : 'Round 1 introduces the pattern before targeted practice.'}
+          </div>
+        )}
 
         {/* Pattern Example */}
         <div className="px-3 py-2 bg-white/60 dark:bg-white/10 rounded-lg border border-white/80 dark:border-white/10">
@@ -212,11 +234,11 @@ export function GroupCard({
               {completed ? (
                 <>
                   <RotateCcw size={14} />
-                  <span>Review</span>
+                  <span>{ctaLabel}</span>
                 </>
               ) : (
                 <>
-                  <span>Start</span>
+                  <span>{ctaLabel}</span>
                   <ChevronRight size={16} />
                 </>
               )}

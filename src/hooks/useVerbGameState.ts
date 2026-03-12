@@ -1,53 +1,65 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import type { VerbGroup, VerbExercise, VerbGameRoundResults, GroupProgress } from '@/types/irregular-verbs';
-import { generateExercises } from '@/data/irregular-verbs-exercises';
-import { isGroupUnlocked, processRoundResults, initializeProgressData } from '@/lib/irregular-verbs-progress';
+import type {
+  VerbGroup,
+  VerbExercise,
+  VerbGameRoundResults,
+  GroupProgress,
+  VerbRoundMode,
+} from '@/types/irregular-verbs';
+import {
+  generateExercises,
+  generateMixedReviewExercises,
+  generateTargetedRound2Exercises,
+} from '@/data/irregular-verbs-exercises';
+import {
+  ALL_PATTERNS_GROUP,
+  ALL_PATTERNS_GROUP_ID,
+  calculateOverallProgress,
+  getGroupStage,
+  getPassedGroups,
+  isGroupUnlocked,
+  normalizeProgressData,
+  processRoundResults,
+  initializeProgressData,
+} from '@/lib/irregular-verbs-progress';
 import { VERB_GROUPS } from '@/data/irregular-verbs-groups';
 
 export type GamePhase = 'selection' | 'intro' | 'exercise' | 'results';
 
+interface ExerciseOutcome {
+  exercise: VerbExercise;
+  correct: boolean;
+}
+
 interface VerbGameState {
   phase: GamePhase;
   selectedGroup: VerbGroup | null;
+  selectedRoundMode: VerbRoundMode;
   exercises: VerbExercise[];
   currentExerciseIndex: number;
   roundResults: VerbGameRoundResults | null;
   categoryData: Record<string, GroupProgress>;
   loading: boolean;
   error: string | null;
-  answers: boolean[]; // Track correct/incorrect for each exercise
+  exerciseResults: ExerciseOutcome[];
 }
 
-export const ALL_PATTERNS_GROUP_ID = 'all-patterns-quiz';
-export const ALL_PATTERNS_GROUP: VerbGroup = {
-  id: ALL_PATTERNS_GROUP_ID,
-  title: 'All Patterns Quiz',
-  pattern: 'Mixed patterns from everything you mastered',
-  patternExample: 'Random V1 → V2 → V3',
-  colorClass: 'from-indigo-100 to-blue-100 border-indigo-200',
-  difficulty: 3,
-  prerequisite: null,
-  verbs: Array.from(
-    new Map(
-      VERB_GROUPS.flatMap((g) => g.verbs).map((v) => [v.base, v])
-    ).values()
-  )
-};
+export { ALL_PATTERNS_GROUP_ID, ALL_PATTERNS_GROUP };
 
 export function hasCompletedAllRegularVerbGroups(
   categoryData: Record<string, GroupProgress>
 ): boolean {
-  return VERB_GROUPS.every((group) => categoryData[group.id]?.completed);
+  return VERB_GROUPS.every((group) => getGroupStage(categoryData[group.id]) !== 'not-started');
 }
 
-function calculateBestStreak(answers: boolean[]): number {
+function calculateBestStreak(results: ExerciseOutcome[]): number {
   let best = 0;
   let current = 0;
 
-  for (const answer of answers) {
-    if (answer) {
+  for (const result of results) {
+    if (result.correct) {
       current += 1;
       best = Math.max(best, current);
     } else {
@@ -58,46 +70,99 @@ function calculateBestStreak(answers: boolean[]): number {
   return best;
 }
 
+function getDefaultRoundMode(group: VerbGroup, categoryData: Record<string, GroupProgress>): VerbRoundMode {
+  if (group.id === ALL_PATTERNS_GROUP_ID) return 'review';
+
+  const stage = getGroupStage(categoryData[group.id]);
+  if (stage === 'not-started') return 'round1';
+  if (stage === 'passed') return 'round2';
+  return 'review';
+}
+
+function getAllPatternsVerbStats(categoryData: Record<string, GroupProgress>) {
+  const merged: NonNullable<GroupProgress['verbStats']> = {};
+
+  for (const group of getPassedGroups(categoryData)) {
+    const stats = categoryData[group.id]?.verbStats ?? {};
+    for (const [base, stat] of Object.entries(stats)) {
+      merged[base] = {
+        seen: (merged[base]?.seen ?? 0) + (stat.seen ?? 0),
+        correct: (merged[base]?.correct ?? 0) + (stat.correct ?? 0),
+        misses: (merged[base]?.misses ?? 0) + (stat.misses ?? 0),
+        round1Misses: (merged[base]?.round1Misses ?? 0) + (stat.round1Misses ?? 0),
+        round2Misses: (merged[base]?.round2Misses ?? 0) + (stat.round2Misses ?? 0),
+        lastSeenAt: stat.lastSeenAt,
+        lastMissedAt: stat.lastMissedAt,
+        needsReview: merged[base]?.needsReview || stat.needsReview,
+      };
+    }
+  }
+
+  return merged;
+}
+
+function buildExercisesForMode(
+  group: VerbGroup,
+  roundMode: VerbRoundMode,
+  categoryData: Record<string, GroupProgress>,
+  hideExplanations: boolean
+): VerbExercise[] {
+  if (group.id === ALL_PATTERNS_GROUP_ID) {
+    const passedGroups = getPassedGroups(categoryData);
+    const mixedGroups = passedGroups.length > 0 ? passedGroups : VERB_GROUPS.slice(0, 1);
+    return generateMixedReviewExercises(mixedGroups, getAllPatternsVerbStats(categoryData), 14, hideExplanations);
+  }
+
+  if (roundMode === 'round1') {
+    return generateExercises(group, 10, hideExplanations, true);
+  }
+
+  const progress = categoryData[group.id];
+  const count = roundMode === 'round2' ? 8 : 10;
+  return generateTargetedRound2Exercises(group, progress?.verbStats, count, hideExplanations);
+}
+
 export function useVerbGameState(activityId: string, hideExplanations: boolean) {
   const [state, setState] = useState<VerbGameState>({
     phase: 'selection',
     selectedGroup: null,
+    selectedRoundMode: 'round1',
     exercises: [],
     currentExerciseIndex: 0,
     roundResults: null,
     categoryData: {},
     loading: true,
     error: null,
-    answers: []
+    exerciseResults: [],
   });
 
-  // Initialize progress data on mount
   useEffect(() => {
     const initializeGame = async () => {
       try {
-        setState(prev => ({ ...prev, loading: true, error: null }));
+        setState((prev) => ({ ...prev, loading: true, error: null }));
 
-        // Fetch existing progress from API
         const response = await fetch(`/api/activity/progress?activityId=${activityId}`);
         if (!response.ok) throw new Error('Failed to load progress');
 
         const data = await response.json();
         const categoryData = data.categoryData
-          ? JSON.parse(typeof data.categoryData === 'string' ? data.categoryData : JSON.stringify(data.categoryData))
+          ? normalizeProgressData(
+              JSON.parse(typeof data.categoryData === 'string' ? data.categoryData : JSON.stringify(data.categoryData))
+            )
           : initializeProgressData();
 
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           categoryData,
-          loading: false
+          loading: false,
         }));
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Failed to initialize game';
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           error: errorMessage,
           loading: false,
-          categoryData: initializeProgressData()
+          categoryData: initializeProgressData(),
         }));
       }
     };
@@ -105,228 +170,226 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
     initializeGame();
   }, [activityId]);
 
-  // Handle group selection (go to intro screen first)
   const selectGroup = useCallback((group: VerbGroup) => {
-    const unlocked = group.id === ALL_PATTERNS_GROUP_ID
-      ? true
-      : isGroupUnlocked(group.id, state.categoryData);
-
+    const unlocked = isGroupUnlocked(group.id, state.categoryData);
     if (!unlocked) {
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
-        error: 'Complete the prerequisite group first'
+        error: 'Complete the prerequisite group first',
       }));
       return;
     }
 
-    setState(prev => ({
+    const roundMode = getDefaultRoundMode(group, state.categoryData);
+
+    setState((prev) => ({
       ...prev,
       selectedGroup: group,
+      selectedRoundMode: roundMode,
       exercises: [],
       currentExerciseIndex: 0,
       roundResults: null,
-      answers: [],
+      exerciseResults: [],
       phase: 'intro',
-      error: null
+      error: null,
     }));
   }, [state.categoryData]);
 
-  // Start challenge after intro
   const startGroupChallenge = useCallback(() => {
     if (!state.selectedGroup) return;
 
-    const exercises = generateExercises(
+    const exercises = buildExercisesForMode(
       state.selectedGroup,
-      10,
-      hideExplanations,
-      state.selectedGroup.id !== ALL_PATTERNS_GROUP_ID
+      state.selectedRoundMode,
+      state.categoryData,
+      hideExplanations
     );
 
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       exercises,
       currentExerciseIndex: 0,
       roundResults: null,
-      answers: [],
+      exerciseResults: [],
       phase: 'exercise',
-      error: null
+      error: null,
     }));
-  }, [state.selectedGroup, hideExplanations]);
+  }, [state.selectedGroup, state.selectedRoundMode, state.categoryData, hideExplanations]);
 
-  // Handle exercise answer
-  const submitAnswer = useCallback((correct: boolean, _exercise: VerbExercise) => {
-    setState(prev => {
-      const newAnswers = [...prev.answers, correct];
+  const submitAnswer = useCallback((correct: boolean, exercise: VerbExercise) => {
+    setState((prev) => {
+      const newResults = [...prev.exerciseResults, { correct, exercise }];
       const newIndex = prev.currentExerciseIndex + 1;
 
-      // If round complete
       if (newIndex >= prev.exercises.length && prev.selectedGroup) {
-        const correctCount = newAnswers.filter(a => a).length;
         const results = processRoundResults(
           prev.selectedGroup.id,
-          prev.exercises.length,
-          correctCount,
+          prev.selectedRoundMode,
+          prev.exercises,
+          newResults,
           prev.categoryData
         );
-        const bestStreak = calculateBestStreak(newAnswers);
+        const bestStreak = calculateBestStreak(newResults);
 
         return {
           ...prev,
           currentExerciseIndex: newIndex,
-          answers: newAnswers,
+          exerciseResults: newResults,
           roundResults: { ...results, streak: bestStreak },
-          phase: 'results'
+          phase: 'results',
         };
       }
 
       return {
         ...prev,
         currentExerciseIndex: newIndex,
-        answers: newAnswers
+        exerciseResults: newResults,
       };
     });
   }, []);
 
-  // Update progress after round completion
   const saveProgress = useCallback(async (results: VerbGameRoundResults) => {
-    if (!state.selectedGroup) return;
+    if (!state.selectedGroup || !results.updatedCategoryData) return;
 
     try {
-      // Prepare categoryData update
-      const updatedCategoryData = { ...state.categoryData };
-      const existingProgress = updatedCategoryData[state.selectedGroup.id];
-      const wasCompleted = existingProgress?.completed ?? false;
-      const bestAccuracy = Math.max(existingProgress?.accuracy ?? 0, results.accuracy);
+      const updatedCategoryData = normalizeProgressData(results.updatedCategoryData);
+      const overallProgress = calculateOverallProgress(updatedCategoryData);
 
-      updatedCategoryData[state.selectedGroup.id] = {
-        completed: wasCompleted || results.completed,
-        accuracy: bestAccuracy,
-        attempts: (existingProgress?.attempts ?? 0) + 1,
-        exercisesCompleted: (existingProgress?.exercisesCompleted ?? 0) + results.exercisesCompleted,
-        correctAnswers: results.correctAnswers,
-        lastAttemptDate: new Date().toISOString(),
-        streak: results.streak
-      };
-
-      // Save to API
       const response = await fetch('/api/activity/progress', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           activityId,
-          category: state.selectedGroup.id,
-          accuracy: results.accuracy,
-          progress: results.completed ? 100 : Math.round((results.correctAnswers / results.exercisesCompleted) * 100)
+          progress: overallProgress,
+          status: overallProgress >= 100 ? 'completed' : 'in_progress',
+          categoryData: updatedCategoryData,
         })
       });
 
       if (!response.ok) throw new Error('Failed to save progress');
 
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
-        categoryData: updatedCategoryData
+        categoryData: updatedCategoryData,
       }));
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to save progress';
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
-        error: errorMessage
+        error: errorMessage,
       }));
     }
-  }, [state.selectedGroup, state.categoryData, activityId]);
+  }, [state.selectedGroup, activityId]);
 
-  // Retry current group
   const retryGroup = useCallback(() => {
     if (!state.selectedGroup) return;
 
-    const exercises = generateExercises(
+    const exercises = buildExercisesForMode(
       state.selectedGroup,
-      10,
-      hideExplanations,
-      state.selectedGroup.id !== ALL_PATTERNS_GROUP_ID
+      state.selectedRoundMode,
+      state.categoryData,
+      hideExplanations
     );
 
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       exercises,
       currentExerciseIndex: 0,
       roundResults: null,
-      answers: [],
+      exerciseResults: [],
       phase: 'exercise',
-      error: null
+      error: null,
     }));
-  }, [state.selectedGroup, hideExplanations]);
+  }, [state.selectedGroup, state.selectedRoundMode, state.categoryData, hideExplanations]);
 
-  // Return from challenge/results to the selected group's intro screen
   const returnToGroupIntro = useCallback(() => {
     if (!state.selectedGroup) return;
 
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       phase: 'intro',
       exercises: [],
       currentExerciseIndex: 0,
       roundResults: null,
-      answers: [],
-      error: null
+      exerciseResults: [],
+      error: null,
     }));
   }, [state.selectedGroup]);
 
-  // Continue to next group
   const continueToNext = useCallback(() => {
     if (!state.selectedGroup) return;
+
     const selectedGroup = state.selectedGroup;
+    const nextAction = state.roundResults?.nextStep;
 
     if (selectedGroup.id === ALL_PATTERNS_GROUP_ID) {
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         phase: 'selection',
         selectedGroup: null,
         exercises: [],
         currentExerciseIndex: 0,
         roundResults: null,
-        answers: []
+        exerciseResults: [],
       }));
       return;
     }
 
-    // Find next group
-    const currentIndex = VERB_GROUPS.findIndex(g => g.id === selectedGroup.id);
-    const nextGroup = VERB_GROUPS[currentIndex + 1];
-
-    if (!nextGroup) {
-      const allMastered = hasCompletedAllRegularVerbGroups(state.categoryData);
-
-      if (allMastered) {
-        selectGroup(ALL_PATTERNS_GROUP);
-      } else {
-        setState(prev => ({
-          ...prev,
-          phase: 'selection',
-          selectedGroup: null,
-          exercises: [],
-          currentExerciseIndex: 0,
-          roundResults: null,
-          answers: []
-        }));
-      }
+    if (nextAction === 'round2') {
+      setState((prev) => ({
+        ...prev,
+        selectedRoundMode: 'round2',
+        phase: 'intro',
+        exercises: [],
+        currentExerciseIndex: 0,
+        roundResults: null,
+        exerciseResults: [],
+        error: null,
+      }));
       return;
     }
 
-    selectGroup(nextGroup);
-  }, [state.selectedGroup, state.categoryData, selectGroup]);
+    const currentIndex = VERB_GROUPS.findIndex((g) => g.id === selectedGroup.id);
+    const nextGroup = VERB_GROUPS[currentIndex + 1];
 
-  // Quit to selection screen
-  const quitGame = useCallback(() => {
-    setState(prev => ({
+    if (nextGroup && isGroupUnlocked(nextGroup.id, state.categoryData)) {
+      const nextRoundMode = getDefaultRoundMode(nextGroup, state.categoryData);
+      setState((prev) => ({
+        ...prev,
+        selectedGroup: nextGroup,
+        selectedRoundMode: nextRoundMode,
+        phase: 'intro',
+        exercises: [],
+        currentExerciseIndex: 0,
+        roundResults: null,
+        exerciseResults: [],
+        error: null,
+      }));
+      return;
+    }
+
+    setState((prev) => ({
       ...prev,
       phase: 'selection',
       selectedGroup: null,
       exercises: [],
       currentExerciseIndex: 0,
       roundResults: null,
-      answers: [],
-      error: null
+      exerciseResults: [],
+      error: null,
+    }));
+  }, [state.selectedGroup, state.roundResults, state.categoryData]);
+
+  const quitGame = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      phase: 'selection',
+      selectedGroup: null,
+      exercises: [],
+      currentExerciseIndex: 0,
+      roundResults: null,
+      exerciseResults: [],
+      error: null,
     }));
   }, []);
 

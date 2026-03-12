@@ -4,10 +4,11 @@ import { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Target, Zap, Unlock, RotateCcw, ChevronRight, Sparkles, BookOpen } from 'lucide-react';
 import { UNLOCK_THRESHOLD } from '@/lib/irregular-verbs-progress';
-import type { VerbGroup, VerbGameRoundResults } from '@/types/irregular-verbs';
+import type { VerbGroup, VerbGameRoundResults, VerbRoundMode } from '@/types/irregular-verbs';
 
 interface ResultsScreenProps {
   group: VerbGroup;
+  roundMode: VerbRoundMode;
   results: VerbGameRoundResults;
   nextGroup: VerbGroup | null;
   onRetry: () => void;
@@ -18,6 +19,7 @@ const CONFETTI_COLORS = ['#b05740', '#6a8d73', '#e9c46a', '#4a8ca0', '#d64045'] 
 
 export function ResultsScreen({
   group,
+  roundMode,
   results,
   nextGroup,
   onRetry,
@@ -28,7 +30,8 @@ export function ResultsScreen({
   const unlocked = !!results.unlocked && !!nextGroup;
   const isPassing = results.accuracy >= UNLOCK_THRESHOLD;
   const isPerfect = results.accuracy === 100;
-  const canContinue = isPassing;
+  const canContinue = roundMode === 'round1' ? isPassing : true;
+  const isReview = roundMode === 'review';
 
   useEffect(() => {
     if (isPassing) {
@@ -134,6 +137,15 @@ export function ResultsScreen({
         >
           {isFinalQuiz ? 'You finished the final mixed challenge.' : group.title}
         </motion.p>
+        {!isFinalQuiz && (
+          <p className="text-sm text-text-muted mt-2">
+            {roundMode === 'round1'
+              ? 'Round 1: Discover the Pattern'
+              : roundMode === 'round2'
+                ? 'Round 2: Lock It In'
+                : 'Review'}
+          </p>
+        )}
       </motion.div>
 
       {/* Stats Grid */}
@@ -283,12 +295,19 @@ export function ResultsScreen({
               ? 'text-emerald-800 dark:text-emerald-200'
               : 'text-text'
         }`}>
-          {isFinalQuiz && isPassing && "Congrats! You finished the all patterns quiz. Keep practicing to stay sharp."}
-          {isFinalQuiz && !isPassing && "Nice effort. Keep practicing and try the final mixed quiz again when you're ready."}
-          {!isFinalQuiz && isPerfect && "Flawless performance! You've completely mastered this pattern."}
-          {!isFinalQuiz && !isPerfect && isPassing && "Great work! You've demonstrated solid understanding of this pattern."}
-          {!isFinalQuiz && !isPassing && "Keep practicing! Focus on the pattern hints to improve your accuracy."}
+          {isFinalQuiz && "You expanded your mixed review across the patterns you have already passed."}
+          {!isFinalQuiz && roundMode === 'round1' && isPassing && "You passed this pattern and unlocked the next group. Now do Lock It In to strengthen the verbs you missed."}
+          {!isFinalQuiz && roundMode === 'round1' && !isPassing && "Round 1 is still introducing the pattern. Try again and aim for 80% to unlock the next group."}
+          {!isFinalQuiz && roundMode === 'round2' && results.masteryAchieved && "Strong work. This group is now marked mastered."}
+          {!isFinalQuiz && roundMode === 'round2' && !results.masteryAchieved && "You reinforced the pattern, but this group still needs review before it feels automatic."}
+          {!isFinalQuiz && roundMode === 'review' && "You reviewed this pattern set to keep the verb forms active."}
         </p>
+        {!isFinalQuiz && results.missedVerbBases && results.missedVerbBases.length > 0 && (
+          <p className="text-sm text-text-muted mt-3">
+            Review again: {results.missedVerbBases.slice(0, 5).join(', ')}
+            {results.missedVerbBases.length > 5 ? '...' : ''}
+          </p>
+        )}
       </motion.div>
 
       {/* Action Buttons */}
@@ -321,7 +340,13 @@ export function ResultsScreen({
         >
           <span>
             {canContinue
-              ? (isFinalQuiz ? 'End Your Journey' : 'Continue Journey')
+              ? isFinalQuiz
+                ? 'Back to Chapters'
+                : roundMode === 'round1'
+                  ? 'Start Lock It In'
+                  : isReview
+                    ? 'Back to Chapters'
+                    : 'Continue Journey'
               : `Need ${UNLOCK_THRESHOLD}% (${results.accuracy}%)`}
           </span>
           {canContinue && <ChevronRight size={18} />}

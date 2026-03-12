@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import { VERB_GROUPS } from '@/data/irregular-verbs-groups';
 import {
   ALL_PATTERNS_GROUP,
-  hasCompletedAllRegularVerbGroups,
   useVerbGameState
 } from '@/hooks/useVerbGameState';
 import { useVerbPreferences } from '@/hooks/useVerbPreferences';
@@ -203,6 +202,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
               >
                 <IntroScreen
                   group={state.selectedGroup}
+                  roundMode={state.selectedRoundMode}
                   onStartChallenge={startGroupChallenge}
                   onBack={quitGame}
                 />
@@ -230,10 +230,9 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
                       return nextRegularGroup;
                     }
 
-                    return hasCompletedAllRegularVerbGroups(state.categoryData)
-                      ? ALL_PATTERNS_GROUP
-                      : null;
+                    return ALL_PATTERNS_GROUP;
                   })()}
+                  roundMode={state.selectedRoundMode}
                   onRetry={retryGroup}
                   onContinue={continueToNext}
                 />

@@ -346,6 +346,7 @@ function PinnedDailyHabitRow({
     const tone = getLearnerCategoryTone("vocabulary");
     const isDoneToday = habit.status === "done-today";
     const hasActionableCards = habit.dueCount > 0 || habit.newCount > 0;
+    const visibleNewCount = Math.min(habit.newCount, 6);
     const useCompactCompletedStyle = compact && isDoneToday && !embedded;
     const useCondensedDoneLayout = compact || isDoneToday;
     const ctaLabel = isDoneToday
@@ -378,19 +379,24 @@ function PinnedDailyHabitRow({
                     </div>
 
                     <div className="min-w-0 flex-1">
-                        <div className="text-[13px] sm:text-sm font-semibold leading-tight text-text">
+                        <div className="text-[9px] font-semibold uppercase tracking-[0.16em] text-text-muted">
+                            Daily Habit
+                        </div>
+                        <div className="mt-1 text-[13px] sm:text-sm font-semibold leading-tight text-text">
                             {habit.title}
                         </div>
                         <div className="mt-1.5 flex flex-wrap items-center gap-2">
-                            <span
-                                className="inline-flex px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide"
-                                style={{ backgroundColor: tone.chipBg, color: tone.chipText }}
-                            >
-                                {isDoneToday ? "Done today" : "Daily habit"}
-                            </span>
+                            {isDoneToday ? (
+                                <span
+                                    className="inline-flex px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide"
+                                    style={{ backgroundColor: tone.chipBg, color: tone.chipText }}
+                                >
+                                    Done today
+                                </span>
+                            ) : null}
                             {!isDoneToday && habit.newCount > 0 ? (
                                 <span className="inline-flex rounded-full border px-2 py-0.5 text-[9px] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
-                                    {habit.newCount} new
+                                    {visibleNewCount} new
                                 </span>
                             ) : null}
                             {!isDoneToday && habit.dueCount > 0 ? (
@@ -505,18 +511,6 @@ function PinnedDailyHabitRow({
 
                         <div className="min-w-0">
                             <div className="flex flex-wrap items-center gap-2">
-                                {!useCondensedDoneLayout ? (
-                                    <span
-                                        className="inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em]"
-                                        style={{
-                                            backgroundColor: tone.chipBg,
-                                            borderColor: tone.border,
-                                            color: tone.chipText,
-                                        }}
-                                    >
-                                        Daily Habit
-                                    </span>
-                                ) : null}
                                 {!useCondensedDoneLayout && isDoneToday ? (
                                     <span
                                         className="inline-flex rounded-full border px-2.5 py-0.5 text-[10px] font-semibold"
@@ -531,6 +525,9 @@ function PinnedDailyHabitRow({
                                 ) : null}
                             </div>
 
+                            <div className="text-[9px] font-semibold uppercase tracking-[0.16em] text-text-muted">
+                                Daily Habit
+                            </div>
                             <h3 className={`${useCondensedDoneLayout ? "mt-1 text-[14px] sm:text-[15px]" : "mt-2 text-[15px] sm:text-base"} font-display font-bold leading-tight text-text`}>
                                 {habit.title}
                             </h3>
@@ -562,7 +559,7 @@ function PinnedDailyHabitRow({
                                 ) : null}
                                 {!isDoneToday && habit.newCount > 0 ? (
                                     <span className="inline-flex rounded-full border px-2.5 py-1 text-[11px] font-semibold" style={{ borderColor: tone.border, color: tone.chipText }}>
-                                        {habit.newCount} new
+                                        {visibleNewCount} new
                                     </span>
                                 ) : null}
                             </div>
@@ -1187,6 +1184,10 @@ function ChecklistAssignments({
                 </div>
 
                 <div className="lg:hidden px-3 py-3 space-y-2.5" style={{ backgroundColor: 'var(--surface-subtle)' }}>
+                        {pinnedHabitNeedsAttention && pinnedHabit ? (
+                            <PinnedDailyHabitRow habit={pinnedHabit} compact />
+                        ) : null}
+
                         {showResumeCard ? renderResumeCard(resumeRow!) : null}
 
                         <div className="flex items-center justify-between gap-3 px-0.5 pt-1">
@@ -1201,10 +1202,6 @@ function ChecklistAssignments({
                                 </Link>
                             ) : null}
                         </div>
-
-                        {pinnedHabitNeedsAttention && pinnedHabit ? (
-                            <PinnedDailyHabitRow habit={pinnedHabit} compact />
-                        ) : null}
 
                         {filteredTaskRows.length > 0 ? (
                             <div className="space-y-2">

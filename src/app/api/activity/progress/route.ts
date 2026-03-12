@@ -346,7 +346,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { activityId, progress = 100, status: statusInput, accuracy, category, assignmentId, guideState, vocabType } = body;
+    const { activityId, progress = 100, status: statusInput, accuracy, category, assignmentId, guideState, vocabType, categoryData } = body;
 
     // SECURITY: Input validation
     if (!activityId || typeof activityId !== "string") {
@@ -456,7 +456,9 @@ export async function POST(request: Request) {
         };
     }
 
-    if (category || "_guide" in currentData || vocabType) {
+    if (categoryData !== undefined) {
+        updatedCategoryData = typeof categoryData === "string" ? categoryData : JSON.stringify(categoryData);
+    } else if (category || "_guide" in currentData || vocabType) {
         updatedCategoryData = JSON.stringify(currentData);
     }
 

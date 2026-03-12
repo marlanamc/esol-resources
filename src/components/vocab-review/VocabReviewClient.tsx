@@ -612,10 +612,11 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                       void loadSession(selectedSource);
                     });
                   }}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border px-5 py-3 text-sm font-semibold text-[color:var(--text-on-accent)] transition-[transform] focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl border px-5 py-3 text-sm font-semibold transition-[transform] focus-visible:ring-2 focus-visible:ring-[color:var(--tone-vocabulary-accent)]/50 focus-visible:ring-offset-2 active:scale-[0.98]"
                   style={{
                     borderColor: tone.accent,
                     background: `linear-gradient(135deg, ${tone.accent} 0%, ${tone.accentStrong} 100%)`,
+                    color: '#183247',
                   }}
                 >
                   <RotateCcw className="h-4 w-4" />

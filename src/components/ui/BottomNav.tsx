@@ -106,11 +106,17 @@ export const BottomNav = React.memo(function BottomNav() {
   const pathname = usePathname();
   const router = useRouter();
   const { resolvedTheme } = useTheme();
+  const [hasMounted, setHasMounted] = useState(false);
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
   const navTapAtRef = useRef<number | null>(null);
   const navFromPathRef = useRef<TrackedTabPath | null>(null);
   const shouldTrackRef = useRef(false);
   const previousPathnameRef = useRef<string | null>(null);
+  const renderTheme = hasMounted ? resolvedTheme : 'light';
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   // Keyboard visibility detection (mobile only)
   useEffect(() => {
@@ -309,11 +315,11 @@ export const BottomNav = React.memo(function BottomNav() {
                   className={`relative z-10 flex flex-col items-center justify-center gap-0.5 transition-[color,opacity] duration-150 ${
                     isActivitiesTab
                       ? isActive
-                        ? resolvedTheme === 'dark' ? 'text-[#8bc4a8]' : 'text-[#9f523d]'
-                        : resolvedTheme === 'dark' ? 'text-[#6da88a]' : 'text-[#b86a56]'
+                        ? renderTheme === 'dark' ? 'text-[#8bc4a8]' : 'text-[#9f523d]'
+                        : renderTheme === 'dark' ? 'text-[#6da88a]' : 'text-[#b86a56]'
                       : isActive
-                        ? resolvedTheme === 'dark' ? 'text-[#7fb3d5]' : 'text-[#9f523d]'
-                        : resolvedTheme === 'dark' ? 'text-[#8a9bb0]' : 'text-[#5a6a7a]'
+                        ? renderTheme === 'dark' ? 'text-[#7fb3d5]' : 'text-[#9f523d]'
+                        : renderTheme === 'dark' ? 'text-[#8a9bb0]' : 'text-[#5a6a7a]'
                   }`}
                 >
                   <div
@@ -325,14 +331,14 @@ export const BottomNav = React.memo(function BottomNav() {
                       <div
                         className="absolute inset-0 rounded-2xl"
                         style={{
-                          background: resolvedTheme === 'dark'
+                          background: renderTheme === 'dark'
                             ? isActive
                               ? 'linear-gradient(135deg, rgba(139, 196, 168, 0.2) 0%, rgba(109, 168, 138, 0.12) 48%, rgba(89, 140, 110, 0.16) 100%)'
                               : 'linear-gradient(135deg, rgba(139, 196, 168, 0.1) 0%, rgba(109, 168, 138, 0.05) 48%, rgba(89, 140, 110, 0.08) 100%)'
                             : isActive
                             ? 'linear-gradient(135deg, rgba(152, 185, 162, 0.28) 0%, rgba(122, 157, 132, 0.16) 48%, rgba(92, 126, 103, 0.22) 100%)'
                             : 'linear-gradient(135deg, rgba(152, 185, 162, 0.16) 0%, rgba(122, 157, 132, 0.08) 48%, rgba(92, 126, 103, 0.14) 100%)',
-                          boxShadow: resolvedTheme === 'dark'
+                          boxShadow: renderTheme === 'dark'
                             ? isActive
                               ? '0 0 16px rgba(139, 196, 168, 0.15), 0 6px 14px rgba(89, 140, 110, 0.08), inset 0 1px 0 rgba(255,255,255,0.1)'
                               : '0 0 10px rgba(139, 196, 168, 0.08), 0 3px 8px rgba(89, 140, 110, 0.04), inset 0 1px 0 rgba(255,255,255,0.05)'
@@ -349,10 +355,10 @@ export const BottomNav = React.memo(function BottomNav() {
                       }`}
                       style={isActivitiesTab
                         ? {
-                            color: resolvedTheme === 'dark'
+                            color: renderTheme === 'dark'
                               ? isActive ? '#8bc4a8' : '#6da88a'
                               : isActive ? '#5c7e67' : '#4a6e53',
-                            filter: resolvedTheme === 'dark'
+                            filter: renderTheme === 'dark'
                               ? isActive
                                 ? 'drop-shadow(0 2px 6px rgba(139,196,168,0.15))'
                                 : 'drop-shadow(0 1px 3px rgba(139,196,168,0.1))'
@@ -385,14 +391,14 @@ export const BottomNav = React.memo(function BottomNav() {
                     isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
                   }`}
                   style={{
-                    background: resolvedTheme === 'dark'
+                    background: renderTheme === 'dark'
                       ? isActivitiesTab
                         ? 'linear-gradient(90deg, #f5d98a 0%, #e8a090 50%, #d08878 100%)'
                         : 'linear-gradient(90deg, #5a92b8 0%, #7fb3d5 50%, #a8d5f7 100%)'
                       : isActivitiesTab
                       ? 'linear-gradient(90deg, #e9c46a 0%, #c88470 50%, #b86a56 100%)'
                       : '#c88470',
-                    boxShadow: resolvedTheme === 'dark'
+                    boxShadow: renderTheme === 'dark'
                       ? isActive
                         ? isActivitiesTab ? '0 2px 6px rgba(232, 160, 144, 0.2)' : '0 2px 6px rgba(127, 179, 213, 0.3)'
                         : 'none'
