@@ -421,11 +421,16 @@ function buildActivityRecord(activity: SearchActivitySource): LearnerSearchIndex
         : isGrammarGuide && grammarSlug
             ? `/grammar-reader/${grammarSlug}`
             : `/activity/${activity.id}`;
+    const baseVocabId = activity.id.startsWith("vocab-")
+        ? activity.id.replace(/-flash-?cards$/i, "")
+        : null;
     const canonicalKey = activity.id === "vocab-daily-review"
         ? "tool:vocab-review"
-        : isGrammarGuide && grammarSlug
-            ? `grammar:${grammarSlug}`
-            : `href:${href}`;
+        : baseVocabId
+            ? `vocab:${baseVocabId}`
+            : isGrammarGuide && grammarSlug
+                ? `grammar:${grammarSlug}`
+                : `href:${href}`;
     const keywords = categoryKeywords(activity);
     const aliases = uniqueStrings([
         ...expandAliasGroups([activity.title, activity.category || "", activity.type || "", activity.description || ""]),
