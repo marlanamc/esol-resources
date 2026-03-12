@@ -716,10 +716,10 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Asking your close coworker (a friend) to cover your lunch:",
+                            label: "Asking your close coworker (a friend) to cover your shift:",
                             options: [
-                                { value: "can", label: "😐 Can you cover my lunch?" },
-                                { value: "could", label: "🔥 Could you possibly cover my lunch?" },
+                                { value: "can", label: "😐 Can you cover my shift?" },
+                                { value: "could", label: "🔥 Could you possibly cover my shift?" },
                                 { value: "wondering", label: "🔥🔥🔥 I was wondering if you might be able to..." },
                             ],
                             expectedAnswer: "can",
