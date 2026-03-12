@@ -1,70 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { ClipboardIcon } from "@/components/icons/Icons";
 
-type PendingReviewsResponse = { pendingReviews: number };
-
 interface TeacherPendingReviewsStatProps {
+    pendingReviews: number;
     mobile?: boolean;
 }
 
-type PendingReviewsCache = {
-    data: number;
-    cachedAt: number;
-};
-
-const PENDING_REVIEWS_CACHE_TTL_MS = 60_000;
-let pendingReviewsCache: PendingReviewsCache | null = null;
-let pendingReviewsInFlight: Promise<number | null> | null = null;
-
-function getFreshPendingReviewsCache(): number | null {
-    if (!pendingReviewsCache) return null;
-    if (Date.now() - pendingReviewsCache.cachedAt > PENDING_REVIEWS_CACHE_TTL_MS) return null;
-    return pendingReviewsCache.data;
-}
-
-async function loadPendingReviews(): Promise<number | null> {
-    const cached = getFreshPendingReviewsCache();
-    if (cached !== null) return cached;
-    if (pendingReviewsInFlight) return pendingReviewsInFlight;
-
-    pendingReviewsInFlight = (async () => {
-        try {
-            const res = await fetch("/api/dashboard/teacher-summary", { cache: "no-store" });
-            if (!res.ok) return null;
-            const data = (await res.json()) as PendingReviewsResponse;
-            const value = data.pendingReviews ?? 0;
-            pendingReviewsCache = { data: value, cachedAt: Date.now() };
-            return value;
-        } catch {
-            return null;
-        } finally {
-            pendingReviewsInFlight = null;
-        }
-    })();
-
-    return pendingReviewsInFlight;
-}
-
-export function TeacherPendingReviewsStat({ mobile = false }: TeacherPendingReviewsStatProps) {
-    const [pendingReviews, setPendingReviews] = useState<number | null>(() => getFreshPendingReviewsCache());
-
-    useEffect(() => {
-        let cancelled = false;
-        (async () => {
-            const value = await loadPendingReviews();
-            if (!cancelled && value !== null) setPendingReviews(value);
-        })();
-        return () => {
-            cancelled = true;
-        };
-    }, []);
-
-    if (pendingReviews === null) {
-        return <div className={`skeleton rounded-full ${mobile ? "h-9 w-28" : "h-12 w-32"}`} />;
-    }
+export function TeacherPendingReviewsStat({ pendingReviews, mobile = false }: TeacherPendingReviewsStatProps) {
     if (pendingReviews <= 0) return null;
 
     return mobile ? (

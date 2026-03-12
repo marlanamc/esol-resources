@@ -181,6 +181,7 @@ model Assignment {
   @@index([dueDate])
   @@index([classId, createdAt])
   @@index([classId, isFeatured, createdAt])
+  @@index([classId, isFeatured, updatedAt])
 }
 
 model Submission {
@@ -204,6 +205,7 @@ model Submission {
   @@index([userId])
   @@index([status])
   @@index([assignmentId])
+  @@index([status, assignmentId])
   @@index([userId, activityId, updatedAt])
   @@index([userId, status, completedAt])
 }
@@ -251,6 +253,7 @@ model CalendarEvent {
   createdBy   User?     @relation(fields: [createdById], references: [id])
 
   @@index([classId])
+  @@index([classId, date])
 }
 
 model UserAchievement {

@@ -53,27 +53,22 @@ type TeacherAssignment = {
     updatedAt: Date;
 };
 
-type StudentSummary = {
+type TeacherDueAssignment = {
     id: string;
-    username: string;
-    name: string | null;
-    mustChangePassword: boolean;
+    title: string | null;
+    dueDate: Date | null;
+    activity: {
+        title: string;
+    };
 };
 
-type TeacherClass = {
+type TeacherCalendarItem = {
     id: string;
-    name: string;
+    title: string;
     description: string | null;
-    enrollments: { id: string; student: StudentSummary }[];
-    assignments: TeacherAssignment[];
-    calendarEvents: {
-        id: string;
-        title: string;
-        description: string | null;
-        date: Date;
-        endDate: Date | null;
-        type: string;
-    }[];
+    date: Date;
+    endDate: Date | null;
+    type: string;
 };
 
 type StudentEnrollment = {
@@ -116,6 +111,12 @@ function isWithinNewReleaseWindow(date: Date | null | undefined): boolean {
     return ageMs >= 0 && ageMs <= NEW_RELEASE_WINDOW_MS;
 }
 
+function getTeacherDashboardWindow(referenceDate: Date) {
+    const start = new Date(referenceDate.getFullYear(), referenceDate.getMonth() - 1, 1);
+    const end = new Date(referenceDate.getFullYear(), referenceDate.getMonth() + 3, 0, 23, 59, 59, 999);
+    return { start, end };
+}
+
 export default async function DashboardPage() {
     const session = await getServerSession(authOptions);
 
@@ -133,78 +134,191 @@ export default async function DashboardPage() {
     });
 
     if (userRole === "teacher") {
-        // Teacher Dashboard
-        const classes = await timedQuery(
-            {
-                route: "/dashboard",
-                queryLabel: "class.findMany.teacherDashboard",
-                userRole,
-            },
-            () =>
-                withPrismaReadRetry(() =>
-                    prisma.class.findMany({
-                        where: admin ? {} : { teacherId: userId },
-                        select: {
-                            id: true,
-                            name: true,
-                            description: true,
-                            enrollments: {
-                                where: {
-                                    student: {
-                                        isSystemAccount: false,
-                                    },
-                                },
-                                select: {
-                                    id: true,
-                                    student: {
-                                        select: {
-                                            id: true,
-                                            username: true,
-                                            name: true,
-                                            mustChangePassword: true,
-                                        },
-                                    },
-                                },
-                            },
-                            assignments: {
-                                select: {
-                                    id: true,
-                                    title: true,
-                                    activityId: true,
-                                    classId: true,
-                                    isFeatured: true,
-                                    dueDate: true,
-                                    createdAt: true,
-                                    updatedAt: true,
-                                    activity: {
-                                        select: {
-                                            id: true,
-                                            title: true,
-                                            description: true,
-                                            type: true,
-                                            category: true,
-                                        },
-                                    },
-                                },
-                            },
-                            calendarEvents: {
-                                select: {
-                                    id: true,
-                                    title: true,
-                                    date: true,
-                                    endDate: true,
-                                    type: true,
-                                },
-                            },
-                        },
-                        orderBy: { createdAt: "desc" },
-                    })
-                ),
-            (result) => result.length
-        ) as TeacherClass[];
+        const { start: dashboardWindowStart, end: dashboardWindowEnd } = getTeacherDashboardWindow(new Date());
+        const teacherClassWhere = admin ? {} : { teacherId: userId };
+        const teacherEnrollmentWhere = admin
+            ? {
+                student: {
+                    isSystemAccount: false,
+                },
+            }
+            : {
+                student: {
+                    isSystemAccount: false,
+                },
+                class: {
+                    teacherId: userId,
+                },
+            };
+        const teacherAssignmentWhere = admin ? {} : { class: { teacherId: userId } };
+        const teacherCalendarWhere = admin ? {} : { class: { teacherId: userId } };
+        const pendingReviewsWhere = admin
+            ? {
+                status: "pending",
+                user: {
+                    isSystemAccount: false,
+                },
+            }
+            : {
+                status: "pending",
+                user: {
+                    isSystemAccount: false,
+                },
+                assignment: {
+                    class: {
+                        teacherId: userId,
+                    },
+                },
+            };
 
-        const allAssignments = classes.flatMap((c: TeacherClass) => c.assignments);
-        const featuredAssignments = allAssignments.filter((a: TeacherAssignment) => a.isFeatured);
+        const [
+            totalClasses,
+            totalStudents,
+            featuredAssignments,
+            dueAssignments,
+            teacherCalendarEvents,
+            pendingReviews,
+        ] = await Promise.all([
+            timedQuery(
+                {
+                    route: "/dashboard",
+                    queryLabel: "class.count.teacherDashboard",
+                    userRole,
+                },
+                () => withPrismaReadRetry(() => prisma.class.count({ where: teacherClassWhere }))
+            ),
+            timedQuery(
+                {
+                    route: "/dashboard",
+                    queryLabel: "classEnrollment.count.teacherDashboardStudents",
+                    userRole,
+                },
+                () => withPrismaReadRetry(() => prisma.classEnrollment.count({ where: teacherEnrollmentWhere }))
+            ),
+            timedQuery(
+                {
+                    route: "/dashboard",
+                    queryLabel: "assignment.findMany.teacherDashboardFeatured",
+                    userRole,
+                },
+                () =>
+                    withPrismaReadRetry(() =>
+                        prisma.assignment.findMany({
+                            where: {
+                                ...teacherAssignmentWhere,
+                                isFeatured: true,
+                            },
+                            select: {
+                                id: true,
+                                title: true,
+                                activityId: true,
+                                classId: true,
+                                isFeatured: true,
+                                dueDate: true,
+                                createdAt: true,
+                                updatedAt: true,
+                                activity: {
+                                    select: {
+                                        id: true,
+                                        title: true,
+                                        description: true,
+                                        type: true,
+                                        category: true,
+                                    },
+                                },
+                            },
+                            orderBy: { updatedAt: "desc" },
+                        })
+                    ),
+                (result) => result.length
+            ) as Promise<TeacherAssignment[]>,
+            timedQuery(
+                {
+                    route: "/dashboard",
+                    queryLabel: "assignment.findMany.teacherDashboardDueWindow",
+                    userRole,
+                },
+                () =>
+                    withPrismaReadRetry(() =>
+                        prisma.assignment.findMany({
+                            where: {
+                                ...teacherAssignmentWhere,
+                                dueDate: {
+                                    gte: dashboardWindowStart,
+                                    lte: dashboardWindowEnd,
+                                },
+                            },
+                            select: {
+                                id: true,
+                                title: true,
+                                dueDate: true,
+                                activity: {
+                                    select: {
+                                        title: true,
+                                    },
+                                },
+                            },
+                            orderBy: { dueDate: "asc" },
+                        })
+                    ),
+                (result) => result.length
+            ) as Promise<TeacherDueAssignment[]>,
+            timedQuery(
+                {
+                    route: "/dashboard",
+                    queryLabel: "calendarEvent.findMany.teacherDashboardWindow",
+                    userRole,
+                },
+                () =>
+                    withPrismaReadRetry(() =>
+                        prisma.calendarEvent.findMany({
+                            where: {
+                                ...teacherCalendarWhere,
+                                OR: [
+                                    {
+                                        date: {
+                                            gte: dashboardWindowStart,
+                                            lte: dashboardWindowEnd,
+                                        },
+                                    },
+                                    {
+                                        endDate: {
+                                            gte: dashboardWindowStart,
+                                            lte: dashboardWindowEnd,
+                                        },
+                                    },
+                                    {
+                                        date: {
+                                            lte: dashboardWindowStart,
+                                        },
+                                        endDate: {
+                                            gte: dashboardWindowStart,
+                                        },
+                                    },
+                                ],
+                            },
+                            select: {
+                                id: true,
+                                title: true,
+                                description: true,
+                                date: true,
+                                endDate: true,
+                                type: true,
+                            },
+                            orderBy: { date: "asc" },
+                        })
+                    ),
+                (result) => result.length
+            ) as Promise<TeacherCalendarItem[]>,
+            timedQuery(
+                {
+                    route: "/dashboard",
+                    queryLabel: "submission.count.teacherDashboardPendingReviews",
+                    userRole,
+                },
+                () => withPrismaReadRetry(() => prisma.submission.count({ where: pendingReviewsWhere }))
+            ),
+        ]);
 
         // When sections sync assignments, teacher dashboard can receive repeated entries.
         // Collapse same activity/title into a single checklist row and keep the newest.
@@ -252,27 +366,23 @@ export default async function DashboardPage() {
             submissions: [],
         }));
         const calendarEvents: CalendarEvent[] = [
-            ...allAssignments
-                .filter(a => a.dueDate)
+            ...dueAssignments
+                .filter((a) => a.dueDate)
                 .map(a => ({
                     date: a.dueDate as Date,
                     type: (a.title || a.activity.title || "").toLowerCase().includes("quiz") ? "quiz" as const : "due" as const,
                     title: `${a.title || a.activity.title || "Assignment"}`,
                 })),
-            ...classes.flatMap((cls) =>
-                cls.calendarEvents.map((ev) => ({
-                    id: ev.id,
-                    date: ev.date,
-                    endDate: ev.endDate || null,
-                    type: (ev.type as CalendarEvent["type"]) || "holiday",
-                    title: `${ev.title}`,
-                    description: ev.description,
-                }))
-            ),
+            ...teacherCalendarEvents.map((ev) => ({
+                id: ev.id,
+                date: ev.date,
+                endDate: ev.endDate || null,
+                type: (ev.type as CalendarEvent["type"]) || "holiday",
+                title: `${ev.title}`,
+                description: ev.description,
+            })),
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-        const totalStudents = classes.reduce((acc, c) => acc + c.enrollments.length, 0);
-        const totalClasses = classes.length;
         const isTeacherUser = admin;
         const importantPageSections = [
             {
@@ -401,7 +511,7 @@ export default async function DashboardPage() {
                                             </div>
                                         </div>
 
-                                        <TeacherPendingReviewsStat />
+                                        <TeacherPendingReviewsStat pendingReviews={pendingReviews} />
 
                                         {isTeacherUser && (
                                             <Link
@@ -435,7 +545,7 @@ export default async function DashboardPage() {
                                             </div>
                                         </div>
 
-                                        <TeacherPendingReviewsStat mobile />
+                                        <TeacherPendingReviewsStat pendingReviews={pendingReviews} mobile />
 
                                         {isTeacherUser && (
                                             <Link
