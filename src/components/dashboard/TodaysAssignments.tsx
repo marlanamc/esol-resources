@@ -346,9 +346,10 @@ function PinnedDailyHabitRow({
     const tone = getLearnerCategoryTone("vocabulary");
     const isDoneToday = habit.status === "done-today";
     const hasActionableCards = habit.dueCount > 0 || habit.newCount > 0;
+    const useCompactCompletedStyle = compact && isDoneToday && !embedded;
     const useCondensedDoneLayout = compact || isDoneToday;
     const ctaLabel = isDoneToday
-        ? "Open review"
+        ? "Review"
         : !hasActionableCards
             ? "View review"
             : "Start";
@@ -411,6 +412,65 @@ function PinnedDailyHabitRow({
                             <span>{ctaLabel}</span>
                         </span>
                     </div>
+                </div>
+            </Link>
+        );
+    }
+
+    if (useCompactCompletedStyle) {
+        return (
+            <Link
+                href={habit.href}
+                className="group block rounded-xl border px-3.5 py-2.5 opacity-75 transition-transform duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+                style={{
+                    borderColor: `color-mix(in srgb, ${tone.border} 38%, var(--border-subtle))`,
+                    background: 'var(--surface-subtle)',
+                    boxShadow: 'none',
+                }}
+            >
+                <div className="relative flex items-center gap-2.5">
+                    <div
+                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+                        style={{
+                            backgroundColor: `color-mix(in srgb, ${tone.accent} 18%, transparent)`,
+                            color: tone.accent,
+                        }}
+                    >
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5} aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                        <h3 className="text-[14px] font-semibold leading-snug text-text">
+                            {habit.title}
+                        </h3>
+                        <div className="mt-1 flex flex-wrap items-center gap-1.5">
+                            <span
+                                className="inline-flex rounded px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider"
+                                style={{
+                                    backgroundColor: tone.chipBg,
+                                    color: tone.chipText,
+                                }}
+                            >
+                                Vocabulary
+                            </span>
+                            <span className="text-[10px] font-medium text-text-muted">
+                                Completed today
+                            </span>
+                        </div>
+                    </div>
+
+                    <span
+                        className="dashboard-accent-button inline-flex min-h-[32px] shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1 text-[13px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                        style={{
+                            '--dashboard-button-accent': tone.accent,
+                            '--dashboard-button-text': tone.chipText,
+                        } as React.CSSProperties}
+                    >
+                        <span>{ctaLabel}</span>
+                        <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
                 </div>
             </Link>
         );
