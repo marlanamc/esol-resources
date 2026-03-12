@@ -169,7 +169,7 @@ test("applyVocabReviewRating uses FSRS spaced repetition intervals", () => {
   assert.equal(again.lapses, 2);
   assert.equal(again.shouldRepeatInSession, true);
 
-  // "Hard" at step 0: advances to step 1, FSRS-calculated interval
+  // "Hard" at step 0: advances to step 1, always 1-day interval (see again soon, no 4th button)
   const hardLow = applyVocabReviewRating(
     {
       step: 0,
@@ -185,8 +185,25 @@ test("applyVocabReviewRating uses FSRS spaced repetition intervals", () => {
     base
   );
   assert.equal(hardLow.step, 1);
-  assert.ok(hardLow.dueAt.getTime() > base.getTime(), "dueAt is in the future");
+  assert.equal(hardLow.dueAt.toISOString(), addDays(base, 1).toISOString(), "Hard = 1 day");
   assert.equal(hardLow.shouldRepeatInSession, false);
+
+  // "Hard" on mature card: also 1 day (consistent "see again soon")
+  const hardMature = applyVocabReviewRating(
+    {
+      step: 4,
+      totalReviews: 8,
+      lapses: 0,
+      easeFactor: 2.5,
+      difficulty: 0.3,
+      stability: 1.2,
+      lastInterval: 14,
+      performanceHistory: [0.8, 0.8, 0.8, 0.8],
+    },
+    "hard",
+    base
+  );
+  assert.equal(hardMature.dueAt.toISOString(), addDays(base, 1).toISOString(), "Hard on mature card = 1 day");
 
   // "Good" and "Easy": advance step, FSRS-calculated intervals
   const good = applyVocabReviewRating(

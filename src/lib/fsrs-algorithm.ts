@@ -123,6 +123,11 @@ function calculateNextInterval(
   if (performance === 0) { // "again" rating
     return 1; // Review again tomorrow
   }
+
+  // "Hard" = always 1 day — "see again soon" without a 4th button (reduces cognitive load for ESOL learners)
+  if (performance === 0.5) {
+    return 1;
+  }
   
   // Use base intervals for early steps
   if (step < BASE_INTERVALS.length) {
