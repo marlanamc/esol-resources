@@ -5,7 +5,7 @@ import { requireAuth } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
 import { DAILY_HABIT_KEYS, markDailyHabitCompleted } from "@/lib/daily-habits";
 import { awardPoints, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
-import { POINTS } from "@/lib/gamification/constants";
+import { calculateVocabReviewPoints } from "@/lib/gamification/constants";
 
 function json<T>(data: T, status = 200) {
   return NextResponse.json(data, {
@@ -36,10 +36,7 @@ export async function POST(request: Request) {
     return json({ error: "No cards reviewed" }, 400);
   }
 
-  const points = Math.min(
-    POINTS.VOCAB_REVIEW_BASE + cardsReviewed * POINTS.VOCAB_REVIEW_PER_CARD,
-    POINTS.VOCAB_REVIEW_MAX_PER_SESSION
-  );
+  const points = calculateVocabReviewPoints(cardsReviewed);
 
   await markDailyHabitCompleted(prisma, userId, DAILY_HABIT_KEYS.vocabReview);
   await awardPoints(userId, points, `Vocab review: ${cardsReviewed} card${cardsReviewed === 1 ? "" : "s"}`);

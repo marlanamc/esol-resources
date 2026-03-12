@@ -39,9 +39,9 @@ export const POINTS = {
   MINIMAL_PAIRS: 6,
   ACTIVITY_COMPLETION: 3,
 
-  VOCAB_REVIEW_BASE: 3,
+  VOCAB_REVIEW_BASE: 0,
   VOCAB_REVIEW_PER_CARD: 1,
-  VOCAB_REVIEW_MAX_PER_SESSION: 15,
+  VOCAB_REVIEW_MAX_PER_SESSION: 12,
 
   DAILY_STREAK: 3,
   WEEKLY_STREAK: 25,
@@ -50,3 +50,10 @@ export const POINTS = {
 } as const;
 
 export type PointsKey = keyof typeof POINTS;
+
+export function calculateVocabReviewPoints(cardsReviewed: number): number {
+  return Math.min(
+    POINTS.VOCAB_REVIEW_BASE + Math.max(0, Math.floor(cardsReviewed)) * POINTS.VOCAB_REVIEW_PER_CARD,
+    POINTS.VOCAB_REVIEW_MAX_PER_SESSION
+  );
+}

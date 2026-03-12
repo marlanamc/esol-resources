@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { POINTS } from "@/lib/gamification/constants";
+import { calculateVocabReviewPoints, POINTS } from "@/lib/gamification/constants";
 import { getActivityPoints, resolveActivityGameUi } from "@/lib/gamification/activity-points";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "@/lib/gamification/streak-utils";
 import { determineGrammarCompletionPoints } from "@/lib/gamification/grammar-points";
@@ -40,6 +40,14 @@ describe("gamification helpers", () => {
   it("grammar points cannot be overridden", () => {
     expect(determineGrammarCompletionPoints(0)).toBe(POINTS.GRAMMAR_GUIDE);
     expect(determineGrammarCompletionPoints(999)).toBe(POINTS.GRAMMAR_GUIDE);
+  });
+
+  it("keeps vocab review points modest for a six-card session", () => {
+    expect(calculateVocabReviewPoints(6)).toBe(6);
+  });
+
+  it("caps vocab review points for oversized sessions", () => {
+    expect(calculateVocabReviewPoints(999)).toBe(POINTS.VOCAB_REVIEW_MAX_PER_SESSION);
   });
 
   it("matching UI should map to matching points", () => {

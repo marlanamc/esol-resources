@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { POINTS } from "@/lib/gamification/constants";
+import { calculateVocabReviewPoints, POINTS } from "@/lib/gamification/constants";
 import { getActivityPoints, resolveActivityGameUi } from "@/lib/gamification/activity-points";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "@/lib/gamification/streak-utils";
 import { determineGrammarCompletionPoints } from "@/lib/gamification/grammar-points";
@@ -34,7 +34,15 @@ assert.deepStrictEqual(
 assert.strictEqual(determineGrammarCompletionPoints(0), POINTS.GRAMMAR_GUIDE, "Grammar points cannot be overridden");
 assert.strictEqual(determineGrammarCompletionPoints(999), POINTS.GRAMMAR_GUIDE, "Grammar override should be ignored");
 
-// 3. Matching games rely on the explicit UI flag
+// 3. Vocab review points stay modest for a standard six-card session
+assert.strictEqual(calculateVocabReviewPoints(6), 6, "Six-card vocab review sessions should award 6 points");
+assert.strictEqual(
+  calculateVocabReviewPoints(999),
+  POINTS.VOCAB_REVIEW_MAX_PER_SESSION,
+  "Vocab review points should respect the session cap"
+);
+
+// 4. Matching games rely on the explicit UI flag
 assert.strictEqual(
   getActivityPoints("game", { ui: "matching" }),
   POINTS.MATCHING_GAME,
