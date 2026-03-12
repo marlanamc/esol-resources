@@ -359,3 +359,72 @@ test("released quizzes can be found by quiz vocabulary terms", () => {
   assert.equal(ranked.length, 1);
   assert.equal(ranked[0].record.title, "Week 20 Irregular Verb Quiz");
 });
+
+test("vocab review and vocab activities share the Vocab search label", () => {
+  const dataset = filterVisibleLearnerSearchRecords(buildCanonicalLearnerSearchDataset({
+    activities: [
+      {
+        id: "vocab-daily-review",
+        title: "Daily Vocab Review",
+        description: "Review words you already studied.",
+        type: "tool",
+        category: "vocabulary",
+        level: null,
+        ui: null,
+        content: "{}",
+        isReleased: true,
+        deletedAt: null,
+        createdBy: null,
+      },
+      {
+        id: "vocab-workplace-flashcards",
+        title: "Workplace Flashcards",
+        description: "Study common workplace words.",
+        type: "flashcards",
+        category: "vocab",
+        level: null,
+        ui: null,
+        content: "{}",
+        isReleased: true,
+        deletedAt: null,
+        createdBy: null,
+      },
+    ],
+  }));
+
+  const reviewRecord = dataset.find((record) => record.title === "Daily Vocab Review");
+  const flashcardsRecord = dataset.find((record) => record.title === "Workplace Flashcards");
+
+  assert.ok(reviewRecord);
+  assert.ok(flashcardsRecord);
+  assert.equal(reviewRecord.category, "Vocab");
+  assert.equal(reviewRecord.destinationLabel, "Vocab Activity");
+  assert.equal(flashcardsRecord.category, "Vocab");
+  assert.equal(flashcardsRecord.destinationLabel, "Vocab Activity");
+});
+
+test("daily vocab review dedupes to a single learner search result", () => {
+  const dataset = filterVisibleLearnerSearchRecords(buildCanonicalLearnerSearchDataset({
+    activities: [
+      {
+        id: "vocab-daily-review",
+        title: "Daily Vocab Review",
+        description: "Review words you already studied.",
+        type: "tool",
+        category: "vocabulary",
+        level: null,
+        ui: null,
+        content: "{}",
+        isReleased: true,
+        deletedAt: null,
+        createdBy: null,
+      },
+    ],
+  }));
+
+  const ranked = dedupeRankedLearnerSearchRecords(rankLearnerSearchRecords(dataset, "review"));
+  const vocabReviewResults = ranked.filter((entry) => entry.record.href === "/dashboard/vocab-review");
+
+  assert.equal(vocabReviewResults.length, 1);
+  assert.equal(vocabReviewResults[0]?.record.title, "Vocab Review");
+});

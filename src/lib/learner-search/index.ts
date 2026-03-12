@@ -39,7 +39,7 @@ const SEARCH_CACHE_TTL_MS = 60_000;
 const FILTER_LABELS: Record<LearnerSearchFilter, string> = {
     all: "All",
     grammar: "Grammar",
-    vocabulary: "Vocabulary",
+    vocabulary: "Vocab",
     games: "Games",
     pronunciation: "Pronunciation",
     speaking: "Speaking",
@@ -85,7 +85,7 @@ const TOOL_RECORDS: Array<{
         title: "Vocab Review",
         description: "Review vocabulary cards you have already studied and keep words fresh.",
         href: "/dashboard/vocab-review",
-        category: "Tools",
+        category: "Vocab",
         type: "tool",
         keywords: ["vocabulary", "vocab", "review", "flashcards", "study"],
         aliases: ["word review", "word study"],
@@ -303,7 +303,7 @@ function toActivityDestinationLabel(activity: SearchActivitySource): string {
         return "Quiz";
     }
     if (activity.id.startsWith("vocab-") || category === "vocabulary") {
-        return "Vocabulary Activity";
+        return "Vocab Activity";
     }
     if (type === "game" || category === "games") {
         return "Practice Activity";
@@ -316,6 +316,9 @@ function toSearchCategory(activity: SearchActivitySource): string | null {
     const category = (activity.category || "").toLowerCase();
     if (category === "games" && (activity.ui === "minimal-pairs" || activity.ui === "ed-pronunciation")) {
         return "pronunciation";
+    }
+    if (activity.id.startsWith("vocab-") || category === "vocabulary" || category === "vocab" || category === "numbers" || category === "number") {
+        return "Vocab";
     }
 
     return activity.category;

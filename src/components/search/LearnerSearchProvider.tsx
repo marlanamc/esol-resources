@@ -21,7 +21,7 @@ function createInitialResponse(filter: LearnerSearchFilter): LearnerSearchRespon
         availableFilters: [
             { key: "all", label: "All", count: 0 },
             { key: "grammar", label: "Grammar", count: 0 },
-            { key: "vocabulary", label: "Vocabulary", count: 0 },
+            { key: "vocabulary", label: "Vocab", count: 0 },
             { key: "games", label: "Games", count: 0 },
             { key: "pronunciation", label: "Pronunciation", count: 0 },
             { key: "speaking", label: "Speaking", count: 0 },
