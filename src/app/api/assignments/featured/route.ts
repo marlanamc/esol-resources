@@ -7,6 +7,7 @@ import { isTeacherAdmin } from "@/lib/roles";
 import { ApiErrors } from "@/lib/api-response";
 import { requireTeacher } from "@/lib/api-auth";
 import { logger } from "@/lib/logger";
+import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
 import {
     buildActivitySubmissionMap,
     buildFeaturedAssignmentsWhere,
@@ -37,10 +38,11 @@ export async function GET() {
         });
 
         const classIds = enrollments.map((enrollment) => enrollment.classId);
+        const featuredClassIds = await expandClassIdsToSectionGroupIds(prisma, classIds);
 
         // Get featured assignments for those classes
-        const featuredAssignments = classIds.length === 0 ? [] : await prisma.assignment.findMany({
-            where: buildFeaturedAssignmentsWhere(classIds),
+        const featuredAssignments = featuredClassIds.length === 0 ? [] : await prisma.assignment.findMany({
+            where: buildFeaturedAssignmentsWhere(featuredClassIds),
             include: {
                 activity: true,
                 class: true,

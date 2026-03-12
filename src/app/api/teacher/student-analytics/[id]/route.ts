@@ -3,340 +3,373 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
+import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 import { isTeacherAdmin } from "@/lib/roles";
+import {
+  buildTeacherStudentCategorySummaries,
+  filterVisibleTeacherAnalyticsAssignments,
+} from "@/lib/teacher-student-analytics";
 
 export async function GET(
-    request: Request,
-    { params }: { params: Promise<{ id: string }> }
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> }
 ) {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 
-    const teacherId = session.user.id;
-    const userRole = session.user.role;
-    const admin = isTeacherAdmin(session.user);
-    const { id: studentId } = await params;
+  const teacherId = session.user.id;
+  const userRole = session.user.role;
+  const admin = isTeacherAdmin(session.user);
+  const { id: studentId } = await params;
 
-    // Verify teacher has access to this student (student is in one of their classes)
-    if (userRole === "teacher" && !admin) {
-        const enrollment = await prisma.classEnrollment.findFirst({
-            where: {
-                studentId,
-                class: {
-                    teacherId
-                },
-                student: {
-                    isSystemAccount: false,
-                },
-            }
-        });
-
-        if (!enrollment) {
-            return NextResponse.json({ error: "Student not found in your classes" }, { status: 403 });
-        }
-    }
-
-    // Fetch comprehensive student data
-    const student = await prisma.user.findUnique({
-        where: { id: studentId },
-        select: {
-            id: true,
-            name: true,
-            username: true,
-            points: true,
-            weeklyPoints: true,
-            currentStreak: true,
-            longestStreak: true,
-            lastActivityDate: true,
-            createdAt: true,
-            isSystemAccount: true,
-        }
+  if (userRole === "teacher" && !admin) {
+    const enrollment = await prisma.classEnrollment.findFirst({
+      where: {
+        studentId,
+        class: {
+          teacherId,
+        },
+        student: {
+          isSystemAccount: false,
+        },
+      },
     });
 
-    if (!student || student.isSystemAccount) {
-        return NextResponse.json({ error: "Student not found" }, { status: 404 });
+    if (!enrollment) {
+      return NextResponse.json(
+        { error: "Student not found in your classes" },
+        { status: 403 }
+      );
     }
-    const effectiveCurrentStreak = getEffectiveStreak(student.currentStreak, student.lastActivityDate);
+  }
 
-    // Run independent queries in parallel to eliminate async waterfall
-    const [activityProgress, pointsHistory] = await Promise.all([
-        // Get activity progress
-        prisma.activityProgress.findMany({
-            where: { userId: studentId },
-            include: {
-                activity: {
-                    select: {
-                        id: true,
-                        title: true,
-                        type: true,
-                        category: true,
-                        level: true
-                    }
-                }
-            },
-            orderBy: { updatedAt: 'desc' }
-        }),
-        // Get points history (recent activity timeline)
-        prisma.pointsLedger.findMany({
-            where: { userId: studentId },
-            orderBy: { createdAt: 'desc' },
-            take: 50,
-            select: {
+  const [student, enrollments] = await Promise.all([
+    prisma.user.findUnique({
+      where: { id: studentId },
+      select: {
+        id: true,
+        name: true,
+        username: true,
+        points: true,
+        weeklyPoints: true,
+        currentStreak: true,
+        longestStreak: true,
+        lastActivityDate: true,
+        createdAt: true,
+        isSystemAccount: true,
+      },
+    }),
+    prisma.classEnrollment.findMany({
+      where: {
+        studentId,
+        student: {
+          isSystemAccount: false,
+        },
+        ...(userRole === "teacher" && !admin ? { class: { teacherId } } : {}),
+      },
+      select: {
+        classId: true,
+        class: {
+          select: {
+            assignments: {
+              orderBy: { createdAt: "desc" },
+              select: {
                 id: true,
-                points: true,
-                reason: true,
-                createdAt: true
-            }
-        }),
-    ]);
-
-    // Calculate engagement metrics
-    const completedActivities = activityProgress.filter(p => p.status === 'completed');
-    const inProgressActivities = activityProgress.filter(p => p.status === 'in_progress' && p.progress < 100);
-
-    // Calculate favorite activities (by counting how many times they earned points for each)
-    const activityPlayCounts = new Map<string, { count: number; title: string; category: string }>();
-
-    pointsHistory.forEach(entry => {
-        // Parse activity from reason (e.g., "grammar:present-simple", "flashcards:september")
-        const activityKey = entry.reason;
-        if (activityKey) {
-            const existing = activityPlayCounts.get(activityKey);
-            if (existing) {
-                existing.count++;
-            } else {
-                // Try to extract a readable name from the reason
-                const parts = activityKey.split(':');
-                const category = parts[0];
-                const name = parts[1] ? parts[1].replace(/-/g, ' ') : category;
-                activityPlayCounts.set(activityKey, {
-                    count: 1,
-                    title: name.charAt(0).toUpperCase() + name.slice(1),
-                    category
-                });
-            }
-        }
-    });
-
-    // Sort by play count to find favorites
-    const favoriteActivities = Array.from(activityPlayCounts.entries())
-        .map(([key, data]) => ({ key, ...data }))
-        .sort((a, b) => b.count - a.count)
-        .slice(0, 10);
-
-    // Calculate days active this month
-    const startOfMonth = new Date();
-    startOfMonth.setDate(1);
-    startOfMonth.setHours(0, 0, 0, 0);
-
-    const pointsThisMonth = await prisma.pointsLedger.findMany({
-        where: {
-            userId: studentId,
-            createdAt: { gte: startOfMonth }
+                title: true,
+                dueDate: true,
+                activityId: true,
+                activity: {
+                  select: {
+                    id: true,
+                    title: true,
+                    type: true,
+                    category: true,
+                    content: true,
+                    isReleased: true,
+                    deletedAt: true,
+                  },
+                },
+              },
+            },
+          },
         },
-        select: {
-            createdAt: true
-        }
-    });
+      },
+    }),
+  ]);
 
-    // Count unique days with activity
-    const uniqueDays = new Set(
-        pointsThisMonth.map(p => p.createdAt.toISOString().split('T')[0])
-    );
-    const daysActiveThisMonth = uniqueDays.size;
+  if (!student || student.isSystemAccount) {
+    return NextResponse.json({ error: "Student not found" }, { status: 404 });
+  }
 
-    // Get last active timestamp from either points awards or progress updates.
-    const latestPointsAt = pointsHistory[0]?.createdAt ?? null;
-    const latestProgressAt = activityProgress[0]?.updatedAt ?? null;
-    const lastActive = [latestPointsAt, latestProgressAt, student.lastActivityDate]
-        .filter((d): d is Date => d instanceof Date)
-        .sort((a, b) => b.getTime() - a.getTime())[0] ?? null;
+  const visibleAssignments = enrollments.flatMap((enrollment) =>
+    filterVisibleTeacherAnalyticsAssignments(
+      enrollment.class.assignments,
+      isLearnerVisibleActivity
+    )
+  );
+  const visibleAssignmentIds = visibleAssignments.map((assignment) => assignment.id);
 
-    // Group activities by category for progress overview
-    // Vocabulary activities are identified by ID pattern (vocab-*) or category
-    const progressByCategory = {
-        vocab: activityProgress.filter(p => 
-            p.activity.category === 'vocab' || 
-            p.activity.category === 'vocabulary' ||
-            (p.activity.id && p.activity.id.startsWith('vocab-'))
-        ),
-        grammar: activityProgress.filter(p => p.activity.category === 'grammar'),
-        numbers: activityProgress.filter(p => 
-            p.activity.category === 'numbers' || 
-            p.activity.category === 'number'
-        ),
-        other: activityProgress.filter(p => {
-            const isVocab = p.activity.category === 'vocab' || 
-                           p.activity.category === 'vocabulary' ||
-                           (p.activity.id && p.activity.id.startsWith('vocab-'));
-            const isGrammar = p.activity.category === 'grammar';
-            const isNumbers = p.activity.category === 'numbers' || p.activity.category === 'number';
-            return !isVocab && !isGrammar && !isNumbers;
-        })
-    };
-
-    // Calculate average progress per category
-    const calculateAvg = (items: typeof activityProgress) => {
-        if (items.length === 0) return 0;
-        const sum = items.reduce((acc, item) => acc + item.progress, 0);
-        return Math.round(sum / items.length);
-    };
-
-    // Get verb quiz results for this student
-    const verbQuizActivities = await prisma.activity.findMany({
-        where: {
-            type: 'quiz',
-            content: {
-                contains: '"type":"verb-quiz"'
-            }
-        },
-        select: {
+  const [
+    activityProgress,
+    pointsHistory,
+    pointsThisMonth,
+    scopedSubmissions,
+    verbQuizActivities,
+    grammarGuideActivities,
+  ] = await Promise.all([
+    prisma.activityProgress.findMany({
+      where: { userId: studentId },
+      include: {
+        activity: {
+          select: {
             id: true,
             title: true,
-            createdAt: true
+            type: true,
+            category: true,
+            level: true,
+          },
         },
-        orderBy: {
-            createdAt: 'asc'
-        }
-    });
+      },
+      orderBy: { updatedAt: "desc" },
+    }),
+    prisma.pointsLedger.findMany({
+      where: { userId: studentId },
+      orderBy: { createdAt: "desc" },
+      take: 50,
+      select: {
+        id: true,
+        points: true,
+        reason: true,
+        createdAt: true,
+      },
+    }),
+    prisma.pointsLedger.findMany({
+      where: {
+        userId: studentId,
+        createdAt: {
+          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+        },
+      },
+      select: {
+        createdAt: true,
+      },
+    }),
+    visibleAssignmentIds.length
+      ? prisma.submission.findMany({
+          where: {
+            userId: studentId,
+            assignmentId: { in: visibleAssignmentIds },
+          },
+          select: {
+            id: true,
+            activityId: true,
+            assignmentId: true,
+            score: true,
+            status: true,
+            createdAt: true,
+            updatedAt: true,
+            completedAt: true,
+          },
+          orderBy: { updatedAt: "desc" },
+        })
+      : Promise.resolve([]),
+    prisma.activity.findMany({
+      where: {
+        type: "quiz",
+        content: {
+          contains: '"type":"verb-quiz"',
+        },
+      },
+      select: {
+        id: true,
+        title: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: "asc",
+      },
+    }),
+    prisma.activity.findMany({
+      where: {
+        type: "guide",
+        category: "grammar",
+      },
+      select: {
+        id: true,
+        title: true,
+      },
+    }),
+  ]);
 
-    const verbQuizSubmissions = await prisma.submission.findMany({
-        where: {
+  const effectiveCurrentStreak = getEffectiveStreak(
+    student.currentStreak,
+    student.lastActivityDate
+  );
+  const completedActivities = activityProgress.filter((entry) => entry.status === "completed");
+  const inProgressActivities = activityProgress.filter(
+    (entry) => entry.status === "in_progress" && entry.progress < 100
+  );
+
+  const activityPlayCounts = new Map<
+    string,
+    { count: number; title: string; category: string }
+  >();
+
+  for (const entry of pointsHistory) {
+    const activityKey = entry.reason;
+    if (!activityKey) {
+      continue;
+    }
+
+    const existing = activityPlayCounts.get(activityKey);
+    if (existing) {
+      existing.count++;
+      continue;
+    }
+
+    const [category = "activity", rawName] = activityKey.split(":");
+    const name = rawName ? rawName.replace(/-/g, " ") : category;
+    activityPlayCounts.set(activityKey, {
+      count: 1,
+      title: name.charAt(0).toUpperCase() + name.slice(1),
+      category,
+    });
+  }
+
+  const favoriteActivities = Array.from(activityPlayCounts.entries())
+    .map(([key, data]) => ({ key, ...data }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+
+  const uniqueDays = new Set(
+    pointsThisMonth.map((entry) => entry.createdAt.toISOString().split("T")[0])
+  );
+  const daysActiveThisMonth = uniqueDays.size;
+  const latestPointsAt = pointsHistory[0]?.createdAt ?? null;
+  const latestProgressAt = activityProgress[0]?.updatedAt ?? null;
+  const lastActive =
+    [latestPointsAt, latestProgressAt, student.lastActivityDate]
+      .filter((value): value is Date => value instanceof Date)
+      .sort((a, b) => b.getTime() - a.getTime())[0] ?? null;
+
+  const categorySummaries = buildTeacherStudentCategorySummaries({
+    assignments: visibleAssignments,
+    progressRows: activityProgress,
+    submissionRows: scopedSubmissions,
+  });
+
+  const [verbQuizSubmissions, grammarQuizSubmissions] = await Promise.all([
+    verbQuizActivities.length
+      ? prisma.submission.findMany({
+          where: {
             userId: studentId,
             activityId: {
-                in: verbQuizActivities.map(a => a.id)
-            }
-        },
-        select: {
+              in: verbQuizActivities.map((activity) => activity.id),
+            },
+          },
+          select: {
             id: true,
             activityId: true,
             score: true,
-            createdAt: true
-        },
-        orderBy: {
-            createdAt: 'desc'
-        }
-    });
-
-    // Map submissions to activities
-    const verbQuizResults = verbQuizActivities.map(activity => {
-        const submission = verbQuizSubmissions.find(s => s.activityId === activity.id);
-        return {
-            id: activity.id,
-            title: activity.title,
-            score: submission?.score ?? null,
-            submittedAt: submission?.createdAt ?? null,
-            completed: submission !== undefined
-        };
-    });
-
-    // Get grammar guide quiz results for this student
-    const grammarGuideActivities = await prisma.activity.findMany({
-        where: {
-            type: 'guide',
-            category: 'grammar'
-        },
-        select: {
-            id: true,
-            title: true
-        }
-    });
-
-    const grammarQuizSubmissions = await prisma.submission.findMany({
-        where: {
+            createdAt: true,
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+        })
+      : Promise.resolve([]),
+    grammarGuideActivities.length
+      ? prisma.submission.findMany({
+          where: {
             userId: studentId,
             activityId: {
-                in: grammarGuideActivities.map(a => a.id)
+              in: grammarGuideActivities.map((activity) => activity.id),
             },
-            score: { not: null }
-        },
-        select: {
+            score: { not: null },
+          },
+          select: {
             id: true,
             activityId: true,
             score: true,
-            createdAt: true
-        },
-        orderBy: {
-            createdAt: 'desc'
-        }
-    });
+            createdAt: true,
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+        })
+      : Promise.resolve([]),
+  ]);
 
-    const grammarQuizResults = grammarGuideActivities.map(activity => {
-        const submission = grammarQuizSubmissions.find(s => s.activityId === activity.id);
-        return {
-            id: activity.id,
-            title: activity.title,
-            score: submission?.score ?? null,
-            submittedAt: submission?.createdAt ?? null,
-            completed: submission !== undefined
-        };
-    }).filter(r => r.completed); // Only show guides where the quiz was actually taken
+  const verbQuizResults = verbQuizActivities.map((activity) => {
+    const submission = verbQuizSubmissions.find(
+      (row) => row.activityId === activity.id
+    );
+    return {
+      id: activity.id,
+      title: activity.title,
+      score: submission?.score ?? null,
+      submittedAt: submission?.createdAt ?? null,
+      completed: submission !== undefined,
+    };
+  });
 
-    const progressTimeline = activityProgress.slice(0, 50).map((entry) => ({
-        id: `progress-${entry.id}`,
-        points: 0,
-        activity: entry.activity.title,
-        activityType: entry.activity.type || "activity",
-        source: "progress" as const,
-        timestamp: entry.updatedAt
-    }));
+  const grammarQuizResults = grammarGuideActivities
+    .map((activity) => {
+      const submission = grammarQuizSubmissions.find(
+        (row) => row.activityId === activity.id
+      );
+      return {
+        id: activity.id,
+        title: activity.title,
+        score: submission?.score ?? null,
+        submittedAt: submission?.createdAt ?? null,
+        completed: submission !== undefined,
+      };
+    })
+    .filter((row) => row.completed);
 
-    const pointsTimeline = pointsHistory.map((entry) => ({
-        id: `points-${entry.id}`,
-        points: entry.points,
-        activity: entry.reason,
-        source: "points" as const,
-        timestamp: entry.createdAt
-    }));
+  const progressTimeline = activityProgress.slice(0, 50).map((entry) => ({
+    id: `progress-${entry.id}`,
+    points: 0,
+    activity: entry.activity.title,
+    activityType: entry.activity.type || "activity",
+    source: "progress" as const,
+    timestamp: entry.updatedAt,
+  }));
+  const pointsTimeline = pointsHistory.map((entry) => ({
+    id: `points-${entry.id}`,
+    points: entry.points,
+    activity: entry.reason,
+    source: "points" as const,
+    timestamp: entry.createdAt,
+  }));
+  const timeline = [...pointsTimeline, ...progressTimeline]
+    .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+    .slice(0, 50);
 
-    const timeline = [...pointsTimeline, ...progressTimeline]
-        .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
-        .slice(0, 50);
-
-    return NextResponse.json({
-        student: {
-            ...student,
-            currentStreak: effectiveCurrentStreak,
-            lastActive,
-            daysActiveThisMonth
-        },
-        engagement: {
-            totalActivitiesCompleted: completedActivities.length,
-            activitiesInProgress: inProgressActivities.length,
-            totalActivitiesStarted: activityProgress.length,
-            favoriteActivities,
-            currentStreak: effectiveCurrentStreak,
-            longestStreak: student.longestStreak || 0
-        },
-        progress: {
-            byCategory: {
-                vocab: {
-                    activities: progressByCategory.vocab,
-                    avgProgress: calculateAvg(progressByCategory.vocab),
-                    completed: progressByCategory.vocab.filter(p => p.status === 'completed').length
-                },
-                grammar: {
-                    activities: progressByCategory.grammar,
-                    avgProgress: calculateAvg(progressByCategory.grammar),
-                    completed: progressByCategory.grammar.filter(p => p.status === 'completed').length
-                },
-                numbers: {
-                    activities: progressByCategory.numbers,
-                    avgProgress: calculateAvg(progressByCategory.numbers),
-                    completed: progressByCategory.numbers.filter(p => p.status === 'completed').length
-                },
-                other: {
-                    activities: progressByCategory.other,
-                    avgProgress: calculateAvg(progressByCategory.other),
-                    completed: progressByCategory.other.filter(p => p.status === 'completed').length
-                }
-            },
-            all: activityProgress
-        },
-        timeline,
-        verbQuizResults,
-        grammarQuizResults
-    });
+  return NextResponse.json({
+    student: {
+      ...student,
+      currentStreak: effectiveCurrentStreak,
+      lastActive,
+      daysActiveThisMonth,
+    },
+    engagement: {
+      totalActivitiesCompleted: completedActivities.length,
+      activitiesInProgress: inProgressActivities.length,
+      totalActivitiesStarted: activityProgress.length,
+      favoriteActivities,
+      currentStreak: effectiveCurrentStreak,
+      longestStreak: student.longestStreak || 0,
+    },
+    progress: {
+      byCategory: categorySummaries,
+      all: activityProgress,
+    },
+    timeline,
+    verbQuizResults,
+    grammarQuizResults,
+  });
 }

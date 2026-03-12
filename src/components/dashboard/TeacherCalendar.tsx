@@ -119,7 +119,7 @@ export function TeacherCalendar({
     <div className="space-y-6">
       {/* ADHD-Friendly Header with Progress */}
       <div className="space-y-4">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
           <div>
             <h2 className="text-2xl font-display font-semibold text-text">Teaching Schedule</h2>
             <p className="text-sm text-text/80 mt-1">
@@ -129,7 +129,7 @@ export function TeacherCalendar({
 
           <button
             onClick={() => setShowWeekList(!showWeekList)}
-            className="px-4 py-2 rounded-lg border border-border/50 hover:bg-bg-light transition text-sm font-medium text-text flex items-center gap-2"
+            className="flex w-full items-center justify-center gap-2 rounded-lg border border-border/50 px-4 py-2 text-sm font-medium text-text transition hover:bg-bg-light md:w-auto"
           >
             {showWeekList ? '📅 Hide Week List' : '📋 Show All Weeks'}
           </button>
@@ -138,7 +138,7 @@ export function TeacherCalendar({
         {/* Progress Bar */}
         {hasWeeks && (
           <div className="space-y-2">
-            <div className="flex items-center justify-between text-sm">
+            <div className="flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between">
               <span className="font-semibold text-text">
                 Viewing: Week {selectedWeek + 1} of {weeklySchedule.length}
               </span>
@@ -183,9 +183,9 @@ export function TeacherCalendar({
 
       {/* Week List View (Collapsible) */}
       {showWeekList && hasWeeks && (
-        <Card className="p-6">
+        <Card className="p-4 sm:p-6">
           <h3 className="text-lg font-semibold text-text mb-4">All Weeks at a Glance</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {weeklySchedule.map((week, index) => {
               const status = getWeekStatus(week);
               const isCurrent = status === 'current';
@@ -229,12 +229,12 @@ export function TeacherCalendar({
       )}
 
       {/* Week Detail View */}
-      <Card className="p-6">
+      <Card className="p-4 sm:p-6">
         {!hasWeeks ? (
           <div className="text-sm text-text/80">No schedule data found.</div>
         ) : (
           <>
-            <div className="flex items-center justify-between mb-4">
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <h3 className="text-lg font-semibold text-text">{currentWeek.week}</h3>
               {getWeekStatus(currentWeek) === 'current' && (
                 <span className="text-sm font-bold bg-accent text-text px-3 py-1 rounded-full">📍 Current Week</span>
@@ -244,10 +244,10 @@ export function TeacherCalendar({
               )}
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid gap-6 xl:grid-cols-2">
               {/* Tuesday */}
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                   <h4 className="font-semibold text-text">
                     Tuesday {formatMonthDay(currentWeek.dates.tue)}
                   </h4>
@@ -280,7 +280,7 @@ export function TeacherCalendar({
 
               {/* Thursday */}
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                   <h4 className="font-semibold text-text">
                     Thursday {formatMonthDay(currentWeek.dates.thu)}
                   </h4>

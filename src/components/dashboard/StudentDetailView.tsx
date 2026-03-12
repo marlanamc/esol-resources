@@ -1,100 +1,295 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import type {
+    StudentAnalyticsCategoryKey,
+    StudentAnalyticsCategorySummary,
+    StudentAnalyticsNextAction,
+    StudentAnalyticsResponse,
+} from '@/lib/teacher-student-analytics';
 
-interface StudentAnalytics {
-    student: {
-        id: string;
-        name: string;
-        username: string;
-        points: number;
-        weeklyPoints: number;
-        currentStreak: number;
-        longestStreak: number;
-        lastActive: string | null;
-        daysActiveThisMonth: number;
-    };
-    engagement: {
-        totalActivitiesCompleted: number;
-        activitiesInProgress: number;
-        totalActivitiesStarted: number;
-        favoriteActivities: Array<{
-            key: string;
-            count: number;
-            title: string;
-            category: string;
-        }>;
-        currentStreak: number;
-        longestStreak: number;
-    };
-    progress: {
-        byCategory: {
-            vocab: {
-                avgProgress: number;
-                completed: number;
-                activities: unknown[];
-            };
-            grammar: {
-                avgProgress: number;
-                completed: number;
-                activities: unknown[];
-            };
-            numbers: {
-                avgProgress: number;
-                completed: number;
-                activities: unknown[];
-            };
-            other: {
-                avgProgress: number;
-                completed: number;
-                activities: unknown[];
-            };
+const CATEGORY_ORDER: StudentAnalyticsCategoryKey[] = ['vocab', 'grammar', 'numbers', 'other'];
+const CATEGORY_META: Record<
+    StudentAnalyticsCategoryKey,
+    {
+        label: string;
+        icon: string;
+        accent: string;
+        accentBg: string;
+        bar: string;
+        cardBorder: string;
+    }
+> = {
+    vocab: {
+        label: 'Vocabulary',
+        icon: '📚',
+        accent: 'text-emerald-700',
+        accentBg: 'bg-emerald-50',
+        bar: 'bg-emerald-500',
+        cardBorder: 'border-emerald-200/70',
+    },
+    grammar: {
+        label: 'Grammar',
+        icon: '✍️',
+        accent: 'text-orange-700',
+        accentBg: 'bg-orange-50',
+        bar: 'bg-orange-500',
+        cardBorder: 'border-orange-200/70',
+    },
+    numbers: {
+        label: 'Numbers',
+        icon: '🔢',
+        accent: 'text-sky-700',
+        accentBg: 'bg-sky-50',
+        bar: 'bg-sky-500',
+        cardBorder: 'border-sky-200/70',
+    },
+    other: {
+        label: 'Other',
+        icon: '🧩',
+        accent: 'text-slate-700',
+        accentBg: 'bg-slate-100',
+        bar: 'bg-slate-500',
+        cardBorder: 'border-slate-200/80',
+    },
+};
+
+const STATUS_META: Record<
+    StudentAnalyticsCategorySummary['status'],
+    { label: string; className: string }
+> = {
+    'on-track': {
+        label: 'On track',
+        className: 'bg-emerald-100 text-emerald-800 border border-emerald-200',
+    },
+    'needs-attention': {
+        label: 'Needs attention',
+        className: 'bg-rose-100 text-rose-800 border border-rose-200',
+    },
+    'not-started': {
+        label: 'Not started',
+        className: 'bg-amber-100 text-amber-800 border border-amber-200',
+    },
+    'no-assigned-work': {
+        label: 'No assigned work',
+        className: 'bg-slate-100 text-slate-700 border border-slate-200',
+    },
+};
+
+function getRelativeTimeLabel(value: string | null) {
+    if (!value) return 'Never';
+    const date = new Date(value);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+
+    if (diffMins < 1) return 'Just now';
+    if (diffMins < 60) return `${diffMins}m ago`;
+    if (diffHours < 24) return `${diffHours}h ago`;
+    if (diffDays === 1) return 'Yesterday';
+    if (diffDays < 7) return `${diffDays} days ago`;
+    return date.toLocaleDateString();
+}
+
+function getActionLabel(action: StudentAnalyticsNextAction | null) {
+    if (!action) return null;
+    if (action.actionType === 'resume') return `Resume ${action.title}`;
+    if (action.actionType === 'start') return `Start ${action.title}`;
+    return `Review ${action.title}`;
+}
+
+function getActionMeta(summary: StudentAnalyticsCategorySummary) {
+    const actionLabel = getActionLabel(summary.nextAction);
+    const dueDateLabel = summary.nextAction?.dueDate
+        ? new Date(summary.nextAction.dueDate).toLocaleDateString()
+        : null;
+
+    if (actionLabel) {
+        return {
+            title: actionLabel,
+            detail:
+                summary.nextAction?.actionType === 'review'
+                    ? 'Latest scored work needs review.'
+                    : dueDateLabel
+                        ? `Due ${dueDateLabel}`
+                        : 'Most relevant next assignment to follow up on.',
         };
-        all: unknown[];
+    }
+
+    if (summary.status === 'no-assigned-work') {
+        return {
+            title: 'No assigned work in this category',
+            detail:
+                summary.historicalActivityCount > 0
+                    ? 'This student has older activity here, but nothing currently assigned.'
+                    : 'No follow-up needed until work is assigned.',
+        };
+    }
+
+    if (summary.status === 'not-started') {
+        return {
+            title: 'No activity yet',
+            detail: 'The student has assigned work here but has not started it.',
+        };
+    }
+
+    if (summary.status === 'needs-attention') {
+        return {
+            title: 'Follow up soon',
+            detail: 'This category includes overdue or stalled work.',
+        };
+    }
+
+    return {
+        title: 'Momentum is healthy',
+        detail: 'Recent work is moving forward with no immediate blockers.',
     };
-    timeline: Array<{
-        id: string;
-        points: number;
-        activity: string;
-        activityType?: string;
-        source?: "points" | "progress";
-        timestamp: string;
-    }>;
-    verbQuizResults: Array<{
-        id: string;
-        title: string;
-        score: number | null;
-        submittedAt: string | null;
-        completed: boolean;
-    }>;
-    grammarQuizResults: Array<{
-        id: string;
-        title: string;
-        score: number | null;
-        submittedAt: string | null;
-        completed: boolean;
-    }>;
+}
+
+function shouldShowCategory(
+    categoryKey: StudentAnalyticsCategoryKey,
+    summary: StudentAnalyticsCategorySummary
+) {
+    if (categoryKey !== 'other') {
+        return true;
+    }
+
+    return (
+        summary.assignedCount > 0 ||
+        summary.historicalActivityCount > 0 ||
+        summary.lastActiveAt !== null ||
+        summary.latestScore !== null
+    );
+}
+
+function InterventionCategoryCard({
+    categoryKey,
+    summary,
+}: {
+    categoryKey: StudentAnalyticsCategoryKey;
+    summary: StudentAnalyticsCategorySummary;
+}) {
+    const meta = CATEGORY_META[categoryKey];
+    const statusMeta = STATUS_META[summary.status];
+    const actionMeta = getActionMeta(summary);
+
+    return (
+        <div className={`rounded-2xl border bg-white p-5 shadow-sm ${meta.cardBorder}`}>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0">
+                    <div className="flex items-center gap-3">
+                        <span className={`flex h-10 w-10 items-center justify-center rounded-xl text-lg ${meta.accentBg}`}>
+                            {meta.icon}
+                        </span>
+                        <div>
+                            <h3 className="text-lg font-semibold text-text">{meta.label}</h3>
+                            <p className="text-sm text-text-muted">
+                                {summary.completedCount} of {summary.assignedCount} assigned completed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2">
+                    {summary.latestScore !== null ? (
+                        <span className={`rounded-full px-3 py-1 text-xs font-semibold ${meta.accentBg} ${meta.accent}`}>
+                            Latest score {summary.latestScore}%
+                        </span>
+                    ) : null}
+                    <span className={`rounded-full px-3 py-1 text-xs font-semibold ${statusMeta.className}`}>
+                        {statusMeta.label}
+                    </span>
+                </div>
+            </div>
+
+            <div className="mt-5 flex items-end justify-between gap-4">
+                <div>
+                    <div className="text-3xl font-black tracking-tight text-text">
+                        {summary.completedCount}
+                        <span className="ml-1 text-lg font-semibold text-text-muted">/ {summary.assignedCount}</span>
+                    </div>
+                    <p className="text-sm text-text-muted">Completed assignments</p>
+                </div>
+                <div className="text-right">
+                    <div className={`text-2xl font-black ${meta.accent}`}>
+                        {summary.assignedCount > 0 ? `${summary.completionRate}%` : '—'}
+                    </div>
+                    <p className="text-sm text-text-muted">Completion rate</p>
+                </div>
+            </div>
+
+            {summary.assignedCount > 0 ? (
+                <div className="mt-4">
+                    <div className="h-2.5 overflow-hidden rounded-full bg-bg">
+                        <div
+                            className={`h-full transition-[width] duration-300 ${meta.bar}`}
+                            style={{ width: `${summary.completionRate}%` }}
+                        />
+                    </div>
+                </div>
+            ) : null}
+
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <div className="rounded-xl bg-bg px-3 py-3">
+                    <div className="text-xs uppercase tracking-[0.12em] text-text-muted">Started</div>
+                    <div className="mt-1 text-lg font-bold text-text">{summary.startedCount}</div>
+                </div>
+                <div className="rounded-xl bg-bg px-3 py-3">
+                    <div className="text-xs uppercase tracking-[0.12em] text-text-muted">Stalled</div>
+                    <div className="mt-1 text-lg font-bold text-text">{summary.stalledCount}</div>
+                </div>
+                <div className="rounded-xl bg-bg px-3 py-3">
+                    <div className="text-xs uppercase tracking-[0.12em] text-text-muted">Overdue</div>
+                    <div className="mt-1 text-lg font-bold text-text">{summary.overdueCount}</div>
+                </div>
+                <div className="rounded-xl bg-bg px-3 py-3">
+                    <div className="text-xs uppercase tracking-[0.12em] text-text-muted">Last active</div>
+                    <div className="mt-1 text-sm font-semibold text-text">
+                        {getRelativeTimeLabel(summary.lastActiveAt)}
+                    </div>
+                </div>
+            </div>
+
+            <div className={`mt-5 rounded-2xl border px-4 py-4 ${meta.accentBg} ${meta.cardBorder}`}>
+                <div className="text-xs font-semibold uppercase tracking-[0.14em] text-text-muted">
+                    Next action
+                </div>
+                <div className="mt-1 text-sm font-semibold text-text">{actionMeta.title}</div>
+                <div className="mt-1 text-sm text-text-muted">{actionMeta.detail}</div>
+            </div>
+        </div>
+    );
 }
 
 export default function StudentDetailView({ studentId }: { studentId: string }) {
-    const [data, setData] = useState<StudentAnalytics | null>(null);
+    const [data, setData] = useState<StudentAnalyticsResponse | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        let cancelled = false;
+
         fetch(`/api/teacher/student-analytics/${studentId}`)
             .then(res => {
                 if (!res.ok) throw new Error('Failed to fetch student data');
                 return res.json();
             })
-            .then((data: StudentAnalytics) => {
-                setData(data);
+            .then((nextData: StudentAnalyticsResponse) => {
+                if (cancelled) return;
+                setData(nextData);
                 setLoading(false);
             })
             .catch((err: unknown) => {
+                if (cancelled) return;
                 setError(err instanceof Error ? err.message : 'Failed to fetch student data');
                 setLoading(false);
             });
+
+        return () => {
+            cancelled = true;
+        };
     }, [studentId]);
 
     if (loading) {
@@ -112,23 +307,6 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
             </div>
         );
     }
-
-    const getLastActiveText = (lastActive: string | null) => {
-        if (!lastActive) return 'Never';
-        const date = new Date(lastActive);
-        const now = new Date();
-        const diffMs = now.getTime() - date.getTime();
-        const diffMins = Math.floor(diffMs / 60000);
-        const diffHours = Math.floor(diffMs / 3600000);
-        const diffDays = Math.floor(diffMs / 86400000);
-
-        if (diffMins < 1) return 'Just now';
-        if (diffMins < 60) return `${diffMins}m ago`;
-        if (diffHours < 24) return `${diffHours}h ago`;
-        if (diffDays === 1) return 'Yesterday';
-        if (diffDays < 7) return `${diffDays} days ago`;
-        return date.toLocaleDateString();
-    };
 
     return (
         <div className="space-y-6">
@@ -186,7 +364,7 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                         {data.student.daysActiveThisMonth}
                     </div>
                     <div className="text-xs text-text-muted mt-1">
-                        This month · Last: {getLastActiveText(data.student.lastActive)}
+                        This month · Last: {getRelativeTimeLabel(data.student.lastActive)}
                     </div>
                 </div>
             </div>
@@ -371,69 +549,24 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                     </div>
 
                     {/* Progress by Category */}
-                    <div className="bg-white rounded-lg border border-border p-6">
+                    <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
                         <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
                             <span>📊</span>
-                            Progress by Category
+                            Category Intervention
                         </h2>
-                        <div className="space-y-4">
-                            {/* Vocab */}
-                            <div>
-                                <div className="flex items-center justify-between mb-2">
-                                    <span className="font-medium text-text">Vocabulary</span>
-                                    <span className="text-sm text-text-muted">
-                                        {data.progress.byCategory.vocab.completed} completed
-                                    </span>
-                                </div>
-                                <div className="w-full bg-bg rounded-full h-3 overflow-hidden">
-                                    <div
-                                        className="h-full bg-emerald-500 transition-[width] duration-300"
-                                        style={{ width: `${data.progress.byCategory.vocab.avgProgress}%` }}
-                                    />
-                                </div>
-                                <div className="text-xs text-text-muted mt-1">
-                                    {data.progress.byCategory.vocab.avgProgress}% average progress
-                                </div>
-                            </div>
-
-                            {/* Grammar */}
-                            <div>
-                                <div className="flex items-center justify-between mb-2">
-                                    <span className="font-medium text-text">Grammar</span>
-                                    <span className="text-sm text-text-muted">
-                                        {data.progress.byCategory.grammar.completed} completed
-                                    </span>
-                                </div>
-                                <div className="w-full bg-bg rounded-full h-3 overflow-hidden">
-                                    <div
-                                        className="h-full bg-[#e76f51] transition-[width] duration-300"
-                                        style={{ width: `${data.progress.byCategory.grammar.avgProgress}%` }}
-                                    />
-                                </div>
-                                <div className="text-xs text-text-muted mt-1">
-                                    {data.progress.byCategory.grammar.avgProgress}% average progress
-                                </div>
-                            </div>
-
-                            {/* Numbers */}
-                            <div>
-                                <div className="flex items-center justify-between mb-2">
-                                    <span className="font-medium text-text">Numbers</span>
-                                    <span className="text-sm text-text-muted">
-                                        {data.progress.byCategory.numbers.completed} completed
-                                    </span>
-                                </div>
-                                <div className="w-full bg-bg rounded-full h-3 overflow-hidden">
-                                    <div
-                                        className="h-full bg-blue-500 transition-[width] duration-300"
-                                        style={{ width: `${data.progress.byCategory.numbers.avgProgress}%` }}
-                                    />
-                                </div>
-                                <div className="text-xs text-text-muted mt-1">
-                                    {data.progress.byCategory.numbers.avgProgress}% average progress
-                                </div>
-                            </div>
-
+                        <p className="mb-5 text-sm text-text-muted">
+                            Assigned-work status by category, with stalled and overdue work surfaced first.
+                        </p>
+                        <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+                            {CATEGORY_ORDER.filter((categoryKey) =>
+                                shouldShowCategory(categoryKey, data.progress.byCategory[categoryKey])
+                            ).map((categoryKey) => (
+                                <InterventionCategoryCard
+                                    key={categoryKey}
+                                    categoryKey={categoryKey}
+                                    summary={data.progress.byCategory[categoryKey]}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>

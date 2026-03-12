@@ -124,17 +124,43 @@ export async function PATCH(request: NextRequest) {
         let updatedCount = 1;
         const updatedAssignment = await prisma.$transaction(async (tx) => {
             if (syncToSectionGroup && assignment.class.sectionGroupId) {
-                const sectionIds = await tx.class.findMany({
+                const sections = await tx.class.findMany({
                     where: {
                         sectionGroupId: assignment.class.sectionGroupId,
                         teacherId: assignment.class.teacherId,
                     },
                     select: { id: true },
                 });
+                const sectionIds = sections.map((section) => section.id);
+
+                if (isFeatured) {
+                    const existingAssignments = await tx.assignment.findMany({
+                        where: {
+                            classId: { in: sectionIds },
+                            activityId: assignment.activityId,
+                        },
+                        select: { classId: true },
+                    });
+                    const existingClassIds = new Set(existingAssignments.map((item) => item.classId));
+                    const missingSectionIds = sectionIds.filter((sectionId) => !existingClassIds.has(sectionId));
+
+                    if (missingSectionIds.length > 0) {
+                        await tx.assignment.createMany({
+                            data: missingSectionIds.map((classId) => ({
+                                classId,
+                                activityId: assignment.activityId,
+                                title: assignment.title,
+                                instructions: assignment.instructions,
+                                dueDate: assignment.dueDate,
+                                isFeatured: true,
+                            })),
+                        });
+                    }
+                }
 
                 const syncResult = await tx.assignment.updateMany({
                     where: {
-                        classId: { in: sectionIds.map((section) => section.id) },
+                        classId: { in: sectionIds },
                         activityId: assignment.activityId,
                     },
                     data: { isFeatured },

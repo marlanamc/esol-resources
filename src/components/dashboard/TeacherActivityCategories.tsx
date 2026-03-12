@@ -352,7 +352,8 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                 body: JSON.stringify({
                     classId: defaultClassId,
                     activityId: activity.id,
-                    title: activity.title
+                    title: activity.title,
+                    syncToSectionGroup: true,
                 })
             });
 
@@ -391,7 +392,8 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     assignmentId,
-                    isFeatured: false
+                    isFeatured: false,
+                    syncToSectionGroup: true,
                 })
             });
 

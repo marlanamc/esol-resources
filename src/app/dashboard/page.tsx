@@ -33,6 +33,7 @@ import { isTeacherAdmin } from "@/lib/roles";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
 
 type TeacherAssignment = {
     id: string;
@@ -682,7 +683,10 @@ export default async function DashboardPage() {
             .filter((announcement) => announcement.message.length > 0);
 
         const classIds = enrollments.map(e => e.classId);
-        const featuredAssignmentsRawUnfiltered = classIds.length === 0 ? [] : await timedQuery(
+        const featuredClassIds = await withPrismaReadRetry(() =>
+            expandClassIdsToSectionGroupIds(prisma, classIds)
+        );
+        const featuredAssignmentsRawUnfiltered = featuredClassIds.length === 0 ? [] : await timedQuery(
             {
                 route: "/dashboard",
                 queryLabel: "assignment.findMany.featuredStudentDashboard",
@@ -692,7 +696,7 @@ export default async function DashboardPage() {
                 withPrismaReadRetry(() =>
                     prisma.assignment.findMany({
             where: {
-                classId: { in: classIds },
+                classId: { in: featuredClassIds },
                 isFeatured: true,
                 activity: { id: { not: "" } }
             },

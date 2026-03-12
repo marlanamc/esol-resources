@@ -24,7 +24,8 @@ export const FeatureToggleButton: React.FC<FeatureToggleButtonProps> = ({
                 },
                 body: JSON.stringify({
                     assignmentId,
-                    isFeatured: !isFeatured
+                    isFeatured: !isFeatured,
+                    syncToSectionGroup: true,
                 })
             });
 

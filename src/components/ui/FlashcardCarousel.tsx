@@ -445,7 +445,7 @@ function CardFace({
             style={containerStyle}
         >
             {/* Top Label + optional audio button */}
-            <div className="absolute top-4 sm:top-6 left-4 sm:left-6 flex items-center gap-2">
+            <div className="absolute top-4 sm:top-6 left-4 right-4 sm:left-6 sm:right-6 flex items-center justify-between gap-3">
                 <span className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm ${labelClasses}`}>
                     {content.type}
                 </span>
