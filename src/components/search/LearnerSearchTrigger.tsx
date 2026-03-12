@@ -36,8 +36,7 @@ export function LearnerSearchTrigger({ variant = "icon", className = "", label =
                 onTriggered?.();
                 openSearch();
             }}
-            className={`inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border px-3 py-2 text-sm font-semibold text-text transition-colors hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${className}`}
-            style={{ borderColor: "var(--border-subtle)", backgroundColor: "var(--surface-elevated)" }}
+            className={`search-trigger-pill inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border px-3.5 py-2 text-sm font-semibold focus-visible:ring-offset-0 ${className}`}
             aria-label="Open search"
         >
             <Search className="h-4 w-4" aria-hidden />
