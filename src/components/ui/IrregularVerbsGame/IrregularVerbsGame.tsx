@@ -151,9 +151,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
 
         <div
           ref={contentScrollRef}
-          className={`min-h-0 flex-1 ${
-            state.phase === 'exercise' ? 'overflow-hidden' : 'overflow-y-auto overscroll-contain'
-          }`}
+          className="min-h-0 flex-1 overflow-y-auto overscroll-contain"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           <AnimatePresence mode="wait">
@@ -179,7 +177,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                className="flex h-full min-h-0 flex-col"
+                className="flex min-h-full flex-col"
               >
                 <ExerciseScreen
                   group={state.selectedGroup}

@@ -96,7 +96,7 @@ export function ExerciseScreen({
   };
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-4rem)] sm:min-h-0 sm:block">
+    <div className="flex min-h-full flex-col">
       {/* Streak Animation Overlay */}
       <AnimatePresence>
         {showStreakAnimation && (
@@ -267,7 +267,7 @@ export function ExerciseScreen({
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -30 }}
         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        className={`mx-3 mt-2 flex flex-1 flex-col overflow-hidden rounded-xl border sm:mx-0 sm:mt-6 sm:flex-none sm:rounded-2xl sm:border-2 ${exerciseShellClassName}`}
+        className={`mx-3 mt-2 flex flex-col overflow-hidden rounded-xl border sm:mx-0 sm:mt-6 sm:rounded-2xl sm:border-2 ${exerciseShellClassName}`}
       >
         {/* Exercise Type Badge - Slim on mobile */}
         <div className={`border-b px-3 py-2 sm:px-6 sm:py-3 ${exerciseShellHeaderClassName}`}>
@@ -278,7 +278,7 @@ export function ExerciseScreen({
         </div>
 
         {/* Exercise Content - Scrollable on mobile if needed */}
-        <div className="flex-1 p-3 sm:p-6 overflow-y-auto">
+        <div className="p-3 sm:p-6">
           <AnimatePresence mode="wait">
             {renderExercise()}
           </AnimatePresence>
