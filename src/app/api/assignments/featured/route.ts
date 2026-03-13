@@ -144,14 +144,19 @@ export async function GET() {
             };
         });
 
-        // Deduplicate by activityId: section-group expansion can return same activity from multiple classes
+        // Deduplicate by activityId: section-group expansion can return same activity from multiple classes.
+        // Prefer assignments from the student's enrolled classes so activity links work (access check requires enrollment).
+        const enrolledClassIds = new Set(classIds);
         const deduped = Array.from(
             withProgress
                 .reduce<Map<string, (typeof withProgress)[number]>>((map, a) => {
                     const existing = map.get(a.activityId);
+                    const aEnrolled = enrolledClassIds.has(a.classId);
+                    const existingEnrolled = existing ? enrolledClassIds.has(existing.classId) : false;
                     const aTime = new Date(a.updatedAt ?? a.createdAt).getTime();
                     const existingTime = existing ? new Date(existing.updatedAt ?? existing.createdAt).getTime() : -1;
-                    if (!existing || aTime > existingTime) map.set(a.activityId, a);
+                    const keepNew = !existing || (aEnrolled && !existingEnrolled) || (aEnrolled === existingEnrolled && aTime > existingTime);
+                    if (keepNew) map.set(a.activityId, a);
                     return map;
                 }, new Map())
                 .values()
