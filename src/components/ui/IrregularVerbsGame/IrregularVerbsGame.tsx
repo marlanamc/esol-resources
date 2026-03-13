@@ -105,7 +105,11 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
   }
 
   return (
-    <div className="fixed inset-0 overflow-hidden bg-bg touch-manipulation md:relative md:inset-auto md:h-full md:min-h-0">
+    <div
+      ref={contentScrollRef}
+      className="fixed inset-0 overflow-y-auto overscroll-contain bg-bg touch-manipulation"
+      style={{ WebkitOverflowScrolling: 'touch' }}
+    >
       {/* Subtle grain texture overlay using CSS noise (GPU-friendly) */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.04] z-0"
@@ -118,7 +122,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className={`relative z-10 mx-auto flex h-full min-h-0 flex-col ${
+        className={`relative z-10 mx-auto flex min-h-full w-full flex-col ${
           state.phase === 'exercise'
             ? 'w-full max-w-none px-0 py-2 sm:max-w-5xl sm:px-6 sm:py-10'
             : 'max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
@@ -148,96 +152,89 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
             </button>
           </div>
         )}
+        <AnimatePresence mode="wait">
+          {state.phase === 'selection' && (
+            <motion.div
+              key="selection"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+            >
+              <GroupSelectionScreen
+                categoryData={state.categoryData}
+                onSelectGroup={(group: VerbGroup) => selectGroup(group)}
+              />
+            </motion.div>
+          )}
 
-        <div
-          ref={contentScrollRef}
-          className="min-h-0 flex-1 overflow-y-auto overscroll-contain"
-          style={{ WebkitOverflowScrolling: 'touch' }}
-        >
-          <AnimatePresence mode="wait">
-            {state.phase === 'selection' && (
-              <motion.div
-                key="selection"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              >
-                <GroupSelectionScreen
-                  categoryData={state.categoryData}
-                  onSelectGroup={(group: VerbGroup) => selectGroup(group)}
-                />
-              </motion.div>
-            )}
+          {state.phase === 'exercise' && state.selectedGroup && (
+            <motion.div
+              key="exercise"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+              className="flex min-h-full flex-col"
+            >
+              <ExerciseScreen
+                group={state.selectedGroup}
+                exercises={state.exercises}
+                currentIndex={state.currentExerciseIndex}
+                showPattern={!preferences?.hideVerbExplanations || preferences === undefined}
+                onAnswer={submitAnswer}
+                onBack={returnToGroupIntro}
+              />
+            </motion.div>
+          )}
 
-            {state.phase === 'exercise' && state.selectedGroup && (
-              <motion.div
-                key="exercise"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                className="flex min-h-full flex-col"
-              >
-                <ExerciseScreen
-                  group={state.selectedGroup}
-                  exercises={state.exercises}
-                  currentIndex={state.currentExerciseIndex}
-                  showPattern={!preferences?.hideVerbExplanations || preferences === undefined}
-                  onAnswer={submitAnswer}
-                  onBack={returnToGroupIntro}
-                />
-              </motion.div>
-            )}
+          {state.phase === 'intro' && state.selectedGroup && (
+            <motion.div
+              key="intro"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+            >
+              <IntroScreen
+                group={state.selectedGroup}
+                roundMode={state.selectedRoundMode}
+                onStartChallenge={startGroupChallenge}
+                onBack={quitGame}
+              />
+            </motion.div>
+          )}
 
-            {state.phase === 'intro' && state.selectedGroup && (
-              <motion.div
-                key="intro"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              >
-                <IntroScreen
-                  group={state.selectedGroup}
-                  roundMode={state.selectedRoundMode}
-                  onStartChallenge={startGroupChallenge}
-                  onBack={quitGame}
-                />
-              </motion.div>
-            )}
+          {state.phase === 'results' && state.selectedGroup && state.roundResults && (
+            <motion.div
+              key="results"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+            >
+              <ResultsScreen
+                group={state.selectedGroup}
+                results={state.roundResults}
+                nextGroup={(() => {
+                  if (!state.roundResults.unlocked || !state.selectedGroup) return null;
+                  const currentIndex = VERB_GROUPS.findIndex(g => g.id === state.selectedGroup!.id);
+                  if (currentIndex < 0) return null;
 
-            {state.phase === 'results' && state.selectedGroup && state.roundResults && (
-              <motion.div
-                key="results"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              >
-                <ResultsScreen
-                  group={state.selectedGroup}
-                  results={state.roundResults}
-                  nextGroup={(() => {
-                    if (!state.roundResults.unlocked || !state.selectedGroup) return null;
-                    const currentIndex = VERB_GROUPS.findIndex(g => g.id === state.selectedGroup!.id);
-                    if (currentIndex < 0) return null;
+                  const nextRegularGroup = VERB_GROUPS[currentIndex + 1] ?? null;
+                  if (nextRegularGroup) {
+                    return nextRegularGroup;
+                  }
 
-                    const nextRegularGroup = VERB_GROUPS[currentIndex + 1] ?? null;
-                    if (nextRegularGroup) {
-                      return nextRegularGroup;
-                    }
-
-                    return ALL_PATTERNS_GROUP;
-                  })()}
-                  roundMode={state.selectedRoundMode}
-                  onRetry={retryGroup}
-                  onContinue={continueToNext}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+                  return ALL_PATTERNS_GROUP;
+                })()}
+                roundMode={state.selectedRoundMode}
+                onRetry={retryGroup}
+                onContinue={continueToNext}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );
