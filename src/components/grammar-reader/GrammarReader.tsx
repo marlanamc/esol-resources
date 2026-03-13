@@ -612,9 +612,9 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             </div>
                         </div>
 
-                        {/* Table of Contents - Expandable */}
+                        {/* Table of Contents - Expandable (desktop only; mobile uses bottom sheet) */}
                         {content.tableOfContents && showTOC && (
-                            <div className="px-4 sm:px-6 pb-4 border-t border-border">
+                            <div className="hidden md:block px-4 sm:px-6 pb-4 border-t border-border">
                                 <div className="pt-4">
                                     <TableOfContents
                                         sections={content.sections}
@@ -704,17 +704,17 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                         </>
                     )}
 
-                    {/* Section Counter Footer - Just shows current section */}
+                    {/* Section Counter Footer - Hidden on mobile (shown in bottom bar instead) */}
                     {!showTOC && (
-                        <div className="px-4 sm:px-6 py-3 border-t border-border bg-bg-light">
+                        <div className="hidden md:block px-4 sm:px-6 py-3 border-t border-border bg-bg-light">
                             <div className="text-center">
                                 <div className="text-sm text-text-muted">
                                     {showQuiz
                                         ? "Mini Quiz"
                                         : `Section ${currentSectionIndex + 1} of ${content.sections.length}`}
                                 </div>
-                                {/* Keyboard Shortcuts Hint */}
-                                <div className="text-xs text-text-muted mt-2">
+                                {/* Keyboard Shortcuts Hint - hidden on mobile (uses bottom bar instead) */}
+                                <div className="hidden md:block text-xs text-text-muted mt-2">
                                     <p>
                                         Use <kbd className="px-2 py-1 rounded border border-border">←</kbd>{" "}
                                         and <kbd className="px-2 py-1 rounded border border-border">→</kbd>{" "}
@@ -734,7 +734,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             <button
                                 onClick={handlePrevious}
                                 disabled={!showQuiz && isFirstSection}
-                                className="grammar-reader-nav-button grammar-reader-nav-button-secondary fixed left-4 top-1/2 -translate-y-1/2 z-40 flex h-14 w-14 items-center justify-center rounded-full border-2 border-border shadow-lg transition-[border-color,background-color,color] duration-200 group disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                                className="grammar-reader-nav-button grammar-reader-nav-button-secondary hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-40 h-14 w-14 items-center justify-center rounded-full border-2 border-border shadow-lg transition-[border-color,background-color,color] duration-200 group disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                                 aria-label="Previous section"
                             >
                                 <svg
@@ -760,7 +760,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                         <button
                             onClick={handleNext}
                             disabled={showQuiz && !content.miniQuiz}
-                            className="grammar-reader-nav-button grammar-reader-nav-button-primary fixed right-4 top-1/2 -translate-y-1/2 z-40 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-[background-color,transform] duration-200 group disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                            className="grammar-reader-nav-button grammar-reader-nav-button-primary hidden md:flex fixed right-4 top-1/2 -translate-y-1/2 z-40 h-14 w-14 items-center justify-center rounded-full shadow-lg transition-[background-color,transform] duration-200 group disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                             aria-label="Next section"
                         >
                             <svg
@@ -785,6 +785,92 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             </span>
                         </button>
                     </>
+                )}
+
+                {/* Mobile TOC bottom sheet - sits above the nav bar so both stay visible */}
+                {content.tableOfContents && showTOC && (
+                    <div
+                        className="md:hidden fixed left-0 right-0 z-10 overflow-y-auto rounded-t-2xl border-t-2 border-x-2 border-border bg-bg shadow-[0_-8px_24px_rgba(0,0,0,0.12)] animate-in slide-in-from-bottom-8 duration-300"
+                        style={{
+                            bottom: "calc(5rem + env(safe-area-inset-bottom, 0px))",
+                            maxHeight: "min(60vh, 400px)",
+                        }}
+                    >
+                        <div className="p-4 pb-2">
+                            <TableOfContents
+                                sections={content.sections}
+                                onSelectSection={handleJumpToSection}
+                                onClose={() => setShowTOC(false)}
+                                currentIndex={currentSectionIndex}
+                                completedSections={completedSections}
+                                hasMiniQuiz={!!content.miniQuiz}
+                                showingQuiz={showQuiz}
+                                onSelectQuiz={() => setShowQuiz(true)}
+                            />
+                        </div>
+                    </div>
+                )}
+
+                {/* Mobile bottom nav bar - always visible so user can toggle TOC via section counter */}
+                {(
+                    <div
+                        className="flex md:hidden fixed bottom-0 left-0 right-0 z-20 border-t border-border items-center justify-between gap-3 px-4 py-3 safe-area-bottom-padding-mobile-lg"
+                        style={{ backgroundColor: "var(--surface-overlay)" }}
+                    >
+                        <button
+                            onClick={handlePrevious}
+                            disabled={!showQuiz && isFirstSection}
+                            aria-label="Previous section"
+                            className={`grammar-reader-nav-button min-w-[80px] min-h-[44px] px-4 py-2 rounded-lg font-semibold transition-[background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
+                                (!showQuiz && !isFirstSection) || showQuiz
+                                    ? "grammar-reader-nav-button-secondary border-2 border-border"
+                                    : "bg-border text-text-muted cursor-not-allowed"
+                            } disabled:cursor-not-allowed disabled:opacity-50`}
+                        >
+                            Prev
+                        </button>
+                        {content.tableOfContents ? (
+                            <button
+                                type="button"
+                                onClick={() => setShowTOC((prev) => !prev)}
+                                className={`text-sm font-semibold flex-shrink-0 py-2 px-2 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${showTOC ? "text-primary bg-primary/10" : "text-text-muted hover:bg-border/40 hover:text-text"}`}
+                                aria-label={showTOC ? "Close table of contents" : "Open table of contents"}
+                                aria-expanded={showTOC}
+                            >
+                                {showQuiz
+                                    ? "Mini Quiz"
+                                    : `Section ${currentSectionIndex + 1} of ${content.sections.length}`}
+                            </button>
+                        ) : (
+                            <div className="text-sm font-semibold text-text-muted flex-shrink-0">
+                                {showQuiz
+                                    ? "Mini Quiz"
+                                    : `Section ${currentSectionIndex + 1} of ${content.sections.length}`}
+                            </div>
+                        )}
+                        <button
+                            onClick={handleNext}
+                            disabled={showQuiz && !content.miniQuiz}
+                            aria-label={
+                                isLastSection && content.miniQuiz && !showQuiz
+                                    ? "Take Quiz"
+                                    : showQuiz
+                                        ? "Finish"
+                                        : "Next section"
+                            }
+                            className={`grammar-reader-nav-button min-w-[80px] min-h-[44px] px-4 py-2 rounded-lg font-semibold transition-[background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
+                                !(showQuiz && !content.miniQuiz)
+                                    ? "grammar-reader-nav-button-primary"
+                                    : "bg-border text-text-muted cursor-not-allowed"
+                            } disabled:cursor-not-allowed disabled:opacity-50`}
+                        >
+                            {isLastSection && content.miniQuiz && !showQuiz
+                                ? "Take Quiz"
+                                : showQuiz
+                                    ? "Finish"
+                                    : "Next"}
+                        </button>
+                    </div>
                 )}
             </main>
         </div>
