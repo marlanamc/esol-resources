@@ -792,13 +792,13 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
             exercises: [
                 {
                     id: "ex-scenarios-1",
-                    title: "Practice: Choose the Best Response",
+                    title: "Practice: Best Fit for the Context",
                     instructions:
-                        "Pick the most professional option for each workplace situation.",
+                        "Choose the option that best matches the situation. Think about who you're talking to and how formal you need to be.",
                     items: [
                         {
                             type: "radio",
-                            label: "Your boss asks you to work overtime, but you have plans:",
+                            label: "Your boss asks you to work overtime, but you have plans. You need to decline politely:",
                             options: [
                                 { value: "a", label: "I can't, I have plans." },
                                 { value: "c", label: "No thanks." },
@@ -808,17 +808,17 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "You need a coworker to switch shifts with you:",
+                            label: "You need a close coworker (and friend) to switch shifts. You're talking in the break room:",
                             options: [
                                 { value: "c", label: "I have a situation on Friday. Would you be able to switch shifts with me?" },
-                                { value: "a", label: "Can you take my shift?" },
+                                { value: "a", label: "Can you take my shift on Friday?" },
                                 { value: "b", label: "Switch with me." },
                             ],
-                            expectedAnswer: "c",
+                            expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: "You need to ask your manager about a policy:",
+                            label: "You need to ask your manager about the break policy. You want to sound professional:",
                             options: [
                                 { value: "a", label: "What's the rule about breaks?" },
                                 { value: "b", label: "Could you clarify the policy on break times?" },
@@ -826,27 +826,37 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             ],
                             expectedAnswer: "b",
                         },
-                    ],
-                },
-                {
-                    id: "ex-fix-email",
-                    title: "📧 Fix the Email: Make It Professional",
-                    instructions:
-                        "Each email below is too casual or rude. Choose the best way to make it more professional.",
-                    items: [
                         {
                             type: "radio",
-                            label: "Original email: \"Hey, I need friday off. Let me know.\"",
+                            label: "You're emailing the HR director you've never met to request time off for a family event:",
                             options: [
-                                { value: "a", label: "Hi, I need Friday off. Tell me if that works." },
-                                { value: "b", label: "Could I request Friday off? I have a personal appointment. Please let me know if this works. Thank you!" },
+                                { value: "a", label: "Hey, I need Friday off. Let me know." },
+                                { value: "b", label: "Hi, could I request Friday off? I have a family event. Please let me know if that works. Thank you!" },
                                 { value: "c", label: "I'm taking Friday off." },
                             ],
                             expectedAnswer: "b",
                         },
+                    ],
+                },
+                {
+                    id: "ex-fix-email",
+                    title: "📧 Fix the Email: Best Fit for the Context",
+                    instructions:
+                        "Each email is too casual. Choose the version that best fits who you're writing to.",
+                    items: [
                         {
                             type: "radio",
-                            label: "Original email: \"Where's the report? Send it now.\"",
+                            label: "Context: Email to your supervisor about a doctor appointment. Original: \"Hey, I need friday off. Let me know.\"",
+                            options: [
+                                { value: "a", label: "Hi, I need Friday off for a doctor appointment. Could you let me know if that works?" },
+                                { value: "b", label: "Could I request Friday off? I have a personal appointment. Please let me know if this works. Thank you!" },
+                                { value: "c", label: "I'm taking Friday off." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Context: Email to a client or senior manager. Original: \"Where's the report? Send it now.\"",
                             options: [
                                 { value: "a", label: "I need the report. Can you send it?" },
                                 { value: "b", label: "Give me the report today." },
@@ -856,9 +866,9 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "Original email: \"I don't understand this. Explain it.\"",
+                            label: "Context: Quick message to a close coworker who sent you confusing instructions. Original: \"I don't understand this. Explain it.\"",
                             options: [
-                                { value: "a", label: "I was wondering if you could help clarify this for me? I want to make sure I understand correctly." },
+                                { value: "a", label: "Could you explain this a bit? I want to make sure I get it right." },
                                 { value: "b", label: "What does this mean? I don't get it." },
                                 { value: "c", label: "This is confusing. Fix it." },
                             ],
