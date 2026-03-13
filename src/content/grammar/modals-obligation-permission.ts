@@ -71,6 +71,17 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             ],
                             expectedAnswer: "permission",
                         },
+                        {
+                            type: "checkbox",
+                            label: "Which modals express <strong>STRONG obligation</strong> (required - no choice)? Select all that apply.",
+                            options: [
+                                { value: "must", label: "must" },
+                                { value: "have-to", label: "have to" },
+                                { value: "should", label: "should" },
+                                { value: "can", label: "can" },
+                            ],
+                            expectedAnswers: ["must", "have-to"],
+                        },
                     ],
                 },
             ],
@@ -364,6 +375,17 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                                 { value: "could", label: "Could I possibly ask you something?" },
                             ],
                             expectedAnswer: "may",
+                        },
+                        {
+                            type: "checkbox",
+                            label: "Which modals can you use to ask for permission? Select all that apply.",
+                            options: [
+                                { value: "can", label: "Can I...?" },
+                                { value: "may", label: "May I...?" },
+                                { value: "could", label: "Could I...?" },
+                                { value: "must", label: "Must I...?" },
+                            ],
+                            expectedAnswers: ["can", "may", "could"],
                         },
                     ],
                 },
@@ -760,34 +782,36 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <p>Let's apply what you learned to real workplace situations:</p>
 
                 <div style="margin: 1.5rem 0;">
-                    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
-                        <h4 style="margin-top: 0; color: #d97757;">Scenario 1: You're sick and need to call in</h4>
-                        <p><strong>❌ Too casual:</strong> "I can't come in today."</p>
-                        <p><strong>✓ Professional:</strong> "I'm not feeling well. I won't be able to come in today."</p>
-                        <p><strong>✓ Very professional:</strong> "I'm ill and won't be able to work today. Should I find someone to cover my shift?"</p>
-                    </div>
 
-                    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
-                        <h4 style="margin-top: 0; color: #d97757;">Scenario 2: You need help with a task</h4>
-                        <p><strong>❌ Too direct:</strong> "Help me with this."</p>
-                        <p><strong>✓ Polite:</strong> "Could you help me with this when you have a moment?"</p>
-                        <p><strong>✓ More polite:</strong> "I was wondering if you could help me understand how to do this?"</p>
-                    </div>
+    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
+        <h4 style="margin-top: 0; color: #d97757;">Scenario 1: You're sick and need to call in</h4>
+        <p><strong>⚠️ Very direct:</strong> "I can't come in today."</p>
+        <p><strong>✓ Better for work:</strong> "I'm not feeling well, so I won't be able to come in today."</p>
+        <p><strong>✓ Even better:</strong> "I'm not feeling well and won't be able to come in today. Please let me know if you need me to find coverage."</p>
+    </div>
 
-                    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
-                        <h4 style="margin-top: 0; color: #d97757;">Scenario 3: You want to leave early</h4>
-                        <p><strong>❌ Too casual:</strong> "Can I go now?"</p>
-                        <p><strong>✓ Better:</strong> "Would it be okay if I left a bit early today?"</p>
-                        <p><strong>✓ Best:</strong> "I have an appointment. Would it be possible for me to leave 30 minutes early today?"</p>
-                    </div>
+    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
+        <h4 style="margin-top: 0; color: #d97757;">Scenario 2: You need help with a task</h4>
+        <p><strong>⚠️ Very direct:</strong> "Help me with this."</p>
+        <p><strong>✓ Good workplace request:</strong> "Could you help me with this when you have a moment?"</p>
+        <p><strong>✓ Even more polite:</strong> "I was wondering if you could help me understand how to do this."</p>
+    </div>
 
-                    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
-                        <h4 style="margin-top: 0; color: #d97757;">Scenario 4: You don't understand instructions</h4>
-                        <p><strong>❌ Vague:</strong> "I don't get it."</p>
-                        <p><strong>✓ Professional:</strong> "Could you explain that again?"</p>
-                        <p><strong>✓ More specific:</strong> "I want to make sure I understand. Should I do X first, or Y?"</p>
-                    </div>
-                </div>
+    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
+        <h4 style="margin-top: 0; color: #d97757;">Scenario 3: You want to leave early</h4>
+        <p><strong>⚠️ Abrupt:</strong> "Can I go now?"</p>
+        <p><strong>✓ Better:</strong> "Would it be okay if I left a bit early today?"</p>
+        <p><strong>✓ Best:</strong> "I have an appointment today. Would it be possible for me to leave about 30 minutes early?"</p>
+    </div>
+
+    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
+        <h4 style="margin-top: 0; color: #d97757;">Scenario 4: You don't understand instructions</h4>
+        <p><strong>⚠️ Too vague:</strong> "I don't get it."</p>
+        <p><strong>✓ Professional:</strong> "Could you explain that again?"</p>
+        <p><strong>✓ More specific:</strong> "I want to make sure I understand. Should I do X first, or Y?"</p>
+    </div>
+
+</div>
             `,
             exercises: [
                 {
@@ -810,9 +834,9 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You need a close coworker (and friend) to switch shifts. You're talking in the break room:",
                             options: [
-                                { value: "c", label: "I have a situation on Friday. Would you be able to switch shifts with me?" },
-                                { value: "a", label: "Can you take my shift on Friday?" },
-                                { value: "b", label: "Switch with me." },
+                              { value: "b", label: "Would you be able to switch shifts with me on Friday?" },
+                              { value: "a", label: "Can you switch shifts with me on Friday?" },
+                              { value: "c", label: "Switch with me." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -842,37 +866,73 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     id: "ex-fix-email",
                     title: "📧 Fix the Email: Best Fit for the Context",
                     instructions:
-                        "Each email is too casual. Choose the version that best fits who you're writing to.",
+                        `<div style="line-height:1.6">
+<p><strong>Each email below is too casual.</strong></p>
+<p>Choose the version or versions that fit the context best.</p>
+<p style="margin-top:0.5rem; padding:0.5rem 0.75rem; background:rgba(200,107,81,0.08); border-radius:0.35rem;">
+<strong>Tip:</strong> In professional emails, it helps to <strong>explain the reason</strong> for your request and <strong>ask politely if it works</strong>.
+</p>
+</div>`,
                     items: [
                         {
-                            type: "radio",
-                            label: "Context: Email to your supervisor about a doctor appointment. Original: \"Hey, I need friday off. Let me know.\"",
+                            type: "checkbox",
+                            label: `<div style="line-height:1.6">
+<p><strong>Context:</strong> Email to your supervisor about a doctor appointment.</p>
+<p><strong>Original message:</strong></p>
+<p style="margin:0.5rem 0; padding:0.5rem 0.75rem; background:rgba(0,0,0,0.04); border-radius:0.35rem; font-style:italic;">
+"Hey, I need Friday off. Let me know."
+</p>
+<p><strong>Question:</strong> Which responses are appropriate to send to your supervisor?</p>
+<p style="font-size:0.9rem; color:#666;">Select all that apply.</p>
+</div>`,
                             options: [
                                 { value: "a", label: "Hi, I need Friday off for a doctor appointment. Could you let me know if that works?" },
-                                { value: "b", label: "Could I request Friday off? I have a personal appointment. Please let me know if this works. Thank you!" },
-                                { value: "c", label: "I'm taking Friday off." },
+                                { value: "b", label: "Could I request Friday off? I have a doctor appointment. Please let me know if this works. Thank you!" },
+                                { value: "c", label: "I can't work Friday. I have a doctor appointment." },
+                                { value: "d", label: "Hey, I need Friday off. Let me know." },
+                                { value: "e", label: "I have a doctor's appointment on Friday. May I have the day off? Please let me know. Thank you." },
                             ],
-                            expectedAnswer: "a",
+                            expectedAnswers: ["a", "b", "e"],
                         },
                         {
-                            type: "radio",
-                            label: "Context: Email to a client or senior manager. Original: \"Where's the report? Send it now.\"",
+                            type: "checkbox",
+                            label: `<div style="line-height:1.6">
+<p><strong>Context:</strong> Email to a client or senior manager.</p>
+<p><strong>Original message:</strong></p>
+<p style="margin:0.5rem 0; padding:0.5rem 0.75rem; background:rgba(0,0,0,0.04); border-radius:0.35rem; font-style:italic;">
+"Where's the report? Send it now."
+</p>
+<p><strong>Question:</strong> Which responses are appropriate?</p>
+<p style="font-size:0.9rem; color:#666;">Select all that apply.</p>
+</div>`,
                             options: [
                                 { value: "a", label: "I need the report. Can you send it?" },
                                 { value: "b", label: "Give me the report today." },
                                 { value: "c", label: "Could you send me the report when you have a chance? I would like to review it before the meeting. Thank you!" },
+                                { value: "d", label: "Would you be able to send me the report when you have a moment? I'd like to review it before the meeting. Thank you!" },
+                                { value: "e", label: "Send me the report now!" },
                             ],
-                            expectedAnswer: "c",
+                            expectedAnswers: ["c", "d"],
                         },
                         {
-                            type: "radio",
-                            label: "Context: Quick message to a close coworker who sent you confusing instructions. Original: \"I don't understand this. Explain it.\"",
+                            type: "checkbox",
+                            label: `<div style="line-height:1.6">
+<p><strong>Context:</strong> Quick message to a close coworker who sent you confusing instructions.</p>
+<p><strong>Original message:</strong></p>
+<p style="margin:0.5rem 0; padding:0.5rem 0.75rem; background:rgba(0,0,0,0.04); border-radius:0.35rem; font-style:italic;">
+"I don't understand this. Explain it."
+</p>
+<p><strong>Question:</strong> Which responses are appropriate?</p>
+<p style="font-size:0.9rem; color:#666;">Select all that apply.</p>
+</div>`,
                             options: [
                                 { value: "a", label: "Could you explain this a bit? I want to make sure I get it right." },
                                 { value: "b", label: "What does this mean? I don't get it." },
                                 { value: "c", label: "This is confusing. Fix it." },
+                                { value: "d", label: "Can you clarify what you mean? I want to make sure I do it correctly." },
+                                { value: "e", label: "I'm not sure I understand these instructions. Could you walk me through it?" },
                             ],
-                            expectedAnswer: "a",
+                            expectedAnswers: ["a", "d", "e"],
                         },
                     ],
                 },

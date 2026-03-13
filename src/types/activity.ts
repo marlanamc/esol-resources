@@ -40,6 +40,13 @@ export type ExerciseItem =
         expectedAnswers?: string[];
     }
     | {
+        type: "checkbox";
+        label: string;
+        options: Array<{ value: string; label: string }>;
+        /** Array of correct option values - user must select all and only these */
+        expectedAnswers: string[];
+    }
+    | {
         type: "word-select";
         label: string;
         selectWhat?: string; // e.g. "nouns and pronouns"

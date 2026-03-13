@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { TextInputExercise } from "./TextInputExercise";
 import { SelectExercise } from "./SelectExercise";
 import { RadioExercise } from "./RadioExercise";
+import { CheckboxExercise } from "./CheckboxExercise";
 import { WordScrambleExercise } from "./WordScrambleExercise";
 import { WordSelectExercise } from "./WordSelectExercise";
 import {
@@ -14,6 +15,7 @@ import {
     getExerciseDefaultPlaceholder,
 } from "@/lib/exercise-answer-expectation";
 import { normalizeExerciseAnswer } from "@/lib/exercise-answer-normalization";
+import { sanitizeHtml } from "@/utils/sanitize";
 
 export interface ExerciseCompletionInfo {
     exerciseId: string;
@@ -58,6 +60,19 @@ export function ExerciseSection({
         return [];
     };
 
+    const parseCheckboxAnswer = (value: string): string[] => {
+        if (!value) return [];
+        try {
+            const parsed = JSON.parse(value) as unknown;
+            if (Array.isArray(parsed)) {
+                return parsed.filter((v): v is string => typeof v === "string");
+            }
+        } catch {
+            // ignore
+        }
+        return [];
+    };
+
     const handleCheck = () => {
         const newResults: Record<number, boolean> = {};
         exercise.items.forEach((item, index) => {
@@ -73,6 +88,16 @@ export function ExerciseSection({
                 const sameMembers =
                     sameSize && Array.from(expectedSelection).every((i) => userSelection.has(i));
                 newResults[index] = sameMembers && expectedSelection.size > 0;
+                return;
+            }
+
+            if (item.type === "checkbox") {
+                const userSelected = new Set(parseCheckboxAnswer(answers[index] || ""));
+                const expectedSelected = new Set(item.expectedAnswers);
+                const sameSize = userSelected.size === expectedSelected.size;
+                const sameMembers =
+                    sameSize && Array.from(expectedSelected).every((v) => userSelected.has(v));
+                newResults[index] = sameMembers && expectedSelected.size > 0;
                 return;
             }
 
@@ -139,6 +164,9 @@ export function ExerciseSection({
         if (item.type === "word-select") {
             return parseSelection(answers[index] || "").length > 0;
         }
+        if (item.type === "checkbox") {
+            return parseCheckboxAnswer(answers[index] || "").length > 0;
+        }
         return !!answers[index];
     });
     const correctCount = Object.values(results).filter((r) => r).length;
@@ -156,7 +184,16 @@ export function ExerciseSection({
             <div className="mb-3 space-y-0.5">
                 <h4 className="text-base sm:text-lg font-semibold text-primary">{displayTitle}</h4>
                 {exercise.instructions && (
-                    <p className="text-sm text-text-muted font-normal">{displayInstructions}</p>
+                    (displayInstructions ?? "").includes("<") ? (
+                        <div
+                            className="text-sm text-text-muted font-normal [&_p]:mt-2 [&_p:first-child]:mt-0 [&_div]:space-y-1"
+                            dangerouslySetInnerHTML={{
+                                __html: sanitizeHtml(displayInstructions, { allowStyles: true }),
+                            }}
+                        />
+                    ) : (
+                        <p className="text-sm text-text-muted font-normal">{displayInstructions}</p>
+                    )
                 )}
                 {answerExpectationMessage && (
                     <p className="text-sm font-medium text-text">
@@ -194,6 +231,9 @@ export function ExerciseSection({
                             )}
                             {item.type === "radio" && (
                                 <RadioExercise item={item} {...commonProps} />
+                            )}
+                            {item.type === "checkbox" && (
+                                <CheckboxExercise item={item} {...commonProps} />
                             )}
                             {item.type === "word-select" && (
                                 <WordSelectExercise item={item} {...commonProps} />

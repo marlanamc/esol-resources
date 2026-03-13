@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { sanitizeHtml } from "@/utils/sanitize";
 
-interface RadioExerciseProps {
-    item: Extract<ExerciseItem, { type: "radio" }>;
+interface CheckboxExerciseProps {
+    item: Extract<ExerciseItem, { type: "checkbox" }>;
     userAnswer: string;
     isCorrect: boolean;
     isIncorrect: boolean;
@@ -15,7 +15,20 @@ interface RadioExerciseProps {
     itemNumber: number;
 }
 
-export function RadioExercise({
+function parseCheckboxAnswer(value: string): string[] {
+    if (!value) return [];
+    try {
+        const parsed = JSON.parse(value) as unknown;
+        if (Array.isArray(parsed)) {
+            return parsed.filter((v): v is string => typeof v === "string");
+        }
+    } catch {
+        // ignore
+    }
+    return [];
+}
+
+export function CheckboxExercise({
     item,
     userAnswer,
     isCorrect,
@@ -23,11 +36,24 @@ export function RadioExercise({
     submitted,
     onChange,
     itemNumber,
-}: RadioExerciseProps) {
+}: CheckboxExerciseProps) {
     void isIncorrect;
+    const selected = new Set(parseCheckboxAnswer(userAnswer));
+    const expected = new Set(item.expectedAnswers);
+
+    const toggleOption = (value: string) => {
+        const next = new Set(selected);
+        if (next.has(value)) {
+            next.delete(value);
+        } else {
+            next.add(value);
+        }
+        onChange(JSON.stringify([...next].sort()));
+    };
+
     return (
         <motion.div
-            className="radio-exercise"
+            className="checkbox-exercise"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
@@ -37,24 +63,27 @@ export function RadioExercise({
                     <span className="font-semibold mr-2">{itemNumber}.</span>
                     <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.label, { allowStyles: true }) }} />
                 </span>
+                <p className="text-xs text-text-muted mt-1 italic">Select all that apply.</p>
             </div>
             <div className="space-y-2">
                 {item.options.map((option, index) => {
-                    const isSelected = userAnswer === option.value;
-                    const isCorrectOption = submitted && option.value === item.expectedAnswer;
-                    const isWrongSelection = submitted && isSelected && !isCorrect;
+                    const isChecked = selected.has(option.value);
+                    const isCorrectOption = expected.has(option.value);
+                    const isWrongChecked = submitted && isChecked && !isCorrectOption;
+                    const isMissedCorrect = submitted && !isChecked && isCorrectOption;
 
                     return (
                         <motion.label
                             key={option.value}
-                            className={`flex items-center p-3 rounded-lg border transition-[border-color,background-color] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${submitted && isCorrectOption
+                            className={`flex items-center p-3 rounded-lg border transition-[border-color,background-color] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
+                                submitted && isCorrectOption
                                     ? "border-success bg-success/5"
-                                    : submitted && isWrongSelection
-                                        ? "border-error bg-error/5"
-                                        : isSelected
-                                            ? "border-primary bg-primary/5"
-                                            : "border-border hover:border-primary/50 hover:bg-bg-light"
-                                } ${submitted ? "cursor-not-allowed" : ""}`}
+                                    : submitted && (isWrongChecked || isMissedCorrect)
+                                      ? "border-error bg-error/5"
+                                      : isChecked
+                                        ? "border-primary bg-primary/5"
+                                        : "border-border hover:border-primary/50 hover:bg-bg-light"
+                            } ${submitted ? "cursor-not-allowed" : ""}`}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.05, duration: 0.2 }}
@@ -62,13 +91,11 @@ export function RadioExercise({
                             whileTap={!submitted ? { scale: 0.98 } : {}}
                         >
                             <input
-                                type="radio"
-                                name={`radio-${item.label}`}
-                                value={option.value}
-                                checked={isSelected}
-                                onChange={(e) => onChange(e.target.value)}
+                                type="checkbox"
+                                checked={isChecked}
+                                onChange={() => toggleOption(option.value)}
                                 disabled={submitted}
-                                className="w-5 h-5 text-primary focus:ring-2 focus:ring-primary/20"
+                                className="w-5 h-5 rounded text-primary focus:ring-2 focus:ring-primary/20"
                             />
                             <span
                                 className="ml-3 text-sm text-text flex-1"
@@ -76,7 +103,7 @@ export function RadioExercise({
                             />
 
                             <AnimatePresence>
-                                {submitted && isCorrectOption && (
+                                {submitted && isCorrectOption && isChecked && (
                                     <motion.div
                                         className="ml-auto"
                                         initial={{ scale: 0, rotate: -180 }}
@@ -87,7 +114,7 @@ export function RadioExercise({
                                         <CheckCircle2 className="w-5 h-5 text-success" />
                                     </motion.div>
                                 )}
-                                {submitted && isWrongSelection && (
+                                {submitted && (isWrongChecked || isMissedCorrect) && (
                                     <motion.div
                                         className="ml-auto"
                                         initial={{ scale: 0 }}
