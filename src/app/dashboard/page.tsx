@@ -840,7 +840,25 @@ export default async function DashboardPage() {
 
         const featuredAssignmentsRaw = featuredAssignmentsRawUnfiltered.filter(filterReleasedActivities);
 
-        const featuredActivityIds = Array.from(new Set(featuredAssignmentsRaw.map((a) => a.activityId)));
+        // Deduplicate by activityId: section-group expansion can return same activity from multiple classes
+        const featuredAssignmentsDeduped = Array.from(
+            featuredAssignmentsRaw
+                .reduce<
+                    Map<
+                        string,
+                        (typeof featuredAssignmentsRaw)[number]
+                    >
+                >((map, a) => {
+                    const existing = map.get(a.activityId);
+                    const aTime = (a.updatedAt ?? a.createdAt).getTime();
+                    const existingTime = existing ? (existing.updatedAt ?? existing.createdAt).getTime() : -1;
+                    if (!existing || aTime > existingTime) map.set(a.activityId, a);
+                    return map;
+                }, new Map())
+                .values()
+        );
+
+        const featuredActivityIds = Array.from(new Set(featuredAssignmentsDeduped.map((a) => a.activityId)));
         const featuredProgressRows =
             featuredActivityIds.length === 0
                 ? []
@@ -892,7 +910,7 @@ export default async function DashboardPage() {
             });
         }
 
-        const featuredAssignments = featuredAssignmentsRaw
+        const featuredAssignments = featuredAssignmentsDeduped
             .filter((a) => a.activityId !== "vocab-daily-review")
             .map((a) => {
                 const p = featuredProgressMap.get(a.activityId);

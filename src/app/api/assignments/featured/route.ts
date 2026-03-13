@@ -144,7 +144,20 @@ export async function GET() {
             };
         });
 
-        return NextResponse.json(withProgress);
+        // Deduplicate by activityId: section-group expansion can return same activity from multiple classes
+        const deduped = Array.from(
+            withProgress
+                .reduce<Map<string, (typeof withProgress)[number]>>((map, a) => {
+                    const existing = map.get(a.activityId);
+                    const aTime = new Date(a.updatedAt ?? a.createdAt).getTime();
+                    const existingTime = existing ? new Date(existing.updatedAt ?? existing.createdAt).getTime() : -1;
+                    if (!existing || aTime > existingTime) map.set(a.activityId, a);
+                    return map;
+                }, new Map())
+                .values()
+        );
+
+        return NextResponse.json(deduped);
     } catch (error: unknown) {
         logger.error("Error fetching featured assignments", error);
         return ApiErrors.internal("Failed to fetch featured assignments");
