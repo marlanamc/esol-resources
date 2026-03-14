@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { ArrowLeft, CheckCircle2, ChevronDown, HelpCircle, RotateCcw, Volume2, X, Sparkles, BrainCircuit, CalendarSync } from "lucide-react";
+import { VocabReminderOptIn } from "@/components/VocabReminderOptIn";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import type {
   VocabReviewCard,
@@ -392,6 +393,10 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
           {reviewedCount} <span className="opacity-40">/</span> {sessionCards.length}
         </span>
 
+        <div className="hidden sm:block shrink-0">
+          <VocabReminderOptIn />
+        </div>
+
         <button
           type="button"
           onClick={() => setIsFilterOpen(true)}
@@ -604,8 +609,8 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
               ) : null}
               <span className="mt-2 block font-medium text-text/80">
                 {remainingActionableCount > 0
-                      ? `${remainingActionableCount} card${remainingActionableCount === 1 ? "" : "s"} are still ready in this set (${queue.dueCount} due, ${queue.newCount} new).`
-                      : "No due or new cards are left in this set right now."}
+                      ? "More cards are ready when you want to practice again!"
+                      : "You're all caught up for now!"}
               </span>
             </p>
             {sessionCompleteResult ? (
@@ -723,11 +728,9 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
                             <div className="relative z-10">
                               <div className="text-[15px] font-bold tracking-tight text-text">{filter.label}</div>
                               <div className="mt-1 flex items-center gap-1.5 text-[12px] font-medium text-text/60">
-                                <span>{filter.dueCount} ready now</span>
+                                <span>{filter.dueCount > 0 ? "Cards ready" : "All caught up"}</span>
                                 <span className="opacity-40">•</span>
-                                <span>{Math.max(filter.totalCount - filter.newCount, 0)} still learning</span>
-                                <span className="opacity-40">•</span>
-                                <span>{filter.totalCount} all words</span>
+                                <span>{filter.totalCount} words</span>
                               </div>
                             </div>
                             {isActive ? (
