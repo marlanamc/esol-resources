@@ -79,6 +79,12 @@ export const grammarDarkStyleMatchers: readonly GrammarDarkStyleMatcher[] = [
   { id: "bg-amber-alpha", label: "amber alpha surface", cls: "gc-bg-amber-alpha", kind: "background", test: (s) => /background[^:]*:\s*rgba\(\s*245,\s*158,\s*11,\s*0\.(?:05|1)\)/i.test(s) },
   { id: "bg-sage-alpha", label: "sage alpha surface", cls: "gc-bg-sage-alpha", kind: "background", test: (s) => /background[^:]*:\s*rgba\(\s*(?:110,\s*145,\s*118|122,\s*143,\s*124)\s*,\s*0\.(?:05|1|15)\)/i.test(s) },
   { id: "bg-terracotta-alpha", label: "terracotta alpha surface", cls: "gc-bg-terracotta-alpha", kind: "background", test: (s) => /background[^:]*:\s*rgba\(\s*200,\s*107,\s*81\s*,\s*0\.(?:05|1)\)/i.test(s) },
+  /* Gerunds-infinitives and similar: linear-gradient with alpha tints (uncovered light surfaces) */
+  { id: "grad-terracotta-primary-alpha", label: "terracotta alpha gradient (#d97757)", cls: "gc-bg-terracotta-alpha", kind: "background", test: (s) => s.includes("linear-gradient") && /rgba\(\s*217,\s*119,\s*87\s*,\s*0\./i.test(s) },
+  { id: "grad-sky-alpha", label: "sky/cyan alpha gradient (#0369a1)", cls: "gc-bg-cyan-alpha", kind: "background", test: (s) => s.includes("linear-gradient") && /rgba\(\s*3,\s*105,\s*161\s*,\s*0\./i.test(s) },
+  { id: "grad-purple-primary-alpha", label: "purple alpha gradient (#8b5cf6)", cls: "gc-bg-purple-alpha", kind: "background", test: (s) => s.includes("linear-gradient") && /rgba\(\s*139,\s*92,\s*246\s*,\s*0\./i.test(s) },
+  { id: "grad-sage-primary-alpha", label: "sage alpha gradient (#7ba884)", cls: "gc-bg-sage-alpha", kind: "background", test: (s) => s.includes("linear-gradient") && /rgba\(\s*123,\s*168,\s*132\s*,\s*0\./i.test(s) },
+  { id: "grad-red-ef44-alpha", label: "red alpha gradient (#ef4444)", cls: "gc-bg-red", kind: "background", test: (s) => s.includes("linear-gradient") && /rgba\(\s*239,\s*68,\s*68\s*,\s*0\./i.test(s) },
 
   { id: "box-cyan", label: "2px cyan border box", cls: "gc-box-cyan", kind: "border", test: (s) => /border:\s*2px\s+solid\s+#06b6d4/i.test(s) },
   { id: "box-amber", label: "2px amber border box", cls: "gc-box-amber", kind: "border", test: (s) => /border:\s*2px\s+solid\s+#f0b45a/i.test(s) },

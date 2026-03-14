@@ -4,6 +4,7 @@ const GUIDE_SLUGS = [
   "past-perfect-family",
   "information-questions",
   "future-perfect-family",
+  "gerunds-infinitives",
 ] as const;
 
 function parseRgb(value: string): [number, number, number] {
