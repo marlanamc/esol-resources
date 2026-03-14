@@ -33,6 +33,7 @@ export const grammarDarkStyleMatchers: readonly GrammarDarkStyleMatcher[] = [
   { id: "bg-yellow", label: "yellow callout surface", cls: "gc-bg-yellow", kind: "background", test: (s) => /background[^:]*:\s*#fef9c3/i.test(s) },
   { id: "bg-amber", label: "amber surface", cls: "gc-bg-amber", kind: "background", test: (s) => /background[^:]*:\s*#fef3c7/i.test(s) },
   { id: "bg-amber-soft-warn", label: "soft amber warning surface", cls: "gc-bg-amber", kind: "background", test: (s) => /background[^:]*:\s*#fff3cd/i.test(s) },
+  { id: "bg-amber-fef3cd", label: "amber warning surface (#fef3cd)", cls: "gc-bg-amber", kind: "background", test: (s) => /background[^:]*:\s*#fef3cd/i.test(s) },
   { id: "bg-orange", label: "orange surface", cls: "gc-bg-orange", kind: "background", test: (s) => /background[^:]*:\s*#fff7ed/i.test(s) },
   { id: "bg-amber-soft", label: "soft amber surface", cls: "gc-bg-amber", kind: "background", test: (s) => /background[^:]*:\s*(?:#fff9e6|#fffbeb)/i.test(s) },
   { id: "bg-red", label: "red surface", cls: "gc-bg-red", kind: "background", test: (s) => /background[^:]*:\s*#(?:fef2f2|fee2e2)/i.test(s) },

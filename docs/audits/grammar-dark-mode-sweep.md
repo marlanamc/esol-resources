@@ -1,19 +1,19 @@
 # Grammar Dark Mode Sweep
 
-Generated: 2026-03-14T17:33:08.121Z
+Generated: 2026-03-14T18:12:32.730Z
 
 ## Summary
 
 - Mode: `static`
 - Guides audited: 1
-- Static findings: 102
+- Static findings: 105
 - Rendered findings: 0
 - Contrast failures: 0
 - Theme mismatches: 0
 - Near-threshold rendered findings: 0
 - Static uncovered findings: 0
 - Static partially covered findings: 0
-- Static covered findings: 102
+- Static covered findings: 105
 - Audited slugs: `gerunds-infinitives`
 
 ## Rendered Findings
@@ -112,6 +112,9 @@ _No rendered findings._
 | 100 | `gerunds-infinitives` | Infinitive Patterns: When to Use TO + Verb | `covered` | cyan text | `gc-text-cyan` | `src/content/grammar/gerunds-infinitives.ts:826` | Pattern A: Adjective + Infinitive | `color: #0369a1; margin-top: 1.5rem;` |
 | 100 | `gerunds-infinitives` | Infinitive Patterns: When to Use TO + Verb | `covered` | cyan text | `gc-text-cyan` | `src/content/grammar/gerunds-infinitives.ts:834` | Pattern B: Noun + Infinitive | `color: #0369a1;` |
 | 100 | `gerunds-infinitives` | Infinitive Patterns: When to Use TO + Verb | `covered` | cyan text | `gc-text-cyan` | `src/content/grammar/gerunds-infinitives.ts:842` | Pattern C: Verb + Infinitive | `color: #0369a1;` |
+| 100 | `gerunds-infinitives` | Special Cases: Stop, Remember, Try | `covered` | light surface background | `gc-bg-amber` | `src/content/grammar/gerunds-infinitives.ts:941` | stop + gerund = quit doing something Example: I stopped smoking. (I quit the habit) stop + infinitive = pause one activ... | `background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e;` |
+| 100 | `gerunds-infinitives` | Special Cases: Stop, Remember, Try | `covered` | light surface background | `gc-bg-amber` | `src/content/grammar/gerunds-infinitives.ts:949` | remember + gerund = recall a past event Example: I remember meeting you at the party. (I have a memory of it) remember ... | `background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e;` |
+| 100 | `gerunds-infinitives` | Special Cases: Stop, Remember, Try | `covered` | light surface background | `gc-bg-amber` | `src/content/grammar/gerunds-infinitives.ts:957` | try + gerund = experiment with something to see if it works Example: I'm tired. I'll try drinking coffee. (Let's see if... | `background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e;` |
 | 100 | `gerunds-infinitives` | Verbs That Take BOTH (Same Meaning) | `covered` | light surface background | `gc-grad-purple, gc-bg-terracotta-alpha, gc-bg-purple-alpha` | `src/content/grammar/gerunds-infinitives.ts:1074` | ✨ Good News! These verbs are flexible – you can use gerund OR infinitive and the meaning stays the same. | `background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(217, 119, 87, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;` |
 | 100 | `gerunds-infinitives` | Verbs That Take BOTH (Same Meaning) | `covered` | dark or muted text color | `gc-text-purple` | `src/content/grammar/gerunds-infinitives.ts:1075` | ✨ Good News! | `margin-top: 0; color: #8b5cf6;` |
 | 100 | `gerunds-infinitives` | Verbs That Take BOTH (Same Meaning) | `covered` | light surface background | `gc-bg-amber, gc-callout-left` | `src/content/grammar/gerunds-infinitives.ts:1092` | ⚠️ Note: While both forms work, native speakers often prefer gerunds for general statements and infinitives for specifi... | `background-color: #fff3cd; border-left: 4px solid #f4d35e; padding: 15px; margin: 20px 0;` |

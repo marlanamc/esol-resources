@@ -198,7 +198,7 @@ const STATIC_RISK_RULES: readonly RiskRule[] = [
     severity: 3,
     coveredByClasses: SURFACE_CLASSES,
     test: (style) =>
-      /background(?:-color)?\s*:\s*(?:white|#fff(?:fff)?(?:\b|;)|#f8fafc|#fdfbf7|#f4f1ea|#fef9f3|#fff3cd|#fff5f2|#fffaf0|#fff9e6|#fffbeb|#fff7ed|#fef9c3|#fef3c7|#fef2f2|#fdf2f8|#f0fdf4|#ecfdf5|#eff6ff|#faf5ff|#f5f3ff|#ede9fe|#ecfeff|#cbd5e1)/i.test(
+      /background(?:-color)?\s*:\s*(?:white|#fff(?:fff)?(?:\b|;)|#f8fafc|#fdfbf7|#f4f1ea|#fef9f3|#fff3cd|#fef3cd|#fff5f2|#fffaf0|#fff9e6|#fffbeb|#fff7ed|#fef9c3|#fef3c7|#fef2f2|#fdf2f8|#f0fdf4|#ecfdf5|#eff6ff|#faf5ff|#f5f3ff|#ede9fe|#ecfeff|#cbd5e1)/i.test(
         style,
       ) || /linear-gradient/i.test(style),
   },
