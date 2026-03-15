@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { parseCategoryData } from '@/lib/categoryData';
@@ -19,46 +19,18 @@ import { ActivityLink } from '@/components/navigation/ActivityLink';
 import { StudentQuickStats } from '@/components/dashboard/StudentQuickStats';
 import type { DailyChecklistHabit } from '@/lib/daily-habits';
 import { getLearnerCategoryTone } from '@/lib/learner-theme';
+import {
+    useFeaturedAssignments,
+    AssignmentCard,
+    type FeaturedAssignment,
+    type CategoryStyle,
+    type VocabCategoryData,
+} from './todays-assignments';
 
 const FEATURED_NEW_BADGE_CLASS_NAME = 'inline-flex items-center gap-1 rounded-full border';
 const TITLE_DATE_REGEX = /(\d{1,2})\/(\d{1,2})\/(\d{2})/;
 
 type ChecklistGroupKey = 'grammar' | 'vocabulary' | 'quizzes' | 'activity';
-
-interface VocabCategoryData {
-    'word-list'?: { completed: boolean; progress: number; completedAt?: string };
-    'flashcards'?: { completed: boolean; progress: number; completedAt?: string };
-    'matching'?: { completed: boolean; progress: number; completedAt?: string };
-    'fill-blank'?: { completed: boolean; progress: number; completedAt?: string };
-}
-
-interface FeaturedAssignment {
-    id: string;
-    title?: string | null;
-    activityId: string;
-    href?: string;
-    sectionCount?: number;
-    dueDate?: string | Date | null;
-    featuredAt?: string | Date | null;
-    updatedAt?: string | Date | null;
-    createdAt?: string | Date | null;
-    isNewRelease?: boolean;
-    progress?: number;
-    progressStatus?: string;
-    categoryData?: VocabCategoryData | string | null;
-    activity: {
-        title: string;
-        description: string | null;
-        type?: string;
-        category?: string | null;
-    };
-    submissions: Array<{
-        id: string;
-        status: string;
-        completedAt: string | Date | null;
-        score: number | null;
-    }>;
-}
 
 interface Props {
     initialAssignments?: FeaturedAssignment[];
@@ -72,15 +44,6 @@ interface Props {
     refreshOnMount?: boolean;
     /** Show streak and points badges in checklist header (student dashboard) */
     showStudentStats?: boolean;
-}
-
-interface CategoryStyle {
-    label: string;
-    bg: string;
-    pastelBg: string;
-    text: string;
-    accent: string;
-    border: string;
 }
 
 interface VocabProgressInfo {
@@ -713,9 +676,10 @@ function ChecklistAssignments({
         };
     }).filter((group) => group.items.length > 0);
 
+    // Use sortedRows for filter chips so counts and chips stay visible when the resume row exists
     const taskGroups = CHECKLIST_GROUPS.map((group) => ({
         ...group,
-        items: taskRows.filter((row) => row.groupKey === group.key),
+        items: sortedRows.filter((row) => row.groupKey === group.key),
     })).filter((group) => group.items.length > 0);
 
     useEffect(() => {
@@ -1184,7 +1148,7 @@ function ChecklistAssignments({
                 </div>
 
                 <div className="lg:hidden px-3 py-3 space-y-2.5" style={{ backgroundColor: 'var(--surface-subtle)' }}>
-                        {pinnedHabitNeedsAttention && pinnedHabit ? (
+                        {(activeFilter === 'all' || activeFilter === 'vocabulary') && pinnedHabitNeedsAttention && pinnedHabit ? (
                             <PinnedDailyHabitRow habit={pinnedHabit} compact />
                         ) : null}
 
@@ -1223,7 +1187,7 @@ function ChecklistAssignments({
                             </div>
                         )}
 
-                        {pinnedHabitDoneToday && pinnedHabit ? (
+                        {(activeFilter === 'all' || activeFilter === 'vocabulary') && pinnedHabitDoneToday && pinnedHabit ? (
                             <PinnedDailyHabitRow habit={pinnedHabit} compact />
                         ) : null}
                     </div>
@@ -1323,9 +1287,10 @@ export const TodaysAssignments: React.FC<Props> = ({
     refreshOnMount = false,
     showStudentStats = false,
 }) => {
-    const hasInitialAssignments = initialAssignments !== undefined;
-    const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
-    const [loading, setLoading] = useState(() => !hasInitialAssignments || refreshOnMount);
+    const { assignments, loading } = useFeaturedAssignments({
+        initialAssignments,
+        refreshOnMount,
+    });
 
     const resolvedTitle = (() => {
         if (title === undefined) {
@@ -1338,33 +1303,6 @@ export const TodaysAssignments: React.FC<Props> = ({
     const weeklyRangeLabel = variant === 'checklist'
         ? formatWeekRangeLabel(new Date())
         : null;
-
-    useEffect(() => {
-        if (refreshOnMount) {
-            void fetchFeaturedAssignments();
-            return;
-        }
-
-        if (hasInitialAssignments) {
-            setLoading(false);
-            return;
-        }
-        void fetchFeaturedAssignments();
-    }, [hasInitialAssignments, refreshOnMount]);
-
-    const fetchFeaturedAssignments = async () => {
-        try {
-            const response = await fetch('/api/assignments/featured');
-            if (response.ok) {
-                const data = await response.json();
-                setAssignments(data);
-            }
-        } catch (error) {
-            console.error('Error fetching featured assignments:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     if (loading) {
         return (
@@ -1478,82 +1416,16 @@ export const TodaysAssignments: React.FC<Props> = ({
                         const displayTitle = stripVocabTypeSuffix(rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide'));
 
                         return (
-                            <div
+                            <AssignmentCard
                                 key={assignment.id}
-                                className="dashboard-panel-hover relative overflow-hidden rounded-2xl border surface-card-shadow group"
-                                style={{ animationDelay: `${index * 40}ms`, backgroundColor: 'var(--dashboard-surface-start)', borderColor: 'var(--dashboard-border)' }}
-                            >
-                                <div
-                                    className="absolute left-0 top-0 bottom-0 w-1 transition-[width] duration-200 group-hover:w-1.5"
-                                    style={{ backgroundColor: categoryStyle.accent }}
-                                />
-
-                                <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 pl-5">
-                                    <div className="flex-1 min-w-0">
-                                        <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                                            <span
-                                                className="inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide"
-                                                style={{ backgroundColor: categoryStyle.bg, color: categoryStyle.text }}
-                                            >
-                                                {categoryStyle.label}
-                                            </span>
-
-                                            {isNew && (
-                                                <span className={`${FEATURED_NEW_BADGE_CLASS_NAME} px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide`}>
-                                                    <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
-                                                    New
-                                                </span>
-                                            )}
-
-                                            {(() => {
-                                                const vocabType = getVocabActivityType(assignment.activityId);
-                                                if (!vocabType) return null;
-                                                const chip = VOCAB_CHIP_CONFIG[vocabType];
-                                                return (
-                                                    <ActivityLink
-                                                        activityId={assignment.activityId}
-                                                        assignmentId={assignment.id}
-                                                        className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border transition-colors z-20 ${chip.className}`}
-                                                        onClick={(event) => event.stopPropagation()}
-                                                    >
-                                                        {chip.icon} {chip.label}
-                                                    </ActivityLink>
-                                                );
-                                            })()}
-
-                                            {assignment.progress != null && assignment.progress > 0 && !isCompleted && (
-                                                <span className="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                                                    {Math.round(assignment.progress)}% done
-                                                </span>
-                                            )}
-
-                                            {isCompleted && (
-                                                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-secondary/10 text-[#3d6b47] dark:text-secondary rounded text-[10px] font-bold uppercase tracking-wide">
-                                                    <span className="text-xs">✓</span>
-                                                    Done
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        <h3 className="text-base sm:text-lg font-semibold text-text group-hover:text-primary transition-colors leading-snug">
-                                            {displayTitle}
-                                        </h3>
-                                    </div>
-
-                                    <ActivityLink
-                                        activityId={assignment.activityId}
-                                        assignmentId={assignment.id}
-                                        className="dashboard-accent-button inline-flex min-h-11 items-center justify-center rounded-2xl px-4 py-2 text-sm font-semibold whitespace-nowrap active:scale-95 sm:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
-                                        aria-label={`${isCompleted ? 'Review' : ctaLabel} ${displayTitle}`}
-                                        style={{
-                                            '--dashboard-button-accent': categoryStyle.accent,
-                                            '--dashboard-button-text': categoryStyle.text,
-                                        } as React.CSSProperties}
-                                    >
-                                        {isCompleted ? 'Review' : ctaLabel}
-                                    </ActivityLink>
-                                </div>
-                            </div>
+                                assignment={assignment}
+                                index={index}
+                                ctaLabel={ctaLabel}
+                                categoryStyle={categoryStyle}
+                                displayTitle={displayTitle}
+                                isNew={isNew}
+                                isCompleted={isCompleted}
+                            />
                         );
                     })}
                 </div>
