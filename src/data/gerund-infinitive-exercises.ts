@@ -839,15 +839,50 @@ const BASE_FROM_OVERRIDES: Record<string, string> = {
   permitting: 'permit', submitting: 'submit', committing: 'commit',
   auditing: 'audit', crediting: 'credit', exhibiting: 'exhibit',
   inhibiting: 'inhibit', eliciting: 'elicit', orbiting: 'orbit',
-  inheriting: 'inherit', benefitting: 'benefit', profiting: 'profit',
+  inheriting: 'inherit', benefitting: 'benefit', benefiting: 'benefit', profiting: 'profit',
+  depositing: 'deposit', inhabiting: 'inhabit', prohibiting: 'prohibit',
   // -elp/-ork/-ait (help, work, wait — heuristic wrongly adds 'e')
   helping: 'help', working: 'work', waiting: 'wait',
-  // -ing with -y base (buy, say — ying heuristic returns stem)
+  // -ying verbs (fly, try, study — ying heuristic wrongly returns -ie)
   buying: 'buy', saying: 'say', playing: 'play',
-  // double-consonant stems that aren't CVC-doubled (tell, meet, attend, call)
+  flying: 'fly', trying: 'try', studying: 'study', crying: 'cry', drying: 'dry',
+  // double-consonant stems that aren't CVC-doubled (tell, meet, attend, call, add, fall, sell)
   telling: 'tell', meeting: 'meet', attending: 'attend', calling: 'call',
-  // -el/-al verbs (travel, start — heuristic wrongly adds 'e')
+  adding: 'add', falling: 'fall', selling: 'sell', filling: 'fill', pulling: 'pull',
+  spelling: 'spell', killing: 'kill', rolling: 'roll', passing: 'pass', missing: 'miss',
+  kissing: 'kiss', pressing: 'press', guessing: 'guess', blessing: 'bless',
+  // double vowel stems (see, fee — heuristic wrongly shortens)
+  seeing: 'see', agreeing: 'agree', fleeing: 'flee', freeing: 'free',
+  // silent-e verbs where heuristic fails to restore 'e'
+  changing: 'change', dancing: 'dance', raising: 'raise', pursuing: 'pursue',
+  managing: 'manage', arranging: 'arrange', encouraging: 'encourage', exchanging: 'exchange',
+  judging: 'judge', forcing: 'force', reducing: 'reduce', producing: 'produce',
+  introducing: 'introduce', replacing: 'replace', placing: 'place', racing: 'race',
+  facing: 'face', tracing: 'trace', spacing: 'space', pacing: 'pace',
+  // -el/-al/-ol verbs (travel, cancel, etc. — heuristic wrongly adds 'e')
   traveling: 'travel', travelling: 'travel', starting: 'start',
+  canceling: 'cancel', cancelling: 'cancel', modeling: 'model', modelling: 'model',
+  labeling: 'label', labelling: 'label', leveling: 'level', levelling: 'level',
+  totaling: 'total', totalling: 'total', signaling: 'signal', signalling: 'signal',
+  channeling: 'channel', channelling: 'channel', counseling: 'counsel', counselling: 'counsel',
+  // Multi-syllable -en verbs (listen, open, etc. — heuristic wrongly adds 'e')
+  listening: 'listen', opening: 'open', happening: 'happen',
+  softening: 'soften', hardening: 'harden', widening: 'widen',
+  deepening: 'deepen', strengthening: 'strengthen', lengthening: 'lengthen',
+  threatening: 'threaten', frightening: 'frighten', enlightening: 'enlighten',
+  // Multi-syllable -er verbs (remember, offer, etc. — heuristic wrongly adds 'e')
+  remembering: 'remember', offering: 'offer', entering: 'enter',
+  covering: 'cover', answering: 'answer', considering: 'consider',
+  delivering: 'deliver', discovering: 'discover', recovering: 'recover',
+  registering: 'register', whispering: 'whisper', wandering: 'wander',
+  wondering: 'wonder', differing: 'differ', suffering: 'suffer',
+  murdering: 'murder', rendering: 'render', surrendering: 'surrender',
+  triggering: 'trigger', lingering: 'linger', conquering: 'conquer',
+  gathering: 'gather', bothering: 'bother', weathering: 'weather',
+  // Other multi-syllable verbs
+  focusing: 'focus', focussing: 'focus', developing: 'develop', worshiping: 'worship',
+  budgeting: 'budget', targeting: 'target', marketing: 'market',
+  pocketing: 'pocket', rocketing: 'rocket', bracketing: 'bracket',
 };
 
 /** Convert a gerund (walking) to base form (walk) */
