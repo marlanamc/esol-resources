@@ -689,6 +689,16 @@ function ChecklistAssignments({
     }, [activeFilter, taskGroups]);
 
     const filteredTaskRows = taskRows.filter((row) => activeFilter === 'all' || row.groupKey === activeFilter);
+    // When filtering by a category, include the resume row in the list if it belongs to that category,
+    // so "Your tasks" shows the in-progress item instead of "No tasks in this filter".
+    const taskRowsForMobile =
+        showResumeCard &&
+        resumeRow &&
+        activeFilter !== 'all' &&
+        resumeRow.groupKey === activeFilter &&
+        !filteredTaskRows.some((r) => r.assignment.id === resumeRow.assignment.id)
+            ? [resumeRow, ...filteredTaskRows]
+            : filteredTaskRows;
     const pinnedHabitNeedsAttention = Boolean(pinnedHabit && pinnedHabit.status !== 'done-today');
     const pinnedHabitDoneToday = Boolean(pinnedHabit && pinnedHabit.status === 'done-today');
     const vocabularyGroupTemplate = CHECKLIST_GROUPS.find((group) => group.key === 'vocabulary');
@@ -1167,9 +1177,9 @@ function ChecklistAssignments({
                             ) : null}
                         </div>
 
-                        {filteredTaskRows.length > 0 ? (
+                        {taskRowsForMobile.length > 0 ? (
                             <div className="space-y-2">
-                                {filteredTaskRows.map(renderCondensedRow)}
+                                {taskRowsForMobile.map(renderCondensedRow)}
                             </div>
                         ) : (
                             <div className="rounded-xl border px-4 py-8 text-center" style={{ borderColor: 'var(--dashboard-divider)', backgroundColor: 'var(--dashboard-surface-start)' }}>
