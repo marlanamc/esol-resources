@@ -2,12 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user?.username) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
 
         // Get user
@@ -16,7 +17,7 @@ export async function POST(request: NextRequest) {
         });
 
         if (!user) {
-            return NextResponse.json({ error: 'User not found' }, { status: 404 });
+            return ApiErrors.notFound('User');
         }
 
         const body = await request.json();
@@ -24,7 +25,7 @@ export async function POST(request: NextRequest) {
 
         // Validate required fields
         if (!activityId || !selectedPromptIds || !solo || !speaking) {
-            return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+            return apiError('Missing required fields', 400);
         }
 
         // Create submission record
@@ -90,11 +91,10 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({ success: true, submission });
     } catch (error) {
-        console.error('Error submitting speaking warm-up:', error);
-        return NextResponse.json(
-            { error: 'Internal server error' },
-            { status: 500 }
-        );
+        return handleApiError(error, {
+            defaultMessage: 'Failed to submit speaking warm-up',
+            path: request.url,
+        });
     }
 }
 
@@ -102,7 +102,7 @@ export async function GET(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user?.username) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
 
         // Get user
@@ -111,7 +111,7 @@ export async function GET(request: NextRequest) {
         });
 
         if (!user) {
-            return NextResponse.json({ error: 'User not found' }, { status: 404 });
+            return ApiErrors.notFound('User');
         }
 
         const { searchParams } = new URL(request.url);
@@ -119,7 +119,7 @@ export async function GET(request: NextRequest) {
         const assignmentId = searchParams.get('assignmentId');
 
         if (!activityId) {
-            return NextResponse.json({ error: 'activityId is required' }, { status: 400 });
+            return apiError('activityId is required', 400);
         }
 
         const submission = await prisma.speakingSubmission.findFirst({
@@ -155,10 +155,9 @@ export async function GET(request: NextRequest) {
 
         return NextResponse.json({ submission: transformedSubmission });
     } catch (error) {
-        console.error('Error fetching speaking submission:', error);
-        return NextResponse.json(
-            { error: 'Internal server error' },
-            { status: 500 }
-        );
+        return handleApiError(error, {
+            defaultMessage: 'Failed to fetch speaking submission',
+            path: request.url,
+        });
     }
 }

@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { requireAuth } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
 import { getVocabReviewSummaryForUser } from "@/lib/vocab-review";
+import { logger } from "@/lib/logger";
 
 function noStoreJson<T>(data: T, status = 200) {
   return NextResponse.json(data, {
@@ -24,7 +25,7 @@ export async function GET() {
     const summary = await getVocabReviewSummaryForUser(prisma, userId);
     return noStoreJson(summary);
   } catch (error) {
-    console.error("Failed to load vocab review summary", error);
+    logger.error("Failed to load vocab review summary", error);
     return noStoreJson({ error: "Failed to load review summary" }, 500);
   }
 }

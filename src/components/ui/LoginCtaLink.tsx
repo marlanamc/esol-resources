@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef } from "react";
 
-export default function LoginCtaLink() {
+export function LoginCtaLink() {
     const router = useRouter();
     const prefetchedRef = useRef(false);
 

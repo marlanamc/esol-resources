@@ -50,7 +50,7 @@ type StyleSnapshot = {
   text: string;
 };
 
-async function getStyleSnapshot(locator: Locator) {
+async function getStyleSnapshot(locator: Locator): Promise<StyleSnapshot> {
   return locator.evaluate((element) => {
     const resolvedBackground = (node: Element | null): string => {
       let current: Element | null = node;

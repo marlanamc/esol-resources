@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
+/** Tracks nested lock calls so we only restore scroll when the last lock is released. */
 let activeLockCount = 0;
 let originalHtmlOverflow = "";
 let originalBodyOverflow = "";
@@ -29,6 +30,11 @@ function unlockDocumentScroll() {
     document.body.style.overflow = originalBodyOverflow;
 }
 
+/**
+ * Locks or unlocks document scroll (body + html overflow). Supports multiple callers;
+ * scroll is only restored when the last caller sets locked to false.
+ * @param locked - When true, scroll is hidden; when false, scroll is restored if this caller had locked it
+ */
 export function useDocumentScrollLock(locked: boolean) {
     const hasLockRef = useRef(false);
 

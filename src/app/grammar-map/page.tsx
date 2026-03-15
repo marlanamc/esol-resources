@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import GrammarMapClient from '@/components/grammar-map/GrammarMapClient';
+import { GrammarMapClient } from '@/components/grammar-map/GrammarMapClient';
 import { Map } from 'lucide-react';
 import { grammarTopics } from '@/data/grammar-map';
 import { LearnerMenu } from '@/components/navigation/LearnerMenu';

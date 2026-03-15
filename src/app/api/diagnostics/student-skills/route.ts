@@ -3,11 +3,12 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { isTeacherAdmin } from "@/lib/roles";
+import { ApiErrors, apiError } from "@/lib/api-response";
 
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const user = session.user;
@@ -17,10 +18,7 @@ export async function GET(request: Request) {
     const activityId = searchParams.get("activityId");
 
     if (!studentId || !activityId) {
-        return NextResponse.json(
-            { error: "Missing studentId or activityId" },
-            { status: 400 }
-        );
+        return apiError("Missing studentId or activityId", 400);
     }
 
     // Verify access: teacher must have student in their class, or user is viewing their own data
@@ -35,13 +33,10 @@ export async function GET(request: Request) {
             },
         });
         if (!enrollment) {
-            return NextResponse.json(
-                { error: "Access denied" },
-                { status: 403 }
-            );
+            return ApiErrors.forbidden("Access denied");
         }
     } else if (user.id !== studentId) {
-        return NextResponse.json({ error: "Access denied" }, { status: 403 });
+        return ApiErrors.forbidden("Access denied");
     }
 
     // Get all responses for this student and activity

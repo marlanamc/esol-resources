@@ -2,23 +2,24 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { ApiErrors, apiError } from "@/lib/api-response";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const userRole = session.user?.role;
     if (userRole !== 'teacher') {
-        return NextResponse.json({ error: "Only teachers can release speaking activities" }, { status: 403 });
+        return ApiErrors.forbidden("Only teachers can release speaking activities");
     }
 
     const { activityId, released } = await request.json();
 
     if (!activityId || typeof activityId !== "string") {
-        return NextResponse.json({ error: "activityId is required" }, { status: 400 });
+        return apiError("activityId is required", 400);
     }
 
     // Update the activity's content to include released status
@@ -31,7 +32,7 @@ export async function POST(request: Request) {
     });
 
     if (!activity) {
-        return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+        return ApiErrors.notFound("Activity", activityId);
     }
 
     const content = JSON.parse(activity.content);

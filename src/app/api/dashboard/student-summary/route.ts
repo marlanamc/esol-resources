@@ -5,13 +5,14 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
+import { ApiErrors, handleApiError } from "@/lib/api-response";
 
 export async function GET() {
     const requestId = crypto.randomUUID();
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user?.id) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
 
         const userRole = session.user.role ?? "student";
@@ -64,7 +65,8 @@ export async function GET() {
             actualWeeklyPoints: weeklyPointsData._sum.points ?? 0,
         });
     } catch (error) {
-        console.error("Failed to load student dashboard summary", error);
-        return NextResponse.json({ error: "Failed to load summary" }, { status: 500 });
+        return handleApiError(error, {
+            defaultMessage: "Failed to load student dashboard summary",
+        });
     }
 }

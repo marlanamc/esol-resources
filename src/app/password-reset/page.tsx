@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Providers from "@/components/Providers";
+import { Providers } from "@/components/Providers";
 import { DEFAULT_PASSWORD_BLOCKED_MESSAGE, isDisallowedPassword } from "@/lib/auth-config";
 
 function PasswordResetContent() {

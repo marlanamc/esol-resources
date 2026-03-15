@@ -9,8 +9,8 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             title: "All 12 Verb Tenses: Your Complete Timeline",
             icon: "🕐",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">English has 12 verb tenses - but don't worry! You already know most of them. This guide shows you ALL 12 tenses on a timeline, which ones you'll use most, and which ones you just need to recognize.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">English has 12 verb tenses - but don't worry! You already know most of them. This guide shows you ALL 12 tenses on a timeline, which ones you'll use most, and which ones you just need to recognize.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -22,23 +22,23 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
                     <li><strong>See the big picture</strong> - How all the grammar you've learned fits together</li>
                 </ul>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                <div class="gc-callout-sage" style="background: rgba(122, 143, 124, 0.15); ; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>Reviewing your entire course's learning journey</li>
                         <li>Preparing for Year-in-Review presentations (tell your complete story)</li>
                         <li>Seeing how ALL the grammar pieces fit together on one timeline</li>
                         <li>Practicing switching between tenses smoothly</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>This helps you with:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                    <p style="margin: 1rem 0 0.5rem 0"><strong>This helps you with:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li><strong>Final presentations:</strong> Combine all tenses to tell your complete wellness/career/housing journey</li>
                         <li><strong>Real-life conversations:</strong> Switch naturally between past, present, and future</li>
                         <li><strong>Job interviews:</strong> Talk about your past experience, current skills, and future goals</li>
                         <li><strong>Confidence:</strong> You'll realize how much grammar you actually know!</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🎓 This is your victory lap - you've learned all of these!</p>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a">🎓 This is your victory lap - you've learned all of these!</p>
                 </div>
             `,
             exercises: [
@@ -71,49 +71,49 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
                 <h3>All 12 Tenses on One Timeline</h3>
                 <p>Every tense in English answers two questions: <strong>(1) WHEN?</strong> (past, present, future) and <strong>(2) WHAT TYPE?</strong> (simple, continuous, perfect, perfect continuous)</p>
 
-                <div style="margin: 2rem 0; padding: 2rem; background: linear-gradient(135deg, rgba(200, 107, 81, 0.05) 0%, rgba(110, 145, 118, 0.05) 100%); border-radius: 0.5rem;">
-                    <table style="width: 100%; border-collapse: collapse;">
+                <div style="margin: 2rem 0; padding: 2rem; background: linear-gradient(135deg, rgba(200, 107, 81, 0.05) 0%, rgba(110, 145, 118, 0.05) 100%); border-radius: 0.5rem">
+                    <table style="width: 100%; border-collapse: collapse">
                         <thead>
-                            <tr style="background: rgba(110, 145, 118, 0.2);">
-                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: left;">Type</th>
-                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: center;">PAST ⬅</th>
-                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: center; background: rgba(122, 143, 124, 0.3);">PRESENT</th>
-                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: center;">➡ FUTURE</th>
+                            <tr style="background: rgba(110, 145, 118, 0.2)">
+                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: left">Type</th>
+                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: center">PAST ⬅</th>
+                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: center; background: rgba(122, 143, 124, 0.3)">PRESENT</th>
+                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: center">➡ FUTURE</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">Simple<br/><small>(one-time/fact)</small></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Past Simple</strong><br/>I worked<br/><span style="color: #7ba884;">✅ Use often</span></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.1);"><strong>Present Simple</strong><br/>I work<br/><span style="color: #7ba884;">✅ Use often</span></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Future Simple</strong><br/>I will work<br/><span style="color: #7ba884;">✅ Use often</span></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600">Simple<br/><small>(one-time/fact)</small></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Past Simple</strong><br/>I worked<br/><span class="gc-text-sage">✅ Use often</span></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.1)"><strong>Present Simple</strong><br/>I work<br/><span class="gc-text-sage">✅ Use often</span></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Future Simple</strong><br/>I will work<br/><span class="gc-text-sage">✅ Use often</span></td>
                             </tr>
-                            <tr style="background: rgba(0, 0, 0, 0.02);">
-                                <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">Continuous<br/><small>(ongoing)</small></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Past Continuous</strong><br/>I was working<br/><span style="color: #7ba884;">✅ Use often</span></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.1);"><strong>Present Continuous</strong><br/>I am working<br/><span style="color: #7ba884;">✅ Use often</span></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Future Continuous</strong><br/>I will be working<br/><span style="color: #f59e0b;">⚠️ Recognize</span></td>
+                            <tr style="background: rgba(0, 0, 0, 0.02)">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600">Continuous<br/><small>(ongoing)</small></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Past Continuous</strong><br/>I was working<br/><span class="gc-text-sage">✅ Use often</span></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.1)"><strong>Present Continuous</strong><br/>I am working<br/><span class="gc-text-sage">✅ Use often</span></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Future Continuous</strong><br/>I will be working<br/><span class="gc-text-amber">⚠️ Recognize</span></td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">Perfect<br/><small>(completed)</small></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Past Perfect</strong><br/>I had worked<br/><span style="color: #7ba884;">✅ Use sometimes</span></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.1);"><strong>Present Perfect</strong><br/>I have worked<br/><span style="color: #7ba884;">✅ Use often</span></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Future Perfect</strong><br/>I will have worked<br/><span style="color: #f59e0b;">⚠️ Recognize</span></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600">Perfect<br/><small>(completed)</small></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Past Perfect</strong><br/>I had worked<br/><span class="gc-text-sage">✅ Use sometimes</span></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.1)"><strong>Present Perfect</strong><br/>I have worked<br/><span class="gc-text-sage">✅ Use often</span></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Future Perfect</strong><br/>I will have worked<br/><span class="gc-text-amber">⚠️ Recognize</span></td>
                             </tr>
-                            <tr style="background: rgba(0, 0, 0, 0.02);">
-                                <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600;">Perfect Continuous<br/><small>(duration)</small></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Past Perfect Continuous</strong><br/>I had been working<br/><span style="color: #f59e0b;">⚠️ Recognize</span></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.1);"><strong>Present Perfect Continuous</strong><br/>I have been working<br/><span style="color: #7ba884;">✅ Use sometimes</span></td>
-                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Future Perfect Continuous</strong><br/>I will have been working<br/><span style="color: #f59e0b;">⚠️ Recognize</span></td>
+                            <tr style="background: rgba(0, 0, 0, 0.02)">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: 600">Perfect Continuous<br/><small>(duration)</small></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Past Perfect Continuous</strong><br/>I had been working<br/><span class="gc-text-amber">⚠️ Recognize</span></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.1)"><strong>Present Perfect Continuous</strong><br/>I have been working<br/><span class="gc-text-sage">✅ Use sometimes</span></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Future Perfect Continuous</strong><br/>I will have been working<br/><span class="gc-text-amber">⚠️ Recognize</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <h4>The Key:</h4>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; border-radius: 0.25rem;"><span style="color: #7ba884; font-weight: 600;">✅ Use often</span> - These are your everyday tenses (7 out of 12!)</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: rgba(245, 158, 11, 0.15); border-left: 4px solid #f59e0b; border-radius: 0.25rem;"><span style="color: #f59e0b; font-weight: 600;">⚠️ Recognize</span> - You don't need to use these often, but understand them when you hear them (5 out of 12)</li>
+                <ul style="list-style: none; padding-left: 0">
+                    <li class="gc-callout-sage" style="padding: 0.5rem; margin: 0.35rem 0; background: rgba(122, 143, 124, 0.15); ; border-radius: 0.25rem"><span class="gc-text-sage" style="font-weight: 600">✅ Use often</span> - These are your everyday tenses (7 out of 12!)</li>
+                    <li class="gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; background: rgba(245, 158, 11, 0.15); ; border-radius: 0.25rem"><span class="gc-text-amber" style="font-weight: 600">⚠️ Recognize</span> - You don't need to use these often, but understand them when you hear them (5 out of 12)</li>
                 </ul>
             `,
             tipBox: {
@@ -356,25 +356,25 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
                 <h3>Using Multiple Tenses in One Conversation</h3>
                 <p>In real life, you mix tenses to tell a complete story. Here's how all the tenses work together:</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Example: Your Wellness Journey (like Week 21 presentations)</h4>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">Past (How it started):</p>
-                        <p style="margin: 0;">"Three years ago, I <strong>used to eat</strong> a lot of fast food. I <strong>didn't exercise</strong> at all. I <strong>was feeling</strong> tired all the time."</p>
-                        <small style="color: #666;">Uses: Past Simple, Past Continuous, Used To</small>
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <p class="gc-text-terracotta" style="margin: 0 0 0.5rem 0; font-weight: 600; ">Past (How it started):</p>
+                        <p style="margin: 0">"Three years ago, I <strong>used to eat</strong> a lot of fast food. I <strong>didn't exercise</strong> at all. I <strong>was feeling</strong> tired all the time."</p>
+                        <small style="color: #666">Uses: Past Simple, Past Continuous, Used To</small>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7ba884;">Present (Where you are now):</p>
-                        <p style="margin: 0;">"Now I <strong>work out</strong> three times a week. I <strong>have been eating</strong> healthier for six months. I <strong>feel</strong> much better and <strong>have more</strong> energy."</p>
-                        <small style="color: #666;">Uses: Present Simple, Present Perfect Continuous, Present Simple</small>
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <p class="gc-text-sage" style="margin: 0 0 0.5rem 0; font-weight: 600; ">Present (Where you are now):</p>
+                        <p style="margin: 0">"Now I <strong>work out</strong> three times a week. I <strong>have been eating</strong> healthier for six months. I <strong>feel</strong> much better and <strong>have more</strong> energy."</p>
+                        <small style="color: #666">Uses: Present Simple, Present Perfect Continuous, Present Simple</small>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #3b82f6;">Future (Your goals):</p>
-                        <p style="margin: 0;">"Next month, I <strong>will start</strong> a cooking class. If I <strong>keep exercising</strong>, I <strong>will lose</strong> 10 more pounds. By summer, I <strong>will have been</strong> smoke-free for one year."</p>
-                        <small style="color: #666;">Uses: Future Simple, Present Simple (in if-clause), Future Perfect</small>
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <p class="gc-text-blue" style="margin: 0 0 0.5rem 0; font-weight: 600; ">Future (Your goals):</p>
+                        <p style="margin: 0">"Next month, I <strong>will start</strong> a cooking class. If I <strong>keep exercising</strong>, I <strong>will lose</strong> 10 more pounds. By summer, I <strong>will have been</strong> smoke-free for one year."</p>
+                        <small style="color: #666">Uses: Future Simple, Present Simple (in if-clause), Future Perfect</small>
                     </div>
                 </div>
 
@@ -421,96 +421,96 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Your Quick Reference: All 12 Tenses</h3>
 
-                <div style="margin: 1.5rem 0;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                <div style="margin: 1.5rem 0">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem">
                         <thead>
-                            <tr style="background: rgba(110, 145, 118, 0.2);">
-                                <th style="padding: 0.5rem; border: 1px solid #ddd;">Tense</th>
-                                <th style="padding: 0.5rem; border: 1px solid #ddd;">Formula</th>
-                                <th style="padding: 0.5rem; border: 1px solid #ddd;">Example</th>
-                                <th style="padding: 0.5rem; border: 1px solid #ddd;">Use It?</th>
+                            <tr style="background: rgba(110, 145, 118, 0.2)">
+                                <th style="padding: 0.5rem; border: 1px solid #ddd">Tense</th>
+                                <th style="padding: 0.5rem; border: 1px solid #ddd">Formula</th>
+                                <th style="padding: 0.5rem; border: 1px solid #ddd">Example</th>
+                                <th style="padding: 0.5rem; border: 1px solid #ddd">Use It?</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Past Simple</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">verb-ed</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I worked</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15);">✅ Often</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Past Simple</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">verb-ed</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I worked</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15)">✅ Often</td>
                             </tr>
-                            <tr style="background: rgba(0, 0, 0, 0.02);">
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Present Simple</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">verb / verb-s</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I work / She works</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15);">✅ Often</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Future Simple</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">will + verb</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I will work</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15);">✅ Often</td>
-                            </tr>
-                            <tr style="background: rgba(0, 0, 0, 0.02);">
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Past Continuous</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">was/were + verb-ing</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I was working</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15);">✅ Often</td>
+                            <tr style="background: rgba(0, 0, 0, 0.02)">
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Present Simple</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">verb / verb-s</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I work / She works</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15)">✅ Often</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Present Continuous</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">am/is/are + verb-ing</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I am working</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15);">✅ Often</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Future Simple</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">will + verb</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I will work</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15)">✅ Often</td>
                             </tr>
-                            <tr style="background: rgba(0, 0, 0, 0.02);">
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Future Continuous</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">will be + verb-ing</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I will be working</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(245, 158, 11, 0.15);">⚠️ Recognize</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Past Perfect</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">had + past participle</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I had worked</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15);">✅ Sometimes</td>
-                            </tr>
-                            <tr style="background: rgba(0, 0, 0, 0.02);">
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Present Perfect</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">have/has + past participle</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I have worked</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15);">✅ Often</td>
+                            <tr style="background: rgba(0, 0, 0, 0.02)">
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Past Continuous</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">was/were + verb-ing</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I was working</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15)">✅ Often</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Future Perfect</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">will have + past participle</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I will have worked</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(245, 158, 11, 0.15);">⚠️ Recognize</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Present Continuous</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">am/is/are + verb-ing</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I am working</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15)">✅ Often</td>
                             </tr>
-                            <tr style="background: rgba(0, 0, 0, 0.02);">
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Past Perfect Continuous</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">had been + verb-ing</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I had been working</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(245, 158, 11, 0.15);">⚠️ Recognize</td>
+                            <tr style="background: rgba(0, 0, 0, 0.02)">
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Future Continuous</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">will be + verb-ing</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I will be working</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(245, 158, 11, 0.15)">⚠️ Recognize</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Present Perfect Continuous</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">have/has been + verb-ing</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I have been working</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15);">✅ Sometimes</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Past Perfect</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">had + past participle</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I had worked</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15)">✅ Sometimes</td>
                             </tr>
-                            <tr style="background: rgba(0, 0, 0, 0.02);">
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600;">Future Perfect Continuous</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">will have been + verb-ing</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd;">I will have been working</td>
-                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(245, 158, 11, 0.15);">⚠️ Recognize</td>
+                            <tr style="background: rgba(0, 0, 0, 0.02)">
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Present Perfect</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">have/has + past participle</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I have worked</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15)">✅ Often</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Future Perfect</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">will have + past participle</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I will have worked</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(245, 158, 11, 0.15)">⚠️ Recognize</td>
+                            </tr>
+                            <tr style="background: rgba(0, 0, 0, 0.02)">
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Past Perfect Continuous</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">had been + verb-ing</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I had been working</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(245, 158, 11, 0.15)">⚠️ Recognize</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Present Perfect Continuous</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">have/has been + verb-ing</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I have been working</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(122, 143, 124, 0.15)">✅ Sometimes</td>
+                            </tr>
+                            <tr style="background: rgba(0, 0, 0, 0.02)">
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: 600">Future Perfect Continuous</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">will have been + verb-ing</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd">I will have been working</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; background: rgba(245, 158, 11, 0.15)">⚠️ Recognize</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(122, 143, 124, 0.1); border-radius: 0.5rem; border-left: 4px solid #7ba884;">
-                    <h4 style="margin-top: 0;">🎓 You Did It!</h4>
-                    <p style="margin-bottom: 0;">You've studied <strong>7 of the 12 tenses</strong> in depth this course. You can recognize all 12. That's HUGE! Most native speakers don't even know they're using all these tenses - but you understand the system. Be proud!</p>
+                <div class="gc-callout-sage" style="margin: 1.5rem 0; padding: 1rem; background: rgba(122, 143, 124, 0.1); border-radius: 0.5rem; ">
+                    <h4 style="margin-top: 0">🎓 You Did It!</h4>
+                    <p style="margin-bottom: 0">You've studied <strong>7 of the 12 tenses</strong> in depth this course. You can recognize all 12. That's HUGE! Most native speakers don't even know they're using all these tenses - but you understand the system. Be proud!</p>
                 </div>
             `,
         },

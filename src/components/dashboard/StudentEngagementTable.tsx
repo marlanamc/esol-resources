@@ -55,7 +55,7 @@ function SortButton({
     );
 }
 
-export default function StudentEngagementTable({ students }: StudentEngagementTableProps) {
+export function StudentEngagementTable({ students }: StudentEngagementTableProps) {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortField, setSortField] = useState<SortField>('name');
     const [sortDirection, setSortDirection] = useState<SortDirection>('asc');

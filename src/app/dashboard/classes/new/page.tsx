@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import CreateClassForm from "@/components/CreateClassForm";
+import { CreateClassForm } from "@/components/CreateClassForm";
 import { BackButton } from "@/components/ui/BackButton";
 import { prisma } from "@/lib/prisma";
 import { classOwnershipWhere, ensureTeacher } from "@/lib/policies";

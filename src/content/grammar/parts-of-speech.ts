@@ -9,8 +9,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             title: "Parts of Speech: The Building Blocks of English",
             icon: "🧱",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Every sentence you speak is built from <strong>eight essential building blocks</strong>: <span style="color: #3b82f6;">nouns</span>, <span style="color: #dc2626;">verbs</span>, <span style="color: #16a34a;">adjectives</span>, <span style="color: #9333ea;">adverbs</span>, <span style="color: #0f766e;">pronouns</span>, <span style="color: #92400e;">articles</span>, <span style="color: #334155;">prepositions</span>, and <span style="color: #db2777;">conjunctions</span>. Understanding these parts helps you build stronger, clearer sentences.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">Every sentence you speak is built from <strong>eight essential building blocks</strong>: <span class="gc-text-blue">nouns</span>, <span class="gc-text-red">verbs</span>, <span style="color: #16a34a">adjectives</span>, <span style="color: #9333ea">adverbs</span>, <span style="color: #0f766e">pronouns</span>, <span style="color: #92400e">articles</span>, <span style="color: #334155">prepositions</span>, and <span style="color: #db2777">conjunctions</span>. Understanding these parts helps you build stronger, clearer sentences.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -22,23 +22,23 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     <li><strong>Fixing mistakes:</strong> Knowing parts of speech helps you spot and fix errors</li>
                 </ul>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                <div class="gc-callout-sage" style="background: rgba(122, 143, 124, 0.15); ; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>Understanding classroom instructions ("Use an <em>adjective</em> to describe it")</li>
                         <li>Building better sentences when you speak (knowing where each word type goes)</li>
                         <li>Learning grammar terminology so you can understand future lessons</li>
                         <li>Practicing question formation (you need to know what a "verb" and "noun" are!)</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>Throughout the course, you'll use this when:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                    <p style="margin: 1rem 0 0.5rem 0"><strong>Throughout the course, you'll use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li><strong>Every week:</strong> Understanding what "gerund," "infinitive," "helping verb," and "modal" mean</li>
                         <li><strong>Learning about gerunds vs infinitives</strong> (you need to know what a "verb" is first!)</li>
                         <li><strong>Understanding adverbs for workplace politeness:</strong> "Could you <em>possibly</em> help me?"</li>
                         <li><strong>Expanding vocabulary:</strong> If you know "happy" (adjective), you also know "happiness" (noun) and "happily" (adverb)</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🧱 Think of parts of speech as LEGO blocks - once you know what each piece does, you can build anything!</p>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a">🧱 Think of parts of speech as LEGO blocks - once you know what each piece does, you can build anything!</p>
                 </div>
             `,
             exercises: [
@@ -655,7 +655,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             explanation: `
                 <h3>What Is a Pronoun?</h3>
                 <p>A <strong>pronoun</strong> is a word that takes the place of a noun. Instead of repeating "Maria" over and over, we can say "she."</p>
-                <p><strong>Example:</strong> Maria went to work. <span style="color: #3b82f6;">Maria</span> is tired. → <span style="color: #0f766e;">She</span> is tired.</p>
+                <p><strong>Example:</strong> Maria went to work. <span class="gc-text-blue">Maria</span> is tired. → <span style="color: #0f766e">She</span> is tired.</p>
             `,
             usageMeanings: [
                 {
@@ -918,10 +918,10 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 Quick Test",
                 content: `Quick article decision:
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div>Specific (you both know)? <span style="color: #d97757; font-weight: 600;">→</span> Use <strong>the</strong></div>
-                    <div>General + vowel sound? <span style="color: #d97757; font-weight: 600;">→</span> Use <strong>an</strong></div>
-                    <div>General + consonant sound? <span style="color: #d97757; font-weight: 600;">→</span> Use <strong>a</strong></div>
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem">
+                    <div>Specific (you both know)? <span class="gc-text-terracotta" style="font-weight: 600">→</span> Use <strong>the</strong></div>
+                    <div>General + vowel sound? <span class="gc-text-terracotta" style="font-weight: 600">→</span> Use <strong>an</strong></div>
+                    <div>General + consonant sound? <span class="gc-text-terracotta" style="font-weight: 600">→</span> Use <strong>a</strong></div>
                 </div>`,
             },
         },
@@ -1063,10 +1063,10 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
 	            tipBox: {
 	                title: "💡 Common Patterns",
 	                content: `Preposition patterns by use:
-	                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-	                    <div><strong style="color: #c2410c;">Time</strong> <span style="color: #d97757; font-weight: 600;">→</span> at 6:00, on Tuesday, in January</div>
-	                    <div><strong style="color: #c2410c;">Location</strong> <span style="color: #d97757; font-weight: 600;">→</span> in East Boston, on Bennington Street, at the clinic</div>
-	                    <div><strong style="color: #c2410c;">Direction</strong> <span style="color: #d97757; font-weight: 600;">→</span> to work, from home, into the room</div>
+	                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem">
+	                    <div><strong style="color: #c2410c">Time</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> at 6:00, on Tuesday, in January</div>
+	                    <div><strong style="color: #c2410c">Location</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> in East Boston, on Bennington Street, at the clinic</div>
+	                    <div><strong style="color: #c2410c">Direction</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> to work, from home, into the room</div>
 	                </div>`,
 	            },
         },
@@ -1217,9 +1217,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 Remember FANBOYS",
                 content: `The seven main conjunctions:
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.25rem">
                     <div><strong>F</strong>or, <strong>A</strong>nd, <strong>N</strong>or, <strong>B</strong>ut, <strong>O</strong>r, <strong>Y</strong>et, <strong>S</strong>o</div>
-                    <div style="font-size: 0.9rem; color: #4b5563;">Most used daily: and, but, or, so</div>
+                    <div style="font-size: 0.9rem; color: #4b5563">Most used daily: and, but, or, so</div>
                 </div>`,
             },
         },
@@ -1328,58 +1328,58 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             explanation: `
                 <h3>All 8 Parts of Speech - Quick Reference</h3>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
-                    <div style="padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem;">
-	                        <h4 style="color: #3b82f6; margin-top: 0;">🔵 Nouns</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0">
+                    <div class="gc-bg-blue-alpha" style="padding: 1rem; ; border-radius: 0.5rem">
+	                        <h4 class="gc-text-blue" style="margin-top: 0">🔵 Nouns</h4>
 	                        <p><strong>What:</strong> Person, place, thing, or idea</p>
 	                        <p><strong>Examples:</strong> teacher, East Boston, book, happiness</p>
 	                        <p><strong>Test:</strong> Can you add 'a/an/the'?</p>
 	                    </div>
 
-                    <div style="padding: 1rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem;">
-                        <h4 style="color: #dc2626; margin-top: 0;">🔴 Verbs</h4>
+                    <div style="padding: 1rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem">
+                        <h4 class="gc-text-red" style="margin-top: 0">🔴 Verbs</h4>
                         <p><strong>What:</strong> Action or state</p>
                         <p><strong>Examples:</strong> work, walk, am, have, feel</p>
                         <p><strong>Test:</strong> Can you add -ing after 'I am'?</p>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(22, 163, 74, 0.1); border-radius: 0.5rem;">
-                        <h4 style="color: #16a34a; margin-top: 0;">🟢 Adjectives</h4>
+                    <div style="padding: 1rem; background: rgba(22, 163, 74, 0.1); border-radius: 0.5rem">
+                        <h4 style="color: #16a34a; margin-top: 0">🟢 Adjectives</h4>
                         <p><strong>What:</strong> Describes a noun</p>
                         <p><strong>Examples:</strong> good, warm, two, this, my</p>
                         <p><strong>Test:</strong> Can it go between 'the' and a noun?</p>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(147, 51, 234, 0.1); border-radius: 0.5rem;">
-                        <h4 style="color: #9333ea; margin-top: 0;">🟣 Adverbs</h4>
+                    <div style="padding: 1rem; background: rgba(147, 51, 234, 0.1); border-radius: 0.5rem">
+                        <h4 style="color: #9333ea; margin-top: 0">🟣 Adverbs</h4>
                         <p><strong>What:</strong> Describes verb, adjective, or adverb</p>
                         <p><strong>Examples:</strong> fluently, always, here, very</p>
                         <p><strong>Test:</strong> Does it end in -ly or answer how/when/where?</p>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(15, 118, 110, 0.1); border-radius: 0.5rem;">
-                        <h4 style="color: #0f766e; margin-top: 0;">🟡 Pronouns</h4>
+                    <div style="padding: 1rem; background: rgba(15, 118, 110, 0.1); border-radius: 0.5rem">
+                        <h4 style="color: #0f766e; margin-top: 0">🟡 Pronouns</h4>
                         <p><strong>What:</strong> Replaces a noun</p>
                         <p><strong>Examples:</strong> I, you, he, she, it, we, they, me, him, her, us, them</p>
                         <p><strong>Test:</strong> Can it replace a person's name?</p>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(146, 64, 14, 0.1); border-radius: 0.5rem;">
-                        <h4 style="color: #92400e; margin-top: 0;">🟠 Articles</h4>
+                    <div style="padding: 1rem; background: rgba(146, 64, 14, 0.1); border-radius: 0.5rem">
+                        <h4 style="color: #92400e; margin-top: 0">🟠 Articles</h4>
                         <p><strong>What:</strong> Small words before nouns</p>
                         <p><strong>Examples:</strong> a, an, the</p>
                         <p><strong>Test:</strong> Only 3 in English - a, an, the!</p>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(51, 65, 85, 0.1); border-radius: 0.5rem;">
-                        <h4 style="color: #334155; margin-top: 0;">🔶 Prepositions</h4>
+                    <div style="padding: 1rem; background: rgba(51, 65, 85, 0.1); border-radius: 0.5rem">
+                        <h4 style="color: #334155; margin-top: 0">🔶 Prepositions</h4>
                         <p><strong>What:</strong> Shows time, location, direction</p>
                         <p><strong>Examples:</strong> in, on, at, to, from, between, next to</p>
                         <p><strong>Test:</strong> Does it show where, when, or which direction?</p>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(219, 39, 119, 0.12); border-radius: 0.5rem;">
-                        <h4 style="color: #db2777; margin-top: 0;">🔗 Conjunctions</h4>
+                    <div style="padding: 1rem; background: rgba(219, 39, 119, 0.12); border-radius: 0.5rem">
+                        <h4 style="color: #db2777; margin-top: 0">🔗 Conjunctions</h4>
                         <p><strong>What:</strong> Connects two ideas</p>
                         <p><strong>Examples:</strong> and, but, or, so (FANBOYS)</p>
                         <p><strong>Test:</strong> Does it join two sentences or ideas?</p>
@@ -1387,39 +1387,39 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Word Families (Same Word, Different Parts)</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(110, 145, 118, 0.2);">
-                            <th style="padding: 0.75rem; border: 1px solid #ddd;">Noun</th>
-                            <th style="padding: 0.75rem; border: 1px solid #ddd;">Verb</th>
-                            <th style="padding: 0.75rem; border: 1px solid #ddd;">Adjective</th>
-                            <th style="padding: 0.75rem; border: 1px solid #ddd;">Adverb</th>
+                        <tr style="background: rgba(110, 145, 118, 0.2)">
+                            <th style="padding: 0.75rem; border: 1px solid #ddd">Noun</th>
+                            <th style="padding: 0.75rem; border: 1px solid #ddd">Verb</th>
+                            <th style="padding: 0.75rem; border: 1px solid #ddd">Adjective</th>
+                            <th style="padding: 0.75rem; border: 1px solid #ddd">Adverb</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">work</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">work</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">working</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">—</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">work</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">work</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">working</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">—</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">teacher</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">teach</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">—</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">—</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">teacher</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">teach</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">—</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">—</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">care</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">care</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">careful</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">carefully</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">care</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">care</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">careful</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">carefully</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">happiness</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">—</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">happy</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">happily</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">happiness</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">—</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">happy</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">happily</td>
                         </tr>
                     </tbody>
                 </table>

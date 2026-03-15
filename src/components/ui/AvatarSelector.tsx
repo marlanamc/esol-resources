@@ -33,7 +33,7 @@ const CATEGORIES = [
     { id: "symbols", name: "Symbols", emoji: "💫" },
 ] as const;
 
-export default function AvatarSelector({
+export function AvatarSelector({
     currentAvatar = DEFAULT_AVATAR,
     currentColor = DEFAULT_COLOR,
     onAvatarChange,

@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import LogoutButton from "@/components/LogoutButton";
+import { LogoutButton } from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
-import CreateCalendarEventForm from "@/components/dashboard/CreateCalendarEventForm";
+import { CreateCalendarEventForm } from "@/components/dashboard/CreateCalendarEventForm";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { isTeacherAdmin } from "@/lib/roles";

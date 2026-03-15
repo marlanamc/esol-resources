@@ -14,8 +14,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             title: "The Present Perfect Family: Connecting Past to Present",
             icon: "👨‍👩‍👧‍👦",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think about telling someone about your day. "I've finished my shift." "I've been working all morning." Same situation—both are about work—but two different ways to talk about it. That's the Present Perfect family! One focuses on what's <strong>done</strong>, the other on what you've been <strong>doing</strong>.</p>
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">Think about telling someone about your day. "I've finished my shift." "I've been working all morning." Same situation—both are about work—but two different ways to talk about it. That's the Present Perfect family! One focuses on what's <strong>done</strong>, the other on what you've been <strong>doing</strong>.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -59,7 +59,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             icon: "🧠",
             explanation: `
                 <div class="gc-bg-white border border-slate-200 rounded-xl p-4 mb-6">
-                    <p class="font-medium text-base mb-2 gc-text-dark" style=""><strong class="gc-text-dark">Core idea:</strong> Perfect tenses connect <strong class="gc-text-dark">two times</strong>. Here, the connection is <strong class="gc-text-dark">past → now</strong>.</p>
+                    <p class="font-medium text-base mb-2 gc-text-dark"><strong class="gc-text-dark">Core idea:</strong> Perfect tenses connect <strong class="gc-text-dark">two times</strong>. Here, the connection is <strong class="gc-text-dark">past → now</strong>.</p>
                     <p class="text-sm mb-0 gc-text-muted"><strong class="gc-text-dark">Ask yourself:</strong> Do I want to emphasize the <strong class="gc-text-dark">result now</strong>, or the <strong class="gc-text-dark">activity/duration up to now</strong>?</p>
                 </div>
 
@@ -150,100 +150,100 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>See the Difference</h3>
                 <p>Both forms connect past to present, but they show different things. Think of it like taking a photo vs. recording a video:</p>
 
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="margin: 0;"><strong>Result = Photo:</strong> "Here's the finished result!" 📸</p>
-                    <p style="margin: 0.5rem 0 0 0;"><strong>Duration = Video:</strong> "Watch how long I've been doing this!" 🎥</p>
+                <div class="gc-bg-slate" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <p style="margin: 0"><strong>Result = Photo:</strong> "Here's the finished result!" 📸</p>
+                    <p style="margin: 0.5rem 0 0 0"><strong>Duration = Video:</strong> "Watch how long I've been doing this!" 🎥</p>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0">
                     <!-- Result Timeline -->
-                    <div style="background: white; border: 2px solid #f97316; border-radius: 0.75rem; padding: 1.25rem;">
-                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #c2410c;">Result Focus</h4>
-                        <div style="position: relative; height: 60px; margin: 1rem 0;">
+                    <div class="gc-bg-white" style="border: 2px solid #f97316; border-radius: 0.75rem; padding: 1.25rem">
+                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #c2410c">Result Focus</h4>
+                        <div style="position: relative; height: 60px; margin: 1rem 0">
                             <!-- Timeline line -->
-                            <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 3px; background: #e5e7eb; transform: translateY(-50%);"></div>
+                            <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 3px; background: #e5e7eb; transform: translateY(-50%)"></div>
                             <!-- Action point -->
-                            <div style="position: absolute; left: 25%; top: 50%; transform: translate(-50%, -50%);">
-                                <div style="width: 16px; height: 16px; background: #f97316; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px #f97316;"></div>
-                                <div style="position: absolute; top: 22px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #f97316; font-weight: 600;">Action</div>
+                            <div style="position: absolute; left: 25%; top: 50%; transform: translate(-50%, -50%)">
+                                <div style="width: 16px; height: 16px; background: #f97316; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px #f97316"></div>
+                                <div style="position: absolute; top: 22px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #f97316; font-weight: 600">Action</div>
                             </div>
                             <!-- Arrow to result -->
-                            <div style="position: absolute; top: 50%; left: 30%; right: 25%; height: 0; border-top: 2px dashed #f97316; transform: translateY(-50%);"></div>
+                            <div style="position: absolute; top: 50%; left: 30%; right: 25%; height: 0; border-top: 2px dashed #f97316; transform: translateY(-50%)"></div>
                             <!-- Result at NOW -->
-                            <div style="position: absolute; right: 10%; top: 50%; transform: translate(0, -50%);">
-                                <div style="background: #fff7ed; border: 2px solid #f97316; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600; color: #c2410c;">NOW: ✓</div>
+                            <div style="position: absolute; right: 10%; top: 50%; transform: translate(0, -50%)">
+                                <div class="gc-bg-white" style="7ed; border: 2px solid #f97316; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600; color: #c2410c">NOW: ✓</div>
                             </div>
                         </div>
-                        <p style="text-align: center; margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #4b5563;">"I <strong>have finished</strong>."</p>
-                        <p style="text-align: center; margin: 0; font-size: 0.8rem; color: #9ca3af;">Focus: The result is here now.</p>
+                        <p style="text-align: center; margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #4b5563">"I <strong>have finished</strong>."</p>
+                        <p style="text-align: center; margin: 0; font-size: 0.8rem; color: #9ca3af">Focus: The result is here now.</p>
                     </div>
 
                     <!-- Duration Timeline -->
-                    <div style="background: white; border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.25rem;">
-                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #4338ca;">Duration Focus</h4>
-                        <div style="position: relative; height: 60px; margin: 1rem 0;">
+                    <div class="gc-bg-white" style="border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.25rem">
+                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #4338ca">Duration Focus</h4>
+                        <div style="position: relative; height: 60px; margin: 1rem 0">
                             <!-- Timeline line -->
-                            <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 3px; background: #e5e7eb; transform: translateY(-50%);"></div>
+                            <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 3px; background: #e5e7eb; transform: translateY(-50%)"></div>
                             <!-- Duration bar -->
-                            <div style="position: absolute; top: 50%; left: 20%; right: 15%; height: 20px; background: linear-gradient(to right, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.8)); border-radius: 10px; transform: translateY(-50%); border: 2px solid #6366f1;"></div>
+                            <div style="position: absolute; top: 50%; left: 20%; right: 15%; height: 20px; background: linear-gradient(to right, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.8)); border-radius: 10px; transform: translateY(-50%); border: 2px solid #6366f1"></div>
                             <!-- Start dot -->
-                            <div style="position: absolute; left: 20%; top: 50%; transform: translate(-50%, -50%);">
-                                <div style="width: 10px; height: 10px; background: #6366f1; border-radius: 50%;"></div>
-                                <div style="position: absolute; top: 22px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #6366f1; font-weight: 600;">Start</div>
+                            <div style="position: absolute; left: 20%; top: 50%; transform: translate(-50%, -50%)">
+                                <div style="width: 10px; height: 10px; background: #6366f1; border-radius: 50%"></div>
+                                <div style="position: absolute; top: 22px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #6366f1; font-weight: 600">Start</div>
                             </div>
                             <!-- NOW dot -->
-                            <div style="position: absolute; right: 10%; top: 50%; transform: translate(0, -50%);">
-                                <div style="background: #eef2ff; border: 2px solid #6366f1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600; color: #4338ca;">NOW</div>
+                            <div style="position: absolute; right: 10%; top: 50%; transform: translate(0, -50%)">
+                                <div style="background: #eef2ff; border: 2px solid #6366f1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600; color: #4338ca">NOW</div>
                             </div>
                         </div>
-                        <p style="text-align: center; margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #4b5563;">"I <strong>have been working</strong>."</p>
-                        <p style="text-align: center; margin: 0; font-size: 0.8rem; color: #9ca3af;">Focus: The duration up to now.</p>
+                        <p style="text-align: center; margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #4b5563">"I <strong>have been working</strong>."</p>
+                        <p style="text-align: center; margin: 0; font-size: 0.8rem; color: #9ca3af">Focus: The duration up to now.</p>
                     </div>
                 </div>
 
                 <h3>Same Situation, Two Different Answers</h3>
                 <p>Think about this: You've been cooking dinner. Your friend asks about it. You could answer two different ways:</p>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #c2410c;">Result Answer:</p>
-                        <p style="margin: 0; font-size: 1.1rem;">"I <strong>have cooked</strong> pasta."</p>
-                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ The pasta is ready! (Result)</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0">
+                    <div class="gc-bg-white gc-callout-orange" style="7ed; padding: 1rem; border-radius: 0.5rem; ">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #c2410c">Result Answer:</p>
+                        <p style="margin: 0; font-size: 1.1rem">"I <strong>have cooked</strong> pasta."</p>
+                        <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; ">→ The pasta is ready! (Result)</p>
                     </div>
-                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #4338ca;">Duration Answer:</p>
-                        <p style="margin: 0; font-size: 1.1rem;">"I <strong>have been cooking</strong> for an hour."</p>
-                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ That explains why you're tired! (Activity)</p>
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #4338ca">Duration Answer:</p>
+                        <p style="margin: 0; font-size: 1.1rem">"I <strong>have been cooking</strong> for an hour."</p>
+                        <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; ">→ That explains why you're tired! (Activity)</p>
                     </div>
                 </div>
 
                 <h3>More Examples Side by Side</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-                    <tr style="background: #f8fafc;">
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Situation</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Result</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Duration</th>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
+                    <tr class="gc-bg-slate">
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0">Situation</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c">Result</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca">Duration</th>
                     </tr>
                     <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Cleaning the house</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have cleaned</strong> the kitchen."<br><span style="font-size: 0.8rem; color: #6b7280;">→ The kitchen is clean now!</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been cleaning</strong> all morning."<br><span style="font-size: 0.8rem; color: #6b7280;">→ That's why I'm exhausted!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0">Cleaning the house</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0">"I <strong>have cleaned</strong> the kitchen."<br><span class="gc-text-muted" style="font-size: 0.8rem; ">→ The kitchen is clean now!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0">"I <strong>have been cleaning</strong> all morning."<br><span class="gc-text-muted" style="font-size: 0.8rem; ">→ That's why I'm exhausted!</span></td>
                     </tr>
                     <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Writing emails</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have written</strong> 5 emails."<br><span style="font-size: 0.8rem; color: #6b7280;">→ 5 emails are done!</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been writing</strong> emails for 2 hours."<br><span style="font-size: 0.8rem; color: #6b7280;">→ I've spent 2 hours on this!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0">Writing emails</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0">"I <strong>have written</strong> 5 emails."<br><span class="gc-text-muted" style="font-size: 0.8rem; ">→ 5 emails are done!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0">"I <strong>have been writing</strong> emails for 2 hours."<br><span class="gc-text-muted" style="font-size: 0.8rem; ">→ I've spent 2 hours on this!</span></td>
                     </tr>
                     <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Learning English</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have learned</strong> 500 new words."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Look at my vocabulary!</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been learning</strong> English for 2 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ It's been a long journey!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0">Learning English</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0">"I <strong>have learned</strong> 500 new words."<br><span class="gc-text-muted" style="font-size: 0.8rem; ">→ Look at my vocabulary!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0">"I <strong>have been learning</strong> English for 2 years."<br><span class="gc-text-muted" style="font-size: 0.8rem; ">→ It's been a long journey!</span></td>
                     </tr>
                 </table>
 
-                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1.5rem;">
-                    <p style="margin: 0; font-weight: 600;">💡 Real-Life Tip:</p>
-                    <p style="margin: 0.5rem 0 0 0;">Native speakers often use BOTH forms in the same conversation! For example: "I <strong>have been working</strong> on this project for 3 weeks, and I <strong>have completed</strong> 80% of it."</p>
+                <div class="gc-bg-amber gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ; margin-top: 1.5rem">
+                    <p style="margin: 0; font-weight: 600">💡 Real-Life Tip:</p>
+                    <p style="margin: 0.5rem 0 0 0">Native speakers often use BOTH forms in the same conversation! For example: "I <strong>have been working</strong> on this project for 3 weeks, and I <strong>have completed</strong> 80% of it."</p>
                 </div>
             `,
             exercises: [
@@ -339,71 +339,71 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>When "Done" Matters</h3>
                 <p>Use <strong>The Present Perfect (Result)</strong> (have + <strong>V3</strong>) when the most important thing is that the action is <strong>FINISHED</strong> or when you can <strong>COUNT</strong> how many times it happened.</p>
 
-                <div style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
-                     <h4 style="text-align: center; margin-top: 0; color: #d97706;">Timeline: The Completed Action</h4>
-                     <div style="display: flex; align-items: center; justify-content: space-between; position: relative; margin: 2rem 0; padding: 0 1rem;">
-                        <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 4px; background: #e5e7eb; transform: translateY(-50%); z-index: 0;"></div>
+                <div class="gc-bg-white" style="border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
+                     <h4 style="text-align: center; margin-top: 0; color: #d97706">Timeline: The Completed Action</h4>
+                     <div style="display: flex; align-items: center; justify-content: space-between; position: relative; margin: 2rem 0; padding: 0 1rem">
+                        <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 4px; background: #e5e7eb; transform: translateY(-50%); z-index: 0"></div>
 
                         <!-- Past point -->
-                        <div style="position: relative; z-index: 1; text-align: center;">
-                            <div style="width: 20px; height: 20px; background: #f59e0b; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px #f59e0b; margin: 0 auto;"></div>
-                            <div style="margin-top: 0.5rem; font-size: 0.8rem; font-weight: 600; color: #d97706;">Action Done</div>
+                        <div style="position: relative; z-index: 1; text-align: center">
+                            <div style="width: 20px; height: 20px; background: #f59e0b; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px #f59e0b; margin: 0 auto"></div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8rem; font-weight: 600; color: #d97706">Action Done</div>
                         </div>
 
                          <!-- Arrow connecting -->
-                        <div style="position: absolute; top: 50%; left: 20%; right: 20%; height: 0; border-top: 2px dashed #f59e0b; transform: translateY(-50%); z-index: 0;"></div>
+                        <div style="position: absolute; top: 50%; left: 20%; right: 20%; height: 0; border-top: 2px dashed #f59e0b; transform: translateY(-50%); z-index: 0"></div>
 
                         <!-- Present Result -->
-                        <div style="position: relative; z-index: 1; text-align: center;">
-                            <div style="background: #fffbeb; border: 2px solid #f59e0b; color: #b45309; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: bold; font-size: 0.9rem;">
+                        <div style="position: relative; z-index: 1; text-align: center">
+                            <div class="gc-bg-white" style="beb; border: 2px solid #f59e0b; color: #b45309; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: bold; font-size: 0.9rem">
                                 NOW: Result
                             </div>
                         </div>
                      </div>
-                     <p style="text-align: center; margin: 0;">"I <strong>have eaten</strong> lunch." → <span style="color: #64748b;">(Result: I am not hungry now.)</span></p>
-                     <p style="text-align: center; margin-top: 0.5rem;">"She <strong>has written</strong> 5 emails." → <span style="color: #64748b;">(Result: 5 completed items.)</span></p>
+                     <p style="text-align: center; margin: 0">"I <strong>have eaten</strong> lunch." → <span class="gc-text-muted">(Result: I am not hungry now.)</span></p>
+                     <p style="text-align: center; margin-top: 0.5rem">"She <strong>has written</strong> 5 emails." → <span class="gc-text-muted">(Result: 5 completed items.)</span></p>
                 </div>
 
                 <h3>Three Main Uses for the Result Form</h3>
 
-                <div style="display: grid; gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">1. Life Experience (ever/never)</h4>
-                        <p style="margin: 0; font-size: 0.95rem;">Talking about experiences in your life up to now:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
-                            <li>"I <strong>have visited</strong> Japan twice." <span style="color: #6b7280;">(In my life)</span></li>
-                            <li>"She <strong>has never eaten</strong> sushi." <span style="color: #6b7280;">(Not once in her life)</span></li>
-                            <li>"<strong>Have</strong> you <strong>ever seen</strong> a whale?" <span style="color: #6b7280;">(At any time in your life?)</span></li>
+                <div style="display: grid; gap: 1rem; margin: 1rem 0">
+                    <div class="gc-bg-white gc-callout-orange" style="7ed; padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c">1. Life Experience (ever/never)</h4>
+                        <p style="margin: 0; font-size: 0.95rem">Talking about experiences in your life up to now:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem">
+                            <li>"I <strong>have visited</strong> Japan twice." <span class="gc-text-muted">(In my life)</span></li>
+                            <li>"She <strong>has never eaten</strong> sushi." <span class="gc-text-muted">(Not once in her life)</span></li>
+                            <li>"<strong>Have</strong> you <strong>ever seen</strong> a whale?" <span class="gc-text-muted">(At any time in your life?)</span></li>
                         </ul>
                     </div>
 
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">2. Recent Completion (just/already/yet)</h4>
-                        <p style="margin: 0; font-size: 0.95rem;">Something finished recently with a present result:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
-                            <li>"I <strong>have just finished</strong> my homework." <span style="color: #6b7280;">(I can play now!)</span></li>
-                            <li>"She <strong>has already left</strong>." <span style="color: #6b7280;">(She's not here anymore.)</span></li>
-                            <li>"<strong>Have</strong> you <strong>done</strong> your chores <strong>yet</strong>?" <span style="color: #6b7280;">(Is it complete?)</span></li>
+                    <div class="gc-bg-white gc-callout-orange" style="7ed; padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c">2. Recent Completion (just/already/yet)</h4>
+                        <p style="margin: 0; font-size: 0.95rem">Something finished recently with a present result:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem">
+                            <li>"I <strong>have just finished</strong> my homework." <span class="gc-text-muted">(I can play now!)</span></li>
+                            <li>"She <strong>has already left</strong>." <span class="gc-text-muted">(She's not here anymore.)</span></li>
+                            <li>"<strong>Have</strong> you <strong>done</strong> your chores <strong>yet</strong>?" <span class="gc-text-muted">(Is it complete?)</span></li>
                         </ul>
                     </div>
 
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">3. Counting Results (numbers/how many)</h4>
-                        <p style="margin: 0; font-size: 0.95rem;">When you can count completed items:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
-                            <li>"I <strong>have written</strong> three reports today." <span style="color: #6b7280;">(Count: 3)</span></li>
-                            <li>"He <strong>has called</strong> five times!" <span style="color: #6b7280;">(Count: 5)</span></li>
-                            <li>"<strong>How many</strong> countries <strong>have</strong> you <strong>visited</strong>?" <span style="color: #6b7280;">(Asking for a number)</span></li>
+                    <div class="gc-bg-white gc-callout-orange" style="7ed; padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c">3. Counting Results (numbers/how many)</h4>
+                        <p style="margin: 0; font-size: 0.95rem">When you can count completed items:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem">
+                            <li>"I <strong>have written</strong> three reports today." <span class="gc-text-muted">(Count: 3)</span></li>
+                            <li>"He <strong>has called</strong> five times!" <span class="gc-text-muted">(Count: 5)</span></li>
+                            <li>"<strong>How many</strong> countries <strong>have</strong> you <strong>visited</strong>?" <span class="gc-text-muted">(Asking for a number)</span></li>
                         </ul>
                     </div>
                 </div>
 
-                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
-                    <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
-                    <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
+                <div class="gc-bg-green" style="padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #059669">✓ Remember the Formula</h4>
+                    <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center">
                         <strong>have/has</strong> + <strong>V3</strong> (eaten, written, gone, done)
                     </p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
+                    <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; ; text-align: center">
                         I/You/We/They <strong>have</strong> + verb³ | He/She/It <strong>has</strong> + verb³
                     </p>
                 </div>
@@ -458,77 +458,77 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>When "Time" Matters</h3>
                 <p>Use <strong>The Present Perfect (Duration)</strong> (have + <strong>been</strong> + <strong>-ing</strong>) when you want to show <strong>how long</strong> something has been happening...</p>
 
-                <div style="background: white; border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
-                    <h4 style="text-align: center; margin-top: 0; color: #4338ca;">Timeline: The Ongoing Duration</h4>
-                    <div style="position: relative; margin: 2rem auto; max-width: 500px; padding: 1rem 0;">
+                <div class="gc-bg-white" style="border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
+                    <h4 style="text-align: center; margin-top: 0; color: #4338ca">Timeline: The Ongoing Duration</h4>
+                    <div style="position: relative; margin: 2rem auto; max-width: 500px; padding: 1rem 0">
                         <!-- Duration bar -->
-                        <div style="position: relative; height: 40px; background: linear-gradient(to right, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.9)); border-radius: 25px; border: 2px solid #6366f1; display: flex; align-items: center; padding: 0 1.5rem;">
+                        <div style="position: relative; height: 40px; background: linear-gradient(to right, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.9)); border-radius: 25px; border: 2px solid #6366f1; display: flex; align-items: center; padding: 0 1.5rem">
                             <!-- Start dot -->
-                            <div style="position: absolute; left: 0; top: 50%; width: 12px; height: 12px; background: #6366f1; border-radius: 50%; transform: translate(-6px, -50%); border: 2px solid white;"></div>
+                            <div style="position: absolute; left: 0; top: 50%; width: 12px; height: 12px; background: #6366f1; border-radius: 50%; transform: translate(-6px, -50%); border: 2px solid white"></div>
 
                             <!-- Middle text -->
-                            <span style="color: #312e81; font-weight: 600; font-size: 0.85rem; margin-left: 10px;">...working...working...</span>
+                            <span style="color: #312e81; font-weight: 600; font-size: 0.85rem; margin-left: 10px">...working...working...</span>
 
                             <!-- NOW dot (pulsing) -->
-                            <div style="position: absolute; right: 0; top: 50%; width: 16px; height: 16px; background: #f0b45a; border-radius: 50%; transform: translate(8px, -50%); border: 3px solid white; box-shadow: 0 0 0 4px rgba(240, 180, 90, 0.3);"></div>
+                            <div style="position: absolute; right: 0; top: 50%; width: 16px; height: 16px; background: #f0b45a; border-radius: 50%; transform: translate(8px, -50%); border: 3px solid white; box-shadow: 0 0 0 4px rgba(240, 180, 90, 0.3)"></div>
                         </div>
-                        <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.8rem; color: #64748b;">
+                        <div class="gc-text-muted" style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.8rem; ">
                             <span>Started in Past</span>
                             <span>NOW</span>
                         </div>
                     </div>
-                    <p style="text-align: center; margin: 0;">"I <strong>have been waiting</strong> for 20 minutes."</p>
-                    <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9em; color: #666;">(Focus is on the 20 minutes of waiting time)</p>
+                    <p style="text-align: center; margin: 0">"I <strong>have been waiting</strong> for 20 minutes."</p>
+                    <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9em; color: #666">(Focus is on the 20 minutes of waiting time)</p>
                 </div>
 
                 <h3>Three Main Uses for the Duration Form</h3>
 
-                <div style="display: grid; gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">1. Duration (for/since/how long)</h4>
-                        <p style="margin: 0; font-size: 0.95rem;">Emphasizing how long an activity has been happening:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
-                            <li>"I <strong>have been studying</strong> English <strong>for 3 years</strong>." <span style="color: #6b7280;">(Duration emphasized)</span></li>
-                            <li>"She <strong>has been working</strong> here <strong>since 2020</strong>." <span style="color: #6b7280;">(Starting point)</span></li>
-                            <li>"<strong>How long have</strong> you <strong>been waiting</strong>?" <span style="color: #6b7280;">(Asking about duration)</span></li>
+                <div style="display: grid; gap: 1rem; margin: 1rem 0">
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca">1. Duration (for/since/how long)</h4>
+                        <p style="margin: 0; font-size: 0.95rem">Emphasizing how long an activity has been happening:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem">
+                            <li>"I <strong>have been studying</strong> English <strong>for 3 years</strong>." <span class="gc-text-muted">(Duration emphasized)</span></li>
+                            <li>"She <strong>has been working</strong> here <strong>since 2020</strong>." <span class="gc-text-muted">(Starting point)</span></li>
+                            <li>"<strong>How long have</strong> you <strong>been waiting</strong>?" <span class="gc-text-muted">(Asking about duration)</span></li>
                         </ul>
                     </div>
 
-                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">2. Visible Evidence (I can see the effects!)</h4>
-                        <p style="margin: 0; font-size: 0.95rem;">When you can see or feel the effects of recent activity:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
-                            <li>"You're sweating! <strong>Have</strong> you <strong>been running</strong>?" <span style="color: #6b7280;">(I see evidence)</span></li>
-                            <li>"Your eyes are red. <strong>Have</strong> you <strong>been crying</strong>?" <span style="color: #6b7280;">(I notice something)</span></li>
-                            <li>"The ground is wet. It <strong>has been raining</strong>." <span style="color: #6b7280;">(Evidence of recent activity)</span></li>
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca">2. Visible Evidence (I can see the effects!)</h4>
+                        <p style="margin: 0; font-size: 0.95rem">When you can see or feel the effects of recent activity:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem">
+                            <li>"You're sweating! <strong>Have</strong> you <strong>been running</strong>?" <span class="gc-text-muted">(I see evidence)</span></li>
+                            <li>"Your eyes are red. <strong>Have</strong> you <strong>been crying</strong>?" <span class="gc-text-muted">(I notice something)</span></li>
+                            <li>"The ground is wet. It <strong>has been raining</strong>." <span class="gc-text-muted">(Evidence of recent activity)</span></li>
                         </ul>
                     </div>
 
-                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">3. Recent Activity (explains a situation)</h4>
-                        <p style="margin: 0; font-size: 0.95rem;">Explaining why something is the way it is now:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
-                            <li>"I'm tired because I <strong>have been working</strong> all day." <span style="color: #6b7280;">(Explains tiredness)</span></li>
-                            <li>"Sorry I'm late. I <strong>have been looking</strong> for parking." <span style="color: #6b7280;">(Explains delay)</span></li>
-                            <li>"My hands are dirty. I <strong>have been gardening</strong>." <span style="color: #6b7280;">(Explains dirty hands)</span></li>
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca">3. Recent Activity (explains a situation)</h4>
+                        <p style="margin: 0; font-size: 0.95rem">Explaining why something is the way it is now:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem">
+                            <li>"I'm tired because I <strong>have been working</strong> all day." <span class="gc-text-muted">(Explains tiredness)</span></li>
+                            <li>"Sorry I'm late. I <strong>have been looking</strong> for parking." <span class="gc-text-muted">(Explains delay)</span></li>
+                            <li>"My hands are dirty. I <strong>have been gardening</strong>." <span class="gc-text-muted">(Explains dirty hands)</span></li>
                         </ul>
                     </div>
                 </div>
 
-                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
-                    <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
-                    <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
+                <div class="gc-bg-green" style="padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #059669">✓ Remember the Formula</h4>
+                    <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center">
                         <strong>have/has</strong> + <strong>been</strong> + <strong>V1-ing</strong>
                     </p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
+                    <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.85rem; ; text-align: center">
                         I/You/We/They <strong>have been</strong> + -ing | He/She/It <strong>has been</strong> + -ing
                     </p>
                 </div>
 
-                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
-                    <p style="margin: 0; font-weight: 600;">💡 Action May or May Not Be Finished!</p>
-                    <p style="margin: 0.5rem 0 0 0;">With the duration form, the action might still be happening OR might have just stopped. The focus is on the activity itself, not whether it's complete.</p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;"><em>"I have been reading this book..."</em> → Maybe still reading, maybe just stopped to rest.</p>
+                <div class="gc-bg-amber gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ; margin-top: 1rem">
+                    <p style="margin: 0; font-weight: 600">💡 Action May or May Not Be Finished!</p>
+                    <p style="margin: 0.5rem 0 0 0">With the duration form, the action might still be happening OR might have just stopped. The focus is on the activity itself, not whether it's complete.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem"><em>"I have been reading this book..."</em> → Maybe still reading, maybe just stopped to rest.</p>
                 </div>
             `,
             exercises: [
@@ -581,13 +581,13 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>How to say "No"</h3>
                 <p>The negative forms also have slightly different meanings. Understanding these will help you express exactly what you mean.</p>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem">
                     <!-- Result Negative -->
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">Result Negative</h4>
-                        <div style="font-weight: bold; margin-bottom: 0.5rem;">have NOT + Past Participle</div>
-                        <p style="font-style: italic; color: #4b5563;">"I <strong>haven't finished</strong> yet."</p>
-                        <ul style="font-size: 0.9rem; padding-left: 1.2rem; margin-bottom: 0;">
+                    <div class="gc-bg-white" style="7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c">Result Negative</h4>
+                        <div style="font-weight: bold; margin-bottom: 0.5rem">have NOT + Past Participle</div>
+                        <p style="font-style: italic; color: #4b5563">"I <strong>haven't finished</strong> yet."</p>
+                        <ul style="font-size: 0.9rem; padding-left: 1.2rem; margin-bottom: 0">
                             <li>It is incomplete.</li>
                             <li>The count is zero.</li>
                             <li>"I haven't seen that movie."</li>
@@ -595,11 +595,11 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
 
                     <!-- Duration Negative -->
-                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">Duration Negative</h4>
-                        <div style="font-weight: bold; margin-bottom: 0.5rem;">have NOT + BEEN + -ING</div>
-                        <p style="font-style: italic; color: #4b5563;">"I <strong>haven't been sleeping</strong> well."</p>
-                        <ul style="font-size: 0.9rem; padding-left: 1.2rem; margin-bottom: 0;">
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca">Duration Negative</h4>
+                        <div style="font-weight: bold; margin-bottom: 0.5rem">have NOT + BEEN + -ING</div>
+                        <p style="font-style: italic; color: #4b5563">"I <strong>haven't been sleeping</strong> well."</p>
+                        <ul style="font-size: 0.9rem; padding-left: 1.2rem; margin-bottom: 0">
                             <li>The activity has been absent lately.</li>
                             <li>"I haven't been practicing enough."</li>
                         </ul>
@@ -609,53 +609,53 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Understanding the Difference in Negatives</h3>
                 <p>The negative forms carry different nuances. Look at these examples:</p>
 
-                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; font-weight: 600;">Scenario: Your friend asks about your diet</p>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+                <div class="gc-bg-slate" style="padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0">
+                        <p style="margin: 0; font-weight: 600">Scenario: Your friend asks about your diet</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem">
                             <div>
-                                <p style="margin: 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>haven't eaten</strong> today."</p>
-                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ Zero meals. I'm hungry!</p>
+                                <p style="margin: 0; color: #c2410c"><strong>Result form:</strong> "I <strong>haven't eaten</strong> today."</p>
+                                <p class="gc-text-muted" style="margin: 0; font-size: 0.85rem; ">→ Zero meals. I'm hungry!</p>
                             </div>
                             <div>
-                                <p style="margin: 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>haven't been eating</strong> well lately."</p>
-                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ My eating habits have been poor recently.</p>
+                                <p style="margin: 0; color: #4338ca"><strong>Duration form:</strong> "I <strong>haven't been eating</strong> well lately."</p>
+                                <p class="gc-text-muted" style="margin: 0; font-size: 0.85rem; ">→ My eating habits have been poor recently.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; font-weight: 600;">Scenario: Talking about exercise</p>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0">
+                        <p style="margin: 0; font-weight: 600">Scenario: Talking about exercise</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem">
                             <div>
-                                <p style="margin: 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>haven't exercised</strong> this week."</p>
-                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ Zero exercise sessions this week.</p>
+                                <p style="margin: 0; color: #c2410c"><strong>Result form:</strong> "I <strong>haven't exercised</strong> this week."</p>
+                                <p class="gc-text-muted" style="margin: 0; font-size: 0.85rem; ">→ Zero exercise sessions this week.</p>
                             </div>
                             <div>
-                                <p style="margin: 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>haven't been exercising</strong> lately."</p>
-                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ Exercise hasn't been part of my routine recently.</p>
+                                <p style="margin: 0; color: #4338ca"><strong>Duration form:</strong> "I <strong>haven't been exercising</strong> lately."</p>
+                                <p class="gc-text-muted" style="margin: 0; font-size: 0.85rem; ">→ Exercise hasn't been part of my routine recently.</p>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <p style="margin: 0; font-weight: 600;">Scenario: Someone asks about your homework</p>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600">Scenario: Someone asks about your homework</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem">
                             <div>
-                                <p style="margin: 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>haven't done</strong> it yet."</p>
-                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ It's not complete (but I will do it).</p>
+                                <p style="margin: 0; color: #c2410c"><strong>Result form:</strong> "I <strong>haven't done</strong> it yet."</p>
+                                <p class="gc-text-muted" style="margin: 0; font-size: 0.85rem; ">→ It's not complete (but I will do it).</p>
                             </div>
                             <div>
-                                <p style="margin: 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>haven't been doing</strong> my homework."</p>
-                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ I've been neglecting it as a regular habit.</p>
+                                <p style="margin: 0; color: #4338ca"><strong>Duration form:</strong> "I <strong>haven't been doing</strong> my homework."</p>
+                                <p class="gc-text-muted" style="margin: 0; font-size: 0.85rem; ">→ I've been neglecting it as a regular habit.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
-                    <p style="margin: 0; font-weight: 600;">💡 Quick Guide:</p>
-                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem;">
+                <div class="gc-bg-amber gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ; margin-top: 1rem">
+                    <p style="margin: 0; font-weight: 600">💡 Quick Guide:</p>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem">
                     <li><strong>Result negative</strong> = The action hasn't happened (zero times, incomplete)</li>
                     <li><strong>Duration negative</strong> = The activity hasn't been part of your life/routine lately</li>
                     </ul>
@@ -704,35 +704,35 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Asking the Right Question</h3>
                 <p>The question you ask depends on what answer you want. Choose the right form to get the information you need!</p>
 
-                <table style="width: 100%; text-align: left; border-collapse: collapse; margin: 1rem 0;">
-                    <tr class="gc-bg-slate" style="border-bottom: 2px solid #e5e7eb; background: #f8fafc;">
-                        <th class="gc-text-dark gc-table-divider" style="padding: 0.5rem; text-align: left;">If you want to know...</th>
-                        <th class="gc-text-dark gc-table-divider" style="padding: 0.5rem; text-align: left;">Use...</th>
-                        <th class="gc-text-dark gc-table-divider" style="padding: 0.5rem; text-align: left;">Question Word</th>
+                <table style="width: 100%; text-align: left; border-collapse: collapse; margin: 1rem 0">
+                    <tr class="gc-bg-slate gc-bg-slate" style="border-bottom: 2px solid #e5e7eb; ">
+                        <th class="gc-text-dark gc-table-divider" style="padding: 0.5rem; text-align: left">If you want to know...</th>
+                        <th class="gc-text-dark gc-table-divider" style="padding: 0.5rem; text-align: left">Use...</th>
+                        <th class="gc-text-dark gc-table-divider" style="padding: 0.5rem; text-align: left">Question Word</th>
                     </tr>
-                    <tr style="background-color: #fff7ed;">
-                        <td style="padding: 0.75rem; font-weight: 500;">If it is DONE</td>
-                        <td style="padding: 0.75rem;">Result</td>
-                        <td style="padding: 0.75rem; color: #c2410c; font-weight: bold;">Have you finished...?</td>
+                    <tr style="background-color: #fff7ed">
+                        <td style="padding: 0.75rem; font-weight: 500">If it is DONE</td>
+                        <td style="padding: 0.75rem">Result</td>
+                        <td style="padding: 0.75rem; color: #c2410c; font-weight: bold">Have you finished...?</td>
                     </tr>
-                    <tr style="background-color: #eef2ff;">
-                        <td style="padding: 0.75rem; font-weight: 500; color: #1f2937;">The DURATION</td>
-                        <td style="padding: 0.75rem; color: #1f2937;">Duration</td>
-                        <td style="padding: 0.75rem; color: #4338ca; font-weight: bold;">How long...?</td>
+                    <tr style="background-color: #eef2ff">
+                        <td style="padding: 0.75rem; font-weight: 500; color: #1f2937">The DURATION</td>
+                        <td style="padding: 0.75rem; color: #1f2937">Duration</td>
+                        <td style="padding: 0.75rem; color: #4338ca; font-weight: bold">How long...?</td>
                     </tr>
-                    <tr style="background-color: #fff7ed;">
-                        <td style="padding: 0.75rem; font-weight: 500;">The QUANTITY</td>
-                        <td style="padding: 0.75rem;">Result</td>
-                        <td style="padding: 0.75rem; color: #c2410c; font-weight: bold;">How many...?</td>
+                    <tr style="background-color: #fff7ed">
+                        <td style="padding: 0.75rem; font-weight: 500">The QUANTITY</td>
+                        <td style="padding: 0.75rem">Result</td>
+                        <td style="padding: 0.75rem; color: #c2410c; font-weight: bold">How many...?</td>
                     </tr>
                 </table>
 
                 <h3>Question Examples by Type</h3>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #c2410c;">Result Questions (Done/Count)</h4>
-                        <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0">
+                    <div class="gc-bg-white" style="7ed; padding: 1rem; border-radius: 0.5rem">
+                        <h4 style="margin: 0 0 0.75rem 0; color: #c2410c">Result Questions (Done/Count)</h4>
+                        <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.9rem">
                             <li><strong>Have</strong> you <strong>finished</strong> your homework?</li>
                             <li><strong>Has</strong> she <strong>called</strong> you back yet?</li>
                             <li><strong>Have</strong> you ever <strong>been</strong> to Paris?</li>
@@ -740,9 +740,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             <li><strong>What</strong> <strong>have</strong> you <strong>done</strong> today?</li>
                         </ul>
                     </div>
-                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #4338ca;">Duration Questions (Time/Activity)</h4>
-                        <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem">
+                        <h4 style="margin: 0 0 0.75rem 0; color: #4338ca">Duration Questions (Time/Activity)</h4>
+                        <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.9rem">
                             <li><strong>How long have</strong> you <strong>been waiting</strong>?</li>
                             <li><strong>What have</strong> you <strong>been doing</strong> all day?</li>
                             <li><strong>Have</strong> you <strong>been crying</strong>? (evidence)</li>
@@ -755,40 +755,40 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Same Topic, Different Questions</h3>
                 <p>Notice how the form you choose changes what you're asking about:</p>
 
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; font-weight: 600;">Topic: Reading</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result:</strong> "How many books <strong>have</strong> you <strong>read</strong>?" → Wants a number</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration:</strong> "What <strong>have</strong> you <strong>been reading</strong>?" → Wants to know about the activity</p>
+                <div class="gc-bg-slate" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0">
+                        <p style="margin: 0; font-weight: 600">Topic: Reading</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c"><strong>Result:</strong> "How many books <strong>have</strong> you <strong>read</strong>?" → Wants a number</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca"><strong>Duration:</strong> "What <strong>have</strong> you <strong>been reading</strong>?" → Wants to know about the activity</p>
                     </div>
 
-                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; font-weight: 600;">Topic: Work</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result:</strong> "<strong>Have</strong> you <strong>finished</strong> the report?" → Is it done?</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration:</strong> "How long <strong>have</strong> you <strong>been working</strong> on it?" → How much time?</p>
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0">
+                        <p style="margin: 0; font-weight: 600">Topic: Work</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c"><strong>Result:</strong> "<strong>Have</strong> you <strong>finished</strong> the report?" → Is it done?</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca"><strong>Duration:</strong> "How long <strong>have</strong> you <strong>been working</strong> on it?" → How much time?</p>
                     </div>
 
                     <div>
-                        <p style="margin: 0; font-weight: 600;">Topic: Exercise (noticing sweat)</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result:</strong> "<strong>Have</strong> you <strong>exercised</strong> today?" → Did it happen?</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration:</strong> "<strong>Have</strong> you <strong>been exercising</strong>?" → I see evidence of activity!</p>
+                        <p style="margin: 0; font-weight: 600">Topic: Exercise (noticing sweat)</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c"><strong>Result:</strong> "<strong>Have</strong> you <strong>exercised</strong> today?" → Did it happen?</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca"><strong>Duration:</strong> "<strong>Have</strong> you <strong>been exercising</strong>?" → I see evidence of activity!</p>
                     </div>
                 </div>
 
-                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
-                    <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Question Formation</h4>
-                    <p style="margin: 0; font-size: 0.9rem;"><strong>Result:</strong> Have/Has + subject + V3...?</p>
-                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Duration:</strong> Have/Has + subject + been + V1-ing...?</p>
+                <div class="gc-bg-green" style="padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #059669">✓ Question Formation</h4>
+                    <p style="margin: 0; font-size: 0.9rem"><strong>Result:</strong> Have/Has + subject + V3...?</p>
+                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Duration:</strong> Have/Has + subject + been + V1-ing...?</p>
                 </div>
 
-                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
-                    <h4 style="margin: 0 0 0.5rem 0; color: #b45309;">⚠️ Exception: State Verbs with "How long"</h4>
-                    <p style="margin: 0; font-size: 0.9rem;">Even though "How long...?" usually signals the duration form, <strong>state verbs</strong> (know, believe, like, love, own, have) <strong>never</strong> use the continuous form—even for duration questions!</p>
-                    <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #fcd34d;">
-                        <p style="margin: 0; font-size: 0.9rem;"><span style="color: #b91c1c;">❌</span> "How long have you <strong>been knowing</strong> her?"</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><span style="color: #15803d;">✓</span> "How long have you <strong>known</strong> her?"</p>
+                <div class="gc-bg-amber gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ; margin-top: 1rem">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #b45309">⚠️ Exception: State Verbs with "How long"</h4>
+                    <p style="margin: 0; font-size: 0.9rem">Even though "How long...?" usually signals the duration form, <strong>state verbs</strong> (know, believe, like, love, own, have) <strong>never</strong> use the continuous form—even for duration questions!</p>
+                    <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #fcd34d">
+                        <p style="margin: 0; font-size: 0.9rem"><span style="color: #b91c1c">❌</span> "How long have you <strong>been knowing</strong> her?"</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><span style="color: #15803d">✓</span> "How long have you <strong>known</strong> her?"</p>
                     </div>
-                    <p style="margin: 0.75rem 0 0 0; font-size: 0.85rem; color: #92400e;">State verbs describe states (not activities), so they use the result form even when asking about duration.</p>
+                    <p style="margin: 0.75rem 0 0 0; font-size: 0.85rem; color: #92400e">State verbs describe states (not activities), so they use the result form even when asking about duration.</p>
                 </div>
             `,
              exercises: [
@@ -844,29 +844,29 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Side-by-Side: The Same Verb, Two Meanings</h3>
                 <p>See how using the result form vs the duration form changes the meaning with the same verb:</p>
 
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; font-weight: 600;">PAINT 🎨</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>have painted</strong> two rooms." → <em>Two rooms are done!</em></p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>have been painting</strong> all day." → <em>That's why I'm tired/messy!</em></p>
+                <div class="gc-bg-slate" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0">
+                        <p style="margin: 0; font-weight: 600">PAINT 🎨</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c"><strong>Result form:</strong> "I <strong>have painted</strong> two rooms." → <em>Two rooms are done!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca"><strong>Duration form:</strong> "I <strong>have been painting</strong> all day." → <em>That's why I'm tired/messy!</em></p>
                     </div>
 
-                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; font-weight: 600;">WRITE ✍️</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result form:</strong> "She <strong>has written</strong> 5 chapters." → <em>5 chapters are complete!</em></p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration form:</strong> "She <strong>has been writing</strong> since morning." → <em>Many hours of work!</em></p>
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0">
+                        <p style="margin: 0; font-weight: 600">WRITE ✍️</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c"><strong>Result form:</strong> "She <strong>has written</strong> 5 chapters." → <em>5 chapters are complete!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca"><strong>Duration form:</strong> "She <strong>has been writing</strong> since morning." → <em>Many hours of work!</em></p>
                     </div>
 
-                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; font-weight: 600;">COOK 🍳</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>have cooked</strong> dinner." → <em>Dinner is ready!</em></p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>have been cooking</strong> for 2 hours." → <em>That's a lot of effort!</em></p>
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0">
+                        <p style="margin: 0; font-weight: 600">COOK 🍳</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c"><strong>Result form:</strong> "I <strong>have cooked</strong> dinner." → <em>Dinner is ready!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca"><strong>Duration form:</strong> "I <strong>have been cooking</strong> for 2 hours." → <em>That's a lot of effort!</em></p>
                     </div>
 
                     <div>
-                        <p style="margin: 0; font-weight: 600;">LEARN 📚</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>have learned</strong> 50 new words." → <em>My vocabulary grew by 50!</em></p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>have been learning</strong> Spanish for a year." → <em>One year of study!</em></p>
+                        <p style="margin: 0; font-weight: 600">LEARN 📚</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c"><strong>Result form:</strong> "I <strong>have learned</strong> 50 new words." → <em>My vocabulary grew by 50!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca"><strong>Duration form:</strong> "I <strong>have been learning</strong> Spanish for a year." → <em>One year of study!</em></p>
                     </div>
                 </div>
             `,
@@ -900,11 +900,11 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 State Verbs Exception",
                 content: `Verbs like know, like, believe, have (possession) stay SIMPLE—even for duration!
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div style="color: #15803d; font-weight: 600;">✅ Correct:</div>
-                    <div style="margin-left: 0.5rem;">"I have known him for 10 years."</div>
-                    <div style="color: #b91c1c; font-weight: 600; margin-top: 0.25rem;">❌ Incorrect:</div>
-                    <div style="margin-left: 0.5rem;">"I have been knowing him..."</div>
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem">
+                    <div style="color: #15803d; font-weight: 600">✅ Correct:</div>
+                    <div style="margin-left: 0.5rem">"I have known him for 10 years."</div>
+                    <div style="color: #b91c1c; font-weight: 600; margin-top: 0.25rem">❌ Incorrect:</div>
+                    <div style="margin-left: 0.5rem">"I have been knowing him..."</div>
                 </div>`
             },
         },
@@ -920,56 +920,56 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Master the Structures</h3>
                 <p>Let's make sure you can build these sentences perfectly. Both forms have the same basic pattern but with different endings.</p>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316;">
-                        <h4 style="margin: 0; color: #c2410c; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">Result form</h4>
-                        <div style="margin-bottom: 0.5rem;"><strong>+</strong> have + <span style="color: #c2410c;">V3</span></div>
-                        <div style="margin-bottom: 0.5rem;"><strong>-</strong> haven't + <span style="color: #c2410c;">V3</span></div>
-                        <div><strong>?</strong> Have you + <span style="color: #c2410c;">V3</span>?</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0">
+                    <div class="gc-bg-white" style="7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316">
+                        <h4 style="margin: 0; color: #c2410c; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; margin-bottom: 0.5rem">Result form</h4>
+                        <div style="margin-bottom: 0.5rem"><strong>+</strong> have + <span style="color: #c2410c">V3</span></div>
+                        <div style="margin-bottom: 0.5rem"><strong>-</strong> haven't + <span style="color: #c2410c">V3</span></div>
+                        <div><strong>?</strong> Have you + <span style="color: #c2410c">V3</span>?</div>
                     </div>
-                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1;">
-                        <h4 style="margin: 0; color: #4338ca; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">Duration form</h4>
-                        <div style="margin-bottom: 0.5rem;"><strong>+</strong> have <span style="color: #6366f1;">been</span> + <span style="color: #6366f1;">-ing</span></div>
-                        <div style="margin-bottom: 0.5rem;"><strong>-</strong> haven't <span style="color: #6366f1;">been</span> + <span style="color: #6366f1;">-ing</span></div>
-                        <div><strong>?</strong> Have you <span style="color: #6366f1;">been</span> + <span style="color: #6366f1;">-ing</span>?</div>
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1">
+                        <h4 style="margin: 0; color: #4338ca; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; margin-bottom: 0.5rem">Duration form</h4>
+                        <div style="margin-bottom: 0.5rem"><strong>+</strong> have <span style="color: #6366f1">been</span> + <span style="color: #6366f1">-ing</span></div>
+                        <div style="margin-bottom: 0.5rem"><strong>-</strong> haven't <span style="color: #6366f1">been</span> + <span style="color: #6366f1">-ing</span></div>
+                        <div><strong>?</strong> Have you <span style="color: #6366f1">been</span> + <span style="color: #6366f1">-ing</span>?</div>
                     </div>
                 </div>
 
                 <h3>Full Example Sentences</h3>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <tr style="border-bottom: 2px solid #e2e8f0;">
-                            <th style="padding: 0.5rem; text-align: left; width: 25%;">Form</th>
-                            <th style="padding: 0.5rem; text-align: left; color: #c2410c;">Result form</th>
-                            <th style="padding: 0.5rem; text-align: left; color: #4338ca;">Duration form</th>
+                <div class="gc-bg-slate" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <table style="width: 100%; border-collapse: collapse">
+                        <tr style="border-bottom: 2px solid #e2e8f0">
+                            <th style="padding: 0.5rem; text-align: left; width: 25%">Form</th>
+                            <th style="padding: 0.5rem; text-align: left; color: #c2410c">Result form</th>
+                            <th style="padding: 0.5rem; text-align: left; color: #4338ca">Duration form</th>
                         </tr>
-                        <tr style="border-bottom: 1px solid #e2e8f0;">
-                            <td style="padding: 0.5rem; font-weight: 600;">Positive (+)</td>
-                            <td style="padding: 0.5rem;">I <strong>have eaten</strong> lunch.</td>
-                            <td style="padding: 0.5rem;">I <strong>have been eating</strong> lunch.</td>
+                        <tr style="border-bottom: 1px solid #e2e8f0">
+                            <td style="padding: 0.5rem; font-weight: 600">Positive (+)</td>
+                            <td style="padding: 0.5rem">I <strong>have eaten</strong> lunch.</td>
+                            <td style="padding: 0.5rem">I <strong>have been eating</strong> lunch.</td>
                         </tr>
-                        <tr style="border-bottom: 1px solid #e2e8f0;">
-                            <td style="padding: 0.5rem; font-weight: 600;">Negative (-)</td>
-                            <td style="padding: 0.5rem;">She <strong>hasn't finished</strong> yet.</td>
-                            <td style="padding: 0.5rem;">She <strong>hasn't been working</strong> hard.</td>
+                        <tr style="border-bottom: 1px solid #e2e8f0">
+                            <td style="padding: 0.5rem; font-weight: 600">Negative (-)</td>
+                            <td style="padding: 0.5rem">She <strong>hasn't finished</strong> yet.</td>
+                            <td style="padding: 0.5rem">She <strong>hasn't been working</strong> hard.</td>
                         </tr>
-                        <tr style="border-bottom: 1px solid #e2e8f0;">
-                            <td style="padding: 0.5rem; font-weight: 600;">Question (?)</td>
-                            <td style="padding: 0.5rem;"><strong>Have</strong> you <strong>seen</strong> it?</td>
-                            <td style="padding: 0.5rem;"><strong>Have</strong> you <strong>been waiting</strong> long?</td>
+                        <tr style="border-bottom: 1px solid #e2e8f0">
+                            <td style="padding: 0.5rem; font-weight: 600">Question (?)</td>
+                            <td style="padding: 0.5rem"><strong>Have</strong> you <strong>seen</strong> it?</td>
+                            <td style="padding: 0.5rem"><strong>Have</strong> you <strong>been waiting</strong> long?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.5rem; font-weight: 600;">He/She/It</td>
-                            <td style="padding: 0.5rem;">He <strong>has gone</strong> home.</td>
-                            <td style="padding: 0.5rem;">He <strong>has been studying</strong>.</td>
+                            <td style="padding: 0.5rem; font-weight: 600">He/She/It</td>
+                            <td style="padding: 0.5rem">He <strong>has gone</strong> home.</td>
+                            <td style="padding: 0.5rem">He <strong>has been studying</strong>.</td>
                         </tr>
                     </table>
                 </div>
 
                 <h3>Subject-Verb Agreement</h3>
-                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
-                    <p style="margin: 0; font-weight: 600;">Remember: HAS is for He/She/It</p>
-                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                <div class="gc-bg-amber gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ">
+                    <p style="margin: 0; font-weight: 600">Remember: HAS is for He/She/It</p>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem">
                         <li>I/You/We/They <strong>have</strong> finished | <strong>have been</strong> working</li>
                         <li>He/She/It <strong>has</strong> finished | <strong>has been</strong> working</li>
                     </ul>
@@ -1018,21 +1018,21 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Key Time Words for Both Forms</h3>
                 <p>Both the result form and the duration form use <strong>for</strong> and <strong>since</strong>, but some words work better with one form. Learning these will help you sound more natural!</p>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #b45309;">FOR = Duration</h4>
-                        <p style="margin: 0; font-size: 0.9rem; color: #4b5563;">How long? A period of time.</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0">
+                    <div class="gc-bg-amber gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 style="margin: 0 0 0.75rem 0; color: #b45309">FOR = Duration</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: #4b5563">How long? A period of time.</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem">
                             <li>for 10 minutes</li>
                             <li>for 2 hours</li>
                             <li>for 3 weeks</li>
                             <li>for 5 years</li>
                         </ul>
                     </div>
-                    <div style="background: #dbeafe; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #1d4ed8;">SINCE = Starting Point</h4>
-                        <p style="margin: 0; font-size: 0.9rem; color: #4b5563;">From when? A specific time.</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                    <div class="gc-bg-blue gc-callout-blue" style="padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 style="margin: 0 0 0.75rem 0; color: #1d4ed8">SINCE = Starting Point</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: #4b5563">From when? A specific time.</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem">
                             <li>since Monday</li>
                             <li>since 2019</li>
                             <li>since I moved here</li>
@@ -1042,44 +1042,44 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>FOR vs SINCE: Easy Way to Remember</h3>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="margin: 0;"><strong>FOR</strong> answers "How long?" → <em>for 3 hours, for 2 weeks, for a year</em></p>
-                    <p style="margin: 0.5rem 0 0 0;"><strong>SINCE</strong> answers "From when?" → <em>since Monday, since 2020, since I was a child</em></p>
-                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Example:</strong> "I have lived here <strong>for</strong> 5 years." = "I have lived here <strong>since</strong> 2020."</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">Both sentences mean the same thing, just expressed differently!</p>
+                <div class="gc-bg-slate" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <p style="margin: 0"><strong>FOR</strong> answers "How long?" → <em>for 3 hours, for 2 weeks, for a year</em></p>
+                    <p style="margin: 0.5rem 0 0 0"><strong>SINCE</strong> answers "From when?" → <em>since Monday, since 2020, since I was a child</em></p>
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0">
+                        <p style="margin: 0; font-size: 0.9rem"><strong>Example:</strong> "I have lived here <strong>for</strong> 5 years." = "I have lived here <strong>since</strong> 2020."</p>
+                        <p class="gc-text-muted" style="margin: 0.25rem 0 0 0; font-size: 0.85rem; ">Both sentences mean the same thing, just expressed differently!</p>
                     </div>
                 </div>
 
                 <h4>Signal Words by Form</h4>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-                    <tr style="background: #fff7ed;">
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Result form (Result/Count)</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Duration form (Duration/Activity)</th>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
+                    <tr class="gc-bg-white" style="7ed">
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c">Result form (Result/Count)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca">Duration form (Duration/Activity)</th>
                     </tr>
                     <tr>
-                        <td style="padding: 0.5rem; vertical-align: top;">
-                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">already</span>
-                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">yet</span>
-                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">just</span>
-                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">ever</span>
-                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">never</span>
-                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">how many times</span>
+                        <td style="padding: 0.5rem; vertical-align: top">
+                            <span class="gc-bg-white" style="7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block">already</span>
+                            <span class="gc-bg-white" style="7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block">yet</span>
+                            <span class="gc-bg-white" style="7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block">just</span>
+                            <span class="gc-bg-white" style="7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block">ever</span>
+                            <span class="gc-bg-white" style="7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block">never</span>
+                            <span class="gc-bg-white" style="7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block">how many times</span>
                         </td>
-                        <td style="padding: 0.5rem; vertical-align: top;">
-                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">all day/morning/week</span>
-                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">lately</span>
-                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">recently</span>
-                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">how long</span>
+                        <td style="padding: 0.5rem; vertical-align: top">
+                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block">all day/morning/week</span>
+                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block">lately</span>
+                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block">recently</span>
+                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block">how long</span>
                         </td>
                     </tr>
                 </table>
 
                 <h3>Signal Words in Action</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #c2410c;">Result form signal words:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0">
+                    <div class="gc-bg-white" style="7ed; padding: 1rem; border-radius: 0.5rem">
+                        <p style="margin: 0; font-weight: 600; color: #c2410c">Result form signal words:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem">
                             <li>"I have <strong>already</strong> eaten."</li>
                             <li>"Have you finished <strong>yet</strong>?"</li>
                             <li>"She has <strong>just</strong> arrived."</li>
@@ -1087,9 +1087,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             <li>"I have <strong>never</strong> seen snow."</li>
                         </ul>
                     </div>
-                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #4338ca;">Duration form signal words:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem">
+                        <p style="margin: 0; font-weight: 600; color: #4338ca">Duration form signal words:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem">
                             <li>"I've been working <strong>all day</strong>."</li>
                             <li>"She's been feeling tired <strong>lately</strong>."</li>
                             <li>"What have you been doing <strong>recently</strong>?"</li>
@@ -1098,10 +1098,10 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
-                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
-                    <p style="margin: 0; font-weight: 600;">💡 Word Position Tip:</p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;"><strong>Already/just/never/ever</strong> go BETWEEN have and the verb: "I have <strong>already</strong> finished."</p>
-                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Yet</strong> goes at the END: "Have you finished <strong>yet</strong>?"</p>
+                <div class="gc-bg-amber gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ; margin-top: 1rem">
+                    <p style="margin: 0; font-weight: 600">💡 Word Position Tip:</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem"><strong>Already/just/never/ever</strong> go BETWEEN have and the verb: "I have <strong>already</strong> finished."</p>
+                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Yet</strong> goes at the END: "Have you finished <strong>yet</strong>?"</p>
                 </div>
             `,
             exercises: [
@@ -1185,80 +1185,80 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Avoid These Errors!</h3>
                 <p>Here are the most common mistakes students make with the Present Perfect Family. Understanding these will help you avoid them!</p>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 1: Using the duration form with state verbs</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I have been knowing him for years.</span></p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 1: Using the duration form with state verbs</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap">
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">I have been knowing him for years.</span></p>
                         </div>
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I have known him for years.</span></p>
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400">I have known him for years.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">State verbs (know, believe, like, love, want, need, have, own) don't use the duration form.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151">State verbs (know, believe, like, love, want, need, have, own) don't use the duration form.</p>
                 </div>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 2: Using the duration form for counted actions</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I have been reading 3 books this month.</span></p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 2: Using the duration form for counted actions</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap">
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">I have been reading 3 books this month.</span></p>
                         </div>
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I have read 3 books this month.</span></p>
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400">I have read 3 books this month.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">When counting completed items, use the result form.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151">When counting completed items, use the result form.</p>
                 </div>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 3: Using the duration form with \"Finish\"</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I haven't been finishing my work yet.</span></p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 3: Using the duration form with \"Finish\"</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap">
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">I haven't been finishing my work yet.</span></p>
                         </div>
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I haven't finished my work yet.</span></p>
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400">I haven't finished my work yet.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">"Finish" describes completion - always use the result form.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151">"Finish" describes completion - always use the result form.</p>
                 </div>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 4: Using Present Perfect with Specific Past Time</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I have seen him yesterday.</span></p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 4: Using Present Perfect with Specific Past Time</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap">
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">I have seen him yesterday.</span></p>
                         </div>
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I saw him yesterday.</span></p>
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400">I saw him yesterday.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">With specific past times (yesterday, last week, in 2020), use Past Simple, not Present Perfect.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151">With specific past times (yesterday, last week, in 2020), use Past Simple, not Present Perfect.</p>
                 </div>
 
-                <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border: 1px solid #e5e7eb;">
-                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb;">
-                        <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"I have been wanting a new phone for months."</span></p>
-                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"I have wanted a new phone for months."</span> <span style="font-size: 0.85rem; color: #4b5563;">(want = state verb)</span></p>
+                <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border: 1px solid #e5e7eb">
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb">
+                        <p style="margin: 0; color: #b91c1c; font-weight: 600">❌ <span style="font-weight: 400">"I have been wanting a new phone for months."</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600">✓ <span style="font-weight: 400">"I have wanted a new phone for months."</span> <span style="font-size: 0.85rem; color: #4b5563">(want = state verb)</span></p>
                     </div>
-                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb;">
-                        <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"She has been visiting Paris twice."</span></p>
-                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"She has visited Paris twice."</span> <span style="font-size: 0.85rem; color: #4b5563;">(twice = counting)</span></p>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb">
+                        <p style="margin: 0; color: #b91c1c; font-weight: 600">❌ <span style="font-weight: 400">"She has been visiting Paris twice."</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600">✓ <span style="font-weight: 400">"She has visited Paris twice."</span> <span style="font-size: 0.85rem; color: #4b5563">(twice = counting)</span></p>
                     </div>
-                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb;">
-                        <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"I have been losing my keys."</span></p>
-                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"I have lost my keys."</span> <span style="font-size: 0.85rem; color: #4b5563;">(lose = single event with result)</span></p>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb">
+                        <p style="margin: 0; color: #b91c1c; font-weight: 600">❌ <span style="font-weight: 400">"I have been losing my keys."</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600">✓ <span style="font-weight: 400">"I have lost my keys."</span> <span style="font-size: 0.85rem; color: #4b5563">(lose = single event with result)</span></p>
                     </div>
                     <div>
-                        <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"We have met at the party last Saturday."</span></p>
-                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"We met at the party last Saturday."</span> <span style="font-size: 0.85rem; color: #4b5563;">(specific past time)</span></p>
+                        <p style="margin: 0; color: #b91c1c; font-weight: 600">❌ <span style="font-weight: 400">"We have met at the party last Saturday."</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600">✓ <span style="font-weight: 400">"We met at the party last Saturday."</span> <span style="font-size: 0.85rem; color: #4b5563">(specific past time)</span></p>
                     </div>
                 </div>
 
-                <div style="background: #f0fdf4; border: 1px solid #10b981; border-left: 5px solid #10b981; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #065f46;">✓ Quick Decision Guide</h4>
-                    <ul style="margin: 0; padding-left: 1.2rem; color: #1f2937;">
+                <div class="gc-bg-green" style="border: 1px solid #10b981; border-left: 5px solid #10b981; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #065f46">✓ Quick Decision Guide</h4>
+                    <ul style="margin: 0; padding-left: 1.2rem; color: #1f2937">
                         <li><strong>Can you count it?</strong> → result form (3 emails, twice, never)</li>
                         <li><strong>Is it a state verb?</strong> → result form (know, believe, own)</li>
                         <li><strong>Is it about completion?</strong> → result form (finish, decide, arrive)</li>
@@ -1271,10 +1271,10 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 State Verbs List",
                 content: `Common state verbs that DON'T use the duration form:
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.625rem;">
-                    <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;"><strong style="color: #c2410c; min-width: 5.5rem;">Mental</strong> <span style="color: #d97757; font-weight: 600;">→</span> <span>know, believe, think, understand, remember</span></div>
-                    <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;"><strong style="color: #c2410c; min-width: 5.5rem;">Emotional</strong> <span style="color: #d97757; font-weight: 600;">→</span> <span>like, love, hate, want, need, prefer</span></div>
-                    <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;"><strong style="color: #c2410c; min-width: 5.5rem;">Possession</strong> <span style="color: #d97757; font-weight: 600;">→</span> <span>have, own, belong, possess</span></div>
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.625rem">
+                    <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap"><strong style="color: #c2410c; min-width: 5.5rem">Mental</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> <span>know, believe, think, understand, remember</span></div>
+                    <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap"><strong style="color: #c2410c; min-width: 5.5rem">Emotional</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> <span>like, love, hate, want, need, prefer</span></div>
+                    <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap"><strong style="color: #c2410c; min-width: 5.5rem">Possession</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> <span>have, own, belong, possess</span></div>
                 </div>`
             },
             exercises: [
@@ -1344,7 +1344,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Put It All Together!</h3>
                 <p>In real conversation, we switch back and forth between the result form and the duration form. Use your decision-making skills:</p>
-                <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                <ul style="margin: 0.5rem 0; padding-left: 1.5rem">
                     <li><strong>Result/Count/Completion?</strong> → result form</li>
                     <li><strong>Duration/Activity/Evidence?</strong> → duration form</li>
                     <li><strong>State verb?</strong> → result form (even for duration)</li>
@@ -1353,38 +1353,38 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Real Conversation Examples</h3>
                 <p>See how native speakers naturally mix both forms in conversation:</p>
 
-                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #6366f1;">
-                    <p style="margin: 0; font-weight: 600;">At the Office:</p>
-                    <p style="margin: 0.5rem 0 0 0; font-style: italic;">
-                        "I <strong style="color: #4338ca;">have been working</strong> on this report all morning <span style="color: #6b7280;">(duration)</span>,
-                        and I <strong style="color: #c2410c;">have written</strong> 10 pages so far <span style="color: #6b7280;">(count)</span>.
-                        I <strong style="color: #c2410c;">haven't finished</strong> yet <span style="color: #6b7280;">(completion)</span>,
-                        but I <strong style="color: #4338ca;">have been making</strong> good progress <span style="color: #6b7280;">(ongoing activity)</span>."
+                <div class="gc-bg-slate" style="padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #6366f1">
+                    <p style="margin: 0; font-weight: 600">At the Office:</p>
+                    <p style="margin: 0.5rem 0 0 0; font-style: italic">
+                        "I <strong style="color: #4338ca">have been working</strong> on this report all morning <span class="gc-text-muted">(duration)</span>,
+                        and I <strong style="color: #c2410c">have written</strong> 10 pages so far <span class="gc-text-muted">(count)</span>.
+                        I <strong style="color: #c2410c">haven't finished</strong> yet <span class="gc-text-muted">(completion)</span>,
+                        but I <strong style="color: #4338ca">have been making</strong> good progress <span class="gc-text-muted">(ongoing activity)</span>."
                     </p>
                 </div>
 
-                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #f97316;">
-                    <p style="margin: 0; font-weight: 600;">Meeting a Friend:</p>
-                    <p style="margin: 0.5rem 0 0 0; font-style: italic;">
-                        "Hey! I <strong style="color: #4338ca;">have been trying</strong> to call you all day <span style="color: #6b7280;">(duration)</span>!
-                        Where <strong style="color: #4338ca;">have you been</strong> <span style="color: #6b7280;">(recent activity)</span>?
-                        I <strong style="color: #c2410c;">have bought</strong> tickets for the concert <span style="color: #6b7280;">(result)</span>!"
+                <div class="gc-bg-slate gc-callout-orange" style="padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; ">
+                    <p style="margin: 0; font-weight: 600">Meeting a Friend:</p>
+                    <p style="margin: 0.5rem 0 0 0; font-style: italic">
+                        "Hey! I <strong style="color: #4338ca">have been trying</strong> to call you all day <span class="gc-text-muted">(duration)</span>!
+                        Where <strong style="color: #4338ca">have you been</strong> <span class="gc-text-muted">(recent activity)</span>?
+                        I <strong style="color: #c2410c">have bought</strong> tickets for the concert <span class="gc-text-muted">(result)</span>!"
                     </p>
                 </div>
 
-                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #22c55e;">
-                    <p style="margin: 0; font-weight: 600;">At Home:</p>
-                    <p style="margin: 0.5rem 0 0 0; font-style: italic;">
-                        "You look exhausted! What <strong style="color: #4338ca;">have you been doing</strong> <span style="color: #6b7280;">(activity)</span>?"
-                        <br>"I <strong style="color: #4338ca;">have been cleaning</strong> the house <span style="color: #6b7280;">(duration/evidence)</span>.
-                        I <strong style="color: #c2410c;">have done</strong> the kitchen and bathroom <span style="color: #6b7280;">(completed items)</span>,
-                        but I <strong style="color: #c2410c;">haven't started</strong> the bedrooms yet <span style="color: #6b7280;">(not complete)</span>."
+                <div class="gc-bg-slate gc-callout-green" style="padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; ">
+                    <p style="margin: 0; font-weight: 600">At Home:</p>
+                    <p style="margin: 0.5rem 0 0 0; font-style: italic">
+                        "You look exhausted! What <strong style="color: #4338ca">have you been doing</strong> <span class="gc-text-muted">(activity)</span>?"
+                        <br>"I <strong style="color: #4338ca">have been cleaning</strong> the house <span class="gc-text-muted">(duration/evidence)</span>.
+                        I <strong style="color: #c2410c">have done</strong> the kitchen and bathroom <span class="gc-text-muted">(completed items)</span>,
+                        but I <strong style="color: #c2410c">haven't started</strong> the bedrooms yet <span class="gc-text-muted">(not complete)</span>."
                     </p>
                 </div>
 
-                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
-                    <p style="margin: 0; font-weight: 600;">💡 Notice the Pattern:</p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">When telling a story, we often use <strong style="color: #4338ca;">the duration form</strong> to set the scene (what's been happening) and <strong style="color: #c2410c;">the result form</strong> to report specific results or facts.</p>
+                <div class="gc-bg-amber gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ; margin-top: 1rem">
+                    <p style="margin: 0; font-weight: 600">💡 Notice the Pattern:</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem">When telling a story, we often use <strong style="color: #4338ca">the duration form</strong> to set the scene (what's been happening) and <strong style="color: #c2410c">the result form</strong> to report specific results or facts.</p>
                 </div>
             `,
             exercises: [
@@ -1482,72 +1482,72 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>What You've Learned</h3>
                 <p>Congratulations! You now understand both members of the Present Perfect Family. Here's everything in one place:</p>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">The Finisher (result form)</h4>
-                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> have/has + V3</p>
-                        <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Result, completion, count</p>
-                        <p style="margin: 0;"><strong>Key words:</strong> already, yet, just, ever, never, how many</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0">
+                    <div class="gc-bg-white" style="7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c">The Finisher (result form)</h4>
+                        <p style="margin: 0 0 0.5rem 0"><strong>Formula:</strong> have/has + V3</p>
+                        <p style="margin: 0 0 0.5rem 0"><strong>Focus:</strong> Result, completion, count</p>
+                        <p style="margin: 0"><strong>Key words:</strong> already, yet, just, ever, never, how many</p>
                     </div>
-                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">The Worker (duration form)</h4>
-                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> have/has been + V1-ing</p>
-                        <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Duration, activity, evidence</p>
-                        <p style="margin: 0;"><strong>Key words:</strong> for, since, all day, lately, how long</p>
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca">The Worker (duration form)</h4>
+                        <p style="margin: 0 0 0.5rem 0"><strong>Formula:</strong> have/has been + V1-ing</p>
+                        <p style="margin: 0 0 0.5rem 0"><strong>Focus:</strong> Duration, activity, evidence</p>
+                        <p style="margin: 0"><strong>Key words:</strong> for, since, all day, lately, how long</p>
                     </div>
                 </div>
 
-                <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.5rem 0; color: #16a34a;">🎯 The Golden Question</h4>
-                    <p style="margin: 0; font-size: 1.1rem;">Ask yourself: <strong>"Do I care about the RESULT (count/completion) or the DURATION (time/activity)?"</strong></p>
+                <div class="gc-bg-green" style="border: 2px solid #22c55e; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #16a34a">🎯 The Golden Question</h4>
+                    <p style="margin: 0; font-size: 1.1rem">Ask yourself: <strong>"Do I care about the RESULT (count/completion) or the DURATION (time/activity)?"</strong></p>
                 </div>
 
                 <h3>Quick Reference Chart</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
-                    <tr style="background: #f8fafc;">
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Use...</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Result form</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Duration form</th>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem">
+                    <tr class="gc-bg-slate">
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #e2e8f0">Use...</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c">Result form</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca">Duration form</th>
                     </tr>
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 0.5rem;">Life experience</td>
-                        <td style="padding: 0.5rem;">✓ Have you ever...?</td>
-                        <td style="padding: 0.5rem;">-</td>
+                    <tr style="border-bottom: 1px solid #e2e8f0">
+                        <td style="padding: 0.5rem">Life experience</td>
+                        <td style="padding: 0.5rem">✓ Have you ever...?</td>
+                        <td style="padding: 0.5rem">-</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 0.5rem;">Counting items</td>
-                        <td style="padding: 0.5rem;">✓ I've read 3 books</td>
-                        <td style="padding: 0.5rem;">-</td>
+                    <tr style="border-bottom: 1px solid #e2e8f0">
+                        <td style="padding: 0.5rem">Counting items</td>
+                        <td style="padding: 0.5rem">✓ I've read 3 books</td>
+                        <td style="padding: 0.5rem">-</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 0.5rem;">Just completed</td>
-                        <td style="padding: 0.5rem;">✓ I've just finished</td>
-                        <td style="padding: 0.5rem;">-</td>
+                    <tr style="border-bottom: 1px solid #e2e8f0">
+                        <td style="padding: 0.5rem">Just completed</td>
+                        <td style="padding: 0.5rem">✓ I've just finished</td>
+                        <td style="padding: 0.5rem">-</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 0.5rem;">Duration (how long)</td>
-                        <td style="padding: 0.5rem;">-</td>
-                        <td style="padding: 0.5rem;">✓ I've been waiting for 2 hours</td>
+                    <tr style="border-bottom: 1px solid #e2e8f0">
+                        <td style="padding: 0.5rem">Duration (how long)</td>
+                        <td style="padding: 0.5rem">-</td>
+                        <td style="padding: 0.5rem">✓ I've been waiting for 2 hours</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 0.5rem;">Visible evidence</td>
-                        <td style="padding: 0.5rem;">-</td>
-                        <td style="padding: 0.5rem;">✓ You've been crying</td>
+                    <tr style="border-bottom: 1px solid #e2e8f0">
+                        <td style="padding: 0.5rem">Visible evidence</td>
+                        <td style="padding: 0.5rem">-</td>
+                        <td style="padding: 0.5rem">✓ You've been crying</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 0.5rem;">Recent activity</td>
-                        <td style="padding: 0.5rem;">-</td>
-                        <td style="padding: 0.5rem;">✓ What have you been doing?</td>
+                    <tr style="border-bottom: 1px solid #e2e8f0">
+                        <td style="padding: 0.5rem">Recent activity</td>
+                        <td style="padding: 0.5rem">-</td>
+                        <td style="padding: 0.5rem">✓ What have you been doing?</td>
                     </tr>
                     <tr>
-                        <td style="padding: 0.5rem;">State verbs</td>
-                        <td style="padding: 0.5rem;">✓ I've known him for years</td>
-                        <td style="padding: 0.5rem;">✗ Never use!</td>
+                        <td style="padding: 0.5rem">State verbs</td>
+                        <td style="padding: 0.5rem">✓ I've known him for years</td>
+                        <td style="padding: 0.5rem">✗ Never use!</td>
                     </tr>
                 </table>
 
                 <h4>Remember:</h4>
-                <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                <ul style="margin: 0.5rem 0; padding-left: 1.5rem">
                     <li>State verbs (know, believe, own) → Always result form, even for duration</li>
                     <li>Counting completed items → result form</li>
                     <li>Emphasizing how long/visible evidence → duration form</li>
@@ -1556,13 +1556,13 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>One Final Example</h3>
-                <div style="background: linear-gradient(135deg, #fff7ed 0%, #eef2ff 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="margin: 0; font-style: italic; font-size: 1.05rem; line-height: 1.7;">
-                        "I <strong style="color: #4338ca;">have been learning</strong> English for 2 years <span style="color: #6b7280;">(duration)</span>.
-                        I <strong style="color: #c2410c;">have taken</strong> 4 courses <span style="color: #6b7280;">(count)</span>,
-                        and I <strong style="color: #c2410c;">have improved</strong> a lot <span style="color: #6b7280;">(result)</span>.
-                        I <strong style="color: #c2410c;">have always wanted</strong> to speak fluently <span style="color: #6b7280;">(state verb)</span>,
-                        and I <strong style="color: #4338ca;">have been practicing</strong> every day <span style="color: #6b7280;">(ongoing activity)</span>!"
+                <div style="background: linear-gradient(135deg, #fff7ed 0%, #eef2ff 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <p style="margin: 0; font-style: italic; font-size: 1.05rem; line-height: 1.7">
+                        "I <strong style="color: #4338ca">have been learning</strong> English for 2 years <span class="gc-text-muted">(duration)</span>.
+                        I <strong style="color: #c2410c">have taken</strong> 4 courses <span class="gc-text-muted">(count)</span>,
+                        and I <strong style="color: #c2410c">have improved</strong> a lot <span class="gc-text-muted">(result)</span>.
+                        I <strong style="color: #c2410c">have always wanted</strong> to speak fluently <span class="gc-text-muted">(state verb)</span>,
+                        and I <strong style="color: #4338ca">have been practicing</strong> every day <span class="gc-text-muted">(ongoing activity)</span>!"
                     </p>
                 </div>
             `,

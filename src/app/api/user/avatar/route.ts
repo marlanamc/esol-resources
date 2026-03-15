@@ -8,7 +8,7 @@ import {
   DEFAULT_AVATAR,
   DEFAULT_COLOR,
 } from '@/lib/avatar-constants';
-import { logger } from '@/lib/logger';
+import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
 
 /**
  * GET /api/user/avatar
@@ -18,7 +18,7 @@ export async function GET() {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return ApiErrors.unauthorized();
     }
 
     const userId = session.user.id;
@@ -32,7 +32,7 @@ export async function GET() {
     });
 
     if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+      return ApiErrors.notFound('User');
     }
 
     return NextResponse.json({
@@ -40,8 +40,9 @@ export async function GET() {
       avatarColor: user.avatarColor || DEFAULT_COLOR,
     });
   } catch (error) {
-    logger.error('[Avatar] Error fetching avatar', error);
-    return NextResponse.json({ error: 'Failed to fetch avatar' }, { status: 500 });
+    return handleApiError(error, {
+      defaultMessage: 'Failed to fetch avatar',
+    });
   }
 }
 
@@ -53,7 +54,7 @@ export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return ApiErrors.unauthorized();
     }
 
     const userId = session.user.id;
@@ -63,20 +64,20 @@ export async function POST(req: NextRequest) {
     // Validate avatar
     if (avatar !== undefined) {
       if (typeof avatar !== 'string') {
-        return NextResponse.json({ error: 'Invalid avatar type' }, { status: 400 });
+        return apiError('Invalid avatar type', 400);
       }
       if (!isValidAvatarId(avatar)) {
-        return NextResponse.json({ error: 'Invalid avatar id' }, { status: 400 });
+        return apiError('Invalid avatar id', 400);
       }
     }
 
     // Validate color
     if (avatarColor !== undefined) {
       if (typeof avatarColor !== 'string') {
-        return NextResponse.json({ error: 'Invalid avatarColor type' }, { status: 400 });
+        return apiError('Invalid avatarColor type', 400);
       }
       if (!isValidColorId(avatarColor)) {
-        return NextResponse.json({ error: 'Invalid avatarColor id' }, { status: 400 });
+        return apiError('Invalid avatarColor id', 400);
       }
     }
 
@@ -98,7 +99,9 @@ export async function POST(req: NextRequest) {
       avatarColor: user.avatarColor || DEFAULT_COLOR,
     });
   } catch (error) {
-    logger.error('[Avatar] Error updating avatar', error);
-    return NextResponse.json({ error: 'Failed to update avatar' }, { status: 500 });
+    return handleApiError(error, {
+      defaultMessage: 'Failed to update avatar',
+      path: req.url,
+    });
   }
 }

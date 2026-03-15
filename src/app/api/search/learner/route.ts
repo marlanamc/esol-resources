@@ -5,6 +5,7 @@ import { logger } from "@/lib/logger";
 import { clampLearnerSearchLimit, normalizeLearnerSearchText, parseLearnerSearchFilter, searchLearnerContent } from "@/lib/learner-search";
 import { isTeacherAdmin } from "@/lib/roles";
 import type { LearnerSearchContext } from "@/lib/learner-search/types";
+import { ApiErrors } from "@/lib/api-response";
 
 function isLearnerSearchContext(value: string | null): value is LearnerSearchContext {
     return value === "quick-open" || value === "search-page";
@@ -13,10 +14,10 @@ function isLearnerSearchContext(value: string | null): value is LearnerSearchCon
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
     if (session.user.role !== "student" && session.user.role !== "teacher") {
-        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        return ApiErrors.forbidden();
     }
 
     const { searchParams } = new URL(request.url);

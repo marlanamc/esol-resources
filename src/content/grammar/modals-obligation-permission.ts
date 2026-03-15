@@ -10,8 +10,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
             title: "Modals: Must, Have To, Can, May, Should - The Politeness Game",
             icon: "🎭",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"You must clock in before your shift." "Can I leave early today?" "Should I email my manager?" At work, the way you ask for permission or talk about obligations can make or break relationships. Modals are your secret weapon for sounding professional and polite.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">"You must clock in before your shift." "Can I leave early today?" "Should I email my manager?" At work, the way you ask for permission or talk about obligations can make or break relationships. Modals are your secret weapon for sounding professional and polite.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -24,23 +24,23 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     <li><strong>Advocate for yourself</strong> - Request changes without sounding demanding</li>
                 </ul>
 
-                <div style="background: rgba(200, 107, 81, 0.08); padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.1rem;">💪 Modal Strength Meter: How Strong Is It?</h3>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(220, 38, 38, 0.15); border-radius: 0.25rem;">
-                            <span style="font-size: 1.25rem;">💪💪💪</span>
+                <div style="background: rgba(200, 107, 81, 0.08); padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.1rem">💪 Modal Strength Meter: How Strong Is It?</h3>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(220, 38, 38, 0.15); border-radius: 0.25rem">
+                            <span style="font-size: 1.25rem">💪💪💪</span>
                             <span><strong>STRONG:</strong> must, have to</span>
-                            <span style="color: #666; font-size: 0.9rem;">(required - no choice!)</span>
+                            <span style="color: #666; font-size: 0.9rem">(required - no choice!)</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(249, 115, 22, 0.15); border-radius: 0.25rem;">
-                            <span style="font-size: 1.25rem;">💪💪</span>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(249, 115, 22, 0.15); border-radius: 0.25rem">
+                            <span style="font-size: 1.25rem">💪💪</span>
                             <span><strong>MEDIUM:</strong> should</span>
-                            <span style="color: #666; font-size: 0.9rem;">(recommended - good idea)</span>
+                            <span style="color: #666; font-size: 0.9rem">(recommended - good idea)</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(34, 197, 94, 0.15); border-radius: 0.25rem;">
-                            <span style="font-size: 1.25rem;">💪</span>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(34, 197, 94, 0.15); border-radius: 0.25rem">
+                            <span style="font-size: 1.25rem">💪</span>
                             <span><strong>SOFT:</strong> can, may, could</span>
-                            <span style="color: #666; font-size: 0.9rem;">(permission - asking politely)</span>
+                            <span style="color: #666; font-size: 0.9rem">(permission - asking politely)</span>
                         </div>
                     </div>
                 </div>
@@ -97,23 +97,23 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <h3>Small Words, Big Power</h3>
                 <p>Modals are special helping verbs that change how your sentence feels. Compare:</p>
 
-                <div style="margin: 1rem 0; padding: 1rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
-                    <p style="margin: 0 0 0.5rem 0;"><strong>Without modal:</strong> "I work Saturday." (just a fact)</p>
-                    <p style="margin: 0 0 0.5rem 0;"><strong>With modal:</strong> "I <span style="color: #d97757; font-weight: 600;">have to</span> work Saturday." (my boss scheduled me)</p>
-                    <p style="margin: 0;"><strong>Different modal:</strong> "I <span style="color: #d97757; font-weight: 600;">can</span> work Saturday." (I'm available if needed)</p>
+                <div class="gc-bg-terracotta-alpha" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem">
+                    <p style="margin: 0 0 0.5rem 0"><strong>Without modal:</strong> "I work Saturday." (just a fact)</p>
+                    <p style="margin: 0 0 0.5rem 0"><strong>With modal:</strong> "I <span class="gc-text-terracotta" style="font-weight: 600">have to</span> work Saturday." (my boss scheduled me)</p>
+                    <p style="margin: 0"><strong>Different modal:</strong> "I <span class="gc-text-terracotta" style="font-weight: 600">can</span> work Saturday." (I'm available if needed)</p>
                 </div>
 
                 <p>In this guide, you'll learn the most important modals for work: <strong>must</strong>, <strong>have to</strong>, <strong>should</strong>, <strong>can</strong>, <strong>may</strong>, and <strong>could</strong>.</p>
 
                 <h4>🎯 The One Rule You Need:</h4>
-                <div style="margin: 1rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 2px solid #7ba884;">
-                    <p style="margin: 0; font-size: 1.125rem; text-align: center;">
-                        <span style="color: #3b82f6;">Subject</span> +
-                        <span style="color: #d97757; font-weight: 600;"> Modal </span> +
-                        <span style="color: #22c55e;">Base Verb</span>
+                <div style="margin: 1rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 2px solid #7ba884">
+                    <p style="margin: 0; font-size: 1.125rem; text-align: center">
+                        <span class="gc-text-blue">Subject</span> +
+                        <span class="gc-text-terracotta" style="font-weight: 600"> Modal </span> +
+                        <span class="gc-text-green">Base Verb</span>
                     </p>
-                    <p style="margin: 0.5rem 0 0 0; text-align: center; font-style: italic;">
-                        I <strong style="color: #d97757;">must</strong> work. She <strong style="color: #d97757;">can</strong> leave. You <strong style="color: #d97757;">should</strong> ask.
+                    <p style="margin: 0.5rem 0 0 0; text-align: center; font-style: italic">
+                        I <strong class="gc-text-terracotta">must</strong> work. She <strong class="gc-text-terracotta">can</strong> leave. You <strong class="gc-text-terracotta">should</strong> ask.
                     </p>
                 </div>
             `,
@@ -163,8 +163,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <h3>Both Mean "Required" - But There's a Difference</h3>
                 <p>Both <strong>must</strong> and <strong>have to</strong> express obligation (you don't have a choice), but they have slightly different uses:</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem;">
-                    <h4 style="color: #dc2626;">MUST = Personal Authority, Rules, Strong Internal Feeling</h4>
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem">
+                    <h4 class="gc-text-red">MUST = Personal Authority, Rules, Strong Internal Feeling</h4>
                     <p>Use when YOU feel it's necessary, or when stating official rules:</p>
                     <ul>
                         <li>Employees <strong>must</strong> wear safety equipment. (official rule)</li>
@@ -173,8 +173,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem;">
-                    <h4 style="color: #3b82f6;">HAVE TO = External Authority, Someone Else's Rule</h4>
+                <div class="gc-bg-blue-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
+                    <h4 class="gc-text-blue">HAVE TO = External Authority, Someone Else's Rule</h4>
                     <p>Use when someone else (boss, company, law) requires it:</p>
                     <ul>
                         <li>I <strong>have to</strong> work weekends. (my boss requires it)</li>
@@ -190,26 +190,26 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     <li><strong>Spoken/Everyday:</strong> "I have to wear a hairnet at work"</li>
                 </ul>
 
-                <div style="margin-top: 2rem; border: 3px solid #ef4444; border-radius: 0.75rem; overflow: hidden;">
-                    <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 0.75rem 1rem; border-bottom: 2px dashed #ef4444;">
-                        <h4 style="margin: 0; color: #dc2626; font-size: 1.1rem;">🚨 DANGER ZONE: Don't Confuse These!</h4>
+                <div style="margin-top: 2rem; border: 3px solid #ef4444; border-radius: 0.75rem; overflow: hidden">
+                    <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 0.75rem 1rem; border-bottom: 2px dashed #ef4444">
+                        <h4 class="gc-text-red" style="margin: 0; ; font-size: 1.1rem">🚨 DANGER ZONE: Don't Confuse These!</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column;">
-                        <div style="padding: 1rem; background: rgba(34, 197, 94, 0.1); border-bottom: 2px solid rgba(0,0,0,0.1);">
-                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                                <span style="font-size: 1.5rem;">✅</span>
-                                <strong style="color: #16a34a; font-size: 1.1rem;">GREEN ZONE: "don't have to"</strong>
+                    <div style="display: flex; flex-direction: column">
+                        <div class="gc-bg-green-alpha" style="padding: 1rem; ; border-bottom: 2px solid rgba(0,0,0,0.1)">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem">
+                                <span style="font-size: 1.5rem">✅</span>
+                                <strong style="color: #16a34a; font-size: 1.1rem">GREEN ZONE: "don't have to"</strong>
                             </div>
-                            <p style="margin: 0 0 0.5rem 0; font-size: 1rem;"><strong>= Optional!</strong> Your choice! 🎉</p>
-                            <p style="margin: 0; font-style: italic; color: #374151;">"You <strong>don't have to</strong> come early." → You CAN come early if you want, but it's not required.</p>
+                            <p style="margin: 0 0 0.5rem 0; font-size: 1rem"><strong>= Optional!</strong> Your choice! 🎉</p>
+                            <p style="margin: 0; font-style: italic; color: #374151">"You <strong>don't have to</strong> come early." → You CAN come early if you want, but it's not required.</p>
                         </div>
-                        <div style="padding: 1rem; background: rgba(239, 68, 68, 0.1);">
-                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                                <span style="font-size: 1.5rem;">🚫</span>
-                                <strong style="color: #dc2626; font-size: 1.1rem;">RED ZONE: "must not"</strong>
+                        <div style="padding: 1rem; background: rgba(239, 68, 68, 0.1)">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem">
+                                <span style="font-size: 1.5rem">🚫</span>
+                                <strong class="gc-text-red" style="font-size: 1.1rem">RED ZONE: "must not"</strong>
                             </div>
-                            <p style="margin: 0 0 0.5rem 0; font-size: 1rem;"><strong>= Forbidden!</strong> Not allowed! ⛔</p>
-                            <p style="margin: 0; font-style: italic; color: #374151;">"You <strong>must not</strong> be late." → Being late is NOT okay. Don't do it!</p>
+                            <p style="margin: 0 0 0.5rem 0; font-size: 1rem"><strong>= Forbidden!</strong> Not allowed! ⛔</p>
+                            <p style="margin: 0; font-style: italic; color: #374151">"You <strong>must not</strong> be late." → Being late is NOT okay. Don't do it!</p>
                         </div>
                     </div>
                 </div>
@@ -294,31 +294,31 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <h3>The Politeness Scale</h3>
                 <p>When asking for permission, you have options - and your choice affects how polite you sound:</p>
 
-                <div style="margin: 1.5rem 0;">
-                    <div style="padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #22c55e;">
-                        <h4 style="color: #22c55e; margin-top: 0;">CAN = Informal, Direct</h4>
-                        <p style="margin: 0;">Use with friends, close coworkers, casual situations</p>
-                        <ul style="margin: 0.5rem 0 0 0;">
+                <div style="margin: 1.5rem 0">
+                    <div class="gc-bg-green-alpha gc-callout-green" style="padding: 1rem; ; border-radius: 0.5rem; margin-bottom: 1rem; ">
+                        <h4 class="gc-text-green" style="margin-top: 0">CAN = Informal, Direct</h4>
+                        <p style="margin: 0">Use with friends, close coworkers, casual situations</p>
+                        <ul style="margin: 0.5rem 0 0 0">
                             <li><strong>Can I</strong> take a break?</li>
                             <li><strong>Can I</strong> leave a few minutes early?</li>
                             <li><strong>Can I</strong> ask you a question?</li>
                         </ul>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(168, 85, 247, 0.1); border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #a855f7;">
-                        <h4 style="color: #a855f7; margin-top: 0;">MAY = More Formal, Polite</h4>
-                        <p style="margin: 0;">Use with supervisors, customers, formal situations</p>
-                        <ul style="margin: 0.5rem 0 0 0;">
+                    <div class="gc-callout-purple" style="padding: 1rem; background: rgba(168, 85, 247, 0.1); border-radius: 0.5rem; margin-bottom: 1rem; ">
+                        <h4 style="color: #a855f7; margin-top: 0">MAY = More Formal, Polite</h4>
+                        <p style="margin: 0">Use with supervisors, customers, formal situations</p>
+                        <ul style="margin: 0.5rem 0 0 0">
                             <li><strong>May I</strong> speak with you for a moment?</li>
                             <li><strong>May I</strong> have tomorrow off?</li>
                             <li><strong>May I</strong> ask what time the meeting is?</li>
                         </ul>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
-                        <h4 style="color: #3b82f6; margin-top: 0;">COULD = Most Polite, Tentative</h4>
-                        <p style="margin: 0;">Use for big requests, or when you're unsure about the answer</p>
-                        <ul style="margin: 0.5rem 0 0 0;">
+                    <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem; ; border-radius: 0.5rem; ">
+                        <h4 class="gc-text-blue" style="margin-top: 0">COULD = Most Polite, Tentative</h4>
+                        <p style="margin: 0">Use for big requests, or when you're unsure about the answer</p>
+                        <ul style="margin: 0.5rem 0 0 0">
                             <li><strong>Could I</strong> possibly leave early today? (big request)</li>
                             <li><strong>Could I</strong> request a schedule change? (formal request)</li>
                             <li><strong>Could I</strong> speak with the manager? (polite, tentative)</li>
@@ -329,14 +329,14 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <h4>In American English:</h4>
                 <p>"Can I...?" is by far the most common in everyday workplace situations. "May I...?" sounds more formal but is still perfectly acceptable. "Could I...?" is extra polite for sensitive requests.</p>
 
-                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(249, 115, 22, 0.1); border-radius: 0.5rem; border-left: 4px solid #f97316;">
-                    <h4 style="color: #f97316; margin-top: 0;">💡 "Can" Has Two Meanings!</h4>
-                    <p style="margin: 0.5rem 0;">Don't confuse them:</p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                <div class="gc-bg-orange-alpha gc-callout-orange" style="margin-top: 1.5rem; padding: 1rem; ; border-radius: 0.5rem; ">
+                    <h4 style="color: #f97316; margin-top: 0">💡 "Can" Has Two Meanings!</h4>
+                    <p style="margin: 0.5rem 0">Don't confuse them:</p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li><strong>Permission:</strong> "<strong>Can I</strong> leave early?" (Am I allowed to?)</li>
                         <li><strong>Ability:</strong> "I <strong>can</strong> speak Spanish." (I have the skill.)</li>
                     </ul>
-                    <p style="margin: 0.75rem 0 0 0; font-style: italic; color: #666;">Context usually makes it clear which meaning you intend!</p>
+                    <p style="margin: 0.75rem 0 0 0; font-style: italic; color: #666">Context usually makes it clear which meaning you intend!</p>
                 </div>
             `,
             exercises: [
@@ -402,7 +402,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <h3>Should = Good Idea, Recommended (But Not Required)</h3>
                 <p><strong>Should</strong> expresses advice, recommendations, or expectations - but NOT obligations. It means "this is the right thing to do" or "this is expected."</p>
 
-                <div style="margin: 1.5rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
+                <div style="margin: 1.5rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 1px solid var(--color-border-strong)">
                     <h4>Giving Advice:</h4>
                     <ul>
                         <li>You <strong>should</strong> arrive 10 minutes early on your first day.</li>
@@ -411,7 +411,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="margin: 1rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
+                <div style="margin: 1rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 1px solid var(--color-border-strong)">
                     <h4>Asking for Advice:</h4>
                     <ul>
                         <li><strong>Should I</strong> email my boss or call?</li>
@@ -420,7 +420,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="margin: 1rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
+                <div style="margin: 1rem 0; padding: 1rem; background: var(--color-surface-elevated); color: var(--color-text); border-radius: 0.5rem; border: 1px solid var(--color-border-strong)">
                     <h4>Expectations:</h4>
                     <ul>
                         <li>The package <strong>should</strong> arrive by Friday. (we expect it to)</li>
@@ -430,14 +430,14 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 </div>
 
                 <h4>Should vs Must/Have To:</h4>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <tr>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1);"><strong>Must/Have To</strong> = Required</td>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You <strong>must</strong> clock in. (no choice)</td>
+                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)"><strong>Must/Have To</strong> = Required</td>
+                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>must</strong> clock in. (no choice)</td>
                     </tr>
                     <tr>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(34, 197, 94, 0.1);"><strong>Should</strong> = Recommended</td>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You <strong>should</strong> clock in early. (good idea, but optional)</td>
+                        <td class="gc-bg-green-alpha" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); "><strong>Should</strong> = Recommended</td>
+                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>should</strong> clock in early. (good idea, but optional)</td>
                     </tr>
                 </table>
             `,
@@ -546,40 +546,40 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <h3>🚦 Choose Your Own Modal Adventure!</h3>
                 <p>Not sure which modal to use? Follow this flowchart:</p>
 
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.08) 0%, rgba(110, 145, 118, 0.08) 100%); padding: 1.5rem; border-radius: 0.75rem; margin: 1.5rem 0;">
+                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.08) 0%, rgba(110, 145, 118, 0.08) 100%); padding: 1.5rem; border-radius: 0.75rem; margin: 1.5rem 0">
 
-                    <div style="text-align: center; padding: 1rem; background: rgba(59, 130, 246, 0.15); border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <strong style="font-size: 1.1rem;">🎯 START: What do you need to express?</strong>
+                    <div style="text-align: center; padding: 1rem; background: rgba(59, 130, 246, 0.15); border-radius: 0.5rem; margin-bottom: 1rem">
+                        <strong style="font-size: 1.1rem">🎯 START: What do you need to express?</strong>
                     </div>
 
-                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem">
 
-                        <div style="padding: 1rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem; border-left: 4px solid #dc2626;">
-                            <strong style="color: #dc2626;">🔴 It's REQUIRED (no choice)</strong>
-                            <div style="margin-left: 1rem; margin-top: 0.5rem;">
-                                <p style="margin: 0.25rem 0;">↳ Is it written on a sign or official rule?</p>
-                                <div style="margin-left: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem;">
-                                    <span>📋 <strong>Yes</strong> → Use <strong style="color: #dc2626;">MUST</strong></span>
-                                    <span>👔 <strong>No</strong> (boss/schedule) → Use <strong style="color: #dc2626;">HAVE TO</strong></span>
+                        <div style="padding: 1rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem; border-left: 4px solid #dc2626">
+                            <strong class="gc-text-red">🔴 It's REQUIRED (no choice)</strong>
+                            <div style="margin-left: 1rem; margin-top: 0.5rem">
+                                <p style="margin: 0.25rem 0">↳ Is it written on a sign or official rule?</p>
+                                <div style="margin-left: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem">
+                                    <span>📋 <strong>Yes</strong> → Use <strong class="gc-text-red">MUST</strong></span>
+                                    <span>👔 <strong>No</strong> (boss/schedule) → Use <strong class="gc-text-red">HAVE TO</strong></span>
                                 </div>
                             </div>
                         </div>
 
-                        <div style="padding: 1rem; background: rgba(249, 115, 22, 0.1); border-radius: 0.5rem; border-left: 4px solid #f97316;">
-                            <strong style="color: #f97316;">🟡 It's a GOOD IDEA (advice/recommendation)</strong>
-                            <div style="margin-left: 1rem; margin-top: 0.5rem;">
-                                <span>💡 Use <strong style="color: #f97316;">SHOULD</strong></span>
+                        <div class="gc-bg-orange-alpha gc-callout-orange" style="padding: 1rem; ; border-radius: 0.5rem; ">
+                            <strong style="color: #f97316">🟡 It's a GOOD IDEA (advice/recommendation)</strong>
+                            <div style="margin-left: 1rem; margin-top: 0.5rem">
+                                <span>💡 Use <strong style="color: #f97316">SHOULD</strong></span>
                             </div>
                         </div>
 
-                        <div style="padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem; border-left: 4px solid #22c55e;">
-                            <strong style="color: #22c55e;">🟢 You're asking PERMISSION</strong>
-                            <div style="margin-left: 1rem; margin-top: 0.5rem;">
-                                <p style="margin: 0.25rem 0;">↳ How polite do you need to be?</p>
-                                <div style="margin-left: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem;">
-                                    <span>😊 <strong>Casual</strong> (friend/coworker) → Use <strong style="color: #22c55e;">CAN</strong></span>
-                                    <span>🤝 <strong>Formal</strong> (HR/manager) → Use <strong style="color: #22c55e;">MAY</strong></span>
-                                    <span>🙏 <strong>Very polite</strong> (big ask) → Use <strong style="color: #22c55e;">COULD</strong></span>
+                        <div class="gc-bg-green-alpha gc-callout-green" style="padding: 1rem; ; border-radius: 0.5rem; ">
+                            <strong class="gc-text-green">🟢 You're asking PERMISSION</strong>
+                            <div style="margin-left: 1rem; margin-top: 0.5rem">
+                                <p style="margin: 0.25rem 0">↳ How polite do you need to be?</p>
+                                <div style="margin-left: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem">
+                                    <span>😊 <strong>Casual</strong> (friend/coworker) → Use <strong class="gc-text-green">CAN</strong></span>
+                                    <span>🤝 <strong>Formal</strong> (HR/manager) → Use <strong class="gc-text-green">MAY</strong></span>
+                                    <span>🙏 <strong>Very polite</strong> (big ask) → Use <strong class="gc-text-green">COULD</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -587,8 +587,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
-                <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">
-                    <p style="margin: 0; text-align: center;"><strong>🎓 Pro Tip:</strong> When in doubt, <strong>COULD</strong> is almost always safe. It works for permission AND polite requests!</p>
+                <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin-top: 1rem">
+                    <p style="margin: 0; text-align: center"><strong>🎓 Pro Tip:</strong> When in doubt, <strong>COULD</strong> is almost always safe. It works for permission AND polite requests!</p>
                 </div>
             `,
             exercises: [
@@ -643,31 +643,31 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <h3>From Casual to Super Polite</h3>
                 <p>The same request can be phrased many ways. Your choice depends on the situation and relationship:</p>
 
-                <div style="margin: 1.5rem 0; background: rgba(200, 107, 81, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
+                <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; ; padding: 1.5rem; border-radius: 0.5rem">
                     <h4>Example: Asking Someone to Help You</h4>
 
-                    <div style="margin: 1rem 0; padding: 0.75rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem;">
-                        <strong style="color: #dc2626;">Least Polite (Direct Command):</strong><br/>
+                    <div style="margin: 1rem 0; padding: 0.75rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem">
+                        <strong class="gc-text-red">Least Polite (Direct Command):</strong><br/>
                         "Help me with this."
                     </div>
 
-                    <div style="margin: 1rem 0; padding: 0.75rem; background: rgba(249, 115, 22, 0.1); border-radius: 0.5rem;">
-                        <strong style="color: #f97316;">Casual (with friends/close coworkers):</strong><br/>
+                    <div class="gc-bg-orange-alpha" style="margin: 1rem 0; padding: 0.75rem; ; border-radius: 0.5rem">
+                        <strong style="color: #f97316">Casual (with friends/close coworkers):</strong><br/>
                         "Can you help me with this?"
                     </div>
 
-                    <div style="margin: 1rem 0; padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem;">
-                        <strong style="color: #22c55e;">Polite (standard workplace):</strong><br/>
+                    <div class="gc-bg-green-alpha" style="margin: 1rem 0; padding: 0.75rem; ; border-radius: 0.5rem">
+                        <strong class="gc-text-green">Polite (standard workplace):</strong><br/>
                         "Could you help me with this?"
                     </div>
 
-                    <div style="margin: 1rem 0; padding: 0.75rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem;">
-                        <strong style="color: #3b82f6;">More Polite (with supervisor/stranger):</strong><br/>
+                    <div class="gc-bg-blue-alpha" style="margin: 1rem 0; padding: 0.75rem; ; border-radius: 0.5rem">
+                        <strong class="gc-text-blue">More Polite (with supervisor/stranger):</strong><br/>
                         "Would you be able to help me with this?"
                     </div>
 
-                    <div style="margin: 1rem 0; padding: 0.75rem; background: rgba(168, 85, 247, 0.1); border-radius: 0.5rem;">
-                        <strong style="color: #a855f7;">Most Polite (big favor/formal):</strong><br/>
+                    <div style="margin: 1rem 0; padding: 0.75rem; background: rgba(168, 85, 247, 0.1); border-radius: 0.5rem">
+                        <strong style="color: #a855f7">Most Polite (big favor/formal):</strong><br/>
                         "I was wondering if you might be able to help me with this?"
                     </div>
                 </div>
@@ -675,36 +675,36 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <h4>🌡️ The Politeness Thermometer</h4>
                 <p>Think of it like temperature - warmer = more polite!</p>
 
-                <div style="background: linear-gradient(to bottom, rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.15), rgba(34, 197, 94, 0.15), rgba(249, 115, 22, 0.15), rgba(220, 38, 38, 0.2)); padding: 1.5rem; border-radius: 0.75rem; margin: 1rem 0; border: 2px solid rgba(0,0,0,0.1);">
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
-                            <span style="font-size: 1.25rem;">🔥🔥🔥</span>
+                <div style="background: linear-gradient(to bottom, rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.15), rgba(34, 197, 94, 0.15), rgba(249, 115, 22, 0.15), rgba(220, 38, 38, 0.2)); padding: 1.5rem; border-radius: 0.75rem; margin: 1rem 0; border: 2px solid rgba(0,0,0,0.1)">
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem">
+                            <span style="font-size: 1.25rem">🔥🔥🔥</span>
                             <span><strong>HOT:</strong> "I was wondering if you could..."</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
-                            <span style="font-size: 1.25rem;">🔥🔥</span>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem">
+                            <span style="font-size: 1.25rem">🔥🔥</span>
                             <span><strong>WARM:</strong> "Would you mind...?"</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
-                            <span style="font-size: 1.25rem;">🔥</span>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem">
+                            <span style="font-size: 1.25rem">🔥</span>
                             <span><strong>COMFORTABLE:</strong> "Would you...?" / "Could you...?"</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
-                            <span style="font-size: 1.25rem;">☺️</span>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem">
+                            <span style="font-size: 1.25rem">☺️</span>
                             <span><strong>ROOM TEMP:</strong> "Can you...?"</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
-                            <span style="font-size: 1.25rem;">❄️</span>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem">
+                            <span style="font-size: 1.25rem">❄️</span>
                             <span><strong>COLD:</strong> Direct command ("Do this.")</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
-                            <span style="font-size: 1.25rem;">🥶</span>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem">
+                            <span style="font-size: 1.25rem">🥶</span>
                             <span><strong>FREEZING:</strong> Rude! ("Give me that now!")</span>
                         </div>
                     </div>
                 </div>
 
-                <p style="font-style: italic; color: #666;">💡 <strong>Remember:</strong> At work, aim for at least "comfortable" with supervisors and customers!</p>
+                <p style="font-style: italic; color: #666">💡 <strong>Remember:</strong> At work, aim for at least "comfortable" with supervisors and customers!</p>
             `,
             exercises: [
                 {
@@ -781,31 +781,31 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <h3>Practice Thinking Like a Professional</h3>
                 <p>Let's apply what you learned to real workplace situations:</p>
 
-                <div style="margin: 1.5rem 0;">
+                <div style="margin: 1.5rem 0">
 
-    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
-        <h4 style="margin-top: 0; color: #d97757;">Scenario 1: You're sick and need to call in</h4>
+    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong)">
+        <h4 class="gc-text-terracotta" style="margin-top: 0; ">Scenario 1: You're sick and need to call in</h4>
         <p><strong>⚠️ Very direct:</strong> "I can't come in today."</p>
         <p><strong>✓ Better for work:</strong> "I'm not feeling well, so I won't be able to come in today."</p>
         <p><strong>✓ Even better:</strong> "I'm not feeling well and won't be able to come in today. Please let me know if you need me to find coverage."</p>
     </div>
 
-    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
-        <h4 style="margin-top: 0; color: #d97757;">Scenario 2: You need help with a task</h4>
+    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong)">
+        <h4 class="gc-text-terracotta" style="margin-top: 0; ">Scenario 2: You need help with a task</h4>
         <p><strong>⚠️ Very direct:</strong> "Help me with this."</p>
         <p><strong>✓ Good workplace request:</strong> "Could you help me with this when you have a moment?"</p>
         <p><strong>✓ Even more polite:</strong> "I was wondering if you could help me understand how to do this."</p>
     </div>
 
-    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong);">
-        <h4 style="margin-top: 0; color: #d97757;">Scenario 3: You want to leave early</h4>
+    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--color-border-strong)">
+        <h4 class="gc-text-terracotta" style="margin-top: 0; ">Scenario 3: You want to leave early</h4>
         <p><strong>⚠️ Abrupt:</strong> "Can I go now?"</p>
         <p><strong>✓ Better:</strong> "Would it be okay if I left a bit early today?"</p>
         <p><strong>✓ Best:</strong> "I have an appointment today. Would it be possible for me to leave about 30 minutes early?"</p>
     </div>
 
-    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
-        <h4 style="margin-top: 0; color: #d97757;">Scenario 4: You don't understand instructions</h4>
+    <div style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--color-border-strong)">
+        <h4 class="gc-text-terracotta" style="margin-top: 0; ">Scenario 4: You don't understand instructions</h4>
         <p><strong>⚠️ Too vague:</strong> "I don't get it."</p>
         <p><strong>✓ Professional:</strong> "Could you explain that again?"</p>
         <p><strong>✓ More specific:</strong> "I want to make sure I understand. Should I do X first, or Y?"</p>
@@ -869,7 +869,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                         `<div style="line-height:1.6">
 <p><strong>Each email below is too casual.</strong></p>
 <p>Choose the version or versions that fit the context best.</p>
-<p style="margin-top:0.5rem; padding:0.5rem 0.75rem; background:rgba(200,107,81,0.08); border-radius:0.35rem;">
+<p style="margin-top:0.5rem; padding:0.5rem 0.75rem; background:rgba(200,107,81,0.08); border-radius:0.35rem">
 <strong>Tip:</strong> In professional emails, it helps to <strong>explain the reason</strong> for your request and <strong>ask politely if it works</strong>.
 </p>
 </div>`,
@@ -879,11 +879,11 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             label: `<div style="line-height:1.6">
 <p><strong>Context:</strong> Email to your supervisor about a doctor appointment.</p>
 <p><strong>Original message:</strong></p>
-<p style="margin:0.5rem 0; padding:0.5rem 0.75rem; background:rgba(0,0,0,0.04); border-radius:0.35rem; font-style:italic;">
+<p style="margin:0.5rem 0; padding:0.5rem 0.75rem; background:rgba(0,0,0,0.04); border-radius:0.35rem; font-style:italic">
 "Hey, I need Friday off. Let me know."
 </p>
 <p><strong>Question:</strong> Which responses are appropriate to send to your supervisor?</p>
-<p style="font-size:0.9rem; color:#666;">Select all that apply.</p>
+<p style="font-size:0.9rem; color:#666">Select all that apply.</p>
 </div>`,
                             options: [
                                 { value: "a", label: "Hi, I need Friday off for a doctor appointment. Could you let me know if that works?" },
@@ -899,11 +899,11 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             label: `<div style="line-height:1.6">
 <p><strong>Context:</strong> Email to a client or senior manager.</p>
 <p><strong>Original message:</strong></p>
-<p style="margin:0.5rem 0; padding:0.5rem 0.75rem; background:rgba(0,0,0,0.04); border-radius:0.35rem; font-style:italic;">
+<p style="margin:0.5rem 0; padding:0.5rem 0.75rem; background:rgba(0,0,0,0.04); border-radius:0.35rem; font-style:italic">
 "Where's the report? Send it now."
 </p>
 <p><strong>Question:</strong> Which responses are appropriate?</p>
-<p style="font-size:0.9rem; color:#666;">Select all that apply.</p>
+<p style="font-size:0.9rem; color:#666">Select all that apply.</p>
 </div>`,
                             options: [
                                 { value: "a", label: "I need the report. Can you send it?" },
@@ -919,11 +919,11 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             label: `<div style="line-height:1.6">
 <p><strong>Context:</strong> Quick message to a close coworker who sent you confusing instructions.</p>
 <p><strong>Original message:</strong></p>
-<p style="margin:0.5rem 0; padding:0.5rem 0.75rem; background:rgba(0,0,0,0.04); border-radius:0.35rem; font-style:italic;">
+<p style="margin:0.5rem 0; padding:0.5rem 0.75rem; background:rgba(0,0,0,0.04); border-radius:0.35rem; font-style:italic">
 "I don't understand this. Explain it."
 </p>
 <p><strong>Question:</strong> Which responses are appropriate?</p>
-<p style="font-size:0.9rem; color:#666;">Select all that apply.</p>
+<p style="font-size:0.9rem; color:#666">Select all that apply.</p>
 </div>`,
                             options: [
                                 { value: "a", label: "Could you explain this a bit? I want to make sure I get it right." },
@@ -949,57 +949,57 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                 <h3>Don't Make These Errors!</h3>
                 <p>Here are the most common mistakes learners make with modals - and how to fix them:</p>
 
-                <div style="margin: 1.5rem 0;">
+                <div style="margin: 1.5rem 0">
 
-                    <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
-                        <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #1: Adding -s to modals</h4>
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ She cans help.</span>
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ He musts work.</span>
+                    <div class="gc-callout-red" style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; ">
+                        <h4 class="gc-text-red" style="margin-top: 0; ">❌ Mistake #1: Adding -s to modals</h4>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem">
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem">❌ She cans help.</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem">❌ He musts work.</span>
                         </div>
-                        <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> She <strong>can</strong> help. He <strong>must</strong> work.</p>
-                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">Modals NEVER change form - no matter who the subject is!</p>
+                        <p style="margin: 0.5rem 0 0 0"><strong style="color: #16a34a">✅ Correct:</strong> She <strong>can</strong> help. He <strong>must</strong> work.</p>
+                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666">Modals NEVER change form - no matter who the subject is!</p>
                     </div>
 
-                    <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
-                        <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #2: Using "to" after must/can/should</h4>
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ I must to go.</span>
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ She can to swim.</span>
+                    <div class="gc-callout-red" style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; ">
+                        <h4 class="gc-text-red" style="margin-top: 0; ">❌ Mistake #2: Using "to" after must/can/should</h4>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem">
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem">❌ I must to go.</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem">❌ She can to swim.</span>
                         </div>
-                        <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> I <strong>must go</strong>. She <strong>can swim</strong>.</p>
-                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">Use "to" with "have to" but NOT with must, can, should, could, may!</p>
+                        <p style="margin: 0.5rem 0 0 0"><strong style="color: #16a34a">✅ Correct:</strong> I <strong>must go</strong>. She <strong>can swim</strong>.</p>
+                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666">Use "to" with "have to" but NOT with must, can, should, could, may!</p>
                     </div>
 
-                    <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
-                        <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #3: Using -ing after modals</h4>
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ Could you helping me?</span>
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ I must leaving now.</span>
+                    <div class="gc-callout-red" style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; ">
+                        <h4 class="gc-text-red" style="margin-top: 0; ">❌ Mistake #3: Using -ing after modals</h4>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem">
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem">❌ Could you helping me?</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem">❌ I must leaving now.</span>
                         </div>
-                        <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> Could you <strong>help</strong> me? I must <strong>leave</strong> now.</p>
-                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">Always use the BASE verb (no -ing, no -ed, no -s) after modals!</p>
+                        <p style="margin: 0.5rem 0 0 0"><strong style="color: #16a34a">✅ Correct:</strong> Could you <strong>help</strong> me? I must <strong>leave</strong> now.</p>
+                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666">Always use the BASE verb (no -ing, no -ed, no -s) after modals!</p>
                     </div>
 
-                    <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
-                        <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #4: Confusing "don't have to" and "must not"</h4>
-                        <p style="margin: 0.5rem 0;">Saying "You don't have to be late" when you mean "You must not be late"</p>
-                        <div style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.25rem;">
-                            <p style="margin: 0;"><strong>don't have to</strong> = optional (you can choose)</p>
+                    <div class="gc-callout-red" style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; ">
+                        <h4 class="gc-text-red" style="margin-top: 0; ">❌ Mistake #4: Confusing "don't have to" and "must not"</h4>
+                        <p style="margin: 0.5rem 0">Saying "You don't have to be late" when you mean "You must not be late"</p>
+                        <div class="gc-bg-green-alpha" style="margin: 0.5rem 0; padding: 0.5rem; ; border-radius: 0.25rem">
+                            <p style="margin: 0"><strong>don't have to</strong> = optional (you can choose)</p>
                         </div>
-                        <div style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(239, 68, 68, 0.1); border-radius: 0.25rem;">
-                            <p style="margin: 0;"><strong>must not</strong> = forbidden (don't do it!)</p>
+                        <div style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(239, 68, 68, 0.1); border-radius: 0.25rem">
+                            <p style="margin: 0"><strong>must not</strong> = forbidden (don't do it!)</p>
                         </div>
                     </div>
 
-                    <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444;">
-                        <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #5: Wrong question word order</h4>
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ I can leave early?</span>
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ Do I can help you?</span>
+                    <div class="gc-callout-red" style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 class="gc-text-red" style="margin-top: 0; ">❌ Mistake #5: Wrong question word order</h4>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem">
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem">❌ I can leave early?</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem">❌ Do I can help you?</span>
                         </div>
-                        <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> <strong>Can I</strong> leave early? <strong>Can I</strong> help you?</p>
-                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">For questions: Modal + Subject + Base Verb (Can I...? Should we...? Could you...?)</p>
+                        <p style="margin: 0.5rem 0 0 0"><strong style="color: #16a34a">✅ Correct:</strong> <strong>Can I</strong> leave early? <strong>Can I</strong> help you?</p>
+                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666">For questions: Modal + Subject + Base Verb (Can I...? Should we...? Could you...?)</p>
                     </div>
 
                 </div>
@@ -1064,60 +1064,60 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Modals at a Glance</h3>
 
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(200, 107, 81, 0.1);">
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Modal</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Meaning</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Example</th>
+                        <tr class="gc-bg-terracotta-alpha">
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Modal</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Meaning</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Example</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>must</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Strong obligation (rule/law)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Employees must wash hands.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>must</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Strong obligation (rule/law)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Employees must wash hands.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>have to</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Obligation (external rule)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">I have to work weekends.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>have to</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Obligation (external rule)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">I have to work weekends.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>should</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Advice/recommendation</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You should arrive early.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>should</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Advice/recommendation</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You should arrive early.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>can</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Permission (casual)/ability</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Can I take a break?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>can</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Permission (casual)/ability</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Can I take a break?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>may</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Permission (formal)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">May I speak with you?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>may</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Permission (formal)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">May I speak with you?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>could</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Permission (polite)/possibility</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Could I leave early?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>could</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Permission (polite)/possibility</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Could I leave early?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>would</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Polite request</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Would you help me?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>would</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Polite request</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Would you help me?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>might</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Possibility (maybe)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">I might be late.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>might</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Possibility (maybe)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">I might be late.</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <h3>Politeness Scale for Requests</h3>
-                <ol style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1.5rem; border-radius: 0.5rem; border: 1px solid var(--color-border-strong);">
+                <ol style="background: var(--color-surface-elevated); color: var(--color-text); padding: 1.5rem; border-radius: 0.5rem; border: 1px solid var(--color-border-strong)">
                     <li>Can you...? (casual)</li>
                     <li>Could you...? (polite)</li>
                     <li>Would you...? (more polite)</li>

@@ -2,9 +2,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import LogoutButton from "@/components/LogoutButton";
+import { LogoutButton } from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
-import SubmissionsList from "@/components/SubmissionsList";
+import { SubmissionsList } from "@/components/SubmissionsList";
 import { isTeacherAdmin } from "@/lib/roles";
 
 interface Props {

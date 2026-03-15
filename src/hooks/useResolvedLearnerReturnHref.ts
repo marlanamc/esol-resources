@@ -13,6 +13,12 @@ interface UseResolvedLearnerReturnHrefOptions {
     fallbackHref?: string;
 }
 
+/**
+ * Resolves the "return" URL for learner flows (e.g. after completing an activity).
+ * Uses query param, session storage, or activities last-href; falls back to the given href or /dashboard.
+ * @param options.fallbackHref - Default destination when no return target is stored (default: "/dashboard")
+ * @returns The resolved href string to use for back navigation
+ */
 export function useResolvedLearnerReturnHref({
     fallbackHref = "/dashboard",
 }: UseResolvedLearnerReturnHrefOptions = {}) {

@@ -10,8 +10,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             title: "Information Questions: Getting the Answers You Need",
             icon: "❓",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"When does the lease start?" "How much is the security deposit?" "Who do I call for repairs?" Real life requires real questions - and knowing how to ask them correctly can make all the difference.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">"When does the lease start?" "How much is the security deposit?" "Who do I call for repairs?" Real life requires real questions - and knowing how to ask them correctly can make all the difference.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -23,17 +23,17 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     <li><strong>Avoid misunderstandings</strong> - Clarify details before it's too late</li>
                 </ul>
 
-                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>Throughout the course, you'll also use this when:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                <div class="gc-bg-green gc-callout-left gc-bg-green gc-callout-green" style="; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin: 1rem 0 0.5rem 0"><strong>Throughout the course, you'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li><strong> Asking your landlord questions (rent, repairs, rules)</li>
                         <li><strong> Preparing for job interviews (asking about the job, schedule, benefits)</li>
                         <li><strong> Asking about your rights at work</li>
                         <li><strong> Talking to your doctor (symptoms, medications, appointments)</li>
                         <li><strong> Getting information about community resources</li>
                     </ul>
-                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">✨ This is one of the MOST IMPORTANT grammar topics - that's why we practice it 6 times this course!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic">✨ This is one of the MOST IMPORTANT grammar topics - that's why we practice it 6 times this course!</p>
                 </div>
             `,
             exercises: [
@@ -332,46 +332,46 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 <h3>The Standard Question Pattern</h3>
                 <p>Information questions follow a specific word order. Get this right, and your questions will always sound natural:</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
-                    <div style="font-size: 1.25rem; text-align: center; margin-bottom: 1rem; font-weight: 600;">
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
+                    <div style="font-size: 1.25rem; text-align: center; margin-bottom: 1rem; font-weight: 600">
                         WH-word + Helping Verb + Subject + Main Verb + ?
                     </div>
-                    <p style="text-align: center; margin: 0; font-style: italic;">
+                    <p style="text-align: center; margin: 0; font-style: italic">
                         (Question word) + (do/does/did/is/are/can) + (who/what) + (verb) + ?
                     </p>
                 </div>
 
                 <h4>Examples with Different Auxiliaries:</h4>
 
-                <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
-                    <p style="margin: 0; font-weight: 600;">Present Simple (do/does):</p>
-                    <ul style="margin: 0.5rem 0 0 0;">
-                        <li><strong>When</strong> <span style="color: #d97757;">do</span> <span style="color: #3b82f6;">you</span> <span style="color: #22c55e;">pay</span> rent?</li>
-                        <li><strong>Where</strong> <span style="color: #d97757;">does</span> <span style="color: #3b82f6;">the manager</span> <span style="color: #22c55e;">work</span>?</li>
-                        <li><strong>How</strong> <span style="color: #d97757;">do</span> <span style="color: #3b82f6;">I</span> <span style="color: #22c55e;">contact</span> maintenance?</li>
+                <div class="gc-bg-white" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
+                    <p style="margin: 0; font-weight: 600">Present Simple (do/does):</p>
+                    <ul style="margin: 0.5rem 0 0 0">
+                        <li><strong>When</strong> <span class="gc-text-terracotta">do</span> <span class="gc-text-blue">you</span> <span class="gc-text-green">pay</span> rent?</li>
+                        <li><strong>Where</strong> <span class="gc-text-terracotta">does</span> <span class="gc-text-blue">the manager</span> <span class="gc-text-green">work</span>?</li>
+                        <li><strong>How</strong> <span class="gc-text-terracotta">do</span> <span class="gc-text-blue">I</span> <span class="gc-text-green">contact</span> maintenance?</li>
                     </ul>
                 </div>
 
-                <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
-                    <p style="margin: 0; font-weight: 600;">With 'be' (is/are/was/were):</p>
-                    <ul style="margin: 0.5rem 0 0 0;">
-                        <li><strong>Where</strong> <span style="color: #d97757;">is</span> <span style="color: #3b82f6;">the laundry room</span>?</li>
-                        <li><strong>What</strong> <span style="color: #d97757;">are</span> <span style="color: #3b82f6;">the building rules</span>?</li>
-                        <li><strong>When</strong> <span style="color: #d97757;">was</span> <span style="color: #3b82f6;">the building</span> <span style="color: #22c55e;">built</span>?</li>
+                <div class="gc-bg-white" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
+                    <p style="margin: 0; font-weight: 600">With 'be' (is/are/was/were):</p>
+                    <ul style="margin: 0.5rem 0 0 0">
+                        <li><strong>Where</strong> <span class="gc-text-terracotta">is</span> <span class="gc-text-blue">the laundry room</span>?</li>
+                        <li><strong>What</strong> <span class="gc-text-terracotta">are</span> <span class="gc-text-blue">the building rules</span>?</li>
+                        <li><strong>When</strong> <span class="gc-text-terracotta">was</span> <span class="gc-text-blue">the building</span> <span class="gc-text-green">built</span>?</li>
                     </ul>
                 </div>
 
-                <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
-                    <p style="margin: 0; font-weight: 600;">With modals (can/will/should):</p>
-                    <ul style="margin: 0.5rem 0 0 0;">
-                        <li><strong>How</strong> <span style="color: #d97757;">can</span> <span style="color: #3b82f6;">I</span> <span style="color: #22c55e;">pay</span> the deposit?</li>
-                        <li><strong>When</strong> <span style="color: #d97757;">will</span> <span style="color: #3b82f6;">you</span> <span style="color: #22c55e;">fix</span> the heater?</li>
-                        <li><strong>Who</strong> <span style="color: #d97757;">should</span> <span style="color: #3b82f6;">I</span> <span style="color: #22c55e;">call</span> for emergencies?</li>
+                <div class="gc-bg-white" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
+                    <p style="margin: 0; font-weight: 600">With modals (can/will/should):</p>
+                    <ul style="margin: 0.5rem 0 0 0">
+                        <li><strong>How</strong> <span class="gc-text-terracotta">can</span> <span class="gc-text-blue">I</span> <span class="gc-text-green">pay</span> the deposit?</li>
+                        <li><strong>When</strong> <span class="gc-text-terracotta">will</span> <span class="gc-text-blue">you</span> <span class="gc-text-green">fix</span> the heater?</li>
+                        <li><strong>Who</strong> <span class="gc-text-terracotta">should</span> <span class="gc-text-blue">I</span> <span class="gc-text-green">call</span> for emergencies?</li>
                     </ul>
                 </div>
-                <div style="background: #fdf6e3; padding: 1rem; border-left: 4px solid #b58900; border-radius: 0.3rem; margin-top: 1.5rem;">
-                    <p style="margin-top: 0; font-weight: 600;">🛑 Stop and Think:</p>
-                    <p style="margin-bottom: 0;">In English, we usually say "I live here" (Subj + Verb). But in a question, we <strong>split</strong> the verb: "Where <strong>do</strong> you <strong>live</strong>?"</p>
+                <div style="background: #fdf6e3; padding: 1rem; border-left: 4px solid #b58900; border-radius: 0.3rem; margin-top: 1.5rem">
+                    <p style="margin-top: 0; font-weight: 600">🛑 Stop and Think:</p>
+                    <p style="margin-bottom: 0">In English, we usually say "I live here" (Subj + Verb). But in a question, we <strong>split</strong> the verb: "Where <strong>do</strong> you <strong>live</strong>?"</p>
                 </div>
             `,
             formula: [
@@ -424,85 +424,85 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             title: "Subject Questions: When 'Who' and 'What' Break the Rules",
             icon: "⚡",
             explanation: `
-                <div style="background: rgba(122, 143, 124, 0.1); padding: 1.5rem; border-radius: 0.75rem; border-left: 5px solid #7ba884; margin-bottom: 2rem;">
-                    <h3 style="margin-top: 0; color: #2d3748;">The One Rule to Remember</h3>
-                    <p style="font-size: 1.2rem; font-weight: 600; color: #2f855a; margin-bottom: 0;">If "who" or "what" is doing the action, do NOT use do / does / did.</p>
+                <div style="background: rgba(122, 143, 124, 0.1); padding: 1.5rem; border-radius: 0.75rem; border-left: 5px solid #7ba884; margin-bottom: 2rem">
+                    <h3 style="margin-top: 0; color: #2d3748">The One Rule to Remember</h3>
+                    <p style="font-size: 1.2rem; font-weight: 600; color: #2f855a; margin-bottom: 0">If "who" or "what" is doing the action, do NOT use do / does / did.</p>
                 </div>
 
-                <div style="margin-bottom: 2.5rem; text-align: center;">
-                    <h3 style="color: #4a5568; margin-bottom: 1rem;">The Simple Test</h3>
-                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Ask yourself this every time:</p>
-                    <div style="font-size: 1.5rem; font-weight: 700; color: #d97757; background: #fff; display: inline-block; padding: 1rem 2rem; border-radius: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid rgba(217, 119, 87, 0.2);">
+                <div style="margin-bottom: 2.5rem; text-align: center">
+                    <h3 style="color: #4a5568; margin-bottom: 1rem">The Simple Test</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem">Ask yourself this every time:</p>
+                    <div class="gc-bg-white gc-text-terracotta" style="font-size: 1.5rem; font-weight: 700; ; ; display: inline-block; padding: 1rem 2rem; border-radius: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid rgba(217, 119, 87, 0.2)">
                         👉 Who is the doer?
                     </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem;">
-                    <div style="background: #f0f7f1; border: 2px solid #7ba884; border-radius: 1rem; padding: 1.5rem; position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: -10px; right: -10px; font-size: 4rem; opacity: 0.05; pointer-events: none;">👤</div>
-                        <h4 style="color: #2f855a; margin-top: 0; display: flex; align-items: center; gap: 1rem; font-size: 1.2rem;">
-                            <span style="background: #7ba884; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;">1</span>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem">
+                    <div style="background: #f0f7f1; border: 2px solid #7ba884; border-radius: 1rem; padding: 1.5rem; position: relative; overflow: hidden">
+                        <div style="position: absolute; top: -10px; right: -10px; font-size: 4rem; opacity: 0.05; pointer-events: none">👤</div>
+                        <h4 style="color: #2f855a; margin-top: 0; display: flex; align-items: center; gap: 1rem; font-size: 1.2rem">
+                            <span style="background: #7ba884; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0">1</span>
                             "Who / What" is the doer
                         </h4>
-                        <p style="font-weight: 700; font-size: 1.3rem; color: #2d3748; margin: 0.5rem 0 1rem 3rem;">❌ NO do / does / did</p>
+                        <p style="font-weight: 700; font-size: 1.3rem; color: #2d3748; margin: 0.5rem 0 1rem 3rem">❌ NO do / does / did</p>
                         
-                        <div style="background: white; padding: 1.25rem; border-radius: 0.75rem; margin-left: 3rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
-                            <p style="font-family: monospace; font-size: 1.1rem; margin-bottom: 0.75rem; color: #4a5568;"><strong>Pattern:</strong> Who / What + verb</p>
-                            <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 0.75rem 0;">
-                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                                <p style="margin: 0;"><strong>Who pays</strong> the rent? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ Someone pays.</span></p>
-                                <p style="margin: 0;"><strong>Who lives</strong> in apartment 3B? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ Someone lives there.</span></p>
-                                <p style="margin: 0;"><strong>What includes</strong> heat and water? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ Something includes it.</span></p>
+                        <div class="gc-bg-white" style="padding: 1.25rem; border-radius: 0.75rem; margin-left: 3rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05)">
+                            <p style="font-family: monospace; font-size: 1.1rem; margin-bottom: 0.75rem; color: #4a5568"><strong>Pattern:</strong> Who / What + verb</p>
+                            <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 0.75rem 0">
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem">
+                                <p style="margin: 0"><strong>Who pays</strong> the rent? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem">→ Someone pays.</span></p>
+                                <p style="margin: 0"><strong>Who lives</strong> in apartment 3B? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem">→ Someone lives there.</span></p>
+                                <p style="margin: 0"><strong>What includes</strong> heat and water? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem">→ Something includes it.</span></p>
                             </div>
                         </div>
-                        <p style="margin: 1rem 0 0 3rem; font-size: 1rem; color: #4a5568;">🧠 <strong>Think:</strong> Who is the doer? The doer is <strong>who</strong>, so no do.</p>
+                        <p style="margin: 1rem 0 0 3rem; font-size: 1rem; color: #4a5568">🧠 <strong>Think:</strong> Who is the doer? The doer is <strong>who</strong>, so no do.</p>
                     </div>
 
-                    <div style="background: #fff5f2; border: 2px solid #d97757; border-radius: 1rem; padding: 1.5rem; position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: -10px; right: -10px; font-size: 4rem; opacity: 0.05; pointer-events: none;">🎯</div>
-                        <h4 style="color: #c05621; margin-top: 0; display: flex; align-items: center; gap: 1rem; font-size: 1.2rem;">
-                            <span style="background: #d97757; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;">2</span>
+                    <div class="gc-bg-white" style="5f2; border: 2px solid #d97757; border-radius: 1rem; padding: 1.5rem; position: relative; overflow: hidden">
+                        <div style="position: absolute; top: -10px; right: -10px; font-size: 4rem; opacity: 0.05; pointer-events: none">🎯</div>
+                        <h4 style="color: #c05621; margin-top: 0; display: flex; align-items: center; gap: 1rem; font-size: 1.2rem">
+                            <span style="background: #d97757; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0">2</span>
                             "Who / What" is NOT the doer
                         </h4>
-                        <p style="font-weight: 700; font-size: 1.3rem; color: #2d3748; margin: 0.5rem 0 1rem 3rem;">✅ USE do / does / did</p>
+                        <p style="font-weight: 700; font-size: 1.3rem; color: #2d3748; margin: 0.5rem 0 1rem 3rem">✅ USE do / does / did</p>
                         
-                        <div style="background: white; padding: 1.25rem; border-radius: 0.75rem; margin-left: 3rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
-                            <p style="font-family: monospace; font-size: 1.1rem; margin-bottom: 0.75rem; color: #4a5568;"><strong>Pattern:</strong> Who / What + <span style="color: #d97757;">do/does/did</span> + subj + verb</p>
-                            <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 0.75rem 0;">
-                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                                <p style="margin: 0;">Who <strong>do you pay</strong>? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ You pay someone.</span></p>
-                                <p style="margin: 0;">Who <strong>did you call</strong>? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ You called someone.</span></p>
-                                <p style="margin: 0;">What <strong>does the rent include</strong>? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ The rent includes something.</span></p>
+                        <div class="gc-bg-white" style="padding: 1.25rem; border-radius: 0.75rem; margin-left: 3rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05)">
+                            <p style="font-family: monospace; font-size: 1.1rem; margin-bottom: 0.75rem; color: #4a5568"><strong>Pattern:</strong> Who / What + <span class="gc-text-terracotta">do/does/did</span> + subj + verb</p>
+                            <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 0.75rem 0">
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem">
+                                <p style="margin: 0">Who <strong>do you pay</strong>? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem">→ You pay someone.</span></p>
+                                <p style="margin: 0">Who <strong>did you call</strong>? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem">→ You called someone.</span></p>
+                                <p style="margin: 0">What <strong>does the rent include</strong>? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem">→ The rent includes something.</span></p>
                             </div>
                         </div>
-                        <p style="margin: 1rem 0 0 3rem; font-size: 1rem; color: #4a5568;">🧠 <strong>Think:</strong> Who is the doer? <strong>You</strong> are the doer, so use do / does / did.</p>
+                        <p style="margin: 1rem 0 0 3rem; font-size: 1rem; color: #4a5568">🧠 <strong>Think:</strong> Who is the doer? <strong>You</strong> are the doer, so use do / does / did.</p>
                     </div>
                 </div>
 
-                <div class="gc-bg-blue gc-border-slate" style="background: #ebf8ff; padding: 1.5rem; border-radius: 1rem; border: 1px solid #bee3f8; margin-bottom: 2rem;">
-                    <h4 class="gc-text-dark" style="margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">✨ A Helpful Trick</h4>
+                <div class="gc-bg-blue gc-border-slate" style="background: #ebf8ff; padding: 1.5rem; border-radius: 1rem; border: 1px solid #bee3f8; margin-bottom: 2rem">
+                    <h4 class="gc-text-dark" style="margin-top: 0; display: flex; align-items: center; gap: 0.5rem">✨ A Helpful Trick</h4>
                     <p>Try to answer the question in a full sentence:</p>
-                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
-                        <div class="gc-bg-white" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 0.75rem; border-radius: 0.5rem;">
-                            <div style="flex: 1;"><strong>Who pays the rent?</strong><br><span class="gc-text-muted" style="color: #718096;">→ Someone pays the rent.</span></div>
-                            <div class="gc-text-sage" style="color: #38a169; font-weight: bold; font-size: 0.9rem;">✔️ No do</div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem">
+                        <div class="gc-bg-white gc-bg-white" style="display: flex; align-items: center; gap: 1rem; ; padding: 0.75rem; border-radius: 0.5rem">
+                            <div style="flex: 1"><strong>Who pays the rent?</strong><br><span class="gc-text-muted" style="color: #718096">→ Someone pays the rent.</span></div>
+                            <div class="gc-text-sage" style="color: #38a169; font-weight: bold; font-size: 0.9rem">✔️ No do</div>
                         </div>
-                        <div class="gc-bg-white" style="display: flex; align-items: center; gap: 1rem; background: white; padding: 0.75rem; border-radius: 0.5rem;">
-                            <div style="flex: 1;"><strong>Who do you pay?</strong><br><span class="gc-text-muted" style="color: #718096;">→ I pay someone.</span></div>
-                            <div class="gc-text-dark" style="color: #3182ce; font-weight: bold; font-size: 0.9rem;">✔️ Use do</div>
+                        <div class="gc-bg-white gc-bg-white" style="display: flex; align-items: center; gap: 1rem; ; padding: 0.75rem; border-radius: 0.5rem">
+                            <div style="flex: 1"><strong>Who do you pay?</strong><br><span class="gc-text-muted" style="color: #718096">→ I pay someone.</span></div>
+                            <div class="gc-text-dark" style="color: #3182ce; font-weight: bold; font-size: 0.9rem">✔️ Use do</div>
                         </div>
                     </div>
                 </div>
 
-                <div style="background: rgba(0, 0, 0, 0.02); padding: 1.5rem; border-radius: 1rem; text-align: center; border: 1px dashed #cbd5e0;">
-                    <p style="margin-top: 0; font-weight: 600; color: #4a5568;">Final Takeaway</p>
-                    <p style="font-size: 1.1rem; margin-bottom: 0.5rem;"><strong>Who does the action?</strong></p>
-                    <p style="margin: 0.25rem 0;">If it’s <strong>who / what</strong> → no do</p>
-                    <p style="margin: 0.25rem 0;">If it’s <strong>you / another person</strong> → use do / does / did</p>
+                <div style="background: rgba(0, 0, 0, 0.02); padding: 1.5rem; border-radius: 1rem; text-align: center; border: 1px dashed #cbd5e0">
+                    <p style="margin-top: 0; font-weight: 600; color: #4a5568">Final Takeaway</p>
+                    <p style="font-size: 1.1rem; margin-bottom: 0.5rem"><strong>Who does the action?</strong></p>
+                    <p style="margin: 0.25rem 0">If it’s <strong>who / what</strong> → no do</p>
+                    <p style="margin: 0.25rem 0">If it’s <strong>you / another person</strong> → use do / does / did</p>
                 </div>
 
-                <div style="margin-top: 2rem; padding: 1rem; background: #fffaf0; border-radius: 0.75rem; border: 1px solid #feebc8; font-style: italic; color: #7b341e; text-align: center;">
-                    <p style="margin: 0;">This rule is hard, even for advanced English learners. If you forget, people will still understand you. The goal is progress, not perfection.</p>
+                <div class="gc-bg-white" style="margin-top: 2rem; padding: 1rem; af0; border-radius: 0.75rem; border: 1px solid #feebc8; font-style: italic; color: #7b341e; text-align: center">
+                    <p style="margin: 0">This rule is hard, even for advanced English learners. If you forget, people will still understand you. The goal is progress, not perfection.</p>
                 </div>
             `,
             tipBox: {
@@ -562,10 +562,10 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 <h3>Real Questions for Real Situations</h3>
                 <p>These are the questions you actually need when looking for housing or dealing with landlords:</p>
 
-                <div style="margin-top: 1.5rem;">
-                    <div style="background: rgba(110, 145, 118, 0.05); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #7ba884;">
-                        <h4 style="margin-top: 0;">About Money:</h4>
-                        <ul style="margin: 0;">
+                <div style="margin-top: 1.5rem">
+                    <div class="gc-callout-sage" style="background: rgba(110, 145, 118, 0.05); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; ">
+                        <h4 style="margin-top: 0">About Money:</h4>
+                        <ul style="margin: 0">
                             <li>How much is the rent per month?</li>
                             <li>How much is the security deposit?</li>
                             <li>When is rent due?</li>
@@ -574,9 +574,9 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                         </ul>
                     </div>
 
-                    <div style="background: rgba(200, 107, 81, 0.05); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #d97757;">
-                        <h4 style="margin-top: 0;">About the Apartment:</h4>
-                        <ul style="margin: 0;">
+                    <div class="gc-callout-terracotta" style="background: rgba(200, 107, 81, 0.05); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; ">
+                        <h4 style="margin-top: 0">About the Apartment:</h4>
+                        <ul style="margin: 0">
                             <li>How many bedrooms does it have?</li>
                             <li>Where is parking?</li>
                             <li>What's included in the apartment?</li>
@@ -585,9 +585,9 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                         </ul>
                     </div>
 
-                    <div style="background: rgba(59, 130, 246, 0.05); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
-                        <h4 style="margin-top: 0;">About Rules & Repairs:</h4>
-                        <ul style="margin: 0;">
+                    <div class="gc-callout-blue" style="background: rgba(59, 130, 246, 0.05); padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 style="margin-top: 0">About Rules & Repairs:</h4>
+                        <ul style="margin: 0">
                             <li>What are the building rules?</li>
                             <li>Who do I contact for repairs?</li>
                             <li>How much notice do I give before moving?</li>
@@ -650,19 +650,19 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 <h3>Which One Should You Use?</h3>
                 <p>Students often get confused between <strong>What</strong> and <strong>Which</strong>. The rule is simple: it depends on how many choices you have.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
-                            <h4 style="color: #d97757; margin-top: 0;">📝 WHAT</h4>
-                            <p style="font-weight: 600;">Unlimited Choices</p>
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
+                            <h4 class="gc-text-terracotta" style="margin-top: 0">📝 WHAT</h4>
+                            <p style="font-weight: 600">Unlimited Choices</p>
                             <p>Use "what" when there are many, many possible answers.</p>
-                            <p style="font-style: italic;">"What is your name?" (Thousands of possibilities)</p>
+                            <p style="font-style: italic">"What is your name?" (Thousands of possibilities)</p>
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
-                            <h4 style="color: #7ba884; margin-top: 0;">🎯 WHICH</h4>
-                            <p style="font-weight: 600;">Limited Choices</p>
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
+                            <h4 class="gc-text-sage" style="margin-top: 0">🎯 WHICH</h4>
+                            <p style="font-weight: 600">Limited Choices</p>
                             <p>Use "which" when you are choosing from a small group (usually 2-5 things).</p>
-                            <p style="font-style: italic;">"Which apartment do you want, 3A or 3B?" (Only two choices)</p>
+                            <p style="font-style: italic">"Which apartment do you want, 3A or 3B?" (Only two choices)</p>
                         </div>
                     </div>
                 </div>
@@ -720,59 +720,59 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             icon: "📋",
             explanation: `
                 <h3>Question Words Quick Guide</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(200, 107, 81, 0.1);">
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Question Word</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Asks About</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Example</th>
+                        <tr class="gc-bg-terracotta-alpha">
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Question Word</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Asks About</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Example</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Who</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Person</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Who is the manager?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>Who</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Person</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Who is the manager?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>What</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Thing/Information (Unlimited)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">What's the address?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>What</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Thing/Information (Unlimited)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">What's the address?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Which</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Choice (Limited)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Which floor?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>Which</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Choice (Limited)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Which floor?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>When</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Time</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">When is rent due?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>When</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Time</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">When is rent due?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Where</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Place</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Where do I park?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>Where</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Place</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Where do I park?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Why</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Reason</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Why is rent increasing?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>Why</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Reason</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Why is rent increasing?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>How</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Method/Manner</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">How do I pay?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>How</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Method/Manner</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">How do I pay?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>How much</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Amount (non-count)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">How much is rent?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>How much</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Amount (non-count)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">How much is rent?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>How many</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Number (count)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">How many rooms?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>How many</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Number (count)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">How many rooms?</td>
                         </tr>
                     </tbody>
                 </table>
@@ -788,8 +788,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 <h3>Exception: Who is the Doer?</h3>
                 <p><strong>Who/What + Verb + ?</strong> (NO helping verb when who/what is the doer)</p>
                 <ul>
-                    <li>Who pays utilities? <span style="color: #718096; font-size: 0.95rem;">→ The doer is "Who"</span></li>
-                    <li>What includes parking? <span style="color: #718096; font-size: 0.95rem;">→ The doer is "What"</span></li>
+                    <li>Who pays utilities? <span style="color: #718096; font-size: 0.95rem">→ The doer is "Who"</span></li>
+                    <li>What includes parking? <span style="color: #718096; font-size: 0.95rem">→ The doer is "What"</span></li>
                 </ul>
 
                 <h3>Common Mistakes to Avoid:</h3>
@@ -926,47 +926,47 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 <h3>Making Questions More Polite</h3>
                 <p>In English, asking questions directly can sometimes sound a bit demanding. To be extra professional and polite (at work, at the doctor, or with landlords), we often use <strong>Indirect Questions</strong>.</p>
 
-                <div style="background: #fdf6e3; padding: 1rem; border-left: 4px solid #b58900; border-radius: 0.3rem; margin-bottom: 1.5rem;">
-                    <p style="margin-top: 0; font-weight: 600;">🛑 Stop and Think:</p>
-                    <p style="margin-bottom: 0;">If you are asking your boss about your paycheck, which sounds better? "Where is my check?" or "Could you tell me where my check is?"</p>
+                <div style="background: #fdf6e3; padding: 1rem; border-left: 4px solid #b58900; border-radius: 0.3rem; margin-bottom: 1.5rem">
+                    <p style="margin-top: 0; font-weight: 600">🛑 Stop and Think:</p>
+                    <p style="margin-bottom: 0">If you are asking your boss about your paycheck, which sounds better? "Where is my check?" or "Could you tell me where my check is?"</p>
                 </div>
 
-                <div style="background: rgba(110, 145, 118, 0.1); border-left: 4px solid #7ba884; padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem;">🧠 Think of Indirect Questions Like This</h3>
+                <div class="gc-bg-sage-alpha gc-callout-sage" style="; padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem">🧠 Think of Indirect Questions Like This</h3>
                     <p>An indirect question is:<br><strong>A polite sentence + a question inside it</strong></p>
                     <p>The question itself does NOT change.<br>It just goes inside a sentence.</p>
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">
-                        <p style="margin: 0.5rem 0;"><strong>Direct question:</strong><br>Where is the office?</p>
-                        <p style="margin: 0.5rem 0;"><strong>Polite sentence:</strong><br>Could you tell me…</p>
-                        <p style="margin: 0.5rem 0;"><strong>Polite long question:</strong><br>Could you tell me where the office is?</p>
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-top: 1rem">
+                        <p style="margin: 0.5rem 0"><strong>Direct question:</strong><br>Where is the office?</p>
+                        <p style="margin: 0.5rem 0"><strong>Polite sentence:</strong><br>Could you tell me…</p>
+                        <p style="margin: 0.5rem 0"><strong>Polite long question:</strong><br>Could you tell me where the office is?</p>
                     </div>
                 </div>
 
-                <div style="background: #fff3cd; border-left: 4px solid #b58900; padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <p style="margin-top: 0; margin-bottom: 0.75rem; font-weight: 600; color: #856404;">⚠️ Important Reminder</p>
-                    <p style="margin: 0.5rem 0;">Inside an indirect question, the word order is like a statement:<br><strong>subject + verb</strong></p>
-                    <p style="margin: 0.75rem 0 0.5rem 0;"><strong>We say:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                <div class="gc-bg-white" style="3cd; border-left: 4px solid #b58900; padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <p style="margin-top: 0; margin-bottom: 0.75rem; font-weight: 600; color: #856404">⚠️ Important Reminder</p>
+                    <p style="margin: 0.5rem 0">Inside an indirect question, the word order is like a statement:<br><strong>subject + verb</strong></p>
+                    <p style="margin: 0.75rem 0 0.5rem 0"><strong>We say:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>where the office is</li>
                         <li>what time the clinic closes</li>
                         <li>how much the deposit is</li>
                     </ul>
-                    <p style="margin: 0.75rem 0 0.5rem 0;"><strong>NOT:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                    <p style="margin: 0.75rem 0 0.5rem 0"><strong>NOT:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>where is the office</li>
                         <li>what time does the clinic close</li>
                         <li>how much does the deposit cost</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; margin-bottom: 0;">This reinforces what you already taught, without reframing.</p>
+                    <p style="margin-top: 0.75rem; margin-bottom: 0">This reinforces what you already taught, without reframing.</p>
                 </div>
 
-                <div style="background: rgba(110, 145, 118, 0.1); border-left: 4px solid #7ba884; padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <p style="margin-top: 0; margin-bottom: 0.5rem; font-weight: 600; color: #7ba884;">✅ Good to Know</p>
-                    <p style="margin: 0;">If you accidentally use question word order in an indirect question, people will usually still understand you.</p>
-                    <p style="margin: 0.75rem 0 0;">Indirect questions are about being polite and professional, not about being perfect.</p>
+                <div class="gc-bg-sage-alpha gc-callout-sage" style="; padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <p class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.5rem; font-weight: 600; ">✅ Good to Know</p>
+                    <p style="margin: 0">If you accidentally use question word order in an indirect question, people will usually still understand you.</p>
+                    <p style="margin: 0.75rem 0 0">Indirect questions are about being polite and professional, not about being perfect.</p>
                 </div>
 
-                <p style="margin-top: 1.5rem; margin-bottom: 0; font-weight: 600; font-size: 1.05rem;"><strong>Takeaway:</strong><br>In polite long questions, use statement word order inside the sentence.</p>
+                <p style="margin-top: 1.5rem; margin-bottom: 0; font-weight: 600; font-size: 1.05rem"><strong>Takeaway:</strong><br>In polite long questions, use statement word order inside the sentence.</p>
             `,
             comparison: {
                 title: "Direct vs. Indirect Word Order",
@@ -1064,30 +1064,30 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 <h3>Questions Within Statements</h3>
                 <p>Embedded questions are indirect questions that are part of a larger statement. They're extremely polite and professional - perfect for work, healthcare, and formal situations.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Examples:</h4>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7ba884;">Starting with "I'm wondering...":</p>
-                        <ul style="margin: 0;">
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <p class="gc-text-sage" style="margin: 0 0 0.5rem 0; font-weight: 600; ">Starting with "I'm wondering...":</p>
+                        <ul style="margin: 0">
                             <li>I'm wondering <strong>if you could explain</strong> the benefits package.</li>
                             <li>I'm wondering <strong>whether there's flexibility</strong> in the schedule.</li>
                             <li>I'm wondering <strong>what time</strong> the interview is.</li>
                         </ul>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7ba884;">Starting with "I'd like to know...":</p>
-                        <ul style="margin: 0;">
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <p class="gc-text-sage" style="margin: 0 0 0.5rem 0; font-weight: 600; ">Starting with "I'd like to know...":</p>
+                        <ul style="margin: 0">
                             <li>I'd like to know <strong>if this position</strong> offers health insurance.</li>
                             <li>I'd like to know <strong>how many hours</strong> per week this is.</li>
                             <li>I'd like to know <strong>when you need</strong> someone to start.</li>
                         </ul>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7ba884;">Starting with "Could you clarify...":</p>
-                        <ul style="margin: 0;">
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem">
+                        <p class="gc-text-sage" style="margin: 0 0 0.5rem 0; font-weight: 600; ">Starting with "Could you clarify...":</p>
+                        <ul style="margin: 0">
                             <li>Could you clarify <strong>what the dress code is</strong>?</li>
                             <li>Could you clarify <strong>whether overtime is paid</strong>?</li>
                             <li>Could you clarify <strong>how the commission works</strong>?</li>
@@ -1217,27 +1217,27 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 <h3>Asking Follow-Up Questions</h3>
                 <p>In professional situations (job interviews, doctor visits, landlord meetings), you need to ask <strong>3-4 follow-up questions</strong> to get the complete picture. This shows you're engaged and thinking critically.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Example: Asking About a Job</h4>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">Level 1 - Initial Question:</p>
-                        <p style="margin: 0;">"What are the hours for this position?"</p>
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <p class="gc-text-terracotta" style="margin: 0 0 0.5rem 0; font-weight: 600; ">Level 1 - Initial Question:</p>
+                        <p style="margin: 0">"What are the hours for this position?"</p>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">Level 2 - Clarify Details:</p>
-                        <p style="margin: 0;">"Is that Monday through Friday, or does it include weekends?"</p>
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <p class="gc-text-terracotta" style="margin: 0 0 0.5rem 0; font-weight: 600; ">Level 2 - Clarify Details:</p>
+                        <p style="margin: 0">"Is that Monday through Friday, or does it include weekends?"</p>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">Level 3 - Dig Deeper:</p>
-                        <p style="margin: 0;">"How much flexibility is there if I need to adjust my schedule occasionally?"</p>
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <p class="gc-text-terracotta" style="margin: 0 0 0.5rem 0; font-weight: 600; ">Level 3 - Dig Deeper:</p>
+                        <p style="margin: 0">"How much flexibility is there if I need to adjust my schedule occasionally?"</p>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">Level 4 - Plan for Scenarios:</p>
-                        <p style="margin: 0;">"What would be the process for requesting time off?"</p>
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem">
+                        <p class="gc-text-terracotta" style="margin: 0 0 0.5rem 0; font-weight: 600; ">Level 4 - Plan for Scenarios:</p>
+                        <p style="margin: 0">"What would be the process for requesting time off?"</p>
                     </div>
                 </div>
 

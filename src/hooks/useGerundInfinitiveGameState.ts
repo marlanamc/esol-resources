@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * State machine and data for the Gerund & Infinitive game: group selection, exercises, round results,
+ * progress sync with API, and navigation between selection / intro / exercise / results phases.
+ * @see GerundInfinitiveGame
+ */
+
 import { useState, useCallback, useEffect } from 'react';
 import type {
   GerundInfinitiveGroup,

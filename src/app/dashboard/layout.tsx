@@ -5,10 +5,10 @@ import { prisma } from "@/lib/prisma";
 import { getTimeframedLeaderboard } from "@/lib/gamification";
 import { BottomNav } from "@/components/ui";
 import { DashboardHeader } from "@/components/dashboard";
-import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
-import PWAInstallPrompt from "@/components/PWAInstallPrompt";
-import NetworkStatusBanner from "@/components/NetworkStatusBanner";
-import SubmissionOutboxManager from "@/components/SubmissionOutboxManager";
+import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
+import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
+import { NetworkStatusBanner } from "@/components/NetworkStatusBanner";
+import { SubmissionOutboxManager } from "@/components/SubmissionOutboxManager";
 
 async function getStudentLeaderboardRank(userId: string): Promise<number | null> {
     const enrollment = await prisma.classEnrollment.findFirst({

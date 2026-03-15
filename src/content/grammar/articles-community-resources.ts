@@ -9,11 +9,11 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
             title: "Articles & References for Community Resources",
             icon: "🏘️",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(248, 113, 113, 0.08) 0%, rgba(37, 99, 235, 0.08) 100%); padding: 1.25rem; border-radius: 0.75rem; margin-bottom: 1rem;">
-                    <p style="margin-bottom: 0.5rem;">Articles (a/an/the) tell listeners whether you are naming something general or something specific. When you describe housing, jobs, or health services in East Boston, strong article choices keep your message sharp.</p>
-                    <p style="margin: 0;">Think of articles as pointers: they guide the listener to the right person, place, or service.</p>
+                <div style="background: linear-gradient(135deg, rgba(248, 113, 113, 0.08) 0%, rgba(37, 99, 235, 0.08) 100%); padding: 1.25rem; border-radius: 0.75rem; margin-bottom: 1rem">
+                    <p style="margin-bottom: 0.5rem">Articles (a/an/the) tell listeners whether you are naming something general or something specific. When you describe housing, jobs, or health services in East Boston, strong article choices keep your message sharp.</p>
+                    <p style="margin: 0">Think of articles as pointers: they guide the listener to the right person, place, or service.</p>
                 </div>
-                <ul style="margin-top: 0; padding-left: 1.2rem;">
+                <ul style="margin-top: 0; padding-left: 1.2rem">
                     <li>New housing leads to “a counselor” (any counselor) vs “the counselor” (the one you already met).</li>
                     <li>Job meetings may need “a resume” (any file) vs “the resume I finished” (specific).</li>
                     <li>Health clinics often use zero article (“We go to clinic events”).</li>
@@ -30,13 +30,13 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
             title: "Indefinite vs. Definite vs. Zero Articles",
             icon: "📌",
             explanation: `
-                <h3 style="margin-top: 0;">Indefinite (a/an)</h3>
+                <h3 style="margin-top: 0">Indefinite (a/an)</h3>
                 <p>Use when you introduce something new or mean any example.</p>
                 <h3>Definite (the)</h3>
                 <p>Use when both people know the exact item.</p>
                 <h3>Zero Article</h3>
                 <p>Drop the article for plural/general nouns or abstract services.</p>
-                <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+                <ul style="margin-top: 0.5rem; padding-left: 1.2rem">
                     <li>“I visited <strong>a</strong> community center.”</li>
                     <li>“<strong>The</strong> center has free ESOL classes.”</li>
                     <li>“I love <strong>(no article)</strong> community events.”</li>
@@ -78,21 +78,21 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
             title: "Proper Names, Abstract Nouns, and Zero Article",
             icon: "🗺️",
             explanation: `
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
-                    <div style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(59, 130, 246, 0.08); border-left: 4px solid #2563eb;">
-                        <p style="margin: 0 0 0.2rem; font-weight: 600;">The + unique place</p>
-                        <p style="margin: 0;">"The East Boston Branch Library" is unique and needs the.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem">
+                    <div style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(59, 130, 246, 0.08); border-left: 4px solid #2563eb">
+                        <p style="margin: 0 0 0.2rem; font-weight: 600">The + unique place</p>
+                        <p style="margin: 0">"The East Boston Branch Library" is unique and needs the.</p>
                     </div>
-                    <div style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(16, 185, 129, 0.08); border-left: 4px solid #059669;">
-                        <p style="margin: 0 0 0.2rem; font-weight: 600;">Zero + general service</p>
-                        <p style="margin: 0;">"We look for work at community centers" (plural/general → no article).</p>
+                    <div style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(16, 185, 129, 0.08); border-left: 4px solid #059669">
+                        <p style="margin: 0 0 0.2rem; font-weight: 600">Zero + general service</p>
+                        <p style="margin: 0">"We look for work at community centers" (plural/general → no article).</p>
                     </div>
-                    <div style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(248, 113, 113, 0.08); border-left: 4px solid #ef4444;">
-                        <p style="margin: 0 0 0.2rem; font-weight: 600;">Abstract nouns + the</p>
-                        <p style="margin: 0;">"The safety of my family is a priority."</p>
+                    <div class="gc-callout-red" style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(248, 113, 113, 0.08); ">
+                        <p style="margin: 0 0 0.2rem; font-weight: 600">Abstract nouns + the</p>
+                        <p style="margin: 0">"The safety of my family is a priority."</p>
                     </div>
                 </div>
-                <p style="margin-top: 0.75rem;">Use the article that matches whether you point to a specific landmark, a general service, or a known idea.</p>
+                <p style="margin-top: 0.75rem">Use the article that matches whether you point to a specific landmark, a general service, or a known idea.</p>
             `,
             tipBox: {
                 title: "💬 Try This",
@@ -191,9 +191,9 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
             title: "📝 Mini Quiz: Articles Mastery",
             icon: "🎯",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin-top: 0; color: #059669;">Test Your Articles Knowledge!</h3>
-                    <p style="margin-bottom: 0;">This quick quiz covers everything you learned about articles. Choose the best article (a/an/the/no article) for each sentence.</p>
+                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 style="margin-top: 0; color: #059669">Test Your Articles Knowledge!</h3>
+                    <p style="margin-bottom: 0">This quick quiz covers everything you learned about articles. Choose the best article (a/an/the/no article) for each sentence.</p>
                 </div>
             `,
             exercises: [

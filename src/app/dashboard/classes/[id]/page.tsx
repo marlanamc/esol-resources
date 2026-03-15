@@ -4,7 +4,7 @@ import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
-import LogoutButton from "@/components/LogoutButton";
+import { LogoutButton } from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { FeatureToggleButton } from "@/components/dashboard";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";

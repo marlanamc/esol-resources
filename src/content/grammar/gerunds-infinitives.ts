@@ -9,31 +9,31 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       title: "The -ING vs TO Choice: See the Pattern First",
       icon: "🔄",
       explanation: `
-        <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.1) 0%, rgba(3, 105, 161, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-          <h3 style="margin-top: 0; color: #d97757; font-size: 1.25rem;">🎯 What We're Learning</h3>
-          <p style="font-size: 1.05rem; margin-bottom: 0;">Sometimes you put another verb right after a word. English gives you two choices: add <strong style="color: #d97757;">-ING</strong> or add <strong style="color: #0369a1;">TO</strong> before the verb. Before we learn any grammar words, let's <strong>see the pattern and feel confident using it</strong>.</p>
+        <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.1) 0%, rgba(3, 105, 161, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+          <h3 class="gc-text-terracotta" style="margin-top: 0; ; font-size: 1.25rem">🎯 What We're Learning</h3>
+          <p style="font-size: 1.05rem; margin-bottom: 0">Sometimes you put another verb right after a word. English gives you two choices: add <strong class="gc-text-terracotta">-ING</strong> or add <strong style="color: #0369a1">TO</strong> before the verb. Before we learn any grammar words, let's <strong>see the pattern and feel confident using it</strong>.</p>
         </div>
 
         <p><strong>Here are examples. Notice what stays the same and what changes:</strong></p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-          <div style="padding: 1rem; background: rgba(217, 119, 87, 0.08); border-left: 4px solid #d97757; border-radius: 0.5rem;">
-            <p style="margin: 0 0 0.5rem 0; font-weight: 600;">The -ING form:</p>
-            <p style="margin: 0;"><strong>Reading</strong> is fun. <em>(verb as subject)</em></p>
-            <p style="margin: 0;">I enjoy <strong>reading</strong>.</p>
-            <p style="margin: 0;">I finished <strong>working</strong>.</p>
-            <p style="margin: 0;">I like <strong>cooking</strong>.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0">
+          <div class="gc-callout-terracotta" style="padding: 1rem; background: rgba(217, 119, 87, 0.08); ; border-radius: 0.5rem">
+            <p style="margin: 0 0 0.5rem 0; font-weight: 600">The -ING form:</p>
+            <p style="margin: 0"><strong>Reading</strong> is fun. <em>(verb as subject)</em></p>
+            <p style="margin: 0">I enjoy <strong>reading</strong>.</p>
+            <p style="margin: 0">I finished <strong>working</strong>.</p>
+            <p style="margin: 0">I like <strong>cooking</strong>.</p>
           </div>
-          <div style="padding: 1rem; background: rgba(3, 105, 161, 0.08); border-left: 4px solid #0369a1; border-radius: 0.5rem;">
-            <p style="margin: 0 0 0.5rem 0; font-weight: 600;">The TO + verb form:</p>
-            <p style="margin: 0;">I want <strong>to learn</strong>.</p>
-            <p style="margin: 0;">I'm happy <strong>to help</strong>. <em>(adjective before)</em></p>
-            <p style="margin: 0;">I plan <strong>to study</strong>.</p>
-            <p style="margin: 0;">I need <strong>to practice</strong>.</p>
+          <div style="padding: 1rem; background: rgba(3, 105, 161, 0.08); border-left: 4px solid #0369a1; border-radius: 0.5rem">
+            <p style="margin: 0 0 0.5rem 0; font-weight: 600">The TO + verb form:</p>
+            <p style="margin: 0">I want <strong>to learn</strong>.</p>
+            <p style="margin: 0">I'm happy <strong>to help</strong>. <em>(adjective before)</em></p>
+            <p style="margin: 0">I plan <strong>to study</strong>.</p>
+            <p style="margin: 0">I need <strong>to practice</strong>.</p>
           </div>
         </div>
 
-        <div style="background: rgba(123, 168, 132, 0.1); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-          <p style="margin: 0; font-style: italic; color: #3a3a3a;">💡 Use -ING when: the verb is the <strong>subject</strong> (Reading is fun) OR when a certain word comes <strong>before</strong> it (enjoy, for, in…). Use TO when a <strong>verb</strong> (want, plan, need) or <strong>adjective</strong> (happy, important) comes before. We'll learn the patterns!</p>
+        <div class="gc-callout-sage" style="background: rgba(123, 168, 132, 0.1); ; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+          <p style="margin: 0; font-style: italic; color: #3a3a3a">💡 Use -ING when: the verb is the <strong>subject</strong> (Reading is fun) OR when a certain word comes <strong>before</strong> it (enjoy, for, in…). Use TO when a <strong>verb</strong> (want, plan, need) or <strong>adjective</strong> (happy, important) comes before. We'll learn the patterns!</p>
         </div>
       `,
       exercises: [
@@ -45,19 +45,19 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "I enjoy ___ books.",
-              options: ["reading", "to read", "read"],
+              options: ["to read", "reading", "read"],
               expectedAnswer: "reading"
             },
             {
               type: "select",
               label: "I want ___ Spanish.",
-              options: ["learning", "to learn", "learn"],
+              options: ["to learn", "learning", "learn"],
               expectedAnswer: "to learn"
             },
             {
               type: "select",
               label: "I finished ___ the report.",
-              options: ["writing", "to write", "write"],
+              options: ["to write", "write", "writing"],
               expectedAnswer: "writing"
             },
             {
@@ -69,13 +69,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "I'm happy ___ you.",
-              options: ["to help", "helping", "help"],
+              options: ["helping", "help", "to help"],
               expectedAnswer: "to help"
             },
             {
               type: "select",
               label: "___ is relaxing.",
-              options: ["Reading", "To read", "Read"],
+              options: ["To read", "Reading", "Read"],
               expectedAnswer: "Reading"
             }
           ]
@@ -87,41 +87,41 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       title: "Pattern Practice: -ING After Certain Words",
       icon: "🔶",
       explanation: `
-        <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.12) 0%, rgba(217, 119, 87, 0.04) 100%); border-radius: 1rem; padding: 1.25rem; margin-bottom: 1.5rem;">
-          <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600; color: #d97757;">👀 Look at these sentences. What stays the same?</p>
-          <p style="margin: 0; color: #666; font-size: 0.95rem;">Notice the pattern in each example below.</p>
+        <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.12) 0%, rgba(217, 119, 87, 0.04) 100%); border-radius: 1rem; padding: 1.25rem; margin-bottom: 1.5rem">
+          <p class="gc-text-terracotta" style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600; ">👀 Look at these sentences. What stays the same?</p>
+          <p style="margin: 0; color: #666; font-size: 0.95rem">Notice the pattern in each example below.</p>
         </div>
 
-        <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem;">
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">subject</span>
-            <span><strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">Swimming</strong> is good exercise.</span>
+        <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem">
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span class="gc-text-terracotta" style="background: rgba(217, 119, 87, 0.15); ; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">subject</span>
+            <span><strong class="gc-text-terracotta" style="background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem">Swimming</strong> is good exercise.</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">enjoy</span>
-            <span>I enjoy <strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">reading</strong> mystery novels.</span>
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span class="gc-text-terracotta" style="background: rgba(217, 119, 87, 0.15); ; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">enjoy</span>
+            <span>I enjoy <strong class="gc-text-terracotta" style="background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem">reading</strong> mystery novels.</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">finished</span>
-            <span>I finished <strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">cleaning</strong> the house.</span>
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span class="gc-text-terracotta" style="background: rgba(217, 119, 87, 0.15); ; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">finished</span>
+            <span>I finished <strong class="gc-text-terracotta" style="background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem">cleaning</strong> the house.</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">suggest</span>
-            <span>I suggest <strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">taking</strong> the train.</span>
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span class="gc-text-terracotta" style="background: rgba(217, 119, 87, 0.15); ; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">suggest</span>
+            <span>I suggest <strong class="gc-text-terracotta" style="background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem">taking</strong> the train.</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">for</span>
-            <span>Thank you for <strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">helping</strong> me.</span>
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span class="gc-text-terracotta" style="background: rgba(217, 119, 87, 0.15); ; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">for</span>
+            <span>Thank you for <strong class="gc-text-terracotta" style="background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem">helping</strong> me.</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">in</span>
-            <span>I'm interested in <strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">learning</strong> French.</span>
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span class="gc-text-terracotta" style="background: rgba(217, 119, 87, 0.15); ; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">in</span>
+            <span>I'm interested in <strong class="gc-text-terracotta" style="background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem">learning</strong> French.</span>
           </div>
         </div>
 
-        <div style="background: #d97757; color: white; border-radius: 0.75rem; padding: 1rem 1.25rem; text-align: center;">
-          <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">💡 The Pattern</p>
-          <p style="margin: 0; font-size: 0.95rem;">Use <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">-ING</strong> when: the verb is the <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">subject</strong> (Swimming is fun) OR when a word like enjoy, for, in comes <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">before</strong> it!</p>
+        <div style="background: #d97757; color: white; border-radius: 0.75rem; padding: 1rem 1.25rem; text-align: center">
+          <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700">💡 The Pattern</p>
+          <p style="margin: 0; font-size: 0.95rem">Use <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em">-ING</strong> when: the verb is the <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em">subject</strong> (Swimming is fun) OR when a word like enjoy, for, in comes <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em">before</strong> it!</p>
         </div>
       `,
       exercises: [
@@ -170,13 +170,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "I suggest ___ the museum on Saturday.",
-              options: ["visiting", "to visit", "visit"],
+              options: ["to visit", "visiting", "visit"],
               expectedAnswer: "visiting"
             },
             {
               type: "select",
               label: "Thank you for ___ me with my homework.",
-              options: ["helping", "to help", "help"],
+              options: ["help", "to help", "helping"],
               expectedAnswer: "helping"
             },
             {
@@ -188,13 +188,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "I avoid ___ junk food.",
-              options: ["eating", "to eat", "eat"],
+              options: ["to eat", "eating", "eat"],
               expectedAnswer: "eating"
             },
             {
               type: "select",
               label: "She keeps ___ about her trip.",
-              options: ["talking", "to talk", "talk"],
+              options: ["talk", "to talk", "talking"],
               expectedAnswer: "talking"
             },
             {
@@ -206,19 +206,19 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "She's good at ___ languages.",
-              options: ["speaking", "to speak", "speak"],
+              options: ["to speak", "speaking", "speak"],
               expectedAnswer: "speaking"
             },
             {
               type: "select",
               label: "___ a new language takes time.",
-              options: ["Learning", "To learn", "Learn"],
+              options: ["Learn", "Learning", "To learn"],
               expectedAnswer: "Learning"
             },
             {
               type: "select",
               label: "___ every morning helps me focus.",
-              options: ["Meditating", "To meditate", "Meditate"],
+              options: ["To meditate", "Meditate", "Meditating"],
               expectedAnswer: "Meditating"
             }
           ]
@@ -230,41 +230,41 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       title: "Pattern Practice: TO + Verb After Certain Words",
       icon: "🔷",
       explanation: `
-        <div style="background: linear-gradient(135deg, rgba(3, 105, 161, 0.12) 0%, rgba(3, 105, 161, 0.04) 100%); border-radius: 1rem; padding: 1.25rem; margin-bottom: 1.5rem;">
-          <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600; color: #0369a1;">👀 Now look at these. What stays the same?</p>
-          <p style="margin: 0; color: #666; font-size: 0.95rem;">Notice the pattern in each example below.</p>
+        <div style="background: linear-gradient(135deg, rgba(3, 105, 161, 0.12) 0%, rgba(3, 105, 161, 0.04) 100%); border-radius: 1rem; padding: 1.25rem; margin-bottom: 1.5rem">
+          <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600; color: #0369a1">👀 Now look at these. What stays the same?</p>
+          <p style="margin: 0; color: #666; font-size: 0.95rem">Notice the pattern in each example below.</p>
         </div>
 
-        <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem;">
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">happy</span>
-            <span>I'm happy <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to help</strong> you.</span>
+        <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem">
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">happy</span>
+            <span>I'm happy <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to help</strong> you.</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">want</span>
-            <span>I want <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to visit</strong> Japan someday.</span>
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">want</span>
+            <span>I want <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to visit</strong> Japan someday.</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">plan</span>
-            <span>I plan <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to study</strong> medicine.</span>
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">plan</span>
+            <span>I plan <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to study</strong> medicine.</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">need</span>
-            <span>I need <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to practice</strong> my English.</span>
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">need</span>
+            <span>I need <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to practice</strong> my English.</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">important</span>
-            <span>It's important <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to exercise</strong> regularly.</span>
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">important</span>
+            <span>It's important <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to exercise</strong> regularly.</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">ability</span>
-            <span>I have the ability <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to speak</strong> three languages.</span>
+          <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">ability</span>
+            <span>I have the ability <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to speak</strong> three languages.</span>
           </div>
         </div>
 
-        <div style="background: #0369a1; color: white; border-radius: 0.75rem; padding: 1rem 1.25rem; text-align: center;">
-          <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">💡 The Pattern</p>
-          <p style="margin: 0; font-size: 0.95rem;">Use <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">TO + verb</strong> when: an <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">adjective</strong> (happy, important, ready) comes before, OR a <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">verb</strong> (want, plan, need) or <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">noun</strong> (ability) comes before!</p>
+        <div style="background: #0369a1; color: white; border-radius: 0.75rem; padding: 1rem 1.25rem; text-align: center">
+          <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700">💡 The Pattern</p>
+          <p style="margin: 0; font-size: 0.95rem">Use <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em">TO + verb</strong> when: an <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em">adjective</strong> (happy, important, ready) comes before, OR a <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em">verb</strong> (want, plan, need) or <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em">noun</strong> (ability) comes before!</p>
         </div>
       `,
       exercises: [
@@ -307,7 +307,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "I hope ___ you at the party.",
-              options: ["to see", "seeing", "see"],
+              options: ["seeing", "to see", "see"],
               expectedAnswer: "to see"
             },
             {
@@ -319,19 +319,19 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "It's important ___ on time.",
-              options: ["to arrive", "arriving", "arrive"],
+              options: ["arrive", "arriving", "to arrive"],
               expectedAnswer: "to arrive"
             },
             {
               type: "select",
               label: "He promised ___ call me tomorrow.",
-              options: ["to call", "calling", "call"],
+              options: ["calling", "to call", "call"],
               expectedAnswer: "to call"
             },
             {
               type: "select",
               label: "She offered ___ drive us to the airport.",
-              options: ["to drive", "driving", "drive"],
+              options: ["driving", "drive", "to drive"],
               expectedAnswer: "to drive"
             },
             {
@@ -343,7 +343,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "She's excited ___ start her new job.",
-              options: ["to start", "starting", "start"],
+              options: ["starting", "start", "to start"],
               expectedAnswer: "to start"
             }
           ]
@@ -355,9 +355,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       title: "Notice: What Stays the Same?",
       icon: "🔍",
       explanation: `
-        <div style="background: rgba(244, 211, 94, 0.15); padding: 1.25rem; border-radius: 0.5rem; border-left: 4px solid #f4d35e; margin-bottom: 1rem;">
-          <h3 style="margin-top: 0; color: #b8860b;">What did you notice?</h3>
-          <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
+        <div style="background: rgba(244, 211, 94, 0.15); padding: 1.25rem; border-radius: 0.5rem; border-left: 4px solid #f4d35e; margin-bottom: 1rem">
+          <h3 style="margin-top: 0; color: #b8860b">What did you notice?</h3>
+          <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem">
             <li><strong>Use -ING when:</strong> the verb is the subject (Swimming is fun), OR after certain words: enjoy, finish, suggest, thank you for, interested in, good at…</li>
             <li><strong>Use TO + verb after:</strong> adjectives (happy, important, ready), verbs (want, plan, need, hope, decide), or nouns (ability)…</li>
           </ul>
@@ -373,24 +373,24 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       explanation: `
         <p>You've practiced the patterns. Here are the official names:</p>
 
-        <h3 style="margin-top: 1.5rem;">-ING form = <strong>Gerund</strong></h3>
+        <h3 style="margin-top: 1.5rem">-ING form = <strong>Gerund</strong></h3>
         <p>A <strong>gerund</strong> is a verb + -ing that acts like a noun. Gerunds can be the <strong>subject</strong> of a sentence or come after certain words.</p>
-        <ul style="margin: 0.5rem 0 1rem 0;">
+        <ul style="margin: 0.5rem 0 1rem 0">
           <li><strong>Reading</strong> is fun. (gerund as subject)</li>
           <li>I enjoy <strong>reading</strong>. (gerund after verb)</li>
           <li>Thank you for <strong>helping</strong> me. (gerund after preposition)</li>
         </ul>
 
-        <h3 style="margin-top: 1.5rem;">TO + verb = <strong>Infinitive</strong></h3>
+        <h3 style="margin-top: 1.5rem">TO + verb = <strong>Infinitive</strong></h3>
         <p>An <strong>infinitive</strong> is <em>to</em> + the base form of the verb. Use it after <strong>adjectives</strong> (happy, important), <strong>verbs</strong> (want, plan), or <strong>nouns</strong> (ability).</p>
-        <ul style="margin: 0.5rem 0 1rem 0;">
+        <ul style="margin: 0.5rem 0 1rem 0">
           <li>I'm happy <strong>to help</strong>. (adjective + infinitive)</li>
           <li>I want <strong>to learn</strong>. (verb + infinitive)</li>
           <li>I have the ability <strong>to speak</strong> three languages. (noun + infinitive)</li>
         </ul>
 
-        <div style="background: rgba(123, 168, 132, 0.1); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-          <p style="margin: 0;"><strong>Rule:</strong> Subject? → gerund. <strong>Adjective</strong> (happy, important) or <strong>verb</strong> (want, plan) or <strong>noun</strong> (ability) before? → infinitive. <strong>Preposition</strong> (in, for, at)? → gerund.</p>
+        <div class="gc-callout-sage" style="background: rgba(123, 168, 132, 0.1); ; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+          <p style="margin: 0"><strong>Rule:</strong> Subject? → gerund. <strong>Adjective</strong> (happy, important) or <strong>verb</strong> (want, plan) or <strong>noun</strong> (ability) before? → infinitive. <strong>Preposition</strong> (in, for, at)? → gerund.</p>
         </div>
       `,
       exercises: [
@@ -403,8 +403,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               type: "radio",
               label: "'I enjoy reading.' – What is 'reading'?",
               options: [
-                { value: "gerund", label: "Gerund (verb + -ing)" },
-                { value: "infinitive", label: "Infinitive (to + verb)" }
+                { value: "infinitive", label: "Infinitive (to + verb)" },
+                { value: "gerund", label: "Gerund (verb + -ing)" }
               ],
               expectedAnswer: "gerund"
             },
@@ -412,8 +412,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               type: "radio",
               label: "'I want to learn.' – What is 'to learn'?",
               options: [
-                { value: "gerund", label: "Gerund (verb + -ing)" },
-                { value: "infinitive", label: "Infinitive (to + verb)" }
+                { value: "infinitive", label: "Infinitive (to + verb)" },
+                { value: "gerund", label: "Gerund (verb + -ing)" }
               ],
               expectedAnswer: "infinitive"
             },
@@ -421,8 +421,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               type: "radio",
               label: "'Reading is fun.' – What is 'Reading'? (verb as subject)",
               options: [
-                { value: "gerund", label: "Gerund (verb + -ing as subject)" },
-                { value: "infinitive", label: "Infinitive (to + verb)" }
+                { value: "infinitive", label: "Infinitive (to + verb)" },
+                { value: "gerund", label: "Gerund (verb + -ing as subject)" }
               ],
               expectedAnswer: "gerund"
             }
@@ -437,43 +437,43 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       explanation: `
         <p>Now that you know the names (gerund and infinitive), here's a quick guide. Ask yourself: <strong>What comes BEFORE the verb?</strong></p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-          <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.15) 0%, rgba(217, 119, 87, 0.05) 100%); border-left: 4px solid #d97757; border-radius: 0.5rem; padding: 1rem;">
-            <h4 style="color: #d97757; margin: 0 0 0.75rem 0; font-size: 1rem;">Use <span style="background: #d97757; color: white; padding: 0.15rem 0.4rem; border-radius: 0.25rem;">GERUND (-ING)</span></h4>
-            <div style="margin-bottom: 0.75rem;">
-              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">Preposition before verb?</p>
-              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">"I'm interested in <strong>learning</strong> Spanish."</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem">
+          <div class="gc-callout-terracotta" style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.15) 0%, rgba(217, 119, 87, 0.05) 100%); ; border-radius: 0.5rem; padding: 1rem">
+            <h4 class="gc-text-terracotta" style="margin: 0 0 0.75rem 0; font-size: 1rem">Use <span style="background: #d97757; color: white; padding: 0.15rem 0.4rem; border-radius: 0.25rem">GERUND (-ING)</span></h4>
+            <div style="margin-bottom: 0.75rem">
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem">Preposition before verb?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic">"I'm interested in <strong>learning</strong> Spanish."</p>
             </div>
-            <div style="margin-bottom: 0.75rem;">
-              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">Verb is the subject?</p>
-              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">"<strong>Swimming</strong> is my favorite exercise."</p>
+            <div style="margin-bottom: 0.75rem">
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem">Verb is the subject?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic">"<strong>Swimming</strong> is my favorite exercise."</p>
             </div>
             <div>
-              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">After certain verbs?</p>
-              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">enjoy, finish, avoid, consider, suggest</p>
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem">After certain verbs?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic">enjoy, finish, avoid, consider, suggest</p>
             </div>
           </div>
 
-          <div style="background: linear-gradient(135deg, rgba(3, 105, 161, 0.15) 0%, rgba(3, 105, 161, 0.05) 100%); border-left: 4px solid #0369a1; border-radius: 0.5rem; padding: 1rem;">
-            <h4 style="color: #0369a1; margin: 0 0 0.75rem 0; font-size: 1rem;">Use <span style="background: #0369a1; color: white; padding: 0.15rem 0.4rem; border-radius: 0.25rem;">INFINITIVE (TO)</span></h4>
-            <div style="margin-bottom: 0.75rem;">
-              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">Adjective before verb?</p>
-              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">"I'm happy <strong>to help</strong> you."</p>
+          <div style="background: linear-gradient(135deg, rgba(3, 105, 161, 0.15) 0%, rgba(3, 105, 161, 0.05) 100%); border-left: 4px solid #0369a1; border-radius: 0.5rem; padding: 1rem">
+            <h4 style="color: #0369a1; margin: 0 0 0.75rem 0; font-size: 1rem">Use <span style="background: #0369a1; color: white; padding: 0.15rem 0.4rem; border-radius: 0.25rem">INFINITIVE (TO)</span></h4>
+            <div style="margin-bottom: 0.75rem">
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem">Adjective before verb?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic">"I'm happy <strong>to help</strong> you."</p>
             </div>
-            <div style="margin-bottom: 0.75rem;">
-              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">Noun before verb?</p>
-              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">"I have the ability <strong>to speak</strong> three languages."</p>
+            <div style="margin-bottom: 0.75rem">
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem">Noun before verb?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic">"I have the ability <strong>to speak</strong> three languages."</p>
             </div>
             <div>
-              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">After certain verbs?</p>
-              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">want, need, plan, decide, hope, offer</p>
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem">After certain verbs?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic">want, need, plan, decide, hope, offer</p>
             </div>
           </div>
         </div>
 
-        <div style="background: rgba(244, 211, 94, 0.2); border: 1px solid #f4d35e; border-radius: 0.5rem; padding: 1rem; text-align: center;">
-          <p style="margin: 0; font-weight: 600; color: #b8860b;">⚠️ Watch out for "TO" as a preposition!</p>
-          <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.9rem;">"I look forward <strong>to meeting</strong> you" → "to" is a preposition here, so use gerund!</p>
+        <div style="background: rgba(244, 211, 94, 0.2); border: 1px solid #f4d35e; border-radius: 0.5rem; padding: 1rem; text-align: center">
+          <p style="margin: 0; font-weight: 600; color: #b8860b">⚠️ Watch out for "TO" as a preposition!</p>
+          <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.9rem">"I look forward <strong>to meeting</strong> you" → "to" is a preposition here, so use gerund!</p>
         </div>
       `,
       exercises: [
@@ -485,7 +485,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "She's good at ___ languages. (preposition 'at' before verb)",
-              options: ["learning", "to learn", "learn"],
+              options: ["to learn", "learning", "learn"],
               expectedAnswer: "learning"
             },
             {
@@ -497,13 +497,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "___ is relaxing. (verb is the subject)",
-              options: ["Reading", "To read", "Read"],
+              options: ["To read", "Read", "Reading"],
               expectedAnswer: "Reading"
             },
             {
               type: "select",
               label: "I look forward to ___ you. ('to' is a preposition here!)",
-              options: ["meeting", "meet", "to meet"],
+              options: ["to meet", "meeting", "meet"],
               expectedAnswer: "meeting"
             }
           ]
@@ -588,7 +588,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "Job interview: I'm good at ___ problems.",
-              options: ["solving", "to solve", "solve"],
+              options: ["to solve", "solving", "solve"],
               expectedAnswer: "solving"
             },
             {
@@ -600,13 +600,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "Housing: Thank you for ___ the sink.",
-              options: ["fixing", "to fix", "fix"],
+              options: ["to fix", "fix", "fixing"],
               expectedAnswer: "fixing"
             },
             {
               type: "select",
               label: "Workplace: I finished ___ the report.",
-              options: ["writing", "to write", "write"],
+              options: ["to write", "writing", "write"],
               expectedAnswer: "writing"
             }
           ]
@@ -622,65 +622,65 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
         <p>Use a <strong>gerund (-ing)</strong> in these three situations. Follow the flowchart!</p>
 
         <!-- Visual Flowchart -->
-        <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.08) 0%, rgba(217, 119, 87, 0.02) 100%); border: 2px solid rgba(217, 119, 87, 0.3); border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0;">
-          <div style="text-align: center; margin-bottom: 1rem;">
-            <div style="display: inline-block; background: #d97757; color: white; padding: 0.75rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1rem;">
+        <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.08) 0%, rgba(217, 119, 87, 0.02) 100%); border: 2px solid rgba(217, 119, 87, 0.3); border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0">
+          <div style="text-align: center; margin-bottom: 1rem">
+            <div style="display: inline-block; background: #d97757; color: white; padding: 0.75rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1rem">
               🤔 What comes BEFORE the verb?
             </div>
           </div>
 
-          <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
-            <div style="width: 2px; height: 20px; background: #d97757;"></div>
+          <div style="display: flex; justify-content: center; margin: 0.5rem 0">
+            <div style="width: 2px; height: 20px; background: #d97757"></div>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; text-align: center;">
-            <div style="background: rgba(217, 119, 87, 0.15); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
-              <div style="font-weight: 700; color: #d97757; margin-bottom: 0.25rem;">Preposition?</div>
-              <div style="font-size: 0.85rem; color: #666;">in, at, for, about, of</div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; text-align: center">
+            <div style="background: rgba(217, 119, 87, 0.15); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 0.5rem; padding: 0.75rem">
+              <div class="gc-text-terracotta" style="font-weight: 700; ; margin-bottom: 0.25rem">Preposition?</div>
+              <div style="font-size: 0.85rem; color: #666">in, at, for, about, of</div>
             </div>
-            <div style="background: rgba(217, 119, 87, 0.15); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
-              <div style="font-weight: 700; color: #d97757; margin-bottom: 0.25rem;">Subject position?</div>
-              <div style="font-size: 0.85rem; color: #666;">verb is the topic</div>
+            <div style="background: rgba(217, 119, 87, 0.15); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 0.5rem; padding: 0.75rem">
+              <div class="gc-text-terracotta" style="font-weight: 700; ; margin-bottom: 0.25rem">Subject position?</div>
+              <div style="font-size: 0.85rem; color: #666">verb is the topic</div>
             </div>
-            <div style="background: rgba(217, 119, 87, 0.15); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
-              <div style="font-weight: 700; color: #d97757; margin-bottom: 0.25rem;">Gerund verb?</div>
-              <div style="font-size: 0.85rem; color: #666;">enjoy, finish, avoid...</div>
+            <div style="background: rgba(217, 119, 87, 0.15); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 0.5rem; padding: 0.75rem">
+              <div class="gc-text-terracotta" style="font-weight: 700; ; margin-bottom: 0.25rem">Gerund verb?</div>
+              <div style="font-size: 0.85rem; color: #666">enjoy, finish, avoid...</div>
             </div>
           </div>
 
-          <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
-            <div style="width: 2px; height: 20px; background: #d97757;"></div>
+          <div style="display: flex; justify-content: center; margin: 0.5rem 0">
+            <div style="width: 2px; height: 20px; background: #d97757"></div>
           </div>
 
-          <div style="text-align: center;">
-            <div style="display: inline-block; background: #d97757; color: white; padding: 0.5rem 1.5rem; border-radius: 2rem; font-weight: 700;">
+          <div style="text-align: center">
+            <div style="display: inline-block; background: #d97757; color: white; padding: 0.5rem 1.5rem; border-radius: 2rem; font-weight: 700">
               ✅ Use GERUND (-ING)
             </div>
           </div>
         </div>
 
-        <h3 style="color: #d97757; margin-top: 1.5rem;">Pattern A: Subject = Gerund</h3>
+        <h3 class="gc-text-terracotta" style="margin-top: 1.5rem">Pattern A: Subject = Gerund</h3>
         <p>When a verb is the <strong>subject</strong> of a sentence:</p>
-        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem;">
+        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem">
           <li><strong>Swimming</strong> is excellent exercise.</li>
           <li><strong>Learning</strong> a new language takes time.</li>
           <li><strong>Cooking</strong> at home saves money.</li>
         </ul>
 
-        <h3 style="color: #d97757;">Pattern B: Verb + Gerund</h3>
+        <h3 class="gc-text-terracotta">Pattern B: Verb + Gerund</h3>
         <p>Certain verbs are <strong>always</strong> followed by gerunds:</p>
-        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem;">
+        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem">
           <li><strong>enjoy, like, love:</strong> I enjoy <strong>reading</strong>.</li>
           <li><strong>finish, keep, quit:</strong> I finished <strong>cleaning</strong>.</li>
           <li><strong>avoid, miss, risk:</strong> I avoid <strong>eating</strong> sugar.</li>
           <li><strong>consider, suggest:</strong> I suggest <strong>taking</strong> the bus.</li>
         </ul>
 
-        <h3 style="color: #d97757;">Pattern C: Preposition + Gerund (CRITICAL!)</h3>
-        <div style="background-color: #ffe6e6; border: 2px solid #d97757; padding: 1rem; margin: 0.75rem 0; border-radius: 0.5rem;">
-          <p style="margin: 0;"><strong>⚠️ Golden Rule:</strong> After a preposition → <strong>ALWAYS</strong> use gerund!</p>
+        <h3 class="gc-text-terracotta">Pattern C: Preposition + Gerund (CRITICAL!)</h3>
+        <div style="background-color: #ffe6e6; border: 2px solid #d97757; padding: 1rem; margin: 0.75rem 0; border-radius: 0.5rem">
+          <p style="margin: 0"><strong>⚠️ Golden Rule:</strong> After a preposition → <strong>ALWAYS</strong> use gerund!</p>
         </div>
-        <ul style="margin: 0.5rem 0; padding-left: 1.25rem;">
+        <ul style="margin: 0.5rem 0; padding-left: 1.25rem">
           <li>I'm interested <strong>in learning</strong> French.</li>
           <li>She's good <strong>at solving</strong> problems.</li>
           <li>Thank you <strong>for helping</strong> me.</li>
@@ -710,13 +710,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "___ a new language takes practice. (subject)",
-              options: ["Learning", "To learn", "Learn"],
+              options: ["To learn", "Learning", "Learn"],
               expectedAnswer: "Learning"
             },
             {
               type: "select",
               label: "I finished ___ the report. (verb + gerund)",
-              options: ["writing", "to write", "write"],
+              options: ["to write", "write", "writing"],
               expectedAnswer: "writing"
             },
             {
@@ -728,7 +728,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "I look forward to ___ you. (preposition!)",
-              options: ["meeting", "meet", "to meet"],
+              options: ["to meet", "meeting", "meet"],
               expectedAnswer: "meeting"
             }
           ]
@@ -784,12 +784,12 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       explanation: `
         <p>You know: after a preposition → use gerund. But <strong>which preposition</strong>? This is hard because there's no rule—each adjective or phrase has its <strong>fixed</strong> preposition. You have to learn them!</p>
 
-        <div style="background: rgba(244, 211, 94, 0.15); border-left: 4px solid #f4d35e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
-          <p style="margin: 0; font-weight: 600;">❌ Common mistakes: "interested <em>to</em> learn" · "good <em>in</em> solving" · "thank you <em>to</em> help"</p>
-          <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem;">✅ Correct: interested <strong>in</strong> learning · good <strong>at</strong> solving · thank you <strong>for</strong> helping</p>
+        <div style="background: rgba(244, 211, 94, 0.15); border-left: 4px solid #f4d35e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1rem 0">
+          <p style="margin: 0; font-weight: 600">❌ Common mistakes: "interested <em>to</em> learn" · "good <em>in</em> solving" · "thank you <em>to</em> help"</p>
+          <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem">✅ Correct: interested <strong>in</strong> learning · good <strong>at</strong> solving · thank you <strong>for</strong> helping</p>
         </div>
 
-        <h3 style="color: #d97757; margin-top: 1.5rem;">Common Adjective/Verb + Preposition + Gerund</h3>
+        <h3 class="gc-text-terracotta" style="margin-top: 1.5rem">Common Adjective/Verb + Preposition + Gerund</h3>
         <p>Learn these fixed combinations. They appear often in real English!</p>
       `,
       usageMeanings: [
@@ -915,62 +915,62 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
         <p>Use an <strong>infinitive (to + verb)</strong> in these three situations. Follow the flowchart!</p>
 
         <!-- Visual Flowchart -->
-        <div style="background: linear-gradient(135deg, rgba(3, 105, 161, 0.08) 0%, rgba(3, 105, 161, 0.02) 100%); border: 2px solid rgba(3, 105, 161, 0.3); border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0;">
-          <div style="text-align: center; margin-bottom: 1rem;">
-            <div style="display: inline-block; background: #0369a1; color: white; padding: 0.75rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1rem;">
+        <div style="background: linear-gradient(135deg, rgba(3, 105, 161, 0.08) 0%, rgba(3, 105, 161, 0.02) 100%); border: 2px solid rgba(3, 105, 161, 0.3); border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0">
+          <div style="text-align: center; margin-bottom: 1rem">
+            <div style="display: inline-block; background: #0369a1; color: white; padding: 0.75rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1rem">
               🤔 What comes BEFORE the verb?
             </div>
           </div>
 
-          <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
-            <div style="width: 2px; height: 20px; background: #0369a1;"></div>
+          <div style="display: flex; justify-content: center; margin: 0.5rem 0">
+            <div style="width: 2px; height: 20px; background: #0369a1"></div>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; text-align: center;">
-            <div style="background: rgba(3, 105, 161, 0.15); border: 1px solid rgba(3, 105, 161, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
-              <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem;">Adjective?</div>
-              <div style="font-size: 0.85rem; color: #666;">happy, ready, important</div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; text-align: center">
+            <div style="background: rgba(3, 105, 161, 0.15); border: 1px solid rgba(3, 105, 161, 0.3); border-radius: 0.5rem; padding: 0.75rem">
+              <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem">Adjective?</div>
+              <div style="font-size: 0.85rem; color: #666">happy, ready, important</div>
             </div>
-            <div style="background: rgba(3, 105, 161, 0.15); border: 1px solid rgba(3, 105, 161, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
-              <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem;">Noun?</div>
-              <div style="font-size: 0.85rem; color: #666;">ability, chance, time</div>
+            <div style="background: rgba(3, 105, 161, 0.15); border: 1px solid rgba(3, 105, 161, 0.3); border-radius: 0.5rem; padding: 0.75rem">
+              <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem">Noun?</div>
+              <div style="font-size: 0.85rem; color: #666">ability, chance, time</div>
             </div>
-            <div style="background: rgba(3, 105, 161, 0.15); border: 1px solid rgba(3, 105, 161, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
-              <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem;">Infinitive verb?</div>
-              <div style="font-size: 0.85rem; color: #666;">want, plan, decide...</div>
+            <div style="background: rgba(3, 105, 161, 0.15); border: 1px solid rgba(3, 105, 161, 0.3); border-radius: 0.5rem; padding: 0.75rem">
+              <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem">Infinitive verb?</div>
+              <div style="font-size: 0.85rem; color: #666">want, plan, decide...</div>
             </div>
           </div>
 
-          <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
-            <div style="width: 2px; height: 20px; background: #0369a1;"></div>
+          <div style="display: flex; justify-content: center; margin: 0.5rem 0">
+            <div style="width: 2px; height: 20px; background: #0369a1"></div>
           </div>
 
-          <div style="text-align: center;">
-            <div style="display: inline-block; background: #0369a1; color: white; padding: 0.5rem 1.5rem; border-radius: 2rem; font-weight: 700;">
+          <div style="text-align: center">
+            <div style="display: inline-block; background: #0369a1; color: white; padding: 0.5rem 1.5rem; border-radius: 2rem; font-weight: 700">
               ✅ Use INFINITIVE (TO + verb)
             </div>
           </div>
         </div>
 
-        <h3 style="color: #0369a1; margin-top: 1.5rem;">Pattern A: Adjective + Infinitive</h3>
+        <h3 style="color: #0369a1; margin-top: 1.5rem">Pattern A: Adjective + Infinitive</h3>
         <p>After adjectives expressing feelings, readiness, or importance:</p>
-        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem;">
+        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem">
           <li>I'm happy <strong>to help</strong> you.</li>
           <li>She's ready <strong>to go</strong> now.</li>
           <li>It's important <strong>to exercise</strong> regularly.</li>
         </ul>
 
-        <h3 style="color: #0369a1;">Pattern B: Noun + Infinitive</h3>
+        <h3 style="color: #0369a1">Pattern B: Noun + Infinitive</h3>
         <p>After nouns describing abilities, chances, or time:</p>
-        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem;">
+        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem">
           <li>I have the ability <strong>to speak</strong> three languages.</li>
           <li>This is your chance <strong>to learn</strong> something new.</li>
           <li>I don't have time <strong>to cook</strong> tonight.</li>
         </ul>
 
-        <h3 style="color: #0369a1;">Pattern C: Verb + Infinitive</h3>
+        <h3 style="color: #0369a1">Pattern C: Verb + Infinitive</h3>
         <p>Certain verbs are <strong>always</strong> followed by infinitives:</p>
-        <ul style="margin: 0.5rem 0; padding-left: 1.25rem;">
+        <ul style="margin: 0.5rem 0; padding-left: 1.25rem">
           <li><strong>want, hope, wish:</strong> I want <strong>to visit</strong> Japan.</li>
           <li><strong>plan, decide, choose:</strong> I decided <strong>to stay</strong> home.</li>
           <li><strong>need, learn, try:</strong> I need <strong>to practice</strong> more.</li>
@@ -1012,7 +1012,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "I'm happy ___ you. (adjective + infinitive)",
-              options: ["to help", "helping", "help"],
+              options: ["helping", "to help", "help"],
               expectedAnswer: "to help"
             },
             {
@@ -1024,13 +1024,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "She decided ___ a new car. (verb + infinitive)",
-              options: ["to buy", "buying", "buy"],
+              options: ["buying", "buy", "to buy"],
               expectedAnswer: "to buy"
             },
             {
               type: "select",
               label: "It's important ___ on time. (adjective + infinitive)",
-              options: ["to arrive", "arriving", "arrive"],
+              options: ["arriving", "to arrive", "arrive"],
               expectedAnswer: "to arrive"
             }
           ]
@@ -1067,10 +1067,10 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
         <p>Some verbs can be followed by BOTH gerunds and infinitives, but the <strong>meaning changes</strong>! Let's start with <strong>stop</strong>.</p>
 
         <h3>Stop + Gerund vs Stop + Infinitive</h3>
-        <div style="background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e;">
+        <div style="background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e">
           <p><strong>stop + gerund</strong> = quit doing something</p>
           <p>Example: I stopped <strong>smoking</strong>. (I quit the habit)</p>
-          <p style="margin-top: 1rem;"><strong>stop + infinitive</strong> = pause one activity to do another</p>
+          <p style="margin-top: 1rem"><strong>stop + infinitive</strong> = pause one activity to do another</p>
           <p>Example: I stopped <strong>to buy</strong> gas. (I paused my trip to buy gas)</p>
         </div>
       `,
@@ -1108,8 +1108,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               type: "radio",
               label: "I stopped ___ TV at midnight. (I quit the habit)",
               options: [
-                { value: "watching", label: "watching (quit the habit)" },
-                { value: "to-watch", label: "to watch (paused to do it)" }
+                { value: "to-watch", label: "to watch (paused to do it)" },
+                { value: "watching", label: "watching (quit the habit)" }
               ],
               expectedAnswer: "watching"
             }
@@ -1124,10 +1124,10 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       icon: "🧠",
       explanation: `
         <h3>Remember + Gerund vs Remember + Infinitive</h3>
-        <div style="background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e;">
+        <div style="background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e">
           <p><strong>remember + gerund</strong> = recall a past event</p>
           <p>Example: I remember <strong>meeting</strong> you at the party. (I have a memory of it)</p>
-          <p style="margin-top: 1rem;"><strong>remember + infinitive</strong> = not forget to do something (future/present)</p>
+          <p style="margin-top: 1rem"><strong>remember + infinitive</strong> = not forget to do something (future/present)</p>
           <p>Example: Remember <strong>to call</strong> your mother. (Don't forget!)</p>
         </div>
       `,
@@ -1188,10 +1188,10 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       icon: "🔬",
       explanation: `
         <h3>Try + Gerund vs Try + Infinitive</h3>
-        <div style="background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e;">
+        <div style="background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e">
           <p><strong>try + gerund</strong> = experiment with something to see if it works</p>
           <p>Example: I'm tired. I'll try <strong>drinking</strong> coffee. (Let's see if coffee helps)</p>
-          <p style="margin-top: 1rem;"><strong>try + infinitive</strong> = make an effort, attempt</p>
+          <p style="margin-top: 1rem"><strong>try + infinitive</strong> = make an effort, attempt</p>
           <p>Example: I'm trying <strong>to learn</strong> Spanish. (I'm making an effort)</p>
         </div>
       `,
@@ -1227,8 +1227,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               type: "radio",
               label: "If you have a headache, try ___ some water. (Experiment)",
               options: [
-                { value: "drinking", label: "drinking (experiment)" },
-                { value: "to-drink", label: "to drink (make an effort)" }
+                { value: "to-drink", label: "to drink (make an effort)" },
+                { value: "drinking", label: "drinking (experiment)" }
               ],
               expectedAnswer: "drinking"
             }
@@ -1244,13 +1244,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       explanation: `
         <p>Some verbs can be followed by <strong>either</strong> a gerund OR an infinitive with <strong>no change in meaning</strong>!</p>
 
-        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(217, 119, 87, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
-          <h3 style="margin-top: 0; color: #8b5cf6;">✨ Good News!</h3>
-          <p style="margin-bottom: 0;">These verbs are <strong>flexible</strong> – you can use gerund OR infinitive and the meaning stays the same.</p>
+        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(217, 119, 87, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0">
+          <h3 class="gc-text-purple" style="margin-top: 0; ">✨ Good News!</h3>
+          <p style="margin-bottom: 0">These verbs are <strong>flexible</strong> – you can use gerund OR infinitive and the meaning stays the same.</p>
         </div>
 
         <h3>Verbs with No Meaning Difference</h3>
-        <div style="background-color: rgba(139, 92, 246, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(139, 92, 246, 0.2);">
+        <div style="background-color: rgba(139, 92, 246, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(139, 92, 246, 0.2)">
           <ul>
             <li><strong>begin:</strong> It began <strong>raining</strong>. = It began <strong>to rain</strong>.</li>
             <li><strong>start:</strong> I started <strong>working</strong>. = I started <strong>to work</strong>.</li>
@@ -1262,9 +1262,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           </ul>
         </div>
 
-        <div style="background-color: #fff3cd; border-left: 4px solid #f4d35e; padding: 15px; margin: 20px 0;">
+        <div style="background-color: #fff3cd; border-left: 4px solid #f4d35e; padding: 15px; margin: 20px 0">
           <p><strong>⚠️ Note:</strong> While both forms work, native speakers often prefer gerunds for general statements and infinitives for specific situations.</p>
-          <ul style="margin: 0.5rem 0 0 0;">
+          <ul style="margin: 0.5rem 0 0 0">
             <li>"I like <strong>swimming</strong>." (general hobby)</li>
             <li>"I'd like <strong>to swim</strong> tomorrow." (specific plan)</li>
           </ul>
@@ -1322,8 +1322,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               type: "radio",
               label: "'begin' - Can it take both gerund AND infinitive?",
               options: [
-                { value: "yes", label: "Yes - both forms work (began raining / began to rain)" },
-                { value: "no", label: "No - only one form works" }
+                { value: "no", label: "No - only one form works" },
+                { value: "yes", label: "Yes - both forms work (began raining / began to rain)" }
               ],
               expectedAnswer: "yes"
             },
@@ -1357,16 +1357,16 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       explanation: `
         <p>Use <strong>go + gerund</strong> for recreational activities and sports!</p>
 
-        <p><strong>Formula:</strong> <span style="background-color: #fed7aa; color: #d97757; padding: 8px 12px; border-radius: 4px; font-size: 1.1em; font-weight: 600;"><strong>go + verb-ing</strong></span></p>
+        <p><strong>Formula:</strong> <span class="gc-text-terracotta" style="background-color: #fed7aa; ; padding: 8px 12px; border-radius: 4px; font-size: 1.1em; font-weight: 600"><strong>go + verb-ing</strong></span></p>
 
-        <div style="background-color: #ffe6e6; border: 2px solid #d97757; padding: 15px; margin: 20px 0; border-radius: 8px;">
+        <div style="background-color: #ffe6e6; border: 2px solid #d97757; padding: 15px; margin: 20px 0; border-radius: 8px">
           <p><strong>⚠️ Common Mistake:</strong></p>
           <p>❌ "I go <em>to swim</em>" or "I go <em>to shop</em>"</p>
           <p>✅ "I go <strong>swimming</strong>" or "I go <strong>shopping</strong>"</p>
         </div>
 
         <h3>Common "Go + Gerund" Activities</h3>
-        <div style="background-color: rgba(217, 119, 87, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(217, 119, 87, 0.2);">
+        <div style="background-color: rgba(217, 119, 87, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(217, 119, 87, 0.2)">
           <h4>🏊 Water & Outdoor:</h4>
           <ul>
             <li>go <strong>swimming</strong></li>
@@ -1406,13 +1406,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "Let's go ___ this weekend.",
-              options: ["hiking", "to hike", "hike"],
+              options: ["to hike", "hiking", "hike"],
               expectedAnswer: "hiking"
             },
             {
               type: "select",
               label: "We went ___ at the lake yesterday.",
-              options: ["fishing", "to fish", "fish"],
+              options: ["fish", "to fish", "fishing"],
               expectedAnswer: "fishing"
             },
             {
@@ -1455,16 +1455,16 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
         <p>Learn to <strong>spot errors</strong> and use <strong>memory tricks</strong> to fix them instantly!</p>
 
         <!-- Visual: Mistake → Memory Trick → Fix -->
-        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(123, 168, 132, 0.08) 100%); border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0;">
-          <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; text-align: center;">
-            <div style="background: rgba(239, 68, 68, 0.15); border-radius: 0.5rem; padding: 1rem;">
-              <div style="font-size: 1.5rem;">❌</div>
-              <div style="font-weight: 700; color: #ef4444;">Common Mistake</div>
+        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(123, 168, 132, 0.08) 100%); border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0">
+          <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; text-align: center">
+            <div style="background: rgba(239, 68, 68, 0.15); border-radius: 0.5rem; padding: 1rem">
+              <div style="font-size: 1.5rem">❌</div>
+              <div class="gc-text-red" style="font-weight: 700; ">Common Mistake</div>
             </div>
-            <div style="font-size: 1.5rem; color: #7ba884;">→</div>
-            <div style="background: rgba(123, 168, 132, 0.15); border-radius: 0.5rem; padding: 1rem;">
-              <div style="font-size: 1.5rem;">✅</div>
-              <div style="font-weight: 700; color: #7ba884;">Memory Trick Fix</div>
+            <div class="gc-text-sage" style="font-size: 1.5rem; ">→</div>
+            <div style="background: rgba(123, 168, 132, 0.15); border-radius: 0.5rem; padding: 1rem">
+              <div style="font-size: 1.5rem">✅</div>
+              <div class="gc-text-sage" style="font-weight: 700; ">Memory Trick Fix</div>
             </div>
           </div>
         </div>
@@ -1524,11 +1524,11 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       tipBox: {
         title: "💡 The Golden Question",
         content: `Always ask: "What comes BEFORE the verb?"
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.4rem;">
-                    <div><strong>Preposition?</strong> <span style="color: #d97757; font-weight: 600;">→</span> Use gerund (PREP = ING)</div>
-                    <div><strong>GO + activity?</strong> <span style="color: #d97757; font-weight: 600;">→</span> Use gerund (GO -ING)</div>
-                    <div><strong>Enjoy/finish/avoid?</strong> <span style="color: #d97757; font-weight: 600;">→</span> Use gerund (Enjoy the -ING)</div>
-                    <div><strong>Want/plan/hope?</strong> <span style="color: #0369a1; font-weight: 600;">→</span> Use infinitive (Want TO do it)</div>
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.4rem">
+                    <div><strong>Preposition?</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> Use gerund (PREP = ING)</div>
+                    <div><strong>GO + activity?</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> Use gerund (GO -ING)</div>
+                    <div><strong>Enjoy/finish/avoid?</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> Use gerund (Enjoy the -ING)</div>
+                    <div><strong>Want/plan/hope?</strong> <span style="color: #0369a1; font-weight: 600">→</span> Use infinitive (Want TO do it)</div>
                 </div>`
       },
       exercises: [
@@ -1580,13 +1580,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "PREP = ING: I'm tired ___ waiting.",
-              options: ["of", "to"],
+              options: ["to", "of"],
               expectedAnswer: "of"
             },
             {
               type: "select",
               label: "Enjoy the -ING: I enjoy ___.",
-              options: ["reading", "to read"],
+              options: ["to read", "reading"],
               expectedAnswer: "reading"
             },
             {
@@ -1598,7 +1598,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             {
               type: "select",
               label: "GO -ING: Let's go ___.",
-              options: ["swimming", "to swim"],
+              options: ["to swim", "swimming"],
               expectedAnswer: "swimming"
             }
           ]
@@ -1610,9 +1610,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       title: "Summary: Master Reference Chart",
       icon: "✓",
       explanation: `
-        <div style="background: linear-gradient(135deg, rgba(123, 168, 132, 0.1) 0%, rgba(217, 119, 87, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-          <h3 style="margin-top: 0; color: #7ba884; font-size: 1.25rem;">🎉 You Made It!</h3>
-          <p style="margin-bottom: 0;">Use this chart as your quick reference when choosing between gerund and infinitive.</p>
+        <div style="background: linear-gradient(135deg, rgba(123, 168, 132, 0.1) 0%, rgba(217, 119, 87, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem">
+          <h3 class="gc-text-sage" style="margin-top: 0; ; font-size: 1.25rem">🎉 You Made It!</h3>
+          <p style="margin-bottom: 0">Use this chart as your quick reference when choosing between gerund and infinitive.</p>
         </div>
       `,
       comparison: {
@@ -1668,8 +1668,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-3",
       question: "Complete: '___ a new language takes time.'",
       options: [
-        { value: "a", label: "Learning" },
         { value: "b", label: "To learn" },
+        { value: "a", label: "Learning" },
         { value: "c", label: "Learn" },
       ],
       correctAnswer: "a",
@@ -1681,9 +1681,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-4",
       question: "What should you use after a preposition?",
       options: [
-        { value: "a", label: "Always gerund (-ing)" },
-        { value: "b", label: "Always infinitive (to + verb)" },
         { value: "c", label: "Either one" },
+        { value: "b", label: "Always infinitive (to + verb)" },
+        { value: "a", label: "Always gerund (-ing)" },
       ],
       correctAnswer: "a",
       explanation: "After a preposition (in, at, for, about), you MUST use a gerund. Example: 'I'm interested in learning' (not 'in to learn').",
@@ -1694,8 +1694,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-5",
       question: "Choose the correct: 'I enjoy ___ books.'",
       options: [
-        { value: "a", label: "reading" },
         { value: "b", label: "to read" },
+        { value: "a", label: "reading" },
         { value: "c", label: "read" },
       ],
       correctAnswer: "a",
@@ -1707,9 +1707,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-6",
       question: "Choose the correct: 'Thank you for ___ me.'",
       options: [
+        { value: "c", label: "help" },
         { value: "a", label: "helping" },
         { value: "b", label: "to help" },
-        { value: "c", label: "help" },
       ],
       correctAnswer: "a",
       explanation: "'For' is a preposition, so it must be followed by a gerund: 'Thank you for helping me.'",
@@ -1733,9 +1733,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-8",
       question: "Choose the correct: 'It's important ___ on time.'",
       options: [
-        { value: "a", label: "to arrive" },
         { value: "b", label: "arriving" },
         { value: "c", label: "arrive" },
+        { value: "a", label: "to arrive" },
       ],
       correctAnswer: "a",
       explanation: "After an adjective (important), use an infinitive: 'It's important to arrive on time.'",
@@ -1746,9 +1746,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-9",
       question: "Choose the correct: 'I have the ability ___ three languages.' (The word before the blank is a noun.)",
       options: [
+        { value: "c", label: "speak" },
         { value: "a", label: "to speak" },
         { value: "b", label: "speaking" },
-        { value: "c", label: "speak" },
       ],
       correctAnswer: "a",
       explanation: "After certain nouns (ability, chance, time), use an infinitive: 'I have the ability to speak three languages.'",
@@ -1759,8 +1759,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-10",
       question: "Choose the correct: 'I want ___ Japan someday.'",
       options: [
-        { value: "a", label: "to visit" },
         { value: "b", label: "visiting" },
+        { value: "a", label: "to visit" },
         { value: "c", label: "visit" },
       ],
       correctAnswer: "a",
@@ -1772,9 +1772,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-11",
       question: "Choose the correct: 'I look forward ___ you soon.' (Here 'to' is a preposition!)",
       options: [
+        { value: "c", label: "seeing" },
         { value: "a", label: "to seeing" },
         { value: "b", label: "to see" },
-        { value: "c", label: "seeing" },
       ],
       correctAnswer: "a",
       explanation: "In 'look forward to', 'to' is a preposition, so use a gerund: 'I look forward to seeing you.'",
@@ -1785,9 +1785,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-12",
       question: "Which sentence correctly uses adjective + preposition + gerund?",
       options: [
-        { value: "a", label: "She is good at solving problems." },
         { value: "b", label: "She is good at to solve problems." },
         { value: "c", label: "She is good to solving problems." },
+        { value: "a", label: "She is good at solving problems." },
       ],
       correctAnswer: "a",
       explanation: "After a preposition (at), use a gerund: 'good at solving problems.'",
@@ -1798,9 +1798,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-13",
       question: "'I stopped smoking' vs 'I stopped to smoke' – what's the difference?",
       options: [
+        { value: "c", label: "'Stopped to smoke' is wrong in English" },
         { value: "a", label: "'Stopped smoking' = quit the habit. 'Stopped to smoke' = paused to have a cigarette." },
         { value: "b", label: "No difference – same meaning" },
-        { value: "c", label: "'Stopped to smoke' is wrong in English" },
       ],
       correctAnswer: "a",
       explanation: "Stop + gerund = quit doing something. Stop + infinitive = pause one activity to do another. The meaning changes completely.",
@@ -1811,8 +1811,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-14",
       question: "Which is correct if you want to NOT forget a future action?",
       options: [
-        { value: "a", label: "Remember to call your mother tonight." },
         { value: "b", label: "Remember calling your mother tonight." },
+        { value: "a", label: "Remember to call your mother tonight." },
         { value: "c", label: "Remember call your mother tonight." },
       ],
       correctAnswer: "a",

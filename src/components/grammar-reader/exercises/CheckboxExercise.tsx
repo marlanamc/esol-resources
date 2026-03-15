@@ -31,7 +31,6 @@ function parseCheckboxAnswer(value: string): string[] {
 export function CheckboxExercise({
     item,
     userAnswer,
-    isCorrect,
     isIncorrect,
     submitted,
     onChange,

@@ -4,16 +4,17 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { canManageClass, ensureTeacher } from "@/lib/policies";
 import { CalendarEventPostBodySchema, parseApiBody } from "@/lib/api-schemas";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
         const teacherCheck = ensureTeacher(session.user);
         if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+            return apiError(teacherCheck.error, teacherCheck.status);
         }
         const admin = teacherCheck.admin;
 
@@ -31,19 +32,19 @@ export async function POST(request: NextRequest) {
         const start = parseDateOnly(date);
         const end = endDate ? parseDateOnly(endDate) : start;
         if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
-            return NextResponse.json({ error: "Invalid date values" }, { status: 400 });
+            return apiError("Invalid date values", 400);
         }
         if (end.getTime() < start.getTime()) {
-            return NextResponse.json({ error: "End date cannot be before start date" }, { status: 400 });
+            return apiError("End date cannot be before start date", 400);
         }
 
         // Verify ownership
         const classItem = await prisma.class.findUnique({ where: { id: classId } });
         if (!classItem) {
-            return NextResponse.json({ error: "Class not found" }, { status: 404 });
+            return ApiErrors.notFound("Class", classId);
         }
         if (!canManageClass(session.user, admin, classItem.teacherId)) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+            return ApiErrors.forbidden();
         }
 
         const created = await prisma.$transaction(async (tx) => {
@@ -92,13 +93,11 @@ export async function POST(request: NextRequest) {
             ...created.primaryEvent,
             createdCount: created.createdCount,
         });
-    } catch (error: unknown) {
-        console.error("Error creating calendar event:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to create calendar event" },
-            { status: 500 }
-        );
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to create calendar event",
+            path: request.url,
+        });
     }
 }
 
@@ -106,18 +105,18 @@ export async function DELETE(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
         const teacherCheck = ensureTeacher(session.user);
         if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+            return apiError(teacherCheck.error, teacherCheck.status);
         }
         const admin = teacherCheck.admin;
 
         const body = await request.json();
         const { id } = body || {};
         if (!id) {
-            return NextResponse.json({ error: "id is required" }, { status: 400 });
+            return apiError("id is required", 400);
         }
 
         const event = await prisma.calendarEvent.findUnique({
@@ -126,23 +125,21 @@ export async function DELETE(request: NextRequest) {
         });
 
         if (!event) {
-            return NextResponse.json({ error: "Event not found" }, { status: 404 });
+            return ApiErrors.notFound("Event", id);
         }
 
         if (!canManageClass(session.user, admin, event.class.teacherId)) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+            return ApiErrors.forbidden();
         }
 
         await prisma.calendarEvent.delete({ where: { id } });
 
         return NextResponse.json({ success: true });
-    } catch (error: unknown) {
-        console.error("Error deleting calendar event:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to delete calendar event" },
-            { status: 500 }
-        );
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to delete calendar event",
+            path: request.url,
+        });
     }
 }
 
@@ -150,23 +147,23 @@ export async function PATCH(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
         const teacherCheck = ensureTeacher(session.user);
         if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+            return apiError(teacherCheck.error, teacherCheck.status);
         }
         const admin = teacherCheck.admin;
 
         const body = await request.json();
         const { id, title, date, endDate, type = "holiday", description } = body || {};
         if (!id || !title || !date) {
-            return NextResponse.json({ error: "id, title, and date are required" }, { status: 400 });
+            return apiError("id, title, and date are required", 400);
         }
 
         const allowedTypes = ["holiday", "event", "due", "reminder", "quiz"];
         if (!allowedTypes.includes(type)) {
-            return NextResponse.json({ error: "Invalid event type" }, { status: 400 });
+            return apiError("Invalid event type", 400);
         }
 
         const parseDateOnly = (value: string) => {
@@ -177,10 +174,10 @@ export async function PATCH(request: NextRequest) {
         const start = parseDateOnly(date);
         const end = endDate ? parseDateOnly(endDate) : start;
         if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
-            return NextResponse.json({ error: "Invalid date values" }, { status: 400 });
+            return apiError("Invalid date values", 400);
         }
         if (end.getTime() < start.getTime()) {
-            return NextResponse.json({ error: "End date cannot be before start date" }, { status: 400 });
+            return apiError("End date cannot be before start date", 400);
         }
 
         const event = await prisma.calendarEvent.findUnique({
@@ -188,11 +185,11 @@ export async function PATCH(request: NextRequest) {
             include: { class: true },
         });
         if (!event) {
-            return NextResponse.json({ error: "Event not found" }, { status: 404 });
+            return ApiErrors.notFound("Event", id);
         }
 
         if (!canManageClass(session.user, admin, event.class.teacherId)) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+            return ApiErrors.forbidden();
         }
 
         const updated = await prisma.calendarEvent.update({
@@ -207,12 +204,10 @@ export async function PATCH(request: NextRequest) {
         });
 
         return NextResponse.json(updated);
-    } catch (error: unknown) {
-        console.error("Error updating calendar event:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to update calendar event" },
-            { status: 500 }
-        );
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to update calendar event",
+            path: request.url,
+        });
     }
 }

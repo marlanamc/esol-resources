@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { logger } from "@/lib/logger";
+import { ApiErrors, apiError } from "@/lib/api-response";
 
 type TelemetryPayload = {
     type: "query" | "zero_results" | "click_result" | "select_filter";
@@ -26,16 +27,16 @@ function isTelemetryPayload(value: unknown): value is TelemetryPayload {
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
     if (session.user.role !== "student" && session.user.role !== "teacher") {
-        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        return ApiErrors.forbidden();
     }
 
     try {
         const payload = await request.json();
         if (!isTelemetryPayload(payload)) {
-            return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
+            return apiError("Invalid payload", 400);
         }
 
         logger.info("Learner search telemetry", {
@@ -49,8 +50,7 @@ export async function POST(request: Request) {
         });
 
         return NextResponse.json({ ok: true });
-    } catch (error) {
-        logger.warn("Learner search telemetry failed", { error: String(error) });
-        return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
+    } catch {
+        return apiError("Invalid payload", 400);
     }
 }

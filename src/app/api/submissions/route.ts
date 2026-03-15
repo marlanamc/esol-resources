@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { SubmissionsPostBodySchema, parseApiBody } from "@/lib/api-schemas";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 
 function readIdempotencyKey(request: NextRequest): string | null {
     const key = request.headers.get("x-idempotency-key");
@@ -35,12 +36,12 @@ export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         if (!session) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
 
         const userRole = session.user?.role;
         if (userRole !== "student") {
-            return NextResponse.json({ error: "Only students can submit work" }, { status: 403 });
+            return ApiErrors.forbidden("Only students can submit work");
         }
 
         const body = await request.json();
@@ -65,7 +66,7 @@ export async function POST(request: NextRequest) {
         });
 
         if (!assignment) {
-            return NextResponse.json({ error: "Assignment not found" }, { status: 404 });
+            return ApiErrors.notFound("Assignment", assignmentId);
         }
 
         const isEnrolled = assignment.class.enrollments.some(
@@ -73,7 +74,7 @@ export async function POST(request: NextRequest) {
         );
 
         if (!isEnrolled) {
-            return NextResponse.json({ error: "You are not enrolled in this class" }, { status: 403 });
+            return ApiErrors.forbidden("You are not enrolled in this class");
         }
 
         if (idempotencyKey) {
@@ -110,13 +111,11 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json(submission);
-    } catch (error: unknown) {
-        console.error("Error creating submission:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to create submission" },
-            { status: 500 }
-        );
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to create submission",
+            path: request.url,
+        });
     }
 }
 
@@ -124,12 +123,12 @@ export async function PUT(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         if (!session) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
 
         const userRole = session.user?.role;
         if (userRole !== "student") {
-            return NextResponse.json({ error: "Only students can update submissions" }, { status: 403 });
+            return ApiErrors.forbidden("Only students can update submissions");
         }
 
         const body = await request.json();
@@ -137,10 +136,7 @@ export async function PUT(request: NextRequest) {
         const idempotencyKey = readIdempotencyKey(request);
 
         if (!submissionId || !content) {
-            return NextResponse.json(
-                { error: "Submission ID and content are required" },
-                { status: 400 }
-            );
+            return apiError("Submission ID and content are required", 400);
         }
 
         const contentStr = typeof content === "string" ? content : JSON.stringify(content);
@@ -152,18 +148,15 @@ export async function PUT(request: NextRequest) {
         });
 
         if (!submission) {
-            return NextResponse.json({ error: "Submission not found" }, { status: 404 });
+            return ApiErrors.notFound("Submission", submissionId);
         }
 
         if (submission.userId !== userId) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+            return ApiErrors.forbidden();
         }
 
         if (submission.status === "graded") {
-            return NextResponse.json(
-                { error: "Cannot update graded submission" },
-                { status: 400 }
-            );
+            return apiError("Cannot update graded submission", 400);
         }
 
         const existingMeta = extractSubmissionMeta(submission.content);
@@ -181,13 +174,11 @@ export async function PUT(request: NextRequest) {
         });
 
         return NextResponse.json(updated);
-    } catch (error: unknown) {
-        console.error("Error updating submission:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to update submission" },
-            { status: 500 }
-        );
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to update submission",
+            path: request.url,
+        });
     }
 }
 

@@ -1,6 +1,13 @@
 import type { Prisma } from "@prisma/client";
 
-export const EXCLUDED_LEADERBOARD_USERNAMES = ["marlie", "daniel", "leah", "matt"];
+/**
+ * Usernames to exclude from leaderboard rankings (test accounts, admins, etc.)
+ * Configure via EXCLUDED_LEADERBOARD_USERNAMES env var (comma-separated)
+ * Falls back to empty array if not set
+ */
+export const EXCLUDED_LEADERBOARD_USERNAMES: string[] = process.env.EXCLUDED_LEADERBOARD_USERNAMES
+  ? process.env.EXCLUDED_LEADERBOARD_USERNAMES.split(",").map((u) => u.trim().toLowerCase())
+  : [];
 
 export function buildLeaderboardEligibleUserWhere(
   extraWhere?: Prisma.UserWhereInput

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -8,6 +8,7 @@ import { claimSubmissionPointsOnce } from "@/lib/submission-points-award";
 import { applyAwardChain } from "@/lib/gamification-award-chain";
 import { acquireUserActivityScopeLock } from "@/lib/db-locks";
 import { normalizeAssignmentId } from "@/lib/assignment-scope";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 
 export { normalizeAssignmentId };
 
@@ -178,19 +179,19 @@ export async function saveActivitySubmission(params: {
     });
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         const idempotencyKey = readIdempotencyKey(request);
 
         if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
 
         // SECURITY: Never trust points from client - calculate server-side only
         const parsedBody = await parseSubmitJsonBody(request);
         if (!parsedBody.ok) {
-            return NextResponse.json({ error: parsedBody.error }, { status: parsedBody.status });
+            return apiError(parsedBody.error, parsedBody.status);
         }
         const validated = parseApiBody(ActivitySubmitBodySchema, parsedBody.body);
         if (!validated.ok) return validated.response;
@@ -208,7 +209,7 @@ export async function POST(request: Request) {
         });
 
         if (!activity) {
-            return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+            return ApiErrors.notFound("Activity", activityId);
         }
 
         // Calculate points SERVER-SIDE based on activity type and score
@@ -361,8 +362,9 @@ export async function POST(request: Request) {
             points: duplicate ? 0 : calculatedPoints
         });
     } catch (error) {
-        console.error("[api/activity/submit] Error:", error);
-        const message = error instanceof Error ? error.message : "Failed to submit activity";
-        return NextResponse.json({ error: message }, { status: 500 });
+        return handleApiError(error, {
+            defaultMessage: "Failed to submit activity",
+            path: request.url,
+        });
     }
 }

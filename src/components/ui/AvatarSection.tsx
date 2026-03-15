@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import AvatarSelector from "./AvatarSelector";
+import { AvatarSelector } from "./AvatarSelector";
 
 export default function AvatarSection() {
     const [currentAvatar, setCurrentAvatar] = useState("cat");

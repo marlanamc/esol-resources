@@ -3,7 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { isTeacherAdmin } from "@/lib/roles";
-import EditClassForm from "@/components/EditClassForm";
+import { EditClassForm } from "@/components/EditClassForm";
 import { BackButton } from "@/components/ui/BackButton";
 
 interface Props {

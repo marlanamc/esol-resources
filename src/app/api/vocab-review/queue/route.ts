@@ -5,6 +5,7 @@ import { requireAuth } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
 import { ALL_VOCAB_SOURCE_KEY, isKnownVocabReviewSourceKey } from "@/lib/vocab-review-sources";
 import { DEFAULT_VOCAB_REVIEW_LIMIT, getVocabReviewQueueForUser } from "@/lib/vocab-review";
+import { logger } from "@/lib/logger";
 
 function noStoreJson<T>(data: T, status = 200) {
   return NextResponse.json(data, {
@@ -37,7 +38,7 @@ export async function GET(request: NextRequest) {
     const queue = await getVocabReviewQueueForUser(prisma, userId, source, limit);
     return noStoreJson(queue);
   } catch (error) {
-    console.error("Failed to load vocab review queue", error);
+    logger.error("Failed to load vocab review queue", error);
     return noStoreJson({ error: "Failed to load review queue" }, 500);
   }
 }

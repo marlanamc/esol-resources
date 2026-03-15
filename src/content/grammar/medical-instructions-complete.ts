@@ -10,27 +10,27 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       title: "Medical Instructions: Modals, Imperatives & Declaratives",
       icon: "🗣️",
       explanation: `
-        <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-          <p style="font-size: 1.125rem; margin-bottom: 0;">"<strong>Take</strong> this medicine twice a day." vs "<strong>You should</strong> take this medicine twice a day." vs "<strong>You must</strong> take this medicine twice a day." — The difference is small, but the meaning and tone are completely different!</p>
+        <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+          <p style="font-size: 1.125rem; margin-bottom: 0">"<strong>Take</strong> this medicine twice a day." vs "<strong>You should</strong> take this medicine twice a day." vs "<strong>You must</strong> take this medicine twice a day." — The difference is small, but the meaning and tone are completely different!</p>
         </div>
 
         <h3>What You'll Learn</h3>
         <p>This guide teaches three essential grammar concepts for healthcare and workplace communication:</p>
 
-        <div style="display: grid; gap: 1rem; margin: 1.5rem 0;">
-          <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #d97757;">
-            <h4 style="margin: 0 0 0.5rem 0; color: #d97757;">1. Imperatives (Commands)</h4>
-            <p style="margin: 0;"><strong>Take</strong> this medicine. <strong>Don't</strong> drive after taking this.</p>
+        <div style="display: grid; gap: 1rem; margin: 1.5rem 0">
+          <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem; border-radius: 0.5rem; ">
+            <h4 class="gc-text-terracotta" style="margin: 0 0 0.5rem 0; ">1. Imperatives (Commands)</h4>
+            <p style="margin: 0"><strong>Take</strong> this medicine. <strong>Don't</strong> drive after taking this.</p>
           </div>
 
-          <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #7ba884;">
-            <h4 style="margin: 0 0 0.5rem 0; color: #7ba884;">2. Declaratives (Statements)</h4>
-            <p style="margin: 0;"><strong>You need to</strong> take this medicine. <strong>I recommend</strong> resting.</p>
+          <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem; border-radius: 0.5rem; ">
+            <h4 class="gc-text-sage" style="margin: 0 0 0.5rem 0; ">2. Declaratives (Statements)</h4>
+            <p style="margin: 0"><strong>You need to</strong> take this medicine. <strong>I recommend</strong> resting.</p>
           </div>
 
-          <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
-            <h4 style="margin: 0 0 0.5rem 0; color: #3b82f6;">3. Modals (Meaning Changers)</h4>
-            <p style="margin: 0;"><strong>You should</strong> rest (advice). <strong>You must</strong> finish (required). <strong>You can</strong> ask (permission).</p>
+          <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem; border-radius: 0.5rem; ">
+            <h4 class="gc-text-blue" style="margin: 0 0 0.5rem 0; ">3. Modals (Meaning Changers)</h4>
+            <p style="margin: 0"><strong>You should</strong> rest (advice). <strong>You must</strong> finish (required). <strong>You can</strong> ask (permission).</p>
           </div>
         </div>
 
@@ -90,12 +90,12 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         <h3>What Is an Imperative?</h3>
         <p>An <strong>imperative sentence</strong> gives a command, instruction, or request. The subject (you) is understood but not stated.</p>
 
-        <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
+        <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
           <h4>Formula:</h4>
-          <p style="font-size: 1.25rem; font-weight: bold; color: #d97757;">Base Verb + (object/details)</p>
-          <p style="font-style: italic; margin-top: 0.5rem;">(No subject! Start with the verb.)</p>
+          <p class="gc-text-terracotta" style="font-size: 1.25rem; font-weight: bold; ">Base Verb + (object/details)</p>
+          <p style="font-style: italic; margin-top: 0.5rem">(No subject! Start with the verb.)</p>
 
-          <h4 style="margin-top: 1rem;">Examples:</h4>
+          <h4 style="margin-top: 1rem">Examples:</h4>
           <ul>
             <li><strong>Take</strong> this medicine.</li>
             <li><strong>Rest</strong> for 3 days.</li>
@@ -105,24 +105,24 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
 
         <h3>Three Types of Imperatives</h3>
 
-        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-          <h4 style="color: #d97757;">1. Direct Commands (Strong)</h4>
+        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+          <h4 class="gc-text-terracotta">1. Direct Commands (Strong)</h4>
           <ul>
             <li><strong>Stop</strong> smoking.</li>
             <li><strong>Take</strong> this twice a day.</li>
           </ul>
         </div>
 
-        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-          <h4 style="color: #7ba884;">2. Polite Requests ("Please")</h4>
+        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+          <h4 class="gc-text-sage">2. Polite Requests ("Please")</h4>
           <ul>
             <li><strong>Please</strong> fill out this form.</li>
             <li><strong>Please</strong> wait here.</li>
           </ul>
         </div>
 
-        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-          <h4 style="color: #dc2626;">3. Negative Imperatives ("Don't")</h4>
+        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+          <h4 class="gc-text-red">3. Negative Imperatives ("Don't")</h4>
           <ul>
             <li><strong>Don't</strong> eat before the test.</li>
             <li><strong>Don't</strong> take this on an empty stomach.</li>
@@ -184,11 +184,11 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         <h3>What Is a Declarative?</h3>
         <p>A <strong>declarative sentence</strong> makes a statement. It has a subject and gives information or advice.</p>
 
-        <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
+        <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
           <h4>Formula:</h4>
-          <p style="font-size: 1.25rem; font-weight: bold; color: #7ba884;">Subject + Verb + (object/details)</p>
+          <p class="gc-text-sage" style="font-size: 1.25rem; font-weight: bold; ">Subject + Verb + (object/details)</p>
 
-          <h4 style="margin-top: 1rem;">Examples:</h4>
+          <h4 style="margin-top: 1rem">Examples:</h4>
           <ul>
             <li><strong>You need to</strong> take this medicine.</li>
             <li><strong>You should</strong> rest for 3 days.</li>
@@ -197,34 +197,34 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         </div>
 
         <h3>Common Declarative Patterns</h3>
-        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
           <thead>
-            <tr style="background: rgba(110, 145, 118, 0.2);">
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Pattern</th>
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Example</th>
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Tone</th>
+            <tr style="background: rgba(110, 145, 118, 0.2)">
+              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Pattern</th>
+              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Example</th>
+              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Tone</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">You need to...</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">You need to rest.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">Strong/Required</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd">You need to...</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd">You need to rest.</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd">Strong/Required</td>
             </tr>
-            <tr style="background: rgba(0, 0, 0, 0.02);">
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">You should...</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">You should exercise.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">Advice/Suggestion</td>
+            <tr style="background: rgba(0, 0, 0, 0.02)">
+              <td style="padding: 0.75rem; border: 1px solid #ddd">You should...</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd">You should exercise.</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd">Advice/Suggestion</td>
             </tr>
             <tr>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">I recommend...</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">I recommend this.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">Professional advice</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd">I recommend...</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd">I recommend this.</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd">Professional advice</td>
             </tr>
-            <tr style="background: rgba(0, 0, 0, 0.02);">
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">You have to...</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">You have to fast.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">Obligation</td>
+            <tr style="background: rgba(0, 0, 0, 0.02)">
+              <td style="padding: 0.75rem; border: 1px solid #ddd">You have to...</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd">You have to fast.</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd">Obligation</td>
             </tr>
           </tbody>
         </table>
@@ -280,35 +280,35 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         <h3>Imperatives vs Declaratives</h3>
         <p>You can express the same idea with either form, but the tone changes:</p>
 
-        <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+        <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0">
           <thead>
-            <tr style="background: rgba(200, 107, 81, 0.2);">
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Imperative (Direct)</th>
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Declarative (Indirect/Polite)</th>
+            <tr style="background: rgba(200, 107, 81, 0.2)">
+              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Imperative (Direct)</th>
+              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Declarative (Indirect/Polite)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Take</strong> this twice a day.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>You need to take</strong> this twice a day.</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Take</strong> this twice a day.</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You need to take</strong> this twice a day.</td>
             </tr>
-            <tr style="background: rgba(0, 0, 0, 0.02);">
-              <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Rest</strong> for a week.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>You should rest</strong> for a week.</td>
+            <tr style="background: rgba(0, 0, 0, 0.02)">
+              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Rest</strong> for a week.</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You should rest</strong> for a week.</td>
             </tr>
             <tr>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Don't</strong> lift anything heavy.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>You shouldn't</strong> lift anything heavy.</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Don't</strong> lift anything heavy.</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You shouldn't</strong> lift anything heavy.</td>
             </tr>
-            <tr style="background: rgba(0, 0, 0, 0.02);">
-              <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Call</strong> if you have pain.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>You should call</strong> if you have pain.</td>
+            <tr style="background: rgba(0, 0, 0, 0.02)">
+              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Call</strong> if you have pain.</td>
+              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You should call</strong> if you have pain.</td>
             </tr>
           </tbody>
         </table>
 
-        <div style="background: rgba(244, 211, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1.5rem 0;">
-          <h4 style="color: #d4a843;">Which Should You Use?</h4>
+        <div style="background: rgba(244, 211, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1.5rem 0">
+          <h4 style="color: #d4a843">Which Should You Use?</h4>
           <ul>
             <li><strong>Imperatives:</strong> Common in medical instructions (prescriptions, clinic signs)</li>
             <li><strong>Declaratives:</strong> Sound more polite in conversations</li>
@@ -366,33 +366,33 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         <h3>Quick Modals Review</h3>
         <p>Remember, <strong>modals</strong> are special verbs that change the meaning of a sentence. They express advice, requirement, permission, or necessity.</p>
 
-        <div style="margin: 1.5rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 2px solid #7ba884;">
+        <div class="gc-bg-white" style="margin: 1.5rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 2px solid #7ba884">
           <h4>Modal Formula:</h4>
-          <p style="font-size: 1.25rem; text-align: center; margin: 0;">
-            <span style="color: #3b82f6;">Subject</span> +
-            <span style="color: #d97757; font-weight: 600;"> Modal </span> +
-            <span style="color: #22c55e;">Base Verb</span>
+          <p style="font-size: 1.25rem; text-align: center; margin: 0">
+            <span class="gc-text-blue">Subject</span> +
+            <span class="gc-text-terracotta" style="font-weight: 600"> Modal </span> +
+            <span class="gc-text-green">Base Verb</span>
           </p>
-          <p style="margin: 0.5rem 0 0 0; text-align: center; font-style: italic;">
-            You <strong style="color: #d97757;">should</strong> rest. You <strong style="color: #d97757;">must</strong> take it. You <strong style="color: #d97757;">can</strong> ask.
+          <p style="margin: 0.5rem 0 0 0; text-align: center; font-style: italic">
+            You <strong class="gc-text-terracotta">should</strong> rest. You <strong class="gc-text-terracotta">must</strong> take it. You <strong class="gc-text-terracotta">can</strong> ask.
           </p>
         </div>
 
         <h3>Three Categories of Modals in Healthcare</h3>
 
-        <div style="margin-top: 1.5rem; background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #22c55e;">
-          <h4 style="color: #22c55e; margin-top: 0;">💡 ADVICE (should/shouldn't)</h4>
-          <p style="margin: 0;">Recommendations - good for you, but not required</p>
+        <div class="gc-bg-green-alpha gc-callout-green" style="margin-top: 1.5rem; ; padding: 1rem; border-radius: 0.5rem; ">
+          <h4 class="gc-text-green" style="margin-top: 0">💡 ADVICE (should/shouldn't)</h4>
+          <p style="margin: 0">Recommendations - good for you, but not required</p>
         </div>
 
-        <div style="margin-top: 1rem; background: rgba(220, 38, 38, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #dc2626;">
-          <h4 style="color: #dc2626; margin-top: 0;">⚠️ CAUTION (must/must not)</h4>
-          <p style="margin: 0;">Required for safety or dangerous/forbidden</p>
+        <div style="margin-top: 1rem; background: rgba(220, 38, 38, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #dc2626">
+          <h4 class="gc-text-red" style="margin-top: 0">⚠️ CAUTION (must/must not)</h4>
+          <p style="margin: 0">Required for safety or dangerous/forbidden</p>
         </div>
 
-        <div style="margin-top: 1rem; background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
-          <h4 style="color: #3b82f6; margin-top: 0;">✅ CONSENT (can/may/are allowed to)</h4>
-          <p style="margin: 0;">What you're permitted to do or request</p>
+        <div class="gc-bg-blue-alpha gc-callout-blue" style="margin-top: 1rem; ; padding: 1rem; border-radius: 0.5rem; ">
+          <h4 class="gc-text-blue" style="margin-top: 0">✅ CONSENT (can/may/are allowed to)</h4>
+          <p style="margin: 0">What you're permitted to do or request</p>
         </div>
       `,
       tipBox: {
@@ -440,8 +440,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         <h3>Should/Shouldn't = Health Advice</h3>
         <p><strong>Should</strong> gives advice - things that are good for you, but you have a choice:</p>
 
-        <div style="margin: 1rem 0; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem; border-left: 4px solid #22c55e;">
-          <ul style="margin: 0;">
+        <div class="gc-bg-green-alpha gc-callout-green" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; ">
+          <ul style="margin: 0">
             <li>You <strong>should</strong> drink plenty of water.</li>
             <li>You <strong>should</strong> take this medicine with food.</li>
             <li>You <strong>shouldn't</strong> skip doses of your medication.</li>
@@ -451,8 +451,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         <h3>Must/Must Not = Safety Caution</h3>
         <p><strong>Must</strong> expresses strong requirements. <strong>Must not</strong> means dangerous/forbidden:</p>
 
-        <div style="margin: 1rem 0; padding: 1rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem; border-left: 4px solid #dc2626;">
-          <ul style="margin: 0;">
+        <div style="margin: 1rem 0; padding: 1rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem; border-left: 4px solid #dc2626">
+          <ul style="margin: 0">
             <li>You <strong>must</strong> finish all the antibiotics.</li>
             <li>You <strong>must not</strong> drink alcohol while taking this medication.</li>
             <li>You <strong>must not</strong> drive after taking this medicine.</li>
@@ -460,21 +460,21 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         </div>
 
         <h3>Should vs Must: What's the Difference?</h3>
-        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
           <tr>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(34, 197, 94, 0.1);"><strong>Should</strong></td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Recommended (good idea, but optional)</td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You <strong>should</strong> take it with food.</td>
+            <td class="gc-bg-green-alpha" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); "><strong>Should</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Recommended (good idea, but optional)</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>should</strong> take it with food.</td>
           </tr>
           <tr>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1);"><strong>Must</strong></td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Required (necessary, no choice)</td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You <strong>must</strong> take it twice daily.</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)"><strong>Must</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Required (necessary, no choice)</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>must</strong> take it twice daily.</td>
           </tr>
           <tr>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1);"><strong>Must Not</strong></td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Forbidden (dangerous)</td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You <strong>must not</strong> drink alcohol.</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)"><strong>Must Not</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Forbidden (dangerous)</td>
+            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>must not</strong> drink alcohol.</td>
           </tr>
         </table>
       `,
@@ -533,25 +533,25 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         <h3>Can/May/Are Allowed To = Permission & Rights</h3>
         <p>In healthcare, you have rights. These modals show what you're allowed to do:</p>
 
-        <div style="margin: 1rem 0; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem; border-left: 4px solid #22c55e;">
-          <h4 style="color: #22c55e; margin-top: 0;">CAN = Informal Permission</h4>
-          <ul style="margin: 0.5rem 0 0 0;">
+        <div class="gc-bg-green-alpha gc-callout-green" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; ">
+          <h4 class="gc-text-green" style="margin-top: 0">CAN = Informal Permission</h4>
+          <ul style="margin: 0.5rem 0 0 0">
             <li><strong>Can I</strong> ask you a question about my prescription?</li>
             <li><strong>Can I</strong> bring someone with me to the appointment?</li>
           </ul>
         </div>
 
-        <div style="margin: 1rem 0; padding: 1rem; background: rgba(168, 85, 247, 0.1); border-radius: 0.5rem; border-left: 4px solid #a855f7;">
-          <h4 style="color: #a855f7; margin-top: 0;">MAY = Formal Permission</h4>
-          <ul style="margin: 0.5rem 0 0 0;">
+        <div class="gc-callout-purple" style="margin: 1rem 0; padding: 1rem; background: rgba(168, 85, 247, 0.1); border-radius: 0.5rem; ">
+          <h4 style="color: #a855f7; margin-top: 0">MAY = Formal Permission</h4>
+          <ul style="margin: 0.5rem 0 0 0">
             <li><strong>May I</strong> request a copy of my medical records?</li>
             <li><strong>May I</strong> have a translator for my appointment?</li>
           </ul>
         </div>
 
-        <div style="margin: 1rem 0; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
-          <h4 style="color: #3b82f6; margin-top: 0;">ARE ALLOWED TO = Your Rights</h4>
-          <ul style="margin: 0.5rem 0 0 0;">
+        <div class="gc-bg-blue-alpha gc-callout-blue" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; ">
+          <h4 class="gc-text-blue" style="margin-top: 0">ARE ALLOWED TO = Your Rights</h4>
+          <ul style="margin: 0.5rem 0 0 0">
             <li>You <strong>are allowed to</strong> request a second opinion.</li>
             <li>You <strong>are allowed to</strong> access your health records.</li>
           </ul>
@@ -559,8 +559,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
 
         <h3>Need To = Necessity</h3>
         <p><strong>Need to</strong> expresses something required for your health (similar to must, but more natural in conversation):</p>
-        <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
-          <ul style="margin: 0;">
+        <div class="gc-bg-white" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
+          <ul style="margin: 0">
             <li>You <strong>need to</strong> fast for 12 hours before the blood test.</li>
             <li>Do I <strong>need to</strong> make an appointment?</li>
           </ul>
@@ -615,9 +615,9 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       icon: "🏥",
       explanation: `
         <h3>Prescription Labels (Imperatives)</h3>
-        <div style="background: white; padding: 1rem; border: 2px solid #d97757; border-radius: 0.5rem; margin: 1rem 0;">
-          <p style="font-weight: bold; color: #d97757; margin: 0 0 0.5rem 0;">MEDICATION INSTRUCTIONS:</p>
-          <ul style="margin: 0;">
+        <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #d97757; border-radius: 0.5rem; margin: 1rem 0">
+          <p class="gc-text-terracotta" style="font-weight: bold; ; margin: 0 0 0.5rem 0">MEDICATION INSTRUCTIONS:</p>
+          <ul style="margin: 0">
             <li><strong>Take</strong> 1 tablet twice daily with food.</li>
             <li><strong>Avoid</strong> alcohol while taking this medication.</li>
             <li><strong>Do not</strong> drive or operate heavy machinery.</li>
@@ -625,9 +625,9 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         </div>
 
         <h3>Doctor's Advice (Declaratives with Modals)</h3>
-        <div style="background: white; padding: 1rem; border: 2px solid #7ba884; border-radius: 0.5rem; margin: 1rem 0;">
-          <p style="font-weight: bold; color: #7ba884; margin: 0 0 0.5rem 0;">DOCTOR SPEAKING TO PATIENT:</p>
-          <ul style="margin: 0;">
+        <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #7ba884; border-radius: 0.5rem; margin: 1rem 0">
+          <p class="gc-text-sage" style="font-weight: bold; ; margin: 0 0 0.5rem 0">DOCTOR SPEAKING TO PATIENT:</p>
+          <ul style="margin: 0">
             <li>"<strong>You should</strong> take 1 tablet twice a day with food."</li>
             <li>"<strong>You must not</strong> drink alcohol while on this medication."</li>
             <li>"<strong>You can</strong> call if you have any questions."</li>
@@ -635,8 +635,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         </div>
 
         <h3>Clinic Signs (Imperatives)</h3>
-        <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-          <ul style="margin: 0;">
+        <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+          <ul style="margin: 0">
             <li><strong>Please</strong> check in at the front desk.</li>
             <li><strong>Wash</strong> your hands before entering.</li>
             <li><strong>Do not</strong> bring food into the exam room.</li>
@@ -644,14 +644,14 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         </div>
 
         <h3>Patient to Doctor (Use Declaratives!)</h3>
-        <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-          <p style="font-weight: bold;">✅ Patients should use declaratives:</p>
+        <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+          <p style="font-weight: bold">✅ Patients should use declaratives:</p>
           <ul>
             <li>"<strong>I will</strong> take it twice a day."</li>
             <li>"<strong>I need to</strong> ask about the side effects."</li>
             <li>"<strong>Can I</strong> have a referral?"</li>
           </ul>
-          <p style="margin-top: 1rem;"><strong>❌ DON'T use imperatives with doctors</strong> (too direct/rude)</p>
+          <p style="margin-top: 1rem"><strong>❌ DON'T use imperatives with doctors</strong> (too direct/rude)</p>
         </div>
       `,
       tipBox: {
@@ -707,20 +707,20 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       icon: "💼",
       explanation: `
         <h3>Boss to Employee (Can Use Both)</h3>
-        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
           <p><strong>Imperative:</strong> "Please submit your timesheet by Friday."</p>
           <p><strong>Declarative:</strong> "You need to submit your timesheet by Friday."</p>
         </div>
 
         <h3>Employee to Boss (Use Declaratives!)</h3>
-        <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+        <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
           <p>✅ <strong>Use declaratives</strong> to sound respectful:</p>
           <ul>
             <li>"<strong>I will submit</strong> it by Friday."</li>
             <li>"<strong>I'd like to</strong> request time off."</li>
             <li>"<strong>Could I</strong> have more time?"</li>
           </ul>
-          <p style="margin-top: 1rem;">❌ <strong>DON'T use imperatives</strong> with your boss:</p>
+          <p style="margin-top: 1rem">❌ <strong>DON'T use imperatives</strong> with your boss:</p>
           <ul>
             <li>❌ "Give me more time." → ✅ "Could I have more time?"</li>
             <li>❌ "Approve my request." → ✅ "Could you please approve my request?"</li>
@@ -728,7 +728,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         </div>
 
         <h3>Coworker to Coworker (Polite Imperatives OK)</h3>
-        <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+        <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
           <ul>
             <li>"<strong>Please</strong> send me that file."</li>
             <li>"<strong>Let me know</strong> if you need help."</li>
@@ -807,51 +807,51 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         </ul>
 
         <h3>Modals Cheat Sheet</h3>
-        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem;">
+        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem">
           <thead>
-            <tr style="background: rgba(200, 107, 81, 0.1);">
-              <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Type</th>
-              <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Modal</th>
-              <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Meaning</th>
+            <tr class="gc-bg-terracotta-alpha">
+              <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Type</th>
+              <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Modal</th>
+              <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Meaning</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(34, 197, 94, 0.1);">Advice</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">should/shouldn't</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">Recommended</td>
+              <td class="gc-bg-green-alpha" style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); ">Advice</td>
+              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">should/shouldn't</td>
+              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Recommended</td>
             </tr>
             <tr>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1);">Caution</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">must/must not</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">Required/Forbidden</td>
+              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)">Caution</td>
+              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">must/must not</td>
+              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Required/Forbidden</td>
             </tr>
             <tr>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(59, 130, 246, 0.1);">Consent</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">can/may</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">Permission</td>
+              <td class="gc-bg-blue-alpha" style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); ">Consent</td>
+              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">can/may</td>
+              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Permission</td>
             </tr>
             <tr>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(251, 191, 36, 0.1);">Necessity</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">need to</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">Required</td>
+              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(251, 191, 36, 0.1)">Necessity</td>
+              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">need to</td>
+              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Required</td>
             </tr>
           </tbody>
         </table>
 
         <h3>Politeness Guidelines</h3>
-        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
           <tr>
-            <td style="padding: 0.5rem; border: 1px solid #ddd;"><strong>Speaking to boss/doctor</strong></td>
-            <td style="padding: 0.5rem; border: 1px solid #ddd;">Declaratives only</td>
+            <td style="padding: 0.5rem; border: 1px solid #ddd"><strong>Speaking to boss/doctor</strong></td>
+            <td style="padding: 0.5rem; border: 1px solid #ddd">Declaratives only</td>
           </tr>
-          <tr style="background: rgba(0,0,0,0.02);">
-            <td style="padding: 0.5rem; border: 1px solid #ddd;"><strong>Speaking to coworker</strong></td>
-            <td style="padding: 0.5rem; border: 1px solid #ddd;">Polite imperatives OK</td>
+          <tr style="background: rgba(0,0,0,0.02)">
+            <td style="padding: 0.5rem; border: 1px solid #ddd"><strong>Speaking to coworker</strong></td>
+            <td style="padding: 0.5rem; border: 1px solid #ddd">Polite imperatives OK</td>
           </tr>
           <tr>
-            <td style="padding: 0.5rem; border: 1px solid #ddd;"><strong>Written instructions</strong></td>
-            <td style="padding: 0.5rem; border: 1px solid #ddd;">Imperatives standard</td>
+            <td style="padding: 0.5rem; border: 1px solid #ddd"><strong>Written instructions</strong></td>
+            <td style="padding: 0.5rem; border: 1px solid #ddd">Imperatives standard</td>
           </tr>
         </table>
       `,

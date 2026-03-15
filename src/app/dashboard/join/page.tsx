@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import JoinClassForm from "@/components/JoinClassForm";
+import { JoinClassForm } from "@/components/JoinClassForm";
 
 export default async function JoinClassPage() {
     const session = await getServerSession(authOptions);

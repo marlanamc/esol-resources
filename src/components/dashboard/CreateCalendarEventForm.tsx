@@ -13,7 +13,7 @@ interface Props {
     classes: ClassOption[];
 }
 
-export default function CreateCalendarEventForm({ classes }: Props) {
+export function CreateCalendarEventForm({ classes }: Props) {
     const router = useRouter();
     const [classId, setClassId] = useState(classes[0]?.id || "");
     const [syncToSectionGroup, setSyncToSectionGroup] = useState(false);

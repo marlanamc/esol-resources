@@ -1,0 +1,1 @@
+export { IrregularVerbsGame } from './IrregularVerbsGame';

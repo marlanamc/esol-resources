@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { logger } from "@/lib/logger";
+import { ApiErrors, apiError } from "@/lib/api-response";
 
 type TrackedTabPath = "/dashboard" | "/dashboard/calendar" | "/dashboard/activities";
 
@@ -65,7 +66,7 @@ async function parseBody(request: Request): Promise<{ events: TabNavMetric[] }> 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     try {
@@ -87,16 +88,15 @@ export async function POST(request: Request) {
         });
 
         return NextResponse.json({ ok: true, accepted: events.length });
-    } catch (error) {
-        logger.warn("Tab nav telemetry parse failed", { error: String(error) });
-        return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
+    } catch {
+        return apiError("Invalid payload", 400);
     }
 }
 
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const now = Date.now();

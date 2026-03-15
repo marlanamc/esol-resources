@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+import { requireSafeDbTarget } from '../scripts/lib/require-safe-db-target.js';
 
-const { requireSafeDbTarget } = require('../scripts/lib/require-safe-db-target');
 const prisma = new PrismaClient();
 
 requireSafeDbTarget('bulk update grammar guide release status');

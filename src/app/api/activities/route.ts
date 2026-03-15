@@ -5,26 +5,24 @@ import { prisma } from "@/lib/prisma";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import { ensureTeacher } from "@/lib/policies";
 import { filterLearnerVisibleActivities } from "@/lib/learner-visibility";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
         const teacherCheck = ensureTeacher(session.user);
         if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+            return apiError(teacherCheck.error, teacherCheck.status);
         }
 
         const body = await request.json();
         const { title, description, type, category, level, content } = body;
 
         if (!title || !type || !content) {
-            return NextResponse.json(
-                { error: "Title, type, and content are required" },
-                { status: 400 }
-            );
+            return apiError("Title, type, and content are required", 400);
         }
 
         const activity = await prisma.activity.create({
@@ -40,13 +38,11 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json(activity);
-    } catch (error: unknown) {
-        console.error("Error creating activity:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to create activity" },
-            { status: 500 }
-        );
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to create activity",
+            path: request.url,
+        });
     }
 }
 
@@ -54,7 +50,7 @@ export async function GET() {
     try {
         const session = await getServerSession(authOptions);
         if (!session) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
 
         const userRole = session.user?.role;
@@ -73,7 +69,7 @@ export async function GET() {
 
         const teacherCheck = ensureTeacher(session.user);
         if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+            return apiError(teacherCheck.error, teacherCheck.status);
         }
         const admin = teacherCheck.admin;
 
@@ -86,12 +82,9 @@ export async function GET() {
         });
 
         return NextResponse.json(collapseEdPronunciationActivities(activities));
-    } catch (error: unknown) {
-        console.error("Error fetching activities:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to fetch activities" },
-            { status: 500 }
-        );
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to fetch activities",
+        });
     }
 }

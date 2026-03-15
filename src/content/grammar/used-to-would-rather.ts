@@ -9,8 +9,8 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
             title: "Used To & Would Rather: Talking About Past Habits and Preferences",
             icon: "🕰️",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"I <span class='eg-helper'>used to</span> smoke, but I quit." "I'd rather walk than drive." These structures help you talk about how things were different in the past and what you prefer now. Essential for discussing health changes, work habits, and lifestyle improvements around East Boston.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">"I <span class='eg-helper'>used to</span> smoke, but I quit." "I'd rather walk than drive." These structures help you talk about how things were different in the past and what you prefer now. Essential for discussing health changes, work habits, and lifestyle improvements around East Boston.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -21,19 +21,19 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                         <li><strong>Goal setting:</strong> "I <span class='eg-helper'>used to</span> skip breakfast, but now I eat oatmeal before class." "I'd rather save money than eat out."</li>
                     </ul>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                <div class="gc-callout-sage" style="background: rgba(122, 143, 124, 0.15); ; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>Describing work problems and solutions ("I used to have scheduling conflicts, but now...")</li>
                         <li>Talking about job history changes ("I used to work nights" "I'd rather have day shifts")</li>
                         <li>Practicing "used to / be used to / get used to" structures</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                    <p style="margin: 1rem 0 0.5rem 0"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li><strong>Describing your wellness journey and habit changes</strong> ("I <span class='eg-helper'>used to</span> eat fast food, but now I cook East Boston meals").</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🔄 These structures show growth and change - perfect for interviews and goal-setting!</p>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a">🔄 These structures show growth and change - perfect for interviews and goal-setting!</p>
                 </div>
             `,
             exercises: [
@@ -86,11 +86,11 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                 <h3>What Is "Used To"?</h3>
                 <p><strong>Used to</strong> describes habits or states that were true in the past but are NOT true now.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Formula:</h4>
-                    <p style="font-size: 1.25rem; font-weight: bold; color: #7ba884;">Subject + used to + base verb</p>
+                    <p class="gc-text-sage" style="font-size: 1.25rem; font-weight: bold; ">Subject + used to + base verb</p>
 
-                    <h4 style="margin-top: 1rem;">Examples:</h4>
+                    <h4 style="margin-top: 1rem">Examples:</h4>
                     <ul>
                         <li>I <span class='eg-helper'>used to</span> <span class='eg-verb'>smoke</span>. (I don't smoke now)</li>
                         <li>She <span class='eg-helper'>used to</span> <span class='eg-verb'>work</span> nights. (She doesn't work nights now)</li>
@@ -100,15 +100,15 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Negative Form</h3>
-                <p style="font-weight: bold; color: #d97757;">Subject + didn't use to + base verb</p>
-                <p style="font-style: italic;">⚠️ Notice: "didn't <strong>use</strong> to" (no d!)</p>
+                <p class="gc-text-terracotta" style="font-weight: bold; ">Subject + didn't use to + base verb</p>
+                <p style="font-style: italic">⚠️ Notice: "didn't <strong>use</strong> to" (no d!)</p>
                 <ul>
                     <li>I <span class='eg-helper'>didn't use to</span> <span class='eg-verb'>exercise</span>. (Now I do)</li>
                     <li>She <span class='eg-helper'>didn't use to</span> <span class='eg-verb'>eat</span> vegetables. (Now she does)</li>
                 </ul>
 
                 <h3>Question Form</h3>
-                <p style="font-weight: bold; color: #d97757;">Did + subject + use to + base verb?</p>
+                <p class="gc-text-terracotta" style="font-weight: bold; ">Did + subject + use to + base verb?</p>
                 <ul>
                     <li><span class='eg-helper'>Did you use to</span> <span class='eg-verb'>smoke</span>?</li>
                     <li><span class='eg-helper'>Did he use to</span> <span class='eg-verb'>work</span> here?</li>
@@ -181,11 +181,11 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                 <h3>Would for Past Habits</h3>
                 <p><strong>Would</strong> can also describe repeated actions in the past. It's more formal and literary than "used to."</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Formula:</h4>
-                    <p style="font-size: 1.25rem; font-weight: bold; color: #d97757;">Subject + would + base verb</p>
+                    <p class="gc-text-terracotta" style="font-size: 1.25rem; font-weight: bold; ">Subject + would + base verb</p>
 
-                    <h4 style="margin-top: 1rem;">Examples:</h4>
+                    <h4 style="margin-top: 1rem">Examples:</h4>
                     <ul>
                         <li>Every morning, I <strong>would</strong> go for a run. (= I used to go for a run)</li>
                         <li>My grandmother <strong>would</strong> make us breakfast. (= She used to make us breakfast)</li>
@@ -194,29 +194,29 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Used To vs Would: What's the Difference?</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(110, 145, 118, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Used To</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Would</th>
+                        <tr style="background: rgba(110, 145, 118, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Used To</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Would</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Habits AND states</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Only repeated actions (NOT states)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Habits AND states</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Only repeated actions (NOT states)</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">✅ "I used to be shy."</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">❌ "I would be shy." (WRONG)</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">✅ "I used to be shy."</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">❌ "I would be shy." (WRONG)</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">More common in everyday speech</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">More formal/literary</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">More common in everyday speech</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">More formal/literary</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">✅ "I used to smoke."</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">✅ "I would smoke a pack a day."</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">✅ "I used to smoke."</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">✅ "I would smoke a pack a day."</td>
                         </tr>
                     </tbody>
                 </table>
@@ -285,12 +285,12 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                 <h3>What Is "Would Rather"?</h3>
                 <p><strong>Would rather</strong> = I prefer (one thing over another). This is about what you WANT, not what you did in the past.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(244, 211, 94, 0.1); border-radius: 0.5rem;">
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(244, 211, 94, 0.1); border-radius: 0.5rem">
                     <h4>Formula:</h4>
-                    <p style="font-size: 1.25rem; font-weight: bold; color: #d4a843;">Subject + would rather + base verb</p>
-                    <p style="font-style: italic; margin-top: 0.5rem;">(Contraction: I'd rather, She'd rather, etc.)</p>
+                    <p style="font-size: 1.25rem; font-weight: bold; color: #d4a843">Subject + would rather + base verb</p>
+                    <p style="font-style: italic; margin-top: 0.5rem">(Contraction: I'd rather, She'd rather, etc.)</p>
 
-                    <h4 style="margin-top: 1rem;">Examples:</h4>
+                    <h4 style="margin-top: 1rem">Examples:</h4>
                     <ul>
                         <li>I <span class='eg-helper'>would rather</span> <span class='eg-verb'>walk</span> than drive across the Harborwalk. (= I prefer walking)</li>
                         <li>She <span class='eg-helper'>'d rather</span> <span class='eg-verb'>work</span> from home near the airport. (= She prefers working from home)</li>
@@ -308,7 +308,7 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     </ul>
 
                 <h3>Negative Form</h3>
-                <p style="font-weight: bold; color: #d97757;">would rather not + base verb</p>
+                <p class="gc-text-terracotta" style="font-weight: bold; ">would rather not + base verb</p>
                 <ul>
                     <li>I'd <strong>rather not</strong> work overtime.</li>
                     <li>She'd <strong>rather not</strong> take the bus.</li>
@@ -373,8 +373,8 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Health & Wellness Contexts</h3>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <h4 style="color: #7ba884;">Talking to Your Doctor</h4>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <h4 class="gc-text-sage">Talking to Your Doctor</h4>
                     <p><strong>Used to:</strong></p>
                     <ul>
                         <li>"I <span class='eg-helper'>used to</span> have headaches every day from Myrtle Street, but now they're rare."</li>
@@ -388,8 +388,8 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <h4 style="color: #d97757;">Work & Career Discussions</h4>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <h4 class="gc-text-terracotta">Work & Career Discussions</h4>
                     <p><strong>Used to:</strong></p>
                     <ul>
                         <li>"I <span class='eg-helper'>used to</span> <span class='eg-verb'>work</span> in construction."</li>
@@ -404,8 +404,8 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <h4 style="color: #d4a843;">Goal Setting & Progress</h4>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <h4 style="color: #d4a843">Goal Setting & Progress</h4>
                     <p><strong>Contrasting then vs now:</strong></p>
                     <ul>
                         <li>"I <span class='eg-helper'>used to</span> <span class='eg-verb'>skip</span> breakfast, but now I eat oatmeal every morning."</li>
@@ -495,8 +495,8 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     <li><strong>Be used to</strong> = be accustomed to: "I <span class='eg-helper'>am used to</span> <span class='eg-verb'>waking</span> up early." (I'm comfortable with it)</li>
                 </ul>
 
-                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">
-                    <p style="font-weight: bold; margin: 0;">These are DIFFERENT structures with DIFFERENT meanings!</p>
+                <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-top: 1rem">
+                    <p style="font-weight: bold; margin: 0">These are DIFFERENT structures with DIFFERENT meanings!</p>
                 </div>
             `,
             exercises: [
@@ -707,29 +707,29 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Key Differences</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(110, 145, 118, 0.2);">
-                            <th style="padding: 0.75rem; border: 1px solid #ddd;">Structure</th>
-                            <th style="padding: 0.75rem; border: 1px solid #ddd;">Meaning</th>
-                            <th style="padding: 0.75rem; border: 1px solid #ddd;">Example</th>
+                        <tr style="background: rgba(110, 145, 118, 0.2)">
+                            <th style="padding: 0.75rem; border: 1px solid #ddd">Structure</th>
+                            <th style="padding: 0.75rem; border: 1px solid #ddd">Meaning</th>
+                            <th style="padding: 0.75rem; border: 1px solid #ddd">Example</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Used to</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Past habit (not now)</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I used to smoke.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Used to</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Past habit (not now)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">I used to smoke.</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Would</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Repeated past action</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I would smoke after meals.</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Would</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Repeated past action</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">I would smoke after meals.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Would rather</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Preference (present/future)</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I'd rather not smoke.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Would rather</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Preference (present/future)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">I'd rather not smoke.</td>
                         </tr>
                     </tbody>
                 </table>

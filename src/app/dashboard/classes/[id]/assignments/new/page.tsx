@@ -3,7 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
-import CreateAssignmentForm from "@/components/CreateAssignmentForm";
+import { CreateAssignmentForm } from "@/components/CreateAssignmentForm";
 import { BackButton } from "@/components/ui/BackButton";
 import { isTeacherAdmin } from "@/lib/roles";
 

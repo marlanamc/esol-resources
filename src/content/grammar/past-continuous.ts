@@ -9,38 +9,38 @@ export const pastContinuousContent: InteractiveGuideContent = {
             title: "Past Continuous: What Was Going On",
             icon: "📚",
             explanation: `
-                <div class="gc-grad-amber" style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 class="gc-text-amber" style="margin-top: 0; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Past Continuous is your <strong class="gc-text-terracotta">storytelling tense</strong>—it sets the scene for what was happening at a specific moment, shows background actions that got interrupted, and paints a picture of the past in motion.</p>
+                <div class="gc-grad-amber" style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 class="gc-text-amber" style="margin-top: 0; font-size: 1.25rem">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0">Past Continuous is your <strong class="gc-text-terracotta">storytelling tense</strong>—it sets the scene for what was happening at a specific moment, shows background actions that got interrupted, and paints a picture of the past in motion.</p>
                 </div>
 
                 <h3>Real-Life Uses</h3>
-                <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Interrupted actions</strong>: "I was walking home when it started raining."</li>
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Specific past time</strong>: "At midnight, my neighbors were playing loud music."</li>
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Setting the scene</strong>: "The sun was setting. People were walking home from work."</li>
+                <ul style="list-style: none; padding-left: 0; margin: 0">
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate" style="padding: 0.5rem; margin: 0.35rem 0; ; border-left: 4px solid #f0b45a; border-radius: 0.25rem">✓ <strong>Interrupted actions</strong>: "I was walking home when it started raining."</li>
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate" style="padding: 0.5rem; margin: 0.35rem 0; ; border-left: 4px solid #f0b45a; border-radius: 0.25rem">✓ <strong>Specific past time</strong>: "At midnight, my neighbors were playing loud music."</li>
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate" style="padding: 0.5rem; margin: 0.35rem 0; ; border-left: 4px solid #f0b45a; border-radius: 0.25rem">✓ <strong>Setting the scene</strong>: "The sun was setting. People were walking home from work."</li>
                 </ul>
 
-                <div class="gc-bg-amber gc-box-amber-500" style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p class="gc-text-dark" style="margin: 0; font-weight: 600;">📝 Formula: <span class="gc-text-amber" style="font-size: 1.125rem;">was/were + verb-ing</span></p>
+                <div class="gc-bg-amber gc-box-amber-500 gc-bg-white" style="9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
+                    <p class="gc-text-dark" style="margin: 0; font-weight: 600">📝 Formula: <span class="gc-text-amber" style="font-size: 1.125rem">was/were + verb-ing</span></p>
                 </div>
 
-                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                <div class="gc-bg-green gc-callout-left gc-bg-green gc-callout-green" style="; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>Telling detailed housing problem stories</li>
                         <li>Using "when" and "while" to connect two actions</li>
                         <li>Describing what was happening at a specific time</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                    <p style="margin: 1rem 0 0.5rem 0"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li><strong>Incident reports</strong>: "I was walking to the bus stop when I slipped on ice."</li>
                         <li><strong>Medical history</strong>: "I was having chest pain when I called 911."</li>
                         <li><strong>Housing complaints</strong>: "At midnight, my neighbors were playing loud music."</li>
                         <li><strong>Workplace explanations</strong>: "I wasn't ignoring you—I was helping another customer."</li>
                     </ul>
-                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">🎬 Past Continuous adds drama to your stories—it sets the scene!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic">🎬 Past Continuous adds drama to your stories—it sets the scene!</p>
                 </div>
             `,
             exercises: [
@@ -253,61 +253,61 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 <h3>Understanding the Interrupted Action</h3>
                 <p>Past Continuous shows a <strong>longer action in progress</strong> that gets interrupted by a <strong>shorter, sudden event</strong>. Let's see it visually:</p>
 
-                <div style="background: white; border: 2px solid #f0b45a; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
-                    <h4 style="text-align: center; margin-top: 0;">Timeline: The Interrupted Action</h4>
+                <div class="gc-bg-white" style="border: 2px solid #f0b45a; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
+                    <h4 style="text-align: center; margin-top: 0">Timeline: The Interrupted Action</h4>
 
-                    <p style="text-align: center; color: #64748b; font-size: 0.95rem; margin-bottom: 2rem;">Past Continuous shows a <strong>longer action in progress</strong> that gets interrupted by a <strong>shorter, sudden event</strong>.</p>
+                    <p class="gc-text-muted" style="text-align: center; ; font-size: 0.95rem; margin-bottom: 2rem">Past Continuous shows a <strong>longer action in progress</strong> that gets interrupted by a <strong>shorter, sudden event</strong>.</p>
 
-                    <div style="position: relative; margin: 2rem auto; max-width: 650px; padding: 4rem 0 2rem;">
-                        <div style="position: relative; height: 50px; background: linear-gradient(to right, rgba(240, 180, 90, 0.2), rgba(240, 180, 90, 0.9), rgba(240, 180, 90, 0.9), rgba(240, 180, 90, 0.2)); border-radius: 25px; border: 3px solid #f0b45a; display: flex; align-items: center; padding: 0 2rem;">
-                            <span style="color: #7c5d0a; font-weight: 600; font-size: 0.875rem;">I was walking home...</span>
-                            <div style="position: absolute; left: 0; top: 50%; width: 10px; height: 10px; background: #f0b45a; border-radius: 50%; transform: translate(-5px, -50%);"></div>
-                            <div style="position: absolute; right: 0; top: 50%; width: 10px; height: 10px; background: #f0b45a; border-radius: 50%; transform: translate(5px, -50%);"></div>
+                    <div style="position: relative; margin: 2rem auto; max-width: 650px; padding: 4rem 0 2rem">
+                        <div style="position: relative; height: 50px; background: linear-gradient(to right, rgba(240, 180, 90, 0.2), rgba(240, 180, 90, 0.9), rgba(240, 180, 90, 0.9), rgba(240, 180, 90, 0.2)); border-radius: 25px; border: 3px solid #f0b45a; display: flex; align-items: center; padding: 0 2rem">
+                            <span style="color: #7c5d0a; font-weight: 600; font-size: 0.875rem">I was walking home...</span>
+                            <div style="position: absolute; left: 0; top: 50%; width: 10px; height: 10px; background: #f0b45a; border-radius: 50%; transform: translate(-5px, -50%)"></div>
+                            <div style="position: absolute; right: 0; top: 50%; width: 10px; height: 10px; background: #f0b45a; border-radius: 50%; transform: translate(5px, -50%)"></div>
                         </div>
 
-                        <div style="text-align: center; margin-top: 0.5rem;">
-                            <span style="font-size: 0.75rem; color: #f0b45a; font-weight: 600;">Past Continuous = Ongoing Background Action</span>
+                        <div style="text-align: center; margin-top: 0.5rem">
+                            <span style="font-size: 0.75rem; color: #f0b45a; font-weight: 600">Past Continuous = Ongoing Background Action</span>
                         </div>
 
-                        <div style="position: absolute; top: 2rem; left: 60%; transform: translateX(-50%);">
-                            <div style="width: 3px; height: 80px; background: #d97757; position: relative;">
-                                <div style="position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #d97757;"></div>
+                        <div style="position: absolute; top: 2rem; left: 60%; transform: translateX(-50%)">
+                            <div style="width: 3px; height: 80px; background: #d97757; position: relative">
+                                <div style="position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #d97757"></div>
                             </div>
-                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: #d97757; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(217, 119, 87, 0.4); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #1f2937; font-size: 1.5rem;">
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: #d97757; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(217, 119, 87, 0.4); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #1f2937; font-size: 1.5rem">
                                 ⚡
                             </div>
-                            <div style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); white-space: nowrap; background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; color: #d97757; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <div class="gc-bg-white gc-text-terracotta" style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); white-space: nowrap; ; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; ; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1)">
                                 It started raining
                             </div>
-                            <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #94a3b8;">
+                            <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #94a3b8">
                                 Past Simple = Interruption
                             </div>
                         </div>
                     </div>
 
-                    <div style="background: #fef3e7; padding: 1.25rem; border-radius: 0.5rem; margin-top: 3.5rem; border-left: 4px solid #f0b45a;">
-                        <p style="margin: 0; text-align: center; font-size: 1rem;">
-                            <strong>Full Sentence:</strong> I <span style="background: rgba(240, 180, 90, 0.3); color: #f0b45a; font-weight: 700; padding: 2px 8px; border-radius: 4px;">was walking</span> home when it <span style="background: rgba(217, 119, 87, 0.3); color: #d97757; font-weight: 700; padding: 2px 8px; border-radius: 4px;">started</span> raining.
+                    <div style="background: #fef3e7; padding: 1.25rem; border-radius: 0.5rem; margin-top: 3.5rem; border-left: 4px solid #f0b45a">
+                        <p style="margin: 0; text-align: center; font-size: 1rem">
+                            <strong>Full Sentence:</strong> I <span style="background: rgba(240, 180, 90, 0.3); color: #f0b45a; font-weight: 700; padding: 2px 8px; border-radius: 4px">was walking</span> home when it <span class="gc-text-terracotta" style="background: rgba(217, 119, 87, 0.3); ; font-weight: 700; padding: 2px 8px; border-radius: 4px">started</span> raining.
                         </p>
-                        <p style="margin: 0.75rem 0 0 0; text-align: center; font-size: 0.875rem; color: #64748b;">
-                            The longer action (<span style="color: #f0b45a; font-weight: 600;">walking</span>) was in progress. Then the shorter event (<span style="color: #d97757; font-weight: 600;">started raining</span>) interrupted it.
+                        <p class="gc-text-muted" style="margin: 0.75rem 0 0 0; text-align: center; font-size: 0.875rem; ">
+                            The longer action (<span style="color: #f0b45a; font-weight: 600">walking</span>) was in progress. Then the shorter event (<span class="gc-text-terracotta" style="font-weight: 600">started raining</span>) interrupted it.
                         </p>
                     </div>
 
-                    <div style="margin-top: 1.5rem; display: grid; grid-template-columns: 1fr; gap: 0.75rem;">
-                        <div style="background: #f8fafc; padding: 0.875rem; border-radius: 0.5rem; border-left: 3px solid #f0b45a;">
-                            <p style="margin: 0; font-size: 0.875rem;">She <span style="color: #f0b45a; font-weight: 600;">was studying</span> when her phone <span style="color: #d97757; font-weight: 600;">rang</span>.</p>
+                    <div style="margin-top: 1.5rem; display: grid; grid-template-columns: 1fr; gap: 0.75rem">
+                        <div class="gc-bg-slate" style="padding: 0.875rem; border-radius: 0.5rem; border-left: 3px solid #f0b45a">
+                            <p style="margin: 0; font-size: 0.875rem">She <span style="color: #f0b45a; font-weight: 600">was studying</span> when her phone <span class="gc-text-terracotta" style="font-weight: 600">rang</span>.</p>
                         </div>
-                        <div style="background: #f8fafc; padding: 0.875rem; border-radius: 0.5rem; border-left: 3px solid #f0b45a;">
-                            <p style="margin: 0; font-size: 0.875rem;">We <span style="color: #f0b45a; font-weight: 600;">were eating</span> dinner when someone <span style="color: #d97757; font-weight: 600;">knocked</span> on the door.</p>
+                        <div class="gc-bg-slate" style="padding: 0.875rem; border-radius: 0.5rem; border-left: 3px solid #f0b45a">
+                            <p style="margin: 0; font-size: 0.875rem">We <span style="color: #f0b45a; font-weight: 600">were eating</span> dinner when someone <span class="gc-text-terracotta" style="font-weight: 600">knocked</span> on the door.</p>
                         </div>
-                        <div style="background: #f8fafc; padding: 0.875rem; border-radius: 0.5rem; border-left: 3px solid #f0b45a;">
-                            <p style="margin: 0; font-size: 0.875rem;">They <span style="color: #f0b45a; font-weight: 600;">were playing</span> soccer when the coach <span style="color: #d97757; font-weight: 600;">arrived</span>.</p>
+                        <div class="gc-bg-slate" style="padding: 0.875rem; border-radius: 0.5rem; border-left: 3px solid #f0b45a">
+                            <p style="margin: 0; font-size: 0.875rem">They <span style="color: #f0b45a; font-weight: 600">were playing</span> soccer when the coach <span class="gc-text-terracotta" style="font-weight: 600">arrived</span>.</p>
                         </div>
                     </div>
 
-                    <div style="margin-top: 1.5rem; padding: 1rem; background: #fef9f3; border-left: 4px solid #d97757; border-radius: 0.25rem;">
-                        <p style="margin: 0; font-size: 0.875rem;"><strong>🎯 The Pattern:</strong> Past Continuous (was/were + verb-ing) = the background scene. Past Simple (verb-ed) = the sudden event that interrupts. This is THE most common use of Past Continuous!</p>
+                    <div class="gc-callout-terracotta" style="margin-top: 1.5rem; padding: 1rem; background: #fef9f3; ; border-radius: 0.25rem">
+                        <p style="margin: 0; font-size: 0.875rem"><strong>🎯 The Pattern:</strong> Past Continuous (was/were + verb-ing) = the background scene. Past Simple (verb-ed) = the sudden event that interrupts. This is THE most common use of Past Continuous!</p>
                     </div>
                 </div>
             `,
@@ -361,22 +361,22 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 <h3>Use <strong>while</strong> for longer background actions. Use <strong>when</strong> for shorter events.</h3>
                 <p>This pattern helps listeners understand which action was already in progress and which action interrupted it.</p>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0;">
-                    <div style="background: #fef9f3; border: 2px solid #f0b45a; border-radius: 0.5rem; padding: 1rem;">
-                        <h4 style="margin-top: 0; color: #f0b45a;">WHILE + Past Continuous</h4>
-                        <p style="margin: 0.5rem 0; color: #1f2937;">Shows the longer background action.</p>
-                        <p style="margin: 0; font-size: 0.92rem; color: #1f2937;">While I <strong style="color: #1f2937;">was cooking</strong>, my daughter was setting the table.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0">
+                    <div style="background: #fef9f3; border: 2px solid #f0b45a; border-radius: 0.5rem; padding: 1rem">
+                        <h4 style="margin-top: 0; color: #f0b45a">WHILE + Past Continuous</h4>
+                        <p style="margin: 0.5rem 0; color: #1f2937">Shows the longer background action.</p>
+                        <p style="margin: 0; font-size: 0.92rem; color: #1f2937">While I <strong style="color: #1f2937">was cooking</strong>, my daughter was setting the table.</p>
                     </div>
-                    <div style="background: #fff5f0; border: 2px solid #d97757; border-radius: 0.5rem; padding: 1rem;">
-                        <h4 style="margin-top: 0; color: #d97757;">WHEN + Past Simple</h4>
-                        <p style="margin: 0.5rem 0; color: #1f2937;">Introduces the short interrupting event.</p>
-                        <p style="margin: 0; font-size: 0.92rem; color: #1f2937;">I was cooking <strong style="color: #1f2937;">when</strong> the smoke alarm rang.</p>
+                    <div class="gc-bg-white" style="5f0; border: 2px solid #d97757; border-radius: 0.5rem; padding: 1rem">
+                        <h4 class="gc-text-terracotta" style="margin-top: 0; ">WHEN + Past Simple</h4>
+                        <p style="margin: 0.5rem 0; color: #1f2937">Introduces the short interrupting event.</p>
+                        <p style="margin: 0; font-size: 0.92rem; color: #1f2937">I was cooking <strong style="color: #1f2937">when</strong> the smoke alarm rang.</p>
                     </div>
                 </div>
 
-                <div style="background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.5rem; padding: 1rem;">
-                    <p style="margin: 0;"><strong>Pattern:</strong> While + Past Continuous, Past Continuous OR Past Continuous + when + Past Simple</p>
-                    <p style="margin: 0.5rem 0 0 0;">Examples: "While I was walking, I was listening to a podcast." / "I was walking when I slipped on ice."</p>
+                <div class="gc-bg-slate" style="border-left: 4px solid #f0b45a; border-radius: 0.5rem; padding: 1rem">
+                    <p style="margin: 0"><strong>Pattern:</strong> While + Past Continuous, Past Continuous OR Past Continuous + when + Past Simple</p>
+                    <p style="margin: 0.5rem 0 0 0">Examples: "While I was walking, I was listening to a podcast." / "I was walking when I slipped on ice."</p>
                 </div>
             `,
             tipBox: {
@@ -478,7 +478,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
             icon: "⚠️",
             explanation: `
                 <h3>Three Problems Learners Often Make</h3>
-                <ul style="margin: 0.75rem 0 0 0;">
+                <ul style="margin: 0.75rem 0 0 0">
                     <li>Using Past Continuous for a short, completed one-time action</li>
                     <li>Using stative verbs in Past Continuous (I was knowing)</li>
                     <li>Using "while" with Past Simple when a background action is intended</li>
@@ -531,10 +531,10 @@ export const pastContinuousContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 Stative Reminder",
                 content: `Common stative verbs that usually take Past Simple (not continuous):
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div><strong class="gc-text-terracotta">Mental</strong> <span style="color: #d97757; font-weight: 600;">→</span> know, believe, understand</div>
-                    <div><strong class="gc-text-terracotta">Emotional</strong> <span style="color: #d97757; font-weight: 600;">→</span> love, hate</div>
-                    <div><strong class="gc-text-terracotta">Possession</strong> <span style="color: #d97757; font-weight: 600;">→</span> own, belong</div>
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem">
+                    <div><strong class="gc-text-terracotta">Mental</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> know, believe, understand</div>
+                    <div><strong class="gc-text-terracotta">Emotional</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> love, hate</div>
+                    <div><strong class="gc-text-terracotta">Possession</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> own, belong</div>
                 </div>`,
             },
             exercises: [

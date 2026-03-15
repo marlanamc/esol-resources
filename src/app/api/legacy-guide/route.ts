@@ -4,7 +4,7 @@ import { promises as fs } from "fs";
 import { parse } from "node-html-parser";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { logger } from "@/lib/logger";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 import type { LegacyGuideResponse } from "@/types/activity";
 
 const LEGACY_BASE = path.resolve(process.cwd(), "_legacy", "activities");
@@ -48,14 +48,14 @@ async function findFileByName(fileName: string) {
 export async function GET(req: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const { searchParams } = new URL(req.url);
     const fileParam = searchParams.get("file");
 
     if (!fileParam) {
-        return NextResponse.json({ error: "Missing file parameter" }, { status: 400 });
+        return apiError("Missing file parameter", 400);
     }
 
     // Sanitize: remove leading slashes and path separators that could escape base
@@ -79,7 +79,7 @@ export async function GET(req: Request) {
     }
 
     if (!resolvedPath) {
-        return NextResponse.json({ error: "Legacy guide not found" }, { status: 404 });
+        return ApiErrors.notFound("Legacy guide");
     }
 
     try {
@@ -117,7 +117,9 @@ export async function GET(req: Request) {
 
         return NextResponse.json(payload);
     } catch (err) {
-        logger.error("Failed to read legacy guide", err, { resolvedPath });
-        return NextResponse.json({ error: "Failed to read legacy guide" }, { status: 500 });
+        return handleApiError(err, {
+            defaultMessage: "Failed to read legacy guide",
+            path: req.url,
+        });
     }
 }

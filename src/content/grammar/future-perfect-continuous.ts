@@ -10,23 +10,23 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
             title: "Future Perfect Continuous: How Long Will You Have Been Doing That?",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin-top: 0; color: #06b6d4; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Future Perfect Continuous shows <strong style="color: #06b6d4;">how long</strong> an action will have been happening <strong style="color: #a855f7;">by a future point</strong>. It's the rarest tense, but useful for milestones!</p>
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 class="gc-text-cyan" style="margin-top: 0; ; font-size: 1.25rem">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0">Future Perfect Continuous shows <strong class="gc-text-cyan">how long</strong> an action will have been happening <strong style="color: #a855f7">by a future point</strong>. It's the rarest tense, but useful for milestones!</p>
                 </div>
 
                 <h3>Real-Life Uses</h3>
-                <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✓ <strong>Duration up to a future point</strong>: "By June, I will have been working here for 10 years."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✓ <strong>Cause of a future situation</strong>: "She will be tired because she will have been traveling all day."</li>
+                <ul style="list-style: none; padding-left: 0; margin: 0">
+                    <li class="gc-bg-slate gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Duration up to a future point</strong>: "By June, I will have been working here for 10 years."</li>
+                    <li class="gc-bg-slate gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Cause of a future situation</strong>: "She will be tired because she will have been traveling all day."</li>
                 </ul>
 
-                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p style="margin: 0; font-weight: 600;">📝 Formula: <span style="color: #06b6d4; font-size: 1.125rem;">will have been + verb-ing</span></p>
+                <div class="gc-bg-white" style="9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
+                    <p style="margin: 0; font-weight: 600">📝 Formula: <span class="gc-text-cyan" style="font-size: 1.125rem">will have been + verb-ing</span></p>
                 </div>
 
-                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; margin-top: 1rem; border-left: 4px solid #f59e0b;">
-                    <p style="margin: 0; font-size: 0.9rem;"><strong>📌 Note:</strong> This is the least common tense in English. You'll hear it occasionally, but don't worry if it feels advanced—focus on understanding it when you hear it!</p>
+                <div class="gc-bg-amber gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; margin-top: 1rem; ">
+                    <p style="margin: 0; font-size: 0.9rem"><strong>📌 Note:</strong> This is the least common tense in English. You'll hear it occasionally, but don't worry if it feels advanced—focus on understanding it when you hear it!</p>
                 </div>
             `,
             exercises: [
@@ -159,46 +159,46 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 <h3>Understanding the Timeline Visually</h3>
                 <p>Future Perfect Continuous shows an action that <strong>started before</strong> and <strong>continues up to a future point</strong>.</p>
 
-                <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
-                    <h4 style="text-align: center; margin-top: 0;">Timeline: Duration Up to Future Point</h4>
+                <div class="gc-bg-white" style="border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
+                    <h4 style="text-align: center; margin-top: 0">Timeline: Duration Up to Future Point</h4>
 
-                    <div style="position: relative; margin: 2rem auto; max-width: 650px; padding: 2rem 0;">
+                    <div style="position: relative; margin: 2rem auto; max-width: 650px; padding: 2rem 0">
                         <!-- Duration bar -->
-                        <div style="position: relative; height: 50px; background: linear-gradient(to right, rgba(6, 182, 212, 0.3), rgba(6, 182, 212, 0.9)); border-radius: 25px; border: 3px solid #06b6d4; display: flex; align-items: center; padding: 0 2rem;">
-                            <span style="color: #0e7490; font-weight: 600; font-size: 0.875rem;">will have been working...</span>
+                        <div style="position: relative; height: 50px; background: linear-gradient(to right, rgba(6, 182, 212, 0.3), rgba(6, 182, 212, 0.9)); border-radius: 25px; border: 3px solid #06b6d4; display: flex; align-items: center; padding: 0 2rem">
+                            <span style="color: #0e7490; font-weight: 600; font-size: 0.875rem">will have been working...</span>
                             <!-- Start dot -->
-                            <div style="position: absolute; left: 0; top: 50%; width: 10px; height: 10px; background: #06b6d4; border-radius: 50%; transform: translate(-5px, -50%);"></div>
+                            <div style="position: absolute; left: 0; top: 50%; width: 10px; height: 10px; background: #06b6d4; border-radius: 50%; transform: translate(-5px, -50%)"></div>
                             <!-- End dot -->
-                            <div style="position: absolute; right: 0; top: 50%; width: 10px; height: 10px; background: #06b6d4; border-radius: 50%; transform: translate(5px, -50%);"></div>
+                            <div style="position: absolute; right: 0; top: 50%; width: 10px; height: 10px; background: #06b6d4; border-radius: 50%; transform: translate(5px, -50%)"></div>
                         </div>
 
                         <!-- NOW marker -->
-                        <div style="position: absolute; top: 50%; left: 30%; transform: translate(-50%, -50%);">
-                            <div style="width: 40px; height: 40px; border-radius: 50%; background: #cbd5e1; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 600; color: #475569; border: 2px solid white;">NOW</div>
+                        <div style="position: absolute; top: 50%; left: 30%; transform: translate(-50%, -50%)">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: #cbd5e1; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 600; color: #475569; border: 2px solid white">NOW</div>
                         </div>
 
                         <!-- Future point marker -->
-                        <div style="position: absolute; top: -15px; right: 0; transform: translateX(50%);">
-                            <div style="width: 60px; height: 60px; border-radius: 50%; background: #a855f7; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: white; border: 3px solid white; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3); text-align: center;">BY<br/>JUNE</div>
+                        <div style="position: absolute; top: -15px; right: 0; transform: translateX(50%)">
+                            <div style="width: 60px; height: 60px; border-radius: 50%; background: #a855f7; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: white; border: 3px solid white; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3); text-align: center">BY<br/>JUNE</div>
                         </div>
 
                         <!-- Labels -->
-                        <div style="display: flex; justify-content: space-between; margin-top: 0.75rem; padding: 0 0.5rem;">
-                            <div style="text-align: left;">
-                                <div style="font-size: 0.75rem; color: #06b6d4; font-weight: 600;">Started</div>
-                                <div style="font-size: 0.7rem; color: #64748b;">5 years ago</div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 0.75rem; padding: 0 0.5rem">
+                            <div style="text-align: left">
+                                <div class="gc-text-cyan" style="font-size: 0.75rem; ; font-weight: 600">Started</div>
+                                <div class="gc-text-muted" style="font-size: 0.7rem; ">5 years ago</div>
                             </div>
-                            <div style="text-align: center;">
-                                <div style="font-size: 0.875rem; color: #06b6d4; font-weight: 700;">← FOR 5 YEARS →</div>
+                            <div style="text-align: center">
+                                <div class="gc-text-cyan" style="font-size: 0.875rem; ; font-weight: 700">← FOR 5 YEARS →</div>
                             </div>
-                            <div style="text-align: right;">
-                                <div style="font-size: 0.75rem; color: #a855f7; font-weight: 600;">Future Point</div>
+                            <div style="text-align: right">
+                                <div style="font-size: 0.75rem; color: #a855f7; font-weight: 600">Future Point</div>
                             </div>
                         </div>
                     </div>
 
-                    <div style="background: #f0fdfa; padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">
-                        <p style="margin: 0; text-align: center;"><strong>Example:</strong> By June, I <span style="color: #06b6d4; font-weight: 600;">will have been working</span> here <span style="color: #a855f7; font-weight: 600;">for 5 years</span>.</p>
+                    <div style="background: #f0fdfa; padding: 1rem; border-radius: 0.5rem; margin-top: 1rem">
+                        <p style="margin: 0; text-align: center"><strong>Example:</strong> By June, I <span class="gc-text-cyan" style="font-weight: 600">will have been working</span> here <span style="color: #a855f7; font-weight: 600">for 5 years</span>.</p>
                     </div>
                 </div>
             `,
@@ -252,20 +252,20 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 <p>Future Perfect Continuous is formed with: <strong>will have been + verb-ing</strong></p>
                 <p>Same for all subjects—no changes needed!</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            By next month, I <span style="color: #06b6d4; font-weight: 600;">will have been working</span> here for 10 years.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            By next month, I <span class="gc-text-cyan" style="font-weight: 600">will have been working</span> here for 10 years.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            By December, she <span style="color: #06b6d4; font-weight: 600;">will have been studying</span> English for 3 years.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            By December, she <span class="gc-text-cyan" style="font-weight: 600">will have been studying</span> English for 3 years.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            By the time you arrive, they <span style="color: #06b6d4; font-weight: 600;">will have been waiting</span> for 2 hours.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            By the time you arrive, they <span class="gc-text-cyan" style="font-weight: 600">will have been waiting</span> for 2 hours.
                         </div>
                     </div>
                 </div>
@@ -317,17 +317,17 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 <h3>How to Make Negative Sentences</h3>
                 <p>Use <strong>will not have been (won't have been)</strong> + verb-ing.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            By next month, I <span style="color: #06b6d4; font-weight: 600;">won't have been working</span> here long enough to qualify.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            By next month, I <span class="gc-text-cyan" style="font-weight: 600">won't have been working</span> here long enough to qualify.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            She <span style="color: #06b6d4; font-weight: 600;">won't have been studying</span> long enough to pass the advanced exam.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            She <span class="gc-text-cyan" style="font-weight: 600">won't have been studying</span> long enough to pass the advanced exam.
                         </div>
                     </div>
                 </div>
@@ -369,17 +369,17 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 <h3>How to Make Questions</h3>
                 <p>Put <strong>Will</strong> at the beginning: Will + subject + have been + verb-ing?</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            How long <span style="color: #06b6d4; font-weight: 600;">will</span> you <span style="color: #06b6d4; font-weight: 600;">have been working</span> here by next year?
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            How long <span class="gc-text-cyan" style="font-weight: 600">will</span> you <span class="gc-text-cyan" style="font-weight: 600">have been working</span> here by next year?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            <span style="color: #06b6d4; font-weight: 600;">Will</span> she <span style="color: #06b6d4; font-weight: 600;">have been studying</span> long enough by the exam date?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            <span class="gc-text-cyan" style="font-weight: 600">Will</span> she <span class="gc-text-cyan" style="font-weight: 600">have been studying</span> long enough by the exam date?
                         </div>
                     </div>
                 </div>

@@ -9,8 +9,8 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
       title: "Imperatives vs Declaratives: Understanding Tone in Instructions",
       icon: "🗣️",
       explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"Take this medicine twice a day." vs "You should take this medicine twice a day." The difference is small, but the tone is completely different. One is a command (imperative), the other is advice (declarative). Understanding this difference is critical for medical instructions, workplace communication, and everyday interactions.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">"Take this medicine twice a day." vs "You should take this medicine twice a day." The difference is small, but the tone is completely different. One is a command (imperative), the other is advice (declarative). Understanding this difference is critical for medical instructions, workplace communication, and everyday interactions.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -88,12 +88,12 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 <h3>What Is an Imperative?</h3>
                 <p>An <strong>imperative sentence</strong> gives a command, instruction, request, or advice. The subject (you) is understood but not stated.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Formula:</h4>
-                    <p style="font-size: 1.25rem; font-weight: bold; color: #d97757;">Base Verb + (object/details)</p>
-                    <p style="font-style: italic; margin-top: 0.5rem;">(No subject! Start with the verb.)</p>
+                    <p class="gc-text-terracotta" style="font-size: 1.25rem; font-weight: bold; ">Base Verb + (object/details)</p>
+                    <p style="font-style: italic; margin-top: 0.5rem">(No subject! Start with the verb.)</p>
 
-                    <h4 style="margin-top: 1rem;">Examples:</h4>
+                    <h4 style="margin-top: 1rem">Examples:</h4>
                     <ul>
                         <li><strong>Take</strong> this medicine.</li>
                         <li><strong>Rest</strong> for 3 days.</li>
@@ -105,8 +105,8 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
 
                 <h3>Types of Imperatives</h3>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <h4 style="color: #d97757;">1. Direct Commands (Strong)</h4>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <h4 class="gc-text-terracotta">1. Direct Commands (Strong)</h4>
                     <p>Used by authority figures (doctors, bosses, parents):</p>
                     <ul>
                         <li><strong>Stop</strong> smoking.</li>
@@ -115,8 +115,8 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <h4 style="color: #7ba884;">2. Polite Requests ("Please")</h4>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <h4 class="gc-text-sage">2. Polite Requests ("Please")</h4>
                     <p>Softened with "please" to sound more polite:</p>
                     <ul>
                         <li><strong>Please</strong> fill out this form.</li>
@@ -125,8 +125,8 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <h4 style="color: #d4a843;">3. Negative Imperatives ("Don't")</h4>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <h4 style="color: #d4a843">3. Negative Imperatives ("Don't")</h4>
                     <p>Tells someone NOT to do something:</p>
                     <ul>
                         <li><strong>Don't</strong> eat before the test.</li>
@@ -194,11 +194,11 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 <h3>What Is a Declarative?</h3>
                 <p>A <strong>declarative sentence</strong> makes a statement. It has a subject and gives information, advice, or describes a situation.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Formula:</h4>
-                    <p style="font-size: 1.25rem; font-weight: bold; color: #7ba884;">Subject + Verb + (object/details)</p>
+                    <p class="gc-text-sage" style="font-size: 1.25rem; font-weight: bold; ">Subject + Verb + (object/details)</p>
 
-                    <h4 style="margin-top: 1rem;">Examples:</h4>
+                    <h4 style="margin-top: 1rem">Examples:</h4>
                     <ul>
                         <li><strong>You need to</strong> take this medicine.</li>
                         <li><strong>You should</strong> rest for 3 days.</li>
@@ -210,39 +210,39 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
 
                 <h3>Common Patterns in Declaratives</h3>
 
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(110, 145, 118, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Pattern</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Example</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Tone</th>
+                        <tr style="background: rgba(110, 145, 118, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Pattern</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Example</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Tone</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">You need to...</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">You need to rest.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Strong/Required</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">You need to...</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">You need to rest.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Strong/Required</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">You should...</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">You should exercise.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Advice/Suggestion</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I recommend...</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I recommend this treatment.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Professional advice</td>
-                        </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">You have to...</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">You have to fast before surgery.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Obligation/Necessary</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">You should...</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">You should exercise.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Advice/Suggestion</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I will...</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I will call you tomorrow.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Promise/Plan</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">I recommend...</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">I recommend this treatment.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Professional advice</td>
+                        </tr>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">You have to...</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">You have to fast before surgery.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Obligation/Necessary</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">I will...</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">I will call you tomorrow.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Promise/Plan</td>
                         </tr>
                     </tbody>
                 </table>
@@ -324,39 +324,39 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 <h3>Same Meaning, Different Tone</h3>
                 <p>You can express the same idea with either an imperative or a declarative, but the tone changes:</p>
 
-                <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0">
                     <thead>
-                        <tr style="background: rgba(200, 107, 81, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Imperative (Direct)</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Declarative (Indirect)</th>
+                        <tr style="background: rgba(200, 107, 81, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Imperative (Direct)</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Declarative (Indirect)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Take</strong> this twice a day.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>You need to take</strong> this twice a day.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Take</strong> this twice a day.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You need to take</strong> this twice a day.</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Rest</strong> for a week.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>You should rest</strong> for a week.</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Don't</strong> lift anything heavy.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>You shouldn't</strong> lift anything heavy.</td>
-                        </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Call</strong> if you have pain.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>You should call</strong> if you have pain.</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Rest</strong> for a week.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You should rest</strong> for a week.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Come back</strong> in two weeks.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>You need to come back</strong> in two weeks.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Don't</strong> lift anything heavy.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You shouldn't</strong> lift anything heavy.</td>
+                        </tr>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Call</strong> if you have pain.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You should call</strong> if you have pain.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Come back</strong> in two weeks.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You need to come back</strong> in two weeks.</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <div style="background: rgba(244, 211, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1.5rem 0;">
-                    <h4 style="color: #d4a843;">Which Should You Use?</h4>
+                <div style="background: rgba(244, 211, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1.5rem 0">
+                    <h4 style="color: #d4a843">Which Should You Use?</h4>
                     <ul>
                         <li><strong>Imperatives:</strong> More common in medical instructions (prescriptions, clinic signs, doctor's orders)</li>
                         <li><strong>Declaratives:</strong> Sound more polite and less bossy in conversations</li>
@@ -439,9 +439,9 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
       icon: "🏥",
       explanation: `
                 <h3>Prescription Labels (Imperatives)</h3>
-                <div style="background: white; padding: 1rem; border: 2px solid #d97757; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="font-weight: bold; color: #d97757; margin: 0 0 0.5rem 0;">MEDICATION INSTRUCTIONS:</p>
-                    <ul style="margin: 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #d97757; border-radius: 0.5rem; margin: 1rem 0">
+                    <p class="gc-text-terracotta" style="font-weight: bold; ; margin: 0 0 0.5rem 0">MEDICATION INSTRUCTIONS:</p>
+                    <ul style="margin: 0">
                         <li><strong>Take</strong> 1 tablet by mouth twice daily with food.</li>
                         <li><strong>Avoid</strong> alcohol while taking this medication.</li>
                         <li><strong>Do not</strong> drive or operate heavy machinery.</li>
@@ -450,9 +450,9 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Doctor's Advice (Declaratives)</h3>
-                <div style="background: white; padding: 1rem; border: 2px solid #7ba884; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="font-weight: bold; color: #7ba884; margin: 0 0 0.5rem 0;">DOCTOR SPEAKING TO PATIENT:</p>
-                    <ul style="margin: 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #7ba884; border-radius: 0.5rem; margin: 1rem 0">
+                    <p class="gc-text-sage" style="font-weight: bold; ; margin: 0 0 0.5rem 0">DOCTOR SPEAKING TO PATIENT:</p>
+                    <ul style="margin: 0">
                         <li>"<strong>You should</strong> take 1 tablet twice a day with food."</li>
                         <li>"<strong>I recommend</strong> avoiding alcohol while on this medication."</li>
                         <li>"<strong>You shouldn't</strong> drive after taking this."</li>
@@ -461,7 +461,7 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Clinic Signs (Imperatives)</h3>
-                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
                     <ul>
                         <li><strong>Please</strong> check in at the front desk.</li>
                         <li><strong>Turn off</strong> your cell phone.</li>
@@ -471,14 +471,14 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Patient to Doctor (Declaratives)</h3>
-                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="font-style: italic;">Patients usually use declaratives when speaking to doctors:</p>
+                <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <p style="font-style: italic">Patients usually use declaratives when speaking to doctors:</p>
                     <ul>
                         <li>"<strong>I will</strong> take it twice a day."</li>
                         <li>"<strong>I'll try to</strong> rest more."</li>
                         <li>"<strong>I need to</strong> ask about the side effects."</li>
                     </ul>
-                    <p style="margin-top: 1rem; font-weight: bold;">❌ Patients DON'T usually use imperatives with doctors (too direct/rude).</p>
+                    <p style="margin-top: 1rem; font-weight: bold">❌ Patients DON'T usually use imperatives with doctors (too direct/rude).</p>
                 </div>
             `,
       tipBox: {
@@ -578,13 +578,13 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
       icon: "💼",
       explanation: `
                 <h3>Boss to Employee (Can Use Both)</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <p><strong>Imperative (more direct):</strong></p>
                     <ul>
                         <li>"<strong>Please submit</strong> your timesheet by Friday."</li>
                         <li>"<strong>Turn in</strong> the report tomorrow."</li>
                     </ul>
-                    <p style="margin-top: 1rem;"><strong>Declarative (softer):</strong></p>
+                    <p style="margin-top: 1rem"><strong>Declarative (softer):</strong></p>
                     <ul>
                         <li>"<strong>You need to submit</strong> your timesheet by Friday."</li>
                         <li>"<strong>I need you to turn in</strong> the report tomorrow."</li>
@@ -592,14 +592,14 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Employee to Boss (Use Declaratives)</h3>
-                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
                     <p>✅ <strong>Use declaratives</strong> to sound respectful:</p>
                     <ul>
                         <li>"<strong>I will submit</strong> it by Friday."</li>
                         <li>"<strong>I can turn in</strong> the report tomorrow."</li>
                         <li>"<strong>I'd like to</strong> request time off."</li>
                     </ul>
-                    <p style="margin-top: 1rem;">❌ <strong>DON'T use imperatives</strong> with your boss (too direct/disrespectful):</p>
+                    <p style="margin-top: 1rem">❌ <strong>DON'T use imperatives</strong> with your boss (too direct/disrespectful):</p>
                     <ul>
                         <li>❌ "Give me more time." → ✅ "Could I have more time?"</li>
                         <li>❌ "Approve my request." → ✅ "Could you please approve my request?"</li>
@@ -607,7 +607,7 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Coworker to Coworker (Polite Imperatives OK)</h3>
-                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
                     <p>With equals, polite imperatives are fine:</p>
                     <ul>
                         <li>"<strong>Please</strong> send me that file."</li>
@@ -844,33 +844,33 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Politeness Guidelines</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(110, 145, 118, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Situation</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Best Choice</th>
+                        <tr style="background: rgba(110, 145, 118, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Situation</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Best Choice</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Speaking to boss</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Declaratives only</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Speaking to boss</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Declaratives only</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Speaking to doctor</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Declaratives only</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Speaking to coworker</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Polite imperatives OK</td>
-                        </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Written instructions</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Imperatives standard</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Speaking to doctor</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Declaratives only</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Doctor/boss to you</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Either (they choose)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Speaking to coworker</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Polite imperatives OK</td>
+                        </tr>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Written instructions</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Imperatives standard</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Doctor/boss to you</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Either (they choose)</td>
                         </tr>
                     </tbody>
                 </table>

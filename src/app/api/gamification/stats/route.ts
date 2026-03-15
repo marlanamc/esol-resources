@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { requireAuth } from '@/lib/api-auth';
 import { withRequestLogging } from '@/lib/request-logging';
 import { getUserGamificationStats } from '@/lib/gamification';
+import { ApiErrors, handleApiError } from '@/lib/api-response';
 
 /**
  * GET /api/gamification/stats
@@ -20,13 +21,15 @@ export async function GET(request: NextRequest) {
       const stats = await getUserGamificationStats(userId);
 
       if (!stats) {
-        return NextResponse.json({ error: 'User not found' }, { status: 404 });
+        return ApiErrors.notFound('User');
       }
 
       return NextResponse.json({ stats });
     } catch (error) {
-      console.error('[Gamification Stats] Error:', error);
-      return NextResponse.json({ error: 'Failed to fetch stats' }, { status: 500 });
+      return handleApiError(error, {
+        defaultMessage: 'Failed to fetch stats',
+        path: request.url,
+      });
     }
   });
 }

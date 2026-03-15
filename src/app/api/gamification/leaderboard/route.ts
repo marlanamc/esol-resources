@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { getTimeframedLeaderboard, LeaderboardRange } from '@/lib/gamification';
 import { prisma } from '@/lib/prisma';
 import { classOwnershipWhere, ensureTeacher } from '@/lib/policies';
+import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
 
 /**
  * GET /api/gamification/leaderboard
@@ -13,7 +14,7 @@ export async function GET(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
     if (!session || !session.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return ApiErrors.unauthorized();
     }
 
     const { searchParams } = new URL(req.url);
@@ -25,7 +26,7 @@ export async function GET(req: NextRequest) {
     const timeframe: LeaderboardRange = ['day', 'week', 'month'].includes(timeframeParam) ? timeframeParam : 'week';
     const user = session.user;
     if (!user.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return ApiErrors.unauthorized();
     }
     let resolvedClassId: string | undefined = classId || undefined;
     let resolvedClassIds: string[] | undefined;
@@ -42,22 +43,22 @@ export async function GET(req: NextRequest) {
           select: { id: true },
         });
         if (!enrollment) {
-          return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+          return ApiErrors.forbidden();
         }
       } else {
         const teacherCheck = ensureTeacher(user);
         if (!teacherCheck.ok) {
-          return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+          return apiError(teacherCheck.error, teacherCheck.status);
         }
         const targetClass = await prisma.class.findUnique({
           where: { id: resolvedClassId },
           select: { id: true, teacherId: true },
         });
         if (!targetClass) {
-          return NextResponse.json({ error: 'Class not found' }, { status: 404 });
+          return ApiErrors.notFound('Class', resolvedClassId);
         }
         if (!teacherCheck.admin && targetClass.teacherId !== user.id) {
-          return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+          return ApiErrors.forbidden();
         }
       }
     }
@@ -103,7 +104,7 @@ export async function GET(req: NextRequest) {
     } else {
       const teacherCheck = ensureTeacher(user);
       if (!teacherCheck.ok) {
-        return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+        return apiError(teacherCheck.error, teacherCheck.status);
       }
       if (!resolvedClassId) {
         const firstClass = await prisma.class.findFirst({
@@ -125,14 +126,9 @@ export async function GET(req: NextRequest) {
       scope,
     });
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unknown error';
-    console.error('[Leaderboard] Error:', error);
-    return NextResponse.json(
-      {
-        error: 'Failed to fetch leaderboard',
-        ...(process.env.NODE_ENV === 'development' ? { details: message } : {}),
-      },
-      { status: 500 }
-    );
+    return handleApiError(error, {
+      defaultMessage: 'Failed to fetch leaderboard',
+      path: req.url,
+    });
   }
 }

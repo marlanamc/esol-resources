@@ -9,8 +9,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             title: "Passive Voice: Understanding Medical Instructions",
             icon: "🔄",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"Your blood will be drawn." "The test is performed on an empty stomach." "You will be called when results are ready." Passive voice is EVERYWHERE in medical settings. If you don't understand it, you'll be confused about what's happening at the clinic or hospital.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">"Your blood will be drawn." "The test is performed on an empty stomach." "You will be called when results are ready." Passive voice is EVERYWHERE in medical settings. If you don't understand it, you'll be confused about what's happening at the clinic or hospital.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -71,10 +71,10 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             explanation: `
                 <h3>What's the Difference?</h3>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
-                    <h4 style="color: #7ba884;">Active Voice</h4>
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
+                    <h4 class="gc-text-sage">Active Voice</h4>
                     <p><strong>The subject DOES the action.</strong></p>
-                    <p style="font-size: 1.125rem; font-weight: bold;">Subject (doer) → Verb → Object</p>
+                    <p style="font-size: 1.125rem; font-weight: bold">Subject (doer) → Verb → Object</p>
                     <ul>
                         <li><strong>The nurse</strong> takes your blood pressure. (nurse = subject/doer)</li>
                         <li><strong>The doctor</strong> ordered the test. (doctor = subject/doer)</li>
@@ -82,10 +82,10 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
-                    <h4 style="color: #d97757;">Passive Voice</h4>
+                <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
+                    <h4 class="gc-text-terracotta">Passive Voice</h4>
                     <p><strong>The subject RECEIVES the action.</strong></p>
-                    <p style="font-size: 1.125rem; font-weight: bold;">Subject (receiver) → be + past participle (+ by doer)</p>
+                    <p style="font-size: 1.125rem; font-weight: bold">Subject (receiver) → be + past participle (+ by doer)</p>
                     <ul>
                         <li><strong>Your blood pressure</strong> is taken (by the nurse). (blood pressure = subject/receiver)</li>
                         <li><strong>The test</strong> was ordered (by the doctor). (test = subject/receiver)</li>
@@ -94,25 +94,25 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Same Meaning, Different Focus</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(110, 145, 118, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Active (Who does it)</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Passive (What happens)</th>
+                        <tr style="background: rgba(110, 145, 118, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Active (Who does it)</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Passive (What happens)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">The nurse drew my blood.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">My blood was drawn.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">The nurse drew my blood.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">My blood was drawn.</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">The doctor will call you.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">You will be called.</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">The doctor will call you.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">You will be called.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Someone sterilized the equipment.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">The equipment was sterilized.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Someone sterilized the equipment.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">The equipment was sterilized.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -168,13 +168,13 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             explanation: `
                 <h3>The Passive Formula</h3>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(244, 211, 94, 0.1); border-radius: 0.5rem; border: 2px solid #d4a843;">
-                    <p style="font-size: 1.5rem; font-weight: bold; color: #d4a843; text-align: center;">be + Past Participle</p>
-                    <p style="text-align: center; margin-top: 0.5rem; font-style: italic;">(The form of "be" changes based on tense)</p>
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(244, 211, 94, 0.1); border-radius: 0.5rem; border: 2px solid #d4a843">
+                    <p style="font-size: 1.5rem; font-weight: bold; color: #d4a843; text-align: center">be + Past Participle</p>
+                    <p style="text-align: center; margin-top: 0.5rem; font-style: italic">(The form of "be" changes based on tense)</p>
                 </div>
 
                 <h3>Present Simple Passive</h3>
-                <p style="font-weight: bold;">am/is/are + past participle</p>
+                <p style="font-weight: bold">am/is/are + past participle</p>
                 <ul>
                     <li>The test <strong>is performed</strong> on an empty stomach.</li>
                     <li>Appointments <strong>are scheduled</strong> online.</li>
@@ -182,7 +182,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Past Simple Passive</h3>
-                <p style="font-weight: bold;">was/were + past participle</p>
+                <p style="font-weight: bold">was/were + past participle</p>
                 <ul>
                     <li>My blood <strong>was drawn</strong> yesterday.</li>
                     <li>The results <strong>were sent</strong> to my doctor.</li>
@@ -190,7 +190,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Future Passive</h3>
-                <p style="font-weight: bold;">will be + past participle</p>
+                <p style="font-weight: bold">will be + past participle</p>
                 <ul>
                     <li>You <strong>will be called</strong> when the doctor is ready.</li>
                     <li>The medicine <strong>will be prescribed</strong> after your exam.</li>
@@ -198,14 +198,14 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Modal Passive</h3>
-                <p style="font-weight: bold;">modal + be + past participle</p>
+                <p style="font-weight: bold">modal + be + past participle</p>
                 <ul>
                     <li>This form <strong>must be completed</strong> before your visit.</li>
                     <li>The medication <strong>should be taken</strong> with food.</li>
                     <li>Results <strong>can be viewed</strong> on your patient portal.</li>
                 </ul>
 
-                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem">
                     <h4>Common Irregular Past Participles in Medical Settings:</h4>
                     <ul>
                         <li>take → <strong>taken</strong></li>
@@ -267,7 +267,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             icon: "❓",
             explanation: `
                 <h3>Reason #1: The Doer Is Unknown or Unimportant</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <p>When we don't know who did the action, or it doesn't matter:</p>
                     <ul>
                         <li>"My car <strong>was stolen</strong>." (We don't know who stole it)</li>
@@ -277,7 +277,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Reason #2: Focus on the Action, Not the Person</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <p>Medical instructions focus on WHAT happens to you, not WHO does it:</p>
                     <ul>
                         <li>"Your blood pressure <strong>will be checked</strong>." (The action is what matters)</li>
@@ -287,7 +287,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Reason #3: Scientific/Formal Writing</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <p>Passive is common in formal instructions, signs, and procedures:</p>
                     <ul>
                         <li>"This medication <strong>should be taken</strong> with food." (medication label)</li>
@@ -297,7 +297,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>When NOT to Use Passive</h3>
-                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
                     <p><strong>Use active voice when the doer IS important:</strong></p>
                     <ul>
                         <li>✅ ACTIVE: "<strong>Dr. Smith</strong> prescribed this medication." (specific doctor matters)</li>
@@ -363,7 +363,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             icon: "🏥",
             explanation: `
                 <h3>Clinic Signs & Instructions</h3>
-                <div style="background: white; padding: 1rem; border: 2px solid #7ba884; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #7ba884; border-radius: 0.5rem; margin: 1rem 0">
                     <ul>
                         <li>"Patients <strong>must be checked in</strong> 15 minutes before appointment."</li>
                         <li>"Insurance cards <strong>should be presented</strong> at check-in."</li>
@@ -373,7 +373,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Medication Labels</h3>
-                <div style="background: white; padding: 1rem; border: 2px solid #d97757; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #d97757; border-radius: 0.5rem; margin: 1rem 0">
                     <ul>
                         <li>"This medication <strong>should be taken</strong> twice daily with food."</li>
                         <li>"Tablets <strong>should not be crushed</strong> or chewed."</li>
@@ -383,7 +383,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Test & Procedure Instructions</h3>
-                <div style="background: white; padding: 1rem; border: 2px solid #d4a843; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #d4a843; border-radius: 0.5rem; margin: 1rem 0">
                     <ul>
                         <li>"Your blood <strong>will be drawn</strong> in the lab on the 2nd floor."</li>
                         <li>"The test <strong>is performed</strong> on an empty stomach."</li>
@@ -393,7 +393,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Phone Messages & Emails from Clinic</h3>
-                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
                     <ul>
                         <li>"Your appointment <strong>has been scheduled</strong> for May 15th."</li>
                         <li>"A reminder <strong>will be sent</strong> 24 hours before your visit."</li>
@@ -403,29 +403,29 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Converting Active to Passive (Medical Examples)</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(110, 145, 118, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Active</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Passive</th>
+                        <tr style="background: rgba(110, 145, 118, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Active</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Passive</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">The nurse will check your vitals.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Your vitals will be checked.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">The nurse will check your vitals.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Your vitals will be checked.</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">The lab performs the test.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">The test is performed by the lab.</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">The lab performs the test.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">The test is performed by the lab.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Someone sterilized the equipment.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">The equipment was sterilized.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Someone sterilized the equipment.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">The equipment was sterilized.</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">The doctor prescribed antibiotics.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Antibiotics were prescribed.</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">The doctor prescribed antibiotics.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Antibiotics were prescribed.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -515,7 +515,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                     <li>❌ PASSIVE: "A prescription was given to me by Dr. Smith." (too wordy)</li>
                     <li>✅ ACTIVE: "Dr. Smith gave me a prescription." (clearer, simpler)</li>
                 </ul>
-                <p style="margin-top: 1rem;"><strong>Use passive when the doer is unimportant. Use active when the doer matters.</strong></p>
+                <p style="margin-top: 1rem"><strong>Use passive when the doer is unimportant. Use active when the doer matters.</strong></p>
             `,
             exercises: [
                 {
@@ -692,37 +692,37 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             icon: "📋",
             explanation: `
                 <h3>Passive Voice Formula</h3>
-                <p style="font-size: 1.25rem; font-weight: bold; color: #d97757;">be + Past Participle</p>
+                <p class="gc-text-terracotta" style="font-size: 1.25rem; font-weight: bold; ">be + Past Participle</p>
 
                 <h3>Tense Chart</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(110, 145, 118, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Tense</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Active</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Passive</th>
+                        <tr style="background: rgba(110, 145, 118, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Tense</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Active</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Passive</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Present Simple</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">They take my blood.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">My blood is taken.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Present Simple</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">They take my blood.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">My blood is taken.</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Past Simple</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">They drew my blood.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">My blood was drawn.</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Past Simple</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">They drew my blood.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">My blood was drawn.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Future</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">They will call you.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">You will be called.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Future</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">They will call you.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">You will be called.</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Modal</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">You must take this.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">This must be taken.</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Modal</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">You must take this.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">This must be taken.</td>
                         </tr>
                     </tbody>
                 </table>

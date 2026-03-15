@@ -3,9 +3,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { requireStudent } from "@/lib/api-auth";
-import { ApiErrors } from "@/lib/api-response";
+import { ApiErrors, apiError } from "@/lib/api-response";
 import { JoinClassBodySchema, parseApiBody } from "@/lib/api-schemas";
-import { logger } from "@/lib/logger";
 
 export function validateJoinSession(session: { user?: { role?: string | null } } | null): {
     allowed: boolean;
@@ -62,7 +61,7 @@ export async function POST(request: NextRequest) {
 
         const normalizedCode = normalizeJoinClassCode(validated.data.code);
         if (!normalizedCode.ok) {
-            return NextResponse.json({ error: normalizedCode.error }, { status: normalizedCode.status });
+            return apiError(normalizedCode.error, normalizedCode.status);
         }
 
         const userId = studentCheck.user.id;
@@ -100,8 +99,7 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json({ classId: classItem.id, message: "Successfully joined class" });
-    } catch (error: unknown) {
-        logger.error("Error joining class", error);
+    } catch {
         return ApiErrors.internal("Failed to join class. Please try again.");
     }
 }

@@ -1,4 +1,2 @@
-export function isTeacherAdmin(user: { isTeacherAdmin?: boolean | null } | null | undefined): boolean {
-    return user?.isTeacherAdmin === true;
-}
-
+// Re-export from new location for backward compatibility
+export { isTeacherAdmin } from "./auth/roles";

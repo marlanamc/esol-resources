@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * State machine and data for the Irregular Verbs game: group selection, exercises, round results,
+ * progress sync with API, and navigation between selection / intro / exercise / results phases.
+ * @see IrregularVerbsGame
+ */
+
 import { useState, useCallback, useEffect } from 'react';
 import type {
   VerbGroup,

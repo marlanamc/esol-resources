@@ -8,6 +8,7 @@ import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
 
 /**
  * GET /api/user/preferences
@@ -18,7 +19,7 @@ export async function GET() {
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return ApiErrors.unauthorized();
     }
 
     const userId = session.user.id;
@@ -42,11 +43,9 @@ export async function GET() {
       hideVerbExplanations: preferences.hideVerbExplanations
     });
   } catch (error) {
-    console.error('Error fetching preferences:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch preferences' },
-      { status: 500 }
-    );
+    return handleApiError(error, {
+      defaultMessage: 'Failed to fetch preferences',
+    });
   }
 }
 
@@ -60,7 +59,7 @@ export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return ApiErrors.unauthorized();
     }
 
     const userId = session.user.id;
@@ -68,10 +67,7 @@ export async function POST(request: Request) {
     const { hideVerbExplanations } = body;
 
     if (typeof hideVerbExplanations !== 'boolean') {
-      return NextResponse.json(
-        { error: 'hideVerbExplanations must be a boolean' },
-        { status: 400 }
-      );
+      return apiError('hideVerbExplanations must be a boolean', 400);
     }
 
     // Upsert preferences (create if doesn't exist, update if it does)
@@ -89,10 +85,8 @@ export async function POST(request: Request) {
       hideVerbExplanations: preferences.hideVerbExplanations
     });
   } catch (error) {
-    console.error('Error updating preferences:', error);
-    return NextResponse.json(
-      { error: 'Failed to update preferences' },
-      { status: 500 }
-    );
+    return handleApiError(error, {
+      defaultMessage: 'Failed to update preferences',
+    });
   }
 }

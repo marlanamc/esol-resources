@@ -52,7 +52,7 @@ const tenseSubcategoryLabels: Record<NonNullable<GrammarTopic['subcategory']>, s
     'perfect-continuous': 'Perfect Continuous',
 };
 
-export default function GrammarMapClient({ progressMap, topics }: GrammarMapClientProps) {
+export function GrammarMapClient({ progressMap, topics }: GrammarMapClientProps) {
     const router = useRouter();
     const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
     const [hoveredTopic, setHoveredTopic] = useState<string | null>(null);

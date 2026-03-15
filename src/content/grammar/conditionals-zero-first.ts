@@ -9,37 +9,37 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             title: "Zero & First Conditionals: The IF-THEN Machine",
             icon: "🔄",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(244, 211, 94, 0.1) 0%, rgba(123, 168, 132, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin-top: 0; color: #f4d35e; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">English has TWO types of conditionals for <strong style="color: #f4d35e;">REAL situations</strong>: <strong>Zero Conditional</strong> for things that are always true (like science facts and habits), and <strong>First Conditional</strong> for real future possibilities and plans. Understanding which to use helps you talk about cause and effect clearly!</p>
+                <div style="background: linear-gradient(135deg, rgba(244, 211, 94, 0.1) 0%, rgba(123, 168, 132, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 style="margin-top: 0; color: #f4d35e; font-size: 1.25rem">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0">English has TWO types of conditionals for <strong style="color: #f4d35e">REAL situations</strong>: <strong>Zero Conditional</strong> for things that are always true (like science facts and habits), and <strong>First Conditional</strong> for real future possibilities and plans. Understanding which to use helps you talk about cause and effect clearly!</p>
                 </div>
 
                 <h3>The Big Difference</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: rgba(244, 211, 94, 0.15); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f4d35e;">
-                        <h4 style="color: #ca8a04; margin-top: 0;">Zero Conditional</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0">
+                    <div style="background: rgba(244, 211, 94, 0.15); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f4d35e">
+                        <h4 style="color: #ca8a04; margin-top: 0">Zero Conditional</h4>
                         <p><strong>Always true</strong> (facts, habits, natural laws)</p>
-                        <p style="font-weight: bold; color: #ca8a04;">If + present, present</p>
-                        <p style="margin: 0;">"If you heat water to 100°C, it <strong>boils</strong>."</p>
+                        <p style="font-weight: bold; color: #ca8a04">If + present, present</p>
+                        <p style="margin: 0">"If you heat water to 100°C, it <strong>boils</strong>."</p>
                     </div>
-                    <div style="background: rgba(123, 168, 132, 0.15); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #7ba884;">
-                        <h4 style="color: #7ba884; margin-top: 0;">First Conditional</h4>
+                    <div class="gc-callout-sage" style="background: rgba(123, 168, 132, 0.15); padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 class="gc-text-sage" style="margin-top: 0">First Conditional</h4>
                         <p><strong>Future possibility</strong> (plans, predictions, promises)</p>
-                        <p style="font-weight: bold; color: #7ba884;">If + present, will + verb</p>
-                        <p style="margin: 0;">"If it rains tomorrow, I <strong>will bring</strong> an umbrella."</p>
+                        <p class="gc-text-sage" style="font-weight: bold; ">If + present, will + verb</p>
+                        <p style="margin: 0">"If it rains tomorrow, I <strong>will bring</strong> an umbrella."</p>
                     </div>
                 </div>
 
-                <div style="background: rgba(123, 168, 132, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In daily life:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                <div class="gc-callout-sage" style="background: rgba(123, 168, 132, 0.15); ; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In daily life:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li>Explaining how things work (zero conditional)</li>
                         <li>Talking about your habits and routines (zero conditional)</li>
                         <li>Making weekend plans and promises (first conditional)</li>
                         <li>Predicting what will happen in the future (first conditional)</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💡 Zero = always true facts. First = your future plans!</p>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a">💡 Zero = always true facts. First = your future plans!</p>
                 </div>
             `,
             exercises: [
@@ -95,15 +95,15 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     <li><strong>General truths:</strong> "If you don't eat, you get hungry."</li>
                 </ul>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(244, 211, 94, 0.1); border-radius: 0.5rem; border: 2px solid #f4d35e;">
-                    <h4 style="color: #ca8a04;">Formula:</h4>
-                    <p style="font-size: 1.5rem; font-weight: bold; color: #ca8a04; text-align: center; margin: 1rem 0;">If + present simple, present simple</p>
-                    <p style="text-align: center; font-style: italic;">(Both clauses use present simple!)</p>
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(244, 211, 94, 0.1); border-radius: 0.5rem; border: 2px solid #f4d35e">
+                    <h4 style="color: #ca8a04">Formula:</h4>
+                    <p style="font-size: 1.5rem; font-weight: bold; color: #ca8a04; text-align: center; margin: 1rem 0">If + present simple, present simple</p>
+                    <p style="text-align: center; font-style: italic">(Both clauses use present simple!)</p>
                 </div>
 
                 <h3>Examples from Everyday Life</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Science & Nature:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Science & Nature:</p>
                     <ul>
                         <li>If you <strong>heat</strong> water to 100°C, it <strong>boils</strong>.</li>
                         <li>If it <strong>rains</strong>, the ground <strong>gets</strong> wet.</li>
@@ -111,8 +111,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Your habits & routines:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Your habits & routines:</p>
                     <ul>
                         <li>If I <strong>feel</strong> tired, I <strong>drink</strong> coffee.</li>
                         <li>If she <strong>has</strong> free time, she <strong>reads</strong> books.</li>
@@ -120,8 +120,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Cooking & Recipes:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Cooking & Recipes:</p>
                     <ul>
                         <li>If you <strong>add</strong> salt, the food <strong>tastes</strong> better.</li>
                         <li>If you <strong>mix</strong> flour and water, you <strong>make</strong> dough.</li>
@@ -129,8 +129,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Traffic & Transportation:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Traffic & Transportation:</p>
                     <ul>
                         <li>If the light <strong>turns</strong> red, you <strong>stop</strong>.</li>
                         <li>If you <strong>miss</strong> the bus, you <strong>have to</strong> wait 15 minutes.</li>
@@ -210,15 +210,15 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     <li><strong>Warnings:</strong> "If you don't hurry, we'll be late!"</li>
                 </ul>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(123, 168, 132, 0.1); border-radius: 0.5rem; border: 2px solid #7ba884;">
-                    <h4 style="color: #7ba884;">Formula:</h4>
-                    <p style="font-size: 1.5rem; font-weight: bold; color: #7ba884; text-align: center; margin: 1rem 0;">If + present simple, will + base verb</p>
-                    <p style="text-align: center; font-style: italic;">(IF clause = present, RESULT clause = will + verb)</p>
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(123, 168, 132, 0.1); border-radius: 0.5rem; border: 2px solid #7ba884">
+                    <h4 class="gc-text-sage">Formula:</h4>
+                    <p class="gc-text-sage" style="font-size: 1.5rem; font-weight: bold; ; text-align: center; margin: 1rem 0">If + present simple, will + base verb</p>
+                    <p style="text-align: center; font-style: italic">(IF clause = present, RESULT clause = will + verb)</p>
                 </div>
 
                 <h3>Examples from Your Life</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Weekend plans:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Weekend plans:</p>
                     <ul>
                         <li>If the weather <strong>is</strong> nice, I <strong>will go</strong> to the park.</li>
                         <li>If it <strong>rains</strong> tomorrow, we <strong>will stay</strong> home.</li>
@@ -226,8 +226,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">School & Learning:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">School & Learning:</p>
                     <ul>
                         <li>If I <strong>study</strong> hard, I <strong>will pass</strong> the exam.</li>
                         <li>If you <strong>practice</strong> every day, you <strong>will improve</strong> quickly.</li>
@@ -235,8 +235,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Shopping & Money:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Shopping & Money:</p>
                     <ul>
                         <li>If I <strong>save</strong> $50 a month, I <strong>will have</strong> $600 by the end of the year.</li>
                         <li>If the price <strong>drops</strong>, I <strong>will buy</strong> a new phone.</li>
@@ -244,8 +244,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Travel & Transportation:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Travel & Transportation:</p>
                     <ul>
                         <li>If we <strong>leave</strong> early, we <strong>will avoid</strong> traffic.</li>
                         <li>If you <strong>take</strong> the highway, it <strong>will be</strong> faster.</li>
@@ -316,7 +316,7 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                 <h3>You Can Use Other Modals Instead of "Will"</h3>
                 <p>While "will" is most common in first conditional, you can also use can, may, might, should, or imperatives in the result clause to express different meanings.</p>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>Can (ability/possibility):</h4>
                     <ul>
                         <li>If you finish early, <strong>you can go</strong> home.</li>
@@ -325,7 +325,7 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>May/Might (less certain):</h4>
                     <ul>
                         <li>If it rains, the party <strong>might be</strong> canceled. (less certain than "will")</li>
@@ -334,7 +334,7 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>Should (advice/expectation):</h4>
                     <ul>
                         <li>If you feel sick, <strong>you should see</strong> a doctor.</li>
@@ -343,7 +343,7 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>Must (strong necessity):</h4>
                     <ul>
                         <li>If you want to drive, <strong>you must get</strong> a license.</li>
@@ -352,7 +352,7 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>Imperative (command/strong suggestion):</h4>
                     <ul>
                         <li>If you see a good deal, <strong>buy</strong> it!</li>
@@ -482,51 +482,51 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                 <h3>How to Choose Between Zero and First Conditional</h3>
                 <p>Ask yourself this question:</p>
 
-                <div style="background: white; padding: 2rem; border-radius: 0.5rem; border: 2px solid rgba(244, 211, 94, 0.3); margin: 1.5rem 0;">
-                    <div style="background: rgba(244, 211, 94, 0.15); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #f4d35e;">
-                        <p style="font-weight: bold; margin-bottom: 0.5rem;">Is it a FACT, SCIENCE, or HABIT that's ALWAYS true?</p>
-                        <p style="margin: 0;">✓ YES → Use <strong>ZERO conditional</strong> (present + present)</p>
-                        <p style="margin: 0.5rem 0 0 1rem; font-style: italic;">Example: "If you heat water to 100°C, it boils." (Always happens)</p>
+                <div class="gc-bg-white" style="padding: 2rem; border-radius: 0.5rem; border: 2px solid rgba(244, 211, 94, 0.3); margin: 1.5rem 0">
+                    <div style="background: rgba(244, 211, 94, 0.15); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #f4d35e">
+                        <p style="font-weight: bold; margin-bottom: 0.5rem">Is it a FACT, SCIENCE, or HABIT that's ALWAYS true?</p>
+                        <p style="margin: 0">✓ YES → Use <strong>ZERO conditional</strong> (present + present)</p>
+                        <p style="margin: 0.5rem 0 0 1rem; font-style: italic">Example: "If you heat water to 100°C, it boils." (Always happens)</p>
                     </div>
 
-                    <p style="text-align: center; font-weight: bold; margin: 1rem 0;">↓ NO? Then ask...</p>
+                    <p style="text-align: center; font-weight: bold; margin: 1rem 0">↓ NO? Then ask...</p>
 
-                    <div style="background: rgba(123, 168, 132, 0.15); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #7ba884;">
-                        <p style="font-weight: bold; margin-bottom: 0.5rem;">Is it a REAL FUTURE PLAN or POSSIBILITY?</p>
-                        <p style="margin: 0;">✓ YES → Use <strong>FIRST conditional</strong> (present + will)</p>
-                        <p style="margin: 0.5rem 0 0 1rem; font-style: italic;">Example: "If it rains tomorrow, I will bring an umbrella." (Specific future plan)</p>
+                    <div class="gc-callout-sage" style="background: rgba(123, 168, 132, 0.15); padding: 1rem; border-radius: 0.5rem; ">
+                        <p style="font-weight: bold; margin-bottom: 0.5rem">Is it a REAL FUTURE PLAN or POSSIBILITY?</p>
+                        <p style="margin: 0">✓ YES → Use <strong>FIRST conditional</strong> (present + will)</p>
+                        <p style="margin: 0.5rem 0 0 1rem; font-style: italic">Example: "If it rains tomorrow, I will bring an umbrella." (Specific future plan)</p>
                     </div>
                 </div>
 
                 <h3>Quick Examples</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0">
                     <thead>
-                        <tr style="background: rgba(244, 211, 94, 0.15);">
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Situation</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Question</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Answer → Conditional</th>
+                        <tr style="background: rgba(244, 211, 94, 0.15)">
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Situation</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Question</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Answer → Conditional</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Ice melting</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Always true fact?</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">YES → Zero</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Ice melting</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Always true fact?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">YES → Zero</td>
                         </tr>
-                        <tr style="background: rgba(0,0,0,0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Going to the park tomorrow</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Future possibility?</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">YES → First</td>
+                        <tr style="background: rgba(0,0,0,0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Going to the park tomorrow</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Future possibility?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">YES → First</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Your coffee habit</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Always true habit?</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">YES → Zero</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Your coffee habit</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Always true habit?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">YES → Zero</td>
                         </tr>
-                        <tr style="background: rgba(0,0,0,0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Calling a friend this weekend</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Future possibility?</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">YES → First</td>
+                        <tr style="background: rgba(0,0,0,0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Calling a friend this weekend</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Future possibility?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">YES → First</td>
                         </tr>
                     </tbody>
                 </table>
@@ -578,43 +578,43 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                 <h3>The Same Situation, Different Meanings</h3>
                 <p>Sometimes you can use EITHER zero or first conditional for similar situations, but the meaning changes:</p>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: rgba(244, 211, 94, 0.15); padding: 1rem; border-radius: 0.5rem;">
-                        <h4 style="color: #ca8a04;">Zero (Always True Habit)</h4>
-                        <p style="font-weight: bold;">"If I have free time, I read books."</p>
-                        <p style="margin: 0;">Meaning: This is my general habit. Every time I have free time, I always do this.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0">
+                    <div style="background: rgba(244, 211, 94, 0.15); padding: 1rem; border-radius: 0.5rem">
+                        <h4 style="color: #ca8a04">Zero (Always True Habit)</h4>
+                        <p style="font-weight: bold">"If I have free time, I read books."</p>
+                        <p style="margin: 0">Meaning: This is my general habit. Every time I have free time, I always do this.</p>
                     </div>
-                    <div style="background: rgba(123, 168, 132, 0.15); padding: 1rem; border-radius: 0.5rem;">
-                        <h4 style="color: #7ba884;">First (Your Specific Future Plan)</h4>
-                        <p style="font-weight: bold;">"If I have free time this weekend, I will read a book."</p>
-                        <p style="margin: 0;">Meaning: This is my specific plan for this weekend, not my general habit.</p>
+                    <div style="background: rgba(123, 168, 132, 0.15); padding: 1rem; border-radius: 0.5rem">
+                        <h4 class="gc-text-sage">First (Your Specific Future Plan)</h4>
+                        <p style="font-weight: bold">"If I have free time this weekend, I will read a book."</p>
+                        <p style="margin: 0">Meaning: This is my specific plan for this weekend, not my general habit.</p>
                     </div>
                 </div>
 
                 <h3>More Everyday Examples</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(244, 211, 94, 0.15);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(0,0,0,0.1);">Zero (Always True)</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(0,0,0,0.1);">First (Future Plan)</th>
+                        <tr style="background: rgba(244, 211, 94, 0.15)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(0,0,0,0.1)">Zero (Always True)</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid rgba(0,0,0,0.1)">First (Future Plan)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If I'm tired, I go to bed early.</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If I'm tired tonight, I will go to bed early.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If I'm tired, I go to bed early.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If I'm tired tonight, I will go to bed early.</td>
                         </tr>
-                        <tr style="background: rgba(0,0,0,0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If the weather is nice, we eat outside.</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If the weather is nice tomorrow, we will eat outside.</td>
+                        <tr style="background: rgba(0,0,0,0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If the weather is nice, we eat outside.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If the weather is nice tomorrow, we will eat outside.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If I save money, I feel happy.</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If I save $100 this month, I will buy a new phone.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If I save money, I feel happy.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If I save $100 this month, I will buy a new phone.</td>
                         </tr>
-                        <tr style="background: rgba(0,0,0,0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If you heat oil, it gets hot.</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If you heat the oil now, I will add the vegetables.</td>
+                        <tr style="background: rgba(0,0,0,0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If you heat oil, it gets hot.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If you heat the oil now, I will add the vegetables.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -674,35 +674,35 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     <li><strong>Decision tip:</strong> Ask yourself: "Is it always true (zero) or a future plan (first)?"</li>
                 </ul>
 
-                <h3 style="margin-top: 2rem;">Quick Reference Table</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <h3 style="margin-top: 2rem">Quick Reference Table</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(244, 211, 94, 0.15);">
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"></th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Zero Conditional</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">First Conditional</th>
+                        <tr style="background: rgba(244, 211, 94, 0.15)">
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"></th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Zero Conditional</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">First Conditional</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold;">Use for</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Always true facts, habits</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Real future possibilities</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold">Use for</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Always true facts, habits</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Real future possibilities</td>
                         </tr>
-                        <tr style="background: rgba(0,0,0,0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold;">Formula</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">if + present, present</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">if + present, will + verb</td>
+                        <tr style="background: rgba(0,0,0,0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold">Formula</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">if + present, present</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">if + present, will + verb</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold;">Example</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If you heat ice, it melts.</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If it rains, I will stay home.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold">Example</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If you heat ice, it melts.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If it rains, I will stay home.</td>
                         </tr>
-                        <tr style="background: rgba(0,0,0,0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold;">Time</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Any time (general truth)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Specific future time</td>
+                        <tr style="background: rgba(0,0,0,0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold">Time</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Any time (general truth)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Specific future time</td>
                         </tr>
                     </tbody>
                 </table>

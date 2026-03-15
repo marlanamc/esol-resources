@@ -9,8 +9,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
             title: "Punctuation & Capitalization: Writing Conventions",
             icon: "✍️",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Correct punctuation and capitalization make your writing look professional and easy to read. Without them, your writing can be confusing or look careless - even if your grammar is perfect!</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">Correct punctuation and capitalization make your writing look professional and easy to read. Without them, your writing can be confusing or look careless - even if your grammar is perfect!</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -71,8 +71,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Three Types of End Punctuation</h3>
 
-                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <h4 style="color: #7ba884;">Period (.) - Statements</h4>
+                <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <h4 class="gc-text-sage">Period (.) - Statements</h4>
                     <p>Use for statements and commands:</p>
                     <ul>
                         <li>I live in East Boston<strong>.</strong></li>
@@ -81,30 +81,30 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <h4 style="color: #d97757;">Question Mark (?) - Questions</h4>
+                <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <h4 class="gc-text-terracotta">Question Mark (?) - Questions</h4>
                     <p>Use for direct questions:</p>
                     <ul>
                         <li>Where do you live<strong>?</strong></li>
                         <li>Can you help me<strong>?</strong></li>
                         <li>What time is your appointment<strong>?</strong></li>
                     </ul>
-                    <p style="margin-top: 0.75rem;"><strong>⚠️ BUT:</strong> Indirect questions use periods:</p>
+                    <p style="margin-top: 0.75rem"><strong>⚠️ BUT:</strong> Indirect questions use periods:</p>
                     <ul>
                         <li>I wonder where you live<strong>.</strong> (NOT ?)</li>
                         <li>She asked if I could help<strong>.</strong> (NOT ?)</li>
                     </ul>
                 </div>
 
-                <div style="background: rgba(244, 211, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <h4 style="color: #d4a843;">Exclamation Point (!) - Strong Emotion</h4>
+                <div style="background: rgba(244, 211, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <h4 style="color: #d4a843">Exclamation Point (!) - Strong Emotion</h4>
                     <p>Use sparingly for strong emotion or urgency:</p>
                     <ul>
                         <li>Help<strong>!</strong></li>
                         <li>Watch out<strong>!</strong></li>
                         <li>I got the job<strong>!</strong></li>
                     </ul>
-                    <p style="margin-top: 0.75rem;"><strong>⚠️ Caution:</strong> Don't overuse in professional writing!</p>
+                    <p style="margin-top: 0.75rem"><strong>⚠️ Caution:</strong> Don't overuse in professional writing!</p>
                 </div>
             `,
             exercises: [
@@ -156,34 +156,34 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
             explanation: `
                 <h3>When to Use Commas</h3>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>1. Lists (3+ items)</h4>
                     <p>I need bread<strong>,</strong> milk<strong>,</strong> and eggs.</p>
                     <p>She speaks English<strong>,</strong> Spanish<strong>,</strong> and Portuguese.</p>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>2. After introductory words/phrases</h4>
                     <p>However<strong>,</strong> I disagree.</p>
                     <p>After work<strong>,</strong> I'm going to the gym.</p>
                     <p>If I have time<strong>,</strong> I'll call you.</p>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>3. Compound sentences (two independent clauses)</h4>
                     <p>I wanted to go<strong>,</strong> but I was too tired.</p>
                     <p>She studied hard<strong>,</strong> and she passed the test.</p>
                     <p>(Pattern: sentence<strong>,</strong> FANBOYS sentence)</p>
-                    <p style="font-style: italic;">FANBOYS = for, and, nor, but, or, yet, so</p>
+                    <p style="font-style: italic">FANBOYS = for, and, nor, but, or, yet, so</p>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>4. Between city and state/country</h4>
                     <p>I live in Boston<strong>,</strong> Massachusetts.</p>
                     <p>He's from Chelsea<strong>,</strong> Massachusetts.</p>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>5. Dates</h4>
                     <p>My appointment is on June 15<strong>,</strong> 2026.</p>
                     <p>(But: June 2026 - no comma when no day)</p>
@@ -270,7 +270,7 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Two Uses of Apostrophes</h3>
 
-                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
                     <h4>1. Contractions (showing missing letters)</h4>
                     <p>do not → don<strong>'</strong>t</p>
                     <p>I am → I<strong>'</strong>m</p>
@@ -280,7 +280,7 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     <p>will not → won<strong>'</strong>t</p>
                 </div>
 
-                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
                     <h4>2. Possession (showing ownership)</h4>
                     <p><strong>Singular nouns:</strong> add <strong>'s</strong></p>
                     <ul>
@@ -288,13 +288,13 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                         <li>Maria<strong>'s</strong> book</li>
                         <li>my boss<strong>'s</strong> email</li>
                     </ul>
-                    <p style="margin-top: 0.75rem;"><strong>Plural nouns ending in -s:</strong> add <strong>'</strong> only</p>
+                    <p style="margin-top: 0.75rem"><strong>Plural nouns ending in -s:</strong> add <strong>'</strong> only</p>
                     <ul>
                         <li>the doctors<strong>'</strong> offices (multiple doctors)</li>
                         <li>my parents<strong>'</strong> house</li>
                         <li>the teachers<strong>'</strong> lounge</li>
                     </ul>
-                    <p style="margin-top: 0.75rem;"><strong>Irregular plurals:</strong> add <strong>'s</strong></p>
+                    <p style="margin-top: 0.75rem"><strong>Irregular plurals:</strong> add <strong>'s</strong></p>
                     <ul>
                         <li>children<strong>'s</strong> toys</li>
                         <li>women<strong>'s</strong> clothing</li>
@@ -386,19 +386,19 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
             explanation: `
                 <h3>When to Use Capital Letters</h3>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>1. Beginning of sentences</h4>
                     <p><strong>T</strong>he doctor said I need to rest.</p>
                     <p><strong>I</strong> live in East Boston.</p>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>2. The pronoun "I"</h4>
                     <p>My friend and <strong>I</strong> went to the store.</p>
                     <p><strong>I</strong> am a student.</p>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>3. Proper nouns (specific names)</h4>
                     <p><strong>People:</strong> Maria, Dr. Smith, President Biden</p>
                     <p><strong>Places:</strong> East Boston, Massachusetts, United States, Bennington Street</p>
@@ -407,7 +407,7 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     <p><strong>Languages/Nationalities:</strong> English, Spanish, American, Mexican</p>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>4. Titles (when before a name)</h4>
                     <p><strong>Doctor</strong> Smith (✓ - title before name)</p>
                     <p>my doctor (✗ - no capital, not before name)</p>
@@ -485,21 +485,21 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
             explanation: `
                 <h3>When to Use Quotation Marks</h3>
 
-                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
                     <h4>1. Direct Speech (exact words)</h4>
                     <p>The doctor said, <strong>"You need to rest."</strong></p>
                     <p><strong>"I feel better,"</strong> she said.</p>
                     <p>He asked, <strong>"When is your appointment?"</strong></p>
                 </div>
 
-                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
                     <h4>2. Punctuation with Quotation Marks</h4>
                     <p><strong>Periods and commas:</strong> INSIDE the quotes</p>
                     <ul>
                         <li>She said, "I'm tired<strong>."</strong></li>
                         <li>"I'll call you later<strong>,"</strong> he said.</li>
                     </ul>
-                    <p style="margin-top: 0.75rem;"><strong>Question marks and exclamation points:</strong></p>
+                    <p style="margin-top: 0.75rem"><strong>Question marks and exclamation points:</strong></p>
                     <ul>
                         <li>If the quote is a question: "Where are you<strong>?"</strong> she asked.</li>
                         <li>If the sentence is a question: Did she say "I'm tired"<strong>?</strong></li>

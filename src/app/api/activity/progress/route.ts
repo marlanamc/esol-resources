@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -6,6 +6,8 @@ import type { ActivityProgressStatus } from "@/lib/activityProgress";
 import { getActivityPoints, POINTS, resolveActivityGameUi } from "@/lib/gamification";
 import { calculateNumbersGameCompletionPercentage, isNumbersGameCategoryName } from "@/data/numbersGameCategories";
 import { applyAwardChain } from "@/lib/gamification-award-chain";
+import { logger } from "@/lib/logger";
+import { ApiErrors, apiError } from "@/lib/api-response";
 
 const VOCAB_TYPES = ['word-list', 'flashcards', 'matching', 'fill-blank'] as const;
 
@@ -143,11 +145,11 @@ export function chooseBestProgressRecord(records: ProgressRecord[]): ProgressRec
     return best;
 }
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const url = new URL(request.url);
@@ -155,7 +157,7 @@ export async function GET(request: Request) {
     const assignmentId = url.searchParams.get("assignmentId");
 
     if (!activityId || typeof activityId !== "string") {
-        return NextResponse.json({ error: "activityId is required" }, { status: 400 });
+        return apiError("activityId is required", 400);
     }
 
     const userId = session.user.id;
@@ -338,11 +340,11 @@ export function shouldAwardProgressPoints(params: {
                 : (((existingProgress ?? 0) < 100) && progressValue >= 100)));
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const body = await request.json();
@@ -350,7 +352,7 @@ export async function POST(request: Request) {
 
     // SECURITY: Input validation
     if (!activityId || typeof activityId !== "string") {
-        return NextResponse.json({ error: "activityId is required" }, { status: 400 });
+        return apiError("activityId is required", 400);
     }
 
     // Validate and sanitize progress (0-100)
@@ -363,7 +365,7 @@ export async function POST(request: Request) {
 
     // Validate category if provided
     if (category !== undefined && typeof category !== 'string') {
-        return NextResponse.json({ error: "Invalid category format" }, { status: 400 });
+        return apiError("Invalid category format", 400);
     }
 
     const statusValue = typeof statusInput === "string" ? statusInput as ActivityProgressStatus : undefined;
@@ -542,7 +544,7 @@ export async function POST(request: Request) {
             }
         } catch (error) {
             // Log error but don't fail the main operation
-            console.error('Failed to sync global vocabulary progress:', error);
+            logger.error('Failed to sync global vocabulary progress', error);
         }
     }
 

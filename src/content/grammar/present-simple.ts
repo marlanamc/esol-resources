@@ -10,8 +10,8 @@ export const presentSimpleContent: InteractiveGuideContent = {
             title: "Present Simple: The Grammar You Use Every Day",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think about how you describe your daily life. "I work downtown." "Coffee costs too much." "My phone dies every afternoon." That's Present Simple! You already use it - now let's master it.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">Think about how you describe your daily life. "I work downtown." "Coffee costs too much." "My phone dies every afternoon." That's Present Simple! You already use it - now let's master it.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -294,73 +294,73 @@ export const presentSimpleContent: InteractiveGuideContent = {
                 <h3>Why this matters</h3>
                 <p>Present Simple is not only about verb form. It is also about <strong>how often</strong> something happens. Adverbs of frequency make your English precise and professional.</p>
 
-                <div style="background: #f8fafc; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 0.75rem; padding: 1.25rem; margin: 1.25rem 0;">
-                    <h4 style="margin-top: 0; color: #8b5cf6; text-align: center;">Frequency Ladder</h4>
-                    <div style="display: grid; gap: 0.65rem;">
-                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
-                            <span style="font-weight: 700;">always</span>
-                            <div style="height: 14px; background: linear-gradient(90deg, #8b5cf6, #a78bfa); border-radius: 999px;"></div>
-                            <span style="font-size: 0.85rem;">100%</span>
+                <div class="gc-bg-slate" style="border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 0.75rem; padding: 1.25rem; margin: 1.25rem 0">
+                    <h4 class="gc-text-purple" style="margin-top: 0; ; text-align: center">Frequency Ladder</h4>
+                    <div style="display: grid; gap: 0.65rem">
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem">
+                            <span style="font-weight: 700">always</span>
+                            <div style="height: 14px; background: linear-gradient(90deg, #8b5cf6, #a78bfa); border-radius: 999px"></div>
+                            <span style="font-size: 0.85rem">100%</span>
                         </div>
-                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
-                            <span style="font-weight: 700;">usually</span>
-                            <div style="height: 14px; width: 85%; background: linear-gradient(90deg, #7c3aed, #a78bfa); border-radius: 999px;"></div>
-                            <span style="font-size: 0.85rem;">85%</span>
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem">
+                            <span style="font-weight: 700">usually</span>
+                            <div style="height: 14px; width: 85%; background: linear-gradient(90deg, #7c3aed, #a78bfa); border-radius: 999px"></div>
+                            <span style="font-size: 0.85rem">85%</span>
                         </div>
-                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
-                            <span style="font-weight: 700;">often</span>
-                            <div style="height: 14px; width: 65%; background: linear-gradient(90deg, #6d28d9, #8b5cf6); border-radius: 999px;"></div>
-                            <span style="font-size: 0.85rem;">65%</span>
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem">
+                            <span style="font-weight: 700">often</span>
+                            <div style="height: 14px; width: 65%; background: linear-gradient(90deg, #6d28d9, #8b5cf6); border-radius: 999px"></div>
+                            <span style="font-size: 0.85rem">65%</span>
                         </div>
-                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
-                            <span style="font-weight: 700;">sometimes</span>
-                            <div style="height: 14px; width: 45%; background: linear-gradient(90deg, #7c3aed, #c4b5fd); border-radius: 999px;"></div>
-                            <span style="font-size: 0.85rem;">45%</span>
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem">
+                            <span style="font-weight: 700">sometimes</span>
+                            <div style="height: 14px; width: 45%; background: linear-gradient(90deg, #7c3aed, #c4b5fd); border-radius: 999px"></div>
+                            <span style="font-size: 0.85rem">45%</span>
                         </div>
-                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
-                            <span style="font-weight: 700;">rarely</span>
-                            <div style="height: 14px; width: 20%; background: linear-gradient(90deg, #8b5cf6, #ddd6fe); border-radius: 999px;"></div>
-                            <span style="font-size: 0.85rem;">20%</span>
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem">
+                            <span style="font-weight: 700">rarely</span>
+                            <div style="height: 14px; width: 20%; background: linear-gradient(90deg, #8b5cf6, #ddd6fe); border-radius: 999px"></div>
+                            <span style="font-size: 0.85rem">20%</span>
                         </div>
-                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
-                            <span style="font-weight: 700;">never</span>
-                            <div style="height: 14px; width: 8%; background: linear-gradient(90deg, #a78bfa, #ede9fe); border-radius: 999px;"></div>
-                            <span style="font-size: 0.85rem;">0%</span>
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem">
+                            <span style="font-weight: 700">never</span>
+                            <div style="height: 14px; width: 8%; background: linear-gradient(90deg, #a78bfa, #ede9fe); border-radius: 999px"></div>
+                            <span style="font-size: 0.85rem">0%</span>
                         </div>
                     </div>
                 </div>
 
                 <h3>Position Rules (the part learners mix up)</h3>
-                <div style="overflow-x: auto; margin-top: 0.75rem;">
-                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                <div style="overflow-x: auto; margin-top: 0.75rem">
+                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden">
                         <thead>
-                            <tr style="background: #f8fafc;">
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Pattern</th>
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Correct Example</th>
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Common Error</th>
+                            <tr class="gc-bg-slate">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Pattern</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Correct Example</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Common Error</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Before main verb</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I usually check my email before class.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I check usually my email.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600">Before main verb</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">I usually check my email before class.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">I check usually my email.</td>
                             </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">After the verb "be"</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">She is always prepared for meetings.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">She always is prepared.</td>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600">After the verb "be"</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">She is always prepared for meetings.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">She always is prepared.</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">After don't/doesn't</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">We don't usually eat before 10.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">We usually don't eat before 10. (possible, but changes emphasis)</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600">After don't/doesn't</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">We don't usually eat before 10.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">We usually don't eat before 10. (possible, but changes emphasis)</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <h3 style="margin-top: 1.25rem;">Real-world use cases</h3>
+                <h3 style="margin-top: 1.25rem">Real-world use cases</h3>
                 <ul>
                     <li><strong>Work:</strong> "I usually clock in at 6:45, but I sometimes stay late."</li>
                     <li><strong>Healthcare:</strong> "I always take my medicine after dinner."</li>
@@ -444,32 +444,32 @@ export const presentSimpleContent: InteractiveGuideContent = {
                 <h3>The Pattern Everyone Uses</h3>
                 <p>Good news: Present Simple is straightforward. Just watch out for one tricky part - that <strong>-s ending</strong> for he/she/it.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            I <span style="color: #8b5cf6; font-weight: 600;">work</span> double shifts on weekends.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            I <span class="gc-text-purple" style="font-weight: 600">work</span> double shifts on weekends.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            You <span style="color: #8b5cf6; font-weight: 600;">sound</span> exactly like my manager.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            You <span class="gc-text-purple" style="font-weight: 600">sound</span> exactly like my manager.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            He <span style="color: #8b5cf6; font-weight: 600;">commutes</span> two hours each day. <em style="color: #d97757;">(note the -s)</em>
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            He <span class="gc-text-purple" style="font-weight: 600">commutes</span> two hours each day. <em class="gc-text-terracotta">(note the -s)</em>
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            She <span style="color: #8b5cf6; font-weight: 600;">checks</span> the equipment every morning before we start. <em style="color: #d97757;">(note the -s)</em>
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            She <span class="gc-text-purple" style="font-weight: 600">checks</span> the equipment every morning before we start. <em class="gc-text-terracotta">(note the -s)</em>
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            It <span style="color: #8b5cf6; font-weight: 600;">takes</span> forever to get through security.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            It <span class="gc-text-purple" style="font-weight: 600">takes</span> forever to get through security.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            We <span style="color: #8b5cf6; font-weight: 600;">finish</span> our orders before the lunch rush.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            We <span class="gc-text-purple" style="font-weight: 600">finish</span> our orders before the lunch rush.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            They <span style="color: #8b5cf6; font-weight: 600;">clean</span> the kitchen at the end of every shift.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            They <span class="gc-text-purple" style="font-weight: 600">clean</span> the kitchen at the end of every shift.
                         </div>
                     </div>
                 </div>
@@ -574,32 +574,32 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     <li><strong>doesn't</strong> = he, she, it</li>
                 </ul>
 
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            I <span style="color: #8b5cf6; font-weight: 600;">don't work</span> on Sundays—that's my day off.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            I <span class="gc-text-purple" style="font-weight: 600">don't work</span> on Sundays—that's my day off.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            You <span style="color: #8b5cf6; font-weight: 600;">don't need</span> to clock in until 7 AM.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            You <span class="gc-text-purple" style="font-weight: 600">don't need</span> to clock in until 7 AM.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            He <span style="color: #8b5cf6; font-weight: 600;">doesn't drink</span> coffee, only energy drinks.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            He <span class="gc-text-purple" style="font-weight: 600">doesn't drink</span> coffee, only energy drinks.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            She <span style="color: #8b5cf6; font-weight: 600;">doesn't take</span> breaks during the busy hours.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            She <span class="gc-text-purple" style="font-weight: 600">doesn't take</span> breaks during the busy hours.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            It <span style="color: #8b5cf6; font-weight: 600;">doesn't matter</span> if you send it today or tomorrow.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            It <span class="gc-text-purple" style="font-weight: 600">doesn't matter</span> if you send it today or tomorrow.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            We <span style="color: #8b5cf6; font-weight: 600;">don't get</span> overtime pay on holidays.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            We <span class="gc-text-purple" style="font-weight: 600">don't get</span> overtime pay on holidays.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            They <span style="color: #8b5cf6; font-weight: 600;">don't allow</span> cell phones on the factory floor.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            They <span class="gc-text-purple" style="font-weight: 600">don't allow</span> cell phones on the factory floor.
                         </div>
                     </div>
                 </div>
@@ -665,29 +665,29 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     <li><strong>Does</strong> = he, she, it</li>
                 </ul>
 
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> you <span style="color: #8b5cf6; font-weight: 600;">work</span> the morning shift or the evening shift?
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-purple" style="font-weight: 600">Do</span> you <span class="gc-text-purple" style="font-weight: 600">work</span> the morning shift or the evening shift?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> they <span style="color: #8b5cf6; font-weight: 600;">provide</span> uniforms at your job?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-purple" style="font-weight: 600">Do</span> they <span class="gc-text-purple" style="font-weight: 600">provide</span> uniforms at your job?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> he <span style="color: #8b5cf6; font-weight: 600;">work</span> in the kitchen or on the production line?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-purple" style="font-weight: 600">Does</span> he <span class="gc-text-purple" style="font-weight: 600">work</span> in the kitchen or on the production line?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> she <span style="color: #8b5cf6; font-weight: 600;">know</span> how to operate the forklift?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-purple" style="font-weight: 600">Does</span> she <span class="gc-text-purple" style="font-weight: 600">know</span> how to operate the forklift?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> it <span style="color: #8b5cf6; font-weight: 600;">take</span> long to learn the safety procedures?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-purple" style="font-weight: 600">Does</span> it <span class="gc-text-purple" style="font-weight: 600">take</span> long to learn the safety procedures?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> we <span style="color: #8b5cf6; font-weight: 600;">get</span> a break before the dinner rush?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-purple" style="font-weight: 600">Do</span> we <span class="gc-text-purple" style="font-weight: 600">get</span> a break before the dinner rush?
                         </div>
                     </div>
                 </div>

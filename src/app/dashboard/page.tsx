@@ -9,7 +9,7 @@ import { logger } from "@/lib/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
 import Link from "next/link";
-import LogoutButton from "@/components/LogoutButton";
+import { LogoutButton } from "@/components/LogoutButton";
 import {
     BookOpenIcon,
     TrophyIcon,
@@ -429,12 +429,6 @@ export default async function DashboardPage() {
                         subtitle: "Set a class announcement for students.",
                         icon: ClipboardIcon,
                     },
-                    {
-                        href: "/dashboard/teaching-schedule",
-                        title: "Teaching Schedule",
-                        subtitle: "Plan and review your weekly teaching flow.",
-                        icon: CalendarIcon,
-                    },
                 ],
             },
             {
@@ -591,13 +585,6 @@ export default async function DashboardPage() {
                                     >
                                         <CalendarIcon className="w-6 h-6 text-primary mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Add Event</span>
-                                    </Link>
-                                    <Link
-                                        href="/dashboard/teaching-schedule"
-                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-primary/20 dark:border-primary/40 hover:border-primary/40"
-                                    >
-                                        <CalendarIcon className="w-6 h-6 text-primary mb-2" />
-                                        <span className="text-sm font-semibold text-text text-center">Teaching Schedule</span>
                                     </Link>
                                 </div>
                             </section>

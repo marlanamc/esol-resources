@@ -6,6 +6,7 @@ import { POINTS } from "@/lib/gamification";
 import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolution";
 import { applyAwardChain } from "@/lib/gamification-award-chain";
 import { normalizeAssignmentId } from "@/lib/assignment-scope";
+import { ApiErrors, apiError } from "@/lib/api-response";
 
 interface GrammarExerciseCategoryData {
     exercises: Record<string, {
@@ -76,12 +77,12 @@ async function saveMiniQuizSubmission(params: {
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const { slug, score, total, activityId, responses, assignmentId } = await request.json();
     if (!slug || typeof slug !== "string") {
-        return NextResponse.json({ error: "slug is required" }, { status: 400 });
+        return apiError("slug is required", 400);
     }
 
     const assignmentKey = normalizeAssignmentId(assignmentId);
@@ -101,10 +102,7 @@ export async function POST(request: Request) {
             select: { id: true },
         });
         if (!activityExists) {
-            return NextResponse.json(
-                { error: `Unknown grammar activity id: ${canonicalActivityId}` },
-                { status: 400 }
-            );
+            return apiError(`Unknown grammar activity id: ${canonicalActivityId}`, 400);
         }
 
         const percentage = Math.round((score / total) * 100);

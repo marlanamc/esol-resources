@@ -9,8 +9,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
             title: "Paragraph Format: Building Strong Paragraphs",
             icon: "📄",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">A paragraph is more than just a bunch of sentences! It has a clear structure: topic sentence → supporting details → conclusion. Strong paragraphs make your writing clear, organized, and professional.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">A paragraph is more than just a bunch of sentences! It has a clear structure: topic sentence → supporting details → conclusion. Strong paragraphs make your writing clear, organized, and professional.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -72,9 +72,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 <h3>Definition</h3>
                 <p>A <strong>paragraph</strong> is a group of sentences about <strong>ONE main idea</strong>.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>The Three-Part Structure:</h4>
-                    <ol style="font-size: 1.125rem;">
+                    <ol style="font-size: 1.125rem">
                         <li><strong>Topic Sentence</strong> - introduces the main idea</li>
                         <li><strong>Supporting Details</strong> - explain, describe, or prove the main idea (3-5 sentences)</li>
                         <li><strong>Conclusion Sentence</strong> - wraps up or restates the main idea</li>
@@ -82,15 +82,15 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Example Paragraph</h3>
-                <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; border: 2px solid #7ba884; margin: 1rem 0;">
-                    <p style="font-weight: bold; color: #7ba884; margin: 0 0 0.5rem 0;">Topic Sentence:</p>
-                    <p style="margin: 0 0 1rem 0; padding-left: 1rem; border-left: 3px solid #7ba884;"><span class='eg-verb'>Exercise</span> <span class='eg-helper'>is</span> important for good health.</p>
+                <div class="gc-bg-white" style="padding: 1.5rem; border-radius: 0.5rem; border: 2px solid #7ba884; margin: 1rem 0">
+                    <p class="gc-text-sage" style="font-weight: bold; ; margin: 0 0 0.5rem 0">Topic Sentence:</p>
+                    <p style="margin: 0 0 1rem 0; padding-left: 1rem; border-left: 3px solid #7ba884"><span class='eg-verb'>Exercise</span> <span class='eg-helper'>is</span> important for good health.</p>
 
-                    <p style="font-weight: bold; color: #d97757; margin: 1rem 0 0.5rem 0;">Supporting Details:</p>
-                    <p style="margin: 0 0 0.5rem 0; padding-left: 1rem; border-left: 3px solid #d97757;">First, it helps you walk from Maverick Station to the Harborwalk. Second, it reduces stress after a long Blue Line commute and makes you feel happier. Finally, it lowers your risk of health problems like diabetes and heart disease.</p>
+                    <p class="gc-text-terracotta" style="font-weight: bold; ; margin: 1rem 0 0.5rem 0">Supporting Details:</p>
+                    <p style="margin: 0 0 0.5rem 0; padding-left: 1rem; border-left: 3px solid #d97757">First, it helps you walk from Maverick Station to the Harborwalk. Second, it reduces stress after a long Blue Line commute and makes you feel happier. Finally, it lowers your risk of health problems like diabetes and heart disease.</p>
 
-                    <p style="font-weight: bold; color: #d4a843; margin: 1rem 0 0.5rem 0;">Conclusion Sentence:</p>
-                    <p style="margin: 0; padding-left: 1rem; border-left: 3px solid #d4a843;">For these reasons, everyone should try to exercise at least 30 minutes a day.</p>
+                    <p style="font-weight: bold; color: #d4a843; margin: 1rem 0 0.5rem 0">Conclusion Sentence:</p>
+                    <p style="margin: 0; padding-left: 1rem; border-left: 3px solid #d4a843">For these reasons, everyone should try to exercise at least 30 minutes a day.</p>
                 </div>
             `,
             tipBox: {
@@ -147,7 +147,7 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 <h3>What Is a Topic Sentence?</h3>
                 <p>The <strong>topic sentence</strong> is the FIRST sentence of a paragraph. It tells the reader what the paragraph is about.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Characteristics of a Good Topic Sentence:</h4>
                     <ul>
                         <li>✅ States the main idea clearly</li>
@@ -158,44 +158,44 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Good vs Bad Topic Sentences</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(200, 107, 81, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">❌ Too General</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">✅ Just Right</th>
+                        <tr style="background: rgba(200, 107, 81, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">❌ Too General</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">✅ Just Right</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">East Boston <span class='eg-verb'>exercise</span> is good.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><span class='eg-verb'>Exercise</span> is important for good health.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">East Boston <span class='eg-verb'>exercise</span> is good.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd"><span class='eg-verb'>Exercise</span> is important for good health.</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Food is important.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Eating breakfast helps you concentrate on the Blue Line commute.</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Food is important.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Eating breakfast helps you concentrate on the Blue Line commute.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I like things.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I enjoy walking along the Harborwalk every morning.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">I like things.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">I enjoy walking along the Harborwalk every morning.</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(200, 107, 81, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">❌ Too Specific</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">✅ Just Right</th>
+                        <tr style="background: rgba(200, 107, 81, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">❌ Too Specific</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">✅ Just Right</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I walk for exactly 32 minutes.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Walking along the Harborwalk has many health benefits.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">I walk for exactly 32 minutes.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Walking along the Harborwalk has many health benefits.</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">On Tuesday I ate oatmeal at 7:15am at the community center.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Eating a healthy breakfast improves my energy.</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">On Tuesday I ate oatmeal at 7:15am at the community center.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">Eating a healthy breakfast improves my energy.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -253,7 +253,7 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 <h3>What Are Supporting Details?</h3>
                 <p><strong>Supporting details</strong> are sentences that explain, describe, or prove your topic sentence. They make up the "body" of the paragraph.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Types of Supporting Details:</h4>
                     <ul>
                         <li><strong>Examples:</strong> "For example, I walk 30 minutes every day."</li>
@@ -267,7 +267,7 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 <p>Usually <strong>3-5 sentences</strong> - enough to fully explain your main idea.</p>
 
                 <h3>Using Transition Words</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <p><strong>Transition words help connect your ideas:</strong></p>
                     <ul>
                         <li><strong>Listing:</strong> First, Second, Third, Finally</li>
@@ -278,8 +278,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Example: Supporting Details with Transitions</h3>
-                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="font-weight: bold; margin: 0 0 0.5rem 0;">Topic: Exercise is important for good health.</p>
+                <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <p style="font-weight: bold; margin: 0 0 0.5rem 0">Topic: Exercise is important for good health.</p>
                     <p><strong>First,</strong> it helps you lose weight and stay in shape. <strong>Second,</strong> exercise reduces stress and makes you feel happier. <strong>Finally,</strong> it lowers your risk of serious diseases like diabetes and heart disease.</p>
                 </div>
             `,
@@ -337,7 +337,7 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 <h3>What Is a Conclusion Sentence?</h3>
                 <p>The <strong>conclusion sentence</strong> is the LAST sentence of a paragraph. It wraps up the paragraph by restating the main idea or summarizing the key points.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(244, 211, 94, 0.1); border-radius: 0.5rem;">
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(244, 211, 94, 0.1); border-radius: 0.5rem">
                     <h4>Ways to Write a Conclusion Sentence:</h4>
                     <ol>
                         <li><strong>Restate the topic sentence</strong> (in different words)</li>
@@ -347,11 +347,11 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Examples</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Topic: Exercise is important for good health.</p>
-                    <p style="margin-top: 0.5rem;"><strong>Option 1 (Restate):</strong> For these reasons, exercise is essential for staying healthy.</p>
-                    <p style="margin-top: 0.5rem;"><strong>Option 2 (Recommend):</strong> Everyone should try to exercise at least 30 minutes a day.</p>
-                    <p style="margin-top: 0.5rem;"><strong>Option 3 (Summary):</strong> In short, regular exercise helps you lose weight, reduce stress, and prevent disease.</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Topic: Exercise is important for good health.</p>
+                    <p style="margin-top: 0.5rem"><strong>Option 1 (Restate):</strong> For these reasons, exercise is essential for staying healthy.</p>
+                    <p style="margin-top: 0.5rem"><strong>Option 2 (Recommend):</strong> Everyone should try to exercise at least 30 minutes a day.</p>
+                    <p style="margin-top: 0.5rem"><strong>Option 3 (Summary):</strong> In short, regular exercise helps you lose weight, reduce stress, and prevent disease.</p>
                 </div>
 
                 <h3>Common Conclusion Starters</h3>
@@ -414,16 +414,16 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 <h3>Unity: One Main Idea</h3>
                 <p><strong>Unity</strong> means all sentences in a paragraph support the SAME main idea.</p>
 
-                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="font-weight: bold;">❌ Paragraph WITHOUT Unity:</p>
-                    <p>Exercise is important for good health. <span style="background: yellow;">I also like pizza.</span> Exercise helps you lose weight. <span style="background: yellow;">My friend doesn't like to exercise.</span> It also reduces stress.</p>
-                    <p style="margin-top: 0.75rem; font-style: italic;">Problem: The highlighted sentences don't support the main idea (exercise is important).</p>
+                <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <p style="font-weight: bold">❌ Paragraph WITHOUT Unity:</p>
+                    <p>Exercise is important for good health. <span style="background: yellow">I also like pizza.</span> Exercise helps you lose weight. <span style="background: yellow">My friend doesn't like to exercise.</span> It also reduces stress.</p>
+                    <p style="margin-top: 0.75rem; font-style: italic">Problem: The highlighted sentences don't support the main idea (exercise is important).</p>
                 </div>
 
-                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="font-weight: bold;">✅ Paragraph WITH Unity:</p>
+                <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <p style="font-weight: bold">✅ Paragraph WITH Unity:</p>
                     <p>Exercise is important for good health. First, it helps you lose weight and stay in shape. Second, exercise reduces stress and makes you feel happier. Finally, it lowers your risk of serious diseases.</p>
-                    <p style="margin-top: 0.75rem; font-style: italic;">Better: All sentences support the main idea.</p>
+                    <p style="margin-top: 0.75rem; font-style: italic">Better: All sentences support the main idea.</p>
                 </div>
 
                 <h3>Coherence: Logical Flow</h3>
@@ -706,13 +706,13 @@ export const paragraphFormatContent: InteractiveGuideContent = {
             icon: "📋",
             explanation: `
                 <h3>Paragraph Structure</h3>
-                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <ol style="font-size: 1.125rem; margin: 0;">
+                <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <ol style="font-size: 1.125rem; margin: 0">
                         <li><strong>Topic Sentence</strong> - States the main idea (1 sentence)</li>
                         <li><strong>Supporting Details</strong> - Explain/prove the main idea (3-5 sentences)</li>
                         <li><strong>Conclusion Sentence</strong> - Wraps up the paragraph (1 sentence)</li>
                     </ol>
-                    <p style="margin-top: 1rem; font-weight: bold;">Total: 5-7 sentences minimum</p>
+                    <p style="margin-top: 1rem; font-weight: bold">Total: 5-7 sentences minimum</p>
                 </div>
 
                 <h3>Topic Sentence</h3>

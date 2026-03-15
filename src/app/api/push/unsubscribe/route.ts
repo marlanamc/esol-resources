@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { requireAuth } from "@/lib/api-auth";
 import { removePushSubscription } from "@/lib/push";
+import { handleApiError } from "@/lib/api-response";
 
 export async function POST() {
   const session = await getServerSession(authOptions);
@@ -15,7 +16,8 @@ export async function POST() {
     await removePushSubscription(userId);
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("Failed to remove push subscription", error);
-    return NextResponse.json({ error: "Failed to unsubscribe" }, { status: 500 });
+    return handleApiError(error, {
+      defaultMessage: "Failed to unsubscribe",
+    });
   }
 }

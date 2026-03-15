@@ -10,27 +10,27 @@ export const pastSimpleContent: InteractiveGuideContent = {
             title: "Past Simple: Talking About What Already Happened",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(103, 119, 239, 0.1) 0%, rgba(255, 179, 71, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think of all the things you already did: you woke up late, you ate breakfast too fast, you missed the bus, you survived another day. Past Simple is how you tell those stories.</p>
+                <div style="background: linear-gradient(135deg, rgba(103, 119, 239, 0.1) 0%, rgba(255, 179, 71, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">Think of all the things you already did: you woke up late, you ate breakfast too fast, you missed the bus, you survived another day. Past Simple is how you tell those stories.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
                 <p>Past Simple is for actions that are finished. They're done, over, in the past. You use it every time you tell someone what happened yesterday, explain why you're late, or share what you did last weekend.</p>
 
-                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                <div class="gc-bg-green gc-callout-left gc-bg-green gc-callout-green" style="; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>Telling problem stories about banking and shopping ("I went to the bank, but they charged me a fee")</li>
                         <li>Reporting what happened ("The cashier said..." "The manager told me...")</li>
                         <li>Explaining past events ("I called customer service, they didn't help, so I complained")</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                    <p style="margin: 1rem 0 0.5rem 0"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li><strong>Telling detailed housing problem stories</strong> (past continuous + past simple together)</li>
                         <li><strong>Weeks 9 & 14:</strong> Talking about your work experience and health history</li>
                     </ul>
-                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">📖 Past Simple is the storytelling tense - every story needs it!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic">📖 Past Simple is the storytelling tense - every story needs it!</p>
                 </div>
             `,
             exercises: [
@@ -178,29 +178,29 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 <h3>Past Simple puts events on a finished timeline</h3>
                 <p>Each action is complete, so you can stack events in order and make clear reports, stories, or explanations.</p>
 
-                <div style="background: white; border: 2px solid #f0b45a; border-radius: 0.75rem; padding: 1.5rem; margin: 1.25rem 0;">
-                    <h4 style="text-align: center; margin-top: 0; color: #d97757;">Finished Event Timeline</h4>
+                <div class="gc-bg-white" style="border: 2px solid #f0b45a; border-radius: 0.75rem; padding: 1.5rem; margin: 1.25rem 0">
+                    <h4 class="gc-text-terracotta" style="text-align: center; margin-top: 0; ">Finished Event Timeline</h4>
 
-                    <div style="position: relative; margin: 1.75rem 0 1rem 0; height: 130px;">
-                        <div style="position: absolute; top: 56px; left: 7%; right: 7%; height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #fb923c 100%); border-radius: 99px;"></div>
+                    <div style="position: relative; margin: 1.75rem 0 1rem 0; height: 130px">
+                        <div style="position: absolute; top: 56px; left: 7%; right: 7%; height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #fb923c 100%); border-radius: 99px"></div>
 
-                        <div style="position: absolute; top: 34px; left: 15%; text-align: center;">
-                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #f59e0b; color: #1e293b; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.35);">1</div>
-                            <div style="font-size: 0.78rem; margin-top: 0.35rem;">called</div>
+                        <div style="position: absolute; top: 34px; left: 15%; text-align: center">
+                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #f59e0b; color: #1e293b; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.35)">1</div>
+                            <div style="font-size: 0.78rem; margin-top: 0.35rem">called</div>
                         </div>
 
-                        <div style="position: absolute; top: 34px; left: 42%; text-align: center;">
-                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #fb923c; color: #1e293b; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(251, 146, 60, 0.35);">2</div>
-                            <div style="font-size: 0.78rem; margin-top: 0.35rem;">waited</div>
+                        <div style="position: absolute; top: 34px; left: 42%; text-align: center">
+                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #fb923c; color: #1e293b; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(251, 146, 60, 0.35)">2</div>
+                            <div style="font-size: 0.78rem; margin-top: 0.35rem">waited</div>
                         </div>
 
-                        <div style="position: absolute; top: 34px; left: 69%; text-align: center;">
-                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #d97757; color: #1e293b; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(217, 119, 87, 0.35);">3</div>
-                            <div style="font-size: 0.78rem; margin-top: 0.35rem;">resolved</div>
+                        <div style="position: absolute; top: 34px; left: 69%; text-align: center">
+                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #d97757; color: #1e293b; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(217, 119, 87, 0.35)">3</div>
+                            <div style="font-size: 0.78rem; margin-top: 0.35rem">resolved</div>
                         </div>
                     </div>
 
-                    <p style="margin: 0; text-align: center; font-size: 0.95rem;">
+                    <p style="margin: 0; text-align: center; font-size: 0.95rem">
                         <strong>Example:</strong> "I <strong>called</strong> support, <strong>waited</strong> 20 minutes, and <strong>resolved</strong> the issue."
                     </p>
                 </div>
@@ -266,27 +266,27 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 <h3>A professional past story has two layers</h3>
                 <p><strong>Layer 1:</strong> sequence of events. <strong>Layer 2:</strong> emotional reaction. This combination makes speaking tasks more natural and memorable.</p>
 
-                <div style="background: #f8fafc; border-left: 4px solid #d97757; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <p style="margin: 0 0 0.5rem 0;"><strong>Sequencing frame:</strong> <span style="color: #d97757; font-weight: 600;">First</span> ... <span style="color: #d97757; font-weight: 600;">then</span> ... <span style="color: #d97757; font-weight: 600;">after that</span> ... <span style="color: #d97757; font-weight: 600;">finally</span> ...</p>
-                    <p style="margin: 0;"><strong>Reflection frame:</strong> "How did you feel?" -> relieved, frustrated, proud, embarrassed, nervous, excited.</p>
+                <div class="gc-bg-slate gc-callout-terracotta" style="; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <p style="margin: 0 0 0.5rem 0"><strong>Sequencing frame:</strong> <span class="gc-text-terracotta" style="font-weight: 600">First</span> ... <span class="gc-text-terracotta" style="font-weight: 600">then</span> ... <span class="gc-text-terracotta" style="font-weight: 600">after that</span> ... <span class="gc-text-terracotta" style="font-weight: 600">finally</span> ...</p>
+                    <p style="margin: 0"><strong>Reflection frame:</strong> "How did you feel?" -> relieved, frustrated, proud, embarrassed, nervous, excited.</p>
                 </div>
 
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0;">
+                <div style="overflow-x: auto">
+                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0">
                         <thead>
-                            <tr style="background: #fff7ed;">
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Event Sequence</th>
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Emotion Follow-up</th>
+                            <tr class="gc-bg-white" style="7ed">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Event Sequence</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Emotion Follow-up</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">First, I missed the bus. Then I called my boss. After that, I took a taxi. Finally, I arrived.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I felt stressed at first, but relieved when I got to work.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">First, I missed the bus. Then I called my boss. After that, I took a taxi. Finally, I arrived.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">I felt stressed at first, but relieved when I got to work.</td>
                             </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">First, the system crashed. Then we restarted it. After that, we tested everything. Finally, it worked.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">We felt frustrated, then proud.</td>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">First, the system crashed. Then we restarted it. After that, we tested everything. Finally, it worked.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">We felt frustrated, then proud.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -379,7 +379,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 <p><strong>Regular verbs:</strong> Add -ed. Easy.</p>
                 <p><strong>Irregular verbs:</strong> Change form completely. You just have to memorize these—there's no shortcut.</p>
 
-                <h3 style="margin-top: 1rem;">Common irregular patterns (helps memory)</h3>
+                <h3 style="margin-top: 1rem">Common irregular patterns (helps memory)</h3>
                 <ul>
                     <li><strong>Vowel change:</strong> sing -> sang, drink -> drank, begin -> began</li>
                     <li><strong>Ends in -ought / -aught:</strong> buy -> bought, bring -> brought, teach -> taught</li>
@@ -411,10 +411,10 @@ export const pastSimpleContent: InteractiveGuideContent = {
             tipBox: {
                 title: "📝 Spelling Rules for Regular Verbs",
                 content: `Three main rules for -ed endings:
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div><strong class="gc-text-terracotta">Most verbs</strong> <span style="color: #d97757; font-weight: 600;">→</span> add -ed <span style="font-size: 0.9rem;">(work → worked)</span></div>
-                    <div><strong class="gc-text-terracotta">Ends in -e</strong> <span style="color: #d97757; font-weight: 600;">→</span> add -d only <span style="font-size: 0.9rem;">(live → lived)</span></div>
-                    <div><strong class="gc-text-terracotta">Consonant + y</strong> <span style="color: #d97757; font-weight: 600;">→</span> change y to i, add -ed <span style="font-size: 0.9rem;">(study → studied)</span></div>
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem">
+                    <div><strong class="gc-text-terracotta">Most verbs</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> add -ed <span style="font-size: 0.9rem">(work → worked)</span></div>
+                    <div><strong class="gc-text-terracotta">Ends in -e</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> add -d only <span style="font-size: 0.9rem">(live → lived)</span></div>
+                    <div><strong class="gc-text-terracotta">Consonant + y</strong> <span class="gc-text-terracotta" style="font-weight: 600">→</span> change y to i, add -ed <span style="font-size: 0.9rem">(study → studied)</span></div>
                 </div>`,
             },
             exercises: [
@@ -492,30 +492,30 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 <h3>Part A: How to pronounce -ed</h3>
                 <p>The spelling is "-ed," but the sound changes. This makes listening and speaking much easier once you notice the pattern.</p>
 
-                <div style="overflow-x: auto; margin: 1rem 0;">
-                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0;">
+                <div style="overflow-x: auto; margin: 1rem 0">
+                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0">
                         <thead>
-                            <tr style="background: #fff7ed;">
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Sound</th>
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Rule</th>
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Examples</th>
+                            <tr class="gc-bg-white" style="7ed">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Sound</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Rule</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Examples</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;"><strong>/t/</strong></td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">after voiceless sounds (k, p, s, sh, ch, f)</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">worked, stopped, missed, washed</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0"><strong>/t/</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">after voiceless sounds (k, p, s, sh, ch, f)</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">worked, stopped, missed, washed</td>
                             </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;"><strong>/d/</strong></td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">after voiced sounds (vowels, b, g, l, m, n, r, z)</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">played, cleaned, called, lived</td>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0"><strong>/d/</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">after voiced sounds (vowels, b, g, l, m, n, r, z)</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">played, cleaned, called, lived</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;"><strong>/id/</strong></td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">after /t/ or /d/</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">wanted, needed, decided</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0"><strong>/id/</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">after /t/ or /d/</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">wanted, needed, decided</td>
                             </tr>
                         </tbody>
                     </table>
@@ -523,7 +523,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
 
                 <p><strong>Class connection:</strong> After this section, practice with the pronunciation game so you can hear and produce /t/, /d/, and /id/ in context.</p>
 
-                <h3 style="margin-top: 1rem;">Part B: Used to for past habits</h3>
+                <h3 style="margin-top: 1rem">Part B: Used to for past habits</h3>
                 <p>Use <strong>used to + base verb</strong> for routines or states that were true before but are not true now.</p>
                 <ul>
                     <li>I used to work night shift. (now I work mornings)</li>
@@ -608,32 +608,32 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 <h3>How to Form Past Simple (Positive)</h3>
                 <p>Use the past form of the verb (same for all subjects!). Report what already happened and move on.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            I <span style="color: #f59e0b; font-weight: 600;">finished</span> my homework before dinner.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            I <span class="gc-text-amber" style="font-weight: 600">finished</span> my homework before dinner.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            You <span style="color: #f59e0b; font-weight: 600;">fixed</span> the car in record time.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            You <span class="gc-text-amber" style="font-weight: 600">fixed</span> the car in record time.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            He <span style="color: #f59e0b; font-weight: 600;">called</span> his friend at 11 PM last night.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            He <span class="gc-text-amber" style="font-weight: 600">called</span> his friend at 11 PM last night.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            She <span style="color: #f59e0b; font-weight: 600;">ordered</span> pizza after her shift ended.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            She <span class="gc-text-amber" style="font-weight: 600">ordered</span> pizza after her shift ended.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            It <span style="color: #f59e0b; font-weight: 600;">rained</span> right when I left the house.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            It <span class="gc-text-amber" style="font-weight: 600">rained</span> right when I left the house.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            We <span style="color: #f59e0b; font-weight: 600;">cleaned</span> the entire apartment in two hours.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            We <span class="gc-text-amber" style="font-weight: 600">cleaned</span> the entire apartment in two hours.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            They <span style="color: #f59e0b; font-weight: 600;">bought</span> groceries last week.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            They <span class="gc-text-amber" style="font-weight: 600">bought</span> groceries last week.
                         </div>
                     </div>
                 </div>
@@ -684,23 +684,23 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 <p>Use <strong>did not (didn't)</strong> + base verb.</p>
                 <p><strong>Important:</strong> The main verb returns to base form. The <em>did</em> already shows the past.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            I <span style="color: #f59e0b; font-weight: 600;">didn't eat</span> breakfast this morning—I woke up too late.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            I <span class="gc-text-amber" style="font-weight: 600">didn't eat</span> breakfast this morning—I woke up too late.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            She <span style="color: #f59e0b; font-weight: 600;">didn't go</span> to the party last night.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            She <span class="gc-text-amber" style="font-weight: 600">didn't go</span> to the party last night.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            They <span style="color: #f59e0b; font-weight: 600;">didn't fix</span> the sink last week.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            They <span class="gc-text-amber" style="font-weight: 600">didn't fix</span> the sink last week.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            We <span style="color: #f59e0b; font-weight: 600;">didn't see</span> our neighbors at the park yesterday.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            We <span class="gc-text-amber" style="font-weight: 600">didn't see</span> our neighbors at the park yesterday.
                         </div>
                     </div>
                 </div>
@@ -747,23 +747,23 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 <h3>How to Make Questions</h3>
                 <p>Put <strong>Did</strong> at the beginning, then subject + base verb.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Did</span> you <span style="color: #f59e0b; font-weight: 600;">eat</span> breakfast this morning?
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Did</span> you <span class="gc-text-amber" style="font-weight: 600">eat</span> breakfast this morning?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Did</span> she <span style="color: #f59e0b; font-weight: 600;">call</span> you yesterday?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Did</span> she <span class="gc-text-amber" style="font-weight: 600">call</span> you yesterday?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Did</span> they <span style="color: #f59e0b; font-weight: 600;">catch</span> the last bus home?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Did</span> they <span class="gc-text-amber" style="font-weight: 600">catch</span> the last bus home?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Did</span> he <span style="color: #f59e0b; font-weight: 600;">finish</span> his homework before bed?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Did</span> he <span class="gc-text-amber" style="font-weight: 600">finish</span> his homework before bed?
                         </div>
                     </div>
                 </div>

@@ -10,40 +10,40 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
             title: "Perfect Tenses Review: Connecting Time Periods",
             icon: "📚",
             explanation: `
-                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 50%, rgba(6, 182, 212, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Perfect tenses are your tools for <strong>connecting different time periods</strong>. They show how actions in one time affect another time—past to present, earlier past to later past, or present to future.</p>
+                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 50%, rgba(6, 182, 212, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">Perfect tenses are your tools for <strong>connecting different time periods</strong>. They show how actions in one time affect another time—past to present, earlier past to later past, or present to future.</p>
                 </div>
 
                 <h3>The Three Perfect Tenses</h3>
-                <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li class="gc-bg-purple-alpha gc-callout-left" style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(99, 102, 241, 0.1); border-left: 4px solid #6366f1; border-radius: 0.25rem;">
+                <ul style="list-style: none; padding-left: 0; margin: 0">
+                    <li class="gc-bg-purple-alpha gc-callout-left" style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(99, 102, 241, 0.1); border-left: 4px solid #6366f1; border-radius: 0.25rem">
                         <strong class="gc-text-purple">Present Perfect:</strong> Past action → connects to NOW<br/>
-                        <span class="gc-text-muted" style="font-size: 0.9rem;">"I have worked here for 5 years." (still working now)</span>
+                        <span class="gc-text-muted" style="font-size: 0.9rem">"I have worked here for 5 years." (still working now)</span>
                     </li>
-                    <li class="gc-bg-amber-alpha gc-callout-left" style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                    <li class="gc-bg-amber-alpha gc-callout-left gc-bg-amber-alpha gc-callout-amber" style="padding: 0.75rem; margin: 0.5rem 0; ; ; border-radius: 0.25rem">
                         <strong class="gc-text-amber">Past Perfect:</strong> Earlier past action → before later past action<br/>
-                        <span class="gc-text-muted" style="font-size: 0.9rem;">"I had finished work before she arrived." (finished first, then she arrived)</span>
+                        <span class="gc-text-muted" style="font-size: 0.9rem">"I had finished work before she arrived." (finished first, then she arrived)</span>
                     </li>
-                    <li class="gc-bg-cyan-alpha gc-callout-left" style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(6, 182, 212, 0.1); border-left: 4px solid #06b6d4; border-radius: 0.25rem;">
+                    <li class="gc-bg-cyan-alpha gc-callout-left gc-bg-cyan-alpha gc-callout-cyan" style="padding: 0.75rem; margin: 0.5rem 0; ; ; border-radius: 0.25rem">
                         <strong class="gc-text-cyan">Future Perfect:</strong> Action complete → before a future point<br/>
-                        <span class="gc-text-muted" style="font-size: 0.9rem;">"I will have finished by 5 PM." (done before 5 PM)</span>
+                        <span class="gc-text-muted" style="font-size: 0.9rem">"I will have finished by 5 PM." (done before 5 PM)</span>
                     </li>
                 </ul>
 
-                <div class="gc-bg-amber gc-box-amber-500" style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p class="gc-text-dark" style="margin: 0; font-weight: 600;">📝 The Pattern: <span class="gc-text-dark" style="font-size: 1.125rem;">have/has/had/will have + past participle</span></p>
+                <div class="gc-bg-amber gc-box-amber-500 gc-bg-white" style="9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
+                    <p class="gc-text-dark" style="margin: 0; font-weight: 600">📝 The Pattern: <span class="gc-text-dark" style="font-size: 1.125rem">have/has/had/will have + past participle</span></p>
                 </div>
 
-                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                <div class="gc-bg-green gc-callout-left gc-bg-green gc-callout-green" style="; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li>Year-in-Review Carousel: Telling your story using all tenses together</li>
                         <li>Talking about summer plans and next steps ("I will have finished this class by June")</li>
                         <li>Creating coherent narratives that connect past, present, and future</li>
                         <li>Final review: Using perfect tenses for real-life speaking</li>
                     </ul>
-                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">🎓 This is it - you're combining EVERYTHING you've learned to tell your complete story!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic">🎓 This is it - you're combining EVERYTHING you've learned to tell your complete story!</p>
                 </div>
             `,
             exercises: [
@@ -93,13 +93,13 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
             title: "Core Idea Lens: Perfect = Two Times Connected",
             icon: "🧠",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(59, 130, 246, 0.1) 100%); padding: 1.25rem; border-radius: 0.5rem; border-left: 4px solid #10b981;">
-                    <p style="margin: 0; font-size: 1.05rem;"><strong>Perfect tenses should not feel like "just another tense."</strong> Teach the core idea first: <strong>Perfect = connection between two times.</strong></p>
-                    <p style="margin: 0.5rem 0 0 0; color: #334155;">If learners feel this connection, forms become easier and panic drops.</p>
+                <div class="gc-callout-emerald" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(59, 130, 246, 0.1) 100%); padding: 1.25rem; border-radius: 0.5rem; ">
+                    <p style="margin: 0; font-size: 1.05rem"><strong>Perfect tenses should not feel like "just another tense."</strong> Teach the core idea first: <strong>Perfect = connection between two times.</strong></p>
+                    <p style="margin: 0.5rem 0 0 0; color: #334155">If learners feel this connection, forms become easier and panic drops.</p>
                 </div>
 
-                <h3 style="margin-top: 1.25rem;">The Question That Simplifies Everything</h3>
-                <p style="margin-bottom: 0.5rem;">Before grammar rules, ask: <strong>"What two times are connected?"</strong></p>
+                <h3 style="margin-top: 1.25rem">The Question That Simplifies Everything</h3>
+                <p style="margin-bottom: 0.5rem">Before grammar rules, ask: <strong>"What two times are connected?"</strong></p>
                 <ul>
                     <li><strong>Present Perfect:</strong> past + now</li>
                     <li><strong>Past Perfect:</strong> past + past</li>
@@ -107,7 +107,7 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Result form (Present Perfect): Past action connected to NOW</h3>
-                <p style="margin-bottom: 0.5rem;">Teach these high-value contexts together:</p>
+                <p style="margin-bottom: 0.5rem">Teach these high-value contexts together:</p>
                 <ul>
                     <li><strong>Life experience:</strong> ever, never, before<br/>Example: "Have you ever traveled alone?"</li>
                     <li><strong>Change over time:</strong> has grown, has improved, has increased<br/>Example: "My English has improved."</li>
@@ -116,7 +116,7 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Duration form (Present Perfect Continuous): Duration or visible result now</h3>
-                <p class="gc-text-muted" style="margin-bottom: 0.5rem; font-size: 0.9375rem;">In the perfect family guides we call these the <strong>result form</strong> (Present Perfect) and <strong>duration form</strong> (Present Perfect Continuous) so they're not confused with Present Simple or Present Continuous.</p>
+                <p class="gc-text-muted" style="margin-bottom: 0.5rem; font-size: 0.9375rem">In the perfect family guides we call these the <strong>result form</strong> (Present Perfect) and <strong>duration form</strong> (Present Perfect Continuous) so they're not confused with Present Simple or Present Continuous.</p>
                 <ul>
                     <li><strong>Duration:</strong> for, since<br/>Example: "I've been studying for three hours."</li>
                     <li><strong>Visible results:</strong> explain what students can see now<br/>Example: "You're tired." "Yes, I've been working all day."</li>
@@ -135,10 +135,10 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                     <li><strong>Best context:</strong> goals, deadlines, and milestones</li>
                 </ul>
 
-                <div style="background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 0.5rem; padding: 1rem; margin-top: 1.25rem;">
-                    <p style="margin: 0; font-weight: 600;">Teaching move that works:</p>
-                    <p style="margin: 0.5rem 0 0 0;">Less "form + rules." More timeline thinking and real contexts:</p>
-                    <ol style="margin: 0.5rem 0 0 1.25rem;">
+                <div class="gc-bg-slate" style="border: 2px solid #cbd5e1; border-radius: 0.5rem; padding: 1rem; margin-top: 1.25rem">
+                    <p style="margin: 0; font-weight: 600">Teaching move that works:</p>
+                    <p style="margin: 0.5rem 0 0 0">Less "form + rules." More timeline thinking and real contexts:</p>
+                    <ol style="margin: 0.5rem 0 0 1.25rem">
                         <li>Timeline visuals</li>
                         <li>Time-connection questions</li>
                         <li>Real contexts (experience, change, storytelling, goals)</li>
@@ -202,71 +202,71 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
             title: "Timeline: All Perfect Tenses",
             icon: "⏰",
             explanation: `
-                <div style="max-width: 750px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(245, 158, 11, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%); border-radius: 12px; border: 2px solid rgba(139, 92, 246, 0.2);">
-                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: #2b3a4a; font-weight: 600;">
+                <div style="max-width: 750px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(245, 158, 11, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%); border-radius: 12px; border: 2px solid rgba(139, 92, 246, 0.2)">
+                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: #2b3a4a; font-weight: 600">
                         Perfect tenses CONNECT different time periods
                     </p>
 
                     <!-- Main timeline -->
-                    <div style="position: relative; display: flex; justify-content: space-between; align-items: center; margin: 3rem 0; padding: 0 1rem;">
+                    <div style="position: relative; display: flex; justify-content: space-between; align-items: center; margin: 3rem 0; padding: 0 1rem">
                         <!-- Timeline line -->
-                        <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #6366f1 50%, #06b6d4 100%); transform: translateY(-50%); z-index: 0;"></div>
+                        <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #6366f1 50%, #06b6d4 100%); transform: translateY(-50%); z-index: 0"></div>
 
                         <!-- Past Perfect circle -->
-                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;">
-                            <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #fb923c 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.75rem; line-height: 1.2; padding: 0.5rem;">
+                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center">
+                            <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #fb923c 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.75rem; line-height: 1.2; padding: 0.5rem">
                                 PAST<br/>PERFECT
                             </div>
-                            <div style="margin-top: 0.75rem; font-size: 0.8rem; color: #f59e0b; font-weight: 600; text-align: center;">
+                            <div class="gc-text-amber" style="margin-top: 0.75rem; font-size: 0.8rem; ; font-weight: 600; text-align: center">
                                 had + pp
                             </div>
-                            <div style="font-size: 0.7rem; color: #64748b; text-align: center; max-width: 100px;">
+                            <div class="gc-text-muted" style="font-size: 0.7rem; ; text-align: center; max-width: 100px">
                                 before another past
                             </div>
                         </div>
 
                         <!-- Present Perfect circle -->
-                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;">
-                            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.75rem; line-height: 1.2; padding: 0.5rem;">
+                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center">
+                            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.75rem; line-height: 1.2; padding: 0.5rem">
                                 PRESENT<br/>PERFECT
                             </div>
-                            <div style="margin-top: 0.75rem; font-size: 0.8rem; color: #6366f1; font-weight: 600; text-align: center;">
+                            <div style="margin-top: 0.75rem; font-size: 0.8rem; color: #6366f1; font-weight: 600; text-align: center">
                                 have/has + pp
                             </div>
-                            <div style="font-size: 0.7rem; color: #64748b; text-align: center; max-width: 100px;">
+                            <div class="gc-text-muted" style="font-size: 0.7rem; ; text-align: center; max-width: 100px">
                                 past → NOW
                             </div>
                         </div>
 
                         <!-- Future Perfect circle -->
-                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;">
-                            <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.75rem; line-height: 1.2; padding: 0.5rem;">
+                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center">
+                            <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.75rem; line-height: 1.2; padding: 0.5rem">
                                 FUTURE<br/>PERFECT
                             </div>
-                            <div style="margin-top: 0.75rem; font-size: 0.8rem; color: #06b6d4; font-weight: 600; text-align: center;">
+                            <div class="gc-text-cyan" style="margin-top: 0.75rem; font-size: 0.8rem; ; font-weight: 600; text-align: center">
                                 will have + pp
                             </div>
-                            <div style="font-size: 0.7rem; color: #64748b; text-align: center; max-width: 100px;">
+                            <div class="gc-text-muted" style="font-size: 0.7rem; ; text-align: center; max-width: 100px">
                                 done by future
                             </div>
                         </div>
                     </div>
 
                     <!-- Example sentences -->
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem;">
-                        <div style="background: rgba(245, 158, 11, 0.1); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #f59e0b;">
-                            <div style="font-size: 0.8rem; color: #2b3a4a; line-height: 1.4;">
-                                She <span style="color: #f59e0b; font-weight: 700;">had left</span> when I arrived.
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem">
+                        <div class="gc-bg-amber-alpha" style="padding: 0.75rem; border-radius: 8px; border-left: 3px solid #f59e0b">
+                            <div style="font-size: 0.8rem; color: #2b3a4a; line-height: 1.4">
+                                She <span class="gc-text-amber" style="font-weight: 700">had left</span> when I arrived.
                             </div>
                         </div>
-                        <div style="background: rgba(99, 102, 241, 0.1); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #6366f1;">
-                            <div style="font-size: 0.8rem; color: #2b3a4a; line-height: 1.4;">
-                                I <span style="color: #6366f1; font-weight: 700;">have worked</span> here for 5 years.
+                        <div style="background: rgba(99, 102, 241, 0.1); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #6366f1">
+                            <div style="font-size: 0.8rem; color: #2b3a4a; line-height: 1.4">
+                                I <span style="color: #6366f1; font-weight: 700">have worked</span> here for 5 years.
                             </div>
                         </div>
-                        <div style="background: rgba(6, 182, 212, 0.1); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #06b6d4;">
-                            <div style="font-size: 0.8rem; color: #2b3a4a; line-height: 1.4;">
-                                I <span style="color: #06b6d4; font-weight: 700;">will have finished</span> by 5 PM.
+                        <div class="gc-bg-cyan-alpha" style="padding: 0.75rem; border-radius: 8px; border-left: 3px solid #06b6d4">
+                            <div style="font-size: 0.8rem; color: #2b3a4a; line-height: 1.4">
+                                I <span class="gc-text-cyan" style="font-weight: 700">will have finished</span> by 5 PM.
                             </div>
                         </div>
                     </div>
@@ -438,9 +438,9 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                 <h3>The #1 Most Confused Pair!</h3>
                 <p>This is the most common mistake for English learners. Both talk about the past, but they have very different meanings.</p>
 
-                <div style="background: #fef2f2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin: 1rem 0;">
-                    <p style="margin: 0; font-weight: 600; color: #dc2626;">❌ Common Mistake:</p>
-                    <p style="margin: 0.5rem 0 0 0;">"I have visited Paris last year." → Should be: "I visited Paris last year."</p>
+                <div class="gc-bg-red gc-callout-red" style="padding: 1rem; border-radius: 0.5rem; ; margin: 1rem 0">
+                    <p class="gc-text-red" style="margin: 0; font-weight: 600; ">❌ Common Mistake:</p>
+                    <p style="margin: 0.5rem 0 0 0">"I have visited Paris last year." → Should be: "I visited Paris last year."</p>
                 </div>
             `,
             comparison: {
@@ -639,10 +639,10 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                 <h3>When Do You Need Past Perfect?</h3>
                 <p>Past Perfect is only needed when you're showing that one past action happened BEFORE another past action. If there's only one past action, use Past Simple!</p>
 
-                <div style="background: #fef2f2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin: 1rem 0;">
-                    <p style="margin: 0; font-weight: 600; color: #dc2626;">❌ Common Mistake (overusing Past Perfect):</p>
-                    <p style="margin: 0.5rem 0 0 0;">"I had eaten breakfast this morning." → Should be: "I ate breakfast this morning."</p>
-                    <p style="margin: 0.25rem 0 0 0; font-size: 0.875rem; color: #64748b;">Only one action = Past Simple is enough!</p>
+                <div class="gc-bg-red gc-callout-red" style="padding: 1rem; border-radius: 0.5rem; ; margin: 1rem 0">
+                    <p class="gc-text-red" style="margin: 0; font-weight: 600; ">❌ Common Mistake (overusing Past Perfect):</p>
+                    <p style="margin: 0.5rem 0 0 0">"I had eaten breakfast this morning." → Should be: "I ate breakfast this morning."</p>
+                    <p class="gc-text-muted" style="margin: 0.25rem 0 0 0; font-size: 0.875rem; ">Only one action = Past Simple is enough!</p>
                 </div>
             `,
             comparison: {
@@ -928,26 +928,26 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Quick Reference</h3>
 
-                <div style="display: grid; gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #6366f1;">Present Perfect</h4>
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Form:</strong> have/has + past participle</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Use:</strong> Past → NOW connection</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Words:</strong> ever, never, already, yet, just, for, since</p>
+                <div style="display: grid; gap: 1rem; margin: 1.5rem 0">
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #6366f1">Present Perfect</h4>
+                        <p style="margin: 0; font-size: 0.9rem"><strong>Form:</strong> have/has + past participle</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Use:</strong> Past → NOW connection</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Words:</strong> ever, never, already, yet, just, for, since</p>
                     </div>
 
-                    <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #f59e0b;">Past Perfect</h4>
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Form:</strong> had + past participle</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Use:</strong> Earlier past → Later past (which happened first)</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Words:</strong> when, before, after, by the time, already</p>
+                    <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 class="gc-text-amber" style="margin: 0 0 0.5rem 0; ">Past Perfect</h4>
+                        <p style="margin: 0; font-size: 0.9rem"><strong>Form:</strong> had + past participle</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Use:</strong> Earlier past → Later past (which happened first)</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Words:</strong> when, before, after, by the time, already</p>
                     </div>
 
-                    <div style="background: rgba(6, 182, 212, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #06b6d4;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #06b6d4;">Future Perfect</h4>
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Form:</strong> will have + past participle</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Use:</strong> Action complete BY a future deadline</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Words:</strong> by tomorrow, by next week, by the time</p>
+                    <div class="gc-bg-cyan-alpha gc-callout-cyan" style="padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 class="gc-text-cyan" style="margin: 0 0 0.5rem 0; ">Future Perfect</h4>
+                        <p style="margin: 0; font-size: 0.9rem"><strong>Form:</strong> will have + past participle</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Use:</strong> Action complete BY a future deadline</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Words:</strong> by tomorrow, by next week, by the time</p>
                     </div>
                 </div>
 

@@ -11,7 +11,7 @@ import Link from "next/link";
 import { StatCard } from "@/components/ui/StatCard";
 import { StreakCalendar } from "@/components/ui/StreakCalendar";
 import { ActivityTimeline } from "@/components/ui/ActivityTimeline";
-import ClickableAvatarDisplay from "@/components/ui/ClickableAvatarDisplay";
+import { ClickableAvatarDisplay } from "@/components/ui/ClickableAvatarDisplay";
 import { MiniCertificateCard, EmptyCertificateCard, NeedsImprovementCard } from "@/components/ui/MiniCertificateCard";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { qualifiesForMedal } from "@/lib/medal-utils";

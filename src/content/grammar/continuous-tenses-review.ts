@@ -9,17 +9,17 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             title: "Continuous Tenses Review: The -ing Action Tenses",
             icon: "📚",
             explanation: `
-                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(6, 182, 212, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.25rem;">
-                    <h3 class="gc-text-purple" style="margin-top: 0; font-size: 1.2rem;">🎯 The Big Idea</h3>
-                    <p style="margin-bottom: 0;">Continuous tenses are one family: <strong class="gc-text-terracotta">be + verb-ing</strong>. The structure stays consistent, but the time perspective changes: present, past, or future.</p>
+                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(6, 182, 212, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
+                    <h3 class="gc-text-purple" style="margin-top: 0; font-size: 1.2rem">🎯 The Big Idea</h3>
+                    <p style="margin-bottom: 0">Continuous tenses are one family: <strong class="gc-text-terracotta">be + verb-ing</strong>. The structure stays consistent, but the time perspective changes: present, past, or future.</p>
                 </div>
 
                 <p>All the "-ing" tenses in one place: what's happening now, what was happening then, and what will be happening later.</p>
                 <p><strong>Continuous Tenses:</strong> Present (now/temporary), Past (in progress in the past), Future (in progress at a future time)</p>
 
-                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.25rem;">
-                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.05rem;">🗣️ When You'll Use This Review</h3>
-                    <ul style="margin: 0;">
+                <div class="gc-bg-green gc-callout-left gc-bg-green gc-callout-green" style="; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.25rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.05rem">🗣️ When You'll Use This Review</h3>
+                    <ul style="margin: 0">
                         <li>Switching tenses clearly while telling a full story</li>
                         <li>Reporting incidents ("I was walking when...", "I'm still recovering...", "I'll be meeting...")</li>
                         <li>Professional communication across time frames in work, housing, and healthcare contexts</li>
@@ -271,30 +271,30 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 <h3>Continuous = action in motion. Simple = fact, routine, or completed event.</h3>
                 <p>This comparison helps you decide whether to focus on process/duration or a general/finished fact.</p>
 
-                <div style="overflow-x: auto; margin-top: 1rem;">
-                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                <div style="overflow-x: auto; margin-top: 1rem">
+                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden">
                         <thead>
-                            <tr style="background: #f8fafc;">
-                                <th style="padding: 0.75rem; border: 1px solid #e2e8f0; text-align: left;">Time Frame</th>
-                                <th style="padding: 0.75rem; border: 1px solid #e2e8f0; text-align: left;">Continuous (in progress)</th>
-                                <th style="padding: 0.75rem; border: 1px solid #e2e8f0; text-align: left;">Simple (habit/fact/event)</th>
+                            <tr class="gc-bg-slate">
+                                <th style="padding: 0.75rem; border: 1px solid #e2e8f0; text-align: left">Time Frame</th>
+                                <th style="padding: 0.75rem; border: 1px solid #e2e8f0; text-align: left">Continuous (in progress)</th>
+                                <th style="padding: 0.75rem; border: 1px solid #e2e8f0; text-align: left">Simple (habit/fact/event)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0; font-weight: 600;">Present</td>
-                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">I am working late today.</td>
-                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">I work nights.</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0; font-weight: 600">Present</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0">I am working late today.</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0">I work nights.</td>
                             </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0; font-weight: 600;">Past</td>
-                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">I was walking when it started raining.</td>
-                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">It started raining at 6 PM.</td>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0; font-weight: 600">Past</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0">I was walking when it started raining.</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0">It started raining at 6 PM.</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0; font-weight: 600;">Future</td>
-                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">I will be driving at 8 PM.</td>
-                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">I will drive you home.</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0; font-weight: 600">Future</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0">I will be driving at 8 PM.</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0">I will drive you home.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -347,98 +347,98 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             title: "Timeline: Duration Across All Three Times",
             icon: "⏰",
             explanation: `
-                <div style="max-width: 700px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, rgba(240, 180, 90, 0.05) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%); border-radius: 12px; border: 2px solid rgba(139, 92, 246, 0.2);">
-                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: #e8f1f8; font-weight: 600;">
+                <div style="max-width: 700px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, rgba(240, 180, 90, 0.05) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%); border-radius: 12px; border: 2px solid rgba(139, 92, 246, 0.2)">
+                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: #e8f1f8; font-weight: 600">
                         Continuous tenses emphasize DURATION—actions happening over time
                     </p>
 
                     <!-- Timeline with three horizontal duration bars stacked vertically -->
-                    <div style="display: flex; flex-direction: column; gap: 2rem; margin: 2rem 0;">
+                    <div style="display: flex; flex-direction: column; gap: 2rem; margin: 2rem 0">
 
                         <!-- Past Continuous bar -->
-                        <div style="display: flex; align-items: center; gap: 1.5rem;">
-                            <div style="flex: 1; position: relative; height: 50px; background: linear-gradient(90deg, rgba(240, 180, 90, 0) 0%, rgba(240, 180, 90, 0.9) 10%, rgba(240, 180, 90, 1) 50%, rgba(240, 180, 90, 0.9) 90%, rgba(240, 180, 90, 0) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(240, 180, 90, 0.3);">
+                        <div style="display: flex; align-items: center; gap: 1.5rem">
+                            <div style="flex: 1; position: relative; height: 50px; background: linear-gradient(90deg, rgba(240, 180, 90, 0) 0%, rgba(240, 180, 90, 0.9) 10%, rgba(240, 180, 90, 1) 50%, rgba(240, 180, 90, 0.9) 90%, rgba(240, 180, 90, 0) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(240, 180, 90, 0.3)">
                                 <!-- Dots at both ends -->
-                                <div style="position: absolute; left: 10%; width: 8px; height: 8px; border-radius: 50%; background: #f0b45a; border: 2px solid white;"></div>
-                                <div style="position: absolute; right: 10%; width: 8px; height: 8px; border-radius: 50%; background: #f0b45a; border: 2px solid white;"></div>
+                                <div style="position: absolute; left: 10%; width: 8px; height: 8px; border-radius: 50%; background: #f0b45a; border: 2px solid white"></div>
+                                <div style="position: absolute; right: 10%; width: 8px; height: 8px; border-radius: 50%; background: #f0b45a; border: 2px solid white"></div>
                                 <!-- Formula inside bar -->
-                                <div style="color: white; font-weight: 700; font-size: 0.875rem; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">
+                                <div style="color: white; font-weight: 700; font-size: 0.875rem; text-shadow: 0 1px 2px rgba(0,0,0,0.2)">
                                     was/were + verb-ing
                                 </div>
                             </div>
-                            <div style="min-width: 200px; text-align: left;">
-                                <div style="font-weight: 700; color: #f0b45a; margin-bottom: 0.25rem; font-size: 0.875rem;">
+                            <div style="min-width: 200px; text-align: left">
+                                <div style="font-weight: 700; color: #f0b45a; margin-bottom: 0.25rem; font-size: 0.875rem">
                                     PAST CONTINUOUS
                                 </div>
-                                <div style="color: #e8f1f8; font-size: 0.85rem;">
-                                    I <span style="color: #f0b45a; font-weight: 700;">was walking</span> home
+                                <div style="color: #e8f1f8; font-size: 0.85rem">
+                                    I <span style="color: #f0b45a; font-weight: 700">was walking</span> home
                                 </div>
                             </div>
                         </div>
 
                         <!-- Present Continuous bar -->
-                        <div style="display: flex; align-items: center; gap: 1.5rem;">
-                            <div style="flex: 1; position: relative; height: 50px; background: linear-gradient(90deg, rgba(139, 92, 246, 0) 0%, rgba(139, 92, 246, 0.9) 10%, rgba(139, 92, 246, 1) 50%, rgba(139, 92, 246, 0.9) 90%, rgba(139, 92, 246, 0) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);">
+                        <div style="display: flex; align-items: center; gap: 1.5rem">
+                            <div style="flex: 1; position: relative; height: 50px; background: linear-gradient(90deg, rgba(139, 92, 246, 0) 0%, rgba(139, 92, 246, 0.9) 10%, rgba(139, 92, 246, 1) 50%, rgba(139, 92, 246, 0.9) 90%, rgba(139, 92, 246, 0) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3)">
                                 <!-- Dots at both ends -->
-                                <div style="position: absolute; left: 10%; width: 8px; height: 8px; border-radius: 50%; background: #8b5cf6; border: 2px solid white;"></div>
-                                <div style="position: absolute; right: 10%; width: 8px; height: 8px; border-radius: 50%; background: #8b5cf6; border: 2px solid white;"></div>
+                                <div style="position: absolute; left: 10%; width: 8px; height: 8px; border-radius: 50%; background: #8b5cf6; border: 2px solid white"></div>
+                                <div style="position: absolute; right: 10%; width: 8px; height: 8px; border-radius: 50%; background: #8b5cf6; border: 2px solid white"></div>
                                 <!-- Formula inside bar -->
-                                <div style="color: white; font-weight: 700; font-size: 0.875rem; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">
+                                <div style="color: white; font-weight: 700; font-size: 0.875rem; text-shadow: 0 1px 2px rgba(0,0,0,0.2)">
                                     am/is/are + verb-ing
                                 </div>
                             </div>
-                            <div style="min-width: 200px; text-align: left;">
-                                <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 0.25rem; font-size: 0.875rem;">
+                            <div style="min-width: 200px; text-align: left">
+                                <div class="gc-text-purple" style="font-weight: 700; ; margin-bottom: 0.25rem; font-size: 0.875rem">
                                     PRESENT CONTINUOUS
                                 </div>
-                                <div style="color: #e8f1f8; font-size: 0.85rem;">
-                                    I <span style="color: #8b5cf6; font-weight: 700;">am walking</span> home
+                                <div style="color: #e8f1f8; font-size: 0.85rem">
+                                    I <span class="gc-text-purple" style="font-weight: 700">am walking</span> home
                                 </div>
                             </div>
                         </div>
 
                         <!-- Future Continuous bar -->
-                        <div style="display: flex; align-items: center; gap: 1.5rem;">
-                            <div style="flex: 1; position: relative; height: 50px; background: linear-gradient(90deg, rgba(6, 182, 212, 0) 0%, rgba(6, 182, 212, 0.9) 10%, rgba(6, 182, 212, 1) 50%, rgba(6, 182, 212, 0.9) 90%, rgba(6, 182, 212, 0) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);">
+                        <div style="display: flex; align-items: center; gap: 1.5rem">
+                            <div style="flex: 1; position: relative; height: 50px; background: linear-gradient(90deg, rgba(6, 182, 212, 0) 0%, rgba(6, 182, 212, 0.9) 10%, rgba(6, 182, 212, 1) 50%, rgba(6, 182, 212, 0.9) 90%, rgba(6, 182, 212, 0) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3)">
                                 <!-- Dots at both ends -->
-                                <div style="position: absolute; left: 10%; width: 8px; height: 8px; border-radius: 50%; background: #06b6d4; border: 2px solid white;"></div>
-                                <div style="position: absolute; right: 10%; width: 8px; height: 8px; border-radius: 50%; background: #06b6d4; border: 2px solid white;"></div>
+                                <div style="position: absolute; left: 10%; width: 8px; height: 8px; border-radius: 50%; background: #06b6d4; border: 2px solid white"></div>
+                                <div style="position: absolute; right: 10%; width: 8px; height: 8px; border-radius: 50%; background: #06b6d4; border: 2px solid white"></div>
                                 <!-- Formula inside bar -->
-                                <div style="color: white; font-weight: 700; font-size: 0.875rem; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">
+                                <div style="color: white; font-weight: 700; font-size: 0.875rem; text-shadow: 0 1px 2px rgba(0,0,0,0.2)">
                                     will be + verb-ing
                                 </div>
                             </div>
-                            <div style="min-width: 200px; text-align: left;">
-                                <div style="font-weight: 700; color: #06b6d4; margin-bottom: 0.25rem; font-size: 0.875rem;">
+                            <div style="min-width: 200px; text-align: left">
+                                <div class="gc-text-cyan" style="font-weight: 700; ; margin-bottom: 0.25rem; font-size: 0.875rem">
                                     FUTURE CONTINUOUS
                                 </div>
-                                <div style="color: #e8f1f8; font-size: 0.85rem;">
-                                    I <span style="color: #06b6d4; font-weight: 700;">will be walking</span> home
+                                <div style="color: #e8f1f8; font-size: 0.85rem">
+                                    I <span class="gc-text-cyan" style="font-weight: 700">will be walking</span> home
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-                    <div style="margin-top: 1.5rem; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 0.5rem; padding: 1rem;">
-                        <h4 style="margin-top: 0; color: #c2410c;">Interrupted Action Pattern (Past)</h4>
-                        <p style="margin: 0;">I <strong>was walking</strong> home <strong>when</strong> it <strong>started</strong> raining.</p>
-                        <p style="margin: 0.5rem 0 0 0; font-size: 0.88rem; color: #7c2d12;">Background duration (Past Continuous) + short point event (Past Simple)</p>
+                    <div class="gc-bg-white" style="margin-top: 1.5rem; 7ed; border: 1px solid #fed7aa; border-radius: 0.5rem; padding: 1rem">
+                        <h4 style="margin-top: 0; color: #c2410c">Interrupted Action Pattern (Past)</h4>
+                        <p style="margin: 0">I <strong>was walking</strong> home <strong>when</strong> it <strong>started</strong> raining.</p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.88rem; color: #7c2d12">Background duration (Past Continuous) + short point event (Past Simple)</p>
                     </div>
 
-                    <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.85rem;">
-                            <h4 style="margin: 0 0 0.35rem 0;">While Pattern</h4>
-                            <p style="margin: 0; font-size: 0.9rem;">While I <strong>was cooking</strong>, my son <strong>was setting</strong> the table.</p>
+                    <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem">
+                        <div class="gc-bg-slate" style="border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.85rem">
+                            <h4 style="margin: 0 0 0.35rem 0">While Pattern</h4>
+                            <p style="margin: 0; font-size: 0.9rem">While I <strong>was cooking</strong>, my son <strong>was setting</strong> the table.</p>
                         </div>
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.85rem;">
-                            <h4 style="margin: 0 0 0.35rem 0;">When Pattern</h4>
-                            <p style="margin: 0; font-size: 0.9rem;">I <strong>was cooking</strong> when the smoke alarm <strong>went off</strong>.</p>
+                        <div class="gc-bg-slate" style="border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.85rem">
+                            <h4 style="margin: 0 0 0.35rem 0">When Pattern</h4>
+                            <p style="margin: 0; font-size: 0.9rem">I <strong>was cooking</strong> when the smoke alarm <strong>went off</strong>.</p>
                         </div>
                     </div>
 
-                    <div style="margin-top: 1rem; background: #eef2ff; border-left: 4px solid #6366f1; border-radius: 0.5rem; padding: 0.9rem;">
-                        <p style="margin: 0; color: #1f2937;"><strong style="color: #1f2937;">Duration vs Point-in-Time:</strong> Continuous answers "What was happening during this period?" Simple often answers "What happened at this point?"</p>
+                    <div style="margin-top: 1rem; background: #eef2ff; border-left: 4px solid #6366f1; border-radius: 0.5rem; padding: 0.9rem">
+                        <p style="margin: 0; color: #1f2937"><strong style="color: #1f2937">Duration vs Point-in-Time:</strong> Continuous answers "What was happening during this period?" Simple often answers "What happened at this point?"</p>
                     </div>
                 </div>
             `,
@@ -718,58 +718,58 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 <h3>Use a fast decision system so you do not overthink.</h3>
                 <p>First: when was the decision made? Next: are you describing the middle of an action at a future time?</p>
 
-                <div style="background: white; border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.2rem; margin: 1rem 0;">
-                    <h4 style="text-align: center; margin-top: 0; color: #4f46e5;">Future Decision Flow</h4>
-                    <div style="display: grid; gap: 0.75rem;">
-                        <div style="background: #f5f3ff; border-left: 4px solid #6366f1; padding: 0.75rem; border-radius: 0.45rem;">
+                <div class="gc-bg-white" style="border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.2rem; margin: 1rem 0">
+                    <h4 style="text-align: center; margin-top: 0; color: #4f46e5">Future Decision Flow</h4>
+                    <div style="display: grid; gap: 0.75rem">
+                        <div class="gc-bg-violet" style="border-left: 4px solid #6366f1; padding: 0.75rem; border-radius: 0.45rem">
                             <strong>Arranged appointment?</strong> -> <strong>Present Continuous (future)</strong><br/>
-                            <span style="font-size: 0.9rem;">"I'm meeting my dentist at 2 PM."</span>
+                            <span style="font-size: 0.9rem">"I'm meeting my dentist at 2 PM."</span>
                         </div>
-                        <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
+                        <div class="gc-bg-cyan gc-callout-cyan" style="; padding: 0.75rem; border-radius: 0.45rem">
                             <strong>Plan before speaking or visible evidence?</strong> -> <strong>be going to + base verb</strong><br/>
-                            <span style="font-size: 0.9rem;">"I'm going to study tonight." / "It's going to rain."</span>
+                            <span style="font-size: 0.9rem">"I'm going to study tonight." / "It's going to rain."</span>
                         </div>
-                        <div style="background: #fef9f3; border-left: 4px solid #f59e0b; padding: 0.75rem; border-radius: 0.45rem;">
+                        <div class="gc-callout-amber" style="background: #fef9f3; ; padding: 0.75rem; border-radius: 0.45rem">
                             <strong>Instant reaction, offer, or promise?</strong> -> <strong>will + base verb</strong><br/>
-                            <span style="font-size: 0.9rem;">"I'll help you with that."</span>
+                            <span style="font-size: 0.9rem">"I'll help you with that."</span>
                         </div>
-                        <div style="background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 0.75rem; border-radius: 0.45rem;">
+                        <div style="background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 0.75rem; border-radius: 0.45rem">
                             <strong>Middle of an action at a future time?</strong> -> <strong>Future Continuous</strong><br/>
-                            <span style="font-size: 0.9rem;">"At 8 PM, I'll be working."</span>
+                            <span style="font-size: 0.9rem">"At 8 PM, I'll be working."</span>
                         </div>
                     </div>
                 </div>
 
                 <h3>Clue Word Map</h3>
-                <div style="overflow-x: auto; margin-top: 0.75rem;">
-                    <table style="width: 100%; min-width: 740px; border-collapse: collapse; border: 1px solid #e2e8f0;">
+                <div style="overflow-x: auto; margin-top: 0.75rem">
+                    <table style="width: 100%; min-width: 740px; border-collapse: collapse; border: 1px solid #e2e8f0">
                         <thead>
-                            <tr style="background: #f8fafc;">
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Form</th>
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Good Clues</th>
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Example</th>
+                            <tr class="gc-bg-slate">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Form</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Good Clues</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Example</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Present Continuous (future)</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">calendar event, arranged time, fixed meeting</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">We're meeting the landlord at 4 PM.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600">Present Continuous (future)</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">calendar event, arranged time, fixed meeting</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">We're meeting the landlord at 4 PM.</td>
                             </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Going to</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">plan before now, look!/watch out!, clear evidence</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">Look at those clouds. It's going to rain.</td>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600">Going to</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">plan before now, look!/watch out!, clear evidence</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">Look at those clouds. It's going to rain.</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Will</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">Oh!, wait!, no problem, I promise, probably</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">The phone is ringing. I'll answer it.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600">Will</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">Oh!, wait!, no problem, I promise, probably</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">The phone is ringing. I'll answer it.</td>
                             </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Future Continuous</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">at 8 PM tomorrow, this time next week, when you arrive</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">At 8 PM, I'll be studying.</td>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600">Future Continuous</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">at 8 PM tomorrow, this time next week, when you arrive</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">At 8 PM, I'll be studying.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1083,8 +1083,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 <h3>Complete Continuous Tense Conjugation Charts</h3>
                 <p>Practice conjugating verbs across all three continuous tenses and all three forms (affirmative, negative, question). Remember: all continuous tenses use be + verb-ing!</p>
 
-                <div style="background: rgba(240, 180, 90, 0.05); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid rgba(240, 180, 90, 0.3);">
-                    <p style="margin: 0;"><strong>💡 Pattern:</strong> Present (am/is/are + -ing) → Past (was/were + -ing) → Future (will be + -ing)</p>
+                <div style="background: rgba(240, 180, 90, 0.05); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid rgba(240, 180, 90, 0.3)">
+                    <p style="margin: 0"><strong>💡 Pattern:</strong> Present (am/is/are + -ing) → Past (was/were + -ing) → Future (will be + -ing)</p>
                 </div>
             `,
             exercises: [
@@ -1381,12 +1381,12 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             tipBox: {
                 title: "🚨 Common Continuous Mistakes to Avoid",
                 content: `Common continuous tense mistakes and fixes:
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div>❌ I am work <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ I am working <span class="gc-text-muted" style="font-size: 0.875rem;">(must add -ing)</span></div>
-                    <div>❌ I was ran <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ I was running <span class="gc-text-muted" style="font-size: 0.875rem;">(verb-ing, not past form)</span></div>
-                    <div>❌ I will working <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ I will be working <span class="gc-text-muted" style="font-size: 0.875rem;">(will be + verb-ing)</span></div>
-                    <div>❌ She was study <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ She was studying <span class="gc-text-muted" style="font-size: 0.875rem;">(-ying for study)</span></div>
-                    <div>❌ They are run <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ They are running <span class="gc-text-muted" style="font-size: 0.875rem;">(double consonant + -ing)</span></div>
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem">
+                    <div>❌ I am work <span class="gc-text-terracotta" style="font-weight: 600">→</span> ✅ I am working <span class="gc-text-muted" style="font-size: 0.875rem">(must add -ing)</span></div>
+                    <div>❌ I was ran <span class="gc-text-terracotta" style="font-weight: 600">→</span> ✅ I was running <span class="gc-text-muted" style="font-size: 0.875rem">(verb-ing, not past form)</span></div>
+                    <div>❌ I will working <span class="gc-text-terracotta" style="font-weight: 600">→</span> ✅ I will be working <span class="gc-text-muted" style="font-size: 0.875rem">(will be + verb-ing)</span></div>
+                    <div>❌ She was study <span class="gc-text-terracotta" style="font-weight: 600">→</span> ✅ She was studying <span class="gc-text-muted" style="font-size: 0.875rem">(-ying for study)</span></div>
+                    <div>❌ They are run <span class="gc-text-terracotta" style="font-weight: 600">→</span> ✅ They are running <span class="gc-text-muted" style="font-size: 0.875rem">(double consonant + -ing)</span></div>
                 </div>`,
             },
             exercises: [

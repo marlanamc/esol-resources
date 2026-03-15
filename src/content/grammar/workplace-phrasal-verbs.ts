@@ -9,8 +9,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             title: "Workplace Phrasal Verbs: The Secret Language of Work",
             icon: "💼",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"Clock in before your shift." "Fill out this form." "Call back if you can't make it." Phrasal verbs are everywhere at work - and if you don't know them, you'll be lost. These two-word (or three-word) combinations have special meanings you can't guess from the individual words.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">"Clock in before your shift." "Fill out this form." "Call back if you can't make it." Phrasal verbs are everywhere at work - and if you don't know them, you'll be lost. These two-word (or three-word) combinations have special meanings you can't guess from the individual words.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -21,16 +21,16 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     <li><strong>Coworkers expect you to know:</strong> "Can you cover for me?" "I'll get back to you"</li>
                 </ul>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                <div class="gc-callout-sage" style="background: rgba(122, 143, 124, 0.15); ; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li>Making workplace small talk ("How's the new schedule working out?")</li>
                         <li>Understanding workplace policies ("You need to clock in before your shift" "Fill out this form")</li>
                         <li>Following instructions ("Turn in your timesheet" "Call back if you can't make it")</li>
                         <li>Role-playing common workplace situations</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💼 Phrasal verbs make you sound like you belong at work - not knowing them makes you stand out!</p>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a">💼 Phrasal verbs make you sound like you belong at work - not knowing them makes you stand out!</p>
                 </div>
             `,
             exercises: [
@@ -65,7 +65,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 <h3>Verb + Particle = New Meaning</h3>
                 <p>A phrasal verb = a verb + a particle (preposition or adverb) that creates a completely new meaning:</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Examples:</h4>
                     <ul>
                         <li><strong>turn on</strong> ≠ turn + on → means "start/activate"</li>
@@ -130,8 +130,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 <h3>Key Rule: Change the Verb, Keep the Particle</h3>
                 <p>With phrasal verbs, only the first word changes form. The particle/preposition stays the same.</p>
 
-                <div style="margin: 1rem 0; padding: 1rem; background: rgba(59, 130, 246, 0.08); border-radius: 0.5rem;">
-                    <ul style="margin: 0;">
+                <div style="margin: 1rem 0; padding: 1rem; background: rgba(59, 130, 246, 0.08); border-radius: 0.5rem">
+                    <ul style="margin: 0">
                         <li><strong>call out</strong> → calls out (V1-3rd), calling out (V1-ing), called out (V2), called out (V3)</li>
                         <li><strong>clock in</strong> → clocks in (V1-3rd), clocking in (V1-ing), clocked in (V2), clocked in (V3)</li>
                         <li><strong>fill out</strong> → fills out (V1-3rd), filling out (V1-ing), filled out (V2), filled out (V3)</li>
@@ -147,7 +147,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     <li><strong>V3 (perfect):</strong> "She has <strong>turned in</strong> her timesheet."</li>
                 </ul>
 
-                <p style="margin-top: 0.75rem;"><strong>Tip:</strong> Most workplace phrasal verbs in this lesson are regular, so V2 and V3 are usually the same (called, clocked, filled, turned).</p>
+                <p style="margin-top: 0.75rem"><strong>Tip:</strong> Most workplace phrasal verbs in this lesson are regular, so V2 and V3 are usually the same (called, clocked, filled, turned).</p>
             `,
             exercises: [
                 {
@@ -196,29 +196,29 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             title: "Clock In/Out: Time & Attendance",
             icon: "⏰",
             explanation: `
-                <div style="margin: 1.5rem 0;">
-                    <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <h4 style="color: #7ba884; margin-top: 0;">clock in / punch in</h4>
-                        <p style="margin: 0;">= record your arrival at work</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"Don't forget to <strong>clock in</strong> when you arrive."</p>
+                <div style="margin: 1.5rem 0">
+                    <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <h4 class="gc-text-sage" style="margin-top: 0">clock in / punch in</h4>
+                        <p style="margin: 0">= record your arrival at work</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"Don't forget to <strong>clock in</strong> when you arrive."</p>
                     </div>
 
-                    <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <h4 style="color: #d97757; margin-top: 0;">clock out / punch out</h4>
-                        <p style="margin: 0;">= record your departure from work</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"Remember to <strong>clock out</strong> before you leave."</p>
+                    <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <h4 class="gc-text-terracotta" style="margin-top: 0">clock out / punch out</h4>
+                        <p style="margin: 0">= record your departure from work</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"Remember to <strong>clock out</strong> before you leave."</p>
                     </div>
 
-                    <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem;">
-                        <h4 style="color: #3b82f6; margin-top: 0;">call out / call in sick</h4>
-                        <p style="margin: 0;">= notify work that you can't come in</p>
-                        <ul style="margin: 0.5rem 0 0 1.25rem; padding: 0;">
+                    <div class="gc-bg-blue-alpha" style="padding: 1rem; border-radius: 0.5rem">
+                        <h4 class="gc-text-blue" style="margin-top: 0">call out / call in sick</h4>
+                        <p style="margin: 0">= notify work that you can't come in</p>
+                        <ul style="margin: 0.5rem 0 0 1.25rem; padding: 0">
                             <li><strong>call out</strong>: very common in shift-based jobs (retail, restaurants, warehouses); often used for any urgent absence</li>
                             <li><strong>call in sick</strong>: very common in office/HR language; specifically illness</li>
                         </ul>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"I need to <strong>call in sick</strong> today."</p>
-                        <p style="margin: 0.35rem 0 0 0; font-style: italic;">"I had to <strong>call out</strong> for tonight's shift."</p>
-                        <p style="margin: 0.6rem 0 0 0;"><strong>Important:</strong> Outside workplace attendance, <strong>call out</strong> can also mean criticize someone publicly.</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"I need to <strong>call in sick</strong> today."</p>
+                        <p style="margin: 0.35rem 0 0 0; font-style: italic">"I had to <strong>call out</strong> for tonight's shift."</p>
+                        <p style="margin: 0.6rem 0 0 0"><strong>Important:</strong> Outside workplace attendance, <strong>call out</strong> can also mean criticize someone publicly.</p>
                     </div>
                 </div>
             `,
@@ -263,23 +263,23 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             title: "Fill Out/In, Turn In: Forms & Paperwork",
             icon: "📝",
             explanation: `
-                <div style="margin: 1.5rem 0;">
-                    <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <h4 style="color: #a855f7; margin-top: 0;">fill out / fill in</h4>
-                        <p style="margin: 0;">= complete a form by writing information</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"Please <strong>fill out</strong> this application form."</p>
+                <div style="margin: 1.5rem 0">
+                    <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <h4 style="color: #a855f7; margin-top: 0">fill out / fill in</h4>
+                        <p style="margin: 0">= complete a form by writing information</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"Please <strong>fill out</strong> this application form."</p>
                     </div>
 
-                    <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <h4 style="color: #22c55e; margin-top: 0;">turn in / hand in</h4>
-                        <p style="margin: 0;">= submit, give to someone (paperwork, assignments)</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"<strong>Turn in</strong> your timesheet by Friday."</p>
+                    <div class="gc-bg-green-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <h4 class="gc-text-green" style="margin-top: 0">turn in / hand in</h4>
+                        <p style="margin: 0">= submit, give to someone (paperwork, assignments)</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"<strong>Turn in</strong> your timesheet by Friday."</p>
                     </div>
 
-                    <div style="background: rgba(249, 115, 22, 0.1); padding: 1rem; border-radius: 0.5rem;">
-                        <h4 style="color: #f97316; margin-top: 0;">look over / go over</h4>
-                        <p style="margin: 0;">= review, check carefully</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"Can you <strong>look over</strong> this report before I send it?"</p>
+                    <div class="gc-bg-orange-alpha" style="padding: 1rem; border-radius: 0.5rem">
+                        <h4 style="color: #f97316; margin-top: 0">look over / go over</h4>
+                        <p style="margin: 0">= review, check carefully</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"Can you <strong>look over</strong> this report before I send it?"</p>
                     </div>
                 </div>
             `,
@@ -318,23 +318,23 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             title: "Call Back, Get Back, Follow Up: Communication",
             icon: "📞",
             explanation: `
-                <div style="margin: 1.5rem 0;">
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 1rem;">
+                <div style="margin: 1.5rem 0">
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 1rem">
                         <h4>call back</h4>
-                        <p style="margin: 0;">= return a phone call</p>
-                        <p style="font-style: italic;">"I'll <strong>call you back</strong> in 10 minutes."</p>
+                        <p style="margin: 0">= return a phone call</p>
+                        <p style="font-style: italic">"I'll <strong>call you back</strong> in 10 minutes."</p>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 1rem;">
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 1rem">
                         <h4>get back to (someone)</h4>
-                        <p style="margin: 0;">= respond later (phone, email, with information)</p>
-                        <p style="font-style: italic;">"I'll <strong>get back to you</strong> about the schedule tomorrow."</p>
+                        <p style="margin: 0">= respond later (phone, email, with information)</p>
+                        <p style="font-style: italic">"I'll <strong>get back to you</strong> about the schedule tomorrow."</p>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
                         <h4>follow up (on)</h4>
-                        <p style="margin: 0;">= check on progress, send a reminder</p>
-                        <p style="font-style: italic;">"I need to <strong>follow up on</strong> that order."</p>
+                        <p style="margin: 0">= check on progress, send a reminder</p>
+                        <p style="font-style: italic">"I need to <strong>follow up on</strong> that order."</p>
                     </div>
                 </div>
             `,
@@ -385,17 +385,17 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             title: "Cover For, Fill In For: Coverage & Substitution",
             icon: "🔄",
             explanation: `
-                <div style="margin: 1.5rem 0;">
-                    <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                <div style="margin: 1.5rem 0">
+                    <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
                         <h4>cover for (someone)</h4>
-                        <p style="margin: 0;">= do someone's job temporarily</p>
-                        <p style="font-style: italic;">"Can you <strong>cover for me</strong> tomorrow? I have an appointment."</p>
+                        <p style="margin: 0">= do someone's job temporarily</p>
+                        <p style="font-style: italic">"Can you <strong>cover for me</strong> tomorrow? I have an appointment."</p>
                     </div>
 
-                    <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem;">
+                    <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem">
                         <h4>fill in for (someone)</h4>
-                        <p style="margin: 0;">= substitute for someone, do their work</p>
-                        <p style="font-style: italic;">"Maria is <strong>filling in for</strong> the manager this week."</p>
+                        <p style="margin: 0">= substitute for someone, do their work</p>
+                        <p style="font-style: italic">"Maria is <strong>filling in for</strong> the manager this week."</p>
                     </div>
                 </div>
             `,
@@ -436,41 +436,41 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             explanation: `
                 <p>Here are six more phrasal verbs you'll hear constantly at work:</p>
 
-                <div style="margin: 1.5rem 0;">
-                    <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <h4 style="color: #3b82f6; margin-top: 0;">take on</h4>
-                        <p style="margin: 0;">= accept responsibility or extra work</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"I can <strong>take on</strong> that project if you need help."</p>
+                <div style="margin: 1.5rem 0">
+                    <div class="gc-bg-blue-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <h4 class="gc-text-blue" style="margin-top: 0">take on</h4>
+                        <p style="margin: 0">= accept responsibility or extra work</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"I can <strong>take on</strong> that project if you need help."</p>
                     </div>
 
-                    <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <h4 style="color: #a855f7; margin-top: 0;">deal with</h4>
-                        <p style="margin: 0;">= handle a situation or problem</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"HR will <strong>deal with</strong> the complaint."</p>
+                    <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <h4 style="color: #a855f7; margin-top: 0">deal with</h4>
+                        <p style="margin: 0">= handle a situation or problem</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"HR will <strong>deal with</strong> the complaint."</p>
                     </div>
 
-                    <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <h4 style="color: #22c55e; margin-top: 0;">set up</h4>
-                        <p style="margin: 0;">= arrange, organize, or prepare something</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"Can you <strong>set up</strong> the meeting room for the training?"</p>
+                    <div class="gc-bg-green-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <h4 class="gc-text-green" style="margin-top: 0">set up</h4>
+                        <p style="margin: 0">= arrange, organize, or prepare something</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"Can you <strong>set up</strong> the meeting room for the training?"</p>
                     </div>
 
-                    <div style="background: rgba(249, 115, 22, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <h4 style="color: #f97316; margin-top: 0;">put off</h4>
-                        <p style="margin: 0;">= postpone, delay until later</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"We need to <strong>put off</strong> the meeting until next week."</p>
+                    <div class="gc-bg-orange-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <h4 style="color: #f97316; margin-top: 0">put off</h4>
+                        <p style="margin: 0">= postpone, delay until later</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"We need to <strong>put off</strong> the meeting until next week."</p>
                     </div>
 
-                    <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <h4 style="color: #d97757; margin-top: 0;">work out</h4>
-                        <p style="margin: 0;">= solve, figure out, or find a solution</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"Let's <strong>work out</strong> a schedule that works for everyone."</p>
+                    <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                        <h4 class="gc-text-terracotta" style="margin-top: 0">work out</h4>
+                        <p style="margin: 0">= solve, figure out, or find a solution</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"Let's <strong>work out</strong> a schedule that works for everyone."</p>
                     </div>
 
-                    <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem;">
-                        <h4 style="color: #7ba884; margin-top: 0;">wrap up</h4>
-                        <p style="margin: 0;">= finish, complete, bring to an end</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"Let's <strong>wrap up</strong> this meeting - we're out of time."</p>
+                    <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem">
+                        <h4 class="gc-text-sage" style="margin-top: 0">wrap up</h4>
+                        <p style="margin: 0">= finish, complete, bring to an end</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic">"Let's <strong>wrap up</strong> this meeting - we're out of time."</p>
                     </div>
                 </div>
             `,
@@ -519,27 +519,27 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
 
                 <h3>Common Email Phrases</h3>
 
-                <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                    <h4 style="color: #3b82f6; margin-top: 0;">Opening an Email</h4>
-                    <ul style="margin-bottom: 0;">
+                <div class="gc-bg-blue-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                    <h4 class="gc-text-blue" style="margin-top: 0">Opening an Email</h4>
+                    <ul style="margin-bottom: 0">
                         <li>"I'm <strong>following up on</strong> our conversation yesterday..."</li>
                         <li>"I wanted to <strong>get back to you</strong> about the schedule..."</li>
                         <li>"I'm <strong>reaching out</strong> to ask about..."</li>
                     </ul>
                 </div>
 
-                <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                    <h4 style="color: #22c55e; margin-top: 0;">Making Requests</h4>
-                    <ul style="margin-bottom: 0;">
+                <div class="gc-bg-green-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem">
+                    <h4 class="gc-text-green" style="margin-top: 0">Making Requests</h4>
+                    <ul style="margin-bottom: 0">
                         <li>"Could you please <strong>fill out</strong> the attached form?"</li>
                         <li>"Please <strong>look over</strong> the report and let me know..."</li>
                         <li>"Can you <strong>set up</strong> a meeting for next week?"</li>
                     </ul>
                 </div>
 
-                <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h4 style="color: #a855f7; margin-top: 0;">Closing an Email</h4>
-                    <ul style="margin-bottom: 0;">
+                <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h4 style="color: #a855f7; margin-top: 0">Closing an Email</h4>
+                    <ul style="margin-bottom: 0">
                         <li>"I'll <strong>get back to you</strong> by Friday."</li>
                         <li>"Please <strong>follow up</strong> with me if you have questions."</li>
                         <li>"Let me know if we need to <strong>work out</strong> a different time."</li>
@@ -547,23 +547,23 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Example Email 1: Following Up</h3>
-                <div style="background: white; border: 1px solid #ddd; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem; font-family: monospace; font-size: 0.9rem;">
-                    <p style="margin: 0;"><strong>Subject:</strong> Following up on supply order</p>
-                    <hr style="border: none; border-top: 1px solid #ddd; margin: 0.5rem 0;">
-                    <p style="margin: 0.5rem 0;">Hi Maria,</p>
-                    <p style="margin: 0.5rem 0;">I'm <strong>following up on</strong> the supply order from last week. Have you had a chance to <strong>look over</strong> the list?</p>
-                    <p style="margin: 0.5rem 0;">Please <strong>get back to me</strong> by Thursday so I can <strong>set up</strong> the delivery.</p>
-                    <p style="margin: 0.5rem 0;">Thanks,<br>Carlos</p>
+                <div class="gc-bg-white" style="border: 1px solid #ddd; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem; font-family: monospace; font-size: 0.9rem">
+                    <p style="margin: 0"><strong>Subject:</strong> Following up on supply order</p>
+                    <hr style="border: none; border-top: 1px solid #ddd; margin: 0.5rem 0">
+                    <p style="margin: 0.5rem 0">Hi Maria,</p>
+                    <p style="margin: 0.5rem 0">I'm <strong>following up on</strong> the supply order from last week. Have you had a chance to <strong>look over</strong> the list?</p>
+                    <p style="margin: 0.5rem 0">Please <strong>get back to me</strong> by Thursday so I can <strong>set up</strong> the delivery.</p>
+                    <p style="margin: 0.5rem 0">Thanks,<br>Carlos</p>
                 </div>
 
                 <h3>Example Email 2: Requesting Time Off</h3>
-                <div style="background: white; border: 1px solid #ddd; border-radius: 0.5rem; padding: 1rem; font-family: monospace; font-size: 0.9rem;">
-                    <p style="margin: 0;"><strong>Subject:</strong> Time off request - Friday</p>
-                    <hr style="border: none; border-top: 1px solid #ddd; margin: 0.5rem 0;">
-                    <p style="margin: 0.5rem 0;">Hi Ms. Johnson,</p>
-                    <p style="margin: 0.5rem 0;">I need to request time off on Friday for a doctor's appointment. I've already asked Ana, and she can <strong>cover for</strong> me during the morning shift.</p>
-                    <p style="margin: 0.5rem 0;">Please let me know if I need to <strong>fill out</strong> any forms. I'll <strong>get back to you</strong> if anything changes.</p>
-                    <p style="margin: 0.5rem 0;">Thank you,<br>David</p>
+                <div class="gc-bg-white" style="border: 1px solid #ddd; border-radius: 0.5rem; padding: 1rem; font-family: monospace; font-size: 0.9rem">
+                    <p style="margin: 0"><strong>Subject:</strong> Time off request - Friday</p>
+                    <hr style="border: none; border-top: 1px solid #ddd; margin: 0.5rem 0">
+                    <p style="margin: 0.5rem 0">Hi Ms. Johnson,</p>
+                    <p style="margin: 0.5rem 0">I need to request time off on Friday for a doctor's appointment. I've already asked Ana, and she can <strong>cover for</strong> me during the morning shift.</p>
+                    <p style="margin: 0.5rem 0">Please let me know if I need to <strong>fill out</strong> any forms. I'll <strong>get back to you</strong> if anything changes.</p>
+                    <p style="margin: 0.5rem 0">Thank you,<br>David</p>
                 </div>
             `,
             tipBox: {
@@ -645,35 +645,35 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 <p>Read these real workplace conversations and notice how phrasal verbs are used naturally.</p>
 
                 <h3>Dialogue 1: Calling In Sick</h3>
-                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager (on phone):</strong> Good morning, this is Sarah.</p>
-                    <p style="margin: 0.25rem 0;"><strong>🔵 David:</strong> Hi Sarah, this is David. I'm sorry, but I need to <strong>call in sick</strong> today. I have a bad cold.</p>
-                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> I'm sorry to hear that. Can anyone <strong>cover for</strong> you?</p>
-                    <p style="margin: 0.25rem 0;"><strong>🔵 David:</strong> I already texted Maria. She said she can <strong>fill in for</strong> me on the morning shift.</p>
-                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> Great, thanks for <strong>working that out</strong>. Feel better! I'll <strong>get back to you</strong> if I have any questions.</p>
-                    <p style="margin: 0.25rem 0;"><strong>🔵 David:</strong> Thanks, Sarah. I'll <strong>follow up</strong> later today about tomorrow's shift.</p>
+                <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="margin: 0.25rem 0"><strong>🔴 Manager (on phone):</strong> Good morning, this is Sarah.</p>
+                    <p style="margin: 0.25rem 0"><strong>🔵 David:</strong> Hi Sarah, this is David. I'm sorry, but I need to <strong>call in sick</strong> today. I have a bad cold.</p>
+                    <p style="margin: 0.25rem 0"><strong>🔴 Manager:</strong> I'm sorry to hear that. Can anyone <strong>cover for</strong> you?</p>
+                    <p style="margin: 0.25rem 0"><strong>🔵 David:</strong> I already texted Maria. She said she can <strong>fill in for</strong> me on the morning shift.</p>
+                    <p style="margin: 0.25rem 0"><strong>🔴 Manager:</strong> Great, thanks for <strong>working that out</strong>. Feel better! I'll <strong>get back to you</strong> if I have any questions.</p>
+                    <p style="margin: 0.25rem 0"><strong>🔵 David:</strong> Thanks, Sarah. I'll <strong>follow up</strong> later today about tomorrow's shift.</p>
                 </div>
 
                 <h3>Dialogue 2: Asking a Coworker for Help</h3>
-                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="margin: 0.25rem 0;"><strong>🔵 Ana:</strong> Hey Carlos, can I ask you something?</p>
-                    <p style="margin: 0.25rem 0;"><strong>🟢 Carlos:</strong> Sure, what's up?</p>
-                    <p style="margin: 0.25rem 0;"><strong>🔵 Ana:</strong> I have a doctor's appointment next Thursday. Could you <strong>cover for</strong> me for a couple hours?</p>
-                    <p style="margin: 0.25rem 0;"><strong>🟢 Carlos:</strong> What time? I might be able to <strong>help out</strong>.</p>
-                    <p style="margin: 0.25rem 0;"><strong>🔵 Ana:</strong> From 2 to 4. I can <strong>take on</strong> your Saturday morning shift in exchange.</p>
-                    <p style="margin: 0.25rem 0;"><strong>🟢 Carlos:</strong> That works! Let's <strong>work out</strong> the details later. I need to <strong>wrap up</strong> this report first.</p>
-                    <p style="margin: 0.25rem 0;"><strong>🔵 Ana:</strong> Thanks so much! I'll <strong>follow up</strong> with you at lunch.</p>
+                <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="margin: 0.25rem 0"><strong>🔵 Ana:</strong> Hey Carlos, can I ask you something?</p>
+                    <p style="margin: 0.25rem 0"><strong>🟢 Carlos:</strong> Sure, what's up?</p>
+                    <p style="margin: 0.25rem 0"><strong>🔵 Ana:</strong> I have a doctor's appointment next Thursday. Could you <strong>cover for</strong> me for a couple hours?</p>
+                    <p style="margin: 0.25rem 0"><strong>🟢 Carlos:</strong> What time? I might be able to <strong>help out</strong>.</p>
+                    <p style="margin: 0.25rem 0"><strong>🔵 Ana:</strong> From 2 to 4. I can <strong>take on</strong> your Saturday morning shift in exchange.</p>
+                    <p style="margin: 0.25rem 0"><strong>🟢 Carlos:</strong> That works! Let's <strong>work out</strong> the details later. I need to <strong>wrap up</strong> this report first.</p>
+                    <p style="margin: 0.25rem 0"><strong>🔵 Ana:</strong> Thanks so much! I'll <strong>follow up</strong> with you at lunch.</p>
                 </div>
 
                 <h3>Dialogue 3: Manager Checking on a Project</h3>
-                <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem;">
-                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> Hi Nina, I'm <strong>following up on</strong> the inventory report. How's it going?</p>
-                    <p style="margin: 0.25rem 0;"><strong>🟣 Nina:</strong> I'm almost done. I just need to <strong>look over</strong> the final numbers.</p>
-                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> Great. When do you think you can <strong>turn it in</strong>?</p>
-                    <p style="margin: 0.25rem 0;"><strong>🟣 Nina:</strong> I should be able to <strong>wrap it up</strong> by 3:00.</p>
-                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> Perfect. Oh, and there was an issue with a vendor. Can you <strong>deal with</strong> that after?</p>
-                    <p style="margin: 0.25rem 0;"><strong>🟣 Nina:</strong> Sure, I can <strong>take that on</strong>. Should I <strong>get back to you</strong> when it's resolved?</p>
-                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> Yes, please. Thanks, Nina!</p>
+                <div class="gc-bg-blue-alpha" style="padding: 1rem; border-radius: 0.5rem">
+                    <p style="margin: 0.25rem 0"><strong>🔴 Manager:</strong> Hi Nina, I'm <strong>following up on</strong> the inventory report. How's it going?</p>
+                    <p style="margin: 0.25rem 0"><strong>🟣 Nina:</strong> I'm almost done. I just need to <strong>look over</strong> the final numbers.</p>
+                    <p style="margin: 0.25rem 0"><strong>🔴 Manager:</strong> Great. When do you think you can <strong>turn it in</strong>?</p>
+                    <p style="margin: 0.25rem 0"><strong>🟣 Nina:</strong> I should be able to <strong>wrap it up</strong> by 3:00.</p>
+                    <p style="margin: 0.25rem 0"><strong>🔴 Manager:</strong> Perfect. Oh, and there was an issue with a vendor. Can you <strong>deal with</strong> that after?</p>
+                    <p style="margin: 0.25rem 0"><strong>🟣 Nina:</strong> Sure, I can <strong>take that on</strong>. Should I <strong>get back to you</strong> when it's resolved?</p>
+                    <p style="margin: 0.25rem 0"><strong>🔴 Manager:</strong> Yes, please. Thanks, Nina!</p>
                 </div>
             `,
             exercises: [

@@ -10,37 +10,37 @@ export const presentPerfectContent: InteractiveGuideContent = {
             title: "Present Perfect: Past Meets Right Now",
             icon: "📚",
             explanation: `
-                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 class="gc-text-purple" style="margin-top: 0; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Present Perfect <strong class="gc-text-terracotta">connects your past experiences to right now</strong>: places you've been, things you've done, changes that happened and you can still see the results.</p>
+                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 class="gc-text-purple" style="margin-top: 0; font-size: 1.25rem">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0">Present Perfect <strong class="gc-text-terracotta">connects your past experiences to right now</strong>: places you've been, things you've done, changes that happened and you can still see the results.</p>
                 </div>
 
                 <h3>Real-Life Uses</h3>
-                <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Experiences</strong> (no specific time): "I've walked along the East Boston Harborwalk three times this year."</li>
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Actions that continue</strong> to now: "She has worked at the community health center since 2021."</li>
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Recent actions with present results</strong>: "I've just submitted my housing renewal form."</li>
+                <ul style="list-style: none; padding-left: 0; margin: 0">
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate" style="padding: 0.5rem; margin: 0.35rem 0; ; border-left: 4px solid #6366f1; border-radius: 0.25rem">✓ <strong>Experiences</strong> (no specific time): "I've walked along the East Boston Harborwalk three times this year."</li>
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate" style="padding: 0.5rem; margin: 0.35rem 0; ; border-left: 4px solid #6366f1; border-radius: 0.25rem">✓ <strong>Actions that continue</strong> to now: "She has worked at the community health center since 2021."</li>
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate" style="padding: 0.5rem; margin: 0.35rem 0; ; border-left: 4px solid #6366f1; border-radius: 0.25rem">✓ <strong>Recent actions with present results</strong>: "I've just submitted my housing renewal form."</li>
                 </ul>
 
-                <div class="gc-bg-amber gc-box-amber-500" style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p class="gc-text-dark" style="margin: 0; font-weight: 600;">📝 Formula: <span class="gc-text-terracotta" style="font-size: 1.125rem;">have/has + past participle</span></p>
+                <div class="gc-bg-amber gc-box-amber-500 gc-bg-white" style="9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
+                    <p class="gc-text-dark" style="margin: 0; font-weight: 600">📝 Formula: <span class="gc-text-terracotta" style="font-size: 1.125rem">have/has + past participle</span></p>
                 </div>
 
-                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                <div class="gc-bg-green gc-callout-left gc-bg-green gc-callout-green" style="; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>Answering "How long have you lived here?" ("I've lived here for 6 months")</li>
                         <li>Talking about budgeting and bills ("I've saved $500 since January")</li>
                         <li>Describing changes that continue to now ("I've had this credit card for 2 years")</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                    <p style="margin: 1rem 0 0.5rem 0"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li><strong>Documenting workplace issues</strong> ("I've asked three times for a schedule change")</li>
                         <li><strong>Talking about health history</strong> ("I've had this pain for two weeks")</li>
                         <li><strong>Review:</strong> Telling coherent stories with all tenses</li>
                     </ul>
-                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">⏱️ Present Perfect connects your past to right now - it shows what's still relevant!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic">⏱️ Present Perfect connects your past to right now - it shows what's still relevant!</p>
                 </div>
             `,
             exercises: [
@@ -275,47 +275,47 @@ export const presentPerfectContent: InteractiveGuideContent = {
                 <h3>Understanding the Connection</h3>
                 <p>Present Perfect is all about how a <strong>past action</strong> connects to the <strong>present moment</strong>. Let's see it visually:</p>
 
-                <div style="background: white; border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
-                    <h4 style="text-align: center; margin-top: 0;">Timeline: Past Action → Present Connection</h4>
+                <div class="gc-bg-white" style="border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
+                    <h4 style="text-align: center; margin-top: 0">Timeline: Past Action → Present Connection</h4>
 
-                    <div style="display: flex; align-items: center; justify-content: space-between; position: relative; margin: 2rem 0; padding: 0 2rem;">
-                        <div style="position: absolute; top: 50%; left: 15%; right: 15%; height: 4px; background: linear-gradient(to right, #6366f1, #8b5cf6); transform: translateY(-50%); z-index: 0;">
-                            <div style="position: absolute; right: -8px; top: -6px; width: 0; height: 0; border-left: 10px solid #8b5cf6; border-top: 7px solid transparent; border-bottom: 7px solid transparent;"></div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; position: relative; margin: 2rem 0; padding: 0 2rem">
+                        <div style="position: absolute; top: 50%; left: 15%; right: 15%; height: 4px; background: linear-gradient(to right, #6366f1, #8b5cf6); transform: translateY(-50%); z-index: 0">
+                            <div style="position: absolute; right: -8px; top: -6px; width: 0; height: 0; border-left: 10px solid #8b5cf6; border-top: 7px solid transparent; border-bottom: 7px solid transparent"></div>
                         </div>
 
-                        <div style="position: relative; z-index: 1; text-align: center; flex: 1;">
-                            <div style="width: 90px; height: 90px; border-radius: 50%; background: #4338ca; color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.125rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); margin: 0 auto; text-shadow: 0 1px 2px rgba(0,0,0,0.45);">
+                        <div style="position: relative; z-index: 1; text-align: center; flex: 1">
+                            <div style="width: 90px; height: 90px; border-radius: 50%; background: #4338ca; color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.125rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); margin: 0 auto; text-shadow: 0 1px 2px rgba(0,0,0,0.45)">
                                 PAST
                             </div>
-                            <div style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #6366f1;">Past Action</div>
-                            <div style="font-size: 0.75rem; color: #64748b;">Lost keys</div>
+                            <div style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #6366f1">Past Action</div>
+                            <div class="gc-text-muted" style="font-size: 0.75rem; ">Lost keys</div>
                         </div>
 
-                        <div style="position: relative; z-index: 1; text-align: center; flex: 1;">
-                            <div style="width: 110px; height: 110px; border-radius: 50%; background: #6d28d9; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem; border: 5px solid white; box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4); margin: 0 auto; text-shadow: 0 1px 2px rgba(0,0,0,0.45);">
+                        <div style="position: relative; z-index: 1; text-align: center; flex: 1">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: #6d28d9; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem; border: 5px solid white; box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4); margin: 0 auto; text-shadow: 0 1px 2px rgba(0,0,0,0.45)">
                                 <div>NOW</div>
-                                <div style="font-size: 0.75rem; font-weight: 500; margin-top: 0.25rem;">Present Result</div>
+                                <div style="font-size: 0.75rem; font-weight: 500; margin-top: 0.25rem">Present Result</div>
                             </div>
-                            <div style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #8b5cf6;">Still Can't Find Them</div>
+                            <div class="gc-text-purple" style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; ">Still Can't Find Them</div>
                         </div>
                     </div>
 
-                    <div style="background: #f5f3ff; padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                        <p style="margin: 0; text-align: center;"><strong>Example:</strong> I <span style="color: #6366f1; font-weight: 600;">have lost</span> my keys → <span style="color: #8b5cf6; font-weight: 600;">I can't open the door NOW</span></p>
+                    <div class="gc-bg-violet" style="padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                        <p style="margin: 0; text-align: center"><strong>Example:</strong> I <span style="color: #6366f1; font-weight: 600">have lost</span> my keys → <span class="gc-text-purple" style="font-weight: 600">I can't open the door NOW</span></p>
                     </div>
 
-                    <div style="margin-top: 1rem; padding: 1rem; background: #fef9f3; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
-                        <p style="margin: 0; font-size: 0.875rem;"><strong>📍 Key Idea:</strong> The past action creates a situation that exists NOW. The exact time doesn't matter—what matters is the present connection!</p>
+                    <div class="gc-callout-amber" style="margin-top: 1rem; padding: 1rem; background: #fef9f3; ; border-radius: 0.25rem">
+                        <p style="margin: 0; font-size: 0.875rem"><strong>📍 Key Idea:</strong> The past action creates a situation that exists NOW. The exact time doesn't matter—what matters is the present connection!</p>
                     </div>
                 </div>
 
                 <h3>More Visual Examples</h3>
-                <div style="margin: 1rem 0;">
-                    <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin-bottom: 0.75rem; border-left: 4px solid #6366f1;">
-                        <p style="margin: 0;"><strong>Example 1:</strong> She <span style="color: #6366f1; font-weight: 600;">has broken</span> her arm (past) → <span style="color: #8b5cf6; font-weight: 600;">She can't write NOW</span> (present result)</p>
+                <div style="margin: 1rem 0">
+                    <div class="gc-bg-slate" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 0.75rem; border-left: 4px solid #6366f1">
+                        <p style="margin: 0"><strong>Example 1:</strong> She <span style="color: #6366f1; font-weight: 600">has broken</span> her arm (past) → <span class="gc-text-purple" style="font-weight: 600">She can't write NOW</span> (present result)</p>
                     </div>
-                    <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                        <p style="margin: 0;"><strong>Example 2:</strong> They <span style="color: #6366f1; font-weight: 600;">have moved</span> to this block (past) → <span style="color: #8b5cf6; font-weight: 600;">They live here NOW</span> (present state)</p>
+                    <div class="gc-bg-slate" style="padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1">
+                        <p style="margin: 0"><strong>Example 2:</strong> They <span style="color: #6366f1; font-weight: 600">have moved</span> to this block (past) → <span class="gc-text-purple" style="font-weight: 600">They live here NOW</span> (present state)</p>
                     </div>
                 </div>
             `,
@@ -569,26 +569,26 @@ export const presentPerfectContent: InteractiveGuideContent = {
                 <h3>The Formula</h3>
                 <p>Present Perfect is formed with: <strong>have/has + past participle</strong></p>
 
-                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            I <span style="color: #f59e0b; font-weight: 600;">have finished</span> my homework.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            I <span class="gc-text-amber" style="font-weight: 600">have finished</span> my homework.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            She <span style="color: #f59e0b; font-weight: 600;">has been</span> to the waterfront art fair.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            She <span class="gc-text-amber" style="font-weight: 600">has been</span> to the waterfront art fair.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            They <span style="color: #f59e0b; font-weight: 600;">have lived</span> here for 5 years.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            They <span class="gc-text-amber" style="font-weight: 600">have lived</span> here for 5 years.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            He <span style="color: #f59e0b; font-weight: 600;">has seen</span> that movie.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            He <span class="gc-text-amber" style="font-weight: 600">has seen</span> that movie.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            We <span style="color: #f59e0b; font-weight: 600;">have studied</span> English.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            We <span class="gc-text-amber" style="font-weight: 600">have studied</span> English.
                         </div>
                     </div>
                 </div>
@@ -674,20 +674,20 @@ export const presentPerfectContent: InteractiveGuideContent = {
                 <h3>How to Make Negative Sentences</h3>
                 <p>To make Present Perfect negative, add <strong>'not'</strong> after 'have/has':</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            I <span style="color: #f59e0b; font-weight: 600;">have not</span> (haven't) <span style="color: #f59e0b; font-weight: 600;">finished</span> my homework.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            I <span class="gc-text-amber" style="font-weight: 600">have not</span> (haven't) <span class="gc-text-amber" style="font-weight: 600">finished</span> my homework.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            She <span style="color: #f59e0b; font-weight: 600;">has not</span> (hasn't) <span style="color: #f59e0b; font-weight: 600;">been</span> to the waterfront art fair.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            She <span class="gc-text-amber" style="font-weight: 600">has not</span> (hasn't) <span class="gc-text-amber" style="font-weight: 600">been</span> to the waterfront art fair.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            They <span style="color: #f59e0b; font-weight: 600;">have not</span> (haven't) <span style="color: #f59e0b; font-weight: 600;">seen</span> that movie.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            They <span class="gc-text-amber" style="font-weight: 600">have not</span> (haven't) <span class="gc-text-amber" style="font-weight: 600">seen</span> that movie.
                         </div>
                     </div>
                 </div>
@@ -751,23 +751,23 @@ export const presentPerfectContent: InteractiveGuideContent = {
                 <h3>How to Make Questions</h3>
                 <p>To make questions, put <strong>'Have/Has'</strong> before the subject:</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Have</span> you <span style="color: #f59e0b; font-weight: 600;">finished</span> your homework?
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Have</span> you <span class="gc-text-amber" style="font-weight: 600">finished</span> your homework?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Has</span> she <span style="color: #f59e0b; font-weight: 600;">been</span> to the new community garden?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Has</span> she <span class="gc-text-amber" style="font-weight: 600">been</span> to the new community garden?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Have</span> they <span style="color: #f59e0b; font-weight: 600;">seen</span> that movie?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Have</span> they <span class="gc-text-amber" style="font-weight: 600">seen</span> that movie?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Has</span> he <span style="color: #f59e0b; font-weight: 600;">eaten</span> lunch?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Has</span> he <span class="gc-text-amber" style="font-weight: 600">eaten</span> lunch?
                         </div>
                     </div>
                 </div>
@@ -1003,7 +1003,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                 <h3>Life Experiences</h3>
                 <p><strong>Ever</strong> = at any time in your life (usually in questions). <strong>Never</strong> = not at any time.</p>
                 <p><strong>Placement:</strong> "ever/never" go between have/has and the past participle (Have you <strong>ever been</strong>… / I have <strong>never seen</strong>…).</p>
-                <p><strong>Sentence types:</strong> "ever" mainly in questions; "never" in affirmative structure but negative meaning.</p>
+                <p><strong>Sentence types:</strong> "ever" mainly in questions"never" in affirmative structure but negative meaning.</p>
             `,
             timeExpressions: [
                 {

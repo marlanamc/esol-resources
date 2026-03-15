@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import CreateActivityForm from "@/components/CreateActivityForm";
+import { CreateActivityForm } from "@/components/CreateActivityForm";
 import { BackButton } from "@/components/ui/BackButton";
 
 export default async function NewActivityPage() {

@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 
+/**
+ * Response shape from the student dashboard summary API (points, streak, weekly points).
+ */
 export type StudentSummaryResponse = {
     totalPoints: number;
     effectiveCurrentStreak: number;
@@ -18,12 +21,19 @@ const STUDENT_SUMMARY_CACHE_TTL_MS = 60_000;
 let studentSummaryCache: StudentSummaryCache | null = null;
 let studentSummaryInFlight: Promise<StudentSummaryResponse | null> | null = null;
 
+/**
+ * Returns cached student summary if still within TTL (1 minute). Use for initial render before fetch.
+ */
 export function getFreshStudentSummaryCache(): StudentSummaryResponse | null {
     if (!studentSummaryCache) return null;
     if (Date.now() - studentSummaryCache.cachedAt > STUDENT_SUMMARY_CACHE_TTL_MS) return null;
     return studentSummaryCache.data;
 }
 
+/**
+ * Fetches student summary from the API, with in-memory cache and request deduplication.
+ * @returns Cached or freshly fetched summary, or null on error
+ */
 export async function loadStudentSummary(): Promise<StudentSummaryResponse | null> {
     const cached = getFreshStudentSummaryCache();
     if (cached) return cached;
@@ -48,6 +58,11 @@ export async function loadStudentSummary(): Promise<StudentSummaryResponse | nul
     return studentSummaryInFlight;
 }
 
+/**
+ * Subscribes to student dashboard summary (points, streak, weekly points).
+ * Uses a short-lived cache and shared in-flight request to avoid duplicate fetches.
+ * @returns Current summary or null while loading / on error
+ */
 export function useStudentSummary() {
     const [summary, setSummary] = useState<StudentSummaryResponse | null>(() => getFreshStudentSummaryCache());
 

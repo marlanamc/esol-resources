@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Calendar } from "lucide-react";
 import { TrophyIcon } from "@/components/icons/Icons";
-import UserProfileDropdown from "@/components/UserProfileDropdown";
+import { UserProfileDropdown } from "@/components/UserProfileDropdown";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { LearnerSearchTrigger } from "@/components/search/LearnerSearchTrigger";
 

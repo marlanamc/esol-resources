@@ -3,7 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import StudentDetailView from "@/components/dashboard/StudentDetailView";
+import { StudentDetailView } from "@/components/dashboard/StudentDetailView";
 import { BackButton } from "@/components/ui/BackButton";
 import { isTeacherAdmin } from "@/lib/roles";
 

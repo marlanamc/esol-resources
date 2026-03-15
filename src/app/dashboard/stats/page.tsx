@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import LogoutButton from "@/components/LogoutButton";
+import { LogoutButton } from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -10,8 +10,8 @@ import { timedQuery } from "@/lib/perf-log";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import { StatCard } from "@/components/ui";
 import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon } from "@/components/icons/Icons";
-import StudentEngagementTable from "@/components/dashboard/StudentEngagementTable";
-import VerbQuizWeekSelector from "@/components/dashboard/VerbQuizWeekSelector";
+import { StudentEngagementTable } from "@/components/dashboard/StudentEngagementTable";
+import { VerbQuizWeekSelector } from "@/components/dashboard/VerbQuizWeekSelector";
 import { isTeacherAdmin } from "@/lib/roles";
 
 export default async function StatsPage() {

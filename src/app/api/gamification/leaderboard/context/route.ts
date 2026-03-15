@@ -3,12 +3,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { classOwnershipWhere, ensureTeacher } from "@/lib/policies";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 
 export async function GET() {
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
 
         const user = session.user;
@@ -38,7 +39,7 @@ export async function GET() {
 
         const teacherCheck = ensureTeacher(user);
         if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+            return apiError(teacherCheck.error, teacherCheck.status);
         }
 
         const classes = await prisma.class.findMany({
@@ -56,7 +57,8 @@ export async function GET() {
             defaultClassId: classes[0]?.id || null,
         });
     } catch (error) {
-        console.error("[Leaderboard Context] Error:", error);
-        return NextResponse.json({ error: "Failed to fetch leaderboard context" }, { status: 500 });
+        return handleApiError(error, {
+            defaultMessage: "Failed to fetch leaderboard context",
+        });
     }
 }

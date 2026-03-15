@@ -5,9 +5,7 @@ import {
   vocabCycle1,
   vocabUnits,
   displayTitle,
-  VOCAB_THEME_BY_UNIT_NUMBER,
   getVocabUnitNumberFromActivity,
-  extractThemeFromVocabTitle,
   getVocabThemeChip,
   cleanVocabTerm,
   dedupeVocabTerms,
@@ -1036,8 +1034,7 @@ const getSectionTexture = (sectionLabel: string, filterCategory?: string): Activ
 /** Wrapper for carousel card texture - uses sectionLabel for tense detection */
 const getActivityTextureForCard = (
     activity: Activity,
-    sectionLabel: string,
-    _filterCategory?: string
+    sectionLabel: string
 ): ActivityTexture | undefined => {
     return getActivityTexture(activity, sectionLabel);
 };
@@ -2226,7 +2223,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                             const isGameCard = filterCategory === 'games';
                                             const showCompletedState = isCompleted && !isGameCard;
                                             const showProgressState = hasProgress && !isGameCard;
-                                            const texture = getActivityTextureForCard(activity, section.label || '', filterCategory);
+                                            const texture = getActivityTextureForCard(activity, section.label || '');
                                             const cardTitle = displayTitle(activity.title);
                                             const grammarCopy = getGrammarChipCopyForActivity(activity);
                                             const hasGrammarVisual = hasGrammarGuideVisual(activity.title);
@@ -2642,7 +2639,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                             const isGameCard = filterCategory === 'games';
                                                                                             const showCompletedState = isCompleted && !isGameCard;
                                                                                             const showProgressState = hasProgress && !isGameCard;
-                                                                                            const texture = getActivityTextureForCard(activity, subSubCategory.name, filterCategory);
+                                                                                            const texture = getActivityTextureForCard(activity, subSubCategory.name);
                                                                                             const cardTitle = displayTitle(activity.title);
                                                                                             const grammarCopy = getGrammarChipCopyForActivity(activity);
                                                                                             const hasGrammarVisual = hasGrammarGuideVisual(activity.title);

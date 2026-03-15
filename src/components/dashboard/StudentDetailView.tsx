@@ -263,7 +263,7 @@ function InterventionCategoryCard({
     );
 }
 
-export default function StudentDetailView({ studentId }: { studentId: string }) {
+export function StudentDetailView({ studentId }: { studentId: string }) {
     const [data, setData] = useState<StudentAnalyticsResponse | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);

@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { ALL_VOCAB_SOURCE_KEY, isKnownVocabReviewSourceKey } from "@/lib/vocab-review-sources";
 import { saveVocabReviewRating } from "@/lib/vocab-review";
 import type { VocabReviewRating, VocabReviewSubmissionResult } from "@/types/vocab-review";
+import { ApiErrors, handleApiError } from "@/lib/api-response";
 
 function noStoreJson<T>(data: T, status = 200) {
   return NextResponse.json(data, {
@@ -59,7 +60,7 @@ export async function POST(request: Request) {
   try {
     const saved = await saveVocabReviewRating(prisma, userId, cardId, rating);
     if (!saved) {
-      return noStoreJson({ error: "Card not found" }, 404);
+      return ApiErrors.notFound("Card", cardId);
     }
 
     const response: VocabReviewSubmissionResult = {
@@ -73,7 +74,8 @@ export async function POST(request: Request) {
 
     return noStoreJson(response);
   } catch (error) {
-    console.error("Failed to save vocab review rating", error);
-    return noStoreJson({ error: "Failed to save review" }, 500);
+    return handleApiError(error, {
+      defaultMessage: "Failed to save review",
+    });
   }
 }

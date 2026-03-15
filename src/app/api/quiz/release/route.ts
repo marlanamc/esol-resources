@@ -3,17 +3,19 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { isTeacherAdmin } from "@/lib/roles";
+import { ApiErrors, apiError } from "@/lib/api-response";
+import { logger } from "@/lib/logger";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const userRole = session.user?.role;
     if (userRole !== 'teacher') {
-        return NextResponse.json({ error: "Only teachers can release quizzes" }, { status: 403 });
+        return ApiErrors.forbidden("Only teachers can release quizzes");
     }
 
     const { activityId, released } = await request.json();
@@ -21,7 +23,7 @@ export async function POST(request: Request) {
     const admin = isTeacherAdmin(session.user);
 
     if (!activityId || typeof activityId !== "string") {
-        return NextResponse.json({ error: "activityId is required" }, { status: 400 });
+        return apiError("activityId is required", 400);
     }
 
     // Update the activity's content to include released status
@@ -34,12 +36,12 @@ export async function POST(request: Request) {
     });
 
     if (!activity) {
-        return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+        return ApiErrors.notFound("Activity", activityId);
     }
 
     // SECURITY: Verify teacher owns this activity (or it's a shared/system activity with null createdBy)
     if (!admin && activity.createdBy && activity.createdBy !== userId) {
-        return NextResponse.json({ error: "You can only release quizzes you created" }, { status: 403 });
+        return ApiErrors.forbidden("You can only release quizzes you created");
     }
 
     const content = JSON.parse(activity.content);
@@ -96,7 +98,7 @@ export async function POST(request: Request) {
                 }
             }
         } catch (error) {
-            console.error('Error creating calendar events for verb quiz:', error);
+            logger.error('Error creating calendar events for verb quiz', error);
             // Don't fail the request if calendar event creation fails
         }
     }

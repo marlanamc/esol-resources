@@ -10,32 +10,32 @@ export const futurePerfectContent: InteractiveGuideContent = {
             title: "Future Perfect: The Deadline Machine",
             icon: "⏰",
             explanation: `
-                <div class="gc-grad-cyan" style="background: linear-gradient(135deg, rgba(203, 213, 225, 0.2) 0%, rgba(6, 182, 212, 0.2) 50%, rgba(34, 197, 94, 0.2) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 class="gc-text-dark" style="margin-top: 0; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Future Perfect is like standing at a <strong class="gc-text-purple">deadline in the future</strong> and looking back: <strong class="gc-text-cyan">"By then, this will be DONE."</strong> It's the tense for talking about what you'll have accomplished by a specific time.</p>
+                <div class="gc-grad-cyan" style="background: linear-gradient(135deg, rgba(203, 213, 225, 0.2) 0%, rgba(6, 182, 212, 0.2) 50%, rgba(34, 197, 94, 0.2) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 class="gc-text-dark" style="margin-top: 0; font-size: 1.25rem">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0">Future Perfect is like standing at a <strong class="gc-text-purple">deadline in the future</strong> and looking back: <strong class="gc-text-cyan">"By then, this will be DONE."</strong> It's the tense for talking about what you'll have accomplished by a specific time.</p>
                 </div>
 
                 <h3>The Time Machine to Your Deadlines</h3>
                 <p>Imagine you can travel to a future moment—next Friday at 5 PM, next year, graduation day. You look back and ask: "What will I have completed by then?"</p>
 
-                <div class="gc-bg-white gc-box-cyan" style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
-                    <h4 class="gc-text-cyan" style="text-align: center; margin-top: 0;">Real-Life Uses</h4>
-                    <ul style="list-style: none; padding-left: 0; margin: 0;">
-                        <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">⏰ <strong>Deadlines</strong>: "By 6 PM, I will have finished my homework."</li>
-                        <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">📅 <strong>Milestones</strong>: "By next year, I will have lived here for 10 years."</li>
-                        <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">🔮 <strong>Predictions</strong>: "They will have left by the time we arrive."</li>
-                        <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">🎯 <strong>Goals</strong>: "By summer, I will have saved $2,000."</li>
+                <div class="gc-bg-white gc-box-cyan gc-bg-white" style="border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
+                    <h4 class="gc-text-cyan" style="text-align: center; margin-top: 0">Real-Life Uses</h4>
+                    <ul style="list-style: none; padding-left: 0; margin: 0">
+                        <li class="gc-bg-cyan gc-callout-left gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; ; border-radius: 0.25rem">⏰ <strong>Deadlines</strong>: "By 6 PM, I will have finished my homework."</li>
+                        <li class="gc-bg-cyan gc-callout-left gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; ; border-radius: 0.25rem">📅 <strong>Milestones</strong>: "By next year, I will have lived here for 10 years."</li>
+                        <li class="gc-bg-cyan gc-callout-left gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; ; border-radius: 0.25rem">🔮 <strong>Predictions</strong>: "They will have left by the time we arrive."</li>
+                        <li class="gc-bg-cyan gc-callout-left gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; ; border-radius: 0.25rem">🎯 <strong>Goals</strong>: "By summer, I will have saved $2,000."</li>
                     </ul>
                 </div>
 
-                <div class="gc-grad-amber gc-box-amber-500" style="background: linear-gradient(135deg, rgba(244, 211, 94, 0.15) 0%, rgba(249, 115, 22, 0.15) 100%); padding: 1.25rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <h4 class="gc-text-amber" style="margin-top: 0; font-size: 1.125rem;">📝 The Formula</h4>
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-                        <span class="gc-badge-blue gc-text-cyan" style="background: white; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Subject</span>
-                        <span style="font-size: 1.5rem; color: #f59e0b; font-weight: 600;">+</span>
-                        <span class="gc-badge-blue gc-text-cyan" style="background: white; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">will have</span>
-                        <span style="font-size: 1.5rem; color: #f59e0b; font-weight: 600;">+</span>
-                        <span class="gc-badge-blue gc-text-cyan" style="background: white; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
+                <div class="gc-grad-amber gc-box-amber-500" style="background: linear-gradient(135deg, rgba(244, 211, 94, 0.15) 0%, rgba(249, 115, 22, 0.15) 100%); padding: 1.25rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
+                    <h4 class="gc-text-amber" style="margin-top: 0; font-size: 1.125rem">📝 The Formula</h4>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; flex-wrap: wrap">
+                        <span class="gc-badge-blue gc-text-cyan gc-bg-white" style="color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">Subject</span>
+                        <span class="gc-text-amber" style="font-size: 1.5rem; ; font-weight: 600">+</span>
+                        <span class="gc-badge-blue gc-text-cyan gc-bg-white" style="color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">will have</span>
+                        <span class="gc-text-amber" style="font-size: 1.5rem; ; font-weight: 600">+</span>
+                        <span class="gc-badge-blue gc-text-cyan gc-bg-white" style="color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">past participle</span>
                     </div>
                 </div>
             `,
@@ -80,41 +80,41 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 <h3>Understanding Future Perfect Visually</h3>
                 <p>Future Perfect is all about perspective: you mentally stand at a future point and look back at what's already done.</p>
 
-                <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
-                    <h4 style="text-align: center; margin-top: 0;">Timeline: Action Complete Before Future Point</h4>
+                <div class="gc-bg-white" style="border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
+                    <h4 style="text-align: center; margin-top: 0">Timeline: Action Complete Before Future Point</h4>
 
-                    <div style="display: flex; align-items: center; justify-content: space-around; position: relative; margin: 2rem 0;">
+                    <div style="display: flex; align-items: center; justify-content: space-around; position: relative; margin: 2rem 0">
                         <!-- Timeline Line -->
-                        <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 6px; background: linear-gradient(to right, #cbd5e1, #f97316, #22c55e); transform: translateY(-50%); z-index: 0; border-radius: 3px;"></div>
+                        <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 6px; background: linear-gradient(to right, #cbd5e1, #f97316, #22c55e); transform: translateY(-50%); z-index: 0; border-radius: 3px"></div>
 
                         <!-- NOW -->
-                        <div style="position: relative; z-index: 1; text-align: center;">
-                            <div style="width: 80px; height: 80px; border-radius: 50%; background: #cbd5e1; color: #1e293b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 0 auto;">
+                        <div style="position: relative; z-index: 1; text-align: center">
+                            <div style="width: 80px; height: 80px; border-radius: 50%; background: #cbd5e1; color: #1e293b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 0 auto">
                                 NOW
                             </div>
-                            <div style="margin-top: 0.75rem; font-size: 0.875rem; color: #64748b; font-weight: 600;">Present</div>
+                            <div class="gc-text-muted" style="margin-top: 0.75rem; font-size: 0.875rem; ; font-weight: 600">Present</div>
                         </div>
 
                         <!-- ACTION DONE -->
-                        <div style="position: relative; z-index: 1; text-align: center;">
-                            <div style="width: 90px; height: 90px; border-radius: 50%; background: #f97316; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; border: 4px solid white; box-shadow: 0 4px 16px rgba(249, 115, 22, 0.4); margin: 0 auto; text-align: center; padding: 0.5rem; line-height: 1.2;">
+                        <div style="position: relative; z-index: 1; text-align: center">
+                            <div style="width: 90px; height: 90px; border-radius: 50%; background: #f97316; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; border: 4px solid white; box-shadow: 0 4px 16px rgba(249, 115, 22, 0.4); margin: 0 auto; text-align: center; padding: 0.5rem; line-height: 1.2">
                                 ACTION<br/>DONE
                             </div>
-                            <div style="margin-top: 0.75rem; font-size: 0.875rem; color: #f97316; font-weight: 600;">Completed</div>
+                            <div style="margin-top: 0.75rem; font-size: 0.875rem; color: #f97316; font-weight: 600">Completed</div>
                         </div>
 
                         <!-- BY THEN -->
-                        <div style="position: relative; z-index: 1; text-align: center;">
-                            <div style="width: 100px; height: 100px; border-radius: 50%; background: #22c55e; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; border: 4px solid white; box-shadow: 0 4px 16px rgba(34, 197, 94, 0.4); margin: 0 auto; text-align: center; padding: 0.5rem; line-height: 1.2;">
+                        <div style="position: relative; z-index: 1; text-align: center">
+                            <div style="width: 100px; height: 100px; border-radius: 50%; background: #22c55e; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; border: 4px solid white; box-shadow: 0 4px 16px rgba(34, 197, 94, 0.4); margin: 0 auto; text-align: center; padding: 0.5rem; line-height: 1.2">
                                 BY<br/>THEN
                             </div>
-                            <div style="margin-top: 0.75rem; font-size: 0.875rem; color: #22c55e; font-weight: 600;">Future Point</div>
+                            <div class="gc-text-green" style="margin-top: 0.75rem; font-size: 0.875rem; ; font-weight: 600">Future Point</div>
                         </div>
                     </div>
 
-                    <div style="background: #f0fdfa; padding: 1.25rem; border-radius: 0.5rem; margin-top: 2rem;">
-                        <p style="margin: 0; text-align: center; font-size: 1.05rem;"><strong>Example:</strong> <span style="color: #cbd5e1; font-weight: 600;">Now</span> → <span style="color: #f97316; font-weight: 600;">I finish my work</span> → <span style="color: #22c55e; font-weight: 600;">By 5 PM</span></p>
-                        <p style="margin: 0.75rem 0 0 0; text-align: center; font-size: 1.125rem; color: #06b6d4; font-weight: 700;">"By 5 PM, I will have finished my work."</p>
+                    <div style="background: #f0fdfa; padding: 1.25rem; border-radius: 0.5rem; margin-top: 2rem">
+                        <p style="margin: 0; text-align: center; font-size: 1.05rem"><strong>Example:</strong> <span style="color: #cbd5e1; font-weight: 600">Now</span> → <span style="color: #f97316; font-weight: 600">I finish my work</span> → <span class="gc-text-green" style="font-weight: 600">By 5 PM</span></p>
+                        <p class="gc-text-cyan" style="margin: 0.75rem 0 0 0; text-align: center; font-size: 1.125rem; ; font-weight: 700">"By 5 PM, I will have finished my work."</p>
                     </div>
                 </div>
             `,
@@ -158,16 +158,16 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 <h3>The Most Common Use: Deadlines</h3>
                 <p>Use Future Perfect when something will be finished <strong>before</strong> a specific future time.</p>
 
-                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%); padding: 1.5rem; border-radius: 0.75rem; margin: 1.5rem 0;">
-                    <h4 style="margin-top: 0; color: #06b6d4;">📋 Formula</h4>
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; flex-wrap: wrap; padding: 1rem; background: white; border-radius: 0.5rem;">
-                        <span style="background: #e0f2fe; color: #0369a1; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700;">Subject</span>
-                        <span style="font-size: 1.25rem; color: #64748b;">+</span>
-                        <span style="background: #dbeafe; color: #0369a1; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700;">will have</span>
-                        <span style="font-size: 1.25rem; color: #64748b;">+</span>
-                        <span style="background: #bae6fd; color: #0369a1; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700;">past participle</span>
-                        <span style="font-size: 1.25rem; color: #64748b;">+</span>
-                        <span style="background: #ecfdf5; color: #059669; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700;">by/before + time</span>
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%); padding: 1.5rem; border-radius: 0.75rem; margin: 1.5rem 0">
+                    <h4 class="gc-text-cyan" style="margin-top: 0; ">📋 Formula</h4>
+                    <div class="gc-bg-white" style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; flex-wrap: wrap; padding: 1rem; ; border-radius: 0.5rem">
+                        <span style="background: #e0f2fe; color: #0369a1; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700">Subject</span>
+                        <span class="gc-text-muted" style="font-size: 1.25rem; ">+</span>
+                        <span class="gc-bg-blue" style="color: #0369a1; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700">will have</span>
+                        <span class="gc-text-muted" style="font-size: 1.25rem; ">+</span>
+                        <span style="background: #bae6fd; color: #0369a1; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700">past participle</span>
+                        <span class="gc-text-muted" style="font-size: 1.25rem; ">+</span>
+                        <span class="gc-bg-green" style="color: #059669; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700">by/before + time</span>
                     </div>
                 </div>
             `,
@@ -246,16 +246,16 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 <h3>How Long Will You Have Done Something?</h3>
                 <p>Use Future Perfect to talk about how long something will have lasted <strong>by</strong> a future time—perfect for milestones!</p>
 
-                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 1.5rem; border-radius: 0.75rem; margin: 1.5rem 0;">
-                    <h4 style="margin-top: 0; color: #a855f7;">📋 Formula</h4>
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; flex-wrap: wrap; padding: 1rem; background: white; border-radius: 0.5rem;">
-                        <span style="background: #f3e8ff; color: #7c3aed; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700;">By + future time</span>
-                        <span style="font-size: 1.25rem; color: #64748b;">,</span>
-                        <span style="background: #e0e7ff; color: #6366f1; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700;">subject</span>
-                        <span style="font-size: 1.25rem; color: #64748b;">+</span>
-                        <span style="background: #dbeafe; color: #0369a1; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700;">will have + verb</span>
-                        <span style="font-size: 1.25rem; color: #64748b;">+</span>
-                        <span style="background: #fef3c7; color: #d97706; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700;">for/since + duration</span>
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 1.5rem; border-radius: 0.75rem; margin: 1.5rem 0">
+                    <h4 style="margin-top: 0; color: #a855f7">📋 Formula</h4>
+                    <div class="gc-bg-white" style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; flex-wrap: wrap; padding: 1rem; ; border-radius: 0.5rem">
+                        <span style="background: #f3e8ff; color: #7c3aed; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700">By + future time</span>
+                        <span class="gc-text-muted" style="font-size: 1.25rem; ">,</span>
+                        <span style="background: #e0e7ff; color: #6366f1; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700">subject</span>
+                        <span class="gc-text-muted" style="font-size: 1.25rem; ">+</span>
+                        <span class="gc-bg-blue" style="color: #0369a1; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700">will have + verb</span>
+                        <span class="gc-text-muted" style="font-size: 1.25rem; ">+</span>
+                        <span class="gc-bg-amber" style="color: #d97706; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 700">for/since + duration</span>
                     </div>
                 </div>
             `,
@@ -519,56 +519,56 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 <h3>Avoid These Errors!</h3>
                 <p>Students often make these mistakes with Future Perfect. Learn to spot and fix them.</p>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 1: Forgetting "have"</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I will finished by tomorrow.</span></p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 1: Forgetting "have"</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0">
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">I will finished by tomorrow.</span></p>
                         </div>
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I will <strong>have</strong> finished by tomorrow.</span></p>
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400">I will <strong>have</strong> finished by tomorrow.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">You need both "will" AND "have" before the past participle!</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151">You need both "will" AND "have" before the past participle!</p>
                 </div>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 2: Using base form instead of past participle</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">She will have finish by 5 PM.</span></p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 2: Using base form instead of past participle</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0">
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">She will have finish by 5 PM.</span></p>
                         </div>
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">She will have <strong>finished</strong> by 5 PM.</span></p>
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400">She will have <strong>finished</strong> by 5 PM.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">After "will have," always use the past participle (finished, eaten, gone, etc.).</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151">After "will have," always use the past participle (finished, eaten, gone, etc.).</p>
                 </div>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 3: Wrong word order in questions</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">You will have finished by tomorrow?</span></p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 3: Wrong word order in questions</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0">
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">You will have finished by tomorrow?</span></p>
                         </div>
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;"><strong>Will</strong> you have finished by tomorrow?</span></p>
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400"><strong>Will</strong> you have finished by tomorrow?</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">In questions, "will" comes first, before the subject.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151">In questions, "will" comes first, before the subject.</p>
                 </div>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 4: Using Future Perfect when Future Simple is correct</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">The class will have started <strong>at</strong> 9 AM.</span></p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 4: Using Future Perfect when Future Simple is correct</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0">
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">The class will have started <strong>at</strong> 9 AM.</span></p>
                         </div>
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">The class will start <strong>at</strong> 9 AM.</span></p>
+                        <div style="flex: 1; min-width: 200px">
+                            <p style="margin: 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400">The class will start <strong>at</strong> 9 AM.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">"At" = exact time of action → Future Simple. "By" = before that time → Future Perfect.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151">"At" = exact time of action → Future Simple. "By" = before that time → Future Perfect.</p>
                 </div>
             `,
             exercises: [
@@ -605,51 +605,51 @@ export const futurePerfectContent: InteractiveGuideContent = {
             icon: "✓",
             explanation: `
                 <h3>What You've Learned</h3>
-                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%); padding: 1.5rem; border-radius: 0.75rem; margin: 1.5rem 0;">
-                    <ul style="list-style: none; padding-left: 0; margin: 0;">
-                        <li style="padding: 0.75rem; margin: 0.5rem 0; background: white; border-left: 4px solid #06b6d4; border-radius: 0.375rem;">
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%); padding: 1.5rem; border-radius: 0.75rem; margin: 1.5rem 0">
+                    <ul style="list-style: none; padding-left: 0; margin: 0">
+                        <li class="gc-bg-white gc-callout-cyan" style="padding: 0.75rem; margin: 0.5rem 0; ; ; border-radius: 0.375rem">
                             ✓ <strong>Big Idea:</strong> Future Perfect = standing at a future point and looking back at what's done
                         </li>
-                        <li style="padding: 0.75rem; margin: 0.5rem 0; background: white; border-left: 4px solid #06b6d4; border-radius: 0.375rem;">
+                        <li class="gc-bg-white gc-callout-cyan" style="padding: 0.75rem; margin: 0.5rem 0; ; ; border-radius: 0.375rem">
                             ✓ <strong>Key Signal:</strong> "by" (by tomorrow, by 6 PM, by next year)
                         </li>
-                        <li style="padding: 0.75rem; margin: 0.5rem 0; background: white; border-left: 4px solid #06b6d4; border-radius: 0.375rem;">
+                        <li class="gc-bg-white gc-callout-cyan" style="padding: 0.75rem; margin: 0.5rem 0; ; ; border-radius: 0.375rem">
                             ✓ <strong>Formula:</strong> Subject + will have + past participle
                         </li>
-                        <li style="padding: 0.75rem; margin: 0.5rem 0; background: white; border-left: 4px solid #06b6d4; border-radius: 0.375rem;">
+                        <li class="gc-bg-white gc-callout-cyan" style="padding: 0.75rem; margin: 0.5rem 0; ; ; border-radius: 0.375rem">
                             ✓ <strong>Uses:</strong> Deadlines, milestones, predictions about completion
                         </li>
-                        <li style="padding: 0.75rem; margin: 0.5rem 0; background: white; border-left: 4px solid #06b6d4; border-radius: 0.375rem;">
+                        <li class="gc-bg-white gc-callout-cyan" style="padding: 0.75rem; margin: 0.5rem 0; ; ; border-radius: 0.375rem">
                             ✓ <strong>vs Future Simple:</strong> BY (Future Perfect) vs AT (Future Simple)
                         </li>
                     </ul>
                 </div>
 
-                <div style="background: #fff9e6; padding: 1.25rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <h4 style="margin-top: 0; color: #f59e0b;">🎯 Quick Reference Table</h4>
-                    <table style="width: 100%; border-collapse: collapse;">
+                <div class="gc-bg-white" style="9e6; padding: 1.25rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
+                    <h4 class="gc-text-amber" style="margin-top: 0; ">🎯 Quick Reference Table</h4>
+                    <table style="width: 100%; border-collapse: collapse">
                         <thead>
-                            <tr style="background: rgba(6, 182, 212, 0.1);">
-                                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4;">Form</th>
-                                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4;">Structure</th>
-                                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4;">Example</th>
+                            <tr class="gc-bg-cyan-alpha">
+                                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4">Form</th>
+                                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4">Structure</th>
+                                <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4">Example</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">Positive</td>
-                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">will have + V3</td>
-                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">I will have finished</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb">Positive</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb">will have + V3</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb">I will have finished</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">Negative</td>
-                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">won't have + V3</td>
-                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">I won't have finished</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb">Negative</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb">won't have + V3</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb">I won't have finished</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.75rem;">Question</td>
-                                <td style="padding: 0.75rem;">Will + S + have + V3?</td>
-                                <td style="padding: 0.75rem;">Will I have finished?</td>
+                                <td style="padding: 0.75rem">Question</td>
+                                <td style="padding: 0.75rem">Will + S + have + V3?</td>
+                                <td style="padding: 0.75rem">Will I have finished?</td>
                             </tr>
                         </tbody>
                     </table>
@@ -668,72 +668,72 @@ export const futurePerfectContent: InteractiveGuideContent = {
             title: "💼 Career Planning & Interviews (Supplementary)",
             icon: "💼",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin-top: 0; color: #06b6d4;">💼 Real-World Application: Career & Professional Context</h3>
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 class="gc-text-cyan" style="margin-top: 0; ">💼 Real-World Application: Career & Professional Context</h3>
                     <p>Future Perfect is ESSENTIAL for job interviews and career planning. It helps you talk about milestones, goals, and what you'll have accomplished by certain deadlines.</p>
                 </div>
 
                 <h3>Why Future Perfect Matters in Professional Settings</h3>
                 <p>When interviewing or planning your career, you need to talk about:</p>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✅ <strong>Certifications/Training:</strong> "By next summer, I will have completed my CNA certification."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✅ <strong>Experience Milestones:</strong> "By December, I will have worked in customer service for 5 years."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✅ <strong>Project Completion:</strong> "By the end of Q2, I will have finished the training program."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✅ <strong>Skill Development:</strong> "By this time next year, I will have learned advanced Excel skills."</li>
+                <ul style="list-style: none; padding-left: 0">
+                    <li class="gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; ; border-radius: 0.25rem">✅ <strong>Certifications/Training:</strong> "By next summer, I will have completed my CNA certification."</li>
+                    <li class="gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; ; border-radius: 0.25rem">✅ <strong>Experience Milestones:</strong> "By December, I will have worked in customer service for 5 years."</li>
+                    <li class="gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; ; border-radius: 0.25rem">✅ <strong>Project Completion:</strong> "By the end of Q2, I will have finished the training program."</li>
+                    <li class="gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; ; border-radius: 0.25rem">✅ <strong>Skill Development:</strong> "By this time next year, I will have learned advanced Excel skills."</li>
                 </ul>
 
-                <div style="background: white; border: 2px solid #a855f7; border-radius: 0.75rem; padding: 1.5rem; margin: 2rem 0;">
-                    <h4 style="margin-top: 0; color: #a855f7;">🎤 Common Interview Questions Using Future Perfect</h4>
+                <div class="gc-bg-white" style="border: 2px solid #a855f7; border-radius: 0.75rem; padding: 1.5rem; margin: 2rem 0">
+                    <h4 style="margin-top: 0; color: #a855f7">🎤 Common Interview Questions Using Future Perfect</h4>
 
-                    <div style="margin: 1.5rem 0;">
-                        <p style="font-weight: 700; color: #a855f7; margin-bottom: 0.5rem;">Question: "Where do you see yourself in 5 years?"</p>
-                        <div style="background: #faf5ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
-                            <p style="margin: 0; font-weight: 600;">Strong Answer Using Future Perfect:</p>
-                            <p style="margin: 0.5rem 0 0 0;">"In 5 years, I <strong style='color: #a855f7;'>will have gained</strong> extensive experience in this industry. By then, I <strong style='color: #a855f7;'>will have completed</strong> my associate degree and <strong style='color: #a855f7;'>will have developed</strong> leadership skills by taking on team projects."</p>
+                    <div style="margin: 1.5rem 0">
+                        <p style="font-weight: 700; color: #a855f7; margin-bottom: 0.5rem">Question: "Where do you see yourself in 5 years?"</p>
+                        <div class="gc-callout-purple" style="background: #faf5ff; padding: 1rem; border-radius: 0.5rem; ">
+                            <p style="margin: 0; font-weight: 600">Strong Answer Using Future Perfect:</p>
+                            <p style="margin: 0.5rem 0 0 0">"In 5 years, I <strong style='color: #a855f7;'>will have gained</strong> extensive experience in this industry. By then, I <strong style='color: #a855f7;'>will have completed</strong> my associate degree and <strong style='color: #a855f7;'>will have developed</strong> leadership skills by taking on team projects."</p>
                         </div>
                     </div>
 
-                    <div style="margin: 1.5rem 0;">
-                        <p style="font-weight: 700; color: #a855f7; margin-bottom: 0.5rem;">Question: "What are your career goals?"</p>
-                        <div style="background: #faf5ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
-                            <p style="margin: 0; font-weight: 600;">Strong Answer Using Future Perfect:</p>
-                            <p style="margin: 0.5rem 0 0 0;">"By next year, I <strong style='color: #a855f7;'>will have completed</strong> my certification in medical coding. By 2028, I <strong style='color: #a855f7;'>will have worked</strong> in a hospital setting and <strong style='color: #a855f7;'>will have built</strong> strong relationships with healthcare teams."</p>
+                    <div style="margin: 1.5rem 0">
+                        <p style="font-weight: 700; color: #a855f7; margin-bottom: 0.5rem">Question: "What are your career goals?"</p>
+                        <div class="gc-callout-purple" style="background: #faf5ff; padding: 1rem; border-radius: 0.5rem; ">
+                            <p style="margin: 0; font-weight: 600">Strong Answer Using Future Perfect:</p>
+                            <p style="margin: 0.5rem 0 0 0">"By next year, I <strong style='color: #a855f7;'>will have completed</strong> my certification in medical coding. By 2028, I <strong style='color: #a855f7;'>will have worked</strong> in a hospital setting and <strong style='color: #a855f7;'>will have built</strong> strong relationships with healthcare teams."</p>
                         </div>
                     </div>
 
-                    <div style="margin: 1.5rem 0;">
-                        <p style="font-weight: 700; color: #a855f7; margin-bottom: 0.5rem;">Question: "Why should we hire you?"</p>
-                        <div style="background: #faf5ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
-                            <p style="margin: 0; font-weight: 600;">Strong Answer Using Future Perfect:</p>
-                            <p style="margin: 0.5rem 0 0 0;">"By the time I start, I <strong style='color: #a855f7;'>will have completed</strong> the required training. I also <strong style='color: #a855f7;'>will have gained</strong> 3 years of experience in fast-paced environments, which prepares me for this role."</p>
+                    <div style="margin: 1.5rem 0">
+                        <p style="font-weight: 700; color: #a855f7; margin-bottom: 0.5rem">Question: "Why should we hire you?"</p>
+                        <div class="gc-callout-purple" style="background: #faf5ff; padding: 1rem; border-radius: 0.5rem; ">
+                            <p style="margin: 0; font-weight: 600">Strong Answer Using Future Perfect:</p>
+                            <p style="margin: 0.5rem 0 0 0">"By the time I start, I <strong style='color: #a855f7;'>will have completed</strong> the required training. I also <strong style='color: #a855f7;'>will have gained</strong> 3 years of experience in fast-paced environments, which prepares me for this role."</p>
                         </div>
                     </div>
                 </div>
 
-                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(34, 197, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.75rem; margin: 2rem 0;">
-                    <h4 style="margin-top: 0; color: #06b6d4;">📅 Setting Professional Milestones</h4>
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(34, 197, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.75rem; margin: 2rem 0">
+                    <h4 class="gc-text-cyan" style="margin-top: 0; ">📅 Setting Professional Milestones</h4>
                     <p>Use Future Perfect to plan your career trajectory with specific deadlines:</p>
 
-                    <div style="display: grid; gap: 1rem; margin-top: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #06b6d4;">
-                            <p style="margin: 0; font-weight: 700; color: #06b6d4;">Short-Term Goals (3-6 months)</p>
-                            <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
+                    <div style="display: grid; gap: 1rem; margin-top: 1rem">
+                        <div class="gc-bg-white gc-callout-cyan" style="padding: 1rem; border-radius: 0.5rem; ">
+                            <p class="gc-text-cyan" style="margin: 0; font-weight: 700; ">Short-Term Goals (3-6 months)</p>
+                            <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem">
                                 <li>"By June, I will have completed new-hire training."</li>
                                 <li>"By the end of the first quarter, I will have learned the new workplace system."</li>
                             </ul>
                         </div>
 
-                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #22c55e;">
-                            <p style="margin: 0; font-weight: 700; color: #22c55e;">Medium-Term Goals (1-2 years)</p>
-                            <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
+                        <div class="gc-bg-white gc-callout-green" style="padding: 1rem; border-radius: 0.5rem; ">
+                            <p class="gc-text-green" style="margin: 0; font-weight: 700; ">Medium-Term Goals (1-2 years)</p>
+                            <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem">
                                 <li>"By next year, I will have earned a safety certification for work."</li>
                                 <li>"By 2027, I will have helped lead at least 3 successful team jobs."</li>
                             </ul>
                         </div>
 
-                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
-                            <p style="margin: 0; font-weight: 700; color: #a855f7;">Long-Term Goals (3-5 years)</p>
-                            <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
+                        <div class="gc-bg-white gc-callout-purple" style="padding: 1rem; border-radius: 0.5rem; ">
+                            <p style="margin: 0; font-weight: 700; color: #a855f7">Long-Term Goals (3-5 years)</p>
+                            <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem">
                                 <li>"By 2030, I will have advanced to a supervisory position."</li>
                                 <li>"By the time I turn 30, I will have built a strong professional network."</li>
                             </ul>
@@ -741,49 +741,49 @@ export const futurePerfectContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
-                <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 2rem 0;">
-                    <h4 style="margin-top: 0; color: #06b6d4;">🎯 Resume & Cover Letter Power Phrases</h4>
+                <div class="gc-bg-white" style="border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 2rem 0">
+                    <h4 class="gc-text-cyan" style="margin-top: 0; ">🎯 Resume & Cover Letter Power Phrases</h4>
                     <p>Make your application stand out with Future Perfect to show forward-thinking:</p>
 
-                    <div class="gc-bg-cyan" style="background: #f0fdfa; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                        <p class="gc-text-cyan" style="margin: 0; font-weight: 600;">In Your Cover Letter:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem; list-style-type: disc;">
+                    <div class="gc-bg-cyan" style="background: #f0fdfa; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                        <p class="gc-text-cyan" style="margin: 0; font-weight: 600">In Your Cover Letter:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem; list-style-type: disc">
                             <li>"By the time I begin this role, I <strong>will have completed</strong> specialized training in [skill]."</li>
                             <li>"With this opportunity, by year's end I <strong>will have contributed</strong> to [specific company goal]."</li>
                         </ul>
                     </div>
 
-                    <div class="gc-bg-cyan" style="background: #f0fdfa; padding: 1rem; border-radius: 0.5rem;">
-                        <p class="gc-text-cyan" style="margin: 0; font-weight: 600;">In Your Interview:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem; list-style-type: disc;">
+                    <div class="gc-bg-cyan" style="background: #f0fdfa; padding: 1rem; border-radius: 0.5rem">
+                        <p class="gc-text-cyan" style="margin: 0; font-weight: 600">In Your Interview:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem; list-style-type: disc">
                             <li>"If hired, by the end of my first 90 days I <strong>will have learned</strong> all key systems and processes."</li>
                                 <li>"By my one-year anniversary, I <strong>will have built</strong> strong relationships with my supervisors and coworkers."</li>
                         </ul>
                     </div>
                 </div>
 
-                <div style="background: #fff9e6; padding: 1.25rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin: 2rem 0;">
-                    <h4 style="margin-top: 0; color: #f59e0b;">💬 Practice Speaking: Career Goals</h4>
-                    <p style="margin-bottom: 1rem;">Use these prompts to practice talking about your professional future:</p>
-                    <ol style="margin: 0; padding-left: 1.25rem;">
-                        <li style="margin-bottom: 0.75rem;"><strong>Short-term:</strong> "By 6 months from now, I will have..."</li>
-                        <li style="margin-bottom: 0.75rem;"><strong>One year:</strong> "By this time next year, I will have..."</li>
-                        <li style="margin-bottom: 0.75rem;"><strong>Five years:</strong> "By 2030, I will have..."</li>
-                        <li style="margin-bottom: 0.75rem;"><strong>Milestone:</strong> "By the time I reach [age/date], I will have..."</li>
+                <div class="gc-bg-white" style="9e6; padding: 1.25rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin: 2rem 0">
+                    <h4 class="gc-text-amber" style="margin-top: 0; ">💬 Practice Speaking: Career Goals</h4>
+                    <p style="margin-bottom: 1rem">Use these prompts to practice talking about your professional future:</p>
+                    <ol style="margin: 0; padding-left: 1.25rem">
+                        <li style="margin-bottom: 0.75rem"><strong>Short-term:</strong> "By 6 months from now, I will have..."</li>
+                        <li style="margin-bottom: 0.75rem"><strong>One year:</strong> "By this time next year, I will have..."</li>
+                        <li style="margin-bottom: 0.75rem"><strong>Five years:</strong> "By 2030, I will have..."</li>
+                        <li style="margin-bottom: 0.75rem"><strong>Milestone:</strong> "By the time I reach [age/date], I will have..."</li>
                     </ol>
                 </div>
 
-                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%); padding: 1.25rem; border-radius: 0.5rem; border-left: 4px solid #a855f7; margin: 2rem 0;">
-                    <h4 style="margin-top: 0; color: #a855f7;">📝 Time Expressions for Career Context</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.5rem; margin-top: 0.75rem;">
-                        <span style="background: white; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by next quarter</span>
-                        <span style="background: white; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by the end of the year</span>
-                        <span style="background: white; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by my review date</span>
-                        <span style="background: white; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by graduation</span>
-                        <span style="background: white; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by certification date</span>
-                        <span style="background: white; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by 2028</span>
-                        <span style="background: white; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by the deadline</span>
-                        <span style="background: white; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by then</span>
+                <div class="gc-callout-purple" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%); padding: 1.25rem; border-radius: 0.5rem; ; margin: 2rem 0">
+                    <h4 style="margin-top: 0; color: #a855f7">📝 Time Expressions for Career Context</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.5rem; margin-top: 0.75rem">
+                        <span class="gc-bg-white gc-text-cyan" style="padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ; text-align: center">by next quarter</span>
+                        <span class="gc-bg-white gc-text-cyan" style="padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ; text-align: center">by the end of the year</span>
+                        <span class="gc-bg-white gc-text-cyan" style="padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ; text-align: center">by my review date</span>
+                        <span class="gc-bg-white gc-text-cyan" style="padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ; text-align: center">by graduation</span>
+                        <span class="gc-bg-white gc-text-cyan" style="padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ; text-align: center">by certification date</span>
+                        <span class="gc-bg-white gc-text-cyan" style="padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ; text-align: center">by 2028</span>
+                        <span class="gc-bg-white gc-text-cyan" style="padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ; text-align: center">by the deadline</span>
+                        <span class="gc-bg-white gc-text-cyan" style="padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ; text-align: center">by then</span>
                     </div>
                 </div>
             `,

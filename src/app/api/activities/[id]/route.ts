@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { canManageActivity, ensureTeacher } from "@/lib/policies";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -12,11 +13,11 @@ export async function PUT(request: NextRequest, { params }: Props) {
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
         const teacherCheck = ensureTeacher(session.user);
         if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+            return apiError(teacherCheck.error, teacherCheck.status);
         }
         const admin = teacherCheck.admin;
 
@@ -25,10 +26,7 @@ export async function PUT(request: NextRequest, { params }: Props) {
         const { title, description, type, category, level, content } = body;
 
         if (!title || !type || !content) {
-            return NextResponse.json(
-                { error: "Title, type, and content are required" },
-                { status: 400 }
-            );
+            return apiError("Title, type, and content are required", 400);
         }
 
         // Verify activity exists
@@ -40,11 +38,11 @@ export async function PUT(request: NextRequest, { params }: Props) {
         });
 
         if (!existingActivity) {
-            return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+            return ApiErrors.notFound("Activity", id);
         }
 
         if (!canManageActivity(session.user, admin, existingActivity.createdBy)) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+            return ApiErrors.forbidden();
         }
 
         // Update activity
@@ -61,13 +59,11 @@ export async function PUT(request: NextRequest, { params }: Props) {
         });
 
         return NextResponse.json(activity);
-    } catch (error: unknown) {
-        console.error("Error updating activity:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to update activity" },
-            { status: 500 }
-        );
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to update activity",
+            path: request.url,
+        });
     }
 }
 
@@ -75,11 +71,11 @@ export async function DELETE(request: NextRequest, { params }: Props) {
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
         const teacherCheck = ensureTeacher(session.user);
         if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+            return apiError(teacherCheck.error, teacherCheck.status);
         }
         const admin = teacherCheck.admin;
 
@@ -94,11 +90,11 @@ export async function DELETE(request: NextRequest, { params }: Props) {
         });
 
         if (!activity) {
-            return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+            return ApiErrors.notFound("Activity", id);
         }
 
         if (!canManageActivity(session.user, admin, activity.createdBy)) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+            return ApiErrors.forbidden();
         }
 
         // Soft-delete activity to preserve historical submissions and recoverability.
@@ -111,13 +107,11 @@ export async function DELETE(request: NextRequest, { params }: Props) {
         });
 
         return NextResponse.json({ message: "Activity archived successfully" });
-    } catch (error: unknown) {
-        console.error("Error deleting activity:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to delete activity" },
-            { status: 500 }
-        );
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to delete activity",
+            path: request.url,
+        });
     }
 }
 

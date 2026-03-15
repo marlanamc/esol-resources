@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -7,7 +6,7 @@ import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWO
 import { createAuditLogger } from "@/lib/audit-log";
 import { isTeacherAdmin } from "@/lib/roles";
 import { checkRateLimit, authRateLimitKey } from "@/lib/rate-limit";
-import { ApiErrors, apiSuccess } from "@/lib/api-response";
+import { ApiErrors, apiSuccess, apiError } from "@/lib/api-response";
 import { requireTeacher } from "@/lib/api-auth";
 
 export async function POST(request: Request) {
@@ -36,23 +35,23 @@ export async function POST(request: Request) {
     const admin = isTeacherAdmin(teacherCheck.user);
 
     if (!userId || typeof userId !== "string") {
-        return NextResponse.json({ error: "userId is required" }, { status: 400 });
+        return apiError("userId is required", 400);
     }
 
     // SECURITY: Validate password length (min and max)
     if (!newPassword || typeof newPassword !== "string") {
-        return NextResponse.json({ error: "Invalid password format." }, { status: 400 });
+        return apiError("Invalid password format.", 400);
     }
 
     if (newPassword.length < MIN_PASSWORD_LENGTH) {
-        return NextResponse.json({ error: `Password must be at least ${MIN_PASSWORD_LENGTH} characters.` }, { status: 400 });
+        return apiError(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`, 400);
     }
 
     if (newPassword.length > MAX_PASSWORD_LENGTH) {
-        return NextResponse.json({ error: `Password must not exceed ${MAX_PASSWORD_LENGTH} characters.` }, { status: 400 });
+        return apiError(`Password must not exceed ${MAX_PASSWORD_LENGTH} characters.`, 400);
     }
     if (isDisallowedPassword(newPassword)) {
-        return NextResponse.json({ error: DEFAULT_PASSWORD_BLOCKED_MESSAGE }, { status: 400 });
+        return apiError(DEFAULT_PASSWORD_BLOCKED_MESSAGE, 400);
     }
 
     const user = await prisma.user.findUnique({
@@ -61,14 +60,14 @@ export async function POST(request: Request) {
     });
 
     if (!user) {
-        return NextResponse.json({ error: "User not found" }, { status: 404 });
+        return ApiErrors.notFound("User", userId);
     }
 
     if (user.role !== "student") {
-        return NextResponse.json({ error: "Only student passwords can be changed here" }, { status: 400 });
+        return apiError("Only student passwords can be changed here", 400);
     }
     if (user.isSystemAccount) {
-        return NextResponse.json({ error: "System accounts cannot be updated here" }, { status: 400 });
+        return apiError("System accounts cannot be updated here", 400);
     }
 
     // SECURITY: Verify teacher owns this student (enrolled in one of their classes)
@@ -91,7 +90,7 @@ export async function POST(request: Request) {
             teacherCheck.user.role || "teacher",
             `Teacher attempted to reset password for student not in their classes: ${userId}`
         );
-        return NextResponse.json({ error: "Access denied - student not in your classes" }, { status: 403 });
+        return ApiErrors.forbidden("Access denied - student not in your classes");
     }
 
     // SECURITY: Use industry-standard bcrypt rounds (12 in 2025)

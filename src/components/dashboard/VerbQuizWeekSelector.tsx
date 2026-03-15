@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function VerbQuizWeekSelector() {
+export function VerbQuizWeekSelector() {
     const [selectedWeek, setSelectedWeek] = useState("1");
     const router = useRouter();
 

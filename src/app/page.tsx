@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LoginCtaLink from "@/components/ui/LoginCtaLink";
+import { LoginCtaLink } from "@/components/ui/LoginCtaLink";
 
 export default function Home() {
     return (

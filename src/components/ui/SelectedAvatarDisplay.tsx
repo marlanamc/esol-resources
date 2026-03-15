@@ -14,7 +14,7 @@ interface SelectedAvatarDisplayProps {
  * A simple presentational component for displaying an avatar.
  * Props take precedence - pass avatarId and colorId directly.
  */
-export default function SelectedAvatarDisplay({
+export function SelectedAvatarDisplay({
     avatarId,
     colorId,
     size = "md",

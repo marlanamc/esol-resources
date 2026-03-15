@@ -9,8 +9,8 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             title: "Simple Tenses Review: Your Real-Life Grammar",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think about your life: you wake up, you do your thing, you plan ahead. That's the simple tenses! They cover your habits, your history, and your future plans—all in straightforward, no-nonsense English.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">Think about your life: you wake up, you do your thing, you plan ahead. That's the simple tenses! They cover your habits, your history, and your future plans—all in straightforward, no-nonsense English.</p>
                 </div>
 
                 <h3>The Three Simple Tenses You Actually Use</h3>
@@ -18,16 +18,16 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 <p><strong>Past Simple:</strong> Finished actions with a clear time stamp (yesterday, last week, in 2020)</p>
                 <p><strong>Future Simple:</strong> Quick decisions and promises about tomorrow (I'll help, we'll meet)</p>
 
-                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                <div class="gc-bg-green gc-callout-left gc-bg-green gc-callout-green" style="; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>Asking questions about community resources ("Where is the library?" "When do they open?")</li>
                         <li>Giving directions using the MBTA ("You take the Red Line, then you walk two blocks")</li>
                         <li>Reflecting on wellness changes ("Before, I ate junk food. Now, I cook at home. Next year, I'll run a 5K.")</li>
                         <li>Mixed-tense error correction practice</li>
                     </ul>
-                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">🔄 This is SPIRAL REVIEW #5 - we're combining questions with all the simple tenses!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic">🔄 This is SPIRAL REVIEW #5 - we're combining questions with all the simple tenses!</p>
                 </div>
             `,
             exercises: [
@@ -75,76 +75,76 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             title: "Timeline: The Three Simple Tenses",
             icon: "⏰",
             explanation: `
-                <div style="max-width: 700px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%); border-radius: 12px; border: 2px solid rgba(139, 92, 246, 0.2);">
-                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: #2b3a4a; font-weight: 600;">
+                <div style="max-width: 700px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%); border-radius: 12px; border: 2px solid rgba(139, 92, 246, 0.2)">
+                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: #2b3a4a; font-weight: 600">
                         Simple tenses separate time into three distinct moments
                     </p>
 
                     <!-- Timeline with three circles -->
-                    <div style="position: relative; display: flex; justify-content: space-between; align-items: center; margin: 3rem 0; padding: 0 2rem;">
+                    <div style="position: relative; display: flex; justify-content: space-between; align-items: center; margin: 3rem 0; padding: 0 2rem">
                         <!-- Gradient connecting line -->
-                        <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #8b5cf6 50%, #06b6d4 100%); transform: translateY(-50%); z-index: 0;"></div>
+                        <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #8b5cf6 50%, #06b6d4 100%); transform: translateY(-50%); z-index: 0"></div>
 
                         <!-- Past circle -->
-                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;">
-                            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #fb923c 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.875rem; line-height: 1.3; padding: 0.5rem;">
+                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center">
+                            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #fb923c 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.875rem; line-height: 1.3; padding: 0.5rem">
                                 PAST<br/>Simple
                             </div>
-                            <div style="margin-top: 1rem; font-size: 0.875rem; color: #d97757; font-weight: 600;">
+                            <div class="gc-text-terracotta" style="margin-top: 1rem; font-size: 0.875rem; ; font-weight: 600">
                                 yesterday
                             </div>
                         </div>
 
                         <!-- Present/NOW circle -->
-                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;">
-                            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.875rem; line-height: 1.3; padding: 0.5rem;">
+                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center">
+                            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.875rem; line-height: 1.3; padding: 0.5rem">
                                 PRESENT<br/>Simple
                             </div>
-                            <div style="margin-top: 1rem; font-size: 0.875rem; color: #8b5cf6; font-weight: 600;">
+                            <div class="gc-text-purple" style="margin-top: 1rem; font-size: 0.875rem; ; font-weight: 600">
                                 every day
                             </div>
                         </div>
 
                         <!-- Future circle -->
-                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;">
-                            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.875rem; line-height: 1.3; padding: 0.5rem;">
+                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center">
+                            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.875rem; line-height: 1.3; padding: 0.5rem">
                                 FUTURE<br/>Simple
                             </div>
-                            <div style="margin-top: 1rem; font-size: 0.875rem; color: #06b6d4; font-weight: 600;">
+                            <div class="gc-text-cyan" style="margin-top: 1rem; font-size: 0.875rem; ; font-weight: 600">
                                 tomorrow
                             </div>
                         </div>
                     </div>
 
                     <!-- Example sentences grid -->
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem">
                         <!-- Past example -->
-                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
-                            <div style="font-weight: 700; color: #d97757; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                        <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem; border-radius: 8px; ">
+                            <div class="gc-text-terracotta" style="font-weight: 700; ; margin-bottom: 0.5rem; font-size: 0.875rem">
                                 PAST
                             </div>
-                            <div style="color: #2b3a4a; font-size: 0.9rem; line-height: 1.4;">
-                                I <span style="color: #f59e0b; font-weight: 700;">walked</span> to work
+                            <div style="color: #2b3a4a; font-size: 0.9rem; line-height: 1.4">
+                                I <span class="gc-text-amber" style="font-weight: 700">walked</span> to work
                             </div>
                         </div>
 
                         <!-- Present example -->
-                        <div style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
-                            <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                        <div class="gc-bg-purple-alpha gc-callout-purple" style="padding: 1rem; border-radius: 8px; ">
+                            <div class="gc-text-purple" style="font-weight: 700; ; margin-bottom: 0.5rem; font-size: 0.875rem">
                                 PRESENT
                             </div>
-                            <div style="color: #2b3a4a; font-size: 0.9rem; line-height: 1.4;">
-                                I <span style="color: #8b5cf6; font-weight: 700;">walk</span> to work
+                            <div style="color: #2b3a4a; font-size: 0.9rem; line-height: 1.4">
+                                I <span class="gc-text-purple" style="font-weight: 700">walk</span> to work
                             </div>
                         </div>
 
                         <!-- Future example -->
-                        <div style="background: rgba(6, 182, 212, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #06b6d4;">
-                            <div style="font-weight: 700; color: #06b6d4; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                        <div class="gc-bg-cyan-alpha gc-callout-cyan" style="padding: 1rem; border-radius: 8px; ">
+                            <div class="gc-text-cyan" style="font-weight: 700; ; margin-bottom: 0.5rem; font-size: 0.875rem">
                                 FUTURE
                             </div>
-                            <div style="color: #2b3a4a; font-size: 0.9rem; line-height: 1.4;">
-                                I <span style="color: #06b6d4; font-weight: 700;">will walk</span> to work
+                            <div style="color: #2b3a4a; font-size: 0.9rem; line-height: 1.4">
+                                I <span class="gc-text-cyan" style="font-weight: 700">will walk</span> to work
                             </div>
                         </div>
                     </div>
@@ -349,53 +349,53 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 <h3>Use this 3-question check before you speak or write</h3>
                 <p>When you mix tenses, the problem is usually meaning, not form. This framework helps you decide quickly.</p>
 
-                <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.25); border-radius: 0.75rem; padding: 1.25rem; margin: 1.2rem 0;">
-                    <h4 style="margin-top: 0; text-align: center; color: #7c3aed;">Simple Tense Decision Tree</h4>
-                    <div style="display: grid; gap: 0.7rem;">
-                        <div style="background: #f8fafc; border-left: 4px solid #8b5cf6; padding: 0.75rem; border-radius: 0.45rem;">
+                <div class="gc-bg-white" style="border: 2px solid rgba(139, 92, 246, 0.25); border-radius: 0.75rem; padding: 1.25rem; margin: 1.2rem 0">
+                    <h4 style="margin-top: 0; text-align: center; color: #7c3aed">Simple Tense Decision Tree</h4>
+                    <div style="display: grid; gap: 0.7rem">
+                        <div class="gc-bg-slate gc-callout-purple" style="; padding: 0.75rem; border-radius: 0.45rem">
                             <strong>1) Is it a routine, fact, feeling, or schedule?</strong> -> <strong>Present Simple</strong><br/>
-                            <span style="font-size: 0.9rem;">"The clinic opens at 8." / "I usually take the bus."</span>
+                            <span style="font-size: 0.9rem">"The clinic opens at 8." / "I usually take the bus."</span>
                         </div>
-                        <div style="background: #fff7ed; border-left: 4px solid #f59e0b; padding: 0.75rem; border-radius: 0.45rem;">
+                        <div class="gc-bg-white gc-callout-amber" style="7ed; ; padding: 0.75rem; border-radius: 0.45rem">
                             <strong>2) Is it finished at a known past time?</strong> -> <strong>Past Simple</strong><br/>
-                            <span style="font-size: 0.9rem;">"I called yesterday." / "We moved last year."</span>
+                            <span style="font-size: 0.9rem">"I called yesterday." / "We moved last year."</span>
                         </div>
-                        <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
+                        <div class="gc-bg-cyan gc-callout-cyan" style="; padding: 0.75rem; border-radius: 0.45rem">
                             <strong>3) Is it a quick decision, promise, or prediction?</strong> -> <strong>Future Simple</strong><br/>
-                            <span style="font-size: 0.9rem;">"I'll send it now." / "It will snow tonight."</span>
+                            <span style="font-size: 0.9rem">"I'll send it now." / "It will snow tonight."</span>
                         </div>
                     </div>
                 </div>
 
                 <h3>Case Lab: same topic, three tenses</h3>
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; min-width: 700px; border-collapse: collapse; border: 1px solid #e2e8f0;">
+                <div style="overflow-x: auto">
+                    <table style="width: 100%; min-width: 700px; border-collapse: collapse; border: 1px solid #e2e8f0">
                         <thead>
-                            <tr style="background: #f8fafc;">
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Context</th>
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Present Simple</th>
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Past Simple</th>
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Future Simple</th>
+                            <tr class="gc-bg-slate">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Context</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Present Simple</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Past Simple</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Future Simple</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Housing</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I pay rent on the 1st.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I paid rent yesterday.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I will pay rent tomorrow.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600">Housing</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">I pay rent on the 1st.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">I paid rent yesterday.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">I will pay rent tomorrow.</td>
                             </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Work</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">She starts at 7.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">She started at 7 yesterday.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">She will start at 7 tomorrow.</td>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600">Work</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">She starts at 7.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">She started at 7 yesterday.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">She will start at 7 tomorrow.</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Healthcare</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I take medicine every night.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I took it last night.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I will take it tonight.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600">Healthcare</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">I take medicine every night.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">I took it last night.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">I will take it tonight.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -759,8 +759,8 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 <h3>Complete Verb Conjugation Charts</h3>
                 <p>Practice conjugating verbs across all three simple tenses and all three forms (affirmative, negative, question). This is how you build true fluency!</p>
 
-                <div style="background: rgba(139, 92, 246, 0.05); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid rgba(139, 92, 246, 0.3);">
-                    <p style="margin: 0;"><strong>💡 Tip:</strong> For third-person singular (he/she/it) in Present Simple, remember to add -s or -es to the base verb!</p>
+                <div style="background: rgba(139, 92, 246, 0.05); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid rgba(139, 92, 246, 0.3)">
+                    <p style="margin: 0"><strong>💡 Tip:</strong> For third-person singular (he/she/it) in Present Simple, remember to add -s or -es to the base verb!</p>
                 </div>
             `,
             exercises: [
@@ -978,12 +978,12 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             tipBox: {
                 title: "🚨 Common Mistakes to Avoid",
                 content: `Common simple tense mistakes and fixes:
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div>❌ She work downtown <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ She works downtown <span class="gc-text-muted" style="font-size: 0.875rem;">(add -s for he/she/it)</span></div>
-                    <div>❌ He don't like coffee <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ He doesn't like coffee <span class="gc-text-muted" style="font-size: 0.875rem;">(doesn't with he/she/it)</span></div>
-                    <div>❌ Does she works? <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ Does she work? <span class="gc-text-muted" style="font-size: 0.875rem;">(base verb in questions)</span></div>
-                    <div>❌ She didn't worked <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ She didn't work <span class="gc-text-muted" style="font-size: 0.875rem;">(base verb after didn't)</span></div>
-                    <div>❌ I will going <span class="gc-text-terracotta" style="font-weight: 600;">→</span> ✅ I will go <span class="gc-text-muted" style="font-size: 0.875rem;">(no -ing with will)</span></div>
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem">
+                    <div>❌ She work downtown <span class="gc-text-terracotta" style="font-weight: 600">→</span> ✅ She works downtown <span class="gc-text-muted" style="font-size: 0.875rem">(add -s for he/she/it)</span></div>
+                    <div>❌ He don't like coffee <span class="gc-text-terracotta" style="font-weight: 600">→</span> ✅ He doesn't like coffee <span class="gc-text-muted" style="font-size: 0.875rem">(doesn't with he/she/it)</span></div>
+                    <div>❌ Does she works? <span class="gc-text-terracotta" style="font-weight: 600">→</span> ✅ Does she work? <span class="gc-text-muted" style="font-size: 0.875rem">(base verb in questions)</span></div>
+                    <div>❌ She didn't worked <span class="gc-text-terracotta" style="font-weight: 600">→</span> ✅ She didn't work <span class="gc-text-muted" style="font-size: 0.875rem">(base verb after didn't)</span></div>
+                    <div>❌ I will going <span class="gc-text-terracotta" style="font-weight: 600">→</span> ✅ I will go <span class="gc-text-muted" style="font-size: 0.875rem">(no -ing with will)</span></div>
                 </div>`,
             },
             exercises: [

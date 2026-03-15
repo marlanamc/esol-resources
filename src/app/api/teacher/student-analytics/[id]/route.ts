@@ -9,6 +9,7 @@ import {
   buildTeacherStudentCategorySummaries,
   filterVisibleTeacherAnalyticsAssignments,
 } from "@/lib/teacher-student-analytics";
+import { ApiErrors } from "@/lib/api-response";
 
 export async function GET(
   _request: Request,
@@ -16,7 +17,7 @@ export async function GET(
 ) {
   const session = await getServerSession(authOptions);
   if (!session?.user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return ApiErrors.unauthorized();
   }
 
   const teacherId = session.user.id;
@@ -38,10 +39,7 @@ export async function GET(
     });
 
     if (!enrollment) {
-      return NextResponse.json(
-        { error: "Student not found in your classes" },
-        { status: 403 }
-      );
+      return ApiErrors.forbidden("Student not found in your classes");
     }
   }
 
@@ -100,7 +98,7 @@ export async function GET(
   ]);
 
   if (!student || student.isSystemAccount) {
-    return NextResponse.json({ error: "Student not found" }, { status: 404 });
+    return ApiErrors.notFound("Student", studentId);
   }
 
   const visibleAssignments = enrollments.flatMap((enrollment) =>

@@ -10,8 +10,8 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
             title: "Modals for Health: Advice, Caution & Consent - Navigating Healthcare",
             icon: "🏥",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(248, 113, 113, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"You should take this medicine with food." "You must not drink alcohol while taking this." "You can ask questions at any time." In healthcare, understanding modals helps you follow instructions safely, ask for what you need, and protect your health.</p>
+                <div style="background: linear-gradient(135deg, rgba(248, 113, 113, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">"You should take this medicine with food." "You must not drink alcohol while taking this." "You can ask questions at any time." In healthcare, understanding modals helps you follow instructions safely, ask for what you need, and protect your health.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -24,23 +24,23 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                     <li><strong>Communicate with healthcare providers</strong> - Ask questions politely and understand responses</li>
                 </ul>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                <div class="gc-callout-sage" style="background: rgba(122, 143, 124, 0.15); ; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>Understanding clinic visit procedures and instructions</li>
                         <li>Reading pharmacy labels and medication instructions</li>
                         <li>Practicing health-related conversations and scenarios</li>
                         <li>Learning about healthcare systems and patient rights</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                    <p style="margin: 1rem 0 0.5rem 0"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li><strong>At the doctor's office</strong> - Understanding instructions and asking questions</li>
                         <li><strong>At the pharmacy</strong> - Reading medication labels and following dosage instructions</li>
                         <li><strong>In emergency situations</strong> - Understanding warnings and safety instructions</li>
                         <li><strong>Managing your health records</strong> - Understanding what you can access and request</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🏥 Remember: Understanding modals in healthcare can literally save your life - it helps you follow instructions correctly and ask for help when you need it!</p>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a">🏥 Remember: Understanding modals in healthcare can literally save your life - it helps you follow instructions correctly and ask for help when you need it!</p>
                 </div>
             `,
             exercises: [
@@ -94,8 +94,8 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                 <h3>Advice, Caution, and Consent</h3>
                 <p>In healthcare, modals fall into three important categories:</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(34, 197, 94, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #22c55e;">
-                    <h4 style="color: #22c55e; margin-top: 0;">💡 ADVICE (should/shouldn't)</h4>
+                <div class="gc-bg-green-alpha gc-callout-green" style="margin-top: 1.5rem; ; padding: 1.5rem; border-radius: 0.5rem; ">
+                    <h4 class="gc-text-green" style="margin-top: 0">💡 ADVICE (should/shouldn't)</h4>
                     <p>Recommendations that are good for your health, but not required:</p>
                     <ul>
                         <li>You <strong>should</strong> drink plenty of water.</li>
@@ -104,8 +104,8 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                     </ul>
                 </div>
 
-                <div style="margin-top: 1.5rem; background: rgba(220, 38, 38, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #dc2626;">
-                    <h4 style="color: #dc2626; margin-top: 0;">⚠️ CAUTION (must/must not)</h4>
+                <div style="margin-top: 1.5rem; background: rgba(220, 38, 38, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #dc2626">
+                    <h4 class="gc-text-red" style="margin-top: 0">⚠️ CAUTION (must/must not)</h4>
                     <p>Required actions or dangerous prohibitions:</p>
                     <ul>
                         <li>You <strong>must</strong> take this medicine exactly as prescribed.</li>
@@ -114,8 +114,8 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                     </ul>
                 </div>
 
-                <div style="margin-top: 1.5rem; background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
-                    <h4 style="color: #3b82f6; margin-top: 0;">✅ CONSENT (can/may/are allowed to)</h4>
+                <div class="gc-bg-blue-alpha gc-callout-blue" style="margin-top: 1.5rem; ; padding: 1.5rem; border-radius: 0.5rem; ">
+                    <h4 class="gc-text-blue" style="margin-top: 0">✅ CONSENT (can/may/are allowed to)</h4>
                     <p>What you're permitted to do or request:</p>
                     <ul>
                         <li>You <strong>can</strong> ask questions at any time.</li>
@@ -125,14 +125,14 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                 </div>
 
                 <h4>Important Pattern:</h4>
-                <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 2px solid #7ba884;">
-                    <p style="margin: 0; font-size: 1.125rem; text-align: center;">
-                        <span style="color: #3b82f6;">Subject</span> +
-                        <span style="color: #d97757; font-weight: 600;"> Modal </span> +
-                        <span style="color: #22c55e;">Base Verb</span>
+                <div class="gc-bg-white" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 2px solid #7ba884">
+                    <p style="margin: 0; font-size: 1.125rem; text-align: center">
+                        <span class="gc-text-blue">Subject</span> +
+                        <span class="gc-text-terracotta" style="font-weight: 600"> Modal </span> +
+                        <span class="gc-text-green">Base Verb</span>
                     </p>
-                    <p style="margin: 0.5rem 0 0 0; text-align: center; font-style: italic;">
-                        You <strong style="color: #d97757;">should</strong> rest. You <strong style="color: #d97757;">must</strong> take it. You <strong style="color: #d97757;">can</strong> ask.
+                    <p style="margin: 0.5rem 0 0 0; text-align: center; font-style: italic">
+                        You <strong class="gc-text-terracotta">should</strong> rest. You <strong class="gc-text-terracotta">must</strong> take it. You <strong class="gc-text-terracotta">can</strong> ask.
                     </p>
                 </div>
             `,
@@ -182,7 +182,7 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                 <h3>Should = Recommended for Your Health (But Not Required)</h3>
                 <p><strong>Should</strong> and <strong>shouldn't</strong> give health advice - things that are good for you, but you have a choice:</p>
 
-                <div style="margin: 1.5rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                <div class="gc-bg-white" style="margin: 1.5rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
                     <h4>Health Advice Examples:</h4>
                     <ul>
                         <li>You <strong>should</strong> drink 8 glasses of water daily.</li>
@@ -193,7 +193,7 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                     </ul>
                 </div>
 
-                <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                <div class="gc-bg-white" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
                     <h4>Medical Advice Examples:</h4>
                     <ul>
                         <li>You <strong>should</strong> take this medicine with food to avoid stomach upset.</li>
@@ -204,14 +204,14 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                 </div>
 
                 <h4>Should vs Must:</h4>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <tr>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1);"><strong>Must</strong> = Required</td>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You <strong>must</strong> take this medicine twice daily. (required, no choice)</td>
+                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)"><strong>Must</strong> = Required</td>
+                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>must</strong> take this medicine twice daily. (required, no choice)</td>
                     </tr>
                     <tr>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(34, 197, 94, 0.1);"><strong>Should</strong> = Recommended</td>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You <strong>should</strong> take it with food. (good idea, but optional)</td>
+                        <td class="gc-bg-green-alpha" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); "><strong>Should</strong> = Recommended</td>
+                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>should</strong> take it with food. (good idea, but optional)</td>
                     </tr>
                 </table>
             `,
@@ -262,8 +262,8 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                 <h3>Must = Required for Safety | Must Not = Dangerous/Forbidden</h3>
                 <p><strong>Must</strong> and <strong>must not</strong> express strong requirements or dangerous prohibitions in healthcare:</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem; border-left: 4px solid #dc2626;">
-                    <h4 style="color: #dc2626; margin-top: 0;">MUST = Required for Safety</h4>
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem; border-left: 4px solid #dc2626">
+                    <h4 class="gc-text-red" style="margin-top: 0">MUST = Required for Safety</h4>
                     <p>Use when something is necessary for your health or safety:</p>
                     <ul>
                         <li>You <strong>must</strong> take this medicine exactly as prescribed.</li>
@@ -273,8 +273,8 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                     </ul>
                 </div>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(239, 68, 68, 0.15); border-radius: 0.5rem; border-left: 4px solid #ef4444;">
-                    <h4 style="color: #ef4444; margin-top: 0;">MUST NOT = Dangerous/Forbidden</h4>
+                <div class="gc-callout-red" style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(239, 68, 68, 0.15); border-radius: 0.5rem; ">
+                    <h4 class="gc-text-red" style="margin-top: 0">MUST NOT = Dangerous/Forbidden</h4>
                     <p>Use when something is dangerous or prohibited:</p>
                     <ul>
                         <li>You <strong>must not</strong> drink alcohol while taking this medication.</li>
@@ -285,14 +285,14 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                 </div>
 
                 <h4>Must Not vs Don't Have To:</h4>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <tr>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1);"><strong>Must Not</strong> = Forbidden</td>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You <strong>must not</strong> drink alcohol. (dangerous, forbidden)</td>
+                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)"><strong>Must Not</strong> = Forbidden</td>
+                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>must not</strong> drink alcohol. (dangerous, forbidden)</td>
                     </tr>
                     <tr>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(34, 197, 94, 0.1);"><strong>Don't Have To</strong> = Not Required</td>
-                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You <strong>don't have to</strong> fast before this test. (optional, not required)</td>
+                        <td class="gc-bg-green-alpha" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); "><strong>Don't Have To</strong> = Not Required</td>
+                        <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>don't have to</strong> fast before this test. (optional, not required)</td>
                     </tr>
                 </table>
             `,
@@ -353,31 +353,31 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                 <h3>Asking for Permission and Understanding Your Rights</h3>
                 <p>In healthcare, you have rights. These modals show what you're allowed to do or request:</p>
 
-                <div style="margin: 1.5rem 0;">
-                    <div style="padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #22c55e;">
-                        <h4 style="color: #22c55e; margin-top: 0;">CAN = Informal Permission</h4>
-                        <p style="margin: 0;">Use when asking for permission in everyday healthcare situations</p>
-                        <ul style="margin: 0.5rem 0 0 0;">
+                <div style="margin: 1.5rem 0">
+                    <div class="gc-bg-green-alpha gc-callout-green" style="padding: 1rem; ; border-radius: 0.5rem; margin-bottom: 1rem; ">
+                        <h4 class="gc-text-green" style="margin-top: 0">CAN = Informal Permission</h4>
+                        <p style="margin: 0">Use when asking for permission in everyday healthcare situations</p>
+                        <ul style="margin: 0.5rem 0 0 0">
                             <li><strong>Can I</strong> ask you a question about my prescription?</li>
                             <li><strong>Can I</strong> bring someone with me to the appointment?</li>
                             <li><strong>Can I</strong> see my test results online?</li>
                         </ul>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(168, 85, 247, 0.1); border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #a855f7;">
-                        <h4 style="color: #a855f7; margin-top: 0;">MAY = Formal Permission</h4>
-                        <p style="margin: 0;">Use in more formal healthcare settings or when asking about policies</p>
-                        <ul style="margin: 0.5rem 0 0 0;">
+                    <div class="gc-callout-purple" style="padding: 1rem; background: rgba(168, 85, 247, 0.1); border-radius: 0.5rem; margin-bottom: 1rem; ">
+                        <h4 style="color: #a855f7; margin-top: 0">MAY = Formal Permission</h4>
+                        <p style="margin: 0">Use in more formal healthcare settings or when asking about policies</p>
+                        <ul style="margin: 0.5rem 0 0 0">
                             <li><strong>May I</strong> request a copy of my medical records?</li>
                             <li><strong>May I</strong> speak with the doctor for a moment?</li>
                             <li><strong>May I</strong> have a translator for my appointment?</li>
                         </ul>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
-                        <h4 style="color: #3b82f6; margin-top: 0;">ARE ALLOWED TO = Your Rights</h4>
-                        <p style="margin: 0;">Use when talking about your legal rights or official permissions</p>
-                        <ul style="margin: 0.5rem 0 0 0;">
+                    <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem; ; border-radius: 0.5rem; ">
+                        <h4 class="gc-text-blue" style="margin-top: 0">ARE ALLOWED TO = Your Rights</h4>
+                        <p style="margin: 0">Use when talking about your legal rights or official permissions</p>
+                        <ul style="margin: 0.5rem 0 0 0">
                             <li>You <strong>are allowed to</strong> ask questions at any time.</li>
                             <li>You <strong>are allowed to</strong> request a second opinion.</li>
                             <li>You <strong>are allowed to</strong> access your health records.</li>
@@ -386,7 +386,7 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                 </div>
 
                 <h4>Patient Rights Examples:</h4>
-                <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                <div class="gc-bg-white" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
                     <ul>
                         <li>You <strong>can</strong> ask questions if you don't understand something.</li>
                         <li>You <strong>may</strong> bring a family member or friend to appointments.</li>
@@ -448,7 +448,7 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                 <h3>Need To = Necessary for Your Health</h3>
                 <p><strong>Need to</strong> expresses necessity - something is required for your health or treatment:</p>
 
-                <div style="margin: 1.5rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                <div class="gc-bg-white" style="margin: 1.5rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
                     <h4>Health Necessity Examples:</h4>
                     <ul>
                         <li>You <strong>need to</strong> take this medicine twice daily.</li>
@@ -458,7 +458,7 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                     </ul>
                 </div>
 
-                <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                <div class="gc-bg-white" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
                     <h4>Asking About Necessity:</h4>
                     <ul>
                         <li>Do I <strong>need to</strong> make an appointment?</li>
@@ -473,7 +473,7 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                     <li><strong>Must</strong> = stronger, more formal (often on labels/instructions)</li>
                     <li><strong>Need to</strong> = more natural in spoken English</li>
                 </ul>
-                <p style="font-style: italic;">Example: "You must take this with food" (label) vs "You need to take this with food" (doctor speaking)</p>
+                <p style="font-style: italic">Example: "You must take this with food" (label) vs "You need to take this with food" (doctor speaking)</p>
             `,
             exercises: [
                 {
@@ -512,32 +512,32 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                 <h3>Practice Thinking Like a Healthcare Advocate</h3>
                 <p>Let's apply what you learned to real healthcare situations:</p>
 
-                <div style="margin: 1.5rem 0;">
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid rgba(0,0,0,0.1);">
-                        <h4 style="margin-top: 0; color: #d97757;">Scenario 1: Reading a Medication Label</h4>
+                <div style="margin: 1.5rem 0">
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid rgba(0,0,0,0.1)">
+                        <h4 class="gc-text-terracotta" style="margin-top: 0; ">Scenario 1: Reading a Medication Label</h4>
                         <p><strong>Advice:</strong> "You should take this with food to avoid stomach upset."</p>
                         <p><strong>Caution:</strong> "You must not drink alcohol while taking this medication."</p>
                         <p><strong>Consent:</strong> "You can take this with or without food, but food is recommended."</p>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid rgba(0,0,0,0.1);">
-                        <h4 style="margin-top: 0; color: #d97757;">Scenario 2: At a Clinic Visit</h4>
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid rgba(0,0,0,0.1)">
+                        <h4 class="gc-text-terracotta" style="margin-top: 0; ">Scenario 2: At a Clinic Visit</h4>
                         <p><strong>Advice:</strong> "You should arrive 15 minutes early for your appointment."</p>
                         <p><strong>Caution:</strong> "You must bring your insurance card and ID."</p>
                         <p><strong>Consent:</strong> "You can ask questions at any time during your visit."</p>
                         <p><strong>Consent:</strong> "You may bring someone with you if you'd like."</p>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid rgba(0,0,0,0.1);">
-                        <h4 style="margin-top: 0; color: #d97757;">Scenario 3: Understanding Treatment Instructions</h4>
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid rgba(0,0,0,0.1)">
+                        <h4 class="gc-text-terracotta" style="margin-top: 0; ">Scenario 3: Understanding Treatment Instructions</h4>
                         <p><strong>Advice:</strong> "You should rest if you feel tired."</p>
                         <p><strong>Caution:</strong> "You must finish all the antibiotics, even if symptoms improve."</p>
                         <p><strong>Necessity:</strong> "You need to drink plenty of fluids."</p>
                         <p><strong>Consent:</strong> "You can call if you have any questions or concerns."</p>
                     </div>
 
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
-                        <h4 style="margin-top: 0; color: #d97757;">Scenario 4: Accessing Your Health Records</h4>
+                    <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
+                        <h4 class="gc-text-terracotta" style="margin-top: 0; ">Scenario 4: Accessing Your Health Records</h4>
                         <p><strong>Consent:</strong> "You can access your records online through MyChart."</p>
                         <p><strong>Consent:</strong> "You may request a paper copy of your records."</p>
                         <p><strong>Rights:</strong> "You are allowed to view your test results as soon as they're available."</p>
@@ -594,63 +594,63 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
             explanation: `
                 <h3>Modals in Healthcare at a Glance</h3>
 
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(200, 107, 81, 0.1);">
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Type</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Modal</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Meaning</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Example</th>
+                        <tr class="gc-bg-terracotta-alpha">
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Type</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Modal</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Meaning</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Example</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(34, 197, 94, 0.1);"><strong>Advice</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>should</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Recommended (good idea)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You should take it with food.</td>
+                            <td class="gc-bg-green-alpha" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); "><strong>Advice</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>should</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Recommended (good idea)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You should take it with food.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(34, 197, 94, 0.1);"><strong>Advice</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>shouldn't</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Not recommended</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You shouldn't skip doses.</td>
+                            <td class="gc-bg-green-alpha" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); "><strong>Advice</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>shouldn't</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Not recommended</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You shouldn't skip doses.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1);"><strong>Caution</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>must</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Required for safety</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You must finish all the medicine.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)"><strong>Caution</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>must</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Required for safety</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You must finish all the medicine.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1);"><strong>Caution</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>must not</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Dangerous/forbidden</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You must not drink alcohol.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)"><strong>Caution</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>must not</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Dangerous/forbidden</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You must not drink alcohol.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(59, 130, 246, 0.1);"><strong>Consent</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>can</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Permission (informal)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Can I ask a question?</td>
+                            <td class="gc-bg-blue-alpha" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); "><strong>Consent</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>can</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Permission (informal)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Can I ask a question?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(59, 130, 246, 0.1);"><strong>Consent</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>may</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Permission (formal)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">May I request a translator?</td>
+                            <td class="gc-bg-blue-alpha" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); "><strong>Consent</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>may</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Permission (formal)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">May I request a translator?</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(59, 130, 246, 0.1);"><strong>Consent</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>are allowed to</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Your rights</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You are allowed to access your records.</td>
+                            <td class="gc-bg-blue-alpha" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); "><strong>Consent</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>are allowed to</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Your rights</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You are allowed to access your records.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(251, 191, 36, 0.1);"><strong>Necessity</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>need to</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Required/necessary</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">You need to fast before the test.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(251, 191, 36, 0.1)"><strong>Necessity</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>need to</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Required/necessary</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You need to fast before the test.</td>
                         </tr>
                     </tbody>
                 </table>

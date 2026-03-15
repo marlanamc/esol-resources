@@ -2,37 +2,29 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
 
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const userRole = session.user.role;
     if (userRole !== 'teacher') {
-        return NextResponse.json(
-            { error: "Only teachers can release grammar guides" },
-            { status: 403 }
-        );
+        return ApiErrors.forbidden("Only teachers can release grammar guides");
     }
 
     try {
         const { activityId, released } = await request.json();
 
         if (!activityId || typeof activityId !== "string") {
-            return NextResponse.json(
-                { error: "activityId is required" },
-                { status: 400 }
-            );
+            return apiError("activityId is required", 400);
         }
 
         if (typeof released !== "boolean") {
-            return NextResponse.json(
-                { error: "released must be a boolean" },
-                { status: 400 }
-            );
+            return apiError("released must be a boolean", 400);
         }
 
         // Verify it's a grammar guide
@@ -45,17 +37,11 @@ export async function POST(request: Request) {
         });
 
         if (!activity) {
-            return NextResponse.json(
-                { error: "Activity not found" },
-                { status: 404 }
-            );
+            return ApiErrors.notFound("Activity", activityId);
         }
 
         if (activity.type !== 'guide' || activity.category !== 'grammar') {
-            return NextResponse.json(
-                { error: "Only grammar guides can be released/hidden" },
-                { status: 400 }
-            );
+            return apiError("Only grammar guides can be released/hidden", 400);
         }
 
         // Update release status
@@ -71,12 +57,9 @@ export async function POST(request: Request) {
                 ? `"${activity.title}" is now visible to students`
                 : `"${activity.title}" is now hidden from students`
         });
-    } catch (error: unknown) {
-        console.error("Error updating grammar guide release status:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to update release status" },
-            { status: 500 }
-        );
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to update grammar guide release status",
+        });
     }
 }

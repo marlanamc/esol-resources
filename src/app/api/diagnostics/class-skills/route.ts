@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { ApiErrors, apiError } from "@/lib/api-response";
 
 type MiniQuizQuestionMeta = {
     question: string;
@@ -43,12 +44,12 @@ function parseMiniQuizLookup(content: string): Map<string, MiniQuizQuestionMeta>
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const user = session.user;
     if (user.role !== "teacher") {
-        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        return ApiErrors.forbidden();
     }
 
     const { searchParams } = new URL(request.url);
@@ -57,10 +58,7 @@ export async function GET(request: Request) {
     const difficulty = searchParams.get("difficulty");
 
     if (!classId || !activityId) {
-        return NextResponse.json(
-            { error: "Missing classId or activityId" },
-            { status: 400 }
-        );
+        return apiError("Missing classId or activityId", 400);
     }
 
     // Verify the teacher owns this class
@@ -72,10 +70,7 @@ export async function GET(request: Request) {
     });
 
     if (!classData) {
-        return NextResponse.json(
-            { error: "Class not found or access denied" },
-            { status: 404 }
-        );
+        return ApiErrors.notFound("Class");
     }
 
     // Get student IDs in class

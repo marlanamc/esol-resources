@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { authOptions } from "@/lib/auth";
 import { requireAuth, type SessionUser } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 
 const MIN_REASON_LENGTH = 10;
 const MAX_REASON_LENGTH = 2000;
@@ -16,31 +17,22 @@ export async function POST(request: Request) {
   const userId = user.id;
 
   if (user.role !== "student") {
-    return NextResponse.json(
-      { error: "Teacher accounts must contact support to delete" },
-      { status: 403 }
-    );
+    return ApiErrors.forbidden("Teacher accounts must contact support to delete");
   }
 
   let body: { reason?: string };
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    return apiError("Invalid request body", 400);
   }
 
   const reason = typeof body.reason === "string" ? body.reason.trim() : "";
   if (reason.length < MIN_REASON_LENGTH) {
-    return NextResponse.json(
-      { error: `Please provide a reason (at least ${MIN_REASON_LENGTH} characters)` },
-      { status: 400 }
-    );
+    return apiError(`Please provide a reason (at least ${MIN_REASON_LENGTH} characters)`, 400);
   }
   if (reason.length > MAX_REASON_LENGTH) {
-    return NextResponse.json(
-      { error: "Reason is too long" },
-      { status: 400 }
-    );
+    return apiError("Reason is too long", 400);
   }
 
   const dbUser = await prisma.user.findUnique({
@@ -49,7 +41,7 @@ export async function POST(request: Request) {
   });
 
   if (!dbUser) {
-    return NextResponse.json({ error: "User not found" }, { status: 404 });
+    return ApiErrors.notFound("User", userId);
   }
 
   try {
@@ -80,11 +72,9 @@ export async function POST(request: Request) {
       });
     });
   } catch (error) {
-    console.error("Account deletion failed:", error);
-    return NextResponse.json(
-      { error: "Failed to delete account" },
-      { status: 500 }
-    );
+    return handleApiError(error, {
+      defaultMessage: "Failed to delete account",
+    });
   }
 
   return NextResponse.json({ ok: true });

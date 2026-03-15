@@ -9,37 +9,37 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             title: "Second & Third Conditionals: The Dream & Time Machine",
             icon: "💭",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin-top: 0; color: #a855f7; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">These conditionals are for <strong style="color: #a855f7;">IMAGINARY situations</strong>. <strong>Second conditional</strong> is your dream machine for present/future wishes that probably won't happen. <strong>Third conditional</strong> is your time machine for past regrets and "what if" moments.</p>
+                <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 style="margin-top: 0; color: #a855f7; font-size: 1.25rem">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0">These conditionals are for <strong style="color: #a855f7">IMAGINARY situations</strong>. <strong>Second conditional</strong> is your dream machine for present/future wishes that probably won't happen. <strong>Third conditional</strong> is your time machine for past regrets and "what if" moments.</p>
                 </div>
 
                 <h3>The Two Types</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: rgba(168, 85, 247, 0.15); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
-                        <h4 style="color: #a855f7; margin-top: 0;">Second Conditional</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0">
+                    <div class="gc-callout-purple" style="background: rgba(168, 85, 247, 0.15); padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 style="color: #a855f7; margin-top: 0">Second Conditional</h4>
                         <p><strong>Present/Future dreams & wishes</strong></p>
-                        <p style="font-weight: bold; color: #a855f7;">If + past, would + verb</p>
-                        <p style="margin: 0;">"If I won the lottery, I would travel the world."</p>
+                        <p style="font-weight: bold; color: #a855f7">If + past, would + verb</p>
+                        <p style="margin: 0">"If I won the lottery, I would travel the world."</p>
                     </div>
-                    <div style="background: rgba(14, 165, 233, 0.15); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #0ea5e9;">
-                        <h4 style="color: #0ea5e9; margin-top: 0;">Third Conditional</h4>
+                    <div style="background: rgba(14, 165, 233, 0.15); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #0ea5e9">
+                        <h4 style="color: #0ea5e9; margin-top: 0">Third Conditional</h4>
                         <p><strong>Past regrets & reflections</strong></p>
-                        <p style="font-weight: bold; color: #0ea5e9;">If + past perfect, would have + verb</p>
-                        <p style="margin: 0;">"If I had studied harder, I would have passed the test."</p>
+                        <p style="font-weight: bold; color: #0ea5e9">If + past perfect, would have + verb</p>
+                        <p style="margin: 0">"If I had studied harder, I would have passed the test."</p>
                     </div>
                 </div>
 
-                <div style="background: rgba(168, 85, 247, 0.1); border-left: 4px solid #a855f7; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #a855f7; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In daily life:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                <div class="gc-callout-purple" style="background: rgba(168, 85, 247, 0.1); ; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 style="color: #a855f7; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In daily life:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li>Talking about dreams and wishes (second conditional)</li>
                         <li>Giving advice to friends (second conditional: "If I were you...")</li>
                         <li>Expressing regrets about the past (third conditional)</li>
                         <li>Learning from mistakes and "what if" moments (third conditional)</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💡 Second = imagining & dreaming. Third = reflecting & learning!</p>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a">💡 Second = imagining & dreaming. Third = reflecting & learning!</p>
                 </div>
             `,
             exercises: [
@@ -95,15 +95,15 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     <li><strong>Giving advice:</strong> "If I were you, I would apologize."</li>
                 </ul>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(168, 85, 247, 0.1); border-radius: 0.5rem; border: 2px solid #a855f7;">
-                    <h4 style="color: #a855f7;">Formula:</h4>
-                    <p style="font-size: 1.5rem; font-weight: bold; color: #a855f7; text-align: center; margin: 1rem 0;">If + past simple, would + base verb</p>
-                    <p style="text-align: center; font-style: italic;">(past form BUT present/future meaning!)</p>
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(168, 85, 247, 0.1); border-radius: 0.5rem; border: 2px solid #a855f7">
+                    <h4 style="color: #a855f7">Formula:</h4>
+                    <p style="font-size: 1.5rem; font-weight: bold; color: #a855f7; text-align: center; margin: 1rem 0">If + past simple, would + base verb</p>
+                    <p style="text-align: center; font-style: italic">(past form BUT present/future meaning!)</p>
                 </div>
 
                 <h3>Everyday Examples</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Dreams & Wishes:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Dreams & Wishes:</p>
                     <ul>
                         <li>If I <strong>won</strong> the lottery, I <strong>would buy</strong> a house.</li>
                         <li>If I <strong>had</strong> more time, I <strong>would learn</strong> to play guitar.</li>
@@ -111,8 +111,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Unlikely scenarios:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Unlikely scenarios:</p>
                     <ul>
                         <li>If I <strong>spoke</strong> perfect English, I <strong>would feel</strong> more confident.</li>
                         <li>If the rent <strong>were</strong> cheaper, I <strong>would get</strong> a bigger apartment.</li>
@@ -120,8 +120,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Imaginary situations:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Imaginary situations:</p>
                     <ul>
                         <li>If I <strong>were</strong> taller, I <strong>could reach</strong> the top shelf.</li>
                         <li>If I <strong>lived</strong> in Paris, I <strong>would visit</strong> the Eiffel Tower every weekend.</li>
@@ -174,7 +174,7 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                 <h3>Using "Were" for All Subjects</h3>
                 <p>In second conditional with the verb "to be", we use <strong>WERE for all subjects</strong> (not "was"):</p>
 
-                <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
                     <h4>Correct Form (Use This)</h4>
                     <ul>
                         <li>If I <strong>were</strong> you, I would apologize.</li>
@@ -185,8 +185,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Common Advice Patterns with "If I Were You"</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Giving friendly advice:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Giving friendly advice:</p>
                     <ul>
                         <li>If I were you, I <strong>would call</strong> the doctor.</li>
                         <li>If I were you, I <strong>would apologize</strong> to your friend.</li>
@@ -195,8 +195,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Problem-solving:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Problem-solving:</p>
                     <ul>
                         <li>If I were you, I <strong>would try</strong> calling again.</li>
                         <li>If I were you, I <strong>would check</strong> the instructions carefully.</li>
@@ -205,8 +205,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Making suggestions:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Making suggestions:</p>
                     <ul>
                         <li>If I were you, I <strong>would take</strong> that English class.</li>
                         <li>If I were you, I <strong>would visit</strong> the museum this weekend.</li>
@@ -265,38 +265,38 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     <li><strong>Different outcomes:</strong> "If we had left earlier, we wouldn't have missed the train."</li>
                 </ul>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(14, 165, 233, 0.1); border-radius: 0.5rem; border: 2px solid #0ea5e9;">
-                    <h4 style="color: #0ea5e9;">Formula:</h4>
-                    <p style="font-size: 1.5rem; font-weight: bold; color: #0ea5e9; text-align: center; margin: 1rem 0;">If + past perfect, would have + past participle</p>
-                    <p style="text-align: center; font-style: italic;">(Both parts refer to the past!)</p>
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(14, 165, 233, 0.1); border-radius: 0.5rem; border: 2px solid #0ea5e9">
+                    <h4 style="color: #0ea5e9">Formula:</h4>
+                    <p style="font-size: 1.5rem; font-weight: bold; color: #0ea5e9; text-align: center; margin: 1rem 0">If + past perfect, would have + past participle</p>
+                    <p style="text-align: center; font-style: italic">(Both parts refer to the past!)</p>
                 </div>
 
                 <h3>Breaking It Down</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold; color: #0ea5e9;">IF clause (use past perfect):</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold; color: #0ea5e9">IF clause (use past perfect):</p>
                     <ul>
                         <li>If I <strong>had studied</strong> harder</li>
                         <li>If she <strong>had known</strong> about the party</li>
                         <li>If we <strong>had left</strong> earlier</li>
                         <li>If they <strong>had called</strong> me</li>
                     </ul>
-                    <p style="font-style: italic; margin-top: 0.5rem;">Formula: had + past participle</p>
+                    <p style="font-style: italic; margin-top: 0.5rem">Formula: had + past participle</p>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold; color: #a855f7;">WOULD HAVE clause (result):</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold; color: #a855f7">WOULD HAVE clause (result):</p>
                     <ul>
                         <li>I <strong>would have passed</strong> the test</li>
                         <li>she <strong>would have come</strong></li>
                         <li>we <strong>wouldn't have missed</strong> the train</li>
                         <li>I <strong>would have answered</strong></li>
                     </ul>
-                    <p style="font-style: italic; margin-top: 0.5rem;">Formula: would have + past participle</p>
+                    <p style="font-style: italic; margin-top: 0.5rem">Formula: would have + past participle</p>
                 </div>
 
                 <h3>Complete Examples</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">School & Learning:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">School & Learning:</p>
                     <ul>
                         <li>If I <strong>had studied</strong> harder, I <strong>would have passed</strong> the exam.</li>
                         <li>If she <strong>had practiced</strong> more, she <strong>would have improved</strong> faster.</li>
@@ -304,8 +304,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Daily Life:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Daily Life:</p>
                     <ul>
                         <li>If I <strong>had set</strong> an alarm, I <strong>wouldn't have overslept</strong>.</li>
                         <li>If we <strong>had checked</strong> the weather, we <strong>would have brought</strong> umbrellas.</li>
@@ -313,8 +313,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Relationships & Social:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Relationships & Social:</p>
                     <ul>
                         <li>If I <strong>had gone</strong> to the party, I <strong>would have met</strong> her.</li>
                         <li>If he <strong>had told</strong> me the truth, I <strong>wouldn't have been</strong> angry.</li>
@@ -368,7 +368,7 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                 <p>Instead of "would", you can use <strong>could</strong> (ability/possibility) or <strong>might</strong> (less certain) in both conditionals:</p>
 
                 <h4>Second Conditional with Could/Might</h4>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <ul>
                         <li>If I won the lottery, I <strong>could buy</strong> a house. (ability/possibility)</li>
                         <li>If I had more time, I <strong>might learn</strong> guitar. (less certain than "would")</li>
@@ -377,7 +377,7 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                 </div>
 
                 <h4>Third Conditional with Could Have/Might Have</h4>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <ul>
                         <li>If I had studied harder, I <strong>could have passed</strong>. (it was possible)</li>
                         <li>If we had left earlier, we <strong>might have caught</strong> the train. (maybe, less certain)</li>
@@ -425,39 +425,39 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             icon: "🔄",
             explanation: `
                 <h3>Comparing All Four Types</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0">
                     <thead>
-                        <tr style="background: rgba(168, 85, 247, 0.15);">
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Type</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Use</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Formula</th>
-                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Example</th>
+                        <tr style="background: rgba(168, 85, 247, 0.15)">
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Type</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Use</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Formula</th>
+                            <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Example</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold;">Zero</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Always true facts</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">if + present, present</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If you heat water, it boils.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold">Zero</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Always true facts</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">if + present, present</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If you heat water, it boils.</td>
                         </tr>
-                        <tr style="background: rgba(0,0,0,0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold;">First</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Real future possibility</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">if + present, will + verb</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If it rains, I will stay home.</td>
+                        <tr style="background: rgba(0,0,0,0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold">First</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Real future possibility</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">if + present, will + verb</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If it rains, I will stay home.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; color: #a855f7;">Second</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Unreal present/future</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">if + past, would + verb</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If I won the lottery, I would travel.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; color: #a855f7">Second</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Unreal present/future</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">if + past, would + verb</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If I won the lottery, I would travel.</td>
                         </tr>
-                        <tr style="background: rgba(0,0,0,0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; color: #0ea5e9;">Third</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Unreal past</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">if + past perfect, would have + verb</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If I had studied, I would have passed.</td>
+                        <tr style="background: rgba(0,0,0,0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; color: #0ea5e9">Third</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Unreal past</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">if + past perfect, would have + verb</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">If I had studied, I would have passed.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -605,14 +605,14 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             title: "💼 Career Advice & Job Interviews (Supplementary)",
             icon: "💼",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin-top: 0; color: #a855f7;">💼 Real-World Application: Career & Professional Context</h3>
+                <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 style="margin-top: 0; color: #a855f7">💼 Real-World Application: Career & Professional Context</h3>
                     <p>Second and third conditionals are ESSENTIAL for professional communication. "If I were you" is THE pattern for giving career advice, and third conditional helps you learn from workplace experiences.</p>
                 </div>
 
                 <h3>Second Conditional in Job Interviews & Career Advice</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Interview Preparation Advice:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Interview Preparation Advice:</p>
                     <ul>
                         <li>If I were you, I <strong>would research</strong> the company before the interview.</li>
                         <li>If I were you, I <strong>would prepare</strong> questions to ask the interviewer.</li>
@@ -621,8 +621,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Career Growth Advice:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Career Growth Advice:</p>
                     <ul>
                         <li>If I were you, I <strong>would ask</strong> for a reference letter before leaving your job.</li>
                         <li>If I were you, I <strong>would negotiate</strong> the salary - you deserve it!</li>
@@ -631,8 +631,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Hypothetical Job Scenarios:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Hypothetical Job Scenarios:</p>
                     <ul>
                         <li>If I <strong>spoke</strong> Spanish fluently, I <strong>would apply</strong> for that translator position.</li>
                         <li>If the company <strong>offered</strong> remote work, I <strong>would save</strong> commute time.</li>
@@ -641,9 +641,9 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <h3 style="margin-top: 2rem;">Third Conditional: Learning from Work Experiences</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Reflecting on Past Interviews:</p>
+                <h3 style="margin-top: 2rem">Third Conditional: Learning from Work Experiences</h3>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Reflecting on Past Interviews:</p>
                     <ul>
                         <li>If I <strong>had researched</strong> the company better, I <strong>would have asked</strong> better questions.</li>
                         <li>If I <strong>had practiced</strong> my answers, I <strong>would have felt</strong> more confident.</li>
@@ -651,8 +651,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Learning from Workplace Mistakes:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Learning from Workplace Mistakes:</p>
                     <ul>
                         <li>If I <strong>had asked</strong> for help earlier, I <strong>wouldn't have made</strong> that error.</li>
                         <li>If I <strong>had read</strong> the email carefully, I <strong>would have understood</strong> the instructions.</li>
@@ -661,8 +661,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold;">Career Decisions & Reflection:</p>
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
+                    <p style="font-weight: bold">Career Decisions & Reflection:</p>
                     <ul>
                         <li>If I <strong>had asked</strong> about the benefits earlier, I <strong>would have known</strong> about the 401k.</li>
                         <li>If I <strong>had negotiated</strong> the salary, I <strong>would have earned</strong> more.</li>
@@ -671,23 +671,23 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: #fff3cd; border-left: 4px solid #f4d35e; padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h4 style="margin-top: 0; color: #ca8a04;">💡 Interview Success Tips</h4>
-                    <p style="margin-bottom: 0.5rem;"><strong>Use second conditional to show professionalism:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                <div class="gc-bg-white" style="3cd; border-left: 4px solid #f4d35e; padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h4 style="margin-top: 0; color: #ca8a04">💡 Interview Success Tips</h4>
+                    <p style="margin-bottom: 0.5rem"><strong>Use second conditional to show professionalism:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li>"If I got this position, I would bring strong communication skills."</li>
                         <li>"If I were part of your team, I would contribute my technical experience."</li>
                         <li>"If given the opportunity, I would be eager to learn from your experienced staff."</li>
                     </ul>
                 </div>
 
-                <div style="background: rgba(14, 165, 233, 0.1); border-left: 4px solid #0ea5e9; padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h4 style="margin-top: 0; color: #0ea5e9;">💬 Speaking Practice: Career Scenarios</h4>
-                    <p style="margin-bottom: 0.75rem; font-weight: 600;">Practice using these prompts:</p>
-                    <ul style="margin: 0; padding-left: 1.25rem;">
-                        <li style="margin-bottom: 0.5rem;">"Give advice to someone preparing for a job interview using 'If I were you...'"</li>
-                        <li style="margin-bottom: 0.5rem;">"Reflect on a past job interview. What would you have done differently? (Use third conditional)"</li>
-                        <li style="margin-bottom: 0.5rem;">"Talk about a dream job. What would you do if you got it? (Use second conditional)"</li>
+                <div style="background: rgba(14, 165, 233, 0.1); border-left: 4px solid #0ea5e9; padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h4 style="margin-top: 0; color: #0ea5e9">💬 Speaking Practice: Career Scenarios</h4>
+                    <p style="margin-bottom: 0.75rem; font-weight: 600">Practice using these prompts:</p>
+                    <ul style="margin: 0; padding-left: 1.25rem">
+                        <li style="margin-bottom: 0.5rem">"Give advice to someone preparing for a job interview using 'If I were you...'"</li>
+                        <li style="margin-bottom: 0.5rem">"Reflect on a past job interview. What would you have done differently? (Use third conditional)"</li>
+                        <li style="margin-bottom: 0.5rem">"Talk about a dream job. What would you do if you got it? (Use second conditional)"</li>
                     </ul>
                 </div>
             `,

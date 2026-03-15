@@ -9,8 +9,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             title: "Future Simple: Making Plans & Promises",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(133, 196, 255, 0.12) 0%, rgba(255, 189, 118, 0.12) 100%); padding: 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem;">
-                    <p style="margin: 0; font-size: 1.05rem;">Future Simple is your crystal ball for quick decisions, promises, and predictions. "I'll call you later." "She'll help you." "It'll rain tomorrow."</p>
+                <div style="background: linear-gradient(135deg, rgba(133, 196, 255, 0.12) 0%, rgba(255, 189, 118, 0.12) 100%); padding: 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
+                    <p style="margin: 0; font-size: 1.05rem">Future Simple is your crystal ball for quick decisions, promises, and predictions. "I'll call you later." "She'll help you." "It'll rain tomorrow."</p>
                 </div>
             `,
             exercises: [
@@ -182,9 +182,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 <h3>Choose the right future form on purpose</h3>
                 <p>Future Simple is strongest when you need a quick decision, promise, or general prediction. Use this map to avoid the most common tense-mixing errors.</p>
 
-                <div style="background: #f8fafc; border-left: 4px solid #06b6d4; border-radius: 0.5rem; padding: 0.9rem; margin: 0.9rem 0;">
-                    <p style="margin: 0 0 0.45rem 0;"><strong>Common trigger language for will:</strong> Oh!, I forgot!, Wait!, That's okay., Don't worry.</p>
-                    <p style="margin: 0;"><strong>Prediction language:</strong> I think..., I believe..., Maybe..., Probably..., I'm sure...</p>
+                <div class="gc-bg-slate gc-callout-cyan" style="; border-radius: 0.5rem; padding: 0.9rem; margin: 0.9rem 0">
+                    <p style="margin: 0 0 0.45rem 0"><strong>Common trigger language for will:</strong> Oh!, I forgot!, Wait!, That's okay., Don't worry.</p>
+                    <p style="margin: 0"><strong>Prediction language:</strong> I think..., I believe..., Maybe..., Probably..., I'm sure...</p>
                 </div>
             `,
             futureChoiceFlow: {
@@ -211,46 +211,46 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 ]
             },
             postExplanation: `
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; min-width: 700px; border-collapse: collapse; border: 1px solid #dbeafe;">
+                <div style="overflow-x: auto">
+                    <table style="width: 100%; min-width: 700px; border-collapse: collapse; border: 1px solid #dbeafe">
                         <thead>
-                            <tr class="gc-bg-slate" style="background: #ecfeff;">
-                                <th class="gc-text-dark gc-table-border" style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Use</th>
-                                <th class="gc-text-dark gc-table-border" style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Best Form</th>
-                                <th class="gc-text-dark gc-table-border" style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Example</th>
+                            <tr class="gc-bg-slate gc-bg-cyan">
+                                <th class="gc-text-dark gc-table-border" style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left">Use</th>
+                                <th class="gc-text-dark gc-table-border" style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left">Best Form</th>
+                                <th class="gc-text-dark gc-table-border" style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left">Example</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">Spontaneous help/offer</td>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;"><strong>will</strong></td>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">"I'll carry that bag for you."</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe">Spontaneous help/offer</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe"><strong>will</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe">"I'll carry that bag for you."</td>
                             </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">Intentions decided earlier</td>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;"><strong>going to</strong></td>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">"I'm going to renew my license this week."</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">Calendar commitment</td>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;"><strong>Present Continuous</strong></td>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">"I'm seeing my doctor on Thursday."</td>
-                            </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">General prediction</td>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;"><strong>will</strong></td>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">"The traffic will be heavy tonight."</td>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe">Intentions decided earlier</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe"><strong>going to</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe">"I'm going to renew my license this week."</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">Prediction with visible evidence</td>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;"><strong>going to</strong></td>
-                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">"Look at those clouds. It's going to rain."</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe">Calendar commitment</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe"><strong>Present Continuous</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe">"I'm seeing my doctor on Thursday."</td>
+                            </tr>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe">General prediction</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe"><strong>will</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe">"The traffic will be heavy tonight."</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe">Prediction with visible evidence</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe"><strong>going to</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe">"Look at those clouds. It's going to rain."</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <h3 style="margin-top: 1.25rem;">Real-world use cases for Future Simple</h3>
+                <h3 style="margin-top: 1.25rem">Real-world use cases for Future Simple</h3>
                 <ul>
                     <li><strong>Work communication:</strong> "I'll send the updated file before lunch."</li>
                     <li><strong>Customer service:</strong> "We will call you when your order is ready."</li>
@@ -310,18 +310,18 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 <h3>Students need spoken Future Simple, not just written Future Simple</h3>
                 <p>In natural conversation, full forms are less common. Practice contractions early so you can understand native speed and sound more confident.</p>
 
-                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; margin: 1rem 0;">
-                    <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; margin: 1rem 0">
+                    <div class="gc-bg-cyan gc-callout-cyan" style="; padding: 0.75rem; border-radius: 0.45rem">
                         <strong>I'll</strong>, <strong>you'll</strong>, <strong>he'll</strong>, <strong>she'll</strong>
                     </div>
-                    <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
+                    <div class="gc-bg-cyan gc-callout-cyan" style="; padding: 0.75rem; border-radius: 0.45rem">
                         <strong>it'll</strong>, <strong>we'll</strong>, <strong>they'll</strong>, <strong>won't</strong>
                     </div>
                 </div>
 
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.9rem;">
-                    <p style="margin: 0 0 0.35rem 0;"><strong>Pronunciation target:</strong> <em>won't</em> (not "willn't").</p>
-                    <p style="margin: 0;"><strong>Rhythm drill lines:</strong> "I'll call you later." / "It'll be fine." / "We'll see."</p>
+                <div class="gc-bg-slate" style="border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.9rem">
+                    <p style="margin: 0 0 0.35rem 0"><strong>Pronunciation target:</strong> <em>won't</em> (not "willn't").</p>
+                    <p style="margin: 0"><strong>Rhythm drill lines:</strong> "I'll call you later." / "It'll be fine." / "We'll see."</p>
                 </div>
             `,
             tipBox: {
@@ -375,32 +375,32 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 <h3>How to Form Future Simple (Positive)</h3>
                 <p>Formula: <strong>will + base verb</strong>. Same for every subject—no extra endings.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            I <span style="color: #06b6d4; font-weight: 600;">will finish</span> my homework before dinner.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            I <span class="gc-text-cyan" style="font-weight: 600">will finish</span> my homework before dinner.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            You <span style="color: #06b6d4; font-weight: 600;">will love</span> this movie—it's so good.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            You <span class="gc-text-cyan" style="font-weight: 600">will love</span> this movie—it's so good.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            He <span style="color: #06b6d4; font-weight: 600;">will call</span> you when he gets home.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            He <span class="gc-text-cyan" style="font-weight: 600">will call</span> you when he gets home.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            She <span style="color: #06b6d4; font-weight: 600;">will bring</span> the cake to the party.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            She <span class="gc-text-cyan" style="font-weight: 600">will bring</span> the cake to the party.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            It <span style="color: #06b6d4; font-weight: 600;">will take</span> longer if the traffic is bad.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            It <span class="gc-text-cyan" style="font-weight: 600">will take</span> longer if the traffic is bad.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            We <span style="color: #06b6d4; font-weight: 600;">will meet</span> at the park tomorrow.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            We <span class="gc-text-cyan" style="font-weight: 600">will meet</span> at the park tomorrow.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            They <span style="color: #06b6d4; font-weight: 600;">will visit</span> us next month.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            They <span class="gc-text-cyan" style="font-weight: 600">will visit</span> us next month.
                         </div>
                     </div>
                 </div>
@@ -450,23 +450,23 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 <h3>How to Make Negative Sentences</h3>
                 <p>Use <strong>will not (won't)</strong> + base verb.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            I <span style="color: #06b6d4; font-weight: 600;">won't eat</span> sugar this week—I'm trying to be healthier.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            I <span class="gc-text-cyan" style="font-weight: 600">won't eat</span> sugar this week—I'm trying to be healthier.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            She <span style="color: #06b6d4; font-weight: 600;">won't go</span> to the party tonight.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            She <span class="gc-text-cyan" style="font-weight: 600">won't go</span> to the party tonight.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            They <span style="color: #06b6d4; font-weight: 600;">won't leave</span> before 9 PM.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            They <span class="gc-text-cyan" style="font-weight: 600">won't leave</span> before 9 PM.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            It <span style="color: #06b6d4; font-weight: 600;">won't rain</span> tomorrow, according to the weather.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            It <span class="gc-text-cyan" style="font-weight: 600">won't rain</span> tomorrow, according to the weather.
                         </div>
                     </div>
                 </div>
@@ -512,23 +512,23 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 <h3>How to Make Questions</h3>
                 <p>Put <strong>Will</strong> at the beginning.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            <span style="color: #06b6d4; font-weight: 600;">Will</span> you <span style="color: #06b6d4; font-weight: 600;">come</span> to dinner tonight?
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            <span class="gc-text-cyan" style="font-weight: 600">Will</span> you <span class="gc-text-cyan" style="font-weight: 600">come</span> to dinner tonight?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            <span style="color: #06b6d4; font-weight: 600;">Will</span> she <span style="color: #06b6d4; font-weight: 600;">bring</span> her kids to the party?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            <span class="gc-text-cyan" style="font-weight: 600">Will</span> she <span class="gc-text-cyan" style="font-weight: 600">bring</span> her kids to the party?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            <span style="color: #06b6d4; font-weight: 600;">Will</span> it <span style="color: #06b6d4; font-weight: 600;">be</span> cold tomorrow?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            <span class="gc-text-cyan" style="font-weight: 600">Will</span> it <span class="gc-text-cyan" style="font-weight: 600">be</span> cold tomorrow?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            <span style="color: #06b6d4; font-weight: 600;">Will</span> they <span style="color: #06b6d4; font-weight: 600;">visit</span> us next week?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            <span class="gc-text-cyan" style="font-weight: 600">Will</span> they <span class="gc-text-cyan" style="font-weight: 600">visit</span> us next week?
                         </div>
                     </div>
                 </div>

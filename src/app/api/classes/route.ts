@@ -7,11 +7,10 @@ import { prisma } from "@/lib/prisma";
 import { BCRYPT_ROUNDS } from "@/lib/auth-config";
 import { generateUniqueClassCode, isValidClassCodeFormat } from "@/lib/generateClassCode";
 import { canManageClass, classOwnershipWhere } from "@/lib/policies";
-import { logger } from "@/lib/logger";
 import { ClassesPostBodySchema, parseApiBody } from "@/lib/api-schemas";
 import type { Prisma } from "@prisma/client";
 import { resolveSystemTestStudentPassword } from "@/lib/account-passwords.js";
-import { ApiErrors } from "@/lib/api-response";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 import { requireTeacher } from "@/lib/api-auth";
 
 function getTestStudentPassword(): string {
@@ -84,9 +83,10 @@ export async function GET() {
         });
 
         return NextResponse.json(classes);
-    } catch (error: unknown) {
-        logger.error("Error fetching classes", error);
-        return ApiErrors.internal("Failed to fetch classes");
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to fetch classes",
+        });
     }
 }
 
@@ -108,9 +108,7 @@ export async function POST(request: NextRequest) {
         if (code) {
             // If teacher provides custom code, validate format
             if (!isValidClassCodeFormat(code)) {
-                return NextResponse.json({
-                    error: "Invalid class code format. Must be 6 uppercase alphanumeric characters (no 0, O, 1, I, L)"
-                }, { status: 400 });
+                return apiError("Invalid class code format. Must be 6 uppercase alphanumeric characters (no 0, O, 1, I, L)", 400);
             }
 
             // Check if code already exists
@@ -119,7 +117,7 @@ export async function POST(request: NextRequest) {
             });
 
             if (existingClass) {
-                return NextResponse.json({ error: "Class code already exists" }, { status: 400 });
+                return apiError("Class code already exists", 400);
             }
 
             classCode = code.toUpperCase();
@@ -168,7 +166,7 @@ export async function POST(request: NextRequest) {
         });
 
         if (!sourceClass) {
-            return NextResponse.json({ error: "Source class not found" }, { status: 404 });
+            return ApiErrors.notFound("Source class", sourceClassId);
         }
 
         if (!canManageClass(teacherCheck.user, admin, sourceClass.teacherId)) {
@@ -219,13 +217,15 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json(result);
-    } catch (error: unknown) {
-        logger.error("Error creating class", error);
-        const message =
-            error instanceof Error && error.message.includes("TEST_STUDENT_DEFAULT_PASSWORD")
-                ? error.message
-                : "Failed to create class. Please try again.";
-        return ApiErrors.internal(message);
+    } catch (error) {
+        // Preserve specific error messages for known issues
+        if (error instanceof Error && error.message.includes("TEST_STUDENT_DEFAULT_PASSWORD")) {
+            return ApiErrors.internal(error.message);
+        }
+        return handleApiError(error, {
+            defaultMessage: "Failed to create class. Please try again.",
+            path: request.url,
+        });
     }
 }
 

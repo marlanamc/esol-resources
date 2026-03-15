@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWORD_BLOCKED_MESSAGE, isDisallowedPassword } from "@/lib/auth-config";
 import { checkRateLimit, authRateLimitKey } from "@/lib/rate-limit";
-import { ApiErrors } from "@/lib/api-response";
+import { ApiErrors, apiError } from "@/lib/api-response";
 
 export async function POST(request: Request) {
     const key = authRateLimitKey(request, "password-reset");
@@ -15,25 +15,25 @@ export async function POST(request: Request) {
 
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const { newPassword } = await request.json();
 
     // SECURITY: Validate password length (min and max)
     if (!newPassword || typeof newPassword !== "string") {
-        return NextResponse.json({ error: "Invalid password format." }, { status: 400 });
+        return apiError("Invalid password format.", 400);
     }
 
     if (newPassword.length < MIN_PASSWORD_LENGTH) {
-        return NextResponse.json({ error: `Password must be at least ${MIN_PASSWORD_LENGTH} characters.` }, { status: 400 });
+        return apiError(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`, 400);
     }
 
     if (newPassword.length > MAX_PASSWORD_LENGTH) {
-        return NextResponse.json({ error: `Password must not exceed ${MAX_PASSWORD_LENGTH} characters.` }, { status: 400 });
+        return apiError(`Password must not exceed ${MAX_PASSWORD_LENGTH} characters.`, 400);
     }
     if (isDisallowedPassword(newPassword)) {
-        return NextResponse.json({ error: DEFAULT_PASSWORD_BLOCKED_MESSAGE }, { status: 400 });
+        return apiError(DEFAULT_PASSWORD_BLOCKED_MESSAGE, 400);
     }
 
     // SECURITY: Use industry-standard bcrypt rounds (12 in 2025)

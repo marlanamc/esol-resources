@@ -9,8 +9,8 @@ export const reportedSpeechContent: InteractiveGuideContent = {
             title: "Reported Speech: Communicating Messages",
             icon: "💬",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"The doctor said I need to rest." "The nurse told me to take this medicine twice a day." "They asked me to fast before the test." Reported speech helps you communicate what someone else said or asked you to do. This is essential for medical appointments, MyChart messages, and workplace communication.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">"The doctor said I need to rest." "The nurse told me to take this medicine twice a day." "They asked me to fast before the test." Reported speech helps you communicate what someone else said or asked you to do. This is essential for medical appointments, MyChart messages, and workplace communication.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -71,8 +71,8 @@ export const reportedSpeechContent: InteractiveGuideContent = {
             explanation: `
                 <h3>What's the Difference?</h3>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
-                    <h4 style="color: #7ba884;">Direct Speech</h4>
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
+                    <h4 class="gc-text-sage">Direct Speech</h4>
                     <p><strong>Exact words someone said</strong> (using quotation marks)</p>
                     <ul>
                         <li>The doctor said, <strong>"You need to rest."</strong></li>
@@ -81,8 +81,8 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
-                    <h4 style="color: #d97757;">Reported Speech (Indirect Speech)</h4>
+                <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
+                    <h4 class="gc-text-terracotta">Reported Speech (Indirect Speech)</h4>
                     <p><strong>Telling someone what was said</strong> (NO quotation marks, tenses change)</p>
                     <ul>
                         <li>The doctor said <strong>I needed to rest</strong>.</li>
@@ -150,50 +150,50 @@ export const reportedSpeechContent: InteractiveGuideContent = {
             explanation: `
                 <h3>The Difference Between SAY and TELL</h3>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
-                    <h4 style="color: #7ba884;">SAY (no indirect object)</h4>
-                    <p style="font-weight: bold;">Subject + said + (that) + statement</p>
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
+                    <h4 class="gc-text-sage">SAY (no indirect object)</h4>
+                    <p style="font-weight: bold">Subject + said + (that) + statement</p>
                     <ul>
                         <li>The doctor <strong>said</strong> (that) I need to rest.</li>
                         <li>She <strong>said</strong> (that) she would call me.</li>
                         <li>They <strong>said</strong> (that) the test results were normal.</li>
                     </ul>
-                    <p style="margin-top: 1rem; font-style: italic;">⚠️ DON'T use "to" after "said"</p>
+                    <p style="margin-top: 1rem; font-style: italic">⚠️ DON'T use "to" after "said"</p>
                     <p>❌ "She said <strong>to me</strong> that..." → ✅ "She said that..." OR "She told me that..."</p>
                 </div>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
-                    <h4 style="color: #d97757;">TELL (requires indirect object)</h4>
-                    <p style="font-weight: bold;">Subject + told + (me/you/him/her/us/them) + (that) + statement</p>
+                <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
+                    <h4 class="gc-text-terracotta">TELL (requires indirect object)</h4>
+                    <p style="font-weight: bold">Subject + told + (me/you/him/her/us/them) + (that) + statement</p>
                     <ul>
                         <li>The doctor <strong>told me</strong> (that) I needed to rest.</li>
                         <li>She <strong>told me</strong> (that) she would call me.</li>
                         <li>They <strong>told us</strong> (that) the results were normal.</li>
                     </ul>
-                    <p style="margin-top: 1rem; font-style: italic;">⚠️ You MUST say who was told</p>
+                    <p style="margin-top: 1rem; font-style: italic">⚠️ You MUST say who was told</p>
                     <p>❌ "She told that..." → ✅ "She told <strong>me</strong> that..."</p>
                 </div>
 
                 <h3>Quick Comparison</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(110, 145, 118, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Say</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Tell</th>
+                        <tr style="background: rgba(110, 145, 118, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Say</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Tell</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">He said (that) he was sick.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">He told me (that) he was sick.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">He said (that) he was sick.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">He told me (that) he was sick.</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">She said (that) the test is ready.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">She told us (that) the test was ready.</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">She said (that) the test is ready.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">She told us (that) the test was ready.</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">They said (that) I need to fast.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">They told me (that) I needed to fast.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">They said (that) I need to fast.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">They told me (that) I needed to fast.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -258,44 +258,44 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 <h3>How Tenses Change in Reported Speech</h3>
                 <p>When reporting what someone said in the past, tenses "shift back" one step:</p>
 
-                <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0">
                     <thead>
-                        <tr style="background: rgba(200, 107, 81, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Direct Speech (Exact Quote)</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Reported Speech</th>
+                        <tr style="background: rgba(200, 107, 81, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Direct Speech (Exact Quote)</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Reported Speech</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">"I <strong>am</strong> tired." (present simple)</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">She said she <strong>was</strong> tired. (past simple)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">"I <strong>am</strong> tired." (present simple)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">She said she <strong>was</strong> tired. (past simple)</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">"I <strong>have</strong> a headache." (present simple)</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">He said he <strong>had</strong> a headache. (past simple)</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">"I <strong>am working</strong>." (present continuous)</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">He said he <strong>was working</strong>. (past continuous)</td>
-                        </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">"I <strong>will</strong> call you." (future)</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">She said she <strong>would</strong> call me. (conditional)</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">"I <strong>have</strong> a headache." (present simple)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">He said he <strong>had</strong> a headache. (past simple)</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">"I <strong>can</strong> help." (modal)</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">He said he <strong>could</strong> help.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">"I <strong>am working</strong>." (present continuous)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">He said he <strong>was working</strong>. (past continuous)</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">"You <strong>must</strong> rest." (modal)</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">The doctor said I <strong>had to</strong> rest.</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">"I <strong>will</strong> call you." (future)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">She said she <strong>would</strong> call me. (conditional)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">"I <strong>can</strong> help." (modal)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">He said he <strong>could</strong> help.</td>
+                        </tr>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">"You <strong>must</strong> rest." (modal)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">The doctor said I <strong>had to</strong> rest.</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <h3>Pronouns & Time Words Also Change</h3>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>Pronouns</h4>
                     <ul>
                         <li><strong>I</strong> → he/she</li>
@@ -303,12 +303,12 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                         <li><strong>we</strong> → they</li>
                         <li><strong>my</strong> → his/her</li>
                     </ul>
-                    <p style="margin-top: 0.75rem;"><strong>Example:</strong></p>
+                    <p style="margin-top: 0.75rem"><strong>Example:</strong></p>
                     <p>Direct: The doctor said, "<strong>You</strong> need to take <strong>your</strong> medicine."</p>
                     <p>Reported: The doctor said <strong>I</strong> needed to take <strong>my</strong> medicine.</p>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
                     <h4>Time Words</h4>
                     <ul>
                         <li><strong>today</strong> → that day</li>
@@ -317,7 +317,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                         <li><strong>now</strong> → then</li>
                         <li><strong>next week</strong> → the following week</li>
                     </ul>
-                    <p style="margin-top: 0.75rem;"><strong>Example:</strong></p>
+                    <p style="margin-top: 0.75rem"><strong>Example:</strong></p>
                     <p>Direct: "Come back <strong>tomorrow</strong>."</p>
                     <p>Reported: She told me to come back <strong>the next day</strong>.</p>
                 </div>
@@ -386,11 +386,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 <h3>Reporting Commands, Instructions, and Requests</h3>
                 <p>Use <strong>told/asked + person + to + verb</strong> to report commands and requests.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Formula for Commands:</h4>
-                    <p style="font-size: 1.25rem; font-weight: bold; color: #d97757;">told + me/you/him/her + to + base verb</p>
+                    <p class="gc-text-terracotta" style="font-size: 1.25rem; font-weight: bold; ">told + me/you/him/her + to + base verb</p>
 
-                    <h4 style="margin-top: 1rem;">Examples:</h4>
+                    <h4 style="margin-top: 1rem">Examples:</h4>
                     <ul>
                         <li>Direct: "Take this medicine twice a day."</li>
                         <li>Reported: The doctor <strong>told me to take</strong> this medicine twice a day.</li>
@@ -405,11 +405,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
                     <h4>Formula for Requests:</h4>
-                    <p style="font-size: 1.25rem; font-weight: bold; color: #7ba884;">asked + me/you/him/her + to + base verb</p>
+                    <p class="gc-text-sage" style="font-size: 1.25rem; font-weight: bold; ">asked + me/you/him/her + to + base verb</p>
 
-                    <h4 style="margin-top: 1rem;">Examples:</h4>
+                    <h4 style="margin-top: 1rem">Examples:</h4>
                     <ul>
                         <li>Direct: "Please fill out this form."</li>
                         <li>Reported: The receptionist <strong>asked me to fill out</strong> the form.</li>
@@ -489,33 +489,33 @@ export const reportedSpeechContent: InteractiveGuideContent = {
             icon: "🏥",
             explanation: `
                 <h3>MyChart Messages</h3>
-                <div style="background: white; padding: 1rem; border: 2px solid #7ba884; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="font-weight: bold; color: #7ba884; margin: 0 0 0.5rem 0;">Sample MyChart Message:</p>
-                    <p style="font-style: italic; background: rgba(110, 145, 118, 0.1); padding: 0.75rem; border-radius: 0.25rem;">"Your test results are normal. Please schedule a follow-up appointment in 3 months."</p>
-                    <p style="margin-top: 0.75rem;"><strong>How to report this:</strong></p>
-                    <ul style="margin: 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #7ba884; border-radius: 0.5rem; margin: 1rem 0">
+                    <p class="gc-text-sage" style="font-weight: bold; ; margin: 0 0 0.5rem 0">Sample MyChart Message:</p>
+                    <p class="gc-bg-sage-alpha" style="font-style: italic; ; padding: 0.75rem; border-radius: 0.25rem">"Your test results are normal. Please schedule a follow-up appointment in 3 months."</p>
+                    <p style="margin-top: 0.75rem"><strong>How to report this:</strong></p>
+                    <ul style="margin: 0">
                         <li>They said my test results <strong>were</strong> normal.</li>
                         <li>They told me <strong>to schedule</strong> a follow-up in 3 months.</li>
                     </ul>
                 </div>
 
                 <h3>Phone Calls from Clinic</h3>
-                <div style="background: white; padding: 1rem; border: 2px solid #d97757; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="font-weight: bold; color: #d97757; margin: 0 0 0.5rem 0;">Receptionist Says:</p>
-                    <p style="font-style: italic; background: rgba(200, 107, 81, 0.1); padding: 0.75rem; border-radius: 0.25rem;">"Your appointment is on Friday at 2pm. Please arrive 15 minutes early."</p>
-                    <p style="margin-top: 0.75rem;"><strong>How to report this:</strong></p>
-                    <ul style="margin: 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #d97757; border-radius: 0.5rem; margin: 1rem 0">
+                    <p class="gc-text-terracotta" style="font-weight: bold; ; margin: 0 0 0.5rem 0">Receptionist Says:</p>
+                    <p class="gc-bg-terracotta-alpha" style="font-style: italic; ; padding: 0.75rem; border-radius: 0.25rem">"Your appointment is on Friday at 2pm. Please arrive 15 minutes early."</p>
+                    <p style="margin-top: 0.75rem"><strong>How to report this:</strong></p>
+                    <ul style="margin: 0">
                         <li>She said my appointment <strong>was</strong> on Friday at 2pm.</li>
                         <li>She told me <strong>to arrive</strong> 15 minutes early.</li>
                     </ul>
                 </div>
 
                 <h3>Doctor's Instructions</h3>
-                <div style="background: white; padding: 1rem; border: 2px solid #d4a843; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="font-weight: bold; color: #d4a843; margin: 0 0 0.5rem 0;">Doctor Says:</p>
-                    <p style="font-style: italic; background: rgba(244, 211, 94, 0.1); padding: 0.75rem; border-radius: 0.25rem;">"You need to rest for one week. Don't lift anything heavy. Come back if you have any pain."</p>
-                    <p style="margin-top: 0.75rem;"><strong>How to report this:</strong></p>
-                    <ul style="margin: 0;">
+                <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #d4a843; border-radius: 0.5rem; margin: 1rem 0">
+                    <p style="font-weight: bold; color: #d4a843; margin: 0 0 0.5rem 0">Doctor Says:</p>
+                    <p style="font-style: italic; background: rgba(244, 211, 94, 0.1); padding: 0.75rem; border-radius: 0.25rem">"You need to rest for one week. Don't lift anything heavy. Come back if you have any pain."</p>
+                    <p style="margin-top: 0.75rem"><strong>How to report this:</strong></p>
+                    <ul style="margin: 0">
                         <li>The doctor said I <strong>needed to rest</strong> for one week.</li>
                         <li>She told me <strong>not to lift</strong> anything heavy.</li>
                         <li>She told me <strong>to come back</strong> if I had any pain.</li>
@@ -523,11 +523,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Pharmacy Instructions</h3>
-                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="font-weight: bold; margin: 0 0 0.5rem 0;">Pharmacist Says:</p>
-                    <p style="font-style: italic;">"Take this medication with food. You can't drink alcohol while taking it."</p>
-                    <p style="margin-top: 0.75rem;"><strong>How to report this:</strong></p>
-                    <ul style="margin: 0;">
+                <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
+                    <p style="font-weight: bold; margin: 0 0 0.5rem 0">Pharmacist Says:</p>
+                    <p style="font-style: italic">"Take this medication with food. You can't drink alcohol while taking it."</p>
+                    <p style="margin-top: 0.75rem"><strong>How to report this:</strong></p>
+                    <ul style="margin: 0">
                         <li>The pharmacist told me <strong>to take</strong> the medication with food.</li>
                         <li>She said I <strong>couldn't drink</strong> alcohol while taking it.</li>
                     </ul>
@@ -840,29 +840,29 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Tense Backshifting</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr style="background: rgba(110, 145, 118, 0.2);">
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Direct</th>
-                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd;">Reported</th>
+                        <tr style="background: rgba(110, 145, 118, 0.2)">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Direct</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Reported</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">am/is/are</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">was/were</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">am/is/are</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">was/were</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">will</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">would</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">will</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">would</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">can</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">could</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">can</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">could</td>
                         </tr>
-                        <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">must</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">had to</td>
+                        <tr style="background: rgba(0, 0, 0, 0.02)">
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">must</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd">had to</td>
                         </tr>
                     </tbody>
                 </table>

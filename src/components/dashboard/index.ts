@@ -7,7 +7,7 @@ export * from './TodaysAssignments';
 export * from './ActivityCategories';
 export * from './TeacherActivityCategories';
 export * from './FeatureToggleButton';
-export { default as CreateCalendarEventForm} from './CreateCalendarEventForm';
+export { CreateCalendarEventForm } from './CreateCalendarEventForm';
 export { default as UpcomingEventsList } from './UpcomingEventsList';
 export { default as ClearFeaturedButton } from './ClearFeaturedButton';
 export { default as GrammarGradebook } from './GrammarGradebook';

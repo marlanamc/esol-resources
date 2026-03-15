@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { POINTS } from "@/lib/gamification";
 import { applyAwardChain } from "@/lib/gamification-award-chain";
+import { ApiErrors, apiError } from "@/lib/api-response";
 
 interface GrammarExerciseCategoryData {
     exercises: Record<string, {
@@ -17,7 +18,7 @@ interface GrammarExerciseCategoryData {
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const body = await request.json();
@@ -29,13 +30,13 @@ export async function POST(request: Request) {
     };
 
     if (!slug || typeof slug !== "string") {
-        return NextResponse.json({ error: "slug is required" }, { status: 400 });
+        return apiError("slug is required", 400);
     }
     if (!exerciseId || typeof exerciseId !== "string") {
-        return NextResponse.json({ error: "exerciseId is required" }, { status: 400 });
+        return apiError("exerciseId is required", 400);
     }
     if (!sectionId || typeof sectionId !== "string") {
-        return NextResponse.json({ error: "sectionId is required" }, { status: 400 });
+        return apiError("sectionId is required", 400);
     }
 
     const userId = session.user.id;
@@ -137,7 +138,7 @@ export async function POST(request: Request) {
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        return ApiErrors.unauthorized();
     }
 
     const url = new URL(request.url);
@@ -145,7 +146,7 @@ export async function GET(request: Request) {
     const activityId = url.searchParams.get("activityId");
 
     if (!slug) {
-        return NextResponse.json({ error: "slug is required" }, { status: 400 });
+        return apiError("slug is required", 400);
     }
 
     const userId = session.user.id;

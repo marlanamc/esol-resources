@@ -5,9 +5,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { VocabularyContent, isVocabularyContent } from "@/types/activity";
 import dynamic from "next/dynamic";
 
-const FlashcardCarousel = dynamic(() => import("@/components/ui/FlashcardCarousel"));
-const MatchingGame = dynamic(() => import("@/components/ui/MatchingGame"));
-const FillInBlankGame = dynamic(() => import("@/components/ui/FillInBlankGame"));
+const FlashcardCarousel = dynamic(() => import("@/components/games/FlashcardCarousel"));
+const MatchingGame = dynamic(() => import("@/components/games/MatchingGame"));
+const FillInBlankGame = dynamic(() => import("@/components/games/FillInBlankGame"));
 import { BackButton } from "@/components/ui/BackButton";
 import { parseFlashcards, parsePlainVocabulary } from "@/lib/vocab-parser";
 import { saveActivityProgress } from "@/lib/activityProgress";

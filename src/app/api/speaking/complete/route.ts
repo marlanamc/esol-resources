@@ -5,12 +5,13 @@ import { prisma } from '@/lib/prisma';
 import { applyAwardChain } from '@/lib/gamification-award-chain';
 import { normalizeAssignmentId } from '@/lib/assignment-scope';
 import { acquireUserActivityScopeLock } from '@/lib/db-locks';
+import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user?.id) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
 
         const userId = session.user.id;
@@ -20,7 +21,7 @@ export async function POST(request: NextRequest) {
 
         // Validate required fields
         if (!activityId) {
-            return NextResponse.json({ error: 'activityId is required' }, { status: 400 });
+            return apiError('activityId is required', 400);
         }
 
         // Get activity content to check if it's a warmup (optional validation)
@@ -46,7 +47,7 @@ export async function POST(request: NextRequest) {
         }
 
         if (!isWarmup) {
-            return NextResponse.json({ error: 'Activity is not a warmup activity' }, { status: 400 });
+            return apiError('Activity is not a warmup activity', 400);
         }
 
         const assignmentKey = normalizeAssignmentId(assignmentId);
@@ -123,10 +124,9 @@ export async function POST(request: NextRequest) {
             currentStreak: awardResult.currentStreak,
         });
     } catch (error) {
-        console.error('Error completing warmup activity:', error);
-        return NextResponse.json(
-            { error: 'Internal server error' },
-            { status: 500 }
-        );
+        return handleApiError(error, {
+            defaultMessage: 'Failed to complete warmup activity',
+            path: request.url,
+        });
     }
 }

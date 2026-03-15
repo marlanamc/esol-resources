@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import * as readline from 'readline';
+import { requireSafeDbTarget } from '../scripts/lib/require-safe-db-target.js';
 
-const { requireSafeDbTarget } = require('../scripts/lib/require-safe-db-target');
 const prisma = new PrismaClient();
 
 requireSafeDbTarget('full database reset seed');

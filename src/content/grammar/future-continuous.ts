@@ -9,38 +9,38 @@ export const futureContinuousContent: InteractiveGuideContent = {
             title: "Future Continuous: What You'll Be Doing",
             icon: "📚",
             explanation: `
-                <div class="gc-grad-cyan" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 class="gc-text-dark" style="margin-top: 0; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Future Continuous helps you describe the <strong class="gc-text-terracotta">middle of a future action</strong>. You are not just saying something will happen, but that it will already be in progress at a future moment.</p>
+                <div class="gc-grad-cyan" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 class="gc-text-dark" style="margin-top: 0; font-size: 1.25rem">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0">Future Continuous helps you describe the <strong class="gc-text-terracotta">middle of a future action</strong>. You are not just saying something will happen, but that it will already be in progress at a future moment.</p>
                 </div>
 
                 <h3>Real-Life Uses</h3>
-                <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✓ <strong>Availability</strong>: "I'll be working that day, unfortunately."</li>
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✓ <strong>Polite inquiry</strong>: "Will you be bringing someone with you?"</li>
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✓ <strong>Travel timeline</strong>: "This time next week, I'll be flying to visit my family."</li>
+                <ul style="list-style: none; padding-left: 0; margin: 0">
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Availability</strong>: "I'll be working that day, unfortunately."</li>
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Polite inquiry</strong>: "Will you be bringing someone with you?"</li>
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate gc-callout-cyan" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Travel timeline</strong>: "This time next week, I'll be flying to visit my family."</li>
                 </ul>
 
-                <div class="gc-bg-amber gc-box-amber-500" style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p class="gc-text-dark" style="margin: 0; font-weight: 600;">📝 Formula: <span class="gc-text-dark" style="font-size: 1.125rem;">will be + verb-ing</span></p>
+                <div class="gc-bg-amber gc-box-amber-500 gc-bg-white" style="9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
+                    <p class="gc-text-dark" style="margin: 0; font-weight: 600">📝 Formula: <span class="gc-text-dark" style="font-size: 1.125rem">will be + verb-ing</span></p>
                 </div>
 
-                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                <div class="gc-bg-green gc-callout-left gc-bg-green gc-callout-green" style="; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>Describing what will be happening at a specific future time</li>
                         <li>Asking polite questions about other people's plans</li>
                         <li>Comparing future forms (will / going to / present continuous)</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                    <p style="margin: 1rem 0 0.5rem 0"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li><strong>Scheduling conflicts</strong>: "I'll be driving, so I can't answer calls."</li>
                         <li><strong>Appointments</strong>: "Will you be using an interpreter at the visit?"</li>
                         <li><strong>Work handoffs</strong>: "I'll be leaving at 5, so Maria will be covering."</li>
                         <li><strong>Travel/visa talk</strong>: "I'll be staying with my cousins in Chicago."</li>
                     </ul>
-                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">⏱️ Future Continuous = action in progress at a future point.</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic">⏱️ Future Continuous = action in progress at a future point.</p>
                 </div>
             `,
             exercises: [
@@ -216,30 +216,30 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 <h3>Future Continuous shows the middle of a future action</h3>
                 <p>You choose a future point and describe what is already happening at that point.</p>
 
-                <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
-                    <h4 style="text-align: center; margin-top: 0; color: #06b6d4;">Future Timeline Snapshot</h4>
+                <div class="gc-bg-white" style="border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
+                    <h4 class="gc-text-cyan" style="text-align: center; margin-top: 0; ">Future Timeline Snapshot</h4>
 
-                    <div class="gc-timeline-future-snapshot" style="position: relative; margin: 2rem auto 1.25rem auto; max-width: 680px; height: 180px;">
-                        <div class="gc-timeline-line" style="position: absolute; top: 50%; left: 8%; right: 8%; height: 4px; background: linear-gradient(to right, #e2e8f0, #06b6d4 40%, #06b6d4 60%, #e2e8f0); transform: translateY(-50%);"></div>
+                    <div class="gc-timeline-future-snapshot" style="position: relative; margin: 2rem auto 1.25rem auto; max-width: 680px; height: 180px">
+                        <div class="gc-timeline-line" style="position: absolute; top: 50%; left: 8%; right: 8%; height: 4px; background: linear-gradient(to right, #e2e8f0, #06b6d4 40%, #06b6d4 60%, #e2e8f0); transform: translateY(-50%)"></div>
 
-                        <div class="gc-timeline-bar" style="position: absolute; top: calc(50% - 18px); left: 31%; right: 16%; height: 36px; background: linear-gradient(90deg, rgba(8, 145, 178, 0.38), rgba(14, 116, 144, 0.96)); border-radius: 18px; display: flex; align-items: center; justify-content: flex-start; padding-left: 0.9rem; padding-right: 6rem; box-shadow: 0 4px 14px rgba(14, 116, 144, 0.32); overflow: hidden;">
-                            <span style="position: absolute; left: calc(62% - 31% - 92px); top: -0.05rem; display: inline-block; background: rgba(8, 47, 73, 0.76); color: #ffffff; font-weight: 800; font-size: 0.93rem; line-height: 1; letter-spacing: 0.01em; white-space: nowrap; padding: 0.42rem 0.72rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.5); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);">
+                        <div class="gc-timeline-bar" style="position: absolute; top: calc(50% - 18px); left: 31%; right: 16%; height: 36px; background: linear-gradient(90deg, rgba(8, 145, 178, 0.38), rgba(14, 116, 144, 0.96)); border-radius: 18px; display: flex; align-items: center; justify-content: flex-start; padding-left: 0.9rem; padding-right: 6rem; box-shadow: 0 4px 14px rgba(14, 116, 144, 0.32); overflow: hidden">
+                            <span style="position: absolute; left: calc(62% - 31% - 92px); top: -0.05rem; display: inline-block; background: rgba(8, 47, 73, 0.76); color: #ffffff; font-weight: 800; font-size: 0.93rem; line-height: 1; letter-spacing: 0.01em; white-space: nowrap; padding: 0.42rem 0.72rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.5); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45)">
                                 will be driving...
                             </span>
                         </div>
 
-                        <div class="gc-timeline-circle" style="position: absolute; top: calc(50% - 52px); left: calc(62% - 35px); text-align: center;">
-                            <div style="width: 70px; height: 70px; border-radius: 50%; background: #06b6d4; color: #0f172a; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.35);">
+                        <div class="gc-timeline-circle" style="position: absolute; top: calc(50% - 52px); left: calc(62% - 35px); text-align: center">
+                            <div style="width: 70px; height: 70px; border-radius: 50%; background: #06b6d4; color: #0f172a; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.35)">
                                 8 PM
                             </div>
                         </div>
 
-                        <div class="gc-timeline-label-left" style="position: absolute; top: calc(50% + 34px); left: 18%; font-size: 0.78rem; color: #64748b;">starts before 8 PM</div>
-                        <div class="gc-timeline-label-right" style="position: absolute; top: calc(50% + 34px); right: 14%; font-size: 0.78rem; color: #64748b;">continues after 8 PM</div>
+                        <div class="gc-timeline-label-left gc-text-muted" style="position: absolute; top: calc(50% + 34px); left: 18%; font-size: 0.78rem; ">starts before 8 PM</div>
+                        <div class="gc-timeline-label-right gc-text-muted" style="position: absolute; top: calc(50% + 34px); right: 14%; font-size: 0.78rem; ">continues after 8 PM</div>
                     </div>
 
-                    <div style="margin-top: 2rem; background: #ecfeff; border-left: 4px solid #06b6d4; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; text-align: center;"><strong>Example:</strong> "At 8 PM, I <span style="color: #0891b2; font-weight: 700;">will be driving</span> home."</p>
+                    <div class="gc-bg-cyan gc-callout-cyan" style="margin-top: 2rem; ; ; padding: 1rem; border-radius: 0.5rem">
+                        <p style="margin: 0; text-align: center"><strong>Example:</strong> "At 8 PM, I <span style="color: #0891b2; font-weight: 700">will be driving</span> home."</p>
                     </div>
                 </div>
             `,
@@ -329,35 +329,35 @@ export const futureContinuousContent: InteractiveGuideContent = {
             },
             postExplanation: `
                 <h3>Indicator Clues You Can Trust</h3>
-                <div style="overflow-x: auto; margin-top: 0.75rem;">
-                    <table style="width: 100%; min-width: 760px; border-collapse: collapse; border: 1px solid #dbeafe; border-radius: 8px; overflow: hidden;">
+                <div style="overflow-x: auto; margin-top: 0.75rem">
+                    <table style="width: 100%; min-width: 760px; border-collapse: collapse; border: 1px solid #dbeafe; border-radius: 8px; overflow: hidden">
                         <thead>
-                            <tr class="gc-bg-slate" style="background: #ecfeff;">
-                                <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left;">Form</th>
-                                <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left;">Common Clues</th>
-                                <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left;">Example</th>
+                            <tr class="gc-bg-slate gc-bg-cyan">
+                                <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left">Form</th>
+                                <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left">Common Clues</th>
+                                <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left">Example</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600;">Present Continuous (future)</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">arranged meeting, calendar time, fixed appointment</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">I'm meeting HR at 2 PM.</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600">Present Continuous (future)</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe">arranged meeting, calendar time, fixed appointment</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe">I'm meeting HR at 2 PM.</td>
                             </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600;">Going to</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">plan before speaking, visible evidence</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">Look at those clouds. It's going to rain.</td>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600">Going to</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe">plan before speaking, visible evidence</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe">Look at those clouds. It's going to rain.</td>
                             </tr>
                             <tr>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600;">Will</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">instant decision, promise, offer, no-evidence prediction</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">The phone is ringing. I'll answer it.</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600">Will</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe">instant decision, promise, offer, no-evidence prediction</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe">The phone is ringing. I'll answer it.</td>
                             </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600;">Future Continuous</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">at 8 PM tomorrow, this time next week, when you arrive, during</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">At 8 PM tomorrow, I'll be studying.</td>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600">Future Continuous</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe">at 8 PM tomorrow, this time next week, when you arrive, during</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe">At 8 PM tomorrow, I'll be studying.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -468,7 +468,7 @@ export const futureContinuousContent: InteractiveGuideContent = {
             icon: "⚠️",
             explanation: `
                 <h3>Common Errors to Fix Early</h3>
-                <ul style="margin: 0.75rem 0 0 0;">
+                <ul style="margin: 0.75rem 0 0 0">
                     <li>Missing <strong>be</strong>: "I will working" ❌</li>
                     <li>Wrong form after <strong>will be</strong>: "will be work" ❌</li>
                     <li>Confusing <strong>will be + -ing</strong> and <strong>going to be + -ing</strong></li>
@@ -561,20 +561,20 @@ export const futureContinuousContent: InteractiveGuideContent = {
             explanation: `
                 <p>Formula: <strong>will be + verb-ing</strong>. Same for every subject.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            I <span style="color: #06b6d4; font-weight: 600;">will be sleeping</span> at 10 PM.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            I <span class="gc-text-cyan" style="font-weight: 600">will be sleeping</span> at 10 PM.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            She <span style="color: #06b6d4; font-weight: 600;">will be driving</span> when you call.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            She <span class="gc-text-cyan" style="font-weight: 600">will be driving</span> when you call.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            They <span style="color: #06b6d4; font-weight: 600;">will be watching</span> the game tonight.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            They <span class="gc-text-cyan" style="font-weight: 600">will be watching</span> the game tonight.
                         </div>
                     </div>
                 </div>
@@ -603,17 +603,17 @@ export const futureContinuousContent: InteractiveGuideContent = {
             explanation: `
                 <p>Use <strong>won't be + verb-ing</strong> to show what will NOT be happening.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            I <span style="color: #06b6d4; font-weight: 600;">won't be answering</span> my phone during the movie.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            I <span class="gc-text-cyan" style="font-weight: 600">won't be answering</span> my phone during the movie.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            They <span style="color: #06b6d4; font-weight: 600;">won't be staying</span> home this weekend.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            They <span class="gc-text-cyan" style="font-weight: 600">won't be staying</span> home this weekend.
                         </div>
                     </div>
                 </div>
@@ -672,17 +672,17 @@ export const futureContinuousContent: InteractiveGuideContent = {
             explanation: `
                 <p>Flip 'Will' to the front: <strong>Will + subject + be + verb-ing?</strong></p>
 
-                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            <span style="color: #06b6d4; font-weight: 600;">Will</span> you <span style="color: #06b6d4; font-weight: 600;">be coming</span> to dinner tomorrow?
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            <span class="gc-text-cyan" style="font-weight: 600">Will</span> you <span class="gc-text-cyan" style="font-weight: 600">be coming</span> to dinner tomorrow?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
-                            <span style="color: #06b6d4; font-weight: 600;">Will</span> she <span style="color: #06b6d4; font-weight: 600;">be sleeping</span> at midnight?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1)">
+                            <span class="gc-text-cyan" style="font-weight: 600">Will</span> she <span class="gc-text-cyan" style="font-weight: 600">be sleeping</span> at midnight?
                         </div>
                     </div>
                 </div>

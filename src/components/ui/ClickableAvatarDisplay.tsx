@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import SelectedAvatarDisplay from "./SelectedAvatarDisplay";
+import { SelectedAvatarDisplay } from "./SelectedAvatarDisplay";
 import { DEFAULT_AVATAR, DEFAULT_COLOR } from "@/lib/avatar-constants";
 
 interface ClickableAvatarDisplayProps {
@@ -14,7 +14,7 @@ interface ClickableAvatarDisplayProps {
  * A clickable avatar that fetches the current user's avatar from the API
  * and navigates to the avatar customization page when clicked.
  */
-export default function ClickableAvatarDisplay({ 
+export function ClickableAvatarDisplay({ 
     size = "md",
     className = "" 
 }: ClickableAvatarDisplayProps) {

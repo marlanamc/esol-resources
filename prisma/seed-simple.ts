@@ -21,8 +21,8 @@ import { perfectContinuousTensesReviewContent } from '../src/content/grammar/per
 import { cycleOneReviewContent } from '../src/content/grammar/cycle-1-review';
 import { conditionalsZeroFirstContent } from '../src/content/grammar/conditionals-zero-first';
 import { gerundsInfinitivesContent } from '../src/content/grammar/gerunds-infinitives';
+import { requireSafeDbTarget } from '../scripts/lib/require-safe-db-target.js';
 
-const { requireSafeDbTarget } = require('../scripts/lib/require-safe-db-target');
 const prisma = new PrismaClient();
 
 requireSafeDbTarget('replace all activities with simple seed set');

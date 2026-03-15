@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import LoginForm from "@/components/LoginForm";
+import { LoginForm } from "@/components/LoginForm";
 
 export default function LoginPage() {
     return (

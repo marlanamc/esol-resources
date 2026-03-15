@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import EditActivityForm from "@/components/EditActivityForm";
+import { EditActivityForm } from "@/components/EditActivityForm";
 import { BackButton } from "@/components/ui/BackButton";
 import { isTeacherAdmin } from "@/lib/roles";
 

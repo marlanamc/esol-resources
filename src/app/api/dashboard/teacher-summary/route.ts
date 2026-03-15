@@ -5,16 +5,17 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
 import { isTeacherAdmin } from "@/lib/roles";
+import { ApiErrors, handleApiError } from "@/lib/api-response";
 
 export async function GET() {
     const requestId = crypto.randomUUID();
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user?.id) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            return ApiErrors.unauthorized();
         }
         if (session.user.role !== "teacher") {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+            return ApiErrors.forbidden();
         }
         const admin = isTeacherAdmin(session.user);
 
@@ -49,7 +50,8 @@ export async function GET() {
 
         return NextResponse.json({ pendingReviews });
     } catch (error) {
-        console.error("Failed to load teacher dashboard summary", error);
-        return NextResponse.json({ error: "Failed to load summary" }, { status: 500 });
+        return handleApiError(error, {
+            defaultMessage: "Failed to load teacher dashboard summary",
+        });
     }
 }

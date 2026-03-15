@@ -3,8 +3,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { BackButton } from "@/components/ui";
-import AvatarSelector from "@/components/ui/AvatarSelector";
+import { AvatarSelector } from "@/components/ui/AvatarSelector";
 import { DEFAULT_AVATAR, DEFAULT_COLOR } from "@/lib/avatar-constants";
+import { logger } from "@/lib/logger";
 
 export default function AvatarPage() {
     const router = useRouter();
@@ -28,7 +29,7 @@ export default function AvatarPage() {
                     setCurrentColor(data.avatarColor || DEFAULT_COLOR);
                 }
             } catch (error) {
-                console.error("Failed to load avatar:", error);
+                logger.error("Failed to load avatar", error);
             } finally {
                 setIsLoading(false);
             }
@@ -70,7 +71,7 @@ export default function AvatarPage() {
                     body: JSON.stringify(saveData),
                 });
             } catch (error) {
-                console.error("Failed to save avatar:", error);
+                logger.error("Failed to save avatar", error);
             } finally {
                 setIsSaving(false);
                 pendingSaveRef.current = null;

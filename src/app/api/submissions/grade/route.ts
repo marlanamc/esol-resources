@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { requireTeacher } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 
 export async function POST(request: NextRequest) {
     try {
@@ -17,7 +18,7 @@ export async function POST(request: NextRequest) {
         const { submissionId, score, feedback } = body;
 
         if (!submissionId) {
-            return NextResponse.json({ error: "Submission ID is required" }, { status: 400 });
+            return apiError("Submission ID is required", 400);
         }
 
         // Get submission with assignment and class
@@ -33,17 +34,17 @@ export async function POST(request: NextRequest) {
         });
 
         if (!submission) {
-            return NextResponse.json({ error: "Submission not found" }, { status: 404 });
+            return ApiErrors.notFound("Submission", submissionId);
         }
 
         // Verify teacher owns the class
         if (!admin && submission.assignment?.class.teacherId !== userId) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+            return ApiErrors.forbidden();
         }
 
         // Validate score if provided
         if (score !== null && (score < 0 || score > 100)) {
-            return NextResponse.json({ error: "Score must be between 0 and 100" }, { status: 400 });
+            return apiError("Score must be between 0 and 100", 400);
         }
 
         // Update submission
@@ -57,13 +58,11 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json(updated);
-    } catch (error: unknown) {
-        console.error("Error grading submission:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to grade submission" },
-            { status: 500 }
-        );
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to grade submission",
+            path: request.url,
+        });
     }
 }
 

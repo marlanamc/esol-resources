@@ -10,23 +10,23 @@ export const pastPerfectContent: InteractiveGuideContent = {
             title: "Past Perfect: When Time Goes Backward",
             icon: "📚",
             explanation: `
-                <div class="gc-grad-amber" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 class="gc-text-amber" style="margin-top: 0; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Past Perfect is your <strong class="gc-text-amber">time machine for TWO past actions</strong>: it shows which one happened FIRST when you're telling a story about the past.</p>
+                <div class="gc-grad-amber" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 class="gc-text-amber" style="margin-top: 0; font-size: 1.25rem">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0">Past Perfect is your <strong class="gc-text-amber">time machine for TWO past actions</strong>: it shows which one happened FIRST when you're telling a story about the past.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
-                <p>Imagine you're explaining why you missed the bus. You can't just say "The bus left"—you need to explain the sequence: <span style="color: #f59e0b; font-weight: 600;">"The bus had already left"</span> (FIRST) when <span style="color: #14b8a6; font-weight: 600;">"I arrived"</span> (SECOND).</p>
+                <p>Imagine you're explaining why you missed the bus. You can't just say "The bus left"—you need to explain the sequence: <span class="gc-text-amber" style="font-weight: 600">"The bus had already left"</span> (FIRST) when <span style="color: #14b8a6; font-weight: 600">"I arrived"</span> (SECOND).</p>
 
                 <h3>The Golden Rule</h3>
-                <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li class="gc-bg-amber gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">✓ <strong>Almost ALWAYS uses TWO verbs</strong></li>
-                    <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #14b8a6; border-radius: 0.25rem;">✓ <strong>Shows which action happened FIRST</strong></li>
-                    <li class="gc-bg-amber gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">✓ <strong>Formula: had + past participle</strong></li>
+                <ul style="list-style: none; padding-left: 0; margin: 0">
+                    <li class="gc-bg-amber gc-callout-left gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Almost ALWAYS uses TWO verbs</strong></li>
+                    <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #14b8a6; border-radius: 0.25rem">✓ <strong>Shows which action happened FIRST</strong></li>
+                    <li class="gc-bg-amber gc-callout-left gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Formula: had + past participle</strong></li>
                 </ul>
 
-	                <div class="gc-bg-amber gc-box-amber-500" style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-	                    <p class="gc-text-dark" style="margin: 0; font-weight: 600;">📝 Quick Preview:<br/><span class="gc-text-amber">had + past participle</span> (FIRST action) → <span class="gc-text-cyan">past simple</span> (SECOND action)</p>
+	                <div class="gc-bg-amber gc-box-amber-500 gc-bg-white" style="9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
+	                    <p class="gc-text-dark" style="margin: 0; font-weight: 600">📝 Quick Preview:<br/><span class="gc-text-amber">had + past participle</span> (FIRST action) → <span class="gc-text-cyan">past simple</span> (SECOND action)</p>
 	                </div>
 	            `,
             exercises: [
@@ -57,22 +57,22 @@ export const pastPerfectContent: InteractiveGuideContent = {
             title: "The TWO-VERB Rule: Most Important Concept!",
             icon: "🎯",
             explanation: `
-                <h3 style="color: #f59e0b;">This is THE Most Important Part!</h3>
+                <h3 class="gc-text-amber">This is THE Most Important Part!</h3>
                 <p>Past Perfect is <strong>almost never used alone</strong>. It needs a partner—another past action—to make sense.</p>
 
-                <div style="margin: 1.5rem 0;">
-                    <h4 style="color: #1e293b; margin-bottom: 1rem;">📌 How to Identify Which Verb Comes First:</h4>
+                <div style="margin: 1.5rem 0">
+                    <h4 style="color: #1e293b; margin-bottom: 1rem">📌 How to Identify Which Verb Comes First:</h4>
 
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 1rem; margin-bottom: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1rem;">
-                        <h4 style="color: #f59e0b; margin-top: 0;">Past Perfect = FIRST Action (Earlier)</h4>
-                        <p>When I <span style="background: rgba(20, 184, 166, 0.2); color: #14b8a6; font-weight: 600; padding: 2px 6px; border-radius: 3px;">arrived</span>, she <span style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; font-weight: 600; padding: 2px 6px; border-radius: 3px;">had already left</span>.</p>
-                        <p style="font-size: 0.875rem; color: #64748b;">💡 "had left" = FIRST action (she left before I arrived)</p>
+                    <div class="gc-callout-amber" style="padding-left: 1rem; margin-bottom: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1rem">
+                        <h4 class="gc-text-amber" style="margin-top: 0">Past Perfect = FIRST Action (Earlier)</h4>
+                        <p>When I <span style="background: rgba(20, 184, 166, 0.2); color: #14b8a6; font-weight: 600; padding: 2px 6px; border-radius: 3px">arrived</span>, she <span class="gc-text-amber" style="background: rgba(245, 158, 11, 0.2); ; font-weight: 600; padding: 2px 6px; border-radius: 3px">had already left</span>.</p>
+                        <p class="gc-text-muted" style="font-size: 0.875rem; ">💡 "had left" = FIRST action (she left before I arrived)</p>
                     </div>
 
-                    <div style="border-left: 4px solid #14b8a6; padding-left: 1rem; background: rgba(20, 184, 166, 0.05); padding: 1rem;">
-                        <h4 style="color: #14b8a6; margin-top: 0;">Past Simple = SECOND Action (Later)</h4>
-                        <p>When I <span style="background: rgba(20, 184, 166, 0.2); color: #14b8a6; font-weight: 600; padding: 2px 6px; border-radius: 3px;">arrived</span>, she had already left.</p>
-                        <p style="font-size: 0.875rem; color: #64748b;">💡 "arrived" = SECOND action (I arrived after she left)</p>
+                    <div style="border-left: 4px solid #14b8a6; padding-left: 1rem; background: rgba(20, 184, 166, 0.05); padding: 1rem">
+                        <h4 style="color: #14b8a6; margin-top: 0">Past Simple = SECOND Action (Later)</h4>
+                        <p>When I <span style="background: rgba(20, 184, 166, 0.2); color: #14b8a6; font-weight: 600; padding: 2px 6px; border-radius: 3px">arrived</span>, she had already left.</p>
+                        <p class="gc-text-muted" style="font-size: 0.875rem; ">💡 "arrived" = SECOND action (I arrived after she left)</p>
                     </div>
                 </div>
             `,
@@ -326,50 +326,50 @@ export const pastPerfectContent: InteractiveGuideContent = {
                 <h3>Understanding the Sequence Visually</h3>
                 <p>Past Perfect is all about sequence. Let's see it on a timeline:</p>
 
-                <div style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
-                    <h4 style="text-align: center; margin-top: 0;">Timeline: Two Past Actions</h4>
+                <div class="gc-bg-white" style="border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
+                    <h4 style="text-align: center; margin-top: 0">Timeline: Two Past Actions</h4>
 
-                    <div style="display: flex; align-items: center; justify-content: space-around; position: relative; margin: 2rem 0;">
-                        <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 4px; background: linear-gradient(to right, #f59e0b, #14b8a6, #cbd5e1); transform: translateY(-50%); z-index: 0;"></div>
+                    <div style="display: flex; align-items: center; justify-content: space-around; position: relative; margin: 2rem 0">
+                        <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 4px; background: linear-gradient(to right, #f59e0b, #14b8a6, #cbd5e1); transform: translateY(-50%); z-index: 0"></div>
 
-                        <div style="position: relative; z-index: 1; text-align: center;">
-                            <div style="width: 80px; height: 80px; border-radius: 50%; background: #f59e0b; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); margin: 0 auto;">
+                        <div style="position: relative; z-index: 1; text-align: center">
+                            <div style="width: 80px; height: 80px; border-radius: 50%; background: #f59e0b; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); margin: 0 auto">
                                 1st
                             </div>
-                            <div style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #f59e0b;">Earlier</div>
-                            <div style="font-size: 0.75rem; color: #64748b;">Past Perfect</div>
+                            <div class="gc-text-amber" style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; ">Earlier</div>
+                            <div class="gc-text-muted" style="font-size: 0.75rem; ">Past Perfect</div>
                         </div>
 
-                        <div style="position: relative; z-index: 1; text-align: center;">
-                            <div style="width: 80px; height: 80px; border-radius: 50%; background: #14b8a6; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3); margin: 0 auto;">
+                        <div style="position: relative; z-index: 1; text-align: center">
+                            <div style="width: 80px; height: 80px; border-radius: 50%; background: #14b8a6; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3); margin: 0 auto">
                                 2nd
                             </div>
-                            <div style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #14b8a6;">Later</div>
-                            <div style="font-size: 0.75rem; color: #64748b;">Past Simple</div>
+                            <div style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #14b8a6">Later</div>
+                            <div class="gc-text-muted" style="font-size: 0.75rem; ">Past Simple</div>
                         </div>
 
-                        <div style="position: relative; z-index: 1; text-align: center;">
-                            <div style="width: 60px; height: 60px; border-radius: 50%; background: #cbd5e1; color: #1e293b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; border: 4px solid white; margin: 0 auto;">
+                        <div style="position: relative; z-index: 1; text-align: center">
+                            <div style="width: 60px; height: 60px; border-radius: 50%; background: #cbd5e1; color: #1e293b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; border: 4px solid white; margin: 0 auto">
                                 NOW
                             </div>
-                            <div style="margin-top: 0.5rem; font-size: 0.75rem; color: #64748b;">Present</div>
+                            <div class="gc-text-muted" style="margin-top: 0.5rem; font-size: 0.75rem; ">Present</div>
                         </div>
                     </div>
 
-                    <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                        <p style="margin: 0; text-align: center;"><strong>Example:</strong> She <span style="color: #f59e0b; font-weight: 600;">had finished</span> homework (1st) before she <span style="color: #14b8a6; font-weight: 600;">went</span> to bed (2nd).</p>
+                    <div class="gc-bg-amber" style="padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                        <p style="margin: 0; text-align: center"><strong>Example:</strong> She <span class="gc-text-amber" style="font-weight: 600">had finished</span> homework (1st) before she <span style="color: #14b8a6; font-weight: 600">went</span> to bed (2nd).</p>
                     </div>
                 </div>
 
                 <h3>More Visual Examples</h3>
-                <div style="margin: 1rem 0;">
-                    <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin-bottom: 0.75rem;">
-                        <p style="margin: 0;"><strong>Example 1:</strong> When I <span style="color: #14b8a6; font-weight: 600;">arrived</span> at the station, the train <span style="color: #f59e0b; font-weight: 600;">had left</span>.</p>
-                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;"> Timeline: Train left (1st) ← I arrived (2nd) ← NOW</p>
+                <div style="margin: 1rem 0">
+                    <div class="gc-bg-slate" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 0.75rem">
+                        <p style="margin: 0"><strong>Example 1:</strong> When I <span style="color: #14b8a6; font-weight: 600">arrived</span> at the station, the train <span class="gc-text-amber" style="font-weight: 600">had left</span>.</p>
+                        <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.875rem; "> Timeline: Train left (1st) ← I arrived (2nd) ← NOW</p>
                     </div>
-                    <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0;"><strong>Example 2:</strong> After he <span style="color: #f59e0b; font-weight: 600;">had eaten</span> dinner, he <span style="color: #14b8a6; font-weight: 600;">watched</span> TV.</p>
-                        <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Timeline: Ate dinner (1st) ← Watched TV (2nd) ← NOW</p>
+                    <div class="gc-bg-slate" style="padding: 1rem; border-radius: 0.5rem">
+                        <p style="margin: 0"><strong>Example 2:</strong> After he <span class="gc-text-amber" style="font-weight: 600">had eaten</span> dinner, he <span style="color: #14b8a6; font-weight: 600">watched</span> TV.</p>
+                        <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.875rem; ">Timeline: Ate dinner (1st) ← Watched TV (2nd) ← NOW</p>
                     </div>
                 </div>
             `,
@@ -453,34 +453,34 @@ export const pastPerfectContent: InteractiveGuideContent = {
                 <p>Past Perfect is simple to form: <strong>had + past participle</strong></p>
                 <p>Remember: EVERYONE uses 'had' (I had, you had, he had, she had, we had, they had)</p>
 
-                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3);">
-                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Subject</span>
-                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
-                    <span style="background: #fef3c7; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">had</span>
-                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
-                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3)">
+                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">Subject</span>
+                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
+                    <span class="gc-bg-amber" style="color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">had</span>
+                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
+                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">past participle</span>
                 </div>
 
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            When I <span style="color: #14b8a6; font-weight: 600;">arrived</span>, they <span style="color: #f59e0b; font-weight: 600;">had finished</span> dinner.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            When I <span style="color: #14b8a6; font-weight: 600">arrived</span>, they <span class="gc-text-amber" style="font-weight: 600">had finished</span> dinner.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            She <span style="color: #f59e0b; font-weight: 600;">had left</span> before the meeting <span style="color: #14b8a6; font-weight: 600;">started</span>.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            She <span class="gc-text-amber" style="font-weight: 600">had left</span> before the meeting <span style="color: #14b8a6; font-weight: 600">started</span>.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            By 2020, we <span style="color: #f59e0b; font-weight: 600;">had lived</span> in Boston for 10 years.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            By 2020, we <span class="gc-text-amber" style="font-weight: 600">had lived</span> in Boston for 10 years.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            The students <span style="color: #f59e0b; font-weight: 600;">had studied</span> hard before they <span style="color: #14b8a6; font-weight: 600;">took</span> the exam.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            The students <span class="gc-text-amber" style="font-weight: 600">had studied</span> hard before they <span style="color: #14b8a6; font-weight: 600">took</span> the exam.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            He <span style="color: #f59e0b; font-weight: 600;">had never seen</span> snow before he <span style="color: #14b8a6; font-weight: 600;">moved</span> to Canada.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            He <span class="gc-text-amber" style="font-weight: 600">had never seen</span> snow before he <span style="color: #14b8a6; font-weight: 600">moved</span> to Canada.
                         </div>
                     </div>
                 </div>
@@ -569,31 +569,31 @@ export const pastPerfectContent: InteractiveGuideContent = {
                 <h3>Making Negatives</h3>
                 <p>Add <strong>'not'</strong> after 'had': <strong>had not = hadn't</strong></p>
 
-                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3);">
-                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Subject</span>
-                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
-                    <span style="background: #fef3c7; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">had not / hadn't</span>
-                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
-                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3)">
+                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">Subject</span>
+                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
+                    <span class="gc-bg-amber" style="color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">had not / hadn't</span>
+                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
+                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">past participle</span>
                 </div>
 
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            When I <span style="color: #14b8a6; font-weight: 600;">called</span>, they <span style="color: #f59e0b; font-weight: 600;">hadn't finished</span> dinner yet.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            When I <span style="color: #14b8a6; font-weight: 600">called</span>, they <span class="gc-text-amber" style="font-weight: 600">hadn't finished</span> dinner yet.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            She <span style="color: #f59e0b; font-weight: 600;">hadn't seen</span> him before that day.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            She <span class="gc-text-amber" style="font-weight: 600">hadn't seen</span> him before that day.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            I <span style="color: #f59e0b; font-weight: 600;">hadn't studied</span> enough before the test <span style="color: #14b8a6; font-weight: 600;">started</span>.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            I <span class="gc-text-amber" style="font-weight: 600">hadn't studied</span> enough before the test <span style="color: #14b8a6; font-weight: 600">started</span>.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            We <span style="color: #f59e0b; font-weight: 600;">hadn't met</span> before the conference.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            We <span class="gc-text-amber" style="font-weight: 600">hadn't met</span> before the conference.
                         </div>
                     </div>
                 </div>
@@ -671,32 +671,32 @@ export const pastPerfectContent: InteractiveGuideContent = {
                 <h3>Making Questions</h3>
                 <p>Put <strong>'Had'</strong> before the subject:</p>
 
-                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3);">
-                    <span style="background: #fef3c7; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Had</span>
-                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
-                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">subject</span>
-                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
-                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
-                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">?</span>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3)">
+                    <span class="gc-bg-amber" style="color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">Had</span>
+                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
+                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">subject</span>
+                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
+                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">past participle</span>
+                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">?</span>
                 </div>
 
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Had</span> you <span style="color: #f59e0b; font-weight: 600;">finished</span> your homework before dinner?
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Had</span> you <span class="gc-text-amber" style="font-weight: 600">finished</span> your homework before dinner?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Had</span> she <span style="color: #f59e0b; font-weight: 600;">left</span> when you <span style="color: #14b8a6; font-weight: 600;">arrived</span>?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Had</span> she <span class="gc-text-amber" style="font-weight: 600">left</span> when you <span style="color: #14b8a6; font-weight: 600">arrived</span>?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Had</span> they <span style="color: #f59e0b; font-weight: 600;">eaten</span> lunch before the meeting?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Had</span> they <span class="gc-text-amber" style="font-weight: 600">eaten</span> lunch before the meeting?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Had</span> he <span style="color: #f59e0b; font-weight: 600;">seen</span> the movie before?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-amber" style="font-weight: 600">Had</span> he <span class="gc-text-amber" style="font-weight: 600">seen</span> the movie before?
                         </div>
                     </div>
                 </div>
@@ -821,10 +821,10 @@ export const pastPerfectContent: InteractiveGuideContent = {
             tipBox: {
                 title: "⚠️ Common Mistake Alert",
                 content: `Don't use Past Perfect with only ONE past action!
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div>❌ "I had eaten lunch yesterday." <span style="color: #d97757; font-weight: 600;">→</span> Only one action!</div>
-                    <div>✅ "I ate lunch yesterday." <span style="font-size: 0.875rem; color: #4b5563;">(one action = Past Simple)</span></div>
-                    <div>✅ "I had eaten lunch before the meeting started." <span style="font-size: 0.875rem; color: #4b5563;">(two actions = Past Perfect + Past Simple)</span></div>
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem">
+                    <div>❌ "I had eaten lunch yesterday." <span class="gc-text-terracotta" style="font-weight: 600">→</span> Only one action!</div>
+                    <div>✅ "I ate lunch yesterday." <span style="font-size: 0.875rem; color: #4b5563">(one action = Past Simple)</span></div>
+                    <div>✅ "I had eaten lunch before the meeting started." <span style="font-size: 0.875rem; color: #4b5563">(two actions = Past Perfect + Past Simple)</span></div>
                 </div>`,
             },
             exercises: [
@@ -1024,85 +1024,85 @@ export const pastPerfectContent: InteractiveGuideContent = {
                 <h3>Past Perfect in Housing Situations</h3>
                 <p>When talking about apartments, landlords, and moving, Past Perfect helps explain the sequence of events clearly.</p>
 
-                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
-                    <h4 style="margin-top: 0; color: #f59e0b;">🎯 Real Housing Examples</h4>
-                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #f59e0b;">
-                            <strong>Before I signed the lease, I <span style="color: #f59e0b;">had checked</span> the apartment carefully.</strong>
-                            <br><span style="font-size: 0.875rem; color: #64748b;">FIRST: checked apartment → SECOND: signed lease</span>
+                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0">
+                    <h4 class="gc-text-amber" style="margin-top: 0; ">🎯 Real Housing Examples</h4>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem">
+                        <div class="gc-bg-white gc-callout-amber" style="padding: 1rem; border-radius: 0.375rem; ">
+                            <strong>Before I signed the lease, I <span class="gc-text-amber">had checked</span> the apartment carefully.</strong>
+                            <br><span class="gc-text-muted" style="font-size: 0.875rem; ">FIRST: checked apartment → SECOND: signed lease</span>
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #f59e0b;">
-                            <strong>When I met the landlord, I <span style="color: #f59e0b;">had already researched</span> tenant rights.</strong>
-                            <br><span style="font-size: 0.875rem; color: #64748b;">FIRST: researched rights → SECOND: met landlord</span>
+                        <div class="gc-bg-white gc-callout-amber" style="padding: 1rem; border-radius: 0.375rem; ">
+                            <strong>When I met the landlord, I <span class="gc-text-amber">had already researched</span> tenant rights.</strong>
+                            <br><span class="gc-text-muted" style="font-size: 0.875rem; ">FIRST: researched rights → SECOND: met landlord</span>
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #f59e0b;">
-                            <strong>The water heater broke because the owner <span style="color: #f59e0b;">hadn't maintained</span> it properly.</strong>
-                            <br><span style="font-size: 0.875rem; color: #64748b;">FIRST: didn't maintain → SECOND: broke</span>
+                        <div class="gc-bg-white gc-callout-amber" style="padding: 1rem; border-radius: 0.375rem; ">
+                            <strong>The water heater broke because the owner <span class="gc-text-amber">hadn't maintained</span> it properly.</strong>
+                            <br><span class="gc-text-muted" style="font-size: 0.875rem; ">FIRST: didn't maintain → SECOND: broke</span>
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #f59e0b;">
-                            <strong>By the time I called maintenance, the leak <span style="color: #f59e0b;">had already damaged</span> the floor.</strong>
-                            <br><span style="font-size: 0.875rem; color: #64748b;">FIRST: damaged floor → SECOND: called maintenance</span>
+                        <div class="gc-bg-white gc-callout-amber" style="padding: 1rem; border-radius: 0.375rem; ">
+                            <strong>By the time I called maintenance, the leak <span class="gc-text-amber">had already damaged</span> the floor.</strong>
+                            <br><span class="gc-text-muted" style="font-size: 0.875rem; ">FIRST: damaged floor → SECOND: called maintenance</span>
                         </div>
                     </div>
                 </div>
 
                 <h4>Common Housing Scenarios</h4>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                <ul style="list-style: none; padding-left: 0">
+                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
                         ✅ <strong>Moving:</strong> "Before I moved in, I <strong>had packed</strong> all my boxes."
                     </li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
                         ✅ <strong>Problems:</strong> "When I discovered the mold, I <strong>had already paid</strong> the security deposit."
                     </li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
                         ✅ <strong>History:</strong> "I <strong>had lived</strong> with roommates for three years before I got my own place."
                     </li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
                         ✅ <strong>Housing History:</strong> "They <strong>had rented</strong> in that neighborhood for ten years before they bought a house."
                     </li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
                         ✅ <strong>Before Moving:</strong> "She <strong>had saved</strong> $2,000 before she started looking for apartments."
                     </li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
                         ✅ <strong>Relief:</strong> "I felt relieved because I <strong>had taken</strong> photos of the apartment condition."
                     </li>
                 </ul>
 
-                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <h4 style="margin-top: 0; color: #f59e0b;">💬 Speaking Practice</h4>
-                    <p style="margin-bottom: 0.75rem; font-weight: 600;">Use these prompts to practice past perfect:</p>
-                    <ul style="margin: 0; padding-left: 1.25rem;">
-                        <li style="margin-bottom: 0.5rem;">"Tell me about a time you had a problem with your apartment. What had happened before you discovered it?"</li>
-                        <li style="margin-bottom: 0.5rem;">"Describe your last move. What had you done before moving day?"</li>
-                        <li style="margin-bottom: 0.5rem;">"Talk about finding your current home. What research had you completed?"</li>
+                <div class="gc-bg-white" style="9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
+                    <h4 class="gc-text-amber" style="margin-top: 0; ">💬 Speaking Practice</h4>
+                    <p style="margin-bottom: 0.75rem; font-weight: 600">Use these prompts to practice past perfect:</p>
+                    <ul style="margin: 0; padding-left: 1.25rem">
+                        <li style="margin-bottom: 0.5rem">"Tell me about a time you had a problem with your apartment. What had happened before you discovered it?"</li>
+                        <li style="margin-bottom: 0.5rem">"Describe your last move. What had you done before moving day?"</li>
+                        <li style="margin-bottom: 0.5rem">"Talk about finding your current home. What research had you completed?"</li>
                     </ul>
                 </div>
 
-                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(20, 184, 166, 0.08) 100%); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #14b8a6; margin-top: 1.5rem;">
-                    <h4 style="margin-top: 0; color: #14b8a6;">📌 Key Signal Words for Housing Context</h4>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
-                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">before</span>
-                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">after</span>
-                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">by the time</span>
-                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">when</span>
-                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">already</span>
-                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">just</span>
-                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">never</span>
+                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(20, 184, 166, 0.08) 100%); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #14b8a6; margin-top: 1.5rem">
+                    <h4 style="margin-top: 0; color: #14b8a6">📌 Key Signal Words for Housing Context</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem">
+                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">before</span>
+                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">after</span>
+                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">by the time</span>
+                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">when</span>
+                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">already</span>
+                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">just</span>
+                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">never</span>
                     </div>
                 </div>
 
-                <div class="gc-bg-red gc-callout-red" style="background: #fee2e2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin-top: 1.5rem;">
-                    <h4 class="gc-text-red" style="margin-top: 0;">❌ Common Mistakes to Avoid</h4>
-                    <div style="margin-top: 0.75rem;">
-                        <div style="background: white; padding: 0.75rem; border-radius: 0.25rem; margin-bottom: 0.75rem;">
-                            <p class="gc-text-red" style="margin: 0; font-weight: 600;">❌ "I have checked the apartment before I signed the lease."</p>
-                            <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ "I <strong>had checked</strong> the apartment before I signed the lease."</p>
-                            <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Use past perfect (had + past participle) for the earlier action, not present perfect.</p>
+                <div class="gc-bg-red gc-callout-red gc-callout-red" style="background: #fee2e2; padding: 1rem; border-radius: 0.5rem; ; margin-top: 1.5rem">
+                    <h4 class="gc-text-red" style="margin-top: 0">❌ Common Mistakes to Avoid</h4>
+                    <div style="margin-top: 0.75rem">
+                        <div class="gc-bg-white" style="padding: 0.75rem; border-radius: 0.25rem; margin-bottom: 0.75rem">
+                            <p class="gc-text-red" style="margin: 0; font-weight: 600">❌ "I have checked the apartment before I signed the lease."</p>
+                            <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600">✅ "I <strong>had checked</strong> the apartment before I signed the lease."</p>
+                            <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.875rem; ">Use past perfect (had + past participle) for the earlier action, not present perfect.</p>
                         </div>
-                        <div style="background: white; padding: 0.75rem; border-radius: 0.25rem;">
-                            <p style="margin: 0; color: #ef4444; font-weight: 600;">❌ "She didn't signed the lease because she found something better."</p>
-                            <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ "She didn't sign the lease because she <strong>had found</strong> something better."</p>
-                            <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">The action of finding came first, so it needs past perfect.</p>
+                        <div class="gc-bg-white" style="padding: 0.75rem; border-radius: 0.25rem">
+                            <p class="gc-text-red" style="margin: 0; ; font-weight: 600">❌ "She didn't signed the lease because she found something better."</p>
+                            <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600">✅ "She didn't sign the lease because she <strong>had found</strong> something better."</p>
+                            <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.875rem; ">The action of finding came first, so it needs past perfect.</p>
                         </div>
                     </div>
                 </div>

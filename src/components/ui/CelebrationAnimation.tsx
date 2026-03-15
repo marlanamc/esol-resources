@@ -10,7 +10,7 @@ interface CelebrationAnimationProps {
     onComplete?: () => void;
 }
 
-export default function CelebrationAnimation({ 
+export function CelebrationAnimation({ 
     trigger, 
     type = "confetti", 
     message,

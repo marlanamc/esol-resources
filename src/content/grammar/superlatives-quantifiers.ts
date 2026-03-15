@@ -10,8 +10,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             title: "Superlatives & Quantifiers Guide",
             icon: "📊",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"This is the cheapest apartment I found." "My new job has the most benefits." "We have less time but more responsibilities." These comparisons are essential for describing your life, making decisions, and explaining situations.</p>
+                <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">"This is the cheapest apartment I found." "My new job has the most benefits." "We have less time but more responsibilities." These comparisons are essential for describing your life, making decisions, and explaining situations.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -23,16 +23,16 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     <li><strong>Negotiate effectively</strong> - At work, at stores, with landlords</li>
                 </ul>
 
-                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                <div class="gc-bg-green gc-callout-left gc-bg-green gc-callout-green" style="; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li>Describing your home ("My apartment is the quietest one in the building")</li>
                         <li>Comparing apartments ("This one has fewer bedrooms but more space")</li>
                         <li>Talking about food and restaurants ("Which restaurant has the best prices?")</li>
                         <li>Speaking game: Comparing homes and neighborhoods</li>
                     </ul>
-                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">💡 Tip: When you're apartment hunting or job searching, these comparisons help you explain your choices and find the best option!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic">💡 Tip: When you're apartment hunting or job searching, these comparisons help you explain your choices and find the best option!</p>
                 </div>
             `,
             exercises: [
@@ -431,21 +431,21 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 <h3>Describing Small Amounts</h3>
                 <p>Just like many/much, the choice between few and little depends on count vs uncountable:</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
-                            <h4 style="color: #7ba884; margin-top: 0;">FEW = Countable Nouns</h4>
-                            <p style="margin: 0 0 0.5rem 0; font-style: italic;">Small number, not enough</p>
-                            <ul style="margin: 0;">
+                <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem">
+                            <h4 class="gc-text-sage" style="margin-top: 0">FEW = Countable Nouns</h4>
+                            <p style="margin: 0 0 0.5rem 0; font-style: italic">Small number, not enough</p>
+                            <ul style="margin: 0">
                                 <li>few <strong>options</strong></li>
                                 <li>few <strong>openings</strong></li>
                                 <li>few <strong>applicants</strong></li>
                             </ul>
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
-                            <h4 style="color: #d97757; margin-top: 0;">LITTLE = Non-Countable Nouns</h4>
-                            <p style="margin: 0 0 0.5rem 0; font-style: italic;">Small amount, not enough</p>
-                            <ul style="margin: 0;">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem">
+                            <h4 class="gc-text-terracotta" style="margin-top: 0">LITTLE = Non-Countable Nouns</h4>
+                            <p style="margin: 0 0 0.5rem 0; font-style: italic">Small amount, not enough</p>
+                            <ul style="margin: 0">
                                 <li>little <strong>money</strong></li>
                                 <li>little <strong>space</strong></li>
                                 <li>little <strong>hope</strong></li>
@@ -511,22 +511,22 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 <h3>The Rule Everyone Gets Wrong</h3>
                 <p>You've probably seen the supermarket sign: "10 items or less." Guess what? It's wrong! It should be "10 items or fewer" because items are countable.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 2px solid #7ba884;">
-                            <h4 style="color: #7ba884; margin-top: 0;">FEWER = Countable Nouns</h4>
-                            <p style="margin: 0 0 0.5rem 0; font-style: italic;">Comparing numbers</p>
-                            <ul style="margin: 0;">
+                <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 2px solid #7ba884">
+                            <h4 class="gc-text-sage" style="margin-top: 0">FEWER = Countable Nouns</h4>
+                            <p style="margin: 0 0 0.5rem 0; font-style: italic">Comparing numbers</p>
+                            <ul style="margin: 0">
                                 <li>fewer <strong>hours</strong></li>
                                 <li>fewer <strong>employees</strong></li>
                                 <li>fewer <strong>benefits</strong></li>
                                 <li>fewer <strong>problems</strong></li>
                             </ul>
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 2px solid #d97757;">
-                            <h4 style="color: #d97757; margin-top: 0;">LESS = Non-Countable Nouns</h4>
-                            <p style="margin: 0 0 0.5rem 0; font-style: italic;">Comparing amounts</p>
-                            <ul style="margin: 0;">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 2px solid #d97757">
+                            <h4 class="gc-text-terracotta" style="margin-top: 0">LESS = Non-Countable Nouns</h4>
+                            <p style="margin: 0 0 0.5rem 0; font-style: italic">Comparing amounts</p>
+                            <ul style="margin: 0">
                                 <li>less <strong>time</strong></li>
                                 <li>less <strong>stress</strong></li>
                                 <li>less <strong>money</strong></li>
@@ -606,7 +606,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 <h3>Talking About Extremes</h3>
                 <p>Use <strong>most</strong> and <strong>least</strong> to describe the maximum and minimum in a group:</p>
 
-                <div style="margin: 1.5rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                <div class="gc-bg-white" style="margin: 1.5rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
                     <h4>MOST = Maximum/Highest</h4>
                     <ul>
                         <li>This job has <strong>the most</strong> benefits.</li>
@@ -615,7 +615,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="margin: 1.5rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                <div class="gc-bg-white" style="margin: 1.5rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
                     <h4>LEAST = Minimum/Lowest</h4>
                     <ul>
                         <li>This option costs <strong>the least</strong> money.</li>
@@ -684,49 +684,49 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Quantifiers Cheat Sheet</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
                     <thead>
-                        <tr class="gc-bg-slate" style="background: rgba(200, 107, 81, 0.1);">
-                            <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Quantifier</th>
-                            <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Use With</th>
-                            <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Example</th>
+                        <tr class="gc-bg-slate gc-bg-terracotta-alpha">
+                            <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Quantifier</th>
+                            <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Use With</th>
+                            <th class="gc-text-dark gc-table-border" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Example</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>many</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Countable nouns</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">many jobs, many hours</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>many</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Countable nouns</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">many jobs, many hours</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>much</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Uncountable nouns</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">much time, much stress</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>much</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Uncountable nouns</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">much time, much stress</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>few</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Countable nouns (not enough)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">few options, few applicants</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>few</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Countable nouns (not enough)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">few options, few applicants</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>little</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Uncountable nouns (not enough)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">little money, little hope</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>little</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Uncountable nouns (not enough)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">little money, little hope</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>fewer</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Countable nouns (comparison)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">fewer hours, fewer problems</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>fewer</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Countable nouns (comparison)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">fewer hours, fewer problems</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>less</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Uncountable nouns (comparison)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">less time, less stress</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>less</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Uncountable nouns (comparison)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">less time, less stress</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>most/least</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Both!</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">the most hours, the most time</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)"><strong>most/least</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Both!</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">the most hours, the most time</td>
                         </tr>
                     </tbody>
                 </table>

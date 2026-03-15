@@ -9,38 +9,38 @@ export const presentContinuousContent: InteractiveGuideContent = {
             title: "Present Continuous: What's Happening Right Now",
             icon: "📚",
             explanation: `
-                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 class="gc-text-purple" style="margin-top: 0; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Present Continuous captures <strong class="gc-text-terracotta">actions in motion</strong>—what's happening right this second, temporary situations that won't last forever, and plans you've already arranged. Look around: the TV is playing, someone is cooking, your phone is charging. That's Present Continuous!</p>
+                <div class="gc-grad-purple" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <h3 class="gc-text-purple" style="margin-top: 0; font-size: 1.25rem">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0">Present Continuous captures <strong class="gc-text-terracotta">actions in motion</strong>—what's happening right this second, temporary situations that won't last forever, and plans you've already arranged. Look around: the TV is playing, someone is cooking, your phone is charging. That's Present Continuous!</p>
                 </div>
 
                 <h3>Real-Life Uses</h3>
-                <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #8b5cf6; border-radius: 0.25rem;">✓ <strong>Right now</strong>: "I'm waiting for the bus—it's late again."</li>
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #8b5cf6; border-radius: 0.25rem;">✓ <strong>Temporary situations</strong>: "I'm staying with my sister this month."</li>
-                    <li class="gc-bg-slate gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #8b5cf6; border-radius: 0.25rem;">✓ <strong>Arranged plans</strong>: "We're meeting the landlord tomorrow at 10."</li>
+                <ul style="list-style: none; padding-left: 0; margin: 0">
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate gc-callout-purple" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Right now</strong>: "I'm waiting for the bus—it's late again."</li>
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate gc-callout-purple" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Temporary situations</strong>: "I'm staying with my sister this month."</li>
+                    <li class="gc-bg-slate gc-callout-left gc-bg-slate gc-callout-purple" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Arranged plans</strong>: "We're meeting the landlord tomorrow at 10."</li>
                 </ul>
 
-                <div class="gc-bg-amber gc-box-amber-500" style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p class="gc-text-dark" style="margin: 0; font-weight: 600;">📝 Formula: <span class="gc-text-purple" style="font-size: 1.125rem;">am/is/are + verb-ing</span></p>
+                <div class="gc-bg-amber gc-box-amber-500 gc-bg-white" style="9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
+                    <p class="gc-text-dark" style="margin: 0; font-weight: 600">📝 Formula: <span class="gc-text-purple" style="font-size: 1.125rem">am/is/are + verb-ing</span></p>
                 </div>
 
-                <div class="gc-bg-green gc-callout-left" style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
+                <div class="gc-bg-green gc-callout-left gc-bg-green gc-callout-green" style="; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem">
+                    <h3 class="gc-text-sage" style="margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0">
                         <li>Describing what's happening in pictures or videos</li>
                         <li>Explaining temporary living or work situations</li>
                         <li>Making plans with classmates ("We're studying together on Thursday")</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
+                    <p style="margin: 1rem 0 0.5rem 0"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0">
                         <li><strong>Workplace</strong>: "I'm covering the front desk today" / "Are you working on the Smith file?"</li>
                         <li><strong>Housing</strong>: "My landlord is painting the building this week"</li>
                         <li><strong>Healthcare</strong>: "I'm feeling much better today"</li>
                         <li><strong>Family</strong>: "She's picking up the kids because I'm working late"</li>
                     </ul>
-                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic;">⏱️ Present Continuous = in motion NOW or just for a while!</p>
+                    <p class="gc-text-muted" style="margin-top: 0.75rem; font-style: italic">⏱️ Present Continuous = in motion NOW or just for a while!</p>
                 </div>
             `,
             exercises: [
@@ -283,22 +283,22 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Important contrast: same words, different grammar</h3>
-                <div style="overflow-x: auto; margin-top: 0.75rem;">
-                    <table style="width: 100%; min-width: 700px; border-collapse: collapse; border: 1px solid #e2e8f0;">
+                <div style="overflow-x: auto; margin-top: 0.75rem">
+                    <table style="width: 100%; min-width: 700px; border-collapse: collapse; border: 1px solid #e2e8f0">
                         <thead>
-                            <tr style="background: #f8fafc;">
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Sentence</th>
-                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Meaning</th>
+                            <tr class="gc-bg-slate">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Sentence</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left">Meaning</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I'm going to the store.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">Movement to a place (go + destination)</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">I'm going to the store.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">Movement to a place (go + destination)</td>
                             </tr>
-                            <tr style="background: #f8fafc;">
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I'm going to study tonight.</td>
-                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">Future intention (going to + base verb)</td>
+                            <tr class="gc-bg-slate">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">I'm going to study tonight.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0">Future intention (going to + base verb)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -378,63 +378,63 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 <h3>Understanding Present Continuous Visually</h3>
                 <p>Present Continuous shows actions <strong>in progress</strong>—they started before now and are still happening. Let's see it:</p>
 
-                <div style="background: white; border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
-                    <h4 style="text-align: center; margin-top: 0; color: #8b5cf6;">Timeline: Action Happening NOW</h4>
+                <div class="gc-bg-white" style="border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
+                    <h4 class="gc-text-purple" style="text-align: center; margin-top: 0; ">Timeline: Action Happening NOW</h4>
 
                     <!-- Timeline visualization -->
-                    <div style="position: relative; margin: 2rem 0 1.25rem 0; padding: 0 1rem; height: 170px;">
+                    <div style="position: relative; margin: 2rem 0 1.25rem 0; padding: 0 1rem; height: 170px">
                         <!-- Timeline line -->
-                        <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 4px; background: linear-gradient(to right, #e2e8f0, #8b5cf6 40%, #8b5cf6 60%, #e2e8f0); transform: translateY(-50%); z-index: 0;"></div>
+                        <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 4px; background: linear-gradient(to right, #e2e8f0, #8b5cf6 40%, #8b5cf6 60%, #e2e8f0); transform: translateY(-50%); z-index: 0"></div>
 
                         <!-- Duration bar showing action in progress -->
-                        <div style="position: absolute; top: calc(50% - 15px); left: 25%; right: 35%; height: 30px; background: linear-gradient(90deg, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.8)); border-radius: 15px; z-index: 1; display: flex; align-items: center; justify-content: center;">
-                            <span style="color: white; font-weight: 600; font-size: 0.875rem; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">action in progress...</span>
+                        <div style="position: absolute; top: calc(50% - 15px); left: 25%; right: 35%; height: 30px; background: linear-gradient(90deg, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.8)); border-radius: 15px; z-index: 1; display: flex; align-items: center; justify-content: center">
+                            <span style="color: white; font-weight: 600; font-size: 0.875rem; text-shadow: 0 1px 2px rgba(0,0,0,0.3)">action in progress...</span>
                         </div>
 
                         <!-- NOW marker -->
-                        <div style="position: absolute; top: calc(50% - 45px); left: calc(60% - 30px); text-align: center; z-index: 2;">
-                            <div style="width: 60px; height: 60px; border-radius: 50%; background: #8b5cf6; color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); margin: 0 auto; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
+                        <div style="position: absolute; top: calc(50% - 45px); left: calc(60% - 30px); text-align: center; z-index: 2">
+                            <div style="width: 60px; height: 60px; border-radius: 50%; background: #8b5cf6; color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); margin: 0 auto; text-shadow: 0 1px 2px rgba(0,0,0,0.5)">
                                 NOW
                             </div>
                         </div>
 
                         <!-- Start label -->
-                        <div style="position: absolute; top: calc(50% + 25px); left: 20%; text-align: center;">
-                            <div style="font-size: 0.75rem; color: #64748b;">started earlier</div>
+                        <div style="position: absolute; top: calc(50% + 25px); left: 20%; text-align: center">
+                            <div class="gc-text-muted" style="font-size: 0.75rem; ">started earlier</div>
                         </div>
 
                         <!-- Continue label -->
-                        <div style="position: absolute; top: calc(50% + 25px); right: 25%; text-align: center;">
-                            <div style="font-size: 0.75rem; color: #64748b;">still happening</div>
+                        <div style="position: absolute; top: calc(50% + 25px); right: 25%; text-align: center">
+                            <div class="gc-text-muted" style="font-size: 0.75rem; ">still happening</div>
                         </div>
                     </div>
 
-                    <div style="background: #f5f3ff; padding: 1rem; border-radius: 0.5rem; margin-top: 3rem;">
-                        <p style="margin: 0; text-align: center;"><strong>Example:</strong> I <span style="color: #8b5cf6; font-weight: 600;">am cooking</span> dinner → The cooking started and is <span style="color: #8b5cf6; font-weight: 600;">still happening NOW</span></p>
+                    <div class="gc-bg-violet" style="padding: 1rem; border-radius: 0.5rem; margin-top: 3rem">
+                        <p style="margin: 0; text-align: center"><strong>Example:</strong> I <span class="gc-text-purple" style="font-weight: 600">am cooking</span> dinner → The cooking started and is <span class="gc-text-purple" style="font-weight: 600">still happening NOW</span></p>
                     </div>
                 </div>
 
-                <h3 style="margin-top: 2rem;">Contrast: Present Continuous vs Present Simple</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #f5f3ff; padding: 1rem; border-radius: 0.5rem; border: 2px solid #8b5cf6;">
-                        <h4 style="margin-top: 0; color: #8b5cf6; text-align: center;">Present Continuous</h4>
-                        <p style="text-align: center; margin: 0.5rem 0; font-size: 0.875rem; color: #64748b;">ONE ongoing action</p>
-                        <div style="height: 40px; background: linear-gradient(90deg, rgba(139, 92, 246, 0.4), rgba(139, 92, 246, 0.9)); border-radius: 20px; margin: 1rem 0; display: flex; align-items: center; justify-content: center;">
-                            <span style="color: white; font-weight: 600; font-size: 0.75rem;">━━━━━━━━━</span>
+                <h3 style="margin-top: 2rem">Contrast: Present Continuous vs Present Simple</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0">
+                    <div class="gc-bg-violet" style="padding: 1rem; border-radius: 0.5rem; border: 2px solid #8b5cf6">
+                        <h4 class="gc-text-purple" style="margin-top: 0; ; text-align: center">Present Continuous</h4>
+                        <p class="gc-text-muted" style="text-align: center; margin: 0.5rem 0; font-size: 0.875rem; ">ONE ongoing action</p>
+                        <div style="height: 40px; background: linear-gradient(90deg, rgba(139, 92, 246, 0.4), rgba(139, 92, 246, 0.9)); border-radius: 20px; margin: 1rem 0; display: flex; align-items: center; justify-content: center">
+                            <span style="color: white; font-weight: 600; font-size: 0.75rem">━━━━━━━━━</span>
                         </div>
-                        <p style="margin: 0; text-align: center; font-size: 0.875rem; color: #1f2937;">"I'm <strong style="color: #1f2937;">working</strong> from home <em style="color: #475569;">this week</em>."</p>
+                        <p style="margin: 0; text-align: center; font-size: 0.875rem; color: #1f2937">"I'm <strong style="color: #1f2937">working</strong> from home <em style="color: #475569">this week</em>."</p>
                     </div>
-                    <div style="background: #fef9f3; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b;">
-                        <h4 style="margin-top: 0; color: #f59e0b; text-align: center;">Present Simple</h4>
-                        <p style="text-align: center; margin: 0.5rem 0; font-size: 0.875rem; color: #64748b;">Repeated habit/routine</p>
-                        <div style="height: 40px; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 1rem 0;">
-                            <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></div>
-                            <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></div>
-                            <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></div>
-                            <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></div>
-                            <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></div>
+                    <div style="background: #fef9f3; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b">
+                        <h4 class="gc-text-amber" style="margin-top: 0; ; text-align: center">Present Simple</h4>
+                        <p class="gc-text-muted" style="text-align: center; margin: 0.5rem 0; font-size: 0.875rem; ">Repeated habit/routine</p>
+                        <div style="height: 40px; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 1rem 0">
+                            <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%"></div>
+                            <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%"></div>
+                            <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%"></div>
+                            <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%"></div>
+                            <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%"></div>
                         </div>
-                        <p style="margin: 0; text-align: center; font-size: 0.875rem; color: #1f2937;">"I <strong style="color: #1f2937;">work</strong> from home <em style="color: #475569;">every Friday</em>."</p>
+                        <p style="margin: 0; text-align: center; font-size: 0.875rem; color: #1f2937">"I <strong style="color: #1f2937">work</strong> from home <em style="color: #475569">every Friday</em>."</p>
                     </div>
                 </div>
             `,
@@ -562,8 +562,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 <h3>🚫 Stative Verbs: Verbs That Don't Use Continuous</h3>
                 <p>Some verbs describe <strong>states</strong> (not actions), so they rarely use -ing. These are called <strong>stative verbs</strong>.</p>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <p style="margin: 0; text-align: center; color: #dc2626;"><strong>❌ WRONG:</strong> I'm knowing the answer. → <strong>✓ CORRECT:</strong> I know the answer.</p>
+                <div class="gc-bg-red" style="border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <p class="gc-text-red" style="margin: 0; text-align: center; "><strong>❌ WRONG:</strong> I'm knowing the answer. → <strong>✓ CORRECT:</strong> I know the answer.</p>
                 </div>
             `,
             verbTable: {
@@ -703,29 +703,29 @@ export const presentContinuousContent: InteractiveGuideContent = {
             explanation: `
                 <p>Formula: <strong>am/is/are + verb-ing</strong>. Same for all subjects—just swap am/is/are.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            I <span style="color: #8b5cf6; font-weight: 600;">am washing</span> the dishes right now.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            I <span class="gc-text-purple" style="font-weight: 600">am washing</span> the dishes right now.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            You <span style="color: #8b5cf6; font-weight: 600;">are listening</span> to music on your headphones.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            You <span class="gc-text-purple" style="font-weight: 600">are listening</span> to music on your headphones.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            He <span style="color: #8b5cf6; font-weight: 600;">is fixing</span> his car in the driveway.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            He <span class="gc-text-purple" style="font-weight: 600">is fixing</span> his car in the driveway.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            She <span style="color: #8b5cf6; font-weight: 600;">is making</span> dinner for the family.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            She <span class="gc-text-purple" style="font-weight: 600">is making</span> dinner for the family.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            We <span style="color: #8b5cf6; font-weight: 600;">are watching</span> the game on TV.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            We <span class="gc-text-purple" style="font-weight: 600">are watching</span> the game on TV.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            They <span style="color: #8b5cf6; font-weight: 600;">are playing</span> soccer in the park.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            They <span class="gc-text-purple" style="font-weight: 600">are playing</span> soccer in the park.
                         </div>
                     </div>
                 </div>
@@ -766,20 +766,20 @@ export const presentContinuousContent: InteractiveGuideContent = {
             explanation: `
                 <p>Add <strong>not</strong> after am/is/are to show something is NOT happening.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            I<span style="color: #8b5cf6; font-weight: 600;">'m not eating</span> meat this month—I'm trying something new.
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            I<span class="gc-text-purple" style="font-weight: 600">'m not eating</span> meat this month—I'm trying something new.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            He <span style="color: #8b5cf6; font-weight: 600;">isn't taking</span> the early shift this week.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            He <span class="gc-text-purple" style="font-weight: 600">isn't taking</span> the early shift this week.
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            They <span style="color: #8b5cf6; font-weight: 600;">aren't going</span> to the party tonight.
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            They <span class="gc-text-purple" style="font-weight: 600">aren't going</span> to the party tonight.
                         </div>
                     </div>
                 </div>
@@ -811,20 +811,20 @@ export const presentContinuousContent: InteractiveGuideContent = {
             explanation: `
                 <p>Flip am/is/are to the front to ask about actions in progress.</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="font-size: 1.5rem;">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
+                        <span style="font-size: 1.5rem">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Are</span> you <span style="color: #8b5cf6; font-weight: 600;">coming</span> to dinner tonight?
+                    <div style="display: flex; flex-direction: column; gap: 1rem">
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-purple" style="font-weight: 600">Are</span> you <span class="gc-text-purple" style="font-weight: 600">coming</span> to dinner tonight?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Is</span> he <span style="color: #8b5cf6; font-weight: 600;">watching</span> the game?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-purple" style="font-weight: 600">Is</span> he <span class="gc-text-purple" style="font-weight: 600">watching</span> the game?
                         </div>
-                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Are</span> they <span style="color: #8b5cf6; font-weight: 600;">making</span> pizza for everyone?
+                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
+                            <span class="gc-text-purple" style="font-weight: 600">Are</span> they <span class="gc-text-purple" style="font-weight: 600">making</span> pizza for everyone?
                         </div>
                     </div>
                 </div>

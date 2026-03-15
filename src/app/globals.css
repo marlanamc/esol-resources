@@ -2349,6 +2349,171 @@ textarea {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   Grammar Semantic Classes (Light Mode Base Definitions)
+   These provide the default light-mode styles for grammar content.
+   Dark mode overrides are below.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Background Classes ── */
+.grammar-reader-container .explanation-content .gc-bg-white {
+  background: white;
+}
+.grammar-reader-container .explanation-content .gc-bg-slate {
+  background: #f8fafc;
+}
+.grammar-reader-container .explanation-content .gc-bg-yellow {
+  background: #fef9c3;
+}
+.grammar-reader-container .explanation-content .gc-bg-amber {
+  background: #fef3c7;
+}
+.grammar-reader-container .explanation-content .gc-bg-orange {
+  background: #fff7ed;
+}
+.grammar-reader-container .explanation-content .gc-bg-red {
+  background: #fef2f2;
+}
+.grammar-reader-container .explanation-content .gc-bg-green {
+  background: #f0fdf4;
+}
+.grammar-reader-container .explanation-content .gc-bg-blue {
+  background: #eff6ff;
+}
+.grammar-reader-container .explanation-content .gc-bg-cyan {
+  background: #ecfeff;
+}
+.grammar-reader-container .explanation-content .gc-bg-violet {
+  background: #ede9fe;
+}
+.grammar-reader-container .explanation-content .gc-bg-slate-300 {
+  background: #cbd5e1;
+}
+
+/* ── Background Alpha Tints ── */
+.grammar-reader-container .explanation-content .gc-bg-terracotta-alpha {
+  background: rgba(200, 107, 81, 0.1);
+}
+.grammar-reader-container .explanation-content .gc-bg-sage-alpha {
+  background: rgba(110, 145, 118, 0.1);
+}
+.grammar-reader-container .explanation-content .gc-bg-cyan-alpha {
+  background: rgba(6, 182, 212, 0.1);
+}
+.grammar-reader-container .explanation-content .gc-bg-purple-alpha {
+  background: rgba(139, 92, 246, 0.1);
+}
+.grammar-reader-container .explanation-content .gc-bg-orange-alpha {
+  background: rgba(249, 115, 22, 0.1);
+}
+.grammar-reader-container .explanation-content .gc-bg-amber-alpha {
+  background: rgba(245, 158, 11, 0.1);
+}
+.grammar-reader-container .explanation-content .gc-bg-green-alpha {
+  background: rgba(34, 197, 94, 0.1);
+}
+.grammar-reader-container .explanation-content .gc-bg-blue-alpha {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* ── Gradient Classes ── */
+.grammar-reader-container .explanation-content .gc-grad-terracotta {
+  background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%);
+}
+.grammar-reader-container .explanation-content .gc-grad-amber {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+}
+.grammar-reader-container .explanation-content .gc-grad-purple {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+}
+.grammar-reader-container .explanation-content .gc-grad-cyan {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+}
+.grammar-reader-container .explanation-content .gc-grad-green {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+}
+.grammar-reader-container .explanation-content .gc-grad-red {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+}
+.grammar-reader-container .explanation-content .gc-grad-violet {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(14, 165, 233, 0.15) 100%);
+}
+
+/* ── Callout Borders ── */
+.grammar-reader-container .explanation-content .gc-callout-amber {
+  border-left: 4px solid #f59e0b;
+}
+.grammar-reader-container .explanation-content .gc-callout-cyan {
+  border-left: 4px solid #06b6d4;
+}
+.grammar-reader-container .explanation-content .gc-callout-green {
+  border-left: 4px solid #22c55e;
+}
+.grammar-reader-container .explanation-content .gc-callout-red {
+  border-left: 4px solid #ef4444;
+}
+.grammar-reader-container .explanation-content .gc-callout-purple {
+  border-left: 4px solid #a855f7;
+}
+.grammar-reader-container .explanation-content .gc-callout-blue {
+  border-left: 4px solid #3b82f6;
+}
+.grammar-reader-container .explanation-content .gc-callout-sage {
+  border-left: 4px solid #7ba884;
+}
+.grammar-reader-container .explanation-content .gc-callout-terracotta {
+  border-left: 4px solid #d97757;
+}
+.grammar-reader-container .explanation-content .gc-callout-orange {
+  border-left: 4px solid #f97316;
+}
+.grammar-reader-container .explanation-content .gc-callout-emerald {
+  border-left: 4px solid #10b981;
+}
+.grammar-reader-container .explanation-content .gc-callout-top {
+  border-top-width: 4px;
+  border-top-style: solid;
+}
+.grammar-reader-container .explanation-content .gc-callout-top.gc-callout-amber {
+  border-top-color: #f59e0b;
+  border-left: none;
+}
+
+/* ── Text Colors ── */
+.grammar-reader-container .explanation-content .gc-text-amber {
+  color: #f59e0b;
+}
+.grammar-reader-container .explanation-content .gc-text-terracotta {
+  color: #d97757;
+}
+.grammar-reader-container .explanation-content .gc-text-sage {
+  color: #7ba884;
+}
+.grammar-reader-container .explanation-content .gc-text-cyan {
+  color: #06b6d4;
+}
+.grammar-reader-container .explanation-content .gc-text-purple {
+  color: #8b5cf6;
+}
+.grammar-reader-container .explanation-content .gc-text-red {
+  color: #ef4444;
+}
+.grammar-reader-container .explanation-content .gc-text-green {
+  color: #22c55e;
+}
+.grammar-reader-container .explanation-content .gc-text-blue {
+  color: #3b82f6;
+}
+.grammar-reader-container .explanation-content .gc-text-muted {
+  color: #6b7280;
+}
+.grammar-reader-container .explanation-content .gc-text-white {
+  color: white;
+}
+.grammar-reader-container .explanation-content .gc-text-dark {
+  color: #1f2937;
+}
+
+/* ═══════════════════════════════════════════════════════════
    Grammar Dark-Mode Overrides (class-based)
    Classes are injected at runtime by applyGrammarDarkClasses()
    instead of using expensive [style*="…"] attribute selectors.
@@ -2791,6 +2956,56 @@ textarea {
 /* ── Shadow ── */
 .dark .grammar-reader-container .explanation-content .gc-shadow-inset {
   box-shadow: inset 0 0 0 1px rgba(127, 179, 213, 0.12) !important;
+}
+
+/* ── Border overrides ── */
+/* ── Additional Text Colors (for migration script) ── */
+.dark .grammar-reader-container .explanation-content .gc-text-green {
+  color: #86efac !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-text-blue {
+  color: #93c5fd !important;
+}
+
+/* ── Additional Background Alpha Tints (for migration script) ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-green-alpha {
+  background: rgba(22, 45, 35, 0.78) !important;
+  border-color: rgba(34, 197, 94, 0.4) !important;
+  color: var(--color-text) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-green-alpha * {
+  color: var(--color-text) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-blue-alpha {
+  background: rgba(25, 35, 55, 0.78) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  color: var(--color-text) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-blue-alpha * {
+  color: var(--color-text) !important;
+}
+
+/* ── Additional Callout Borders (for migration script) ── */
+.dark .grammar-reader-container .explanation-content .gc-callout-sage {
+  background: rgba(22, 45, 35, 0.85) !important;
+  border-left-color: rgba(123, 168, 132, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-sage * {
+  color: var(--color-text) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-terracotta {
+  background: rgba(40, 30, 25, 0.85) !important;
+  border-left-color: rgba(217, 119, 87, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-terracotta * {
+  color: var(--color-text) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-cyan {
+  background: rgba(22, 40, 50, 0.85) !important;
+  border-left-color: rgba(6, 182, 212, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-cyan * {
+  color: var(--color-text) !important;
 }
 
 /* ── Border overrides ── */

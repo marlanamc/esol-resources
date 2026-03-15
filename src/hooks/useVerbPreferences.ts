@@ -1,12 +1,13 @@
 /**
- * useVerbPreferences Hook
- * Manages user preferences for the Irregular Verbs game
- * Currently: hideVerbExplanations toggle
+ * Manages user preferences for the Irregular Verbs game (e.g. hide verb explanations).
+ * Fetches from and persists to the user preferences API; supports optimistic updates.
+ * @returns preferences object, loading/error state, and updaters (toggleHideExplanations, updatePreference)
  */
 
 'use client';
 
 import { useState, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 
 interface VerbPreferences {
   hideVerbExplanations: boolean;
@@ -49,7 +50,7 @@ export function useVerbPreferences() {
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unknown error';
       setError(message);
-      console.error('Error fetching preferences:', err);
+      logger.error('Error fetching preferences', err);
     } finally {
       setLoading(false);
     }
@@ -95,7 +96,7 @@ export function useVerbPreferences() {
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unknown error';
       setError(message);
-      console.error('Error updating preferences:', err);
+      logger.error('Error updating preferences', err);
     }
   }
 
@@ -138,7 +139,7 @@ export function useVerbPreferences() {
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unknown error';
       setError(message);
-      console.error('Error updating preference:', err);
+      logger.error('Error updating preference', err);
     }
   }
 

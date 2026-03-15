@@ -4,6 +4,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
+import { logger } from '@/lib/logger';
 
 interface Activity {
     id: string;
@@ -335,7 +336,7 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                 window.location.reload();
             }
         } catch (error) {
-            console.error(error);
+            logger.error('Failed to update release status', error);
             const activityType = isSpeaking ? 'speaking activity' : isGrammarGuide ? 'grammar guide' : 'quiz';
             alert(`Failed to update ${activityType} release status`);
         }
@@ -359,7 +360,7 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
 
             if (!res.ok) {
                 const data = await res.json().catch((err) => {
-                    console.warn("Failed to parse API error response", err);
+                    logger.warn('Failed to parse API error response', { err });
                     return {};
                 });
                 throw new Error(data.error || 'Failed to assign activity');
@@ -399,7 +400,7 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
 
             if (!res.ok) {
                 const data = await res.json().catch((err) => {
-                    console.warn("Failed to parse API error response", err);
+                    logger.warn('Failed to parse API error response', { err });
                     return {};
                 });
                 throw new Error(data.error || 'Failed to unassign activity');

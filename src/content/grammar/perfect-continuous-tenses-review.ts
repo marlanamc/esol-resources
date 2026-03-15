@@ -10,28 +10,28 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
             title: "Perfect Continuous Tenses Review: Duration Across Time",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 50%, rgba(6, 182, 212, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Perfect Continuous tenses combine <strong>duration</strong> (how long) with <strong>connection to another time</strong>. They answer: "How long has/had/will this have been happening?"</p>
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(245, 158, 11, 0.1) 50%, rgba(6, 182, 212, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
+                    <p style="font-size: 1.125rem; margin-bottom: 0">Perfect Continuous tenses combine <strong>duration</strong> (how long) with <strong>connection to another time</strong>. They answer: "How long has/had/will this have been happening?"</p>
                 </div>
 
                 <h3>The Three Perfect Continuous Tenses</h3>
-                <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(99, 102, 241, 0.1); border-left: 4px solid #6366f1; border-radius: 0.25rem;">
-                        <strong style="color: #6366f1;">Present Perfect Continuous:</strong> Duration up to NOW<br/>
-                        <span style="font-size: 0.9rem; color: #64748b;">"I have been working here for 5 years." (still working)</span>
+                <ul style="list-style: none; padding-left: 0; margin: 0">
+                    <li style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(99, 102, 241, 0.1); border-left: 4px solid #6366f1; border-radius: 0.25rem">
+                        <strong style="color: #6366f1">Present Perfect Continuous:</strong> Duration up to NOW<br/>
+                        <span class="gc-text-muted" style="font-size: 0.9rem; ">"I have been working here for 5 years." (still working)</span>
                     </li>
-                    <li style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
-                        <strong style="color: #f59e0b;">Past Perfect Continuous:</strong> Duration before a past event<br/>
-                        <span style="font-size: 0.9rem; color: #64748b;">"I had been waiting for an hour when the bus came." (waiting before bus)</span>
+                    <li class="gc-bg-amber-alpha gc-callout-amber" style="padding: 0.75rem; margin: 0.5rem 0; ; ; border-radius: 0.25rem">
+                        <strong class="gc-text-amber">Past Perfect Continuous:</strong> Duration before a past event<br/>
+                        <span class="gc-text-muted" style="font-size: 0.9rem; ">"I had been waiting for an hour when the bus came." (waiting before bus)</span>
                     </li>
-                    <li style="padding: 0.75rem; margin: 0.5rem 0; background: rgba(6, 182, 212, 0.1); border-left: 4px solid #06b6d4; border-radius: 0.25rem;">
-                        <strong style="color: #06b6d4;">Future Perfect Continuous:</strong> Duration up to a future point<br/>
-                        <span style="font-size: 0.9rem; color: #64748b;">"By June, I will have been working here for 10 years." (milestone)</span>
+                    <li class="gc-bg-cyan-alpha gc-callout-cyan" style="padding: 0.75rem; margin: 0.5rem 0; ; ; border-radius: 0.25rem">
+                        <strong class="gc-text-cyan">Future Perfect Continuous:</strong> Duration up to a future point<br/>
+                        <span class="gc-text-muted" style="font-size: 0.9rem; ">"By June, I will have been working here for 10 years." (milestone)</span>
                     </li>
                 </ul>
 
-                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p style="margin: 0; font-weight: 600;">📝 The Pattern: <span style="font-size: 1.125rem;">have/has/had/will have + been + verb-ing</span></p>
+                <div class="gc-bg-white" style="9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
+                    <p style="margin: 0; font-weight: 600">📝 The Pattern: <span style="font-size: 1.125rem">have/has/had/will have + been + verb-ing</span></p>
                 </div>
             `,
             exercises: [
@@ -81,82 +81,82 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
             title: "Timeline: Duration Bars Across Time",
             icon: "⏰",
             explanation: `
-                <div style="max-width: 750px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(245, 158, 11, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%); border-radius: 12px; border: 2px solid rgba(139, 92, 246, 0.2);">
-                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: #2b3a4a; font-weight: 600;">
+                <div style="max-width: 750px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(245, 158, 11, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%); border-radius: 12px; border: 2px solid rgba(139, 92, 246, 0.2)">
+                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: #2b3a4a; font-weight: 600">
                         Perfect Continuous = Duration bars connecting to reference points
                     </p>
 
                     <!-- Three duration bars stacked -->
-                    <div style="display: flex; flex-direction: column; gap: 2rem; margin: 2rem 0;">
+                    <div style="display: flex; flex-direction: column; gap: 2rem; margin: 2rem 0">
 
                         <!-- Past Perfect Continuous -->
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="min-width: 140px; text-align: right;">
-                                <div style="font-weight: 700; color: #f59e0b; font-size: 0.8rem;">PAST PERFECT</div>
-                                <div style="font-weight: 700; color: #f59e0b; font-size: 0.8rem;">CONTINUOUS</div>
+                        <div style="display: flex; align-items: center; gap: 1rem">
+                            <div style="min-width: 140px; text-align: right">
+                                <div class="gc-text-amber" style="font-weight: 700; ; font-size: 0.8rem">PAST PERFECT</div>
+                                <div class="gc-text-amber" style="font-weight: 700; ; font-size: 0.8rem">CONTINUOUS</div>
                             </div>
-                            <div style="flex: 1; position: relative; height: 40px;">
+                            <div style="flex: 1; position: relative; height: 40px">
                                 <!-- Duration bar -->
-                                <div style="position: absolute; left: 0; right: 30%; top: 50%; height: 30px; background: linear-gradient(to right, rgba(245, 158, 11, 0.3), rgba(245, 158, 11, 0.9)); border-radius: 15px; transform: translateY(-50%); border: 2px solid #f59e0b;">
-                                    <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.7rem; color: #92400e; font-weight: 600;">had been + -ing</span>
+                                <div style="position: absolute; left: 0; right: 30%; top: 50%; height: 30px; background: linear-gradient(to right, rgba(245, 158, 11, 0.3), rgba(245, 158, 11, 0.9)); border-radius: 15px; transform: translateY(-50%); border: 2px solid #f59e0b">
+                                    <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.7rem; color: #92400e; font-weight: 600">had been + -ing</span>
                                 </div>
                                 <!-- Past event marker -->
-                                <div style="position: absolute; right: 30%; top: 50%; transform: translate(50%, -50%); width: 20px; height: 20px; background: #8b5cf6; border-radius: 50%; border: 2px solid white;"></div>
+                                <div style="position: absolute; right: 30%; top: 50%; transform: translate(50%, -50%); width: 20px; height: 20px; background: #8b5cf6; border-radius: 50%; border: 2px solid white"></div>
                                 <!-- NOW marker -->
-                                <div style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; background: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.5rem; font-weight: 600;">NOW</div>
+                                <div style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; background: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.5rem; font-weight: 600">NOW</div>
                             </div>
                         </div>
 
                         <!-- Present Perfect Continuous -->
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="min-width: 140px; text-align: right;">
-                                <div style="font-weight: 700; color: #6366f1; font-size: 0.8rem;">PRESENT PERFECT</div>
-                                <div style="font-weight: 700; color: #6366f1; font-size: 0.8rem;">CONTINUOUS</div>
+                        <div style="display: flex; align-items: center; gap: 1rem">
+                            <div style="min-width: 140px; text-align: right">
+                                <div style="font-weight: 700; color: #6366f1; font-size: 0.8rem">PRESENT PERFECT</div>
+                                <div style="font-weight: 700; color: #6366f1; font-size: 0.8rem">CONTINUOUS</div>
                             </div>
-                            <div style="flex: 1; position: relative; height: 40px;">
+                            <div style="flex: 1; position: relative; height: 40px">
                                 <!-- Duration bar -->
-                                <div style="position: absolute; left: 20%; right: 0; top: 50%; height: 30px; background: linear-gradient(to right, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.9)); border-radius: 15px; transform: translateY(-50%); border: 2px solid #6366f1;">
-                                    <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.7rem; color: #4338ca; font-weight: 600;">have/has been + -ing</span>
+                                <div style="position: absolute; left: 20%; right: 0; top: 50%; height: 30px; background: linear-gradient(to right, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.9)); border-radius: 15px; transform: translateY(-50%); border: 2px solid #6366f1">
+                                    <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.7rem; color: #4338ca; font-weight: 600">have/has been + -ing</span>
                                 </div>
                                 <!-- NOW marker (pulsing) -->
-                                <div style="position: absolute; right: 0; top: 50%; transform: translate(50%, -50%); width: 35px; height: 35px; background: #6366f1; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3); display: flex; align-items: center; justify-content: center; font-size: 0.5rem; font-weight: 600; color: white;">NOW</div>
+                                <div style="position: absolute; right: 0; top: 50%; transform: translate(50%, -50%); width: 35px; height: 35px; background: #6366f1; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3); display: flex; align-items: center; justify-content: center; font-size: 0.5rem; font-weight: 600; color: white">NOW</div>
                             </div>
                         </div>
 
                         <!-- Future Perfect Continuous -->
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="min-width: 140px; text-align: right;">
-                                <div style="font-weight: 700; color: #06b6d4; font-size: 0.8rem;">FUTURE PERFECT</div>
-                                <div style="font-weight: 700; color: #06b6d4; font-size: 0.8rem;">CONTINUOUS</div>
+                        <div style="display: flex; align-items: center; gap: 1rem">
+                            <div style="min-width: 140px; text-align: right">
+                                <div class="gc-text-cyan" style="font-weight: 700; ; font-size: 0.8rem">FUTURE PERFECT</div>
+                                <div class="gc-text-cyan" style="font-weight: 700; ; font-size: 0.8rem">CONTINUOUS</div>
                             </div>
-                            <div style="flex: 1; position: relative; height: 40px;">
+                            <div style="flex: 1; position: relative; height: 40px">
                                 <!-- Duration bar -->
-                                <div style="position: absolute; left: 10%; right: 10%; top: 50%; height: 30px; background: linear-gradient(to right, rgba(6, 182, 212, 0.3), rgba(6, 182, 212, 0.9)); border-radius: 15px; transform: translateY(-50%); border: 2px solid #06b6d4;">
-                                    <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.7rem; color: #0e7490; font-weight: 600;">will have been + -ing</span>
+                                <div style="position: absolute; left: 10%; right: 10%; top: 50%; height: 30px; background: linear-gradient(to right, rgba(6, 182, 212, 0.3), rgba(6, 182, 212, 0.9)); border-radius: 15px; transform: translateY(-50%); border: 2px solid #06b6d4">
+                                    <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.7rem; color: #0e7490; font-weight: 600">will have been + -ing</span>
                                 </div>
                                 <!-- NOW marker -->
-                                <div style="position: absolute; left: 30%; top: 50%; transform: translate(-50%, -50%); width: 25px; height: 25px; background: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.45rem; font-weight: 600;">NOW</div>
+                                <div style="position: absolute; left: 30%; top: 50%; transform: translate(-50%, -50%); width: 25px; height: 25px; background: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.45rem; font-weight: 600">NOW</div>
                                 <!-- Future point marker -->
-                                <div style="position: absolute; right: 10%; top: 50%; transform: translate(50%, -50%); width: 35px; height: 35px; background: #06b6d4; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.3); display: flex; align-items: center; justify-content: center; font-size: 0.45rem; font-weight: 600; color: white;">BY</div>
+                                <div style="position: absolute; right: 10%; top: 50%; transform: translate(50%, -50%); width: 35px; height: 35px; background: #06b6d4; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.3); display: flex; align-items: center; justify-content: center; font-size: 0.45rem; font-weight: 600; color: white">BY</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Example sentences -->
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 2rem;">
-                        <div style="background: rgba(245, 158, 11, 0.1); padding: 0.6rem; border-radius: 6px; border-left: 3px solid #f59e0b;">
-                            <div style="font-size: 0.75rem; color: #2b3a4a; line-height: 1.3;">
-                                I <span style="color: #f59e0b; font-weight: 700;">had been waiting</span> for an hour when...
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 2rem">
+                        <div class="gc-bg-amber-alpha" style="padding: 0.6rem; border-radius: 6px; border-left: 3px solid #f59e0b">
+                            <div style="font-size: 0.75rem; color: #2b3a4a; line-height: 1.3">
+                                I <span class="gc-text-amber" style="font-weight: 700">had been waiting</span> for an hour when...
                             </div>
                         </div>
-                        <div style="background: rgba(99, 102, 241, 0.1); padding: 0.6rem; border-radius: 6px; border-left: 3px solid #6366f1;">
-                            <div style="font-size: 0.75rem; color: #2b3a4a; line-height: 1.3;">
-                                I <span style="color: #6366f1; font-weight: 700;">have been working</span> here for 5 years.
+                        <div style="background: rgba(99, 102, 241, 0.1); padding: 0.6rem; border-radius: 6px; border-left: 3px solid #6366f1">
+                            <div style="font-size: 0.75rem; color: #2b3a4a; line-height: 1.3">
+                                I <span style="color: #6366f1; font-weight: 700">have been working</span> here for 5 years.
                             </div>
                         </div>
-                        <div style="background: rgba(6, 182, 212, 0.1); padding: 0.6rem; border-radius: 6px; border-left: 3px solid #06b6d4;">
-                            <div style="font-size: 0.75rem; color: #2b3a4a; line-height: 1.3;">
-                                By June, I <span style="color: #06b6d4; font-weight: 700;">will have been working</span> here for 10 years.
+                        <div class="gc-bg-cyan-alpha" style="padding: 0.6rem; border-radius: 6px; border-left: 3px solid #06b6d4">
+                            <div style="font-size: 0.75rem; color: #2b3a4a; line-height: 1.3">
+                                By June, I <span class="gc-text-cyan" style="font-weight: 700">will have been working</span> here for 10 years.
                             </div>
                         </div>
                     </div>
@@ -417,26 +417,26 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                 <h3>The Formulas</h3>
                 <p>All Perfect Continuous tenses follow the same pattern: <strong>helping verb 'have' + been + verb-ing</strong></p>
 
-                <div style="display: grid; gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #6366f1;">Present Perfect Continuous</h4>
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Positive:</strong> Subject + have/has been + verb-ing</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Negative:</strong> Subject + haven't/hasn't been + verb-ing</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Question:</strong> Have/Has + subject + been + verb-ing?</p>
+                <div style="display: grid; gap: 1rem; margin: 1.5rem 0">
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #6366f1">Present Perfect Continuous</h4>
+                        <p style="margin: 0; font-size: 0.9rem"><strong>Positive:</strong> Subject + have/has been + verb-ing</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Negative:</strong> Subject + haven't/hasn't been + verb-ing</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Question:</strong> Have/Has + subject + been + verb-ing?</p>
                     </div>
 
-                    <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #f59e0b;">Past Perfect Continuous</h4>
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Positive:</strong> Subject + had been + verb-ing</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Negative:</strong> Subject + hadn't been + verb-ing</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Question:</strong> Had + subject + been + verb-ing?</p>
+                    <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 class="gc-text-amber" style="margin: 0 0 0.5rem 0; ">Past Perfect Continuous</h4>
+                        <p style="margin: 0; font-size: 0.9rem"><strong>Positive:</strong> Subject + had been + verb-ing</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Negative:</strong> Subject + hadn't been + verb-ing</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Question:</strong> Had + subject + been + verb-ing?</p>
                     </div>
 
-                    <div style="background: rgba(6, 182, 212, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #06b6d4;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #06b6d4;">Future Perfect Continuous</h4>
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Positive:</strong> Subject + will have been + verb-ing</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Negative:</strong> Subject + won't have been + verb-ing</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Question:</strong> Will + subject + have been + verb-ing?</p>
+                    <div class="gc-bg-cyan-alpha gc-callout-cyan" style="padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 class="gc-text-cyan" style="margin: 0 0 0.5rem 0; ">Future Perfect Continuous</h4>
+                        <p style="margin: 0; font-size: 0.9rem"><strong>Positive:</strong> Subject + will have been + verb-ing</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Negative:</strong> Subject + won't have been + verb-ing</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Question:</strong> Will + subject + have been + verb-ing?</p>
                     </div>
                 </div>
             `,
@@ -529,30 +529,30 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Watch Out for These Errors!</h3>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 1: Missing 'been'</h4>
-                    <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">"I have working here for 5 years."</span></p>
-                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">"I have <strong>been</strong> working here for 5 years."</span></p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 1: Missing 'been'</h4>
+                    <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">"I have working here for 5 years."</span></p>
+                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400">"I have <strong>been</strong> working here for 5 years."</span></p>
                 </div>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 2: Wrong verb form (not -ing)</h4>
-                    <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">"I have been work here."</span></p>
-                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">"I have been work<strong>ing</strong> here."</span></p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 2: Wrong verb form (not -ing)</h4>
+                    <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">"I have been work here."</span></p>
+                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400">"I have been work<strong>ing</strong> here."</span></p>
                 </div>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 3: For vs Since confusion</h4>
-                    <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">"I have been working here since 5 years."</span></p>
-                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">"I have been working here <strong>for</strong> 5 years."</span></p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">FOR = duration (5 years). SINCE = starting point (2019).</p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 3: For vs Since confusion</h4>
+                    <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">"I have been working here since 5 years."</span></p>
+                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400">"I have been working here <strong>for</strong> 5 years."</span></p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151">FOR = duration (5 years). SINCE = starting point (2019).</p>
                 </div>
 
-                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 4: Using with stative verbs</h4>
-                    <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">"I have been knowing him for years."</span></p>
-                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">"I have <strong>known</strong> him for years."</span></p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">Stative verbs (know, believe, love, want) don't use continuous forms.</p>
+                <div class="gc-bg-white gc-callout-red" style="afa; border: 1px solid #ef4444; ; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b">❌ Mistake 4: Using with stative verbs</h4>
+                    <p style="margin: 0; color: #b91c1c; font-weight: 600">Wrong: <span style="font-weight: 400">"I have been knowing him for years."</span></p>
+                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600">Correct: <span style="font-weight: 400">"I have <strong>known</strong> him for years."</span></p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151">Stative verbs (know, believe, love, want) don't use continuous forms.</p>
                 </div>
             `,
             exercises: [
@@ -645,26 +645,26 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Quick Reference</h3>
 
-                <div style="display: grid; gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #6366f1;">Present Perfect Continuous</h4>
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Form:</strong> have/has been + verb-ing</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Use:</strong> Duration up to NOW</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Example:</strong> "I have been working here for 5 years."</p>
+                <div style="display: grid; gap: 1rem; margin: 1.5rem 0">
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #6366f1">Present Perfect Continuous</h4>
+                        <p style="margin: 0; font-size: 0.9rem"><strong>Form:</strong> have/has been + verb-ing</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Use:</strong> Duration up to NOW</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Example:</strong> "I have been working here for 5 years."</p>
                     </div>
 
-                    <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #f59e0b;">Past Perfect Continuous</h4>
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Form:</strong> had been + verb-ing</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Use:</strong> Duration before a PAST event</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Example:</strong> "I had been waiting for an hour when the bus came."</p>
+                    <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 class="gc-text-amber" style="margin: 0 0 0.5rem 0; ">Past Perfect Continuous</h4>
+                        <p style="margin: 0; font-size: 0.9rem"><strong>Form:</strong> had been + verb-ing</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Use:</strong> Duration before a PAST event</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Example:</strong> "I had been waiting for an hour when the bus came."</p>
                     </div>
 
-                    <div style="background: rgba(6, 182, 212, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #06b6d4;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #06b6d4;">Future Perfect Continuous</h4>
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Form:</strong> will have been + verb-ing</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Use:</strong> Duration by a FUTURE point</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Example:</strong> "By June, I will have been working here for 10 years."</p>
+                    <div class="gc-bg-cyan-alpha gc-callout-cyan" style="padding: 1rem; border-radius: 0.5rem; ">
+                        <h4 class="gc-text-cyan" style="margin: 0 0 0.5rem 0; ">Future Perfect Continuous</h4>
+                        <p style="margin: 0; font-size: 0.9rem"><strong>Form:</strong> will have been + verb-ing</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Use:</strong> Duration by a FUTURE point</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem"><strong>Example:</strong> "By June, I will have been working here for 10 years."</p>
                     </div>
                 </div>
 

@@ -5,8 +5,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { canManageClass } from "@/lib/policies";
 import { requireTeacher } from "@/lib/api-auth";
-import { ApiErrors } from "@/lib/api-response";
-import { logger } from "@/lib/logger";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 
 const MAX_ANNOUNCEMENT_LENGTH = 1000;
 const MAX_CLASS_NAME_LENGTH = 200;
@@ -32,23 +31,23 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
             rawName !== undefined || rawDescription !== undefined || rawSectionSourceClassId !== undefined;
 
         if (rawAnnouncement !== null && rawAnnouncement !== undefined && typeof rawAnnouncement !== "string") {
-            return NextResponse.json({ error: "Announcement must be a string or null" }, { status: 400 });
+            return apiError("Announcement must be a string or null", 400);
         }
         if (rawName !== undefined && typeof rawName !== "string") {
-            return NextResponse.json({ error: "Class name must be a string" }, { status: 400 });
+            return apiError("Class name must be a string", 400);
         }
         if (rawDescription !== undefined && rawDescription !== null && typeof rawDescription !== "string") {
-            return NextResponse.json({ error: "Description must be a string or null" }, { status: 400 });
+            return apiError("Description must be a string or null", 400);
         }
         if (
             rawSectionSourceClassId !== undefined &&
             rawSectionSourceClassId !== null &&
             typeof rawSectionSourceClassId !== "string"
         ) {
-            return NextResponse.json({ error: "sectionSourceClassId must be a string or null" }, { status: 400 });
+            return apiError("sectionSourceClassId must be a string or null", 400);
         }
         if (rawAnnouncement === undefined && !hasClassMetaUpdate) {
-            return NextResponse.json({ error: "No updates provided" }, { status: 400 });
+            return apiError("No updates provided", 400);
         }
 
         const cleanedAnnouncement =
@@ -60,21 +59,18 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
             typeof rawSectionSourceClassId === "string" ? rawSectionSourceClassId.trim() || null : rawSectionSourceClassId;
 
         if (cleanedAnnouncement && cleanedAnnouncement.length > MAX_ANNOUNCEMENT_LENGTH) {
-            return NextResponse.json(
-                { error: `Announcement is too long (max ${MAX_ANNOUNCEMENT_LENGTH} characters)` },
-                { status: 400 }
-            );
+            return apiError(`Announcement is too long (max ${MAX_ANNOUNCEMENT_LENGTH} characters)`, 400);
         }
         if (cleanedName !== undefined) {
             if (!cleanedName) {
-                return NextResponse.json({ error: "Class name is required" }, { status: 400 });
+                return apiError("Class name is required", 400);
             }
             if (cleanedName.length > MAX_CLASS_NAME_LENGTH) {
-                return NextResponse.json({ error: "Class name too long" }, { status: 400 });
+                return apiError("Class name too long", 400);
             }
         }
         if (id === normalizedSectionSourceClassId) {
-            return NextResponse.json({ error: "A class cannot be its own section source" }, { status: 400 });
+            return apiError("A class cannot be its own section source", 400);
         }
 
         const existingClass = await prisma.class.findUnique({
@@ -152,14 +148,16 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
         });
 
         return NextResponse.json(updatedClass);
-    } catch (error: unknown) {
+    } catch (error) {
         if (error instanceof Error && error.message === "SOURCE_CLASS_NOT_FOUND") {
             return ApiErrors.notFound("Section source class");
         }
         if (error instanceof Error && error.message === "FORBIDDEN_SOURCE_CLASS") {
             return ApiErrors.forbidden();
         }
-        logger.error("Error updating class", error);
-        return ApiErrors.internal("Failed to update class");
+        return handleApiError(error, {
+            defaultMessage: "Failed to update class",
+            path: request.url,
+        });
     }
 }
