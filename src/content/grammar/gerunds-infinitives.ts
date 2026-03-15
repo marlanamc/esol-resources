@@ -6,66 +6,425 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
   sections: [
     {
       id: "introduction",
-      title: "Gerunds & Infinitives: The -ING vs TO Choice",
+      title: "The -ING vs TO Choice: See the Pattern First",
       icon: "🔄",
       explanation: `
         <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.1) 0%, rgba(3, 105, 161, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-          <h3 style="margin-top: 0; color: #d97757; font-size: 1.25rem;">🎯 The Big Idea</h3>
-          <p style="font-size: 1.05rem; margin-bottom: 0;">English verbs can act like nouns, but you must choose: add <strong style="color: #d97757;">-ING</strong> (gerund) or add <strong style="color: #0369a1;">TO</strong> (infinitive). The secret? <strong>Look at what comes BEFORE the verb</strong>. That tells you which form to use!</p>
+          <h3 style="margin-top: 0; color: #d97757; font-size: 1.25rem;">🎯 What We're Learning</h3>
+          <p style="font-size: 1.05rem; margin-bottom: 0;">Sometimes you put another verb right after a word. English gives you two choices: add <strong style="color: #d97757;">-ING</strong> or add <strong style="color: #0369a1;">TO</strong> before the verb. Before we learn any grammar words, let's <strong>see the pattern and feel confident using it</strong>.</p>
         </div>
 
-        <p><strong>What You'll Learn:</strong></p>
-        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem;">
-          <tr>
-            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(217, 119, 87, 0.08);"><strong style="color: #d97757;">Gerund as Subject</strong><br/><span style="color: #666;">"Swimming is fun"</span></td>
-            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(217, 119, 87, 0.08);"><strong style="color: #d97757;">Verb + Gerund</strong><br/><span style="color: #666;">"I enjoy reading"</span></td>
-            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(217, 119, 87, 0.08);"><strong style="color: #d97757;">Preposition + Gerund</strong><br/><span style="color: #666;">"interested in learning"</span></td>
-          </tr>
-          <tr>
-            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(3, 105, 161, 0.08);"><strong style="color: #0369a1;">Adjective + Infinitive</strong><br/><span style="color: #666;">"happy to help"</span></td>
-            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(3, 105, 161, 0.08);"><strong style="color: #0369a1;">Noun + Infinitive</strong><br/><span style="color: #666;">"ability to speak"</span></td>
-            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(3, 105, 161, 0.08);"><strong style="color: #0369a1;">Verb + Infinitive</strong><br/><span style="color: #666;">"I want to travel"</span></td>
-          </tr>
-          <tr>
-            <td colspan="3" style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(244, 211, 94, 0.15); text-align: center;"><strong style="color: #b8860b;">Special Cases:</strong> Verbs that take BOTH (stop, remember, try) with meaning changes</td>
-          </tr>
-        </table>
+        <p><strong>Here are examples. Notice what stays the same and what changes:</strong></p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+          <div style="padding: 1rem; background: rgba(217, 119, 87, 0.08); border-left: 4px solid #d97757; border-radius: 0.5rem;">
+            <p style="margin: 0 0 0.5rem 0; font-weight: 600;">The -ING form:</p>
+            <p style="margin: 0;"><strong>Reading</strong> is fun. <em>(verb as subject)</em></p>
+            <p style="margin: 0;">I enjoy <strong>reading</strong>.</p>
+            <p style="margin: 0;">I finished <strong>working</strong>.</p>
+            <p style="margin: 0;">I like <strong>cooking</strong>.</p>
+          </div>
+          <div style="padding: 1rem; background: rgba(3, 105, 161, 0.08); border-left: 4px solid #0369a1; border-radius: 0.5rem;">
+            <p style="margin: 0 0 0.5rem 0; font-weight: 600;">The TO + verb form:</p>
+            <p style="margin: 0;">I want <strong>to learn</strong>.</p>
+            <p style="margin: 0;">I'm happy <strong>to help</strong>. <em>(adjective before)</em></p>
+            <p style="margin: 0;">I plan <strong>to study</strong>.</p>
+            <p style="margin: 0;">I need <strong>to practice</strong>.</p>
+          </div>
+        </div>
 
-        <div style="background: rgba(3, 105, 161, 0.1); border-left: 4px solid #0369a1; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-          <h3 style="color: #0369a1; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-          <p style="margin-bottom: 0.5rem;"><strong>In daily life:</strong></p>
-          <ul style="margin: 0.5rem 0 0 0;">
-            <li>Talking about hobbies and interests</li>
-            <li>Making plans and setting goals</li>
-            <li>Expressing feelings and preferences</li>
-            <li>Giving thanks and showing appreciation</li>
-          </ul>
-          <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💡 The pattern BEFORE the verb tells you which form to use!</p>
+        <div style="background: rgba(123, 168, 132, 0.1); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+          <p style="margin: 0; font-style: italic; color: #3a3a3a;">💡 Use -ING when: the verb is the <strong>subject</strong> (Reading is fun) OR when a certain word comes <strong>before</strong> it (enjoy, for, in…). Use TO when a <strong>verb</strong> (want, plan, need) or <strong>adjective</strong> (happy, important) comes before. We'll learn the patterns!</p>
         </div>
       `,
       exercises: [
         {
           id: "intro-exercise",
-          title: "Quick Check: Gerund or Infinitive?",
-          instructions: "Use the decision tree above to choose the correct form.",
+          title: "Practice: Which Form Sounds Right?",
+          instructions: "Choose the option that sounds natural. Don't worry about grammar words yet—trust your ear.",
           items: [
             {
               type: "select",
-              label: "I'm interested in ___ Spanish. (preposition before verb)",
+              label: "I enjoy ___ books.",
+              options: ["reading", "to read", "read"],
+              expectedAnswer: "reading"
+            },
+            {
+              type: "select",
+              label: "I want ___ Spanish.",
+              options: ["learning", "to learn", "learn"],
+              expectedAnswer: "to learn"
+            },
+            {
+              type: "select",
+              label: "I finished ___ the report.",
+              options: ["writing", "to write", "write"],
+              expectedAnswer: "writing"
+            },
+            {
+              type: "select",
+              label: "I plan ___ nursing next year.",
+              options: ["studying", "to study", "study"],
+              expectedAnswer: "to study"
+            },
+            {
+              type: "select",
+              label: "I'm happy ___ you.",
+              options: ["to help", "helping", "help"],
+              expectedAnswer: "to help"
+            },
+            {
+              type: "select",
+              label: "___ is relaxing.",
+              options: ["Reading", "To read", "Read"],
+              expectedAnswer: "Reading"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "pattern-practice-ing",
+      title: "Pattern Practice: -ING After Certain Words",
+      icon: "🔶",
+      explanation: `
+        <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.12) 0%, rgba(217, 119, 87, 0.04) 100%); border-radius: 1rem; padding: 1.25rem; margin-bottom: 1.5rem;">
+          <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600; color: #d97757;">👀 Look at these sentences. What stays the same?</p>
+          <p style="margin: 0; color: #666; font-size: 0.95rem;">Notice the pattern in each example below.</p>
+        </div>
+
+        <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">subject</span>
+            <span><strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">Swimming</strong> is good exercise.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">enjoy</span>
+            <span>I enjoy <strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">reading</strong> mystery novels.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">finished</span>
+            <span>I finished <strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">cleaning</strong> the house.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">suggest</span>
+            <span>I suggest <strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">taking</strong> the train.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">for</span>
+            <span>Thank you for <strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">helping</strong> me.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(217, 119, 87, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(217, 119, 87, 0.15); color: #d97757; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">in</span>
+            <span>I'm interested in <strong style="color: #d97757; background: #fed7aa; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">learning</strong> French.</span>
+          </div>
+        </div>
+
+        <div style="background: #d97757; color: white; border-radius: 0.75rem; padding: 1rem 1.25rem; text-align: center;">
+          <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">💡 The Pattern</p>
+          <p style="margin: 0; font-size: 0.95rem;">Use <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">-ING</strong> when: the verb is the <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">subject</strong> (Swimming is fun) OR when a word like enjoy, for, in comes <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">before</strong> it!</p>
+        </div>
+      `,
+      exercises: [
+        {
+          id: "pattern-practice-ing-parts",
+          title: "Identify: What comes before the blank?",
+          instructions: "Look at the word right before the blank. What type of word is it? This helps you know which form to use.",
+          items: [
+            {
+              type: "select",
+              label: "I enjoy ___ books. → What is 'enjoy'?",
+              options: ["verb", "preposition", "adjective", "noun"],
+              expectedAnswer: "verb"
+            },
+            {
+              type: "select",
+              label: "Thank you for ___ me. → What is 'for'?",
+              options: ["verb", "preposition", "adjective", "noun"],
+              expectedAnswer: "preposition"
+            },
+            {
+              type: "select",
+              label: "I'm interested in ___ French. → What is 'in'?",
+              options: ["verb", "preposition", "adjective", "noun"],
+              expectedAnswer: "preposition"
+            },
+            {
+              type: "select",
+              label: "I suggest ___ the train. → What is 'suggest'?",
+              options: ["verb", "preposition", "adjective", "noun"],
+              expectedAnswer: "verb"
+            },
+            {
+              type: "select",
+              label: "___ is relaxing. → What position is the blank?",
+              options: ["subject", "after verb", "after preposition", "after adjective"],
+              expectedAnswer: "subject"
+            }
+          ]
+        },
+        {
+          id: "pattern-practice-ing-ex",
+          title: "Choose the -ING form",
+          instructions: "Pick the option that follows the pattern.",
+          items: [
+            {
+              type: "select",
+              label: "I suggest ___ the museum on Saturday.",
+              options: ["visiting", "to visit", "visit"],
+              expectedAnswer: "visiting"
+            },
+            {
+              type: "select",
+              label: "Thank you for ___ me with my homework.",
+              options: ["helping", "to help", "help"],
+              expectedAnswer: "helping"
+            },
+            {
+              type: "select",
+              label: "I'm interested in ___ more about Italian culture.",
               options: ["learning", "to learn", "learn"],
               expectedAnswer: "learning"
             },
             {
               type: "select",
-              label: "___ is my favorite hobby. (verb is subject)",
-              options: ["Reading", "To read", "Read"],
-              expectedAnswer: "Reading"
+              label: "I avoid ___ junk food.",
+              options: ["eating", "to eat", "eat"],
+              expectedAnswer: "eating"
             },
             {
               type: "select",
-              label: "I'm happy ___ you. (adjective before verb)",
-              options: ["to help", "helping", "help"],
-              expectedAnswer: "to help"
+              label: "She keeps ___ about her trip.",
+              options: ["talking", "to talk", "talk"],
+              expectedAnswer: "talking"
+            },
+            {
+              type: "select",
+              label: "We considered ___ to the beach.",
+              options: ["going", "to go", "go"],
+              expectedAnswer: "going"
+            },
+            {
+              type: "select",
+              label: "She's good at ___ languages.",
+              options: ["speaking", "to speak", "speak"],
+              expectedAnswer: "speaking"
+            },
+            {
+              type: "select",
+              label: "___ a new language takes time.",
+              options: ["Learning", "To learn", "Learn"],
+              expectedAnswer: "Learning"
+            },
+            {
+              type: "select",
+              label: "___ every morning helps me focus.",
+              options: ["Meditating", "To meditate", "Meditate"],
+              expectedAnswer: "Meditating"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "pattern-practice-to",
+      title: "Pattern Practice: TO + Verb After Certain Words",
+      icon: "🔷",
+      explanation: `
+        <div style="background: linear-gradient(135deg, rgba(3, 105, 161, 0.12) 0%, rgba(3, 105, 161, 0.04) 100%); border-radius: 1rem; padding: 1.25rem; margin-bottom: 1.5rem;">
+          <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600; color: #0369a1;">👀 Now look at these. What stays the same?</p>
+          <p style="margin: 0; color: #666; font-size: 0.95rem;">Notice the pattern in each example below.</p>
+        </div>
+
+        <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">happy</span>
+            <span>I'm happy <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to help</strong> you.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">want</span>
+            <span>I want <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to visit</strong> Japan someday.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">plan</span>
+            <span>I plan <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to study</strong> medicine.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">need</span>
+            <span>I need <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to practice</strong> my English.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">important</span>
+            <span>It's important <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to exercise</strong> regularly.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; background: white; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem;">ability</span>
+            <span>I have the ability <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem;">to speak</strong> three languages.</span>
+          </div>
+        </div>
+
+        <div style="background: #0369a1; color: white; border-radius: 0.75rem; padding: 1rem 1.25rem; text-align: center;">
+          <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">💡 The Pattern</p>
+          <p style="margin: 0; font-size: 0.95rem;">Use <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">TO + verb</strong> when: an <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">adjective</strong> (happy, important, ready) comes before, OR a <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">verb</strong> (want, plan, need) or <strong style="color: #fff; background: rgba(255,255,255,0.25); padding: 0.1em 0.35em; border-radius: 0.25em;">noun</strong> (ability) comes before!</p>
+        </div>
+      `,
+      exercises: [
+        {
+          id: "pattern-practice-to-parts",
+          title: "Identify: What comes before the blank?",
+          instructions: "Look at the word right before the blank. What type of word is it? This helps you know which form to use.",
+          items: [
+            {
+              type: "select",
+              label: "I want ___ Spanish. → What is 'want'?",
+              options: ["verb", "preposition", "adjective", "noun"],
+              expectedAnswer: "verb"
+            },
+            {
+              type: "select",
+              label: "I'm happy ___ help you. → What is 'happy'?",
+              options: ["verb", "preposition", "adjective", "noun"],
+              expectedAnswer: "adjective"
+            },
+            {
+              type: "select",
+              label: "I have the ability ___ speak three languages. → What is 'ability'?",
+              options: ["verb", "preposition", "adjective", "noun"],
+              expectedAnswer: "noun"
+            },
+            {
+              type: "select",
+              label: "It's important ___ practice every day. → What is 'important'?",
+              options: ["verb", "preposition", "adjective", "noun"],
+              expectedAnswer: "adjective"
+            }
+          ]
+        },
+        {
+          id: "pattern-practice-to-ex",
+          title: "Choose the TO + verb form",
+          instructions: "Pick the option that follows the pattern.",
+          items: [
+            {
+              type: "select",
+              label: "I hope ___ you at the party.",
+              options: ["to see", "seeing", "see"],
+              expectedAnswer: "to see"
+            },
+            {
+              type: "select",
+              label: "She decided ___ a new apartment.",
+              options: ["to rent", "renting", "rent"],
+              expectedAnswer: "to rent"
+            },
+            {
+              type: "select",
+              label: "It's important ___ on time.",
+              options: ["to arrive", "arriving", "arrive"],
+              expectedAnswer: "to arrive"
+            },
+            {
+              type: "select",
+              label: "He promised ___ call me tomorrow.",
+              options: ["to call", "calling", "call"],
+              expectedAnswer: "to call"
+            },
+            {
+              type: "select",
+              label: "She offered ___ drive us to the airport.",
+              options: ["to drive", "driving", "drive"],
+              expectedAnswer: "to drive"
+            },
+            {
+              type: "select",
+              label: "We expect ___ finish by Friday.",
+              options: ["to finish", "finishing", "finish"],
+              expectedAnswer: "to finish"
+            },
+            {
+              type: "select",
+              label: "She's excited ___ start her new job.",
+              options: ["to start", "starting", "start"],
+              expectedAnswer: "to start"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "notice-the-pattern",
+      title: "Notice: What Stays the Same?",
+      icon: "🔍",
+      explanation: `
+        <div style="background: rgba(244, 211, 94, 0.15); padding: 1.25rem; border-radius: 0.5rem; border-left: 4px solid #f4d35e; margin-bottom: 1rem;">
+          <h3 style="margin-top: 0; color: #b8860b;">What did you notice?</h3>
+          <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
+            <li><strong>Use -ING when:</strong> the verb is the subject (Swimming is fun), OR after certain words: enjoy, finish, suggest, thank you for, interested in, good at…</li>
+            <li><strong>Use TO + verb after:</strong> adjectives (happy, important, ready), verbs (want, plan, need, hope, decide), or nouns (ability)…</li>
+          </ul>
+        </div>
+        <p>Use -ING when the verb is the subject or when certain words come before it. Use TO + verb after other words. If you can identify the pattern and feel confident choosing, you're ready for the next step.</p>
+        <p><strong>Now we can give these patterns their grammar names.</strong></p>
+      `,
+    },
+    {
+      id: "the-names",
+      title: "The Names and the Rule",
+      icon: "📖",
+      explanation: `
+        <p>You've practiced the patterns. Here are the official names:</p>
+
+        <h3 style="margin-top: 1.5rem;">-ING form = <strong>Gerund</strong></h3>
+        <p>A <strong>gerund</strong> is a verb + -ing that acts like a noun. Gerunds can be the <strong>subject</strong> of a sentence or come after certain words.</p>
+        <ul style="margin: 0.5rem 0 1rem 0;">
+          <li><strong>Reading</strong> is fun. (gerund as subject)</li>
+          <li>I enjoy <strong>reading</strong>. (gerund after verb)</li>
+          <li>Thank you for <strong>helping</strong> me. (gerund after preposition)</li>
+        </ul>
+
+        <h3 style="margin-top: 1.5rem;">TO + verb = <strong>Infinitive</strong></h3>
+        <p>An <strong>infinitive</strong> is <em>to</em> + the base form of the verb. Use it after <strong>adjectives</strong> (happy, important), <strong>verbs</strong> (want, plan), or <strong>nouns</strong> (ability).</p>
+        <ul style="margin: 0.5rem 0 1rem 0;">
+          <li>I'm happy <strong>to help</strong>. (adjective + infinitive)</li>
+          <li>I want <strong>to learn</strong>. (verb + infinitive)</li>
+          <li>I have the ability <strong>to speak</strong> three languages. (noun + infinitive)</li>
+        </ul>
+
+        <div style="background: rgba(123, 168, 132, 0.1); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+          <p style="margin: 0;"><strong>Rule:</strong> Subject? → gerund. <strong>Adjective</strong> (happy, important) or <strong>verb</strong> (want, plan) or <strong>noun</strong> (ability) before? → infinitive. <strong>Preposition</strong> (in, for, at)? → gerund.</p>
+        </div>
+      `,
+      exercises: [
+        {
+          id: "the-names-exercise",
+          title: "Identify: Gerund or Infinitive?",
+          instructions: "Now that you know the names, which is it?",
+          items: [
+            {
+              type: "radio",
+              label: "'I enjoy reading.' – What is 'reading'?",
+              options: [
+                { value: "gerund", label: "Gerund (verb + -ing)" },
+                { value: "infinitive", label: "Infinitive (to + verb)" }
+              ],
+              expectedAnswer: "gerund"
+            },
+            {
+              type: "radio",
+              label: "'I want to learn.' – What is 'to learn'?",
+              options: [
+                { value: "gerund", label: "Gerund (verb + -ing)" },
+                { value: "infinitive", label: "Infinitive (to + verb)" }
+              ],
+              expectedAnswer: "infinitive"
+            },
+            {
+              type: "radio",
+              label: "'Reading is fun.' – What is 'Reading'? (verb as subject)",
+              options: [
+                { value: "gerund", label: "Gerund (verb + -ing as subject)" },
+                { value: "infinitive", label: "Infinitive (to + verb)" }
+              ],
+              expectedAnswer: "gerund"
             }
           ]
         }
@@ -76,7 +435,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       title: "Quick Decision Tree",
       icon: "🧭",
       explanation: `
-        <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">Ask yourself: <strong>What comes BEFORE the verb?</strong></p>
+        <p>Now that you know the names (gerund and infinitive), here's a quick guide. Ask yourself: <strong>What comes BEFORE the verb?</strong></p>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
           <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.15) 0%, rgba(217, 119, 87, 0.05) 100%); border-left: 4px solid #d97757; border-radius: 0.5rem; padding: 1rem;">
@@ -255,244 +614,127 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       ]
     },
     {
-      id: "definitions",
+      id: "gerund-patterns",
       stepNumber: 1,
-      title: "Quick Definitions",
-      icon: "📖",
+      title: "Gerund Patterns: When to Use -ING",
+      icon: "🔶",
       explanation: `
-        <h3>What is a Gerund?</h3>
-        <p>A <strong>gerund</strong> is a verb + -ing that acts as a noun.</p>
-        <p><strong>Formula:</strong> <span style="background-color: #fed7aa; color: #d97757; padding: 5px 10px; border-radius: 4px; font-weight: 600;"><strong>verb + -ing</strong></span></p>
+        <p>Use a <strong>gerund (-ing)</strong> in these three situations. Follow the flowchart!</p>
 
-        <div style="background-color: rgba(217, 119, 87, 0.05); padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid rgba(217, 119, 87, 0.2);">
-          <p><strong>Everyday Examples:</strong></p>
-          <ul>
-            <li><strong>Swimming</strong> is my favorite exercise.</li>
-            <li>I enjoy <strong>reading</strong> mystery novels.</li>
-            <li>I'm interested in <strong>learning</strong> French.</li>
-          </ul>
+        <!-- Visual Flowchart -->
+        <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.08) 0%, rgba(217, 119, 87, 0.02) 100%); border: 2px solid rgba(217, 119, 87, 0.3); border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0;">
+          <div style="text-align: center; margin-bottom: 1rem;">
+            <div style="display: inline-block; background: #d97757; color: white; padding: 0.75rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1rem;">
+              🤔 What comes BEFORE the verb?
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
+            <div style="width: 2px; height: 20px; background: #d97757;"></div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; text-align: center;">
+            <div style="background: rgba(217, 119, 87, 0.15); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
+              <div style="font-weight: 700; color: #d97757; margin-bottom: 0.25rem;">Preposition?</div>
+              <div style="font-size: 0.85rem; color: #666;">in, at, for, about, of</div>
+            </div>
+            <div style="background: rgba(217, 119, 87, 0.15); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
+              <div style="font-weight: 700; color: #d97757; margin-bottom: 0.25rem;">Subject position?</div>
+              <div style="font-size: 0.85rem; color: #666;">verb is the topic</div>
+            </div>
+            <div style="background: rgba(217, 119, 87, 0.15); border: 1px solid rgba(217, 119, 87, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
+              <div style="font-weight: 700; color: #d97757; margin-bottom: 0.25rem;">Gerund verb?</div>
+              <div style="font-size: 0.85rem; color: #666;">enjoy, finish, avoid...</div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
+            <div style="width: 2px; height: 20px; background: #d97757;"></div>
+          </div>
+
+          <div style="text-align: center;">
+            <div style="display: inline-block; background: #d97757; color: white; padding: 0.5rem 1.5rem; border-radius: 2rem; font-weight: 700;">
+              ✅ Use GERUND (-ING)
+            </div>
+          </div>
         </div>
 
-        <h3>What is an Infinitive?</h3>
-        <p>An <strong>infinitive</strong> is "to" + base verb.</p>
-        <p><strong>Formula:</strong> <span style="background-color: #bae6fd; color: #0369a1; padding: 5px 10px; border-radius: 4px; font-weight: 600;"><strong>to + verb</strong></span></p>
+        <h3 style="color: #d97757; margin-top: 1.5rem;">Pattern A: Subject = Gerund</h3>
+        <p>When a verb is the <strong>subject</strong> of a sentence:</p>
+        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem;">
+          <li><strong>Swimming</strong> is excellent exercise.</li>
+          <li><strong>Learning</strong> a new language takes time.</li>
+          <li><strong>Cooking</strong> at home saves money.</li>
+        </ul>
 
-        <div style="background-color: rgba(3, 105, 161, 0.05); padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid rgba(3, 105, 161, 0.2);">
-          <p><strong>Everyday Examples:</strong></p>
-          <ul>
-            <li>I'm happy <strong>to help</strong> you.</li>
-            <li>I have the ability <strong>to speak</strong> three languages.</li>
-            <li>I want <strong>to visit</strong> Japan someday.</li>
-          </ul>
-        </div>
+        <h3 style="color: #d97757;">Pattern B: Verb + Gerund</h3>
+        <p>Certain verbs are <strong>always</strong> followed by gerunds:</p>
+        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem;">
+          <li><strong>enjoy, like, love:</strong> I enjoy <strong>reading</strong>.</li>
+          <li><strong>finish, keep, quit:</strong> I finished <strong>cleaning</strong>.</li>
+          <li><strong>avoid, miss, risk:</strong> I avoid <strong>eating</strong> sugar.</li>
+          <li><strong>consider, suggest:</strong> I suggest <strong>taking</strong> the bus.</li>
+        </ul>
 
-        <div style="background-color: #fff3cd; border-left: 4px solid #f4d35e; padding: 15px; margin: 20px 0;">
-          <p><strong>💡 Key Point:</strong> Both gerunds and infinitives are verb forms used as nouns, but they follow different rules depending on what comes before them.</p>
+        <h3 style="color: #d97757;">Pattern C: Preposition + Gerund (CRITICAL!)</h3>
+        <div style="background-color: #ffe6e6; border: 2px solid #d97757; padding: 1rem; margin: 0.75rem 0; border-radius: 0.5rem;">
+          <p style="margin: 0;"><strong>⚠️ Golden Rule:</strong> After a preposition → <strong>ALWAYS</strong> use gerund!</p>
         </div>
+        <ul style="margin: 0.5rem 0; padding-left: 1.25rem;">
+          <li>I'm interested <strong>in learning</strong> French.</li>
+          <li>She's good <strong>at solving</strong> problems.</li>
+          <li>Thank you <strong>for helping</strong> me.</li>
+          <li>I look forward <strong>to seeing</strong> you. <em>("to" is a preposition here!)</em></li>
+        </ul>
       `,
-      comparison: {
-        title: "⚡ Gerund vs Infinitive at a Glance",
-        leftLabel: "Gerund (-ING)",
-        rightLabel: "Infinitive (TO + verb)",
+      verbTable: {
+        title: "📋 Common Gerund Patterns",
+        headers: ["Pattern", "Examples", "Sample Sentence"],
         rows: [
-          { label: "Form", left: "verb + <strong>-ing</strong>", right: "<strong>to</strong> + base verb" },
-          { label: "After prepositions", left: "✅ <strong>ALWAYS</strong> used", right: "❌ Never used" },
-          { label: "As subject", left: "✅ Common & natural", right: "⚠️ Formal / old-fashioned" },
-          { label: "After adjective", left: "⚠️ Only with preposition<br/>(good <em>at</em> doing)", right: "✅ Common<br/>(happy <em>to</em> help)" },
-          { label: "After noun", left: "❌ Rare", right: "✅ Common<br/>(ability <em>to</em> speak)" },
-          { label: "After certain verbs", left: "enjoy, finish, avoid, suggest", right: "want, hope, plan, decide" },
-          { label: "Example", left: "<strong>Swimming</strong> is fun.", right: "I want <strong>to swim</strong>." }
+          ["Subject", "Swimming, Learning, Cooking", "<strong>Swimming</strong> is fun."],
+          ["enjoy, finish, avoid...", "enjoy, finish, keep, avoid, suggest", "I <strong>enjoy reading</strong>."],
+          ["Preposition +", "interested in, good at, thank you for", "I'm good at <strong>solving</strong> puzzles."],
+          ["look forward to ⚠️", "to = preposition, not infinitive!", "I look forward to <strong>meeting</strong> you."]
         ]
       },
-      exercises: [
-        {
-          id: "definitions-exercise",
-          title: "Identify: Gerund or Infinitive?",
-          instructions: "Is the underlined word a gerund or infinitive?",
-          items: [
-            {
-              type: "radio",
-              label: "'Swimming is fun.' - What is 'swimming'?",
-              options: [
-                { value: "gerund", label: "Gerund (verb + -ing acting as noun)" },
-                { value: "infinitive", label: "Infinitive (to + verb)" }
-              ],
-              expectedAnswer: "gerund"
-            },
-            {
-              type: "radio",
-              label: "'I want to learn.' - What is 'to learn'?",
-              options: [
-                { value: "gerund", label: "Gerund (verb + -ing acting as noun)" },
-                { value: "infinitive", label: "Infinitive (to + verb)" }
-              ],
-              expectedAnswer: "infinitive"
-            },
-            {
-              type: "radio",
-              label: "'I enjoy reading.' - What is 'reading'?",
-              options: [
-                { value: "gerund", label: "Gerund (verb + -ing acting as noun)" },
-                { value: "infinitive", label: "Infinitive (to + verb)" }
-              ],
-              expectedAnswer: "gerund"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: "pattern-1",
-      stepNumber: 2,
-      title: "Pattern 1: Subject = Gerund",
-      icon: "1️⃣",
-      explanation: `
-        <p>When a verb is the <strong>subject</strong> of a sentence, use the <strong>gerund (-ing)</strong> form.</p>
-
-        <p><strong>Formula:</strong> <span style="background-color: #fed7aa; color: #d97757; padding: 8px 12px; border-radius: 4px; font-size: 1.1em; font-weight: 600;"><strong>Gerund + verb + ...</strong></span></p>
-
-        <div style="background-color: rgba(217, 119, 87, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(217, 119, 87, 0.2);">
-          <h4>Sports & Exercise:</h4>
-          <ul>
-            <li><strong>Swimming</strong> is excellent exercise.</li>
-            <li><strong>Running</strong> every morning keeps you healthy.</li>
-            <li><strong>Dancing</strong> is a fun way to stay active.</li>
-          </ul>
-
-          <h4>Hobbies & Interests:</h4>
-          <ul>
-            <li><strong>Reading</strong> helps you improve your English.</li>
-            <li><strong>Cooking</strong> at home saves money.</li>
-            <li><strong>Traveling</strong> teaches you about other cultures.</li>
-            <li><strong>Painting</strong> is very relaxing.</li>
-          </ul>
-
-          <h4>Daily Life:</h4>
-          <ul>
-            <li><strong>Learning</strong> a new language takes time.</li>
-            <li><strong>Saving</strong> money is important for the future.</li>
-            <li><strong>Finding</strong> a good apartment in Boston can be challenging.</li>
-          </ul>
-        </div>
-      `,
       tipBox: {
-        title: "💡 Remember",
-        content: "When the verb is the subject (the main topic), it must be a gerund, not an infinitive. ✅ Swimming is fun. ❌ To swim is fun. (less common)"
+        title: "💡 Memory Trick: PREP = ING",
+        content: "After a PREPosition, always use -ING. This is the most common mistake—don't fall for it!"
       },
       exercises: [
         {
-          id: "pattern-1-exercise",
-          title: "Practice: Using Gerunds as Subjects",
-          instructions: "Choose the correct form to complete each sentence.",
+          id: "gerund-patterns-exercise",
+          title: "Practice: Gerund Patterns",
+          instructions: "Choose the correct form.",
           items: [
             {
               type: "select",
-              label: "___ a new language takes practice and patience.",
+              label: "___ a new language takes practice. (subject)",
               options: ["Learning", "To learn", "Learn"],
               expectedAnswer: "Learning"
             },
             {
               type: "select",
-              label: "___ is my favorite hobby.",
-              options: ["Reading", "To read", "Read"],
-              expectedAnswer: "Reading"
+              label: "I finished ___ the report. (verb + gerund)",
+              options: ["writing", "to write", "write"],
+              expectedAnswer: "writing"
             },
             {
               type: "select",
-              label: "___ helps you stay healthy.",
-              options: ["Exercising", "To exercise", "Exercise"],
-              expectedAnswer: "Exercising"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: "pattern-2",
-      stepNumber: 3,
-      title: "Pattern 2: Verb + Gerund",
-      icon: "2️⃣",
-      explanation: `
-        <p>Certain verbs are always followed by <strong>gerunds (-ing)</strong>, never infinitives.</p>
-
-        <p><strong>Formula:</strong> <span style="background-color: #fed7aa; color: #d97757; padding: 8px 12px; border-radius: 4px; font-size: 1.1em; font-weight: 600;"><strong>Subject + Verb + Gerund</strong></span></p>
-
-        <h3>Common Verbs + Gerund</h3>
-
-        <div style="background-color: rgba(217, 119, 87, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(217, 119, 87, 0.2);">
-          <h4>Preferences & Enjoyment:</h4>
-          <ul>
-            <li><strong>enjoy:</strong> I enjoy <strong>reading</strong> mystery novels.</li>
-            <li><strong>like:</strong> I like <strong>cooking</strong> new recipes.</li>
-            <li><strong>love:</strong> She loves <strong>listening</strong> to music.</li>
-            <li><strong>prefer:</strong> I prefer <strong>walking</strong> to driving.</li>
-          </ul>
-
-          <h4>Actions & Completion:</h4>
-          <ul>
-            <li><strong>finish:</strong> I finished <strong>cleaning</strong> the house yesterday.</li>
-            <li><strong>keep:</strong> Keep <strong>practicing</strong> your English!</li>
-            <li><strong>stop:</strong> I stopped <strong>drinking</strong> coffee at night. (I quit)</li>
-            <li><strong>quit:</strong> She quit <strong>smoking</strong> last year.</li>
-          </ul>
-
-          <h4>Avoidance:</h4>
-          <ul>
-            <li><strong>avoid:</strong> I avoid <strong>eating</strong> too much sugar.</li>
-            <li><strong>miss:</strong> I miss <strong>spending</strong> time with my family.</li>
-          </ul>
-
-          <h4>Consideration & Advice:</h4>
-          <ul>
-            <li><strong>consider:</strong> I'm considering <strong>moving</strong> to a bigger apartment.</li>
-            <li><strong>suggest:</strong> I suggest <strong>taking</strong> the train instead of driving.</li>
-            <li><strong>recommend:</strong> I recommend <strong>visiting</strong> the museum on weekdays.</li>
-          </ul>
-        </div>
-      `,
-      verbTable: {
-        title: "📋 Common Verbs + GERUND",
-        headers: ["Category", "Verbs", "Example"],
-        rows: [
-          ["😊 Enjoyment", "enjoy, like, love, prefer", "I <strong>enjoy reading</strong>."],
-          ["✅ Completion", "finish, keep, quit, stop", "I <strong>finished cleaning</strong>."],
-          ["🚫 Avoidance", "avoid, miss, risk", "I <strong>avoid eating</strong> sugar."],
-          ["🤔 Consideration", "consider, suggest, recommend", "I <strong>suggest taking</strong> the bus."],
-          ["🗣️ Admission", "admit, deny, mention", "He <strong>admitted stealing</strong> it."]
-        ]
-      },
-      tipBox: {
-        title: "💡 Remember",
-        content: "These verbs ALWAYS take gerunds, never infinitives. ✅ I enjoy swimming. ❌ I enjoy to swim."
-      },
-      exercises: [
-        {
-          id: "pattern-2-exercise",
-          title: "Practice: Verbs + Gerunds",
-          instructions: "Choose the correct form.",
-          items: [
-            {
-              type: "select",
-              label: "I finished ___ the book last night.",
-              options: ["reading", "to read", "read"],
-              expectedAnswer: "reading"
+              label: "She's good at ___ problems. (preposition + gerund)",
+              options: ["solving", "to solve", "solve"],
+              expectedAnswer: "solving"
             },
             {
               type: "select",
-              label: "I suggest ___ the museum on Saturday.",
-              options: ["visiting", "to visit", "visit"],
-              expectedAnswer: "visiting"
-            },
-            {
-              type: "select",
-              label: "She loves ___ to music while she works.",
-              options: ["listening", "to listen", "listen"],
-              expectedAnswer: "listening"
+              label: "I look forward to ___ you. (preposition!)",
+              options: ["meeting", "meet", "to meet"],
+              expectedAnswer: "meeting"
             }
           ]
         },
         {
-          id: "pattern-2-word-select",
+          id: "gerund-word-select",
           title: "Find the Gerund",
           instructions: "Click on the gerund in each sentence.",
           items: [
@@ -503,9 +745,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               tokens: [
                 { text: "I", after: " " },
                 { text: "enjoy", after: " " },
-                { text: "reading", isTarget: true, after: " " },
-                { text: "mystery", after: " " },
-                { text: "novels", after: "." }
+                { text: "cooking", isTarget: true, after: " " },
+                { text: "Italian", after: " " },
+                { text: "food", after: "." }
               ]
             },
             {
@@ -513,23 +755,22 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               label: "Click on the gerund:",
               selectWhat: "the gerund",
               tokens: [
-                { text: "She", after: " " },
-                { text: "keeps", after: " " },
-                { text: "practicing", isTarget: true, after: " " },
-                { text: "her", after: " " },
-                { text: "English", after: "." }
+                { text: "She's", after: " " },
+                { text: "interested", after: " " },
+                { text: "in", after: " " },
+                { text: "learning", isTarget: true, after: " " },
+                { text: "French", after: "." }
               ]
             },
             {
               type: "word-select",
-              label: "Click on the gerund:",
+              label: "Click on the gerund (as subject):",
               selectWhat: "the gerund",
               tokens: [
-                { text: "I", after: " " },
-                { text: "recommend", after: " " },
-                { text: "visiting", isTarget: true, after: " " },
-                { text: "the", after: " " },
-                { text: "museum", after: "." }
+                { text: "Swimming", isTarget: true, after: " " },
+                { text: "is", after: " " },
+                { text: "good", after: " " },
+                { text: "exercise", after: "." }
               ]
             }
           ]
@@ -537,328 +778,213 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       ]
     },
     {
-      id: "pattern-3",
-      stepNumber: 4,
-      title: "Pattern 3: Preposition + Gerund (CRITICAL RULE!)",
-      icon: "3️⃣",
+      id: "preposition-before-gerund",
+      title: "Which Preposition Before the Gerund?",
+      icon: "📌",
       explanation: `
-        <p><strong>Golden Rule:</strong> After a preposition, ALWAYS use a <strong>gerund (-ing)</strong>, never an infinitive.</p>
+        <p>You know: after a preposition → use gerund. But <strong>which preposition</strong>? This is hard because there's no rule—each adjective or phrase has its <strong>fixed</strong> preposition. You have to learn them!</p>
 
-        <p><strong>Formula:</strong> <span style="background-color: #fed7aa; color: #d97757; padding: 8px 12px; border-radius: 4px; font-size: 1.1em; font-weight: 600;"><strong>Preposition + Gerund</strong></span></p>
-
-        <div style="background-color: #ffe6e6; border: 2px solid #d97757; padding: 15px; margin: 20px 0; border-radius: 8px;">
-          <p><strong>⚠️ CRITICAL RULE:</strong> After a preposition → ALWAYS gerund</p>
-          <p>✅ I'm interested <strong>in learning</strong> French.<br>
-          ❌ I'm interested <strong>in to learn</strong> French.</p>
+        <div style="background: rgba(244, 211, 94, 0.15); border-left: 4px solid #f4d35e; padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
+          <p style="margin: 0; font-weight: 600;">❌ Common mistakes: "interested <em>to</em> learn" · "good <em>in</em> solving" · "thank you <em>to</em> help"</p>
+          <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem;">✅ Correct: interested <strong>in</strong> learning · good <strong>at</strong> solving · thank you <strong>for</strong> helping</p>
         </div>
 
-        <h3>Common Preposition + Gerund Patterns</h3>
-
-        <div style="background-color: rgba(217, 119, 87, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(217, 119, 87, 0.2);">
-          <h4>Adjective + Preposition + Gerund:</h4>
-          <ul>
-            <li><strong>interested in:</strong> I'm interested in <strong>learning</strong> to play guitar.</li>
-            <li><strong>good at:</strong> She's good at <strong>solving</strong> puzzles.</li>
-            <li><strong>worried about:</strong> I'm worried about <strong>forgetting</strong> my password.</li>
-            <li><strong>excited about:</strong> We're excited about <strong>visiting</strong> New York.</li>
-            <li><strong>tired of:</strong> I'm tired of <strong>waiting</strong> in line.</li>
-            <li><strong>afraid of:</strong> She's afraid of <strong>flying</strong>.</li>
-          </ul>
-
-          <h4>Common Phrases with Prepositions:</h4>
-          <ul>
-            <li><strong>thank you for:</strong> Thank you for <strong>helping</strong> me.</li>
-            <li><strong>look forward to:</strong> I look forward to <strong>seeing</strong> you. (to = preposition here!)</li>
-            <li><strong>by:</strong> I improved my English <strong>by reading</strong> every day.</li>
-            <li><strong>instead of:</strong> Let's walk <strong>instead of driving</strong>.</li>
-          </ul>
-
-          <h4>Time Prepositions:</h4>
-          <ul>
-            <li><strong>before:</strong> Wash your hands <strong>before eating</strong>.</li>
-            <li><strong>after:</strong> I'll call you <strong>after finishing</strong> my homework.</li>
-            <li><strong>without:</strong> She left <strong>without saying</strong> goodbye.</li>
-          </ul>
-        </div>
+        <h3 style="color: #d97757; margin-top: 1.5rem;">Common Adjective/Verb + Preposition + Gerund</h3>
+        <p>Learn these fixed combinations. They appear often in real English!</p>
       `,
-      verbTable: {
-        title: "📋 Common Preposition Patterns",
-        headers: ["Pattern", "Example"],
-        rows: [
-          ["interested <strong>in</strong>", "I'm interested in <strong>learning</strong> French."],
-          ["good/bad <strong>at</strong>", "She's good at <strong>solving</strong> puzzles."],
-          ["worried <strong>about</strong>", "I'm worried about <strong>failing</strong>."],
-          ["tired <strong>of</strong>", "I'm tired of <strong>waiting</strong>."],
-          ["thank you <strong>for</strong>", "Thank you for <strong>helping</strong> me."],
-          ["look forward <strong>to</strong> ⚠️", "I look forward to <strong>seeing</strong> you."],
-          ["be used <strong>to</strong> ⚠️", "I'm used to <strong>waking</strong> up early."],
-          ["instead <strong>of</strong>", "Let's walk instead of <strong>driving</strong>."]
-        ]
-      },
-      tipBox: {
-        title: "💡 Common Mistake Alert",
-        content: `"To" can be BOTH an infinitive marker AND a preposition!
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div><strong style="color: #c2410c;">Infinitive marker</strong> <span style="color: #d97757; font-weight: 600;">→</span> I want <em>to learn</em></div>
-                    <div><strong style="color: #c2410c;">Preposition</strong> <span style="color: #d97757; font-weight: 600;">→</span> I look forward to <em>learning</em></div>
-                    <div style="margin-top: 0.25rem; font-size: 0.9rem;">More "to" as preposition: be used to, be accustomed to, object to</div>
-                </div>`
-      },
-      exercises: [
+      usageMeanings: [
         {
-          id: "pattern-3-exercise",
-          title: "Practice: Preposition + Gerund",
-          instructions: "Choose the correct form.",
-          items: [
-            {
-              type: "select",
-              label: "Thank you for ___ me with my homework.",
-              options: ["helping", "to help", "help"],
-              expectedAnswer: "helping"
-            },
-            {
-              type: "select",
-              label: "I'm interested in ___ more about Italian culture.",
-              options: ["learning", "to learn", "learn"],
-              expectedAnswer: "learning"
-            },
-            {
-              type: "select",
-              label: "I look forward to ___ you next week.",
-              options: ["seeing", "to see", "see"],
-              expectedAnswer: "seeing"
-            }
+          title: "IN + gerund",
+          description: "interested in, succeed in, believe in, specialize in",
+          examples: [
+            { sentence: "I'm interested <strong>in learning</strong> Spanish.", explanation: "interested in + gerund" },
+            { sentence: "She succeeded <strong>in passing</strong> the exam.", explanation: "succeed in + gerund" }
           ]
         },
         {
-          id: "pattern-3-word-scramble",
-          title: "Build the Sentence",
-          instructions: "Put the words in the correct order.",
-          items: [
-            {
-              type: "word-scramble",
-              label: "Thank someone for their help:",
-              words: ["Thank", "you", "for", "helping", "me"],
-              correctAnswer: "Thank you for helping me",
-              hint: "Start with 'Thank you'"
-            },
-            {
-              type: "word-scramble",
-              label: "Express interest in learning:",
-              words: ["I'm", "interested", "in", "learning", "Spanish"],
-              correctAnswer: "I'm interested in learning Spanish",
-              hint: "Start with 'I'm interested'"
-            },
-            {
-              type: "word-scramble",
-              label: "Express anticipation:",
-              words: ["I", "look", "forward", "to", "seeing", "you"],
-              correctAnswer: "I look forward to seeing you",
-              hint: "'look forward to' is followed by -ing"
-            }
+          title: "AT + gerund",
+          description: "good at, bad at, skilled at, expert at",
+          examples: [
+            { sentence: "She's good <strong>at solving</strong> problems.", explanation: "good at + gerund" },
+            { sentence: "He's skilled <strong>at speaking</strong> in public.", explanation: "skilled at + gerund" }
+          ]
+        },
+        {
+          title: "FOR + gerund",
+          description: "thank you for, responsible for, famous for, known for",
+          examples: [
+            { sentence: "Thank you <strong>for helping</strong> me.", explanation: "thank you for + gerund" },
+            { sentence: "She's responsible <strong>for completing</strong> the report.", explanation: "responsible for + gerund" }
+          ]
+        },
+        {
+          title: "OF + gerund",
+          description: "afraid of, tired of, capable of, fond of",
+          examples: [
+            { sentence: "I'm afraid <strong>of flying</strong>.", explanation: "afraid of + gerund" },
+            { sentence: "She's tired <strong>of waiting</strong>.", explanation: "tired of + gerund" }
+          ]
+        },
+        {
+          title: "ABOUT + gerund",
+          description: "excited about, nervous about, worried about, think about",
+          examples: [
+            { sentence: "I'm excited <strong>about starting</strong> my new job.", explanation: "excited about + gerund" },
+            { sentence: "She's worried <strong>about failing</strong> the test.", explanation: "worried about + gerund" }
+          ]
+        },
+        {
+          title: "TO + gerund (⚠️ TO is a preposition here!)",
+          description: "look forward to, be used to, get used to",
+          examples: [
+            { sentence: "I look forward <strong>to seeing</strong> you.", explanation: "look forward to + gerund (NOT infinitive!)" },
+            { sentence: "I'm used <strong>to waking</strong> up early.", explanation: "be used to + gerund" }
           ]
         }
-      ]
-    },
-    {
-      id: "pattern-4",
-      stepNumber: 5,
-      title: "Pattern 4: Adjective + Infinitive",
-      icon: "4️⃣",
-      explanation: `
-        <p>After certain adjectives, use the <strong>infinitive (to + verb)</strong>.</p>
-
-        <p><strong>Formula:</strong> <span style="background-color: #bae6fd; color: #0369a1; padding: 8px 12px; border-radius: 4px; font-size: 1.1em; font-weight: 600;"><strong>Adjective + to + Verb</strong></span></p>
-
-        <div style="background-color: rgba(3, 105, 161, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(3, 105, 161, 0.2);">
-          <h4>Feelings & Emotions:</h4>
-          <ul>
-            <li><strong>happy:</strong> I'm happy <strong>to help</strong> you.</li>
-            <li><strong>excited:</strong> I'm excited <strong>to travel</strong> to Paris.</li>
-            <li><strong>glad:</strong> I'm glad <strong>to meet</strong> you.</li>
-            <li><strong>sad:</strong> I'm sad <strong>to leave</strong> my friends.</li>
-            <li><strong>surprised:</strong> I'm surprised <strong>to see</strong> you here!</li>
-          </ul>
-
-          <h4>Readiness & Eagerness:</h4>
-          <ul>
-            <li><strong>ready:</strong> I'm ready <strong>to go</strong> now.</li>
-            <li><strong>eager:</strong> She's eager <strong>to learn</strong> Spanish.</li>
-            <li><strong>willing:</strong> I'm willing <strong>to wait</strong> if needed.</li>
-          </ul>
-
-          <h4>Ability & Difficulty:</h4>
-          <ul>
-            <li><strong>able:</strong> I'm able <strong>to swim</strong> one mile.</li>
-            <li><strong>easy:</strong> This book is easy <strong>to read</strong>.</li>
-            <li><strong>hard/difficult:</strong> Chinese is difficult <strong>to learn</strong>.</li>
-          </ul>
-
-          <h4>Importance & Necessity:</h4>
-          <ul>
-            <li><strong>important:</strong> It's important <strong>to exercise</strong> regularly.</li>
-            <li><strong>necessary:</strong> It's necessary <strong>to wear</strong> a coat in winter.</li>
-            <li><strong>essential:</strong> It's essential <strong>to drink</strong> water every day.</li>
-          </ul>
-        </div>
-      `,
+      ],
+      comparison: {
+        title: "📋 Quick Reference: Preposition + Gerund",
+        leftLabel: "Preposition",
+        rightLabel: "Common phrases",
+        showLabelColumn: false,
+        rows: [
+          { label: "in", left: "in", right: "interested in, succeed in, believe in" },
+          { label: "at", left: "at", right: "good at, bad at, skilled at" },
+          { label: "for", left: "for", right: "thank you for, responsible for" },
+          { label: "of", left: "of", right: "afraid of, tired of, capable of" },
+          { label: "about", left: "about", right: "excited about, worried about" },
+          { label: "to ⚠️", left: "to", right: "look forward to, be used to, get used to" }
+        ]
+      },
       tipBox: {
-        title: "💡 Remember",
-        content: "Adjective + to + verb is perfect for expressing feelings and opinions: 'I'm happy to help!' 'It's important to study.' 'I'm excited to see you!'"
+        title: "💡 No Rule—Memorize!",
+        content: "English doesn't have a rule for which preposition goes with which word. Learn the whole phrase: 'interested in', 'good at', 'thank you for'. Practice with real sentences!"
       },
       exercises: [
         {
-          id: "pattern-4-exercise",
-          title: "Practice: Adjective + Infinitive",
-          instructions: "Choose the correct form.",
+          id: "preposition-before-gerund-exercise",
+          title: "Practice: Choose the Preposition",
+          instructions: "Pick the correct preposition before the gerund.",
           items: [
             {
               type: "select",
-              label: "I'm happy ___ you.",
-              options: ["to help", "helping", "help"],
-              expectedAnswer: "to help"
+              label: "I'm interested ___ learning French.",
+              options: ["in", "at", "for", "to"],
+              expectedAnswer: "in"
             },
             {
               type: "select",
-              label: "It's important ___ healthy food.",
-              options: ["to eat", "eating", "eat"],
-              expectedAnswer: "to eat"
+              label: "She's good ___ solving puzzles.",
+              options: ["in", "at", "for", "to"],
+              expectedAnswer: "at"
             },
             {
               type: "select",
-              label: "She's excited ___ her grandmother next month.",
-              options: ["to visit", "visiting", "visit"],
-              expectedAnswer: "to visit"
+              label: "Thank you ___ helping me.",
+              options: ["in", "at", "for", "to"],
+              expectedAnswer: "for"
+            },
+            {
+              type: "select",
+              label: "I'm tired ___ waiting.",
+              options: ["in", "of", "for", "at"],
+              expectedAnswer: "of"
+            },
+            {
+              type: "select",
+              label: "I look forward ___ meeting you.",
+              options: ["in", "at", "for", "to"],
+              expectedAnswer: "to"
+            },
+            {
+              type: "select",
+              label: "She's excited ___ starting her new job.",
+              options: ["about", "at", "for", "of"],
+              expectedAnswer: "about"
             }
           ]
         }
       ]
     },
     {
-      id: "pattern-5",
-      stepNumber: 6,
-      title: "Pattern 5: Noun + Infinitive",
-      icon: "5️⃣",
+      id: "infinitive-patterns",
+      stepNumber: 2,
+      title: "Infinitive Patterns: When to Use TO + Verb",
+      icon: "🔷",
       explanation: `
-        <p>After certain nouns, use the <strong>infinitive (to + verb)</strong>.</p>
+        <p>Use an <strong>infinitive (to + verb)</strong> in these three situations. Follow the flowchart!</p>
 
-        <p><strong>Formula:</strong> <span style="background-color: #bae6fd; color: #0369a1; padding: 8px 12px; border-radius: 4px; font-size: 1.1em; font-weight: 600;"><strong>Noun + to + Verb</strong></span></p>
+        <!-- Visual Flowchart -->
+        <div style="background: linear-gradient(135deg, rgba(3, 105, 161, 0.08) 0%, rgba(3, 105, 161, 0.02) 100%); border: 2px solid rgba(3, 105, 161, 0.3); border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0;">
+          <div style="text-align: center; margin-bottom: 1rem;">
+            <div style="display: inline-block; background: #0369a1; color: white; padding: 0.75rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1rem;">
+              🤔 What comes BEFORE the verb?
+            </div>
+          </div>
 
-        <div style="background-color: rgba(3, 105, 161, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(3, 105, 161, 0.2);">
-          <h4>Abilities & Skills:</h4>
-          <ul>
-            <li><strong>ability:</strong> I have the ability <strong>to speak</strong> three languages.</li>
-            <li><strong>skill:</strong> She has the skill <strong>to play</strong> piano beautifully.</li>
-            <li><strong>talent:</strong> He has a talent <strong>to make</strong> people laugh.</li>
-          </ul>
+          <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
+            <div style="width: 2px; height: 20px; background: #0369a1;"></div>
+          </div>
 
-          <h4>Opportunities & Chances:</h4>
-          <ul>
-            <li><strong>opportunity:</strong> I have the opportunity <strong>to study</strong> abroad.</li>
-            <li><strong>chance:</strong> This is your chance <strong>to learn</strong> something new.</li>
-          </ul>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; text-align: center;">
+            <div style="background: rgba(3, 105, 161, 0.15); border: 1px solid rgba(3, 105, 161, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
+              <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem;">Adjective?</div>
+              <div style="font-size: 0.85rem; color: #666;">happy, ready, important</div>
+            </div>
+            <div style="background: rgba(3, 105, 161, 0.15); border: 1px solid rgba(3, 105, 161, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
+              <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem;">Noun?</div>
+              <div style="font-size: 0.85rem; color: #666;">ability, chance, time</div>
+            </div>
+            <div style="background: rgba(3, 105, 161, 0.15); border: 1px solid rgba(3, 105, 161, 0.3); border-radius: 0.5rem; padding: 0.75rem;">
+              <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem;">Infinitive verb?</div>
+              <div style="font-size: 0.85rem; color: #666;">want, plan, decide...</div>
+            </div>
+          </div>
 
-          <h4>Time & Planning:</h4>
-          <ul>
-            <li><strong>time:</strong> I don't have time <strong>to cook</strong> tonight.</li>
-            <li><strong>plan:</strong> I have a plan <strong>to save</strong> $5,000 this year.</li>
-            <li><strong>decision:</strong> I made the decision <strong>to move</strong> to Boston.</li>
-            <li><strong>promise:</strong> I made a promise <strong>to call</strong> my mother every week.</li>
-          </ul>
+          <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
+            <div style="width: 2px; height: 20px; background: #0369a1;"></div>
+          </div>
 
-          <h4>Need & Desire:</h4>
-          <ul>
-            <li><strong>need:</strong> I have a need <strong>to exercise</strong> more often.</li>
-            <li><strong>desire:</strong> She has a strong desire <strong>to travel</strong> the world.</li>
-            <li><strong>way:</strong> There's no way <strong>to finish</strong> this by tomorrow.</li>
-          </ul>
+          <div style="text-align: center;">
+            <div style="display: inline-block; background: #0369a1; color: white; padding: 0.5rem 1.5rem; border-radius: 2rem; font-weight: 700;">
+              ✅ Use INFINITIVE (TO + verb)
+            </div>
+          </div>
         </div>
-      `,
-      tipBox: {
-        title: "💡 Remember",
-        content: "Noun + infinitive is perfect for describing abilities and plans: 'I have the ability to swim.' 'I made a plan to save money.' 'She has a talent to sing.'"
-      },
-      exercises: [
-        {
-          id: "pattern-5-exercise",
-          title: "Practice: Noun + Infinitive",
-          instructions: "Choose the correct form.",
-          items: [
-            {
-              type: "select",
-              label: "I have the ability ___ very fast.",
-              options: ["to run", "running", "run"],
-              expectedAnswer: "to run"
-            },
-            {
-              type: "select",
-              label: "I made the decision ___ to California.",
-              options: ["to move", "moving", "move"],
-              expectedAnswer: "to move"
-            },
-            {
-              type: "select",
-              label: "This is your chance ___ a new language.",
-              options: ["to learn", "learning", "learn"],
-              expectedAnswer: "to learn"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: "pattern-6",
-      stepNumber: 7,
-      title: "Pattern 6: Verb + Infinitive",
-      icon: "6️⃣",
-      explanation: `
-        <p>Certain verbs are always followed by <strong>infinitives (to + verb)</strong>, never gerunds.</p>
 
-        <p><strong>Formula:</strong> <span style="background-color: #bae6fd; color: #0369a1; padding: 8px 12px; border-radius: 4px; font-size: 1.1em; font-weight: 600;"><strong>Subject + Verb + to + Verb</strong></span></p>
+        <h3 style="color: #0369a1; margin-top: 1.5rem;">Pattern A: Adjective + Infinitive</h3>
+        <p>After adjectives expressing feelings, readiness, or importance:</p>
+        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem;">
+          <li>I'm happy <strong>to help</strong> you.</li>
+          <li>She's ready <strong>to go</strong> now.</li>
+          <li>It's important <strong>to exercise</strong> regularly.</li>
+        </ul>
 
-        <h3>Common Verbs + Infinitive</h3>
+        <h3 style="color: #0369a1;">Pattern B: Noun + Infinitive</h3>
+        <p>After nouns describing abilities, chances, or time:</p>
+        <ul style="margin: 0.5rem 0 1rem 0; padding-left: 1.25rem;">
+          <li>I have the ability <strong>to speak</strong> three languages.</li>
+          <li>This is your chance <strong>to learn</strong> something new.</li>
+          <li>I don't have time <strong>to cook</strong> tonight.</li>
+        </ul>
 
-        <div style="background-color: rgba(3, 105, 161, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(3, 105, 161, 0.2);">
-          <h4>Goals & Aspirations:</h4>
-          <ul>
-            <li><strong>want:</strong> I want <strong>to visit</strong> Japan someday.</li>
-            <li><strong>hope:</strong> I hope <strong>to see</strong> you soon.</li>
-            <li><strong>expect:</strong> I expect <strong>to arrive</strong> around 6pm.</li>
-            <li><strong>would like:</strong> I would like <strong>to order</strong> pizza tonight.</li>
-          </ul>
-
-          <h4>Planning & Decisions:</h4>
-          <ul>
-            <li><strong>plan:</strong> I plan <strong>to study</strong> medicine.</li>
-            <li><strong>decide:</strong> I decided <strong>to buy</strong> a new car.</li>
-            <li><strong>choose:</strong> She chose <strong>to stay</strong> home tonight.</li>
-            <li><strong>intend:</strong> I intend <strong>to finish</strong> this book by Friday.</li>
-          </ul>
-
-          <h4>Learning & Skills:</h4>
-          <ul>
-            <li><strong>learn:</strong> I'm learning <strong>to cook</strong> Italian food.</li>
-            <li><strong>need:</strong> I need <strong>to practice</strong> my pronunciation.</li>
-            <li><strong>try:</strong> I'm trying <strong>to eat</strong> healthier. (attempting)</li>
-          </ul>
-
-          <h4>Offers & Promises:</h4>
-          <ul>
-            <li><strong>offer:</strong> She offered <strong>to drive</strong> me to the airport.</li>
-            <li><strong>promise:</strong> I promise <strong>to call</strong> you tomorrow.</li>
-            <li><strong>agree:</strong> We agreed <strong>to meet</strong> at 7pm.</li>
-            <li><strong>refuse:</strong> He refused <strong>to answer</strong> the question.</li>
-          </ul>
-        </div>
+        <h3 style="color: #0369a1;">Pattern C: Verb + Infinitive</h3>
+        <p>Certain verbs are <strong>always</strong> followed by infinitives:</p>
+        <ul style="margin: 0.5rem 0; padding-left: 1.25rem;">
+          <li><strong>want, hope, wish:</strong> I want <strong>to visit</strong> Japan.</li>
+          <li><strong>plan, decide, choose:</strong> I decided <strong>to stay</strong> home.</li>
+          <li><strong>need, learn, try:</strong> I need <strong>to practice</strong> more.</li>
+          <li><strong>offer, promise, agree:</strong> She offered <strong>to help</strong>.</li>
+        </ul>
       `,
       verbTable: {
-        title: "📋 Common Verbs + INFINITIVE",
-        headers: ["Category", "Verbs", "Example"],
+        title: "📋 Common Infinitive Patterns",
+        headers: ["Pattern", "Examples", "Sample Sentence"],
         rows: [
-          ["🎯 Goals", "want, hope, expect, wish", "I <strong>want to visit</strong> Japan."],
-          ["📅 Plans", "plan, decide, choose, intend", "I <strong>decided to stay</strong>."],
-          ["📚 Learning", "learn, need, try (effort)", "I'm <strong>learning to cook</strong>."],
-          ["🤝 Offers", "offer, promise, agree, refuse", "She <strong>offered to help</strong>."]
+          ["Adjective +", "happy, ready, important, easy", "I'm happy <strong>to help</strong>."],
+          ["Noun +", "ability, chance, time, decision", "I have the ability <strong>to speak</strong> French."],
+          ["want, plan, need...", "want, hope, plan, decide, need", "I want <strong>to learn</strong> Spanish."],
+          ["offer, promise...", "offer, promise, agree, refuse", "She offered <strong>to drive</strong> me."]
         ]
       },
       comparison: {
@@ -874,65 +1000,71 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
         ]
       },
       tipBox: {
-        title: "💡 Remember",
-        content: "These verbs ALWAYS take infinitives, never gerunds. ✅ I want to travel. ❌ I want traveling."
+        title: "💡 Memory Trick: Want TO do it",
+        content: "Goal verbs (want, hope, plan) point to the future → use TO + verb. Enjoyment verbs (enjoy, love) describe ongoing activities → use -ING."
       },
       exercises: [
         {
-          id: "pattern-6-exercise",
-          title: "Practice: Verbs + Infinitives",
+          id: "infinitive-patterns-exercise",
+          title: "Practice: Infinitive Patterns",
           instructions: "Choose the correct form.",
           items: [
             {
               type: "select",
-              label: "I hope ___ you at the party.",
-              options: ["to see", "seeing", "see"],
-              expectedAnswer: "to see"
+              label: "I'm happy ___ you. (adjective + infinitive)",
+              options: ["to help", "helping", "help"],
+              expectedAnswer: "to help"
             },
             {
               type: "select",
-              label: "She decided ___ a new apartment.",
-              options: ["to rent", "renting", "rent"],
-              expectedAnswer: "to rent"
+              label: "I have the ability ___ fast. (noun + infinitive)",
+              options: ["to run", "running", "run"],
+              expectedAnswer: "to run"
             },
             {
               type: "select",
-              label: "I need ___ more English.",
-              options: ["to practice", "practicing", "practice"],
-              expectedAnswer: "to practice"
+              label: "She decided ___ a new car. (verb + infinitive)",
+              options: ["to buy", "buying", "buy"],
+              expectedAnswer: "to buy"
+            },
+            {
+              type: "select",
+              label: "It's important ___ on time. (adjective + infinitive)",
+              options: ["to arrive", "arriving", "arrive"],
+              expectedAnswer: "to arrive"
             }
           ]
         },
         {
-          id: "pattern-6-word-scramble",
+          id: "infinitive-word-scramble",
           title: "Build the Sentence",
           instructions: "Put the words in the correct order.",
           items: [
             {
               type: "word-scramble",
               label: "Express a goal:",
-              words: ["I", "want", "to", "learn", "Spanish"],
-              correctAnswer: "I want to learn Spanish",
+              words: ["I", "want", "to", "visit", "Japan"],
+              correctAnswer: "I want to visit Japan",
               hint: "want + to + verb"
             },
             {
               type: "word-scramble",
-              label: "Make a plan:",
-              words: ["She", "decided", "to", "move", "to", "Boston"],
-              correctAnswer: "She decided to move to Boston",
-              hint: "decide + to + verb"
+              label: "Describe an ability:",
+              words: ["She", "has", "the", "ability", "to", "speak", "French"],
+              correctAnswer: "She has the ability to speak French",
+              hint: "noun + to + verb"
             }
           ]
         }
       ]
     },
     {
-      id: "special-cases",
-      stepNumber: 8,
-      title: "Special Cases: Stop, Remember, Try",
-      icon: "⚠️",
+      id: "special-case-stop",
+      stepNumber: 3,
+      title: "Special Case: STOP",
+      icon: "🛑",
       explanation: `
-        <p>Some verbs can be followed by BOTH gerunds and infinitives, but the <strong>meaning changes</strong>!</p>
+        <p>Some verbs can be followed by BOTH gerunds and infinitives, but the <strong>meaning changes</strong>! Let's start with <strong>stop</strong>.</p>
 
         <h3>Stop + Gerund vs Stop + Infinitive</h3>
         <div style="background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e;">
@@ -941,32 +1073,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           <p style="margin-top: 1rem;"><strong>stop + infinitive</strong> = pause one activity to do another</p>
           <p>Example: I stopped <strong>to buy</strong> gas. (I paused my trip to buy gas)</p>
         </div>
-
-        <h3>Remember + Gerund vs Remember + Infinitive</h3>
-        <div style="background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e;">
-          <p><strong>remember + gerund</strong> = recall a past event</p>
-          <p>Example: I remember <strong>meeting</strong> you at the party. (I have a memory of it)</p>
-          <p style="margin-top: 1rem;"><strong>remember + infinitive</strong> = not forget to do something (future/present)</p>
-          <p>Example: Remember <strong>to call</strong> your mother. (Don't forget!)</p>
-        </div>
-
-        <h3>Try + Gerund vs Try + Infinitive</h3>
-        <div style="background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e;">
-          <p><strong>try + gerund</strong> = experiment with something to see if it works</p>
-          <p>Example: I'm tired. I'll try <strong>drinking</strong> coffee. (Let's see if coffee helps)</p>
-          <p style="margin-top: 1rem;"><strong>try + infinitive</strong> = make an effort, attempt</p>
-          <p>Example: I'm trying <strong>to learn</strong> Spanish. (I'm making an effort)</p>
-        </div>
       `,
-      timeline: {
-        title: "⏰ Remember: Past Memory vs Future Duty",
-        description: "The direction of time changes the meaning!",
-        events: [
-          { label: "I remember meeting you at the party.", order: 1, tenseLabel: "PAST (memory)" },
-          { label: "NOW", order: 2, tenseLabel: "Present moment" },
-          { label: "Remember to call your mother tonight.", order: 3, tenseLabel: "FUTURE (duty)" }
-        ]
-      },
       usageMeanings: [
         {
           title: "🛑 STOP + Gerund = Quit the Activity",
@@ -985,7 +1092,55 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             { sentence: "She stopped <strong>to answer</strong> the phone.", explanation: "She paused her work to answer." },
             { sentence: "We stopped <strong>to take</strong> a photo.", explanation: "We paused our walk to take a photo." }
           ]
-        },
+        }
+      ],
+      tipBox: {
+        title: "💡 Quick Test",
+        content: "Quit the habit? → gerund. Pause to do something else? → infinitive."
+      },
+      exercises: [
+        {
+          id: "special-case-stop-exercise",
+          title: "Practice: STOP",
+          instructions: "Choose the correct form based on the meaning.",
+          items: [
+            {
+              type: "radio",
+              label: "I stopped ___ TV at midnight. (I quit the habit)",
+              options: [
+                { value: "watching", label: "watching (quit the habit)" },
+                { value: "to-watch", label: "to watch (paused to do it)" }
+              ],
+              expectedAnswer: "watching"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "special-case-remember",
+      stepNumber: 4,
+      title: "Special Case: REMEMBER",
+      icon: "🧠",
+      explanation: `
+        <h3>Remember + Gerund vs Remember + Infinitive</h3>
+        <div style="background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e;">
+          <p><strong>remember + gerund</strong> = recall a past event</p>
+          <p>Example: I remember <strong>meeting</strong> you at the party. (I have a memory of it)</p>
+          <p style="margin-top: 1rem;"><strong>remember + infinitive</strong> = not forget to do something (future/present)</p>
+          <p>Example: Remember <strong>to call</strong> your mother. (Don't forget!)</p>
+        </div>
+      `,
+      timeline: {
+        title: "⏰ Remember: Past Memory vs Future Duty",
+        description: "The direction of time changes the meaning!",
+        events: [
+          { label: "I remember meeting you at the party.", order: 1, tenseLabel: "PAST (memory)" },
+          { label: "NOW", order: 2, tenseLabel: "Present moment" },
+          { label: "Remember to call your mother tonight.", order: 3, tenseLabel: "FUTURE (duty)" }
+        ]
+      },
+      usageMeanings: [
         {
           title: "🧠 REMEMBER + Gerund = Past Memory",
           description: "You recall something that already happened",
@@ -1001,7 +1156,46 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             { sentence: "Remember <strong>to call</strong> your mother.", explanation: "Don't forget! (future action)" },
             { sentence: "Remember <strong>to take</strong> your keys.", explanation: "Don't forget! (before leaving)" }
           ]
-        },
+        }
+      ],
+      tipBox: {
+        title: "💡 Quick Test",
+        content: "Past memory? → gerund. Future duty (don't forget)? → infinitive. 'I remember seeing you' vs 'Remember to call'."
+      },
+      exercises: [
+        {
+          id: "special-case-remember-exercise",
+          title: "Practice: REMEMBER",
+          instructions: "Choose the correct form based on the meaning.",
+          items: [
+            {
+              type: "radio",
+              label: "Remember ___ your keys before leaving. (Don't forget!)",
+              options: [
+                { value: "taking", label: "taking (past memory)" },
+                { value: "to-take", label: "to take (don't forget)" }
+              ],
+              expectedAnswer: "to-take"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "special-case-try",
+      stepNumber: 5,
+      title: "Special Case: TRY",
+      icon: "🔬",
+      explanation: `
+        <h3>Try + Gerund vs Try + Infinitive</h3>
+        <div style="background-color: #fef3cd; padding: 15px; margin: 15px 0; border-radius: 8px; border: 1px solid #f4d35e;">
+          <p><strong>try + gerund</strong> = experiment with something to see if it works</p>
+          <p>Example: I'm tired. I'll try <strong>drinking</strong> coffee. (Let's see if coffee helps)</p>
+          <p style="margin-top: 1rem;"><strong>try + infinitive</strong> = make an effort, attempt</p>
+          <p>Example: I'm trying <strong>to learn</strong> Spanish. (I'm making an effort)</p>
+        </div>
+      `,
+      usageMeanings: [
         {
           title: "🔬 TRY + Gerund = Experiment",
           description: "Test something to see if it works",
@@ -1021,32 +1215,14 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       ],
       tipBox: {
         title: "💡 Quick Test",
-        content: "Is it about the PAST (gerund) or FUTURE (infinitive)? 'I remember seeing you' (past memory) vs 'Remember to call' (future action)"
+        content: "Experiment to see if it works? → gerund. Make an effort or attempt? → infinitive."
       },
       exercises: [
         {
-          id: "special-cases-exercise",
-          title: "Practice: Stop, Remember, Try",
+          id: "special-case-try-exercise",
+          title: "Practice: TRY",
           instructions: "Choose the correct form based on the meaning.",
           items: [
-            {
-              type: "radio",
-              label: "I stopped ___ TV at midnight. (I quit the habit)",
-              options: [
-                { value: "watching", label: "watching (quit the habit)" },
-                { value: "to-watch", label: "to watch (paused to do it)" }
-              ],
-              expectedAnswer: "watching"
-            },
-            {
-              type: "radio",
-              label: "Remember ___ your keys before leaving. (Don't forget!)",
-              options: [
-                { value: "taking", label: "taking (past memory)" },
-                { value: "to-take", label: "to take (don't forget)" }
-              ],
-              expectedAnswer: "to-take"
-            },
             {
               type: "radio",
               label: "If you have a headache, try ___ some water. (Experiment)",
@@ -1062,7 +1238,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
     },
     {
       id: "verbs-both",
-      stepNumber: 9,
+      stepNumber: 6,
       title: "Verbs That Take BOTH (Same Meaning)",
       icon: "🔀",
       explanation: `
@@ -1175,7 +1351,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
     },
     {
       id: "go-gerund",
-      stepNumber: 10,
+      stepNumber: 7,
       title: "GO + Gerund for Activities",
       icon: "🏃",
       explanation: `
@@ -1271,72 +1447,93 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       ]
     },
     {
-      id: "common-mistakes",
-      stepNumber: 11,
-      title: "Common Mistakes to Avoid",
-      icon: "🚫",
+      id: "quick-fixes",
+      stepNumber: 8,
+      title: "Quick Fixes: Common Mistakes & Memory Tricks",
+      icon: "🔧",
       explanation: `
-        <p>Here are the <strong>most common errors</strong> students make with gerunds and infinitives – and how to fix them!</p>
+        <p>Learn to <strong>spot errors</strong> and use <strong>memory tricks</strong> to fix them instantly!</p>
 
-        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(251, 191, 36, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-          <h3 style="margin-top: 0; color: #ef4444; font-size: 1.25rem;">🎯 Learning from Mistakes</h3>
-          <p style="margin-bottom: 0;">Recognizing these common errors will help you avoid them and sound more natural in English!</p>
+        <!-- Visual: Mistake → Memory Trick → Fix -->
+        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(123, 168, 132, 0.08) 100%); border-radius: 1rem; padding: 1.5rem; margin: 1.5rem 0;">
+          <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; text-align: center;">
+            <div style="background: rgba(239, 68, 68, 0.15); border-radius: 0.5rem; padding: 1rem;">
+              <div style="font-size: 1.5rem;">❌</div>
+              <div style="font-weight: 700; color: #ef4444;">Common Mistake</div>
+            </div>
+            <div style="font-size: 1.5rem; color: #7ba884;">→</div>
+            <div style="background: rgba(123, 168, 132, 0.15); border-radius: 0.5rem; padding: 1rem;">
+              <div style="font-size: 1.5rem;">✅</div>
+              <div style="font-weight: 700; color: #7ba884;">Memory Trick Fix</div>
+            </div>
+          </div>
         </div>
       `,
       usageMeanings: [
         {
-          title: "❌ Mistake #1: Infinitive After Prepositions",
-          description: "NEVER use infinitive after a preposition – always use gerund!",
+          title: "❌ Mistake: Infinitive After Preposition → 🔤 Fix: PREP = ING",
+          description: "After a PREPosition, always use -ING (gerund)",
           examples: [
-            { sentence: "❌ I'm interested in <strong>to learn</strong> Spanish.", explanation: "WRONG – infinitive after preposition" },
-            { sentence: "✅ I'm interested in <strong>learning</strong> Spanish.", explanation: "CORRECT – gerund after preposition" },
-            { sentence: "❌ She's good at <strong>to solve</strong> problems.", explanation: "WRONG – infinitive after preposition" },
-            { sentence: "✅ She's good at <strong>solving</strong> problems.", explanation: "CORRECT – gerund after preposition" }
+            { sentence: "❌ I'm interested in <strong>to learn</strong>", explanation: "WRONG – infinitive after preposition" },
+            { sentence: "✅ I'm interested in <strong>learning</strong>", explanation: "PREP = ING! Use gerund after 'in'" },
+            { sentence: "❌ She's good at <strong>to solve</strong>", explanation: "WRONG – infinitive after preposition" },
+            { sentence: "✅ She's good at <strong>solving</strong>", explanation: "PREP = ING! Use gerund after 'at'" }
           ]
         },
         {
-          title: "❌ Mistake #2: Wrong Verb + Form Combination",
-          description: "Some verbs ONLY take gerund, others ONLY take infinitive",
+          title: "❌ Mistake: Wrong Verb + Form → 😊 Fix: Enjoy -ING, Want TO",
+          description: "Enjoyment verbs → gerund. Goal verbs → infinitive.",
           examples: [
-            { sentence: "❌ I <strong>enjoy to read</strong> books.", explanation: "WRONG – enjoy always takes gerund" },
-            { sentence: "✅ I <strong>enjoy reading</strong> books.", explanation: "CORRECT – enjoy + gerund" },
-            { sentence: "❌ I <strong>want reading</strong> a book.", explanation: "WRONG – want always takes infinitive" },
-            { sentence: "✅ I <strong>want to read</strong> a book.", explanation: "CORRECT – want + infinitive" }
+            { sentence: "❌ I <strong>enjoy to read</strong>", explanation: "WRONG – enjoy takes gerund" },
+            { sentence: "✅ I <strong>enjoy reading</strong>", explanation: "Enjoy the -ING! Enjoyment → gerund" },
+            { sentence: "❌ I <strong>want reading</strong>", explanation: "WRONG – want takes infinitive" },
+            { sentence: "✅ I <strong>want to read</strong>", explanation: "Want TO do it! Goals → infinitive" }
           ]
         },
         {
-          title: "❌ Mistake #3: 'TO' as Preposition Confusion",
-          description: "In some phrases, 'to' is a preposition (not infinitive) – use gerund!",
+          title: "❌ Mistake: 'Look forward to see' → ⚠️ Fix: TO as Preposition = ING",
+          description: "In 'look forward to' and 'be used to', the 'to' is a preposition!",
           examples: [
-            { sentence: "❌ I look forward to <strong>see</strong> you.", explanation: "WRONG – 'to' is a preposition here" },
-            { sentence: "✅ I look forward to <strong>seeing</strong> you.", explanation: "CORRECT – preposition + gerund" },
-            { sentence: "❌ I'm used to <strong>wake</strong> up early.", explanation: "WRONG – 'to' is a preposition here" },
-            { sentence: "✅ I'm used to <strong>waking</strong> up early.", explanation: "CORRECT – preposition + gerund" }
+            { sentence: "❌ I look forward to <strong>see</strong> you", explanation: "WRONG – 'to' is a preposition here!" },
+            { sentence: "✅ I look forward to <strong>seeing</strong> you", explanation: "TO as preposition → use gerund" },
+            { sentence: "❌ I'm used to <strong>wake</strong> up early", explanation: "WRONG – 'to' is a preposition here!" },
+            { sentence: "✅ I'm used to <strong>waking</strong> up early", explanation: "TO as preposition → use gerund" }
           ]
         },
         {
-          title: "❌ Mistake #4: GO + Infinitive",
-          description: "Use GO + GERUND for activities, not infinitive",
+          title: "❌ Mistake: Wrong Preposition → 📌 Fix: Learn the Fixed Phrase",
+          description: "Each adjective has its own preposition—no rule, must memorize",
           examples: [
-            { sentence: "❌ Let's go <strong>to swim</strong>.", explanation: "WRONG – go + infinitive" },
-            { sentence: "✅ Let's go <strong>swimming</strong>.", explanation: "CORRECT – go + gerund" },
-            { sentence: "❌ I want to go <strong>to shop</strong>.", explanation: "WRONG – go + infinitive" },
-            { sentence: "✅ I want to go <strong>shopping</strong>.", explanation: "CORRECT – go + gerund" }
+            { sentence: "❌ I'm interested <strong>to</strong> learn", explanation: "WRONG – use 'interested in'" },
+            { sentence: "✅ I'm interested <strong>in</strong> learning", explanation: "interested in + gerund" },
+            { sentence: "❌ She's good <strong>in</strong> solving problems", explanation: "WRONG – use 'good at'" },
+            { sentence: "✅ She's good <strong>at</strong> solving problems", explanation: "good at + gerund" }
+          ]
+        },
+        {
+          title: "❌ Mistake: 'Go to swim' → 🏃 Fix: GO + Activity = GO -ING",
+          description: "Activities with 'go' always use gerund",
+          examples: [
+            { sentence: "❌ Let's go <strong>to swim</strong>", explanation: "WRONG – go + infinitive" },
+            { sentence: "✅ Let's go <strong>swimming</strong>", explanation: "GO + Activity = GO -ING!" },
+            { sentence: "❌ I want to go <strong>to shop</strong>", explanation: "WRONG – go + infinitive" },
+            { sentence: "✅ I want to go <strong>shopping</strong>", explanation: "GO + Activity = GO -ING!" }
           ]
         }
       ],
       tipBox: {
-        title: "💡 Quick Fix Strategy",
-        content: `When in doubt, ask yourself:
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div><strong>1)</strong> Is there a preposition? <span style="color: #d97757; font-weight: 600;">→</span> Use gerund</div>
-                    <div><strong>2)</strong> Is it "go" + activity? <span style="color: #d97757; font-weight: 600;">→</span> Use gerund</div>
-                    <div><strong>3)</strong> Is it a specific verb? <span style="color: #d97757; font-weight: 600;">→</span> Check if it takes gerund or infinitive</div>
+        title: "💡 The Golden Question",
+        content: `Always ask: "What comes BEFORE the verb?"
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.4rem;">
+                    <div><strong>Preposition?</strong> <span style="color: #d97757; font-weight: 600;">→</span> Use gerund (PREP = ING)</div>
+                    <div><strong>GO + activity?</strong> <span style="color: #d97757; font-weight: 600;">→</span> Use gerund (GO -ING)</div>
+                    <div><strong>Enjoy/finish/avoid?</strong> <span style="color: #d97757; font-weight: 600;">→</span> Use gerund (Enjoy the -ING)</div>
+                    <div><strong>Want/plan/hope?</strong> <span style="color: #0369a1; font-weight: 600;">→</span> Use infinitive (Want TO do it)</div>
                 </div>`
       },
       exercises: [
         {
-          id: "common-mistakes-word-select",
+          id: "quick-fixes-error-spotting",
           title: "Find the Error",
           instructions: "Click on the ERROR in each sentence.",
           items: [
@@ -1374,83 +1571,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      id: "memory-tricks",
-      stepNumber: 12,
-      title: "Memory Tricks & Quick Tips",
-      icon: "🧠",
-      explanation: `
-        <p>Use these <strong>memory tricks</strong> to remember gerund and infinitive rules!</p>
-
-        <div style="background: linear-gradient(135deg, rgba(123, 168, 132, 0.15) 0%, rgba(244, 211, 94, 0.15) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-          <h3 style="margin-top: 0; color: #7ba884; font-size: 1.25rem;">🎯 Make It Stick!</h3>
-          <p style="margin-bottom: 0;">These simple tricks will help you remember the rules without memorizing every verb!</p>
-        </div>
-      `,
-      usageMeanings: [
-        {
-          title: "🔤 PREP = ING",
-          description: "After a PREPosition, always use -ING (gerund)",
-          examples: [
-            { sentence: "interested <strong>in learning</strong>", explanation: "preposition 'in' → gerund" },
-            { sentence: "good <strong>at solving</strong>", explanation: "preposition 'at' → gerund" },
-            { sentence: "tired <strong>of waiting</strong>", explanation: "preposition 'of' → gerund" }
-          ]
         },
         {
-          title: "😊 Enjoy the -ING",
-          description: "Verbs about ENJOYING activities usually take gerund",
-          examples: [
-            { sentence: "enjoy <strong>reading</strong>", explanation: "enjoyment → gerund" },
-            { sentence: "love <strong>cooking</strong>", explanation: "enjoyment → gerund" },
-            { sentence: "miss <strong>traveling</strong>", explanation: "enjoyment → gerund" }
-          ]
-        },
-        {
-          title: "🎯 Want TO do it",
-          description: "Verbs about GOALS and PLANS usually take infinitive",
-          examples: [
-            { sentence: "want <strong>to learn</strong>", explanation: "goal → infinitive" },
-            { sentence: "plan <strong>to move</strong>", explanation: "plan → infinitive" },
-            { sentence: "hope <strong>to see</strong>", explanation: "hope/goal → infinitive" }
-          ]
-        },
-        {
-          title: "🏃 GO + Activity = GO -ING",
-          description: "Activities with 'go' always use gerund",
-          examples: [
-            { sentence: "go <strong>swimming</strong>", explanation: "go + activity → gerund" },
-            { sentence: "go <strong>shopping</strong>", explanation: "go + activity → gerund" },
-            { sentence: "go <strong>hiking</strong>", explanation: "go + activity → gerund" }
-          ]
-        },
-        {
-          title: "⏰ Past = -ING, Future = TO",
-          description: "For stop/remember/try: past events use gerund, future actions use infinitive",
-          examples: [
-            { sentence: "I remember <strong>meeting</strong> you (past)", explanation: "memory of past → gerund" },
-            { sentence: "Remember <strong>to call</strong> mom (future)", explanation: "future duty → infinitive" }
-          ]
-        },
-        {
-          title: "⚠️ Look Forward TO -ING",
-          description: "The 'to' in 'look forward to' is a PREPOSITION!",
-          examples: [
-            { sentence: "I look forward to <strong>seeing</strong> you", explanation: "'to' = preposition → gerund" },
-            { sentence: "I'm used to <strong>waking</strong> up early", explanation: "'to' = preposition → gerund" }
-          ]
-        }
-      ],
-      tipBox: {
-        title: "💡 The Golden Question",
-        content: "Always ask: 'What comes BEFORE the verb?' Preposition? → Gerund. Adjective? → Usually infinitive. Specific verb? → Check if it's a gerund or infinitive verb!"
-      },
-      exercises: [
-        {
-          id: "memory-tricks-exercise",
+          id: "quick-fixes-apply-tricks",
           title: "Apply the Memory Tricks",
           instructions: "Use the memory tricks to choose the correct form.",
           items: [
@@ -1468,27 +1591,15 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             },
             {
               type: "select",
-              label: "Want TO do it: I want ___ Spanish.",
+              label: "Want TO: I want ___ Spanish.",
               options: ["to learn", "learning"],
               expectedAnswer: "to learn"
             },
             {
               type: "select",
-              label: "GO + Activity: Let's go ___.",
+              label: "GO -ING: Let's go ___.",
               options: ["swimming", "to swim"],
               expectedAnswer: "swimming"
-            },
-            {
-              type: "select",
-              label: "Past = -ING: I remember ___ you at the party.",
-              options: ["meeting", "to meet"],
-              expectedAnswer: "meeting"
-            },
-            {
-              type: "select",
-              label: "Look Forward TO -ING: I look forward to ___ you.",
-              options: ["seeing", "see"],
-              expectedAnswer: "seeing"
             }
           ]
         }
@@ -1496,26 +1607,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
     },
     {
       id: "summary",
-      title: "Summary: Quick Reference Guide",
+      title: "Summary: Master Reference Chart",
       icon: "✓",
       explanation: `
-        <div style="background: linear-gradient(135deg, rgba(123, 168, 132, 0.1) 0%, rgba(217, 119, 87, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+        <div style="background: linear-gradient(135deg, rgba(123, 168, 132, 0.1) 0%, rgba(217, 119, 87, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem;">
           <h3 style="margin-top: 0; color: #7ba884; font-size: 1.25rem;">🎉 You Made It!</h3>
-          <p style="margin-bottom: 0;">You've learned all the major patterns for gerunds and infinitives. Use this summary as your quick reference guide!</p>
+          <p style="margin-bottom: 0;">Use this chart as your quick reference when choosing between gerund and infinitive.</p>
         </div>
-
-        <h3 style="margin-top: 2rem;">Key Reminders</h3>
-        <ul class="list-disc pl-6 space-y-2">
-          <li><strong>After a preposition → ALWAYS gerund!</strong> This is the most important rule.</li>
-          <li><strong>Look what comes BEFORE the verb</strong> to decide gerund or infinitive.</li>
-          <li>Certain verbs always take gerunds: enjoy, finish, keep, stop, avoid, consider, suggest, recommend</li>
-          <li>Certain verbs always take infinitives: want, hope, plan, decide, learn, need, offer, promise, agree</li>
-          <li>Some verbs take BOTH with same meaning: begin, start, continue, like, love, hate</li>
-          <li>Special cases (stop, remember, try) change meaning depending on gerund or infinitive</li>
-          <li>GO + activities = always gerund (go swimming, go shopping)</li>
-          <li>Subject of sentence = gerund (Swimming is fun)</li>
-          <li>Watch out for "to" as a preposition: look forward <strong>to</strong>, be used <strong>to</strong></li>
-        </ul>
       `,
       comparison: {
         title: "📊 Master Reference Chart",
@@ -1542,313 +1640,186 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "quiz-1",
-      question: "What should you use after a preposition?",
+      question: "What is the best strategy for choosing gerund or infinitive?",
       options: [
-        { value: "b", label: "Always infinitive (to + verb)" },
-        { value: "a", label: "Always gerund (-ing)" },
-        { value: "c", label: "Either one" },
-    ],
-    correctAnswer: "a",
-      explanation:
-        "After a preposition, you MUST use a gerund. Example: 'I'm interested in learning' (not 'in to learn').",
-      skillTag: "prep-plus-gerund-core-rule",
+        { value: "a", label: "Use your favorite form" },
+        { value: "b", label: "Look at what comes BEFORE the verb (subject, preposition, adjective, verb, noun)" },
+        { value: "c", label: "Always use gerunds with long verbs and infinitives with short verbs" },
+      ],
+      correctAnswer: "b",
+      explanation: "The key is to look at what comes BEFORE the verb. Subject? → gerund. Preposition? → gerund. Adjective (happy, important) or verb (want, plan) or noun (ability)? → infinitive.",
+      skillTag: "meta-look-before-verb-strategy",
       difficulty: "easy",
     },
     {
       id: "quiz-2",
-      question: "Which option correctly uses a gerund after 'enjoy'?",
+      question: "Which sentence uses a gerund as the subject?",
       options: [
-        { value: "a", label: "I enjoy to read books." },
-        { value: "c", label: "I enjoy read books." },
-        { value: "b", label: "I enjoy reading books." },
-    ],
-    correctAnswer: "b",
-      explanation:
-        "'Enjoy' is always followed by a gerund, never an infinitive. Correct: 'I enjoy reading books.'",
-      skillTag: "verb-plus-gerund-enjoy-like-love",
+        { value: "a", label: "I enjoy reading before bed." },
+        { value: "b", label: "Reading before bed helps me relax." },
+        { value: "c", label: "I want to read before bed." },
+      ],
+      correctAnswer: "b",
+      explanation: "'Reading' is a gerund used as the subject. When the verb is the topic of the sentence, use -ING form.",
+      skillTag: "subject-gerund-identification",
       difficulty: "easy",
     },
     {
       id: "quiz-3",
-      question: "Which option correctly uses an infinitive after 'want'?",
+      question: "Complete: '___ a new language takes time.'",
       options: [
-        { value: "b", label: "I want to visit Japan." },
-        { value: "a", label: "I want visiting Japan." },
-        { value: "c", label: "I want visit Japan." },
-    ],
-    correctAnswer: "b",
-      explanation:
-        "'Want' is always followed by an infinitive, never a gerund. Correct: 'I want to visit Japan.'",
-      skillTag: "verb-plus-infinitive-want-hope-plan",
-      difficulty: "easy",
-    },
-    {
-      id: "quiz-4",
-      question: "When the verb is the subject, which form is more natural in modern English?",
-      options: [
-        { value: "b", label: "Infinitive: 'To swim is fun'" },
-        { value: "a", label: "Gerund: 'Swimming is fun'" },
-        { value: "c", label: "Both are equally wrong" },
-    ],
-    correctAnswer: "a",
-      explanation:
-        "When a verb is the subject, we usually use the gerund: 'Swimming is fun.' 'To swim is fun' is possible but sounds more formal or old‑fashioned.",
+        { value: "a", label: "Learning" },
+        { value: "b", label: "To learn" },
+        { value: "c", label: "Learn" },
+      ],
+      correctAnswer: "a",
+      explanation: "When the verb is the subject, use the gerund: 'Learning a new language takes time.'",
       skillTag: "subject-gerund-choice",
       difficulty: "easy",
     },
     {
-      id: "quiz-5",
-      question: "What's the difference: 'I stopped smoking' vs 'I stopped to smoke'?",
+      id: "quiz-4",
+      question: "What should you use after a preposition?",
       options: [
-        { value: "a", label: "No difference – same meaning" },
-        { value: "c", label: "'stopped smoking' is wrong in English" },
-        { value: "b", label: "'stopped smoking' = quit the habit, 'stopped to smoke' = paused to have a cigarette" },
-    ],
-    correctAnswer: "b",
-      explanation:
-        "Stop + gerund = quit doing something. Stop + infinitive = pause one activity to do another. The meaning completely changes.",
-      skillTag: "special-stop-gerund-vs-infinitive",
-      difficulty: "medium",
+        { value: "a", label: "Always gerund (-ing)" },
+        { value: "b", label: "Always infinitive (to + verb)" },
+        { value: "c", label: "Either one" },
+      ],
+      correctAnswer: "a",
+      explanation: "After a preposition (in, at, for, about), you MUST use a gerund. Example: 'I'm interested in learning' (not 'in to learn').",
+      skillTag: "prep-plus-gerund-core-rule",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-5",
+      question: "Choose the correct: 'I enjoy ___ books.'",
+      options: [
+        { value: "a", label: "reading" },
+        { value: "b", label: "to read" },
+        { value: "c", label: "read" },
+      ],
+      correctAnswer: "a",
+      explanation: "'Enjoy' is always followed by a gerund: 'I enjoy reading books.'",
+      skillTag: "verb-plus-gerund-enjoy-like-love",
+      difficulty: "easy",
     },
     {
       id: "quiz-6",
-      question: "Which sentence correctly uses a gerund after the preposition 'for'?",
+      question: "Choose the correct: 'Thank you for ___ me.'",
       options: [
-        { value: "c", label: "Thank you for helping me." },
-        { value: "a", label: "Thank you for help me." },
-        { value: "b", label: "Thank you for to help me." },
-    ],
-    correctAnswer: "c",
-      explanation:
-        "'For' is a preposition, so it must be followed by a gerund: 'Thank you for helping me.'",
+        { value: "a", label: "helping" },
+        { value: "b", label: "to help" },
+        { value: "c", label: "help" },
+      ],
+      correctAnswer: "a",
+      explanation: "'For' is a preposition, so it must be followed by a gerund: 'Thank you for helping me.'",
       skillTag: "prep-for-plus-gerund",
       difficulty: "easy",
     },
     {
       id: "quiz-7",
-      question: "Choose the correct: 'I'm happy ___ you.'",
+      question: "Choose the correct: 'I'm happy ___ you.' (The word before the blank is an adjective.)",
       options: [
-        { value: "a", label: "seeing" },
-        { value: "b", label: "to see" },
+        { value: "a", label: "to see" },
+        { value: "b", label: "seeing" },
         { value: "c", label: "see" },
       ],
-      correctAnswer: "b",
-      explanation:
-        "After an adjective (happy), we use an infinitive: 'I'm happy to see you.'",
+      correctAnswer: "a",
+      explanation: "After an adjective (happy, important, ready), use an infinitive: 'I'm happy to see you.'",
       skillTag: "adjective-plus-infinitive-feelings",
       difficulty: "easy",
     },
     {
       id: "quiz-8",
-      question: "Which is correct for a past memory?",
+      question: "Choose the correct: 'It's important ___ on time.'",
       options: [
-        { value: "a", label: "I remember to meet you at the party." },
-        { value: "c", label: "I remember meet you at the party." },
-        { value: "b", label: "I remember meeting you at the party." },
-    ],
-    correctAnswer: "b",
-      explanation:
-        "Remember + gerund = recall a past event. 'I remember meeting you' means you have a memory of that event.",
-      skillTag: "special-remember-gerund-past-memory",
-      difficulty: "medium",
+        { value: "a", label: "to arrive" },
+        { value: "b", label: "arriving" },
+        { value: "c", label: "arrive" },
+      ],
+      correctAnswer: "a",
+      explanation: "After an adjective (important), use an infinitive: 'It's important to arrive on time.'",
+      skillTag: "adjective-plus-infinitive-feelings",
+      difficulty: "easy",
     },
     {
       id: "quiz-9",
-      question: "Choose the correct: 'I look forward ___ you soon.'",
+      question: "Choose the correct: 'I have the ability ___ three languages.' (The word before the blank is a noun.)",
       options: [
-        { value: "b", label: "to seeing" },
-        { value: "a", label: "to see" },
-        { value: "c", label: "seeing" },
-    ],
-    correctAnswer: "b",
-      explanation:
-        "'To' in 'look forward to' is a preposition, not an infinitive marker. After prepositions, always use a gerund: 'I look forward to seeing you.'",
-      skillTag: "phrase-look-forward-to-plus-gerund",
-      difficulty: "medium",
+        { value: "a", label: "to speak" },
+        { value: "b", label: "speaking" },
+        { value: "c", label: "speak" },
+      ],
+      correctAnswer: "a",
+      explanation: "After certain nouns (ability, chance, time), use an infinitive: 'I have the ability to speak three languages.'",
+      skillTag: "noun-plus-infinitive-ability-chance-time",
+      difficulty: "easy",
     },
     {
       id: "quiz-10",
-      question: "What is the best strategy for choosing gerund or infinitive?",
+      question: "Choose the correct: 'I want ___ Japan someday.'",
       options: [
-        { value: "a", label: "Use your favorite form" },
-        { value: "b", label: "Look at what comes BEFORE the verb (preposition, adjective, specific verbs, etc.)" },
-        { value: "c", label: "Always use gerunds with long verbs and infinitives with short verbs" },
+        { value: "a", label: "to visit" },
+        { value: "b", label: "visiting" },
+        { value: "c", label: "visit" },
       ],
-      correctAnswer: "b",
-      explanation:
-        "The key is to look at what comes BEFORE the verb. Prepositions, specific verbs, adjectives, and nouns usually decide gerund vs infinitive.",
-      skillTag: "meta-look-before-verb-strategy",
+      correctAnswer: "a",
+      explanation: "Verbs like want, plan, need are followed by an infinitive: 'I want to visit Japan.'",
+      skillTag: "verb-plus-infinitive-want-hope-plan",
       difficulty: "easy",
     },
     {
       id: "quiz-11",
-      question: "Which sentence correctly follows 'adjective + preposition + gerund'?",
+      question: "Choose the correct: 'I look forward ___ you soon.' (Here 'to' is a preposition!)",
       options: [
-        { value: "a", label: "She is good at to solve problems." },
-        { value: "c", label: "She is good to solving problems." },
-        { value: "b", label: "She is good at solving problems." },
-    ],
-    correctAnswer: "b",
-      explanation:
-        "After a preposition (at), we must use a gerund: 'good at solving problems.'",
-      skillTag: "adj-prep-plus-gerund",
+        { value: "a", label: "to seeing" },
+        { value: "b", label: "to see" },
+        { value: "c", label: "seeing" },
+      ],
+      correctAnswer: "a",
+      explanation: "In 'look forward to', 'to' is a preposition, so use a gerund: 'I look forward to seeing you.'",
+      skillTag: "phrase-look-forward-to-plus-gerund",
       difficulty: "medium",
     },
     {
       id: "quiz-12",
-      question: "Which sentence is a correct example of noun + infinitive?",
+      question: "Which sentence correctly uses adjective + preposition + gerund?",
       options: [
-        { value: "b", label: "I have the ability to speak three languages." },
-        { value: "a", label: "I have the ability speaking three languages." },
-        { value: "c", label: "I have the ability speak three languages." },
-    ],
-    correctAnswer: "b",
-      explanation:
-        "Certain nouns are followed by an infinitive: 'the ability to speak three languages.'",
-      skillTag: "noun-plus-infinitive-ability-chance-time",
+        { value: "a", label: "She is good at solving problems." },
+        { value: "b", label: "She is good at to solve problems." },
+        { value: "c", label: "She is good to solving problems." },
+      ],
+      correctAnswer: "a",
+      explanation: "After a preposition (at), use a gerund: 'good at solving problems.'",
+      skillTag: "adj-prep-plus-gerund",
       difficulty: "medium",
     },
     {
       id: "quiz-13",
-      question: "Which option correctly uses an infinitive after 'plan'?",
+      question: "'I stopped smoking' vs 'I stopped to smoke' – what's the difference?",
       options: [
-        { value: "a", label: "I plan studying nursing next year." },
-        { value: "b", label: "I plan to study nursing next year." },
-        { value: "c", label: "I plan study nursing next year." },
+        { value: "a", label: "'Stopped smoking' = quit the habit. 'Stopped to smoke' = paused to have a cigarette." },
+        { value: "b", label: "No difference – same meaning" },
+        { value: "c", label: "'Stopped to smoke' is wrong in English" },
       ],
-      correctAnswer: "b",
-      explanation:
-        "'Plan' is followed by an infinitive: 'plan to study nursing next year.'",
-      skillTag: "verb-plus-infinitive-plan-decide-hope",
+      correctAnswer: "a",
+      explanation: "Stop + gerund = quit doing something. Stop + infinitive = pause one activity to do another. The meaning changes completely.",
+      skillTag: "special-stop-gerund-vs-infinitive",
       difficulty: "medium",
     },
     {
       id: "quiz-14",
-      question: "Which sentence uses 'try' to show an experiment (see if it helps)?",
+      question: "Which is correct if you want to NOT forget a future action?",
       options: [
-        { value: "a", label: "I'll try to drink more water every day." },
-        { value: "c", label: "I'll try drink more water." },
-        { value: "b", label: "I'll try drinking more water to see if it helps." },
-    ],
-    correctAnswer: "b",
-      explanation:
-        "Try + gerund is used for experiments (see if it helps). Try + infinitive is used for effort.",
-      skillTag: "special-try-gerund-vs-infinitive",
-      difficulty: "medium",
-    },
-    {
-      id: "quiz-15",
-      question: "Which is correct if you don’t want to forget an action?",
-      options: [
-        { value: "b", label: "Remember to call your mother tonight." },
-        { value: "a", label: "Remember calling your mother tonight." },
+        { value: "a", label: "Remember to call your mother tonight." },
+        { value: "b", label: "Remember calling your mother tonight." },
         { value: "c", label: "Remember call your mother tonight." },
-    ],
-    correctAnswer: "b",
-      explanation:
-        "Remember + infinitive is used for not forgetting to do something: 'Remember to call your mother tonight.'",
-      skillTag: "special-remember-infinitive-future-duty",
-      difficulty: "medium",
-    },
-    {
-      id: "quiz-16",
-      question: "Which sentence has a gerund as the subject?",
-      options: [
-        { value: "a", label: "To study late at night is hard for me." },
-        { value: "b", label: "Studying late at night is hard for me." },
-        { value: "c", label: "I study late at night." },
-      ],
-      correctAnswer: "b",
-      explanation:
-        "'Studying' is a gerund used as the subject of the sentence.",
-      skillTag: "subject-gerund-identification",
-      difficulty: "easy",
-    },
-    // HARD DIFFICULTY QUESTIONS
-    {
-      id: "quiz-17",
-      question: "Which sentence uses 'to' as a PREPOSITION (not as part of an infinitive)?",
-      options: [
-        { value: "a", label: "I want to learn Spanish." },
-        { value: "b", label: "I look forward to meeting you." },
-        { value: "c", label: "I need to practice more." },
-      ],
-      correctAnswer: "b",
-      explanation:
-        "In 'look forward to', the 'to' is a preposition, so it must be followed by a gerund: 'to meeting'. In options A and C, 'to' is part of the infinitive.",
-      skillTag: "to-as-preposition-advanced",
-      difficulty: "hard",
-    },
-    {
-      id: "quiz-18",
-      question: "Complete: 'I'm used to ___ up early for work.'",
-      options: [
-        { value: "a", label: "wake" },
-        { value: "b", label: "waking" },
-        { value: "c", label: "to wake" },
-      ],
-      correctAnswer: "b",
-      explanation:
-        "'Be used to' means 'be accustomed to'. The 'to' here is a preposition, so it must be followed by a gerund: 'I'm used to waking up early.'",
-      skillTag: "be-used-to-gerund",
-      difficulty: "hard",
-    },
-    {
-      id: "quiz-19",
-      question: "'I stopped buying coffee every day' vs 'I stopped to buy coffee' – which means QUIT?",
-      options: [
-        { value: "a", label: "'I stopped buying coffee' means I quit." },
-        { value: "b", label: "'I stopped to buy coffee' means I quit." },
-        { value: "c", label: "Both mean the same thing." },
       ],
       correctAnswer: "a",
-      explanation:
-        "'Stopped buying' = quit the habit. 'Stopped to buy' = paused (another activity) in order to buy coffee. The gerund indicates quitting, the infinitive indicates pausing.",
-      skillTag: "special-stop-advanced",
-      difficulty: "hard",
-    },
-    {
-      id: "quiz-20",
-      question: "After 'afraid of', you should use ___",
-      options: [
-        { value: "a", label: "infinitive (afraid of to fly)" },
-        { value: "b", label: "gerund (afraid of flying)" },
-        { value: "c", label: "base verb (afraid of fly)" },
-      ],
-      correctAnswer: "b",
-      explanation:
-        "'Of' is a preposition, and after prepositions you ALWAYS use a gerund. Correct: 'I'm afraid of flying.'",
-      skillTag: "adj-prep-plus-gerund-advanced",
-      difficulty: "hard",
-    },
-    {
-      id: "quiz-21",
-      question: "Which is correct for recreational activities?",
-      options: [
-        { value: "a", label: "Let's go to swim at the pool." },
-        { value: "b", label: "Let's go swimming at the pool." },
-        { value: "c", label: "Let's go swim at the pool." },
-      ],
-      correctAnswer: "b",
-      explanation:
-        "For recreational activities with 'go', always use gerund: go swimming, go shopping, go hiking. Never 'go to swim' or 'go to shop'.",
-      skillTag: "go-plus-gerund",
-      difficulty: "hard",
-    },
-    {
-      id: "quiz-22",
-      question: "Which verb can take BOTH gerund AND infinitive with the SAME meaning?",
-      options: [
-        { value: "a", label: "enjoy (enjoy reading / enjoy to read)" },
-        { value: "b", label: "want (want reading / want to read)" },
-        { value: "c", label: "begin (begin reading / begin to read)" },
-      ],
-      correctAnswer: "c",
-      explanation:
-        "'Begin' (like start, continue, like, love, hate) can take either gerund or infinitive with the same meaning. 'Enjoy' only takes gerund. 'Want' only takes infinitive.",
-      skillTag: "verbs-both-forms",
-      difficulty: "hard",
-    },
+      explanation: "Remember + infinitive = don't forget (future). Remember + gerund = recall a past event. For future reminders: 'Remember to call.'",
+      skillTag: "special-remember-infinitive-future-duty",
+      difficulty: "medium",
+    }
   ],
   /*
   TEACHER DIAGNOSTIC NOTES – Gerunds & Infinitives Mini Quiz

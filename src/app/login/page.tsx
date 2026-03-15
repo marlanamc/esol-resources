@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import LoginForm from "@/components/LoginForm";
 
 export default function LoginPage() {
@@ -38,6 +39,11 @@ export default function LoginPage() {
                         Espanol: Entra con tu clave temporal. Luego crea una clave nueva. Despues vuelve a entrar.
                     </p>
                 </div>
+                <p className="text-center text-xs text-[var(--color-text-muted)]">
+                    <Link href="/privacy" className="hover:underline">
+                        Privacy Policy
+                    </Link>
+                </p>
             </div>
         </div>
     );

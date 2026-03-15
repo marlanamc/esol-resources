@@ -541,6 +541,7 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
 
         const gerundsAndInfinitives = sortByKeywordOrder(
             take((a: Activity) => {
+                if (a.type === 'game') return false; // games appear in Games category only
                 const t = normalizeTitle(a.title);
                 return t.includes('gerund') || t.includes('infinitive');
             }),
@@ -610,6 +611,78 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
         ];
     }, [activities]);
 
+    const buildGameSubCategories = useCallback((): SubCategory[] => {
+        const gameActivities = activities.filter((a: Activity) => {
+            if (a.type !== 'game') return false;
+            return (
+                a.category === 'games' ||
+                a.ui === 'verb-forms' ||
+                a.ui === 'verbforms' ||
+                a.ui === 'gerund-infinitive' ||
+                a.id === 'numbers-game' ||
+                a.id === 'countable-uncountable-nouns'
+            );
+        });
+
+        const normalizeTitle = (title?: string | null) => displayTitle(title || '').toLowerCase();
+        const remaining = [...gameActivities];
+
+        const take = (predicate: (a: Activity) => boolean) => {
+            const matched: Activity[] = [];
+            for (let i = remaining.length - 1; i >= 0; i--) {
+                const item = remaining[i];
+                if (predicate(item)) {
+                    matched.push(item);
+                    remaining.splice(i, 1);
+                }
+            }
+            return matched.reverse();
+        };
+
+        const sortAlpha = (list: Activity[]) =>
+            list.sort((a, b) => displayTitle(a.title || '').localeCompare(displayTitle(b.title || '')));
+
+        const verbTenseGames = sortAlpha(
+            take((a: Activity) => {
+                const t = normalizeTitle(a.title);
+                return (
+                    t.includes('verb forms') ||
+                    t.includes('irregular') ||
+                    t.includes('time indicators') ||
+                    t.includes('sounds right')
+                );
+            })
+        );
+
+        const gerundInfinitiveGames = sortAlpha(
+            take((a: Activity) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('gerund') || t.includes('infinitive');
+            })
+        );
+
+        const partsOfSpeechGames = sortAlpha(
+            take((a: Activity) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('countable') || t.includes('uncountable');
+            })
+        );
+
+        const numberGames = sortAlpha(
+            take((a: Activity) => a.id === 'numbers-game' || normalizeTitle(a.title).includes('numbers'))
+        );
+
+        const otherGames = sortAlpha(remaining);
+
+        return [
+            { name: 'Verb Tense Games', activities: verbTenseGames },
+            { name: 'Gerunds and Infinitives', activities: gerundInfinitiveGames },
+            { name: 'Parts of Speech Games', activities: partsOfSpeechGames },
+            { name: 'Numbers', activities: numberGames },
+            { name: 'Other Games', activities: otherGames },
+        ].filter((group) => group.activities.length > 0);
+    }, [activities]);
+
     // Organize activities by top-level categories with subcategories
     const categories = useMemo((): Category[] => {
         return [
@@ -653,15 +726,8 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
             {
                 name: 'Games',
                 color: '#f97316', // orange
-                activities: activities.filter((a: Activity) => {
-                    // Filter for all game activities
-                    if (a.type !== 'game') return false;
-                    
-                    // Show if in games category, or has verb-forms UI
-                    return a.category === 'games' || 
-                           a.ui === 'verb-forms' || 
-                           a.ui === 'verbforms';
-                })
+                subCategories: buildGameSubCategories(),
+                activities: []
             },
             {
                 name: 'Reading',
@@ -709,7 +775,7 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                     })
             }
         ];
-    }, [activities, buildGrammarSubCategories]);
+    }, [activities, buildGrammarSubCategories, buildGameSubCategories]);
 
     const renderActivityCard = useCallback((activity: Activity) => {
         let isQuiz = false;

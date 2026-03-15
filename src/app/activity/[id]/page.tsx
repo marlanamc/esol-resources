@@ -100,7 +100,8 @@ export default async function ActivityPage({ params, searchParams }: Props) {
             gameUi === "irregular-verbs" ||
             gameUi === "matching" ||
             gameUi === "ed-pronunciation" ||
-            gameUi === "minimal-pairs"
+            gameUi === "minimal-pairs" ||
+            gameUi === "gerund-infinitive"
         )
     ) {
         return renderImmersiveActivity(
@@ -274,7 +275,8 @@ function renderImmersiveActivity(
     const immersiveGameUi = activity.type === "game" ? resolveActivityGameUi(activity) : null;
     const shouldRenderImmersiveHeader =
         !(activity.type === "vocabulary" && activity.ui) &&
-        immersiveGameUi !== "irregular-verbs";
+        immersiveGameUi !== "irregular-verbs" &&
+        immersiveGameUi !== "gerund-infinitive";
 
     return (
         <div className="min-h-screen bg-bg flex flex-col">

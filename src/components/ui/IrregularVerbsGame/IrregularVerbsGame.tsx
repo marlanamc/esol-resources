@@ -182,6 +182,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
                 exercises={state.exercises}
                 currentIndex={state.currentExerciseIndex}
                 showPattern={!preferences?.hideVerbExplanations || preferences === undefined}
+                roundMode={state.selectedRoundMode}
                 onAnswer={submitAnswer}
                 onBack={returnToGroupIntro}
               />

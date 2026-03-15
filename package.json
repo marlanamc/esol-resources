@@ -64,7 +64,8 @@
     "import:verb-quizzes": "npx tsx scripts/import/import-verb-quizzes.ts",
     "import:time-indicators": "npx tsx scripts/import/import-time-indicators-game.ts",
     "delete:verb-quizzes": "npx tsx scripts/import/delete-verb-quizzes.ts",
-    "audio:minimal-pairs": "npx tsx scripts/content/generate-minimal-pairs-audio.ts"
+    "audio:minimal-pairs": "npx tsx scripts/content/generate-minimal-pairs-audio.ts",
+    "push:generate-vapid": "node -e \"const webpush=require('web-push');const v=webpush.generateVAPIDKeys();console.log('VAPID_PUBLIC_KEY='+v.publicKey);console.log('VAPID_PRIVATE_KEY='+v.privateKey);\""
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
@@ -80,6 +81,7 @@
     "react-dom": "19.2.0",
     "recharts": "^2.15.0",
     "sanitize-html": "^2.14.0",
+    "web-push": "^3.6.7",
     "zod": "^4.3.6"
   },
   "devDependencies": {
@@ -92,6 +94,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/sanitize-html": "^2.16.0",
+    "@types/web-push": "^3.6.4",
     "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",

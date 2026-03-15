@@ -4,6 +4,10 @@
     {
       "path": "/api/cron/reset-weekly-points",
       "schedule": "0 0 * * 2"
+    },
+    {
+      "path": "/api/cron/send-vocab-reminders",
+      "schedule": "0 14 * * *"
     }
   ]
 }

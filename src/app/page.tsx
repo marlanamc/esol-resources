@@ -1,3 +1,4 @@
+import Link from "next/link";
 import LoginCtaLink from "@/components/ui/LoginCtaLink";
 
 export default function Home() {
@@ -55,6 +56,11 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
+                    <p className="mt-8 text-xs text-[var(--color-text-muted)]">
+                        <Link href="/privacy" className="hover:underline">
+                            Privacy Policy
+                        </Link>
+                    </p>
                 </header>
             </div>
         </div>

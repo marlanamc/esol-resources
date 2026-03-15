@@ -25,7 +25,30 @@ async function main() {
     },
   });
 
-  console.log('✅ Gerunds & Infinitives guide seeded successfully!');
+  console.log('Seeding Gerunds & Infinitives Game...');
+
+  await prisma.activity.upsert({
+    where: { id: "gerund-infinitive-game" },
+    update: {
+      title: "Gerunds & Infinitives Patterns Game",
+      description: "A pattern-discovery game to master gerund and infinitive usage through discovery, practice, and challenge rounds.",
+      type: "game",
+      ui: "gerund-infinitive",
+      category: "grammar",
+      content: JSON.stringify({ type: "gerund-infinitive" }),
+    },
+    create: {
+      id: "gerund-infinitive-game",
+      title: "Gerunds & Infinitives Patterns Game",
+      description: "A pattern-discovery game to master gerund and infinitive usage through discovery, practice, and challenge rounds.",
+      type: "game",
+      ui: "gerund-infinitive",
+      category: "grammar",
+      content: JSON.stringify({ type: "gerund-infinitive" }),
+    },
+  });
+
+  console.log('✅ Gerunds & Infinitives guide and game seeded successfully!');
 }
 
 main()

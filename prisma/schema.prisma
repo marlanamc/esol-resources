@@ -38,6 +38,7 @@ model User {
   preferences           UserPreferences?
   vocabReviewStates     UserVocabReviewState[]
   dailyHabitCompletions DailyHabitCompletion[]
+  pushSubscription      PushSubscription?
 
   @@index([role])
   @@index([isSystemAccount])
@@ -360,4 +361,27 @@ model DailyHabitCompletion {
   @@unique([userId, habitKey, dayKey])
   @@index([userId, dayKey])
   @@index([habitKey, dayKey])
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  userId    String
+  endpoint  String
+  p256dh    String   // Public key for encryption
+  auth      String   // Auth secret
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+  @@index([userId])
+}
+
+model AccountDeletionRecord {
+  id        String   @id @default(cuid())
+  username  String
+  role      String
+  reason    String
+  deletedAt DateTime @default(now())
+
+  @@index([deletedAt])
 }

@@ -120,6 +120,9 @@ export function getGameCardCopy(activityId: string, title: string) {
   if (haystack.includes('numbers')) {
     return { friendlyTitle: 'Numbers game', useThisFor: 'build speed and confidence reading numbers in English' };
   }
+  if (haystack.includes('gerund') || haystack.includes('infinitive')) {
+    return { friendlyTitle: 'Gerunds & Infinitives Patterns Game', useThisFor: 'practice key patterns through quick challenges' };
+  }
 
   return { friendlyTitle: 'Language game', useThisFor: 'practice key patterns through quick challenges' };
 }

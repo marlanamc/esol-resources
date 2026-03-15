@@ -1693,6 +1693,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 
         const gerundsAndInfinitives = sortByKeywordOrder(
             take((a: Activity) => {
+                if (a.type === "game") return false; // games appear in Games category only
                 const t = normalizeTitle(a.title);
                 return t.includes("gerund") || t.includes("infinitive");
             }),
@@ -1793,6 +1794,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                     activity.id === 'countable-uncountable-nouns' ||
                     activity.ui === 'verb-forms' ||
                     activity.ui === 'verbforms' ||
+                    activity.ui === 'gerund-infinitive' ||
                     category === 'games'
                 )
             ) {
@@ -1880,6 +1882,13 @@ export const ActivityCategories = React.memo(function ActivityCategories({
             })
         );
 
+        const gerundInfinitiveGames = sortAlpha(
+            take((a: Activity) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('gerund') || t.includes('infinitive');
+            })
+        );
+
         const numberGames = sortAlpha(
             take((a: Activity) => a.id === 'numbers-game' || normalizeTitle(a.title).includes('numbers'))
         );
@@ -1888,6 +1897,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 
         return [
             { name: 'Verb Tense Games', activities: verbTenseGames },
+            { name: 'Gerunds and Infinitives', activities: gerundInfinitiveGames },
             { name: 'Parts of Speech Games', activities: partsOfSpeechGames },
             { name: 'Numbers', activities: numberGames },
             { name: 'Other Games', activities: otherGames },

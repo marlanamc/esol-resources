@@ -792,7 +792,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                     <div
                         className="md:hidden fixed left-0 right-0 z-10 overflow-y-auto rounded-t-2xl border-t-2 border-x-2 border-border bg-bg shadow-[0_-8px_24px_rgba(0,0,0,0.12)] animate-in slide-in-from-bottom-8 duration-300"
                         style={{
-                            bottom: "calc(5rem + env(safe-area-inset-bottom, 0px))",
+                            bottom: "calc(4rem + env(safe-area-inset-bottom, 0px))",
                             maxHeight: "min(60vh, 400px)",
                         }}
                     >
@@ -814,14 +814,14 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                 {/* Mobile bottom nav bar - always visible so user can toggle TOC via section counter */}
                 {(
                     <div
-                        className="flex md:hidden fixed bottom-0 left-0 right-0 z-20 border-t border-border items-center justify-between gap-3 px-4 py-3 safe-area-bottom-padding-mobile-lg"
+                        className="flex md:hidden fixed bottom-0 left-0 right-0 z-20 border-t border-border items-center justify-between gap-2 px-3 py-2 safe-area-bottom-padding-mobile-lg"
                         style={{ backgroundColor: "var(--surface-overlay)" }}
                     >
                         <button
                             onClick={handlePrevious}
                             disabled={!showQuiz && isFirstSection}
                             aria-label="Previous section"
-                            className={`grammar-reader-nav-button min-w-[80px] min-h-[44px] px-4 py-2 rounded-lg font-semibold transition-[background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
+                            className={`grammar-reader-nav-button min-w-[72px] min-h-[40px] px-3 py-1.5 rounded-lg text-sm font-semibold transition-[background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
                                 (!showQuiz && !isFirstSection) || showQuiz
                                     ? "grammar-reader-nav-button-secondary border-2 border-border"
                                     : "bg-border text-text-muted cursor-not-allowed"
@@ -833,7 +833,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             <button
                                 type="button"
                                 onClick={() => setShowTOC((prev) => !prev)}
-                                className={`text-sm font-semibold flex-shrink-0 py-2 px-2 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${showTOC ? "text-primary bg-primary/10" : "text-text-muted hover:bg-border/40 hover:text-text"}`}
+                                className={`text-sm font-semibold flex-shrink-0 py-1.5 px-2 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${showTOC ? "text-primary bg-primary/10" : "text-text-muted hover:bg-border/40 hover:text-text"}`}
                                 aria-label={showTOC ? "Close table of contents" : "Open table of contents"}
                                 aria-expanded={showTOC}
                             >
@@ -858,7 +858,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                         ? "Finish"
                                         : "Next section"
                             }
-                            className={`grammar-reader-nav-button min-w-[80px] min-h-[44px] px-4 py-2 rounded-lg font-semibold transition-[background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
+                            className={`grammar-reader-nav-button min-w-[72px] min-h-[40px] px-3 py-1.5 rounded-lg text-sm font-semibold transition-[background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
                                 !(showQuiz && !content.miniQuiz)
                                     ? "grammar-reader-nav-button-primary"
                                     : "bg-border text-text-muted cursor-not-allowed"

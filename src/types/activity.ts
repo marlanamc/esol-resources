@@ -115,6 +115,8 @@ export interface InteractiveGuideSection {
         leftLabel: string;
         rightLabel: string;
         rows: ComparisonRow[];
+        /** When false, hide the first column (row labels). Use when left column already shows the same info. */
+        showLabelColumn?: boolean;
     };
     timeExpressions?: TimeExpression[];
     verbTable?: VerbTable;

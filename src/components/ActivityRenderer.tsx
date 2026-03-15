@@ -43,6 +43,7 @@ const VerbFormsGame = dynamic(() => import("./ui/VerbFormsGame"), { loading: Act
 const EdPronunciationGame = dynamic(() => import("./ui/EdPronunciationGame"), { loading: ActivityLoadingFallback });
 const MinimalPairsGame = dynamic(() => import("./ui/MinimalPairsGame"), { loading: ActivityLoadingFallback });
 const IrregularVerbsGame = dynamic(() => import("./ui/IrregularVerbsGame/IrregularVerbsGame").then(m => ({ default: m.IrregularVerbsGame })), { loading: ActivityLoadingFallback });
+const GerundInfinitiveGame = dynamic(() => import("./ui/GerundInfinitiveGame/GerundInfinitiveGame").then(m => ({ default: m.GerundInfinitiveGame })), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("./activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("./activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
 const VocabularyRenderer = dynamic(() => import("./activities/VocabularyRenderer"), { loading: ActivityLoadingFallback });
@@ -169,8 +170,10 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                                  category={activity.category}
                              />
                          );
-                     case "irregular-verbs":
-                         return <IrregularVerbsGame activityId={activity.id} />;
+                    case "irregular-verbs":
+                        return <IrregularVerbsGame activityId={activity.id} />;
+                    case "gerund-infinitive":
+                        return <GerundInfinitiveGame activityId={activity.id} />;
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }

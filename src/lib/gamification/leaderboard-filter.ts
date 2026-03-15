@@ -1,6 +1,6 @@
 import type { Prisma } from "@prisma/client";
 
-export const EXCLUDED_LEADERBOARD_USERNAMES = ["marlie", "daniel", "leah"];
+export const EXCLUDED_LEADERBOARD_USERNAMES = ["marlie", "daniel", "leah", "matt"];
 
 export function buildLeaderboardEligibleUserWhere(
   extraWhere?: Prisma.UserWhereInput

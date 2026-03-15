@@ -16,6 +16,7 @@ interface ExerciseScreenProps {
   exercises: VerbExercise[];
   currentIndex: number;
   showPattern: boolean;
+  roundMode?: 'round1' | 'round2' | 'review';
   onAnswer: (correct: boolean, exercise: VerbExercise) => void;
   onBack?: () => void;
 }
@@ -25,6 +26,7 @@ export function ExerciseScreen({
   exercises,
   currentIndex,
   showPattern,
+  roundMode,
   onAnswer,
   onBack
 }: ExerciseScreenProps) {
@@ -148,6 +150,11 @@ export function ExerciseScreen({
               {group.title}
             </h2>
             <div className="flex items-center gap-1.5 text-[11px] text-text-muted">
+              {roundMode && (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-blue-500/10 border border-blue-500/20 text-blue-700 dark:text-blue-300 whitespace-nowrap">
+                  {getRoundLabel(roundMode)}
+                </span>
+              )}
               <span>Q{currentIndex + 1}/{exercises.length}</span>
               <span className="text-border">·</span>
               <span>{remaining} left</span>
@@ -192,9 +199,16 @@ export function ExerciseScreen({
               <h2 className="font-display text-2xl text-text truncate">
                 {group.title}
               </h2>
-              <p className="text-sm text-text-muted">
-                Question {currentIndex + 1} of {exercises.length}
-              </p>
+              <div className="flex items-center gap-2 mt-1">
+                {roundMode && (
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-blue-500/10 border border-blue-500/20 text-blue-700 dark:text-blue-300">
+                    {getRoundLabel(roundMode)}
+                  </span>
+                )}
+                <p className="text-sm text-text-muted">
+                  Question {currentIndex + 1} of {exercises.length}
+                </p>
+              </div>
             </div>
 
             <div className="flex items-center gap-2">
@@ -344,7 +358,7 @@ function ExerciseTypeIcon({ type }: { type: string }) {
   }
 }
 
-// Helper function
+// Helper functions
 function getExerciseTypeLabel(type: string): string {
   const labels: Record<string, string> = {
     'fill-in-blank': 'Fill in the Blank',
@@ -354,4 +368,13 @@ function getExerciseTypeLabel(type: string): string {
     'speed-matching': 'Speed Match'
   };
   return labels[type] || 'Exercise';
+}
+
+function getRoundLabel(roundMode: 'round1' | 'round2' | 'review'): string {
+  const labels: Record<string, string> = {
+    'round1': 'Round 1',
+    'round2': 'Round 2',
+    'review': 'Review'
+  };
+  return labels[roundMode] || '';
 }

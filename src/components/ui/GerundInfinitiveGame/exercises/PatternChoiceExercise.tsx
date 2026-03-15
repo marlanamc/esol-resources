@@ -1,0 +1,61 @@
+'use client';
+
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { validateAnswer } from '@/data/gerund-infinitive-exercises';
+import type { GIExercise } from '@/types/gerund-infinitive';
+
+interface PatternChoiceExerciseProps {
+  exercise: GIExercise;
+  onAnswer: (correct: boolean) => void;
+  answered: boolean;
+}
+
+export function PatternChoiceExercise({ exercise, onAnswer, answered }: PatternChoiceExerciseProps) {
+  const [selected, setSelected] = useState<string | null>(null);
+  const { prompt, options = [] } = exercise;
+
+  const handleSelect = (option: string) => {
+    if (answered || selected) return;
+    setSelected(option);
+    const correct = validateAnswer(exercise, option);
+    onAnswer(correct);
+  };
+
+  return (
+    <div className="space-y-5">
+      <p className="font-display text-xl sm:text-2xl text-text text-center leading-relaxed px-2">{prompt}</p>
+
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {options.map((option, i) => {
+          const isSelected = selected === option;
+          const isCorrect = validateAnswer(exercise, option);
+          let stateClass = 'border-border bg-white dark:bg-[#162b3d] hover:border-primary/40 hover:shadow-sm cursor-pointer';
+          if (selected) {
+            if (isSelected && isCorrect) stateClass = 'border-secondary bg-secondary/10 text-secondary';
+            else if (isSelected && !isCorrect) stateClass = 'border-error bg-error/10 text-error';
+            else if (!isSelected && isCorrect) stateClass = 'border-secondary bg-secondary/5 text-secondary';
+            else stateClass = 'border-border bg-bg-gray opacity-50 cursor-not-allowed';
+          }
+
+          return (
+            <motion.button
+              key={i}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.08 }}
+              whileHover={!selected ? { scale: 1.01 } : {}}
+              whileTap={!selected ? { scale: 0.98 } : {}}
+              onClick={() => handleSelect(option)}
+              disabled={!!selected}
+              className={`w-full p-4 sm:p-5 rounded-2xl border-2 text-center font-medium text-base transition-all duration-200 ${stateClass}`}
+            >
+              <span className="text-sm text-text-muted font-semibold mr-2">{String.fromCharCode(65 + i)}.</span>
+              {option}
+            </motion.button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
