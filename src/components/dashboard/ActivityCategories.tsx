@@ -1794,7 +1794,6 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                     activity.id === 'countable-uncountable-nouns' ||
                     activity.ui === 'verb-forms' ||
                     activity.ui === 'verbforms' ||
-                    activity.ui === 'gerund-infinitive' ||
                     category === 'games'
                 )
             ) {

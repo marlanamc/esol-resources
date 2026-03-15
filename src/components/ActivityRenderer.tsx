@@ -43,7 +43,6 @@ const VerbFormsGame = dynamic(() => import("./ui/VerbFormsGame"), { loading: Act
 const EdPronunciationGame = dynamic(() => import("./ui/EdPronunciationGame"), { loading: ActivityLoadingFallback });
 const MinimalPairsGame = dynamic(() => import("./ui/MinimalPairsGame"), { loading: ActivityLoadingFallback });
 const IrregularVerbsGame = dynamic(() => import("./ui/IrregularVerbsGame/IrregularVerbsGame").then(m => ({ default: m.IrregularVerbsGame })), { loading: ActivityLoadingFallback });
-const GerundInfinitiveGame = dynamic(() => import("./ui/GerundInfinitiveGame/GerundInfinitiveGame").then(m => ({ default: m.GerundInfinitiveGame })), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("./activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("./activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
 const VocabularyRenderer = dynamic(() => import("./activities/VocabularyRenderer"), { loading: ActivityLoadingFallback });
@@ -173,7 +172,12 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                     case "irregular-verbs":
                         return <IrregularVerbsGame activityId={activity.id} />;
                     case "gerund-infinitive":
-                        return <GerundInfinitiveGame activityId={activity.id} />;
+                        return (
+                            <div className="p-6 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/50 text-amber-900 dark:text-amber-200">
+                                <p className="font-medium">This activity is temporarily unavailable.</p>
+                                <p className="mt-1 text-sm opacity-90">The Gerunds &amp; Infinitives pattern game is being updated and will return soon.</p>
+                            </div>
+                        );
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }

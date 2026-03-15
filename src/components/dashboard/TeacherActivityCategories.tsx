@@ -618,7 +618,6 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                 a.category === 'games' ||
                 a.ui === 'verb-forms' ||
                 a.ui === 'verbforms' ||
-                a.ui === 'gerund-infinitive' ||
                 a.id === 'numbers-game' ||
                 a.id === 'countable-uncountable-nouns'
             );
