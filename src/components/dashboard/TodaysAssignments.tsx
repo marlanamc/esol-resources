@@ -25,7 +25,7 @@ import {
     type FeaturedAssignment,
     type CategoryStyle,
     type VocabCategoryData,
-} from './todays-assignments';
+} from '@/components/dashboard/todays-assignments';
 
 const FEATURED_NEW_BADGE_CLASS_NAME = 'inline-flex items-center gap-1 rounded-full border';
 const TITLE_DATE_REGEX = /(\d{1,2})\/(\d{1,2})\/(\d{2})/;
