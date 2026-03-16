@@ -309,27 +309,16 @@ export function calculateOverallProgress(categoryData: Record<string, GIGroupPro
   return Math.round((passedCount / GI_GROUPS.length) * 100);
 }
 
+/** Points per round for Gerunds & Infinitives game. Awarded when round is completed. */
+const POINTS_PER_ROUND = 5;
+
 export function calculateGroupPoints(
-  accuracy: number,
-  exercisesCompleted: number,
+  _accuracy: number,
+  _exercisesCompleted: number,
   isRoundCompleted: boolean,
-  roundMode: GIRoundMode
+  _roundMode: GIRoundMode
 ): number {
-  let points = exercisesCompleted * (roundMode === 'round1' ? 3 : 4);
-
-  if (accuracy === 100) {
-    points += roundMode === 'round1' ? 15 : 20;
-  } else if (accuracy >= 90) {
-    points += roundMode === 'round1' ? 10 : 15;
-  } else if (accuracy >= UNLOCK_THRESHOLD) {
-    points += 5;
-  }
-
-  if (isRoundCompleted) {
-    points += roundMode === 'round1' ? 10 : 12;
-  }
-
-  return points;
+  return isRoundCompleted ? POINTS_PER_ROUND : 0;
 }
 
 export function getProgressSummary(categoryData: Record<string, GIGroupProgress>) {
