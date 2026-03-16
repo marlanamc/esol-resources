@@ -86,7 +86,7 @@ export async function trackLogin(userId: string) {
   }
 }
 
-export async function awardPoints(userId: string, points: number, reason: string = '') {
+export async function awardPoints(userId: string, points: number, reason: string = '', source: string = 'award') {
   const user = await prisma.user.update({
     where: { id: userId },
     data: {
@@ -95,9 +95,9 @@ export async function awardPoints(userId: string, points: number, reason: string
     },
   });
 
-  await logPointsLedger(userId, points, reason || 'Points awarded', 'award');
+  await logPointsLedger(userId, points, reason || 'Points awarded', source);
 
-  logger.info("[Gamification] Awarded points", { userId, points, reason });
+  logger.info("[Gamification] Awarded points", { userId, points, reason, source });
 
   return user;
 }

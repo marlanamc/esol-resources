@@ -711,6 +711,7 @@ export async function POST(request: NextRequest) {
                 userId,
                 points,
                 reason,
+                source: 'activity',
             });
             pointsAwarded = points;
         } else {
@@ -719,6 +720,7 @@ export async function POST(request: NextRequest) {
                 userId,
                 points: 5,
                 reason: `Completed activity ${activityId}`,
+                source: 'activity',
             });
             pointsAwarded = 5;
         }

@@ -13,8 +13,10 @@ export async function applyAwardChain(params: {
   userId: string;
   points: number;
   reason: string;
+  /** Ledger source for reporting; default "award". Use "activity" for activity completion. */
+  source?: string;
 }): Promise<AwardChainResult> {
-  const { userId, points, reason } = params;
+  const { userId, points, reason, source = 'award' } = params;
 
   if (points <= 0) {
     return {
@@ -27,7 +29,7 @@ export async function applyAwardChain(params: {
     };
   }
 
-  const updatedUser = await awardPoints(userId, points, reason);
+  const updatedUser = await awardPoints(userId, points, reason, source);
   const streakResult = await updateStreak(userId, points);
   const newAchievements = await checkAndAwardAchievements(userId);
 

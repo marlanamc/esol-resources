@@ -389,6 +389,12 @@ export default async function DashboardPage() {
                 heading: "Student Insights",
                 links: [
                     {
+                        href: "/dashboard/reports",
+                        title: "Activity Reports",
+                        subtitle: "View daily/weekly engagement and popular activities.",
+                        icon: BarChartIcon,
+                    },
+                    {
                         href: "/dashboard/leaderboard",
                         title: "Leaderboard",
                         subtitle: "See who is leading this week.",
@@ -580,11 +586,11 @@ export default async function DashboardPage() {
                                         <span className="text-sm font-semibold text-text text-center">Student Stats</span>
                                     </Link>
                                     <Link
-                                        href="/dashboard/calendar/new"
-                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-primary/20 dark:border-primary/40 hover:border-primary/40"
+                                        href="/dashboard/reports"
+                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-secondary/20 dark:border-secondary/40 hover:border-secondary/40"
                                     >
-                                        <CalendarIcon className="w-6 h-6 text-primary mb-2" />
-                                        <span className="text-sm font-semibold text-text text-center">Add Event</span>
+                                        <BarChartIcon className="w-6 h-6 text-secondary mb-2" />
+                                        <span className="text-sm font-semibold text-text text-center">Reports</span>
                                     </Link>
                                 </div>
                             </section>

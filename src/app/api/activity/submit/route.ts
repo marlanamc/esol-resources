@@ -338,6 +338,7 @@ export async function POST(request: NextRequest) {
                     userId,
                     points: calculatedPoints,
                     reason,
+                    source: 'activity',
                 });
             } catch (awardError) {
                 await prisma.submission.updateMany({
