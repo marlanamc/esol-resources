@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, Target, Lightbulb, AlertCircle, ArrowLeft } from 'lucide-react';
+import { Zap, Target, Lightbulb, AlertCircle, ArrowLeft, ChevronRight } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 import { getExerciseTypeLabel } from '@/data/gerund-infinitive-exercises';
 import { PatternChoiceExercise } from './exercises/PatternChoiceExercise';
@@ -99,14 +99,20 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
         }
         return newStreak;
       });
+      // Correct: auto-advance after 1.6s
+      setTimeout(() => {
+        setShowFeedback(false);
+        onAnswer(correct, currentExercise);
+      }, 1600);
     } else {
       setStreak(0);
+      // Wrong: wait for user to click Next (no auto-advance)
     }
+  };
 
-    setTimeout(() => {
-      setShowFeedback(false);
-      onAnswer(correct, currentExercise);
-    }, 1600);
+  const handleNextAfterWrong = () => {
+    setShowFeedback(false);
+    onAnswer(false, currentExercise);
   };
 
   // Get error explanation for the pattern if answer is wrong
@@ -120,6 +126,24 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
   };
 
   const { errorExplanation } = showFeedback ? getPatternHelp() : { errorExplanation: null };
+
+  // Build full correct sentence for pattern-choice, error-correction, etc. (show on both correct & wrong)
+  const getFullCorrectSentence = (): string | null => {
+    const ex = currentExercise;
+    const correctStr = Array.isArray(ex.correctAnswer) ? ex.correctAnswer[0] : ex.correctAnswer;
+    if (!correctStr) return null;
+    // Prompt with single blank: replace ___ with correct answer
+    if (ex.prompt?.includes('___')) {
+      const blankCount = (ex.prompt.match(/___/g) || []).length;
+      if (blankCount === 1) return ex.prompt.replace('___', correctStr);
+    }
+    // Error-correction: build from tokens
+    if (ex.type === 'error-correction' && ex.errorTokens?.length) {
+      return ex.errorTokens.map(t => t.isError ? correctStr : t.text).join('');
+    }
+    return null;
+  };
+  const fullCorrectSentence = showFeedback ? getFullCorrectSentence() : null;
 
   return (
     <div className="flex min-h-full flex-col">
@@ -337,6 +361,11 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
                 }`}
               >
                 {isCorrect ? '✓ Correct!' : `✗ The answer is: ${Array.isArray(currentExercise.correctAnswer) ? currentExercise.correctAnswer.join(' or ') : currentExercise.correctAnswer}`}
+                {fullCorrectSentence && (
+                  <p className="mt-2 text-base font-normal text-text">
+                    {fullCorrectSentence}
+                  </p>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -358,6 +387,27 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
                     <p className="text-sm text-text">{errorExplanation}</p>
                   </div>
                 </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Next button when wrong - lets students read feedback at their own pace */}
+          <AnimatePresence>
+            {showFeedback && !isCorrect && (
+              <motion.div
+                key="next-after-wrong"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="mb-4 flex justify-center"
+              >
+                <button
+                  onClick={handleNextAfterWrong}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
+                >
+                  Next
+                  <ChevronRight size={18} />
+                </button>
               </motion.div>
             )}
           </AnimatePresence>

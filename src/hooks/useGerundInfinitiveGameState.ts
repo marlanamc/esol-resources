@@ -20,6 +20,7 @@ import {
   generateTargetedRound2Exercises,
   generateFinalChallengeExercises,
   generateCheckpointExercises,
+  resetExerciseSelectionContext,
 } from '@/data/gerund-infinitive-exercises';
 import {
   GI_REVIEW_GROUP_ID,
@@ -37,7 +38,7 @@ import {
   getGroupStage,
 } from '@/lib/gerund-infinitive-progress';
 
-export type GIGamePhase = 'selection' | 'intro' | 'exercise' | 'results';
+export type GIGamePhase = 'selection' | 'intro' | 'sorting' | 'exercise' | 'results';
 
 interface ExerciseOutcome {
   exercise: GIExercise;
@@ -54,6 +55,8 @@ interface GIGameState {
   categoryData: Record<string, GIGroupProgress>;
   loading: boolean;
   error: string | null;
+  saveError: string | null;  // Shown as toast when save fails (any phase)
+  lockedGroupError: string | null;  // Shown as toast when tapping locked group
   exerciseResults: ExerciseOutcome[];
 }
 
@@ -161,13 +164,17 @@ export function useGerundInfinitiveGameState(activityId: string) {
     categoryData: {},
     loading: true,
     error: null,
+    saveError: null,
+    lockedGroupError: null,
     exerciseResults: [],
   });
 
-  // Load progress on mount
+  // Load progress on mount and reset sentence selection for fresh variety
   useEffect(() => {
     const initializeGame = async () => {
       try {
+        // Reset sentence selection context for maximum variety in this session
+        resetExerciseSelectionContext();
         setState(prev => ({ ...prev, loading: true, error: null }));
         const response = await fetch(`/api/activity/progress?activityId=${activityId}`);
         if (!response.ok) throw new Error('Failed to load progress');
@@ -189,7 +196,12 @@ export function useGerundInfinitiveGameState(activityId: string) {
   const selectGroup = useCallback((group: GerundInfinitiveGroup) => {
     const unlocked = isGroupUnlocked(group.id, state.categoryData);
     if (!unlocked) {
-      setState(prev => ({ ...prev, error: 'Complete the prerequisite group first' }));
+      // Find the prerequisite group and show its name in the error
+      const prerequisiteGroup = group.prerequisite ? getGIGroupById(group.prerequisite) : null;
+      const errorMessage = prerequisiteGroup
+        ? `Complete "${prerequisiteGroup.shortTitle}" first to unlock this level`
+        : 'Complete the prerequisite group first';
+      setState(prev => ({ ...prev, lockedGroupError: errorMessage }));
       return;
     }
     const roundMode = getDefaultRoundMode(group, state.categoryData);
@@ -207,6 +219,23 @@ export function useGerundInfinitiveGameState(activityId: string) {
   }, [state.categoryData]);
 
   const startGroupChallenge = useCallback(() => {
+    if (!state.selectedGroup) return;
+    // For Mixed Verbs group (group-2c), show sorting mini-game first (only on round1)
+    if (state.selectedGroup.id === 'group-2c' && state.selectedRoundMode === 'round1') {
+      setState(prev => ({ ...prev, phase: 'sorting', error: null }));
+      return;
+    }
+    const exercises = buildExercisesForMode(state.selectedGroup, state.selectedRoundMode, state.categoryData);
+    setState(prev => ({ ...prev, exercises, currentExerciseIndex: 0, roundResults: null, exerciseResults: [], phase: 'exercise', error: null }));
+  }, [state.selectedGroup, state.selectedRoundMode, state.categoryData]);
+
+  const completeSortingMiniGame = useCallback(() => {
+    if (!state.selectedGroup) return;
+    const exercises = buildExercisesForMode(state.selectedGroup, state.selectedRoundMode, state.categoryData);
+    setState(prev => ({ ...prev, exercises, currentExerciseIndex: 0, roundResults: null, exerciseResults: [], phase: 'exercise', error: null }));
+  }, [state.selectedGroup, state.selectedRoundMode, state.categoryData]);
+
+  const skipSortingMiniGame = useCallback(() => {
     if (!state.selectedGroup) return;
     const exercises = buildExercisesForMode(state.selectedGroup, state.selectedRoundMode, state.categoryData);
     setState(prev => ({ ...prev, exercises, currentExerciseIndex: 0, roundResults: null, exerciseResults: [], phase: 'exercise', error: null }));
@@ -262,7 +291,7 @@ export function useGerundInfinitiveGameState(activityId: string) {
       setState(prev => ({ ...prev, categoryData: updatedCategoryData }));
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to save progress';
-      setState(prev => ({ ...prev, error: errorMessage }));
+      setState(prev => ({ ...prev, saveError: 'Progress could not be saved. Your work may not sync across devices.' }));
     }
   }, [state.selectedGroup, activityId]);
 
@@ -291,11 +320,18 @@ export function useGerundInfinitiveGameState(activityId: string) {
     }
 
     if (nextAction === 'round2') {
+      // Skip intro when advancing to Round 2 — go directly to exercise
+      const round2Exercises = buildExercisesForMode(
+        selectedGroup,
+        'round2',
+        effectiveCategoryData,
+        state.roundResults?.streak ?? 0
+      );
       setState(prev => ({
         ...prev,
         selectedRoundMode: 'round2',
-        phase: 'intro',
-        exercises: [],
+        phase: 'exercise',
+        exercises: round2Exercises,
         currentExerciseIndex: 0,
         roundResults: null,
         exerciseResults: [],
@@ -337,6 +373,8 @@ export function useGerundInfinitiveGameState(activityId: string) {
   }, [state.selectedGroup, state.roundResults, state.categoryData]);
 
   const quitGame = useCallback(() => {
+    // Reset context when returning to selection to ensure fresh variety if user tries another group
+    resetExerciseSelectionContext();
     setState(prev => ({
       ...prev,
       phase: 'selection',
@@ -349,10 +387,22 @@ export function useGerundInfinitiveGameState(activityId: string) {
     }));
   }, []);
 
+  const dismissSaveError = useCallback(() => {
+    setState(prev => ({ ...prev, saveError: null }));
+  }, []);
+
+  const dismissLockedGroupError = useCallback(() => {
+    setState(prev => ({ ...prev, lockedGroupError: null }));
+  }, []);
+
   return {
     state,
     selectGroup,
+    dismissSaveError,
+    dismissLockedGroupError,
     startGroupChallenge,
+    completeSortingMiniGame,
+    skipSortingMiniGame,
     returnToGroupIntro,
     submitAnswer,
     saveProgress,

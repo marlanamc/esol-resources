@@ -108,18 +108,10 @@ export function PatternIntroScreen({
       trigger: p.trigger
     }));
 
+  const ctaLabel = isFinal ? 'Start Final Challenge' : isReview ? 'Start Review' : isRound2 ? 'Start Round 2' : 'Start Challenge';
+
   return (
-    <div className="space-y-6 max-w-2xl mx-auto">
-      {/* Back button (mobile) */}
-      <div className="sm:hidden">
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-2 text-text-muted text-sm hover:text-text transition-colors"
-        >
-          <ArrowLeft size={16} />
-          Back to groups
-        </button>
-      </div>
+    <div className="space-y-6 max-w-2xl mx-auto pb-24 sm:pb-0">
 
       {/* Group badge */}
       <motion.div
@@ -403,7 +395,6 @@ export function PatternIntroScreen({
               <li>✗ interested <strong>for</strong> learning → ✓ interested <strong>in</strong> learning</li>
               <li>✗ good <strong>in</strong> cooking → ✓ good <strong>at</strong> cooking</li>
               <li>✗ tired <strong>from</strong> waiting → ✓ tired <strong>of</strong> waiting</li>
-              <li>✗ sorry <strong>about</strong> being late → ✓ sorry <strong>for</strong> being late</li>
             </ul>
           </div>
         </motion.div>
@@ -542,16 +533,16 @@ export function PatternIntroScreen({
         </motion.div>
       )}
 
-      {/* CTA */}
+      {/* CTA - desktop only (mobile uses fixed bar) */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.55 }}
-        className="flex flex-col sm:flex-row gap-3 pt-2"
+        className="hidden sm:flex flex-row gap-3 pt-2"
       >
         <button
           onClick={onBack}
-          className="flex-1 sm:flex-none px-6 py-3 rounded-xl border border-border text-text-muted hover:text-text hover:border-border-dark transition-colors font-semibold"
+          className="flex-none px-6 py-3 rounded-xl border border-border text-text-muted hover:text-text hover:border-border-dark transition-colors font-semibold"
         >
           ← Back
         </button>
@@ -562,9 +553,29 @@ export function PatternIntroScreen({
           className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
         >
           <Play size={18} />
-          {isFinal ? 'Start Final Challenge' : isReview ? 'Start Review' : isRound2 ? 'Start Round 2' : 'Start Challenge'}
+          {ctaLabel}
         </motion.button>
       </motion.div>
+
+      {/* Fixed bottom bar - mobile only: Back (left) | Start Challenge (right) */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between gap-3 px-4 py-3 bg-bg/95 backdrop-blur-md border-t border-border pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-2 px-5 py-3 rounded-xl border border-border text-text-muted hover:text-text hover:border-border-dark transition-colors font-semibold min-h-[48px]"
+        >
+          <ArrowLeft size={20} />
+          Back
+        </button>
+        <motion.button
+          onClick={onStartChallenge}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors min-h-[48px] flex-1"
+        >
+          <Play size={20} />
+          {ctaLabel}
+        </motion.button>
+      </div>
     </div>
   );
 }

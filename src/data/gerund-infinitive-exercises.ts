@@ -687,41 +687,41 @@ function createComboChallengeExercise(
   hideExplanations: boolean
 ): GIExercise {
   const example = pickRandom(pattern.examples);
-  const correctPreposition = pattern.correctPreposition ?? 'in';
 
-  // Extract the base verb from the sentence (e.g., "learn" from "(learn)")
-  const baseVerbMatch = example.sentence.match(/\((\w+)\)/);
-  const baseVerb = baseVerbMatch ? baseVerbMatch[1] : 'do';
-  const gerundForm = gerundFrom(baseVerb);
-  const correctAnswer = `${correctPreposition} ${gerundForm}`;
+  // Use example.blank as source of truth (e.g. "about being", "about not having")
+  const correctAnswer = example.blank;
+  const parts = correctAnswer.split(' ');
+  const correctPreposition = parts[0] ?? pattern.correctPreposition ?? 'in';
+  const gerundPart = parts.length > 1 ? parts.slice(1).join(' ') : correctAnswer;
+
+  // Extract base verb hint from parentheses (e.g. "(be)" -> "be", "(not have)" -> "not have")
+  const baseVerbMatch = example.sentence.match(/\(([^)]+)\)/);
+  const baseVerb = baseVerbMatch ? baseVerbMatch[1].trim() : 'do';
 
   // Clean up the prompt to show blanks without the base verb hint
-  const cleanPrompt = example.sentence.replace(/\((\w+)\)/, '');
+  const cleanPrompt = example.sentence.replace(/\s*\([^)]+\)\s*/, ' ').replace(/\s{2,}/g, ' ').trim();
 
   // Randomly pick between Type A (50%) and Type B (50%)
   const useTypeB = Math.random() > 0.5;
 
   if (useTypeB) {
     // TYPE B: All different gerunds - no base verb hint, must know both parts
-    // Get other patterns from the group for realistic distractors
     const otherPatterns = group.patterns.filter(p => p.id !== pattern.id);
     const shuffledOthers = shuffleArray(otherPatterns).slice(0, 3);
 
-    // Generate distractor options using other adjective+preposition combos with different verbs
     const distractorVerbs = shuffleArray(
-      COMBO_DISTRACTOR_VERBS.filter(v => v !== baseVerb)
+      COMBO_DISTRACTOR_VERBS.filter(v => v !== baseVerb.split(' ')[0])
     ).slice(0, 3);
 
     const distractors = shuffledOthers.map((p, i) => {
       const prep = p.correctPreposition ?? 'in';
-      const verb = gerundFrom(distractorVerbs[i] || 'doing');
+      const verb = gerundFrom(distractorVerbs[i] || 'do');
       return `${prep} ${verb}`;
     });
 
-    // If we don't have enough other patterns, fill with wrong prepositions
     while (distractors.length < 3) {
       const wrongPrep = pickRandom(PREPOSITION_OPTIONS.filter(p => p !== correctPreposition));
-      const wrongVerb = gerundFrom(pickRandom(distractorVerbs));
+      const wrongVerb = gerundFrom(pickRandom(COMBO_DISTRACTOR_VERBS));
       distractors.push(`${wrongPrep} ${wrongVerb}`);
     }
 
@@ -740,16 +740,16 @@ function createComboChallengeExercise(
       realWorldContext: example.context,
     };
   } else {
-    // TYPE A: Same gerund, different prepositions (original behavior with base verb hint)
+    // TYPE A: Same gerund, different prepositions (use gerundPart from example.blank)
     const wrongPrepositions = shuffleArray(
       PREPOSITION_OPTIONS.filter(p => p !== correctPreposition)
     ).slice(0, 3);
 
     const options = shuffleArray([
       correctAnswer,
-      `${wrongPrepositions[0]} ${gerundForm}`,
-      `${wrongPrepositions[1]} ${gerundForm}`,
-      `${wrongPrepositions[2]} ${gerundForm}`,
+      `${wrongPrepositions[0]} ${gerundPart}`,
+      `${wrongPrepositions[1]} ${gerundPart}`,
+      `${wrongPrepositions[2]} ${gerundPart}`,
     ]);
 
     return {
@@ -1433,6 +1433,9 @@ const GERUND_FROM_OVERRIDES: Record<string, string> = {
   focus: 'focusing', develop: 'developing', worship: 'worshiping',
   budget: 'budgeting', target: 'targeting', market: 'marketing',
   pocket: 'pocketing', rocket: 'rocketing', bracket: 'bracketing',
+
+  // Irregular / special cases (be -> being, not bing)
+  be: 'being', have: 'having', do: 'doing',
 };
 
 /** Build gerund from base form */

@@ -77,24 +77,29 @@ export function GroupCard({ group, progress, unlocked, onClick }: GroupCardProps
 
           <p className="text-xs text-text-muted line-clamp-2 leading-relaxed">{group.patternExample}</p>
 
-          {/* Round progress dots */}
-          {unlocked && (started || passed || mastered) && (
+          {/* Round indicator - show for unlocked groups; checkpoints have single round */}
+          {unlocked && !group.isCheckpoint && (
             <div className="flex items-center gap-1.5 mt-2">
-              <span className="text-[10px] text-text-muted/70 mr-0.5">Rounds:</span>
+              <span className="text-[10px] font-medium text-text-muted">2 Rounds:</span>
               {/* Round 1 dot */}
               <div
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  progress?.round1?.passed ? 'bg-secondary' : 'bg-bg-gray'
+                  progress?.round1?.passed ? 'bg-secondary' : 'bg-border'
                 }`}
-                title={progress?.round1?.passed ? 'Round 1: Passed' : 'Round 1'}
+                title={progress?.round1?.passed ? 'Round 1: Passed' : 'Round 1: Discover'}
               />
               {/* Round 2 dot */}
               <div
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  progress?.round2?.passed ? 'bg-secondary' : 'bg-bg-gray'
+                  progress?.round2?.passed ? 'bg-secondary' : 'bg-border'
                 }`}
-                title={progress?.round2?.passed ? 'Round 2: Passed' : 'Round 2'}
+                title={progress?.round2?.passed ? 'Round 2: Mastered' : 'Round 2: Master'}
               />
+            </div>
+          )}
+          {unlocked && group.isCheckpoint && (
+            <div className="flex items-center gap-1.5 mt-2">
+              <span className="text-[10px] font-medium text-text-muted">Review</span>
             </div>
           )}
 

@@ -884,10 +884,17 @@ function tokenizeSentence(sentence: string, errorText: string): ErrorToken[] {
   return tokens;
 }
 
+/** Irregular gerunds that the standard rules get wrong */
+const GERUND_OVERRIDES: Record<string, string> = {
+  be: 'being', have: 'having', do: 'doing',
+};
+
 /**
  * Convert base verb to gerund form
  */
 function gerundFrom(base: string): string {
+  const lower = base.toLowerCase();
+  if (GERUND_OVERRIDES[lower]) return GERUND_OVERRIDES[lower];
   if (base.endsWith('e') && !base.endsWith('ee')) {
     return base.slice(0, -1) + 'ing';
   }

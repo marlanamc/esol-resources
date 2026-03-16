@@ -542,7 +542,8 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
 
         const gerundsAndInfinitives = sortByKeywordOrder(
             take((a: Activity) => {
-                if (a.type === 'game') return false; // games appear in Games category only
+                // Games appear in Games category only - exclude all game types
+                if (a.type === 'game' || a.ui === 'gerund-infinitive') return false;
                 const t = normalizeTitle(a.title);
                 return t.includes('gerund') || t.includes('infinitive');
             }),

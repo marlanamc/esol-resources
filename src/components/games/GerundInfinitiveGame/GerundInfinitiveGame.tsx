@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertCircle, ArrowLeft } from 'lucide-react';
+import { ErrorToast } from '@/components/ui/ErrorToast';
 import { useRouter } from 'next/navigation';
 import {
   GI_GROUPS,
@@ -12,6 +13,7 @@ import {
 } from '@/hooks/useGerundInfinitiveGameState';
 import { GroupSelectionScreen } from './GroupSelectionScreen';
 import { PatternIntroScreen } from './PatternIntroScreen';
+import { VerbSortingMiniGame } from './VerbSortingMiniGame';
 import { ExerciseScreen } from './ExerciseScreen';
 import { ResultsScreen } from './ResultsScreen';
 import type { GerundInfinitiveGroup } from '@/types/gerund-infinitive';
@@ -27,12 +29,16 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
     state,
     selectGroup,
     startGroupChallenge,
+    completeSortingMiniGame,
+    skipSortingMiniGame,
     returnToGroupIntro,
     submitAnswer,
     saveProgress,
     retryGroup,
     continueToNext,
     quitGame,
+    dismissSaveError,
+    dismissLockedGroupError,
   } = useGerundInfinitiveGameState(activityId);
 
   // Save progress whenever round results change
@@ -195,6 +201,22 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
             </motion.div>
           )}
 
+          {state.phase === 'sorting' && state.selectedGroup && (
+            <motion.div
+              key="sorting"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+            >
+              <VerbSortingMiniGame
+                group={state.selectedGroup}
+                onComplete={completeSortingMiniGame}
+                onSkip={skipSortingMiniGame}
+              />
+            </motion.div>
+          )}
+
           {state.phase === 'exercise' && state.selectedGroup && (
             <motion.div
               key="exercise"
@@ -234,6 +256,21 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
           )}
         </AnimatePresence>
       </motion.div>
+
+      {/* Save error toast - shown regardless of phase */}
+      {state.saveError && (
+        <ErrorToast
+          message={state.saveError}
+          onDismiss={dismissSaveError}
+        />
+      )}
+      {/* Locked group toast - when tapping a locked group */}
+      {state.lockedGroupError && (
+        <ErrorToast
+          message={state.lockedGroupError}
+          onDismiss={dismissLockedGroupError}
+        />
+      )}
     </div>
   );
 }

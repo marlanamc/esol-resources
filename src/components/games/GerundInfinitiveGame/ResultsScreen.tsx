@@ -29,7 +29,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }
   const { accuracy, correctAnswers, exercisesCompleted, completed, pointsAwarded, streak, newAchievements, missedPatternIds } = results;
   const passed = completed;
   const isFinal = group.id === GI_FINAL_GROUP_ID;
-  const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/dashboard/activities?category=games' });
+  const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/activity/gerund-infinitive-game' });
   const isReview = group.id === GI_REVIEW_GROUP_ID;
   const mastered = results.masteryAchieved;
 
@@ -277,7 +277,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }
           )}
         </div>
 
-        {/* Secondary action - Return to Games Home */}
+        {/* Secondary action - Return to game homepage (group selection) */}
         <motion.button
           onClick={() => window.location.href = returnHref}
           whileHover={{ scale: 1.01 }}
@@ -286,9 +286,9 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }
         >
           <span className="flex items-center gap-2">
             <BookOpen size={18} />
-            Return to Games Home
+            Return to Game
           </span>
-          <span className="text-xs opacity-80">Back to all games</span>
+          <span className="text-xs opacity-80">Back to group selection</span>
         </motion.button>
       </motion.div>
     </div>

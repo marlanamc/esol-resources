@@ -34,9 +34,7 @@ export function PatternHint({ group, patternId }: PatternHintProps) {
             : 'gerund OR infinitive (both OK)'}
         </span>
       </div>
-      {pattern.memoryTrick && (
-        <p className="mt-1.5 text-text-muted text-xs italic">💡 {pattern.memoryTrick}</p>
-      )}
+      {/* Memory tricks removed - relying on pattern exposure instead */}
     </motion.div>
   );
 }

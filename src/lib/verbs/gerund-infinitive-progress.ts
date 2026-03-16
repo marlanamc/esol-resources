@@ -122,13 +122,84 @@ export function isGroupMastered(progress?: GIGroupProgress): boolean {
 // PUBLIC: UNLOCK LOGIC
 // ---------------------------------------------------------------------------
 
+/**
+ * Check if mixed review is ready with stricter requirements
+ * Requires: 5+ groups passed AND pattern family coverage
+ */
+export function isMixedReviewReady(
+  categoryData: Record<string, GIGroupProgress>
+): { ready: boolean; reason?: string } {
+  const passedGroups = GI_GROUPS.filter(g => isGroupPassed(categoryData[g.id]));
+  const passedCount = passedGroups.length;
+
+  // Requirement 1: At least 5 groups passed
+  if (passedCount < REVIEW_UNLOCK_COUNT) {
+    return {
+      ready: false,
+      reason: `Complete ${REVIEW_UNLOCK_COUNT - passedCount} more pattern groups first`,
+    };
+  }
+
+  // Requirement 2: Check pattern family coverage
+  // Each major pattern family should have at least one passed group
+  const patternFamilies = new Set<string>();
+  for (const group of passedGroups) {
+    // Extract pattern family from group ID or patterns
+    if (group.id.includes('0a') || group.id.includes('0b')) {
+      patternFamilies.add('intro');
+    } else if (group.id.includes('1')) {
+      patternFamilies.add('preposition');
+    } else if (group.id.includes('2')) {
+      patternFamilies.add('verb-forms');
+    } else if (group.id.includes('3')) {
+      patternFamilies.add('adjective-noun');
+    } else if (group.id.includes('subject')) {
+      patternFamilies.add('subject');
+    } else {
+      patternFamilies.add('other');
+    }
+  }
+
+  // Require at least 3 different pattern families
+  const MIN_PATTERN_FAMILIES = 3;
+  if (patternFamilies.size < MIN_PATTERN_FAMILIES) {
+    return {
+      ready: false,
+      reason: 'Practice more variety of pattern types first',
+    };
+  }
+
+  // Requirement 3: Check that each passed group has at least 5 correct answers total
+  const groupsWithSufficientPractice = passedGroups.filter(group => {
+    const progress = categoryData[group.id];
+    const totalCorrect = Object.values(progress?.patternStats ?? {})
+      .reduce((sum, stat) => sum + (stat.correct ?? 0), 0);
+    return totalCorrect >= 5;
+  });
+
+  if (groupsWithSufficientPractice.length < Math.min(3, passedCount)) {
+    return {
+      ready: false,
+      reason: 'Get more practice in your passed groups first',
+    };
+  }
+
+  return { ready: true };
+}
+
 export function isGroupUnlocked(
   groupId: string,
   categoryData: Record<string, GIGroupProgress>
 ): boolean {
+  // Feature flag: unlock all groups (for testing/special access)
+  if (process.env.NEXT_PUBLIC_UNLOCK_ALL_GI_GROUPS === 'true') {
+    return true;
+  }
+
   if (groupId === GI_REVIEW_GROUP_ID) {
-    const passedCount = GI_GROUPS.filter(g => isGroupPassed(categoryData[g.id])).length;
-    return passedCount >= REVIEW_UNLOCK_COUNT;
+    // Use stricter mixed review requirements
+    const { ready } = isMixedReviewReady(categoryData);
+    return ready;
   }
 
   if (groupId === GI_FINAL_GROUP_ID) {
