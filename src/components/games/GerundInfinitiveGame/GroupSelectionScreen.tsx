@@ -11,6 +11,7 @@ import {
   isGroupUnlocked,
   getProgressSummary,
   getGroupStage,
+  REVIEW_UNLOCK_COUNT,
 } from '@/lib/gerund-infinitive-progress';
 import { GroupCard } from './GroupCard';
 import type { GerundInfinitiveGroup, GIGroupProgress } from '@/types/gerund-infinitive';
@@ -156,6 +157,23 @@ export function GroupSelectionScreen({ categoryData, onSelectGroup }: GroupSelec
           ))}
         </div>
       </motion.div>
+
+      {/* Progress teaser - "X more groups until Mixed Review!" */}
+      {!reviewUnlocked && summary.completedGroups < REVIEW_UNLOCK_COUNT && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          className="px-4 py-3 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 border border-primary/20 text-center"
+        >
+          <p className="font-display text-lg text-primary-dark dark:text-primary">
+            {REVIEW_UNLOCK_COUNT - summary.completedGroups === 1
+              ? '1 more group to unlock Mixed Review!'
+              : `${REVIEW_UNLOCK_COUNT - summary.completedGroups} more groups to unlock Mixed Review!`}
+          </p>
+          <p className="text-sm text-text-muted mt-0.5">Complete pattern groups to unlock the mixed challenge.</p>
+        </motion.div>
+      )}
 
       {/* Phase-Based Sections */}
       <div className="space-y-8">

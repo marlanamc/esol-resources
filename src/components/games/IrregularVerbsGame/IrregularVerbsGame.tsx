@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertCircle, ArrowLeft } from 'lucide-react';
+import { PointsToast } from '@/components/ui/PointsToast';
 import { useRouter } from 'next/navigation';
 import { VERB_GROUPS } from '@/data/irregular-verbs-groups';
 import {
@@ -23,6 +24,7 @@ interface IrregularVerbsGameProps {
 export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
   const router = useRouter();
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
+  const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
   const { preferences } = useVerbPreferences();
   const {
     state,
@@ -39,7 +41,11 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
 
   useEffect(() => {
     if (state.phase === 'results' && state.roundResults) {
-      saveProgress(state.roundResults);
+      void saveProgress(state.roundResults).then((result) => {
+        if (result?.pointsAwarded && result.pointsAwarded > 0) {
+          setPointsToast({ points: result.pointsAwarded, key: Date.now() });
+        }
+      });
     }
   }, [state.phase, state.roundResults, saveProgress]);
 
@@ -237,6 +243,14 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
           )}
         </AnimatePresence>
       </motion.div>
+      {/* Points earned toast */}
+      {pointsToast && (
+        <PointsToast
+          key={pointsToast.key}
+          points={pointsToast.points}
+          onComplete={() => setPointsToast(null)}
+        />
+      )}
     </div>
   );
 }

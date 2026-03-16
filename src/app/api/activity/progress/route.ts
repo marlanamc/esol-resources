@@ -4,6 +4,8 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import type { ActivityProgressStatus } from "@/lib/activityProgress";
 import { getActivityPoints, POINTS, resolveActivityGameUi } from "@/lib/gamification";
+import { calculateGroupPoints as calculateGIGroupPoints } from "@/lib/verbs/gerund-infinitive-progress";
+import { calculateGroupPoints as calculateVerbGroupPoints } from "@/lib/verbs/irregular-progress";
 import { calculateNumbersGameCompletionPercentage, isNumbersGameCategoryName } from "@/data/numbersGameCategories";
 import { applyAwardChain } from "@/lib/gamification-award-chain";
 import { logger } from "@/lib/logger";
@@ -348,7 +350,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { activityId, progress = 100, status: statusInput, accuracy, category, assignmentId, guideState, vocabType, categoryData } = body;
+    const { activityId, progress = 100, status: statusInput, accuracy, category, assignmentId, guideState, vocabType, categoryData, groupId, roundMode, roundAccuracy, roundExercisesCompleted } = body;
 
     // SECURITY: Input validation
     if (!activityId || typeof activityId !== "string") {
@@ -552,10 +554,18 @@ export async function POST(request: NextRequest) {
     // - For category-based activities WITH accuracy (Numbers Game), award per category completion
     // - For vocabulary types, award per type completion (once per type)
     // - For round-based games (Matching/Sorting games), award per round completion
+    // - For gerund-infinitive and irregular-verbs: award per group/round completion (client sends round params)
     // - For other activities, award once when overall progress hits 100%
     const isVocabularyTypeUpdate = vocabType && ['word-list', 'flashcards', 'matching', 'fill-blank'].includes(vocabType);
     const existingCategoryData = existing?.categoryData ? JSON.parse(existing.categoryData) : {};
-    const shouldAwardPoints = shouldAwardProgressPoints({
+    const isGroupRoundUpdate = activityGameUi === 'gerund-infinitive' || activityGameUi === 'irregular-verbs';
+    const validRoundModes = ['round1', 'round2', 'review', 'final'];
+    const hasRoundParams = typeof groupId === 'string' && groupId.length > 0
+        && validRoundModes.includes(roundMode)
+        && typeof roundAccuracy === 'number' && Number.isFinite(roundAccuracy)
+        && typeof roundExercisesCompleted === 'number' && Number.isFinite(roundExercisesCompleted) && roundExercisesCompleted >= 0;
+    const shouldAwardGroupRoundPoints = isGroupRoundUpdate && hasRoundParams;
+    const shouldAwardPoints = shouldAwardGroupRoundPoints || shouldAwardProgressPoints({
         rawProgress,
         progressValue,
         category,
@@ -613,6 +623,18 @@ export async function POST(request: NextRequest) {
                 }
             }
 
+            // Special handling for gerund-infinitive and irregular-verbs - award per group/round
+            if (shouldAwardGroupRoundPoints && activity) {
+                const sanitizedRoundAccuracy = Math.max(0, Math.min(100, Math.round(Number(roundAccuracy))));
+                const sanitizedRoundExercises = Math.max(0, Math.min(50, Math.round(Number(roundExercisesCompleted))));
+                const isRound1 = roundMode === 'round1';
+                const passed = sanitizedRoundAccuracy >= (isRound1 ? 80 : 85);
+                const giRoundMode = isRound1 ? 'round1' : 'round2';
+                points = activityGameUi === 'gerund-infinitive'
+                    ? calculateGIGroupPoints(sanitizedRoundAccuracy, sanitizedRoundExercises, passed, giRoundMode)
+                    : calculateVerbGroupPoints(sanitizedRoundAccuracy, sanitizedRoundExercises, passed, roundMode as 'round1' | 'round2' | 'review');
+                activityTypeLabel = activityGameUi === 'gerund-infinitive' ? 'Gerunds & Infinitives' : 'Irregular Verbs';
+            }
             // Special handling for numbers game - award difficulty-based points per category
             if (activityGameUi === 'numbers') {
                 // Determine difficulty based on category

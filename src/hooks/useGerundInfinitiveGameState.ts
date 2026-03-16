@@ -272,8 +272,8 @@ export function useGerundInfinitiveGameState(activityId: string) {
     });
   }, []);
 
-  const saveProgress = useCallback(async (results: GIRoundResults) => {
-    if (!state.selectedGroup || !results.updatedCategoryData) return;
+  const saveProgress = useCallback(async (results: GIRoundResults): Promise<{ pointsAwarded?: number } | null> => {
+    if (!state.selectedGroup || !results.updatedCategoryData) return null;
     try {
       const updatedCategoryData = normalizeProgressData(results.updatedCategoryData);
       const overallProgress = calculateOverallProgress(updatedCategoryData);
@@ -285,13 +285,20 @@ export function useGerundInfinitiveGameState(activityId: string) {
           progress: overallProgress,
           status: overallProgress >= 100 ? 'completed' : 'in_progress',
           categoryData: updatedCategoryData,
+          groupId: results.groupId,
+          roundMode: results.roundMode,
+          roundAccuracy: results.accuracy,
+          roundExercisesCompleted: results.exercisesCompleted,
         }),
       });
+      const data = response.ok ? (await response.json()) as { pointsAwarded?: number } : null;
       if (!response.ok) throw new Error('Failed to save progress');
       setState(prev => ({ ...prev, categoryData: updatedCategoryData }));
+      return data;
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to save progress';
       setState(prev => ({ ...prev, saveError: 'Progress could not be saved. Your work may not sync across devices.' }));
+      return null;
     }
   }, [state.selectedGroup, activityId]);
 

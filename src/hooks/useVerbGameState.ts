@@ -258,8 +258,8 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
     });
   }, []);
 
-  const saveProgress = useCallback(async (results: VerbGameRoundResults) => {
-    if (!state.selectedGroup || !results.updatedCategoryData) return;
+  const saveProgress = useCallback(async (results: VerbGameRoundResults): Promise<{ pointsAwarded?: number } | null> => {
+    if (!state.selectedGroup || !results.updatedCategoryData) return null;
 
     try {
       const updatedCategoryData = normalizeProgressData(results.updatedCategoryData);
@@ -273,21 +273,28 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
           progress: overallProgress,
           status: overallProgress >= 100 ? 'completed' : 'in_progress',
           categoryData: updatedCategoryData,
+          groupId: results.groupId,
+          roundMode: results.roundMode,
+          roundAccuracy: results.accuracy,
+          roundExercisesCompleted: results.exercisesCompleted,
         })
       });
 
+      const data = response.ok ? (await response.json()) as { pointsAwarded?: number } : null;
       if (!response.ok) throw new Error('Failed to save progress');
 
       setState((prev) => ({
         ...prev,
         categoryData: updatedCategoryData,
       }));
+      return data;
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to save progress';
       setState((prev) => ({
         ...prev,
         error: errorMessage,
       }));
+      return null;
     }
   }, [state.selectedGroup, activityId]);
 

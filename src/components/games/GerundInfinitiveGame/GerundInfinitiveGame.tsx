@@ -1,13 +1,15 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertCircle, ArrowLeft } from 'lucide-react';
 import { ErrorToast } from '@/components/ui/ErrorToast';
+import { PointsToast } from '@/components/ui/PointsToast';
 import { useRouter } from 'next/navigation';
 import {
   GI_GROUPS,
 } from '@/data/gerund-infinitive-groups';
+import { getProgressSummary, normalizeProgressData } from '@/lib/gerund-infinitive-progress';
 import {
   useGerundInfinitiveGameState,
 } from '@/hooks/useGerundInfinitiveGameState';
@@ -25,6 +27,7 @@ interface GerundInfinitiveGameProps {
 export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) {
   const router = useRouter();
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
+  const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
   const {
     state,
     selectGroup,
@@ -44,7 +47,11 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
   // Save progress whenever round results change
   useEffect(() => {
     if (state.phase === 'results' && state.roundResults) {
-      saveProgress(state.roundResults);
+      void saveProgress(state.roundResults).then((result) => {
+        if (result?.pointsAwarded && result.pointsAwarded > 0) {
+          setPointsToast({ points: result.pointsAwarded, key: Date.now() });
+        }
+      });
     }
   }, [state.phase, state.roundResults, saveProgress]);
 
@@ -249,6 +256,9 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
                 group={state.selectedGroup}
                 results={state.roundResults}
                 nextGroup={getNextGroup()}
+                completedGroupsCount={state.roundResults.updatedCategoryData
+                  ? getProgressSummary(normalizeProgressData(state.roundResults.updatedCategoryData)).completedGroups
+                  : 0}
                 onRetry={retryGroup}
                 onContinue={continueToNext}
               />
@@ -269,6 +279,14 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
         <ErrorToast
           message={state.lockedGroupError}
           onDismiss={dismissLockedGroupError}
+        />
+      )}
+      {/* Points earned toast */}
+      {pointsToast && (
+        <PointsToast
+          key={pointsToast.key}
+          points={pointsToast.points}
+          onComplete={() => setPointsToast(null)}
         />
       )}
     </div>

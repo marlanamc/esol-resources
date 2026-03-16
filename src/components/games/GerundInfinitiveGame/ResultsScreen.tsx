@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Trophy, Repeat, CheckCircle, ChevronRight, Award, BookOpen } from 'lucide-react';
 import { CelebrationAnimation } from '@/components/ui/CelebrationAnimation';
 import { GI_FINAL_GROUP_ID, GI_REVIEW_GROUP_ID } from '@/data/gerund-infinitive-groups';
+import { REVIEW_UNLOCK_COUNT } from '@/lib/gerund-infinitive-progress';
 import { formatMissedPatternsForDisplay } from '@/lib/csv/gerund-infinitive-csv';
 import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
 import type { GerundInfinitiveGroup, GIRoundResults } from '@/types/gerund-infinitive';
@@ -13,6 +14,7 @@ interface ResultsScreenProps {
   group: GerundInfinitiveGroup;
   results: GIRoundResults;
   nextGroup: GerundInfinitiveGroup | null;
+  completedGroupsCount?: number;
   onRetry: () => void;
   onContinue: () => void;
 }
@@ -25,7 +27,7 @@ const ACHIEVEMENT_LABELS: Record<string, { emoji: string; label: string }> = {
   'grammar-guru': { emoji: '🎓', label: 'Grammar Guru' },
 };
 
-export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }: ResultsScreenProps) {
+export function ResultsScreen({ group, results, nextGroup, completedGroupsCount = 0, onRetry, onContinue }: ResultsScreenProps) {
   const { accuracy, correctAnswers, exercisesCompleted, completed, pointsAwarded, streak, newAchievements, missedPatternIds } = results;
   const passed = completed;
   const isFinal = group.id === GI_FINAL_GROUP_ID;
@@ -44,6 +46,10 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }
     ? `Next: ${nextGroup.shortTitle}`
     : 'Continue to Next Level';
 
+  const groupsUntilMixedReview = Math.max(0, REVIEW_UNLOCK_COUNT - completedGroupsCount);
+  const showProgressTeaser = passed && nextGroup && groupsUntilMixedReview > 0 && !isReview && !isFinal;
+  const showOneMoreNudge = passed && nextGroup && results.nextStep !== 'round2';
+
   // Button text depends on pass/fail status
   const primaryButtonLabel = passed
     ? results.nextStep === 'round2'
@@ -51,15 +57,16 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }
       : 'Play Again'
     : 'Try Again';
 
-  // Trigger confetti on group pass or mastery
-  const showConfetti = passed && (mastered || results.nextStep === 'round2');
+  // Trigger confetti on any pass — stars for 100% accuracy, confetti otherwise
+  const showConfetti = passed;
+  const confettiType = accuracy === 100 ? 'stars' : 'confetti';
 
   return (
     <div className="space-y-6 max-w-2xl mx-auto py-4">
       {/* Confetti animation - 3 seconds to match Irregular Verb Game */}
       <CelebrationAnimation
         trigger={showConfetti}
-        type={mastered ? "stars" : "confetti"}
+        type={confettiType}
         durationMs={3000}
       />
       {/* Status indicator */}
@@ -92,6 +99,23 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }
           }
         </p>
       </motion.div>
+
+      {/* Progress teaser - "X more groups until Mixed Review!" */}
+      {showProgressTeaser && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.12 }}
+          className="px-4 py-3 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 border border-primary/20 text-center"
+        >
+          <p className="font-display text-lg text-primary-dark dark:text-primary">
+            {groupsUntilMixedReview === 1
+              ? '1 more group until Mixed Review!'
+              : `${groupsUntilMixedReview} more groups until Mixed Review!`}
+          </p>
+          <p className="text-sm text-text-muted mt-0.5">You&apos;re so close — keep going!</p>
+        </motion.div>
+      )}
 
       {/* Round Progress Indicator - shows when advancing to Round 2 */}
       {results.nextStep === 'round2' && (
@@ -226,6 +250,17 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }
         transition={{ delay: 0.55 }}
         className="space-y-3 pt-4 border-t border-border"
       >
+        {/* "One more?" nudge when passed and next group available */}
+        {showOneMoreNudge && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-center text-primary font-semibold"
+          >
+            You&apos;re on a roll! One more?
+          </motion.p>
+        )}
         {/* Primary action row */}
         <div className="flex flex-col gap-3">
           {/* Failure: Try Again + Continue */}

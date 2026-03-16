@@ -360,7 +360,9 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
                     : 'bg-error/10 border-error/30 text-error'
                 }`}
               >
-                {isCorrect ? '✓ Correct!' : `✗ The answer is: ${Array.isArray(currentExercise.correctAnswer) ? currentExercise.correctAnswer.join(' or ') : currentExercise.correctAnswer}`}
+                {isCorrect
+                  ? (streak >= 2 ? `✓ Correct! ${streak} in a row!` : '✓ Correct!')
+                  : `✗ The answer is: ${Array.isArray(currentExercise.correctAnswer) ? currentExercise.correctAnswer.join(' or ') : currentExercise.correctAnswer}`}
                 {fullCorrectSentence && (
                   <p className="mt-2 text-base font-normal text-text">
                     {fullCorrectSentence}
