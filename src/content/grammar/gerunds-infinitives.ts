@@ -238,27 +238,27 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
         <div style="display: grid; gap: 0.75rem; margin-bottom: 1.5rem">
           <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
             <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">happy</span>
-            <span>I'm happy <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to help</strong> you.</span>
+            <span>I'm happy <strong class="gc-inf-highlight" style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to help</strong> you.</span>
           </div>
           <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
             <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">want</span>
-            <span>I want <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to visit</strong> Japan someday.</span>
+            <span>I want <strong class="gc-inf-highlight" style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to visit</strong> Japan someday.</span>
           </div>
           <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
             <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">plan</span>
-            <span>I plan <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to study</strong> medicine.</span>
+            <span>I plan <strong class="gc-inf-highlight" style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to study</strong> medicine.</span>
           </div>
           <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
             <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">need</span>
-            <span>I need <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to practice</strong> my English.</span>
+            <span>I need <strong class="gc-inf-highlight" style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to practice</strong> my English.</span>
           </div>
           <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
             <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">important</span>
-            <span>It's important <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to exercise</strong> regularly.</span>
+            <span>It's important <strong class="gc-inf-highlight" style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to exercise</strong> regularly.</span>
           </div>
           <div class="gc-bg-white" style="display: flex; align-items: center; gap: 0.75rem; ; border: 1px solid rgba(3, 105, 161, 0.2); border-radius: 0.5rem; padding: 0.75rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05)">
             <span style="background: rgba(3, 105, 161, 0.15); color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; font-size: 0.85rem">ability</span>
-            <span>I have the ability <strong style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to speak</strong> three languages.</span>
+            <span>I have the ability <strong class="gc-inf-highlight" style="color: #0369a1; background: #bae6fd; padding: 0.1rem 0.4rem; border-radius: 0.25rem">to speak</strong> three languages.</span>
           </div>
         </div>
 

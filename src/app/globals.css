@@ -3081,6 +3081,12 @@ textarea {
   color: #fff !important;
 }
 
+/* Infinitive highlights (e.g. "to help", "to visit") - dark mode contrast fix */
+.dark .grammar-reader-container .explanation-content .gc-inf-highlight {
+  background: rgba(3, 105, 161, 0.5) !important;
+  color: #bae6fd !important;
+}
+
 /* ── Tables (non-attribute-selector rules preserved) ── */
 .dark .grammar-reader-container .explanation-content table,
 .dark .grammar-reader-container .comparison-table table,
