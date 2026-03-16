@@ -864,14 +864,11 @@ function createPatternChoiceExercise(
       options.push(baseVerb + particle);          // "listen to"
       options.push(baseVerb + 's' + particle);    // "listens to"
     } else {
-      // For infinitive patterns, add: gerund, bare verb, base-ing (variant)
-      const infinitiveFull = correctAnswer.replace(/^to /, '');
-      options.push(gerundFrom(infinitiveFull));
-      options.push(infinitiveFull);
-      // Try to add a 4th distractor if possible
-      if (infinitiveFull.length > 3) {
-        options.push(infinitiveFull.substring(0, infinitiveFull.length - 1) + 'ing');
-      }
+      // For infinitive patterns, add: gerund, bare verb, 3rd person (same 4 as gerund pattern)
+      const baseVerb = correctAnswer.replace(/^to /, '');
+      options.push(gerundFrom(baseVerb));
+      options.push(baseVerb);
+      options.push(getThirdPersonSingular(baseVerb));
     }
 
     // Remove duplicates and trim to 4 options max
@@ -1332,6 +1329,18 @@ const BASE_FROM_OVERRIDES: Record<string, string> = {
   budgeting: 'budget', targeting: 'target', marketing: 'market',
   pocketing: 'pocket', rocketing: 'rocket', bracketing: 'bracket',
 };
+
+/** Get 3rd person singular form (take -> takes, try -> tries) */
+function getThirdPersonSingular(verb: string): string {
+  const v = verb.toLowerCase();
+  if (v.endsWith('y') && !'aeiou'.includes(v[v.length - 2] ?? '')) {
+    return verb.slice(0, -1) + 'ies';
+  }
+  if (v.endsWith('s') || v.endsWith('x') || v.endsWith('z') || v.endsWith('ch') || v.endsWith('sh')) {
+    return verb + 'es';
+  }
+  return verb + 's';
+}
 
 /** Convert a gerund (walking) to base form (walk) */
 function baseFrom(gerund: string): string {
