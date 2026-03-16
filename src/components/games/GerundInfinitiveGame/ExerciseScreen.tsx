@@ -6,6 +6,7 @@ import { Zap, Target, Lightbulb, AlertCircle, ArrowLeft } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 import { getExerciseTypeLabel } from '@/data/gerund-infinitive-exercises';
 import { PatternChoiceExercise } from './exercises/PatternChoiceExercise';
+import { PatternIdentifierExercise } from './exercises/PatternIdentifierExercise';
 import { PrepositionChoiceExercise } from './exercises/PrepositionChoiceExercise';
 import { RuleApplicationExercise } from './exercises/RuleApplicationExercise';
 import { SentenceCompletionExercise } from './exercises/SentenceCompletionExercise';
@@ -13,6 +14,15 @@ import { PatternSortingExercise } from './exercises/PatternSortingExercise';
 import { ErrorCorrectionExercise } from './exercises/ErrorCorrectionExercise';
 import { MeaningDistinctionExercise } from './exercises/MeaningDistinctionExercise';
 import { ComboChallengeExercise } from './exercises/ComboChallengeExercise';
+import { MatchPairExercise } from './exercises/MatchPairExercise';
+import { DragOrderExercise } from './exercises/DragOrderExercise';
+import { DialogueCompletionExercise } from './exercises/DialogueCompletionExercise';
+import { ScenarioChoiceExercise } from './exercises/ScenarioChoiceExercise';
+import { ChainSentencesExercise } from './exercises/ChainSentencesExercise';
+import { SwipeChoiceExercise } from './exercises/SwipeChoiceExercise';
+import { MemoryMatchExercise } from './exercises/MemoryMatchExercise';
+import { RapidFireExercise } from './exercises/RapidFireExercise';
+import { PersonalResponseExercise } from './exercises/PersonalResponseExercise';
 import type { GerundInfinitiveGroup, GIExercise } from '@/types/gerund-infinitive';
 
 interface ExerciseScreenProps {
@@ -59,7 +69,20 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
     setShowFeedback(false);
   }, [currentIndex]);
 
-  if (!currentExercise) return null;
+  if (!currentExercise) {
+    return (
+      <div className="flex min-h-full flex-col items-center justify-center gap-4 px-4">
+        <p className="text-center text-text-muted">No exercises available for this group.</p>
+        <button
+          onClick={onBack}
+          className="inline-flex items-center gap-2 rounded-xl border-2 border-border bg-white dark:bg-[#162b3d] px-4 py-2 text-sm font-medium text-text hover:border-primary"
+        >
+          <ArrowLeft size={16} />
+          Back
+        </button>
+      </div>
+    );
+  }
 
   const handleAnswer = (correct: boolean) => {
     setAnswered(true);
@@ -86,17 +109,17 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
     }, 1600);
   };
 
-  // Get memory trick and error explanation for the pattern if answer is wrong
+  // Get error explanation for the pattern if answer is wrong
+  // Note: Memory tricks removed per user request - rely on pattern exposure instead
   const getPatternHelp = () => {
-    if (isCorrect) return { memoryTrick: null, errorExplanation: null };
+    if (isCorrect) return { errorExplanation: null };
     const pattern = group.patterns.find(p => p.id === currentExercise.patternId);
     return {
-      memoryTrick: pattern?.memoryTrick || null,
       errorExplanation: pattern?.errorExplanation || null,
     };
   };
 
-  const { memoryTrick, errorExplanation } = showFeedback ? getPatternHelp() : { memoryTrick: null, errorExplanation: null };
+  const { errorExplanation } = showFeedback ? getPatternHelp() : { errorExplanation: null };
 
   return (
     <div className="flex min-h-full flex-col">
@@ -318,34 +341,23 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
             )}
           </AnimatePresence>
 
-          {/* Error explanation and memory trick on wrong answer */}
+          {/* Error explanation on wrong answer (memory tricks removed) */}
           <AnimatePresence>
-            {showFeedback && !isCorrect && (errorExplanation || memoryTrick) && (
+            {showFeedback && !isCorrect && errorExplanation && (
               <motion.div
                 key="help-section"
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                className="mb-4 p-4 rounded-xl bg-accent/10 border border-accent/30 space-y-3"
+                className="mb-4 p-4 rounded-xl bg-accent/10 border border-accent/30"
               >
-                {errorExplanation && (
-                  <div className="flex gap-3 items-start">
-                    <AlertCircle size={18} className="text-text-muted flex-shrink-0 mt-0.5" />
-                    <div className="text-left">
-                      <p className="text-xs font-black uppercase tracking-widest text-text-muted mb-1">Why This Happens</p>
-                      <p className="text-sm text-text">{errorExplanation}</p>
-                    </div>
+                <div className="flex gap-3 items-start">
+                  <AlertCircle size={18} className="text-text-muted flex-shrink-0 mt-0.5" />
+                  <div className="text-left">
+                    <p className="text-xs font-black uppercase tracking-widest text-text-muted mb-1">Why This Happens</p>
+                    <p className="text-sm text-text">{errorExplanation}</p>
                   </div>
-                )}
-                {memoryTrick && (
-                  <div className="flex gap-3 items-start">
-                    <Lightbulb size={18} className="text-primary-dark flex-shrink-0 mt-0.5" />
-                    <div className="text-left">
-                      <p className="text-xs font-black uppercase tracking-widest text-primary-dark mb-1">Remember</p>
-                      <p className="text-sm text-text">{memoryTrick}</p>
-                    </div>
-                  </div>
-                )}
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -409,6 +421,15 @@ function ExerciseTypeIcon({ type }: { type: string }) {
           <line x1="8" y1="15" x2="16" y2="15" strokeDasharray="3 2" />
         </svg>
       );
+    case 'pattern-identifier':
+      return (
+        <svg className={iconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          <path d="M11 8v6" />
+          <path d="M8 11h6" />
+        </svg>
+      );
     case 'pattern-sorting':
       return (
         <svg className={iconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -454,6 +475,7 @@ function renderExercise(
 
   switch (exercise.type) {
     case 'pattern-choice':     return <PatternChoiceExercise {...props} />;
+    case 'pattern-identifier': return <PatternIdentifierExercise {...props} />;
     case 'preposition-choice': return <PrepositionChoiceExercise {...props} />;
     case 'rule-application':   return <RuleApplicationExercise {...props} />;
     case 'sentence-completion': return <SentenceCompletionExercise {...props} />;
@@ -461,6 +483,15 @@ function renderExercise(
     case 'error-correction':   return <ErrorCorrectionExercise {...props} />;
     case 'meaning-distinction': return <MeaningDistinctionExercise {...props} />;
     case 'combo-challenge':    return <ComboChallengeExercise {...props} />;
+    case 'match-pair':         return <MatchPairExercise {...props} />;
+    case 'drag-order':         return <DragOrderExercise {...props} />;
+    case 'dialogue-completion': return <DialogueCompletionExercise {...props} />;
+    case 'scenario-choice':    return <ScenarioChoiceExercise {...props} />;
+    case 'chain-sentences':    return <ChainSentencesExercise {...props} />;
+    case 'swipe-choice':       return <SwipeChoiceExercise {...props} />;
+    case 'memory-match':       return <MemoryMatchExercise {...props} />;
+    case 'rapid-fire':         return <RapidFireExercise {...props} />;
+    case 'personal-response':  return <PersonalResponseExercise {...props} />;
     default: return <PatternChoiceExercise {...props} />;
   }
 }

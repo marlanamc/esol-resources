@@ -72,13 +72,46 @@ export function GroupSelectionScreen({ categoryData, onSelectGroup }: GroupSelec
           <span className="text-sm font-semibold tracking-wide uppercase">Pattern Discovery</span>
         </motion.div>
 
-        <h1 className="font-display text-4xl sm:text-5xl text-text mb-3 tracking-tight">
+        <h1 className="font-display text-4xl sm:text-5xl text-text mb-2 tracking-tight">
           Gerunds & Infinitives
         </h1>
-        <p className="text-text-muted text-lg max-w-xl mx-auto leading-relaxed">
-          Discover when to use <em>-ing</em> and when to use <em>to + verb</em> — learn through examples
-          before rules, and unlock new patterns as you progress.
+        <p className="text-text-muted text-base mb-4">
+          Learn when to use <span className="font-semibold text-primary">-ing</span> and when to use <span className="font-semibold text-primary">to + verb</span>
         </p>
+
+        {/* Visual Two-Round Structure */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="mt-6 mx-auto max-w-md"
+        >
+          <p className="text-sm font-semibold text-text-muted mb-4 text-center">For each level:</p>
+          <div className="flex items-center justify-center gap-8">
+            {/* Round 1 */}
+            <div className="flex flex-col items-center">
+              <div className="text-4xl mb-2">🎯</div>
+              <div className="font-display text-xl text-primary mb-1">Round 1</div>
+              <div className="text-xs text-text-muted mb-2">Learn</div>
+              <div className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">
+                80% pass
+              </div>
+            </div>
+
+            {/* Separator */}
+            <div className="h-16 w-px bg-border/40"></div>
+
+            {/* Round 2 */}
+            <div className="flex flex-col items-center">
+              <div className="text-4xl mb-2">🏆</div>
+              <div className="font-display text-xl text-primary-dark mb-1">Round 2</div>
+              <div className="text-xs text-text-muted mb-2">Master</div>
+              <div className="px-3 py-1 rounded-full bg-accent/20 text-primary-dark text-xs font-bold border border-accent/30">
+                90% master
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </motion.header>
 
       {/* Stats Dashboard */}
@@ -124,34 +157,43 @@ export function GroupSelectionScreen({ categoryData, onSelectGroup }: GroupSelec
         </div>
       </motion.div>
 
-      {/* Difficulty Sections */}
+      {/* Phase-Based Sections */}
       <div className="space-y-8">
         <GroupSection
           title="Foundation"
           subtitle="Simple patterns to build your base"
-          groups={GI_GROUPS.filter(g => g.difficulty === 1)}
+          groups={GI_GROUPS.filter(g => g.phase === 'foundation')}
           categoryData={categoryData}
           onSelectGroup={onSelectGroup}
           delay={0.5}
           accentColor="secondary"
         />
         <GroupSection
-          title="Development"
-          subtitle="Expanding your pattern recognition"
-          groups={GI_GROUPS.filter(g => g.difficulty === 2)}
+          title="Core Verbs"
+          subtitle="Master which verbs take gerund vs infinitive"
+          groups={GI_GROUPS.filter(g => g.phase === 'core-verbs')}
           categoryData={categoryData}
           onSelectGroup={onSelectGroup}
           delay={0.6}
           accentColor="primary"
         />
         <GroupSection
-          title="Mastery"
-          subtitle="Complex patterns and subtle distinctions"
-          groups={GI_GROUPS.filter(g => g.difficulty === 3)}
+          title="Development"
+          subtitle="Expanding to prepositions, adjectives, and purpose"
+          groups={GI_GROUPS.filter(g => g.phase === 'development')}
           categoryData={categoryData}
           onSelectGroup={onSelectGroup}
           delay={0.7}
           accentColor="accent"
+        />
+        <GroupSection
+          title="Mastery"
+          subtitle="Complex patterns and subtle distinctions"
+          groups={GI_GROUPS.filter(g => g.phase === 'mastery')}
+          categoryData={categoryData}
+          onSelectGroup={onSelectGroup}
+          delay={0.8}
+          accentColor="primary"
         />
 
         {/* Mixed Review */}
@@ -162,7 +204,7 @@ export function GroupSelectionScreen({ categoryData, onSelectGroup }: GroupSelec
             groups={[reviewGroup]}
             categoryData={categoryData}
             onSelectGroup={onSelectGroup}
-            delay={0.8}
+            delay={0.9}
             accentColor="primary"
           />
         )}

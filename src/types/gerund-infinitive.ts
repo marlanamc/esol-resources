@@ -32,6 +32,11 @@ export interface GerundInfinitivePattern {
   errorExplanation?: string;     // Detailed explanation of why students make this error
   memoryTrick?: string;          // Memory aid for this specific pattern
   correctPreposition?: string;   // For preposition-choice: which preposition (in, at, for, etc.)
+  // Personal response fields
+  question?: string;             // Personal question (e.g., "How do you stay healthy?")
+  patternHint?: string;          // Pattern hint for personal questions
+  exampleAnswer?: string;        // Example answer for personal questions
+  requiredPattern?: RegExp;      // Validation pattern for personal questions
 }
 
 export interface PatternExample {
@@ -49,7 +54,8 @@ export interface GerundInfinitiveGroup {
   pattern: string;               // Rule explanation
   patternExample: string;        // Visual example "interested in learning"
   colorClass: string;            // Tailwind color classes
-  difficulty: 1 | 2 | 3;         // 1=foundation, 2=development, 3=mastery
+  difficulty: 1 | 2 | 3;         // 1=foundation, 2=core-verbs/development, 3=mastery
+  phase?: 'foundation' | 'core-verbs' | 'development' | 'mastery'; // Optional phase for UI organization
   prerequisite: string | null;   // ID of prerequisite group
   patterns: GerundInfinitivePattern[];
   memoryTrick?: string;          // Group-level memory trick (e.g., "PREP = ING")
@@ -63,12 +69,55 @@ export interface GerundInfinitiveGroup {
 export type GIExerciseType =
   | 'pattern-choice'        // Choose gerund or infinitive to complete sentence
   | 'rule-application'      // Identify what comes before the blank
+  | 'pattern-identifier'    // Identify what part of speech comes before the highlighted word
   | 'sentence-completion'   // Complete real-world sentences
   | 'pattern-sorting'       // Sort phrases into gerund/infinitive buckets
   | 'error-correction'      // Find and fix common errors
   | 'meaning-distinction'   // For stop/remember/try - choose based on meaning
-  | 'preposition-choice'    // Choose correct preposition (interested ___ learning → in)
-  | 'combo-challenge';      // Choose BOTH preposition AND verb form (interested ___ ___ → in learning)
+  | 'preposition-choice'   // Choose correct preposition (interested ___ learning → in)
+  | 'combo-challenge'       // Choose BOTH preposition AND verb form (interested ___ ___ → in learning)
+  // New variety types
+  | 'match-pair'           // Match trigger + verb form (card matching)
+  | 'drag-order'            // Drag sentence chunks into correct order
+  | 'dialogue-completion'   // Complete two blanks in a conversation
+  | 'scenario-choice'      // Real-world scenario + complete the sentence
+  | 'chain-sentences'       // 2–3 related sentences with blanks (narrative)
+  | 'swipe-choice'          // Swipe left=gerund, right=infinitive (levels 1–2 only)
+  | 'memory-match'          // Flip cards to match trigger + form (mastery/checkpoints)
+  | 'rapid-fire'            // Quick succession of questions, no next (mastery/checkpoints)
+  | 'personal-response';    // Personal questions requiring typed answers with pattern validation
+
+// For match-pair and memory-match exercises
+export interface MatchPair {
+  trigger: string;   // e.g. "interested in", "want"
+  form: string;      // e.g. "learning", "to learn"
+}
+
+// For drag-order exercises
+export interface DragChunk {
+  text: string;
+  order: number;
+}
+
+// For dialogue-completion exercises
+export interface DialogueLine {
+  speaker: string;   // e.g. "A", "B"
+  text: string;      // With ___ for blank
+  correctAnswer: string;
+}
+
+// For chain-sentences exercises
+export interface ChainSentence {
+  prompt: string;       // Sentence with ___
+  correctAnswer: string;
+}
+
+// For rapid-fire: lightweight item to avoid circular ref
+export interface RapidFireItem {
+  prompt: string;
+  correctAnswer: string | string[];
+  options?: string[];
+}
 
 // Individual exercise
 export interface GIExercise {
@@ -87,6 +136,18 @@ export interface GIExercise {
   highlightedWord?: string;              // For rule-application: the gerund/infinitive to highlight
   showPattern: boolean;                  // Whether to show pattern hint
   difficulty?: 1 | 2 | 3;
+  // New variety types
+  matchPairs?: MatchPair[];              // match-pair, memory-match
+  dragChunks?: string[];                 // drag-order (shuffled chunks)
+  dialogueLines?: DialogueLine[];        // dialogue-completion
+  scenario?: string;                     // scenario-choice (e.g. "Job interview")
+  chainSentences?: ChainSentence[];     // chain-sentences
+  rapidFireItems?: RapidFireItem[];    // rapid-fire (quick succession)
+  // Personal response fields
+  question?: string;                     // personal-response: The question (e.g., "How do you stay healthy?")
+  patternHint?: string;                  // personal-response: Pattern hint (e.g., "by + gerund")
+  exampleAnswer?: string;                // personal-response: Example answer
+  requiredPattern?: RegExp;              // personal-response: Pattern regex for validation
 }
 
 // For error-correction exercises
@@ -218,7 +279,7 @@ export interface GIRoundResults {
 
 // Constants
 export const GI_UNLOCK_THRESHOLD = 80;   // 80% accuracy to unlock next group
-export const GI_MASTERY_THRESHOLD = 85;  // 85% accuracy for mastery in Round 2
+export const GI_MASTERY_THRESHOLD = 90;  // 90% accuracy for mastery in Round 2
 export const GI_ROUND1_SIZE = 10;        // Exercises in Round 1
 export const GI_ROUND2_SIZE = 8;         // Exercises in Round 2 (targeted)
 export const GI_CHECKPOINT_SIZE = 10;    // Exercises in Checkpoint Reviews

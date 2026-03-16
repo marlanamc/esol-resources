@@ -26,6 +26,7 @@ export const GROUP_0A: GerundInfinitiveGroup = {
   patternExample: 'Swimming is fun',
   colorClass: 'bg-emerald-100 border-emerald-300 text-emerald-900',
   difficulty: 1,
+  phase: 'foundation',
   prerequisite: null,
   memoryTrick: 'Gerund = -ING word acting as a THING (noun)!',
   icon: '🏊',
@@ -121,6 +122,7 @@ export const GROUP_0B: GerundInfinitiveGroup = {
   patternExample: 'I want to learn',
   colorClass: 'bg-blue-100 border-blue-300 text-blue-900',
   difficulty: 1,
+  phase: 'foundation',
   prerequisite: 'group-0a',
   memoryTrick: 'Infinitive = TO + verb = pointing TO the future!',
   icon: '🎯',
@@ -219,7 +221,8 @@ export const GROUP_1: GerundInfinitiveGroup = {
   patternExample: 'interested in learning',
   colorClass: 'bg-terracotta-100 border-terracotta-300 text-terracotta-900',
   difficulty: 2,
-  prerequisite: 'checkpoint-1',
+  phase: 'development',
+  prerequisite: 'group-2c',
   memoryTrick: 'PREP = ING',
   icon: '🔑',
   patterns: [
@@ -338,6 +341,199 @@ export const GROUP_1: GerundInfinitiveGroup = {
         { sentence: "Call me after ___ from work.", blank: 'getting', context: 'Daily life' },
         { sentence: "We'll discuss it after ___ the report.", blank: 'reading', context: 'Work' }
       ]
+    },
+    // Personal Response Questions - "by" preposition
+    {
+      id: 'personal-by-health',
+      trigger: 'by',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'How do you stay healthy?',
+      patternHint: 'by + gerund (-ing form)',
+      exampleAnswer: 'I stay healthy by exercising regularly',
+      requiredPattern: /by\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-by-english',
+      trigger: 'by',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'How do you practice English?',
+      patternHint: 'by + gerund (-ing form)',
+      exampleAnswer: 'I practice English by watching movies',
+      requiredPattern: /by\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-by-commute',
+      trigger: 'by',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'How do you get to work or school?',
+      patternHint: 'by + gerund (-ing form)',
+      exampleAnswer: 'I get to work by driving my car',
+      requiredPattern: /by\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-by-money',
+      trigger: 'by',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'How do you save money?',
+      patternHint: 'by + gerund (-ing form)',
+      exampleAnswer: 'I save money by cooking at home',
+      requiredPattern: /by\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-by-friends',
+      trigger: 'by',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'How do you make friends?',
+      patternHint: 'by + gerund (-ing form)',
+      exampleAnswer: 'I make friends by joining clubs',
+      requiredPattern: /by\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-by-relax',
+      trigger: 'by',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'How do you relax after a long day?',
+      patternHint: 'by + gerund (-ing form)',
+      exampleAnswer: 'I relax by listening to music',
+      requiredPattern: /by\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-by-learn',
+      trigger: 'by',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'How do you learn new things?',
+      patternHint: 'by + gerund (-ing form)',
+      exampleAnswer: 'I learn new things by reading books',
+      requiredPattern: /by\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-by-celebrate',
+      trigger: 'by',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'How do you celebrate special occasions?',
+      patternHint: 'by + gerund (-ing form)',
+      exampleAnswer: 'I celebrate by spending time with family',
+      requiredPattern: /by\s+\w+ing/i,
+      examples: []
+    },
+    // Personal Response Questions - "in/at" adjective+preposition patterns
+    {
+      id: 'personal-interested-in',
+      trigger: 'interested in',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What are you interested in learning next?',
+      patternHint: 'interested in + gerund',
+      exampleAnswer: 'I\'m interested in learning photography',
+      requiredPattern: /interested\s+in\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-good-at',
+      trigger: 'good at',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What are you good at doing?',
+      patternHint: 'good at + gerund',
+      exampleAnswer: 'I\'m good at solving problems',
+      requiredPattern: /good\s+at\s+\w+ing/i,
+      examples: []
+    },
+    // Personal Response Questions - "about" patterns
+    {
+      id: 'personal-thinking-about',
+      trigger: 'thinking about',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What are you thinking about doing this weekend?',
+      patternHint: 'thinking about + gerund',
+      exampleAnswer: 'I\'m thinking about visiting friends',
+      requiredPattern: /thinking\s+about\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-dream-about',
+      trigger: 'dream about',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What do you dream about doing in the future?',
+      patternHint: 'dream about + gerund',
+      exampleAnswer: 'I dream about traveling around the world',
+      requiredPattern: /dream\s+about\s+\w+ing/i,
+      examples: []
+    },
+    // Personal Response Questions - "of" patterns
+    {
+      id: 'personal-tired-of',
+      trigger: 'tired of',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What are you tired of doing?',
+      patternHint: 'tired of + gerund',
+      exampleAnswer: 'I\'m tired of working long hours',
+      requiredPattern: /tired\s+of\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-proud-of',
+      trigger: 'proud of',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What are you proud of achieving?',
+      patternHint: 'proud of + gerund',
+      exampleAnswer: 'I\'m proud of completing my degree',
+      requiredPattern: /proud\s+of\s+\w+ing/i,
+      examples: []
+    },
+    // Personal Response Questions - "before/after" patterns
+    {
+      id: 'personal-before',
+      trigger: 'before',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What do you always do before starting work?',
+      patternHint: 'before + gerund',
+      exampleAnswer: 'I always have coffee before starting work',
+      requiredPattern: /before\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-after',
+      trigger: 'after',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What do you like to do after finishing work?',
+      patternHint: 'after + gerund',
+      exampleAnswer: 'I like to exercise after finishing work',
+      requiredPattern: /after\s+\w+ing/i,
+      examples: []
+    },
+    // Personal Response Questions - "without" patterns
+    {
+      id: 'personal-without',
+      trigger: 'without',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What can\'t you live without doing?',
+      patternHint: 'without + gerund',
+      exampleAnswer: 'I can\'t live without listening to music',
+      requiredPattern: /without\s+\w+ing/i,
+      examples: []
     }
   ]
 };
@@ -355,6 +551,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
   patternExample: 'afraid of making mistakes',
   colorClass: 'bg-terracotta-100 border-terracotta-300 text-terracotta-900',
   difficulty: 2,
+  phase: 'development',
   prerequisite: 'group-1',
   memoryTrick: 'Each adjective has ONE preposition partner!',
   icon: '📌',
@@ -647,6 +844,7 @@ export const GROUP_1D: GerundInfinitiveGroup = {
   patternExample: 'interested in learning',
   colorClass: 'bg-purple-100 border-purple-300 text-purple-900',
   difficulty: 2,
+  phase: 'development',
   prerequisite: 'group-1b',
   memoryTrick: 'Two blanks, two answers: Preposition + Gerund!',
   icon: '🎯',
@@ -782,11 +980,12 @@ export const GROUP_1D: GerundInfinitiveGroup = {
 export const GROUP_1C: GerundInfinitiveGroup = {
   id: 'group-1c',
   title: 'The "TO" Trap',
-  shortTitle: '18. The "TO" Trap',
+  shortTitle: '20. The "TO" Trap',
   pattern: 'In these phrases, "TO" is a PREPOSITION (not part of an infinitive). After prepositions, ALWAYS use gerund! Look forward to MEETING (not: to meet)',
   patternExample: 'look forward to meeting',
   colorClass: 'bg-amber-100 border-amber-300 text-amber-900',
   difficulty: 3,
+  phase: 'mastery',
   prerequisite: 'group-6b',
   memoryTrick: 'Look forward TO = preposition = gerund! (to meeting, not to meet)',
   icon: '🪤',
@@ -865,12 +1064,13 @@ export const GROUP_2A: GerundInfinitiveGroup = {
   id: 'group-2a',
   title: 'Gerund Verbs',
   shortTitle: '5. Gerund Verbs',
-  pattern: 'Certain verbs are ALWAYS followed by gerund (-ing): enjoy, finish, avoid, consider, suggest, keep, quit, miss. No exceptions!',
+  pattern: 'Certain verbs are ALWAYS followed by gerund (-ing): enjoy, finish, avoid, consider, suggest, keep, quit, miss. These verbs focus on the EXPERIENCE or ACTIVITY itself — what is happening right now or what you completed. Example: "I enjoy reading" (the activity of reading), "I finished eating" (the activity of eating is done).',
   patternExample: 'I enjoy reading',
   colorClass: 'bg-sage-100 border-sage-300 text-sage-900',
   difficulty: 2,
+  phase: 'core-verbs',
   prerequisite: 'group-4',
-  memoryTrick: 'These verbs LOVE the -ING! Enjoy, finish, avoid, consider...',
+  memoryTrick: 'Gerund verbs = EXPERIENCE verbs. They ask "What activity?" not "What\'s your goal?"',
   icon: '😊',
   patterns: [
     {
@@ -986,6 +1186,62 @@ export const GROUP_2A: GerundInfinitiveGroup = {
         { sentence: "She misses ___ her old school.", blank: 'attending', context: 'Nostalgia' },
         { sentence: "We miss ___ movies together.", blank: 'watching', context: 'Social' }
       ]
+    },
+    // Personal Response Questions - Gerund verbs
+    {
+      id: 'personal-enjoy',
+      trigger: 'enjoy',
+      correctForm: 'gerund',
+      category: 'verb-gerund',
+      question: 'What do you enjoy doing in your free time?',
+      patternHint: 'enjoy + gerund',
+      exampleAnswer: 'I enjoy reading books',
+      requiredPattern: /enjoy\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-avoid',
+      trigger: 'avoid',
+      correctForm: 'gerund',
+      category: 'verb-gerund',
+      question: 'What do you try to avoid doing?',
+      patternHint: 'avoid + gerund',
+      exampleAnswer: 'I try to avoid eating sugar',
+      requiredPattern: /avoid\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-consider',
+      trigger: 'consider',
+      correctForm: 'gerund',
+      category: 'verb-gerund',
+      question: 'What are you considering doing next year?',
+      patternHint: 'consider + gerund',
+      exampleAnswer: 'I\'m considering changing my job',
+      requiredPattern: /consider\w*\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-keep',
+      trigger: 'keep',
+      correctForm: 'gerund',
+      category: 'verb-gerund',
+      question: 'What do you keep doing even when it\'s difficult?',
+      patternHint: 'keep + gerund',
+      exampleAnswer: 'I keep studying even when it\'s difficult',
+      requiredPattern: /keep\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-miss',
+      trigger: 'miss',
+      correctForm: 'gerund',
+      category: 'verb-gerund',
+      question: 'What do you miss doing from your childhood?',
+      patternHint: 'miss + gerund',
+      exampleAnswer: 'I miss playing outside with friends',
+      requiredPattern: /miss\s+\w+ing/i,
+      examples: []
     }
   ]
 };
@@ -998,12 +1254,13 @@ export const GROUP_2B: GerundInfinitiveGroup = {
   id: 'group-2b',
   title: 'Infinitive Verbs',
   shortTitle: '6. Infinitive Verbs',
-  pattern: 'Certain verbs are ALWAYS followed by infinitive (to + verb): want, hope, plan, decide, need, learn, offer, agree, refuse. No exceptions!',
+  pattern: 'Certain verbs are ALWAYS followed by infinitive (to + verb): want, hope, plan, decide, need, learn, offer, agree, refuse. These verbs express a GOAL, INTENTION, or FUTURE ACTION — something you want to achieve or make happen. Example: "I want to learn" (your goal is to learn), "She decided to quit" (her future action is to quit).',
   patternExample: 'I want to learn',
   colorClass: 'bg-sky-100 border-sky-300 text-sky-900',
   difficulty: 2,
+  phase: 'core-verbs',
   prerequisite: 'group-2a',
-  memoryTrick: 'These verbs point TO the future! Want TO, hope TO, plan TO...',
+  memoryTrick: 'Infinitive verbs = GOAL verbs. They point TO the future: "What do you want TO achieve?"',
   icon: '🎯',
   patterns: [
     {
@@ -1134,6 +1391,73 @@ export const GROUP_2B: GerundInfinitiveGroup = {
         { sentence: "She refused ___ help.", blank: 'to accept', context: 'Independence' },
         { sentence: "He refused ___ the invitation.", blank: 'to accept', context: 'Social' }
       ]
+    },
+    // Personal Response Questions - Infinitive verbs
+    {
+      id: 'personal-want',
+      trigger: 'want',
+      correctForm: 'infinitive',
+      category: 'verb-infinitive',
+      question: 'What do you want to achieve this year?',
+      patternHint: 'want + to + verb',
+      exampleAnswer: 'I want to improve my English',
+      requiredPattern: /want\s+to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-hope',
+      trigger: 'hope',
+      correctForm: 'infinitive',
+      category: 'verb-infinitive',
+      question: 'What do you hope to do in the future?',
+      patternHint: 'hope + to + verb',
+      exampleAnswer: 'I hope to travel to many countries',
+      requiredPattern: /hope\s+to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-plan',
+      trigger: 'plan',
+      correctForm: 'infinitive',
+      category: 'verb-infinitive',
+      question: 'What do you plan to do this weekend?',
+      patternHint: 'plan + to + verb',
+      exampleAnswer: 'I plan to visit my family',
+      requiredPattern: /plan\s+to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-need',
+      trigger: 'need',
+      correctForm: 'infinitive',
+      category: 'verb-infinitive',
+      question: 'What do you need to do today?',
+      patternHint: 'need + to + verb',
+      exampleAnswer: 'I need to finish my homework',
+      requiredPattern: /need\s+to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-learn',
+      trigger: 'learn',
+      correctForm: 'infinitive',
+      category: 'verb-infinitive',
+      question: 'What would you like to learn to do?',
+      patternHint: 'learn + to + verb',
+      exampleAnswer: 'I would like to learn to play guitar',
+      requiredPattern: /learn\s+to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-decide',
+      trigger: 'decide',
+      correctForm: 'infinitive',
+      category: 'verb-infinitive',
+      question: 'What did you recently decide to do?',
+      patternHint: 'decide + to + verb',
+      exampleAnswer: 'I decided to start exercising',
+      requiredPattern: /decide\w*\s+to\s+\w+/i,
+      examples: []
     }
   ]
 };
@@ -1146,12 +1470,13 @@ export const GROUP_2B: GerundInfinitiveGroup = {
 export const GROUP_2C: GerundInfinitiveGroup = {
   id: 'group-2c',
   title: 'Mixed Verb Challenge',
-  shortTitle: '7. Mixed Verbs',
+  shortTitle: '8. Mixed Verbs',
   pattern: 'Now the real challenge! Some verbs need GERUND (enjoy, finish, avoid), others need INFINITIVE (want, hope, decide). You must know which is which!',
   patternExample: 'I enjoy reading BUT I want to read',
   colorClass: 'bg-purple-100 border-purple-300 text-purple-900',
   difficulty: 2,
-  prerequisite: 'group-2b',
+  phase: 'core-verbs',
+  prerequisite: 'checkpoint-1',
   memoryTrick: 'GERUND verbs = enjoy the moment (-ing). INFINITIVE verbs = look to the future (to + verb).',
   icon: '🔀',
   patterns: [
@@ -1295,12 +1620,13 @@ export const GROUP_3A: GerundInfinitiveGroup = {
   id: 'group-3a',
   title: 'Adjective + Infinitive',
   shortTitle: '13. Adjective + Infinitive',
-  pattern: 'After adjectives expressing feelings or qualities, use infinitive (to + verb): happy to, ready to, important to, easy to, difficult to',
+  pattern: 'Many adjectives about FEELINGS, STATES, or GOALS take infinitive (to + verb): happy to help, ready to start, important to know, easy to understand. These adjectives describe how you feel ABOUT doing something or whether something is POSSIBLE to do. NOTE: This is different from "adjective + preposition + gerund" (afraid OF failing, good AT speaking) which you learned earlier!',
   patternExample: "I'm happy to help",
   colorClass: 'bg-yellow-100 border-yellow-300 text-yellow-900',
   difficulty: 2,
+  phase: 'development',
   prerequisite: 'checkpoint-2',
-  memoryTrick: 'Happy TO help! Adjectives point TO action',
+  memoryTrick: 'Adjectives about feelings/states point TO the action: "How do you feel about doing it?"',
   icon: '😃',
   patterns: [
     {
@@ -1412,12 +1738,13 @@ export const GROUP_3B: GerundInfinitiveGroup = {
   id: 'group-3b',
   title: 'Noun + Infinitive',
   shortTitle: '14. Noun + Infinitive',
-  pattern: 'Certain nouns are followed by infinitive (to + verb): ability, chance, time, decision, opportunity, way, permission',
+  pattern: 'Nouns about POTENTIAL, POSSIBILITY, or OPPORTUNITY take infinitive (to + verb): ability to speak, chance to try, time to rest, opportunity to learn, permission to leave. These nouns describe what CAN or MIGHT happen — they point to a potential action in the future.',
   patternExample: 'the ability to speak',
   colorClass: 'bg-indigo-100 border-indigo-300 text-indigo-900',
   difficulty: 2,
+  phase: 'development',
   prerequisite: 'group-3a',
-  memoryTrick: 'Ability TO do, chance TO try, time TO go',
+  memoryTrick: 'These nouns ask: "What can I do?" or "What might happen?" → Use TO + verb',
   icon: '📋',
   patterns: [
     {
@@ -1508,6 +1835,156 @@ export const GROUP_3B: GerundInfinitiveGroup = {
 };
 
 /**
+ * GROUP 3C: PURPOSE INFINITIVES
+ * Using infinitive to express purpose or reason
+ */
+export const GROUP_3C: GerundInfinitiveGroup = {
+  id: 'group-3c',
+  title: 'Purpose: Why? To...',
+  shortTitle: '15. Purpose: To...',
+  pattern: 'Use INFINITIVE (to + verb) to answer "Why?" and show PURPOSE or REASON. Example: "Why are you here?" → "I\'m here TO LEARN English" (purpose). This shows your goal or intention. You can also use "in order to" for emphasis: "I study hard in order to pass the exam."',
+  patternExample: 'I study to learn',
+  colorClass: 'bg-violet-100 border-violet-300 text-violet-900',
+  difficulty: 2,
+  phase: 'development',
+  prerequisite: 'group-3b',
+  memoryTrick: 'Ask "Why?" → Answer with TO + verb (your purpose/goal)',
+  icon: '🎯',
+  patterns: [
+    {
+      id: 'purpose-study',
+      trigger: 'study',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      examples: [
+        { sentence: "I study English ___ my career.", blank: 'to improve', context: 'Education' },
+        { sentence: "She studies hard ___ good grades.", blank: 'to get', context: 'School' },
+        { sentence: "We study ___ more about the world.", blank: 'to learn', context: 'Education' },
+        { sentence: "He studied all night ___ the test.", blank: 'to pass', context: 'School' },
+        { sentence: "I'm studying Spanish ___ with clients.", blank: 'to communicate', context: 'Work' },
+        { sentence: "She studies medicine ___ a doctor.", blank: 'to become', context: 'Career' }
+      ]
+    },
+    {
+      id: 'purpose-save',
+      trigger: 'save money',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      examples: [
+        { sentence: "I'm saving money ___ a house.", blank: 'to buy', context: 'Life goals' },
+        { sentence: "She saved money ___ college.", blank: 'to pay for', context: 'Education' },
+        { sentence: "We're saving money ___ to Europe.", blank: 'to travel', context: 'Travel' },
+        { sentence: "He saves money ___ emergencies.", blank: 'to prepare for', context: 'Planning' },
+        { sentence: "They saved money ___ their own business.", blank: 'to start', context: 'Career' },
+        { sentence: "I save money every month ___ my future.", blank: 'to invest in', context: 'Finance' }
+      ]
+    },
+    {
+      id: 'purpose-come-go',
+      trigger: 'came/went',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      examples: [
+        { sentence: "I came here ___ you.", blank: 'to see', context: 'Social' },
+        { sentence: "She went to the store ___ milk.", blank: 'to buy', context: 'Daily life' },
+        { sentence: "We came here ___ English.", blank: 'to learn', context: 'Education' },
+        { sentence: "He went to the gym ___ out.", blank: 'to work', context: 'Exercise' },
+        { sentence: "They came to America ___ a better life.", blank: 'to find', context: 'Immigration' },
+        { sentence: "I went to the library ___ in quiet.", blank: 'to study', context: 'School' }
+      ]
+    },
+    {
+      id: 'purpose-work',
+      trigger: 'work',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      examples: [
+        { sentence: "I work hard ___ my family.", blank: 'to support', context: 'Work' },
+        { sentence: "She works two jobs ___ ends meet.", blank: 'to make', context: 'Finance' },
+        { sentence: "We work together ___ goals.", blank: 'to achieve', context: 'Teamwork' },
+        { sentence: "He's working extra hours ___ a promotion.", blank: 'to earn', context: 'Career' },
+        { sentence: "I work every day ___ my bills.", blank: 'to pay', context: 'Life' },
+        { sentence: "She works at night ___ care of her kids during the day.", blank: 'to take', context: 'Family' }
+      ]
+    },
+    {
+      id: 'purpose-use',
+      trigger: 'use',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      examples: [
+        { sentence: "I use this app ___ vocabulary.", blank: 'to practice', context: 'Learning' },
+        { sentence: "She uses a calendar ___ track of appointments.", blank: 'to keep', context: 'Organization' },
+        { sentence: "We use email ___ with colleagues.", blank: 'to communicate', context: 'Work' },
+        { sentence: "He uses a knife ___ vegetables.", blank: 'to cut', context: 'Cooking' },
+        { sentence: "They use social media ___ customers.", blank: 'to reach', context: 'Business' },
+        { sentence: "I use this tool ___ problems.", blank: 'to solve', context: 'Work' }
+      ]
+    },
+    {
+      id: 'purpose-in-order-to',
+      trigger: 'in order to',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      memoryTrick: '"In order to" = formal way to show purpose (same as "to")',
+      examples: [
+        { sentence: "I wake up early in order ___ on time.", blank: 'to arrive', context: 'Work' },
+        { sentence: "She practiced every day in order ___ fluent.", blank: 'to become', context: 'Learning' },
+        { sentence: "We left early in order ___ traffic.", blank: 'to avoid', context: 'Transportation' },
+        { sentence: "He studied hard in order ___ the exam.", blank: 'to pass', context: 'School' },
+        { sentence: "They moved to the city in order ___ better jobs.", blank: 'to find', context: 'Career' },
+        { sentence: "I'm calling in order ___ an appointment.", blank: 'to make', context: 'General' }
+      ]
+    },
+    // Personal Response Questions - Purpose
+    {
+      id: 'personal-purpose-city',
+      trigger: 'purpose',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      question: 'Why did you come to this city?',
+      patternHint: 'to + verb (show your purpose)',
+      exampleAnswer: 'I came here to study English',
+      requiredPattern: /to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-purpose-english',
+      trigger: 'purpose',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      question: 'Why are you learning English?',
+      patternHint: 'to + verb (show your purpose)',
+      exampleAnswer: 'I\'m learning English to get a better job',
+      requiredPattern: /to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-purpose-save',
+      trigger: 'purpose',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      question: 'Why do you save money?',
+      patternHint: 'to + verb (show your purpose)',
+      exampleAnswer: 'I save money to buy a house',
+      requiredPattern: /to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-purpose-technology',
+      trigger: 'purpose',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      question: 'Why do you use technology every day?',
+      patternHint: 'to + verb (show your purpose)',
+      exampleAnswer: 'I use technology to stay connected with friends',
+      requiredPattern: /to\s+\w+/i,
+      examples: []
+    }
+  ]
+};
+
+/**
  * GROUP 4: GO + GERUND
  * Recreational activities with "go": go swimming, go shopping, go hiking
  * MOVED EARLY: Very intuitive daily-life pattern!
@@ -1516,12 +1993,13 @@ export const GROUP_4: GerundInfinitiveGroup = {
   id: 'group-4',
   title: 'GO + Gerund',
   shortTitle: '4. Go + Gerund',
-  pattern: 'Use GO + GERUND for recreational activities and sports. Never use "go to swim" or "go to shop"!',
+  pattern: 'Use GO + GERUND (-ing) for recreational activities and sports: go swimming, go shopping, go hiking, go dancing. This pattern means "go somewhere TO DO that activity." The gerund names the activity itself, not your purpose. Never use "go to swim" or "go to shop" — that\'s a common mistake!',
   patternExample: 'go swimming',
   colorClass: 'bg-emerald-100 border-emerald-300 text-emerald-900',
   difficulty: 1,
+  phase: 'foundation',
   prerequisite: 'group-5',
-  memoryTrick: 'GO -ING for activities! (go swimming, not go to swim)',
+  memoryTrick: 'GO -ING for fun activities! Think: "What activity are you doing?" → go SWIMMING, go SHOPPING',
   icon: '🏃',
   patterns: [
     {
@@ -1642,6 +2120,7 @@ export const GROUP_5: GerundInfinitiveGroup = {
   patternExample: 'Swimming is fun',
   colorClass: 'bg-purple-100 border-purple-300 text-purple-900',
   difficulty: 1,
+  phase: 'foundation',
   prerequisite: 'group-0b',
   memoryTrick: 'Subject = -ING (Swimming IS fun, Learning TAKES time)',
   icon: '🔤',
@@ -1734,6 +2213,220 @@ export const GROUP_5: GerundInfinitiveGroup = {
 };
 
 /**
+ * GROUP_PERSONAL: PERSONAL COMMUNICATION CHALLENGE
+ * Capstone level: Apply ALL learned patterns through personal communication
+ * All personal-response questions mixed together from all groups
+ */
+export const GROUP_PERSONAL: GerundInfinitiveGroup = {
+  id: 'group-personal',
+  title: 'Personal Communication',
+  shortTitle: '16. Talk About Yourself',
+  pattern: 'Apply everything you\'ve learned! Answer personal questions using the correct patterns: prepositions, gerund verbs, infinitive verbs, adjectives, nouns, and purpose. This is your chance to show you can use all these structures naturally in real conversation.',
+  patternExample: 'How do you practice English? → I practice by watching movies',
+  colorClass: 'bg-rose-100 border-rose-300 text-rose-900',
+  difficulty: 3,
+  phase: 'mastery',
+  prerequisite: 'checkpoint-3',
+  memoryTrick: 'Real communication = using ALL patterns together!',
+  icon: '💬',
+  patterns: [
+    // This group combines ALL personal response patterns from other groups
+    // Preposition patterns (from GROUP_1)
+    {
+      id: 'personal-comm-by-health',
+      trigger: 'by',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'How do you stay healthy?',
+      patternHint: 'by + gerund (-ing form)',
+      exampleAnswer: 'I stay healthy by exercising regularly',
+      requiredPattern: /by\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-by-english',
+      trigger: 'by',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'How do you practice English?',
+      patternHint: 'by + gerund (-ing form)',
+      exampleAnswer: 'I practice English by watching movies',
+      requiredPattern: /by\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-interested',
+      trigger: 'interested in',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What are you interested in learning?',
+      patternHint: 'interested in + gerund',
+      exampleAnswer: 'I\'m interested in learning photography',
+      requiredPattern: /interested\s+in\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-good-at',
+      trigger: 'good at',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What are you good at doing?',
+      patternHint: 'good at + gerund',
+      exampleAnswer: 'I\'m good at solving problems',
+      requiredPattern: /good\s+at\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-dream',
+      trigger: 'dream about',
+      correctForm: 'gerund',
+      category: 'preposition',
+      question: 'What do you dream about doing?',
+      patternHint: 'dream about + gerund',
+      exampleAnswer: 'I dream about traveling around the world',
+      requiredPattern: /dream\s+about\s+\w+ing/i,
+      examples: []
+    },
+    // Gerund verb patterns (from GROUP_2A)
+    {
+      id: 'personal-comm-enjoy',
+      trigger: 'enjoy',
+      correctForm: 'gerund',
+      category: 'verb-gerund',
+      question: 'What do you enjoy doing in your free time?',
+      patternHint: 'enjoy + gerund',
+      exampleAnswer: 'I enjoy reading books',
+      requiredPattern: /enjoy\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-avoid',
+      trigger: 'avoid',
+      correctForm: 'gerund',
+      category: 'verb-gerund',
+      question: 'What do you avoid doing?',
+      patternHint: 'avoid + gerund',
+      exampleAnswer: 'I avoid eating sugar',
+      requiredPattern: /avoid\s+\w+ing/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-miss',
+      trigger: 'miss',
+      correctForm: 'gerund',
+      category: 'verb-gerund',
+      question: 'What do you miss doing from your childhood?',
+      patternHint: 'miss + gerund',
+      exampleAnswer: 'I miss playing outside with friends',
+      requiredPattern: /miss\s+\w+ing/i,
+      examples: []
+    },
+    // Infinitive verb patterns (from GROUP_2B)
+    {
+      id: 'personal-comm-want',
+      trigger: 'want',
+      correctForm: 'infinitive',
+      category: 'verb-infinitive',
+      question: 'What do you want to achieve this year?',
+      patternHint: 'want + to + verb',
+      exampleAnswer: 'I want to improve my English',
+      requiredPattern: /want\s+to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-hope',
+      trigger: 'hope',
+      correctForm: 'infinitive',
+      category: 'verb-infinitive',
+      question: 'What do you hope to do in the future?',
+      patternHint: 'hope + to + verb',
+      exampleAnswer: 'I hope to travel to many countries',
+      requiredPattern: /hope\s+to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-plan',
+      trigger: 'plan',
+      correctForm: 'infinitive',
+      category: 'verb-infinitive',
+      question: 'What do you plan to do this weekend?',
+      patternHint: 'plan + to + verb',
+      exampleAnswer: 'I plan to visit my family',
+      requiredPattern: /plan\s+to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-need',
+      trigger: 'need',
+      correctForm: 'infinitive',
+      category: 'verb-infinitive',
+      question: 'What do you need to do today?',
+      patternHint: 'need + to + verb',
+      exampleAnswer: 'I need to finish my homework',
+      requiredPattern: /need\s+to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-decide',
+      trigger: 'decide',
+      correctForm: 'infinitive',
+      category: 'verb-infinitive',
+      question: 'What did you recently decide to do?',
+      patternHint: 'decide + to + verb',
+      exampleAnswer: 'I decided to start exercising',
+      requiredPattern: /decide\w*\s+to\s+\w+/i,
+      examples: []
+    },
+    // Adjective patterns (from GROUP_3A)
+    {
+      id: 'personal-comm-excited',
+      trigger: 'excited to',
+      correctForm: 'infinitive',
+      category: 'adjective',
+      question: 'What are you excited to do soon?',
+      patternHint: 'excited + to + verb',
+      exampleAnswer: 'I\'m excited to start my new job',
+      requiredPattern: /excited\s+to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-ready',
+      trigger: 'ready to',
+      correctForm: 'infinitive',
+      category: 'adjective',
+      question: 'What are you ready to do now?',
+      patternHint: 'ready + to + verb',
+      exampleAnswer: 'I\'m ready to take the test',
+      requiredPattern: /ready\s+to\s+\w+/i,
+      examples: []
+    },
+    // Purpose patterns (from GROUP_3C)
+    {
+      id: 'personal-comm-purpose-city',
+      trigger: 'purpose',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      question: 'Why are you learning English?',
+      patternHint: 'to + verb (show your purpose)',
+      exampleAnswer: 'I\'m learning English to get a better job',
+      requiredPattern: /to\s+\w+/i,
+      examples: []
+    },
+    {
+      id: 'personal-comm-purpose-technology',
+      trigger: 'purpose',
+      correctForm: 'infinitive',
+      category: 'purpose',
+      question: 'Why do you use technology every day?',
+      patternHint: 'to + verb (show your purpose)',
+      exampleAnswer: 'I use technology to stay connected',
+      requiredPattern: /to\s+\w+/i,
+      examples: []
+    }
+  ]
+};
+
+/**
  * GROUP 6A: BOTH FORMS OK (Same Meaning)
  * Verbs that take both gerund and infinitive with the same meaning
  * STREAMLINED: Quick intro before the harder "meaning changes" group
@@ -1742,11 +2435,12 @@ export const GROUP_5: GerundInfinitiveGroup = {
 export const GROUP_6A: GerundInfinitiveGroup = {
   id: 'group-6a',
   title: 'Both Forms OK',
-  shortTitle: '16. Both Forms OK',
+  shortTitle: '18. Both Forms OK',
   pattern: 'Good news! Some verbs accept EITHER gerund OR infinitive with NO change in meaning: begin, start, continue, like/love/hate. Less to memorize!',
   patternExample: 'It began raining / It began to rain ✓',
   colorClass: 'bg-violet-100 border-violet-300 text-violet-900',
   difficulty: 3,
+  phase: 'mastery',
   prerequisite: 'checkpoint-3',
   memoryTrick: 'Begin, start, continue, like = flexible! Either form is correct!',
   icon: '🔀',
@@ -1811,11 +2505,12 @@ export const GROUP_6A: GerundInfinitiveGroup = {
 export const GROUP_6B: GerundInfinitiveGroup = {
   id: 'group-6b',
   title: 'Meaning Changes',
-  shortTitle: '17. Meaning Changes',
+  shortTitle: '19. Meaning Changes',
   pattern: 'With stop, remember, and try, the choice between gerund and infinitive CHANGES THE MEANING completely!',
   patternExample: 'stopped smoking (quit) vs stopped to smoke (paused)',
   colorClass: 'bg-amber-100 border-amber-300 text-amber-900',
   difficulty: 3,
+  phase: 'mastery',
   prerequisite: 'group-6a',
   memoryTrick: 'PAST = -ING (memory), FUTURE = TO (duty)',
   icon: '⚠️',
@@ -1920,11 +2615,12 @@ export const GROUP_6B: GerundInfinitiveGroup = {
 export const GROUP_7: GerundInfinitiveGroup = {
   id: 'group-7',
   title: 'Advanced "TO" Traps',
-  shortTitle: '19. Advanced TO Traps',
+  shortTitle: '21. Advanced TO Traps',
   pattern: 'More "TO as preposition" phrases for mastery: object to, admit to, accustomed to, devoted to. These are less common but important for advanced English.',
   patternExample: 'object to working overtime',
   colorClass: 'bg-rose-100 border-rose-300 text-rose-900',
   difficulty: 3,
+  phase: 'mastery',
   prerequisite: 'group-1c',
   memoryTrick: 'These formal phrases all use "TO" as a preposition!',
   icon: '🎓',
@@ -2005,16 +2701,17 @@ export const GROUP_7: GerundInfinitiveGroup = {
 export const CHECKPOINT_1: GerundInfinitiveGroup = {
   id: 'checkpoint-1',
   title: 'Checkpoint: Foundation Review',
-  shortTitle: '8. 🏁 Checkpoint 1',
-  pattern: 'Time to review everything you\'ve learned! This checkpoint mixes patterns from all previous groups to make sure you\'ve mastered the foundations.',
+  shortTitle: '7. 🏁 Checkpoint 1',
+  pattern: 'Congratulations on completing the foundation levels! This checkpoint mixes patterns from Groups 1-6 to ensure you can recognize gerunds vs infinitives in different contexts. You\'ve learned: basic gerund/infinitive forms, subject gerunds, GO + gerund, and verb-specific rules. Now prove you can apply them all together! Passing this unlocks the challenging Mixed Verb level.',
   patternExample: 'Mixed review of all foundation patterns',
   colorClass: 'bg-gradient-to-r from-emerald-100 to-blue-100 border-emerald-300 text-emerald-900',
   difficulty: 2,
-  prerequisite: 'group-2c',
-  memoryTrick: 'Review time! Mix it up and prove your skills!',
+  phase: 'core-verbs',
+  prerequisite: 'group-2b',
+  memoryTrick: 'Foundation = Gerund basics + Infinitive basics. Can you tell them apart when mixed?',
   icon: '🏁',
   isCheckpoint: true,
-  reviewsGroups: ['group-0a', 'group-0b', 'group-5', 'group-4', 'group-2a', 'group-2b', 'group-2c'],
+  reviewsGroups: ['group-0a', 'group-0b', 'group-5', 'group-4', 'group-2a', 'group-2b'],
   patterns: [] // Checkpoint uses patterns from reviewsGroups
 };
 
@@ -2027,12 +2724,13 @@ export const CHECKPOINT_2: GerundInfinitiveGroup = {
   id: 'checkpoint-2',
   title: 'Checkpoint: Preposition Mastery',
   shortTitle: '12. 🏁 Checkpoint 2',
-  pattern: 'You\'ve learned the crucial preposition rules! This checkpoint tests your ability to apply all patterns learned so far, with emphasis on preposition + gerund combos.',
+  pattern: 'Great work reaching this checkpoint! You\'ve now covered 10 groups including all preposition rules (after prepositions = gerund, specific adjective-preposition pairs, and combo challenges). This comprehensive review ensures you can handle prepositions confidently before moving to the final section: adjectives and nouns with infinitives. Remember: after a preposition, ALWAYS use gerund!',
   patternExample: 'Mixed review with preposition focus',
   colorClass: 'bg-gradient-to-r from-terracotta-100 to-purple-100 border-terracotta-300 text-terracotta-900',
   difficulty: 2,
+  phase: 'development',
   prerequisite: 'group-1d',
-  memoryTrick: 'Prepositions mastered? Let\'s make sure!',
+  memoryTrick: 'Preposition rule is the KING: after preposition = always -ing!',
   icon: '🏁',
   isCheckpoint: true,
   reviewsGroups: ['group-0a', 'group-0b', 'group-5', 'group-4', 'group-2a', 'group-2b', 'group-2c', 'group-1', 'group-1b', 'group-1d'],
@@ -2047,13 +2745,14 @@ export const CHECKPOINT_2: GerundInfinitiveGroup = {
 export const CHECKPOINT_3: GerundInfinitiveGroup = {
   id: 'checkpoint-3',
   title: 'Checkpoint: Ready for Mastery?',
-  shortTitle: '15. 🏁 Checkpoint 3',
-  pattern: 'This is the final checkpoint before the advanced mastery content. Prove you\'ve mastered all the core patterns before tackling the tricky exceptions!',
+  shortTitle: '16. 🏁 Checkpoint 3',
+  pattern: 'You\'ve come so far! This is the final checkpoint before the advanced mastery levels. You\'ve learned 12 core groups covering: gerund/infinitive basics, verb-specific rules, all preposition patterns, and adjective/noun structures. This comprehensive review mixes ALL of them to verify you\'re ready for the exceptions and tricky cases ahead. After this, only the hardest patterns remain!',
   patternExample: 'Comprehensive review of all core patterns',
   colorClass: 'bg-gradient-to-r from-yellow-100 to-indigo-100 border-yellow-300 text-yellow-900',
   difficulty: 2,
+  phase: 'development',
   prerequisite: 'group-3b',
-  memoryTrick: 'Master the basics before the boss levels!',
+  memoryTrick: 'Core patterns mastered? Time to prove it! Then tackle the exceptions.',
   icon: '🏁',
   isCheckpoint: true,
   reviewsGroups: ['group-0a', 'group-0b', 'group-5', 'group-4', 'group-2a', 'group-2b', 'group-2c', 'group-1', 'group-1b', 'group-1d', 'group-3a', 'group-3b'],
@@ -2083,10 +2782,12 @@ export const GI_GROUPS: GerundInfinitiveGroup[] = [
   // === PHASE 2: CORE RULES (Learn the main verb rules) ===
   GROUP_2A,       // 5. Gerund Verbs (enjoy, finish, avoid)
   GROUP_2B,       // 6. Infinitive Verbs (want, hope, plan)
-  GROUP_2C,       // 7. Mixed Verb Challenge - THE KEY LEVEL!
 
   // === CHECKPOINT 1: Foundation Review ===
-  CHECKPOINT_1,   // 8. 🏁 Checkpoint 1 - Review all foundation patterns
+  CHECKPOINT_1,   // 7. 🏁 Checkpoint 1 - Review all foundation patterns
+
+  // === PHASE 2B: MIXED CHALLENGE ===
+  GROUP_2C,       // 8. Mixed Verb Challenge - THE KEY LEVEL!
 
   // === PHASE 3: PREPOSITION MASTERY ===
   GROUP_1,        // 9. Prepositions → Gerund - the golden rule
@@ -2096,18 +2797,20 @@ export const GI_GROUPS: GerundInfinitiveGroup[] = [
   // === CHECKPOINT 2: Preposition Review ===
   CHECKPOINT_2,   // 12. 🏁 Checkpoint 2 - Review with preposition focus
 
-  // === PHASE 4: BEYOND VERBS (Adjectives, Nouns) ===
+  // === PHASE 4: BEYOND VERBS (Adjectives, Nouns, Purpose) ===
   GROUP_3A,       // 13. Adjective + Infinitive - happy to help
   GROUP_3B,       // 14. Noun + Infinitive - time to go
+  GROUP_3C,       // 15. Purpose: To... - showing purpose/reason
 
   // === CHECKPOINT 3: Pre-Mastery Review ===
-  CHECKPOINT_3,   // 15. 🏁 Checkpoint 3 - Final review before mastery
+  CHECKPOINT_3,   // 16. 🏁 Checkpoint 3 - Final review before mastery
 
-  // === PHASE 5: MASTERY (The hard stuff - exceptions & nuances) ===
-  GROUP_6A,       // 16. Both Forms OK - begin/start/continue (streamlined)
-  GROUP_6B,       // 17. Meaning Changes - stop/remember/try ⚠️ BOSS LEVEL
-  GROUP_1C,       // 18. The "TO" Trap - look forward to + -ing ⚠️
-  GROUP_7         // 19. Advanced TO Traps - mastery level 🎓
+  // === PHASE 5: COMMUNICATION & MASTERY ===
+  GROUP_PERSONAL, // 17. Personal Communication - apply all patterns in conversation
+  GROUP_6A,       // 18. Both Forms OK - begin/start/continue (streamlined)
+  GROUP_6B,       // 19. Meaning Changes - stop/remember/try ⚠️ BOSS LEVEL
+  GROUP_1C,       // 20. The "TO" Trap - look forward to + -ing ⚠️
+  GROUP_7         // 21. Advanced TO Traps - mastery level 🎓
 ];
 
 /**

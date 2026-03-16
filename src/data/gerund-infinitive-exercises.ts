@@ -1,6 +1,9 @@
 /**
  * Exercise Generators for Gerunds & Infinitives Pattern Discovery Game
  * Creates 6 types of exercises for each pattern group
+ *
+ * Now uses CSV data from gerund_inf_sentences.csv as the primary source
+ * with fallback to hardcoded patterns for groups without CSV mappings.
  */
 
 import type {
@@ -13,6 +16,15 @@ import type {
   SortingItem,
 } from '@/types/gerund-infinitive';
 import { GI_GROUPS } from '@/data/gerund-infinitive-groups';
+import {
+  generateCSVExercises,
+  generateCSVRound2Exercises,
+  createSelectionContext,
+  type SelectionContext,
+} from '@/lib/csv/csv-exercise-generators';
+
+// Track selection context across exercise generation calls
+let globalSelectionContext: SelectionContext = createSelectionContext();
 
 // ---------------------------------------------------------------------------
 // MAIN GENERATORS
@@ -21,6 +33,9 @@ import { GI_GROUPS } from '@/data/gerund-infinitive-groups';
 /**
  * Generate a round of exercises for a group (Round 1 — patterns wide first).
  * Returns ~10 exercises mixing all 6 types.
+ *
+ * Now tries CSV-based generation first for improved variety and anti-repetition.
+ * Falls back to hardcoded patterns for groups without CSV mappings.
  */
 export function generateExercises(
   group: GerundInfinitiveGroup,
@@ -28,17 +43,73 @@ export function generateExercises(
   hideExplanations = false,
   includePatternSorting = true
 ): GIExercise[] {
+  // Foundation intro groups (0a, 0b): always use hardcoded to guarantee swipe-choice and variety
+  const isFoundationIntro = group.id === 'group-0a' || group.id === 'group-0b';
+  if (isFoundationIntro) {
+    return generateHardcodedExercises(group, count, hideExplanations, includePatternSorting);
+  }
+
+  // Try CSV-based generation first (for groups with CSV mappings)
+  const csvResult = generateCSVExercises(
+    group,
+    count,
+    hideExplanations,
+    'round1',
+    globalSelectionContext
+  );
+
+  // Use CSV only if we have strong coverage (≥80%)
+  // This prevents mixing CSV and hardcoded in the same exercise set
+  if (csvResult.exercises.length >= count * 0.8) {
+    globalSelectionContext = csvResult.updatedContext;
+
+    // If we got enough, return them
+    if (csvResult.exercises.length >= count) {
+      return csvResult.exercises.slice(0, count);
+    }
+
+    // If 80-99% coverage, supplement with hardcoded to reach count
+    const needed = count - csvResult.exercises.length;
+    const supplemental = generateHardcodedExercises(group, needed, hideExplanations, includePatternSorting);
+    return [...csvResult.exercises, ...supplemental];
+  }
+
+  // Fall back to 100% hardcoded for groups with <80% CSV coverage
+  // This ensures consistency within each exercise set
+  return generateHardcodedExercises(group, count, hideExplanations, includePatternSorting);
+}
+
+/**
+ * Original hardcoded exercise generation (fallback)
+ */
+function generateHardcodedExercises(
+  group: GerundInfinitiveGroup,
+  count: number,
+  hideExplanations: boolean,
+  includePatternSorting: boolean
+): GIExercise[] {
   const allPatterns = getAllPatterns(group);
   if (allPatterns.length === 0) return [];
 
   const isPrepositionChoiceGroup = group.id === 'group-1b';
   const isComboGroup = group.id === 'group-1d';
+  const isFoundationIntro = group.id === 'group-0a' || group.id === 'group-0b';
   const nonSortingTypes: GIExerciseType[] = isComboGroup
     ? ['combo-challenge', 'combo-challenge', 'combo-challenge']
     : isPrepositionChoiceGroup
     ? ['preposition-choice', 'error-correction', 'preposition-choice']
+    : isFoundationIntro
+    ? [
+        'swipe-choice',
+        'pattern-choice',
+        'sentence-completion',
+        'pattern-identifier',
+        'swipe-choice',
+        'error-correction',
+      ]
     : [
         'pattern-choice',
+        'pattern-identifier',
         'sentence-completion',
         'rule-application',
         'error-correction',
@@ -58,28 +129,107 @@ export function generateExercises(
     plannedTypes.push(nonSortingTypes[i % nonSortingTypes.length]);
   }
 
-  const shuffledTypes = shuffleArray(plannedTypes).slice(0, count);
+  // Foundation groups: don't shuffle so swipe-choice is guaranteed; others shuffle for variety
+  const shuffledTypes = isFoundationIntro
+    ? plannedTypes.slice(0, count)
+    : shuffleArray(plannedTypes).slice(0, count);
   const patternPool = shuffleArray([...allPatterns]);
 
   const exercises: GIExercise[] = [];
-  for (let i = 0; i < count; i++) {
+  const swipePrependCount = isFoundationIntro ? 2 : 0;
+  const loopCount = count - swipePrependCount;
+
+  // Foundation groups: prepend 2 swipe-choice so they're guaranteed to appear first
+  if (swipePrependCount > 0 && allPatterns.length > 0) {
+    for (let i = 0; i < swipePrependCount; i++) {
+      const pattern = patternPool[i % patternPool.length];
+      const ex = createExercise('swipe-choice', group, pattern, hideExplanations);
+      if (ex) exercises.push(ex);
+    }
+  }
+
+  for (let i = 0; i < loopCount; i++) {
     const type = shuffledTypes[i];
-    const pattern = patternPool[i % patternPool.length];
-    const ex = createExercise(type, group, pattern, hideExplanations);
+    const pattern = patternPool[(swipePrependCount + i) % patternPool.length];
+    let ex = createExercise(type, group, pattern, hideExplanations);
+    if (!ex && type !== 'pattern-choice') {
+      ex = createExercise('pattern-choice', group, pattern, hideExplanations);
+    }
     if (ex) exercises.push(ex);
   }
 
-  return exercises;
+  // Mix in personal response questions (1-2 per round for variety) if available
+  const personalPatterns = allPatterns.filter(p => p.question);
+  if (personalPatterns.length > 0 && count >= 8) {
+    const personalCount = Math.min(2, Math.floor(count * 0.2)); // 20% of exercises
+    const insertIndices = new Set<number>();
+
+    // Insert at spread-out positions (avoid clustering)
+    for (let i = 0; i < personalCount; i++) {
+      const insertAt = Math.floor((i + 1) * (exercises.length / (personalCount + 1)));
+      insertIndices.add(insertAt);
+    }
+
+    // Create and insert personal response exercises
+    let insertOffset = 0;
+    const sortedIndices = Array.from(insertIndices).sort((a, b) => a - b);
+    for (const index of sortedIndices) {
+      const pattern = personalPatterns[insertOffset % personalPatterns.length];
+      const personalEx = createPersonalResponseFromPattern(pattern, group.id, hideExplanations);
+      if (personalEx) {
+        exercises.splice(index + insertOffset, 0, personalEx);
+        insertOffset++;
+      }
+    }
+  }
+
+  return exercises.slice(0, count);
 }
 
 /**
  * Generate targeted Round 2 exercises focusing on patterns the student missed.
+ * Now uses CSV-based generation for improved variety.
  */
 export function generateTargetedRound2Exercises(
   group: GerundInfinitiveGroup,
   patternStats: Record<string, PatternPerformance> = {},
   count = 8,
   hideExplanations = false
+): GIExercise[] {
+  // Try CSV-based Round 2 generation first
+  const csvResult = generateCSVRound2Exercises(
+    group,
+    patternStats,
+    count,
+    hideExplanations,
+    globalSelectionContext
+  );
+
+  if (csvResult.exercises.length >= count * 0.5) {
+    globalSelectionContext = csvResult.updatedContext;
+
+    if (csvResult.exercises.length >= count) {
+      return csvResult.exercises.slice(0, count);
+    }
+
+    // Supplement with hardcoded if needed
+    const needed = count - csvResult.exercises.length;
+    const supplemental = generateHardcodedRound2Exercises(group, patternStats, needed, hideExplanations);
+    return [...csvResult.exercises, ...supplemental];
+  }
+
+  // Fall back to hardcoded
+  return generateHardcodedRound2Exercises(group, patternStats, count, hideExplanations);
+}
+
+/**
+ * Original hardcoded Round 2 generation (fallback)
+ */
+function generateHardcodedRound2Exercises(
+  group: GerundInfinitiveGroup,
+  patternStats: Record<string, PatternPerformance>,
+  count: number,
+  hideExplanations: boolean
 ): GIExercise[] {
   const allPatterns = getAllPatterns(group);
   const prioritized = [...allPatterns].sort((a, b) => {
@@ -108,11 +258,11 @@ export function generateTargetedRound2Exercises(
     ? ['preposition-choice', 'error-correction', 'preposition-choice', 'error-correction', 'preposition-choice', 'error-correction', 'preposition-choice', 'preposition-choice']
     : [
         'pattern-choice',
+        'pattern-identifier',
         'sentence-completion',
         'pattern-choice',
         'error-correction',
-        'sentence-completion',
-        'pattern-choice',
+        'pattern-identifier',
         'sentence-completion',
         'rule-application',
       ];
@@ -149,25 +299,53 @@ export function generateMixedReviewExercises(
     return bScore - aScore;
   });
 
-  return shuffleArray(prioritized).slice(0, count).map(({ group, pattern }, index) => {
+  const shuffled = shuffleArray(prioritized);
+  const types: GIExerciseType[] = [
+    'sentence-completion', 'pattern-choice', 'pattern-identifier',
+    'error-correction', 'pattern-choice', 'sentence-completion',
+    'sentence-completion', 'error-correction', 'pattern-choice',
+    'sentence-completion', 'pattern-choice', 'error-correction',
+  ];
+  const exercises: GIExercise[] = [];
+  let i = 0;
+
+  while (exercises.length < count && i < shuffled.length) {
+    const type = types[exercises.length % types.length];
+
+    if (type === 'memory-match' && i + 4 <= shuffled.length) {
+      const batch = shuffled.slice(i, i + 4);
+      i += 4;
+      const ex = createMemoryMatchFromPool(batch, hideExplanations);
+      if (ex) exercises.push(ex);
+      else exercises.push(createFromBatch(batch[0], 'pattern-choice', hideExplanations));
+      continue;
+    }
+    if (type === 'rapid-fire' && i + 5 <= shuffled.length) {
+      const batch = shuffled.slice(i, i + 5);
+      i += 5;
+      const ex = createRapidFireFromPool(batch, hideExplanations);
+      if (ex) exercises.push(ex);
+      else exercises.push(createFromBatch(batch[0], 'pattern-choice', hideExplanations));
+      continue;
+    }
+
+    const { group, pattern } = shuffled[i++];
     const isComboGroup = group.id === 'group-1d';
     const isPrepositionChoice = pattern.category === 'preposition-choice' && !isComboGroup;
-    const type: GIExerciseType = isComboGroup
+    const exType: GIExerciseType = isComboGroup
       ? 'combo-challenge'
       : isPrepositionChoice
-      ? (index % 2 === 0 ? 'preposition-choice' : 'error-correction')
-      : index % 3 === 0
-        ? 'sentence-completion'
-        : index % 2 === 0
-          ? 'error-correction'
-          : 'pattern-choice';
-    return createExercise(type, group, pattern, hideExplanations)
+      ? (exercises.length % 2 === 0 ? 'preposition-choice' : 'error-correction')
+      : type;
+    const ex = createExercise(exType, group, pattern, hideExplanations)
       ?? (isComboGroup
         ? createComboChallengeExercise(group, pattern, hideExplanations)
         : isPrepositionChoice
         ? createPrepositionChoiceExercise(group, pattern, hideExplanations)
         : createPatternChoiceExercise(group, pattern, hideExplanations));
-  });
+    exercises.push(ex);
+  }
+  return exercises;
 }
 
 /**
@@ -211,31 +389,59 @@ export function generateCheckpointExercises(
 
   // Vary exercise types for engagement
   const exerciseTypes: GIExerciseType[] = [
-    'pattern-choice', 'sentence-completion', 'pattern-choice',
-    'error-correction', 'sentence-completion', 'rule-application',
+    'pattern-choice', 'sentence-completion', 'pattern-identifier',
+    'error-correction', 'sentence-completion', 'pattern-choice',
     'pattern-choice', 'error-correction', 'sentence-completion', 'pattern-choice'
   ];
 
-  return selected.map(({ group, pattern }, index) => {
+  const exercises: GIExercise[] = [];
+  let poolIndex = 0;
+
+  for (let index = 0; index < count; index++) {
+    const type = exerciseTypes[index % exerciseTypes.length];
+
+    if (type === 'memory-match' && poolIndex + 4 <= selected.length) {
+      const batch = selected.slice(poolIndex, poolIndex + 4);
+      poolIndex += 4;
+      const memEx = createMemoryMatchFromPool(batch, hideExplanations);
+      if (memEx) exercises.push(memEx);
+      else {
+        const { group, pattern } = batch[0];
+        exercises.push(createPatternChoiceExercise(group, pattern, hideExplanations));
+      }
+      continue;
+    }
+    if (type === 'rapid-fire' && poolIndex + 5 <= selected.length) {
+      const batch = selected.slice(poolIndex, poolIndex + 5);
+      poolIndex += 5;
+      const rapidEx = createRapidFireFromPool(batch, hideExplanations);
+      if (rapidEx) exercises.push(rapidEx);
+      else {
+        const { group, pattern } = batch[0];
+        exercises.push(createPatternChoiceExercise(group, pattern, hideExplanations));
+      }
+      continue;
+    }
+
+    const { group, pattern } = selected[poolIndex % selected.length];
+    poolIndex++;
     const isComboGroup = group.id === 'group-1d';
     const isPrepositionChoice = pattern.category === 'preposition-choice' && !isComboGroup;
 
-    let type: GIExerciseType;
-    if (isComboGroup) {
-      type = 'combo-challenge';
-    } else if (isPrepositionChoice) {
-      type = index % 2 === 0 ? 'preposition-choice' : 'error-correction';
-    } else {
-      type = exerciseTypes[index % exerciseTypes.length];
-    }
+    let exType: GIExerciseType;
+    if (isComboGroup) exType = 'combo-challenge';
+    else if (isPrepositionChoice) exType = index % 2 === 0 ? 'preposition-choice' : 'error-correction';
+    else exType = type;
 
-    return createExercise(type, group, pattern, hideExplanations)
+    const ex = createExercise(exType, group, pattern, hideExplanations)
       ?? (isComboGroup
         ? createComboChallengeExercise(group, pattern, hideExplanations)
         : isPrepositionChoice
         ? createPrepositionChoiceExercise(group, pattern, hideExplanations)
         : createPatternChoiceExercise(group, pattern, hideExplanations));
-  });
+    exercises.push(ex);
+  }
+  return exercises;
 }
 
 /**
@@ -252,19 +458,105 @@ export function generateFinalChallengeExercises(
   const types: GIExerciseType[] = [
     'pattern-choice', 'error-correction', 'sentence-completion',
     'pattern-sorting', 'meaning-distinction', 'rule-application', 'preposition-choice', 'combo-challenge',
+    'pattern-identifier', 'sentence-completion',
   ];
 
-  return shuffleArray(pool).slice(0, count).map(({ group, pattern }, index) => {
+  const shuffled = shuffleArray(pool);
+  const exercises: GIExercise[] = [];
+  let i = 0;
+
+  while (exercises.length < count && i < shuffled.length) {
+    const type = types[exercises.length % types.length];
+
+    if (type === 'memory-match' && i + 4 <= shuffled.length) {
+      const batch = shuffled.slice(i, i + 4);
+      i += 4;
+      const ex = createMemoryMatchFromPool(batch, true);
+      if (ex) exercises.push(ex);
+      else exercises.push(createFromBatch(batch[0], 'pattern-choice', true));
+      continue;
+    }
+    if (type === 'rapid-fire' && i + 5 <= shuffled.length) {
+      const batch = shuffled.slice(i, i + 5);
+      i += 5;
+      const ex = createRapidFireFromPool(batch, true);
+      if (ex) exercises.push(ex);
+      else exercises.push(createFromBatch(batch[0], 'pattern-choice', true));
+      continue;
+    }
+
+    const { group, pattern } = shuffled[i++];
     const isComboGroup = group.id === 'group-1d';
-    // For combo group patterns, always use combo-challenge
-    const type = isComboGroup ? 'combo-challenge' : types[index % types.length];
-    return createExercise(type, group, pattern, /* hideExplanations */ true)
-      ?? (isComboGroup
-        ? createComboChallengeExercise(group, pattern, true)
-        : pattern.category === 'preposition-choice'
-        ? createPrepositionChoiceExercise(group, pattern, true)
-        : createPatternChoiceExercise(group, pattern, true));
-  });
+    const exType = isComboGroup ? 'combo-challenge' : type;
+    const ex = createExercise(exType, group, pattern, true)
+      ?? createFromBatch({ group, pattern }, exType, true);
+    exercises.push(ex);
+  }
+
+  return exercises;
+}
+
+function createFromBatch(
+  { group, pattern }: { group: GerundInfinitiveGroup; pattern: GerundInfinitivePattern },
+  type: GIExerciseType,
+  hideExplanations: boolean
+): GIExercise {
+  if (type === 'combo-challenge') return createComboChallengeExercise(group, pattern, hideExplanations);
+  if (pattern.category === 'preposition-choice') return createPrepositionChoiceExercise(group, pattern, hideExplanations);
+  return createPatternChoiceExercise(group, pattern, hideExplanations);
+}
+
+function createMemoryMatchFromPool(
+  batch: { group: GerundInfinitiveGroup; pattern: GerundInfinitivePattern }[],
+  hideExplanations: boolean
+): GIExercise | null {
+  const pairs: { trigger: string; form: string }[] = [];
+  for (const { pattern } of batch) {
+    const ex = pickRandom(pattern.examples);
+    const trigger = pattern.trigger.split('/')[0].trim();
+    if (trigger && ex.blank) pairs.push({ trigger, form: ex.blank });
+  }
+  if (pairs.length < 3) return null;
+  const group = batch[0].group;
+  return {
+    id: `memory-${Date.now()}`,
+    type: 'memory-match',
+    groupId: group.id,
+    patternId: batch.map(b => b.pattern.id).join('-'),
+    prompt: 'Flip cards to match each trigger with its verb form.',
+    correctAnswer: '',
+    matchPairs: pairs,
+    showPattern: !hideExplanations,
+  };
+}
+
+function createRapidFireFromPool(
+  batch: { group: GerundInfinitiveGroup; pattern: GerundInfinitivePattern }[],
+  hideExplanations: boolean
+): GIExercise | null {
+  const items: { prompt: string; correctAnswer: string; options?: string[] }[] = [];
+  for (const { group, pattern } of batch) {
+    const ex = createPatternChoiceExercise(group, pattern, hideExplanations);
+    if (ex.options && ex.prompt) {
+      items.push({
+        prompt: ex.prompt,
+        correctAnswer: Array.isArray(ex.correctAnswer) ? ex.correctAnswer[0] : ex.correctAnswer,
+        options: ex.options,
+      });
+    }
+  }
+  if (items.length < 3) return null;
+  const group = batch[0].group;
+  return {
+    id: `rapid-${Date.now()}`,
+    type: 'rapid-fire',
+    groupId: group.id,
+    patternId: batch.map(b => b.pattern.id).join('-'),
+    prompt: 'Quick fire!',
+    correctAnswer: '',
+    rapidFireItems: items,
+    showPattern: !hideExplanations,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -294,6 +586,11 @@ function createExercise(
     case 'pattern-choice':
       if (isPrepositionChoicePattern) return createPrepositionChoiceExercise(group, pattern, hideExplanations);
       return createPatternChoiceExercise(group, pattern, hideExplanations);
+    case 'pattern-identifier':
+      if (isPrepositionChoicePattern) return null;
+      // Skip subject patterns (nothing before the gerund)
+      if (pattern.category === 'subject') return null;
+      return createPatternIdentifierExercise(group, pattern, hideExplanations);
     case 'rule-application':
       if (isPrepositionChoicePattern) return createPrepositionChoiceExercise(group, pattern, hideExplanations);
       return createRuleApplicationExercise(group, pattern, hideExplanations);
@@ -312,6 +609,11 @@ function createExercise(
       return createMeaningDistinctionExercise(group, pattern, hideExplanations);
     case 'combo-challenge':
       return createComboChallengeExercise(group, pattern, hideExplanations);
+    case 'swipe-choice':
+      if (isPrepositionChoicePattern) return null;
+      return createSwipeChoiceFromPattern(group, pattern, hideExplanations);
+    case 'personal-response':
+      return createPersonalResponseFromPattern(pattern, group.id, hideExplanations);
     default: return null;
   }
 }
@@ -466,6 +768,65 @@ function createComboChallengeExercise(
 }
 
 // ---------------------------------------------------------------------------
+// SWIPE CHOICE (Foundation groups 0a, 0b - gerund vs infinitive tap)
+// ---------------------------------------------------------------------------
+
+function createSwipeChoiceFromPattern(
+  group: GerundInfinitiveGroup,
+  pattern: GerundInfinitivePattern,
+  hideExplanations: boolean
+): GIExercise {
+  const example = pickRandom(pattern.examples);
+  const sentence = example.sentence;
+  const correctAnswer = example.blank;
+
+  const isGerund = pattern.correctForm === 'gerund';
+  const gerundForm = isGerund ? correctAnswer : gerundFrom(correctAnswer.replace(/^to /, ''));
+  const infinitiveForm = isGerund ? 'to ' + baseFrom(correctAnswer) : correctAnswer;
+
+  const options = [gerundForm, infinitiveForm];
+
+  return {
+    id: `swipe-${pattern.id}-${Date.now()}`,
+    type: 'swipe-choice',
+    groupId: group.id,
+    patternId: pattern.id,
+    prompt: sentence,
+    correctAnswer,
+    options,
+    showPattern: !hideExplanations,
+    realWorldContext: example.context,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// PERSONAL RESPONSE (Open-ended typed answers)
+// ---------------------------------------------------------------------------
+
+function createPersonalResponseFromPattern(
+  pattern: GerundInfinitivePattern,
+  groupId: string,
+  hideExplanations: boolean
+): GIExercise | null {
+  // Only create personal response if pattern has a question
+  if (!pattern.question) return null;
+
+  return {
+    id: `personal-${pattern.id}-${Date.now()}`,
+    type: 'personal-response',
+    groupId,
+    patternId: pattern.id,
+    prompt: pattern.question,
+    question: pattern.question,
+    patternHint: pattern.patternHint || 'Use the correct pattern',
+    exampleAnswer: pattern.exampleAnswer,
+    requiredPattern: pattern.requiredPattern,
+    correctAnswer: pattern.exampleAnswer || '', // For tracking only
+    showPattern: !hideExplanations,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // EXERCISE TYPE 1: PATTERN CHOICE
 // ---------------------------------------------------------------------------
 
@@ -478,7 +839,7 @@ function createPatternChoiceExercise(
   const sentence = example.sentence;
   const correctAnswer = example.blank;
 
-  // Build alternative options
+  // Build alternative options - aim for 4 for consistent 2x2 grid
   const isGerund = pattern.correctForm === 'gerund';
   const isBoth = pattern.correctForm === 'both';
 
@@ -489,11 +850,33 @@ function createPatternChoiceExercise(
     const infinitiveForm = correctAnswer.split(' / ')[1] ?? ('to ' + gerundForm.replace(/ing$/, ''));
     options = [gerundForm, infinitiveForm];
   } else {
-    // Create distractor from alternate form
-    const distractor = isGerund
-      ? 'to ' + baseFrom(correctAnswer)
-      : gerundFrom(correctAnswer.replace(/^to /, ''));
-    options = shuffleArray([correctAnswer, distractor]);
+    // Create distractors from alternate forms - aim for 4 options
+    options = [correctAnswer];
+
+    if (isGerund) {
+      // For gerund patterns, add: infinitive, bare verb, 3rd person
+      // Handle phrasal verbs like "listening to" - extract just the gerund
+      const parts = correctAnswer.split(' ');
+      const gerundPart = parts[0]; // e.g., "listening"
+      const particle = parts.length > 1 ? ' ' + parts.slice(1).join(' ') : ''; // e.g., " to"
+      const baseVerb = baseFrom(gerundPart);
+      options.push('to ' + baseVerb + particle);  // "to listen to"
+      options.push(baseVerb + particle);          // "listen to"
+      options.push(baseVerb + 's' + particle);    // "listens to"
+    } else {
+      // For infinitive patterns, add: gerund, bare verb, base-ing (variant)
+      const infinitiveFull = correctAnswer.replace(/^to /, '');
+      options.push(gerundFrom(infinitiveFull));
+      options.push(infinitiveFull);
+      // Try to add a 4th distractor if possible
+      if (infinitiveFull.length > 3) {
+        options.push(infinitiveFull.substring(0, infinitiveFull.length - 1) + 'ing');
+      }
+    }
+
+    // Remove duplicates and trim to 4 options max
+    options = [...new Set(options)].slice(0, 4);
+    options = shuffleArray(options);
   }
 
   return {
@@ -504,6 +887,39 @@ function createPatternChoiceExercise(
     prompt: sentence,
     correctAnswer: isBoth ? correctAnswer.split(' / ')[0] : correctAnswer,
     options,
+    showPattern: !hideExplanations,
+    realWorldContext: example.context,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// EXERCISE TYPE 1.5: PATTERN IDENTIFIER
+// ---------------------------------------------------------------------------
+
+function createPatternIdentifierExercise(
+  group: GerundInfinitiveGroup,
+  pattern: GerundInfinitivePattern,
+  hideExplanations: boolean
+): GIExercise {
+  const example = pickRandom(pattern.examples);
+  const sentence = example.sentence;
+  const correctAnswer = example.blank;
+
+  // Get the category label (verb, preposition, adjective, noun, etc.)
+  const categoryLabel = getCategoryLabel(pattern.category);
+  const otherCategories = OTHER_CATEGORIES.filter(c => c !== categoryLabel);
+  const distractors = shuffleArray(otherCategories).slice(0, 3);
+  const options = shuffleArray([categoryLabel, ...distractors]);
+
+  return {
+    id: `pattern-id-${pattern.id}-${Date.now()}`,
+    type: 'pattern-identifier',
+    groupId: group.id,
+    patternId: pattern.id,
+    prompt: sentence,
+    correctAnswer: categoryLabel,
+    options,
+    highlightedWord: correctAnswer,
     showPattern: !hideExplanations,
     realWorldContext: example.context,
   };
@@ -540,29 +956,23 @@ function createRuleApplicationExercise(
   };
 }
 
-const OTHER_CATEGORIES = [
-  'preposition',
-  'verb',
-  'adjective',
-  'noun',
-  'GO + activity',
-  'subject position',
-  'both-form verb',
-  'TO preposition trap',
-];
+/** Parts of speech only for pattern-identifier options */
+const OTHER_CATEGORIES = ['verb', 'noun', 'preposition', 'adjective', 'adverb'];
 
 function getCategoryLabel(category: GerundInfinitivePattern['category']): string {
   const map: Record<string, string> = {
     'preposition': 'preposition',
+    'preposition-choice': 'preposition',
     'verb-gerund': 'verb',
     'verb-infinitive': 'verb',
     'adjective': 'adjective',
     'noun': 'noun',
-    'go-activity': 'GO + activity',
-    'subject': 'subject position',
+    'go-activity': 'verb',
+    'subject': 'noun',
     'both-ok': 'verb',
     'meaning-change': 'verb',
-    'to-preposition': 'TO preposition trap',
+    'to-preposition': 'preposition',
+    'purpose': 'verb',
   };
   return map[category] ?? category;
 }
@@ -760,6 +1170,13 @@ function createMeaningDistinctionExercise(
 // VALIDATE & FEEDBACK
 // ---------------------------------------------------------------------------
 
+/**
+ * Reset the selection context (call when starting a new game session)
+ */
+export function resetExerciseSelectionContext(): void {
+  globalSelectionContext = createSelectionContext();
+}
+
 export function validateAnswer(
   exercise: GIExercise,
   userAnswer: string | string[]
@@ -800,6 +1217,7 @@ export function getExerciseFeedback(exercise: GIExercise, correct: boolean): str
 export function getExerciseTypeLabel(type: GIExerciseType): string {
   const labels: Record<GIExerciseType, string> = {
     'pattern-choice': 'Pattern Choice',
+    'pattern-identifier': 'Identify the Pattern',
     'rule-application': 'What Comes Before?',
     'sentence-completion': 'Complete the Sentence',
     'pattern-sorting': 'Pattern Sorting',
@@ -807,6 +1225,15 @@ export function getExerciseTypeLabel(type: GIExerciseType): string {
     'meaning-distinction': 'Meaning Distinction',
     'preposition-choice': 'Choose the Preposition',
     'combo-challenge': 'Combo Challenge',
+    'match-pair': 'Match the Pair',
+    'drag-order': 'Build the Sentence',
+    'dialogue-completion': 'Complete the Dialogue',
+    'scenario-choice': 'Scenario',
+    'chain-sentences': 'Chain Sentences',
+    'swipe-choice': 'Gerund or Infinitive?',
+    'memory-match': 'Memory Match',
+    'rapid-fire': 'Rapid Fire',
+    'personal-response': 'Personal Response',
   };
   return labels[type];
 }
@@ -815,8 +1242,29 @@ export function getExerciseTypeLabel(type: GIExerciseType): string {
 // HELPERS
 // ---------------------------------------------------------------------------
 
+// Ambiguous verbs that can take both gerund and infinitive with same meaning
+// These should be avoided in exercises to prevent confusion
+const AMBIGUOUS_VERB_PATTERNS = new Set([
+  'gerund-object-love',  // love/like/hate - ambiguous
+]);
+
+// Triggers containing ambiguous verbs
+const AMBIGUOUS_TRIGGERS = ['love', 'like', 'hate', 'start', 'begin', 'continue', 'prefer'];
+
 function getAllPatterns(group: GerundInfinitiveGroup): GerundInfinitivePattern[] {
-  return group.patterns;
+  // Filter out patterns that use ambiguous verbs
+  return group.patterns.filter(pattern => {
+    // Skip if pattern ID is in the blocklist
+    if (AMBIGUOUS_VERB_PATTERNS.has(pattern.id)) {
+      return false;
+    }
+    // Skip if trigger contains ambiguous verbs
+    const triggerLower = pattern.trigger.toLowerCase();
+    if (AMBIGUOUS_TRIGGERS.some(verb => triggerLower.includes(verb))) {
+      return false;
+    }
+    return true;
+  });
 }
 
 function pickRandom<T>(arr: T[]): T {
