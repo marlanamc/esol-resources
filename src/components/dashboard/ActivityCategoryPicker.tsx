@@ -112,8 +112,11 @@ export function ActivityCategoryPicker({
             return (
                 a.id === 'numbers-game' ||
                 a.id === 'countable-uncountable-nouns' ||
+                a.id === 'gerund-infinitive-game' ||
+                a.id === 'irregular-verbs-game' ||
                 a.ui === 'verb-forms' ||
                 a.ui === 'verbforms' ||
+                a.ui === 'gerund-infinitive' ||
                 a.category === 'games'
             );
         });

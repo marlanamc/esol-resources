@@ -37,8 +37,8 @@ function parseSubjects(activities: Array<Record<string, unknown>>): Record<strin
             if (a.type !== "game") return false;
             if (typeof a.id === "string" && a.id.startsWith("vocab-")) return false;
             return (
-                ["numbers-game", "countable-uncountable-nouns"].includes(a.id as string) ||
-                ["verb-forms", "verbforms"].includes(a.ui as string) ||
+                ["numbers-game", "countable-uncountable-nouns", "gerund-infinitive-game", "irregular-verbs-game"].includes(a.id as string) ||
+                ["verb-forms", "verbforms", "gerund-infinitive"].includes(a.ui as string) ||
                 a.category === "games"
             );
         }),
