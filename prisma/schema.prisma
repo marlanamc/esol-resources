@@ -25,6 +25,7 @@ model User {
   avatar                String?
   avatarColor           String?
   isSystemAccount       Boolean                @default(false)
+  excludeFromLeaderboard Boolean               @default(false)
   activityProgress      ActivityProgress[]
   calendarEventsCreated CalendarEvent[]
   createdClasses        Class[]                @relation("ClassTeacher")

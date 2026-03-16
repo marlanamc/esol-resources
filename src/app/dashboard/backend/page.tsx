@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { LogoutButton } from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
+import { ExcludeLeaderboardToggle } from "@/components/admin/ExcludeLeaderboardToggle";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { isTeacherAdmin } from "@/lib/roles";
@@ -13,6 +14,7 @@ type UserRow = {
     name: string | null;
     role: string;
     isSystemAccount: boolean;
+    excludeFromLeaderboard: boolean;
     mustChangePassword: boolean;
     createdAt: Date;
     classes: {
@@ -55,6 +57,7 @@ export default async function BackendUsersPage() {
             name: true,
             role: true,
             isSystemAccount: true,
+            excludeFromLeaderboard: true,
             mustChangePassword: true,
             createdAt: true,
             classes: {
@@ -157,15 +160,10 @@ export default async function BackendUsersPage() {
                                                 </span>
                                             </td>
                                             <td className="py-3 px-3 text-sm">
-                                                <span
-                                                    className={`inline-flex px-2 py-1 rounded-full border text-xs font-semibold ${
-                                                        isExcluded
-                                                            ? "bg-amber-100 text-amber-800 border-amber-200"
-                                                            : "bg-emerald-100 text-emerald-800 border-emerald-200"
-                                                    }`}
-                                                >
-                                                    {isExcluded ? "Yes" : "No"}
-                                                </span>
+                                                <ExcludeLeaderboardToggle
+                                                    userId={user.id}
+                                                    initialExcluded={isExcluded}
+                                                />
                                             </td>
                                             <td className="py-3 px-3 text-xs text-text-muted">{permissions.join(" • ")}</td>
                                             <td className="py-3 px-3 text-sm text-text">
