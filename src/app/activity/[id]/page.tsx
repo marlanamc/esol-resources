@@ -43,7 +43,12 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     ) : null;
 
     // If activity is an external URL wrapper, redirect server-side to avoid flash
-    if (parsedContent && typeof parsedContent === "object") {
+    // Skip for gerund-infinitive game - always show the game (bypasses maintenance redirect)
+    const isGerundInfinitiveGame =
+        id === "gerund-infinitive-game" ||
+        activity.ui === "gerund-infinitive" ||
+        (parsedContent && typeof parsedContent === "object" && "type" in parsedContent && (parsedContent as Record<string, unknown>).type === "gerund-infinitive");
+    if (!isGerundInfinitiveGame && parsedContent && typeof parsedContent === "object") {
         const externalUrl = (parsedContent as Record<string, unknown>).externalUrl;
         if (typeof externalUrl === "string") {
             redirect(externalUrl);

@@ -43,6 +43,7 @@ const VerbFormsGame = dynamic(() => import("../games/VerbFormsGame"), { loading:
 const EdPronunciationGame = dynamic(() => import("../games/EdPronunciationGame"), { loading: ActivityLoadingFallback });
 const MinimalPairsGame = dynamic(() => import("../games/MinimalPairsGame"), { loading: ActivityLoadingFallback });
 const IrregularVerbsGame = dynamic(() => import("../games/IrregularVerbsGame/IrregularVerbsGame").then(m => ({ default: m.IrregularVerbsGame })), { loading: ActivityLoadingFallback });
+const GerundInfinitiveGame = dynamic(() => import("../games/GerundInfinitiveGame").then(m => ({ default: m.GerundInfinitiveGame })), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("../activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("../activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
 const VocabularyRenderer = dynamic(() => import("../activities/VocabularyRenderer"), { loading: ActivityLoadingFallback });
@@ -79,9 +80,13 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
         );
     }
 
-    // Check for external URL redirect
-    if (content && 'externalUrl' in content && typeof content.externalUrl === 'string') {
-        return <ExternalUrlRedirect url={content.externalUrl} />;
+    // Check for external URL redirect (skip for gerund-infinitive game - always show the game)
+    const isGerundInfinitiveGame =
+        activity.id === "gerund-infinitive-game" ||
+        activity.ui === "gerund-infinitive" ||
+        (content && typeof content === "object" && "type" in content && (content as Record<string, unknown>).type === "gerund-infinitive");
+    if (!isGerundInfinitiveGame && content && "externalUrl" in content && typeof (content as Record<string, unknown>).externalUrl === "string") {
+        return <ExternalUrlRedirect url={(content as Record<string, unknown>).externalUrl as string} />;
     }
 
     const renderActivityContent = () => {
@@ -140,6 +145,10 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                 }
                 return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid vocabulary activity content.</div>;
             case "game": {
+                // Always render gerund-infinitive game when ID matches (bypasses maintenance/plain-text content)
+                if (activity.id === "gerund-infinitive-game" || activity.ui === "gerund-infinitive") {
+                    return <GerundInfinitiveGame activityId={activity.id} />;
+                }
                 const gameUi = resolveActivityGameUi(activity);
                 switch (gameUi) {
                     case "numbers":
@@ -172,12 +181,7 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                     case "irregular-verbs":
                         return <IrregularVerbsGame activityId={activity.id} />;
                     case "gerund-infinitive":
-                        return (
-                            <div className="p-6 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/50 text-amber-900 dark:text-amber-200">
-                                <p className="font-medium">This activity is temporarily unavailable.</p>
-                                <p className="mt-1 text-sm opacity-90">The Gerunds &amp; Infinitives pattern game is being updated and will return soon.</p>
-                            </div>
-                        );
+                        return <GerundInfinitiveGame activityId={activity.id} />;
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }
