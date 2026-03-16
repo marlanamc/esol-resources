@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import { Trophy, Repeat, CheckCircle, ChevronRight, Award, BookOpen } from 'lucide-react';
 import { CelebrationAnimation } from '@/components/ui/CelebrationAnimation';
 import { GI_FINAL_GROUP_ID, GI_REVIEW_GROUP_ID } from '@/data/gerund-infinitive-groups';
+import { formatMissedPatternsForDisplay } from '@/lib/csv/gerund-infinitive-csv';
+import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
 import type { GerundInfinitiveGroup, GIRoundResults } from '@/types/gerund-infinitive';
-import { GI_UNLOCK_THRESHOLD } from '@/types/gerund-infinitive';
+import { GI_UNLOCK_THRESHOLD, GI_MASTERY_THRESHOLD } from '@/types/gerund-infinitive';
 
 interface ResultsScreenProps {
   group: GerundInfinitiveGroup;
@@ -27,6 +29,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }
   const { accuracy, correctAnswers, exercisesCompleted, completed, pointsAwarded, streak, newAchievements, missedPatternIds } = results;
   const passed = completed;
   const isFinal = group.id === GI_FINAL_GROUP_ID;
+  const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/dashboard/activities?category=games' });
   const isReview = group.id === GI_REVIEW_GROUP_ID;
   const mastered = results.masteryAchieved;
 
@@ -34,23 +37,30 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }
   const accuracyBg = accuracy >= 90 ? 'bg-secondary/10' : accuracy >= GI_UNLOCK_THRESHOLD ? 'bg-primary/10' : 'bg-error/10';
 
   const continueLabel = isFinal || isReview
-    ? 'Return to Groups'
+    ? 'Continue to Next Level'
     : results.nextStep === 'round2'
     ? 'Continue to Round 2'
     : nextGroup
     ? `Next: ${nextGroup.shortTitle}`
-    : 'Return to Groups';
+    : 'Continue to Next Level';
+
+  // Button text depends on pass/fail status
+  const primaryButtonLabel = passed
+    ? results.nextStep === 'round2'
+      ? 'Continue to Round 2'
+      : 'Play Again'
+    : 'Try Again';
 
   // Trigger confetti on group pass or mastery
   const showConfetti = passed && (mastered || results.nextStep === 'round2');
 
   return (
     <div className="space-y-6 max-w-2xl mx-auto py-4">
-      {/* Confetti animation */}
+      {/* Confetti animation - 3 seconds to match Irregular Verb Game */}
       <CelebrationAnimation
         trigger={showConfetti}
         type={mastered ? "stars" : "confetti"}
-        durationMs={3500}
+        durationMs={3000}
       />
       {/* Status indicator */}
       <motion.div
@@ -82,6 +92,42 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }
           }
         </p>
       </motion.div>
+
+      {/* Round Progress Indicator - shows when advancing to Round 2 */}
+      {results.nextStep === 'round2' && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="p-4 rounded-2xl bg-gradient-to-r from-blue-50 to-emerald-50 dark:from-blue-900/20 dark:to-emerald-900/20 border border-blue-200 dark:border-blue-800/50"
+        >
+          <p className="font-display text-lg text-text mb-3 text-center">Level Progress</p>
+          <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
+                <CheckCircle size={18} className="text-secondary" />
+              </div>
+              <div>
+                <p className="font-semibold text-sm text-secondary">Round 1</p>
+                <p className="text-xs text-text-muted">Completed</p>
+              </div>
+            </div>
+            <ChevronRight size={20} className="text-text-muted" />
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center animate-pulse">
+                <span className="text-primary font-bold text-sm">2</span>
+              </div>
+              <div>
+                <p className="font-semibold text-sm text-primary">Round 2</p>
+                <p className="text-xs text-text-muted">Next Challenge</p>
+              </div>
+            </div>
+          </div>
+          <p className="text-xs text-center text-text-muted mt-3">
+            Round 2 is a harder version of this pattern. Score {GI_MASTERY_THRESHOLD}% for mastery!
+          </p>
+        </motion.div>
+      )}
 
       {/* Score grid */}
       <motion.div
@@ -144,47 +190,105 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue }
         </motion.div>
       )}
 
-      {/* Missed patterns */}
-      {missedPatternIds && missedPatternIds.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="p-4 rounded-xl bg-error/5 border border-error/20"
-        >
-          <p className="font-semibold text-text text-sm mb-2">Patterns to review:</p>
-          <div className="flex flex-wrap gap-2">
-            {missedPatternIds.slice(0, 6).map((id: string) => (
-              <span key={id} className="px-2 py-0.5 rounded bg-error/10 text-error text-xs font-mono">
-                {id.replace('special-', '').replace(/-/g, ' ')}
-              </span>
-            ))}
-          </div>
-        </motion.div>
-      )}
+      {/* Missed patterns - student-friendly labels */}
+      {missedPatternIds && missedPatternIds.length > 0 && (() => {
+        const displayItems = formatMissedPatternsForDisplay(missedPatternIds.slice(0, 12));
+        if (displayItems.length === 0) return null;
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="p-4 rounded-xl bg-error/5 border border-error/20"
+          >
+            <p className="font-semibold text-text text-sm mb-2">Focus on these patterns:</p>
+            <div className="space-y-2">
+              {displayItems.map(({ label, verbs }) => (
+                <div key={label} className="text-sm">
+                  <span className="font-medium text-text">{label}</span>
+                  {verbs.length > 0 && (
+                    <>
+                      <span className="text-text-muted"> — </span>
+                      <span className="text-error font-medium">{verbs.join(', ')}</span>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        );
+      })()}
 
       {/* Actions */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.55 }}
-        className="flex flex-col sm:flex-row gap-3 pt-2"
+        className="space-y-3 pt-4 border-t border-border"
       >
-        <button
-          onClick={onRetry}
-          className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-border text-text-muted hover:text-text hover:border-border-dark transition-colors font-semibold"
-        >
-          <Repeat size={16} />
-          Try Again
-        </button>
+        {/* Primary action row */}
+        <div className="flex flex-col gap-3">
+          {/* Failure: Try Again + Continue */}
+          {!passed && (
+            <div className="flex flex-col sm:flex-row gap-3">
+              <motion.button
+                onClick={onRetry}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl border-2 border-border bg-white dark:bg-[#162b3d] text-text font-semibold hover:border-primary/40 hover:shadow-md transition-all"
+              >
+                <Repeat size={18} />
+                Try Again
+              </motion.button>
+              <motion.button
+                onClick={onContinue}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-primary-dark shadow-lg shadow-primary/20 transition-all"
+              >
+                {continueLabel}
+                <ChevronRight size={20} />
+              </motion.button>
+            </div>
+          )}
+
+          {/* Pass: Play Again + Next Level/Continue */}
+          {passed && (
+            <div className="flex flex-col sm:flex-row gap-3">
+              <motion.button
+                onClick={onRetry}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl border-2 border-border bg-white dark:bg-[#162b3d] text-text font-semibold hover:border-primary/40 hover:shadow-md transition-all"
+              >
+                <Repeat size={18} />
+                Play Again
+              </motion.button>
+              <motion.button
+                onClick={onContinue}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-primary-dark shadow-lg shadow-primary/20 transition-all"
+              >
+                {primaryButtonLabel === 'Play Again' ? continueLabel : primaryButtonLabel}
+                <ChevronRight size={20} />
+              </motion.button>
+            </div>
+          )}
+        </div>
+
+        {/* Secondary action - Return to Games Home */}
         <motion.button
-          onClick={onContinue}
-          whileHover={{ scale: 1.02 }}
+          onClick={() => window.location.href = returnHref}
+          whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
-          className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
+          className="w-full flex flex-col items-center justify-center gap-0.5 px-6 py-3 rounded-2xl border-2 border-dashed border-text-muted/20 text-text-muted hover:text-text hover:border-text-muted/40 transition-all font-medium"
         >
-          {continueLabel}
-          <ChevronRight size={18} />
+          <span className="flex items-center gap-2">
+            <BookOpen size={18} />
+            Return to Games Home
+          </span>
+          <span className="text-xs opacity-80">Back to all games</span>
         </motion.button>
       </motion.div>
     </div>
