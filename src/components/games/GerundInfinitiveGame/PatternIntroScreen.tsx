@@ -1,9 +1,17 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowLeft, Play, BookOpen, ChevronRight, Trophy, AlertCircle, Check, Lightbulb } from 'lucide-react';
+import { ArrowLeft, Play, BookOpen, ChevronRight, Trophy, AlertCircle, Check, Lightbulb, Sparkles } from 'lucide-react';
 import { GI_REVIEW_GROUP_ID, GI_FINAL_GROUP_ID } from '@/data/gerund-infinitive-groups';
 import type { GerundInfinitiveGroup, GIRoundMode, PatternExample } from '@/types/gerund-infinitive';
+
+/** Split pattern text into scannable bullets (by sentence) */
+function patternToBullets(pattern: string): string[] {
+  return pattern
+    .split(/(?<=[.!])\s+/)
+    .map(s => s.trim())
+    .filter(Boolean);
+}
 
 /**
  * Get vocabulary reminder based on the group type
@@ -33,6 +41,42 @@ function getVocabReminder(group: GerundInfinitiveGroup): { title: string; exampl
       title: 'What is an adjective?',
       examples: 'happy, ready, important, easy, difficult, nice, hard, possible',
       note: 'Adjectives describe feelings or qualities. They often come after "be" (I\'m happy, It\'s easy).',
+    };
+  }
+
+  // Gerund Verbs group
+  if (group.id === 'group-2a') {
+    return {
+      title: 'What makes these "experience" verbs?',
+      examples: 'enjoy, finish, avoid, consider, suggest, keep, quit, miss',
+      note: 'These verbs focus on the activity happening NOW or in the past (not your future goal).',
+    };
+  }
+
+  // Infinitive Verbs group
+  if (group.id === 'group-2b') {
+    return {
+      title: 'What makes these "goal" verbs?',
+      examples: 'want, hope, plan, decide, need, learn, offer, agree, refuse',
+      note: 'These verbs express what you WANT or INTEND to do in the future.',
+    };
+  }
+
+  // Noun + Infinitive group
+  if (group.id === 'group-3b') {
+    return {
+      title: 'What is a noun?',
+      examples: 'ability, chance, time, decision, opportunity, way, permission, reason',
+      note: 'Nouns are people, places, things, or concepts. These nouns describe possibilities or potential actions.',
+    };
+  }
+
+  // GO + Gerund group
+  if (group.id === 'group-4') {
+    return {
+      title: 'What activities use GO + gerund?',
+      examples: 'swimming, shopping, hiking, fishing, dancing, skiing, bowling, camping',
+      note: 'Recreational activities and sports use this pattern (NOT "go to swim").',
     };
   }
 
@@ -104,69 +148,113 @@ export function PatternIntroScreen({
         className="space-y-3"
       >
         <h1 className="font-display text-3xl sm:text-4xl text-text leading-tight">{group.title}</h1>
-        <div className="p-4 bg-primary/5 border border-primary/20 rounded-xl">
-          <p className="text-sm text-primary-dark font-semibold uppercase tracking-wider mb-1 flex items-center gap-1">
+
+        {/* Memory trick first - most memorable, scannable */}
+        {group.memoryTrick && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.05 }}
+            className="p-4 rounded-xl bg-accent/15 border-2 border-accent/40 shadow-sm"
+          >
+            <p className="text-sm font-bold text-amber-700 dark:text-amber-400 flex items-center gap-2 mb-1">
+              <Sparkles size={16} className="flex-shrink-0" />
+              Quick rule
+            </p>
+            <p className="text-sm font-semibold text-text leading-tight">{group.memoryTrick}</p>
+          </motion.div>
+        )}
+
+        {/* The Pattern - chunked bullets for readability */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.08 }}
+          className="p-4 sm:p-5 bg-white dark:bg-[#162b3d] border border-border rounded-xl shadow-sm"
+        >
+          <p className="text-xs font-bold text-primary uppercase tracking-wider mb-3 flex items-center gap-1.5">
             <BookOpen size={14} />
-            The Pattern
+            The pattern
           </p>
-          <p className="text-text leading-relaxed">{group.pattern}</p>
-        </div>
+          <ul className="space-y-2">
+            {patternToBullets(group.pattern).map((bullet, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-text leading-relaxed">
+                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-bold mt-0.5">
+                  {i + 1}
+                </span>
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
 
         {/* Vocabulary reminder */}
         {(() => {
           const reminder = getVocabReminder(group);
           if (!reminder) return null;
+          const examples = reminder.examples.split(/,\s*/).slice(0, 8);
           return (
-            <div className="p-3 bg-sky-50 dark:bg-sky-900/20 border border-sky-200 dark:border-sky-800 rounded-xl">
-              <p className="text-sm text-sky-800 dark:text-sky-300 font-semibold mb-1 flex items-center gap-1.5">
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.12 }}
+              className="p-4 rounded-xl bg-sky-50 dark:bg-sky-900/25 border border-sky-200 dark:border-sky-800"
+            >
+              <p className="text-sm font-bold text-sky-800 dark:text-sky-200 mb-2 flex items-center gap-1.5">
                 <Lightbulb size={14} />
                 {reminder.title}
               </p>
-              <p className="text-sky-700 dark:text-sky-400 text-sm font-medium">{reminder.examples}</p>
+              <div className="flex flex-wrap gap-1.5 mb-2">
+                {examples.map((ex, i) => (
+                  <span
+                    key={i}
+                    className="px-2 py-0.5 rounded-md bg-sky-200/60 dark:bg-sky-800/40 text-sky-800 dark:text-sky-200 text-xs font-medium"
+                  >
+                    {ex.trim()}
+                  </span>
+                ))}
+              </div>
               {reminder.note && (
-                <p className="text-sky-600 dark:text-sky-500 text-xs mt-1">{reminder.note}</p>
+                <p className="text-xs text-sky-600 dark:text-sky-400 italic">{reminder.note}</p>
               )}
-            </div>
+            </motion.div>
           );
         })()}
 
-        {group.memoryTrick && (
-          <div className="p-3 bg-accent/10 border border-accent/30 rounded-xl">
-            <p className="text-sm text-primary-dark font-semibold mb-0.5">💡 Memory Trick</p>
-            <p className="text-text-muted text-sm">{group.memoryTrick}</p>
-          </div>
-        )}
+        {/* Memory tricks removed - relying on pattern exposure instead */}
       </motion.div>
 
-      {/* Examples */}
+      {/* Examples - card-style for better scanability */}
       {displayExamples.length > 0 && (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.15 }}
           className="space-y-3"
         >
           <h2 className="font-display text-lg text-text flex items-center gap-2">
-            <span className="w-6 h-6 rounded-full bg-secondary/20 text-xs flex items-center justify-center text-[#3d6b47]">★</span>
-            Examples
+            <span className="w-7 h-7 rounded-lg bg-secondary/25 flex items-center justify-center text-secondary text-sm font-bold">★</span>
+            See it in action
           </h2>
 
-          <div className="divide-y divide-border rounded-2xl border border-border overflow-hidden bg-white dark:bg-[#162b3d]">
+          <div className="space-y-3">
             {displayExamples.map((ex, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.25 + i * 0.06 }}
-                className="flex items-center gap-3 p-4"
+                transition={{ delay: 0.2 + i * 0.05 }}
+                className="flex items-start gap-3 p-4 rounded-xl bg-white dark:bg-[#162b3d] border border-border shadow-sm hover:shadow-md transition-shadow"
               >
-                <ChevronRight size={14} className="text-primary flex-shrink-0" />
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/15 text-primary text-xs font-bold flex items-center justify-center mt-0.5">
+                  {i + 1}
+                </span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-text text-sm leading-relaxed">
+                  <p className="text-text text-sm sm:text-base leading-relaxed">
                     {ex.sentence.includes('___') ? (
                       <>
                         {ex.sentence.split('___')[0]}
-                        <span className="font-semibold text-primary bg-primary/10 px-1 rounded">
+                        <span className="font-bold text-primary bg-primary/15 px-1.5 py-0.5 rounded">
                           {ex.blank}
                         </span>
                         {ex.sentence.split('___')[1]}
@@ -176,11 +264,98 @@ export function PatternIntroScreen({
                     )}
                   </p>
                   {ex.context && (
-                    <span className="text-xs text-text-muted mt-0.5 block">{ex.context}</span>
+                    <span className="inline-block mt-1.5 px-2 py-0.5 rounded-md bg-bg-light dark:bg-white/5 text-xs text-text-muted font-medium">
+                      {ex.context}
+                    </span>
                   )}
                 </div>
+                <ChevronRight size={16} className="text-primary/50 flex-shrink-0 mt-0.5" />
               </motion.div>
             ))}
+          </div>
+        </motion.div>
+      )}
+
+      {/* Mixed Verbs Challenge - Show verb reference table */}
+      {group.id === 'group-2c' && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="space-y-3"
+        >
+          {/* Difficulty Warning */}
+          <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-800/50">
+            <p className="font-bold text-amber-900 dark:text-amber-200 text-sm mb-2">⚡ Difficulty spike</p>
+            <ul className="space-y-1 text-sm text-amber-800 dark:text-amber-300 list-disc list-inside">
+              <li>Combines Groups 5 & 6 — gerund vs infinitive mixed together</li>
+              <li>You learned them separately; mixing is harder!</li>
+              <li>Take your time and study the tables below</li>
+            </ul>
+          </div>
+
+          <h2 className="font-display text-lg text-text flex items-center gap-2">
+            <BookOpen size={18} className="text-primary" />
+            Know Your Verbs
+          </h2>
+          <p className="text-sm text-text-muted">These verbs look similar but follow different rules. Study them before the challenge!</p>
+
+          <div className="grid grid-cols-2 gap-3">
+            {/* Gerund verbs column */}
+            <div className="rounded-xl border-2 border-secondary/30 overflow-hidden bg-secondary/5">
+              <div className="bg-secondary/20 px-3 py-2 border-b border-secondary/20">
+                <p className="font-bold text-secondary text-sm text-center">GERUND (-ing)</p>
+                <p className="text-xs text-secondary/70 text-center">enjoy the moment</p>
+              </div>
+              <div className="p-3 space-y-2">
+                {group.patterns
+                  .filter(p => p.correctForm === 'gerund')
+                  .map((p, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full bg-secondary/20 text-secondary text-xs flex items-center justify-center font-bold">✓</span>
+                      <span className="text-text font-medium">{p.trigger}</span>
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            {/* Infinitive verbs column */}
+            <div className="rounded-xl border-2 border-primary/30 overflow-hidden bg-primary/5">
+              <div className="bg-primary/20 px-3 py-2 border-b border-primary/20">
+                <p className="font-bold text-primary text-sm text-center">INFINITIVE (to + verb)</p>
+                <p className="text-xs text-primary/70 text-center">look to the future</p>
+              </div>
+              <div className="p-3 space-y-2">
+                {group.patterns
+                  .filter(p => p.correctForm === 'infinitive')
+                  .map((p, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-bold">✓</span>
+                      <span className="text-text font-medium">{p.trigger}</span>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="p-4 bg-accent/10 border border-accent/30 rounded-xl">
+            <p className="font-bold text-text text-sm mb-3">💡 Quick rule</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="flex items-start gap-2">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-secondary/20 text-secondary text-xs font-bold flex items-center justify-center">-ing</span>
+                <div>
+                  <p className="font-semibold text-secondary text-sm">Gerund</p>
+                  <p className="text-xs text-text-muted">About the <em>experience</em> — enjoy, finish, avoid what you&apos;re doing</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary text-xs font-bold flex items-center justify-center">to</span>
+                <div>
+                  <p className="font-semibold text-primary text-sm">Infinitive</p>
+                  <p className="text-xs text-text-muted">About the <em>goal</em> — want, hope, decide what TO do</p>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
       )}
@@ -322,6 +497,35 @@ export function PatternIntroScreen({
         </motion.div>
       )}
 
+      {/* Two-Round System Explanation (Round 1) */}
+      {!isRound2 && !isReview && !isFinal && !group.isCheckpoint && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.45 }}
+          className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50"
+        >
+          <p className="font-bold text-text mb-3 text-sm">📘 How it works</p>
+          <div className="space-y-3">
+            <div className="flex items-start gap-3">
+              <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold flex items-center justify-center">1</span>
+              <div>
+                <p className="font-semibold text-text text-sm">Round 1 · Learn</p>
+                <p className="text-xs text-text-muted">Score <strong>80%+</strong> to pass → unlocks Round 2</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-secondary/20 text-secondary text-sm font-bold flex items-center justify-center">2</span>
+              <div>
+                <p className="font-semibold text-text text-sm">Round 2 · Master</p>
+                <p className="text-xs text-text-muted">Score <strong>90%+</strong> → earn ✦ mastery badge</p>
+              </div>
+            </div>
+            <p className="text-xs text-text-muted italic pt-1">You can skip Round 2 or go for mastery!</p>
+          </div>
+        </motion.div>
+      )}
+
       {/* Round 2 notice */}
       {isRound2 && !isReview && !isFinal && (
         <motion.div
@@ -330,10 +534,11 @@ export function PatternIntroScreen({
           transition={{ delay: 0.45 }}
           className="p-4 rounded-xl bg-primary/5 border border-primary/20"
         >
-          <p className="text-sm text-text">
-            <strong>Round 2 — Mastery Check:</strong> These exercises focus on the patterns you found most difficult in Round 1.
-            Score <strong>85%+</strong> to achieve mastery and earn the ✦ badge.
-          </p>
+          <p className="font-bold text-text text-sm mb-2">Round 2 · Mastery Check</p>
+          <ul className="space-y-1 text-sm text-text-muted list-disc list-inside">
+            <li>Exercises target your trickiest patterns from Round 1</li>
+            <li>Score <strong className="text-text">90%+</strong> → earn the ✦ mastery badge</li>
+          </ul>
         </motion.div>
       )}
 
