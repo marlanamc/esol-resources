@@ -7,6 +7,11 @@ import type { GIExercise } from '@/types/gerund-infinitive';
 
 interface Props { exercise: GIExercise; onAnswer: (correct: boolean) => void; answered: boolean; }
 
+// Extended exercise interface to support CSV-generated exercises
+interface ExtendedExercise extends GIExercise {
+  isSubjectPosition?: boolean;
+}
+
 export function SentenceCompletionExercise({ exercise, onAnswer }: Props) {
   const [inputValue, setInputValue] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -18,6 +23,12 @@ export function SentenceCompletionExercise({ exercise, onAnswer }: Props) {
   const parts = prompt.split('___');
   const before = parts[0] ?? '';
   const after = parts[1] ?? '';
+
+  // Detect if blank is at the start of the sentence (subject position)
+  // This affects mobile keyboard capitalization behavior
+  const isSentenceInitial = (exercise as ExtendedExercise).isSubjectPosition ||
+    before.trim() === '' ||
+    prompt.trimStart().startsWith('___');
 
   const handleSubmit = () => {
     if (submitted || inputValue.trim() === '') return;
@@ -47,7 +58,12 @@ export function SentenceCompletionExercise({ exercise, onAnswer }: Props) {
             disabled={submitted}
             placeholder="......"
             autoComplete="off"
+            autoCorrect="off"
             spellCheck={false}
+            enterKeyHint="done"
+            // Only auto-capitalize for sentence-initial blanks (subject gerunds)
+            // For mid-sentence blanks, disable to avoid unwanted capitalization
+            autoCapitalize={isSentenceInitial ? "sentences" : "off"}
             className={`border-b-4 bg-transparent text-center outline-none text-primary font-bold w-32 sm:w-48 px-2 pb-1 transition-all duration-300 ${
               submitted
                 ? correct
