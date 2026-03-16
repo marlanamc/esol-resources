@@ -1470,13 +1470,13 @@ export const GROUP_2B: GerundInfinitiveGroup = {
 export const GROUP_2C: GerundInfinitiveGroup = {
   id: 'group-2c',
   title: 'Mixed Verb Challenge',
-  shortTitle: '8. Mixed Verbs',
+  shortTitle: '7. Mixed Verbs',
   pattern: 'The real challenge! Some verbs need GERUND (enjoy, finish, avoid). Others need INFINITIVE (want, hope, decide). You must know which is which! Gerund = experience. Infinitive = goal.',
   patternExample: 'I enjoy reading BUT I want to read',
   colorClass: 'bg-purple-100 border-purple-300 text-purple-900',
   difficulty: 2,
   phase: 'core-verbs',
-  prerequisite: 'checkpoint-1',
+  prerequisite: 'group-2b',
   memoryTrick: 'GERUND verbs = enjoy the moment (-ing). INFINITIVE verbs = look to the future (to + verb).',
   icon: '🔀',
   patterns: [
@@ -2695,23 +2695,23 @@ export const GROUP_7: GerundInfinitiveGroup = {
 
 /**
  * CHECKPOINT 1: Foundation Review
- * Reviews: Gerunds Intro, Infinitives Intro, Subject Gerunds, Go + Gerund, Gerund Verbs, Infinitive Verbs
+ * Reviews: Gerunds Intro, Infinitives Intro, Subject Gerunds, Go + Gerund, Gerund Verbs, Infinitive Verbs, Mixed Verbs
  * Unlocks: Preposition Rules section
  */
 export const CHECKPOINT_1: GerundInfinitiveGroup = {
   id: 'checkpoint-1',
   title: 'Checkpoint: Foundation Review',
-  shortTitle: '7. 🏁 Checkpoint 1',
-  pattern: 'Congratulations on completing the foundation levels! This checkpoint mixes patterns from Groups 1-6 to ensure you can recognize gerunds vs infinitives in different contexts. You\'ve learned: basic gerund/infinitive forms, subject gerunds, GO + gerund, and verb-specific rules. Now prove you can apply them all together! Passing this unlocks the challenging Mixed Verb level.',
+  shortTitle: '8. 🏁 Checkpoint 1',
+  pattern: 'Congratulations on completing the foundation levels and the Mixed Verb challenge! This checkpoint mixes all patterns from Groups 1-7 to ensure you can recognize gerunds vs infinitives in different contexts. You\'ve learned: basic gerund/infinitive forms, subject gerunds, GO + gerund, verb-specific rules, and choosing between them. Now prove you can apply them all together! Passing this unlocks the Preposition Rules section.',
   patternExample: 'Mixed review of all foundation patterns',
   colorClass: 'bg-gradient-to-r from-emerald-100 to-blue-100 border-emerald-300 text-emerald-900',
   difficulty: 2,
   phase: 'core-verbs',
-  prerequisite: 'group-2b',
+  prerequisite: 'group-2c',
   memoryTrick: 'Foundation = Gerund basics + Infinitive basics. Can you tell them apart when mixed?',
   icon: '🏁',
   isCheckpoint: true,
-  reviewsGroups: ['group-0a', 'group-0b', 'group-5', 'group-4', 'group-2a', 'group-2b'],
+  reviewsGroups: ['group-0a', 'group-0b', 'group-5', 'group-4', 'group-2a', 'group-2b', 'group-2c'],
   patterns: [] // Checkpoint uses patterns from reviewsGroups
 };
 
@@ -2765,6 +2765,7 @@ export const CHECKPOINT_3: GerundInfinitiveGroup = {
  * NEW STRUCTURE:
  * PHASE 1: FOUNDATION (Recognize patterns, build confidence)
  * PHASE 2: CORE RULES (Learn the main verb rules)
+ * PHASE 2B: MIXED CHALLENGE (choose gerund vs infinitive)
  * CHECKPOINT 1: Foundation Review
  * PHASE 3: PREPOSITION MASTERY
  * CHECKPOINT 2: Preposition Review
@@ -2783,11 +2784,11 @@ export const GI_GROUPS: GerundInfinitiveGroup[] = [
   GROUP_2A,       // 5. Gerund Verbs (enjoy, finish, avoid)
   GROUP_2B,       // 6. Infinitive Verbs (want, hope, plan)
 
-  // === CHECKPOINT 1: Foundation Review ===
-  CHECKPOINT_1,   // 7. 🏁 Checkpoint 1 - Review all foundation patterns
+  // === PHASE 2B: MIXED CHALLENGE (apply gerund vs infinitive choice) ===
+  GROUP_2C,       // 7. Mixed Verb Challenge - THE KEY LEVEL!
 
-  // === PHASE 2B: MIXED CHALLENGE ===
-  GROUP_2C,       // 8. Mixed Verb Challenge - THE KEY LEVEL!
+  // === CHECKPOINT 1: Foundation Review ===
+  CHECKPOINT_1,   // 8. 🏁 Checkpoint 1 - Review all foundation patterns
 
   // === PHASE 3: PREPOSITION MASTERY ===
   GROUP_1,        // 9. Prepositions → Gerund - the golden rule
