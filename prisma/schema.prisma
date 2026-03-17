@@ -159,6 +159,7 @@ model PointsLedger {
   @@index([userId])
   @@index([source])
   @@index([userId, createdAt])
+  @@index([source, createdAt])
 }
 
 model Assignment {

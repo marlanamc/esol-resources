@@ -8,6 +8,7 @@ import { clearServiceWorkerCache } from "@/lib/clearCache";
 export default function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
@@ -80,17 +81,28 @@ export default function LoginForm() {
                     <label htmlFor="password" className="block text-sm font-semibold mb-2 text-[var(--color-text)]">
                         Password
                     </label>
-                    <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        autoComplete="current-password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="••••••••"
-                        className="w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)]"
-                        required
-                    />
+                    <div className="relative">
+                        <input
+                            id="password"
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            autoComplete="current-password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="••••••••"
+                            className="w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)] pr-11"
+                            required
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword((prev) => !prev)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-full text-xs font-semibold text-[var(--color-text-muted)] bg-[var(--color-surface-base)]/80 hover:bg-[var(--color-surface-elevated)] hover:text-[var(--color-text)] border border-[var(--color-border-subtle)] cursor-pointer"
+                            aria-pressed={showPassword}
+                            aria-label={showPassword ? "Hide password" : "Show password"}
+                        >
+                            {showPassword ? "Hide" : "Show"}
+                        </button>
+                    </div>
                 </div>
                 {error && (
                     <div role="alert" className="border-2 rounded-lg p-3 bg-error/10 border-error">

@@ -18,7 +18,26 @@ export async function POST(request: Request) {
         return ApiErrors.unauthorized();
     }
 
-    const { newPassword } = await request.json();
+    const { newPassword, currentPassword } = await request.json();
+
+    const user = await prisma.user.findUnique({
+        where: { id: session.user.id },
+    });
+
+    if (!user) {
+        return ApiErrors.unauthorized();
+    }
+
+    if (!user.mustChangePassword) {
+        if (!currentPassword || typeof currentPassword !== "string") {
+            return apiError("Current password is required.", 400);
+        }
+
+        const passwordMatches = await bcrypt.compare(currentPassword, user.password || "");
+        if (!passwordMatches) {
+            return apiError("Current password is incorrect.", 400);
+        }
+    }
 
     // SECURITY: Validate password length (min and max)
     if (!newPassword || typeof newPassword !== "string") {

@@ -6,7 +6,7 @@ import { clearServiceWorkerCache } from "@/lib/clearCache";
 import { useRouter } from "next/navigation";
 import { SelectedAvatarDisplay } from "@/components/ui/SelectedAvatarDisplay";
 import { UserIcon } from "@/components/icons/Icons";
-import { Calendar, LogOut, Sparkles, X } from "lucide-react";
+import { Calendar, LogOut, Sparkles, UserCog, X } from "lucide-react";
 import { DEFAULT_AVATAR, DEFAULT_COLOR } from "@/lib/avatar-constants";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
@@ -117,6 +117,11 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
         router.push("/dashboard/profile");
     };
 
+    const handleAccountClick = () => {
+        setIsOpen(false);
+        router.push("/dashboard/account");
+    };
+
     const handleAvatarClick = (e: React.MouseEvent) => {
         e.stopPropagation();
         setIsOpen(false);
@@ -213,6 +218,15 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
                                 <span>View Profile</span>
                             </button>
 
+                            <button
+                                onClick={handleAccountClick}
+                                className="flex w-full items-center gap-3 rounded-2xl border px-4 py-3 text-left text-sm font-medium text-text shadow-sm transition-colors"
+                                style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-base)' }}
+                            >
+                                <UserCog className="h-4 w-4" />
+                                <span>View Account</span>
+                            </button>
+
                             <div className="rounded-2xl border px-4 py-3 shadow-sm" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-base)' }}>
                                 <ThemeToggle />
                             </div>
@@ -273,6 +287,13 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
                             <UserIcon className="w-4 h-4" />
                             View Profile
                         </button>
+                        <button
+                            onClick={handleAccountClick}
+                            className="w-full text-left px-4 py-2 text-sm font-medium text-text transition-colors flex items-center gap-2 hover:bg-[var(--surface-subtle)]"
+                        >
+                            <UserCog className="w-4 h-4" />
+                            View Account
+                        </button>
                         <div className="px-3 py-2">
                             <ThemeToggle compact />
                         </div>
@@ -308,6 +329,13 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
                     >
                         <UserIcon className="w-4 h-4" />
                         View Profile
+                    </button>
+                    <button
+                        onClick={handleAccountClick}
+                        className="w-full text-left px-4 py-2 text-sm font-medium text-text transition-colors flex items-center gap-2 hover:bg-[var(--surface-subtle)]"
+                    >
+                        <UserCog className="w-4 h-4" />
+                        View Account
                     </button>
                     <div className="px-3 py-2">
                         <ThemeToggle compact />

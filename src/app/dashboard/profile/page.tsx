@@ -924,7 +924,6 @@ export default async function ProfilePage() {
                         )}
                     </div>
 
-                    <DeleteAccountSection userRole="student" />
                 </div>
 
             </div>
@@ -1007,7 +1006,6 @@ export default async function ProfilePage() {
                     </div>
                 </div>
 
-                <DeleteAccountSection userRole="teacher" />
             </div>
 
         </div>

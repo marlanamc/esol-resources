@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
 import { authOptions } from "@/lib/auth";
 import { requireAuth, type SessionUser } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
@@ -20,7 +21,7 @@ export async function POST(request: Request) {
     return ApiErrors.forbidden("Teacher accounts must contact support to delete");
   }
 
-  let body: { reason?: string };
+  let body: { reason?: string; password?: string };
   try {
     body = await request.json();
   } catch {
@@ -37,11 +38,21 @@ export async function POST(request: Request) {
 
   const dbUser = await prisma.user.findUnique({
     where: { id: userId },
-    select: { id: true, username: true, role: true },
+    select: { id: true, username: true, role: true, password: true },
   });
 
   if (!dbUser) {
     return ApiErrors.notFound("User", userId);
+  }
+
+  const password = typeof body.password === "string" ? body.password : "";
+  if (!password) {
+    return apiError("Password is required to delete your account.", 400);
+  }
+
+  const matches = await bcrypt.compare(password, dbUser.password || "");
+  if (!matches) {
+    return apiError("Password is incorrect.", 400);
   }
 
   try {

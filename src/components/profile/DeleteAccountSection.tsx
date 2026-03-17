@@ -16,6 +16,7 @@ export function DeleteAccountSection({ userRole }: DeleteAccountSectionProps) {
   const [confirmed, setConfirmed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleOpen = () => {
     setShowModal(true);
@@ -29,6 +30,7 @@ export function DeleteAccountSection({ userRole }: DeleteAccountSectionProps) {
     setReason("");
     setConfirmed(false);
     setError("");
+    setPassword("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -43,13 +45,17 @@ export function DeleteAccountSection({ userRole }: DeleteAccountSectionProps) {
       setError("Please confirm that you understand your data will be permanently deleted.");
       return;
     }
+    if (!password) {
+      setError("Please enter your password to confirm.");
+      return;
+    }
 
     setLoading(true);
     try {
       const res = await fetch("/api/account/delete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reason: trimmed }),
+        body: JSON.stringify({ reason: trimmed, password }),
       });
       const data = await res.json().catch(() => ({}));
 
@@ -142,6 +148,25 @@ export function DeleteAccountSection({ userRole }: DeleteAccountSectionProps) {
                   minLength={10}
                   maxLength={2000}
                   disabled={loading}
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="delete-password"
+                  className="block text-sm font-medium text-[var(--color-text)] mb-1"
+                >
+                  Password <span className="text-red-500">*</span>
+                </label>
+                <input
+                  id="delete-password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password to confirm"
+                  className="w-full px-3 py-2 rounded-lg border border-[var(--color-border-strong)] bg-[var(--color-bg)] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  disabled={loading}
+                  required
                 />
               </div>
 
