@@ -162,6 +162,34 @@
             border-top: 2px solid var(--ink);
         }
 
+        .vocab-section {
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 2px solid var(--ink);
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 8px;
+        }
+
+        .vocab-row {
+            border: 1px solid var(--ink);
+            padding: 6px 8px;
+        }
+
+        .vocab-term {
+            font-weight: 700;
+            margin-bottom: 3px;
+            font-size: 0.9rem;
+        }
+
+        .definition-line {
+            border-bottom: 1px solid var(--ink);
+            height: 14px;
+        }
+
         .quizzes-card {
             border: 2px solid var(--ink);
             padding: 12px;
@@ -285,35 +313,35 @@
     <div class="container">
         <div class="header">
             <h1>Your Week 25 Plan</h1>
-            <div class="week-info">March 17–19, 2026 • Future Perfect Family</div>
+            <div class="week-info">March 17–19, 2026 • Review & New Grammar</div>
         </div>
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why this matters for you:</strong> Future perfect helps you talk about what you will have done by a date. You'll use it for goals and plans. Also, perfect continuous tenses help you describe ongoing situations and progress over time. This is useful for explaining work experience and learning journeys.</p>
+                <p><strong>Why this matters for you:</strong> This week you will review important grammar (modals for rules, past perfect family, -ed endings) and start a new grammar pattern with gerunds and infinitives. These skills help you talk about time clearly, explain what happened before something else, talk about rules and permission, and understand real English sentences you see at work and in life.</p>
             </div>
 
             <div class="goals-section">
                 <h2>Your goals this week</h2>
                 <div class="goal-item">
                     <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Practice talking about workplace rights</label>
+                    <label for="goal-1">Review modals for obligation and permission (must, can, have to, allowed, required, prohibited)</label>
                 </div>
                 <div class="goal-item">
                     <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Practice standing up for yourself at work</label>
+                    <label for="goal-2">Review Past Perfect Family (perfect and perfect continuous) timelines</label>
                 </div>
                 <div class="goal-item">
                     <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Use Future Perfect (will have + V3) to talk about what will be completed by a future time</label>
+                    <label for="goal-3">Review -ed endings for adjectives and past tense</label>
                 </div>
                 <div class="goal-item">
                     <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Set goals and make predictions using 'By [date], I will have...'</label>
+                    <label for="goal-4">Begin using gerunds (-ing) and infinitives (to + verb) after common verbs</label>
                 </div>
                 <div class="goal-item">
                     <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Talk about future achievements and milestones</label>
+                    <label for="goal-5">Grow your workplace communication vocabulary for jobs, rules, and feedback</label>
                 </div>
 
             </div>
@@ -324,8 +352,8 @@
                 <div class="day-column">
                     <div class="day-header">Tuesday, March 17</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Workplace Rights Scenarios</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Future Perfect Family</p>
+                        <p class="meta-line"><strong>Warmup:</strong> Modals &amp; Past Perfect Family Review</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Review modals for obligation &amp; permission; Past Perfect Family (perfect &amp; perfect continuous); -ed endings</p>
                     </div>
                 </div>
 
@@ -333,39 +361,46 @@
                     <div class="day-header">Thursday, March 19</div>
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> Workplace Advocacy Role-Plays</p>
-                        
-                        <p class="meta-line"><strong>Grammar:</strong> Future Perfect Family</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Start Gerunds &amp; Infinitives Guide and pattern game</p>
                     </div>
                 </div>
             </div>
 
-                        <div class="after-class">
+            <div class="after-class">
                 <h2 class="section-title">After class</h2>
                 <div class="checklist">
-                <div class="checklist-item">
-                    <input type="checkbox" id="after-writing-25" class="checklist-cb">
-                    <label for="after-writing-25">Writing Homework</label>
-                </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="after-modals-guide-25" class="checklist-cb">
+                        <label for="after-modals-guide-25">Review Modals for Obligation &amp; Permission Guide</label>
+                    </div>
 
-                <div class="checklist-item">
-                    <input type="checkbox" id="after-vocab-25" class="checklist-cb">
-                    <label for="after-vocab-25">Review March 17-19 Vocabulary Flash Cards</label>
-                </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="after-past-perfect-guide-25" class="checklist-cb">
+                        <label for="after-past-perfect-guide-25">Review Past Perfect Family Guide</label>
+                    </div>
 
-                <div class="checklist-item">
-                    <input type="checkbox" id="after-guide-25" class="checklist-cb">
-                    <label for="after-guide-25">Review Future Perfect Family Guide</label>
-                </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="after-timeline-25" class="checklist-cb">
+                        <label for="after-timeline-25">Work on Timeline Activities: Perfect Tenses Practice</label>
+                    </div>
 
-                <div class="checklist-item">
-                    <input type="checkbox" id="after-verb-quiz-25" class="checklist-cb">
-                    <label for="after-verb-quiz-25">Take Verb Quiz 11</label>
-                </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="after-vocab-25" class="checklist-cb">
+                        <label for="after-vocab-25">Do your Vocab Review (6 cards per day)</label>
+                    </div>
+
+                    <div class="checklist-item">
+                        <input type="checkbox" id="after-guide-25" class="checklist-cb">
+                        <label for="after-guide-25">Review Gerunds &amp; Infinitives Guide</label>
+                    </div>
+
+                    <div class="checklist-item">
+                        <input type="checkbox" id="after-verb-quiz-25" class="checklist-cb">
+                        <label for="after-verb-quiz-25">Take Verb Quiz 11</label>
+                    </div>
                 </div>
             </div>
 
-
-            
             <section class="quizzes-section">
                 <div class="quizzes-card">
                     <div class="quizzes-heading">
@@ -426,6 +461,25 @@
                     </div>
                 </div>
             </section>
+
+            <div class="vocab-section">
+                <h2 class="section-title">Weekly Vocabulary (March 17–19)</h2>
+                <p class="meta-line"><strong>Write your own definitions:</strong></p>
+                <div class="vocab-grid">
+                    <div class="vocab-row"><div class="vocab-term">courtesy</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">strict</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">require</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">allow</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">right</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">rule</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">advocate</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">prohibit</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">coordinate</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">recruit</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">violate</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">comply</div><div class="definition-line"></div></div>
+                </div>
+            </div>
 
         </div>
     </div>
