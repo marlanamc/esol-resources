@@ -812,7 +812,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                 )}
 
                 {/* Mobile bottom nav bar - always visible so user can toggle TOC via section counter */}
-                {(
+                {!showQuiz && (
                     <div
                         className="flex md:hidden fixed bottom-0 left-0 right-0 z-20 border-t border-border items-center justify-between gap-2 px-3 py-2 safe-area-bottom-padding-mobile-lg"
                         style={{ backgroundColor: "var(--surface-overlay)" }}

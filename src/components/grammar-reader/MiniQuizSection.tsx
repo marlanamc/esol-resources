@@ -73,7 +73,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
     }, [submitted]);
 
     return (
-        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col touch-manipulation md:static md:h-auto md:min-h-0 md:bg-transparent">
+        <div className="fixed inset-0 z-30 bg-[var(--color-bg)] flex flex-col touch-manipulation md:static md:z-auto md:h-auto md:min-h-0 md:bg-transparent">
             {/* Mobile Header - Back + Progress */}
             <div className="flex-shrink-0 border-b-2 border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-3 md:hidden">
                 <div className="flex items-center justify-between">
