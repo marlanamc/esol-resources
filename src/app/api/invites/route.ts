@@ -11,6 +11,10 @@ import { prisma } from '@/lib/prisma';
 import { ApiErrors, apiSuccess, handleApiError } from '@/lib/api-response';
 import { generateInviteCode } from '@/lib/invite-code';
 
+function getAppBaseUrl() {
+  return (process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_APP_URL || '').replace(/\/+$/, '');
+}
+
 /**
  * GET /api/invites
  * List user's invite links
@@ -41,7 +45,7 @@ export async function GET() {
     });
 
     // Build full URLs for each invite
-    const baseUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_APP_URL || '';
+    const baseUrl = getAppBaseUrl();
     const invitesWithUrls = invites.map((invite) => ({
       ...invite,
       url: `${baseUrl}/join?code=${invite.code}`,
@@ -90,7 +94,7 @@ export async function POST() {
     });
 
     if (existingInvite) {
-      const baseUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_APP_URL || '';
+      const baseUrl = getAppBaseUrl();
       return apiSuccess({
         ...existingInvite,
         url: `${baseUrl}/join?code=${existingInvite.code}`,
@@ -117,7 +121,7 @@ export async function POST() {
       },
     });
 
-    const baseUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_APP_URL || '';
+    const baseUrl = getAppBaseUrl();
 
     return apiSuccess({
       ...invite,
