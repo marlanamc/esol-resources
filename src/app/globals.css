@@ -150,21 +150,21 @@
   --dashboard-surface-start: #fcfbf9;
   --dashboard-surface-end: #faf7f3;
   --dashboard-surface-hover: #fdfbf7;
-  --dashboard-border: rgba(0, 0, 0, 0.06);
-  --dashboard-divider: rgba(0, 0, 0, 0.04);
+  --dashboard-border: rgba(0, 0, 0, 0.08);
+  --dashboard-divider: rgba(0, 0, 0, 0.06);
   --dashboard-inset-highlight: rgba(255, 255, 255, 0.72);
   --dashboard-shadow-rest:
     inset 0 1px 0 var(--dashboard-inset-highlight),
-    0 0 0 1px rgba(0, 0, 0, 0.02),
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 6px 18px rgba(40, 31, 23, 0.06),
-    0 14px 32px rgba(40, 31, 23, 0.04);
+    0 0 0 1px rgba(0, 0, 0, 0.03),
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 6px 18px rgba(40, 31, 23, 0.10),
+    0 14px 32px rgba(40, 31, 23, 0.08);
   --dashboard-shadow-hover:
     inset 0 1px 0 rgba(255, 255, 255, 0.72),
-    0 0 0 1px rgba(0, 0, 0, 0.02),
-    0 2px 5px rgba(0, 0, 0, 0.05),
-    0 10px 24px rgba(40, 31, 23, 0.08),
-    0 20px 42px rgba(40, 31, 23, 0.06);
+    0 0 0 1px rgba(0, 0, 0, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    0 10px 24px rgba(40, 31, 23, 0.12),
+    0 20px 42px rgba(40, 31, 23, 0.10);
   --dashboard-shell-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.42),
     0 1px 0 rgba(0, 0, 0, 0.03),
@@ -194,8 +194,8 @@
   --surface-subtle: rgba(247, 242, 232, 0.78);
   --surface-overlay: rgba(255, 253, 250, 0.88);
   --surface-contrast: #f3ebdf;
-  --border-subtle: rgba(226, 221, 213, 0.5);
-  --border-strong: rgba(207, 191, 171, 0.75);
+  --border-subtle: rgba(207, 191, 171, 0.65);
+  --border-strong: rgba(180, 165, 145, 0.85);
   --text-on-accent: #fffdfa;
   --search-pill-bg: #fffaf1;
   --search-pill-border: rgba(124, 113, 100, 0.16);
@@ -1255,10 +1255,10 @@ textarea {
 
 /* ========== CATEGORY GLOW SYSTEM ========== */
 /* Each category gets a distinctive glow on focus */
-.category-glow-grammar { --card-glow-color: rgba(61, 142, 66, 0.12); }
-.category-glow-vocabulary { --card-glow-color: rgba(38, 138, 130, 0.12); }
-.category-glow-quizzes { --card-glow-color: rgba(196, 74, 40, 0.12); }
-.category-glow-games { --card-glow-color: rgba(125, 63, 166, 0.12); }
+.category-glow-grammar { --card-glow-color: rgba(61, 142, 66, 0.18); }
+.category-glow-vocabulary { --card-glow-color: rgba(38, 138, 130, 0.18); }
+.category-glow-quizzes { --card-glow-color: rgba(196, 74, 40, 0.18); }
+.category-glow-games { --card-glow-color: rgba(125, 63, 166, 0.18); }
 
 .dark .category-glow-grammar { --card-glow-color: rgba(111, 191, 159, 0.15); }
 .dark .category-glow-vocabulary { --card-glow-color: rgba(127, 179, 213, 0.15); }
@@ -1955,6 +1955,23 @@ textarea {
 
 .dashboard-accent-button:active {
   transform: translateY(0) scale(0.98);
+}
+
+/* Light mode: stronger colored glow on accent buttons */
+:root:not(.dark) .dashboard-accent-button,
+html:not([data-theme="dark"]) .dashboard-accent-button {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 1px 3px color-mix(in srgb, var(--dashboard-button-accent, var(--color-primary)) 14%, rgba(0, 0, 0, 0.06)),
+    0 8px 20px color-mix(in srgb, var(--dashboard-button-accent, var(--color-primary)) 20%, transparent);
+}
+
+:root:not(.dark) .dashboard-accent-button:hover,
+html:not([data-theme="dark"]) .dashboard-accent-button:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 2px 5px color-mix(in srgb, var(--dashboard-button-accent, var(--color-primary)) 18%, rgba(0, 0, 0, 0.08)),
+    0 12px 24px color-mix(in srgb, var(--dashboard-button-accent, var(--color-primary)) 24%, transparent);
 }
 
 .dashboard-progress-track {

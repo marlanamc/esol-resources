@@ -866,7 +866,7 @@ function ChecklistAssignments({
                         : 'linear-gradient(135deg, var(--surface-elevated) 0%, var(--surface-overlay) 100%)',
                     boxShadow: row.isCompleted
                         ? 'none'
-                        : '0 2px 6px rgba(4, 10, 18, 0.06), 0 1px 2px rgba(4, 10, 18, 0.04)',
+                        : '0 2px 8px rgba(4, 10, 18, 0.08), 0 1px 3px rgba(4, 10, 18, 0.06)',
                 }}
             >
                 <div className="pointer-events-none absolute inset-y-1 right-4 w-12 opacity-15 blur-2xl" style={{ background: row.categoryStyle.accent }} />

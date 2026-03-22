@@ -341,7 +341,7 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
                         : renderTheme === 'dark' ? 'text-[#6da88a]' : 'text-[#b86a56]'
                       : isActive
                         ? renderTheme === 'dark' ? 'text-[#7fb3d5]' : 'text-[#9f523d]'
-                        : renderTheme === 'dark' ? 'text-[#8a9bb0]' : 'text-[#5a6a7a]'
+                        : renderTheme === 'dark' ? 'text-[#8a9bb0]' : 'text-[#4a5a6a]'
                   }`}
                 >
                   <div
@@ -425,7 +425,7 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
                         : 'text-[11px] text-[#3d5c47] dark:text-[#6da88a]'
                       : isActive
                         ? 'text-[10px] text-[#9f523d] dark:text-[#7fb3d5]'
-                        : 'text-[10px] text-[#4a5c6a] dark:text-[#9aacbe]'
+                        : 'text-[10px] text-[#3d4d5d] dark:text-[#9aacbe]'
                   }`}>
                     {item.label}
                   </span>
