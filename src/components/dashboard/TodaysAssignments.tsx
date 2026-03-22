@@ -36,6 +36,7 @@ interface Props {
     initialAssignments?: FeaturedAssignment[];
     pinnedHabit?: DailyChecklistHabit | null;
     title?: string;
+    subtitle?: string | null;
     ctaLabel?: string;
     variant?: 'cards' | 'checklist';
     actions?: React.ReactNode;
@@ -44,6 +45,8 @@ interface Props {
     refreshOnMount?: boolean;
     /** Show streak and points badges in checklist header (student dashboard) */
     showStudentStats?: boolean;
+    /** Hide the overall progress bar (useful when progress is shown elsewhere, e.g. independent dashboard) */
+    hideProgressBar?: boolean;
 }
 
 interface VocabProgressInfo {
@@ -561,6 +564,7 @@ function ChecklistAssignments({
     resolvedTitle,
     weeklyRangeLabel,
     showStudentStats = false,
+    hideProgressBar = false,
 }: {
     assignments: FeaturedAssignment[];
     pinnedHabit?: DailyChecklistHabit | null;
@@ -570,6 +574,7 @@ function ChecklistAssignments({
     resolvedTitle: string | null;
     weeklyRangeLabel: string | null;
     showStudentStats?: boolean;
+    hideProgressBar?: boolean;
 }) {
     const [activeFilter, setActiveFilter] = useState<string>('all');
 
@@ -598,7 +603,7 @@ function ChecklistAssignments({
                     : progressValue >= 100 || assignment.progressStatus === 'completed' || !!submission?.completedAt;
 
         const rawTitle = assignment.title || assignment.activity.title;
-        const displayTitle = stripVocabTypeSuffix(rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide'));
+        const displayTitle = assignment.displayTitle || stripVocabTypeSuffix(rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide'));
         const categoryStyle = getCategoryStyle(assignment.activity.category);
         const groupKey = resolveChecklistGroupKey(assignment.activity.category);
         const dueMeta = getFriendlyDueMeta(assignment.dueDate);
@@ -819,7 +824,7 @@ function ChecklistAssignments({
                 <div className="shrink-0 pl-1">
                     <ActivityLink
                         activityId={row.assignment.activityId}
-                        assignmentId={row.assignment.id}
+                        assignmentId={row.assignment.assignmentId ?? row.assignment.id}
                         href={row.assignment.href}
                         className="dashboard-accent-button inline-flex items-center justify-center !min-h-0 min-w-[82px] h-9 rounded-full px-3 text-[13px] font-semibold tracking-tight whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 sm:min-w-[92px] sm:h-10 sm:px-4 sm:text-sm"
                         style={{
@@ -917,7 +922,7 @@ function ChecklistAssignments({
 
                     <ActivityLink
                         activityId={row.assignment.activityId}
-                        assignmentId={row.assignment.id}
+                        assignmentId={row.assignment.assignmentId ?? row.assignment.id}
                         href={row.assignment.href}
                         className="dashboard-accent-button shrink-0 inline-flex min-h-[32px] items-center gap-1.5 rounded-full px-3.5 py-1 text-[13px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                         style={{
@@ -1001,7 +1006,7 @@ function ChecklistAssignments({
 
                 <ActivityLink
                     activityId={row.assignment.activityId}
-                    assignmentId={row.assignment.id}
+                    assignmentId={row.assignment.assignmentId ?? row.assignment.id}
                     href={row.assignment.href}
                     className="dashboard-accent-button shrink-0 inline-flex min-h-[32px] items-center gap-1.5 rounded-full px-3.5 py-1 text-[13px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                     style={{
@@ -1060,58 +1065,60 @@ function ChecklistAssignments({
                             )}
                         </div>
                     </div>
-                    <div className="relative z-20 flex items-center gap-2.5">
-                        <div className="min-w-0 flex-1">
-                            <div className={`relative z-20 w-full overflow-hidden rounded-full border h-4 ${
-                                isFullyComplete
-                                    ? 'border-[#d7c09a]/50 shadow-[inset_0_1px_2px_rgba(138,91,61,0.06)] dark:border-[rgba(245,217,138,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.3)]'
-                                    : 'border-[#e8e0d4]/50 shadow-[inset_0_1px_2px_rgba(78,57,39,0.04)] dark:border-[rgba(226,232,240,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.32)]'
-                            }`}
-                            style={{
-                                background: isFullyComplete
-                                    ? 'var(--checklist-track-bg-complete)'
-                                    : 'var(--checklist-track-bg)',
-                            }}>
-                                <div
-                                    className={`absolute inset-y-0 left-0 z-10 rounded-[999px] transition-[width] duration-700 ease-out ${percent >= 90 && !isFullyComplete ? 'progress-liquid' : ''}`}
-                                    style={{
-                                        width: `${percent}%`,
-                                        background: isFullyComplete
-                                            ? 'linear-gradient(90deg, #b8442a 0%, #d96838 35%, #e8933a 70%, #f5c842 100%)'
-                                            : 'linear-gradient(90deg, #c8552e 0%, #dd6b36 40%, #e8882e 75%, #f0a832 100%)',
-                                        boxShadow: isFullyComplete
-                                            ? '0 0 12px rgba(217,119,87,0.4), inset 0 1px 0 rgba(255,255,255,0.3)'
-                                            : percent >= 90
-                                                ? '0 0 10px rgba(217,119,87,0.35), inset 0 1px 0 rgba(255,255,255,0.25)'
-                                                : '0 0 8px rgba(217,119,87,0.3), inset 0 1px 0 rgba(255,255,255,0.2)',
-                                    }}
-                                />
-
-                                {percent > 0 && (
+                    {!hideProgressBar && (
+                        <div className="relative z-20 flex items-center gap-2.5">
+                            <div className="min-w-0 flex-1">
+                                <div className={`relative z-20 w-full overflow-hidden rounded-full border h-4 ${
+                                    isFullyComplete
+                                        ? 'border-[#d7c09a]/50 shadow-[inset_0_1px_2px_rgba(138,91,61,0.06)] dark:border-[rgba(245,217,138,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.3)]'
+                                        : 'border-[#e8e0d4]/50 shadow-[inset_0_1px_2px_rgba(78,57,39,0.04)] dark:border-[rgba(226,232,240,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.32)]'
+                                }`}
+                                style={{
+                                    background: isFullyComplete
+                                        ? 'var(--checklist-track-bg-complete)'
+                                        : 'var(--checklist-track-bg)',
+                                }}>
                                     <div
-                                        className={`absolute top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 -translate-x-1/2 items-center justify-center rounded-full border text-[12px] transition-all duration-300 ${
-                                            isFullyComplete
-                                                ? 'border-amber-300 bg-gradient-to-b from-amber-50 to-amber-100 shadow-[0_0_16px_rgba(245,158,11,0.4),0_2px_6px_rgba(93,67,46,0.2)] animate-bounce-subtle'
-                                                : 'border-white bg-gradient-to-b from-white to-gray-50 shadow-[0_2px_8px_rgba(93,67,46,0.18),inset_0_1px_0_rgba(255,255,255,1)]'
-                                        }`}
-                                        style={{ left: `clamp(14px, ${percent}%, calc(100% - 14px))` }}
-                                    >
-                                        {isFullyComplete ? '🏆' : percent >= 75 ? '🔥' : percent >= 40 ? '✨' : '🌱'}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
+                                        className={`absolute inset-y-0 left-0 z-10 rounded-[999px] transition-[width] duration-700 ease-out ${percent >= 90 && !isFullyComplete ? 'progress-liquid' : ''}`}
+                                        style={{
+                                            width: `${percent}%`,
+                                            background: isFullyComplete
+                                                ? 'linear-gradient(90deg, #b8442a 0%, #d96838 35%, #e8933a 70%, #f5c842 100%)'
+                                                : 'linear-gradient(90deg, #c8552e 0%, #dd6b36 40%, #e8882e 75%, #f0a832 100%)',
+                                            boxShadow: isFullyComplete
+                                                ? '0 0 12px rgba(217,119,87,0.4), inset 0 1px 0 rgba(255,255,255,0.3)'
+                                                : percent >= 90
+                                                    ? '0 0 10px rgba(217,119,87,0.35), inset 0 1px 0 rgba(255,255,255,0.25)'
+                                                    : '0 0 8px rgba(217,119,87,0.3), inset 0 1px 0 rgba(255,255,255,0.2)',
+                                        }}
+                                    />
 
-                        <span
-                            className={`shrink-0 px-2.5 py-1 rounded-full border text-[12px] font-bold leading-none tabular-nums transition-all duration-300 ${
-                                isFullyComplete
-                                    ? 'bg-gradient-to-b from-[#faf6f0] to-[#f4ebe0] border-[#d7c09a]/70 text-[#8a5b3d] shadow-[0_1px_2px_rgba(138,91,61,0.1),inset_0_1px_0_rgba(255,255,255,0.8)]'
-                                    : 'bg-gradient-to-b from-[#fffdfa] to-[#f6efe6] border-[#dcccbc]/80 text-[#8f5d4e] shadow-[0_1px_2px_rgba(78,57,39,0.08),inset_0_1px_0_rgba(255,255,255,0.7)]'
-                            }`}
-                        >
-                            {percent}%
-                        </span>
-                    </div>
+                                    {percent > 0 && (
+                                        <div
+                                            className={`absolute top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 -translate-x-1/2 items-center justify-center rounded-full border text-[12px] transition-all duration-300 ${
+                                                isFullyComplete
+                                                    ? 'border-amber-300 bg-gradient-to-b from-amber-50 to-amber-100 shadow-[0_0_16px_rgba(245,158,11,0.4),0_2px_6px_rgba(93,67,46,0.2)] animate-bounce-subtle'
+                                                    : 'border-white bg-gradient-to-b from-white to-gray-50 shadow-[0_2px_8px_rgba(93,67,46,0.18),inset_0_1px_0_rgba(255,255,255,1)]'
+                                            }`}
+                                            style={{ left: `clamp(14px, ${percent}%, calc(100% - 14px))` }}
+                                        >
+                                            {isFullyComplete ? '🏆' : percent >= 75 ? '🔥' : percent >= 40 ? '✨' : '🌱'}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            <span
+                                className={`shrink-0 px-2.5 py-1 rounded-full border text-[12px] font-bold leading-none tabular-nums transition-all duration-300 ${
+                                    isFullyComplete
+                                        ? 'bg-gradient-to-b from-[#faf6f0] to-[#f4ebe0] border-[#d7c09a]/70 text-[#8a5b3d] shadow-[0_1px_2px_rgba(138,91,61,0.1),inset_0_1px_0_rgba(255,255,255,0.8)]'
+                                        : 'bg-gradient-to-b from-[#fffdfa] to-[#f6efe6] border-[#dcccbc]/80 text-[#8f5d4e] shadow-[0_1px_2px_rgba(78,57,39,0.08),inset_0_1px_0_rgba(255,255,255,0.7)]'
+                                }`}
+                            >
+                                {percent}%
+                            </span>
+                        </div>
+                    )}
                 </div>
 
                 <div className="lg:hidden border-b" style={{ backgroundColor: 'var(--surface-subtle)', borderColor: 'var(--dashboard-divider)' }}>
@@ -1289,6 +1296,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     initialAssignments,
     pinnedHabit = null,
     title,
+    subtitle,
     ctaLabel = 'Start Activity',
     variant = 'cards',
     actions,
@@ -1296,6 +1304,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     mobileTasksLinkLabel,
     refreshOnMount = false,
     showStudentStats = false,
+    hideProgressBar = false,
 }) => {
     const { assignments, loading } = useFeaturedAssignments({
         initialAssignments,
@@ -1310,9 +1319,18 @@ export const TodaysAssignments: React.FC<Props> = ({
         return title;
     })();
 
-    const weeklyRangeLabel = variant === 'checklist'
-        ? formatWeekRangeLabel(new Date())
-        : null;
+    const weeklyRangeLabel = (() => {
+        if (variant !== 'checklist') {
+            return null;
+        }
+        if (subtitle === undefined) {
+            return formatWeekRangeLabel(new Date());
+        }
+        if (subtitle === null || subtitle.trim() === '') {
+            return null;
+        }
+        return subtitle;
+    })();
 
     if (loading) {
         return (
@@ -1405,6 +1423,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                 resolvedTitle={resolvedTitle}
                 weeklyRangeLabel={weeklyRangeLabel}
                 showStudentStats={showStudentStats}
+                hideProgressBar={hideProgressBar}
             />
         );
     }
@@ -1423,7 +1442,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                         const isNew = isNewlyFeatured(assignment);
                         const categoryStyle = getCategoryStyle(assignment.activity.category);
                         const rawTitle = assignment.title || assignment.activity.title;
-                        const displayTitle = stripVocabTypeSuffix(rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide'));
+                        const displayTitle = assignment.displayTitle || stripVocabTypeSuffix(rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide'));
 
                         return (
                             <AssignmentCard

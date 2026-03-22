@@ -4,20 +4,27 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from '@/components/ThemeProvider';
-import { HomeIcon, BookOpenIcon, CalendarIcon, TrophyIcon } from '@/components/icons/Icons';
+import { HomeIcon, BookOpenIcon, CalendarIcon, TrophyIcon, StarIcon } from '@/components/icons/Icons';
 
 // ─── Stable nav config (never changes, never creates new references) ───
 type NavItemConfig = {
   href: string;
   label: string;
-  iconKey: 'home' | 'activities' | 'calendar' | 'leaderboard';
+  iconKey: 'home' | 'activities' | 'calendar' | 'leaderboard' | 'profile';
 };
 
-const NAV_ITEMS: NavItemConfig[] = [
+const CLASSROOM_NAV_ITEMS: NavItemConfig[] = [
   { href: '/dashboard', label: 'Home', iconKey: 'home' },
   { href: '/dashboard/activities', label: 'Activities', iconKey: 'activities' },
   { href: '/dashboard/calendar', label: 'Calendar', iconKey: 'calendar' },
   { href: '/dashboard/leaderboard', label: 'Leaderboard', iconKey: 'leaderboard' },
+];
+
+const INDEPENDENT_NAV_ITEMS: NavItemConfig[] = [
+  { href: '/dashboard/independent', label: 'Home', iconKey: 'home' },
+  { href: '/dashboard/activities', label: 'Activities', iconKey: 'activities' },
+  { href: '/dashboard/leaderboard', label: 'Leaderboard', iconKey: 'leaderboard' },
+  { href: '/dashboard/profile', label: 'Profile', iconKey: 'profile' },
 ];
 
 const ICON_MAP: Record<NavItemConfig['iconKey'], React.FC<{ className?: string }>> = {
@@ -25,6 +32,7 @@ const ICON_MAP: Record<NavItemConfig['iconKey'], React.FC<{ className?: string }
   activities: BookOpenIcon,
   calendar: CalendarIcon,
   leaderboard: TrophyIcon,
+  profile: StarIcon,
 };
 
 // ─── Telemetry (tab-nav metrics) ───
@@ -102,7 +110,11 @@ function flushQueue(force = false) {
 }
 
 // ─── Component ───
-export const BottomNav = React.memo(function BottomNav() {
+interface BottomNavProps {
+  variant?: 'classroom' | 'independent';
+}
+
+export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavProps) {
   const pathname = usePathname();
   const router = useRouter();
   const { resolvedTheme } = useTheme();
@@ -113,6 +125,9 @@ export const BottomNav = React.memo(function BottomNav() {
   const shouldTrackRef = useRef(false);
   const previousPathnameRef = useRef<string | null>(null);
   const renderTheme = hasMounted ? resolvedTheme : 'light';
+  // Auto-detect independent variant from pathname if not explicitly set
+  const isIndependentVariant = variant === 'independent' || (variant === undefined && pathname?.startsWith('/dashboard/independent'));
+  const navItems = isIndependentVariant ? INDEPENDENT_NAV_ITEMS : CLASSROOM_NAV_ITEMS;
 
   useEffect(() => {
     setHasMounted(true);
@@ -228,8 +243,8 @@ export const BottomNav = React.memo(function BottomNav() {
 
   // Prefetch all tab routes once on mount (stable dependency)
   useEffect(() => {
-    NAV_ITEMS.forEach((item) => router.prefetch(item.href));
-  }, [router]);
+    navItems.forEach((item) => router.prefetch(item.href));
+  }, [navItems, router]);
 
   const handleClick = useCallback(
     (item: NavItemConfig, event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -244,7 +259,7 @@ export const BottomNav = React.memo(function BottomNav() {
       navTapAtRef.current = performance.now();
       navFromPathRef.current = fromPath;
       shouldTrackRef.current = shouldTrack;
-      if (item.href === '/dashboard/activities') {
+          if (item.href === '/dashboard/activities') {
         const lastActivitiesHref = window.sessionStorage.getItem(ACTIVITIES_LAST_HREF_STORAGE_KEY);
         if (lastActivitiesHref && lastActivitiesHref !== '/dashboard/activities') {
           event.preventDefault();
@@ -288,15 +303,18 @@ export const BottomNav = React.memo(function BottomNav() {
           className="relative grid items-center px-2"
           style={{
             height: 'var(--bottom-nav-height)',
-            gridTemplateColumns: `repeat(${NAV_ITEMS.length}, minmax(0, 1fr))`
+            gridTemplateColumns: `repeat(${navItems.length}, minmax(0, 1fr))`
           }}
         >
-          {NAV_ITEMS.map((item) => {
+          {navItems.map((item) => {
             const isActive = item.href === '/dashboard'
               ? pathname === '/dashboard'
+              : item.href === '/dashboard/independent'
+              ? pathname === '/dashboard/independent'
               : pathname === item.href || pathname?.startsWith(item.href + '/');
-            const isActivitiesTab = item.href === '/dashboard/activities';
+            const isActivitiesTab = item.href === '/dashboard/activities' && !isIndependentVariant;
             const IconComponent = ICON_MAP[item.iconKey];
+            const useIndependentTabStyle = isIndependentVariant;
 
             return (
               <Link
@@ -312,7 +330,11 @@ export const BottomNav = React.memo(function BottomNav() {
                 }}
               >
                 <div
-                  className={`relative z-10 flex flex-col items-center justify-center gap-0.5 transition-[color,opacity] duration-150 ${
+                  className={`relative z-10 flex flex-col items-center justify-center transition-[color,opacity] duration-150 ${
+                    useIndependentTabStyle
+                      ? 'gap-0'
+                      : 'gap-0.5'
+                  } ${
                     isActivitiesTab
                       ? isActive
                         ? renderTheme === 'dark' ? 'text-[#8bc4a8]' : 'text-[#9f523d]'
@@ -324,7 +346,11 @@ export const BottomNav = React.memo(function BottomNav() {
                 >
                   <div
                     className={`relative flex items-center justify-center transition-all ${
-                      isActivitiesTab ? 'h-10 w-10' : 'h-8 w-8'
+                      useIndependentTabStyle
+                        ? 'h-8 w-8'
+                        : isActivitiesTab
+                        ? 'h-10 w-10'
+                        : 'h-8 w-8'
                     }`}
                   >
                     {isActivitiesTab && (
@@ -351,7 +377,11 @@ export const BottomNav = React.memo(function BottomNav() {
 
                     <div
                       className={`relative [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto ${
-                        isActivitiesTab ? 'h-8 w-8' : 'h-7 w-7'
+                        useIndependentTabStyle
+                          ? 'h-6.5 w-6.5'
+                          : isActivitiesTab
+                          ? 'h-8 w-8'
+                          : 'h-7 w-7'
                       }`}
                       style={isActivitiesTab
                         ? {
@@ -366,13 +396,30 @@ export const BottomNav = React.memo(function BottomNav() {
                               ? 'drop-shadow(0 2px 6px rgba(122,157,132,0.22))'
                               : 'drop-shadow(0 1px 3px rgba(122,157,132,0.16))'
                           }
+                        : useIndependentTabStyle
+                        ? {
+                            color: renderTheme === 'dark'
+                              ? isActive ? '#9fc0da' : '#93a6ba'
+                              : isActive ? '#8fc6aa' : '#a9b8c6',
+                            filter: renderTheme === 'dark'
+                              ? isActive
+                                ? 'drop-shadow(0 2px 6px rgba(159,192,218,0.18))'
+                                : 'drop-shadow(0 1px 2px rgba(147,166,186,0.10))'
+                              : isActive
+                              ? 'drop-shadow(0 2px 6px rgba(143,198,170,0.18))'
+                              : 'drop-shadow(0 1px 2px rgba(169,184,198,0.10))'
+                          }
                         : undefined}
                     >
                       <IconComponent />
                     </div>
                   </div>
-                  <span className={`font-bold tracking-tight leading-none transition-all duration-200 opacity-100 ${
-                    isActivitiesTab
+                  <span className={`font-bold tracking-tight transition-all duration-200 opacity-100 ${
+                    useIndependentTabStyle
+                      ? isActive
+                        ? 'mt-0.5 text-[10px] leading-none text-[#dce8f4] dark:text-[#dce8f4]'
+                        : 'mt-0.5 text-[10px] leading-none text-[#a9b8c6] dark:text-[#9aacbe]'
+                      : isActivitiesTab
                       ? isActive
                         ? 'text-[10px] text-[#3d5c47] dark:text-[#8bc4a8]'
                         : 'text-[11px] text-[#3d5c47] dark:text-[#6da88a]'
@@ -386,12 +433,20 @@ export const BottomNav = React.memo(function BottomNav() {
                 
                 <div
                   className={`bottom-nav-indicator absolute top-0 left-1/2 -translate-x-1/2 rounded-b-full ${
-                    isActivitiesTab ? 'w-14 h-1.5' : 'w-10 h-1'
+                    useIndependentTabStyle
+                      ? 'w-8 h-1'
+                      : isActivitiesTab
+                      ? 'w-14 h-1.5'
+                      : 'w-10 h-1'
                   } ${
                     isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
                   }`}
                   style={{
-                    background: renderTheme === 'dark'
+                    background: useIndependentTabStyle
+                      ? renderTheme === 'dark'
+                        ? 'linear-gradient(90deg, #8fc6aa 0%, #9fc0da 100%)'
+                        : 'linear-gradient(90deg, #88A392 0%, #7fb3d5 100%)'
+                      : renderTheme === 'dark'
                       ? isActivitiesTab
                         ? 'linear-gradient(90deg, #f5d98a 0%, #e8a090 50%, #d08878 100%)'
                         : 'linear-gradient(90deg, #5a92b8 0%, #7fb3d5 50%, #a8d5f7 100%)'

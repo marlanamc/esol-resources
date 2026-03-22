@@ -39,6 +39,12 @@ export default function LoginPage() {
                         Espanol: Entra con tu clave temporal. Luego crea una clave nueva. Despues vuelve a entrar.
                     </p>
                 </div>
+                <p className="text-center text-sm text-[var(--color-text-muted)]">
+                    Have an invite code?{" "}
+                    <Link href="/join" className="text-primary hover:underline font-semibold">
+                        Create an account
+                    </Link>
+                </p>
                 <p className="text-center text-xs text-[var(--color-text-muted)]">
                     <Link href="/privacy" className="hover:underline">
                         Privacy Policy

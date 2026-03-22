@@ -30,7 +30,7 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:e2e:mobile": "playwright test tests/e2e/mobile-pwa-smoke.spec.ts",
-    "test:e2e:smoke": "playwright test tests/e2e/mobile-pwa-smoke.spec.ts tests/e2e/auth-flow.spec.ts",
+    "test:e2e:smoke": "playwright test tests/e2e/mobile-pwa-smoke.spec.ts",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:install": "playwright install --with-deps",
     "lint": "eslint",
@@ -98,12 +98,15 @@
     "@types/sanitize-html": "^2.16.0",
     "@types/web-push": "^3.6.4",
     "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "^9",
+    "eslint": "^9.39.4",
     "eslint-config-next": "16.0.7",
     "prisma": "^6.19.0",
     "tailwindcss": "^4",
     "tsx": "^4.19.2",
     "typescript": "^5",
     "vitest": "^4.0.18"
+  },
+  "overrides": {
+    "flatted": "^3.4.2"
   }
 }

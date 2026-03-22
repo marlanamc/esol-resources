@@ -1,4 +1,5 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
+import { loginAsTeacher } from "./helpers/auth";
 
 const GUIDE_SLUGS = [
   "past-perfect-family",
@@ -37,11 +38,7 @@ async function loginWithDarkTheme(page: Page) {
     window.localStorage.setItem("class-companion-theme", "dark");
   });
 
-  await page.goto("/login");
-  await page.getByLabel(/username/i).fill("e2e-teacher");
-  await page.getByLabel(/password/i).fill("password123");
-  await page.getByRole("button", { name: /sign in/i }).click();
-  await expect(page).toHaveURL(/\/dashboard/, { timeout: 10000 });
+  await loginAsTeacher(page, { timeout: 10000 });
 }
 
 type StyleSnapshot = {

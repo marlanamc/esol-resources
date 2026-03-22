@@ -1,12 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-
-async function loginAsStudent(page: Page) {
-  await page.goto("/login");
-  await page.getByLabel(/username/i).fill("e2e-student");
-  await page.getByLabel(/password/i).fill("password123");
-  await page.getByRole("button", { name: /sign in/i }).click();
-  await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });
-}
+import { loginAsStudent } from "./helpers/auth";
 
 test.describe("Learner search", () => {
   test.beforeEach(async ({ page }) => {

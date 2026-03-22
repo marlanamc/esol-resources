@@ -11,7 +11,9 @@ export interface VocabCategoryData {
 
 export interface FeaturedAssignment {
     id: string;
+    assignmentId?: string | null;
     title?: string | null;
+    displayTitle?: string | null;
     activityId: string;
     href?: string;
     sectionCount?: number;

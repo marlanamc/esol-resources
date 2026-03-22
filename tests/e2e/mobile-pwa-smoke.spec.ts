@@ -1,26 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-
-async function loginAsStudent(page: Page) {
-  let lastError: unknown;
-
-  for (let attempt = 0; attempt < 2; attempt += 1) {
-    await page.goto("/login");
-    await page.waitForLoadState("networkidle");
-    await page.getByLabel(/username/i).fill("e2e-student");
-    await page.getByLabel(/password/i).fill("password123");
-    await page.waitForTimeout(500);
-    await page.getByRole("button", { name: /sign in/i }).tap({ position: { x: 50, y: 25 } });
-
-    try {
-      await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });
-      return;
-    } catch (error) {
-      lastError = error;
-    }
-  }
-
-  throw lastError;
-}
+import { loginAsStudent } from "./helpers/auth";
 
 async function expectDocumentUnlocked(page: Page) {
   await expect
@@ -77,7 +56,12 @@ test.describe("Mobile PWA smoke", () => {
   });
 
   test("learner menu navigation releases document locks on mobile", async ({ page }) => {
-    await loginAsStudent(page);
+    await loginAsStudent(page, {
+      attempts: 2,
+      submitDelayMs: 500,
+      submitMethod: "tap",
+      waitForNetworkIdle: true,
+    });
 
     const menuButton = page.getByRole("button", { name: /open navigation menu/i }).first();
     await menuButton.click();
@@ -99,7 +83,12 @@ test.describe("Mobile PWA smoke", () => {
   });
 
   test("pagehide closes learner menu and clears mobile document locks", async ({ page }) => {
-    await loginAsStudent(page);
+    await loginAsStudent(page, {
+      attempts: 2,
+      submitDelayMs: 500,
+      submitMethod: "tap",
+      waitForNetworkIdle: true,
+    });
 
     const menuButton = page.getByRole("button", { name: /open navigation menu/i }).first();
     await menuButton.click();

@@ -1,12 +1,9 @@
 import { expect, test } from "@playwright/test";
+import { loginAsStudent } from "./helpers/auth";
 
 test.describe("Student flow", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/login");
-    await page.getByLabel(/username/i).fill("e2e-student");
-    await page.getByLabel(/password/i).fill("password123");
-    await page.getByRole("button", { name: /sign in/i }).click();
-    await expect(page).toHaveURL(/\/dashboard/);
+    await loginAsStudent(page);
   });
 
   test("student can view join class page and submit code", async ({ page }) => {

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import ReportSummaryStats from './ReportSummaryStats';
 import PopularActivitiesChart from './PopularActivitiesChart';
 import ActiveStudentsList from './ActiveStudentsList';
+import RecentActivityFeed from './RecentActivityFeed';
 
 interface PopularActivity {
   activityId: string;
@@ -19,6 +20,19 @@ interface ActiveStudent {
   firstName: string;
   activitiesCompleted: number;
   pointsEarned: number;
+  lastActivityReason?: string;
+  lastActivityTime?: string;
+}
+
+interface RecentActivityEntry {
+  odgerId: string;
+  userId: string;
+  studentName: string;
+  studentUsername: string;
+  activity: string;
+  activityType?: string;
+  points: number;
+  timestamp: string;
 }
 
 interface ReportData {
@@ -26,6 +40,7 @@ interface ReportData {
   lastUpdated: string;
   popularActivities: PopularActivity[];
   activeStudents: ActiveStudent[];
+  recentActivity: RecentActivityEntry[];
   summary: {
     totalPlays: number;
     totalActiveStudents: number;
@@ -39,9 +54,14 @@ interface ClassOption {
   studentCount: number;
 }
 
+type LearnerType = 'classroom' | 'independent' | 'all';
+
 interface TeacherReportCardProps {
   initialData?: ReportData;
   classes?: ClassOption[];
+  showLearnerTypeFilter?: boolean;
+  classroomCount?: number;
+  independentCount?: number;
 }
 
 function timeAgo(dateString: string): string {
@@ -61,9 +81,13 @@ function timeAgo(dateString: string): string {
 export default function TeacherReportCard({
   initialData,
   classes = [],
+  showLearnerTypeFilter = false,
+  classroomCount = 0,
+  independentCount = 0,
 }: TeacherReportCardProps) {
   const [timeframe, setTimeframe] = useState<'daily' | 'weekly'>('weekly');
   const [selectedClassId, setSelectedClassId] = useState<string>('all');
+  const [learnerType, setLearnerType] = useState<LearnerType>('classroom');
   const [data, setData] = useState<ReportData | null>(initialData || null);
   const [loading, setLoading] = useState(!initialData);
   const [error, setError] = useState<string | null>(null);
@@ -79,10 +103,10 @@ export default function TeacherReportCard({
     }
   }, [data?.lastUpdated]);
 
-  // Fetch data when timeframe or class changes
+  // Fetch data when timeframe, class, or learner type changes
   useEffect(() => {
     // Skip fetch if using initial data and timeframe is weekly
-    if (initialData && timeframe === 'weekly' && selectedClassId === 'all' && !data) {
+    if (initialData && timeframe === 'weekly' && selectedClassId === 'all' && learnerType === 'classroom' && !data) {
       setData(initialData);
       return;
     }
@@ -95,6 +119,9 @@ export default function TeacherReportCard({
         const params = new URLSearchParams({ timeframe });
         if (selectedClassId !== 'all') {
           params.append('classId', selectedClassId);
+        }
+        if (learnerType !== 'classroom') {
+          params.append('learnerType', learnerType);
         }
 
         const response = await fetch(
@@ -109,7 +136,7 @@ export default function TeacherReportCard({
         setData(reportData);
 
         // Cache to localStorage
-        const cacheKey = `teacher-report-${timeframe}-${selectedClassId}`;
+        const cacheKey = `teacher-report-${timeframe}-${selectedClassId}-${learnerType}`;
         localStorage.setItem(
           cacheKey,
           JSON.stringify({
@@ -122,7 +149,7 @@ export default function TeacherReportCard({
         setError('Unable to load report. Please try again.');
 
         // Try to load from cache
-        const cacheKey = `teacher-report-${timeframe}-${selectedClassId}`;
+        const cacheKey = `teacher-report-${timeframe}-${selectedClassId}-${learnerType}`;
         const cached = localStorage.getItem(cacheKey);
         if (cached) {
           try {
@@ -143,7 +170,7 @@ export default function TeacherReportCard({
     };
 
     fetchData();
-  }, [timeframe, selectedClassId]); // Fetch when timeframe or class changes
+  }, [timeframe, selectedClassId, learnerType]); // Fetch when timeframe, class, or learner type changes
 
   // Keyboard shortcuts (D for Daily, W for Weekly)
   useEffect(() => {
@@ -188,10 +215,40 @@ export default function TeacherReportCard({
           )}
         </div>
 
+        {/* Learner Type Filter (Admin only) */}
+        {showLearnerTypeFilter && (
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-semibold text-text-muted">Learner Type:</span>
+            <div className="inline-flex items-center rounded-lg p-1 bg-bg-light border border-border/40">
+              {[
+                { type: 'classroom' as LearnerType, label: 'Classroom', count: classroomCount },
+                { type: 'independent' as LearnerType, label: 'Independent', count: independentCount },
+                { type: 'all' as LearnerType, label: 'All', count: classroomCount + independentCount },
+              ].map((option) => (
+                <button
+                  key={option.type}
+                  type="button"
+                  onClick={() => setLearnerType(option.type)}
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 ${
+                    learnerType === option.type
+                      ? 'bg-primary text-white shadow-sm'
+                      : 'text-text-muted hover:text-text hover:bg-white'
+                  }`}
+                >
+                  {option.label}
+                  <span className={`ml-1 ${learnerType === option.type ? 'text-white/80' : 'text-text-light'}`}>
+                    ({option.count})
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Class Selector and Toggle Buttons Row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          {/* Class Selector Dropdown */}
-          {classes.length > 0 && (
+          {/* Class Selector Dropdown - hide when viewing independent learners */}
+          {classes.length > 0 && learnerType !== 'independent' && (
             <select
               value={selectedClassId}
               onChange={(e) => setSelectedClassId(e.target.value)}
@@ -261,6 +318,17 @@ export default function TeacherReportCard({
       {/* Summary Stats */}
       <div aria-live="polite">
         <ReportSummaryStats summary={data?.summary} loading={loading} />
+      </div>
+
+      {/* Recent Activity Feed - Primary Section */}
+      <div className="mb-6" aria-live="polite">
+        <h3 className="text-sm font-bold uppercase tracking-widest text-text-muted mb-4">
+          Recent Activity
+        </h3>
+        <RecentActivityFeed
+          activities={data?.recentActivity || []}
+          loading={loading}
+        />
       </div>
 
       {/* Activities and Students Grid */}

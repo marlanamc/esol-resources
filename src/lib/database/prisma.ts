@@ -5,20 +5,20 @@ const globalForPrisma = global as unknown as { prisma: PrismaClient };
 function withSafePoolDefaults(url: string | undefined): string | undefined {
     if (!url) return url;
 
-    // Serverless runtimes can spawn many instances; keep each client pool small
-    // and allow a bit more time to wait for a free connection.
-    if (process.env.NODE_ENV !== "production") return url;
-
     try {
         const parsed = new URL(url);
         if (parsed.protocol !== "postgres:" && parsed.protocol !== "postgresql:") {
             return url;
         }
 
+        // Set pool defaults for both dev and production to prevent connection exhaustion
         if (!parsed.searchParams.has("connection_limit")) {
-            parsed.searchParams.set("connection_limit", "1");
+            // In production, serverless runtimes spawn many instances - keep pool small
+            // In development, we need enough connections for HMR + parallel queries
+            parsed.searchParams.set("connection_limit", process.env.NODE_ENV === "production" ? "1" : "5");
         }
         if (!parsed.searchParams.has("pool_timeout")) {
+            // Allow more time to wait for a free connection
             parsed.searchParams.set("pool_timeout", "30");
         }
         return parsed.toString();

@@ -5,6 +5,7 @@ import { getTimeframedLeaderboard, LeaderboardRange } from '@/lib/gamification';
 import { prisma } from '@/lib/prisma';
 import { classOwnershipWhere, ensureTeacher } from '@/lib/policies';
 import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
+import { resolveLearnerMode } from '@/lib/learner-mode';
 
 /**
  * GET /api/gamification/leaderboard
@@ -20,7 +21,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const classId = searchParams.get('classId');
     const scopeParam = (searchParams.get('scope') || 'section').toLowerCase();
-    const scope = scopeParam === 'all' ? 'all' : 'section';
+    const scope = scopeParam === 'all' || scopeParam === 'independent' ? scopeParam : 'section';
     const limit = parseInt(searchParams.get('limit') || '20');
     const timeframeParam = (searchParams.get('timeframe') || 'week').toLowerCase() as LeaderboardRange;
     const timeframe: LeaderboardRange = ['day', 'week', 'month'].includes(timeframeParam) ? timeframeParam : 'week';
@@ -63,21 +64,31 @@ export async function GET(req: NextRequest) {
       }
     }
 
+    let leaderboardOptions: { independentOnly?: boolean } | undefined;
+
     if (user.role === "student") {
       const enrollments = await prisma.classEnrollment.findMany({
         where: { studentId: user.id },
         orderBy: { joinedAt: "desc" },
         select: {
           classId: true,
-          class: {
-            select: {
-              teacherId: true,
-            },
-          },
         },
       });
 
-      if (scope === "all") {
+      const preferences = await prisma.userPreferences.findUnique({
+        where: { userId: user.id },
+        select: { learnerMode: true },
+      });
+      const learnerMode = resolveLearnerMode({
+        storedMode: preferences?.learnerMode,
+        enrollmentCount: enrollments.length,
+      });
+
+      if (scope === "independent" || learnerMode === "independent") {
+        leaderboardOptions = { independentOnly: true };
+        resolvedClassId = undefined;
+        resolvedClassIds = undefined;
+      } else if (scope === "all") {
         const activeClassId = resolvedClassId || enrollments[0]?.classId;
 
         if (activeClassId) {
@@ -116,14 +127,14 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    const leaderboard = await getTimeframedLeaderboard(timeframe, limit, resolvedClassId, resolvedClassIds);
+    const leaderboard = await getTimeframedLeaderboard(timeframe, limit, resolvedClassId, resolvedClassIds, leaderboardOptions);
     const userRank = leaderboard.findIndex((entry) => entry.id === user.id) + 1;
 
     return NextResponse.json({
       leaderboard,
       userRank: userRank > 0 ? userRank : null,
       classId: resolvedClassId || null,
-      scope,
+      scope: leaderboardOptions?.independentOnly ? 'independent' : scope,
     });
   } catch (error) {
     return handleApiError(error, {

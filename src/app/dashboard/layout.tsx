@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getTimeframedLeaderboard } from "@/lib/gamification";
+import { resolveLearnerMode, type LearnerMode } from "@/lib/learner-mode";
 import { BottomNav } from "@/components/ui";
 import { DashboardHeader } from "@/components/dashboard";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
@@ -10,25 +11,64 @@ import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 import { NetworkStatusBanner } from "@/components/NetworkStatusBanner";
 import { SubmissionOutboxManager } from "@/components/SubmissionOutboxManager";
 
-async function getStudentLeaderboardRank(userId: string): Promise<number | null> {
-    const enrollment = await prisma.classEnrollment.findFirst({
-        where: { studentId: userId },
-        orderBy: { joinedAt: "desc" },
-        select: { classId: true },
+async function getStudentDashboardContext(userId: string): Promise<{
+    learnerMode: LearnerMode;
+    leaderboardRank: number | null;
+}> {
+    const [preferences, latestEnrollment, enrollmentCount] = await Promise.all([
+        prisma.userPreferences.findUnique({
+            where: { userId },
+            select: { learnerMode: true },
+        }),
+        prisma.classEnrollment.findFirst({
+            where: { studentId: userId },
+            orderBy: { joinedAt: "desc" },
+            select: { classId: true },
+        }),
+        prisma.classEnrollment.count({
+            where: { studentId: userId },
+        }),
+    ]);
+
+    const learnerMode = resolveLearnerMode({
+        storedMode: preferences?.learnerMode,
+        enrollmentCount,
     });
-    if (!enrollment) return null;
-    const leaderboard = await getTimeframedLeaderboard("week", 20, enrollment.classId);
+
+    if (learnerMode === "independent") {
+        const leaderboard = await getTimeframedLeaderboard("week", 20, undefined, undefined, { independentOnly: true });
+        const entry = leaderboard.find((e) => e.id === userId);
+        return {
+            learnerMode,
+            leaderboardRank: entry && entry.rank <= 3 ? entry.rank : null,
+        };
+    }
+
+    if (!latestEnrollment) {
+        return {
+            learnerMode,
+            leaderboardRank: null,
+        };
+    }
+
+    const leaderboard = await getTimeframedLeaderboard("week", 20, latestEnrollment.classId);
     const entry = leaderboard.find((e) => e.id === userId);
-    return entry && entry.rank <= 3 ? entry.rank : null;
+    return {
+        learnerMode,
+        leaderboardRank: entry && entry.rank <= 3 ? entry.rank : null,
+    };
 }
 
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
     const session = await getServerSession(authOptions);
 
     let leaderboardRank: number | null = null;
+    let learnerMode: LearnerMode = "classroom";
     
     if (session?.user?.role === "student" && session.user?.id) {
-        leaderboardRank = await getStudentLeaderboardRank(session.user.id);
+        const studentDashboardContext = await getStudentDashboardContext(session.user.id);
+        leaderboardRank = studentDashboardContext.leaderboardRank;
+        learnerMode = studentDashboardContext.learnerMode;
     }
 
     return (
@@ -56,7 +96,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                 </>
             )}
             <PWAInstallPrompt />
-            <BottomNav />
+            <BottomNav variant={learnerMode} />
         </div>
     );
 }

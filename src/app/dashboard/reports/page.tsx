@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { isTeacherAdmin } from "@/lib/roles";
+import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 import TeacherReportCard from "@/components/dashboard/TeacherReportCard";
 
 export const metadata = {
@@ -72,6 +73,18 @@ export default async function ReportsPage() {
     studentCount: cls._count.enrollments,
   }));
 
+  // Get counts for learner type filter (admin only)
+  const classroomCount = formattedClasses.reduce((sum, c) => sum + c.studentCount, 0);
+  const independentCount = admin
+    ? await prisma.user.count({
+        where: {
+          role: "student",
+          isSystemAccount: false,
+          ...buildIndependentLearnerWhere(),
+        },
+      })
+    : 0;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
@@ -86,7 +99,12 @@ export default async function ReportsPage() {
         </div>
 
         {/* Report Card */}
-        <TeacherReportCard classes={formattedClasses} />
+        <TeacherReportCard
+          classes={formattedClasses}
+          showLearnerTypeFilter={admin}
+          classroomCount={classroomCount}
+          independentCount={independentCount}
+        />
       </div>
     </div>
   );

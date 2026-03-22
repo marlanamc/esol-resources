@@ -1,29 +1,13 @@
-import { expect, test, type Page } from "@playwright/test";
-
-async function loginAsStudent(page: Page) {
-  let lastError: unknown;
-
-  for (let attempt = 0; attempt < 2; attempt += 1) {
-    await page.goto("/login");
-    await page.getByLabel(/username/i).fill("e2e-student");
-    await page.locator('input[name="password"]').fill("password123");
-    await page.waitForTimeout(500);
-    await page.getByRole("button", { name: /sign in/i }).tap({ position: { x: 50, y: 25 } });
-
-    try {
-      await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });
-      return;
-    } catch (error) {
-      lastError = error;
-    }
-  }
-
-  throw lastError;
-}
+import { expect, test } from "@playwright/test";
+import { loginAsStudent } from "./helpers/auth";
 
 test.describe("Grammar reader mobile mini quiz", () => {
   test("keeps the quiz submit action accessible on mobile", async ({ page }) => {
-    await loginAsStudent(page);
+    await loginAsStudent(page, {
+      attempts: 2,
+      submitDelayMs: 500,
+      submitMethod: "tap",
+    });
 
     await page.goto("/grammar-reader/present-simple", { waitUntil: "domcontentloaded" });
 

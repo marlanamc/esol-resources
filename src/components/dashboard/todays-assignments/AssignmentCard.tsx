@@ -101,7 +101,8 @@ export function AssignmentCard({
 
                 <ActivityLink
                     activityId={assignment.activityId}
-                    assignmentId={assignment.id}
+                    assignmentId={assignment.assignmentId ?? assignment.id}
+                    href={assignment.href}
                     className="dashboard-accent-button inline-flex min-h-11 items-center justify-center rounded-2xl px-4 py-2 text-sm font-semibold whitespace-nowrap active:scale-95 sm:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                     aria-label={`${isCompleted ? 'Review' : ctaLabel} ${displayTitle}`}
                     style={

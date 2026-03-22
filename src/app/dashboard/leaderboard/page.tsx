@@ -40,8 +40,10 @@ interface ClassOption {
   name: string;
 }
 
-type LeaderboardScope = 'section' | 'all';
+type LeaderboardScope = 'section' | 'all' | 'independent';
 type ViewerRole = 'student' | 'teacher' | 'admin' | null;
+type LearnerMode = 'classroom' | 'independent' | null;
+type IsAdmin = boolean;
 
 async function fetchLeaderboard({
   classId,
@@ -72,7 +74,7 @@ async function fetchLeaderboard({
     leaderboard: data.leaderboard || [],
     userRank: data.userRank || null,
     classId: data.classId || null,
-    scope: data.scope === 'all' ? 'all' : 'section',
+    scope: data.scope === 'all' || data.scope === 'independent' ? data.scope : 'section',
   };
 }
 
@@ -84,6 +86,8 @@ export default function LeaderboardPage() {
   const [classOptions, setClassOptions] = useState<ClassOption[]>([]);
   const [scope, setScope] = useState<LeaderboardScope>('section');
   const [viewerRole, setViewerRole] = useState<ViewerRole>(null);
+  const [learnerMode, setLearnerMode] = useState<LearnerMode>(null);
+  const [isAdmin, setIsAdmin] = useState<IsAdmin>(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -102,8 +106,10 @@ export default function LeaderboardPage() {
         setUserRank(payload.userRank);
         setClassOptions(contextData.classes || []);
         setViewerRole(contextData.viewerRole || null);
+        setLearnerMode(contextData.learnerMode || null);
+        setIsAdmin(contextData.isAdmin || false);
         setSelectedClassId(payload.classId || contextData.defaultClassId || null);
-        setScope(payload.scope || 'section');
+        setScope(contextData.defaultScope || payload.scope || 'section');
       } catch (error) {
         console.error('Failed to fetch leaderboard:', error);
       } finally {
@@ -198,7 +204,31 @@ export default function LeaderboardPage() {
   }
 
   const hasNonZeroScores = leaderboard.some((entry) => entry.weeklyPoints > 0);
-  const studentScopeToggle = viewerRole === 'student' ? (
+  const studentScopeToggle = viewerRole === 'student' && learnerMode === 'independent' ? (
+    <div
+      className="inline-flex items-center rounded-full p-0.5 sm:rounded-lg sm:p-1"
+      style={{
+        border: '1px solid var(--border-subtle)',
+        backgroundColor: 'var(--surface-contrast)',
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.12), 0 1px 2px rgba(13,22,32,0.10)',
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => void onScopeChange('independent')}
+        aria-pressed={scope === 'independent'}
+        className="!min-h-0 !min-w-0 px-3 py-1 text-[10px] leading-none sm:px-4 sm:py-1.5 sm:text-xs font-semibold sm:font-bold rounded-full sm:rounded-md transition-all duration-200"
+        style={{
+          backgroundColor: 'var(--color-primary)',
+          color: 'var(--text-on-accent)',
+          boxShadow: '0 1px 2px color-mix(in srgb, var(--color-primary) 28%, transparent), inset 0 1px 0 rgba(255,255,255,0.18)',
+        }}
+      >
+        <span className="sm:hidden">Independent</span>
+        <span className="hidden sm:inline">Independent</span>
+      </button>
+    </div>
+  ) : viewerRole === 'student' ? (
     <div
       className="inline-flex items-center rounded-full p-0.5 sm:rounded-lg sm:p-1"
       style={{
@@ -264,36 +294,90 @@ export default function LeaderboardPage() {
               </div>
               <div className="flex flex-col justify-center py-0.5 pt-1 sm:pt-0.5">
                 <h1 className="text-[1.75rem] leading-[0.95] sm:text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
-                  Weekly Leaderboard
+                  {scope === 'independent' ? 'Independent Leaderboard' : 'Weekly Leaderboard'}
                 </h1>
                 <p className="text-[13px] sm:text-sm font-medium leading-tight mt-1 sm:mt-0.5" style={{ color: 'var(--success-color)' }}>
-                  Top performers this week
+                  {scope === 'independent' ? 'Top independent learners this week' : 'Top performers this week'}
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               {viewerRole === 'student' ? (
                 <div className="hidden sm:inline-flex">
                   {studentScopeToggle}
                 </div>
-              ) : classOptions.length > 1 ? (
-                <div className="inline-flex items-center rounded-lg border px-3 py-1.5 shadow-sm" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-elevated)' }}>
-                  <select
-                    id="leaderboard-class"
-                    value={selectedClassId || ''}
-                    onChange={(e) => void onClassChange(e.target.value)}
-                    className="border-none bg-transparent text-sm font-bold focus:outline-none cursor-pointer"
-                    style={{ color: 'var(--color-text-muted)' }}
-                  >
-                    {classOptions.map((cls) => (
-                      <option key={cls.id} value={cls.id}>
-                        {cls.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              ) : null}
+              ) : (
+                <>
+                  {/* Admin scope toggle - allows viewing independent learners */}
+                  {isAdmin && (
+                    <div
+                      className="inline-flex items-center rounded-lg p-1"
+                      style={{
+                        border: '1px solid var(--border-subtle)',
+                        backgroundColor: 'var(--surface-contrast)',
+                      }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => void onScopeChange('section')}
+                        aria-pressed={scope === 'section'}
+                        className="px-3 py-1.5 text-xs font-bold rounded-md transition-all duration-200"
+                        style={
+                          scope === 'section'
+                            ? {
+                                backgroundColor: 'var(--color-primary)',
+                                color: 'var(--text-on-accent)',
+                              }
+                            : {
+                                backgroundColor: 'transparent',
+                                color: 'var(--color-text-muted)',
+                              }
+                        }
+                      >
+                        Classroom
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => void onScopeChange('independent')}
+                        aria-pressed={scope === 'independent'}
+                        className="px-3 py-1.5 text-xs font-bold rounded-md transition-all duration-200"
+                        style={
+                          scope === 'independent'
+                            ? {
+                                backgroundColor: 'var(--color-primary)',
+                                color: 'var(--text-on-accent)',
+                              }
+                            : {
+                                backgroundColor: 'transparent',
+                                color: 'var(--color-text-muted)',
+                              }
+                        }
+                      >
+                        Independent
+                      </button>
+                    </div>
+                  )}
+                  {/* Class selector - hide when viewing independent learners */}
+                  {classOptions.length > 1 && scope !== 'independent' && (
+                    <div className="inline-flex items-center rounded-lg border px-3 py-1.5 shadow-sm" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-elevated)' }}>
+                      <select
+                        id="leaderboard-class"
+                        value={selectedClassId || ''}
+                        onChange={(e) => void onClassChange(e.target.value)}
+                        className="border-none bg-transparent text-sm font-bold focus:outline-none cursor-pointer"
+                        style={{ color: 'var(--color-text-muted)' }}
+                      >
+                        {classOptions.map((cls) => (
+                          <option key={cls.id} value={cls.id}>
+                            {cls.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>

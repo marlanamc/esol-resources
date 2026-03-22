@@ -8,6 +8,25 @@ interface ActiveStudent {
   firstName: string;
   activitiesCompleted: number;
   pointsEarned: number;
+  lastActivityReason?: string;
+  lastActivityTime?: string;
+}
+
+// Relative time formatting
+function timeAgo(dateString?: string): string {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  const now = new Date();
+  const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+  if (seconds < 60) return 'just now';
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  if (days === 1) return 'yesterday';
+  return `${days}d ago`;
 }
 
 interface ActiveStudentsListProps {
@@ -81,7 +100,7 @@ export default function ActiveStudentsList({
         return (
           <Link
             key={student.userId}
-            href={`/teacher/students/${student.userId}`}
+            href={`/dashboard/students/${student.userId}`}
             className="dashboard-soft-button flex items-center gap-3 p-3 rounded-xl bg-white/80 border border-border/40 hover:bg-white hover:shadow-md hover:scale-[1.02] transition-all duration-200"
           >
             {/* Rank Badge */}
@@ -102,6 +121,14 @@ export default function ActiveStudentsList({
               <p className="text-xs text-text-muted mt-0.5">
                 {student.activitiesCompleted} activities • {student.pointsEarned} pts
               </p>
+              {student.lastActivityReason && (
+                <p className="text-[11px] text-text-light mt-1 truncate">
+                  {student.lastActivityReason}
+                  {student.lastActivityTime && (
+                    <span className="ml-1 opacity-70">• {timeAgo(student.lastActivityTime)}</span>
+                  )}
+                </p>
+              )}
             </div>
 
             {/* Arrow indicator */}

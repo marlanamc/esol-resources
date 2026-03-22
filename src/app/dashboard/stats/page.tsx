@@ -13,8 +13,21 @@ import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon } from "@/components/i
 import { StudentEngagementTable } from "@/components/dashboard/StudentEngagementTable";
 import { VerbQuizWeekSelector } from "@/components/dashboard/VerbQuizWeekSelector";
 import { isTeacherAdmin } from "@/lib/roles";
+import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
+import { LearnerTypeFilter } from "@/components/dashboard/LearnerTypeFilter";
 
-export default async function StatsPage() {
+type LearnerType = "classroom" | "independent" | "all";
+
+export default async function StatsPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ learnerType?: string }>;
+}) {
+    const params = await searchParams;
+    const learnerTypeParam = params.learnerType;
+    const learnerType: LearnerType =
+        learnerTypeParam === "independent" ? "independent" :
+        learnerTypeParam === "all" ? "all" : "classroom";
     const session = await getServerSession(authOptions);
 
     if (!session) {
@@ -28,6 +41,10 @@ export default async function StatsPage() {
     if (userRole !== "teacher") {
         redirect("/dashboard");
     }
+
+    // Only admins can view independent learners
+    const canViewIndependent = admin;
+    const effectiveLearnerType: LearnerType = canViewIndependent ? learnerType : "classroom";
 
     const classes = await timedQuery(
         {
@@ -104,6 +121,38 @@ export default async function StatsPage() {
     );
 
     // Get unique students with full gamification data
+    // Build student query based on learner type filter
+    const classroomStudentIds = Array.from(
+        new Set(
+            classes.flatMap((c) =>
+                c.enrollments.map((e) => e.student.id)
+            )
+        )
+    );
+
+    let studentWhere: NonNullable<Parameters<typeof prisma.user.findMany>[0]>["where"];
+
+    if (effectiveLearnerType === "independent") {
+        // Only independent learners (explicit preference OR no class enrollments)
+        studentWhere = {
+            role: "student",
+            isSystemAccount: false,
+            ...buildIndependentLearnerWhere(),
+        };
+    } else if (effectiveLearnerType === "all") {
+        // All students
+        studentWhere = {
+            role: "student",
+            isSystemAccount: false,
+        };
+    } else {
+        // Classroom students only (default)
+        studentWhere = {
+            id: { in: classroomStudentIds },
+            isSystemAccount: false,
+        };
+    }
+
     const students = await timedQuery(
         {
             route: "/dashboard/stats",
@@ -113,18 +162,7 @@ export default async function StatsPage() {
         () =>
             withPrismaReadRetry(() =>
                 prisma.user.findMany({
-                    where: {
-                        id: {
-                            in: Array.from(
-                                new Set(
-                                    classes.flatMap((c) =>
-                                        c.enrollments.map((e) => e.student.id)
-                                    )
-                                )
-                            )
-                        },
-                        isSystemAccount: false,
-                    },
+                    where: studentWhere,
                     select: {
                         id: true,
                         name: true,
@@ -140,6 +178,25 @@ export default async function StatsPage() {
             ),
         (result) => result.length
     );
+
+    // Get independent learner count for the filter UI
+    const independentLearnerCount = canViewIndependent ? await timedQuery(
+        {
+            route: "/dashboard/stats",
+            queryLabel: "user.count.independentLearners",
+            userRole,
+        },
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.user.count({
+                    where: {
+                        role: "student",
+                        isSystemAccount: false,
+                        ...buildIndependentLearnerWhere(),
+                    },
+                })
+            )
+    ) : 0;
 
     const studentIds = students.map((s) => s.id);
 
@@ -282,6 +339,16 @@ export default async function StatsPage() {
                         </div>
                     </div>
                 </section>
+
+                {canViewIndependent && (
+                    <section className="animate-fade-in-up delay-75">
+                        <LearnerTypeFilter
+                            currentType={effectiveLearnerType}
+                            classroomCount={classroomStudentIds.length}
+                            independentCount={independentLearnerCount}
+                        />
+                    </section>
+                )}
                 <section className="animate-fade-in-up delay-100">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         <StatCard

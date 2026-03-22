@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { classOwnershipWhere, ensureTeacher } from "@/lib/policies";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { resolveLearnerMode } from "@/lib/learner-mode";
 
 export async function GET() {
     try {
@@ -15,25 +16,37 @@ export async function GET() {
         const user = session.user;
 
         if (user.role === "student") {
-            const enrollments = await prisma.classEnrollment.findMany({
-                where: { studentId: user.id },
-                select: {
-                    class: {
-                        select: {
-                            id: true,
-                            name: true,
+            const [enrollments, preferences] = await Promise.all([
+                prisma.classEnrollment.findMany({
+                    where: { studentId: user.id },
+                    select: {
+                        class: {
+                            select: {
+                                id: true,
+                                name: true,
+                            },
                         },
+                        joinedAt: true,
                     },
-                    joinedAt: true,
-                },
-                orderBy: { joinedAt: "desc" },
-            });
+                    orderBy: { joinedAt: "desc" },
+                }),
+                prisma.userPreferences.findUnique({
+                    where: { userId: user.id },
+                    select: { learnerMode: true },
+                }),
+            ]);
 
             const classes = enrollments.map((entry) => entry.class);
+            const learnerMode = resolveLearnerMode({
+                storedMode: preferences?.learnerMode,
+                enrollmentCount: enrollments.length,
+            });
             return NextResponse.json({
                 viewerRole: user.role,
+                learnerMode,
                 classes,
                 defaultClassId: classes[0]?.id || null,
+                defaultScope: learnerMode === "independent" ? "independent" : "section",
             });
         }
 
@@ -53,8 +66,10 @@ export async function GET() {
 
         return NextResponse.json({
             viewerRole: user.role,
+            isAdmin: teacherCheck.admin,
             classes,
             defaultClassId: classes[0]?.id || null,
+            defaultScope: "section",
         });
     } catch (error) {
         return handleApiError(error, {

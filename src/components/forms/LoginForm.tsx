@@ -125,9 +125,14 @@ export default function LoginForm() {
                 >
                     <span className="relative z-20 pointer-events-none">{isLoading ? 'Signing in…' : 'Sign In'}</span>
                 </button>
-                <p className="text-xs sm:text-sm text-center leading-5 text-[var(--color-text-muted)]">
-                    First time today? Use your temporary password first.
-                </p>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs sm:text-sm text-[var(--color-text-muted)]">
+                    <p className="leading-5">
+                        First time? Use your temporary password.
+                    </p>
+                    <a href="/forgot-password" className="text-primary hover:underline font-medium">
+                        Forgot password?
+                    </a>
+                </div>
             </div>
         </form>
     );

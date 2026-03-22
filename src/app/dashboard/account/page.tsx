@@ -60,4 +60,3 @@ export default async function AccountPage() {
         </div>
     );
 }
-

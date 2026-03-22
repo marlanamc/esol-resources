@@ -1,4 +1,5 @@
 import type { Prisma } from "@prisma/client";
+import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 
 /**
  * Usernames to exclude from leaderboard rankings (test accounts, admins, etc.)
@@ -34,4 +35,8 @@ export function isLeaderboardExcludedUser(user: {
     user.excludeFromLeaderboard === true ||
     EXCLUDED_LEADERBOARD_USERNAMES.includes(user.username.toLowerCase())
   );
+}
+
+export function buildIndependentLeaderboardUserWhere(): Prisma.UserWhereInput {
+  return buildLeaderboardEligibleUserWhere(buildIndependentLearnerWhere());
 }

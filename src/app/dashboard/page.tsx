@@ -34,6 +34,7 @@ import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
+import { resolveLearnerMode } from "@/lib/learner-mode";
 
 type TeacherAssignment = {
     id: string;
@@ -132,6 +133,31 @@ export default async function DashboardPage() {
     void trackLogin(userId).catch((err) => {
         logger.warn("Failed to track login for streak", { userId, error: String(err) });
     });
+
+    if (userRole === "student") {
+        const [studentPreferences, enrollmentCount] = await Promise.all([
+            withPrismaReadRetry(() =>
+                prisma.userPreferences.findUnique({
+                    where: { userId },
+                    select: { learnerMode: true },
+                })
+            ),
+            withPrismaReadRetry(() =>
+                prisma.classEnrollment.count({
+                    where: { studentId: userId },
+                })
+            ),
+        ]);
+
+        const learnerMode = resolveLearnerMode({
+            storedMode: studentPreferences?.learnerMode,
+            enrollmentCount,
+        });
+
+        if (learnerMode === "independent") {
+            redirect("/dashboard/independent");
+        }
+    }
 
     if (userRole === "teacher") {
         const { start: dashboardWindowStart, end: dashboardWindowEnd } = getTeacherDashboardWindow(new Date());
@@ -1047,6 +1073,7 @@ export default async function DashboardPage() {
                                     </div>
                                 </div>
                             </section>
+
                         </div>
 
                         {/* Calendar Sidebar - Right Side (hidden on mobile) */}
@@ -1065,6 +1092,25 @@ export default async function DashboardPage() {
                                     allowDelete={false}
                                     showSyncedLabel={false}
                                 />
+
+                                <section className="rounded-2xl border p-4" style={{ borderColor: "var(--dashboard-divider)", backgroundColor: "var(--dashboard-surface-start)" }}>
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/10 text-secondary">
+                                            <UsersIcon className="h-5 w-5" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-sm font-bold text-text">Invite Friends</h3>
+                                            <p className="text-xs text-text-muted">Share your invite link so others can join your learning circle.</p>
+                                        </div>
+                                    </div>
+                                    <Link
+                                        href="/dashboard/invite"
+                                        className="dashboard-soft-button mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-secondary/25 bg-[var(--dashboard-surface-start)] px-4 py-2.5 text-sm font-semibold text-secondary"
+                                    >
+                                        <UsersIcon className="h-4 w-4" />
+                                        Open Invite Link
+                                    </Link>
+                                </section>
                             </div>
                         </aside>
                     </div>

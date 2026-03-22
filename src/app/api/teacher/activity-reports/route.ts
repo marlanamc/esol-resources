@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { isTeacherAdmin } from "@/lib/roles";
 import { ApiErrors } from "@/lib/api-response";
+import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 
 export const maxDuration = 10; // 10 second timeout
 export const revalidate = 300; // Cache for 5 minutes
@@ -22,6 +23,20 @@ interface ActiveStudent {
   firstName: string;
   activitiesCompleted: number;
   pointsEarned: number;
+  lastActivityReason?: string;
+  lastActivityTime?: string;
+}
+
+interface RecentActivityEntry {
+  odgerId: string;
+  odgerEntry: string;
+  userId: string;
+  studentName: string;
+  studentUsername: string;
+  activity: string;
+  activityType?: string;
+  points: number;
+  timestamp: string;
 }
 
 interface ReportData {
@@ -29,6 +44,7 @@ interface ReportData {
   lastUpdated: string;
   popularActivities: PopularActivity[];
   activeStudents: ActiveStudent[];
+  recentActivity: RecentActivityEntry[];
   summary: {
     totalPlays: number;
     totalActiveStudents: number;
@@ -56,6 +72,9 @@ export async function GET(request: Request) {
     | "daily"
     | "weekly";
   const classId = searchParams.get("classId"); // Optional class filter
+  const learnerTypeParam = searchParams.get("learnerType"); // Optional learner type filter
+  const learnerType = learnerTypeParam === "independent" ? "independent" :
+                      learnerTypeParam === "all" ? "all" : "classroom";
 
   // Calculate time threshold
   const now = new Date();
@@ -66,12 +85,32 @@ export async function GET(request: Request) {
   );
 
   try {
-    // Get teacher's student IDs (only if not admin or if class filter specified)
+    // Get student IDs based on learner type filter
     let studentIds: string[] = [];
-    if (!admin || classId) {
+    let useStudentFilter = true;
+
+    // Admin can view independent learners
+    const effectiveLearnerType = admin ? learnerType : "classroom";
+
+    if (effectiveLearnerType === "independent") {
+      // Get independent learners only
+      const independentStudents = await prisma.user.findMany({
+        where: {
+          role: "student",
+          isSystemAccount: false,
+          ...buildIndependentLearnerWhere(),
+        },
+        select: { id: true },
+      });
+      studentIds = independentStudents.map((s) => s.id);
+    } else if (effectiveLearnerType === "all" && admin && !classId) {
+      // Admin viewing all students - no filter needed
+      useStudentFilter = false;
+    } else {
+      // Classroom students (default) or class-specific filter
       const classWhere = classId
         ? { id: classId, ...(admin ? {} : { teacherId }) }
-        : { teacherId };
+        : admin ? {} : { teacherId };
 
       const classes = await prisma.class.findMany({
         where: classWhere,
@@ -98,7 +137,7 @@ export async function GET(request: Request) {
 
     // Parallel queries for report data
     // Include source "activity" (new) and source "award" with activity-style reason (historical)
-    const [pointsData, activities] = await Promise.all([
+    const [pointsData, activities, recentActivityData] = await Promise.all([
       prisma.pointsLedger.findMany({
         where: {
           createdAt: { gte: timeThreshold },
@@ -108,7 +147,7 @@ export async function GET(request: Request) {
             { source: "award", reason: { contains: "|" } },
             { source: "award", reason: { startsWith: "Completed" } },
           ],
-          ...(admin ? {} : { userId: { in: studentIds } }),
+          ...(useStudentFilter ? { userId: { in: studentIds } } : {}),
         },
         select: {
           userId: true,
@@ -132,6 +171,35 @@ export async function GET(request: Request) {
           id: true,
           title: true,
           type: true,
+        },
+      }),
+      // Get recent activity feed (chronological, with timestamps)
+      prisma.pointsLedger.findMany({
+        where: {
+          createdAt: { gte: timeThreshold },
+          points: { gt: 0 },
+          OR: [
+            { source: "activity" },
+            { source: "award", reason: { contains: "|" } },
+            { source: "award", reason: { startsWith: "Completed" } },
+          ],
+          ...(useStudentFilter ? { userId: { in: studentIds } } : {}),
+        },
+        orderBy: { createdAt: "desc" },
+        take: 25,
+        select: {
+          id: true,
+          userId: true,
+          points: true,
+          reason: true,
+          createdAt: true,
+          user: {
+            select: {
+              username: true,
+              name: true,
+              isSystemAccount: true,
+            },
+          },
         },
       }),
     ]);
@@ -239,18 +307,82 @@ export async function GET(request: Request) {
       },
     });
 
+    // Build a map of last activity per student for enrichment
+    const lastActivityByStudent = new Map<string, { reason: string; time: Date }>();
+
+    // recentActivityData is already sorted by createdAt desc, so first entry per user is most recent
+    recentActivityData
+      .filter((entry) => !entry.user.isSystemAccount)
+      .forEach((entry) => {
+        if (!lastActivityByStudent.has(entry.userId)) {
+          lastActivityByStudent.set(entry.userId, {
+            reason: entry.reason || "Activity",
+            time: entry.createdAt,
+          });
+        }
+      });
+
     const activeStudents: ActiveStudent[] = activeStudentsWithData.map(
       (student) => {
         const details = studentDetails.find((d) => d.id === student.userId);
+        const lastActivity = lastActivityByStudent.get(student.userId);
+
+        // Try to get a friendly activity name
+        let lastActivityReason = lastActivity?.reason;
+        if (lastActivityReason) {
+          const dbActivity = activities.find(
+            (a) =>
+              lastActivityReason!.includes(a.id) ||
+              lastActivityReason!.toLowerCase().includes(a.title.toLowerCase())
+          );
+          if (dbActivity) {
+            lastActivityReason = dbActivity.title;
+          }
+        }
+
         return {
           userId: student.userId,
           username: details?.username || "Unknown",
           firstName: details?.name?.split(" ")[0] || details?.username || "Unknown",
           activitiesCompleted: student.activitiesCompleted,
           pointsEarned: student.pointsEarned,
+          lastActivityReason,
+          lastActivityTime: lastActivity?.time.toISOString(),
         };
       }
     );
+
+    // Build recent activity feed
+    const recentActivity: RecentActivityEntry[] = recentActivityData
+      .filter((entry) => !entry.user.isSystemAccount)
+      .map((entry) => {
+        // Try to get a friendly activity name and type
+        let activityName = entry.reason || "Activity";
+        let activityType: string | undefined;
+
+        const dbActivity = activities.find(
+          (a) =>
+            activityName.includes(a.id) ||
+            activityName.toLowerCase().includes(a.title.toLowerCase())
+        );
+
+        if (dbActivity) {
+          activityName = dbActivity.title;
+          activityType = dbActivity.type || undefined;
+        }
+
+        return {
+          odgerId: entry.id,
+          odgerEntry: entry.id,
+          userId: entry.userId,
+          studentName: entry.user.name?.split(" ")[0] || entry.user.username,
+          studentUsername: entry.user.username,
+          activity: activityName,
+          activityType,
+          points: entry.points,
+          timestamp: entry.createdAt.toISOString(),
+        };
+      });
 
     // Calculate summary
     const summary = {
@@ -267,6 +399,7 @@ export async function GET(request: Request) {
       lastUpdated: new Date().toISOString(),
       popularActivities,
       activeStudents,
+      recentActivity,
       summary,
     };
 

@@ -1,20 +1,12 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { login as loginWithCredentials } from "./helpers/auth";
 
 test.describe.configure({ mode: "parallel" });
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-
-async function login(page: Page, username: string) {
-  await page.goto("/login");
-  await page.waitForLoadState("networkidle");
-  await page.getByLabel(/username/i).fill(username);
-  await page.getByLabel(/password/i).fill("password123");
-  await page.getByRole("button", { name: /sign in/i }).click();
-  await expect(page).toHaveURL(/\/dashboard/, { timeout: 45000 });
-}
 
 async function setTheme(page: Page, theme: "light" | "dark") {
   await page.addInitScript((t) => {
@@ -134,7 +126,10 @@ const TEACHER_ROUTES = [
 test.describe("Theme isolation", () => {
   test("dark: utilities do not activate when app is in light mode", async ({ page }) => {
     await setTheme(page, "light");
-    await login(page, "e2e-teacher");
+    await loginWithCredentials(page, "e2e-teacher", {
+      timeout: 45000,
+      waitForNetworkIdle: true,
+    });
     await page.waitForLoadState("networkidle");
 
     const htmlHasDark = await page.locator("html").evaluate(
@@ -161,7 +156,10 @@ test.describe("Theme isolation", () => {
 
   test("dark: utilities activate when app is in dark mode", async ({ page }) => {
     await setTheme(page, "dark");
-    await login(page, "e2e-teacher");
+    await loginWithCredentials(page, "e2e-teacher", {
+      timeout: 45000,
+      waitForNetworkIdle: true,
+    });
     await page.waitForLoadState("networkidle");
 
     const htmlHasDark = await page.locator("html").evaluate(
@@ -183,7 +181,10 @@ test.describe("Accessibility – Light Mode", () => {
 
   test.beforeEach(async ({ page }) => {
     await setTheme(page, "light");
-    await login(page, "e2e-teacher");
+    await loginWithCredentials(page, "e2e-teacher", {
+      timeout: 45000,
+      waitForNetworkIdle: true,
+    });
   });
 
   for (const route of TEACHER_ROUTES) {
@@ -204,7 +205,10 @@ test.describe("Accessibility – Dark Mode", () => {
 
   test.beforeEach(async ({ page }) => {
     await setTheme(page, "dark");
-    await login(page, "e2e-teacher");
+    await loginWithCredentials(page, "e2e-teacher", {
+      timeout: 45000,
+      waitForNetworkIdle: true,
+    });
   });
 
   for (const route of TEACHER_ROUTES) {
@@ -227,7 +231,10 @@ test.describe("Accessibility – Student Routes", () => {
     test.describe(`${theme} mode`, () => {
       test.beforeEach(async ({ page }) => {
         await setTheme(page, theme);
-        await login(page, "e2e-student");
+        await loginWithCredentials(page, "e2e-student", {
+          timeout: 45000,
+          waitForNetworkIdle: true,
+        });
       });
 
       for (const route of STUDENT_ROUTES) {
@@ -256,7 +263,7 @@ test.describe("Verb Quiz Results contrast", () => {
     test(`correct answer cells are readable in ${theme} mode`, async ({ page }) => {
       test.setTimeout(60000);
       await setTheme(page, theme);
-      await login(page, "e2e-student");
+      await loginWithCredentials(page, "e2e-student");
       await page.waitForLoadState("networkidle");
 
       // Find a completed verb quiz by navigating to quizzes

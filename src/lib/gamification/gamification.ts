@@ -3,7 +3,7 @@ import type { Prisma } from "@prisma/client";
 import { logger } from '@/lib/logger';
 import { POINTS } from "./constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./streak-utils";
-import { buildLeaderboardEligibleUserWhere } from "./leaderboard-filter";
+import { buildIndependentLeaderboardUserWhere, buildLeaderboardEligibleUserWhere } from "./leaderboard-filter";
 export { POINTS } from "./constants";
 export { getActivityPoints, resolveActivityGameUi } from "./activity-points";
 export { EXCLUDED_LEADERBOARD_USERNAMES } from "./leaderboard-filter";
@@ -216,7 +216,8 @@ export async function getTimeframedLeaderboard(
   range: LeaderboardRange = 'week',
   limit: number = 10,
   classId?: string,
-  classIds?: string[]
+  classIds?: string[],
+  options?: { independentOnly?: boolean }
 ) {
   // SECURITY: Input validation
   if (classId !== undefined && typeof classId !== 'string') {
@@ -239,7 +240,9 @@ export async function getTimeframedLeaderboard(
     : (classId ? { classes: { some: { classId } } } : undefined);
 
   // First, get all students (excluding test accounts and admin accounts)
-  const studentWhere = buildLeaderboardEligibleUserWhere(classFilter);
+  const studentWhere = options?.independentOnly
+    ? buildIndependentLeaderboardUserWhere()
+    : buildLeaderboardEligibleUserWhere(classFilter);
 
   const allStudents = await prisma.user.findMany({
     where: studentWhere,
@@ -258,7 +261,9 @@ export async function getTimeframedLeaderboard(
   const whereLedger: Prisma.PointsLedgerWhereInput = {
     createdAt: { gte: since },
     user: {
-      ...buildLeaderboardEligibleUserWhere(classFilter),
+      ...(options?.independentOnly
+        ? buildIndependentLeaderboardUserWhere()
+        : buildLeaderboardEligibleUserWhere(classFilter)),
     },
   };
 
