@@ -27,33 +27,38 @@ export default async function StudentDetailPage({
         redirect("/dashboard");
     }
 
-    // Verify teacher has access to this student
-    const enrollment = await prisma.classEnrollment.findFirst({
-        where: {
-            studentId: studentId,
-            student: {
-                isSystemAccount: false,
+    const [student, enrollment] = await Promise.all([
+        prisma.user.findUnique({
+            where: { id: studentId },
+            select: {
+                id: true,
+                name: true,
+                username: true,
+                isSystemAccount: true,
             },
-            ...(admin ? {} : { class: { teacherId } }),
-        },
-        include: {
-            class: {
-                select: {
-                    id: true,
-                    name: true
-                }
+        }),
+        prisma.classEnrollment.findFirst({
+            where: {
+                studentId,
+                student: {
+                    isSystemAccount: false,
+                },
+                ...(admin ? {} : { class: { teacherId } }),
             },
-            student: {
-                select: {
-                    id: true,
-                    name: true,
-                    username: true
-                }
-            }
-        }
-    });
+            include: {
+                class: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
+            },
+        }),
+    ]);
 
-    if (!enrollment) {
+    const canAccessStudent = !!student && !student.isSystemAccount && (admin || !!enrollment);
+
+    if (!canAccessStudent) {
         return (
             <div className="container mx-auto px-4 py-8">
                 <div className="bg-red-50 border border-red-200 rounded-lg p-6">
@@ -61,13 +66,18 @@ export default async function StudentDetailPage({
                         Student Not Found
                     </h2>
                     <p className="text-red-700 mb-4">
-                        This student is not enrolled in any of your classes.
+                        {admin
+                            ? "This student could not be loaded."
+                            : "This student is not enrolled in any of your classes."}
                     </p>
                     <BackButton href="/dashboard/stats">Back to Stats</BackButton>
                 </div>
             </div>
         );
     }
+
+    const studentDisplayName = student.name ?? student.username;
+    const studentLabel = enrollment?.class.name ?? "Independent learner";
 
     return (
         <div className="min-h-screen bg-bg">
@@ -84,17 +94,17 @@ export default async function StudentDetailPage({
                         </Link>
                         <span>/</span>
                         <span className="text-text font-medium">
-                            {enrollment.student.name}
+                            {studentDisplayName}
                         </span>
                     </nav>
 
                     <div className="flex items-center justify-between">
                         <div>
                             <h1 className="text-3xl font-bold text-text mb-1">
-                                {enrollment.student.name}
+                                {studentDisplayName}
                             </h1>
                             <p className="text-text-muted">
-                                @{enrollment.student.username} · {enrollment.class.name}
+                                @{student.username} · {studentLabel}
                             </p>
                         </div>
                         <BackButton href="/dashboard/stats">Back to Stats</BackButton>
