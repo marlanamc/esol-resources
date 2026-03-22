@@ -110,21 +110,23 @@ export function StudentStatsView({ activities }: Props) {
         return (
             <div
                 key={activity.id}
-                className="flex items-center justify-between bg-white border border-border/50 rounded-lg px-4 py-3 shadow-sm hover:shadow-md transition"
+                className="flex flex-col gap-3 rounded-lg border border-border/50 bg-white px-4 py-3 shadow-sm transition hover:shadow-md sm:flex-row sm:items-center sm:justify-between"
             >
-                <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 bg-secondary/10 text-[#3d6b47] dark:text-secondary text-xs font-bold rounded-full uppercase">
+                <div className="flex min-w-0 flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+                    <span className="w-fit rounded-full bg-secondary/10 px-3 py-1 text-xs font-bold uppercase text-[#3d6b47] dark:text-secondary">
                         {activity.type || "activity"}
                     </span>
-                    <span className="font-semibold text-text">{activity.title}</span>
+                    <span className="min-w-0 text-sm font-semibold leading-snug text-text sm:text-base">
+                        {activity.title}
+                    </span>
                 </div>
-                <div className={`flex items-center gap-2 px-3 py-1 rounded-full border text-sm font-semibold ${statusClasses(progress)}`}>
+                <div className={`flex w-fit max-w-full items-center gap-2 self-start rounded-full border px-3 py-1 text-sm font-semibold ${statusClasses(progress)}`}>
                     {progress >= 100 ? (
                         <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-600 text-white text-[10px]">
                             ✓
                         </span>
                     ) : null}
-                    <span>{statusLabel(progress)}</span>
+                    <span className="whitespace-nowrap">{statusLabel(progress)}</span>
                 </div>
             </div>
         );
@@ -137,13 +139,13 @@ export function StudentStatsView({ activities }: Props) {
     );
 
     return (
-        <div className="space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
+        <div className="space-y-5 sm:space-y-6">
+            <div className="flex flex-wrap gap-2 sm:items-center sm:gap-3">
                 {tabs.map(({ key, label }) => (
                     <button
                         key={key}
                         onClick={() => setTab(key)}
-                        className={`px-4 py-2 rounded-full border text-sm font-semibold transition ${
+                        className={`min-w-[calc(50%-0.25rem)] rounded-full border px-4 py-2 text-center text-sm font-semibold transition sm:min-w-0 ${
                             tab === key
                                 ? "bg-primary text-white border-primary shadow-sm"
                                 : "bg-white text-text border-border/60 hover:border-primary/60"
@@ -159,8 +161,8 @@ export function StudentStatsView({ activities }: Props) {
                     {vocabUnits.length === 0
                         ? emptyState
                         : vocabUnits.map((unit) => (
-                              <div key={unit.unitLabel} className="bg-white rounded-xl border border-border/40 shadow-sm p-4 space-y-3">
-                                  <div className="flex items-center justify-between">
+                              <div key={unit.unitLabel} className="space-y-3 rounded-xl border border-border/40 bg-white p-4 shadow-sm">
+                                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                                       <h3 className="text-lg font-bold text-text">{unit.unitLabel}</h3>
                                       <span className="text-xs text-text-muted">
                                           {unit.activities.length} item{unit.activities.length === 1 ? "" : "s"}
@@ -200,7 +202,6 @@ export function StudentStatsView({ activities }: Props) {
         </div>
     );
 }
-
 
 
 

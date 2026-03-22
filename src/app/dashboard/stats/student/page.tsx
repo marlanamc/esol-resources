@@ -47,8 +47,8 @@ export default async function StudentStatsPage() {
     return (
         <div className="min-h-screen bg-bg">
             <header className="sticky top-0 backdrop-blur-md border-b z-50 bg-white/80 border-white/40 shadow-sm transition-all">
-                <div className="max-w-[1200px] mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-                    <div>
+                <div className="mx-auto flex max-w-[1200px] flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                    <div className="min-w-0">
                         <BackButton href="/dashboard" className="mb-1">Back to Dashboard</BackButton>
                         <h1 className="text-2xl md:text-3xl font-display font-bold text-text mt-1">
                             Your Progress
@@ -57,8 +57,8 @@ export default async function StudentStatsPage() {
                             Track vocab, grammar, and other activities in one place.
                         </p>
                     </div>
-                    <div className="flex items-center gap-3">
-                        <span className="hidden sm:inline text-sm text-text-muted">
+                    <div className="flex w-full items-center justify-between gap-3 sm:w-auto sm:justify-end">
+                        <span className="truncate text-sm text-text-muted">
                             {session.user?.name}
                         </span>
                         <LogoutButton />
@@ -66,12 +66,11 @@ export default async function StudentStatsPage() {
                 </div>
             </header>
 
-            <main className="container mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8 py-8 pb-24 space-y-6">
+            <main className="container mx-auto max-w-[1200px] px-4 py-6 pb-24 sm:px-6 sm:py-8 lg:px-8">
                 <StudentStatsView activities={statsActivities} />
             </main>
         </div>
     );
 }
-
 
 

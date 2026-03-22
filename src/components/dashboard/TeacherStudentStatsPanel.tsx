@@ -59,7 +59,7 @@ export function TeacherStudentStatsPanel({ students, activities, progressByStude
                 <select
                     value={selectedId}
                     onChange={(e) => setSelectedId(e.target.value)}
-                    className="px-3 py-2 rounded-lg border border-border/60 text-sm font-semibold bg-white"
+                    className="w-full rounded-lg border border-border/60 bg-white px-3 py-2 text-sm font-semibold sm:w-auto"
                 >
                     {options.map((opt) => (
                         <option key={opt.id} value={opt.id}>
@@ -73,7 +73,6 @@ export function TeacherStudentStatsPanel({ students, activities, progressByStude
         </div>
     );
 }
-
 
 
 
