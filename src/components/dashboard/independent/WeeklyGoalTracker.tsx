@@ -9,6 +9,7 @@ interface WeeklyGoalTrackerProps {
     daysRemaining: number;
     onGoalChange?: (newGoal: number) => void;
     editable?: boolean;
+    compact?: boolean;
 }
 
 export function WeeklyGoalTracker({
@@ -17,6 +18,7 @@ export function WeeklyGoalTracker({
     daysRemaining,
     onGoalChange,
     editable = true,
+    compact = false,
 }: WeeklyGoalTrackerProps) {
     const [isEditing, setIsEditing] = useState(false);
     const [pendingGoal, setPendingGoal] = useState(goal);
@@ -38,7 +40,7 @@ export function WeeklyGoalTracker({
 
     return (
         <div
-            className="dashboard-panel rounded-2xl p-4"
+            className={`dashboard-panel rounded-2xl ${compact ? "p-3.5" : "p-4"}`}
             style={{
                 background: isGoalMet
                     ? "linear-gradient(135deg, color-mix(in srgb, var(--tone-grammar-surface) 20%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-grammar-surface) 12%, var(--dashboard-surface-end)) 100%)"
@@ -49,10 +51,10 @@ export function WeeklyGoalTracker({
             }}
         >
             {/* Header */}
-            <div className="flex items-center justify-between mb-3">
+            <div className={`flex items-center justify-between ${compact ? "mb-2" : "mb-3"}`}>
                 <div className="flex items-center gap-2">
                     <div
-                        className="w-8 h-8 rounded-full flex items-center justify-center"
+                        className={`${compact ? "w-7 h-7" : "w-8 h-8"} rounded-full flex items-center justify-center`}
                         style={{
                             background: isGoalMet
                                 ? "linear-gradient(135deg, var(--tone-grammar-chip-bg) 0%, var(--tone-grammar-surface) 100%)"
@@ -62,16 +64,16 @@ export function WeeklyGoalTracker({
                         {isGoalMet ? (
                             <CheckCircle2
                                 className="text-[var(--tone-grammar-accent)]"
-                                size={18}
+                                size={compact ? 16 : 18}
                             />
                         ) : (
                             <Target
                                 className="text-[var(--tone-vocab-accent)]"
-                                size={18}
+                                size={compact ? 16 : 18}
                             />
                         )}
                     </div>
-                    <span className="text-sm font-semibold text-text">Weekly Goal</span>
+                    <span className={`${compact ? "text-[13px]" : "text-sm"} font-semibold text-text`}>Weekly Goal</span>
                 </div>
 
                 {editable && !isEditing && (
@@ -117,15 +119,22 @@ export function WeeklyGoalTracker({
             ) : (
                 <>
                     {/* Progress Display */}
-                    <div className="flex items-baseline gap-1 mb-2">
-                        <span className="text-2xl font-bold text-text">{completed}</span>
-                        <span className="text-lg text-text-muted">/</span>
-                        <span className="text-lg font-medium text-text-muted">{goal}</span>
-                        <span className="text-sm text-text-muted ml-1">activities</span>
+                    <div className={`flex items-end justify-between gap-3 ${compact ? "mb-2" : "mb-2"}`}>
+                        <div className="flex items-baseline gap-1">
+                            <span className={`${compact ? "text-xl" : "text-2xl"} font-bold text-text`}>{completed}</span>
+                            <span className={`${compact ? "text-base" : "text-lg"} text-text-muted`}>/</span>
+                            <span className={`${compact ? "text-base" : "text-lg"} font-medium text-text-muted`}>{goal}</span>
+                            <span className={`${compact ? "text-xs" : "text-sm"} text-text-muted ml-1`}>activities</span>
+                        </div>
+                        {compact && (
+                            <p className="text-[11px] font-medium text-text-muted text-right">
+                                {isGoalMet ? "Goal reached" : daysRemaining === 0 ? "Last day" : daysRemaining === 1 ? "1 day left" : `${daysRemaining} days left`}
+                            </p>
+                        )}
                     </div>
 
                     {/* Progress Bar */}
-                    <div className="relative h-3 rounded-full overflow-hidden mb-2" style={{
+                    <div className={`relative ${compact ? "h-2.5" : "h-3"} rounded-full overflow-hidden ${compact ? "mb-0" : "mb-2"}`} style={{
                         background: "var(--checklist-track-bg)",
                     }}>
                         <div
@@ -140,19 +149,21 @@ export function WeeklyGoalTracker({
                     </div>
 
                     {/* Footer Message */}
-                    <p className="text-xs text-text-muted">
-                        {isGoalMet ? (
-                            <span className="text-[var(--tone-grammar-accent)] font-medium">
-                                Goal reached! Keep going!
-                            </span>
-                        ) : daysRemaining === 0 ? (
-                            "Last day of the week!"
-                        ) : daysRemaining === 1 ? (
-                            "1 day remaining"
-                        ) : (
-                            `${daysRemaining} days remaining`
-                        )}
-                    </p>
+                    {!compact && (
+                        <p className="text-xs text-text-muted">
+                            {isGoalMet ? (
+                                <span className="text-[var(--tone-grammar-accent)] font-medium">
+                                    Goal reached! Keep going!
+                                </span>
+                            ) : daysRemaining === 0 ? (
+                                "Last day of the week!"
+                            ) : daysRemaining === 1 ? (
+                                "1 day remaining"
+                            ) : (
+                                `${daysRemaining} days remaining`
+                            )}
+                        </p>
+                    )}
                 </>
             )}
         </div>

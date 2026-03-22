@@ -249,6 +249,7 @@ export async function getTimeframedLeaderboard(
     select: {
       id: true,
       name: true,
+      username: true,
       currentStreak: true,
       lastActivityDate: true,
       lastWeekRank: true,
@@ -280,7 +281,9 @@ export async function getTimeframedLeaderboard(
   const rankings = allStudents.map((student) => ({
     userId: student.id,
     points: pointsMap.get(student.id) || 0,
-    name: student.name || 'Student',
+    name: options?.independentOnly
+      ? student.username
+      : student.name || student.username || 'Student',
     currentStreak: getEffectiveStreak(student.currentStreak, student.lastActivityDate),
     lastWeekRank: student.lastWeekRank,
     avatar: student.avatar,

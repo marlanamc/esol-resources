@@ -17,7 +17,6 @@ import {
 import {
     getIndependentProgressStats,
     getWeeklyGoalProgress,
-    getInProgressActivity,
     analyzeWeakAreas,
 } from "@/lib/independent-progress";
 import { TodaysAssignments } from "@/components/dashboard";
@@ -26,9 +25,9 @@ import { TrophyIcon, SparklesIcon, UsersIcon } from "@/components/icons/Icons";
 import {
     LearningPathRoadmap,
     StreakDisplay,
-    ResumeActivityCard,
     RecommendedReviewCard,
 } from "@/components/dashboard/independent";
+import { InviteFriendsCard } from "@/components/dashboard";
 import { IndependentDashboardClient } from "./IndependentDashboardClient";
 
 export default async function IndependentDashboardPage() {
@@ -190,6 +189,23 @@ export default async function IndependentDashboardPage() {
         }),
     ]);
 
+    // Deduplicate progress rows by activityId - keep the best record (highest progress or completed)
+    // Multiple rows can exist per activity (e.g. global vs assignment-scoped for vocab)
+    const progressRowsDeduped = (() => {
+        const byActivity = new Map<string, (typeof progressRows)[number]>();
+        for (const row of progressRows) {
+            const existing = byActivity.get(row.activityId);
+            const rowScore = row.status === "completed" ? 100 : row.progress;
+            const existingScore = existing
+                ? (existing.status === "completed" ? 100 : existing.progress)
+                : -1;
+            if (!existing || rowScore > existingScore) {
+                byActivity.set(row.activityId, row);
+            }
+        }
+        return Array.from(byActivity.values());
+    })();
+
     // Calculate progress stats for roadmap
     const progressStats = getIndependentProgressStats({
         activities: sequenceActivities.map(a => ({
@@ -198,7 +214,7 @@ export default async function IndependentDashboardPage() {
             type: a.type,
             category: a.category,
         })),
-        progressRows: progressRows.map(p => ({
+        progressRows: progressRowsDeduped.map(p => ({
             activityId: p.activityId,
             progress: p.progress,
             status: p.status,
@@ -216,23 +232,7 @@ export default async function IndependentDashboardPage() {
         weeklyGoal: preferences.weeklyActivityGoal ?? 3,
         startDay: preferences.weeklyGoalStartDay ?? 1,
         submissions: submissions.map(s => ({ completedAt: s.completedAt })),
-        progressRows: progressRows.map(p => ({ status: p.status, updatedAt: p.updatedAt })),
-    });
-
-    // Find in-progress activity for "resume" card
-    const inProgressActivity = getInProgressActivity({
-        activities: sequenceActivities.map(a => ({
-            id: a.id,
-            title: a.title,
-            type: a.type,
-            category: a.category,
-        })),
-        progressRows: progressRows.map(p => ({
-            activityId: p.activityId,
-            progress: p.progress,
-            status: p.status,
-            updatedAt: p.updatedAt,
-        })),
+        progressRows: progressRowsDeduped.map(p => ({ status: p.status, updatedAt: p.updatedAt })),
     });
 
     // Analyze weak areas for review suggestions
@@ -253,7 +253,7 @@ export default async function IndependentDashboardPage() {
 
     const recommendedAssignments = getCurrentIndependentRecommendation({
         activities: sequenceActivities,
-        progressRows,
+        progressRows: progressRowsDeduped,
         submissions,
     }).filter((assignment) => assignment.activityId !== "vocab-daily-review");
 
@@ -282,23 +282,6 @@ export default async function IndependentDashboardPage() {
                             </h1>
                         </div>
 
-                        {/* Streak and Goal Row (Mobile & Tablet) */}
-                        <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <StreakDisplay
-                                currentStreak={userStats?.currentStreak ?? 0}
-                                longestStreak={userStats?.longestStreak ?? 0}
-                            />
-                            <IndependentDashboardClient
-                                initialGoal={preferences.weeklyActivityGoal ?? 3}
-                                weeklyGoalProgress={weeklyGoalProgress}
-                            />
-                        </div>
-
-                        {/* Resume Activity Card */}
-                        {inProgressActivity && (
-                            <ResumeActivityCard activity={inProgressActivity} />
-                        )}
-
                         {/* Recommended Activities */}
                         <section>
                             <TodaysAssignments
@@ -311,9 +294,11 @@ export default async function IndependentDashboardPage() {
                                 mobileTasksLinkHref="/dashboard/activities"
                                 mobileTasksLinkLabel="All Activities"
                                 showStudentStats
-                                hideProgressBar
                             />
                         </section>
+
+                        {/* Invite Friends Card (mobile) */}
+                        <InviteFriendsCard />
 
                         {/* Review Suggestions (subtle, below recommendations) */}
                         {weakAreas.length > 0 && (
@@ -403,14 +388,14 @@ export default async function IndependentDashboardPage() {
                                 }}
                             />
 
-                            {/* Independent Leaderboard Link */}
+                            {/* Self-paced Leaderboard Link */}
                             <section className="rounded-2xl border p-4" style={{ borderColor: "var(--dashboard-divider)", backgroundColor: "var(--dashboard-surface-start)" }}>
                                 <div className="flex items-center gap-3">
                                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                                         <TrophyIcon className="h-5 w-5" />
                                     </div>
                                     <div>
-                                        <h3 className="text-sm font-bold text-text">Independent Leaderboard</h3>
+                                        <h3 className="text-sm font-bold text-text">Self-paced Leaderboard</h3>
                                         <p className="text-xs text-text-muted">Points and streaks still count here.</p>
                                     </div>
                                 </div>

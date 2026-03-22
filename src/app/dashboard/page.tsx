@@ -26,7 +26,8 @@ import {
     UpcomingEventsList,
     TodaysAssignments,
     ClearFeaturedButton,
-    ClassAnnouncement
+    ClassAnnouncement,
+    InviteFriendsCard
 } from "@/components/dashboard";
 import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
 import { isTeacherAdmin } from "@/lib/roles";
@@ -1015,6 +1016,9 @@ export default async function DashboardPage() {
                                     showStudentStats
                                 />
                             </section>
+
+                            {/* Invite Friends Card (mobile) */}
+                            <InviteFriendsCard />
 
                             {/* Browse All Activities CTA */}
                             <section className="hidden md:block">

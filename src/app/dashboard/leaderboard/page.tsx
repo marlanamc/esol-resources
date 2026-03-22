@@ -224,8 +224,8 @@ export default function LeaderboardPage() {
           boxShadow: '0 1px 2px color-mix(in srgb, var(--color-primary) 28%, transparent), inset 0 1px 0 rgba(255,255,255,0.18)',
         }}
       >
-        <span className="sm:hidden">Independent</span>
-        <span className="hidden sm:inline">Independent</span>
+        <span className="sm:hidden">Self-paced</span>
+        <span className="hidden sm:inline">Self-paced</span>
       </button>
     </div>
   ) : viewerRole === 'student' ? (
@@ -294,10 +294,10 @@ export default function LeaderboardPage() {
               </div>
               <div className="flex flex-col justify-center py-0.5 pt-1 sm:pt-0.5">
                 <h1 className="text-[1.75rem] leading-[0.95] sm:text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
-                  {scope === 'independent' ? 'Independent Leaderboard' : 'Weekly Leaderboard'}
+                  {scope === 'independent' ? 'Self-paced Leaderboard' : 'Weekly Leaderboard'}
                 </h1>
                 <p className="text-[13px] sm:text-sm font-medium leading-tight mt-1 sm:mt-0.5" style={{ color: 'var(--success-color)' }}>
-                  {scope === 'independent' ? 'Top independent learners this week' : 'Top performers this week'}
+                  {scope === 'independent' ? 'Top self-paced learners this week' : 'Top performers this week'}
                 </p>
               </div>
             </div>

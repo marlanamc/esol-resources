@@ -133,14 +133,6 @@ export default function InvitePage() {
                         </div>
                     ) : invite ? (
                         <>
-                            {/* Invite Code Display */}
-                            <div className="text-center">
-                                <p className="text-sm font-semibold text-[var(--color-text-muted)] mb-2">Your invite code</p>
-                                <p className="text-3xl font-mono font-bold tracking-widest text-primary">
-                                    {invite.code}
-                                </p>
-                            </div>
-
                             {/* Invite Link */}
                             <div>
                                 <label className="block text-sm font-semibold mb-2 text-[var(--color-text)]">

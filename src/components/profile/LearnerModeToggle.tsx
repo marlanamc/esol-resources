@@ -54,7 +54,7 @@ export function LearnerModeToggle({ hasClassEnrollments, initialMode }: LearnerM
             }
 
             setMode(newMode);
-            setSuccess(`Switched to ${newMode === "independent" ? "independent" : "classroom"} mode`);
+            setSuccess(`Switched to ${newMode === "independent" ? "self-paced" : "classroom"} mode`);
 
             // Redirect to appropriate dashboard after a short delay
             setTimeout(() => {
@@ -79,7 +79,7 @@ export function LearnerModeToggle({ hasClassEnrollments, initialMode }: LearnerM
                     Learning Mode
                 </h2>
                 <p className="text-sm text-[var(--color-text-muted)]">
-                    You&apos;re learning independently. To join a class, ask your teacher for a class code.
+                    You&apos;re learning at your own pace. To join a class, ask your teacher for a class code.
                 </p>
             </div>
         );
@@ -154,7 +154,7 @@ export function LearnerModeToggle({ hasClassEnrollments, initialMode }: LearnerM
                     } ${isSaving ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
                 >
                     <div className="flex items-center justify-between mb-2">
-                        <span className="font-semibold text-[var(--color-text)]">Independent</span>
+                        <span className="font-semibold text-[var(--color-text)]">Self-paced</span>
                         {mode === "independent" && (
                             <span className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
                                 <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -164,7 +164,7 @@ export function LearnerModeToggle({ hasClassEnrollments, initialMode }: LearnerM
                         )}
                     </div>
                     <p className="text-xs text-[var(--color-text-muted)]">
-                        Learn at your own pace with a curated path
+                        Learn at your own pace with a guided path
                     </p>
                 </button>
             </div>

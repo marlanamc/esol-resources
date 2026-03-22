@@ -181,6 +181,7 @@ function buildProgressMap(progressEntries: ProgressEntry[]): Record<string, { pr
 export default async function ActivitiesPage({ searchParams }: Props) {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
+    const resolvedSearchParams = await searchParams;
 
     const userId = session.user?.id;
     const userRole = session.user?.role;
@@ -362,7 +363,7 @@ export default async function ActivitiesPage({ searchParams }: Props) {
                     completedActivityIds={completedActivityIds}
                     completedActivityTitles={completedActivityTitles}
                     progressMap={progressMap}
-                    initialCategory={(await searchParams).category ?? null}
+                    initialCategory={resolvedSearchParams.category ?? null}
                 />
             </main>
         </div>

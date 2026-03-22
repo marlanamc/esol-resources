@@ -14,3 +14,4 @@ export { default as GrammarGradebook } from './GrammarGradebook';
 export * from './ActivityCategoryPicker';
 export * from './ClassAnnouncement';
 export * from './LearnerTypeFilter';
+export * from './InviteFriendsCard';

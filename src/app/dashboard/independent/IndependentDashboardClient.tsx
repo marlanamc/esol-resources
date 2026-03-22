@@ -7,11 +7,13 @@ import type { WeeklyGoalProgress } from "@/lib/independent-progress";
 interface IndependentDashboardClientProps {
     initialGoal: number;
     weeklyGoalProgress: WeeklyGoalProgress;
+    compact?: boolean;
 }
 
 export function IndependentDashboardClient({
     initialGoal,
     weeklyGoalProgress,
+    compact = false,
 }: IndependentDashboardClientProps) {
     const [goal, setGoal] = useState(initialGoal);
     const [isSaving, setIsSaving] = useState(false);
@@ -50,6 +52,7 @@ export function IndependentDashboardClient({
             daysRemaining={adjustedProgress.daysRemaining}
             onGoalChange={handleGoalChange}
             editable={!isSaving}
+            compact={compact}
         />
     );
 }

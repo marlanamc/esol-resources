@@ -22,7 +22,7 @@ export default function JoinPage() {
                         Class Companion
                     </h1>
                     <p className="text-base sm:text-lg mb-3 sm:mb-4 font-bold text-secondary">
-                        Independent Learner
+                        Self-paced Learning
                     </p>
                     <h2 className="text-2xl sm:text-3xl font-display font-bold mb-3 sm:mb-4 text-[var(--color-text)]">
                         Create your account
