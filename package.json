@@ -64,6 +64,7 @@
     "import:countable-uncountable": "npx tsx scripts/import/import-countable-uncountable-game.ts",
     "import:gerund-infinitive": "npx tsx scripts/import/import-gerund-infinitive-game.ts",
     "import:verb-quizzes": "npx tsx scripts/import/import-verb-quizzes.ts",
+    "import:verb-quiz-sync": "npx tsx scripts/import/update-verb-quiz-from-conjugations.ts",
     "import:time-indicators": "npx tsx scripts/import/import-time-indicators-game.ts",
     "delete:verb-quizzes": "npx tsx scripts/import/delete-verb-quizzes.ts",
     "audio:minimal-pairs": "npx tsx scripts/content/generate-minimal-pairs-audio.ts",

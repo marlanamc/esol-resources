@@ -442,40 +442,40 @@
   "Week 27": {
     "due_date": "2026-03-31",
     "verbs": {
-      "resolve": {
-        "v1": "resolve",
-        "v1_3rd": "resolves",
-        "v1_ing": "resolving",
-        "v2": "resolved",
-        "v3": "resolved"
+      "comply": {
+        "v1": "comply",
+        "v1_3rd": "complies",
+        "v1_ing": "complying",
+        "v2": "complied",
+        "v3": "complied"
       },
-      "address": {
-        "v1": "address",
-        "v1_3rd": "addresses",
-        "v1_ing": "addressing",
-        "v2": "addressed",
-        "v3": "addressed"
+      "get": {
+        "v1": "get",
+        "v1_3rd": "gets",
+        "v1_ing": "getting",
+        "v2": "got",
+        "v3": "got"
       },
-      "solve": {
-        "v1": "solve",
-        "v1_3rd": "solves",
-        "v1_ing": "solving",
-        "v2": "solved",
-        "v3": "solved"
+      "know": {
+        "v1": "know",
+        "v1_3rd": "knows",
+        "v1_ing": "knowing",
+        "v2": "knew",
+        "v3": "known"
       },
-      "handle": {
-        "v1": "handle",
-        "v1_3rd": "handles",
-        "v1_ing": "handling",
-        "v2": "handled",
-        "v3": "handled"
+      "read": {
+        "v1": "read",
+        "v1_3rd": "reads",
+        "v1_ing": "reading",
+        "v2": "read",
+        "v3": "read"
       },
-      "suggest": {
-        "v1": "suggest",
-        "v1_3rd": "suggests",
-        "v1_ing": "suggesting",
-        "v2": "suggested",
-        "v3": "suggested"
+      "think": {
+        "v1": "think",
+        "v1_3rd": "thinks",
+        "v1_ing": "thinking",
+        "v2": "thought",
+        "v3": "thought"
       }
     }
   },
