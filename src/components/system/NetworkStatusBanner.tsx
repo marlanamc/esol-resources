@@ -4,8 +4,33 @@ import { useEffect, useRef, useState, type MutableRefObject } from "react";
 
 /** Ignore brief `offline` events — browsers often fire them without real loss of connectivity. */
 const OFFLINE_SHOW_AFTER_MS = 2800;
+/** Desktop (fine pointer) tends to report offline more aggressively; wait longer before probing. */
+const OFFLINE_SHOW_AFTER_MS_DESKTOP = 4500;
 /** Wait before treating `online` as stable (reduces offline/online ping-pong). */
 const ONLINE_STABLE_AFTER_MS = 600;
+/** Same-origin check: if this succeeds, we do not show offline (navigator was wrong). */
+const REACHABILITY_URL = "/manifest.json";
+
+function getOfflineDelayMs(): number {
+  if (typeof window === "undefined") return OFFLINE_SHOW_AFTER_MS;
+  return window.matchMedia("(pointer: coarse)").matches
+    ? OFFLINE_SHOW_AFTER_MS
+    : OFFLINE_SHOW_AFTER_MS_DESKTOP;
+}
+
+async function checkSiteReachable(signal: AbortSignal): Promise<boolean> {
+  try {
+    const res = await fetch(`${window.location.origin}${REACHABILITY_URL}`, {
+      method: "GET",
+      cache: "no-store",
+      credentials: "same-origin",
+      signal,
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
 
 export default function NetworkStatusBanner() {
   const [isOnline, setIsOnline] = useState(true);
@@ -14,6 +39,7 @@ export default function NetworkStatusBanner() {
   const onlineTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const restoredTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const userSawOfflineRef = useRef(false);
+  const fetchProbeAbortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
     const clearTimer = (ref: MutableRefObject<ReturnType<typeof setTimeout> | null>) => {
@@ -21,6 +47,12 @@ export default function NetworkStatusBanner() {
         clearTimeout(ref.current);
         ref.current = null;
       }
+    };
+
+    const cancelOfflineProbe = () => {
+      clearTimer(offlineTimerRef);
+      fetchProbeAbortRef.current?.abort();
+      fetchProbeAbortRef.current = null;
     };
 
     const showOffline = () => {
@@ -31,7 +63,7 @@ export default function NetworkStatusBanner() {
     };
 
     const showOnlineStable = () => {
-      clearTimer(offlineTimerRef);
+      cancelOfflineProbe();
       onlineTimerRef.current = setTimeout(() => {
         onlineTimerRef.current = null;
         if (typeof navigator === "undefined" || !navigator.onLine) return;
@@ -49,13 +81,34 @@ export default function NetworkStatusBanner() {
     };
 
     const scheduleOfflineCheck = () => {
-      clearTimer(offlineTimerRef);
+      cancelOfflineProbe();
+      const delayMs = getOfflineDelayMs();
+
       offlineTimerRef.current = setTimeout(() => {
         offlineTimerRef.current = null;
-        if (typeof navigator !== "undefined" && !navigator.onLine) {
-          showOffline();
-        }
-      }, OFFLINE_SHOW_AFTER_MS);
+        if (typeof navigator !== "undefined" && navigator.onLine) return;
+
+        const fetchAc = new AbortController();
+        fetchProbeAbortRef.current = fetchAc;
+        const timeoutId = window.setTimeout(() => fetchAc.abort(), 2800);
+
+        void checkSiteReachable(fetchAc.signal)
+          .then((reachable) => {
+            window.clearTimeout(timeoutId);
+            if (fetchProbeAbortRef.current !== fetchAc) return;
+            if (typeof navigator !== "undefined" && navigator.onLine) return;
+            if (reachable) return;
+            showOffline();
+          })
+          .catch(() => {
+            window.clearTimeout(timeoutId);
+          })
+          .finally(() => {
+            if (fetchProbeAbortRef.current === fetchAc) {
+              fetchProbeAbortRef.current = null;
+            }
+          });
+      }, delayMs);
     };
 
     const handleOffline = () => {
@@ -63,7 +116,7 @@ export default function NetworkStatusBanner() {
     };
 
     const handleOnline = () => {
-      clearTimer(offlineTimerRef);
+      cancelOfflineProbe();
       showOnlineStable();
     };
 
@@ -75,7 +128,7 @@ export default function NetworkStatusBanner() {
     window.addEventListener("online", handleOnline);
 
     return () => {
-      clearTimer(offlineTimerRef);
+      cancelOfflineProbe();
       clearTimer(onlineTimerRef);
       clearTimer(restoredTimerRef);
       window.removeEventListener("offline", handleOffline);
