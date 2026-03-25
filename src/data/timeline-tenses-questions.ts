@@ -133,7 +133,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     explanation:
       'Past Continuous (was living) shows a longer action in progress. Past Simple (decided) shows the shorter interrupting action. The line represents the ongoing background, and the dot represents the interruption.',
     difficulty: 2,
-    tenseCategory: 'continuous',
+    tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
   },
 
@@ -2664,7 +2664,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
   },
-  // New variety question: Watch
+  // New variety question: Watch (Mixed)
   {
     type: 'sentence-to-timeline',
     id: 'pc-past-watch-1',
@@ -2676,7 +2676,67 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     tenseName: 'Past Continuous + Past Simple',
     explanation: 'Watching the movie was the longer ongoing action (line) interrupted by the call (dot).',
     difficulty: 2,
-    tenseCategory: 'continuous',
+    tenseCategory: 'mixed',
+    sentenceForm: 'affirmative',
+  },
+  // Mixed: Interrupted Action (Eat + Ring)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-interrupted-1',
+    sentence: 'I was eating when the phone rang.',
+    correctElements: [
+      { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
+    ],
+    tenseName: 'Past Continuous + Past Simple',
+    explanation: 'Eating is the ongoing background action, and ringing is the sudden interruption.',
+    difficulty: 2,
+    tenseCategory: 'mixed',
+    sentenceForm: 'affirmative',
+  },
+  // Mixed: Past Perfect Sequence (Leave + Arrive)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-sequence-1',
+    sentence: 'She had already left before we arrived.',
+    correctElements: [
+      { id: 'e1', type: 'single-dot', zone: 'past-earlier', position: 40 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
+    ],
+    tenseName: 'Past Perfect + Past Simple',
+    explanation: 'She left (earlier past) before we arrived (later past).',
+    difficulty: 3,
+    tenseCategory: 'mixed',
+    sentenceForm: 'affirmative',
+  },
+  // Mixed: Future Perfect + Sequence (Finish + Come)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-future-1',
+    sentence: 'I will have finished my homework by the time you come over.',
+    correctElements: [
+      { id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 },
+      { id: 'e2', type: 'single-dot', zone: 'future', position: 70 },
+    ],
+    tenseName: 'Future Perfect + Context',
+    explanation: 'Finishing the homework links NOW to a future moment BEFORE the friend arrives.',
+    difficulty: 3,
+    tenseCategory: 'mixed',
+    sentenceForm: 'affirmative',
+  },
+  // Mixed: Parallel Actions (Study + Play)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-parallel-1',
+    sentence: 'While I was studying, they were playing games.',
+    correctElements: [
+      { id: 'e1', type: 'solid-line', zone: 'past', position: 40, verbLabel: 'study' },
+      { id: 'e2', type: 'solid-line', zone: 'past', position: 60, verbLabel: 'play' },
+    ],
+    tenseName: '2 x Past Continuous',
+    explanation: 'Two actions were happening at the same time in the past.',
+    difficulty: 2,
+    tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
   },
 ];

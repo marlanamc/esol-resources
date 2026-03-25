@@ -64,7 +64,7 @@ const CATEGORY_CONFIG: Array<{
     label: 'Mixed',
     shortLabel: 'Mixed',
     icon: Layers,
-    description: 'Multiple tenses in context',
+    description: 'Sentences with 2+ verbs',
     color: 'rose',
   },
 ];

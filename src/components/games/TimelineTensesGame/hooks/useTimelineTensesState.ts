@@ -466,12 +466,10 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         level: newLevel,
       };
 
-      const updatedCategoryData = categoryKey === 'all'
-        ? state.categoryProgress
-        : {
-            ...state.categoryProgress,
-            [categoryKey]: newProgress,
-          };
+      const updatedCategoryData = {
+        ...state.categoryProgress,
+        [categoryKey]: newProgress,
+      };
 
       // Calculate overall progress
       const overallProgress = calculateTimelineOverallProgress(updatedCategoryData);
