@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "irregular-verbs" | "gerund-infinitive" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -21,6 +21,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "minimal-pairs" || ui === "minimalpairs" || ui === "minimal-pairs-listening") return "minimal-pairs";
     if (ui === "irregular-verbs") return "irregular-verbs";
     if (ui === "gerund-infinitive" || ui === "gerunds-infinitives" || ui === "gerund-infinitive-patterns") return "gerund-infinitive";
+    if (ui === "timeline-tenses" || ui === "timeline" || ui === "tenses-timeline") return "timeline-tenses";
   }
 
   const content = activity?.content;
@@ -53,6 +54,10 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     // Check for gerund-infinitive content type
     if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "gerund-infinitive") {
       return "gerund-infinitive";
+    }
+    // Check for timeline-tenses content type
+    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "timeline-tenses") {
+      return "timeline-tenses";
     }
   }
 
@@ -88,6 +93,8 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
         return POINTS.ED_PRONUNCIATION;
       case "minimal-pairs":
         return POINTS.MINIMAL_PAIRS;
+      case "timeline-tenses":
+        return POINTS.TIMELINE_TENSES;
       default:
         return POINTS.ACTIVITY_COMPLETION;
     }

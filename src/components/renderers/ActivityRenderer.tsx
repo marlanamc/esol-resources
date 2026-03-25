@@ -44,6 +44,7 @@ const EdPronunciationGame = dynamic(() => import("../games/EdPronunciationGame")
 const MinimalPairsGame = dynamic(() => import("../games/MinimalPairsGame"), { loading: ActivityLoadingFallback });
 const IrregularVerbsGame = dynamic(() => import("../games/IrregularVerbsGame/IrregularVerbsGame").then(m => ({ default: m.IrregularVerbsGame })), { loading: ActivityLoadingFallback });
 const GerundInfinitiveGame = dynamic(() => import("../games/GerundInfinitiveGame").then(m => ({ default: m.GerundInfinitiveGame })), { loading: ActivityLoadingFallback });
+const TimelineTensesGame = dynamic(() => import("../games/TimelineTensesGame").then(m => ({ default: m.TimelineTensesGame })), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("../activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("../activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
 const VocabularyRenderer = dynamic(() => import("../activities/VocabularyRenderer"), { loading: ActivityLoadingFallback });
@@ -182,6 +183,8 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <IrregularVerbsGame activityId={activity.id} />;
                     case "gerund-infinitive":
                         return <GerundInfinitiveGame activityId={activity.id} />;
+                    case "timeline-tenses":
+                        return <TimelineTensesGame activityId={activity.id} assignmentId={assignmentId} />;
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }

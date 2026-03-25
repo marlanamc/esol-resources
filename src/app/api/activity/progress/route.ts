@@ -692,15 +692,30 @@ export async function POST(request: NextRequest) {
 
                 // Accuracy is items correct / total verbs (usually 10)
                 const correctCount = Math.round((sanitizedAccuracy || 0) * 10 / 100);
-                
+
                 let sessionPoints = correctCount * pointsPerVerb;
-                
+
                 // Add bonus for perfection
                 if (sanitizedAccuracy === 100) {
                     sessionPoints += POINTS.VERB_FORMS_BONUS;
                 }
-                
+
                 points = sessionPoints;
+            } else if (activityGameUi === 'timeline-tenses') {
+                // Award accuracy-based points for Timeline Tenses game
+                // Perfect (90%+): 15 points, High (70-89%): 10 points, Base: 8 points
+                if (sanitizedAccuracy !== undefined) {
+                    if (sanitizedAccuracy >= 90) {
+                        points = POINTS.TIMELINE_TENSES_PERFECT;
+                    } else if (sanitizedAccuracy >= 70) {
+                        points = POINTS.TIMELINE_TENSES_HIGH;
+                    } else {
+                        points = POINTS.TIMELINE_TENSES;
+                    }
+                } else {
+                    points = POINTS.TIMELINE_TENSES;
+                }
+                activityTypeLabel = 'Timeline Tenses';
             }
 
             // Include activity type in the reason for better display

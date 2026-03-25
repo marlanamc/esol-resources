@@ -410,6 +410,7 @@ export type ActivityContent =
     | VocabularyContent
     | EdPronunciationContent
     | MinimalPairsContent
+    | TimelineTensesContent
     | Record<string, unknown>;
 
 export interface LegacyGuideResponse {
@@ -466,4 +467,143 @@ export function isMinimalPairsContent(value: unknown): value is MinimalPairsCont
     if (!value || typeof value !== "object") return false;
     const candidate = value as Record<string, unknown>;
     return candidate["type"] === "minimal-pairs";
+}
+
+// ============================================================================
+// Timeline Tenses Game Types
+// ============================================================================
+
+/**
+ * Visual element types for timeline representation
+ *
+ * Simplified to 5 core shapes - the ZONE determines timing context:
+ * - Moment: one specific event/point
+ * - Habit: repeated actions
+ * - Duration: action happening over time
+ * - Connection: links to another point (NOW or past reference)
+ * - Duration + Connection: ongoing that also connects
+ *
+ * Legacy types (dashed-line, arc-dashed, solid-to-point) are kept for
+ * backwards compatibility but map to the core types visually.
+ */
+export type TimelineElementType =
+    | "single-dot"     // Moment - one point in time
+    | "multiple-dots"  // Habit - repeated actions
+    | "solid-line"     // Duration - ongoing action
+    | "arc"            // Connection - links to endpoint
+    | "solid-to-now"   // Duration + Connection - ongoing that connects
+    // Legacy types (kept for backwards compatibility, render same as above)
+    | "dashed-line"    // → renders as solid-line (zone determines style)
+    | "arc-dashed"     // → renders as arc (zone determines direction)
+    | "solid-to-point"; // → renders as solid-to-now (auto-detects target)
+
+/**
+ * Timeline zones relative to NOW marker.
+ * `past-earlier` / `past-later` split the past band (used for perfect tenses that
+ * need “before another past moment”); plain `past` is one band for other tenses.
+ */
+export type TimelineZone =
+    | "past"
+    | "past-earlier"
+    | "past-later"
+    | "present"
+    | "future";
+
+/** Individual timeline element with placement */
+export interface TimelineElement {
+    id: string;
+    type: TimelineElementType;
+    zone: TimelineZone;
+    /** Position within zone (0-100) */
+    position: number;
+    /** Base verb label for Type 2 questions */
+    verbLabel?: string;
+    /** ID of connected element (for arcs) */
+    connectedTo?: string;
+}
+
+/** Valid answer for verb conjugation with explanation */
+export interface ValidVerbAnswer {
+    /** The conjugated verb form, e.g., "was working" */
+    answer: string;
+    /** The tense name, e.g., "Past Continuous" */
+    tenseName: string;
+    /** Optional nuance explanation, e.g., "Emphasizes the ongoing action" */
+    nuance?: string;
+}
+
+/** Tense categories for filtering practice */
+export type TenseCategory =
+    | "simple"
+    | "continuous"
+    | "perfect"
+    | "perfect-continuous"
+    | "mixed";
+
+/** Sentence forms for filtering practice */
+export type SentenceForm = "affirmative" | "negative" | "question";
+
+/** Type 1: Student draws timeline from sentence */
+export interface SentenceToTimelineQuestion {
+    type: "sentence-to-timeline";
+    id: string;
+    /** The sentence to represent, e.g., "She cooks breakfast every day" */
+    sentence: string;
+    /** Expected timeline elements for correct answer */
+    correctElements: TimelineElement[];
+    /** The tense name to reveal after submission */
+    tenseName: string;
+    /** Detailed explanation of why this representation is correct */
+    explanation: string;
+    difficulty: 1 | 2 | 3;
+    tenseCategory: TenseCategory;
+    /** Sentence form: affirmative, negative, or question */
+    sentenceForm: SentenceForm;
+}
+
+/** Type 2: Student fills in verbs from timeline */
+export interface TimelineToVerbQuestion {
+    type: "timeline-to-verb";
+    id: string;
+    /** Pre-drawn timeline elements with verb labels */
+    timelineElements: TimelineElement[];
+    /** Sentence template with blanks, e.g., "He ___[work]___ when the power ___[go]___ off." */
+    sentenceTemplate: string;
+    /** Blank definitions with multiple valid answers */
+    blanks: Array<{
+        /** Stable blank ID used for rendering, refs, and answer state */
+        id: string;
+        /** Base verb shown on timeline, e.g., "work" */
+        baseVerb: string;
+        /** All grammatically valid answers with explanations */
+        validAnswers: ValidVerbAnswer[];
+    }>;
+    /** Optional scenario context */
+    scenario?: string;
+    difficulty: 1 | 2 | 3;
+    tenseCategory: TenseCategory;
+    /** Sentence form: affirmative, negative, or question */
+    sentenceForm: SentenceForm;
+}
+
+/** Union type for timeline tenses questions */
+export type TimelineTensesQuestion =
+    | SentenceToTimelineQuestion
+    | TimelineToVerbQuestion;
+
+/** Main content type for Timeline Tenses game */
+export interface TimelineTensesContent {
+    type: "timeline-tenses";
+    /** Array of questions (can mix both types) */
+    questions: TimelineTensesQuestion[];
+    /** Optional tense category filters for practice */
+    tenseFilters?: TenseCategory[];
+    /** Questions per round (default: 10) */
+    roundSize?: number;
+}
+
+export function isTimelineTensesContent(value: unknown): value is TimelineTensesContent {
+    if (!value || typeof value !== "object") return false;
+    const candidate = value as Record<string, unknown>;
+    return candidate["type"] === "timeline-tenses" && Array.isArray(candidate["questions"]);
 }
