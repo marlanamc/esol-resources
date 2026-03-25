@@ -7,19 +7,15 @@ import { ErrorToast } from '@/components/ui/ErrorToast';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { useRouter } from 'next/navigation';
 import { useTimelineTensesState } from './hooks/useTimelineTensesState';
-import { TenseFilterBar } from './TenseFilterBar';
-import { SentenceFormFilter } from './SentenceFormFilter';
-import { PracticeModeBar } from './PracticeModeBar';
 import { SentenceToTimelineExercise } from './exercises/SentenceToTimelineExercise';
 import { TimelineToVerbExercise } from './exercises/TimelineToVerbExercise';
-import { ResultsScreen } from './ResultsScreen';
 import { TutorialIntroScreen } from './TutorialIntroScreen';
+import { ResultsScreen } from './ResultsScreen';
 import { TutorialCompleteScreen } from './TutorialCompleteScreen';
 import { HowToPlayModal } from './HowToPlayModal';
 import { useTimelineAudio } from './hooks/useTimelineAudio';
+import { SelectionScreen } from './SelectionScreen';
 import { Info, RotateCcw } from 'lucide-react';
-import type { SentenceForm, TenseCategory } from '@/types/activity';
-import { filterTimelineQuestions } from './timelineTensesUtils';
 import {
   TIMELINE_TUTORIAL_QUESTIONS,
   TUTORIAL_HINTS,
@@ -137,12 +133,6 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   const currentTutorialHint = currentTutorialQuestion
     ? TUTORIAL_HINTS[currentTutorialQuestion.id]
     : undefined;
-  const availableQuestionCount = filterTimelineQuestions(
-    state.questionBank,
-    state.selectedCategory,
-    state.selectedPracticeMode,
-    state.selectedSentenceForm
-  ).length;
   const totalRoundQuestions = state.roundQuestions.length;
   const totalTutorialQuestions = TIMELINE_TUTORIAL_QUESTIONS.length;
 
@@ -218,48 +208,25 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              className="flex-1 flex flex-col"
             >
-              <div className="text-center mb-8">
-                <h1 className="font-display text-3xl sm:text-4xl font-bold text-text mb-3">
-                  Timeline Tenses
-                </h1>
-                <p className="text-text-muted text-lg max-w-2xl mx-auto">
-                  Visualize verb tenses on a timeline. Draw timelines from sentences
-                  or fill in verbs from timeline diagrams.
-                </p>
-              </div>
-
-              <TenseFilterBar
-                selectedCategory={state.selectedCategory}
-                categoryProgress={state.categoryProgress}
-                onSelectCategory={(category: TenseCategory | 'all') => selectTenseFilter(category)}
-              />
-
-              <div className="mt-6">
-                <SentenceFormFilter
-                  selectedForm={state.selectedSentenceForm}
-                  onSelectForm={(form: SentenceForm | 'all') => selectSentenceForm(form)}
-                />
-              </div>
-
-              <PracticeModeBar
-                selectedPracticeMode={state.selectedPracticeMode}
+              <SelectionScreen
+                state={{
+                  selectedCategory: state.selectedCategory,
+                  selectedPracticeMode: state.selectedPracticeMode,
+                  selectedSentenceForm: state.selectedSentenceForm,
+                  categoryProgress: state.categoryProgress,
+                  questionBank: state.questionBank,
+                }}
+                onSelectCategory={selectTenseFilter}
                 onSelectPracticeMode={selectPracticeMode}
+                onSelectSentenceForm={selectSentenceForm}
+                onStartRound={startRound}
+                onResetProgress={async () => {
+                  if (window.confirm('Are you sure you want to reset all your mastery levels and progress? This cannot be undone.')) {
+                    await resetProgress();
+                  }
+                }}
               />
-
-              <div className="mt-8 text-center">
-                <button
-                  onClick={startRound}
-                  disabled={availableQuestionCount === 0}
-                  className="px-8 py-4 bg-primary text-white rounded-xl font-semibold text-lg shadow-lg hover:bg-primary-dark hover:shadow-xl transition-all transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
-                >
-                  Start Practice
-                </button>
-                <p className="mt-4 text-text-muted text-sm">
-                  {availableQuestionCount} questions available in this practice style
-                </p>
-              </div>
             </motion.div>
           )}
 
