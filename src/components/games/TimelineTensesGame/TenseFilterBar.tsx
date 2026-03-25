@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Check, Clock, Zap, Link2, Layers } from 'lucide-react';
+import { Clock, Zap, Link2, Layers } from 'lucide-react';
 import type { TenseCategory } from '@/types/activity';
 import type { CategoryProgress } from './hooks/useTimelineTensesState';
 
@@ -83,7 +83,6 @@ export function TenseFilterBar({
         {CATEGORY_CONFIG.map((category) => {
           const isSelected = selectedCategory === category.id;
           const progress = categoryProgress[category.id];
-          const isCompleted = progress?.completed;
           const Icon = category.icon;
 
           return (
@@ -98,10 +97,10 @@ export function TenseFilterBar({
                   : 'border-border hover:border-primary/30 bg-white dark:bg-[#162b3d]'
               }`}
             >
-              {/* Completion badge */}
-              {isCompleted && (
-                <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
-                  <Check size={14} className="text-white" />
+              {/* Level badge */}
+              {progress && (
+                <div className="absolute -top-2 -right-2 px-2 py-0.5 rounded-full bg-primary text-white text-[10px] font-bold shadow-sm">
+                  Lvl {progress.level || 1}
                 </div>
               )}
 

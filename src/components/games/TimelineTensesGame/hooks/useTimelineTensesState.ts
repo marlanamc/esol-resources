@@ -53,6 +53,8 @@ export interface CategoryProgress {
   lastAttemptDate?: string;
   /** Recent accuracy scores for weighted average (last 3 attempts) */
   recentScores?: number[];
+  /** Current mastery level (1-5) */
+  level: number;
 }
 
 /** Calculate weighted average of recent scores (most recent weighted higher) */
@@ -217,7 +219,8 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         prev.selectedCategory,
         prev.selectedPracticeMode,
         prev.roundSize,
-        prev.selectedSentenceForm
+        prev.selectedSentenceForm,
+        prev.categoryProgress[prev.selectedCategory]?.level || 1
       );
 
       if (roundQuestions.length === 0) {
@@ -293,17 +296,44 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     });
   }, []);
 
-  // Skip the tutorial entirely
+  // Skip the tutorial entirely and go straight to exercising
   const skipTutorial = useCallback(() => {
     // Mark as completed so it doesn't show again
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(TUTORIAL_COMPLETED_KEY, '1');
     }
-    setState((prev) => ({
-      ...prev,
-      tutorialCompleted: true,
-      phase: 'selection',
-    }));
+    setState((prev) => {
+      const roundQuestions = buildTimelineRoundQuestions(
+        prev.questionBank,
+        prev.selectedCategory,
+        prev.selectedPracticeMode,
+        prev.roundSize,
+        prev.selectedSentenceForm,
+        prev.categoryProgress[prev.selectedCategory]?.level || 1
+      );
+
+      if (roundQuestions.length === 0) {
+        return {
+          ...prev,
+          tutorialCompleted: true,
+          error: 'No questions are available for that category and practice style yet.',
+          phase: 'selection',
+        };
+      }
+
+      return {
+        ...prev,
+        tutorialCompleted: true,
+        error: null,
+        phase: 'exercise',
+        currentQuestionIndex: 0,
+        roundQuestions,
+        questionResults: [],
+        showFeedback: false,
+        lastAnswerCorrect: null,
+        roundResults: null,
+      };
+    });
   }, []);
 
   // Continue from tutorial complete to real practice
@@ -314,7 +344,8 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         prev.selectedCategory,
         prev.selectedPracticeMode,
         prev.roundSize,
-        prev.selectedSentenceForm
+        prev.selectedSentenceForm,
+        prev.categoryProgress[prev.selectedCategory]?.level || 1
       );
 
       if (roundQuestions.length === 0) {
@@ -410,6 +441,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         accuracy: 0,
         attempts: 0,
         recentScores: [],
+        level: 1,
       };
 
       // Track recent scores (keep last 3)
@@ -419,12 +451,19 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       // Use weighted average for accuracy display
       const weightedAccuracy = calculateWeightedAccuracy(recentScores);
 
+      // Level up logic: if accuracy >= 70% and they are not yet at max level (5)
+      let newLevel = existingProgress.level || 1;
+      if (state.roundResults.accuracy >= 70 && newLevel < 5) {
+        newLevel += 1;
+      }
+
       const newProgress: CategoryProgress = {
         completed: state.roundResults.accuracy >= 70 || existingProgress.completed,
         accuracy: weightedAccuracy,
         attempts: existingProgress.attempts + 1,
         lastAttemptDate: new Date().toISOString(),
         recentScores,
+        level: newLevel,
       };
 
       const updatedCategoryData = categoryKey === 'all'

@@ -57,6 +57,7 @@ export function TimelineElementComponent({
             stroke={colors.fill}
             strokeWidth={8}
             strokeLinecap="round"
+            strokeDasharray="10 7"
           />
         );
 
@@ -146,8 +147,9 @@ export function TimelineElementComponent({
               d={`M ${x} ${y} Q ${solidMidX} ${y - solidCurveHeight} ${solidEndX} ${y}`}
               fill="none"
               stroke={colors.fill}
-              strokeWidth={6}
+              strokeWidth={5}
               strokeLinecap="round"
+              strokeDasharray="8 6"
             />
             {hasPartner ? null : endsAtNow ? (
               <circle cx={solidEndX} cy={y} r={7} fill="#059669" />
@@ -176,8 +178,9 @@ export function TimelineElementComponent({
               d={`M ${x} ${y} Q ${solidPointMidX} ${y - solidPointCurveHeight} ${solidPointEndX} ${y}`}
               fill="none"
               stroke={colors.fill}
-              strokeWidth={6}
+              strokeWidth={5}
               strokeLinecap="round"
+              strokeDasharray="8 6"
             />
             {hasPartnerPt ? null : endsAtNowPt ? (
               <circle cx={solidPointEndX} cy={y} r={7} fill="#059669" />
@@ -262,6 +265,7 @@ export function StampPreview({
             stroke={baseColor}
             strokeWidth={6}
             strokeLinecap="round"
+            strokeDasharray="8 6"
           />
         );
       case 'dashed-line':
@@ -313,8 +317,9 @@ export function StampPreview({
               d="M 5 15 Q 18 5 32 15"
               fill="none"
               stroke={baseColor}
-              strokeWidth={5}
+              strokeWidth={4}
               strokeLinecap="round"
+              strokeDasharray="5 4"
             />
             <circle cx={32} cy={15} r={5} fill="#059669" />
           </g>
@@ -328,8 +333,9 @@ export function StampPreview({
               d="M 5 15 Q 18 5 32 15"
               fill="none"
               stroke={baseColor}
-              strokeWidth={5}
+              strokeWidth={4}
               strokeLinecap="round"
+              strokeDasharray="5 4"
             />
             <circle cx={32} cy={15} r={5} fill={baseColor} />
           </g>

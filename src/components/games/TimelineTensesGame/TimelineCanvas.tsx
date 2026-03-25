@@ -84,31 +84,30 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
       if (!highlightZone) {
         return null;
       }
+      const PADDING = 4;
       if (highlightZone === 'present') {
-        return { x: NOW_POSITION - 15, width: 30 };
+        return { x: NOW_POSITION - 14, width: 28 + PADDING * 2 };
       }
       if (highlightZone === 'future') {
-        return { x: FUTURE_ZONE.start - 5, width: FUTURE_ZONE.end - FUTURE_ZONE.start + 10 };
+        return { x: FUTURE_ZONE.start - PADDING, width: (FUTURE_ZONE.end - FUTURE_ZONE.start) + PADDING * 2 };
       }
       if (highlightZone === 'past') {
-        return { x: PAST_SINGLE.start - 5, width: PAST_SINGLE.end - PAST_SINGLE.start + 10 };
+        return { x: PAST_SINGLE.start - PADDING, width: (NOW_POSITION - PAST_SINGLE.start - 6) + PADDING * 2 };
       }
       if (highlightZone === 'past-earlier') {
         return {
-          x: PAST_EARLIER_SPLIT.start - 5,
-          width: PAST_EARLIER_SPLIT.end - PAST_EARLIER_SPLIT.start + 10,
+          x: PAST_EARLIER_SPLIT.start - PADDING,
+          width: (PAST_EARLIER_SPLIT.end - PAST_EARLIER_SPLIT.start) + PADDING * 2,
         };
       }
       if (highlightZone === 'past-later') {
         return {
-          x: PAST_LATER_SPLIT.start - 5,
-          width: PAST_LATER_SPLIT.end - PAST_LATER_SPLIT.start + 10,
+          x: PAST_LATER_SPLIT.start - PADDING,
+          width: (NOW_POSITION - PAST_LATER_SPLIT.start - 6) + PADDING * 2,
         };
       }
       return null;
     }, [highlightZone]);
-
-    const gapMidX = (PAST_TIMELINE_END + NOW_POSITION) / 2;
 
     return (
       <svg
@@ -117,60 +116,63 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
         className={`w-full max-w-lg mx-auto ${className}`}
         style={{ touchAction: 'none' }}
       >
-        {/* Static zone tints — past bands stop short of NOW */}
-        {pastLayout === 'split' ? (
-          <>
+        {/* 1. Zone backgrounds — Always visible, overlapping for seamless connection */}
+        <g className="pointer-events-none select-none">
+          {pastLayout === 'split' ? (
+            <>
+              <rect
+                x={PAST_EARLIER_SPLIT.start - 4}
+                y={12}
+                width={PAST_EARLIER_SPLIT.end - PAST_EARLIER_SPLIT.start + 8}
+                height={56}
+                rx={8}
+                fill={COLORS['past-earlier'].bg}
+                className="opacity-40 dark:opacity-20"
+              />
+              <rect
+                x={PAST_LATER_SPLIT.start - 4}
+                y={12}
+                width={NOW_POSITION - PAST_LATER_SPLIT.start - 6}
+                height={56}
+                rx={8}
+                fill={COLORS['past-later'].bg}
+                className="opacity-40 dark:opacity-20"
+              />
+            </>
+          ) : (
             <rect
-              x={PAST_EARLIER_SPLIT.start - 4}
+              x={PAST_SINGLE.start - 4}
               y={12}
-              width={PAST_EARLIER_SPLIT.end - PAST_EARLIER_SPLIT.start + 8}
+              width={NOW_POSITION - PAST_SINGLE.start - 6}
               height={56}
               rx={8}
-              fill={COLORS['past-earlier'].bg}
-              opacity={0.45}
+              fill={COLORS.past.bg}
+              className="opacity-40 dark:opacity-20"
             />
-            <rect
-              x={PAST_LATER_SPLIT.start - 4}
-              y={12}
-              width={PAST_LATER_SPLIT.end - PAST_LATER_SPLIT.start + 8}
-              height={56}
-              rx={8}
-              fill={COLORS['past-later'].bg}
-              opacity={0.45}
-            />
-          </>
-        ) : (
+          )}
+
           <rect
-            x={PAST_SINGLE.start - 4}
+            x={FUTURE_ZONE.start - 4}
             y={12}
-            width={PAST_SINGLE.end - PAST_SINGLE.start + 8}
+            width={FUTURE_ZONE.end - FUTURE_ZONE.start + 8}
             height={56}
             rx={8}
-            fill={COLORS.past.bg}
-            opacity={0.4}
+            fill={COLORS.future.bg}
+            className="opacity-30 dark:opacity-15"
           />
-        )}
 
-        <rect
-          x={FUTURE_ZONE.start - 4}
-          y={12}
-          width={FUTURE_ZONE.end - FUTURE_ZONE.start + 8}
-          height={56}
-          rx={8}
-          fill={COLORS.future.bg}
-          opacity={0.35}
-        />
+          <rect
+            x={NOW_POSITION - 14}
+            y={12}
+            width={32}
+            height={56}
+            rx={6}
+            fill={COLORS.present.bg}
+            className="opacity-40 dark:opacity-20"
+          />
+        </g>
 
-        <rect
-          x={NOW_POSITION - 14}
-          y={12}
-          width={28}
-          height={56}
-          rx={6}
-          fill={COLORS.present.bg}
-          opacity={0.4}
-        />
-
+        {/* 2. Highlight Overlay */}
         {highlightZone && highlightGeom && (
           <rect
             x={highlightGeom.x}
@@ -179,10 +181,11 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
             height={60}
             rx={8}
             fill={COLORS[highlightZone].bg}
-            opacity={0.5}
+            className="opacity-60 dark:opacity-40 pointer-events-none"
           />
         )}
 
+        {/* 3. Axis and NOW Marker */}
         <line
           x1={10}
           y1={AXIS_Y}
@@ -191,6 +194,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
           stroke={COLORS.axis.stroke}
           strokeWidth={4}
           strokeLinecap="round"
+          className="opacity-60 dark:opacity-40"
         />
 
         <line
@@ -203,88 +207,74 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
           strokeLinecap="round"
         />
 
+        {/* 4. Zone Labels */}
         {showLabels && (
-          <>
+          <g className="pointer-events-none select-none">
             {pastLayout === 'split' ? (
               <>
                 <text
-                  x={(PAST_EARLIER_SPLIT.start + PAST_EARLIER_SPLIT.end) / 2}
-                  y={17}
+                  x={(PAST_EARLIER_SPLIT.start - 4 + (NOW_POSITION - 6)) / 2}
+                  y={12}
                   textAnchor="middle"
-                  className="fill-amber-900 dark:fill-amber-200 text-[9px] font-bold uppercase"
-                  style={{ fontSize: '9px', fontWeight: 700 }}
+                  className="fill-amber-800 dark:fill-amber-300 font-bold uppercase opacity-60"
+                  style={{ fontSize: '10px', fontWeight: 800, letterSpacing: '0.05em' }}
                 >
-                  Earlier
+                  PAST
                 </text>
                 <text
                   x={(PAST_EARLIER_SPLIT.start + PAST_EARLIER_SPLIT.end) / 2}
-                  y={27}
+                  y={72}
                   textAnchor="middle"
-                  className="fill-amber-800/90 dark:fill-amber-300/90 text-[8px] font-semibold"
-                  style={{ fontSize: '8px', fontWeight: 600 }}
+                  className="fill-amber-800 dark:fill-amber-400 font-bold"
+                  style={{ fontSize: '10px', fontWeight: 700 }}
                 >
-                  not tied to NOW
+                  EARLIER
                 </text>
                 <text
-                  x={(PAST_LATER_SPLIT.start + PAST_LATER_SPLIT.end) / 2}
-                  y={17}
+                  x={(PAST_LATER_SPLIT.start + NOW_POSITION - 6) / 2}
+                  y={72}
                   textAnchor="middle"
-                  className="fill-amber-700 dark:fill-amber-300 text-[9px] font-bold uppercase"
-                  style={{ fontSize: '9px', fontWeight: 700 }}
+                  className="fill-amber-700 dark:fill-amber-400 font-bold"
+                  style={{ fontSize: '10px', fontWeight: 700 }}
                 >
-                  Later
-                </text>
-                <text
-                  x={(PAST_LATER_SPLIT.start + PAST_LATER_SPLIT.end) / 2}
-                  y={27}
-                  textAnchor="middle"
-                  className="fill-amber-700/85 dark:fill-amber-400/85 text-[8px] font-semibold"
-                  style={{ fontSize: '8px', fontWeight: 600 }}
-                >
-                  past (near NOW)
+                  LATER
                 </text>
               </>
             ) : (
               <text
-                x={(PAST_SINGLE.start + PAST_SINGLE.end) / 2}
-                y={20}
+                x={(PAST_SINGLE.start + NOW_POSITION - 6) / 2}
+                y={72}
                 textAnchor="middle"
-                className="fill-amber-600 text-xs font-bold uppercase"
-                style={{ fontSize: '10px', fontWeight: 700 }}
+                className="fill-amber-800 dark:fill-amber-400 font-bold"
+                style={{ fontSize: '12px', fontWeight: 700 }}
               >
                 PAST
               </text>
             )}
-            <text
-              x={gapMidX}
-              y={74}
-              textAnchor="middle"
-              className="fill-slate-400 dark:fill-slate-500"
-              style={{ fontSize: '7px', fontWeight: 500 }}
-            >
-              not now
-            </text>
+
             <text
               x={NOW_POSITION}
-              y={20}
+              y={12}
               textAnchor="middle"
-              className="fill-emerald-600 text-xs font-bold uppercase"
-              style={{ fontSize: '10px', fontWeight: 700 }}
+              className="fill-emerald-700 dark:fill-emerald-400 font-bold uppercase"
+              style={{ fontSize: '10px', fontWeight: 800 }}
             >
               NOW
             </text>
+
             <text
-              x={FUTURE_ZONE.start + (FUTURE_ZONE.end - FUTURE_ZONE.start) / 2}
-              y={20}
+              x={(FUTURE_ZONE.start + FUTURE_ZONE.end) / 2}
+              y={72}
               textAnchor="middle"
-              className="fill-blue-600 text-xs font-bold uppercase"
-              style={{ fontSize: '10px', fontWeight: 700 }}
+              className="fill-blue-700 dark:fill-blue-400 font-bold"
+              style={{ fontSize: '12px', fontWeight: 700 }}
             >
               FUTURE
             </text>
-          </>
+          </g>
         )}
 
+        {/* 5. Timeline Elements (Placed Stamps) */}
         {elements.map((element) => {
           let arcTargetX: number | undefined;
           const partner = resolvePastConnectionPartner(element, elements, pastLayout);
@@ -304,50 +294,60 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
           );
         })}
 
+        {/* 6. Interactive Hitboxes */}
         {interactive && (
-          <>
+          <g>
             {pastLayout === 'split' ? (
               <>
                 <rect
                   x={PAST_EARLIER_SPLIT.start}
-                  y={AXIS_Y - 15}
+                  y={AXIS_Y - 25}
                   width={PAST_EARLIER_SPLIT.end - PAST_EARLIER_SPLIT.start}
-                  height={30}
+                  height={50}
                   fill="transparent"
                   className="cursor-pointer"
-                  data-zone="past-earlier"
+                  style={{ pointerEvents: 'auto' }}
                 />
                 <rect
                   x={PAST_LATER_SPLIT.start}
-                  y={AXIS_Y - 15}
-                  width={PAST_LATER_SPLIT.end - PAST_LATER_SPLIT.start}
-                  height={30}
+                  y={AXIS_Y - 25}
+                  width={NOW_POSITION - PAST_LATER_SPLIT.start - 6}
+                  height={50}
                   fill="transparent"
                   className="cursor-pointer"
-                  data-zone="past-later"
+                  style={{ pointerEvents: 'auto' }}
                 />
               </>
             ) : (
               <rect
                 x={PAST_SINGLE.start}
-                y={AXIS_Y - 15}
-                width={PAST_SINGLE.end - PAST_SINGLE.start}
-                height={30}
+                y={AXIS_Y - 25}
+                width={NOW_POSITION - PAST_SINGLE.start - 6}
+                height={50}
                 fill="transparent"
                 className="cursor-pointer"
-                data-zone="past"
+                style={{ pointerEvents: 'auto' }}
               />
             )}
             <rect
-              x={FUTURE_ZONE.start}
-              y={AXIS_Y - 15}
-              width={FUTURE_ZONE.end - FUTURE_ZONE.start}
-              height={30}
+              x={NOW_POSITION - 10}
+              y={AXIS_Y - 25}
+              width={20}
+              height={50}
               fill="transparent"
               className="cursor-pointer"
-              data-zone="future"
+              style={{ pointerEvents: 'auto' }}
             />
-          </>
+            <rect
+              x={FUTURE_ZONE.start}
+              y={AXIS_Y - 25}
+              width={FUTURE_ZONE.end - FUTURE_ZONE.start}
+              height={50}
+              fill="transparent"
+              className="cursor-pointer"
+              style={{ pointerEvents: 'auto' }}
+            />
+          </g>
         )}
       </svg>
     );

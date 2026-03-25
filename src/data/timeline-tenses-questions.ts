@@ -19,7 +19,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
   // SIMPLE TENSES
   // ============================================================================
 
-  // Type 1: Sentence to Timeline - Present Simple (Habit)
+  // Type 1: Sentence to Timeline - Present Simple (Habit/Fact)
   {
     type: 'sentence-to-timeline',
     id: 'ps-habit-1',
@@ -588,7 +588,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
   // NEGATIVE SENTENCES - Type 1: Sentence to Timeline
   // ============================================================================
 
-  // Present Simple Negative (Habit)
+  // Present Simple Negative (Habit/Fact)
   {
     type: 'sentence-to-timeline',
     id: 'ps-habit-neg-1',
@@ -739,7 +739,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
   // QUESTION FORMS - Type 1: Sentence to Timeline
   // ============================================================================
 
-  // Present Simple Question (Habit)
+  // Present Simple Question (Habit/Fact)
   {
     type: 'sentence-to-timeline',
     id: 'ps-habit-q-1',
@@ -2626,6 +2626,57 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     scenario: 'Weather forecast',
     difficulty: 1,
     tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+  // New variety question: Study
+  {
+    type: 'sentence-to-timeline',
+    id: 'pc-study-1',
+    sentence: 'I am studying English at the library.',
+    correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
+    tenseName: 'Present Continuous',
+    explanation: 'Studying at the library is an action that is happening right now.',
+    difficulty: 1,
+    tenseCategory: 'continuous',
+    sentenceForm: 'affirmative',
+  },
+  // New variety question: Work
+  {
+    type: 'sentence-to-timeline',
+    id: 'ps-work-1',
+    sentence: 'He works at the hospital.',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
+    tenseName: 'Present Simple (Habit/Fact)',
+    explanation: 'Working at the hospital is a fact or permanent situation.',
+    difficulty: 1,
+    tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+  // New variety question: Cook
+  {
+    type: 'sentence-to-timeline',
+    id: 'pp-cook-1',
+    sentence: 'I have cooked dinner already.',
+    correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 60 }],
+    tenseName: 'Present Perfect',
+    explanation: 'The dinner is cooked and the result is relevant to now.',
+    difficulty: 2,
+    tenseCategory: 'perfect',
+    sentenceForm: 'affirmative',
+  },
+  // New variety question: Watch
+  {
+    type: 'sentence-to-timeline',
+    id: 'pc-past-watch-1',
+    sentence: 'I was watching a movie when you called.',
+    correctElements: [
+      { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
+    ],
+    tenseName: 'Past Continuous + Past Simple',
+    explanation: 'Watching the movie was the longer ongoing action (line) interrupted by the call (dot).',
+    difficulty: 2,
+    tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
   },
 ];

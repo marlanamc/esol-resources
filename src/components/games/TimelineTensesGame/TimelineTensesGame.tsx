@@ -316,7 +316,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
               <div className="px-4 sm:px-0 mb-6">
                 <div className="flex items-center justify-between mb-2">
                   <button
-                    onClick={() => router.back()}
+                    onClick={retryRound}
                     className="text-text-muted hover:text-text transition-colors"
                   >
                     <ArrowLeft size={20} />

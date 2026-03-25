@@ -42,6 +42,10 @@ export function SentenceToTimelineExercise({
   const [highlightZone, setHighlightZone] = useState<TimelineZone | null>(null);
   const [showHint, setShowHint] = useState(false);
 
+  // Only show split past (EARLIER / LATER) for connection stamps that need the distinction
+  const CONNECTION_STAMPS: TimelineElementType[] = ['arc', 'solid-to-now'];
+  const useSplitPast = selectedStamp !== null && CONNECTION_STAMPS.includes(selectedStamp);
+
   // Generate hint based on correct elements
   const getHint = useCallback((): string => {
     const zones = [...new Set(question.correctElements.map((el) => el.zone))];
@@ -177,124 +181,64 @@ export function SentenceToTimelineExercise({
                 elements={displayElements}
                 interactive={!!selectedStamp}
                 highlightZone={highlightZone}
-                pastTimelineLayout="split"
+                pastTimelineLayout={useSplitPast ? 'split' : 'single'}
               />
 
-              {/* Click overlays — always two past columns + neutral gap before NOW (matches SVG) */}
+              {/* Click overlays — invisible hitboxes aligned over the SVG */}
               {selectedStamp && (
-                <div className="absolute inset-0 flex">
-                  <motion.button
-                    animate={{
-                      backgroundColor:
-                        highlightZone === 'past-earlier'
-                          ? 'rgba(180, 83, 9, 0.22)'
-                          : [
-                              'rgba(217, 119, 6, 0.04)',
-                              'rgba(180, 83, 9, 0.12)',
-                              'rgba(217, 119, 6, 0.04)',
-                            ],
-                    }}
-                    transition={{
-                      duration: highlightZone === 'past-earlier' ? 0.2 : 2,
-                      repeat: highlightZone === 'past-earlier' ? 0 : Infinity,
-                    }}
-                    style={{ flex: '1 1 22%' }}
-                    className="rounded-l-xl flex flex-col items-center justify-end pb-1 gap-0.5 min-w-0"
-                    onClick={() => handleTimelineClick('past-earlier')}
-                    onMouseEnter={() => setHighlightZone('past-earlier')}
-                    onMouseLeave={() => setHighlightZone(null)}
-                    aria-label="Place in earlier past, not tied to now"
-                  >
-                    <span className="text-[10px] font-bold text-amber-800 dark:text-amber-300 opacity-80">
-                      EARLIER
-                    </span>
-                    <span className="text-[9px] text-amber-600/80 dark:text-amber-400/80">
-                      past
-                    </span>
-                  </motion.button>
-                  <motion.button
-                    animate={{
-                      backgroundColor:
-                        highlightZone === 'past-later'
-                          ? 'rgba(217, 119, 6, 0.2)'
-                          : [
-                              'rgba(217, 119, 6, 0.05)',
-                              'rgba(217, 119, 6, 0.14)',
-                              'rgba(217, 119, 6, 0.05)',
-                            ],
-                    }}
-                    transition={{
-                      duration: highlightZone === 'past-later' ? 0.2 : 2,
-                      repeat: highlightZone === 'past-later' ? 0 : Infinity,
-                      delay: 0.12,
-                    }}
-                    style={{ flex: '1 1 22%' }}
-                    className="flex flex-col items-center justify-end pb-1 gap-0.5 border-l border-amber-200/40 dark:border-amber-800/30 min-w-0"
-                    onClick={() => handleTimelineClick('past-later')}
-                    onMouseEnter={() => setHighlightZone('past-later')}
-                    onMouseLeave={() => setHighlightZone(null)}
-                    aria-label="Place in later past, closer to now"
-                  >
-                    <span className="text-[10px] font-bold text-amber-700 dark:text-amber-400 opacity-80">
-                      LATER
-                    </span>
-                    <span className="text-[9px] text-amber-600/80 dark:text-amber-400/80">
-                      past
-                    </span>
-                  </motion.button>
-                  <div
-                    className="pointer-events-none flex flex-col items-center justify-end pb-2 border-l border-r border-dashed border-border/60 dark:border-white/10"
-                    style={{ flex: '0 0 10%' }}
-                    aria-hidden
-                  >
-                    <span className="text-[8px] font-medium text-text-muted/70 text-center leading-tight px-0.5">
-                      not
-                      <br />
-                      now
-                    </span>
-                  </div>
-                  <motion.button
-                    animate={{
-                      backgroundColor: highlightZone === 'present'
-                        ? 'rgba(5, 150, 105, 0.2)'
-                        : ['rgba(5, 150, 105, 0.05)', 'rgba(5, 150, 105, 0.15)', 'rgba(5, 150, 105, 0.05)'],
-                    }}
-                    transition={{
-                      duration: highlightZone === 'present' ? 0.2 : 2,
-                      repeat: highlightZone === 'present' ? 0 : Infinity,
-                      delay: 0.3,
-                    }}
-                    className="w-16 flex items-end justify-center pb-2"
+                <div className="absolute inset-0 flex pointer-events-auto">
+                  {useSplitPast ? (
+                    <>
+                      <button
+                        style={{ flex: '0 0 23%' }}
+                        className="rounded-l-xl focus:outline-none min-w-0"
+                        onClick={() => handleTimelineClick('past-earlier')}
+                        onMouseEnter={() => setHighlightZone('past-earlier')}
+                        onMouseLeave={() => setHighlightZone(null)}
+                        aria-label="Place in earlier past, not tied to now"
+                      />
+                      <button
+                        style={{ flex: '0 0 19%' }}
+                        className="focus:outline-none min-w-0"
+                        onClick={() => handleTimelineClick('past-later')}
+                        onMouseEnter={() => setHighlightZone('past-later')}
+                        onMouseLeave={() => setHighlightZone(null)}
+                        aria-label="Place in later past, closer to now"
+                      />
+                      {/* Gap for split past */}
+                      <div
+                        className="pointer-events-none"
+                        style={{ flex: '0 0 4.5%' }}
+                        aria-hidden
+                      />
+                    </>
+                  ) : (
+                    <button
+                      style={{ flex: '0 0 46.5%' }}
+                      className="rounded-l-xl focus:outline-none min-w-0"
+                      onClick={() => handleTimelineClick('past')}
+                      onMouseEnter={() => setHighlightZone('past')}
+                      onMouseLeave={() => setHighlightZone(null)}
+                      aria-label="Place in past zone"
+                    />
+                  )}
+
+                  <button
+                    style={{ flex: '0 0 7%' }}
+                    className="focus:outline-none"
                     onClick={() => handleTimelineClick('present')}
                     onMouseEnter={() => setHighlightZone('present')}
                     onMouseLeave={() => setHighlightZone(null)}
                     aria-label="Place at present"
-                  >
-                    <span className="text-xs font-medium text-green-600 dark:text-green-400 opacity-70">
-                      NOW
-                    </span>
-                  </motion.button>
-                  <motion.button
-                    animate={{
-                      backgroundColor: highlightZone === 'future'
-                        ? 'rgba(37, 99, 235, 0.2)'
-                        : ['rgba(37, 99, 235, 0.05)', 'rgba(37, 99, 235, 0.15)', 'rgba(37, 99, 235, 0.05)'],
-                    }}
-                    transition={{
-                      duration: highlightZone === 'future' ? 0.2 : 2,
-                      repeat: highlightZone === 'future' ? 0 : Infinity,
-                      delay: 0.6,
-                    }}
-                    className="flex-1 rounded-r-xl flex items-end justify-center pb-2"
+                  />
+                  <button
+                    style={{ flex: '0 0 46.5%' }}
+                    className="rounded-r-xl focus:outline-none"
                     onClick={() => handleTimelineClick('future')}
                     onMouseEnter={() => setHighlightZone('future')}
                     onMouseLeave={() => setHighlightZone(null)}
                     aria-label="Place in future zone"
-                  >
-                    <span className="text-xs font-medium text-blue-600 dark:text-blue-400 opacity-70">
-                      FUTURE
-                    </span>
-                  </motion.button>
+                  />
                 </div>
               )}
             </div>
@@ -368,12 +312,35 @@ export function SentenceToTimelineExercise({
         </>
       ) : (
         /* Feedback */
-        <FeedbackPanel
-          isCorrect={lastAnswerCorrect ?? false}
-          tenseName={question.tenseName}
-          explanation={question.explanation}
-          onContinue={onNext}
-        />
+        <div className="space-y-6">
+          {!lastAnswerCorrect && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-5"
+            >
+              <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                Correct Answer Diagram
+              </div>
+              <div className="opacity-80 scale-90 origin-top">
+                <TimelineCanvas
+                  elements={question.correctElements}
+                  interactive={false}
+                  showLabels={true}
+                  pastTimelineLayout={question.correctElements.some(el => el.zone.startsWith('past-')) ? 'split' : 'single'}
+                />
+              </div>
+            </motion.div>
+          )}
+
+          <FeedbackPanel
+            isCorrect={lastAnswerCorrect ?? false}
+            tenseName={question.tenseName}
+            explanation={question.explanation}
+            onContinue={onNext}
+          />
+        </div>
       )}
     </div>
   );

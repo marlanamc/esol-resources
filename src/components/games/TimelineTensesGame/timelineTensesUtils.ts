@@ -329,7 +329,8 @@ export function buildTimelineRoundQuestions(
   category: TenseCategory | "all",
   practiceMode: TimelinePracticeMode,
   roundSize: number,
-  sentenceForm: SentenceForm | "all" = "all"
+  sentenceForm: SentenceForm | "all" = "all",
+  level: number = 1
 ): TimelineTensesQuestion[] {
   const filteredQuestions = filterTimelineQuestions(
     questionBank,
@@ -337,21 +338,61 @@ export function buildTimelineRoundQuestions(
     practiceMode,
     sentenceForm
   );
-  const byDifficulty = [1, 2, 3].flatMap((difficulty) => {
-    const difficultyQuestions = filteredQuestions.filter(
-      (question) => question.difficulty === difficulty
-    );
 
-    return [0, 1, 2].flatMap((teachingPriority) =>
-      shuffleArray(
-        difficultyQuestions.filter(
-          (question) => getTimelineTeachingPriority(question) === teachingPriority
-        )
-      )
-    );
-  });
+  if (filteredQuestions.length === 0) return [];
 
-  return byDifficulty.slice(0, Math.min(roundSize, byDifficulty.length));
+  // For a better mix, we group by difficulty but shuffle the final selection
+  // across those difficulties to avoid "Difficulty 1 only" rounds.
+  const diff1 = shuffleArray(filteredQuestions.filter(q => q.difficulty === 1));
+  const diff2 = shuffleArray(filteredQuestions.filter(q => q.difficulty === 2));
+  const diff3 = shuffleArray(filteredQuestions.filter(q => q.difficulty === 3));
+
+  const result: TimelineTensesQuestion[] = [];
+  
+  // Attempt to build a balanced round based on level
+  // Level 1: 70% Easy, 30% Medium
+  // Level 2: 40% Easy, 40% Medium, 20% Hard
+  // Level 3: 20% Easy, 40% Medium, 40% Hard
+  // Level 4: 10% Easy, 30% Medium, 60% Hard
+  // Level 5: 10% Easy, 20% Medium, 70% Hard
+  
+  const ratios = [
+    { 1: 0.7, 2: 0.3, 3: 0.0 }, // Lvl 1
+    { 1: 0.4, 2: 0.4, 3: 0.2 }, // Lvl 2
+    { 1: 0.2, 2: 0.4, 3: 0.4 }, // Lvl 3
+    { 1: 0.1, 2: 0.3, 3: 0.6 }, // Lvl 4
+    { 1: 0.1, 2: 0.2, 3: 0.7 }, // Lvl 5
+  ];
+  
+  const activeRatio = ratios[Math.min(level, 5) - 1];
+
+  const counts = {
+    1: Math.round(roundSize * activeRatio[1]),
+    2: Math.round(roundSize * activeRatio[2]),
+    3: Math.round(roundSize * activeRatio[3])
+  };
+
+  // Adjust counts if some buckets are empty
+  const diff1Pick = Math.min(counts[1], diff1.length);
+  const diff2Pick = Math.min(counts[2], diff2.length);
+  const diff3Pick = Math.min(counts[3], diff3.length);
+
+  result.push(...diff1.slice(0, diff1Pick));
+  result.push(...diff2.slice(0, diff2Pick));
+  result.push(...diff3.slice(0, diff3Pick));
+
+  // Fill remaining slots from any available pool if we haven't reached roundSize
+  if (result.length < roundSize) {
+    const remaining = [
+      ...diff1.slice(diff1Pick),
+      ...diff2.slice(diff2Pick),
+      ...diff3.slice(diff3Pick)
+    ];
+    result.push(...shuffleArray(remaining).slice(0, roundSize - result.length));
+  }
+
+  // Final shuffle so the round doesn't always go Easy -> Hard
+  return shuffleArray(result);
 }
 
 export function getTimelineQuestionCount(
@@ -494,17 +535,7 @@ function buildDrawingMatchKey(
   return `${normalizedType}:${z}`;
 }
 
-function getTimelineTeachingPriority(question: TimelineTensesQuestion): 0 | 1 | 2 {
-  if (question.id.includes("-neg-")) {
-    return 1;
-  }
 
-  if (question.id.includes("-q-")) {
-    return 2;
-  }
-
-  return 0;
-}
 
 export function validateTimelineDrawingElements(
   correctElements: Pick<TimelineElement, "type" | "zone">[],

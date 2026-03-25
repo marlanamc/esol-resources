@@ -285,7 +285,7 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
           className="w-full py-4 px-6 bg-primary text-white rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-primary-dark transition-colors"
         >
           <RotateCcw size={20} />
-          {isPassing ? 'Practice Again' : 'Try Again'}
+          {isPassing ? 'Start Next Level' : 'Try Again'}
         </button>
         <button
           onClick={onBack}
