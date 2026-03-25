@@ -55,14 +55,14 @@ const STAMPS: Array<{
   },
   {
     type: 'arc',
-    label: 'Connection',
-    description: 'Links to NOW (or to another stamp)',
+    label: 'Link',
+    description: 'Links an event to another event (or to NOW)',
     shortcut: '4',
   },
   {
     type: 'solid-to-now',
-    label: 'Duration + Connection',
-    description: 'Ongoing action that links to NOW',
+    label: 'Ongoing Link',
+    description: 'Ongoing action that links to another event (or NOW)',
     shortcut: '5',
   },
 ];
