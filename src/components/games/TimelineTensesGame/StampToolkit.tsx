@@ -43,7 +43,7 @@ const STAMPS: Array<{
   },
   {
     type: 'multiple-dots',
-    label: 'Habit',
+    label: 'Habit/Fact',
     description: 'Repeated actions or routines',
     shortcut: '2',
   },
