@@ -35,7 +35,7 @@ const COLORS: Record<
   { fill: string; stroke: string; bg: string }
 > = {
   past: { fill: '#d97706', stroke: '#b45309', bg: '#fef3c7' },
-  'past-earlier': { fill: '#b45309', stroke: '#92400e', bg: '#fff7ed' },
+  'past-earlier': { fill: '#b45309', stroke: '#92400e', bg: '#ffedd5' },
   'past-later': { fill: '#d97706', stroke: '#b45309', bg: '#fef3c7' },
   present: { fill: '#059669', stroke: '#047857', bg: '#d1fae5' },
   future: { fill: '#2563eb', stroke: '#1d4ed8', bg: '#dbeafe' },
@@ -127,7 +127,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
                 height={56}
                 rx={8}
                 fill={COLORS['past-earlier'].bg}
-                className="opacity-40 dark:opacity-20"
+                className="opacity-60 dark:opacity-30"
               />
               <rect
                 x={PAST_LATER_SPLIT.start - 4}
