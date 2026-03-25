@@ -2739,4 +2739,158 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
   },
+  // New PPC - Build the Timeline
+  {
+    type: 'sentence-to-timeline',
+    id: 'ppc-past-3',
+    sentence: 'I had been waiting for the bus for 30 minutes when it finally arrived.',
+    correctElements: [
+      { id: 'e1', type: 'solid-to-point', zone: 'past-earlier', position: 40 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
+    ],
+    tenseName: 'Past Perfect Continuous + Past Simple',
+    explanation: 'Wait (duration up to a point) and arrival (moment in later past).',
+    difficulty: 3,
+    tenseCategory: 'perfect-continuous',
+    sentenceForm: 'affirmative',
+  },
+  // New PPC - Build the Timeline
+  {
+    type: 'sentence-to-timeline',
+    id: 'ppc-past-4',
+    sentence: 'They had been working on the project for months before the deadline was changed.',
+    correctElements: [
+      { id: 'e1', type: 'solid-to-point', zone: 'past-earlier', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 80 },
+    ],
+    tenseName: 'Past Perfect Continuous + Past Simple',
+    explanation: 'Work (duration up to a point) and change (moment in later past).',
+    difficulty: 3,
+    tenseCategory: 'perfect-continuous',
+    sentenceForm: 'affirmative',
+  },
+  // New FPC - Build the Timeline
+  {
+    type: 'sentence-to-timeline',
+    id: 'fpc-3',
+    sentence: 'Next month, I will have been living in this city for ten years.',
+    correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 70 }],
+    tenseName: 'Future Perfect Continuous',
+    explanation: 'Living (duration) up to a specific moment in the future.',
+    difficulty: 3,
+    tenseCategory: 'perfect-continuous',
+    sentenceForm: 'affirmative',
+  },
+  // New FPC - Build the Timeline
+  {
+    type: 'sentence-to-timeline',
+    id: 'fpc-4',
+    sentence: 'By 5:00 PM, she will have been studying for six hours straight.',
+    correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 60 }],
+    tenseName: 'Future Perfect Continuous',
+    explanation: 'Study (duration) up to a future point in time.',
+    difficulty: 3,
+    tenseCategory: 'perfect-continuous',
+    sentenceForm: 'affirmative',
+  },
+  // New PPC - Read the Timeline
+  {
+    type: 'timeline-to-verb',
+    id: 'ppc-past-read-2',
+    timelineElements: [
+      { id: 'e1', type: 'solid-to-now', zone: 'past', position: 40, verbLabel: 'teach' },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70, verbLabel: 'retire' },
+    ],
+    sentenceTemplate: 'We ___[teach]___ at that school for 5 years when the principal ___[retire]___.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'teach',
+        validAnswers: [
+          { answer: 'had been teaching', tenseName: 'Past Perfect Continuous', nuance: 'Correct Past Perfect Continuous' },
+          { answer: 'had taught', tenseName: 'Past Perfect', nuance: 'Acceptable Past Perfect' },
+        ],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'retire',
+        validAnswers: [{ answer: 'retired', tenseName: 'Past Simple', nuance: 'Correct Past Simple' }],
+      },
+    ],
+    difficulty: 3,
+    tenseCategory: 'perfect-continuous',
+    sentenceForm: 'affirmative',
+  },
+  // New PPC - Read the Timeline
+  {
+    type: 'timeline-to-verb',
+    id: 'ppc-past-read-3',
+    timelineElements: [
+      { id: 'e1', type: 'solid-to-now', zone: 'past', position: 30, verbLabel: 'wait' },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 80, verbLabel: 'arrive' },
+    ],
+    sentenceTemplate: 'I ___[wait]___ for the bus for 30 minutes when it finally ___[arrive]___.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'wait',
+        validAnswers: [
+          { answer: 'had been waiting', tenseName: 'Past Perfect Continuous', nuance: 'Correct Past Perfect Continuous' },
+          { answer: 'had waited', tenseName: 'Past Perfect', nuance: 'Acceptable Past Perfect' },
+        ],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'arrive',
+        validAnswers: [{ answer: 'arrived', tenseName: 'Past Simple', nuance: 'Correct Past Simple' }],
+      },
+    ],
+    difficulty: 3,
+    tenseCategory: 'perfect-continuous',
+    sentenceForm: 'affirmative',
+  },
+  // New FPC - Read the Timeline
+  {
+    type: 'timeline-to-verb',
+    id: 'fpc-read-2',
+    timelineElements: [
+      { id: 'e1', type: 'solid-to-point', zone: 'future', position: 70, verbLabel: 'travel' },
+    ],
+    sentenceTemplate: 'By next summer, they ___[travel]___ for three months.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'travel',
+        validAnswers: [
+          { answer: 'will have been traveling', tenseName: 'Future Perfect Continuous', nuance: 'Correct Future Perfect Continuous' },
+          { answer: 'will have travelled', tenseName: 'Future Perfect', nuance: 'Acceptable Future Perfect' },
+        ],
+      },
+    ],
+    difficulty: 3,
+    tenseCategory: 'perfect-continuous',
+    sentenceForm: 'affirmative',
+  },
+  // New FPC - Read the Timeline
+  {
+    type: 'timeline-to-verb',
+    id: 'fpc-read-3',
+    timelineElements: [
+      { id: 'e1', type: 'solid-to-point', zone: 'future', position: 80, verbLabel: 'climb' },
+    ],
+    sentenceTemplate: 'By the time we reach the summit, we ___[climb]___ for eight hours.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'climb',
+        validAnswers: [
+          { answer: 'will have been climbing', tenseName: 'Future Perfect Continuous', nuance: 'Correct Future Perfect Continuous' },
+          { answer: 'will have climbed', tenseName: 'Future Perfect', nuance: 'Acceptable Future Perfect' },
+        ],
+      },
+    ],
+    difficulty: 3,
+    tenseCategory: 'perfect-continuous',
+    sentenceForm: 'affirmative',
+  },
 ];
