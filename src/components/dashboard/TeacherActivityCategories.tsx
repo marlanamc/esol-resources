@@ -650,7 +650,8 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                     t.includes('verb forms') ||
                     t.includes('irregular') ||
                     t.includes('time indicators') ||
-                    t.includes('sounds right')
+                    t.includes('sounds right') ||
+                    t.includes('timeline tenses')
                 );
             })
         );

@@ -14,6 +14,7 @@ import {
   type TimelineVerbBlankResult,
   validateTimelineVerbAnswers,
 } from '../timelineTensesUtils';
+import { useTimelineAudio } from '../hooks/useTimelineAudio';
 
 interface TimelineToVerbExerciseProps {
   question: TimelineToVerbQuestion;
@@ -34,6 +35,7 @@ export function TimelineToVerbExercise({
   const [blankResults, setBlankResults] = useState<TimelineVerbBlankResult[]>([]);
   const [showHint, setShowHint] = useState(false);
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({});
+  const { playPing, playThump } = useTimelineAudio();
 
   const sentenceParts = parseTimelineSentenceTemplate(question);
 
@@ -47,7 +49,7 @@ export function TimelineToVerbExercise({
   // Generate hint showing tense names for blanks
   const getHint = useCallback((): string => {
     const tenseNames = question.blanks
-      .map((blank, index) => {
+      .map((blank) => {
         const tenseName = blank.validAnswers[0]?.tenseName;
         return tenseName ? `[${blank.baseVerb}]: ${tenseName}` : null;
       })
@@ -103,8 +105,13 @@ export function TimelineToVerbExercise({
       validateTimelineVerbAnswers(question, answers);
 
     setBlankResults(nextBlankResults);
+    if (allCorrect) {
+      playPing();
+    } else {
+      playThump();
+    }
     onSubmit({ answers }, allCorrect, firstCorrectTense);
-  }, [answers, onSubmit, question]);
+  }, [answers, onSubmit, question, playPing, playThump]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent, currentBlankIndex: number) => {

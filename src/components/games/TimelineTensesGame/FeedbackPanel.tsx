@@ -289,7 +289,7 @@ export function FeedbackPanel({
                     )}
 
                     {/* Nuance callout */}
-                    {nuanceText && (
+                    {nuanceText && (!isCorrect || nuanceText !== explanation) && (
                       <div
                         className={`mt-2 p-3 rounded-lg border-l-[3px] ${
                           blank.isCorrect

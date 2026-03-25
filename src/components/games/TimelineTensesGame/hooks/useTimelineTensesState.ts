@@ -7,7 +7,7 @@ import type {
   SentenceForm,
   TimelineElement,
 } from '@/types/activity';
-import { fetchActivityProgress } from '@/lib/activityProgress';
+import { fetchActivityProgress, saveActivityProgress } from '@/lib/activityProgress';
 import { TIMELINE_TENSES_QUESTIONS } from '@/data/timeline-tenses-questions';
 import {
   TIMELINE_TUTORIAL_QUESTIONS,
@@ -547,5 +547,27 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     saveProgress,
     retryRound,
     dismissError,
+    resetProgress: async () => {
+      setState(prev => ({
+        ...prev,
+        categoryProgress: {},
+        tutorialCompleted: false,
+      }));
+      
+      if (typeof window !== 'undefined') {
+        window.localStorage.removeItem(TUTORIAL_COMPLETED_KEY);
+      }
+
+      await saveActivityProgress(
+        activityId,
+        0,
+        'in_progress',
+        0,
+        undefined,
+        assignmentId,
+        undefined,
+        '{}' // Clear categoryData
+      );
+    },
   };
 }

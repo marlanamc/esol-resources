@@ -15,6 +15,9 @@ import { TimelineToVerbExercise } from './exercises/TimelineToVerbExercise';
 import { ResultsScreen } from './ResultsScreen';
 import { TutorialIntroScreen } from './TutorialIntroScreen';
 import { TutorialCompleteScreen } from './TutorialCompleteScreen';
+import { HowToPlayModal } from './HowToPlayModal';
+import { useTimelineAudio } from './hooks/useTimelineAudio';
+import { Info, RotateCcw } from 'lucide-react';
 import type { SentenceForm, TenseCategory } from '@/types/activity';
 import { filterTimelineQuestions } from './timelineTensesUtils';
 import {
@@ -31,6 +34,8 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   const router = useRouter();
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
+  const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
+  const { playLevelUp } = useTimelineAudio();
 
   const {
     state,
@@ -48,18 +53,22 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     saveProgress,
     retryRound,
     dismissError,
+    resetProgress,
   } = useTimelineTensesState(activityId, assignmentId);
 
   // Save progress when round completes
   useEffect(() => {
     if (state.phase === 'results' && state.roundResults) {
+      if (state.roundResults.accuracy >= 70) {
+        playLevelUp();
+      }
       void saveProgress().then((result) => {
         if (result?.pointsAwarded && result.pointsAwarded > 0) {
           setPointsToast({ points: result.pointsAwarded, key: Date.now() });
         }
       });
     }
-  }, [state.phase, state.roundResults, saveProgress]);
+  }, [state.phase, state.roundResults, saveProgress, playLevelUp]);
 
   // Scroll to top on phase change
   useEffect(() => {
@@ -162,8 +171,9 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
         }`}
       >
         {/* Back button for selection phase */}
+        {/* Header toolbar for selection phase */}
         {state.phase === 'selection' && (
-          <div className="px-3 sm:px-0 pb-2">
+          <div className="px-3 sm:px-0 pb-2 flex items-center justify-between">
             <button
               onClick={() => router.back()}
               aria-label="Go back"
@@ -171,6 +181,31 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
             >
               <ArrowLeft size={20} />
             </button>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setIsHowToPlayOpen(true)}
+                aria-label="How to play"
+                title="How to play"
+                className="inline-flex items-center justify-center gap-2 px-3 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-primary transition-colors text-sm font-medium"
+              >
+                <Info size={20} />
+                <span className="hidden sm:inline">How to Play</span>
+              </button>
+              
+              <button
+                onClick={async () => {
+                  if (window.confirm('Are you sure you want to reset all your mastery levels and progress? This cannot be undone.')) {
+                    await resetProgress();
+                  }
+                }}
+                aria-label="Reset all progress"
+                title="Reset all progress"
+                className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-error transition-colors"
+              >
+                <RotateCcw size={18} />
+              </button>
+            </div>
           </div>
         )}
 
@@ -379,6 +414,12 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
           )}
         </AnimatePresence>
       </motion.div>
+
+      {/* How to Play Modal */}
+      <HowToPlayModal 
+        isOpen={isHowToPlayOpen} 
+        onClose={() => setIsHowToPlayOpen(false)} 
+      />
 
       {/* Error toast */}
       {state.error && state.phase !== 'selection' && (

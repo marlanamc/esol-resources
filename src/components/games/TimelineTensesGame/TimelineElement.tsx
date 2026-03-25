@@ -170,7 +170,6 @@ export function TimelineElementComponent({
             : solidPointNowX;
         const solidPointMidX = (x + solidPointEndX) / 2;
         const solidPointCurveHeight = Math.min(25, Math.abs(solidPointEndX - x) / 5);
-        const endsAtNowPt = !hasPartnerPt && solidPointEndX === solidPointNowX;
         return (
           <g>
             <circle cx={x} cy={y} r={6} fill={colors.fill} />
@@ -182,9 +181,7 @@ export function TimelineElementComponent({
               strokeLinecap="round"
               strokeDasharray="8 6"
             />
-            {hasPartnerPt ? null : endsAtNowPt ? (
-              <circle cx={solidPointEndX} cy={y} r={7} fill="#059669" />
-            ) : (
+            {hasPartnerPt ? null : (
               <circle
                 cx={solidPointEndX}
                 cy={y}
@@ -321,7 +318,7 @@ export function StampPreview({
               strokeLinecap="round"
               strokeDasharray="5 4"
             />
-            <circle cx={32} cy={15} r={5} fill="#059669" />
+            <circle cx={32} cy={15} r={5} fill={baseColor} />
           </g>
         );
       case 'solid-to-point':

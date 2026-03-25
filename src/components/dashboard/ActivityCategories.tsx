@@ -1866,7 +1866,8 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                     t.includes('verb forms') ||
                     t.includes('irregular') ||
                     t.includes('time indicators') ||
-                    t.includes('sounds right')
+                    t.includes('sounds right') ||
+                    t.includes('timeline tenses')
                 );
             })
         );

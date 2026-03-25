@@ -12,6 +12,7 @@ import type {
 import { TimelineCanvas } from '../TimelineCanvas';
 import { StampToolkit } from '../StampToolkit';
 import { FeedbackPanel } from '../FeedbackPanel';
+import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import type { TimelineDrawingAnswer } from '../hooks/useTimelineTensesState';
 import { validateTimelineDrawingElements } from '../timelineTensesUtils';
 
@@ -41,6 +42,7 @@ export function SentenceToTimelineExercise({
   const [placedStamps, setPlacedStamps] = useState<PlacedStamp[]>([]);
   const [highlightZone, setHighlightZone] = useState<TimelineZone | null>(null);
   const [showHint, setShowHint] = useState(false);
+  const { playPing, playThump } = useTimelineAudio();
 
   // Only show split past (EARLIER / LATER) for connection stamps that need the distinction
   const CONNECTION_STAMPS: TimelineElementType[] = ['arc', 'solid-to-now'];
@@ -115,8 +117,13 @@ export function SentenceToTimelineExercise({
       position: s.position,
     }));
 
+    if (isCorrect) {
+      playPing();
+    } else {
+      playThump();
+    }
     onSubmit({ elements }, isCorrect, question.tenseName);
-  }, [validateAnswer, placedStamps, onSubmit, question.tenseName]);
+  }, [validateAnswer, placedStamps, onSubmit, question.tenseName, playPing, playThump]);
 
   // Convert placed stamps to timeline elements for display
   const displayElements: TimelineElement[] = placedStamps.map((s) => ({

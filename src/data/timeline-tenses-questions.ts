@@ -2702,6 +2702,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [
       { id: 'e1', type: 'single-dot', zone: 'past-earlier', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
+      { id: 'e3', type: 'arc', zone: 'past-earlier', position: 40 },
     ],
     tenseName: 'Past Perfect + Past Simple',
     explanation: 'She left (earlier past) before we arrived (later past).',
@@ -2891,6 +2892,187 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
+    sentenceForm: 'affirmative',
+  },
+  // READ: Continuous (Present)
+  {
+    type: 'timeline-to-verb',
+    id: 'pc-read-3',
+    timelineElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50, verbLabel: 'cook' }],
+    sentenceTemplate: 'Look! My father ___[cook]___ dinner right now.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'cook',
+        validAnswers: [{ answer: 'is cooking', tenseName: 'Present Continuous', nuance: 'Action happening right now' }],
+      },
+    ],
+    difficulty: 1,
+    tenseCategory: 'continuous',
+    sentenceForm: 'affirmative',
+  },
+  // READ: Continuous (Past)
+  {
+    type: 'timeline-to-verb',
+    id: 'pc-read-4',
+    timelineElements: [
+      { id: 'e1', type: 'solid-line', zone: 'past', position: 30, verbLabel: 'sleep' },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70, verbLabel: 'arrive' },
+    ],
+    sentenceTemplate: 'The baby ___[sleep]___ when the package ___[arrive]___.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'sleep',
+        validAnswers: [{ answer: 'was sleeping', tenseName: 'Past Continuous', nuance: 'Ongoing action interrupted' }],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'arrive',
+        validAnswers: [{ answer: 'arrived', tenseName: 'Past Simple', nuance: 'Shorter interrupting action' }],
+      },
+    ],
+    difficulty: 2,
+    tenseCategory: 'continuous',
+    sentenceForm: 'affirmative',
+  },
+  // READ: Mixed (Interrupted)
+  {
+    type: 'timeline-to-verb',
+    id: 'mixed-read-2',
+    timelineElements: [
+      { id: 'e1', type: 'solid-line', zone: 'past', position: 40, verbLabel: 'drive' },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 60, verbLabel: 'see' },
+    ],
+    sentenceTemplate: 'While I ___[drive]___ to work, I ___[see]___ a deer.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'drive',
+        validAnswers: [{ answer: 'was driving', tenseName: 'Past Continuous', nuance: 'Longer action in progress' }],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'see',
+        validAnswers: [{ answer: 'saw', tenseName: 'Past Simple', nuance: 'Momentary action in the past' }],
+      },
+    ],
+    difficulty: 2,
+    tenseCategory: 'mixed',
+    sentenceForm: 'affirmative',
+  },
+  // READ: Mixed (Sequence)
+  {
+    type: 'timeline-to-verb',
+    id: 'mixed-read-3',
+    timelineElements: [
+      { id: 'e1', type: 'single-dot', zone: 'past-earlier', position: 30, verbLabel: 'finish' },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70, verbLabel: 'go' },
+    ],
+    sentenceTemplate: 'After she ___[finish]___ the test, she ___[go]___ home.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'finish',
+        validAnswers: [
+          { answer: 'had finished', tenseName: 'Past Perfect', nuance: 'Earlier of two past actions' },
+          { answer: 'finished', tenseName: 'Past Simple', nuance: 'Also correct in sequential context' },
+        ],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'go',
+        validAnswers: [{ answer: 'went', tenseName: 'Past Simple', nuance: 'Later of two past actions' }],
+      },
+    ],
+    difficulty: 3,
+    tenseCategory: 'mixed',
+    sentenceForm: 'affirmative',
+  },
+  // READ: Perfect (Past)
+  {
+    type: 'timeline-to-verb',
+    id: 'perf-read-5',
+    timelineElements: [
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30, verbLabel: 'read' },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70, verbLabel: 'watch' },
+    ],
+    sentenceTemplate: 'He ___[read]___ the book before he ___[watch]___ the movie.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'read',
+        validAnswers: [{ answer: 'had read', tenseName: 'Past Perfect', nuance: 'Action completed before another past event' }],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'watch',
+        validAnswers: [{ answer: 'watched', tenseName: 'Past Simple', nuance: 'Second action in the past' }],
+      },
+    ],
+    difficulty: 3,
+    tenseCategory: 'perfect',
+    sentenceForm: 'affirmative',
+  },
+  // READ: Perfect (Future)
+  {
+    type: 'timeline-to-verb',
+    id: 'perf-read-6',
+    timelineElements: [
+      { id: 'e1', type: 'arc-dashed', zone: 'future', position: 70, verbLabel: 'graduate' },
+    ],
+    sentenceTemplate: 'By next June, I ___[graduate]___ from college.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'graduate',
+        validAnswers: [{ answer: 'will have graduated', tenseName: 'Future Perfect', nuance: 'Action completed by a future time' }],
+      },
+    ],
+    difficulty: 3,
+    tenseCategory: 'perfect',
+    sentenceForm: 'affirmative',
+  },
+  // READ: Continuous (Future 2)
+  {
+    type: 'timeline-to-verb',
+    id: 'pc-future-read-3',
+    timelineElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 60, verbLabel: 'study' }],
+    sentenceTemplate: 'At this time tomorrow, I ___[study]___ in the library.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'study',
+        validAnswers: [{ answer: 'will be studying', tenseName: 'Future Continuous', nuance: 'Action in progress in the future' }],
+      },
+    ],
+    difficulty: 2,
+    tenseCategory: 'continuous',
+    sentenceForm: 'affirmative',
+  },
+  // READ: Mixed (Future Sequence)
+  {
+    type: 'timeline-to-verb',
+    id: 'mixed-read-4',
+    timelineElements: [
+      { id: 'e1', type: 'single-dot', zone: 'future', position: 40, verbLabel: 'arrive' },
+      { id: 'e2', type: 'single-dot', zone: 'future', position: 80, verbLabel: 'call' },
+    ],
+    sentenceTemplate: 'When they ___[arrive]___ tomorrow, I ___[call]___ you.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'arrive',
+        validAnswers: [{ answer: 'arrive', tenseName: 'Present Simple', nuance: 'Simple Present for future in time clause' }],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'call',
+        validAnswers: [{ answer: 'will call', tenseName: 'Future Simple', nuance: 'Simple Future for main clause' }],
+      },
+    ],
+    difficulty: 2,
+    tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
   },
 ];

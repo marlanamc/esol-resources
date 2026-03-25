@@ -20,6 +20,7 @@ function getGameMotif(activityId: string, title: string) {
   if (haystack.includes('time indicator')) return { motif: 'time-track' as const, color: '#7ba884' };
   if (haystack.includes('verb forms') || haystack.includes('verb form')) return { motif: 'verb-cards' as const, color: '#7ba884' };
   if (haystack.includes('irregular')) return { motif: 'irregular-pattern' as const, color: '#7ba884' };
+  if (haystack.includes('timeline')) return { motif: 'time-track' as const, color: '#d97757' };
 
   return { motif: 'generic-game' as const, color: '#f59e0b' };
 }
@@ -122,6 +123,9 @@ export function getGameCardCopy(activityId: string, title: string) {
   }
   if (haystack.includes('gerund') || haystack.includes('infinitive')) {
     return { friendlyTitle: 'Gerunds & Infinitives Patterns Game', useThisFor: 'practice key patterns through quick challenges' };
+  }
+  if (haystack.includes('timeline')) {
+    return { friendlyTitle: 'Timeline Game', useThisFor: 'visualize tenses and match verbs to moments on a timeline' };
   }
 
   return { friendlyTitle: 'Language game', useThisFor: 'practice key patterns through quick challenges' };

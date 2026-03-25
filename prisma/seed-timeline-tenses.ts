@@ -13,7 +13,7 @@ async function main() {
     }),
     type: 'game',
     ui: 'timeline-tenses',
-    category: 'grammar',
+    category: 'games',
     level: 'intermediate',
     isReleased: true,
   };
@@ -36,7 +36,7 @@ async function main() {
     console.log(`Created new activity: ${created.id}`);
   }
 
-  console.log('\nDone! Timeline Tenses game is now available in the grammar category.');
+  console.log('\nDone! Timeline Tenses game is now available in the games category.');
 }
 
 main()
