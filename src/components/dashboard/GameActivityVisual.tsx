@@ -7,6 +7,7 @@ type GameMotif =
   | 'countable-basket'
   | 'sound-wave'
   | 'time-track'
+  | 'timeline-flow'
   | 'verb-cards'
   | 'irregular-pattern'
   | 'generic-game';
@@ -20,7 +21,7 @@ function getGameMotif(activityId: string, title: string) {
   if (haystack.includes('time indicator')) return { motif: 'time-track' as const, color: '#7ba884' };
   if (haystack.includes('verb forms') || haystack.includes('verb form')) return { motif: 'verb-cards' as const, color: '#7ba884' };
   if (haystack.includes('irregular')) return { motif: 'irregular-pattern' as const, color: '#7ba884' };
-  if (haystack.includes('timeline')) return { motif: 'time-track' as const, color: '#d97757' };
+  if (haystack.includes('timeline')) return { motif: 'timeline-flow' as const, color: '#d97757' };
 
   return { motif: 'generic-game' as const, color: '#f59e0b' };
 }
@@ -67,6 +68,17 @@ function VisualSvg({ motif, color }: { motif: GameMotif; color: string }) {
           <path d="M40 30c8-10 16-10 24 0s16 10 24 0" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
           <circle cx="52" cy="24" r="2.2" fill={mid} />
           <circle cx="76" cy="24" r="2.2" fill={color} />
+        </>
+      )}
+
+      {motif === 'timeline-flow' && (
+        <>
+          <path d="M18 28H82" stroke={mid} strokeWidth="3.5" strokeLinecap="round" />
+          <rect x="48.5" y="16" width="3" height="24" rx="1.5" fill="#10b981" />
+          <path d="M22 28c9-10 18-10 27 0" fill="none" stroke={color} strokeWidth="2.6" strokeLinecap="round" />
+          <path d="M52 28c9-10 18-10 27 0" fill="none" stroke={color} strokeWidth="2.6" strokeLinecap="round" />
+          <circle cx="22" cy="28" r="2.6" fill={color} />
+          <circle cx="78" cy="28" r="2.6" fill={color} />
         </>
       )}
 

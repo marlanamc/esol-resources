@@ -330,16 +330,27 @@ export function buildTimelineRoundQuestions(
   practiceMode: TimelinePracticeMode,
   roundSize: number,
   sentenceForm: SentenceForm | "all" = "all",
-  level: number = 1
+  level: number = 1,
+  recentlySeenQuestionIds: string[] = []
 ): TimelineTensesQuestion[] {
-  const filteredQuestions = filterTimelineQuestions(
+  const allFilteredQuestions = filterTimelineQuestions(
     questionBank,
     category,
     practiceMode,
     sentenceForm
   );
 
-  if (filteredQuestions.length === 0) return [];
+  if (allFilteredQuestions.length === 0) return [];
+
+  // Prefer unseen questions for freshness; only fall back to recent items if needed.
+  const recentIdSet = new Set(recentlySeenQuestionIds);
+  const unseenQuestions = allFilteredQuestions.filter(
+    (question) => !recentIdSet.has(question.id)
+  );
+  const filteredQuestions =
+    unseenQuestions.length >= roundSize
+      ? unseenQuestions
+      : [...unseenQuestions, ...allFilteredQuestions.filter((question) => recentIdSet.has(question.id))];
 
   // For a better mix, we group by difficulty but shuffle the final selection
   // across those difficulties to avoid "Difficulty 1 only" rounds.

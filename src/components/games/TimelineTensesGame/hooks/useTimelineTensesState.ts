@@ -56,6 +56,10 @@ export interface CategoryProgress {
   recentScores?: number[];
   /** Current mastery level (1-5) */
   level: number;
+  /** Number of passing rounds at the current level (used for slower level-ups) */
+  passesAtCurrentLevel?: number;
+  /** Question count snapshot for detecting newly added challenges later */
+  questionPoolSize?: number;
 }
 
 /** Calculate weighted average of recent scores (most recent weighted higher) */
@@ -105,8 +109,77 @@ interface GameState {
 }
 
 const DEFAULT_ROUND_SIZE = 10;
+const PASSES_REQUIRED_PER_LEVEL = 2;
+const RECENT_QUESTION_MEMORY_KEY = 'timeline-recent-questions-v1';
+
+function getCategoryQuestionCount(
+  questions: TimelineTensesQuestion[],
+  category: TenseCategory | 'all'
+): number {
+  if (category === 'all') {
+    return questions.length;
+  }
+  return questions.filter((question) => question.tenseCategory === category).length;
+}
 
 export function useTimelineTensesState(activityId: string, assignmentId?: string | null) {
+  const [recentQuestionIdsByFilter, setRecentQuestionIdsByFilter] = useState<Record<string, string[]>>(() => {
+    if (typeof window === 'undefined') {
+      return {};
+    }
+
+    try {
+      const raw = window.localStorage.getItem(RECENT_QUESTION_MEMORY_KEY);
+      if (!raw) {
+        return {};
+      }
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        return parsed as Record<string, string[]>;
+      }
+    } catch {
+      // Ignore parse errors and start fresh.
+    }
+    return {};
+  });
+
+  const buildFilterMemoryKey = useCallback(
+    (
+      category: TenseCategory | 'all',
+      practiceMode: TimelinePracticeMode,
+      sentenceForm: SentenceForm | 'all'
+    ) => `${category}::${practiceMode}::${sentenceForm}`,
+    []
+  );
+
+  const rememberRoundQuestions = useCallback(
+    (
+      category: TenseCategory | 'all',
+      practiceMode: TimelinePracticeMode,
+      sentenceForm: SentenceForm | 'all',
+      roundQuestions: TimelineTensesQuestion[]
+    ) => {
+      const filterKey = buildFilterMemoryKey(category, practiceMode, sentenceForm);
+      const cap = Math.max(DEFAULT_ROUND_SIZE * 2, roundQuestions.length * 2);
+      const roundIds = roundQuestions.map((question) => question.id);
+
+      setRecentQuestionIdsByFilter((prev) => {
+        const previousIds = prev[filterKey] || [];
+        const merged = [...roundIds, ...previousIds.filter((id) => !roundIds.includes(id))].slice(0, cap);
+        const next = {
+          ...prev,
+          [filterKey]: merged,
+        };
+
+        if (typeof window !== 'undefined') {
+          window.localStorage.setItem(RECENT_QUESTION_MEMORY_KEY, JSON.stringify(next));
+        }
+        return next;
+      });
+    },
+    [buildFilterMemoryKey]
+  );
+
   const [state, setState] = useState<GameState>(() => {
     // Check localStorage for tutorial completion
     const isTutorialCompleted = (category: TenseCategory | 'all'): boolean => {
@@ -150,7 +223,20 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
             const parsed = typeof progress.categoryData === 'string'
               ? JSON.parse(progress.categoryData)
               : progress.categoryData;
-            categoryProgress = parsed || {};
+            const rawProgress = parsed || {};
+            categoryProgress = Object.fromEntries(
+              Object.entries(rawProgress).map(([key, value]) => {
+                const progress = value as CategoryProgress;
+                return [
+                  key,
+                  {
+                    ...progress,
+                    level: progress.level || 1,
+                    passesAtCurrentLevel: progress.passesAtCurrentLevel || 0,
+                  },
+                ];
+              })
+            );
           } catch {
             // Ignore parse errors
           }
@@ -231,7 +317,14 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         prev.selectedPracticeMode,
         prev.roundSize,
         prev.selectedSentenceForm,
-        prev.categoryProgress[prev.selectedCategory]?.level || 1
+        prev.categoryProgress[prev.selectedCategory]?.level || 1,
+        recentQuestionIdsByFilter[
+          buildFilterMemoryKey(
+            prev.selectedCategory,
+            prev.selectedPracticeMode,
+            prev.selectedSentenceForm
+          )
+        ] || []
       );
 
       if (roundQuestions.length === 0) {
@@ -240,6 +333,13 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
           error: 'No questions are available for that category and practice style yet.',
         };
       }
+
+      rememberRoundQuestions(
+        prev.selectedCategory,
+        prev.selectedPracticeMode,
+        prev.selectedSentenceForm,
+        roundQuestions
+      );
 
       return {
         ...prev,
@@ -253,7 +353,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         roundResults: null,
       };
     });
-  }, []);
+  }, [buildFilterMemoryKey, recentQuestionIdsByFilter, rememberRoundQuestions]);
 
   // Start the interactive tutorial
   const startTutorial = useCallback(() => {
@@ -321,7 +421,14 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         prev.selectedPracticeMode,
         prev.roundSize,
         prev.selectedSentenceForm,
-        prev.categoryProgress[prev.selectedCategory]?.level || 1
+        prev.categoryProgress[prev.selectedCategory]?.level || 1,
+        recentQuestionIdsByFilter[
+          buildFilterMemoryKey(
+            prev.selectedCategory,
+            prev.selectedPracticeMode,
+            prev.selectedSentenceForm
+          )
+        ] || []
       );
 
       if (roundQuestions.length === 0) {
@@ -332,6 +439,13 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
           phase: 'selection',
         };
       }
+
+      rememberRoundQuestions(
+        prev.selectedCategory,
+        prev.selectedPracticeMode,
+        prev.selectedSentenceForm,
+        roundQuestions
+      );
 
       return {
         ...prev,
@@ -346,7 +460,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         roundResults: null,
       };
     });
-  }, []);
+  }, [buildFilterMemoryKey, recentQuestionIdsByFilter, rememberRoundQuestions, state.selectedCategory]);
 
   // Continue from tutorial complete to real practice
   const startAfterTutorial = useCallback(() => {
@@ -357,7 +471,14 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         prev.selectedPracticeMode,
         prev.roundSize,
         prev.selectedSentenceForm,
-        prev.categoryProgress[prev.selectedCategory]?.level || 1
+        prev.categoryProgress[prev.selectedCategory]?.level || 1,
+        recentQuestionIdsByFilter[
+          buildFilterMemoryKey(
+            prev.selectedCategory,
+            prev.selectedPracticeMode,
+            prev.selectedSentenceForm
+          )
+        ] || []
       );
 
       if (roundQuestions.length === 0) {
@@ -367,6 +488,13 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
           phase: 'selection',
         };
       }
+
+      rememberRoundQuestions(
+        prev.selectedCategory,
+        prev.selectedPracticeMode,
+        prev.selectedSentenceForm,
+        roundQuestions
+      );
 
       return {
         ...prev,
@@ -380,7 +508,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         roundResults: null,
       };
     });
-  }, []);
+  }, [buildFilterMemoryKey, recentQuestionIdsByFilter, rememberRoundQuestions]);
 
   // Submit answer for current question
   const submitAnswer = useCallback((answer: QuestionAnswer, isCorrect: boolean, tenseName?: string) => {
@@ -454,6 +582,8 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         attempts: 0,
         recentScores: [],
         level: 1,
+        passesAtCurrentLevel: 0,
+        questionPoolSize: getCategoryQuestionCount(state.questionBank, categoryKey),
       };
 
       // Track recent scores (keep last 3)
@@ -463,10 +593,15 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       // Use weighted average for accuracy display
       const weightedAccuracy = calculateWeightedAccuracy(recentScores);
 
-      // Level up logic: if accuracy >= 70% and they are not yet at max level (5)
+      // Slower level-up curve: students need multiple passing rounds per level.
       let newLevel = existingProgress.level || 1;
+      let passesAtCurrentLevel = existingProgress.passesAtCurrentLevel || 0;
       if (state.roundResults.accuracy >= 70 && newLevel < 5) {
-        newLevel += 1;
+        passesAtCurrentLevel += 1;
+        if (passesAtCurrentLevel >= PASSES_REQUIRED_PER_LEVEL) {
+          newLevel += 1;
+          passesAtCurrentLevel = 0;
+        }
       }
 
       const newProgress: CategoryProgress = {
@@ -476,6 +611,8 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         lastAttemptDate: new Date().toISOString(),
         recentScores,
         level: newLevel,
+        passesAtCurrentLevel,
+        questionPoolSize: getCategoryQuestionCount(state.questionBank, categoryKey),
       };
 
       const updatedCategoryData = {
@@ -564,6 +701,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     retryRound,
     dismissError,
     resetProgress: async () => {
+      setRecentQuestionIdsByFilter({});
       setState(prev => ({
         ...prev,
         categoryProgress: {},
@@ -572,6 +710,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       
       if (typeof window !== 'undefined') {
         window.localStorage.removeItem(TUTORIAL_COMPLETED_KEY);
+        window.localStorage.removeItem(RECENT_QUESTION_MEMORY_KEY);
       }
 
       await saveActivityProgress(

@@ -42,6 +42,7 @@ interface TimelineTensesGameProps {
 export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesGameProps) {
   const router = useRouter();
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
+  const lastProcessedResultsKeyRef = useRef<string | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
   const { playLevelUp } = useTimelineAudio();
@@ -68,6 +69,20 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   // Save progress when round completes
   useEffect(() => {
     if (state.phase === 'results' && state.roundResults) {
+      const resultsKey = [
+        state.roundResults.category,
+        state.roundResults.totalQuestions,
+        state.roundResults.correctAnswers,
+        state.roundResults.accuracy,
+        state.roundResults.questionResults.map((result) => `${result.questionId}:${result.correct ? '1' : '0'}`).join('|'),
+      ].join('::');
+
+      // Guard against effect re-runs while staying on the same results screen.
+      if (lastProcessedResultsKeyRef.current === resultsKey) {
+        return;
+      }
+      lastProcessedResultsKeyRef.current = resultsKey;
+
       if (state.roundResults.accuracy >= 70) {
         playLevelUp();
       }
@@ -156,11 +171,17 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   const totalTutorialQuestions = TIMELINE_TUTORIAL_QUESTIONS.length;
 
   const TENSE_LABELS: Record<string, string> = {
-    'all': 'All Tenses', 'simple': 'Simple Tenses', 'continuous': 'Continuous Tenses', 
-    'perfect': 'Perfect Tenses', 'perfect-continuous': 'Perfect Continuous', 'mixed': 'Mixed Tenses'
+    all: 'All Tenses',
+    simple: 'Simple',
+    continuous: 'Continuous',
+    perfect: 'Perfect',
+    'perfect-continuous': 'Perfect Continuous',
+    mixed: 'Mixed',
   };
   const MODE_LABELS: Record<string, string> = {
-    'read-the-timeline': 'Read the Timeline', 'build-the-timeline': 'Build the Timeline', 'mixed-practice': 'Mix'
+    'read-the-timeline': 'Read',
+    'build-the-timeline': 'Build',
+    'mixed-practice': 'Mixed',
   };
   const FORM_LABELS: Record<string, string> = {
     'all': 'Any Form', 'affirmative': 'Affirmative', 'negative': 'Negative', 'question': 'Questions'
@@ -351,14 +372,21 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="mb-12"
+                  className="mb-12 rounded-[2rem] border border-white/30 bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl p-5 sm:p-6 shadow-xl"
                 >
+                  <p className="text-center text-xs font-black uppercase tracking-[0.2em] text-text-muted/50 mb-4">
+                    Current Selection
+                  </p>
                   <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
-                    <span className="px-3 py-1 rounded-full bg-primary/10 text-primary font-bold text-xs border border-primary/10">{TENSE_LABELS[state.selectedCategory] || 'All Tenses'}</span>
-                    <span className="text-text-muted/30">·</span>
-                    <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary font-bold text-xs border border-secondary/10">{MODE_LABELS[state.selectedPracticeMode] || 'Read the Timeline'}</span>
-                    <span className="text-text-muted/30">·</span>
-                    <span className="px-3 py-1 rounded-full bg-border/20 text-text-muted font-bold text-xs border border-border/20">{FORM_LABELS[state.selectedSentenceForm] || 'Any Form'}</span>
+                    <span className="px-3 py-1 rounded-full bg-primary/10 text-primary font-bold text-xs border border-primary/10">
+                      {TENSE_LABELS[state.selectedCategory] || 'All Tenses'}
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary font-bold text-xs border border-secondary/10">
+                      {MODE_LABELS[state.selectedPracticeMode] || 'Read'}
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-border/20 text-text-muted font-bold text-xs border border-border/20">
+                      {FORM_LABELS[state.selectedSentenceForm] || 'All Forms'}
+                    </span>
                   </div>
 
                   <button

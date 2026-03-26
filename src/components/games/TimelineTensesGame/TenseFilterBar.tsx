@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Clock, Zap, Link2, Layers } from 'lucide-react';
 import type { TenseCategory } from '@/types/activity';
+import { TIMELINE_TENSES_QUESTIONS } from '@/data/timeline-tenses-questions';
 import type { CategoryProgress } from './hooks/useTimelineTensesState';
 
 interface TenseFilterBarProps {
@@ -78,6 +79,19 @@ const CATEGORY_STYLE: Record<string, { tone: string; iconBg: string; activeBg: s
   mixed: { tone: 'text-[#7d3fa6]', iconBg: 'bg-[#f5f0fa] dark:bg-[#7d3fa6]/10', activeBg: 'bg-[#7d3fa6]', border: 'border-[#7d3fa6]/20' },
 };
 
+const CATEGORY_QUESTION_COUNTS = CATEGORY_CONFIG.reduce<Record<string, number>>(
+  (acc, category) => {
+    acc[category.id] =
+      category.id === 'all'
+        ? TIMELINE_TENSES_QUESTIONS.length
+        : TIMELINE_TENSES_QUESTIONS.filter(
+            (question) => question.tenseCategory === category.id
+          ).length;
+    return acc;
+  },
+  {}
+);
+
 export function TenseFilterBar({
   selectedCategory,
   categoryProgress,
@@ -93,6 +107,10 @@ export function TenseFilterBar({
           const progress = categoryProgress[category.id];
           const Icon = category.icon;
           const style = CATEGORY_STYLE[category.id] || CATEGORY_STYLE.all;
+          const hasNewChallenges =
+            !!progress &&
+            typeof progress.questionPoolSize === 'number' &&
+            CATEGORY_QUESTION_COUNTS[category.id] > progress.questionPoolSize;
 
           return (
             <motion.button
@@ -111,7 +129,7 @@ export function TenseFilterBar({
                 <div className={`absolute -top-2 -right-1 px-2.5 py-1 rounded-full text-xs font-black shadow-lg transition-transform duration-300 ${
                   isSelected ? `${style.activeBg} text-white scale-110` : 'bg-surface-elevated text-text-muted border border-border'
                 }`}>
-                  LVL {progress.level || 1}
+                  Tier {progress.level || 1}
                 </div>
               )}
 
@@ -137,6 +155,14 @@ export function TenseFilterBar({
                 </div>
               </div>
 
+              {hasNewChallenges && (
+                <div className="mt-3">
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wide bg-accent/20 text-primary-dark border border-primary/20">
+                    New challenges available
+                  </span>
+                </div>
+              )}
+
               {/* Progress indicator */}
               {progress && progress.attempts > 0 && (
                 <div className={`mt-4 pt-3 border-t transition-colors ${isSelected ? 'border-border' : 'border-border/30'}`}>
@@ -154,6 +180,11 @@ export function TenseFilterBar({
                       transition={{ duration: 1, ease: "easeOut" }}
                     />
                   </div>
+                  {progress.level >= 5 && (
+                    <div className="mt-2 text-[10px] font-bold uppercase tracking-wide text-text-muted/50">
+                      Tier 5 reached - keep growing with new rounds
+                    </div>
+                  )}
                 </div>
               )}
 

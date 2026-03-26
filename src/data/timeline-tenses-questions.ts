@@ -1000,10 +1000,10 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fpc-2',
     sentence: 'Next month, I will have been working here for a year.',
-    correctElements: [{ id: 'e1', type: 'dashed-line', zone: 'future', position: 50 }],
+    correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 50 }],
     tenseName: 'Future Perfect Continuous',
     explanation:
-      'Future Perfect Continuous describes the duration of an action up to a specific future point. The dashed line shows the ongoing duration extending to that future moment.',
+      'Future Perfect Continuous describes duration up to a specific future point. Use a duration arc (ongoing link) to show the action reaching that future reference moment.',
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -1417,9 +1417,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
         id: 'b1',
         baseVerb: 'you/go',
         validAnswers: [
-          { answer: 'Are you going', tenseName: 'Present Continuous (Question - future)', nuance: 'Asking about a planned arrangement' },
           { answer: 'Will you go', tenseName: 'Future Simple (Question)', nuance: 'Asking about a decision or prediction' },
-          { answer: 'Are you going to go', tenseName: 'Be going to (Question)', nuance: 'Asking about an intention' },
         ],
       },
     ],
@@ -1582,7 +1580,6 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
         baseVerb: 'study',
         validAnswers: [
           { answer: 'have studied', tenseName: 'Present Perfect', nuance: 'Action from past continuing to now' },
-          { answer: 'have been studying', tenseName: 'Present Perfect Continuous', nuance: 'Emphasizing the ongoing duration' },
         ],
       },
       {
@@ -2417,8 +2414,6 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
         validAnswers: [
           { answer: 'will go', tenseName: 'Future Simple', nuance: 'Future plan' },
           { answer: "'ll go", tenseName: 'Future Simple', nuance: 'Contracted form' },
-          { answer: 'are going to go', tenseName: 'Be Going To', nuance: 'Planned intention' },
-          { answer: 'are going', tenseName: 'Present Continuous (Future)', nuance: 'Arranged plan' },
         ],
       },
     ],
@@ -2967,7 +2962,6 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
         baseVerb: 'teach',
         validAnswers: [
           { answer: 'had been teaching', tenseName: 'Past Perfect Continuous', nuance: 'Correct Past Perfect Continuous' },
-          { answer: 'had taught', tenseName: 'Past Perfect', nuance: 'Acceptable Past Perfect' },
         ],
       },
       {
@@ -2995,7 +2989,6 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
         baseVerb: 'wait',
         validAnswers: [
           { answer: 'had been waiting', tenseName: 'Past Perfect Continuous', nuance: 'Correct Past Perfect Continuous' },
-          { answer: 'had waited', tenseName: 'Past Perfect', nuance: 'Acceptable Past Perfect' },
         ],
       },
       {
@@ -3022,7 +3015,6 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
         baseVerb: 'travel',
         validAnswers: [
           { answer: 'will have been traveling', tenseName: 'Future Perfect Continuous', nuance: 'Correct Future Perfect Continuous' },
-          { answer: 'will have travelled', tenseName: 'Future Perfect', nuance: 'Acceptable Future Perfect' },
         ],
       },
     ],
@@ -3044,7 +3036,6 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
         baseVerb: 'climb',
         validAnswers: [
           { answer: 'will have been climbing', tenseName: 'Future Perfect Continuous', nuance: 'Correct Future Perfect Continuous' },
-          { answer: 'will have climbed', tenseName: 'Future Perfect', nuance: 'Acceptable Future Perfect' },
         ],
       },
     ],
@@ -3133,7 +3124,6 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
         id: 'b1',
         baseVerb: 'finish',
         validAnswers: [
-          { answer: 'had finished', tenseName: 'Past Perfect', nuance: 'Earlier of two past actions' },
           { answer: 'finished', tenseName: 'Past Simple', nuance: 'Also correct in sequential context' },
         ],
       },

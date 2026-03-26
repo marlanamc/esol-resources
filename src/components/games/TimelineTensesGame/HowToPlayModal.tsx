@@ -207,7 +207,7 @@ function TenseCheatSheet({ className = '' }: { className?: string }) {
     { stamp: 'Dot / Moment', tense: 'Past Simple or Future Simple' },
     { stamp: 'Multiple Dots / Habit-Fact', tense: 'Present Simple' },
     { stamp: 'Duration Line (solid/dashed)', tense: 'Continuous Family' },
-    { stamp: 'Link / Arc', tense: 'Perfect Family' },
+    { stamp: 'Link / Arc', tense: 'Perfect' },
     { stamp: 'Duration + Link (ongoing link)', tense: 'Perfect Continuous' },
   ];
 
