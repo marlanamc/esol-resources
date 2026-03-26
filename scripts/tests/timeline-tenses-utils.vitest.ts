@@ -6,7 +6,7 @@ import {
   calculateTimelineOverallProgress,
   elementsUseSplitPast,
   parseTimelineSentenceTemplate,
-  resolvePastConnectionPartner,
+  resolveTimelineConnectionPartner,
   validateTimelineDrawingElements,
   validateTimelineVerbAnswers,
 } from "@/components/games/TimelineTensesGame/timelineTensesUtils";
@@ -202,26 +202,26 @@ describe("timeline tenses utils", () => {
     };
 
     expect(
-      resolvePastConnectionPartner(arcLeft, [arcLeft, dotRight])?.id
+      resolveTimelineConnectionPartner(arcLeft, [arcLeft, dotRight])?.id
     ).toBe("dot");
 
     expect(
-      resolvePastConnectionPartner(dotRight, [arcLeft, dotRight])
+      resolveTimelineConnectionPartner(dotRight, [arcLeft, dotRight])
     ).toBeNull();
 
     const dotLeft = { ...dotRight, id: "dot2", position: 20 };
     const arcRight = { ...arcLeft, id: "arc2", position: 80 };
     expect(
-      resolvePastConnectionPartner(arcRight, [dotLeft, arcRight])?.id
+      resolveTimelineConnectionPartner(arcRight, [dotLeft, arcRight])?.id
     ).toBe("dot2");
 
     const dotMid = { id: "d", type: "single-dot" as const, zone: "past" as const, position: 50 };
     const arcMid = { id: "a", type: "arc" as const, zone: "past" as const, position: 50 };
     expect(
-      resolvePastConnectionPartner(arcMid, [arcMid, dotMid])?.id
+      resolveTimelineConnectionPartner(arcMid, [arcMid, dotMid])?.id
     ).toBe("d");
     expect(
-      resolvePastConnectionPartner(arcMid, [dotMid, arcMid])?.id
+      resolveTimelineConnectionPartner(arcMid, [dotMid, arcMid])?.id
     ).toBe("d");
 
     const solid = {
@@ -230,7 +230,7 @@ describe("timeline tenses utils", () => {
       zone: "past" as const,
       position: 20,
     };
-    expect(resolvePastConnectionPartner(solid, [solid, dotRight])?.id).toBe(
+    expect(resolveTimelineConnectionPartner(solid, [solid, dotRight])?.id).toBe(
       "dot"
     );
 
@@ -247,7 +247,7 @@ describe("timeline tenses utils", () => {
       position: 50,
     };
     expect(
-      resolvePastConnectionPartner(arcEarlier, [arcEarlier, dotLater], "split")
+      resolveTimelineConnectionPartner(arcEarlier, [arcEarlier, dotLater], "split")
         ?.id
     ).toBe("dl");
   });
