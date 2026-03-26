@@ -61,7 +61,7 @@ const STAMPS: Array<{
   },
   {
     type: 'solid-to-now',
-    label: 'Ongoing Link',
+    label: 'Link with Duration',
     description: 'Ongoing action that links to another event (or NOW)',
     shortcut: '5',
   },
@@ -110,17 +110,12 @@ export function StampToolkit({
   return (
     <div className="space-y-4">
       {/* Instructions */}
-      <div className="text-center min-h-[3rem] flex flex-col justify-end pb-3">
-        <p className="text-sm font-medium text-text-muted">
-          {selectedStamp
-            ? (
-                <span className="text-primary dark:text-primary/90 font-semibold">
-                  {STAMPS.find(s => s.type === selectedStamp)?.description}
-                  <span className="opacity-75 font-normal"> — Now tap a zone to place it</span>
-                </span>
-              )
-            : 'Select a stamp, then tap the timeline to place it'}
-        </p>
+      <div className="text-center min-h-[1.75rem] flex flex-col justify-end pb-1">
+        {selectedStamp ? (
+          <p className="text-sm font-medium text-primary dark:text-primary/90 font-semibold">
+            {STAMPS.find(s => s.type === selectedStamp)?.description}
+          </p>
+        ) : null}
       </div>
 
       {/* Stamp grid */}

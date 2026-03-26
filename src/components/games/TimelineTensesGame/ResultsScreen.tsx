@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Target, RotateCcw, ArrowLeft, Star, TrendingUp, ChevronDown, Check, X } from 'lucide-react';
 import { CelebrationAnimation } from '@/components/ui/CelebrationAnimation';
@@ -94,6 +94,24 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
 
   // Count incorrect answers
   const incorrectCount = totalQuestions - correctAnswers;
+
+  // Group incorrect answers by tense name
+  const tensesToReview = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const result of questionResults) {
+      if (!result.correct && result.tenseName) {
+        counts.set(result.tenseName, (counts.get(result.tenseName) ?? 0) + 1);
+      }
+    }
+    return [...counts.entries()].sort(([, a], [, b]) => b - a);
+  }, [questionResults]);
+
+  const getTenseColor = (name: string): string => {
+    const lower = name.toLowerCase();
+    if (lower.includes('future')) return 'bg-blue-500/10 border-blue-500/20 text-blue-800 dark:text-blue-300';
+    if (lower.includes('past')) return 'bg-amber-500/10 border-amber-500/20 text-amber-800 dark:text-amber-300';
+    return 'bg-emerald-500/10 border-emerald-500/20 text-emerald-800 dark:text-emerald-300';
+  };
 
   return (
     <div className="max-w-2xl mx-auto px-4 relative pb-20">
@@ -230,11 +248,7 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
                               "{getQuestionText(question)}"
                             </p>
                             <div className="flex flex-wrap items-center gap-3">
-                              <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${
-                                result.correct 
-                                  ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-800 dark:text-emerald-300' 
-                                  : 'bg-amber-500/10 border-amber-500/20 text-amber-800 dark:text-amber-300'
-                              }`}>
+                              <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${getTenseColor(result.tenseName || getCorrectAnswerSummary(question))}`}>
                                 {result.tenseName || getCorrectAnswerSummary(question)}
                               </span>
                             </div>
@@ -254,6 +268,35 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
               </motion.div>
             )}
           </AnimatePresence>
+        </motion.div>
+      )}
+
+      {/* Tenses to Review */}
+      {tensesToReview.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mb-8 bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl rounded-[2rem] border border-white/30 p-6 shadow-xl"
+        >
+          <div className="text-xs font-black uppercase tracking-[0.2em] text-text-muted/50 mb-4">
+            Tenses to Review
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {tensesToReview.map(([tenseName, count]) => (
+              <span
+                key={tenseName}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider border ${getTenseColor(tenseName)}`}
+              >
+                {tenseName}
+                {count > 1 && (
+                  <span className="w-5 h-5 rounded-full bg-white/40 dark:bg-white/10 flex items-center justify-center text-[10px]">
+                    {count}
+                  </span>
+                )}
+              </span>
+            ))}
+          </div>
         </motion.div>
       )}
 

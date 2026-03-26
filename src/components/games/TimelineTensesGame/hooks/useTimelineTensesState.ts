@@ -80,7 +80,14 @@ function calculateWeightedAccuracy(recentScores: number[]): number {
   return Math.round(weightedSum / totalWeight);
 }
 
-type GamePhase = 'selection' | 'tutorial-intro' | 'tutorial' | 'tutorial-complete' | 'exercise' | 'results';
+type GamePhase =
+  | 'selection'
+  | 'tutorial-intro'
+  | 'tutorial'
+  | 'tutorial-complete'
+  | 'exercise'
+  | 'lab'
+  | 'results';
 
 interface GameState {
   phase: GamePhase;
@@ -289,9 +296,37 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     }));
   }, []);
 
+  const startLab = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      error: null,
+      phase: 'lab',
+      currentQuestionIndex: 0,
+      roundQuestions: [],
+      questionResults: [],
+      showFeedback: false,
+      lastAnswerCorrect: null,
+      roundResults: null,
+    }));
+  }, []);
+
   // Start a new round (or tutorial if first time in build mode)
   const startRound = useCallback(() => {
     setState((prev) => {
+      if (prev.selectedPracticeMode === 'lab') {
+        return {
+          ...prev,
+          error: null,
+          phase: 'lab',
+          currentQuestionIndex: 0,
+          roundQuestions: [],
+          questionResults: [],
+          showFeedback: false,
+          lastAnswerCorrect: null,
+          roundResults: null,
+        };
+      }
+
       // If build-the-timeline mode and tutorial not completed for this category, show tutorial intro
       const categoryKey = prev.selectedCategory;
       const isCompleted = typeof window !== 'undefined' && (
@@ -689,6 +724,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     selectTenseFilter,
     selectSentenceForm,
     selectPracticeMode,
+    startLab,
     startRound,
     startTutorial,
     submitTutorialAnswer,

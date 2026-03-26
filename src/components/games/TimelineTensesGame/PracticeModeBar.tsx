@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Eye, Pencil, Shuffle } from 'lucide-react';
+import { Eye, FlaskConical, Pencil, Shuffle } from 'lucide-react';
 import type { TimelinePracticeMode } from './timelineTensesUtils';
 
 interface PracticeModeBarProps {
@@ -33,6 +33,12 @@ const PRACTICE_MODE_CONFIG: Array<{
     description: 'Practice both modes in one round, easiest items first.',
     icon: Shuffle,
   },
+  {
+    id: 'lab',
+    label: 'Timeline Lab',
+    description: 'Free-play sandbox with live tense tags.',
+    icon: FlaskConical,
+  },
 ];
 
 export function PracticeModeBar({
@@ -44,7 +50,7 @@ export function PracticeModeBar({
       <h2 className="text-lg font-semibold text-text mb-4 text-center">
         Choose a Practice Style
       </h2>
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {PRACTICE_MODE_CONFIG.map((mode) => {
           const isSelected = selectedPracticeMode === mode.id;
           const Icon = mode.icon;

@@ -3223,4 +3223,341 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
   },
+
+  // ============================================================================
+  // PAST PERFECT - EXPANDED QUESTION BANK
+  // ============================================================================
+
+  // Past Perfect Affirmative - everyday scenario
+  {
+    type: 'sentence-to-timeline',
+    id: 'pperf-eat-1',
+    sentence: 'I had eaten dinner before the movie started.',
+    correctElements: [
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
+    ],
+    tenseName: 'Past Perfect + Past Simple',
+    explanation:
+      'Eating dinner (Past Perfect) happened before the movie started (Past Simple reference point). The arc marks the earlier action, the dot marks when the movie began.',
+    difficulty: 2,
+    tenseCategory: 'perfect',
+    sentenceForm: 'affirmative',
+  },
+
+  // Past Perfect Affirmative - "never...before" pattern
+  {
+    type: 'sentence-to-timeline',
+    id: 'pperf-snow-1',
+    sentence: 'She had never seen snow before she moved to Boston.',
+    correctElements: [
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
+    ],
+    tenseName: 'Past Perfect + Past Simple',
+    explanation:
+      '"Had never seen" describes an experience that never occurred up to a past point. The arc covers the whole earlier past, and the dot marks when she moved.',
+    difficulty: 2,
+    tenseCategory: 'perfect',
+    sentenceForm: 'affirmative',
+  },
+
+  // Past Perfect Affirmative - academic context
+  {
+    type: 'sentence-to-timeline',
+    id: 'pperf-grad-1',
+    sentence: 'He had already graduated before she started college.',
+    correctElements: [
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
+    ],
+    tenseName: 'Past Perfect + Past Simple',
+    explanation:
+      '"Already" emphasizes that the graduation (Past Perfect) was complete before she started college (Past Simple). The arc is earlier; the dot is later.',
+    difficulty: 3,
+    tenseCategory: 'perfect',
+    sentenceForm: 'affirmative',
+  },
+
+  // Past Perfect Negative - social context
+  {
+    type: 'sentence-to-timeline',
+    id: 'pperf-neg-2',
+    sentence: "I hadn't met her before the party.",
+    correctElements: [
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
+    ],
+    tenseName: 'Past Perfect (Negative) + Past Simple',
+    explanation:
+      '"Hadn\'t met" means the meeting had NOT happened before that party. The arc (earlier past action that didn\'t happen) and dot (the party) show the sequence.',
+    difficulty: 2,
+    tenseCategory: 'perfect',
+    sentenceForm: 'negative',
+  },
+
+  // Past Perfect Negative - academic context
+  {
+    type: 'sentence-to-timeline',
+    id: 'pperf-neg-3',
+    sentence: "They hadn't studied the chapter before the test began.",
+    correctElements: [
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
+    ],
+    tenseName: 'Past Perfect (Negative) + Past Simple',
+    explanation:
+      'The studying had NOT been completed before the test started. The arc represents the incomplete earlier action, and the dot marks when the test began.',
+    difficulty: 3,
+    tenseCategory: 'perfect',
+    sentenceForm: 'negative',
+  },
+
+  // Past Perfect Question - experience
+  {
+    type: 'sentence-to-timeline',
+    id: 'pperf-q-2',
+    sentence: 'Had you ever tried sushi before you came to the US?',
+    correctElements: [
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
+    ],
+    tenseName: 'Past Perfect (Question) + Past Simple',
+    explanation:
+      'This asks about an experience that may have occurred before a past reference point. The arc covers the earlier past and the dot marks when you came to the US.',
+    difficulty: 2,
+    tenseCategory: 'perfect',
+    sentenceForm: 'question',
+  },
+
+  // Past Perfect Question - event sequence
+  {
+    type: 'sentence-to-timeline',
+    id: 'pperf-q-3',
+    sentence: 'Had she called you before she left the office?',
+    correctElements: [
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
+    ],
+    tenseName: 'Past Perfect (Question) + Past Simple',
+    explanation:
+      'Asking whether the call happened before she left. The arc marks the possible earlier call, the dot marks when she left the office.',
+    difficulty: 3,
+    tenseCategory: 'perfect',
+    sentenceForm: 'question',
+  },
+
+  // Past Perfect - Timeline to Verb (affirmative)
+  {
+    type: 'timeline-to-verb',
+    id: 'pperf-verb-3',
+    timelineElements: [
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30, verbLabel: 'already/eat' },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70, verbLabel: 'arrive' },
+    ],
+    sentenceTemplate: 'She ___[already/eat]___ when he ___[arrive]___.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'already/eat',
+        validAnswers: [
+          { answer: 'had already eaten', tenseName: 'Past Perfect', nuance: 'Completed before the reference point' },
+          { answer: 'had eaten', tenseName: 'Past Perfect', nuance: 'Without "already" — still correct' },
+        ],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'arrive',
+        validAnswers: [
+          { answer: 'arrived', tenseName: 'Past Simple', nuance: 'The reference point in the past' },
+        ],
+      },
+    ],
+    scenario: 'Coming home late',
+    difficulty: 2,
+    tenseCategory: 'perfect',
+    sentenceForm: 'affirmative',
+  },
+
+  // Past Perfect - Timeline to Verb (question form)
+  {
+    type: 'timeline-to-verb',
+    id: 'pperf-verb-4',
+    timelineElements: [
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30, verbLabel: 'finish' },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70, verbLabel: 'storm/hit' },
+    ],
+    sentenceTemplate: '___[finish]___ the work before the storm ___[storm/hit]___?',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'finish',
+        validAnswers: [
+          { answer: 'Had you finished', tenseName: 'Past Perfect (Question)', nuance: 'Inverted question — Had + subject + past participle' },
+          { answer: 'Had she finished', tenseName: 'Past Perfect (Question)', nuance: 'With third-person subject' },
+        ],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'storm/hit',
+        validAnswers: [
+          { answer: 'hit', tenseName: 'Past Simple', nuance: 'Irregular verb — hit/hit/hit' },
+        ],
+      },
+    ],
+    scenario: 'Weather emergency',
+    difficulty: 3,
+    tenseCategory: 'perfect',
+    sentenceForm: 'question',
+  },
+
+  // ============================================================================
+  // FUTURE PERFECT - EXPANDED QUESTION BANK
+  // ============================================================================
+
+  // Future Perfect Affirmative - academic milestone
+  {
+    type: 'sentence-to-timeline',
+    id: 'fp-2',
+    sentence: 'She will have graduated by next summer.',
+    correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
+    tenseName: 'Future Perfect',
+    explanation:
+      'Future Perfect describes an action that will be complete before a specific future point. The dashed arc shows the action spanning from now to the graduation deadline.',
+    difficulty: 2,
+    tenseCategory: 'perfect',
+    sentenceForm: 'affirmative',
+  },
+
+  // Future Perfect Affirmative - savings goal
+  {
+    type: 'sentence-to-timeline',
+    id: 'fp-3',
+    sentence: 'They will have saved enough money by December.',
+    correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 65 }],
+    tenseName: 'Future Perfect',
+    explanation:
+      '"By December" is the future deadline. The dashed arc shows that saving will be complete by that specific future point.',
+    difficulty: 2,
+    tenseCategory: 'perfect',
+    sentenceForm: 'affirmative',
+  },
+
+  // Future Perfect Affirmative - long-term goal
+  {
+    type: 'sentence-to-timeline',
+    id: 'fp-4',
+    sentence: 'By 2030, scientists will have developed new treatments for the disease.',
+    correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 75 }],
+    tenseName: 'Future Perfect',
+    explanation:
+      'A far future deadline (2030) with a task that will be completed by then. The dashed arc spans from now to that future point.',
+    difficulty: 3,
+    tenseCategory: 'perfect',
+    sentenceForm: 'affirmative',
+  },
+
+  // Future Perfect Negative - not done in time
+  {
+    type: 'sentence-to-timeline',
+    id: 'fp-neg-2',
+    sentence: "I won't have saved enough money by the end of the month.",
+    correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 55 }],
+    tenseName: 'Future Perfect (Negative)',
+    explanation:
+      'Future Perfect Negative says the task will NOT be finished by the deadline. The dashed arc still marks the future span — the negative is in the verb, not the timeline shape.',
+    difficulty: 2,
+    tenseCategory: 'perfect',
+    sentenceForm: 'negative',
+  },
+
+  // Future Perfect Negative - timing issue
+  {
+    type: 'sentence-to-timeline',
+    id: 'fp-neg-3',
+    sentence: "They won't have arrived before sunset.",
+    correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
+    tenseName: 'Future Perfect (Negative)',
+    explanation:
+      '"Sunset" is the future deadline. The negative predicts the arrival will NOT be complete before that point. The dashed arc shows the future span.',
+    difficulty: 3,
+    tenseCategory: 'perfect',
+    sentenceForm: 'negative',
+  },
+
+  // Future Perfect Question - deadline check
+  {
+    type: 'sentence-to-timeline',
+    id: 'fp-q-2',
+    sentence: 'Will you have finished the test by noon?',
+    correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 55 }],
+    tenseName: 'Future Perfect (Question)',
+    explanation:
+      'Asking whether the test will be complete by a future time. "By noon" is the deadline and the dashed arc spans from now to that future point.',
+    difficulty: 2,
+    tenseCategory: 'perfect',
+    sentenceForm: 'question',
+  },
+
+  // Future Perfect Question - planning
+  {
+    type: 'sentence-to-timeline',
+    id: 'fp-q-3',
+    sentence: 'Will she have moved into her new apartment by next month?',
+    correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
+    tenseName: 'Future Perfect (Question)',
+    explanation:
+      'Asking if the move will be completed before a future point. The dashed arc shows the question is about a future span with a deadline.',
+    difficulty: 3,
+    tenseCategory: 'perfect',
+    sentenceForm: 'question',
+  },
+
+  // Future Perfect - Timeline to Verb (affirmative)
+  {
+    type: 'timeline-to-verb',
+    id: 'fp-verb-2',
+    timelineElements: [
+      { id: 'e1', type: 'arc-dashed', zone: 'future', position: 60, verbLabel: 'leave' },
+    ],
+    sentenceTemplate: 'By the time you wake up, I ___[leave]___ for work.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'leave',
+        validAnswers: [
+          { answer: 'will have left', tenseName: 'Future Perfect', nuance: 'The departure will be complete before waking up' },
+          { answer: "'ll have left", tenseName: 'Future Perfect', nuance: 'Contracted form' },
+        ],
+      },
+    ],
+    scenario: 'Early morning schedule',
+    difficulty: 2,
+    tenseCategory: 'perfect',
+    sentenceForm: 'affirmative',
+  },
+
+  // Future Perfect - Timeline to Verb (question form)
+  {
+    type: 'timeline-to-verb',
+    id: 'fp-verb-3',
+    timelineElements: [
+      { id: 'e1', type: 'arc-dashed', zone: 'future', position: 65, verbLabel: 'finish' },
+    ],
+    sentenceTemplate: '___[finish]___ the project before the client meeting?',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'finish',
+        validAnswers: [
+          { answer: 'Will you have finished', tenseName: 'Future Perfect (Question)', nuance: 'Will + subject + have + past participle' },
+          { answer: 'Will she have finished', tenseName: 'Future Perfect (Question)', nuance: 'Third-person alternative' },
+        ],
+      },
+    ],
+    scenario: 'Work deadline',
+    difficulty: 3,
+    tenseCategory: 'perfect',
+    sentenceForm: 'question',
+  },
 ];

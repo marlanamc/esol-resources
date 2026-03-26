@@ -704,8 +704,13 @@ export async function POST(request: NextRequest) {
 
                 points = sessionPoints;
             } else if (activityGameUi === 'timeline-tenses') {
-                // Always award 5 points per round
-                points = 5;
+                if (sanitizedAccuracy === 100) {
+                    points = POINTS.TIMELINE_TENSES_PERFECT;
+                } else if (sanitizedAccuracy !== undefined && sanitizedAccuracy >= 80) {
+                    points = POINTS.TIMELINE_TENSES_HIGH;
+                } else {
+                    points = POINTS.TIMELINE_TENSES;
+                }
                 activityTypeLabel = 'Timeline Tenses';
             }
 

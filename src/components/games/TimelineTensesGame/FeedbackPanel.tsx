@@ -57,10 +57,18 @@ export function FeedbackPanel({
 
   const correctSentence = buildCorrectSentence();
 
+  const getTenseColor = (name: string): string => {
+    const lower = name.toLowerCase();
+    if (lower.includes('future')) return 'bg-blue-500/10 border-blue-500/20 text-blue-800 dark:text-blue-300';
+    if (lower.includes('past')) return 'bg-amber-500/10 border-amber-500/20 text-amber-800 dark:text-amber-300';
+    return 'bg-emerald-500/10 border-emerald-500/20 text-emerald-800 dark:text-emerald-300';
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
+      aria-live="polite"
       className={`rounded-[2.5rem] p-8 border border-white/30 backdrop-blur-2xl shadow-2xl overflow-hidden relative ${
         isCorrect
           ? 'bg-white/40 dark:bg-emerald-500/10'
@@ -103,11 +111,7 @@ export function FeedbackPanel({
           </h3>
           <div className="mt-2">
             <span
-              className={`inline-flex px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${
-                isCorrect
-                  ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-800 dark:text-emerald-300'
-                  : 'bg-amber-500/10 border-amber-500/20 text-amber-800 dark:text-amber-300'
-              }`}
+              className={`inline-flex px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${getTenseColor(tenseName)}`}
             >
               {tenseName}
             </span>

@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   AlertCircle, 
   ArrowLeft, 
   BookOpen, 
   Clock, 
+  FlaskConical,
   Zap, 
   Trophy, 
   ChevronRight,
@@ -16,12 +17,14 @@ import {
 } from 'lucide-react';
 import { ErrorToast } from '@/components/ui/ErrorToast';
 import { PointsToast } from '@/components/ui/PointsToast';
+import { GameErrorBoundary } from '@/components/system/ErrorBoundary';
 import { useRouter } from 'next/navigation';
 import { useTimelineTensesState } from './hooks/useTimelineTensesState';
 import { TenseFilterBar } from './TenseFilterBar';
 import { SentenceFormFilter } from './SentenceFormFilter';
 import { SentenceToTimelineExercise } from './exercises/SentenceToTimelineExercise';
 import { TimelineToVerbExercise } from './exercises/TimelineToVerbExercise';
+import { TimelineLab } from './TimelineLab';
 import { ResultsScreen } from './ResultsScreen';
 import { TutorialIntroScreen } from './TutorialIntroScreen';
 import { TutorialCompleteScreen } from './TutorialCompleteScreen';
@@ -52,6 +55,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     selectTenseFilter,
     selectSentenceForm,
     selectPracticeMode,
+    startLab,
     startRound,
     startTutorial,
     submitTutorialAnswer,
@@ -65,6 +69,13 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     dismissError,
     resetProgress,
   } = useTimelineTensesState(activityId, assignmentId);
+
+  const handleSaveProgress = useCallback(async () => {
+    const result = await saveProgress();
+    if (result?.pointsAwarded && result.pointsAwarded > 0) {
+      setPointsToast({ points: result.pointsAwarded, key: Date.now() });
+    }
+  }, [saveProgress]);
 
   // Save progress when round completes
   useEffect(() => {
@@ -86,13 +97,9 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
       if (state.roundResults.accuracy >= 70) {
         playLevelUp();
       }
-      void saveProgress().then((result) => {
-        if (result?.pointsAwarded && result.pointsAwarded > 0) {
-          setPointsToast({ points: result.pointsAwarded, key: Date.now() });
-        }
-      });
+      void handleSaveProgress();
     }
-  }, [state.phase, state.roundResults, saveProgress, playLevelUp]);
+  }, [state.phase, state.roundResults, handleSaveProgress, playLevelUp]);
 
   // Scroll to top on phase change
   useEffect(() => {
@@ -182,6 +189,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     'read-the-timeline': 'Read',
     'build-the-timeline': 'Build',
     'mixed-practice': 'Mixed',
+    'lab': 'Lab',
   };
   const FORM_LABELS: Record<string, string> = {
     'all': 'Any Form', 'affirmative': 'Affirmative', 'negative': 'Negative', 'question': 'Questions'
@@ -285,6 +293,25 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
 
               {/* Selection Sections */}
               <div className="flex flex-col gap-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
+                  className="flex justify-center"
+                >
+                  <button
+                    onClick={startLab}
+                    className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-amber-200/70 bg-gradient-to-r from-[#ffe5b8] via-[#ffd3dc] to-[#cdeeff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.16em] text-slate-900 shadow-[0_14px_34px_-18px_rgba(15,23,42,0.42)] transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_42px_-18px_rgba(14,116,144,0.35)] dark:border-white/10 dark:from-amber-400/20 dark:via-rose-400/20 dark:to-cyan-400/20 dark:text-white"
+                  >
+                    <span className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.55),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.18),transparent_30%)] opacity-90 transition-opacity group-hover:opacity-100 dark:bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.10),transparent_30%)]" />
+                    <span className="absolute inset-[1px] rounded-full bg-gradient-to-r from-[#fff1cf]/90 via-[#ffe0ea]/80 to-[#e0f5ff]/90 dark:from-amber-300/12 dark:via-rose-300/10 dark:to-cyan-300/12" />
+                    <span className="relative flex items-center gap-3">
+                    <FlaskConical size={18} />
+                    <span>Timeline Practice Lab</span>
+                    </span>
+                  </button>
+                </motion.div>
+
                 {/* Choose Tenses */}
                 <motion.div
                    initial={{ opacity: 0, y: 10 }}
@@ -542,23 +569,38 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
               </div>
 
               {/* Question content */}
-              {currentQuestion.type === 'sentence-to-timeline' ? (
-                <SentenceToTimelineExercise
-                  question={currentQuestion}
-                  onSubmit={submitAnswer}
-                  onNext={nextQuestion}
-                  showFeedback={state.showFeedback}
-                  lastAnswerCorrect={state.lastAnswerCorrect}
-                />
-              ) : (
-                <TimelineToVerbExercise
-                  question={currentQuestion}
-                  onSubmit={submitAnswer}
-                  onNext={nextQuestion}
-                  showFeedback={state.showFeedback}
-                  lastAnswerCorrect={state.lastAnswerCorrect}
-                />
-              )}
+              <GameErrorBoundary gameName="Timeline Tenses">
+                {currentQuestion.type === 'sentence-to-timeline' ? (
+                  <SentenceToTimelineExercise
+                    question={currentQuestion}
+                    onSubmit={submitAnswer}
+                    onNext={nextQuestion}
+                    showFeedback={state.showFeedback}
+                    lastAnswerCorrect={state.lastAnswerCorrect}
+                  />
+                ) : (
+                  <TimelineToVerbExercise
+                    question={currentQuestion}
+                    onSubmit={submitAnswer}
+                    onNext={nextQuestion}
+                    showFeedback={state.showFeedback}
+                    lastAnswerCorrect={state.lastAnswerCorrect}
+                  />
+                )}
+              </GameErrorBoundary>
+            </motion.div>
+          )}
+
+          {state.phase === 'lab' && (
+            <motion.div
+              key="lab"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+              className="flex-1 flex flex-col"
+            >
+              <TimelineLab onBack={retryRound} />
             </motion.div>
           )}
 
@@ -600,6 +642,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
         <ErrorToast
           message={state.error}
           onDismiss={dismissError}
+          onRetry={state.phase === 'results' ? () => { dismissError(); void handleSaveProgress(); } : undefined}
         />
       )}
 

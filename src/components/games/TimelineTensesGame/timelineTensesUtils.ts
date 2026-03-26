@@ -2,6 +2,7 @@ import {
   areExerciseAnswersEquivalent,
   normalizeExerciseAnswer,
 } from "@/lib/exercise-answer-normalization";
+import { TIMELINE_TENSES_QUESTIONS } from "@/data/timeline-tenses-questions";
 import type {
   SentenceForm,
   TenseCategory,
@@ -105,7 +106,14 @@ export const REAL_TENSE_CATEGORIES: TenseCategory[] = [
 export type TimelinePracticeMode =
   | "read-the-timeline"
   | "build-the-timeline"
-  | "mixed-practice";
+  | "mixed-practice"
+  | "lab";
+
+export interface TimelineLabFeedback {
+  status: "match" | "none";
+  labels: string[];
+  primaryLabel?: string;
+}
 
 export const DEFAULT_TIMELINE_PRACTICE_MODE: TimelinePracticeMode =
   "read-the-timeline";
@@ -318,6 +326,10 @@ export function filterTimelineQuestions(
       return true;
     }
 
+    if (practiceMode === "lab") {
+      return question.type === "sentence-to-timeline";
+    }
+
     return practiceMode === "read-the-timeline"
       ? question.type === "timeline-to-verb"
       : question.type === "sentence-to-timeline";
@@ -526,6 +538,10 @@ function normalizeElementType(type: TimelineElement['type']): string {
   }
 }
 
+function canonicalizeLabTenseName(tenseName: string): string {
+  return tenseName.replace(/\s+\((Negative|Question)\)$/u, "").trim();
+}
+
 function drawingZoneForMatch(
   zone: TimelineZone,
   strictPastSubzones: boolean
@@ -545,7 +561,143 @@ function buildDrawingMatchKey(
   return `${normalizedType}:${z}`;
 }
 
+function buildTimelinePatternSignature(
+  elements: Pick<TimelineElement, "type" | "zone">[],
+  strictPastSubzones?: boolean
+): string {
+  const shouldUseStrictPastSubzones =
+    strictPastSubzones ??
+    elements.some((el) => el.zone === "past-earlier" || el.zone === "past-later");
+  const counts = new Map<string, number>();
 
+  for (const element of elements) {
+    const key = buildDrawingMatchKey(element, shouldUseStrictPastSubzones);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+
+  return [...counts.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([key, count]) => `${key}#${count}`)
+    .join("|");
+}
+
+const TIMELINE_LAB_GUIDE_LABELS = new Map<string, string>([
+  ["multiple-dots:present#1", "Present Simple"],
+  ["single-dot:past#1", "Past Simple"],
+  ["single-dot:past-earlier#1", "Past Simple"],
+  ["single-dot:past-later#1", "Past Simple"],
+  ["single-dot:future#1", "Future Simple"],
+  ["solid-line:present#1", "Present Continuous"],
+  ["single-dot:past#1|solid-line:past#1", "Past Continuous + Past Simple"],
+  ["solid-line:past#1", "Past Continuous"],
+  ["solid-line:past-earlier#1", "Past Continuous"],
+  ["solid-line:past-later#1", "Past Continuous"],
+  ["single-dot:past-earlier#1|solid-line:past-later#1", "Past Continuous + Past Simple"],
+  ["single-dot:past-later#1|solid-line:past-earlier#1", "Past Continuous + Past Simple"],
+  ["single-dot:past-earlier#1|solid-line:past-earlier#1", "Past Continuous + Past Simple"],
+  ["single-dot:past-later#1|solid-line:past-later#1", "Past Continuous + Past Simple"],
+  ["solid-line:future#1", "Future Continuous"],
+  ["arc:past#1", "Present Perfect"],
+  ["arc:past-earlier#1", "Past Perfect"],
+  ["arc:past-later#1", "Present Perfect"],
+  ["arc:past-earlier#1|single-dot:past-later#1", "Past Perfect"],
+  ["arc:past-later#1|single-dot:past-earlier#1", "Past Perfect"],
+  ["arc:future#1", "Future Perfect"],
+  ["solid-to-now:past#1", "Present Perfect Continuous"],
+  ["solid-to-now:past-earlier#1", "Past Perfect Continuous"],
+  ["solid-to-now:past-later#1", "Present Perfect Continuous"],
+  ["single-dot:past-later#1|solid-to-now:past-earlier#1", "Past Perfect Continuous"],
+  ["single-dot:past-earlier#1|solid-to-now:past-later#1", "Past Perfect Continuous"],
+  ["solid-to-now:future#1", "Future Perfect Continuous"],
+  ["arc:past#1|multiple-dots:present#1", "Present Perfect + Present Simple"],
+  ["arc:past#1|single-dot:future#1", "Present Perfect + Future Simple"],
+  ["multiple-dots:present#1|solid-line:past#1", "Past Continuous + Present Simple"],
+  ["single-dot:future#2", "Future Simple + Present Simple"],
+  ["single-dot:past#2", "Past Simple Sequence"],
+  ["solid-line:past#2", "Past Continuous"],
+  ["arc:future#1|single-dot:future#1", "Future Perfect + Future Simple"],
+]);
+
+const TIMELINE_LAB_PATTERN_MAP = (() => {
+  const patternMap = new Map<string, string>();
+
+  for (const question of TIMELINE_TENSES_QUESTIONS) {
+    if (question.type !== "sentence-to-timeline") {
+      continue;
+    }
+
+    const signature = buildTimelinePatternSignature(question.correctElements);
+    const canonicalTenseName =
+      TIMELINE_LAB_GUIDE_LABELS.get(signature) ??
+      canonicalizeLabTenseName(question.tenseName);
+
+    if (!patternMap.has(signature)) {
+      patternMap.set(signature, canonicalTenseName);
+    }
+  }
+
+  for (const [signature, label] of TIMELINE_LAB_GUIDE_LABELS.entries()) {
+    patternMap.set(signature, label);
+  }
+
+  return patternMap;
+})();
+
+export function inferTimelineLabFeedback(
+  placedElements: Pick<TimelineElement, "type" | "zone">[]
+): TimelineLabFeedback {
+  if (placedElements.length === 0) {
+    return { status: "none", labels: [] };
+  }
+
+  const splitPastArc = placedElements.find(
+    (element) =>
+      normalizeElementType(element.type) === "arc" &&
+      (element.zone === "past-earlier" || element.zone === "past-later")
+  );
+  const splitPastOngoingLink = placedElements.find(
+    (element) =>
+      normalizeElementType(element.type) === "solid-to-now" &&
+      (element.zone === "past-earlier" || element.zone === "past-later")
+  );
+  const pastReferencePoints = placedElements.filter(
+    (element) =>
+      normalizeElementType(element.type) === "single-dot" &&
+      isPastTimelineZone(element.zone)
+  );
+
+  if (splitPastArc && pastReferencePoints.length > 0) {
+    return {
+      status: "match",
+      labels: ["Past Perfect"],
+      primaryLabel: "Past Perfect",
+    };
+  }
+
+  if (
+    splitPastOngoingLink &&
+    pastReferencePoints.some((element) => element.zone !== splitPastOngoingLink.zone)
+  ) {
+    return {
+      status: "match",
+      labels: ["Past Perfect Continuous"],
+      primaryLabel: "Past Perfect Continuous",
+    };
+  }
+
+  const signature = buildTimelinePatternSignature(placedElements);
+  const label = TIMELINE_LAB_PATTERN_MAP.get(signature);
+
+  if (!label) {
+    return { status: "none", labels: [] };
+  }
+
+  return {
+    status: "match",
+    labels: [label],
+    primaryLabel: label,
+  };
+}
 
 export function validateTimelineDrawingElements(
   correctElements: Pick<TimelineElement, "type" | "zone">[],
@@ -559,27 +711,8 @@ export function validateTimelineDrawingElements(
     (el) => el.zone === "past-earlier" || el.zone === "past-later"
   );
 
-  const expectedCounts = new Map<string, number>();
-
-  for (const correctElement of correctElements) {
-    const key = buildDrawingMatchKey(correctElement, strictPastSubzones);
-    expectedCounts.set(key, (expectedCounts.get(key) ?? 0) + 1);
-  }
-
-  for (const placedElement of placedElements) {
-    const key = buildDrawingMatchKey(placedElement, strictPastSubzones);
-    const remaining = expectedCounts.get(key);
-
-    if (!remaining) {
-      return false;
-    }
-
-    if (remaining === 1) {
-      expectedCounts.delete(key);
-    } else {
-      expectedCounts.set(key, remaining - 1);
-    }
-  }
-
-  return expectedCounts.size === 0;
+  return (
+    buildTimelinePatternSignature(correctElements, strictPastSubzones) ===
+    buildTimelinePatternSignature(placedElements, strictPastSubzones)
+  );
 }

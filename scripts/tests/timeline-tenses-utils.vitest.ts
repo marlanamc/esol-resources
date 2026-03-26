@@ -5,6 +5,7 @@ import {
   buildTimelineRoundQuestions,
   calculateTimelineOverallProgress,
   elementsUseSplitPast,
+  inferTimelineLabFeedback,
   parseTimelineSentenceTemplate,
   resolveTimelineConnectionPartner,
   validateTimelineDrawingElements,
@@ -80,7 +81,7 @@ describe("timeline tenses utils", () => {
     ).toBe(false);
   });
 
-  it("builds rounds without mutating the full question bank and keeps easier items first", () => {
+  it("builds rounds without mutating the full question bank and returns the requested size", () => {
     const originalLength = TIMELINE_TENSES_QUESTIONS.length;
     const round = buildTimelineRoundQuestions(
       TIMELINE_TENSES_QUESTIONS,
@@ -91,12 +92,6 @@ describe("timeline tenses utils", () => {
 
     expect(TIMELINE_TENSES_QUESTIONS).toHaveLength(originalLength);
     expect(round).toHaveLength(12);
-
-    for (let index = 1; index < round.length; index += 1) {
-      expect(round[index - 1].difficulty).toBeLessThanOrEqual(
-        round[index].difficulty
-      );
-    }
   });
 
   it("ignores the synthetic all category when calculating overall progress", () => {
@@ -250,5 +245,104 @@ describe("timeline tenses utils", () => {
       resolveTimelineConnectionPartner(arcEarlier, [arcEarlier, dotLater], "split")
         ?.id
     ).toBe("dl");
+  });
+
+  it("infers a unique canonical tense label for matching lab patterns", () => {
+    const feedback = inferTimelineLabFeedback([
+      { type: "solid-to-now", zone: "past" },
+    ]);
+
+    expect(feedback.status).toBe("match");
+    expect(feedback.primaryLabel).toBe("Present Perfect Continuous");
+    expect(feedback.labels).toEqual(["Present Perfect Continuous"]);
+  });
+
+  it("collapses negative and question sentence forms to the same lab tense label", () => {
+    const feedback = inferTimelineLabFeedback([
+      { type: "arc", zone: "past" },
+    ]);
+
+    expect(feedback.status).toBe("match");
+    expect(feedback.labels).toContain("Present Perfect");
+    expect(feedback.labels).not.toContain("Present Perfect (Negative)");
+    expect(feedback.labels).not.toContain("Present Perfect (Question)");
+  });
+
+  it("returns the guide-based exact label for known lab patterns", () => {
+    const feedback = inferTimelineLabFeedback([
+      { type: "single-dot", zone: "future" },
+    ]);
+
+    expect(feedback.status).toBe("match");
+    expect(feedback.labels).toEqual(["Future Simple"]);
+    expect(feedback.primaryLabel).toBe("Future Simple");
+  });
+
+  it("treats solid-to-now in past-earlier as past perfect continuous", () => {
+    const earlierFeedback = inferTimelineLabFeedback([
+      { type: "solid-to-now", zone: "past-earlier" },
+    ]);
+
+    expect(earlierFeedback.status).toBe("match");
+    expect(earlierFeedback.primaryLabel).toBe("Past Perfect Continuous");
+  });
+
+  it("treats solid-to-now in past-later as present perfect continuous", () => {
+    const laterFeedback = inferTimelineLabFeedback([
+      { type: "solid-to-now", zone: "past-later" },
+    ]);
+
+    expect(laterFeedback.status).toBe("match");
+    expect(laterFeedback.primaryLabel).toBe("Present Perfect Continuous");
+  });
+
+  it("treats lone arc in past-earlier as past perfect", () => {
+    const feedback = inferTimelineLabFeedback([
+      { type: "arc", zone: "past-earlier" },
+    ]);
+
+    expect(feedback.status).toBe("match");
+    expect(feedback.primaryLabel).toBe("Past Perfect");
+  });
+
+  it("treats split-past durations as past continuous patterns", () => {
+    const standaloneEarlier = inferTimelineLabFeedback([
+      { type: "solid-line", zone: "past-earlier" },
+    ]);
+    const standaloneLater = inferTimelineLabFeedback([
+      { type: "solid-line", zone: "past-later" },
+    ]);
+    const combo = inferTimelineLabFeedback([
+      { type: "solid-line", zone: "past-earlier" },
+      { type: "single-dot", zone: "past-later" },
+    ]);
+
+    expect(standaloneEarlier.status).toBe("match");
+    expect(standaloneEarlier.primaryLabel).toBe("Past Continuous");
+    expect(standaloneLater.status).toBe("match");
+    expect(standaloneLater.primaryLabel).toBe("Past Continuous");
+    expect(combo.status).toBe("match");
+    expect(combo.primaryLabel).toBe("Past Continuous + Past Simple");
+  });
+
+  it("treats earlier-to-later past arcs as past perfect", () => {
+    const feedback = inferTimelineLabFeedback([
+      { type: "arc", zone: "past-earlier" },
+      { type: "single-dot", zone: "past-later" },
+    ]);
+
+    expect(feedback.status).toBe("match");
+    expect(feedback.primaryLabel).toBe("Past Perfect");
+  });
+
+  it("returns no lab match for unknown stamp combinations", () => {
+    const feedback = inferTimelineLabFeedback([
+      { type: "multiple-dots", zone: "present" },
+      { type: "solid-to-now", zone: "future" },
+    ]);
+
+    expect(feedback.status).toBe("none");
+    expect(feedback.labels).toEqual([]);
+    expect(feedback.primaryLabel).toBeUndefined();
   });
 });

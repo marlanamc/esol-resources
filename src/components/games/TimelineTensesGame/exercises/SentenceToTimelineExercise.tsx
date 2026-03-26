@@ -109,7 +109,7 @@ export function SentenceToTimelineExercise({
 
       setPlacedStamps((prev) => {
         const newStamp: PlacedStamp = {
-          id: `stamp-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          id: `stamp-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`,
           type: selectedStamp,
           zone,
           position: 50,
@@ -242,6 +242,7 @@ export function SentenceToTimelineExercise({
                     <>
                       <button
                         style={{ flex: '0 0 23%' }}
+                        aria-label="Place stamp in earlier past"
                         className="rounded-l-[2rem] focus:outline-none transition-colors hover:bg-white/5"
                         onClick={() => handleTimelineClick('past-earlier')}
                         onMouseEnter={() => setHighlightZone('past-earlier')}
@@ -249,6 +250,7 @@ export function SentenceToTimelineExercise({
                       />
                       <button
                         style={{ flex: '0 0 19%' }}
+                        aria-label="Place stamp in later past"
                         className="focus:outline-none transition-colors hover:bg-white/5"
                         onClick={() => handleTimelineClick('past-later')}
                         onMouseEnter={() => setHighlightZone('past-later')}
@@ -259,6 +261,7 @@ export function SentenceToTimelineExercise({
                   ) : (
                     <button
                       style={{ flex: '0 0 46.5%' }}
+                      aria-label="Place stamp in past"
                       className="rounded-l-[2rem] focus:outline-none transition-colors hover:bg-white/5"
                       onClick={() => handleTimelineClick('past')}
                       onMouseEnter={() => setHighlightZone('past')}
@@ -268,6 +271,7 @@ export function SentenceToTimelineExercise({
 
                   <button
                     style={{ flex: '0 0 7%' }}
+                    aria-label="Place stamp in present"
                     className="focus:outline-none transition-colors hover:bg-white/5"
                     onClick={() => handleTimelineClick('present')}
                     onMouseEnter={() => setHighlightZone('present')}
@@ -275,11 +279,53 @@ export function SentenceToTimelineExercise({
                   />
                   <button
                     style={{ flex: '0 0 46.5%' }}
+                    aria-label="Place stamp in future"
                     className="rounded-r-[2rem] focus:outline-none transition-colors hover:bg-white/5"
                     onClick={() => handleTimelineClick('future')}
                     onMouseEnter={() => setHighlightZone('future')}
                     onMouseLeave={() => setHighlightZone(null)}
                   />
+                </div>
+              )}
+
+              {/* Mobile zone selector strip */}
+              {selectedStamp && (
+                <div className="mt-4 flex sm:hidden gap-2" role="group" aria-label="Choose a timeline zone">
+                  {useSplitPast ? (
+                    <>
+                      <button
+                        onClick={() => handleTimelineClick('past-earlier')}
+                        className="flex-1 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 text-xs font-black uppercase tracking-wider active:scale-95 transition-all"
+                      >
+                        Earlier Past
+                      </button>
+                      <button
+                        onClick={() => handleTimelineClick('past-later')}
+                        className="flex-1 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 text-xs font-black uppercase tracking-wider active:scale-95 transition-all"
+                      >
+                        Later Past
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => handleTimelineClick('past')}
+                      className="flex-1 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 text-xs font-black uppercase tracking-wider active:scale-95 transition-all"
+                    >
+                      Past
+                    </button>
+                  )}
+                  <button
+                    onClick={() => handleTimelineClick('present')}
+                    className="flex-1 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-800 dark:text-emerald-300 text-xs font-black uppercase tracking-wider active:scale-95 transition-all"
+                  >
+                    Now
+                  </button>
+                  <button
+                    onClick={() => handleTimelineClick('future')}
+                    className="flex-1 py-3 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-800 dark:text-blue-300 text-xs font-black uppercase tracking-wider active:scale-95 transition-all"
+                  >
+                    Future
+                  </button>
                 </div>
               )}
             </div>
