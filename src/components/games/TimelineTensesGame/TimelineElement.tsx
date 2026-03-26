@@ -7,9 +7,8 @@ import {
 } from './timelineTensesUtils';
 
 interface ElementColors {
-  fill: string;
-  stroke: string;
-  bg: string;
+  fillClass: string;
+  strokeClass: string;
 }
 
 interface TimelineElementComponentProps {
@@ -34,15 +33,15 @@ export function TimelineElementComponent({
   const renderElement = () => {
     switch (element.type) {
       case 'single-dot':
-        return <circle cx={x} cy={y} r={8} fill={colors.fill} />;
+        return <circle cx={x} cy={y} r={8} className={colors.fillClass} />;
 
       case 'multiple-dots':
         // Three dots representing repeated action
         return (
           <g>
-            <circle cx={x - 20} cy={y} r={5} fill={colors.fill} opacity={0.7} />
-            <circle cx={x} cy={y} r={6} fill={colors.fill} />
-            <circle cx={x + 20} cy={y} r={5} fill={colors.fill} opacity={0.7} />
+            <circle cx={x - 20} cy={y} r={5} className={`${colors.fillClass} opacity-70`} />
+            <circle cx={x} cy={y} r={6} className={colors.fillClass} />
+            <circle cx={x + 20} cy={y} r={5} className={`${colors.fillClass} opacity-70`} />
           </g>
         );
 
@@ -54,7 +53,7 @@ export function TimelineElementComponent({
             y1={y}
             x2={x + 30}
             y2={y}
-            stroke={colors.fill}
+            className={colors.strokeClass}
             strokeWidth={8}
             strokeLinecap="round"
             strokeDasharray="10 7"
@@ -69,7 +68,7 @@ export function TimelineElementComponent({
             y1={y}
             x2={x + 30}
             y2={y}
-            stroke={colors.fill}
+            className={colors.strokeClass}
             strokeWidth={6}
             strokeLinecap="round"
             strokeDasharray="8 6"
@@ -92,17 +91,17 @@ export function TimelineElementComponent({
         const endsAtNow = !hasPartner && arcEndX === nowX;
         return (
           <g>
-            <circle cx={arcStartX} cy={y} r={6} fill={colors.fill} />
+            <circle cx={arcStartX} cy={y} r={6} className={colors.fillClass} />
             <path
               d={`M ${arcStartX} ${y} Q ${arcMidX} ${y - arcCurveHeight} ${arcEndX} ${y}`}
               fill="none"
-              stroke={colors.fill}
+              className={colors.strokeClass}
               strokeWidth={4}
             />
             {hasPartner ? null : endsAtNow ? (
-              <circle cx={arcEndX} cy={y} r={7} fill="#059669" />
+              <circle cx={arcEndX} cy={y} r={7} className="fill-emerald-600 dark:fill-emerald-400" />
             ) : (
-              <circle cx={arcEndX} cy={y} r={6} fill={colors.fill} stroke={colors.stroke} strokeWidth={2} />
+              <circle cx={arcEndX} cy={y} r={6} className={`${colors.fillClass} ${colors.strokeClass}`} strokeWidth={2} />
             )}
           </g>
         );
@@ -117,15 +116,15 @@ export function TimelineElementComponent({
         const dashedArcCurveHeight = Math.min(30, Math.abs(dashedArcEndX - dashedArcStartX) / 4);
         return (
           <g>
-            <circle cx={dashedArcStartX} cy={y} r={6} fill="#059669" />
+            <circle cx={dashedArcStartX} cy={y} r={6} className="fill-emerald-600 dark:fill-emerald-400" />
             <path
               d={`M ${dashedArcStartX} ${y} Q ${dashedArcMidX} ${y - dashedArcCurveHeight} ${dashedArcEndX} ${y}`}
               fill="none"
-              stroke={colors.fill}
+              className={colors.strokeClass}
               strokeWidth={4}
               strokeDasharray="6 4"
             />
-            <circle cx={dashedArcEndX} cy={y} r={7} fill={colors.stroke} />
+            <circle cx={dashedArcEndX} cy={y} r={7} className={colors.fillClass} />
           </g>
         );
 
@@ -142,19 +141,19 @@ export function TimelineElementComponent({
         const endsAtNow = !hasPartner && solidEndX === solidNowX;
         return (
           <g>
-            <circle cx={x} cy={y} r={6} fill={colors.fill} />
+            <circle cx={x} cy={y} r={6} className={colors.fillClass} />
             <path
               d={`M ${x} ${y} Q ${solidMidX} ${y - solidCurveHeight} ${solidEndX} ${y}`}
               fill="none"
-              stroke={colors.fill}
+              className={colors.strokeClass}
               strokeWidth={5}
               strokeLinecap="round"
               strokeDasharray="8 6"
             />
             {hasPartner ? null : endsAtNow ? (
-              <circle cx={solidEndX} cy={y} r={7} fill="#059669" />
+              <circle cx={solidEndX} cy={y} r={7} className="fill-emerald-600 dark:fill-emerald-400" />
             ) : (
-              <circle cx={solidEndX} cy={y} r={6} fill={colors.fill} stroke={colors.stroke} strokeWidth={2} />
+              <circle cx={solidEndX} cy={y} r={6} className={`${colors.fillClass} ${colors.strokeClass}`} strokeWidth={2} />
             )}
           </g>
         );
@@ -172,11 +171,11 @@ export function TimelineElementComponent({
         const solidPointCurveHeight = Math.min(25, Math.abs(solidPointEndX - x) / 5);
         return (
           <g>
-            <circle cx={x} cy={y} r={6} fill={colors.fill} />
+            <circle cx={x} cy={y} r={6} className={colors.fillClass} />
             <path
               d={`M ${x} ${y} Q ${solidPointMidX} ${y - solidPointCurveHeight} ${solidPointEndX} ${y}`}
               fill="none"
-              stroke={colors.fill}
+              className={colors.strokeClass}
               strokeWidth={5}
               strokeLinecap="round"
               strokeDasharray="8 6"
@@ -186,8 +185,7 @@ export function TimelineElementComponent({
                 cx={solidPointEndX}
                 cy={y}
                 r={6}
-                fill={colors.fill}
-                stroke={colors.stroke}
+                className={`${colors.fillClass} ${colors.strokeClass}`}
                 strokeWidth={2}
               />
             )}
@@ -196,7 +194,7 @@ export function TimelineElementComponent({
       }
 
       default:
-        return <circle cx={x} cy={y} r={6} fill={colors.fill} />;
+        return <circle cx={x} cy={y} r={6} className={colors.fillClass} />;
     }
   };
 
@@ -208,8 +206,7 @@ export function TimelineElementComponent({
           x={x}
           y={y - 20}
           textAnchor="middle"
-          fill={colors.stroke}
-          className="text-xs font-semibold"
+          className={`${colors.fillClass.replace(/fill-/g, 'text-')} text-xs font-semibold`}
           style={{ fontSize: '11px', fontWeight: 600 }}
         >
           {element.verbLabel}
@@ -223,7 +220,6 @@ export function TimelineElementComponent({
 interface StampPreviewProps {
   type: TimelineElementType;
   label: string;
-  description: string;
   selected?: boolean;
   onClick?: () => void;
   /** Keyboard shortcut key (e.g., "1", "2") */
@@ -233,13 +229,12 @@ interface StampPreviewProps {
 export function StampPreview({
   type,
   label,
-  description,
   selected = false,
   onClick,
   shortcut,
 }: StampPreviewProps) {
   const getPreviewSVG = () => {
-    const baseColor = '#6b7280';
+    const baseColor = 'currentColor';
 
     switch (type) {
       case 'single-dot':
@@ -345,24 +340,23 @@ export function StampPreview({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-3 p-3 rounded-xl border-2 transition-all relative ${
+      className={`flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl border-2 transition-all relative w-full h-full gap-2 ${
         selected
-          ? 'border-primary bg-primary/10 shadow-md'
-          : 'border-border hover:border-primary/50 hover:bg-surface-elevated'
+          ? 'border-primary bg-primary/10 shadow-md text-primary scale-100'
+          : 'border-border hover:border-primary/50 hover:bg-surface-elevated text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 scale-[0.98]'
       }`}
     >
       {/* Keyboard shortcut badge */}
       {shortcut && (
-        <span className="absolute top-1 right-1 w-5 h-5 rounded bg-border/50 text-text-muted text-xs font-mono flex items-center justify-center">
+        <span className="absolute top-1 right-1 w-4 h-4 rounded bg-border/40 text-text-muted text-[10px] font-mono flex items-center justify-center">
           {shortcut}
         </span>
       )}
-      <svg viewBox="0 0 40 30" className="w-10 h-8 flex-shrink-0">
+      <svg viewBox="0 0 40 30" className="w-10 h-8 flex-shrink-0 mt-1">
         {getPreviewSVG()}
       </svg>
-      <div className="text-left">
-        <div className="text-sm font-semibold text-text">{label}</div>
-        <div className="text-xs text-text-muted">{description}</div>
+      <div className="text-center">
+        <div className="text-[11px] sm:text-xs font-bold leading-tight uppercase tracking-wider">{label}</div>
       </div>
     </button>
   );

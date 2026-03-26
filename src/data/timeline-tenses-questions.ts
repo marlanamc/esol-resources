@@ -2700,9 +2700,8 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-sequence-1',
     sentence: 'She had already left before we arrived.',
     correctElements: [
-      { id: 'e1', type: 'single-dot', zone: 'past-earlier', position: 40 },
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
-      { id: 'e3', type: 'arc', zone: 'past-earlier', position: 40 },
     ],
     tenseName: 'Past Perfect + Past Simple',
     explanation: 'She left (earlier past) before we arrived (later past).',
@@ -2739,6 +2738,156 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     difficulty: 2,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
+  },
+  // Mixed: Past Sequence (Open + Run)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-past-seq-1',
+    sentence: 'He opened the door and ran outside.',
+    correctElements: [
+      { id: 'e1', type: 'single-dot', zone: 'past', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
+    ],
+    tenseName: 'Past Simple Sequence',
+    explanation: 'Two completed momentary actions happening one after another in the past.',
+    difficulty: 2,
+    tenseCategory: 'mixed',
+    sentenceForm: 'affirmative',
+  },
+  // Mixed: Future Time Clause (Arrives + Eat)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-future-time-1',
+    sentence: 'As soon as she arrives, we will eat dinner.',
+    correctElements: [
+      { id: 'e1', type: 'single-dot', zone: 'future', position: 40 },
+      { id: 'e2', type: 'single-dot', zone: 'future', position: 70 },
+    ],
+    tenseName: 'Time Clause (Future context)',
+    explanation: 'Both actions happen in the future! "Arrives" is the required first condition for the later "will eat".',
+    difficulty: 2,
+    tenseCategory: 'mixed',
+    sentenceForm: 'affirmative',
+  },
+  // Mixed: Present Perfect Result (Lose + Can't)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-perfect-result-1',
+    sentence: "I have lost my passport, so I can't travel.",
+    correctElements: [
+      { id: 'e1', type: 'arc', zone: 'past', position: 50 },
+      { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
+    ],
+    tenseName: 'Present Perfect + Present Simple',
+    explanation: 'An action from the past ("have lost") officially links to a factual result playing out right now ("can\'t travel").',
+    difficulty: 3,
+    tenseCategory: 'mixed',
+    sentenceForm: 'affirmative',
+  },
+  // Mixed: Change of State (Live + Live)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-change-state-1',
+    sentence: 'I was living in New York, but now I live in Tokyo.',
+    correctElements: [
+      { id: 'e1', type: 'solid-line', zone: 'past', position: 50 },
+      { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
+    ],
+    tenseName: 'Past Continuous + Present Simple',
+    explanation: 'A temporary situation in the past ("was living") is being contrasted with a permanent fact right now ("live").',
+    difficulty: 2,
+    tenseCategory: 'mixed',
+    sentenceForm: 'affirmative',
+  },
+  // Mixed: Past Perfect Continuous Interrupted
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-ppc-interrupted-1',
+    sentence: 'I had been driving for hours when I finally saw the sign.',
+    correctElements: [
+      { id: 'e1', type: 'solid-to-point', zone: 'past-earlier', position: 40 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
+    ],
+    tenseName: 'Past Perfect Continuous + Past Simple',
+    explanation: 'A long continuous duration in the earlier past ("had been driving") progressing up until it was specifically interrupted by a moment ("saw").',
+    difficulty: 3,
+    tenseCategory: 'mixed',
+    sentenceForm: 'affirmative',
+  },
+  // Mixed: Past Continuous Interrupted (Negative)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-pc-neg-1',
+    sentence: 'I wasn\'t sleeping when you called.',
+    correctElements: [
+      { id: 'e1', type: 'solid-line', zone: 'past', position: 50 },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 50 },
+    ],
+    tenseName: 'Past Continuous + Past Simple',
+    explanation: 'A negative continuous state in the past that was interrupted by a specific moment.',
+    difficulty: 2,
+    tenseCategory: 'mixed',
+    sentenceForm: 'negative',
+  },
+  // Mixed: Past Perfect Sequence (Negative)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-sequence-neg-1',
+    sentence: 'She hadn\'t studied before she took the test.',
+    correctElements: [
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 50 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 20 },
+    ],
+    tenseName: 'Past Perfect + Past Simple',
+    explanation: 'A lack of an action in the earlier past ("hadn\'t studied") leading up to an event in the later past ("took").',
+    difficulty: 3,
+    tenseCategory: 'mixed',
+    sentenceForm: 'negative',
+  },
+  // Mixed: Present Perfect Result (Negative)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-perf-result-neg-1',
+    sentence: 'I haven\'t finished my work, so I can\'t leave yet.',
+    correctElements: [
+      { id: 'e1', type: 'arc', zone: 'past', position: 50 },
+      { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
+    ],
+    tenseName: 'Present Perfect + Present Simple',
+    explanation: 'An incomplete action spanning from the past to now ("haven\'t finished") restricting a current factual state ("can\'t leave").',
+    difficulty: 3,
+    tenseCategory: 'mixed',
+    sentenceForm: 'negative',
+  },
+  // Mixed: Future Time Clause (Question)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-future-time-q-1',
+    sentence: 'Will you call me when you land?',
+    correctElements: [
+      { id: 'e1', type: 'single-dot', zone: 'future', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'future', position: 50 },
+    ],
+    tenseName: 'Future Simple + Present Simple',
+    explanation: 'A question about two sequential momentary events in the future (the landing, and then the call).',
+    difficulty: 2,
+    tenseCategory: 'mixed',
+    sentenceForm: 'question',
+  },
+  // Mixed: Past Simple Sequence (Question)
+  {
+    type: 'sentence-to-timeline',
+    id: 'mixed-past-seq-q-1',
+    sentence: 'Did he lock the door before he left?',
+    correctElements: [
+      { id: 'e1', type: 'single-dot', zone: 'past', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
+    ],
+    tenseName: 'Past Simple + Past Simple',
+    explanation: 'A question asking to confirm the chronological order of two specific moments in the past.',
+    difficulty: 2,
+    tenseCategory: 'mixed',
+    sentenceForm: 'question',
   },
   // New PPC - Build the Timeline
   {

@@ -163,12 +163,12 @@ export function TimelineToVerbExercise({
   const useSplitPast = elementsUseSplitPast(question.timelineElements);
 
   return (
-    <div className="px-4 sm:px-0">
+    <div className="px-2 sm:px-0 max-w-full overflow-hidden">
       {/* Timeline display */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-6 mb-6"
+        className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-3 sm:p-6 mb-4 sm:mb-6 overflow-visible"
       >
         <div className="text-sm font-semibold text-primary uppercase tracking-wide mb-4 text-center">
           Read the Timeline
@@ -196,7 +196,7 @@ export function TimelineToVerbExercise({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-6 mb-6"
+            className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-4 sm:p-6 mb-4 sm:mb-6"
           >
             <div className="text-sm font-semibold text-text-muted mb-4">
               Fill in the verbs:

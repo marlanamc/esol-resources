@@ -9,25 +9,7 @@ import { useCallback } from 'react';
 export function useTimelineAudio() {
   const playPing = useCallback(() => {
     try {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (!AudioCtx) return;
-      
-      const ctx = new AudioCtx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(880, ctx.currentTime); // A5
-      osc.frequency.exponentialRampToValueAtTime(1320, ctx.currentTime + 0.1); // E6
-      
-      gain.gain.setValueAtTime(0.1, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
-      
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      
-      osc.start();
-      osc.stop(ctx.currentTime + 0.3);
+      // Audio disabled per user request
       
       // Haptics for mobile
       if ('vibrate' in navigator) {
@@ -40,25 +22,7 @@ export function useTimelineAudio() {
 
   const playThump = useCallback(() => {
     try {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (!AudioCtx) return;
-      
-      const ctx = new AudioCtx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(150, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.15);
-      
-      gain.gain.setValueAtTime(0.15, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
-      
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      
-      osc.start();
-      osc.stop(ctx.currentTime + 0.2);
+      // Audio disabled per user request
       
       // Haptics for mobile
       if ('vibrate' in navigator) {
@@ -71,29 +35,7 @@ export function useTimelineAudio() {
 
   const playLevelUp = useCallback(() => {
     try {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (!AudioCtx) return;
-      
-      const ctx = new AudioCtx();
-      const notes = [440, 554.37, 659.25, 880]; // A4, C#5, E5, A5
-      
-      notes.forEach((freq, i) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.1);
-        
-        gain.gain.setValueAtTime(0, ctx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.1, ctx.currentTime + i * 0.1 + 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + i * 0.1 + 0.4);
-        
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        
-        osc.start(ctx.currentTime + i * 0.1);
-        osc.stop(ctx.currentTime + i * 0.1 + 0.5);
-      });
+      // Audio disabled per user request
 
       if ('vibrate' in navigator) {
         navigator.vibrate([200, 100, 200]);

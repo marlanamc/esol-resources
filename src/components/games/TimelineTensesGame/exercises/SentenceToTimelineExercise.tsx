@@ -14,7 +14,7 @@ import { StampToolkit } from '../StampToolkit';
 import { FeedbackPanel } from '../FeedbackPanel';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import type { TimelineDrawingAnswer } from '../hooks/useTimelineTensesState';
-import { validateTimelineDrawingElements } from '../timelineTensesUtils';
+import { elementsUseSplitPast, validateTimelineDrawingElements } from '../timelineTensesUtils';
 
 interface SentenceToTimelineExerciseProps {
   question: SentenceToTimelineQuestion;
@@ -31,6 +31,36 @@ interface PlacedStamp {
   position: number;
 }
 
+const autoLayoutStamps = (stamps: PlacedStamp[]): PlacedStamp[] => {
+  return stamps.map((stamp) => {
+    const isDuration = stamp.type === 'solid-line' || stamp.type === 'dashed-line';
+    if (isDuration) {
+      return { ...stamp, position: 50 };
+    }
+    
+    const punctualsInZone = stamps.filter(s => s.zone === stamp.zone && s.type !== 'solid-line' && s.type !== 'dashed-line');
+    const pIndex = punctualsInZone.findIndex(s => s.id === stamp.id);
+    const pCount = punctualsInZone.length;
+    
+    // Check if there is a duration in this zone serving as the background
+    const hasDurationInZone = stamps.some(s => s.zone === stamp.zone && (s.type === 'solid-line' || s.type === 'dashed-line'));
+    
+    let position = 50;
+    if (pCount === 1) {
+      // If there's a duration, an interrupting dot looks best placed near the end of the duration
+      position = hasDurationInZone ? 68 : 50;
+    } else if (pCount === 2) {
+      position = pIndex === 0 ? 32 : 68;
+    } else if (pCount === 3) {
+      position = pIndex === 0 ? 20 : pIndex === 1 ? 50 : 80;
+    } else if (pCount > 3) {
+      position = 10 + (80 / (pCount - 1)) * pIndex;
+    }
+
+    return { ...stamp, position };
+  });
+};
+
 export function SentenceToTimelineExercise({
   question,
   onSubmit,
@@ -44,9 +74,11 @@ export function SentenceToTimelineExercise({
   const [showHint, setShowHint] = useState(false);
   const { playPing, playThump } = useTimelineAudio();
 
-  // Only show split past (EARLIER / LATER) for connection stamps that need the distinction
   const CONNECTION_STAMPS: TimelineElementType[] = ['arc', 'solid-to-now'];
-  const useSplitPast = selectedStamp !== null && CONNECTION_STAMPS.includes(selectedStamp);
+  const useSplitPast =
+    elementsUseSplitPast(question.correctElements) ||
+    (selectedStamp !== null && CONNECTION_STAMPS.includes(selectedStamp)) ||
+    placedStamps.some((s) => s.zone === 'past-earlier' || s.zone === 'past-later');
 
   // Generate hint based on correct elements
   const getHint = useCallback((): string => {
@@ -76,20 +108,14 @@ export function SentenceToTimelineExercise({
       if (!selectedStamp) return;
 
       setPlacedStamps((prev) => {
-        const sameZoneCount = prev.filter((s) => s.zone === zone).length;
-        // Spread stamps horizontally so arcs / duration stamps can resolve a
-        // distinct reference Moment (earlier left, later right on the timeline).
-        const positionSlots = [32, 68, 50, 20, 84];
-        const position = positionSlots[sameZoneCount] ?? 50;
-
         const newStamp: PlacedStamp = {
           id: `stamp-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
           type: selectedStamp,
           zone,
-          position,
+          position: 50,
         };
 
-        return [...prev, newStamp];
+        return autoLayoutStamps([...prev, newStamp]);
       });
       setSelectedStamp(null);
       setHighlightZone(null);
@@ -99,7 +125,7 @@ export function SentenceToTimelineExercise({
 
   // Remove a placed stamp
   const handleRemoveStamp = useCallback((id: string) => {
-    setPlacedStamps((prev) => prev.filter((s) => s.id !== id));
+    setPlacedStamps((prev) => autoLayoutStamps(prev.filter((s) => s.id !== id)));
   }, []);
 
   // Validate answer
@@ -134,12 +160,12 @@ export function SentenceToTimelineExercise({
   }));
 
   return (
-    <div className="px-4 sm:px-0">
+    <div className="px-2 sm:px-0 max-w-full overflow-hidden">
       {/* Question card */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-6 mb-6"
+        className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-4 sm:p-6 mb-4 sm:mb-6"
       >
         <div className="flex items-center justify-between mb-2">
           <div className="text-sm font-semibold text-primary uppercase tracking-wide">
@@ -164,7 +190,7 @@ export function SentenceToTimelineExercise({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-6 mb-6"
+            className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-3 sm:p-6 mb-4 sm:mb-6 overflow-visible"
           >
             {/* Instruction with animated indicator when stamp selected */}
             <div className="text-sm font-semibold text-text-muted mb-4 text-center flex items-center justify-center gap-2">
@@ -256,7 +282,7 @@ export function SentenceToTimelineExercise({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-6 mb-6"
+            className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-4 sm:p-6 mb-4 sm:mb-6"
           >
             <StampToolkit
               selectedStamp={selectedStamp}
@@ -324,7 +350,7 @@ export function SentenceToTimelineExercise({
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-5"
+              className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-3 sm:p-5"
             >
               <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-3 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />

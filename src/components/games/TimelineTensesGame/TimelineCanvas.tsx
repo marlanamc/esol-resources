@@ -32,15 +32,15 @@ const PAST_LATER_SPLIT = { start: PAST_LATER_START_SPLIT, end: PAST_TIMELINE_END
 
 const COLORS: Record<
   Exclude<TimelineZone, never> | 'axis' | 'nowMarker',
-  { fill: string; stroke: string; bg: string }
+  { fillClass: string; strokeClass: string }
 > = {
-  past: { fill: '#d97706', stroke: '#b45309', bg: '#fef3c7' },
-  'past-earlier': { fill: '#b45309', stroke: '#92400e', bg: '#ffedd5' },
-  'past-later': { fill: '#d97706', stroke: '#b45309', bg: '#fef3c7' },
-  present: { fill: '#059669', stroke: '#047857', bg: '#d1fae5' },
-  future: { fill: '#2563eb', stroke: '#1d4ed8', bg: '#dbeafe' },
-  axis: { fill: '#cbd5e1', stroke: '#cbd5e1', bg: '#f1f5f9' },
-  nowMarker: { fill: '#059669', stroke: '#059669', bg: '#d1fae5' },
+  past: { fillClass: 'fill-amber-600 dark:fill-amber-500', strokeClass: 'stroke-amber-700 dark:stroke-amber-400' },
+  'past-earlier': { fillClass: 'fill-orange-700 dark:fill-orange-500', strokeClass: 'stroke-orange-800 dark:stroke-orange-400' },
+  'past-later': { fillClass: 'fill-amber-600 dark:fill-amber-500', strokeClass: 'stroke-amber-700 dark:stroke-amber-400' },
+  present: { fillClass: 'fill-emerald-600 dark:fill-emerald-500', strokeClass: 'stroke-emerald-700 dark:stroke-emerald-400' },
+  future: { fillClass: 'fill-blue-600 dark:fill-blue-500', strokeClass: 'stroke-blue-700 dark:stroke-blue-400' },
+  axis: { fillClass: '', strokeClass: '' },
+  nowMarker: { fillClass: '', strokeClass: '' },
 };
 
 function colorsForElement(zone: TimelineZone) {
@@ -125,18 +125,16 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
                 y={12}
                 width={PAST_EARLIER_SPLIT.end - PAST_EARLIER_SPLIT.start + 8}
                 height={56}
-                rx={8}
-                fill={COLORS['past-earlier'].bg}
-                className="opacity-60 dark:opacity-30"
+                rx={12}
+                className="fill-orange-100/60 dark:fill-orange-900/20 transition-colors duration-300"
               />
               <rect
                 x={PAST_LATER_SPLIT.start - 4}
                 y={12}
                 width={NOW_POSITION - PAST_LATER_SPLIT.start - 6}
                 height={56}
-                rx={8}
-                fill={COLORS['past-later'].bg}
-                className="opacity-40 dark:opacity-20"
+                rx={12}
+                className="fill-amber-100/40 dark:fill-amber-900/10 transition-colors duration-300"
               />
             </>
           ) : (
@@ -145,9 +143,8 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
               y={12}
               width={NOW_POSITION - PAST_SINGLE.start - 6}
               height={56}
-              rx={8}
-              fill={COLORS.past.bg}
-              className="opacity-40 dark:opacity-20"
+              rx={12}
+              className="fill-amber-100/40 dark:fill-amber-900/15 transition-colors duration-300"
             />
           )}
 
@@ -156,9 +153,8 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
             y={12}
             width={FUTURE_ZONE.end - FUTURE_ZONE.start + 8}
             height={56}
-            rx={8}
-            fill={COLORS.future.bg}
-            className="opacity-30 dark:opacity-15"
+            rx={12}
+            className="fill-blue-100/40 dark:fill-blue-900/15 transition-colors duration-300"
           />
 
           <rect
@@ -166,9 +162,8 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
             y={12}
             width={32}
             height={56}
-            rx={6}
-            fill={COLORS.present.bg}
-            className="opacity-40 dark:opacity-20"
+            rx={10}
+            className="fill-emerald-100/50 dark:fill-emerald-900/20 transition-colors duration-300"
           />
         </g>
 
@@ -179,9 +174,14 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
             y={10}
             width={highlightGeom.width}
             height={60}
-            rx={8}
-            fill={COLORS[highlightZone].bg}
-            className="opacity-60 dark:opacity-40 pointer-events-none"
+            rx={10}
+            className={`opacity-60 dark:opacity-40 transition-all pointer-events-none
+              ${highlightZone === 'present' ? 'fill-emerald-300 dark:fill-emerald-700' : ''}
+              ${highlightZone === 'future' ? 'fill-blue-300 dark:fill-blue-700' : ''}
+              ${highlightZone === 'past' ? 'fill-amber-300 dark:fill-amber-700' : ''}
+              ${highlightZone === 'past-earlier' ? 'fill-orange-300 dark:fill-orange-700' : ''}
+              ${highlightZone === 'past-later' ? 'fill-amber-300 dark:fill-amber-700' : ''}
+            `}
           />
         )}
 
@@ -191,20 +191,29 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
           y1={AXIS_Y}
           x2={TIMELINE_WIDTH - 10}
           y2={AXIS_Y}
-          stroke={COLORS.axis.stroke}
           strokeWidth={4}
           strokeLinecap="round"
-          className="opacity-60 dark:opacity-40"
+          className="stroke-slate-300 dark:stroke-slate-700 transition-colors duration-300"
         />
 
+        {/* Glow underneath now marker for emphasis */}
         <line
           x1={NOW_POSITION}
           y1={AXIS_Y - 20}
           x2={NOW_POSITION}
           y2={AXIS_Y + 20}
-          stroke={COLORS.nowMarker.stroke}
+          strokeWidth={10}
+          strokeLinecap="round"
+          className="stroke-emerald-400 dark:stroke-emerald-600 opacity-20 blur-sm mix-blend-screen"
+        />
+        <line
+          x1={NOW_POSITION}
+          y1={AXIS_Y - 20}
+          x2={NOW_POSITION}
+          y2={AXIS_Y + 20}
           strokeWidth={4}
           strokeLinecap="round"
+          className="stroke-emerald-500 dark:stroke-emerald-400 transition-colors duration-300"
         />
 
         {/* 4. Zone Labels */}
@@ -282,12 +291,27 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
             arcTargetX = getElementX(partner as TimelineElement);
           }
 
+          let yOffset = 0;
+          // Offset durations vertically if they share a zone, avoiding direct overlap constraint
+          if (element.type === 'solid-line' || element.type === 'dashed-line') {
+            const peers = elements.filter(
+              (e) => e.zone === element.zone && (e.type === 'solid-line' || e.type === 'dashed-line')
+            );
+            if (peers.length > 1) {
+              const sorted = [...peers].sort((a, b) => a.id.localeCompare(b.id));
+              const idx = sorted.findIndex((e) => e.id === element.id);
+              // Distribute strictly ABOVE the axis line so they don't overlap the zone text labels below
+              const offsets = [-24, -12, -36, -8];
+              yOffset = offsets[idx % offsets.length] || 0;
+            }
+          }
+
           return (
             <TimelineElementComponent
               key={element.id}
               element={element}
               x={getElementX(element)}
-              y={AXIS_Y}
+              y={AXIS_Y + yOffset}
               colors={colorsForElement(element.zone)}
               arcTargetX={arcTargetX}
             />

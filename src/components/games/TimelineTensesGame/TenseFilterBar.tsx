@@ -128,12 +128,9 @@ export function TenseFilterBar({
               {/* Progress indicator */}
               {progress && progress.attempts > 0 && (
                 <div className="mt-3 pt-2 border-t border-border/50">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-text-muted">
+                  <div className="flex items-center justify-center text-xs">
+                    <span className="text-text-muted font-medium">
                       Best: {progress.accuracy}%
-                    </span>
-                    <span className="text-text-muted">
-                      {progress.attempts} {progress.attempts === 1 ? 'try' : 'tries'}
                     </span>
                   </div>
                 </div>

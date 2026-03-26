@@ -110,26 +110,30 @@ export function StampToolkit({
   return (
     <div className="space-y-4">
       {/* Instructions */}
-      <div className="text-center">
-        <p className="text-sm text-text-muted">
+      <div className="text-center min-h-[3rem] flex flex-col justify-end pb-3">
+        <p className="text-sm font-medium text-text-muted">
           {selectedStamp
-            ? 'Now tap a zone on the timeline to place it'
+            ? (
+                <span className="text-primary dark:text-primary/90 font-semibold">
+                  {STAMPS.find(s => s.type === selectedStamp)?.description}
+                  <span className="opacity-75 font-normal"> — Now tap a zone to place it</span>
+                </span>
+              )
             : 'Select a stamp, then tap the timeline to place it'}
         </p>
       </div>
 
       {/* Stamp grid */}
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
         {STAMPS.map((stamp) => (
           <motion.div
             key={stamp.type}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.02, y: -2 }}
+            whileTap={{ scale: 0.95 }}
           >
             <StampPreview
               type={stamp.type}
               label={stamp.label}
-              description={stamp.description}
               shortcut={stamp.shortcut}
               selected={selectedStamp === stamp.type}
               onClick={() =>
@@ -150,13 +154,13 @@ export function StampToolkit({
             {placedStamps.map((stamp) => {
               const stampDef = STAMPS.find((s) => s.type === stamp.type);
               const zoneColors: Record<TimelineZone, string> = {
-                past: 'bg-amber-100 text-amber-700 border-amber-200',
+                past: 'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800/60',
                 'past-earlier':
-                  'bg-orange-100 text-orange-900 border-orange-200 dark:bg-orange-950/40 dark:text-orange-200 dark:border-orange-800',
+                  'bg-orange-100 text-orange-900 border-orange-200 dark:bg-orange-950/40 dark:text-orange-300 dark:border-orange-800/60',
                 'past-later':
-                  'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-950/40 dark:text-amber-200 dark:border-amber-800',
-                present: 'bg-green-100 text-green-700 border-green-200',
-                future: 'bg-blue-100 text-blue-700 border-blue-200',
+                  'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800/60',
+                present: 'bg-emerald-100 text-emerald-800 border-emerald-300 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60',
+                future: 'bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/60',
               };
 
               return (

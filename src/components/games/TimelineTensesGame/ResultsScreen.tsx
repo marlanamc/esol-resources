@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Target, RotateCcw, ArrowLeft, Star, TrendingUp, ChevronDown, Check, X } from 'lucide-react';
+import { CelebrationAnimation } from '@/components/ui/CelebrationAnimation';
 import type { RoundResults } from './hooks/useTimelineTensesState';
 import type { TimelineTensesQuestion } from '@/types/activity';
 
@@ -104,7 +105,10 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
   const incorrectCount = totalQuestions - correctAnswers;
 
   return (
-    <div className="max-w-lg mx-auto px-4">
+    <div className="max-w-lg mx-auto px-4 relative">
+      {(isPerfect || isPassing) && (
+        <CelebrationAnimation trigger={true} type={isPerfect ? "stars" : "confetti"} />
+      )}
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
