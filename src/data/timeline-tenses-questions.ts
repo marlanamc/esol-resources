@@ -407,7 +407,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fpc-1',
     sentence: 'By 2027, I will have been living in the U.S. for 5 years.',
-    correctElements: [{ id: 'e1', type: 'dashed-line', zone: 'future', position: 50 }],
+    correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'future', position: 50 }],
     tenseName: 'Future Perfect Continuous',
     explanation:
       'Future Perfect Continuous describes the duration of an action up to a specific future point. The dashed line shows the ongoing duration extending into the future.',
@@ -421,7 +421,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'timeline-to-verb',
     id: 'fpc-verb-1',
     timelineElements: [
-      { id: 'e1', type: 'dashed-line', zone: 'future', position: 60, verbLabel: 'live' },
+      { id: 'e1', type: 'solid-to-now', zone: 'future', position: 60, verbLabel: 'live' },
     ],
     sentenceTemplate: 'By 2027, I ___[live]___ in the U.S. for 5 years.',
     blanks: [
@@ -541,7 +541,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-life-1',
     timelineElements: [
       { id: 'e1', type: 'arc', zone: 'past', position: 40, verbLabel: 'live' },
-      { id: 'e2', type: 'dashed-line', zone: 'future', position: 60, verbLabel: 'live' },
+      { id: 'e2', type: 'solid-to-now', zone: 'future', position: 60, verbLabel: 'live' },
     ],
     sentenceTemplate: 'I ___[live]___ in the U.S. since 2022, and by 2027 I ___[live]___ here for 5 years.',
     blanks: [
@@ -1202,7 +1202,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'timeline-to-verb',
     id: 'fpc-verb-neg-1',
     timelineElements: [
-      { id: 'e1', type: 'dashed-line', zone: 'future', position: 60, verbLabel: 'not/work' },
+      { id: 'e1', type: 'solid-to-now', zone: 'future', position: 60, verbLabel: 'not/work' },
     ],
     sentenceTemplate: 'By next year, I ___[not/work]___ here for very long.',
     blanks: [
@@ -1955,7 +1955,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'timeline-to-verb',
     id: 'everyday-health-verb-1',
     timelineElements: [
-      { id: 'e1', type: 'arc', zone: 'past', position: 40, verbLabel: 'take' },
+      { id: 'e1', type: 'solid-to-now', zone: 'past', position: 40, verbLabel: 'take' },
     ],
     sentenceTemplate: 'I ___[take]___ medicine for a week now.',
     blanks: [
@@ -2010,7 +2010,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'timeline-to-verb',
     id: 'everyday-family-verb-1',
     timelineElements: [
-      { id: 'e1', type: 'solid-line', zone: 'past-earlier', position: 30, verbLabel: 'wait' },
+      { id: 'e1', type: 'solid-to-point', zone: 'past-earlier', position: 30, verbLabel: 'wait' },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70, verbLabel: 'arrive' },
     ],
     sentenceTemplate: 'We ___[wait]___ for an hour when our relatives finally ___[arrive]___.',
@@ -2957,7 +2957,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'timeline-to-verb',
     id: 'ppc-past-read-2',
     timelineElements: [
-      { id: 'e1', type: 'solid-to-now', zone: 'past', position: 40, verbLabel: 'teach' },
+      { id: 'e1', type: 'solid-to-point', zone: 'past', position: 40, verbLabel: 'teach' },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70, verbLabel: 'retire' },
     ],
     sentenceTemplate: 'We ___[teach]___ at that school for 5 years when the principal ___[retire]___.',
@@ -2985,7 +2985,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'timeline-to-verb',
     id: 'ppc-past-read-3',
     timelineElements: [
-      { id: 'e1', type: 'solid-to-now', zone: 'past', position: 30, verbLabel: 'wait' },
+      { id: 'e1', type: 'solid-to-point', zone: 'past', position: 30, verbLabel: 'wait' },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 80, verbLabel: 'arrive' },
     ],
     sentenceTemplate: 'I ___[wait]___ for the bus for 30 minutes when it finally ___[arrive]___.',

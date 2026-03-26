@@ -69,6 +69,15 @@ const CATEGORY_CONFIG: Array<{
   },
 ];
 
+const CATEGORY_STYLE: Record<string, { tone: string; iconBg: string; activeBg: string; border: string }> = {
+  all: { tone: 'text-slate-600 dark:text-slate-400', iconBg: 'bg-slate-100 dark:bg-slate-800', activeBg: 'bg-slate-500', border: 'border-slate-200 dark:border-slate-700' },
+  simple: { tone: 'text-[#3d8e42]', iconBg: 'bg-[#eef4ec] dark:bg-[#3d8e42]/10', activeBg: 'bg-[#3d8e42]', border: 'border-[#3d8e42]/20' },
+  continuous: { tone: 'text-[#268a82]', iconBg: 'bg-[#edf5f4] dark:bg-[#268a82]/10', activeBg: 'bg-[#268a82]', border: 'border-[#268a82]/20' },
+  perfect: { tone: 'text-[#c44a28]', iconBg: 'bg-[#fff7ed] dark:bg-[#c44a28]/10', activeBg: 'bg-[#c44a28]', border: 'border-[#c44a28]/20' },
+  'perfect-continuous': { tone: 'text-[#b56e1a]', iconBg: 'bg-[#f5f0e8] dark:bg-[#b56e1a]/10', activeBg: 'bg-[#b56e1a]', border: 'border-[#b56e1a]/20' },
+  mixed: { tone: 'text-[#7d3fa6]', iconBg: 'bg-[#f5f0fa] dark:bg-[#7d3fa6]/10', activeBg: 'bg-[#7d3fa6]', border: 'border-[#7d3fa6]/20' },
+};
+
 export function TenseFilterBar({
   selectedCategory,
   categoryProgress,
@@ -76,50 +85,53 @@ export function TenseFilterBar({
 }: TenseFilterBarProps) {
   return (
     <div className="w-full">
-      <h2 className="text-lg font-semibold text-text mb-4 text-center">
-        Choose a Tense Category
-      </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      <h2 className="text-xl font-bold font-display text-text mb-6">Choose your Tenses</h2>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
         {CATEGORY_CONFIG.map((category) => {
           const isSelected = selectedCategory === category.id;
           const progress = categoryProgress[category.id];
           const Icon = category.icon;
+          const style = CATEGORY_STYLE[category.id] || CATEGORY_STYLE.all;
 
           return (
             <motion.button
               key={category.id}
               onClick={() => onSelectCategory(category.id)}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ y: -2, scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
-              className={`relative p-4 rounded-xl border-2 text-left transition-all ${
+              className={`group relative p-4 rounded-3xl border-2 text-left transition-all duration-300 ${
                 isSelected
-                  ? 'border-primary bg-primary/5 shadow-md'
-                  : 'border-border hover:border-primary/30 bg-white dark:bg-[#162b3d]'
+                  ? `bg-white dark:bg-[#162b3d] shadow-xl ${style.border}`
+                  : `border-transparent bg-white/40 dark:bg-white/5 backdrop-blur-md hover:bg-white/60 dark:hover:bg-white/10 shadow-sm`
               }`}
             >
               {/* Level badge */}
               {progress && (
-                <div className="absolute -top-2 -right-2 px-2 py-0.5 rounded-full bg-primary text-white text-[10px] font-bold shadow-sm">
-                  Lvl {progress.level || 1}
+                <div className={`absolute -top-2 -right-1 px-2.5 py-1 rounded-full text-xs font-black shadow-lg transition-transform duration-300 ${
+                  isSelected ? `${style.activeBg} text-white scale-110` : 'bg-surface-elevated text-text-muted border border-border'
+                }`}>
+                  LVL {progress.level || 1}
                 </div>
               )}
 
-              <div className="flex items-start gap-3">
+              <div className="flex flex-col gap-3">
                 <div
-                  className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                  className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-colors duration-300 ${
                     isSelected
-                      ? 'bg-primary/20 text-primary'
-                      : 'bg-border/30 text-text-muted'
+                      ? `${style.activeBg} text-white shadow-inner`
+                      : `${style.iconBg} ${style.tone}`
                   }`}
                 >
-                  <Icon size={20} />
+                  <Icon size={24} />
                 </div>
+                
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-text truncate">
-                    <span className="hidden sm:inline">{category.label}</span>
-                    <span className="sm:hidden">{category.shortLabel}</span>
+                  <div className={`font-bold transition-colors ${isSelected ? 'text-text' : 'text-text-muted group-hover:text-text'}`}>
+                    <span className="hidden sm:inline text-base">{category.label}</span>
+                    <span className="sm:hidden text-sm">{category.shortLabel}</span>
                   </div>
-                  <div className="text-xs text-text-muted mt-0.5 hidden sm:block">
+                  <div className="text-xs text-text-muted/60 font-medium leading-tight mt-1 line-clamp-2">
                     {category.description}
                   </div>
                 </div>
@@ -127,13 +139,31 @@ export function TenseFilterBar({
 
               {/* Progress indicator */}
               {progress && progress.attempts > 0 && (
-                <div className="mt-3 pt-2 border-t border-border/50">
-                  <div className="flex items-center justify-center text-xs">
-                    <span className="text-text-muted font-medium">
-                      Best: {progress.accuracy}%
+                <div className={`mt-4 pt-3 border-t transition-colors ${isSelected ? 'border-border' : 'border-border/30'}`}>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-text-muted/40 uppercase tracking-tighter">Best Score</span>
+                    <span className={`text-xs font-bold ${isSelected ? style.tone : 'text-text-muted'}`}>
+                      {progress.accuracy}%
                     </span>
                   </div>
+                  <div className="mt-1.5 h-1 bg-border/20 rounded-full overflow-hidden">
+                    <motion.div 
+                      className={`h-full ${isSelected ? style.activeBg : 'bg-text-muted/20'}`}
+                      initial={{ width: 0 }}
+                      animate={{ width: `${progress.accuracy}%` }}
+                      transition={{ duration: 1, ease: "easeOut" }}
+                    />
+                  </div>
                 </div>
+              )}
+
+              {/* Selection background glow */}
+              {isSelected && (
+                <motion.div
+                  layoutId="category-active-bg"
+                  className={`absolute inset-0 rounded-3xl blur-2xl -z-10 opacity-10 ${style.iconBg}`}
+                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                />
               )}
             </motion.button>
           );

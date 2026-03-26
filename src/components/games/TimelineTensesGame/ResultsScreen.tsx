@@ -16,7 +16,7 @@ interface ResultsScreenProps {
 
 export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsScreenProps) {
   const [showReview, setShowReview] = useState(false);
-  const { accuracy, correctAnswers, totalQuestions, category, questionResults } = results;
+  const { accuracy, correctAnswers, totalQuestions, questionResults } = results;
   const isPerfect = accuracy === 100;
   const isPassing = accuracy >= 70;
 
@@ -61,15 +61,6 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
   const feedback = getFeedback();
   const FeedbackIcon = feedback.icon;
 
-  // Category display name
-  const categoryNames: Record<string, string> = {
-    all: 'All Tenses',
-    simple: 'Simple Tenses',
-    continuous: 'Continuous Tenses',
-    perfect: 'Perfect Tenses',
-    'perfect-continuous': 'Perfect Continuous',
-    mixed: 'Mixed Tenses',
-  };
 
   // Get question content for review
   const getQuestionText = (question: TimelineTensesQuestion): string => {
@@ -105,107 +96,100 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
   const incorrectCount = totalQuestions - correctAnswers;
 
   return (
-    <div className="max-w-lg mx-auto px-4 relative">
+    <div className="max-w-2xl mx-auto px-4 relative pb-20">
       {(isPerfect || isPassing) && (
         <CelebrationAnimation trigger={true} type={isPerfect ? "stars" : "confetti"} />
       )}
-      {/* Header */}
+      
+      {/* Performance Summary Card */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-8"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-2xl rounded-[3rem] border border-white/30 p-8 sm:p-12 mb-8 shadow-2xl relative overflow-hidden"
       >
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
-          className={`w-24 h-24 mx-auto mb-4 rounded-full ${feedback.bgColor} flex items-center justify-center`}
-        >
-          <FeedbackIcon size={48} className={feedback.color} />
-        </motion.div>
-        <h1 className="font-display text-3xl font-bold text-text mb-2">
-          {feedback.title}
-        </h1>
-        <p className="text-text-muted text-lg">{feedback.message}</p>
-      </motion.div>
+        <div className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl -z-10 opacity-20 ${
+          isPerfect ? 'bg-yellow-500' : isPassing ? 'bg-emerald-500' : 'bg-amber-500'
+        }`} />
 
-      {/* Stats Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-6 mb-6"
-      >
-        {/* Category badge */}
-        <div className="text-center mb-4">
-          <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold">
-            {categoryNames[category] || category}
-          </span>
-        </div>
+        <div className="text-center">
+          <motion.div
+            initial={{ scale: 0, rotate: -15 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+            className={`w-24 h-24 mx-auto mb-8 rounded-3xl ${feedback.bgColor} flex items-center justify-center shadow-lg relative`}
+          >
+            <FeedbackIcon size={48} className={feedback.color} />
+            <motion.div 
+               animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+               transition={{ duration: 2, repeat: Infinity }}
+               className={`absolute inset-0 rounded-3xl ${feedback.bgColor} blur-xl -z-10`} 
+            />
+          </motion.div>
 
-        {/* Score display */}
-        <div className="text-center mb-6">
-          <div className="text-6xl font-bold text-text mb-1">{accuracy}%</div>
-          <div className="text-text-muted">
-            {correctAnswers} of {totalQuestions} correct
+          <div className="mb-8">
+             <div className="text-xs font-black text-primary uppercase tracking-[0.4em] mb-2">Session Complete</div>
+             <h1 className="font-display text-4xl sm:text-5xl font-black text-text leading-tight tracking-tight">
+               {feedback.title}
+             </h1>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 mb-10">
+            <div className="bg-white/40 dark:bg-white/5 rounded-[2rem] p-6 border border-white/20">
+              <div className="text-4xl sm:text-5xl font-black text-text mb-1 tracking-tighter">{accuracy}%</div>
+              <div className="text-xs font-black text-text-muted/60 uppercase tracking-widest">Accuracy</div>
+            </div>
+            <div className="bg-white/40 dark:bg-white/5 rounded-[2rem] p-6 border border-white/20">
+              <div className="text-4xl sm:text-5xl font-black text-text mb-1 tracking-tighter">{correctAnswers}/{totalQuestions}</div>
+              <div className="text-xs font-black text-text-muted/60 uppercase tracking-widest">Score</div>
+            </div>
+          </div>
+
+          <div className="relative pt-2">
+            <div className="h-4 bg-white/20 dark:bg-white/5 rounded-full overflow-hidden border border-white/10">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${accuracy}%` }}
+                transition={{ duration: 1.2, ease: "circOut" }}
+                className={`h-full rounded-full ${
+                  isPerfect ? 'bg-yellow-400' : isPassing ? 'bg-emerald-500' : 'bg-amber-500'
+                }`}
+              />
+            </div>
+            <div className="mt-4 text-xs font-black text-text-muted/40 uppercase tracking-widest flex justify-between items-center px-2">
+              <span>Goal: 70%</span>
+              <span className={isPassing ? 'text-emerald-500' : 'text-amber-500'}>
+                {isPassing ? 'Goal Achieved' : 'Keep Practicing'}
+              </span>
+            </div>
           </div>
         </div>
-
-        {/* Progress bar */}
-        <div className="h-4 bg-border/30 rounded-full overflow-hidden">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${accuracy}%` }}
-            transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
-            className={`h-full rounded-full ${
-              isPerfect
-                ? 'bg-gradient-to-r from-yellow-400 to-yellow-500'
-                : isPassing
-                ? 'bg-gradient-to-r from-green-400 to-green-500'
-                : 'bg-gradient-to-r from-amber-400 to-amber-500'
-            }`}
-          />
-        </div>
-
-        {/* Pass/Fail indicator */}
-        <div className="mt-4 text-center">
-          {isPassing ? (
-            <span className="text-green-600 dark:text-green-400 font-semibold">
-              Passed (70% required)
-            </span>
-          ) : (
-            <span className="text-amber-600 dark:text-amber-400 font-semibold">
-              Need 70% to pass
-            </span>
-          )}
-        </div>
       </motion.div>
 
-      {/* Question Review Section */}
+      {/* Answer Journey Review */}
       {questionResults.length > 0 && (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="mb-6"
+          className="mb-8"
         >
           <button
             onClick={() => setShowReview(!showReview)}
-            className="w-full py-3 px-4 bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 rounded-xl font-semibold flex items-center justify-between hover:bg-surface-elevated transition-colors"
+            className="w-full py-6 px-8 bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl border border-white/30 rounded-[2rem] font-black flex items-center justify-between hover:bg-white/60 dark:hover:bg-[#162b3d]/60 transition-all shadow-xl group"
           >
-            <span className="flex items-center gap-2 text-text">
+            <span className="flex items-center gap-4 text-text uppercase tracking-[0.2em] text-xs">
               Review Answers
               {incorrectCount > 0 && (
-                <span className="px-2 py-0.5 text-xs rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300">
-                  {incorrectCount} to review
+                <span className="px-3 py-1 text-xs rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                  {incorrectCount} Revisions
                 </span>
               )}
             </span>
             <motion.div
               animate={{ rotate: showReview ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
+              className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary/10 transition-colors"
             >
-              <ChevronDown size={20} className="text-text-muted" />
+              <ChevronDown size={24} />
             </motion.div>
           </button>
 
@@ -215,10 +199,9 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="mt-3 space-y-3">
+                <div className="pt-4 space-y-4">
                   {questionResults.map((result, index) => {
                     const question = questions.find((q) => q.id === result.questionId);
                     if (!question) return null;
@@ -226,44 +209,41 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
                     return (
                       <motion.div
                         key={result.questionId}
-                        initial={{ opacity: 0, x: -10 }}
+                        initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.05 }}
-                        className={`p-4 rounded-xl border ${
+                        transition={{ delay: index * 0.1 }}
+                        className={`p-6 rounded-[2rem] border-2 transition-all ${
                           result.correct
-                            ? 'bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800'
-                            : 'bg-amber-50 dark:bg-amber-900/10 border-amber-200 dark:border-amber-800'
+                            ? 'bg-emerald-500/5 border-emerald-500/10 shadow-sm'
+                            : 'bg-amber-500/5 border-amber-500/10 shadow-sm'
                         }`}
                       >
-                        <div className="flex items-start gap-3">
-                          <div
-                            className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center ${
-                              result.correct
-                                ? 'bg-green-500 text-white'
-                                : 'bg-amber-500 text-white'
-                            }`}
-                          >
-                            {result.correct ? <Check size={14} /> : <X size={14} />}
+                        <div className="flex items-start gap-5">
+                          <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 ${
+                            result.correct ? 'bg-emerald-500 text-white shadow-emerald-500/20 shadow-lg' : 'bg-amber-500 text-white shadow-amber-500/20 shadow-lg'
+                          }`}>
+                            {result.correct ? <Check size={20} strokeWidth={3} /> : <X size={20} strokeWidth={3} />}
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-text mb-1">
-                              Q{index + 1}: {getQuestionText(question)}
+                          <div className="flex-1">
+                            <div className="text-xs font-black text-text-muted/40 uppercase tracking-widest mb-1">Entry {index + 1}</div>
+                            <p className="text-lg font-bold text-text mb-3 leading-snug tracking-tight">
+                              "{getQuestionText(question)}"
                             </p>
-                            <div className="flex flex-wrap items-center gap-2 mb-2">
-                              <span
-                                className={`text-xs px-2 py-0.5 rounded-full font-semibold ${
-                                  result.correct
-                                    ? 'bg-green-200 dark:bg-green-800 text-green-700 dark:text-green-300'
-                                    : 'bg-amber-200 dark:bg-amber-800 text-amber-700 dark:text-amber-300'
-                                }`}
-                              >
+                            <div className="flex flex-wrap items-center gap-3">
+                              <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${
+                                result.correct 
+                                  ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-800 dark:text-emerald-300' 
+                                  : 'bg-amber-500/10 border-amber-500/20 text-amber-800 dark:text-amber-300'
+                              }`}>
                                 {result.tenseName || getCorrectAnswerSummary(question)}
                               </span>
                             </div>
                             {!result.correct && (
-                              <p className="text-xs text-text-muted">
-                                {getExplanation(question)}
-                              </p>
+                              <div className="mt-4 pt-4 border-t border-amber-500/10">
+                                <p className="text-xs font-medium text-text-muted leading-relaxed">
+                                  {getExplanation(question)}
+                                </p>
+                              </div>
                             )}
                           </div>
                         </div>
@@ -277,26 +257,26 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
         </motion.div>
       )}
 
-      {/* Action Buttons */}
+      {/* Navigation Ecosystem */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="space-y-3"
+        transition={{ delay: 0.6 }}
+        className="grid sm:grid-cols-2 gap-4"
       >
         <button
           onClick={onRetry}
-          className="w-full py-4 px-6 bg-primary text-white rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-primary-dark transition-colors"
+          className="w-full py-6 px-10 bg-primary text-white rounded-[1.5rem] font-black text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:shadow-[0_20px_32px_-12px_rgba(var(--primary-color-rgb),0.6)] hover:bg-primary-dark transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3"
         >
-          <RotateCcw size={20} />
-          {isPassing ? 'Start Next Level' : 'Try Again'}
+          <RotateCcw size={24} />
+          {isPassing ? 'Play Again' : 'Try Again'}
         </button>
         <button
           onClick={onBack}
-          className="w-full py-4 px-6 bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-surface-elevated transition-colors"
+          className="w-full py-6 px-10 bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl border border-white/30 text-text rounded-[1.5rem] font-black text-xl shadow-xl hover:bg-white/60 dark:hover:bg-[#162b3d]/60 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3"
         >
-          <ArrowLeft size={20} />
-          Back to Activities
+          <ArrowLeft size={24} />
+          Back
         </button>
       </motion.div>
     </div>

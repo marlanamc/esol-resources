@@ -420,35 +420,34 @@ const PAST_CONNECTING_TYPES: TimelineElementType[] = [
 ];
 
 /**
- * Pick which past "Moment" (single-dot) a connection or duration stamp should
+ * Pick which "Moment" (single-dot) a connection or duration stamp should
  * visually link to. Handles default 50%/50% placement and dot-before-arc order.
+ * Works across all timeline zones (Past, Present, Future).
  */
-export function resolvePastConnectionPartner(
+export function resolveTimelineConnectionPartner(
   element: Pick<TimelineElement, "id" | "type" | "zone" | "position">,
   elements: Pick<TimelineElement, "id" | "type" | "zone" | "position">[],
   pastLayout: PastTimelineLayout = "single"
 ): Pick<TimelineElement, "id" | "type" | "zone" | "position"> | null {
-  if (!isPastTimelineZone(element.zone)) {
-    return null;
-  }
   if (!PAST_CONNECTING_TYPES.includes(element.type)) {
     return null;
   }
 
-  const pastDots = elements.filter(
+  const isElementPast = isPastTimelineZone(element.zone);
+  const zoneDots = elements.filter(
     (el) =>
       el.id !== element.id &&
-      isPastTimelineZone(el.zone) &&
+      (isElementPast ? isPastTimelineZone(el.zone) : el.zone === element.zone) &&
       el.type === "single-dot"
   );
-  if (pastDots.length === 0) {
+  if (zoneDots.length === 0) {
     return null;
   }
 
   const elIndex = elements.findIndex((e) => e.id === element.id);
   const x0 = getTimelineElementX(element, pastLayout);
 
-  const toRight = pastDots.filter(
+  const toRight = zoneDots.filter(
     (d) => getTimelineElementX(d, pastLayout) > x0 + 0.5
   );
   if (toRight.length > 0) {
@@ -459,7 +458,7 @@ export function resolvePastConnectionPartner(
     );
   }
 
-  const toLeft = pastDots.filter(
+  const toLeft = zoneDots.filter(
     (d) => getTimelineElementX(d, pastLayout) < x0 - 0.5
   );
   if (toLeft.length > 0) {
@@ -470,7 +469,7 @@ export function resolvePastConnectionPartner(
     );
   }
 
-  const samePos = pastDots.filter(
+  const samePos = zoneDots.filter(
     (d) => Math.abs(getTimelineElementX(d, pastLayout) - x0) <= 0.5
   );
   if (samePos.length === 0) {

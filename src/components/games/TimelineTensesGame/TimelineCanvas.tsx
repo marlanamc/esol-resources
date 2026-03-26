@@ -10,7 +10,7 @@ import {
   PAST_LATER_START_SPLIT,
   PAST_TIMELINE_END,
   PAST_TIMELINE_START,
-  resolvePastConnectionPartner,
+  resolveTimelineConnectionPartner,
   TIMELINE_FUTURE_START,
   TIMELINE_NOW_X,
   TIMELINE_WIDTH,
@@ -113,7 +113,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
       <svg
         ref={ref}
         viewBox={`0 0 ${TIMELINE_WIDTH} ${TIMELINE_HEIGHT}`}
-        className={`w-full max-w-lg mx-auto ${className}`}
+        className={`w-full max-w-2xl mx-auto ${className}`}
         style={{ touchAction: 'none' }}
       >
         {/* 1. Zone backgrounds — Always visible, overlapping for seamless connection */}
@@ -286,7 +286,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
         {/* 5. Timeline Elements (Placed Stamps) */}
         {elements.map((element) => {
           let arcTargetX: number | undefined;
-          const partner = resolvePastConnectionPartner(element, elements, pastLayout);
+          const partner = resolveTimelineConnectionPartner(element, elements, pastLayout);
           if (partner) {
             arcTargetX = getElementX(partner as TimelineElement);
           }
@@ -313,6 +313,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
               x={getElementX(element)}
               y={AXIS_Y + yOffset}
               colors={colorsForElement(element.zone)}
+              showLabel={showLabels}
               arcTargetX={arcTargetX}
             />
           );

@@ -2,14 +2,24 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AlertCircle, ArrowLeft, BookOpen, Clock, Zap, Trophy, ChevronRight } from 'lucide-react';
+import { 
+  AlertCircle, 
+  ArrowLeft, 
+  BookOpen, 
+  Clock, 
+  Zap, 
+  Trophy, 
+  ChevronRight,
+  Info,
+  RotateCcw,
+  HelpCircle
+} from 'lucide-react';
 import { ErrorToast } from '@/components/ui/ErrorToast';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { useRouter } from 'next/navigation';
 import { useTimelineTensesState } from './hooks/useTimelineTensesState';
 import { TenseFilterBar } from './TenseFilterBar';
 import { SentenceFormFilter } from './SentenceFormFilter';
-import { PracticeModeBar } from './PracticeModeBar';
 import { SentenceToTimelineExercise } from './exercises/SentenceToTimelineExercise';
 import { TimelineToVerbExercise } from './exercises/TimelineToVerbExercise';
 import { ResultsScreen } from './ResultsScreen';
@@ -17,7 +27,6 @@ import { TutorialIntroScreen } from './TutorialIntroScreen';
 import { TutorialCompleteScreen } from './TutorialCompleteScreen';
 import { HowToPlayModal } from './HowToPlayModal';
 import { useTimelineAudio } from './hooks/useTimelineAudio';
-import { Info, RotateCcw } from 'lucide-react';
 import type { SentenceForm, TenseCategory } from '@/types/activity';
 import { filterTimelineQuestions } from './timelineTensesUtils';
 import {
@@ -151,7 +160,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     'perfect': 'Perfect Tenses', 'perfect-continuous': 'Perfect Continuous', 'mixed': 'Mixed Tenses'
   };
   const MODE_LABELS: Record<string, string> = {
-    'read-the-timeline': 'Interpret', 'build-the-timeline': 'Visualize', 'mixed-practice': 'Mix'
+    'read-the-timeline': 'Read the Timeline', 'build-the-timeline': 'Build the Timeline', 'mixed-practice': 'Mix'
   };
   const FORM_LABELS: Record<string, string> = {
     'all': 'Any Form', 'affirmative': 'Affirmative', 'negative': 'Negative', 'question': 'Questions'
@@ -231,118 +240,146 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
               className="flex-1 flex flex-col"
             >
-              <div className="text-center mb-10 pt-4">
+              <div className="text-center mb-12 pt-4">
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.5 }}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-primary-dark mb-4"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-primary-dark mb-6"
                 >
                   <BookOpen size={18} />
-                  <span className="text-sm font-semibold tracking-wide uppercase">Tense Visualization</span>
+                  <span className="text-xs font-black tracking-[0.2em] uppercase">Timeline Practice</span>
                 </motion.div>
 
-                <h1 className="font-display text-4xl sm:text-5xl font-bold text-text mb-3 tracking-tight">
+                <h1 className="font-display text-5xl sm:text-6xl font-black text-text mb-4 tracking-tighter">
                   Timeline Tenses
                 </h1>
-                <p className="text-text-muted text-lg max-w-xl mx-auto mb-6">
-                  See time <span className="font-semibold text-primary">clearly</span>. Map English verbs to <span className="font-semibold text-primary">visual timelines</span>.
+                <p className="text-text-muted text-xl max-w-xl mx-auto mb-2 leading-relaxed font-medium">
+                  See time <span className="text-primary italic">clearly</span>. 
                 </p>
+                <p className="text-text-muted/60 text-base max-w-lg mx-auto">
+                  Map English verb tenses to visual timelines and master every moment.
+                </p>
+              </div>
 
-                {/* Visual Mastery Path */}
+              {/* Selection Sections */}
+              <div className="flex flex-col gap-8">
+                {/* Choose Tenses */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
-                  className="max-w-xl mx-auto overflow-hidden"
+                   initial={{ opacity: 0, y: 10 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ delay: 0.2 }}
                 >
-                  <div className="flex items-center justify-center gap-6 sm:gap-8 px-6 py-4 rounded-3xl bg-white/50 dark:bg-[#162b3d]/50 border border-border/40 shadow-sm relative">
-                    {/* Connecting Line */}
-                    <div className="absolute top-1/2 left-10 right-10 h-0.5 bg-gradient-to-r from-primary via-secondary to-accent opacity-20 -translate-y-1/2 -z-10" />
+                  <TenseFilterBar
+                    selectedCategory={state.selectedCategory}
+                    categoryProgress={state.categoryProgress}
+                    onSelectCategory={(category: TenseCategory | 'all') => selectTenseFilter(category)}
+                  />
+                </motion.div>
 
-                    {/* Stage 1: Interpret */}
-                    <div className="flex flex-col items-center gap-1 group">
-                        <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                            <Clock size={18} />
-                        </div>
-                        <div className="text-[10px] font-bold text-text-muted uppercase tracking-wider">Interpret</div>
-                        <div className="text-[9px] text-text-muted/60 opacity-0 group-hover:opacity-100 transition-opacity">Timeline → Verb</div>
-                    </div>
+                {/* Choose Practice Mode */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <h2 className="text-xl font-bold font-display text-text mb-6">Practice Mode</h2>
 
-                    <ChevronRight className="text-border/40" size={16} />
-
-                    {/* Stage 2: Visualize */}
-                    <div className="flex flex-col items-center gap-1 group">
-                        <div className="w-10 h-10 rounded-full bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
-                            <Zap size={18} />
-                        </div>
-                        <div className="text-[10px] font-bold text-text-muted uppercase tracking-wider">Visualize</div>
-                        <div className="text-[9px] text-text-muted/60 opacity-0 group-hover:opacity-100 transition-opacity">Sentence → Timeline</div>
-                    </div>
-
-                    <ChevronRight className="text-border/40" size={16} />
-
-                    {/* Stage 3: Master */}
-                    <div className="flex flex-col items-center gap-1 group">
-                        <div className="w-10 h-10 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center text-primary-dark group-hover:scale-110 transition-transform">
-                            <Trophy size={18} />
-                        </div>
-                        <div className="text-[10px] font-bold text-text-muted uppercase tracking-wider">Master</div>
-                        <div className="text-[9px] text-text-muted/60 opacity-0 group-hover:opacity-100 transition-opacity">Real Records</div>
-                    </div>
+                  <div className="grid grid-cols-3 gap-4">
+                    {([
+                      { id: 'read-the-timeline' as const, icon: <Clock size={24} />, label: 'Read', desc: 'Timeline → Verb' },
+                      { id: 'build-the-timeline' as const, icon: <Zap size={24} />, label: 'Build', desc: 'Sentence → Map' },
+                      { id: 'mixed-practice' as const, icon: <Trophy size={24} />, label: 'Mixed', desc: 'Both modes' },
+                    ]).map((mode) => {
+                      const isActive = state.selectedPracticeMode === mode.id;
+                      return (
+                        <motion.button
+                          key={mode.id}
+                          onClick={() => selectPracticeMode(mode.id)}
+                          whileHover={{ y: -2, scale: 1.01 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`group relative p-4 sm:p-5 rounded-3xl border-2 text-left transition-all duration-300 ${
+                            isActive
+                              ? 'border-primary bg-white dark:bg-[#162b3d] shadow-xl'
+                              : 'border-transparent bg-white/40 dark:bg-white/5 backdrop-blur-md hover:bg-white/60 dark:hover:bg-white/10 shadow-sm'
+                          }`}
+                        >
+                          <div className="flex flex-col items-center sm:items-start gap-3">
+                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                              isActive
+                                ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-110'
+                                : 'bg-surface-elevated text-text-muted group-hover:bg-primary/10 group-hover:text-primary'
+                            }`}>
+                              {mode.icon}
+                            </div>
+                            <div className="text-center sm:text-left">
+                              <div className={`font-bold text-base transition-colors ${isActive ? 'text-text' : 'text-text-muted group-hover:text-text'}`}>
+                                {mode.label}
+                              </div>
+                              <div className="text-xs text-text-muted/60 font-medium mt-1">
+                                {mode.desc}
+                              </div>
+                            </div>
+                          </div>
+                          {isActive && (
+                            <motion.div
+                              layoutId="mode-active-bg"
+                              className="absolute inset-0 rounded-3xl bg-primary/5 blur-2xl -z-10 opacity-50"
+                              transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                            />
+                          )}
+                        </motion.button>
+                      );
+                    })}
                   </div>
                 </motion.div>
-              </div>
 
-              <TenseFilterBar
-                selectedCategory={state.selectedCategory}
-                categoryProgress={state.categoryProgress}
-                onSelectCategory={(category: TenseCategory | 'all') => selectTenseFilter(category)}
-              />
+                {/* Choose Form */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <SentenceFormFilter
+                    selectedForm={state.selectedSentenceForm}
+                    onSelectForm={(form: SentenceForm | 'all') => selectSentenceForm(form)}
+                  />
+                </motion.div>
 
-              <div className="mt-6">
-                <SentenceFormFilter
-                  selectedForm={state.selectedSentenceForm}
-                  onSelectForm={(form: SentenceForm | 'all') => selectSentenceForm(form)}
-                />
-              </div>
-
-              <PracticeModeBar
-                selectedPracticeMode={state.selectedPracticeMode}
-                onSelectPracticeMode={selectPracticeMode}
-              />
-
-              <div className="mt-10 mb-8 max-w-2xl mx-auto">
-                <div className="bg-white/80 dark:bg-[#162b3d]/80 backdrop-blur-md p-4 sm:p-5 rounded-3xl border border-border/80 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-6 transition-all hover:border-primary/40 hover:shadow-xl">
-                  <div className="flex-1 w-full text-center sm:text-left">
-                    <div className="text-[11px] font-bold text-text-muted uppercase tracking-widest mb-1">Current Training Filter</div>
-                    <div className="font-display text-base text-text flex items-center justify-center sm:justify-start gap-2 flex-wrap">
-                      <span className="font-bold text-primary">{TENSE_LABELS[state.selectedCategory] || 'All Tenses'}</span>
-                      <span className="text-border/60">•</span>
-                      <span className="text-text-muted">{MODE_LABELS[state.selectedPracticeMode] || 'Interpret'}</span>
-                      <span className="text-border/60">•</span>
-                      <span className="text-text-muted">{FORM_LABELS[state.selectedSentenceForm] || 'Any Form'}</span>
-                    </div>
+                {/* Start Game */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="mb-12"
+                >
+                  <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+                    <span className="px-3 py-1 rounded-full bg-primary/10 text-primary font-bold text-xs border border-primary/10">{TENSE_LABELS[state.selectedCategory] || 'All Tenses'}</span>
+                    <span className="text-text-muted/30">·</span>
+                    <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary font-bold text-xs border border-secondary/10">{MODE_LABELS[state.selectedPracticeMode] || 'Read the Timeline'}</span>
+                    <span className="text-text-muted/30">·</span>
+                    <span className="px-3 py-1 rounded-full bg-border/20 text-text-muted font-bold text-xs border border-border/20">{FORM_LABELS[state.selectedSentenceForm] || 'Any Form'}</span>
                   </div>
-                  
+
                   <button
                     onClick={startRound}
                     disabled={availableQuestionCount === 0}
-                    className="w-full sm:w-auto px-8 py-4 bg-primary text-white rounded-2xl font-bold text-lg shadow-lg hover:bg-primary-dark transition-all transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50 shrink-0"
+                    className="w-full py-5 bg-primary text-white rounded-2xl font-black text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:shadow-[0_20px_32px_-12px_rgba(var(--primary-color-rgb),0.6)] hover:bg-primary-dark transition-all transform hover:-translate-y-1 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center gap-3"
                   >
-                    Start Game
+                    <span>Start Game</span>
+                    <ChevronRight size={24} />
                   </button>
-                </div>
-                
-                {availableQuestionCount > 0 ? (
-                  <p className="mt-4 text-center text-text-muted text-sm font-medium">
-                    <span className="text-primary font-bold">{availableQuestionCount}</span> practice questions ready
-                  </p>
-                ) : (
-                  <p className="mt-4 text-center text-error text-sm font-medium">
-                    No questions available. Please change your filter options.
-                  </p>
-                )}
+
+                  {availableQuestionCount > 0 ? (
+                    <p className="mt-4 text-center text-text-muted/60 text-sm font-medium">
+                      <span className="text-primary font-bold">{availableQuestionCount}</span> practice items ready
+                    </p>
+                  ) : (
+                    <p className="mt-4 text-center text-error font-bold text-sm">
+                      No questions available. Try different filters.
+                    </p>
+                  )}
+                </motion.div>
               </div>
             </motion.div>
           )}
@@ -352,6 +389,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
             <TutorialIntroScreen
               onStart={startTutorial}
               onSkip={skipTutorial}
+              tenseCategory={state.selectedCategory}
             />
           )}
 
@@ -440,9 +478,26 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                   >
                     <ArrowLeft size={20} />
                   </button>
-                  <span className="text-sm font-medium text-text-muted">
-                    Question {state.currentQuestionIndex + 1} of {totalRoundQuestions}
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-medium text-text-muted">
+                      Question {state.currentQuestionIndex + 1} of {totalRoundQuestions}
+                    </span>
+                    {(state.selectedPracticeMode === 'build-the-timeline' || state.selectedPracticeMode === 'read-the-timeline') && (
+                      <button
+                        onClick={() => {
+                          if (state.selectedPracticeMode === 'build-the-timeline') {
+                            startTutorial();
+                          } else {
+                            setIsHowToPlayOpen(true);
+                          }
+                        }}
+                        className="p-1.5 text-text-muted hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
+                        title="Help"
+                      >
+                        <HelpCircle size={18} />
+                      </button>
+                    )}
+                  </div>
                 </div>
                 <div className="h-2 bg-border/30 rounded-full overflow-hidden">
                   <motion.div
@@ -500,9 +555,16 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
       </motion.div>
 
       {/* How to Play Modal */}
-      <HowToPlayModal 
-        isOpen={isHowToPlayOpen} 
-        onClose={() => setIsHowToPlayOpen(false)} 
+      <HowToPlayModal
+        isOpen={isHowToPlayOpen}
+        onClose={() => setIsHowToPlayOpen(false)}
+        mode={
+          state.phase === 'exercise'
+            ? state.selectedPracticeMode === 'read-the-timeline' ? 'read'
+              : state.selectedPracticeMode === 'build-the-timeline' ? 'build'
+              : 'overview'
+            : 'overview'
+        }
       />
 
       {/* Error toast */}

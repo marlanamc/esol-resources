@@ -46,7 +46,7 @@ export function TimelineElementComponent({
         );
 
       case 'solid-line':
-        // Thick line representing duration
+        // Thick line representing duration - DASHED as per request
         return (
           <line
             x1={x - 30}
@@ -56,6 +56,7 @@ export function TimelineElementComponent({
             className={colors.strokeClass}
             strokeWidth={8}
             strokeLinecap="round"
+            strokeDasharray="8 6"
           />
         );
 
@@ -121,7 +122,6 @@ export function TimelineElementComponent({
               fill="none"
               className={colors.strokeClass}
               strokeWidth={4}
-              strokeDasharray="6 4"
             />
             <circle cx={dashedArcEndX} cy={y} r={7} className={colors.fillClass} />
           </g>
@@ -326,7 +326,6 @@ export function StampPreview({
               stroke={baseColor}
               strokeWidth={4}
               strokeLinecap="round"
-              strokeDasharray="5 4"
             />
             <circle cx={32} cy={15} r={5} fill={baseColor} />
           </g>

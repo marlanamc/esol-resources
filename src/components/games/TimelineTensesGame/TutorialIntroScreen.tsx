@@ -4,19 +4,40 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Clock, X } from 'lucide-react';
 import { TimelineCanvas } from './TimelineCanvas';
 
+import type { TenseCategory } from '@/types/activity';
+
 interface TutorialIntroScreenProps {
   onStart: () => void;
   onSkip: () => void;
+  tenseCategory: TenseCategory | 'all';
 }
 
-export function TutorialIntroScreen({ onStart, onSkip }: TutorialIntroScreenProps) {
+export function TutorialIntroScreen({ onStart, onSkip, tenseCategory }: TutorialIntroScreenProps) {
+  const categoryTitles: Record<TenseCategory | 'all', string> = {
+    simple: 'Simple Tenses',
+    continuous: 'Continuous Tenses',
+    perfect: 'Perfect Tenses',
+    'perfect-continuous': 'Perfect Continuous Tenses',
+    mixed: 'Mixed Tenses',
+    all: 'the Timeline',
+  };
+
+  const categoryDesc: Record<TenseCategory | 'all', string> = {
+    simple: 'Simple tenses show habits, facts, and single finished events.',
+    continuous: 'Continuous tenses show actions that are in progress at a specific time.',
+    perfect: 'Perfect tenses connect the past to now, or one past event to another.',
+    'perfect-continuous': 'Perfect Continuous tenses show the duration of an ongoing action.',
+    mixed: 'Mixed practice covers all categories. Let\'s review the basics.',
+    all: 'Every verb tense has a shape on the timeline. Let\'s practice the basics.',
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-      className="flex-1 flex flex-col items-center justify-center px-4"
+      className="flex-1 flex flex-col items-center justify-center px-4 py-8 overflow-y-auto"
     >
       <div className="max-w-lg w-full">
         {/* Header */}
@@ -30,10 +51,10 @@ export function TutorialIntroScreen({ onStart, onSkip }: TutorialIntroScreenProp
             <Clock size={32} className="text-primary" />
           </motion.div>
           <h1 className="font-display text-3xl font-bold text-text mb-3">
-            Let&apos;s Learn the Timeline!
+            Let&apos;s Learn {categoryTitles[tenseCategory]}!
           </h1>
           <p className="text-text-muted text-lg">
-            Every verb tense has a shape on the timeline. Let&apos;s practice with 3 examples first.
+            {categoryDesc[tenseCategory]}
           </p>
         </div>
 
@@ -42,29 +63,26 @@ export function TutorialIntroScreen({ onStart, onSkip }: TutorialIntroScreenProp
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-6 mb-8 shadow-sm"
+          className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-6 mb-6 shadow-sm"
         >
           <p className="text-sm font-semibold text-text-muted uppercase tracking-wide mb-4 text-center">
-            The Timeline Has 3 Zones
+            The Timeline Zones
           </p>
           <TimelineCanvas elements={[]} showLabels={true} />
           {/* Zone indicators aligned with timeline positions */}
           <div className="relative mt-4 text-sm" style={{ height: '40px' }}>
-            {/* Past - single dot, centered at ~26% (105/400) */}
             <div className="absolute text-center" style={{ left: '26%', transform: 'translateX(-50%)' }}>
               <div className="w-3 h-3 rounded-full bg-amber-500 mx-auto mb-1" />
               <span className="text-text-muted">Past</span>
             </div>
-            {/* Now - multiple dots for repeated actions, centered at 50% (200/400) */}
             <div className="absolute text-center" style={{ left: '50%', transform: 'translateX(-50%)' }}>
               <div className="flex items-center justify-center gap-1 mb-1">
-                <div className="w-2 h-2 rounded-full bg-emerald-500 opacity-60" />
-                <div className="w-3 h-3 rounded-full bg-emerald-500" />
-                <div className="w-2 h-2 rounded-full bg-emerald-500 opacity-60" />
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/60" />
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/60" />
               </div>
-              <span className="text-text-muted">Now</span>
+              <span className="text-text-muted font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-tighter text-xs">Now</span>
             </div>
-            {/* Future - single dot, centered at ~74% (295/400) */}
             <div className="absolute text-center" style={{ left: '74%', transform: 'translateX(-50%)' }}>
               <div className="w-3 h-3 rounded-full bg-blue-500 mx-auto mb-1" />
               <span className="text-text-muted">Future</span>
@@ -72,36 +90,22 @@ export function TutorialIntroScreen({ onStart, onSkip }: TutorialIntroScreenProp
           </div>
         </motion.div>
 
-        {/* What you'll learn */}
+        {/* Pro Tip - Stamps Needed */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
-          className="mb-8"
+          className="mb-8 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800/30 rounded-2xl"
         >
-          <p className="text-sm font-semibold text-text-muted uppercase tracking-wide mb-3">
-            You&apos;ll learn to place:
-          </p>
-          <ul className="space-y-2 text-text">
-            <li className="flex items-center gap-3">
-              <span className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs font-bold">
-                1
-              </span>
-              <span>Dots for single events</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs font-bold">
-                2
-              </span>
-              <span>Lines for ongoing actions</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs font-bold">
-                3
-              </span>
-              <span>Arcs for connections to NOW</span>
-            </li>
-          </ul>
+          <div className="flex items-start gap-3">
+             <div className="mt-1 px-2 py-0.5 bg-amber-500 text-xs font-bold text-white rounded uppercase tracking-wider">Tip</div>
+             <div>
+               <p className="text-sm font-bold text-amber-900 dark:text-amber-100 mb-1">Look for the &quot;stamps needed&quot; chip</p>
+               <p className="text-xs text-amber-800/80 dark:text-amber-200/70">
+                 Some tenses need more than one stamp. If you see <span className="inline-block px-1.5 py-0.5 bg-amber-100 dark:bg-amber-800 rounded-full text-xs font-medium border border-amber-200 dark:border-amber-700">2 stamps needed</span>, make sure you use both!
+               </p>
+             </div>
+          </div>
         </motion.div>
 
         {/* Actions */}

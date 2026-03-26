@@ -10,8 +10,9 @@ import type {
 import { fetchActivityProgress, saveActivityProgress } from '@/lib/activityProgress';
 import { TIMELINE_TENSES_QUESTIONS } from '@/data/timeline-tenses-questions';
 import {
-  TIMELINE_TUTORIAL_QUESTIONS,
+  CATEGORIZED_TUTORIAL_QUESTIONS,
   TUTORIAL_COMPLETED_KEY,
+  CATEGORY_TUTORIAL_KEY_PREFIX,
 } from '@/data/timeline-tenses-tutorial';
 import {
   buildTimelineRoundQuestions,
@@ -107,10 +108,13 @@ const DEFAULT_ROUND_SIZE = 10;
 
 export function useTimelineTensesState(activityId: string, assignmentId?: string | null) {
   const [state, setState] = useState<GameState>(() => {
-    // Check localStorage for tutorial completion (client-side only)
-    const tutorialCompleted =
-      typeof window !== 'undefined' &&
-      window.localStorage.getItem(TUTORIAL_COMPLETED_KEY) === '1';
+    // Check localStorage for tutorial completion
+    const isTutorialCompleted = (category: TenseCategory | 'all'): boolean => {
+      if (typeof window === 'undefined') return false;
+      const globalCompleted = window.localStorage.getItem(TUTORIAL_COMPLETED_KEY) === '1';
+      const categoryCompleted = window.localStorage.getItem(`${CATEGORY_TUTORIAL_KEY_PREFIX}${category}`) === '1';
+      return globalCompleted || categoryCompleted;
+    };
 
     return {
       phase: 'selection',
@@ -129,7 +133,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       roundResults: null,
       questionResults: [],
       tutorialStep: 0,
-      tutorialCompleted,
+      tutorialCompleted: isTutorialCompleted('all'),
     };
   });
 
@@ -202,15 +206,22 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
   // Start a new round (or tutorial if first time in build mode)
   const startRound = useCallback(() => {
     setState((prev) => {
-      // If build-the-timeline mode and tutorial not completed, show tutorial intro
+      // If build-the-timeline mode and tutorial not completed for this category, show tutorial intro
+      const categoryKey = prev.selectedCategory;
+      const isCompleted = typeof window !== 'undefined' && (
+        window.localStorage.getItem(TUTORIAL_COMPLETED_KEY) === '1' ||
+        window.localStorage.getItem(`${CATEGORY_TUTORIAL_KEY_PREFIX}${categoryKey}`) === '1'
+      );
+
       if (
         prev.selectedPracticeMode === 'build-the-timeline' &&
-        !prev.tutorialCompleted
+        !isCompleted
       ) {
         return {
           ...prev,
           error: null,
           phase: 'tutorial-intro',
+          tutorialCompleted: false,
         };
       }
 
@@ -273,10 +284,11 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     setState((prev) => {
       const nextStep = prev.tutorialStep + 1;
 
-      if (nextStep >= TIMELINE_TUTORIAL_QUESTIONS.length) {
-        // Tutorial complete - mark in localStorage
+      const tutorialQuestions = CATEGORIZED_TUTORIAL_QUESTIONS[prev.selectedCategory];
+      if (nextStep >= tutorialQuestions.length) {
+        // Tutorial complete - mark in localStorage for this specific category
         if (typeof window !== 'undefined') {
-          window.localStorage.setItem(TUTORIAL_COMPLETED_KEY, '1');
+          window.localStorage.setItem(`${CATEGORY_TUTORIAL_KEY_PREFIX}${prev.selectedCategory}`, '1');
         }
         return {
           ...prev,
@@ -298,9 +310,9 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
 
   // Skip the tutorial entirely and go straight to exercising
   const skipTutorial = useCallback(() => {
-    // Mark as completed so it doesn't show again
+    // Mark as completed so it doesn't show again for this category
     if (typeof window !== 'undefined') {
-      window.localStorage.setItem(TUTORIAL_COMPLETED_KEY, '1');
+      window.localStorage.setItem(`${CATEGORY_TUTORIAL_KEY_PREFIX}${state.selectedCategory}`, '1');
     }
     setState((prev) => {
       const roundQuestions = buildTimelineRoundQuestions(
@@ -531,8 +543,12 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     setState((prev) => ({ ...prev, error: null }));
   }, []);
 
+  // Get appropriate tutorial questions for the current category
+  const tutorialQuestions = CATEGORIZED_TUTORIAL_QUESTIONS[state.selectedCategory] || CATEGORIZED_TUTORIAL_QUESTIONS['all'];
+
   return {
     state,
+    tutorialQuestions,
     selectTenseFilter,
     selectSentenceForm,
     selectPracticeMode,

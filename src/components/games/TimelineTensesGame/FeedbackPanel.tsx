@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { Check, X, Lightbulb, ArrowRight } from 'lucide-react';
 import type { ValidVerbAnswer } from '@/types/activity';
 import {
-  getDistinctTimelineValidAnswers,
   type TimelineVerbBlankResult,
 } from './timelineTensesUtils';
 
@@ -26,14 +25,9 @@ export function FeedbackPanel({
   tenseName,
   explanation,
   onContinue,
-  matchedAnswer,
-  allValidAnswers,
   blankFeedback,
   sentenceTemplate,
 }: FeedbackPanelProps) {
-  const otherAnswers = allValidAnswers?.filter(
-    (a) => a.answer !== matchedAnswer?.answer
-  );
   const hasBlankFeedback = (blankFeedback?.length ?? 0) > 0;
 
   // Escape special regex characters in a string
@@ -65,49 +59,54 @@ export function FeedbackPanel({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`rounded-2xl p-6 border-2 ${
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className={`rounded-[2.5rem] p-8 border border-white/30 backdrop-blur-2xl shadow-2xl overflow-hidden relative ${
         isCorrect
-          ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-700'
-          : 'bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-700'
+          ? 'bg-white/40 dark:bg-emerald-500/10'
+          : 'bg-white/40 dark:bg-amber-500/10'
       }`}
     >
+      {/* Background Glows */}
+      <div className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl -z-10 opacity-20 ${
+        isCorrect ? 'bg-emerald-500' : 'bg-amber-500'
+      }`} />
+
       {/* Header */}
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-center gap-6 mb-8">
         <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: 'spring', stiffness: 300, delay: 0.1 }}
-          className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg ${
+          initial={{ scale: 0, rotate: -45 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
+          className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg ${
             isCorrect
-              ? 'bg-gradient-to-br from-green-400 to-green-600'
-              : 'bg-gradient-to-br from-amber-400 to-amber-600'
+              ? 'bg-emerald-500 text-white shadow-emerald-500/20'
+              : 'bg-amber-500 text-white shadow-amber-500/20'
           }`}
         >
           {isCorrect ? (
-            <Check size={28} className="text-white" strokeWidth={3} />
+            <Check size={32} strokeWidth={3} />
           ) : (
-            <X size={28} className="text-white" strokeWidth={3} />
+            <X size={32} strokeWidth={3} />
           )}
         </motion.div>
 
         <div className="flex-1">
           <h3
-            className={`text-2xl font-bold font-display ${
+            className={`text-3xl font-black font-display tracking-tight ${
               isCorrect
-                ? 'text-green-700 dark:text-green-300'
-                : 'text-amber-700 dark:text-amber-300'
+                ? 'text-emerald-700 dark:text-emerald-400'
+                : 'text-amber-700 dark:text-amber-400'
             }`}
           >
-            {isCorrect ? 'Correct!' : 'Not quite'}
+            {isCorrect ? 'Stellar Work!' : 'Almost There'}
           </h3>
-          <div className="mt-1">
+          <div className="mt-2">
             <span
-              className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold ${
+              className={`inline-flex px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border ${
                 isCorrect
-                  ? 'bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200'
-                  : 'bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200'
+                  ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-800 dark:text-emerald-300'
+                  : 'bg-amber-500/10 border-amber-500/20 text-amber-800 dark:text-amber-300'
               }`}
             >
               {tenseName}
@@ -116,56 +115,36 @@ export function FeedbackPanel({
         </div>
       </div>
 
-      {/* Full correct sentence - shown for blank-fill questions */}
+      {/* Full correct sentence */}
       {correctSentence && (
-        <div className="mb-6 p-4 bg-white/60 dark:bg-black/20 rounded-xl border border-border/50">
-          <div className="text-xs font-semibold uppercase tracking-wide text-text-muted mb-2">
-            Correct sentence:
+        <div className="mb-8 p-6 bg-white/40 dark:bg-white/5 rounded-3xl border border-white/20 shadow-inner">
+          <div className="text-xs font-black uppercase tracking-[0.2em] text-text-muted/40 mb-4">
+            Master Sentence:
           </div>
-          <p className="text-lg sm:text-xl font-display text-text leading-relaxed">
+          <p className="text-xl sm:text-2xl font-display font-black text-text leading-snug tracking-tight">
             {correctSentence}
           </p>
         </div>
       )}
 
-      {/* Matched answer (legacy single-answer feedback) */}
-      {!hasBlankFeedback && matchedAnswer && isCorrect && (
-        <div className="mb-4 p-3 bg-white/50 dark:bg-black/20 rounded-lg">
-          <div className="text-sm font-medium text-text-muted mb-1">
-            Your answer:
-          </div>
-          <div className="text-lg font-semibold text-text">
-            "{matchedAnswer.answer}"
-          </div>
-          {matchedAnswer.nuance && (
-            <div className="text-sm text-text-muted mt-1">
-              {matchedAnswer.nuance}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Key Learning Point - Prominent callout */}
+      {/* Teaching Logic */}
       <div
-        className={`mb-6 p-4 rounded-xl border-l-4 ${
+        className={`mb-8 p-6 rounded-3xl border-l-[6px] shadow-sm ${
           isCorrect
-            ? 'bg-green-100/50 dark:bg-green-900/30 border-green-500'
-            : 'bg-amber-100/50 dark:bg-amber-900/30 border-amber-500'
+            ? 'bg-emerald-500/5 border-emerald-500/40'
+            : 'bg-amber-500/5 border-amber-500/40'
         }`}
       >
-        <div className="flex items-start gap-3">
-          <Lightbulb
-            size={22}
-            className={`flex-shrink-0 mt-0.5 ${
-              isCorrect
-                ? 'text-green-600 dark:text-green-400'
-                : 'text-amber-600 dark:text-amber-400'
-            }`}
-          />
+        <div className="flex items-start gap-4">
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+            isCorrect ? 'bg-emerald-500/10 text-emerald-600' : 'bg-amber-500/10 text-amber-600'
+          }`}>
+            <Lightbulb size={22} />
+          </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-text-muted mb-1">
-              Why this tense?
-            </p>
+            <div className="text-xs font-black uppercase tracking-widest text-text-muted/40 mb-1">
+              Grammar Logic
+            </div>
             <p className="text-base font-medium text-text leading-relaxed">
               {explanation}
             </p>
@@ -173,143 +152,62 @@ export function FeedbackPanel({
         </div>
       </div>
 
+      {/* Blank-specific feedback journey */}
       {hasBlankFeedback && (
         <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          transition={{ delay: 0.15 }}
-          className="mt-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="space-y-4"
         >
-          {/* Section divider */}
-          <div className="flex items-center gap-2 mb-4">
-            <div className="h-px flex-1 bg-border" />
-            <span className="text-xs font-semibold uppercase tracking-wide text-text-muted px-2">
-              Your Answers
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-px flex-1 bg-border/40" />
+            <span className="text-xs font-black uppercase tracking-[0.3em] text-text-muted/40">
+              Breakdown
             </span>
-            <div className="h-px flex-1 bg-border" />
+            <div className="h-px flex-1 bg-border/40" />
           </div>
 
           <div className="space-y-4">
             {blankFeedback?.map((blank) => {
-              const distinctValidAnswers = getDistinctTimelineValidAnswers(
-                blank.validAnswers
-              );
-              const alsoAccepted = blank.matchedAnswer
-                ? distinctValidAnswers.filter(
-                    (answer) => answer.answer !== blank.matchedAnswer?.answer
-                  )
-                : distinctValidAnswers;
               const targetAnswer = blank.validAnswers[0];
-              const nuanceText = blank.isCorrect
-                ? blank.matchedAnswer?.nuance
-                : targetAnswer?.nuance;
 
               return (
                 <div
                   key={blank.blankId}
-                  className={`rounded-xl overflow-hidden ${
+                  className={`rounded-[1.5rem] border transition-all duration-300 ${
                     blank.isCorrect
-                      ? 'bg-green-50/50 dark:bg-green-900/10 border border-green-200 dark:border-green-800'
-                      : 'bg-amber-50/50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800'
+                      ? 'bg-emerald-500/5 border-emerald-500/10'
+                      : 'bg-amber-500/5 border-amber-500/10'
                   }`}
                 >
-                  {/* Header bar */}
-                  <div
-                    className={`px-4 py-2 flex items-center justify-between ${
-                      blank.isCorrect
-                        ? 'bg-green-100/70 dark:bg-green-900/30'
-                        : 'bg-amber-100/70 dark:bg-amber-900/30'
-                    }`}
-                  >
-                    <span className="font-semibold text-text">
-                      [{blank.promptLabel}]
-                    </span>
-                    <span
-                      className={`flex items-center gap-1.5 text-sm font-semibold ${
-                        blank.isCorrect
-                          ? 'text-green-700 dark:text-green-300'
-                          : 'text-amber-700 dark:text-amber-300'
-                      }`}
-                    >
-                      {blank.isCorrect ? (
-                        <>
-                          <Check size={16} />
-                          Correct
-                        </>
-                      ) : (
-                        <>
-                          <X size={16} />
-                          Review
-                        </>
-                      )}
-                    </span>
-                  </div>
-
-                  <div className="p-4 space-y-3">
-                    {/* Your answer */}
-                    <div className="flex items-baseline gap-3">
-                      <span className="text-xs uppercase tracking-wide text-text-muted font-medium w-20 flex-shrink-0">
-                        You wrote:
-                      </span>
-                      <span
-                        className={`font-semibold text-lg ${
-                          blank.isCorrect
-                            ? 'text-green-700 dark:text-green-300'
-                            : 'text-amber-700 dark:text-amber-300'
-                        }`}
-                      >
-                        {blank.userAnswer ? `"${blank.userAnswer}"` : '(empty)'}
-                      </span>
-                    </div>
-
-                    {/* Correct answer - only show when wrong */}
-                    {!blank.isCorrect && targetAnswer && (
-                      <div className="flex items-baseline gap-3">
-                        <span className="text-xs uppercase tracking-wide text-text-muted font-medium w-20 flex-shrink-0">
-                          Correct:
-                        </span>
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="font-bold text-lg text-green-700 dark:text-green-300">
-                            "{targetAnswer.answer}"
-                          </span>
-                          <span className="rounded-full bg-green-200/70 dark:bg-green-800/70 px-2 py-0.5 text-xs font-semibold text-green-700 dark:text-green-300">
-                            {targetAnswer.tenseName}
-                          </span>
+                  <div className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-black ${
+                        blank.isCorrect ? 'bg-emerald-500 text-white shadow-lg' : 'bg-amber-500 text-white shadow-lg'
+                      }`}>
+                        {blank.isCorrect ? <Check size={16} strokeWidth={3} /> : <X size={16} strokeWidth={3} />}
+                      </div>
+                      <div>
+                        <div className="text-xs font-black text-text-muted/40 uppercase tracking-widest mb-0.5">Verb: {blank.promptLabel}</div>
+                        <div className="flex flex-wrap items-baseline gap-2">
+                           <span className={`text-lg font-black ${blank.isCorrect ? 'text-emerald-700 dark:text-emerald-400' : 'text-amber-700 dark:text-amber-400'}`}>
+                             {blank.userAnswer ? `"${blank.userAnswer}"` : '(missing)'}
+                           </span>
+                           {!blank.isCorrect && targetAnswer && (
+                             <>
+                               <ArrowRight size={14} className="text-text-muted/20" />
+                               <span className="text-lg font-black text-emerald-600 dark:text-emerald-400">
+                                 "{targetAnswer.answer}"
+                               </span>
+                             </>
+                           )}
                         </div>
                       </div>
-                    )}
-
-                    {/* Tense badge - show when correct */}
+                    </div>
                     {blank.isCorrect && blank.matchedAnswer && (
-                      <div className="flex items-center gap-2">
-                        <span className="rounded-full bg-green-200/70 dark:bg-green-800/70 px-3 py-1 text-sm font-semibold text-green-700 dark:text-green-300">
-                          {blank.matchedAnswer.tenseName}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Nuance callout */}
-                    {nuanceText && (!isCorrect || nuanceText !== explanation) && (
-                      <div
-                        className={`mt-2 p-3 rounded-lg border-l-[3px] ${
-                          blank.isCorrect
-                            ? 'bg-green-50/70 dark:bg-green-900/20 border-green-400'
-                            : 'bg-amber-50/70 dark:bg-amber-900/20 border-amber-400'
-                        }`}
-                      >
-                        <p className="text-sm text-text leading-relaxed">
-                          {nuanceText}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Also accepted - de-emphasized */}
-                    {alsoAccepted.length > 0 && (
-                      <div className="pt-2 border-t border-border/50">
-                        <p className="text-xs text-text-muted">
-                          Also accepted:{' '}
-                          {alsoAccepted.map((a) => `"${a.answer}"`).join(', ')}
-                        </p>
+                      <div className="px-4 py-1.5 rounded-xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs font-black uppercase tracking-widest border border-emerald-500/10">
+                        {blank.matchedAnswer.tenseName}
                       </div>
                     )}
                   </div>
@@ -320,52 +218,17 @@ export function FeedbackPanel({
         </motion.div>
       )}
 
-      {/* Other valid answers (legacy single-answer feedback) */}
-      {!hasBlankFeedback && isCorrect && otherAnswers && otherAnswers.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          transition={{ delay: 0.3 }}
-          className="mt-4 pt-4 border-t border-green-200 dark:border-green-700"
-        >
-          <div className="text-sm font-semibold text-green-700 dark:text-green-300 mb-3">
-            Also accepted:
-          </div>
-          <div className="space-y-2">
-            {otherAnswers.map((answer, idx) => (
-              <div
-                key={idx}
-                className="p-3 bg-white/50 dark:bg-black/20 rounded-lg"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="font-semibold text-text">
-                    "{answer.answer}"
-                  </span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-green-200/50 dark:bg-green-800/50 text-green-700 dark:text-green-300">
-                    {answer.tenseName}
-                  </span>
-                </div>
-                {answer.nuance && (
-                  <div className="text-sm text-text-muted mt-1">
-                    — {answer.nuance}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      )}
-
       {/* Continue button */}
       <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
         onClick={onContinue}
-        className="mt-6 w-full py-3 px-6 bg-primary text-white rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-primary-dark transition-colors"
+        className="mt-10 w-full py-6 bg-primary text-white rounded-[1.5rem] font-black text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:shadow-[0_20px_32px_-12px_rgba(var(--primary-color-rgb),0.6)] hover:bg-primary-dark transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3 relative overflow-hidden group"
       >
-        Continue
-        <ArrowRight size={18} />
+        <span className="relative z-10">Next Question</span>
+        <ArrowRight size={24} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
       </motion.button>
     </motion.div>
   );

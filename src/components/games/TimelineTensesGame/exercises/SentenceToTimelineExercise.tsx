@@ -163,22 +163,32 @@ export function SentenceToTimelineExercise({
     <div className="px-2 sm:px-0 max-w-full overflow-hidden">
       {/* Question card */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-4 sm:p-6 mb-4 sm:mb-6"
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl rounded-[2.5rem] border border-white/20 p-6 sm:p-10 mb-8 shadow-2xl relative overflow-hidden"
       >
-        <div className="flex items-center justify-between mb-2">
-          <div className="text-sm font-semibold text-primary uppercase tracking-wide">
-            Draw the Timeline
-          </div>
-          {/* Proactive stamp count indicator for multi-element questions */}
-          {question.correctElements.length > 1 && (
-            <div className="text-xs font-medium text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 px-2 py-1 rounded-full">
-              {question.correctElements.length} stamps needed
+        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10" />
+        
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-1.5 h-6 rounded-full bg-primary" />
+            <div className="text-xs font-black text-primary uppercase tracking-[0.3em]">
+              Timeline Sketching
             </div>
+          </div>
+          {/* Proactive stamp count indicator */}
+          {question.correctElements.length > 1 && (
+            <motion.div 
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              className="text-xs font-black text-amber-600 dark:text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-full uppercase tracking-wider"
+            >
+              {question.correctElements.length} stamps required
+            </motion.div>
           )}
         </div>
-        <div className="text-2xl sm:text-3xl font-display font-bold text-text leading-relaxed">
+
+        <div className="text-3xl sm:text-4xl font-display font-black text-text leading-[1.15] tracking-tight">
           "{question.sentence}"
         </div>
       </motion.div>
@@ -190,26 +200,29 @@ export function SentenceToTimelineExercise({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-3 sm:p-6 mb-4 sm:mb-6 overflow-visible"
+            className="bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/30 p-4 sm:p-10 mb-8 shadow-xl overflow-visible relative"
           >
-            {/* Instruction with animated indicator when stamp selected */}
-            <div className="text-sm font-semibold text-text-muted mb-4 text-center flex items-center justify-center gap-2">
+            {/* Instruction with animated indicator */}
+            <div className="text-xs font-black text-text-muted/40 uppercase tracking-[0.2em] mb-8 text-center flex items-center justify-center gap-3">
               {selectedStamp ? (
                 <>
-                  <motion.span
-                    animate={{ scale: [1, 1.2, 1] }}
+                  <motion.div
+                    animate={{ scale: [1, 1.4, 1], opacity: [0.5, 1, 0.5] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
-                    className="inline-block w-2 h-2 rounded-full bg-primary"
+                    className="w-2 h-2 rounded-full bg-primary"
                   />
-                  <span className="text-primary">Tap a zone below to place your stamp</span>
+                  <span className="text-primary-dark">Tap the timeline to place your stamp</span>
                 </>
               ) : (
-                'Select a stamp, then tap a zone'
+                <>
+                  <div className="w-1.5 h-1.5 rounded-full bg-text-muted/20" />
+                  <span>Choose a stamp from the toolkit below</span>
+                </>
               )}
             </div>
 
             {/* Clickable zones */}
-            <div className="relative">
+            <div className="relative group">
               <TimelineCanvas
                 elements={displayElements}
                 interactive={!!selectedStamp}
@@ -217,60 +230,55 @@ export function SentenceToTimelineExercise({
                 pastTimelineLayout={useSplitPast ? 'split' : 'single'}
               />
 
-              {/* Click overlays — invisible hitboxes aligned over the SVG */}
+              {/* Interaction Overlay Glow */}
+              {selectedStamp && (
+                <div className="absolute inset-0 rounded-2xl pointer-events-none border-2 border-primary/20 bg-primary/2 animate-pulse" />
+              )}
+
+              {/* Click overlays */}
               {selectedStamp && (
                 <div className="absolute inset-0 flex pointer-events-auto">
                   {useSplitPast ? (
                     <>
                       <button
                         style={{ flex: '0 0 23%' }}
-                        className="rounded-l-xl focus:outline-none min-w-0"
+                        className="rounded-l-[2rem] focus:outline-none transition-colors hover:bg-white/5"
                         onClick={() => handleTimelineClick('past-earlier')}
                         onMouseEnter={() => setHighlightZone('past-earlier')}
                         onMouseLeave={() => setHighlightZone(null)}
-                        aria-label="Place in earlier past, not tied to now"
                       />
                       <button
                         style={{ flex: '0 0 19%' }}
-                        className="focus:outline-none min-w-0"
+                        className="focus:outline-none transition-colors hover:bg-white/5"
                         onClick={() => handleTimelineClick('past-later')}
                         onMouseEnter={() => setHighlightZone('past-later')}
                         onMouseLeave={() => setHighlightZone(null)}
-                        aria-label="Place in later past, closer to now"
                       />
-                      {/* Gap for split past */}
-                      <div
-                        className="pointer-events-none"
-                        style={{ flex: '0 0 4.5%' }}
-                        aria-hidden
-                      />
+                      <div style={{ flex: '0 0 4.5%' }} className="pointer-events-none" />
                     </>
                   ) : (
                     <button
                       style={{ flex: '0 0 46.5%' }}
-                      className="rounded-l-xl focus:outline-none min-w-0"
+                      className="rounded-l-[2rem] focus:outline-none transition-colors hover:bg-white/5"
                       onClick={() => handleTimelineClick('past')}
                       onMouseEnter={() => setHighlightZone('past')}
                       onMouseLeave={() => setHighlightZone(null)}
-                      aria-label="Place in past zone"
                     />
                   )}
 
                   <button
                     style={{ flex: '0 0 7%' }}
-                    className="focus:outline-none"
+                    className="focus:outline-none transition-colors hover:bg-white/5"
                     onClick={() => handleTimelineClick('present')}
                     onMouseEnter={() => setHighlightZone('present')}
                     onMouseLeave={() => setHighlightZone(null)}
-                    aria-label="Place at present"
                   />
                   <button
                     style={{ flex: '0 0 46.5%' }}
-                    className="rounded-r-xl focus:outline-none"
+                    className="rounded-r-[2rem] focus:outline-none transition-colors hover:bg-white/5"
                     onClick={() => handleTimelineClick('future')}
                     onMouseEnter={() => setHighlightZone('future')}
                     onMouseLeave={() => setHighlightZone(null)}
-                    aria-label="Place in future zone"
                   />
                 </div>
               )}
@@ -279,10 +287,10 @@ export function SentenceToTimelineExercise({
 
           {/* Stamp Toolkit */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-4 sm:p-6 mb-4 sm:mb-6"
+            className="mb-8"
           >
             <StampToolkit
               selectedStamp={selectedStamp}
@@ -296,22 +304,20 @@ export function SentenceToTimelineExercise({
           <AnimatePresence>
             {showHint && (
               <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="mb-4 overflow-hidden"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="mb-8"
               >
-                <div className="p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl">
-                  <div className="flex items-start gap-3">
-                    <Lightbulb size={20} className="text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-semibold text-amber-800 dark:text-amber-200 mb-1">
-                        Hint
-                      </p>
-                      <p className="text-sm text-amber-700 dark:text-amber-300">
-                        {getHint()}
-                      </p>
-                    </div>
+                <div className="p-6 bg-white/40 dark:bg-white/5 backdrop-blur-xl border border-white/20 rounded-3xl shadow-lg flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-2xl bg-amber-500/10 flex items-center justify-center shrink-0">
+                    <Lightbulb className="text-amber-500" size={24} />
+                  </div>
+                  <div>
+                    <div className="text-xs font-black text-amber-600/60 uppercase tracking-widest mb-1">Teaching Tip</div>
+                    <p className="text-text font-medium leading-relaxed">
+                      {getHint()}
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -323,46 +329,55 @@ export function SentenceToTimelineExercise({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="space-y-3"
+            className="bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl rounded-[2.5rem] border border-white/20 p-4 sm:p-6 shadow-lg"
           >
+            <div className="flex flex-col items-stretch gap-3">
             <button
               onClick={handleSubmit}
               disabled={placedStamps.length === 0}
-              className="w-full py-4 px-6 bg-primary text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary-dark transition-colors"
+              className="w-full py-4 sm:py-5 px-6 sm:px-10 bg-primary text-white rounded-2xl font-black text-lg sm:text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:shadow-[0_20px_32px_-12px_rgba(var(--primary-color-rgb),0.6)] hover:bg-primary-dark transition-all transform hover:-translate-y-0.5 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 relative overflow-hidden"
             >
               Check Answer
             </button>
             {!showHint && (
               <button
                 onClick={() => setShowHint(true)}
-                className="w-full py-3 px-4 text-sm text-text-muted hover:text-text flex items-center justify-center gap-2 transition-colors"
+                className="w-full px-5 sm:px-6 py-3 sm:py-4 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
               >
-                <Lightbulb size={16} />
-                Need a hint?
+                <Lightbulb size={18} />
+                Need a Hint?
               </button>
             )}
+            </div>
           </motion.div>
         </>
       ) : (
         /* Feedback */
-        <div className="space-y-6">
+        <div className="space-y-8">
           {!lastAnswerCorrect && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-3 sm:p-5"
+              className="bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/30 p-6 sm:p-10 shadow-xl overflow-hidden relative"
             >
-              <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                Correct Answer Diagram
+              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl -z-10" />
+              
+              <div className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-[0.3em] mb-8 flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                Correct Mapping
               </div>
-              <div className="opacity-80 scale-90 origin-top">
+              
+              <div className="opacity-90 scale-95 origin-top filter drop-shadow-lg">
                 <TimelineCanvas
                   elements={question.correctElements}
                   interactive={false}
                   showLabels={true}
                   pastTimelineLayout={question.correctElements.some(el => el.zone.startsWith('past-')) ? 'split' : 'single'}
                 />
+              </div>
+              
+              <div className="mt-8 pt-6 border-t border-emerald-500/10 text-center">
+                <p className="text-sm font-bold text-text-muted/60">Study how the stamps correspond to the tense.</p>
               </div>
             </motion.div>
           )}
