@@ -56,7 +56,6 @@ export function TimelineElementComponent({
             className={colors.strokeClass}
             strokeWidth={8}
             strokeLinecap="round"
-            strokeDasharray="10 7"
           />
         );
 

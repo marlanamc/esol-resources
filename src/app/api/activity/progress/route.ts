@@ -565,7 +565,9 @@ export async function POST(request: NextRequest) {
         && typeof roundAccuracy === 'number' && Number.isFinite(roundAccuracy)
         && typeof roundExercisesCompleted === 'number' && Number.isFinite(roundExercisesCompleted) && roundExercisesCompleted >= 0;
     const shouldAwardGroupRoundPoints = isGroupRoundUpdate && hasRoundParams;
-    const shouldAwardPoints = shouldAwardGroupRoundPoints || shouldAwardProgressPoints({
+    const isTimelineRoundCompletion = activityGameUi === 'timeline-tenses' && sanitizedAccuracy !== undefined;
+    
+    const shouldAwardPoints = shouldAwardGroupRoundPoints || isTimelineRoundCompletion || shouldAwardProgressPoints({
         rawProgress,
         progressValue,
         category,
@@ -702,19 +704,8 @@ export async function POST(request: NextRequest) {
 
                 points = sessionPoints;
             } else if (activityGameUi === 'timeline-tenses') {
-                // Award accuracy-based points for Timeline Tenses game
-                // Perfect (90%+): 15 points, High (70-89%): 10 points, Base: 8 points
-                if (sanitizedAccuracy !== undefined) {
-                    if (sanitizedAccuracy >= 90) {
-                        points = POINTS.TIMELINE_TENSES_PERFECT;
-                    } else if (sanitizedAccuracy >= 70) {
-                        points = POINTS.TIMELINE_TENSES_HIGH;
-                    } else {
-                        points = POINTS.TIMELINE_TENSES;
-                    }
-                } else {
-                    points = POINTS.TIMELINE_TENSES;
-                }
+                // Always award 5 points per round
+                points = 5;
                 activityTypeLabel = 'Timeline Tenses';
             }
 

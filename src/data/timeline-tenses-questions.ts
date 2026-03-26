@@ -2182,7 +2182,16 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
         id: 'b2',
         baseVerb: 'work',
         validAnswers: [
-          { answer: 'worked', tenseName: 'Past Simple', nuance: 'Duration in the past (can be simple here)' },
+          { 
+            answer: 'worked', 
+            tenseName: 'Past Simple', 
+            nuance: 'A completed duration in the past (treated as a finished fact).' 
+          },
+          {
+            answer: 'was working',
+            tenseName: 'Past Continuous',
+            nuance: 'Focuses on the ongoing process of working throughout that time.'
+          },
         ],
       },
       {
