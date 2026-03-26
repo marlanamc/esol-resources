@@ -70,6 +70,9 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
     },
     ref
   ) {
+    const DURATION_LINE_HALF_LENGTH = 30;
+    const SINGLE_DOT_RADIUS = 8;
+
     const pastLayout: PastTimelineLayout = useMemo(() => {
       if (pastLayoutProp) {
         return pastLayoutProp;
@@ -79,6 +82,50 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
 
     const getElementX = (element: TimelineElement) =>
       getTimelineElementX(element, pastLayout);
+
+    const renderedElementXMap = useMemo(() => {
+      const map = new Map<string, number>();
+      const baseXMap = new Map<string, number>();
+
+      for (const element of elements) {
+        const baseX = getTimelineElementX(element, pastLayout);
+        baseXMap.set(element.id, baseX);
+        map.set(element.id, baseX);
+      }
+
+      for (const element of elements) {
+        if (element.type !== 'single-dot') {
+          continue;
+        }
+
+        const dotBaseX = baseXMap.get(element.id) ?? getTimelineElementX(element, pastLayout);
+        const durationPeers = elements.filter(
+          (peer) =>
+            peer.zone === element.zone &&
+            (peer.type === 'solid-line' || peer.type === 'dashed-line')
+        );
+
+        if (durationPeers.length === 0) {
+          continue;
+        }
+
+        const nearestDuration = durationPeers.reduce((closest, peer) => {
+          const peerX = baseXMap.get(peer.id) ?? getTimelineElementX(peer, pastLayout);
+          const closestX = baseXMap.get(closest.id) ?? getTimelineElementX(closest, pastLayout);
+          return Math.abs(peerX - dotBaseX) < Math.abs(closestX - dotBaseX) ? peer : closest;
+        });
+
+        const durationX =
+          baseXMap.get(nearestDuration.id) ?? getTimelineElementX(nearestDuration, pastLayout);
+        const direction = dotBaseX >= durationX ? 1 : -1;
+        const touchingX =
+          durationX + direction * (DURATION_LINE_HALF_LENGTH + SINGLE_DOT_RADIUS);
+
+        map.set(element.id, touchingX);
+      }
+
+      return map;
+    }, [elements, pastLayout]);
 
     const highlightGeom = useMemo(() => {
       if (!highlightZone) {
@@ -288,7 +335,9 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
           let arcTargetX: number | undefined;
           const partner = resolveTimelineConnectionPartner(element, elements, pastLayout);
           if (partner) {
-            arcTargetX = getElementX(partner as TimelineElement);
+            arcTargetX =
+              renderedElementXMap.get((partner as TimelineElement).id) ??
+              getElementX(partner as TimelineElement);
           }
 
           let yOffset = 0;
@@ -310,7 +359,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
             <TimelineElementComponent
               key={element.id}
               element={element}
-              x={getElementX(element)}
+              x={renderedElementXMap.get(element.id) ?? getElementX(element)}
               y={AXIS_Y + yOffset}
               colors={colorsForElement(element.zone)}
               showLabel={showLabels}
