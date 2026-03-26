@@ -68,12 +68,26 @@ export function HowToPlayModal({ isOpen, onClose }: HowToPlayModalProps) {
                     <div className="flex gap-4 p-3 rounded-xl bg-surface-elevated border border-border">
                       <div className="w-12 h-12 flex-shrink-0 bg-white rounded-lg border border-border flex items-center justify-center">
                         <svg viewBox="0 0 40 30" className="w-10 h-8">
+                          <circle cx={8} cy={15} r={4} fill="#3b82f6" />
+                          <circle cx={20} cy={15} r={4} fill="#3b82f6" />
+                          <circle cx={32} cy={15} r={4} fill="#3b82f6" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-bold text-sm text-text">Habit/Fact (Dots)</p>
+                        <p className="text-xs text-text-muted mt-0.5">Repeated actions or general states (e.g. "I work every day")</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4 p-3 rounded-xl bg-surface-elevated border border-border">
+                      <div className="w-12 h-12 flex-shrink-0 bg-white rounded-lg border border-border flex items-center justify-center">
+                        <svg viewBox="0 0 40 30" className="w-10 h-8">
                           <path d="M 8 15 L 32 15" stroke="#3b82f6" strokeWidth={5} strokeLinecap="round" />
                         </svg>
                       </div>
                       <div>
                         <p className="font-bold text-sm text-text">Duration (Line)</p>
-                        <p className="text-xs text-text-muted mt-0.5">Something in progress or general (e.g. "I was living in Chelsea")</p>
+                        <p className="text-xs text-text-muted mt-0.5">Something in progress (e.g. "I was living in Chelsea")</p>
                       </div>
                     </div>
                   </div>
@@ -121,7 +135,7 @@ export function HowToPlayModal({ isOpen, onClose }: HowToPlayModalProps) {
                 </div>
                 <div>
                   <p className="font-bold text-primary text-sm">Interaction Tip</p>
-                  <p className="text-sm text-text-muted">Click or tap anywhere on the timeline to place a stamp. Drag stamps to move them, or tap them to delete.</p>
+                  <p className="text-sm text-text-muted">Select a stamp from the toolkit, then tap a zone on the timeline to place it. Tap any placed stamp at the bottom of the screen to delete it.</p>
                 </div>
               </div>
             </div>
