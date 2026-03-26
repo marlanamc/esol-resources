@@ -99,11 +99,11 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
         }
         return newStreak;
       });
-      // Correct: auto-advance after 1.6s
+      // Correct: auto-advance after 2s (extra time when full sentence is shown in feedback)
       setTimeout(() => {
         setShowFeedback(false);
         onAnswer(correct, currentExercise);
-      }, 1600);
+      }, 2000);
     } else {
       setStreak(0);
       // Wrong: wait for user to click Next (no auto-advance)

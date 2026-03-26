@@ -50,12 +50,6 @@ export function ResultsScreen({ group, results, nextGroup, completedGroupsCount 
   const showProgressTeaser = passed && nextGroup && groupsUntilMixedReview > 0 && !isReview && !isFinal;
   const showOneMoreNudge = passed && nextGroup && results.nextStep !== 'round2';
 
-  // Button text depends on pass/fail status
-  const primaryButtonLabel = passed
-    ? results.nextStep === 'round2'
-      ? 'Continue to Round 2'
-      : 'Play Again'
-    : 'Try Again';
 
   // Trigger confetti on any pass — stars for 100% accuracy, confetti otherwise
   const showConfetti = passed;
@@ -225,7 +219,11 @@ export function ResultsScreen({ group, results, nextGroup, completedGroupsCount 
             transition={{ delay: 0.5 }}
             className="p-4 rounded-xl bg-error/5 border border-error/20"
           >
-            <p className="font-semibold text-text text-sm mb-2">Focus on these patterns:</p>
+            <p className="font-semibold text-text text-sm mb-2">
+              {results.nextStep === 'round2'
+                ? 'Round 2 will target these patterns — keep them in mind!'
+                : 'Focus on these patterns:'}
+            </p>
             <div className="space-y-2">
               {displayItems.map(({ label, verbs }) => (
                 <div key={label} className="text-sm">
@@ -305,7 +303,7 @@ export function ResultsScreen({ group, results, nextGroup, completedGroupsCount 
                 whileTap={{ scale: 0.98 }}
                 className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-primary-dark shadow-lg shadow-primary/20 transition-all"
               >
-                {primaryButtonLabel === 'Play Again' ? continueLabel : primaryButtonLabel}
+                {continueLabel}
                 <ChevronRight size={20} />
               </motion.button>
             </div>

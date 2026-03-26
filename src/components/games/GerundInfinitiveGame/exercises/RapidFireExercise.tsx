@@ -36,15 +36,21 @@ export function RapidFireExercise({ exercise, onAnswer, answered }: Props) {
     setSelected(opt);
     setResults(prev => [...prev, correct]);
 
+    // Wrong answers get more time so students can register the correct answer
+    const delay = correct ? 400 : 1400;
+
     if (isLast) {
-      const correctCount = [...results, correct].filter(Boolean).length;
-      const pass = correctCount / items.length >= 0.8;
-      onAnswer(pass);
+      setTimeout(() => {
+        const newResults = [...results, correct];
+        const correctCount = newResults.filter(Boolean).length;
+        const pass = correctCount / items.length >= 0.8;
+        onAnswer(pass);
+      }, delay);
     } else {
       setTimeout(() => {
         setIndex(prev => prev + 1);
         setSelected(null);
-      }, 400);
+      }, delay);
     }
   };
 
@@ -77,7 +83,7 @@ export function RapidFireExercise({ exercise, onAnswer, answered }: Props) {
               if (selected) {
                 if (isSelectedOpt && isCorrectOpt) stateClass = 'border-secondary bg-secondary/10';
                 else if (isSelectedOpt && !isCorrectOpt) stateClass = 'border-error bg-error/10';
-                else if (isCorrectOpt) stateClass = 'border-secondary/50 bg-secondary/5';
+                else if (isCorrectOpt) stateClass = 'border-secondary bg-secondary/10';
               }
               return (
                 <motion.button
@@ -93,6 +99,12 @@ export function RapidFireExercise({ exercise, onAnswer, answered }: Props) {
               );
             })}
           </div>
+          {/* Show correct answer label when wrong so students register their mistake */}
+          {selected && !checkCorrect(current!, selected) && (
+            <p className="text-center text-sm font-semibold text-secondary mt-1">
+              ✓ The answer is: {Array.isArray(current!.correctAnswer) ? current!.correctAnswer[0] : current!.correctAnswer}
+            </p>
+          )}
         </motion.div>
       </AnimatePresence>
     </div>

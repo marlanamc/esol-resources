@@ -8,7 +8,6 @@ import {
   GI_FINAL_GROUP_ID,
 } from '@/data/gerund-infinitive-groups';
 import {
-  isGroupUnlocked,
   getProgressSummary,
   getGroupStage,
   REVIEW_UNLOCK_COUNT,
@@ -309,7 +308,6 @@ function GroupSection({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {groups.map((group, index) => {
-          const unlocked = isGroupUnlocked(group.id, categoryData);
           const progress = categoryData[group.id];
           return (
             <motion.div
@@ -321,7 +319,6 @@ function GroupSection({
               <GroupCard
                 group={group}
                 progress={progress}
-                unlocked={unlocked}
                 onClick={() => onSelectGroup(group)}
               />
             </motion.div>
@@ -340,7 +337,7 @@ function MotivationalMessage({ completedGroups, totalGroups, finalCompleted, fin
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
         className="text-center p-6 bg-white dark:bg-[#162b3d] rounded-2xl border border-border shadow-sm">
         <p className="font-display text-lg text-text">Ready to discover some patterns?</p>
-        <p className="text-text-muted mt-1">Start with Group 1 to unlock more pattern families.</p>
+        <p className="text-text-muted mt-1">Pick any group to start — all patterns are open to explore!</p>
       </motion.div>
     );
   }

@@ -1,18 +1,17 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Lock, CheckCircle, Star } from 'lucide-react';
+import { CheckCircle, Star } from 'lucide-react';
 import { getGroupStage } from '@/lib/gerund-infinitive-progress';
 import type { GerundInfinitiveGroup, GIGroupProgress } from '@/types/gerund-infinitive';
 
 interface GroupCardProps {
   group: GerundInfinitiveGroup;
   progress?: GIGroupProgress;
-  unlocked: boolean;
   onClick: () => void;
 }
 
-export function GroupCard({ group, progress, unlocked, onClick }: GroupCardProps) {
+export function GroupCard({ group, progress, onClick }: GroupCardProps) {
   const stage = getGroupStage(progress);
   const accuracy = progress?.accuracy ?? 0;
   const attempts = progress?.attempts ?? 0;
@@ -21,15 +20,13 @@ export function GroupCard({ group, progress, unlocked, onClick }: GroupCardProps
   const started = attempts > 0;
 
   // Derive visual state
-  const cardState: 'locked' | 'unlocked' | 'started' | 'passed' | 'mastered' =
-    !unlocked ? 'locked'
-    : mastered ? 'mastered'
+  const cardState: 'unlocked' | 'started' | 'passed' | 'mastered' =
+    mastered ? 'mastered'
     : passed ? 'passed'
     : started ? 'started'
     : 'unlocked';
 
   const stateStyles = {
-    locked: 'bg-white dark:bg-[#162b3d] border-border opacity-60 cursor-not-allowed',
     unlocked: 'bg-white dark:bg-[#162b3d] border-border hover:border-primary/40 hover:shadow-md cursor-pointer',
     started: 'bg-white dark:bg-[#162b3d] border-primary/40 hover:shadow-md cursor-pointer',
     passed: 'bg-secondary/5 border-secondary/30 hover:shadow-md cursor-pointer',
@@ -37,7 +34,6 @@ export function GroupCard({ group, progress, unlocked, onClick }: GroupCardProps
   };
 
   const stateLabel = {
-    locked: null,
     unlocked: null,
     started: accuracy > 0 ? `${accuracy}% last try` : 'In progress',
     passed: 'Passed ✓',
@@ -45,7 +41,6 @@ export function GroupCard({ group, progress, unlocked, onClick }: GroupCardProps
   };
 
   const iconBg = {
-    locked: 'bg-bg-gray text-text-muted',
     unlocked: 'bg-primary/10 text-primary',
     started: 'bg-primary/10 text-primary',
     passed: 'bg-secondary/10 text-[#3d6b47] dark:text-secondary',
@@ -54,17 +49,16 @@ export function GroupCard({ group, progress, unlocked, onClick }: GroupCardProps
 
   return (
     <motion.button
-      onClick={unlocked ? onClick : undefined}
-      disabled={!unlocked}
-      whileHover={unlocked ? { y: -2, scale: 1.01 } : {}}
-      whileTap={unlocked ? { scale: 0.98 } : {}}
+      onClick={onClick}
+      whileHover={{ y: -2, scale: 1.01 }}
+      whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.18 }}
       className={`w-full text-left p-4 rounded-2xl border-2 transition-all duration-200 ${stateStyles[cardState]}`}
     >
       <div className="flex items-start gap-3">
         {/* Icon */}
         <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-lg ${iconBg[cardState]}`}>
-          {!unlocked ? <Lock size={16} /> : group.icon ?? '📚'}
+          {group.icon ?? '📚'}
         </div>
 
         {/* Content */}
@@ -77,8 +71,8 @@ export function GroupCard({ group, progress, unlocked, onClick }: GroupCardProps
 
           <p className="text-xs text-text-muted line-clamp-2 leading-relaxed">{group.patternExample}</p>
 
-          {/* Round indicator - show for unlocked groups; checkpoints have single round */}
-          {unlocked && !group.isCheckpoint && (
+          {/* Round indicator; checkpoints have single round */}
+          {!group.isCheckpoint && (
             <div className="flex items-center gap-1.5 mt-2">
               <span className="text-[10px] font-medium text-text-muted">2 Rounds:</span>
               {/* Round 1 dot */}
@@ -97,7 +91,7 @@ export function GroupCard({ group, progress, unlocked, onClick }: GroupCardProps
               />
             </div>
           )}
-          {unlocked && group.isCheckpoint && (
+          {group.isCheckpoint && (
             <div className="flex items-center gap-1.5 mt-2">
               <span className="text-[10px] font-medium text-text-muted">Review</span>
             </div>
@@ -133,12 +127,6 @@ export function GroupCard({ group, progress, unlocked, onClick }: GroupCardProps
         </div>
       )}
 
-      {!unlocked && group.prerequisite && (
-        <p className="mt-2 text-xs text-text-muted opacity-70 flex items-center gap-1">
-          <Lock size={10} />
-          Complete the previous group to unlock
-        </p>
-      )}
     </motion.button>
   );
 }
