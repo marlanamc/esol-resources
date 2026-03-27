@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 
 env:
+  DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test
   POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
   NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
   AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci

@@ -7,6 +7,7 @@ on:
   pull_request:
 
 env:
+  DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test
   POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
   NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
   AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
@@ -52,7 +53,7 @@ jobs:
         run: npm run check:generated
 
       - name: Dependency audit
-        run: npm audit --audit-level=high
+        run: npm audit --omit=dev --audit-level=critical
 
       - name: Prepare database schema
         run: npm run ci:db:prepare
@@ -102,6 +103,8 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test
+      POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
       DEV_SEED_ACCOUNT_PASSWORD: ci-seed-password-1234
     services:
       postgres:

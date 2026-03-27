@@ -7,8 +7,10 @@ import { authOptions } from "@/lib/auth";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 import type { LegacyGuideResponse } from "@/types/activity";
 
-const LEGACY_BASE = path.resolve(process.cwd(), "_legacy", "activities");
-const LEGACY_CSS_BASE = path.resolve(process.cwd(), "css-from-legacy", "main.css");
+// This route intentionally reads from project-level legacy assets outside src/.
+// Tell Turbopack not to treat process.cwd() as a broad tracing root.
+const LEGACY_BASE = path.join(/*turbopackIgnore: true*/ process.cwd(), "_legacy", "activities");
+const LEGACY_CSS_BASE = path.join(/*turbopackIgnore: true*/ process.cwd(), "css-from-legacy", "main.css");
 
 async function fileExists(filePath: string) {
     try {

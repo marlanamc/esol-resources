@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 env:
+  DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test
   POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
   NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
   AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
@@ -61,6 +62,10 @@ jobs:
         id: build
         run: npm run build
 
+      - name: Full dependency audit
+        id: audit
+        run: npm audit --audit-level=high
+
       - name: Create maintenance report
         if: always()
         run: npm run report:maintenance -- --skip-vitest --write maintenance-weekly-report.md
@@ -78,6 +83,7 @@ jobs:
             if [ "${{ steps.vitest.outcome }}" != "success" ]; then failed=1; echo "- vitest: ${{ steps.vitest.outcome }}"; fi
             if [ "${{ steps.generated.outcome }}" != "success" ]; then failed=1; echo "- generated: ${{ steps.generated.outcome }}"; fi
             if [ "${{ steps.build.outcome }}" != "success" ]; then failed=1; echo "- build: ${{ steps.build.outcome }}"; fi
+            if [ "${{ steps.audit.outcome }}" != "success" ]; then failed=1; echo "- audit: ${{ steps.audit.outcome }}"; fi
             if [ "$failed" -eq 0 ]; then
               echo "- None"
             fi
@@ -93,3 +99,4 @@ jobs:
           test "${{ steps.vitest.outcome }}" = "success"
           test "${{ steps.generated.outcome }}" = "success"
           test "${{ steps.build.outcome }}" = "success"
+          test "${{ steps.audit.outcome }}" = "success"
