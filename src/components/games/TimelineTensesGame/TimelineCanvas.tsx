@@ -124,8 +124,53 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
         map.set(element.id, touchingX);
       }
 
+      if (showLabels) {
+        const overlapGroups = new Map<string, TimelineElement[]>();
+        const stackableTypes = new Set([
+          'multiple-dots',
+          'single-dot',
+          'solid-line',
+          'dashed-line',
+        ]);
+
+        for (const element of elements) {
+          if (!element.verbLabel || !stackableTypes.has(element.type)) {
+            continue;
+          }
+
+          const currentX = map.get(element.id) ?? baseXMap.get(element.id);
+          if (currentX === undefined) {
+            continue;
+          }
+
+          const groupKey = `${element.type}:${element.zone}:${Math.round(currentX)}`;
+          const existingGroup = overlapGroups.get(groupKey) ?? [];
+          existingGroup.push(element);
+          overlapGroups.set(groupKey, existingGroup);
+        }
+
+        for (const group of overlapGroups.values()) {
+          if (group.length <= 1) {
+            continue;
+          }
+
+          const orderedGroup = [...group].sort((a, b) => a.id.localeCompare(b.id));
+          const centerX =
+            orderedGroup.reduce(
+              (sum, element) => sum + (map.get(element.id) ?? baseXMap.get(element.id) ?? 0),
+              0
+            ) / orderedGroup.length;
+          const gap = orderedGroup[0]?.type === 'multiple-dots' ? 30 : 20;
+          const centerIndex = (orderedGroup.length - 1) / 2;
+
+          orderedGroup.forEach((element, index) => {
+            map.set(element.id, centerX + (index - centerIndex) * gap);
+          });
+        }
+      }
+
       return map;
-    }, [elements, pastLayout]);
+    }, [elements, pastLayout, showLabels]);
 
     const highlightGeom = useMemo(() => {
       if (!highlightZone) {

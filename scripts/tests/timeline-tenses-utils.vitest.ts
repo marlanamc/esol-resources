@@ -135,6 +135,32 @@ describe("timeline tenses utils", () => {
     ).toBe(false);
   });
 
+  it("distinguishes repeated present continuous from plain present simple mapping", () => {
+    const repeatedPresentContinuous = TIMELINE_TENSES_QUESTIONS.find(
+      (question) => question.type === "sentence-to-timeline" && question.id === "pc-temp-1"
+    );
+
+    expect(repeatedPresentContinuous).toBeDefined();
+    expect(repeatedPresentContinuous?.type).toBe("sentence-to-timeline");
+
+    if (!repeatedPresentContinuous || repeatedPresentContinuous.type !== "sentence-to-timeline") {
+      throw new Error("Expected pc-temp-1 sentence-to-timeline question");
+    }
+
+    expect(
+      validateTimelineDrawingElements(repeatedPresentContinuous.correctElements, [
+        { type: "multiple-dots", zone: "present" },
+      ])
+    ).toBe(false);
+
+    expect(
+      validateTimelineDrawingElements(repeatedPresentContinuous.correctElements, [
+        { type: "solid-line", zone: "present" },
+        { type: "multiple-dots", zone: "present" },
+      ])
+    ).toBe(true);
+  });
+
   it("builds rounds without mutating the full question bank and returns the requested size", () => {
     const originalLength = TIMELINE_TENSES_QUESTIONS.length;
     const round = buildTimelineRoundQuestions(

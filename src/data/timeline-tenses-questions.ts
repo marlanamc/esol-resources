@@ -1201,11 +1201,12 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'pc-temp-1',
     sentence: 'She is always complaining about work.',
     correctElements: [
-      { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
+      { id: 'e1', type: 'solid-line', zone: 'present', position: 50 },
+      { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
     tenseName: 'Present Continuous (Repeated Action)',
     explanation:
-      '"Always" with Present Continuous shows a repeated action, often expressing annoyance. The repeated dots show this ongoing pattern.',
+      '"Always" with Present Continuous shows a repeated action, often expressing annoyance. The line shows this is a continuous present behavior, and the repeated dots show it happens again and again.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
