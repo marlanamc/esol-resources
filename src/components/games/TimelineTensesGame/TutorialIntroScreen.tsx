@@ -28,7 +28,7 @@ export function TutorialIntroScreen({ onStart, onSkip, tenseCategory }: Tutorial
     perfect: 'Perfect tenses connect the past to now, or one past event to another.',
     'perfect-continuous': 'Perfect Continuous tenses show the duration of an ongoing action.',
     mixed: 'Mixed practice covers all categories. Let\'s review the basics.',
-    all: 'Every verb tense has a shape on the timeline. Let\'s practice the basics.',
+    all: 'Start with the most common timeline patterns first, then build up to advanced tenses.',
   };
 
   return (

@@ -25,7 +25,7 @@ const CATEGORY_CONFIG: Array<{
     label: 'All Tenses',
     shortLabel: 'All',
     icon: Layers,
-    description: 'Practice all tense types',
+    description: 'Common forms first, advanced later',
     color: 'slate',
   },
   {

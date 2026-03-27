@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { TIMELINE_TENSES_QUESTIONS } from "@/data/timeline-tenses-questions";
-import type { TimelineElement, TimelineToVerbQuestion } from "@/types/activity";
+import { CATEGORIZED_TUTORIAL_QUESTIONS } from "@/data/timeline-tenses-tutorial";
+import type {
+  TimelineElement,
+  TimelineTensesQuestion,
+  TimelineToVerbQuestion,
+} from "@/types/activity";
 import {
   buildTimelineRoundQuestions,
   calculateTimelineOverallProgress,
@@ -143,6 +148,122 @@ describe("timeline tenses utils", () => {
     expect(round).toHaveLength(12);
   });
 
+  it("keeps early all-tenses rounds focused on common simple and basic continuous forms", () => {
+    const round = buildTimelineRoundQuestions(
+      TIMELINE_TENSES_QUESTIONS,
+      "all",
+      "build-the-timeline",
+      12,
+      "affirmative",
+      1
+    );
+
+    expect(round).toHaveLength(12);
+    expect(round.every((question) => question.difficulty === 1)).toBe(true);
+    expect(
+      round.every(
+        (question) =>
+          question.tenseCategory === "simple" ||
+          question.tenseCategory === "continuous"
+      )
+    ).toBe(true);
+
+    const simpleCount = round.filter(
+      (question) => question.tenseCategory === "simple"
+    ).length;
+    const continuousCount = round.filter(
+      (question) => question.tenseCategory === "continuous"
+    ).length;
+
+    expect(simpleCount).toBeGreaterThan(continuousCount);
+    expect(
+      round.some(
+        (question) =>
+          question.type === "sentence-to-timeline" &&
+          question.tenseName.includes("Past Perfect")
+      )
+    ).toBe(false);
+    expect(
+      round.some(
+        (question) =>
+          question.type === "sentence-to-timeline" &&
+          question.tenseName.includes("Future Perfect")
+      )
+    ).toBe(false);
+  });
+
+  it("fills all-tenses rounds from the next category when early quotas run short", () => {
+    const customBank: TimelineTensesQuestion[] = [
+      {
+        type: "sentence-to-timeline",
+        id: "custom-simple-1",
+        sentence: "I cook every day.",
+        correctElements: [{ id: "e1", type: "multiple-dots", zone: "present", position: 50 }],
+        tenseName: "Present Simple",
+        explanation: "Routine action",
+        difficulty: 1,
+        tenseCategory: "simple",
+        sentenceForm: "affirmative",
+      },
+      {
+        type: "sentence-to-timeline",
+        id: "custom-simple-2",
+        sentence: "I cleaned yesterday.",
+        correctElements: [{ id: "e1", type: "single-dot", zone: "past", position: 50 }],
+        tenseName: "Past Simple",
+        explanation: "Finished action",
+        difficulty: 1,
+        tenseCategory: "simple",
+        sentenceForm: "affirmative",
+      },
+      {
+        type: "sentence-to-timeline",
+        id: "custom-simple-3",
+        sentence: "I will rest tonight.",
+        correctElements: [{ id: "e1", type: "single-dot", zone: "future", position: 50 }],
+        tenseName: "Future Simple",
+        explanation: "Future plan",
+        difficulty: 1,
+        tenseCategory: "simple",
+        sentenceForm: "affirmative",
+      },
+      {
+        type: "sentence-to-timeline",
+        id: "custom-cont-1",
+        sentence: "I am cooking now.",
+        correctElements: [{ id: "e1", type: "solid-line", zone: "present", position: 50 }],
+        tenseName: "Present Continuous",
+        explanation: "Action in progress",
+        difficulty: 1,
+        tenseCategory: "continuous",
+        sentenceForm: "affirmative",
+      },
+      {
+        type: "sentence-to-timeline",
+        id: "custom-perfect-1",
+        sentence: "I have lived here since 2020.",
+        correctElements: [{ id: "e1", type: "arc", zone: "past", position: 50 }],
+        tenseName: "Present Perfect",
+        explanation: "Past linked to now",
+        difficulty: 2,
+        tenseCategory: "perfect",
+        sentenceForm: "affirmative",
+      },
+    ];
+
+    const round = buildTimelineRoundQuestions(
+      customBank,
+      "all",
+      "build-the-timeline",
+      5,
+      "affirmative",
+      1
+    );
+
+    expect(round).toHaveLength(5);
+    expect(round.some((question) => question.tenseCategory === "perfect")).toBe(true);
+  });
+
   it("ignores the synthetic all category when calculating overall progress", () => {
     const progress = calculateTimelineOverallProgress({
       all: { completed: true },
@@ -154,6 +275,23 @@ describe("timeline tenses utils", () => {
     });
 
     expect(progress).toBe(20);
+  });
+
+  it("keeps the all-category tutorial focused on common introductory patterns", () => {
+    const tutorialItems = CATEGORIZED_TUTORIAL_QUESTIONS.all;
+
+    expect(tutorialItems).toHaveLength(4);
+    expect(tutorialItems.every((question) => question.difficulty === 1)).toBe(true);
+    expect(
+      tutorialItems.every(
+        (question) =>
+          question.tenseCategory === "simple" ||
+          question.tenseCategory === "continuous"
+      )
+    ).toBe(true);
+    expect(
+      tutorialItems.some((question) => question.tenseName.includes("Past Perfect"))
+    ).toBe(false);
   });
 
   it("requires exact type-and-zone counts for drawing answers", () => {

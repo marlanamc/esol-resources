@@ -102,6 +102,213 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     sentenceForm: 'affirmative',
   },
 
+  // Type 1: Sentence to Timeline - Present Simple daily routines
+  {
+    type: 'sentence-to-timeline',
+    id: 'ps-habit-bus-1',
+    sentence: 'My kids take the bus every morning.',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
+    tenseName: 'Present Simple',
+    explanation:
+      'Present Simple often shows a routine. The repeated dots at NOW show something that happens again and again.',
+    difficulty: 1,
+    tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ps-habit-dinner-1',
+    sentence: 'We eat dinner at 6:00 every day.',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
+    tenseName: 'Present Simple',
+    explanation:
+      'A repeated daily action uses Present Simple. Multiple dots at NOW show the routine clearly.',
+    difficulty: 1,
+    tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ps-habit-shop-1',
+    sentence: 'I buy groceries on Saturdays.',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
+    tenseName: 'Present Simple',
+    explanation:
+      'Present Simple can describe a regular weekly habit. The repeated dots show that it happens many times.',
+    difficulty: 1,
+    tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ps-past-cook-1',
+    sentence: 'I cooked rice last night.',
+    correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 45 }],
+    tenseName: 'Past Simple',
+    explanation:
+      'Past Simple shows one finished action in the past. A single dot marks that completed moment.',
+    difficulty: 1,
+    tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ps-past-rain-1',
+    sentence: 'It rained this morning.',
+    correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 35 }],
+    tenseName: 'Past Simple',
+    explanation:
+      'A finished event earlier today still uses Past Simple. One dot in the past zone shows that completed event.',
+    difficulty: 1,
+    tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'fs-call-1',
+    sentence: 'I will call my sister tonight.',
+    correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 35 }],
+    tenseName: 'Future Simple',
+    explanation:
+      'Future Simple shows one planned or expected moment in the future. A single dot in the future marks that time.',
+    difficulty: 1,
+    tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'fs-library-1',
+    sentence: 'We will visit the library tomorrow.',
+    correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 45 }],
+    tenseName: 'Future Simple',
+    explanation:
+      'A single future visit is one future point on the timeline, so it uses one dot in the future zone.',
+    difficulty: 1,
+    tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'timeline-to-verb',
+    id: 'ps-verb-routine-1',
+    timelineElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'present', position: 40, verbLabel: 'drink' },
+      { id: 'e2', type: 'multiple-dots', zone: 'present', position: 60, verbLabel: 'take' },
+    ],
+    sentenceTemplate: 'Every morning, I ___[drink]___ coffee and my son ___[take]___ the bus to school.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'drink',
+        validAnswers: [
+          {
+            answer: 'drink',
+            tenseName: 'Present Simple',
+            nuance: 'A morning routine uses Present Simple.',
+          },
+        ],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'take',
+        validAnswers: [
+          {
+            answer: 'takes',
+            tenseName: 'Present Simple',
+            nuance: 'A third-person singular routine needs the -s form.',
+          },
+        ],
+      },
+    ],
+    scenario: 'Talking about a family morning routine',
+    difficulty: 1,
+    tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'timeline-to-verb',
+    id: 'ps-verb-past-home-1',
+    timelineElements: [
+      { id: 'e1', type: 'single-dot', zone: 'past', position: 35, verbLabel: 'wash' },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70, verbLabel: 'cook' },
+    ],
+    sentenceTemplate: 'Yesterday, I ___[wash]___ the dishes and ___[cook]___ dinner.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'wash',
+        validAnswers: [
+          {
+            answer: 'washed',
+            tenseName: 'Past Simple',
+            nuance: 'This is one finished action yesterday.',
+          },
+        ],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'cook',
+        validAnswers: [
+          {
+            answer: 'cooked',
+            tenseName: 'Past Simple',
+            nuance: 'This is a second finished past action.',
+          },
+        ],
+      },
+    ],
+    scenario: 'Talking about chores at home',
+    difficulty: 1,
+    tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'timeline-to-verb',
+    id: 'fs-verb-evening-1',
+    timelineElements: [
+      { id: 'e1', type: 'single-dot', zone: 'future', position: 35, verbLabel: 'call' },
+      { id: 'e2', type: 'single-dot', zone: 'future', position: 70, verbLabel: 'pack' },
+    ],
+    sentenceTemplate: 'Tonight, I ___[call]___ my sister and ___[pack]___ my lunch for tomorrow.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'call',
+        validAnswers: [
+          {
+            answer: 'will call',
+            tenseName: 'Future Simple',
+            nuance: 'This is one planned future action.',
+          },
+          {
+            answer: "'ll call",
+            tenseName: 'Future Simple',
+            nuance: 'The contracted future form is also correct.',
+          },
+        ],
+      },
+      {
+        id: 'b2',
+        baseVerb: 'pack',
+        validAnswers: [
+          {
+            answer: 'will pack',
+            tenseName: 'Future Simple',
+            nuance: 'This is another planned future action later on the timeline.',
+          },
+          {
+            answer: "'ll pack",
+            tenseName: 'Future Simple',
+            nuance: 'The contracted future form is also correct.',
+          },
+        ],
+      },
+    ],
+    scenario: 'Planning your evening at home',
+    difficulty: 1,
+    tenseCategory: 'simple',
+    sentenceForm: 'affirmative',
+  },
+
   // ============================================================================
   // CONTINUOUS TENSES
   // ============================================================================
@@ -115,6 +322,60 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     tenseName: 'Present Continuous',
     explanation:
       'Present Continuous shows an action happening right now. A solid line at the NOW marker represents the ongoing activity.',
+    difficulty: 1,
+    tenseCategory: 'continuous',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'pc-homework-1',
+    sentence: 'My daughter is doing homework right now.',
+    correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
+    tenseName: 'Present Continuous',
+    explanation:
+      'Present Continuous shows something happening at this moment. The solid line at NOW marks that ongoing action.',
+    difficulty: 1,
+    tenseCategory: 'continuous',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'pc-bus-1',
+    sentence: 'We are waiting for the bus right now.',
+    correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
+    tenseName: 'Present Continuous',
+    explanation:
+      'An action in progress now uses Present Continuous. A solid line at NOW shows that it is happening now.',
+    difficulty: 1,
+    tenseCategory: 'continuous',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'timeline-to-verb',
+    id: 'pc-verb-cook-1',
+    timelineElements: [
+      { id: 'e1', type: 'solid-line', zone: 'present', position: 50, verbLabel: 'cook' },
+    ],
+    sentenceTemplate: 'I ___[cook]___ dinner right now.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'cook',
+        validAnswers: [
+          {
+            answer: 'am cooking',
+            tenseName: 'Present Continuous',
+            nuance: 'The action is happening now, so use Present Continuous.',
+          },
+          {
+            answer: "'m cooking",
+            tenseName: 'Present Continuous',
+            nuance: 'The contracted present continuous form is also correct.',
+          },
+        ],
+      },
+    ],
+    scenario: 'Talking about what is happening in the kitchen now',
     difficulty: 1,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',

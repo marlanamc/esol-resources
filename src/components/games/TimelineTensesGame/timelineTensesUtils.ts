@@ -336,6 +336,179 @@ export function filterTimelineQuestions(
   });
 }
 
+type CategoryQuotaConfig = {
+  category: TenseCategory;
+  share: number;
+  allowedDifficulties?: Array<1 | 2 | 3>;
+};
+
+function getAllModeCategoryPlan(level: number): CategoryQuotaConfig[] {
+  const normalizedLevel = Math.min(Math.max(level, 1), 5);
+
+  if (normalizedLevel === 1) {
+    return [
+      { category: "simple", share: 0.75, allowedDifficulties: [1] },
+      { category: "continuous", share: 0.25, allowedDifficulties: [1] },
+    ];
+  }
+
+  if (normalizedLevel === 2) {
+    return [
+      { category: "simple", share: 0.55, allowedDifficulties: [1, 2] },
+      { category: "continuous", share: 0.25, allowedDifficulties: [1, 2] },
+      { category: "perfect", share: 0.2, allowedDifficulties: [2] },
+    ];
+  }
+
+  if (normalizedLevel === 3) {
+    return [
+      { category: "simple", share: 0.4, allowedDifficulties: [1, 2] },
+      { category: "continuous", share: 0.25, allowedDifficulties: [1, 2] },
+      { category: "perfect", share: 0.2, allowedDifficulties: [2, 3] },
+      { category: "mixed", share: 0.15, allowedDifficulties: [2] },
+    ];
+  }
+
+  if (normalizedLevel === 4) {
+    return [
+      { category: "simple", share: 0.3, allowedDifficulties: [1, 2] },
+      { category: "continuous", share: 0.2, allowedDifficulties: [1, 2] },
+      { category: "perfect", share: 0.25, allowedDifficulties: [2, 3] },
+      { category: "mixed", share: 0.15, allowedDifficulties: [2, 3] },
+      { category: "perfect-continuous", share: 0.1, allowedDifficulties: [2] },
+    ];
+  }
+
+  return [
+    { category: "simple", share: 0.2, allowedDifficulties: [1, 2] },
+    { category: "continuous", share: 0.2, allowedDifficulties: [1, 2] },
+    { category: "perfect", share: 0.25, allowedDifficulties: [2, 3] },
+    { category: "mixed", share: 0.15, allowedDifficulties: [2, 3] },
+    { category: "perfect-continuous", share: 0.2, allowedDifficulties: [2, 3] },
+  ];
+}
+
+function buildStandardDifficultyBalancedRound(
+  filteredQuestions: TimelineTensesQuestion[],
+  roundSize: number,
+  level: number
+): TimelineTensesQuestion[] {
+  const diff1 = shuffleArray(filteredQuestions.filter((q) => q.difficulty === 1));
+  const diff2 = shuffleArray(filteredQuestions.filter((q) => q.difficulty === 2));
+  const diff3 = shuffleArray(filteredQuestions.filter((q) => q.difficulty === 3));
+
+  const result: TimelineTensesQuestion[] = [];
+
+  const ratios = [
+    { 1: 0.7, 2: 0.3, 3: 0.0 },
+    { 1: 0.4, 2: 0.4, 3: 0.2 },
+    { 1: 0.2, 2: 0.4, 3: 0.4 },
+    { 1: 0.1, 2: 0.3, 3: 0.6 },
+    { 1: 0.1, 2: 0.2, 3: 0.7 },
+  ];
+
+  const activeRatio = ratios[Math.min(level, 5) - 1];
+
+  const counts = {
+    1: Math.round(roundSize * activeRatio[1]),
+    2: Math.round(roundSize * activeRatio[2]),
+    3: Math.round(roundSize * activeRatio[3]),
+  };
+
+  const diff1Pick = Math.min(counts[1], diff1.length);
+  const diff2Pick = Math.min(counts[2], diff2.length);
+  const diff3Pick = Math.min(counts[3], diff3.length);
+
+  result.push(...diff1.slice(0, diff1Pick));
+  result.push(...diff2.slice(0, diff2Pick));
+  result.push(...diff3.slice(0, diff3Pick));
+
+  if (result.length < roundSize) {
+    const remaining = [
+      ...diff1.slice(diff1Pick),
+      ...diff2.slice(diff2Pick),
+      ...diff3.slice(diff3Pick),
+    ];
+    result.push(...shuffleArray(remaining).slice(0, roundSize - result.length));
+  }
+
+  return shuffleArray(result);
+}
+
+function buildCommonFirstAllRound(
+  filteredQuestions: TimelineTensesQuestion[],
+  roundSize: number,
+  level: number
+): TimelineTensesQuestion[] {
+  const plan = getAllModeCategoryPlan(level);
+  const selectedIds = new Set<string>();
+  const result: TimelineTensesQuestion[] = [];
+
+  for (const quota of plan) {
+    const targetCount = Math.round(roundSize * quota.share);
+    const eligibleQuestions = filteredQuestions.filter((question) => {
+      if (selectedIds.has(question.id)) {
+        return false;
+      }
+
+      if (question.tenseCategory !== quota.category) {
+        return false;
+      }
+
+      return quota.allowedDifficulties
+        ? quota.allowedDifficulties.includes(question.difficulty)
+        : true;
+    });
+
+    if (eligibleQuestions.length === 0) {
+      continue;
+    }
+
+    const pickedQuestions = buildStandardDifficultyBalancedRound(
+      eligibleQuestions,
+      Math.min(targetCount, eligibleQuestions.length),
+      level
+    );
+
+    for (const question of pickedQuestions) {
+      if (selectedIds.has(question.id)) {
+        continue;
+      }
+      selectedIds.add(question.id);
+      result.push(question);
+    }
+  }
+
+  if (result.length < roundSize) {
+    const fallbackOrder = plan.map((quota) => quota.category);
+    const remainingQuestions = filteredQuestions.filter(
+      (question) => !selectedIds.has(question.id)
+    );
+
+    const orderedFallback = [
+      ...fallbackOrder.flatMap((category) =>
+        remainingQuestions.filter((question) => question.tenseCategory === category)
+      ),
+      ...remainingQuestions.filter(
+        (question) => !fallbackOrder.includes(question.tenseCategory)
+      ),
+    ];
+
+    for (const question of orderedFallback) {
+      if (result.length >= roundSize) {
+        break;
+      }
+      if (selectedIds.has(question.id)) {
+        continue;
+      }
+      selectedIds.add(question.id);
+      result.push(question);
+    }
+  }
+
+  return shuffleArray(result.slice(0, roundSize));
+}
+
 export function buildTimelineRoundQuestions(
   questionBank: TimelineTensesQuestion[],
   category: TenseCategory | "all",
@@ -364,58 +537,11 @@ export function buildTimelineRoundQuestions(
       ? unseenQuestions
       : [...unseenQuestions, ...allFilteredQuestions.filter((question) => recentIdSet.has(question.id))];
 
-  // For a better mix, we group by difficulty but shuffle the final selection
-  // across those difficulties to avoid "Difficulty 1 only" rounds.
-  const diff1 = shuffleArray(filteredQuestions.filter(q => q.difficulty === 1));
-  const diff2 = shuffleArray(filteredQuestions.filter(q => q.difficulty === 2));
-  const diff3 = shuffleArray(filteredQuestions.filter(q => q.difficulty === 3));
-
-  const result: TimelineTensesQuestion[] = [];
-  
-  // Attempt to build a balanced round based on level
-  // Level 1: 70% Easy, 30% Medium
-  // Level 2: 40% Easy, 40% Medium, 20% Hard
-  // Level 3: 20% Easy, 40% Medium, 40% Hard
-  // Level 4: 10% Easy, 30% Medium, 60% Hard
-  // Level 5: 10% Easy, 20% Medium, 70% Hard
-  
-  const ratios = [
-    { 1: 0.7, 2: 0.3, 3: 0.0 }, // Lvl 1
-    { 1: 0.4, 2: 0.4, 3: 0.2 }, // Lvl 2
-    { 1: 0.2, 2: 0.4, 3: 0.4 }, // Lvl 3
-    { 1: 0.1, 2: 0.3, 3: 0.6 }, // Lvl 4
-    { 1: 0.1, 2: 0.2, 3: 0.7 }, // Lvl 5
-  ];
-  
-  const activeRatio = ratios[Math.min(level, 5) - 1];
-
-  const counts = {
-    1: Math.round(roundSize * activeRatio[1]),
-    2: Math.round(roundSize * activeRatio[2]),
-    3: Math.round(roundSize * activeRatio[3])
-  };
-
-  // Adjust counts if some buckets are empty
-  const diff1Pick = Math.min(counts[1], diff1.length);
-  const diff2Pick = Math.min(counts[2], diff2.length);
-  const diff3Pick = Math.min(counts[3], diff3.length);
-
-  result.push(...diff1.slice(0, diff1Pick));
-  result.push(...diff2.slice(0, diff2Pick));
-  result.push(...diff3.slice(0, diff3Pick));
-
-  // Fill remaining slots from any available pool if we haven't reached roundSize
-  if (result.length < roundSize) {
-    const remaining = [
-      ...diff1.slice(diff1Pick),
-      ...diff2.slice(diff2Pick),
-      ...diff3.slice(diff3Pick)
-    ];
-    result.push(...shuffleArray(remaining).slice(0, roundSize - result.length));
+  if (category === "all") {
+    return buildCommonFirstAllRound(filteredQuestions, roundSize, level);
   }
 
-  // Final shuffle so the round doesn't always go Easy -> Hard
-  return shuffleArray(result);
+  return buildStandardDifficultyBalancedRound(filteredQuestions, roundSize, level);
 }
 
 export function getTimelineQuestionCount(
