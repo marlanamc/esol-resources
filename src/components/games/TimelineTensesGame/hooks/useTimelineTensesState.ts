@@ -119,6 +119,15 @@ const DEFAULT_ROUND_SIZE = 10;
 const PASSES_REQUIRED_PER_LEVEL = 2;
 const RECENT_QUESTION_MEMORY_KEY = 'timeline-recent-questions-v1';
 
+function markTimelineTutorialCompleted(category: TenseCategory | 'all') {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  window.localStorage.setItem(TUTORIAL_COMPLETED_KEY, '1');
+  window.localStorage.setItem(`${CATEGORY_TUTORIAL_KEY_PREFIX}${category}`, '1');
+}
+
 function getCategoryQuestionCount(
   questions: TimelineTensesQuestion[],
   category: TenseCategory | 'all'
@@ -422,9 +431,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       const tutorialQuestions = CATEGORIZED_TUTORIAL_QUESTIONS[prev.selectedCategory];
       if (nextStep >= tutorialQuestions.length) {
         // Tutorial complete - mark in localStorage for this specific category
-        if (typeof window !== 'undefined') {
-          window.localStorage.setItem(`${CATEGORY_TUTORIAL_KEY_PREFIX}${prev.selectedCategory}`, '1');
-        }
+        markTimelineTutorialCompleted(prev.selectedCategory);
         return {
           ...prev,
           phase: 'tutorial-complete',
@@ -445,10 +452,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
 
   // Skip the tutorial entirely and go straight to exercising
   const skipTutorial = useCallback(() => {
-    // Mark as completed so it doesn't show again for this category
-    if (typeof window !== 'undefined') {
-      window.localStorage.setItem(`${CATEGORY_TUTORIAL_KEY_PREFIX}${state.selectedCategory}`, '1');
-    }
+    markTimelineTutorialCompleted(state.selectedCategory);
     setState((prev) => {
       const roundQuestions = buildTimelineRoundQuestions(
         prev.questionBank,

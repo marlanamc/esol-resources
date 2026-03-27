@@ -617,7 +617,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                 results={state.roundResults}
                 questions={state.roundQuestions}
                 onRetry={retryRound}
-                onBack={() => router.back()}
+                onBack={retryRound}
               />
             </motion.div>
           )}
