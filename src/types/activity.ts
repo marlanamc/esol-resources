@@ -586,10 +586,131 @@ export interface TimelineToVerbQuestion {
     sentenceForm: SentenceForm;
 }
 
+/** Tense comparison question: student identifies which timeline matches a sentence, or explains the difference */
+export type TenseComparisonPromptType =
+    | 'sentence-to-timeline'
+    | 'timeline-to-sentence'
+    | 'clue-to-timeline';
+
+export interface TenseComparisonOption {
+    sentence: string;
+}
+
+export interface TenseComparisonQuestion {
+    type: 'tense-comparison';
+    id: string;
+    promptType: TenseComparisonPromptType;
+    promptText: string;
+    correctOption: 'A' | 'B';
+    /** Name of the tense shown in Timeline A, e.g. "Past Continuous" */
+    tenseA: string;
+    /** Name of the tense shown in Timeline B, e.g. "Past Perfect Continuous" */
+    tenseB: string;
+    elementsA: TimelineElement[];
+    elementsB: TimelineElement[];
+    optionA: TenseComparisonOption;
+    optionB: TenseComparisonOption;
+    /** Why students commonly confuse these two tenses */
+    confusionExplanation: string;
+    /** The key visual/conceptual difference */
+    keyDifference: string;
+    difficulty: 1 | 2 | 3;
+    tenseCategory: TenseCategory;
+}
+
+/** Sentence transformer question: student rewrites sentence in a new tense */
+export interface SentenceTransformerQuestion {
+    type: 'sentence-transformer';
+    id: string;
+    sourceTense: string;
+    targetTense: string;
+    sourceSentence: string;
+    /** Full correct target sentence for display after submission */
+    targetSentence: string;
+    sourceElements: TimelineElement[];
+    targetElements: TimelineElement[];
+    /** Which word positions (0-based) need to be filled — matched against split target sentence words */
+    verbBlanks: { index: number; validAnswers: string[] }[];
+    hint?: string;
+    /** Grammar explanation shown in feedback */
+    explanation: string;
+    difficulty: 1 | 2 | 3;
+    tenseCategory: TenseCategory;
+}
+
+/** Context-based tense picker: student chooses the correct tense for a contextual scenario */
+export interface ContextTenseOption {
+    tenseName: string;
+    conjugatedVerb: string;
+    elements: TimelineElement[];
+    isCorrect: boolean;
+}
+
+export interface ContextTenseQuestion {
+    type: 'context-tense-picker';
+    id: string;
+    /** Scenario paragraph with a ___ blank for the target verb */
+    scenario: string;
+    /** Base form of the missing verb, e.g. "play" */
+    blankVerb: string;
+    options: ContextTenseOption[];
+    /** Words/phrases in the scenario that signal the correct tense */
+    contextClues: string[];
+    explanation: string;
+    difficulty: 1 | 2 | 3;
+    tenseCategory: TenseCategory;
+}
+
+/** Error correction question: student identifies and fixes a sentence or timeline error */
+export interface ErrorCorrectionQuestion {
+    type: 'error-correction';
+    id: string;
+    errorLocation: 'sentence' | 'timeline';
+    incorrectSentence: string;
+    incorrectElements: TimelineElement[];
+    correctSentence: string;
+    /** Optional shorter accepted correction(s), e.g. corrected verb phrase */
+    acceptedCorrections?: string[];
+    correctElements: TimelineElement[];
+    incorrectTense: string;
+    correctTense: string;
+    /** Why this mistake is so common */
+    commonMistakeExplanation: string;
+    difficulty: 1 | 2 | 3;
+    tenseCategory: TenseCategory;
+}
+
+/** A single sentence slot in a Story Builder question */
+export interface StorySentence {
+    template: string;
+    targetTense: string;
+    elements: TimelineElement[];
+    blanks: { index: number; validAnswers: string[] }[];
+    contextHint: string;
+}
+
+/** Story builder question: student completes a multi-sentence story, one tense at a time */
+export interface StoryBuilderQuestion {
+    type: 'story-builder';
+    id: string;
+    storyTitle: string;
+    storyPrompt: string;
+    sentences: StorySentence[];
+    /** All timeline elements combined (for the final full-timeline view) */
+    fullTimelineElements: TimelineElement[];
+    difficulty: 1 | 2 | 3;
+    tenseCategory: TenseCategory;
+}
+
 /** Union type for timeline tenses questions */
 export type TimelineTensesQuestion =
     | SentenceToTimelineQuestion
-    | TimelineToVerbQuestion;
+    | TimelineToVerbQuestion
+    | TenseComparisonQuestion
+    | SentenceTransformerQuestion
+    | ContextTenseQuestion
+    | ErrorCorrectionQuestion
+    | StoryBuilderQuestion;
 
 /** Main content type for Timeline Tenses game */
 export interface TimelineTensesContent {

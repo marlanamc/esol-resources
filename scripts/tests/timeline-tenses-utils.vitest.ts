@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
+import { TIMELINE_COMPARISON_QUESTIONS } from "@/data/timeline-comparison-questions";
+import { TIMELINE_CONTEXT_QUESTIONS } from "@/data/timeline-context-questions";
+import { buildCanonicalTimelineElements } from "@/data/timeline-challenge-stamp-canon";
+import { TIMELINE_ERROR_QUESTIONS } from "@/data/timeline-error-questions";
+import { TIMELINE_STORY_QUESTIONS } from "@/data/timeline-story-questions";
 import { TIMELINE_TENSES_QUESTIONS } from "@/data/timeline-tenses-questions";
 import { CATEGORIZED_TUTORIAL_QUESTIONS } from "@/data/timeline-tenses-tutorial";
+import { TIMELINE_TRANSFORMER_QUESTIONS } from "@/data/timeline-transformer-questions";
 import type {
   TimelineElement,
   TimelineTensesQuestion,
@@ -27,6 +33,90 @@ function getTimelineVerbQuestion(id: string): TimelineToVerbQuestion {
   }
 
   return question;
+}
+
+function normalizeTimelineElementType(type: TimelineElement["type"]): string {
+  switch (type) {
+    case "dashed-line":
+      return "solid-line";
+    case "arc-dashed":
+      return "arc";
+    case "solid-to-point":
+      return "solid-to-now";
+    default:
+      return type;
+  }
+}
+
+function buildNormalizedSignature(elements: TimelineElement[]): string {
+  const useStrictPast = elements.some(
+    (element) =>
+      element.zone === "past-earlier" || element.zone === "past-later"
+  );
+
+  return elements
+    .map((element) => {
+      const normalizedZone =
+        useStrictPast || element.zone === "present" || element.zone === "future"
+          ? element.zone
+          : "past";
+
+      return `${normalizeTimelineElementType(element.type)}:${normalizedZone}`;
+    })
+    .sort()
+    .join("|");
+}
+
+function collectTimelineElementSets(): Array<{
+  id: string;
+  label: string;
+  elements: TimelineElement[];
+}> {
+  return [
+    ...TIMELINE_CONTEXT_QUESTIONS.flatMap((question) =>
+      question.options.map((option, index) => ({
+        id: question.id,
+        label: `context-option-${index}`,
+        elements: option.elements,
+      }))
+    ),
+    ...TIMELINE_COMPARISON_QUESTIONS.flatMap((question) => [
+      { id: question.id, label: "comparison-a", elements: question.elementsA },
+      { id: question.id, label: "comparison-b", elements: question.elementsB },
+    ]),
+    ...TIMELINE_TRANSFORMER_QUESTIONS.flatMap((question) => [
+      { id: question.id, label: "transformer-source", elements: question.sourceElements },
+      { id: question.id, label: "transformer-target", elements: question.targetElements },
+    ]),
+    ...TIMELINE_ERROR_QUESTIONS.flatMap((question) => [
+      { id: question.id, label: "error-incorrect", elements: question.incorrectElements },
+      { id: question.id, label: "error-correct", elements: question.correctElements },
+    ]),
+    ...TIMELINE_STORY_QUESTIONS.flatMap((question) => [
+      ...question.sentences.map((sentence, index) => ({
+        id: question.id,
+        label: `story-sentence-${index}`,
+        elements: sentence.elements,
+      })),
+      { id: question.id, label: "story-full", elements: question.fullTimelineElements },
+    ]),
+  ];
+}
+
+function getTransformerQuestion(id: string) {
+  const question = TIMELINE_TRANSFORMER_QUESTIONS.find(
+    (candidate) => candidate.id === id
+  );
+
+  if (!question) {
+    throw new Error(`Unable to find transformer question: ${id}`);
+  }
+
+  return question;
+}
+
+function extractStoryCharacterTokens(story: string): string[] {
+  return [...story.matchAll(/\b[A-Z][a-z]+\b/g)].map((match) => match[0]);
 }
 
 describe("timeline tenses utils", () => {
@@ -165,7 +255,7 @@ describe("timeline tenses utils", () => {
     const originalLength = TIMELINE_TENSES_QUESTIONS.length;
     const round = buildTimelineRoundQuestions(
       TIMELINE_TENSES_QUESTIONS,
-      "all",
+      [],
       "read-the-timeline",
       12
     );
@@ -174,10 +264,190 @@ describe("timeline tenses utils", () => {
     expect(round).toHaveLength(12);
   });
 
+  it("gives spot-the-difference questions explicit prompt metadata and balanced correct sides", () => {
+    expect(TIMELINE_COMPARISON_QUESTIONS.length).toBeGreaterThanOrEqual(24);
+
+    const correctA = TIMELINE_COMPARISON_QUESTIONS.filter(
+      (question) => question.correctOption === "A"
+    );
+    const correctB = TIMELINE_COMPARISON_QUESTIONS.filter(
+      (question) => question.correctOption === "B"
+    );
+
+    expect(correctA.length).toBeGreaterThan(0);
+    expect(correctB.length).toBeGreaterThan(0);
+
+    for (const question of TIMELINE_COMPARISON_QUESTIONS) {
+      expect(question.promptText.trim().length).toBeGreaterThan(0);
+      expect(question.promptType).toBeTruthy();
+      expect(question.optionA.sentence.trim().length).toBeGreaterThan(0);
+      expect(question.optionB.sentence.trim().length).toBeGreaterThan(0);
+      expect(
+        question.correctOption === "A"
+          ? question.promptText
+          : question.correctOption === "B"
+            ? question.promptText
+            : ""
+      ).toBe(
+        question.correctOption === "A"
+          ? question.optionA.sentence
+          : question.optionB.sentence
+      );
+    }
+  });
+
+  it("builds spot-the-difference rounds from tense-comparison questions only", () => {
+    const allChallengeQuestions = [
+      ...TIMELINE_TENSES_QUESTIONS,
+      ...TIMELINE_COMPARISON_QUESTIONS,
+      ...TIMELINE_TRANSFORMER_QUESTIONS,
+      ...TIMELINE_CONTEXT_QUESTIONS,
+      ...TIMELINE_ERROR_QUESTIONS,
+      ...TIMELINE_STORY_QUESTIONS,
+    ];
+
+    const round = buildTimelineRoundQuestions(
+      allChallengeQuestions,
+      [],
+      "spot-the-difference",
+      10
+    );
+
+    expect(round).toHaveLength(10);
+    expect(round.every((question) => question.type === "tense-comparison")).toBe(true);
+  });
+
+  it("uses natural framing for transformer targets that need added context", () => {
+    const weakPairs = TIMELINE_TRANSFORMER_QUESTIONS.flatMap((question) => {
+      const target = question.targetSentence.toLowerCase();
+
+      if (question.targetTense === "Past Continuous") {
+        const hasPastFrame =
+          target.includes("when ") ||
+          target.includes("while ") ||
+          target.includes("at that moment") ||
+          target.includes("for ");
+        return hasPastFrame ? [] : [question.id];
+      }
+
+      if (question.targetTense === "Future Continuous") {
+        const hasFutureViewpoint =
+          target.includes("at this time") ||
+          target.includes("at ") ||
+          target.includes("tomorrow") ||
+          target.includes("next ");
+        return hasFutureViewpoint ? [] : [question.id];
+      }
+
+      if (question.targetTense === "Present Perfect Continuous") {
+        const hasDurationCue =
+          target.includes("for ") ||
+          target.includes("since ") ||
+          target.includes("all ");
+        return hasDurationCue ? [] : [question.id];
+      }
+
+      if (question.targetTense === "Past Perfect Continuous") {
+        const hasLeadUpCue =
+          target.includes("for ") ||
+          target.includes("since ") ||
+          target.includes("because ");
+        return hasLeadUpCue ? [] : [question.id];
+      }
+
+      return [];
+    });
+
+    expect(weakPairs).toEqual([]);
+  });
+
+  it("keeps transformer blank indices aligned after context is added", () => {
+    for (const question of TIMELINE_TRANSFORMER_QUESTIONS) {
+      const targetWords = question.targetSentence.split(/\s+/);
+
+      for (const blank of question.verbBlanks) {
+        const sampleAnswer = blank.validAnswers[0];
+        const spanLength = sampleAnswer.split(" ").length;
+        const targetSlice = targetWords
+          .slice(blank.index, blank.index + spanLength)
+          .join(" ")
+          .replace(/[.,!?;:]+$/g, "");
+
+        expect(sampleAnswer.replace(/[.,!?;:]+$/g, "")).toBe(targetSlice);
+      }
+    }
+  });
+
+  it("accepts only the authored target tense form for the rewritten transformer prompts", () => {
+    const pastContinuous = getTransformerQuestion("trans-ps-pc-01");
+    const presentPerfect = getTransformerQuestion("trans-ps-pp-02");
+
+    expect(pastContinuous.verbBlanks[0]?.validAnswers).toEqual(["was cooking"]);
+    expect(presentPerfect.verbBlanks[0]?.validAnswers).toEqual(["has finished"]);
+  });
+
+  it("keeps each in-context question to exactly one correct option", () => {
+    for (const question of TIMELINE_CONTEXT_QUESTIONS) {
+      expect(question.options.filter((option) => option.isCorrect)).toHaveLength(1);
+    }
+  });
+
+  it("ensures every sentence-level fix-it item contains a real error", () => {
+    const sentenceItems = TIMELINE_ERROR_QUESTIONS.filter(
+      (question) => question.errorLocation === "sentence"
+    );
+
+    for (const question of sentenceItems) {
+      expect(question.incorrectSentence).not.toBe(question.correctSentence);
+    }
+  });
+
+  it("keeps story-builder blank indices aligned for every sentence", () => {
+    for (const question of TIMELINE_STORY_QUESTIONS) {
+      for (const sentence of question.sentences) {
+        const words = sentence.template.split(/\s+/);
+
+        for (const blank of sentence.blanks) {
+          expect(words[blank.index]).toBe("___");
+        }
+      }
+    }
+  });
+
+  it("uses explicit time-shift cues in mixed-time story sentences", () => {
+    const cuePattern = /\b(now|right now|at |before|when|while|by |so far today|every saturday|at that moment)\b/i;
+    const missingCues = TIMELINE_STORY_QUESTIONS.flatMap((question) =>
+      question.sentences
+        .filter((sentence) => !cuePattern.test(sentence.template))
+        .map((sentence) => `${question.id}:${sentence.template}`)
+    );
+
+    expect(missingCues).toEqual([]);
+  });
+
+  it("uses a wider variety of names and roles in story-builder prompts", () => {
+    const storyText = TIMELINE_STORY_QUESTIONS.flatMap((question) => [
+      question.storyTitle,
+      question.storyPrompt,
+      ...question.sentences.map((sentence) => sentence.template),
+    ]).join(" ");
+
+    const tokens = extractStoryCharacterTokens(storyText);
+    const repeatedDefaultNames = tokens.filter((token) =>
+      ["Maria", "Carlos", "Ana"].includes(token)
+    );
+    const uniqueNames = new Set(
+      tokens.filter((token) => ["Nina", "Jordan", "Tasha"].includes(token))
+    );
+
+    expect(repeatedDefaultNames).toEqual([]);
+    expect(uniqueNames.size).toBeGreaterThanOrEqual(3);
+  });
+
   it("keeps early all-tenses rounds focused on common simple and basic continuous forms", () => {
     const round = buildTimelineRoundQuestions(
       TIMELINE_TENSES_QUESTIONS,
-      "all",
+      [],
       "build-the-timeline",
       12,
       "affirmative",
@@ -279,7 +549,7 @@ describe("timeline tenses utils", () => {
 
     const round = buildTimelineRoundQuestions(
       customBank,
-      "all",
+      [],
       "build-the-timeline",
       5,
       "affirmative",
@@ -557,5 +827,100 @@ describe("timeline tenses utils", () => {
     expect(feedback.status).toBe("none");
     expect(feedback.labels).toEqual([]);
     expect(feedback.primaryLabel).toBeUndefined();
+  });
+
+  it("keeps context challenge present simple on the build-mode habit stamp", () => {
+    const question = TIMELINE_CONTEXT_QUESTIONS.find((entry) => entry.id === "ctx-02");
+    const option = question?.options.find(
+      (entry) => entry.tenseName === "Present Simple"
+    );
+
+    expect(question).toBeDefined();
+    expect(option).toBeDefined();
+    expect(buildNormalizedSignature(option?.elements ?? [])).toBe(
+      buildNormalizedSignature(
+        buildCanonicalTimelineElements("presentSimpleHabit", "test-present-simple")
+      )
+    );
+  });
+
+  it("keeps comparison challenge future perfect on the build-mode completion stamp", () => {
+    const question = TIMELINE_COMPARISON_QUESTIONS.find(
+      (entry) => entry.id === "comp-fpf-fs-01"
+    );
+
+    expect(question).toBeDefined();
+    expect(buildNormalizedSignature(question?.elementsA ?? [])).toBe(
+      buildNormalizedSignature(
+        buildCanonicalTimelineElements("futurePerfect", "test-future-perfect", [
+          { position: 70 },
+        ])
+      )
+    );
+  });
+
+  it("keeps transformer challenge present perfect aligned with the build-mode pattern", () => {
+    const question = TIMELINE_TRANSFORMER_QUESTIONS.find(
+      (entry) => entry.id === "trans-ps-pp-01"
+    );
+
+    expect(question).toBeDefined();
+    expect(buildNormalizedSignature(question?.targetElements ?? [])).toBe(
+      buildNormalizedSignature(
+        buildCanonicalTimelineElements("presentPerfect", "test-present-perfect")
+      )
+    );
+  });
+
+  it("keeps error correction future perfect aligned with the build-mode pattern", () => {
+    const question = TIMELINE_ERROR_QUESTIONS.find((entry) => entry.id === "err-s-05");
+
+    expect(question).toBeDefined();
+    expect(buildNormalizedSignature(question?.correctElements ?? [])).toBe(
+      buildNormalizedSignature(
+        buildCanonicalTimelineElements("futurePerfect", "test-error-future-perfect", [
+          { position: 70 },
+        ])
+      )
+    );
+  });
+
+  it("keeps story builder split-past duration aligned with the build-mode pattern", () => {
+    const question = TIMELINE_STORY_QUESTIONS.find((entry) => entry.id === "story-02");
+    const sentence = question?.sentences[0];
+
+    expect(question).toBeDefined();
+    expect(sentence).toBeDefined();
+    expect(elementsUseSplitPast(sentence?.elements ?? [])).toBe(true);
+    expect(buildNormalizedSignature(sentence?.elements ?? [])).toBe(
+      buildNormalizedSignature(
+        buildCanonicalTimelineElements(
+          "pastPerfectContinuous",
+          "test-story-past-perfect-continuous",
+          [{ position: 50 }, { position: 35 }]
+        )
+      )
+    );
+  });
+
+  it("does not create duplicate timeline element ids within any challenge dataset entry", () => {
+    const duplicateOwners = collectTimelineElementSets()
+      .map(({ id, label, elements }) => {
+        const seen = new Set<string>();
+        const duplicates = elements
+          .map((element) => element.id)
+          .filter((elementId) => {
+            if (seen.has(elementId)) {
+              return true;
+            }
+            seen.add(elementId);
+            return false;
+          });
+
+        return duplicates.length > 0 ? `${id}:${label}` : null;
+      })
+      .filter((value): value is string => value !== null);
+
+    expect(duplicateOwners).toEqual([]);
   });
 });

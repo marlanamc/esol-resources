@@ -107,7 +107,25 @@ export type TimelinePracticeMode =
   | "read-the-timeline"
   | "build-the-timeline"
   | "mixed-practice"
-  | "lab";
+  | "lab"
+  // Challenge modes (unlocked at level 2+)
+  | "spot-the-difference"
+  | "transformer"
+  | "in-context"
+  | "fix-it"
+  | "story-builder";
+
+export const CHALLENGE_MODES: TimelinePracticeMode[] = [
+  "spot-the-difference",
+  "transformer",
+  "in-context",
+  "fix-it",
+  "story-builder",
+];
+
+export function isChallengeMode(mode: TimelinePracticeMode): boolean {
+  return CHALLENGE_MODES.includes(mode);
+}
 
 export interface TimelineLabFeedback {
   status: "match" | "none";
@@ -301,29 +319,62 @@ export function buildTimelineVerbFeedbackTenseName(
   return tenseNames.join(" + ");
 }
 
+/**
+ * Derive the single-category key used for progress tracking and difficulty curves.
+ * - 0 selected (all) → 'all'
+ * - 1 selected       → that category
+ * - 2+ selected      → 'all' (use mixed difficulty curve)
+ */
+export function categoriesToProgressKey(
+  categories: TenseCategory[]
+): TenseCategory | "all" {
+  if (categories.length === 1) return categories[0];
+  return "all";
+}
+
 export function filterTimelineQuestions(
   questionBank: TimelineTensesQuestion[],
-  category: TenseCategory | "all",
+  categories: TenseCategory[],   // empty = all tenses
   practiceMode: TimelinePracticeMode,
   sentenceForm: SentenceForm | "all" = "all"
 ): TimelineTensesQuestion[] {
   return questionBank.filter((question) => {
     const matchesCategory =
-      category === "all" ? true : question.tenseCategory === category;
+      categories.length === 0 ? true : categories.includes(question.tenseCategory);
 
     if (!matchesCategory) {
       return false;
     }
 
+    // Challenge modes only filter by category (no sentenceForm concept)
+    if (practiceMode === "spot-the-difference") {
+      return question.type === "tense-comparison";
+    }
+    if (practiceMode === "transformer") {
+      return question.type === "sentence-transformer";
+    }
+    if (practiceMode === "in-context") {
+      return question.type === "context-tense-picker";
+    }
+    if (practiceMode === "fix-it") {
+      return question.type === "error-correction";
+    }
+    if (practiceMode === "story-builder") {
+      return question.type === "story-builder";
+    }
+
     const matchesSentenceForm =
-      sentenceForm === "all" ? true : question.sentenceForm === sentenceForm;
+      sentenceForm === "all" ? true : (question as { sentenceForm?: string }).sentenceForm === sentenceForm;
 
     if (!matchesSentenceForm) {
       return false;
     }
 
     if (practiceMode === "mixed-practice") {
-      return true;
+      return (
+        question.type === "sentence-to-timeline" ||
+        question.type === "timeline-to-verb"
+      );
     }
 
     if (practiceMode === "lab") {
@@ -511,7 +562,7 @@ function buildCommonFirstAllRound(
 
 export function buildTimelineRoundQuestions(
   questionBank: TimelineTensesQuestion[],
-  category: TenseCategory | "all",
+  categories: TenseCategory[],   // empty = all tenses
   practiceMode: TimelinePracticeMode,
   roundSize: number,
   sentenceForm: SentenceForm | "all" = "all",
@@ -520,7 +571,7 @@ export function buildTimelineRoundQuestions(
 ): TimelineTensesQuestion[] {
   const allFilteredQuestions = filterTimelineQuestions(
     questionBank,
-    category,
+    categories,
     practiceMode,
     sentenceForm
   );
@@ -537,7 +588,8 @@ export function buildTimelineRoundQuestions(
       ? unseenQuestions
       : [...unseenQuestions, ...allFilteredQuestions.filter((question) => recentIdSet.has(question.id))];
 
-  if (category === "all") {
+  // Use the common-first ordering when 'all' or 2+ categories — otherwise difficulty-balanced
+  if (categories.length !== 1) {
     return buildCommonFirstAllRound(filteredQuestions, roundSize, level);
   }
 
@@ -546,10 +598,10 @@ export function buildTimelineRoundQuestions(
 
 export function getTimelineQuestionCount(
   questionBank: TimelineTensesQuestion[],
-  category: TenseCategory | "all",
+  categories: TenseCategory[],
   practiceMode: TimelinePracticeMode
 ): number {
-  return filterTimelineQuestions(questionBank, category, practiceMode).length;
+  return filterTimelineQuestions(questionBank, categories, practiceMode).length;
 }
 
 export function calculateTimelineOverallProgress(

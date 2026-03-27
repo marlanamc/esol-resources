@@ -9,6 +9,11 @@ import type {
 } from '@/types/activity';
 import { fetchActivityProgress, saveActivityProgress } from '@/lib/activityProgress';
 import { TIMELINE_TENSES_QUESTIONS } from '@/data/timeline-tenses-questions';
+import { TIMELINE_COMPARISON_QUESTIONS } from '@/data/timeline-comparison-questions';
+import { TIMELINE_TRANSFORMER_QUESTIONS } from '@/data/timeline-transformer-questions';
+import { TIMELINE_CONTEXT_QUESTIONS } from '@/data/timeline-context-questions';
+import { TIMELINE_ERROR_QUESTIONS } from '@/data/timeline-error-questions';
+import { TIMELINE_STORY_QUESTIONS } from '@/data/timeline-story-questions';
 import {
   CATEGORIZED_TUTORIAL_QUESTIONS,
   TUTORIAL_COMPLETED_KEY,
@@ -17,7 +22,9 @@ import {
 import {
   buildTimelineRoundQuestions,
   calculateTimelineOverallProgress,
+  categoriesToProgressKey,
   DEFAULT_TIMELINE_PRACTICE_MODE,
+  isChallengeMode,
   type TimelinePracticeMode,
 } from '../timelineTensesUtils';
 
@@ -30,7 +37,12 @@ export interface VerbFillAnswer {
   answers: Record<string, string>; // stable blank id -> user answer
 }
 
-export type QuestionAnswer = TimelineDrawingAnswer | VerbFillAnswer;
+/** Generic answer shape for challenge mode exercises */
+export interface ChallengeAnswer {
+  [key: string]: unknown;
+}
+
+export type QuestionAnswer = TimelineDrawingAnswer | VerbFillAnswer | ChallengeAnswer;
 
 // Round results
 export interface RoundResults {
@@ -97,7 +109,8 @@ interface GameState {
   roundQuestions: TimelineTensesQuestion[];
   currentQuestionIndex: number;
   roundSize: number;
-  selectedCategory: TenseCategory | 'all';
+  /** Empty array means "all tenses" */
+  selectedCategories: TenseCategory[];
   selectedSentenceForm: SentenceForm | 'all';
   selectedPracticeMode: TimelinePracticeMode;
   categoryProgress: Record<string, CategoryProgress>;
@@ -213,7 +226,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       roundQuestions: [],
       currentQuestionIndex: 0,
       roundSize: DEFAULT_ROUND_SIZE,
-      selectedCategory: 'all',
+      selectedCategories: [],
       selectedSentenceForm: 'all',
       selectedPracticeMode: DEFAULT_TIMELINE_PRACTICE_MODE,
       categoryProgress: {},
@@ -258,8 +271,15 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
           }
         }
 
-        // Get questions from data file
-        const allQuestions = TIMELINE_TENSES_QUESTIONS;
+        // Merge all question banks (core + challenge modes)
+        const allQuestions = [
+          ...TIMELINE_TENSES_QUESTIONS,
+          ...TIMELINE_COMPARISON_QUESTIONS,
+          ...TIMELINE_TRANSFORMER_QUESTIONS,
+          ...TIMELINE_CONTEXT_QUESTIONS,
+          ...TIMELINE_ERROR_QUESTIONS,
+          ...TIMELINE_STORY_QUESTIONS,
+        ];
 
         setState((prev) => ({
           ...prev,
@@ -279,13 +299,27 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     loadData();
   }, [activityId, assignmentId]);
 
-  // Select tense category filter
-  const selectTenseFilter = useCallback((category: TenseCategory | 'all') => {
-    setState((prev) => ({
-      ...prev,
-      error: null,
-      selectedCategory: category,
-    }));
+  /**
+   * Toggle a tense category in/out of the selection.
+   * - Passing 'all' clears the selection (= all tenses).
+   * - Passing a category adds it if not present, removes it if already present.
+   * - If all 5 real categories end up selected, auto-collapse to [] (= all).
+   */
+  const toggleTenseCategory = useCallback((category: TenseCategory | 'all') => {
+    setState((prev) => {
+      if (category === 'all') {
+        return { ...prev, error: null, selectedCategories: [] };
+      }
+      const current = prev.selectedCategories;
+      const alreadySelected = current.includes(category);
+      const next = alreadySelected
+        ? current.filter((c) => c !== category)
+        : [...current, category];
+      // If all 5 real categories selected → collapse back to "all"
+      const allRealCategories: TenseCategory[] = ['simple', 'continuous', 'perfect', 'perfect-continuous', 'mixed'];
+      const isAll = allRealCategories.every((c) => next.includes(c));
+      return { ...prev, error: null, selectedCategories: isAll ? [] : next };
+    });
   }, []);
 
   // Select sentence form filter
@@ -337,14 +371,16 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       }
 
       // If build-the-timeline mode and tutorial not completed for this category, show tutorial intro
-      const categoryKey = prev.selectedCategory;
+      // Challenge modes skip the tutorial entirely
+      const effectiveCategoryKey = categoriesToProgressKey(prev.selectedCategories);
       const isCompleted = typeof window !== 'undefined' && (
         window.localStorage.getItem(TUTORIAL_COMPLETED_KEY) === '1' ||
-        window.localStorage.getItem(`${CATEGORY_TUTORIAL_KEY_PREFIX}${categoryKey}`) === '1'
+        window.localStorage.getItem(`${CATEGORY_TUTORIAL_KEY_PREFIX}${effectiveCategoryKey}`) === '1'
       );
 
       if (
         prev.selectedPracticeMode === 'build-the-timeline' &&
+        !isChallengeMode(prev.selectedPracticeMode) &&
         !isCompleted
       ) {
         return {
@@ -357,14 +393,14 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
 
       const roundQuestions = buildTimelineRoundQuestions(
         prev.questionBank,
-        prev.selectedCategory,
+        prev.selectedCategories,
         prev.selectedPracticeMode,
         prev.roundSize,
         prev.selectedSentenceForm,
-        prev.categoryProgress[prev.selectedCategory]?.level || 1,
+        prev.categoryProgress[effectiveCategoryKey]?.level || 1,
         recentQuestionIdsByFilter[
           buildFilterMemoryKey(
-            prev.selectedCategory,
+            effectiveCategoryKey,
             prev.selectedPracticeMode,
             prev.selectedSentenceForm
           )
@@ -379,7 +415,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       }
 
       rememberRoundQuestions(
-        prev.selectedCategory,
+        effectiveCategoryKey,
         prev.selectedPracticeMode,
         prev.selectedSentenceForm,
         roundQuestions
@@ -427,11 +463,12 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
   const nextTutorialStep = useCallback(() => {
     setState((prev) => {
       const nextStep = prev.tutorialStep + 1;
+      const effectiveKey = categoriesToProgressKey(prev.selectedCategories);
 
-      const tutorialQuestions = CATEGORIZED_TUTORIAL_QUESTIONS[prev.selectedCategory];
+      const tutorialQuestions = CATEGORIZED_TUTORIAL_QUESTIONS[effectiveKey] ?? CATEGORIZED_TUTORIAL_QUESTIONS['all'];
       if (nextStep >= tutorialQuestions.length) {
         // Tutorial complete - mark in localStorage for this specific category
-        markTimelineTutorialCompleted(prev.selectedCategory);
+        markTimelineTutorialCompleted(effectiveKey);
         return {
           ...prev,
           phase: 'tutorial-complete',
@@ -452,18 +489,19 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
 
   // Skip the tutorial entirely and go straight to exercising
   const skipTutorial = useCallback(() => {
-    markTimelineTutorialCompleted(state.selectedCategory);
     setState((prev) => {
+      const effectiveKey = categoriesToProgressKey(prev.selectedCategories);
+      markTimelineTutorialCompleted(effectiveKey);
       const roundQuestions = buildTimelineRoundQuestions(
         prev.questionBank,
-        prev.selectedCategory,
+        prev.selectedCategories,
         prev.selectedPracticeMode,
         prev.roundSize,
         prev.selectedSentenceForm,
-        prev.categoryProgress[prev.selectedCategory]?.level || 1,
+        prev.categoryProgress[effectiveKey]?.level || 1,
         recentQuestionIdsByFilter[
           buildFilterMemoryKey(
-            prev.selectedCategory,
+            effectiveKey,
             prev.selectedPracticeMode,
             prev.selectedSentenceForm
           )
@@ -480,7 +518,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       }
 
       rememberRoundQuestions(
-        prev.selectedCategory,
+        effectiveKey,
         prev.selectedPracticeMode,
         prev.selectedSentenceForm,
         roundQuestions
@@ -499,21 +537,22 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         roundResults: null,
       };
     });
-  }, [buildFilterMemoryKey, recentQuestionIdsByFilter, rememberRoundQuestions, state.selectedCategory]);
+  }, [buildFilterMemoryKey, recentQuestionIdsByFilter, rememberRoundQuestions]);
 
   // Continue from tutorial complete to real practice
   const startAfterTutorial = useCallback(() => {
     setState((prev) => {
+      const effectiveKey = categoriesToProgressKey(prev.selectedCategories);
       const roundQuestions = buildTimelineRoundQuestions(
         prev.questionBank,
-        prev.selectedCategory,
+        prev.selectedCategories,
         prev.selectedPracticeMode,
         prev.roundSize,
         prev.selectedSentenceForm,
-        prev.categoryProgress[prev.selectedCategory]?.level || 1,
+        prev.categoryProgress[effectiveKey]?.level || 1,
         recentQuestionIdsByFilter[
           buildFilterMemoryKey(
-            prev.selectedCategory,
+            effectiveKey,
             prev.selectedPracticeMode,
             prev.selectedSentenceForm
           )
@@ -529,7 +568,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       }
 
       rememberRoundQuestions(
-        prev.selectedCategory,
+        effectiveKey,
         prev.selectedPracticeMode,
         prev.selectedSentenceForm,
         roundQuestions
@@ -592,7 +631,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
             totalQuestions: prev.questionResults.length,
             correctAnswers: correctCount,
             accuracy,
-            category: prev.selectedCategory,
+            category: categoriesToProgressKey(prev.selectedCategories),
             questionResults: prev.questionResults,
           },
         };
@@ -720,12 +759,12 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
   }, []);
 
   // Get appropriate tutorial questions for the current category
-  const tutorialQuestions = CATEGORIZED_TUTORIAL_QUESTIONS[state.selectedCategory] || CATEGORIZED_TUTORIAL_QUESTIONS['all'];
+  const tutorialQuestions = CATEGORIZED_TUTORIAL_QUESTIONS[categoriesToProgressKey(state.selectedCategories)] || CATEGORIZED_TUTORIAL_QUESTIONS['all'];
 
   return {
     state,
     tutorialQuestions,
-    selectTenseFilter,
+    toggleTenseCategory,
     selectSentenceForm,
     selectPracticeMode,
     startLab,

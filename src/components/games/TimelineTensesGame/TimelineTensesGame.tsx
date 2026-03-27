@@ -25,6 +25,12 @@ import { TenseFilterBar } from './TenseFilterBar';
 import { SentenceFormFilter } from './SentenceFormFilter';
 import { SentenceToTimelineExercise } from './exercises/SentenceToTimelineExercise';
 import { TimelineToVerbExercise } from './exercises/TimelineToVerbExercise';
+import { TenseComparisonExercise } from './exercises/TenseComparisonExercise';
+import { SentenceTransformerExercise } from './exercises/SentenceTransformerExercise';
+import { ContextTenseExercise } from './exercises/ContextTenseExercise';
+import { ErrorCorrectionExercise } from './exercises/ErrorCorrectionExercise';
+import { StoryBuilderExercise } from './exercises/StoryBuilderExercise';
+import { ChallengeModePicker } from './ChallengeModePicker';
 import { TimelineLab } from './TimelineLab';
 import { ResultsScreen } from './ResultsScreen';
 import { TutorialIntroScreen } from './TutorialIntroScreen';
@@ -33,7 +39,7 @@ import { HowToPlayModal } from './HowToPlayModal';
 import { TenseFormulaModal } from './TenseFormulaModal';
 import { useTimelineAudio } from './hooks/useTimelineAudio';
 import type { SentenceForm, TenseCategory } from '@/types/activity';
-import { filterTimelineQuestions } from './timelineTensesUtils';
+import { categoriesToProgressKey, filterTimelineQuestions, isChallengeMode } from './timelineTensesUtils';
 import {
   TIMELINE_TUTORIAL_QUESTIONS,
   TUTORIAL_HINTS,
@@ -55,7 +61,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
 
   const {
     state,
-    selectTenseFilter,
+    toggleTenseCategory,
     selectSentenceForm,
     selectPracticeMode,
     startLab,
@@ -173,7 +179,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     : undefined;
   const availableQuestionCount = filterTimelineQuestions(
     state.questionBank,
-    state.selectedCategory,
+    state.selectedCategories,
     state.selectedPracticeMode,
     state.selectedSentenceForm
   ).length;
@@ -193,6 +199,11 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     'build-the-timeline': 'Build',
     'mixed-practice': 'Mixed',
     'lab': 'Lab',
+    'spot-the-difference': 'Spot the Diff',
+    'transformer': 'Transformer',
+    'in-context': 'In Context',
+    'fix-it': 'Fix It',
+    'story-builder': 'Story Builder',
   };
   const FORM_LABELS: Record<string, string> = {
     'all': 'Any Form', 'affirmative': 'Affirmative', 'negative': 'Negative', 'question': 'Questions'
@@ -322,9 +333,9 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                    transition={{ delay: 0.2 }}
                 >
                   <TenseFilterBar
-                    selectedCategory={state.selectedCategory}
+                    selectedCategories={state.selectedCategories}
                     categoryProgress={state.categoryProgress}
-                    onSelectCategory={(category: TenseCategory | 'all') => selectTenseFilter(category)}
+                    onToggleCategory={toggleTenseCategory}
                   />
                 </motion.div>
 
@@ -385,7 +396,21 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                   </div>
                 </motion.div>
 
-                {/* Choose Form */}
+                {/* Challenge Modes */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 }}
+                >
+                  <ChallengeModePicker
+                    selectedMode={state.selectedPracticeMode}
+                    categoryProgress={state.categoryProgress}
+                    onSelectMode={selectPracticeMode}
+                  />
+                </motion.div>
+
+                {/* Choose Form — hidden for challenge modes */}
+                {!isChallengeMode(state.selectedPracticeMode) && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -396,6 +421,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     onSelectForm={(form: SentenceForm | 'all') => selectSentenceForm(form)}
                   />
                 </motion.div>
+                )}
 
                 {/* Start Game */}
                 <motion.div
@@ -409,7 +435,9 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                   </p>
                   <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
                     <span className="px-3 py-1 rounded-full bg-primary/10 text-primary font-bold text-xs border border-primary/10">
-                      {TENSE_LABELS[state.selectedCategory] || 'All Tenses'}
+                      {state.selectedCategories.length === 0
+                        ? 'All Tenses'
+                        : state.selectedCategories.map((c) => TENSE_LABELS[c]).join(' + ')}
                     </span>
                     <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary font-bold text-xs border border-secondary/10">
                       {MODE_LABELS[state.selectedPracticeMode] || 'Read'}
@@ -447,7 +475,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
             <TutorialIntroScreen
               onStart={startTutorial}
               onSkip={skipTutorial}
-              tenseCategory={state.selectedCategory}
+              tenseCategory={categoriesToProgressKey(state.selectedCategories)}
             />
           )}
 
@@ -599,7 +627,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     showFeedback={state.showFeedback}
                     lastAnswerCorrect={state.lastAnswerCorrect}
                   />
-                ) : (
+                ) : currentQuestion.type === 'timeline-to-verb' ? (
                   <TimelineToVerbExercise
                     question={currentQuestion}
                     onSubmit={submitAnswer}
@@ -607,7 +635,47 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     showFeedback={state.showFeedback}
                     lastAnswerCorrect={state.lastAnswerCorrect}
                   />
-                )}
+                ) : currentQuestion.type === 'tense-comparison' ? (
+                  <TenseComparisonExercise
+                    question={currentQuestion}
+                    onSubmit={submitAnswer}
+                    onNext={nextQuestion}
+                    showFeedback={state.showFeedback}
+                    lastAnswerCorrect={state.lastAnswerCorrect}
+                  />
+                ) : currentQuestion.type === 'sentence-transformer' ? (
+                  <SentenceTransformerExercise
+                    question={currentQuestion}
+                    onSubmit={submitAnswer}
+                    onNext={nextQuestion}
+                    showFeedback={state.showFeedback}
+                    lastAnswerCorrect={state.lastAnswerCorrect}
+                  />
+                ) : currentQuestion.type === 'context-tense-picker' ? (
+                  <ContextTenseExercise
+                    question={currentQuestion}
+                    onSubmit={submitAnswer}
+                    onNext={nextQuestion}
+                    showFeedback={state.showFeedback}
+                    lastAnswerCorrect={state.lastAnswerCorrect}
+                  />
+                ) : currentQuestion.type === 'error-correction' ? (
+                  <ErrorCorrectionExercise
+                    question={currentQuestion}
+                    onSubmit={submitAnswer}
+                    onNext={nextQuestion}
+                    showFeedback={state.showFeedback}
+                    lastAnswerCorrect={state.lastAnswerCorrect}
+                  />
+                ) : currentQuestion.type === 'story-builder' ? (
+                  <StoryBuilderExercise
+                    question={currentQuestion}
+                    onSubmit={submitAnswer}
+                    onNext={nextQuestion}
+                    showFeedback={state.showFeedback}
+                    lastAnswerCorrect={state.lastAnswerCorrect}
+                  />
+                ) : null}
               </GameErrorBoundary>
             </motion.div>
           )}

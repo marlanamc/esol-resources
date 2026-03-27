@@ -7,9 +7,9 @@ import { TIMELINE_TENSES_QUESTIONS } from '@/data/timeline-tenses-questions';
 import type { CategoryProgress } from './hooks/useTimelineTensesState';
 
 interface TenseFilterBarProps {
-  selectedCategory: TenseCategory | 'all';
+  selectedCategories: TenseCategory[];
   categoryProgress: Record<string, CategoryProgress>;
-  onSelectCategory: (category: TenseCategory | 'all') => void;
+  onToggleCategory: (category: TenseCategory | 'all') => void;
 }
 
 const CATEGORY_CONFIG: Array<{
@@ -93,9 +93,9 @@ const CATEGORY_QUESTION_COUNTS = CATEGORY_CONFIG.reduce<Record<string, number>>(
 );
 
 export function TenseFilterBar({
-  selectedCategory,
+  selectedCategories,
   categoryProgress,
-  onSelectCategory,
+  onToggleCategory,
 }: TenseFilterBarProps) {
   return (
     <div className="w-full">
@@ -103,7 +103,9 @@ export function TenseFilterBar({
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
         {CATEGORY_CONFIG.map((category) => {
-          const isSelected = selectedCategory === category.id;
+          const isSelected = category.id === 'all'
+            ? selectedCategories.length === 0
+            : selectedCategories.includes(category.id as TenseCategory);
           const progress = categoryProgress[category.id];
           const Icon = category.icon;
           const style = CATEGORY_STYLE[category.id] || CATEGORY_STYLE.all;
@@ -115,7 +117,7 @@ export function TenseFilterBar({
           return (
             <motion.button
               key={category.id}
-              onClick={() => onSelectCategory(category.id)}
+              onClick={() => onToggleCategory(category.id)}
               whileHover={{ y: -2, scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
               className={`group relative p-4 rounded-3xl border-2 text-left transition-all duration-300 ${

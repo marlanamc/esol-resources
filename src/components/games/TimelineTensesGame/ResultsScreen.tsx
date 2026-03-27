@@ -67,8 +67,25 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
     if (question.type === 'sentence-to-timeline') {
       return question.sentence;
     }
-    // For timeline-to-verb, show the template
-    return question.sentenceTemplate.replace(/___\[[^\]]+\]___/g, '___');
+    if (question.type === 'timeline-to-verb') {
+      return question.sentenceTemplate.replace(/___\[[^\]]+\]___/g, '___');
+    }
+    if (question.type === 'tense-comparison') {
+      return question.promptText;
+    }
+    if (question.type === 'sentence-transformer') {
+      return question.sourceSentence;
+    }
+    if (question.type === 'context-tense-picker') {
+      return question.scenario;
+    }
+    if (question.type === 'error-correction') {
+      return question.incorrectSentence;
+    }
+    if (question.type === 'story-builder') {
+      return question.storyTitle;
+    }
+    return '';
   };
 
   // Get correct answer summary for a question
@@ -76,10 +93,28 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
     if (question.type === 'sentence-to-timeline') {
       return question.tenseName;
     }
-    // For timeline-to-verb, show first valid answer for each blank
-    return question.blanks
-      .map((blank) => blank.validAnswers[0]?.answer || blank.baseVerb)
-      .join(', ');
+    if (question.type === 'timeline-to-verb') {
+      return question.blanks
+        .map((blank) => blank.validAnswers[0]?.answer || blank.baseVerb)
+        .join(', ');
+    }
+    if (question.type === 'tense-comparison') {
+      return `A = ${question.tenseA} (${question.optionA.sentence}) | B = ${question.tenseB} (${question.optionB.sentence})`;
+    }
+    if (question.type === 'sentence-transformer') {
+      return question.targetSentence;
+    }
+    if (question.type === 'context-tense-picker') {
+      const correct = question.options.find((o) => o.isCorrect);
+      return correct ? `${correct.tenseName} — "${correct.conjugatedVerb}"` : '';
+    }
+    if (question.type === 'error-correction') {
+      return question.correctSentence;
+    }
+    if (question.type === 'story-builder') {
+      return question.sentences.map((s) => s.targetTense).join(' → ');
+    }
+    return '';
   };
 
   // Get explanation for a question
@@ -87,9 +122,26 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
     if (question.type === 'sentence-to-timeline') {
       return question.explanation;
     }
-    // For timeline-to-verb, get first nuance
-    const firstNuance = question.blanks[0]?.validAnswers[0]?.nuance;
-    return firstNuance || 'Match the verb form to the timeline representation.';
+    if (question.type === 'timeline-to-verb') {
+      const firstNuance = question.blanks[0]?.validAnswers[0]?.nuance;
+      return firstNuance || 'Match the verb form to the timeline representation.';
+    }
+    if (question.type === 'tense-comparison') {
+      return question.keyDifference;
+    }
+    if (question.type === 'sentence-transformer') {
+      return question.explanation;
+    }
+    if (question.type === 'context-tense-picker') {
+      return question.explanation;
+    }
+    if (question.type === 'error-correction') {
+      return question.commonMistakeExplanation;
+    }
+    if (question.type === 'story-builder') {
+      return 'Build stories using multiple tenses in sequence.';
+    }
+    return '';
   };
 
   // Count incorrect answers
