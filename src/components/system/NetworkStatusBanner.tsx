@@ -8,6 +8,8 @@ const OFFLINE_SHOW_AFTER_MS = 2800;
 const OFFLINE_SHOW_AFTER_MS_DESKTOP = 4500;
 /** Wait before treating `online` as stable (reduces offline/online ping-pong). */
 const ONLINE_STABLE_AFTER_MS = 600;
+/** Re-probe reachability while offline so the banner can recover even if `navigator.onLine` is wrong. */
+const OFFLINE_RECOVERY_POLL_MS = 5000;
 /** Same-origin check: if this succeeds, we do not show offline (navigator was wrong). */
 const REACHABILITY_URL = "/manifest.json";
 
@@ -38,6 +40,7 @@ export default function NetworkStatusBanner() {
   const offlineTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const onlineTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const restoredTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const recoveryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const userSawOfflineRef = useRef(false);
   const fetchProbeAbortRef = useRef<AbortController | null>(null);
 
@@ -55,18 +58,24 @@ export default function NetworkStatusBanner() {
       fetchProbeAbortRef.current = null;
     };
 
-    const showOffline = () => {
-      clearTimer(onlineTimerRef);
-      userSawOfflineRef.current = true;
-      setIsOnline(false);
-      setShowRestored(false);
+    const stopRecoveryPolling = () => {
+      clearTimer(recoveryTimerRef);
     };
 
-    const showOnlineStable = () => {
+    const showOnlineStable = (allowRecoveryWhenNavigatorOffline = false) => {
       cancelOfflineProbe();
+      stopRecoveryPolling();
+      clearTimer(onlineTimerRef);
       onlineTimerRef.current = setTimeout(() => {
         onlineTimerRef.current = null;
-        if (typeof navigator === "undefined" || !navigator.onLine) return;
+        if (
+          !allowRecoveryWhenNavigatorOffline &&
+          typeof navigator !== "undefined" &&
+          !navigator.onLine
+        ) {
+          return;
+        }
+
         setIsOnline(true);
         if (userSawOfflineRef.current) {
           userSawOfflineRef.current = false;
@@ -78,6 +87,52 @@ export default function NetworkStatusBanner() {
           }, 2500);
         }
       }, ONLINE_STABLE_AFTER_MS);
+    };
+
+    const scheduleRecoveryProbe = () => {
+      stopRecoveryPolling();
+      recoveryTimerRef.current = setTimeout(() => {
+        recoveryTimerRef.current = null;
+
+        if (typeof document !== "undefined" && document.visibilityState === "hidden") {
+          scheduleRecoveryProbe();
+          return;
+        }
+
+        const fetchAc = new AbortController();
+        fetchProbeAbortRef.current?.abort();
+        fetchProbeAbortRef.current = fetchAc;
+        const timeoutId = window.setTimeout(() => fetchAc.abort(), 2800);
+
+        void checkSiteReachable(fetchAc.signal)
+          .then((reachable) => {
+            window.clearTimeout(timeoutId);
+            if (fetchProbeAbortRef.current !== fetchAc) return;
+            if (reachable) {
+              showOnlineStable(true);
+              return;
+            }
+            scheduleRecoveryProbe();
+          })
+          .catch(() => {
+            window.clearTimeout(timeoutId);
+            if (fetchProbeAbortRef.current !== fetchAc) return;
+            scheduleRecoveryProbe();
+          })
+          .finally(() => {
+            if (fetchProbeAbortRef.current === fetchAc) {
+              fetchProbeAbortRef.current = null;
+            }
+          });
+      }, OFFLINE_RECOVERY_POLL_MS);
+    };
+
+    const showOffline = () => {
+      clearTimer(onlineTimerRef);
+      userSawOfflineRef.current = true;
+      setIsOnline(false);
+      setShowRestored(false);
+      scheduleRecoveryProbe();
     };
 
     const scheduleOfflineCheck = () => {
@@ -96,8 +151,11 @@ export default function NetworkStatusBanner() {
           .then((reachable) => {
             window.clearTimeout(timeoutId);
             if (fetchProbeAbortRef.current !== fetchAc) return;
+            if (reachable) {
+              showOnlineStable(true);
+              return;
+            }
             if (typeof navigator !== "undefined" && navigator.onLine) return;
-            if (reachable) return;
             showOffline();
           })
           .catch(() => {
@@ -117,7 +175,7 @@ export default function NetworkStatusBanner() {
 
     const handleOnline = () => {
       cancelOfflineProbe();
-      showOnlineStable();
+      showOnlineStable(true);
     };
 
     if (typeof navigator !== "undefined" && !navigator.onLine) {
@@ -131,6 +189,7 @@ export default function NetworkStatusBanner() {
       cancelOfflineProbe();
       clearTimer(onlineTimerRef);
       clearTimer(restoredTimerRef);
+      stopRecoveryPolling();
       window.removeEventListener("offline", handleOffline);
       window.removeEventListener("online", handleOnline);
     };

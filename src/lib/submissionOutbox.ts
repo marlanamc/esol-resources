@@ -176,11 +176,6 @@ export async function submitWithOutbox(params: {
     return { queued: false, response, idempotencyKey };
   }
 
-  if (hasWindow() && !navigator.onLine) {
-    queueSubmission({ ...params, idempotencyKey });
-    return { queued: true, idempotencyKey };
-  }
-
   try {
     const response = await fetch(params.endpoint, {
       method: params.method,
