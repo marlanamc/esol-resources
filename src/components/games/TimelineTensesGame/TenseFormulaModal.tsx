@@ -248,10 +248,10 @@ export function TenseFormulaModal({ isOpen, onClose }: TenseFormulaModalProps) {
                                 <td className={`py-2.5 pr-4 font-black text-[11px] uppercase tracking-wide whitespace-nowrap w-px ${color}`}>
                                   {tense}
                                 </td>
-                                <td className="py-2.5 pr-4 text-text-muted/80 font-medium">
+                                <td className="py-2.5 pr-4 text-text-muted font-medium whitespace-nowrap">
                                   <FormulaText text={formula} />
                                 </td>
-                                <td className="py-2.5 pl-4 text-text-muted/55 italic text-[11px] whitespace-nowrap">
+                                <td className="py-2.5 pl-4 text-text-muted/75 italic text-[11px] whitespace-nowrap">
                                   {ex}
                                 </td>
                               </tr>
