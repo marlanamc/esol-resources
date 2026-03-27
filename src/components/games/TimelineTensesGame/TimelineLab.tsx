@@ -227,19 +227,25 @@ export function TimelineLab({ onBack }: TimelineLabProps) {
           >
             <div className="bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-xl rounded-[2rem] border border-white/30 px-5 py-5 shadow-lg">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-text-muted/40 mb-4">All Buildable Patterns</p>
-              <table className="w-full text-xs border-collapse">
-                <tbody>
-                  {CHEAT_SHEET.map(({ label, pattern, example, color }) => (
-                    <tr key={label} className="border-b border-border/20 last:border-0">
-                      <td className={`py-2 pr-4 font-black uppercase tracking-wide whitespace-nowrap w-px ${color}`}>
-                        {label}
-                      </td>
-                      <td className="py-2 pr-4 text-text-muted/60 font-medium">{pattern}</td>
-                      <td className="py-2 text-text/70 font-medium italic whitespace-nowrap">{example}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div className="-mx-2 overflow-x-auto overscroll-x-contain px-2 pb-1">
+                <table className="min-w-[42rem] text-xs border-collapse">
+                  <tbody>
+                    {CHEAT_SHEET.map(({ label, pattern, example, color }) => (
+                      <tr key={label} className="border-b border-border/20 last:border-0">
+                        <td className={`py-2 pr-4 font-black uppercase tracking-wide whitespace-nowrap w-px ${color}`}>
+                          {label}
+                        </td>
+                        <td className="py-2 pr-4 text-text-muted/60 font-medium min-w-[9rem]">
+                          {pattern}
+                        </td>
+                        <td className="py-2 text-text/70 font-medium italic whitespace-nowrap min-w-[12rem]">
+                          {example}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </motion.div>
         )}
