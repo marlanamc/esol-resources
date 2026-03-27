@@ -2,14 +2,15 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  AlertCircle, 
-  ArrowLeft, 
-  BookOpen, 
-  Clock, 
+import {
+  AlertCircle,
+  ArrowLeft,
+  BookMarked,
+  BookOpen,
+  Clock,
   FlaskConical,
-  Zap, 
-  Trophy, 
+  Zap,
+  Trophy,
   ChevronRight,
   Info,
   RotateCcw,
@@ -29,6 +30,7 @@ import { ResultsScreen } from './ResultsScreen';
 import { TutorialIntroScreen } from './TutorialIntroScreen';
 import { TutorialCompleteScreen } from './TutorialCompleteScreen';
 import { HowToPlayModal } from './HowToPlayModal';
+import { TenseFormulaModal } from './TenseFormulaModal';
 import { useTimelineAudio } from './hooks/useTimelineAudio';
 import type { SentenceForm, TenseCategory } from '@/types/activity';
 import { filterTimelineQuestions } from './timelineTensesUtils';
@@ -48,6 +50,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   const lastProcessedResultsKeyRef = useRef<string | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
+  const [isFormulaOpen, setIsFormulaOpen] = useState(false);
   const { playLevelUp } = useTimelineAudio();
 
   const {
@@ -467,9 +470,19 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                   >
                     Skip Tutorial
                   </button>
-                  <span className="text-sm font-medium text-text-muted">
-                    Example {state.tutorialStep + 1} of {totalTutorialQuestions}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium text-text-muted">
+                      Example {state.tutorialStep + 1} of {totalTutorialQuestions}
+                    </span>
+                    <button
+                      onClick={() => setIsFormulaOpen(true)}
+                      className="p-1.5 text-text-muted hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
+                      title="Tense Formulas"
+                      aria-label="Show tense formulas"
+                    >
+                      <BookMarked size={18} />
+                    </button>
+                  </div>
                 </div>
                 <div className="h-2 bg-border/30 rounded-full overflow-hidden">
                   <motion.div
@@ -533,10 +546,18 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                   >
                     <ArrowLeft size={20} />
                   </button>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
                     <span className="text-sm font-medium text-text-muted">
                       Question {state.currentQuestionIndex + 1} of {totalRoundQuestions}
                     </span>
+                    <button
+                      onClick={() => setIsFormulaOpen(true)}
+                      className="p-1.5 text-text-muted hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
+                      title="Tense Formulas"
+                      aria-label="Show tense formulas"
+                    >
+                      <BookMarked size={18} />
+                    </button>
                     {(state.selectedPracticeMode === 'build-the-timeline' || state.selectedPracticeMode === 'read-the-timeline') && (
                       <button
                         onClick={() => {
@@ -600,7 +621,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
               className="flex-1 flex flex-col"
             >
-              <TimelineLab onBack={retryRound} />
+              <TimelineLab onBack={retryRound} onOpenFormulas={() => setIsFormulaOpen(true)} />
             </motion.div>
           )}
 
@@ -623,6 +644,9 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
           )}
         </AnimatePresence>
       </motion.div>
+
+      {/* Tense Formula Modal */}
+      <TenseFormulaModal isOpen={isFormulaOpen} onClose={() => setIsFormulaOpen(false)} />
 
       {/* How to Play Modal */}
       <HowToPlayModal

@@ -2,7 +2,7 @@
 
 import { Fragment, useCallback, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, BookOpen, Check, ChevronDown, FlaskConical, RotateCcw, Sparkles } from 'lucide-react';
+import { ArrowLeft, BookMarked, BookOpen, Check, ChevronDown, FlaskConical, RotateCcw, Sparkles } from 'lucide-react';
 import type {
   TimelineElement,
   TimelineElementType,
@@ -17,6 +17,7 @@ import {
 
 interface TimelineLabProps {
   onBack: () => void;
+  onOpenFormulas: () => void;
 }
 
 interface PlacedStamp {
@@ -108,7 +109,7 @@ const CATEGORY_STYLES: Record<
   },
 };
 
-export function TimelineLab({ onBack }: TimelineLabProps) {
+export function TimelineLab({ onBack, onOpenFormulas }: TimelineLabProps) {
   const [selectedStamp, setSelectedStamp] = useState<TimelineElementType | null>(null);
   const [placedStamps, setPlacedStamps] = useState<PlacedStamp[]>([]);
   const [highlightZone, setHighlightZone] = useState<TimelineZone | null>(null);
@@ -237,17 +238,29 @@ export function TimelineLab({ onBack }: TimelineLabProps) {
             </div>
           </div>
 
-          <button
-            onClick={() => setShowCheatSheet((v) => !v)}
-            aria-expanded={showCheatSheet}
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-border/40 bg-white/60 dark:bg-[#162b3d]/60 text-text-muted hover:text-primary hover:border-primary/30 transition-all text-xs font-bold"
-          >
-            <BookOpen size={14} />
-            <span className="hidden sm:inline">Patterns</span>
-            <motion.span animate={{ rotate: showCheatSheet ? 180 : 0 }} transition={{ duration: 0.2 }}>
-              <ChevronDown size={14} />
-            </motion.span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onOpenFormulas}
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-border/40 bg-white/60 dark:bg-[#162b3d]/60 text-text-muted hover:text-primary hover:border-primary/30 transition-all text-xs font-bold"
+              title="Tense Formulas"
+              aria-label="Show tense formulas"
+            >
+              <BookMarked size={14} />
+              <span className="hidden sm:inline">Formulas</span>
+            </button>
+
+            <button
+              onClick={() => setShowCheatSheet((v) => !v)}
+              aria-expanded={showCheatSheet}
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-border/40 bg-white/60 dark:bg-[#162b3d]/60 text-text-muted hover:text-primary hover:border-primary/30 transition-all text-xs font-bold"
+            >
+              <BookOpen size={14} />
+              <span className="hidden sm:inline">Patterns</span>
+              <motion.span animate={{ rotate: showCheatSheet ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                <ChevronDown size={14} />
+              </motion.span>
+            </button>
+          </div>
         </div>
       </motion.div>
 
