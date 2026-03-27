@@ -162,6 +162,25 @@ export function getOptionalEnv(key: string, defaultValue: string): string {
 }
 
 /**
+ * Resolve the canonical app base URL for server-generated links.
+ * Prefers an explicit configured URL and falls back to Vercel's deployment URL.
+ */
+export function getAppBaseUrl(): string {
+  const configuredUrl =
+    process.env.NEXTAUTH_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
+
+  if (!configuredUrl) {
+    return process.env.NODE_ENV === "production"
+      ? ""
+      : "http://localhost:3000";
+  }
+
+  return configuredUrl.replace(/\/+$/, "");
+}
+
+/**
  * Check if running in production
  */
 export function isProduction(): boolean {

@@ -5,6 +5,11 @@ import { getLearnerDayKey, DAILY_HABIT_KEYS } from "@/lib/daily-habits";
 import { ApiErrors, apiSuccess } from "@/lib/api-response";
 import { logger } from "@/lib/logger";
 
+export const maxDuration = 60;
+
+const MAX_NOTIFICATIONS_PER_RUN = 100;
+const NOTIFICATION_BATCH_SIZE = 20;
+
 /**
  * Cron job to send daily vocab review push notifications.
  * Runs once per day (e.g. 9am ET) and sends a push to students who:
@@ -54,22 +59,43 @@ export async function GET(request: NextRequest) {
       },
     },
     select: { userId: true },
+    orderBy: { userId: "asc" },
   });
 
   const toNotify = subscriptions.filter((s) => !completedUserIds.has(s.userId));
+  const scheduledNotifications = toNotify.slice(0, MAX_NOTIFICATIONS_PER_RUN);
+  const truncated = toNotify.length > scheduledNotifications.length;
   let sent = 0;
 
-  for (const { userId } of toNotify) {
-    const ok = await sendVocabReminderToUser(userId);
-    if (ok) sent++;
+  for (let index = 0; index < scheduledNotifications.length; index += NOTIFICATION_BATCH_SIZE) {
+    const batch = scheduledNotifications.slice(index, index + NOTIFICATION_BATCH_SIZE);
+    const results = await Promise.allSettled(
+      batch.map(({ userId }) => sendVocabReminderToUser(userId))
+    );
+
+    sent += results.filter((result) => result.status === "fulfilled" && result.value).length;
   }
 
-  logger.info(`[Cron] Vocab reminders: ${sent}/${toNotify.length} sent`);
+  logger.info(`[Cron] Vocab reminders: ${sent}/${scheduledNotifications.length} sent`, {
+    eligibleUsers: toNotify.length,
+    truncated,
+  });
+
+  if (truncated) {
+    logger.warn("[Cron] Vocab reminders truncated to stay within function limits", {
+      eligibleUsers: toNotify.length,
+      scheduledUsers: scheduledNotifications.length,
+      remainingUsers: toNotify.length - scheduledNotifications.length,
+    });
+  }
 
   return apiSuccess({
     success: true,
     sent,
-    total: toNotify.length,
+    total: scheduledNotifications.length,
+    eligible: toNotify.length,
+    truncated,
+    remaining: Math.max(0, toNotify.length - scheduledNotifications.length),
     completedToday: completedUserIds.size,
   });
 }

@@ -8,11 +8,12 @@ import { logger } from "@/lib/logger";
  */
 function addSecurityHeaders(response: NextResponse): NextResponse {
     // Content Security Policy - Prevents XSS, clickjacking, and other code injection attacks
-    // Note: 'unsafe-inline' and 'unsafe-eval' needed for Next.js development
+    // 'unsafe-inline' is required for Next.js styled-jsx; 'unsafe-eval' only in development (HMR)
+    const isDev = process.env.NODE_ENV !== 'production';
     const cspHeader = [
         "default-src 'self'",
         // Allow Vercel Analytics + Vercel Preview Feedback script injection
-        "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://va.vercel-scripts.com https://vercel.live https://*.vercel.live",
+        `script-src 'self'${isDev ? " 'unsafe-eval'" : ''} 'unsafe-inline' https://va.vercel-scripts.com https://vercel.live https://*.vercel.live`,
         "style-src 'self' 'unsafe-inline'", // Required for Next.js styled-jsx and CSS modules
         "img-src 'self' data: blob:", // Allow data URIs for inline images
         "font-src 'self' data:", // Allow data URIs for fonts
@@ -55,7 +56,7 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
 }
 
 export default withAuth(
-    function middleware(req) {
+    function authProxy(req) {
         try {
             const token = req.nextauth?.token as
                 | {

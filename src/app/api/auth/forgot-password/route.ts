@@ -11,6 +11,7 @@ import { sendEmail, generatePasswordResetEmail } from '@/lib/email';
 import { logger } from '@/lib/logger';
 import { headers } from 'next/headers';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
+import { getAppBaseUrl } from '@/lib/env';
 
 interface ForgotPasswordRequest {
     email: string;
@@ -80,7 +81,7 @@ export async function POST(request: Request) {
         });
 
         // Build reset URL
-        const baseUrl = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+        const baseUrl = getAppBaseUrl();
         const resetUrl = `${baseUrl}/reset-password?token=${resetToken}`;
 
         // Generate email content

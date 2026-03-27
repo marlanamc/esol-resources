@@ -4,6 +4,7 @@ export {
   validateEnv,
   getRequiredEnv,
   getOptionalEnv,
+  getAppBaseUrl,
   isProduction,
   isDevelopment,
 } from "./shared/env";

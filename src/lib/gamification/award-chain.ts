@@ -1,4 +1,6 @@
+import { prisma } from "@/lib/prisma";
 import { awardPoints, checkAndAwardAchievements, updateStreak } from "./gamification";
+import type { DbClient } from "./gamification";
 
 export type AwardChainResult = {
   streakUpdated: boolean;
@@ -29,16 +31,22 @@ export async function applyAwardChain(params: {
     };
   }
 
-  const updatedUser = await awardPoints(userId, points, reason, source);
-  const streakResult = await updateStreak(userId, points);
-  const newAchievements = await checkAndAwardAchievements(userId);
+  // Wrap all gamification operations in a single transaction for atomicity.
+  // If any step fails, the entire chain rolls back — no partial point awards.
+  return prisma.$transaction(async (tx) => {
+    const db = tx as unknown as DbClient;
 
-  return {
-    streakUpdated: streakResult.streakUpdated,
-    newStreak: streakResult.newStreak,
-    streakPointsAwarded: streakResult.pointsAwarded,
-    newAchievementsCount: newAchievements.length,
-    totalPoints: updatedUser.points,
-    currentStreak: updatedUser.currentStreak,
-  };
+    const updatedUser = await awardPoints(userId, points, reason, source, db);
+    const streakResult = await updateStreak(userId, points, db);
+    const newAchievements = await checkAndAwardAchievements(userId, db);
+
+    return {
+      streakUpdated: streakResult.streakUpdated,
+      newStreak: streakResult.newStreak,
+      streakPointsAwarded: streakResult.pointsAwarded,
+      newAchievementsCount: newAchievements.length,
+      totalPoints: updatedUser.points,
+      currentStreak: updatedUser.currentStreak,
+    };
+  }, { timeout: 10000 });
 }

@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import type { Prisma } from "@prisma/client";
+import type { PrismaClient, Prisma } from "@prisma/client";
 import { logger } from '@/lib/logger';
 import { POINTS } from "./constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./streak-utils";
@@ -8,12 +8,15 @@ export { POINTS } from "./constants";
 export { getActivityPoints, resolveActivityGameUi } from "./activity-points";
 export { EXCLUDED_LEADERBOARD_USERNAMES } from "./leaderboard-filter";
 
+/** Prisma client or interactive transaction client */
+export type DbClient = Omit<PrismaClient, '$connect' | '$disconnect' | '$on' | '$transaction' | '$use' | '$extends'>;
+
 /**
  * Award points to a user and update their total
  */
-async function logPointsLedger(userId: string, points: number, reason: string, source: string = 'system') {
+async function logPointsLedger(userId: string, points: number, reason: string, source: string = 'system', db: DbClient = prisma) {
   try {
-    await prisma.pointsLedger.create({
+    await db.pointsLedger.create({
       data: {
         userId,
         points,
@@ -86,8 +89,8 @@ export async function trackLogin(userId: string) {
   }
 }
 
-export async function awardPoints(userId: string, points: number, reason: string = '', source: string = 'award') {
-  const user = await prisma.user.update({
+export async function awardPoints(userId: string, points: number, reason: string = '', source: string = 'award', db: DbClient = prisma) {
+  const user = await db.user.update({
     where: { id: userId },
     data: {
       points: { increment: points },
@@ -95,7 +98,7 @@ export async function awardPoints(userId: string, points: number, reason: string
     },
   });
 
-  await logPointsLedger(userId, points, reason || 'Points awarded', source);
+  await logPointsLedger(userId, points, reason || 'Points awarded', source, db);
 
   logger.info("[Gamification] Awarded points", { userId, points, reason, source });
 
@@ -105,8 +108,8 @@ export async function awardPoints(userId: string, points: number, reason: string
 /**
  * Check and update user's streak based on activity completion
  */
-export async function updateStreak(userId: string, activityPoints: number): Promise<{ streakUpdated: boolean; newStreak: number; pointsAwarded: number }> {
-  const user = await prisma.user.findUnique({
+export async function updateStreak(userId: string, activityPoints: number, db: DbClient = prisma): Promise<{ streakUpdated: boolean; newStreak: number; pointsAwarded: number }> {
+  const user = await db.user.findUnique({
     where: { id: userId },
   });
 
@@ -117,7 +120,7 @@ export async function updateStreak(userId: string, activityPoints: number): Prom
   }
 
   const now = new Date();
-  
+
   const { streakUpdated, newStreak } = getNextStreakState(
     user.currentStreak,
     user.lastActivityDate,
@@ -132,7 +135,7 @@ export async function updateStreak(userId: string, activityPoints: number): Prom
   }
 
   if (streakUpdated) {
-    await prisma.user.update({
+    await db.user.update({
       where: { id: userId },
       data: {
         currentStreak: newStreak,
@@ -149,12 +152,13 @@ export async function updateStreak(userId: string, activityPoints: number): Prom
         newStreak % 7 === 0 && pointsAwarded > POINTS.DAILY_STREAK
           ? 'Streak + weekly bonus'
           : 'Streak bonus',
-        'streak'
+        'streak',
+        db
       );
     }
   } else {
     // Update last activity date even if streak wasn't updated
-    await prisma.user.update({
+    await db.user.update({
       where: { id: userId },
       data: {
         lastActivityDate: now,
@@ -304,16 +308,10 @@ export async function getTimeframedLeaderboard(
   // Apply limit and add rank (same rank for ties)
   const limitedRankings = studentsWithPoints.slice(0, safeLimit);
 
+  let currentRank = 1;
   return limitedRankings.map((r, idx) => {
-    // Find the rank: same as first student with same points, otherwise idx + 1
-    let rank = idx + 1;
-    if (idx > 0) {
-      // Check if any previous student has the same points
-      const firstWithSamePoints = limitedRankings.findIndex(lr => lr.points === r.points);
-      if (firstWithSamePoints < idx) {
-        // Use the rank of the first student with these points
-        rank = firstWithSamePoints + 1;
-      }
+    if (idx > 0 && r.points !== limitedRankings[idx - 1].points) {
+      currentRank = idx + 1;
     }
 
     return {
@@ -321,8 +319,8 @@ export async function getTimeframedLeaderboard(
       name: r.name,
       weeklyPoints: r.points,
       currentStreak: r.currentStreak || 0,
-      rank: rank,
-      rankChange: range === 'week' ? (r.lastWeekRank ? r.lastWeekRank - rank : null) : null,
+      rank: currentRank,
+      rankChange: range === 'week' ? (r.lastWeekRank ? r.lastWeekRank - currentRank : null) : null,
       avatar: r.avatar,
       avatarColor: r.avatarColor,
     };
@@ -332,8 +330,8 @@ export async function getTimeframedLeaderboard(
 /**
  * Check if user unlocked any achievements and award them
  */
-export async function checkAndAwardAchievements(userId: string) {
-  const user = await prisma.user.findUnique({
+export async function checkAndAwardAchievements(userId: string, db: DbClient = prisma) {
+  const user = await db.user.findUnique({
     where: { id: userId },
     include: {
       achievements: {
@@ -342,7 +340,7 @@ export async function checkAndAwardAchievements(userId: string) {
         },
       },
       submissions: {
-        where: { 
+        where: {
           status: { in: ['submitted', 'graded'] } // Count both submitted and graded
         },
       },
@@ -351,7 +349,7 @@ export async function checkAndAwardAchievements(userId: string) {
 
   if (!user) return [];
 
-  const allAchievements = await prisma.achievement.findMany();
+  const allAchievements = await db.achievement.findMany();
   const earnedAchievementIds = new Set(
     user.achievements.map((ua: { achievementId: string }) => ua.achievementId)
   );
@@ -390,13 +388,13 @@ export async function checkAndAwardAchievements(userId: string) {
   if (toAward.length === 0) return newlyEarned;
 
   // Batch create all UserAchievement records in one query
-  await prisma.userAchievement.createMany({
+  await db.userAchievement.createMany({
     data: toAward.map((a) => ({ userId: user.id, achievementId: a.id })),
   });
 
   const totalPoints = toAward.reduce((sum, a) => sum + a.points, 0);
   if (totalPoints > 0) {
-    await awardPoints(userId, totalPoints, `Achievements: ${toAward.map((a) => a.name).join(', ')}`);
+    await awardPoints(userId, totalPoints, `Achievements: ${toAward.map((a) => a.name).join(', ')}`, 'award', db);
   }
 
   return newlyEarned;
@@ -445,16 +443,10 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
   });
 
   // Add rank and rank change (same rank for ties)
+  let currentRank = 1;
   return students.map((student, index: number) => {
-      // Find the rank: same as first student with same points, otherwise index + 1
-      let rank = index + 1;
-      if (index > 0) {
-        // Check if any previous student has the same points
-        const firstWithSamePoints = students.findIndex(s => s.weeklyPoints === student.weeklyPoints);
-        if (firstWithSamePoints < index) {
-          // Use the rank of the first student with these points
-          rank = firstWithSamePoints + 1;
-        }
+      if (index > 0 && student.weeklyPoints !== students[index - 1].weeklyPoints) {
+        currentRank = index + 1;
       }
 
       return {
@@ -463,8 +455,8 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
         weeklyPoints: student.weeklyPoints,
         currentStreak: getEffectiveStreak(student.currentStreak, student.lastActivityDate),
         lastWeekRank: student.lastWeekRank,
-        rank: rank,
-        rankChange: student.lastWeekRank ? student.lastWeekRank - rank : null,
+        rank: currentRank,
+        rankChange: student.lastWeekRank ? student.lastWeekRank - currentRank : null,
       };
     });
 }
@@ -472,25 +464,45 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
 /**
  * Reset weekly points for all users (to be run weekly via cron)
  * PERFORMANCE: Uses single raw SQL batch update for lastWeekRank instead of N individual updates
+ * All reads and writes happen inside a single transaction to prevent race conditions.
  */
 export async function resetWeeklyPoints() {
-  const currentRankings = await getWeeklyLeaderboard(100);
-
-  if (currentRankings.length === 0) {
-    await prisma.user.updateMany({
-      where: { role: 'student' },
-      data: { weeklyPoints: 0 },
-    });
-    logger.info('Weekly points reset complete (no rankings to save)');
-    return;
-  }
-
-  const params = currentRankings.flatMap((r) => [r.id, r.rank]);
-  const valuesClause = currentRankings
-    .map((_, i) => `($${i * 2 + 1}::text, $${i * 2 + 2}::int)`)
-    .join(', ');
-
   await prisma.$transaction(async (tx) => {
+    // Snapshot rankings inside the transaction so no points are lost between read and reset
+    const whereClause = buildLeaderboardEligibleUserWhere();
+    const students = await tx.user.findMany({
+      where: {
+        ...whereClause,
+        weeklyPoints: { gt: 0 },
+      },
+      orderBy: { weeklyPoints: 'desc' },
+      take: 100,
+      select: { id: true, name: true, weeklyPoints: true },
+    });
+
+    if (students.length === 0) {
+      await tx.user.updateMany({
+        where: { role: 'student' },
+        data: { weeklyPoints: 0 },
+      });
+      logger.info('Weekly points reset complete (no rankings to save)');
+      return;
+    }
+
+    // Calculate ranks with tie handling (O(n))
+    let currentRank = 1;
+    const rankings = students.map((s, idx) => {
+      if (idx > 0 && s.weeklyPoints !== students[idx - 1].weeklyPoints) {
+        currentRank = idx + 1;
+      }
+      return { id: s.id, rank: currentRank };
+    });
+
+    const params = rankings.flatMap((r) => [r.id, r.rank]);
+    const valuesClause = rankings
+      .map((_, i) => `($${i * 2 + 1}::text, $${i * 2 + 2}::int)`)
+      .join(', ');
+
     await (tx as typeof prisma).$executeRawUnsafe(
       `UPDATE "User" AS u SET "lastWeekRank" = v.rank
        FROM (VALUES ${valuesClause}) AS v(id, rank)
@@ -501,9 +513,9 @@ export async function resetWeeklyPoints() {
       where: { role: 'student' },
       data: { weeklyPoints: 0 },
     });
-  });
 
-  logger.info(`Weekly points reset complete (${currentRankings.length} rankings saved)`);
+    logger.info(`Weekly points reset complete (${rankings.length} rankings saved)`);
+  }, { timeout: 15000 });
 }
 
 /**

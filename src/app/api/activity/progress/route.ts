@@ -718,22 +718,30 @@ export async function POST(request: NextRequest) {
             const reason = activityTypeLabel
                 ? `${activity.title}|${activityTypeLabel}`
                 : `Completed: ${activity.title}`;
-            await applyAwardChain({
-                userId,
-                points,
-                reason,
-                source: 'activity',
-            });
-            pointsAwarded = points;
+            try {
+                await applyAwardChain({
+                    userId,
+                    points,
+                    reason,
+                    source: 'activity',
+                });
+                pointsAwarded = points;
+            } catch (err) {
+                logger.error('[Progress] Award chain failed after progress save', { userId, activityId, points, err });
+            }
         } else {
             // Fallback if activity not found (shouldn't happen)
-            await applyAwardChain({
-                userId,
-                points: 5,
-                reason: `Completed activity ${activityId}`,
-                source: 'activity',
-            });
-            pointsAwarded = 5;
+            try {
+                await applyAwardChain({
+                    userId,
+                    points: 5,
+                    reason: `Completed activity ${activityId}`,
+                    source: 'activity',
+                });
+                pointsAwarded = 5;
+            } catch (err) {
+                logger.error('[Progress] Award chain failed (fallback)', { userId, activityId, err });
+            }
         }
     }
 

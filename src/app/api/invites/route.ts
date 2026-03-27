@@ -10,10 +10,7 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { ApiErrors, apiSuccess, handleApiError } from '@/lib/api-response';
 import { generateInviteCode } from '@/lib/invite-code';
-
-function getAppBaseUrl() {
-  return (process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_APP_URL || '').replace(/\/+$/, '');
-}
+import { getAppBaseUrl } from '@/lib/env';
 
 /**
  * GET /api/invites

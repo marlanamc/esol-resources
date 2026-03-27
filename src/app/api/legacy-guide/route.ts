@@ -8,6 +8,7 @@ import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 import type { LegacyGuideResponse } from "@/types/activity";
 
 const LEGACY_BASE = path.resolve(process.cwd(), "_legacy", "activities");
+const LEGACY_CSS_BASE = path.resolve(process.cwd(), "css-from-legacy", "main.css");
 
 async function fileExists(filePath: string) {
     try {
@@ -58,6 +59,10 @@ export async function GET(req: Request) {
         return apiError("Missing file parameter", 400);
     }
 
+    if (!(await fileExists(LEGACY_BASE))) {
+        return ApiErrors.notFound("Legacy guide source");
+    }
+
     // Sanitize: remove leading slashes and path separators that could escape base
     const sanitized = fileParam.replace(/^[/\\]+/, "").replace(/\.\./g, "");
     const requestedPath = path.resolve(LEGACY_BASE, sanitized);
@@ -97,10 +102,9 @@ export async function GET(req: Request) {
             .filter(Boolean);
 
         // Load the base CSS variables from the legacy main.css
-        const mainCssPath = path.join(process.cwd(), "css-from-legacy", "main.css");
         let mainCss = "";
         try {
-            mainCss = await fs.readFile(mainCssPath, "utf-8");
+            mainCss = await fs.readFile(LEGACY_CSS_BASE, "utf-8");
         } catch {
             // If main.css doesn't exist, continue without it
         }

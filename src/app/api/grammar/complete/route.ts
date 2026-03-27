@@ -7,6 +7,7 @@ import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolu
 import { applyAwardChain } from "@/lib/gamification-award-chain";
 import { normalizeAssignmentId } from "@/lib/assignment-scope";
 import { ApiErrors, apiError } from "@/lib/api-response";
+import { logger } from "@/lib/logger";
 
 interface GrammarExerciseCategoryData {
     exercises: Record<string, {
@@ -167,8 +168,8 @@ export async function POST(request: Request) {
         try {
             const categoryData = JSON.parse(activityProgress.categoryData) as GrammarExerciseCategoryData;
             exercisesCompleted = Object.values(categoryData.exercises || {}).filter(e => e.completed).length;
-        } catch {
-            // Ignore parsing errors
+        } catch (err) {
+            logger.error('[GrammarComplete] Failed to parse categoryData', { userId, activityId: progressActivityId, err });
         }
     }
 

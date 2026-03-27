@@ -5,7 +5,7 @@ import {
   validatePassword,
   validateProgress,
 } from "@/lib/validators";
-import { buildEnvVarConfig, validateEnv } from "@/lib/env";
+import { buildEnvVarConfig, getAppBaseUrl, validateEnv } from "@/lib/env";
 
 function withEnv(overrides: Record<string, string | undefined>, fn: () => void) {
   const previous: Record<string, string | undefined> = {};
@@ -99,5 +99,43 @@ describe("validators and env boundary", () => {
       errorSpy.mockRestore();
       logSpy.mockRestore();
     }
+  });
+
+  it("getAppBaseUrl prefers explicit config and falls back to Vercel URL", () => {
+    withEnv(
+      {
+        NODE_ENV: "production",
+        NEXTAUTH_URL: "https://app.example.com/",
+        NEXT_PUBLIC_APP_URL: "https://public.example.com/",
+        VERCEL_URL: "preview.example.vercel.app",
+      },
+      () => {
+        expect(getAppBaseUrl()).toBe("https://app.example.com");
+      }
+    );
+
+    withEnv(
+      {
+        NODE_ENV: "production",
+        NEXTAUTH_URL: undefined,
+        NEXT_PUBLIC_APP_URL: undefined,
+        VERCEL_URL: "preview.example.vercel.app",
+      },
+      () => {
+        expect(getAppBaseUrl()).toBe("https://preview.example.vercel.app");
+      }
+    );
+
+    withEnv(
+      {
+        NODE_ENV: "development",
+        NEXTAUTH_URL: undefined,
+        NEXT_PUBLIC_APP_URL: undefined,
+        VERCEL_URL: undefined,
+      },
+      () => {
+        expect(getAppBaseUrl()).toBe("http://localhost:3000");
+      }
+    );
   });
 });

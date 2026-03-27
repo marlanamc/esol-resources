@@ -17,6 +17,12 @@ const nextConfig: NextConfig = {
   ...(process.env.NEXT_DIST_DIR
     ? { distDir: process.env.NEXT_DIST_DIR }
     : {}),
+  outputFileTracingIncludes: {
+    "/api/legacy-guide": [
+      "./_legacy/activities/**/*",
+      "./css-from-legacy/**/*",
+    ],
+  },
   experimental: {
     optimizePackageImports: [
       'recharts',

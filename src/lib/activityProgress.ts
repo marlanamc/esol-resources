@@ -85,8 +85,10 @@ export async function saveActivityProgress(
             return await response.json();
         }
         return null;
-    } catch {
-        // best-effort; silent fail
+    } catch (err) {
+        if (process.env.NODE_ENV === 'development') {
+            console.error('[ActivityProgress] Failed to save progress', err);
+        }
         return null;
     }
 }
