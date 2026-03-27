@@ -205,7 +205,7 @@ export function TimelineElementComponent({
           x={x}
           y={y - 20}
           textAnchor="middle"
-          className={`${colors.fillClass.replace(/fill-/g, 'text-')} text-xs font-semibold`}
+          className={`${colors.fillClass} text-xs font-semibold`}
           style={{ fontSize: '11px', fontWeight: 600 }}
         >
           {element.verbLabel}
