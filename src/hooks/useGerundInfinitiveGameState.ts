@@ -295,8 +295,7 @@ export function useGerundInfinitiveGameState(activityId: string) {
       if (!response.ok) throw new Error('Failed to save progress');
       setState(prev => ({ ...prev, categoryData: updatedCategoryData }));
       return data;
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to save progress';
+    } catch {
       setState(prev => ({ ...prev, saveError: 'Progress could not be saved. Your work may not sync across devices.' }));
       return null;
     }

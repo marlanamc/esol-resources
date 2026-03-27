@@ -16,7 +16,7 @@ export function ScenarioChoiceExercise({ exercise, onAnswer, answered }: Props) 
   const [inputValue, setInputValue] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { prompt, options = [], correctAnswer, scenario, baseVerb } = exercise;
+  const { prompt, options = [], scenario, baseVerb } = exercise;
 
   const parts = prompt.split('___');
   const before = parts[0] ?? '';

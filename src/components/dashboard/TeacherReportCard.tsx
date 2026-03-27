@@ -105,12 +105,6 @@ export default function TeacherReportCard({
 
   // Fetch data when timeframe, class, or learner type changes
   useEffect(() => {
-    // Skip fetch if using initial data and timeframe is weekly
-    if (initialData && timeframe === 'weekly' && selectedClassId === 'all' && learnerType === 'classroom' && !data) {
-      setData(initialData);
-      return;
-    }
-
     const fetchData = async () => {
       setLoading(true);
       setError(null);

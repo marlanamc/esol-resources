@@ -1,0 +1,95 @@
+name: Weekly Maintenance
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"
+  workflow_dispatch:
+
+env:
+  POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
+  NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+  AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+  NEXTAUTH_URL: http://localhost:3000
+
+jobs:
+  weekly-health:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prepare database schema
+        id: db_prepare
+        run: npm run ci:db:prepare
+
+      - name: Lint
+        id: lint
+        run: npm run lint
+
+      - name: Vitest
+        id: vitest
+        run: npm run test:vitest
+
+      - name: Generated content check
+        id: generated
+        run: npm run check:generated
+
+      - name: Build
+        id: build
+        run: npm run build
+
+      - name: Create maintenance report
+        if: always()
+        run: npm run report:maintenance -- --skip-vitest --write maintenance-weekly-report.md
+
+      - name: Write weekly summary
+        if: always()
+        run: |
+          {
+            echo "# Weekly Maintenance Summary"
+            echo
+            echo "## Failures"
+            failed=0
+            if [ "${{ steps.db_prepare.outcome }}" != "success" ]; then failed=1; echo "- db_prepare: ${{ steps.db_prepare.outcome }}"; fi
+            if [ "${{ steps.lint.outcome }}" != "success" ]; then failed=1; echo "- lint: ${{ steps.lint.outcome }}"; fi
+            if [ "${{ steps.vitest.outcome }}" != "success" ]; then failed=1; echo "- vitest: ${{ steps.vitest.outcome }}"; fi
+            if [ "${{ steps.generated.outcome }}" != "success" ]; then failed=1; echo "- generated: ${{ steps.generated.outcome }}"; fi
+            if [ "${{ steps.build.outcome }}" != "success" ]; then failed=1; echo "- build: ${{ steps.build.outcome }}"; fi
+            if [ "$failed" -eq 0 ]; then
+              echo "- None"
+            fi
+            echo
+            cat maintenance-weekly-report.md
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail if weekly gate is not green
+        if: always()
+        run: |
+          test "${{ steps.db_prepare.outcome }}" = "success"
+          test "${{ steps.lint.outcome }}" = "success"
+          test "${{ steps.vitest.outcome }}" = "success"
+          test "${{ steps.generated.outcome }}" = "success"
+          test "${{ steps.build.outcome }}" = "success"

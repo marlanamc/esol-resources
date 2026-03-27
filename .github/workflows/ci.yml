@@ -48,6 +48,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Generated content check
+        run: npm run check:generated
+
       - name: Dependency audit
         run: npm audit --audit-level=high
 

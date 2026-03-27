@@ -75,7 +75,6 @@ export default function InvitePage() {
         if (!invite?.url) return;
         setShareError("");
 
-        const shareMessage = `${DEFAULT_SHARE_MESSAGE} ${invite.url}`;
         const shareData = {
             title: "Join Class Companion",
             text: DEFAULT_SHARE_MESSAGE,

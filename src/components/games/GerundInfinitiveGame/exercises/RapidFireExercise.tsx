@@ -31,7 +31,7 @@ export function RapidFireExercise({ exercise, onAnswer, answered }: Props) {
   const isLast = index >= items.length - 1;
 
   const handleSelect = (opt: string) => {
-    if (!current || selected) return;
+    if (!current || answered || selected) return;
     const correct = checkCorrect(current, opt);
     setSelected(opt);
     setResults(prev => [...prev, correct]);
@@ -89,7 +89,7 @@ export function RapidFireExercise({ exercise, onAnswer, answered }: Props) {
                 <motion.button
                   key={i}
                   onClick={() => handleSelect(opt)}
-                  disabled={!!selected}
+                  disabled={answered || !!selected}
                   whileHover={!selected ? { scale: 1.02 } : {}}
                   whileTap={!selected ? { scale: 0.98 } : {}}
                   className={`p-4 rounded-2xl border-2 text-center font-medium transition-all ${stateClass}`}
@@ -102,7 +102,7 @@ export function RapidFireExercise({ exercise, onAnswer, answered }: Props) {
           {/* Show correct answer label when wrong so students register their mistake */}
           {selected && !checkCorrect(current!, selected) && (
             <p className="text-center text-sm font-semibold text-secondary mt-1">
-              ✓ The answer is: {Array.isArray(current!.correctAnswer) ? current!.correctAnswer[0] : current!.correctAnswer}
+              The answer is: {Array.isArray(current!.correctAnswer) ? current!.correctAnswer[0] : current!.correctAnswer}
             </p>
           )}
         </motion.div>

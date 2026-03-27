@@ -884,40 +884,6 @@ function tokenizeSentence(sentence: string, errorText: string): ErrorToken[] {
   return tokens;
 }
 
-/** Irregular gerunds that the standard rules get wrong */
-const GERUND_OVERRIDES: Record<string, string> = {
-  be: 'being', have: 'having', do: 'doing',
-};
-
-/**
- * Convert base verb to gerund form
- */
-function gerundFrom(base: string): string {
-  const lower = base.toLowerCase();
-  if (GERUND_OVERRIDES[lower]) return GERUND_OVERRIDES[lower];
-  if (base.endsWith('e') && !base.endsWith('ee')) {
-    return base.slice(0, -1) + 'ing';
-  }
-  if (base.endsWith('ie')) {
-    return base.slice(0, -2) + 'ying';
-  }
-  // CVC doubling for short words
-  const vowels = 'aeiou';
-  const len = base.length;
-  const last = base[len - 1];
-  if (
-    len >= 3 &&
-    len <= 4 &&
-    !['y', 'w', 'x'].includes(last) &&
-    !vowels.includes(last) &&
-    vowels.includes(base[len - 2]) &&
-    !vowels.includes(base[len - 3])
-  ) {
-    return base + last + 'ing';
-  }
-  return base + 'ing';
-}
-
 /**
  * Stems that are already the base form (no silent 'e').
  * baseFromGerund must not add 'e' to these (e.g. eating→eat, cooking→cook).

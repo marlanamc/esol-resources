@@ -25,6 +25,55 @@ function getTimelineVerbQuestion(id: string): TimelineToVerbQuestion {
 }
 
 describe("timeline tenses utils", () => {
+  it("avoids duplicate noun labels inside slash-style blank prompts", () => {
+    const suspiciousPrefixes = new Set([
+      "not",
+      "already",
+      "still",
+      "i",
+      "you",
+      "he",
+      "she",
+      "it",
+      "we",
+      "they",
+      "what",
+      "when",
+      "where",
+      "why",
+      "how",
+    ]);
+
+    const offenders = TIMELINE_TENSES_QUESTIONS
+      .filter(
+        (question): question is TimelineToVerbQuestion =>
+          question.type === "timeline-to-verb"
+      )
+      .flatMap((question) =>
+        [...question.sentenceTemplate.matchAll(/___\[([^\]]+)\]___/g)]
+          .map((match) => match[1])
+          .filter((token) => token.includes("/"))
+          .map((token) => {
+            const prefix = token.split("/")[0]?.toLowerCase().trim();
+            if (!prefix || suspiciousPrefixes.has(prefix)) {
+              return null;
+            }
+
+            const duplicateNounPattern = new RegExp(
+              `\\b(?:a|an|the)\\s+${prefix}\\s+___\\[${token.replace("/", "\\/")}\\]___`,
+              "i"
+            );
+
+            return duplicateNounPattern.test(question.sentenceTemplate)
+              ? `${question.id}:${token}`
+              : null;
+          })
+          .filter((value): value is string => value !== null)
+      );
+
+    expect(offenders).toEqual([]);
+  });
+
   it("parses duplicate base-verb blanks with stable blank ids", () => {
     const question = getTimelineVerbQuestion("ps-verb-1");
     const parts = parseTimelineSentenceTemplate(question);

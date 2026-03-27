@@ -3385,21 +3385,20 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'pperf-verb-4',
     timelineElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30, verbLabel: 'finish' },
-      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70, verbLabel: 'storm/hit' },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70, verbLabel: 'storm hits' },
     ],
-    sentenceTemplate: '___[finish]___ the work before the storm ___[storm/hit]___?',
+    sentenceTemplate: '___[you/finish]___ the work before the storm ___[hit]___?',
     blanks: [
       {
         id: 'b1',
-        baseVerb: 'finish',
+        baseVerb: 'you/finish',
         validAnswers: [
           { answer: 'Had you finished', tenseName: 'Past Perfect (Question)', nuance: 'Inverted question — Had + subject + past participle' },
-          { answer: 'Had she finished', tenseName: 'Past Perfect (Question)', nuance: 'With third-person subject' },
         ],
       },
       {
         id: 'b2',
-        baseVerb: 'storm/hit',
+        baseVerb: 'hit',
         validAnswers: [
           { answer: 'hit', tenseName: 'Past Simple', nuance: 'Irregular verb — hit/hit/hit' },
         ],

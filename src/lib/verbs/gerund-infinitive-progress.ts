@@ -232,11 +232,14 @@ export function calculateOverallProgress(categoryData: Record<string, GIGroupPro
 const POINTS_PER_ROUND = 5;
 
 export function calculateGroupPoints(
-  _accuracy: number,
-  _exercisesCompleted: number,
+  accuracy: number,
+  exercisesCompleted: number,
   isRoundCompleted: boolean,
-  _roundMode: GIRoundMode
+  roundMode: GIRoundMode
 ): number {
+  void accuracy;
+  void exercisesCompleted;
+  void roundMode;
   return isRoundCompleted ? POINTS_PER_ROUND : 0;
 }
 

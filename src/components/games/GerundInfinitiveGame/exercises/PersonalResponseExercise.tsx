@@ -18,7 +18,7 @@ export function PersonalResponseExercise({ exercise, onAnswer, answered }: Props
   const { question, patternHint, exampleAnswer, requiredPattern } = exercise;
 
   const handleSubmit = () => {
-    if (submitted || !userInput.trim()) return;
+    if (submitted || answered || !userInput.trim()) return;
 
     // Validate: check if user's answer contains the required pattern
     const correct = requiredPattern
@@ -37,9 +37,7 @@ export function PersonalResponseExercise({ exercise, onAnswer, answered }: Props
         <p className="font-display text-2xl sm:text-3xl text-text mb-2">
           {question || exercise.prompt}
         </p>
-        <p className="text-sm text-text-muted">
-          💬 Answer with your own experience
-        </p>
+        <p className="text-sm text-text-muted">Answer with your own experience</p>
       </div>
 
       {/* Pattern Hint */}
@@ -61,7 +59,7 @@ export function PersonalResponseExercise({ exercise, onAnswer, answered }: Props
         <textarea
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          disabled={submitted}
+          disabled={submitted || answered}
           placeholder="Type your answer here..."
           className={`w-full p-4 rounded-xl border-2 font-medium text-lg resize-none ${
             submitted
@@ -88,7 +86,7 @@ export function PersonalResponseExercise({ exercise, onAnswer, answered }: Props
       {!submitted && (
         <button
           onClick={handleSubmit}
-          disabled={!userInput.trim()}
+          disabled={answered || !userInput.trim()}
           className="w-full px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           Submit Answer

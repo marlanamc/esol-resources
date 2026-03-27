@@ -134,6 +134,7 @@ npm run test:e2e:mobile
 ### Architecture & Safety Docs
 - [`docs/SECTIONS_AND_AUTH_GUARDRAILS.md`](docs/SECTIONS_AND_AUTH_GUARDRAILS.md) - Section sync, leaderboard scoping, and authorization guardrails
 - [`docs/CHANGELOG_SAFETY.md`](docs/CHANGELOG_SAFETY.md) - Risk log template and rollback notes for high-impact changes
+- [`docs/MAINTENANCE_DASHBOARD.md`](docs/MAINTENANCE_DASHBOARD.md) - Health gate, current cleanup targets, debt buckets, and weekly/monthly operating cadence
 - [`docs/student/STUDENT_SETUP_AND_APP_GUIDE.md`](docs/student/STUDENT_SETUP_AND_APP_GUIDE.md) - Student-friendly login, class join, and home-screen app setup guide
 - [`docs/student/GUIA_ESTUDIANTE_CONFIGURACION_Y_APP.md`](docs/student/GUIA_ESTUDIANTE_CONFIGURACION_Y_APP.md) - Guía en español para inicio de sesión, unirse a clase y guardar como app
 
@@ -159,8 +160,28 @@ Run these locally and ensure they all pass:
 npm run typecheck
 npm run lint
 npm run test:critical
+npm run test:vitest
+npm run check:generated
 npm run check:repo-hygiene
+npm run build
 ```
+
+`npm run build` is verification-only and should not rewrite tracked generated files. If the gerund/infinitive generated dataset is stale, update it explicitly with `npm run generate:content`.
+
+### Operations Shortcuts
+
+```bash
+npm run health:gate
+npm run health:weekly
+npm run health:monthly
+npm run report:maintenance
+```
+
+GitHub automation now includes:
+- PR template with the default health gate
+- weekly maintenance workflow
+- monthly maintenance report workflow
+- manual release gate workflow
 
 ## Tech Stack
 

@@ -18,8 +18,8 @@ export default async function ReportsPage() {
     redirect("/auth/signin");
   }
 
-  const userRole = (session.user as any).role;
-  const userId = (session.user as any).id;
+  const userRole = session.user.role;
+  const userId = session.user.id;
   const admin = isTeacherAdmin(session.user);
 
   if (userRole !== "teacher") {

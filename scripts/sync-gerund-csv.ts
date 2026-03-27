@@ -67,7 +67,34 @@ function escapeForTS(s: string): string {
   return JSON.stringify(s);
 }
 
+function buildGeneratedOutput(rows: ParsedRow[]): string {
+  const linesOut: string[] = [
+    '/**',
+    ' * Auto-generated from src/gerund_inf_sentences.csv',
+    ' * Do not edit. Run: npx tsx scripts/sync-gerund-csv.ts',
+    ' */',
+    '',
+    'export const GERUND_INFINITIVE_SENTENCES = [',
+  ];
+
+  for (const r of rows) {
+    const obj: string[] = [
+      `  { id: ${escapeForTS(r.id)}, sentence: ${escapeForTS(r.sentence)}, patternGroup: ${escapeForTS(r.patternGroup)}, rule: ${escapeForTS(r.rule)}, verb: ${escapeForTS(r.verb)}, wordToBlank: ${escapeForTS(r.wordToBlank)}, otherOption: ${escapeForTS(r.otherOption)}, category: ${escapeForTS(r.category)}, difficulty: ${escapeForTS(r.difficulty)}, tense: ${escapeForTS(r.tense)}, topic: ${escapeForTS(r.topic)}`,
+    ];
+    if (r.baseVerbForm) obj[0] += `, baseVerbForm: ${escapeForTS(r.baseVerbForm)}`;
+    if (r.thirdPersonSingular) obj[0] += `, thirdPersonSingular: ${escapeForTS(r.thirdPersonSingular)}`;
+    obj[0] += ' },';
+    linesOut.push(obj[0]);
+  }
+
+  linesOut.push('];');
+  linesOut.push('');
+
+  return linesOut.join('\n');
+}
+
 function main() {
+  const checkMode = process.argv.includes('--check');
   const raw = fs.readFileSync(CSV_PATH, 'utf-8');
   const lines = raw.split('\n').filter(line => line.trim());
   const header = parseCSVLine(lines[0]);
@@ -126,29 +153,27 @@ function main() {
     });
   }
 
-  const linesOut: string[] = [
-    '/**',
-    ' * Auto-generated from src/gerund_inf_sentences.csv',
-    ' * Do not edit. Run: npx tsx scripts/sync-gerund-csv.ts',
-    ' */',
-    '',
-    'export const GERUND_INFINITIVE_SENTENCES = [',
-  ];
+  const output = buildGeneratedOutput(rows);
 
-  for (const r of rows) {
-    const obj: string[] = [
-      `  { id: ${escapeForTS(r.id)}, sentence: ${escapeForTS(r.sentence)}, patternGroup: ${escapeForTS(r.patternGroup)}, rule: ${escapeForTS(r.rule)}, verb: ${escapeForTS(r.verb)}, wordToBlank: ${escapeForTS(r.wordToBlank)}, otherOption: ${escapeForTS(r.otherOption)}, category: ${escapeForTS(r.category)}, difficulty: ${escapeForTS(r.difficulty)}, tense: ${escapeForTS(r.tense)}, topic: ${escapeForTS(r.topic)}`,
-    ];
-    if (r.baseVerbForm) obj[0] += `, baseVerbForm: ${escapeForTS(r.baseVerbForm)}`;
-    if (r.thirdPersonSingular) obj[0] += `, thirdPersonSingular: ${escapeForTS(r.thirdPersonSingular)}`;
-    obj[0] += ' },';
-    linesOut.push(obj[0]);
+  if (checkMode) {
+    const currentOutput = fs.existsSync(OUT_PATH)
+      ? fs.readFileSync(OUT_PATH, 'utf-8')
+      : '';
+
+    if (currentOutput !== output) {
+      console.error(
+        `[sync-gerund-csv] ${path.relative(process.cwd(), OUT_PATH)} is out of date. Run: npx tsx scripts/sync-gerund-csv.ts`
+      );
+      process.exit(1);
+    }
+
+    console.log(
+      `[sync-gerund-csv] Verified ${path.relative(process.cwd(), OUT_PATH)} is up to date (${rows.length} sentences, filtered ${filtered} ambiguous)`
+    );
+    return;
   }
 
-  linesOut.push('];');
-  linesOut.push('');
-
-  fs.writeFileSync(OUT_PATH, linesOut.join('\n'), 'utf-8');
+  fs.writeFileSync(OUT_PATH, output, 'utf-8');
   console.log(`[sync-gerund-csv] Wrote ${rows.length} sentences to ${path.relative(process.cwd(), OUT_PATH)} (filtered ${filtered} ambiguous)`);
 }
 

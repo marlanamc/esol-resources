@@ -1,0 +1,59 @@
+name: Release Gate
+
+on:
+  workflow_dispatch:
+
+env:
+  POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
+  NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+  AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+  NEXTAUTH_URL: http://localhost:3000
+  DEV_SEED_ACCOUNT_PASSWORD: ci-seed-password-1234
+
+jobs:
+  release-gate:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Prepare database schema
+        run: npm run ci:db:prepare
+
+      - name: Seed grammar guides
+        run: npm run db:seed:guides
+
+      - name: Seed base application data
+        run: npm run db:seed:base
+
+      - name: Seed E2E accounts
+        run: npx tsx scripts/e2e-seed.ts
+
+      - name: Run release health gate
+        run: npm run health:release

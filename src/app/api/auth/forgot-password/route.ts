@@ -3,7 +3,6 @@
  * POST: Request a password reset link
  */
 
-import { NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
 import { prisma } from '@/lib/prisma';
 import { apiError, apiSuccess, handleApiError } from '@/lib/api-response';

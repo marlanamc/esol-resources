@@ -6,7 +6,10 @@ import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./str
 import { buildIndependentLeaderboardUserWhere, buildLeaderboardEligibleUserWhere } from "./leaderboard-filter";
 export { POINTS } from "./constants";
 export { getActivityPoints, resolveActivityGameUi } from "./activity-points";
-export { EXCLUDED_LEADERBOARD_USERNAMES } from "./leaderboard-filter";
+export {
+  getExcludedLeaderboardUsernames,
+  parseExcludedLeaderboardUsernames,
+} from "./leaderboard-filter";
 
 /** Prisma client or interactive transaction client */
 export type DbClient = Omit<PrismaClient, '$connect' | '$disconnect' | '$on' | '$transaction' | '$use' | '$extends'>;

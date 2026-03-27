@@ -71,7 +71,7 @@ export default function PopularActivitiesChart({
 
   return (
     <div className="space-y-3">
-      {activities.map((activity, idx) => {
+      {activities.map((activity) => {
         const percentage = (activity.playCount / maxPlayCount) * 100;
         const icon = getActivityIcon(activity.type);
 

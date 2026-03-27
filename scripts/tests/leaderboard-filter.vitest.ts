@@ -1,16 +1,18 @@
 import { describe, expect, it } from "vitest";
 import {
   buildLeaderboardEligibleUserWhere,
-  EXCLUDED_LEADERBOARD_USERNAMES,
+  parseExcludedLeaderboardUsernames,
   isLeaderboardExcludedUser,
 } from "@/lib/gamification/leaderboard-filter";
+
+const explicitExclusions = parseExcludedLeaderboardUsernames("marlie,daniel,leah,matt");
 
 describe("leaderboard filter", () => {
   it("excludes system accounts from leaderboard queries", () => {
     expect(buildLeaderboardEligibleUserWhere()).toMatchObject({
       role: "student",
       isSystemAccount: false,
-      username: { notIn: EXCLUDED_LEADERBOARD_USERNAMES },
+      username: { notIn: [] },
     });
   });
 
@@ -40,7 +42,7 @@ describe("leaderboard filter", () => {
       isLeaderboardExcludedUser({
         username: "marlie",
         isSystemAccount: false,
-      })
+      }, explicitExclusions)
     ).toBe(true);
   });
 

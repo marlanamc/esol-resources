@@ -3,7 +3,6 @@
  * POST: Create a new independent learner account with invite code
  */
 
-import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
 import { apiError, apiSuccess, handleApiError } from '@/lib/api-response';

@@ -1,4 +1,5 @@
-// Re-export from new location for backward compatibility
+// Backward-compatible wrapper.
+// Canonical implementation lives in ./gamification/*.
 export {
   trackLogin,
   awardPoints,
@@ -12,6 +13,7 @@ export {
   POINTS,
   getActivityPoints,
   resolveActivityGameUi,
-  EXCLUDED_LEADERBOARD_USERNAMES,
+  getExcludedLeaderboardUsernames,
+  parseExcludedLeaderboardUsernames,
   type LeaderboardRange,
 } from "./gamification/gamification";

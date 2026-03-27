@@ -1,0 +1,34 @@
+name: Monthly Maintenance Report
+
+on:
+  schedule:
+    - cron: "0 14 1 * *"
+  workflow_dispatch:
+
+jobs:
+  monthly-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build monthly maintenance report
+        run: npm run report:maintenance -- --skip-vitest --write maintenance-monthly-report.md
+
+      - name: Publish report to job summary
+        run: cat maintenance-monthly-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload monthly report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: maintenance-monthly-report
+          path: maintenance-monthly-report.md

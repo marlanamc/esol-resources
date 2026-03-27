@@ -14,7 +14,7 @@ export default async function AccountPage() {
         redirect("/login");
     }
 
-    const role = (session.user as any).role === "teacher" ? "teacher" : "student";
+    const role = session.user.role === "teacher" ? "teacher" : "student";
 
     if (role === "teacher") {
         return (

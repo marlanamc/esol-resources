@@ -274,6 +274,7 @@ function shuffleArray<T>(array: T[]): T[] {
  * Reset selection context (e.g., when starting a new game session)
  */
 export function resetSelectionContext(_context: SelectionContext): SelectionContext {
+  void _context;
   return createSelectionContext();
 }
 

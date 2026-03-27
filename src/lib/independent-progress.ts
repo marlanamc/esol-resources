@@ -7,7 +7,6 @@
 
 import {
     INDEPENDENT_RECOMMENDATION_SEQUENCE,
-    getIndependentRecommendationConfigForActivity,
 } from "@/lib/independent-learning";
 
 // ============================================================================

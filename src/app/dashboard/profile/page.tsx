@@ -16,7 +16,6 @@ import { MiniCertificateCard, EmptyCertificateCard, NeedsImprovementCard } from 
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { qualifiesForMedal } from "@/lib/medal-utils";
 import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
-import { DeleteAccountSection } from "@/components/profile/DeleteAccountSection";
 
 // Force dynamic rendering to show real-time activity data
 export const dynamic = 'force-dynamic';

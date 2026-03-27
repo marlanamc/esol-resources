@@ -14,7 +14,8 @@ export {
   POINTS,
   getActivityPoints,
   resolveActivityGameUi,
-  EXCLUDED_LEADERBOARD_USERNAMES,
+  getExcludedLeaderboardUsernames,
+  parseExcludedLeaderboardUsernames,
   type LeaderboardRange,
 } from "./gamification";
 

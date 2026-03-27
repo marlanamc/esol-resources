@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import type { GIExercise, MatchPair } from '@/types/gerund-infinitive';
+import type { GIExercise } from '@/types/gerund-infinitive';
 
 interface Props {
   exercise: GIExercise;

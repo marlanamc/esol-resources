@@ -697,7 +697,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       }));
       return null;
     }
-  }, [activityId, assignmentId, state.roundResults, state.categoryProgress]);
+  }, [activityId, assignmentId, state.roundResults, state.categoryProgress, state.questionBank]);
 
   // Retry the same category
   const retryRound = useCallback(() => {
