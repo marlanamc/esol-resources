@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { Fragment, useCallback, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, BookOpen, Check, ChevronDown, FlaskConical, RotateCcw, Sparkles } from 'lucide-react';
 import type {
@@ -60,19 +60,53 @@ const autoLayoutStamps = (stamps: PlacedStamp[]): PlacedStamp[] => {
 };
 
 const CHEAT_SHEET = [
-  { label: 'Past Simple', pattern: 'Moment in past', example: 'He studied last night.', color: 'text-amber-700 dark:text-amber-300' },
-  { label: 'Present Simple', pattern: 'Repeated dots at NOW', example: 'He studies every day.', color: 'text-emerald-700 dark:text-emerald-300' },
-  { label: 'Future Simple', pattern: 'Moment in future', example: 'He will study tomorrow.', color: 'text-blue-700 dark:text-blue-300' },
-  { label: 'Past Continuous', pattern: 'Duration in past', example: 'He was studying at 8pm.', color: 'text-amber-700 dark:text-amber-300' },
-  { label: 'Present Continuous', pattern: 'Duration at NOW', example: 'He is studying right now.', color: 'text-emerald-700 dark:text-emerald-300' },
-  { label: 'Future Continuous', pattern: 'Duration in future', example: 'He will be studying all night.', color: 'text-blue-700 dark:text-blue-300' },
-  { label: 'Present Perfect', pattern: 'Arc from past → NOW', example: 'He has studied English.', color: 'text-emerald-700 dark:text-emerald-300' },
-  { label: 'Past Perfect', pattern: 'Arc in earlier past + moment in later past', example: 'He had studied before the test.', color: 'text-amber-700 dark:text-amber-300' },
-  { label: 'Future Perfect', pattern: 'Arc reaching into future', example: 'He will have studied by Friday.', color: 'text-blue-700 dark:text-blue-300' },
-  { label: 'Present Perfect Continuous', pattern: 'Ongoing link from past → NOW', example: 'He has been studying for hours.', color: 'text-emerald-700 dark:text-emerald-300' },
-  { label: 'Past Perfect Continuous', pattern: 'Ongoing link in earlier past + moment in later past', example: 'He had been studying when she called.', color: 'text-amber-700 dark:text-amber-300' },
-  { label: 'Future Perfect Continuous', pattern: 'Ongoing link reaching into future', example: 'He will have been studying for a year.', color: 'text-blue-700 dark:text-blue-300' },
+  { category: 'Simple', label: 'Past Simple', pattern: 'Moment in past', exampleLead: 'He ', exampleVerb: 'studied', exampleTail: ' last night.', color: 'text-amber-700 dark:text-amber-300' },
+  { category: 'Simple', label: 'Present Simple', pattern: 'Repeated dots at NOW', exampleLead: 'He ', exampleVerb: 'studies', exampleTail: ' every day.', color: 'text-emerald-700 dark:text-emerald-300' },
+  { category: 'Simple', label: 'Future Simple', pattern: 'Moment in future', exampleLead: 'He ', exampleVerb: 'will study', exampleTail: ' tomorrow.', color: 'text-blue-700 dark:text-blue-300' },
+  { category: 'Continuous', label: 'Past Continuous', pattern: 'Duration in past', exampleLead: 'He ', exampleVerb: 'was studying', exampleTail: ' at 8pm.', color: 'text-amber-700 dark:text-amber-300' },
+  { category: 'Continuous', label: 'Present Continuous', pattern: 'Duration at NOW', exampleLead: 'He ', exampleVerb: 'is studying', exampleTail: ' right now.', color: 'text-emerald-700 dark:text-emerald-300' },
+  { category: 'Continuous', label: 'Future Continuous', pattern: 'Duration in future', exampleLead: 'He ', exampleVerb: 'will be studying', exampleTail: ' all night.', color: 'text-blue-700 dark:text-blue-300' },
+  { category: 'Perfect', label: 'Present Perfect', pattern: 'Arc from past → NOW', exampleLead: 'He ', exampleVerb: 'has studied', exampleTail: ' English.', color: 'text-emerald-700 dark:text-emerald-300' },
+  { category: 'Perfect', label: 'Past Perfect', pattern: 'Arc in earlier past + moment in later past', exampleLead: 'He ', exampleVerb: 'had studied', exampleTail: ' before the test.', color: 'text-amber-700 dark:text-amber-300' },
+  { category: 'Perfect', label: 'Future Perfect', pattern: 'Arc reaching into future', exampleLead: 'He ', exampleVerb: 'will have studied', exampleTail: ' by Friday.', color: 'text-blue-700 dark:text-blue-300' },
+  { category: 'Perfect Continuous', label: 'Present Perfect Continuous', pattern: 'Ongoing link from past → NOW', exampleLead: 'He ', exampleVerb: 'has been studying', exampleTail: ' for hours.', color: 'text-emerald-700 dark:text-emerald-300' },
+  { category: 'Perfect Continuous', label: 'Past Perfect Continuous', pattern: 'Ongoing link in earlier past + moment in later past', exampleLead: 'He ', exampleVerb: 'had been studying', exampleTail: ' when she called.', color: 'text-amber-700 dark:text-amber-300' },
+  { category: 'Perfect Continuous', label: 'Future Perfect Continuous', pattern: 'Ongoing link reaching into future', exampleLead: 'He ', exampleVerb: 'will have been studying', exampleTail: ' for a year.', color: 'text-blue-700 dark:text-blue-300' },
 ];
+
+const CATEGORY_STYLES: Record<
+  string,
+  {
+    badge: string;
+    line: string;
+    label: string;
+  }
+> = {
+  Simple: {
+    badge:
+      'border-amber-300/50 bg-amber-100/80 text-amber-900 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200',
+    line: 'from-amber-400/60 via-amber-300/25 to-transparent dark:from-amber-300/45 dark:via-amber-200/15 dark:to-transparent',
+    label: 'single moments and habits',
+  },
+  Continuous: {
+    badge:
+      'border-teal-300/50 bg-teal-100/80 text-teal-900 dark:border-teal-500/30 dark:bg-teal-500/10 dark:text-teal-200',
+    line: 'from-teal-400/60 via-teal-300/25 to-transparent dark:from-teal-300/45 dark:via-teal-200/15 dark:to-transparent',
+    label: 'actions in progress',
+  },
+  Perfect: {
+    badge:
+      'border-violet-300/50 bg-violet-100/80 text-violet-900 dark:border-violet-500/30 dark:bg-violet-500/10 dark:text-violet-200',
+    line: 'from-violet-400/60 via-violet-300/25 to-transparent dark:from-violet-300/45 dark:via-violet-200/15 dark:to-transparent',
+    label: 'linked across time',
+  },
+  'Perfect Continuous': {
+    badge:
+      'border-rose-300/50 bg-rose-100/80 text-rose-900 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-200',
+    line: 'from-rose-400/60 via-rose-300/25 to-transparent dark:from-rose-300/45 dark:via-rose-200/15 dark:to-transparent',
+    label: 'ongoing links through time',
+  },
+};
 
 export function TimelineLab({ onBack }: TimelineLabProps) {
   const [selectedStamp, setSelectedStamp] = useState<TimelineElementType | null>(null);
@@ -230,19 +264,60 @@ export function TimelineLab({ onBack }: TimelineLabProps) {
               <div className="-mx-2 overflow-x-auto overscroll-x-contain px-2 pb-1">
                 <table className="min-w-[42rem] text-xs border-collapse">
                   <tbody>
-                    {CHEAT_SHEET.map(({ label, pattern, example, color }) => (
-                      <tr key={label} className="border-b border-border/20 last:border-0">
-                        <td className={`py-2 pr-4 font-black uppercase tracking-wide whitespace-nowrap w-px ${color}`}>
-                          {label}
-                        </td>
-                        <td className="py-2 pr-4 text-text-muted/60 font-medium min-w-[9rem]">
-                          {pattern}
-                        </td>
-                        <td className="py-2 text-text/70 font-medium italic whitespace-nowrap min-w-[12rem]">
-                          {example}
-                        </td>
-                      </tr>
-                    ))}
+                    {CHEAT_SHEET.map(({ category, label, pattern, exampleLead, exampleVerb, exampleTail, color }, index) => {
+                      const previousCategory = index > 0 ? CHEAT_SHEET[index - 1]?.category : null;
+                      const nextLabel = index < CHEAT_SHEET.length - 1 ? CHEAT_SHEET[index + 1]?.label : null;
+                      const startsCategory = index === 0 || previousCategory !== category;
+                      const endsBeforeFuture = nextLabel?.startsWith('Future ') ?? false;
+                      const categoryStyle = CATEGORY_STYLES[category];
+
+                      return (
+                        <Fragment key={label}>
+                          {startsCategory ? (
+                            <tr className="group">
+                              <td colSpan={3} className="pt-4 pb-3 first:pt-0">
+                                <div className="flex items-center gap-3">
+                                  <div
+                                    className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 shadow-sm ${categoryStyle.badge}`}
+                                  >
+                                    <span className="text-[10px] font-black uppercase tracking-[0.24em]">
+                                      {category}
+                                    </span>
+                                    <span className="text-[10px] font-semibold normal-case tracking-normal opacity-70">
+                                      {categoryStyle.label}
+                                    </span>
+                                  </div>
+                                  <div
+                                    className={`h-[3px] flex-1 rounded-full bg-gradient-to-r ${categoryStyle.line}`}
+                                  />
+                                </div>
+                              </td>
+                            </tr>
+                          ) : null}
+                          <tr
+                            className={`border-border/20 ${
+                              startsCategory
+                                ? 'border-t-2 border-t-text/35 dark:border-t-white/25'
+                                : endsBeforeFuture
+                                  ? ''
+                                  : 'border-b'
+                            } last:border-b-0`}
+                          >
+                            <td className={`py-2 pr-4 font-black uppercase tracking-wide whitespace-nowrap w-px ${color}`}>
+                              {label}
+                            </td>
+                            <td className="py-2 pr-4 text-text-muted/60 font-medium min-w-[9rem]">
+                              {pattern}
+                            </td>
+                            <td className="py-2 text-text/70 font-medium italic whitespace-nowrap min-w-[12rem]">
+                              <span>{exampleLead}</span>
+                              <span className={`font-black not-italic ${color}`}>{exampleVerb}</span>
+                              <span>{exampleTail}</span>
+                            </td>
+                          </tr>
+                        </Fragment>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
