@@ -46,6 +46,32 @@ function shouldHideStoryTemplateToken(word: string, inHint: boolean): {
   return { hide: false, nextInHint: false };
 }
 
+export function extractStoryBlankHint(
+  templateWords: string[],
+  blankIndex: number
+): string {
+  const hintWords: string[] = [];
+
+  for (let index = blankIndex + 1; index < templateWords.length; index += 1) {
+    const word = templateWords[index];
+
+    if (!word.startsWith('(') && hintWords.length === 0) {
+      break;
+    }
+
+    const cleanedWord = word.replace(/^\(/, '').replace(/\)$/, '');
+    if (cleanedWord.length > 0) {
+      hintWords.push(cleanedWord);
+    }
+
+    if (word.endsWith(')')) {
+      break;
+    }
+  }
+
+  return hintWords.join(' ');
+}
+
 export function buildStorySentenceReviewText(
   template: string,
   blanks: StoryBuilderQuestion["sentences"][number]["blanks"]
@@ -220,23 +246,30 @@ export function StoryBuilderExercise({
                 return templateWords.map((word, idx) => {
                 if (blankIndices.has(idx)) {
                   const blank = currentSentence.blanks.find((b) => b.index === idx)!;
+                  const blankHint = extractStoryBlankHint(templateWords, idx);
+                  const wordCount = blank.validAnswers[0].split(' ').length;
                   return (
-                    <input
-                      key={idx}
-                      ref={(el) => { inputRefs.current[idx] = el; }}
-                      type="text"
-                      value={inputs[idx] ?? ''}
-                      onChange={(e) => setInputs((prev) => ({ ...prev, [idx]: e.target.value }))}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && allFilled) handleCheckSentence();
-                      }}
-                      placeholder={`___(${blank.validAnswers[0].split(' ').length}w)`}
-                      autoCorrect="off"
-                      autoCapitalize="off"
-                      spellCheck={false}
-                      className="inline-block min-w-[90px] border-b-2 border-primary bg-transparent text-primary placeholder-primary/30 focus:outline-none focus:border-primary-dark text-xl font-display font-black text-center transition-colors"
-                      style={{ width: `${Math.max(8, (inputs[idx]?.length ?? 4) + 2)}ch` }}
-                    />
+                    <span key={idx} className="inline-flex flex-col items-center gap-1 align-middle">
+                      <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.18em] text-primary/60">
+                        {blankHint || 'verb'}
+                      </span>
+                      <input
+                        ref={(el) => { inputRefs.current[idx] = el; }}
+                        type="text"
+                        value={inputs[idx] ?? ''}
+                        onChange={(e) => setInputs((prev) => ({ ...prev, [idx]: e.target.value }))}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && allFilled) handleCheckSentence();
+                        }}
+                        placeholder={`___(${wordCount}w)`}
+                        aria-label={`Use the base verb ${blankHint || 'verb'}`}
+                        autoCorrect="off"
+                        autoCapitalize="off"
+                        spellCheck={false}
+                        className="inline-block min-w-[90px] border-b-2 border-primary bg-transparent text-primary placeholder-primary/30 focus:outline-none focus:border-primary-dark text-xl font-display font-black text-center transition-colors"
+                        style={{ width: `${Math.max(8, (inputs[idx]?.length ?? Math.max(blankHint.length, 4)) + 2)}ch` }}
+                      />
+                    </span>
                   );
                 }
                 if (word === '___') return null;

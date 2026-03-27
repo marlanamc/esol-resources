@@ -9,6 +9,7 @@ import {
   isErrorCorrectionAnswerCorrect,
 } from "@/components/games/TimelineTensesGame/exercises/ErrorCorrectionExercise";
 import {
+  extractStoryBlankHint,
   buildStorySentenceReviewText,
   StoryBuilderExercise,
 } from "@/components/games/TimelineTensesGame/exercises/StoryBuilderExercise";
@@ -69,6 +70,35 @@ describe("Timeline challenge exercise behavior", () => {
 
     expect(reviewText).toContain("was waiting");
     expect(reviewText).toContain("was feeling");
+  });
+
+  it("shows the base verb hint above story-builder blanks", () => {
+    const firstSentence = TIMELINE_STORY_QUESTIONS.find(
+      (question) => question.id === "story-03"
+    )?.sentences[0];
+
+    expect(firstSentence).toBeDefined();
+    if (!firstSentence) {
+      throw new Error("Expected story-03 first sentence");
+    }
+
+    const templateWords = firstSentence.template.split(/\s+/);
+    expect(extractStoryBlankHint(templateWords, firstSentence.blanks[0]?.index ?? -1)).toBe(
+      "visit"
+    );
+
+    const html = renderToStaticMarkup(
+      React.createElement(StoryBuilderExercise, {
+        question: TIMELINE_STORY_QUESTIONS.find((question) => question.id === "story-03") ?? storyQuestion,
+        onSubmit: () => {},
+        onNext: () => {},
+        showFeedback: false,
+        lastAnswerCorrect: null,
+      })
+    );
+
+    expect(html).toContain(">visit<");
+    expect(html).toContain("Use the base verb visit");
   });
 
   it("shows the completed story review in feedback", () => {
