@@ -235,13 +235,13 @@ export const TIMELINE_COMPARISON_QUESTIONS: TenseComparisonQuestion[] = [
   }),
   createComparisonQuestion({
     id: "comp-ps-pc-01",
-    promptText: "It rained for an hour.",
+    promptText: "It rained last night.",
     correctOption: "A",
     tenseA: "Past Simple",
     tenseB: "Past Continuous",
     canonA: "pastSimple",
     canonB: "pastContinuous",
-    optionA: "It rained for an hour.",
+    optionA: "It rained last night.",
     optionB: "It was raining when I left.",
     confusionExplanation:
       "Both are about the past, but one is a completed event and the other is background in progress.",
@@ -258,7 +258,7 @@ export const TIMELINE_COMPARISON_QUESTIONS: TenseComparisonQuestion[] = [
     tenseB: "Past Continuous",
     canonA: "pastSimple",
     canonB: "pastContinuous",
-    optionA: "It rained for an hour.",
+    optionA: "It rained last night.",
     optionB: "It was raining when I left.",
     confusionExplanation:
       "Students often hear the same verb and miss whether it is the main event or the background.",
