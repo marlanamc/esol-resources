@@ -189,4 +189,129 @@ export const TIMELINE_STORY_QUESTIONS: StoryBuilderQuestion[] = [
     difficulty: 1,
     tenseCategory: "mixed",
   },
+  {
+    id: "story-04",
+    type: "story-builder",
+    storyTitle: "Luis's Science Fair",
+    storyPrompt: "Follow Luis from his preparation to the end of the science fair.",
+    sentences: [
+      {
+        template: "For three nights before the fair, Luis ___ (build) his model volcano.",
+        targetTense: "Past Perfect Continuous",
+        elements: buildCanonicalTimelineElements(
+          "pastPerfectContinuous",
+          "story-04-s1",
+          [{ position: 45 }, { position: 30 }]
+        ),
+        blanks: [{ index: 7, validAnswers: ["had been building"] }],
+        contextHint:
+          'A duration leading up to a later past event points to Past Perfect Continuous.',
+      },
+      {
+        template: "When the judges arrived, he ___ (explain) the experiment to a small crowd.",
+        targetTense: "Past Continuous",
+        elements: [
+          ...buildCanonicalTimelineElements("pastContinuous", "story-04-s2-a", [
+            { position: 55 },
+          ]),
+          ...buildCanonicalTimelineElements("pastSimple", "story-04-s2-b", [
+            { position: 60 },
+          ]),
+        ],
+        blanks: [{ index: 5, validAnswers: ["was explaining"] }],
+        contextHint:
+          '"When the judges arrived" gives a past interruption, so the background action takes Past Continuous.',
+      },
+      {
+        template: "By lunchtime, Luis ___ (win) first prize for his project.",
+        targetTense: "Future Perfect",
+        elements: buildCanonicalTimelineElements("futurePerfect", "story-04-s3", [
+          { position: 65 },
+        ]),
+        blanks: [{ index: 3, validAnswers: ["will have won"] }],
+        contextHint:
+          '"By lunchtime" sets a future deadline, so use Future Perfect for the completed result.',
+      },
+      {
+        template: "Right now, his family ___ (celebrate) the news at his favorite restaurant.",
+        targetTense: "Present Continuous",
+        elements: buildCanonicalTimelineElements("presentContinuous", "story-04-s4"),
+        blanks: [{ index: 4, validAnswers: ["is celebrating", "are celebrating"] }],
+        contextHint: '"Right now" means the celebration is happening at this moment.',
+      },
+    ],
+    fullTimelineElements: [
+      ...buildCanonicalTimelineElements("pastPerfectContinuous", "story-04-full-a", [
+        { position: 45 },
+        { position: 30 },
+      ]),
+      ...buildCanonicalTimelineElements("pastContinuous", "story-04-full-b", [
+        { position: 55 },
+      ]),
+      ...buildCanonicalTimelineElements("pastSimple", "story-04-full-c", [
+        { position: 60 },
+      ]),
+      ...buildCanonicalTimelineElements("futurePerfect", "story-04-full-d", [
+        { position: 65 },
+      ]),
+      ...buildCanonicalTimelineElements("presentContinuous", "story-04-full-e"),
+    ],
+    difficulty: 3,
+    tenseCategory: "mixed",
+  },
+  {
+    id: "story-05",
+    type: "story-builder",
+    storyTitle: "Maya's Community Garden",
+    storyPrompt: "Build Maya's story across her usual garden routine and today's progress.",
+    sentences: [
+      {
+        template: "Before summer starts each year, Maya ___ (plant) tomatoes with her neighbors.",
+        targetTense: "Present Simple",
+        elements: buildCanonicalTimelineElements(
+          "presentSimpleHabit",
+          "story-05-s1"
+        ),
+        blanks: [{ index: 6, validAnswers: ["plants"] }],
+        contextHint:
+          'A repeated seasonal routine can still use Present Simple, and "before" provides the explicit time cue this story bank expects.',
+      },
+      {
+        template: "Right now, she ___ (work) in the garden after school this week.",
+        targetTense: "Present Continuous",
+        elements: buildCanonicalTimelineElements("presentContinuous", "story-05-s2"),
+        blanks: [{ index: 3, validAnswers: ["is working"] }],
+        contextHint:
+          'A temporary arrangement around the present, even with repeated actions, can take Present Continuous.',
+      },
+      {
+        template: "So far today, Maya and her brother ___ (fill) six new flower beds.",
+        targetTense: "Present Perfect",
+        elements: buildCanonicalTimelineElements("presentPerfect", "story-05-s3"),
+        blanks: [{ index: 7, validAnswers: ["have filled"] }],
+        contextHint:
+          '"So far" counts completed results connected to now, so Present Perfect fits.',
+      },
+      {
+        template: "By the end of the month, they ___ (create) a space for the whole neighborhood.",
+        targetTense: "Future Perfect",
+        elements: buildCanonicalTimelineElements("futurePerfect", "story-05-s4", [
+          { position: 70 },
+        ]),
+        blanks: [{ index: 7, validAnswers: ["will have created"] }],
+        contextHint:
+          '"By the end of the month" gives a future completion point, which calls for Future Perfect.',
+      },
+    ],
+    fullTimelineElements: [
+      ...buildCanonicalTimelineElements("presentSimpleHabit", "story-05-full-a"),
+      ...buildCanonicalTimelineElements("presentContinuous", "story-05-full-b"),
+      ...buildCanonicalTimelineElements("presentPerfect", "story-05-full-c"),
+      ...buildCanonicalTimelineElements("futurePerfect", "story-05-full-d", [
+        { position: 70 },
+      ]),
+    ],
+    difficulty: 2,
+    tenseCategory: "mixed",
+  },
 ];

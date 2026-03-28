@@ -254,4 +254,121 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
     difficulty: 3,
     tenseCategory: "perfect",
   },
+  {
+    id: "trans-prs-prsc-02",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Present Continuous",
+    sourceSentence: "They clean the classroom every afternoon.",
+    targetSentence: "They are cleaning the classroom right now.",
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-prs-prsc-02-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-prs-prsc-02-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["are cleaning"] }],
+    hint: 'Use "am/is/are + -ing" to shift from a routine to an action happening now.',
+    explanation:
+      'The source sentence describes a regular habit. Adding "right now" changes the meaning to an action in progress, so Present Continuous fits.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "trans-prs-pp-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Present Perfect",
+    sourceSentence: "We know that restaurant well.",
+    targetSentence: "We have eaten at that restaurant many times.",
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-prs-pp-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfect",
+      "trans-prs-pp-01-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["have eaten"] }],
+    hint: 'Use "have/has + past participle" when past experience explains present knowledge.',
+    explanation:
+      "The target sentence rewrites the idea as life experience connected to now. Present Perfect works because those past visits matter in the present.",
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "trans-pc-ppc-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Continuous",
+    targetTense: "Past Perfect Continuous",
+    sourceSentence: "They were waiting outside.",
+    targetSentence: "They had been waiting outside for an hour before the doors opened.",
+    sourceElements: buildCanonicalTimelineElements(
+      "pastContinuous",
+      "trans-pc-ppc-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "pastPerfectContinuous",
+      "trans-pc-ppc-01-target",
+      [{ position: 50 }, { position: 35 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["had been waiting"] }],
+    hint: 'Add "had been + -ing" and a later past reference point to show duration before another past event.',
+    explanation:
+      "Past Continuous only describes the background action. Past Perfect Continuous adds the idea that the waiting started earlier and continued up to another past moment.",
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "trans-fs-fpf-01",
+    type: "sentence-transformer",
+    sourceTense: "Future Simple",
+    targetTense: "Future Perfect",
+    sourceSentence: "She will submit the application next week.",
+    targetSentence: "By next Friday, she will have submitted the application.",
+    sourceElements: buildCanonicalTimelineElements(
+      "futureSimple",
+      "trans-fs-fpf-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "futurePerfect",
+      "trans-fs-fpf-01-target",
+      [{ position: 65 }]
+    ),
+    verbBlanks: [{ index: 4, validAnswers: ["will have submitted"] }],
+    hint: 'Use "will have + past participle" when the action will be complete before a future deadline.',
+    explanation:
+      'Future Perfect does more than predict the event. It places the speaker at a later future point and shows the action as already completed by then.',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "trans-ps-ppf-02",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Past Perfect",
+    sourceSentence: "The movie started before we found our seats.",
+    targetSentence: "The movie had started before we found our seats.",
+    sourceElements: [
+      ...buildCanonicalTimelineElements("pastSimple", "trans-ps-ppf-02-source-a", [
+        { position: 35 },
+      ]),
+      ...buildCanonicalTimelineElements("pastSimple", "trans-ps-ppf-02-source-b", [
+        { position: 65 },
+      ]),
+    ],
+    targetElements: buildCanonicalTimelineElements(
+      "pastPerfect",
+      "trans-ps-ppf-02-target",
+      [{ position: 35 }, { position: 55 }]
+    ),
+    verbBlanks: [{ index: 2, validAnswers: ["had started"] }],
+    hint: 'Use "had + past participle" for the earlier action in a two-event past sequence.',
+    explanation:
+      "Both events happened in the past, but the start came first. Past Perfect makes that sequence explicit and easier to read.",
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
 ];

@@ -186,4 +186,99 @@ export const TIMELINE_ERROR_QUESTIONS: ErrorCorrectionQuestion[] = [
     difficulty: 3,
     tenseCategory: "perfect-continuous",
   },
+  {
+    id: "err-s-07",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Right now, the baby sleeps in the stroller.",
+    incorrectElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "err-s-07-incorrect"
+    ),
+    correctSentence: "Right now, the baby is sleeping in the stroller.",
+    acceptedCorrections: ["is sleeping"],
+    correctElements: buildCanonicalTimelineElements("presentContinuous", "err-s-07-correct"),
+    incorrectTense: "Present Simple",
+    correctTense: "Present Continuous",
+    commonMistakeExplanation:
+      '"Right now" points to an action in progress at the moment of speaking. Present Simple sounds habitual, but the sentence needs Present Continuous.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "err-s-08",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "We have finished the meeting an hour ago.",
+    incorrectElements: buildCanonicalTimelineElements("presentPerfect", "err-s-08-incorrect"),
+    correctSentence: "We finished the meeting an hour ago.",
+    acceptedCorrections: ["finished"],
+    correctElements: buildCanonicalTimelineElements("pastSimple", "err-s-08-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Present Perfect",
+    correctTense: "Past Simple",
+    commonMistakeExplanation:
+      '"An hour ago" is a finished past time marker. That closes the event in the past, so Present Perfect is not natural here.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-s-09",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "By next Monday, they will finish the mural.",
+    incorrectElements: buildCanonicalTimelineElements("futureSimple", "err-s-09-incorrect", [
+      { position: 65 },
+    ]),
+    correctSentence: "By next Monday, they will have finished the mural.",
+    acceptedCorrections: ["will have finished"],
+    correctElements: buildCanonicalTimelineElements("futurePerfect", "err-s-09-correct", [
+      { position: 65 },
+    ]),
+    incorrectTense: "Future Simple",
+    correctTense: "Future Perfect",
+    commonMistakeExplanation:
+      '"By next Monday" sets a deadline before a future point. Future Perfect shows the mural as complete by that point, not merely happening sometime then.',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "err-t-04",
+    type: "error-correction",
+    errorLocation: "timeline",
+    incorrectSentence: "At noon tomorrow, I will be meeting the principal.",
+    incorrectElements: buildCanonicalTimelineElements("futureSimple", "err-t-04-incorrect", [
+      { position: 60 },
+    ]),
+    correctSentence: "At noon tomorrow, I will be meeting the principal.",
+    correctElements: buildCanonicalTimelineElements("futureContinuous", "err-t-04-correct", [
+      { position: 60 },
+    ]),
+    incorrectTense: "Future Simple (wrong)",
+    correctTense: "Future Continuous",
+    commonMistakeExplanation:
+      'The sentence focuses on a specific future moment and shows the meeting in progress then. The correct timeline needs a future duration shape, not a single future dot.',
+    difficulty: 2,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "err-t-05",
+    type: "error-correction",
+    errorLocation: "timeline",
+    incorrectSentence: "She has been teaching at this school since 2021.",
+    incorrectElements: buildCanonicalTimelineElements("presentPerfect", "err-t-05-incorrect"),
+    correctSentence: "She has been teaching at this school since 2021.",
+    correctElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "err-t-05-correct",
+      [{ position: 50 }]
+    ),
+    incorrectTense: "Present Perfect (wrong)",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      '"Since 2021" emphasizes an ongoing activity from the past to now. The timeline needs the continuing action shape of Present Perfect Continuous, not only a completed-result arc.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
 ];
