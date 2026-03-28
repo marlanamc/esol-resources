@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X, Lightbulb, ArrowRight, BookOpen } from 'lucide-react';
 import type { StoryBuilderQuestion } from '@/types/activity';
@@ -44,6 +44,51 @@ function shouldHideStoryTemplateToken(word: string, inHint: boolean): {
   }
 
   return { hide: false, nextInHint: false };
+}
+
+function getStoryVisibleTokens(
+  templateWords: string[],
+  blankIndices: Set<number>
+): Array<
+  | { type: 'word'; value: string; key: string }
+  | { type: 'blank'; key: string; blankNumber: number }
+> {
+  const tokens: Array<
+    | { type: 'word'; value: string; key: string }
+    | { type: 'blank'; key: string; blankNumber: number }
+  > = [];
+  let inHint = false;
+  let blankNumber = 0;
+
+  templateWords.forEach((word, idx) => {
+    if (blankIndices.has(idx)) {
+      blankNumber += 1;
+      tokens.push({
+        type: 'blank',
+        key: `blank-${idx}`,
+        blankNumber,
+      });
+      return;
+    }
+
+    if (word === '___') {
+      return;
+    }
+
+    const hintState = shouldHideStoryTemplateToken(word, inHint);
+    inHint = hintState.nextInHint;
+    if (hintState.hide) {
+      return;
+    }
+
+    tokens.push({
+      type: 'word',
+      value: word,
+      key: `word-${idx}`,
+    });
+  });
+
+  return tokens;
 }
 
 export function extractStoryBlankHint(
@@ -120,10 +165,20 @@ export function StoryBuilderExercise({
   const isLastSentence = currentSentenceIdx === question.sentences.length - 1;
   const templateWords = splitTemplate(currentSentence.template);
   const blankIndices = new Set(currentSentence.blanks.map((b) => b.index));
+  const visibleSentenceTokens = getStoryVisibleTokens(templateWords, blankIndices);
 
   const allFilled = currentSentence.blanks.every(
     (b) => (inputs[b.index]?.trim() ?? '') !== ''
   );
+
+  useEffect(() => {
+    const firstBlank = currentSentence.blanks[0];
+    if (!firstBlank) {
+      return;
+    }
+
+    inputRefs.current[firstBlank.index]?.focus();
+  }, [currentSentenceIdx, currentSentence.blanks]);
 
   const checkCurrentSentence = useCallback((): boolean => {
     return currentSentence.blanks.every((blank) => {
@@ -238,47 +293,82 @@ export function StoryBuilderExercise({
               </div>
             </div>
 
-            {/* Inline sentence with inputs */}
-            <div className="flex flex-wrap items-baseline gap-x-1.5 gap-y-3 text-xl sm:text-2xl font-display font-black text-text leading-relaxed">
-              {(() => {
-                let inHint = false;
-
-                return templateWords.map((word, idx) => {
-                if (blankIndices.has(idx)) {
-                  const blank = currentSentence.blanks.find((b) => b.index === idx)!;
-                  const blankHint = extractStoryBlankHint(templateWords, idx);
-                  const wordCount = blank.validAnswers[0].split(' ').length;
-                  return (
-                    <span key={idx} className="inline-flex flex-col items-center gap-1 align-middle">
-                      <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.18em] text-primary/60">
-                        {blankHint || 'verb'}
+            <div className="space-y-5">
+              <div className="rounded-[2rem] border border-white/20 bg-white/30 dark:bg-white/5 p-4 sm:p-5">
+                <div className="mb-3 text-[11px] sm:text-xs font-black uppercase tracking-[0.24em] text-primary/70">
+                  Read The Sentence
+                </div>
+                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-3 text-2xl sm:text-3xl font-display font-black text-text leading-relaxed">
+                  {visibleSentenceTokens.map((token) =>
+                    token.type === 'word' ? (
+                      <span key={token.key}>{token.value}</span>
+                    ) : (
+                      <span
+                        key={token.key}
+                        className="inline-flex items-center rounded-2xl border border-primary/30 bg-primary/10 px-3 py-1.5 text-base sm:text-lg font-black text-primary shadow-sm"
+                      >
+                        Blank {token.blankNumber}
                       </span>
-                      <input
-                        ref={(el) => { inputRefs.current[idx] = el; }}
-                        type="text"
-                        value={inputs[idx] ?? ''}
-                        onChange={(e) => setInputs((prev) => ({ ...prev, [idx]: e.target.value }))}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' && allFilled) handleCheckSentence();
-                        }}
-                        placeholder={`___(${wordCount}w)`}
-                        aria-label={`Use the base verb ${blankHint || 'verb'}`}
-                        autoCorrect="off"
-                        autoCapitalize="off"
-                        spellCheck={false}
-                        className="inline-block min-w-[90px] border-b-2 border-primary bg-transparent text-primary placeholder-primary/30 focus:outline-none focus:border-primary-dark text-xl font-display font-black text-center transition-colors"
-                        style={{ width: `${Math.max(8, (inputs[idx]?.length ?? Math.max(blankHint.length, 4)) + 2)}ch` }}
-                      />
-                    </span>
-                  );
-                }
-                if (word === '___') return null;
-                const hintState = shouldHideStoryTemplateToken(word, inHint);
-                inHint = hintState.nextInHint;
-                if (hintState.hide) return null;
-                return <span key={idx}>{word}</span>;
-              });
-              })()}
+                    )
+                  )}
+                </div>
+              </div>
+
+              <div className="rounded-[2rem] border border-primary/15 bg-[#0f2231]/30 dark:bg-[#0f2231]/40 p-4 sm:p-5">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <div className="text-[11px] sm:text-xs font-black uppercase tracking-[0.24em] text-primary/70">
+                    Fill In The Blanks
+                  </div>
+                  <div className="text-[11px] sm:text-xs font-bold text-text-muted">
+                    Type the full verb phrase
+                  </div>
+                </div>
+
+                <div className="grid gap-3 sm:gap-4">
+                  {currentSentence.blanks.map((blank, blankOrder) => {
+                    const blankHint = extractStoryBlankHint(templateWords, blank.index);
+                    const wordCount = blank.validAnswers[0].split(' ').length;
+
+                    return (
+                      <div
+                        key={blank.index}
+                        className="rounded-2xl border border-white/15 bg-white/40 dark:bg-white/5 p-3 sm:p-4"
+                      >
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                          <span className="inline-flex items-center rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-black uppercase tracking-[0.18em] text-primary">
+                            Blank {blankOrder + 1}
+                          </span>
+                          <span className="text-xs font-bold text-text-muted">
+                            Use the base verb {blankHint || 'verb'}
+                          </span>
+                          <span className="inline-flex items-center rounded-full bg-white/50 dark:bg-white/10 px-2 py-1 text-[11px] font-bold text-text-muted">
+                            {blankHint || 'verb'}
+                          </span>
+                          <span className="text-[11px] font-bold text-text-muted/80">
+                            {wordCount} word{wordCount === 1 ? '' : 's'}
+                          </span>
+                        </div>
+
+                        <input
+                          ref={(el) => { inputRefs.current[blank.index] = el; }}
+                          type="text"
+                          value={inputs[blank.index] ?? ''}
+                          onChange={(e) => setInputs((prev) => ({ ...prev, [blank.index]: e.target.value }))}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' && allFilled) handleCheckSentence();
+                          }}
+                          placeholder="Type answer here"
+                          aria-label={`Use the base verb ${blankHint || 'verb'}`}
+                          autoCorrect="off"
+                          autoCapitalize="off"
+                          spellCheck={false}
+                          className="w-full rounded-2xl border-2 border-primary/25 bg-white/85 dark:bg-[#102433] px-4 py-3 text-lg sm:text-xl font-bold text-text placeholder:text-text-muted/45 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
             {/* Inline feedback for the sentence */}
