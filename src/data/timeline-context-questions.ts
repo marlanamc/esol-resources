@@ -550,4 +550,384 @@ export const TIMELINE_CONTEXT_QUESTIONS: ContextTenseQuestion[] = [
     difficulty: 2,
     tenseCategory: "continuous",
   },
+  {
+    id: "ctx-16",
+    type: "context-tense-picker",
+    scenario:
+      "Every evening after dinner, my grandfather ___ (watch) the local news.",
+    blankVerb: "watch",
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "watches",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-16-a"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is watching",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-16-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "watched",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-16-c", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Every evening"],
+    explanation:
+      '"Every evening" signals a repeated routine. Present Simple is the standard tense for regular habits and schedules.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "ctx-17",
+    type: "context-tense-picker",
+    scenario:
+      "Yesterday after lunch, I ___ (drop) my keys under the bus seat.",
+    blankVerb: "drop",
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "dropped",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-17-a", [
+          { position: 50 },
+        ]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "was dropping",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-17-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have dropped",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-17-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Yesterday after lunch"],
+    explanation:
+      'A finished past time marker like "yesterday after lunch" calls for Past Simple. The dropping happened once at a closed moment in the past.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "ctx-18",
+    type: "context-tense-picker",
+    scenario:
+      "I think the doctor ___ (call) with the test results later this afternoon.",
+    blankVerb: "call",
+    options: [
+      {
+        tenseName: "Future Simple",
+        conjugatedVerb: "will call",
+        elements: buildCanonicalTimelineElements("futureSimple", "ctx-18-a", [
+          { position: 60 },
+        ]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Future Continuous",
+        conjugatedVerb: "will be calling",
+        elements: buildCanonicalTimelineElements("futureContinuous", "ctx-18-b", [
+          { position: 60 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Future Perfect",
+        conjugatedVerb: "will have called",
+        elements: buildCanonicalTimelineElements("futurePerfect", "ctx-18-c", [
+          { position: 60 },
+        ]),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["I think", "later this afternoon"],
+    explanation:
+      'The speaker is making a straightforward prediction about a future event. Future Simple is the most natural choice for that kind of prediction.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "ctx-19",
+    type: "context-tense-picker",
+    scenario:
+      "Right now, the mechanic ___ (check) the brakes on our car in the garage.",
+    blankVerb: "check",
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "checks",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-19-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is checking",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-19-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has checked",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-19-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Right now"],
+    explanation:
+      '"Right now" signals an action in progress. The mechanic is in the middle of the inspection, so Present Continuous is the best choice.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "ctx-20",
+    type: "context-tense-picker",
+    scenario:
+      "We can serve dinner now because Mom ___ (set) the table already.",
+    blankVerb: "set",
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "set",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-20-a", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has set",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-20-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "has been setting",
+        elements: buildCanonicalTimelineElements(
+          "presentPerfectContinuous",
+          "ctx-20-c",
+          [{ position: 50 }]
+        ),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["now", "already"],
+    explanation:
+      'The result matters in the present because dinner can happen now. Present Perfect fits a completed action with a current result.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "ctx-21",
+    type: "context-tense-picker",
+    scenario:
+      "By the time our flight lands tonight, the hotel shuttle ___ (arrive) at the airport.",
+    blankVerb: "arrive",
+    options: [
+      {
+        tenseName: "Future Simple",
+        conjugatedVerb: "will arrive",
+        elements: buildCanonicalTimelineElements("futureSimple", "ctx-21-a", [
+          { position: 60 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Future Perfect",
+        conjugatedVerb: "will have arrived",
+        elements: buildCanonicalTimelineElements("futurePerfect", "ctx-21-b", [
+          { position: 65 },
+        ]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Future Continuous",
+        conjugatedVerb: "will be arriving",
+        elements: buildCanonicalTimelineElements("futureContinuous", "ctx-21-c", [
+          { position: 65 },
+        ]),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["By the time", "tonight"],
+    explanation:
+      'The shuttle must be there before a later future event, the flight landing. Future Perfect shows that earlier completion clearly.',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "ctx-22",
+    type: "context-tense-picker",
+    scenario:
+      "Why ___ you ___ (wait) outside the clinic right now instead of going in?",
+    blankVerb: "wait",
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "do / wait",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-22-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "are / waiting",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-22-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have / waited",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-22-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Why", "right now"],
+    explanation:
+      'The speaker is asking about an action happening at this moment. Present Continuous is used for actions in progress, including question forms.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "ctx-23",
+    type: "context-tense-picker",
+    scenario:
+      "The social worker ___ (not call) us back yet, so we still do not know the appointment time.",
+    blankVerb: "call",
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "did not call",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-23-a", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has not called",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-23-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is not calling",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-23-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["yet", "still do not know"],
+    explanation:
+      'The expected call has not happened up to now, and the result still matters. Negative Present Perfect is the natural choice with "yet".',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "ctx-24",
+    type: "context-tense-picker",
+    scenario:
+      "Why ___ you ___ (cry) right now?",
+    blankVerb: "cry",
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "do / cry",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-24-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "are / crying",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-24-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "did / cry",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-24-c", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Why", "right now"],
+    explanation:
+      'This is a question about something happening at this moment, so Present Continuous is the correct form.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "ctx-25",
+    type: "context-tense-picker",
+    scenario:
+      "I ___ (not know) the answer yet.",
+    blankVerb: "know",
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "do not know",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-25-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have not known",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-25-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Simple (stative)",
+        conjugatedVerb: "do not know",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-25-c"),
+        isCorrect: true,
+      },
+    ],
+    contextClues: ["yet"],
+    explanation:
+      'With a stative verb like "know," English usually uses Present Simple, even in a negative sentence.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "ctx-26",
+    type: "context-tense-picker",
+    scenario:
+      "Did they ___ (eat) breakfast this morning?",
+    blankVerb: "eat",
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "eat",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-26-a", [
+          { position: 50 },
+        ]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have eaten",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-26-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "were eating",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-26-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Did", "this morning"],
+    explanation:
+      'This is a simple past question with a finished time. After "did," use the base verb form: "eat."',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
 ];

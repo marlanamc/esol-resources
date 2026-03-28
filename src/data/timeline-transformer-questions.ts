@@ -371,4 +371,231 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
     difficulty: 2,
     tenseCategory: "perfect",
   },
+  {
+    id: "trans-prsc-prs-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Continuous",
+    targetTense: "Present Simple",
+    sourceSentence: "She is wearing scrubs today.",
+    targetSentence: "She wears scrubs at work every day.",
+    sourceElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-prsc-prs-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-prsc-prs-01-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["wears"] }],
+    hint: 'Shift from a temporary action now to a regular routine with the base simple form.',
+    explanation:
+      "The source sentence describes today's temporary situation. The target sentence rewrites it as a general routine, so Present Simple is the natural choice.",
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-ps-prs-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Present Simple",
+    sourceSentence: "He cooked dinner for the family last night.",
+    targetSentence: "He cooks dinner for the family every Friday.",
+    sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-ps-prs-01-source", [
+      { position: 50 },
+    ]),
+    targetElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-ps-prs-01-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["cooks"] }],
+    hint: 'Replace the finished past event with a habitual meaning and use Present Simple.',
+    explanation:
+      "A single completed event becomes a repeated routine in the target sentence. That shift in meaning is what makes Present Simple work.",
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-fc-fs-01",
+    type: "sentence-transformer",
+    sourceTense: "Future Continuous",
+    targetTense: "Future Simple",
+    sourceSentence: "At 9 tonight, we will be driving to Hartford.",
+    targetSentence: "We will drive to Hartford tonight.",
+    sourceElements: buildCanonicalTimelineElements(
+      "futureContinuous",
+      "trans-fc-fs-01-source",
+      [{ position: 55 }]
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "futureSimple",
+      "trans-fc-fs-01-target",
+      [{ position: 55 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["will drive"] }],
+    hint: 'Use plain "will + base verb" when you are simply stating the future plan instead of focusing on progress at a future moment.',
+    explanation:
+      "Future Continuous zooms in on the action as it happens at a future point. Future Simple pulls back and states the trip as a simple future event.",
+    difficulty: 2,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-work-prs-prsc-03",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Present Continuous",
+    sourceSentence: "Mina answers customer emails every afternoon.",
+    targetSentence: "Mina is answering customer emails right now.",
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-work-prs-prsc-03-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-work-prs-prsc-03-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["is answering"] }],
+    hint: 'Change the routine into an action happening now with "is + -ing".',
+    explanation:
+      "The source sentence describes a workplace routine. The target sentence shifts to the same action in progress at the moment of speaking.",
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "trans-home-ps-pp-03",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Present Perfect",
+    sourceSentence: "Dad fixed the sink yesterday.",
+    targetSentence: "Dad has fixed the sink, so we can use it now.",
+    sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-home-ps-pp-03-source", [
+      { position: 50 },
+    ]),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfect",
+      "trans-home-ps-pp-03-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["has fixed"] }],
+    hint: 'Remove the closed past time and add a present result to support Present Perfect.',
+    explanation:
+      "The rewritten sentence keeps the home-repair idea but shifts the focus to the result that matters now.",
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "trans-travel-fs-fpf-02",
+    type: "sentence-transformer",
+    sourceTense: "Future Simple",
+    targetTense: "Future Perfect",
+    sourceSentence: "We will check in at the hotel tomorrow evening.",
+    targetSentence: "By tomorrow evening, we will have checked in at the hotel.",
+    sourceElements: buildCanonicalTimelineElements(
+      "futureSimple",
+      "trans-travel-fs-fpf-02-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "futurePerfect",
+      "trans-travel-fs-fpf-02-target",
+      [{ position: 65 }]
+    ),
+    verbBlanks: [{ index: 4, validAnswers: ["will have checked"] }],
+    hint: 'Use "will have + past participle" to show the action completed before a future point.',
+    explanation:
+      "Future Perfect turns the hotel check-in into a completed step by a future deadline rather than just a future event.",
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "trans-health-neg-prsc-ppc-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Continuous",
+    targetTense: "Present Perfect Continuous",
+    sourceSentence: "He is not sleeping well.",
+    targetSentence: "He has not been sleeping well for the past few days.",
+    sourceElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-health-neg-prsc-ppc-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "trans-health-neg-prsc-ppc-01-target",
+      [{ position: 50 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["has not been sleeping", "hasn't been sleeping"] }],
+    hint: 'Keep the negative meaning and add duration with "has not been + -ing".',
+    explanation:
+      "The target sentence turns a current negative situation into an ongoing recent problem that started before now and continues to the present.",
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "trans-question-ps-ppf-03",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Past Perfect",
+    sourceSentence: "Who called the nurse before the clinic opened?",
+    targetSentence: "Who had called the nurse before the clinic opened?",
+    sourceElements: [
+      ...buildCanonicalTimelineElements("pastSimple", "trans-question-ps-ppf-03-source-a", [
+        { position: 35 },
+      ]),
+      ...buildCanonicalTimelineElements("pastSimple", "trans-question-ps-ppf-03-source-b", [
+        { position: 65 },
+      ]),
+    ],
+    targetElements: buildCanonicalTimelineElements(
+      "pastPerfect",
+      "trans-question-ps-ppf-03-target",
+      [{ position: 35 }, { position: 55 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["had called"] }],
+    hint: 'In this question pattern, "had + past participle" stays together after "who".',
+    explanation:
+      "This keeps the interrogative form while clearly marking the phone call as the earlier past action.",
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "trans-beginner-neg-prsc-prs-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Continuous",
+    targetTense: "Present Simple",
+    sourceSentence: "She is not eating now.",
+    targetSentence: "She does not eat meat.",
+    sourceElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-beginner-neg-prsc-prs-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-beginner-neg-prsc-prs-01-target"
+    ),
+    verbBlanks: [{ index: 3, validAnswers: ["eat"] }],
+    hint: 'Use the base verb after "does not" in Present Simple.',
+    explanation:
+      "The source sentence is a negative action happening now. The target sentence becomes a general fact, so Present Simple is the better fit.",
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-beginner-question-prs-prsc-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Present Continuous",
+    sourceSentence: "Why do you run every day?",
+    targetSentence: "Why are you running now?",
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-beginner-question-prs-prsc-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-beginner-question-prs-prsc-01-target"
+    ),
+    verbBlanks: [{ index: 3, validAnswers: ["running"] }],
+    hint: 'Keep the question form and use "are + -ing" for the action happening now.',
+    explanation:
+      "The first question asks about a habit. The second question asks about something happening at this moment, so Present Continuous is correct.",
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
 ];

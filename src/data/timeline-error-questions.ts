@@ -281,4 +281,194 @@ export const TIMELINE_ERROR_QUESTIONS: ErrorCorrectionQuestion[] = [
     difficulty: 2,
     tenseCategory: "perfect-continuous",
   },
+  {
+    id: "err-s-10",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Every Saturday, we are clean the apartment together.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-s-10-incorrect"),
+    correctSentence: "Every Saturday, we clean the apartment together.",
+    acceptedCorrections: ["clean"],
+    correctElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "err-s-10-correct"
+    ),
+    incorrectTense: "Present Continuous",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      '"Every Saturday" shows a routine. The sentence needs Present Simple for a repeated habit, not a present-in-progress form.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-s-11",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Tomorrow morning, the clinic is open at 8 for walk-ins.",
+    incorrectElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "err-s-11-incorrect"
+    ),
+    correctSentence: "Tomorrow morning, the clinic will open at 8 for walk-ins.",
+    acceptedCorrections: ["will open"],
+    correctElements: buildCanonicalTimelineElements("futureSimple", "err-s-11-correct", [
+      { position: 60 },
+    ]),
+    incorrectTense: "Present Simple",
+    correctTense: "Future Simple",
+    commonMistakeExplanation:
+      'Because the sentence is making a plain future statement about tomorrow morning, "will open" is the cleaner target tense in this challenge set.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-t-06",
+    type: "error-correction",
+    errorLocation: "timeline",
+    incorrectSentence: "My brother drives to Worcester every weekday.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-t-06-incorrect", [
+      { position: 50 },
+    ]),
+    correctSentence: "My brother drives to Worcester every weekday.",
+    correctElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "err-t-06-correct"
+    ),
+    incorrectTense: "Past Simple (wrong)",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      'A routine like "every weekday" needs the repeated-habit timeline, not one finished past dot. The meaning is habitual, not completed.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-s-12",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Right now, the receptionist helps a patient on the phone.",
+    incorrectElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "err-s-12-incorrect"
+    ),
+    correctSentence: "Right now, the receptionist is helping a patient on the phone.",
+    acceptedCorrections: ["is helping"],
+    correctElements: buildCanonicalTimelineElements("presentContinuous", "err-s-12-correct"),
+    incorrectTense: "Present Simple",
+    correctTense: "Present Continuous",
+    commonMistakeExplanation:
+      '"Right now" points to an action happening at this moment. The sentence needs Present Continuous, not a habitual simple form.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "err-s-13",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "By the time we get to the station, the train will leave.",
+    incorrectElements: buildCanonicalTimelineElements("futureSimple", "err-s-13-incorrect", [
+      { position: 60 },
+    ]),
+    correctSentence: "By the time we get to the station, the train will have left.",
+    acceptedCorrections: ["will have left"],
+    correctElements: buildCanonicalTimelineElements("futurePerfect", "err-s-13-correct", [
+      { position: 65 },
+    ]),
+    incorrectTense: "Future Simple",
+    correctTense: "Future Perfect",
+    commonMistakeExplanation:
+      '"By the time" introduces a later reference point. The leaving must be complete before that point, so Future Perfect is required.',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "err-t-07",
+    type: "error-correction",
+    errorLocation: "timeline",
+    incorrectSentence: "At 6 tomorrow morning, we will be waiting at the airport.",
+    incorrectElements: buildCanonicalTimelineElements("futureSimple", "err-t-07-incorrect", [
+      { position: 60 },
+    ]),
+    correctSentence: "At 6 tomorrow morning, we will be waiting at the airport.",
+    correctElements: buildCanonicalTimelineElements("futureContinuous", "err-t-07-correct", [
+      { position: 60 },
+    ]),
+    incorrectTense: "Future Simple (wrong)",
+    correctTense: "Future Continuous",
+    commonMistakeExplanation:
+      'The sentence focuses on a specific future moment with an action in progress. The timeline should show future duration, not one finished future event.',
+    difficulty: 2,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "err-s-14",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Why you are waiting outside the pharmacy right now?",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-s-14-incorrect"),
+    correctSentence: "Why are you waiting outside the pharmacy right now?",
+    acceptedCorrections: ["are you waiting", "why are you waiting outside the pharmacy right now?"],
+    correctElements: buildCanonicalTimelineElements("presentContinuous", "err-s-14-correct"),
+    incorrectTense: "Present Continuous question form (wrong order)",
+    correctTense: "Present Continuous",
+    commonMistakeExplanation:
+      "The tense is correct, but English questions need auxiliary inversion. In Present Continuous questions, the auxiliary comes before the subject: 'Why are you waiting...?'",
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "err-s-15",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "She didn't has her blood test yet.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-s-15-incorrect", [
+      { position: 50 },
+    ]),
+    correctSentence: "She hasn't had her blood test yet.",
+    acceptedCorrections: ["hasn't had", "has not had"],
+    correctElements: buildCanonicalTimelineElements("presentPerfect", "err-s-15-correct"),
+    incorrectTense: "Past Simple / wrong auxiliary",
+    correctTense: "Present Perfect",
+    commonMistakeExplanation:
+      '"Yet" in a negative sentence usually calls for Present Perfect when the action is still unfinished now. The correct form is "hasn\'t had," not "didn\'t has."',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "err-s-16",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Why you are sad right now?",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-s-16-incorrect"),
+    correctSentence: "Why are you sad right now?",
+    acceptedCorrections: ["are you sad", "why are you sad right now?"],
+    correctElements: buildCanonicalTimelineElements("presentContinuous", "err-s-16-correct"),
+    incorrectTense: "Question word order (wrong)",
+    correctTense: "Present question form",
+    commonMistakeExplanation:
+      "In English questions, the auxiliary comes before the subject. We say 'Why are you sad?' not 'Why you are sad?'",
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-s-17",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "He doesn't goes to class on Friday.",
+    incorrectElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "err-s-17-incorrect"
+    ),
+    correctSentence: "He doesn't go to class on Friday.",
+    acceptedCorrections: ["go", "doesn't go", "does not go"],
+    correctElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "err-s-17-correct"
+    ),
+    incorrectTense: "Present Simple negative form (wrong verb form)",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      'After "doesn\'t," use the base verb. The correct form is "doesn\'t go," not "doesn\'t goes."',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
 ];
