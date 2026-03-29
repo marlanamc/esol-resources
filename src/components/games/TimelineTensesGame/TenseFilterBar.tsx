@@ -99,8 +99,6 @@ export function TenseFilterBar({
 }: TenseFilterBarProps) {
   return (
     <div className="w-full">
-      <h2 className="text-xl font-bold font-display text-text mb-6">Choose your Tenses</h2>
-
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
         {CATEGORY_CONFIG.map((category) => {
           const isSelected = category.id === 'all'
@@ -127,14 +125,6 @@ export function TenseFilterBar({
               }`}
             >
               {/* Level badge */}
-              {progress && (
-                <div className={`absolute -top-2 -right-1 px-2.5 py-1 rounded-full text-xs font-black shadow-lg transition-transform duration-300 ${
-                  isSelected ? `${style.activeBg} text-white scale-110` : 'bg-surface-elevated text-text-muted border border-border'
-                }`}>
-                  Tier {progress.level || 1}
-                </div>
-              )}
-
               <div className="flex flex-col gap-3">
                 <div
                   className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-colors duration-300 ${
@@ -182,11 +172,6 @@ export function TenseFilterBar({
                       transition={{ duration: 1, ease: "easeOut" }}
                     />
                   </div>
-                  {progress.level >= 5 && (
-                    <div className="mt-2 text-[10px] font-bold uppercase tracking-wide text-text-muted/50">
-                      Tier 5 reached - keep growing with new rounds
-                    </div>
-                  )}
                 </div>
               )}
 

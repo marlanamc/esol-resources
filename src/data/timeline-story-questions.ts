@@ -125,12 +125,13 @@ export const TIMELINE_STORY_QUESTIONS: StoryBuilderQuestion[] = [
       },
       {
         template: "By the end of the day, Jordan ___ (receive) an offer.",
-        targetTense: "Future Perfect",
-        elements: buildCanonicalTimelineElements("futurePerfect", "story-02-s4", [
+        targetTense: "Past Perfect",
+        elements: buildCanonicalTimelineElements("pastPerfect", "story-02-s4", [
+          { position: 30 },
           { position: 65 },
         ]),
-        blanks: [{ index: 7, validAnswers: ["will have received"] }],
-        contextHint: '"By the end of the day" = future deadline → Future Perfect.',
+        blanks: [{ index: 7, validAnswers: ["had received"] }],
+        contextHint: 'The story is set in the past. "By the end of the day" = a deadline that already passed → Past Perfect.',
       },
     ],
     fullTimelineElements: [
@@ -143,7 +144,8 @@ export const TIMELINE_STORY_QUESTIONS: StoryBuilderQuestion[] = [
         { position: 55 },
       ]),
       ...buildCanonicalTimelineElements("pastContinuous", "story-02-full-c"),
-      ...buildCanonicalTimelineElements("futurePerfect", "story-02-full-d", [
+      ...buildCanonicalTimelineElements("pastPerfect", "story-02-full-d", [
+        { position: 30 },
         { position: 65 },
       ]),
     ],
@@ -224,13 +226,14 @@ export const TIMELINE_STORY_QUESTIONS: StoryBuilderQuestion[] = [
       },
       {
         template: "By lunchtime, Luis ___ (win) first prize for his project.",
-        targetTense: "Future Perfect",
-        elements: buildCanonicalTimelineElements("futurePerfect", "story-04-s3", [
+        targetTense: "Past Perfect",
+        elements: buildCanonicalTimelineElements("pastPerfect", "story-04-s3", [
+          { position: 30 },
           { position: 65 },
         ]),
-        blanks: [{ index: 3, validAnswers: ["will have won"] }],
+        blanks: [{ index: 3, validAnswers: ["had won"] }],
         contextHint:
-          '"By lunchtime" sets a future deadline, so use Future Perfect for the completed result.',
+          'The story is set in the past. "By lunchtime" = a deadline that already passed in the story → Past Perfect.',
       },
       {
         template: "Right now, his family ___ (celebrate) the news at his favorite restaurant.",
@@ -251,7 +254,8 @@ export const TIMELINE_STORY_QUESTIONS: StoryBuilderQuestion[] = [
       ...buildCanonicalTimelineElements("pastSimple", "story-04-full-c", [
         { position: 60 },
       ]),
-      ...buildCanonicalTimelineElements("futurePerfect", "story-04-full-d", [
+      ...buildCanonicalTimelineElements("pastPerfect", "story-04-full-d", [
+        { position: 30 },
         { position: 65 },
       ]),
       ...buildCanonicalTimelineElements("presentContinuous", "story-04-full-e"),

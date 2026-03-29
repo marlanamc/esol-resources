@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X, Lightbulb, ArrowRight, ArrowDown } from 'lucide-react';
 import type { SentenceTransformerQuestion } from '@/types/activity';
@@ -51,6 +51,12 @@ export function SentenceTransformerExercise({
   const [showHint, setShowHint] = useState(false);
   const inputRefs = useRef<Record<number, HTMLInputElement | null>>({});
   const { playPing, playThump } = useTimelineAudio();
+
+  useEffect(() => {
+    setUserInputs(Object.fromEntries(question.verbBlanks.map((b) => [b.index, ''])));
+    setShowHint(false);
+    inputRefs.current = {};
+  }, [question.id]);
 
   const sourceSplit = elementsUseSplitPast(question.sourceElements);
   const targetSplit = elementsUseSplitPast(question.targetElements);

@@ -7,6 +7,7 @@ import type { SentenceForm } from '@/types/activity';
 interface SentenceFormFilterProps {
   selectedForm: SentenceForm | 'all';
   onSelectForm: (form: SentenceForm | 'all') => void;
+  compact?: boolean;
 }
 
 const FORM_CONFIG: Array<{
@@ -49,7 +50,31 @@ const FORM_CONFIG: Array<{
 export function SentenceFormFilter({
   selectedForm,
   onSelectForm,
+  compact = false,
 }: SentenceFormFilterProps) {
+  if (compact) {
+    return (
+      <div className="flex flex-wrap gap-2">
+        {FORM_CONFIG.map((form) => {
+          const isSelected = selectedForm === form.id;
+          return (
+            <button
+              key={form.id}
+              onClick={() => onSelectForm(form.id)}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-200 border ${
+                isSelected
+                  ? 'bg-primary text-white border-primary shadow-sm'
+                  : 'bg-white/40 dark:bg-white/5 text-text-muted border-border/30 hover:text-text hover:bg-white/60 dark:hover:bg-white/10'
+              }`}
+            >
+              {form.label}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div className="w-full">
       <h2 className="text-xl font-bold font-display text-text mb-6">Sentence Form</h2>

@@ -607,11 +607,17 @@ export function getTimelineQuestionCount(
 export function calculateTimelineOverallProgress(
   categoryProgress: Record<string, CategoryProgressLike>
 ): number {
-  const completedCount = REAL_TENSE_CATEGORIES.filter(
-    (category) => categoryProgress[category]?.completed
+  // Count completed individual categories, but also treat the 'all' key as
+  // a proxy for overall progress when students play in All Tenses mode.
+  const categoryKeys = [...REAL_TENSE_CATEGORIES, 'all'] as string[];
+  const completedCount = categoryKeys.filter(
+    (key) => categoryProgress[key]?.completed
   ).length;
 
-  return Math.round((completedCount / REAL_TENSE_CATEGORIES.length) * 100);
+  // Normalise against the number of real categories so 100% is still achievable
+  // by mastering individual categories; 'all' completion counts as one bonus credit
+  // capped at the total.
+  return Math.min(100, Math.round((completedCount / REAL_TENSE_CATEGORIES.length) * 100));
 }
 
 const PAST_CONNECTING_TYPES: TimelineElementType[] = [

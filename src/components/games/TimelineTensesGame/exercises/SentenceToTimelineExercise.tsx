@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Lightbulb } from 'lucide-react';
 import type {
@@ -73,6 +73,13 @@ export function SentenceToTimelineExercise({
   const [highlightZone, setHighlightZone] = useState<TimelineZone | null>(null);
   const [showHint, setShowHint] = useState(false);
   const { playPing, playThump } = useTimelineAudio();
+
+  useEffect(() => {
+    setSelectedStamp(null);
+    setPlacedStamps([]);
+    setHighlightZone(null);
+    setShowHint(false);
+  }, [question.id]);
 
   const CONNECTION_STAMPS: TimelineElementType[] = ['arc', 'solid-to-now'];
   const useSplitPast =

@@ -668,10 +668,10 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fpc-1',
     sentence: 'By 2027, I will have been living in the U.S. for 5 years.',
-    correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'future', position: 50 }],
+    correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 50 }],
     tenseName: 'Future Perfect Continuous',
     explanation:
-      'Future Perfect Continuous describes the duration of an action up to a specific future point. The dashed line shows the ongoing duration extending into the future.',
+      'Future Perfect Continuous describes the duration of an action up to a specific future point. The solid line extends from now into the future, ending at that deadline.',
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -682,7 +682,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'timeline-to-verb',
     id: 'fpc-verb-1',
     timelineElements: [
-      { id: 'e1', type: 'solid-to-now', zone: 'future', position: 60, verbLabel: 'live' },
+      { id: 'e1', type: 'solid-to-point', zone: 'future', position: 60, verbLabel: 'live' },
     ],
     sentenceTemplate: 'By 2027, I ___[live]___ in the U.S. for 5 years.',
     blanks: [
@@ -2978,7 +2978,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
   // Mixed: Future Perfect + Sequence (Finish + Come)
   {
     type: 'sentence-to-timeline',
-    id: 'mixed-future-1',
+    id: 'mixed-future-perf-1',
     sentence: 'I will have finished my homework by the time you come over.',
     correctElements: [
       { id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 },
@@ -3086,8 +3086,8 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-pc-neg-1',
     sentence: 'I wasn\'t sleeping when you called.',
     correctElements: [
-      { id: 'e1', type: 'solid-line', zone: 'past', position: 50 },
-      { id: 'e2', type: 'single-dot', zone: 'past', position: 50 },
+      { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
     ],
     tenseName: 'Past Continuous + Past Simple',
     explanation: 'A negative continuous state in the past that was interrupted by a specific moment.',
@@ -3101,8 +3101,8 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-sequence-neg-1',
     sentence: 'She hadn\'t studied before she took the test.',
     correctElements: [
-      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 50 },
-      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 20 },
+      { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
     ],
     tenseName: 'Past Perfect + Past Simple',
     explanation: 'A lack of an action in the earlier past ("hadn\'t studied") leading up to an event in the later past ("took").',

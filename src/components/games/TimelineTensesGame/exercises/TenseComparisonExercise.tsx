@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X, Lightbulb, ArrowRight } from 'lucide-react';
 import type { TenseComparisonPromptType, TenseComparisonQuestion } from '@/types/activity';
@@ -53,10 +53,15 @@ export function TenseComparisonExercise({
   lastAnswerCorrect,
 }: TenseComparisonExerciseProps) {
   const [selected, setSelected] = useState<'A' | 'B' | null>(null);
-  const [optionOrder] = useState<Array<'A' | 'B'>>(() =>
+  const [optionOrder, setOptionOrder] = useState<Array<'A' | 'B'>>(() =>
     getTenseComparisonOptionOrder(Math.random())
   );
   const { playPing, playThump } = useTimelineAudio();
+
+  useEffect(() => {
+    setSelected(null);
+    setOptionOrder(getTenseComparisonOptionOrder(Math.random()));
+  }, [question.id]);
 
   const splitA = elementsUseSplitPast(question.elementsA);
   const splitB = elementsUseSplitPast(question.elementsB);
@@ -84,6 +89,8 @@ export function TenseComparisonExercise({
     return { label, elements, sentence, tenseName, useSplit };
   });
   const correctTenseName = question.correctOption === 'A' ? question.tenseA : question.tenseB;
+  // Map the data label (A/B) to the display label the student actually sees on screen
+  const correctDisplayLabel = optionOrder.indexOf(question.correctOption) === 0 ? optionOrder[0] : optionOrder[1];
 
   return (
     <div className="px-2 sm:px-0 max-w-full overflow-hidden">
@@ -203,7 +210,7 @@ export function TenseComparisonExercise({
                     {lastAnswerCorrect ? 'Stellar Work!' : 'Almost There'}
                   </h3>
                   <p className="text-text-muted text-sm font-medium mt-1">
-                    Correct match: Timeline {question.correctOption} = {correctTenseName}
+                    Correct match: Timeline {correctDisplayLabel} = {correctTenseName}
                   </p>
                 </div>
               </div>

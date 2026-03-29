@@ -13,7 +13,7 @@ import { TIMELINE_COMPARISON_QUESTIONS } from '@/data/timeline-comparison-questi
 import { TIMELINE_TRANSFORMER_QUESTIONS } from '@/data/timeline-transformer-questions';
 import { TIMELINE_CONTEXT_QUESTIONS } from '@/data/timeline-context-questions';
 import { TIMELINE_ERROR_QUESTIONS } from '@/data/timeline-error-questions';
-import { TIMELINE_STORY_QUESTIONS } from '@/data/timeline-story-questions';
+// import { TIMELINE_STORY_QUESTIONS } from '@/data/timeline-story-questions'; // Temporarily disabled — story questions need full audit before going live
 import {
   CATEGORIZED_TUTORIAL_QUESTIONS,
   TUTORIAL_COMPLETED_KEY,
@@ -278,7 +278,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
           ...TIMELINE_TRANSFORMER_QUESTIONS,
           ...TIMELINE_CONTEXT_QUESTIONS,
           ...TIMELINE_ERROR_QUESTIONS,
-          ...TIMELINE_STORY_QUESTIONS,
+          // ...TIMELINE_STORY_QUESTIONS, // Temporarily disabled
         ];
 
         setState((prev) => ({

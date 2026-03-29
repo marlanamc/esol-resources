@@ -7,10 +7,7 @@ import {
   ArrowLeft,
   BookMarked,
   BookOpen,
-  Clock,
   FlaskConical,
-  Zap,
-  Trophy,
   ChevronRight,
   Info,
   RotateCcw,
@@ -30,7 +27,7 @@ import { SentenceTransformerExercise } from './exercises/SentenceTransformerExer
 import { ContextTenseExercise } from './exercises/ContextTenseExercise';
 import { ErrorCorrectionExercise } from './exercises/ErrorCorrectionExercise';
 import { StoryBuilderExercise } from './exercises/StoryBuilderExercise';
-import { ChallengeModePicker } from './ChallengeModePicker';
+import { ModeSelector } from './ModeSelector';
 import { TimelineLab } from './TimelineLab';
 import { ResultsScreen } from './ResultsScreen';
 import { TutorialIntroScreen } from './TutorialIntroScreen';
@@ -186,6 +183,17 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   const totalRoundQuestions = state.roundQuestions.length;
   const totalTutorialQuestions = TIMELINE_TUTORIAL_QUESTIONS.length;
 
+  function StepLabel({ step, label }: { step: number; label: string }) {
+    return (
+      <div className="flex items-center gap-2 mb-5">
+        <span className="w-6 h-6 rounded-full bg-primary text-white text-xs font-black flex items-center justify-center flex-shrink-0">
+          {step}
+        </span>
+        <span className="text-xs font-black uppercase tracking-[0.18em] text-text-muted/70">{label}</span>
+      </div>
+    );
+  }
+
   const TENSE_LABELS: Record<string, string> = {
     all: 'All Tenses',
     simple: 'Simple',
@@ -307,10 +315,11 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
 
               {/* Selection Sections */}
               <div className="flex flex-col gap-8">
+                {/* Timeline Practice Lab */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 }}
+                  transition={{ delay: 0.1 }}
                   className="flex justify-center"
                 >
                   <button
@@ -320,18 +329,22 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     <span className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.55),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.18),transparent_30%)] opacity-90 transition-opacity group-hover:opacity-100 dark:bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.10),transparent_30%)]" />
                     <span className="absolute inset-[1px] rounded-full bg-gradient-to-r from-[#fff1cf]/90 via-[#ffe0ea]/80 to-[#e0f5ff]/90 dark:from-amber-300/12 dark:via-rose-300/10 dark:to-cyan-300/12" />
                     <span className="relative flex items-center gap-3">
-                    <FlaskConical size={18} />
-                    <span>Timeline Practice Lab</span>
+                      <FlaskConical size={18} />
+                      <span>Timeline Practice Lab</span>
                     </span>
                   </button>
                 </motion.div>
 
-                {/* Choose Tenses */}
+                {/* Step 1: Choose Tenses */}
                 <motion.div
-                   initial={{ opacity: 0, y: 10 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   transition={{ delay: 0.2 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
                 >
+                  <StepLabel step={1} label="Choose Your Tenses" />
+                  <p className="text-sm text-text-muted/60 font-medium mb-5 -mt-2">
+                    Pick one tense to focus on, or mix a few together for variety.
+                  </p>
                   <TenseFilterBar
                     selectedCategories={state.selectedCategories}
                     categoryProgress={state.categoryProgress}
@@ -339,97 +352,41 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                   />
                 </motion.div>
 
-                {/* Choose Practice Mode */}
+                {/* Step 2: Choose Mode */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
+                  transition={{ delay: 0.2 }}
                 >
-                  <h2 className="text-xl font-bold font-display text-text mb-6">Practice Mode</h2>
-
-                  <div className="grid grid-cols-3 gap-4">
-                    {([
-                      { id: 'read-the-timeline' as const, icon: <Clock size={24} />, label: 'Read', desc: 'Timeline → Verb' },
-                      { id: 'build-the-timeline' as const, icon: <Zap size={24} />, label: 'Build', desc: 'Sentence → Map' },
-                      { id: 'mixed-practice' as const, icon: <Trophy size={24} />, label: 'Mixed', desc: 'Both modes' },
-                    ]).map((mode) => {
-                      const isActive = state.selectedPracticeMode === mode.id;
-                      return (
-                        <motion.button
-                          key={mode.id}
-                          onClick={() => selectPracticeMode(mode.id)}
-                          whileHover={{ y: -2, scale: 1.01 }}
-                          whileTap={{ scale: 0.98 }}
-                          className={`group relative p-4 sm:p-5 rounded-3xl border-2 text-left transition-all duration-300 ${
-                            isActive
-                              ? 'border-primary bg-white dark:bg-[#162b3d] shadow-xl'
-                              : 'border-transparent bg-white/40 dark:bg-white/5 backdrop-blur-md hover:bg-white/60 dark:hover:bg-white/10 shadow-sm'
-                          }`}
-                        >
-                          <div className="flex flex-col items-center sm:items-start gap-3">
-                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 ${
-                              isActive
-                                ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-110'
-                                : 'bg-surface-elevated text-text-muted group-hover:bg-primary/10 group-hover:text-primary'
-                            }`}>
-                              {mode.icon}
-                            </div>
-                            <div className="text-center sm:text-left">
-                              <div className={`font-bold text-base transition-colors ${isActive ? 'text-text' : 'text-text-muted group-hover:text-text'}`}>
-                                {mode.label}
-                              </div>
-                              <div className="text-xs text-text-muted/60 font-medium mt-1">
-                                {mode.desc}
-                              </div>
-                            </div>
-                          </div>
-                          {isActive && (
-                            <motion.div
-                              layoutId="mode-active-bg"
-                              className="absolute inset-0 rounded-3xl bg-primary/5 blur-2xl -z-10 opacity-50"
-                              transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                            />
-                          )}
-                        </motion.button>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-
-                {/* Challenge Modes */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.35 }}
-                >
-                  <ChallengeModePicker
+                  <StepLabel step={2} label="Choose Your Mode" />
+                  <ModeSelector
                     selectedMode={state.selectedPracticeMode}
                     categoryProgress={state.categoryProgress}
                     onSelectMode={selectPracticeMode}
                   />
                 </motion.div>
 
-                {/* Choose Form — hidden for challenge modes */}
-                {!isChallengeMode(state.selectedPracticeMode) && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <SentenceFormFilter
-                    selectedForm={state.selectedSentenceForm}
-                    onSelectForm={(form: SentenceForm | 'all') => selectSentenceForm(form)}
-                  />
-                </motion.div>
-                )}
-
                 {/* Start Game */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
+                  transition={{ delay: 0.3 }}
                   className="mb-12 rounded-[2rem] border border-white/30 bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl p-5 sm:p-6 shadow-xl"
                 >
+                  {/* Sentence Form — compact pills, hidden for challenge modes */}
+                  {!isChallengeMode(state.selectedPracticeMode) && (
+                    <div className="mb-5">
+                      <p className="text-xs font-black uppercase tracking-[0.18em] text-text-muted/50 mb-3">
+                        Sentence Form
+                      </p>
+                      <SentenceFormFilter
+                        selectedForm={state.selectedSentenceForm}
+                        onSelectForm={(form: SentenceForm | 'all') => selectSentenceForm(form)}
+                        compact
+                      />
+                    </div>
+                  )}
+
                   <p className="text-center text-xs font-black uppercase tracking-[0.2em] text-text-muted/50 mb-4">
                     Current Selection
                   </p>
@@ -465,6 +422,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                       No questions available. Try different filters.
                     </p>
                   )}
+
                 </motion.div>
               </div>
             </motion.div>
