@@ -25,7 +25,7 @@ const CATEGORY_CONFIG: Array<{
     label: 'All Tenses',
     shortLabel: 'All',
     icon: Layers,
-    description: 'Common forms first, advanced later',
+    description: 'A bit of everything',
     color: 'slate',
   },
   {
@@ -33,7 +33,7 @@ const CATEGORY_CONFIG: Array<{
     label: 'Simple',
     shortLabel: 'Simple',
     icon: Zap,
-    description: 'Past, Present, Future Simple',
+    description: 'Facts, habits & finished actions',
     color: 'blue',
   },
   {
@@ -41,7 +41,7 @@ const CATEGORY_CONFIG: Array<{
     label: 'Continuous',
     shortLabel: 'Cont.',
     icon: Clock,
-    description: 'Actions in progress',
+    description: 'What was happening at that moment',
     color: 'green',
   },
   {
@@ -49,7 +49,7 @@ const CATEGORY_CONFIG: Array<{
     label: 'Perfect',
     shortLabel: 'Perf.',
     icon: Link2,
-    description: 'Completed actions with connection',
+    description: 'Past that still matters right now',
     color: 'purple',
   },
   {
@@ -57,7 +57,7 @@ const CATEGORY_CONFIG: Array<{
     label: 'Perfect Continuous',
     shortLabel: 'Perf. Cont.',
     icon: Clock,
-    description: 'Duration up to a point',
+    description: 'How long something has been happening',
     color: 'amber',
   },
   {
@@ -65,7 +65,7 @@ const CATEGORY_CONFIG: Array<{
     label: 'Mixed',
     shortLabel: 'Mixed',
     icon: Layers,
-    description: 'Sentences with 2+ verbs',
+    description: 'Two things — two different times',
     color: 'rose',
   },
 ];

@@ -21,6 +21,7 @@ const LEGEND = [
 
 const TENSES: {
   tense: string;
+  meaning: string;
   color: string;
   category: string;
   affirmative: string;
@@ -30,6 +31,7 @@ const TENSES: {
 }[] = [
   {
     tense: 'Present Simple',
+    meaning: 'habits, facts, routines',
     color: 'text-emerald-700 dark:text-emerald-300',
     category: 'Simple',
     affirmative: 'subject + V1 / V1-3rd',
@@ -39,6 +41,7 @@ const TENSES: {
   },
   {
     tense: 'Past Simple',
+    meaning: 'finished action — done and over',
     color: 'text-amber-700 dark:text-amber-300',
     category: 'Simple',
     affirmative: 'subject + V2',
@@ -48,6 +51,7 @@ const TENSES: {
   },
   {
     tense: 'Future Simple',
+    meaning: 'decisions, predictions, promises',
     color: 'text-blue-700 dark:text-blue-300',
     category: 'Simple',
     affirmative: 'subject + will + V1',
@@ -57,6 +61,7 @@ const TENSES: {
   },
   {
     tense: 'Present Continuous',
+    meaning: 'happening right now, or arranged soon',
     color: 'text-emerald-700 dark:text-emerald-300',
     category: 'Continuous',
     affirmative: 'subject + am/is/are + V1-ing',
@@ -66,6 +71,7 @@ const TENSES: {
   },
   {
     tense: 'Past Continuous',
+    meaning: 'the background scene — was in progress',
     color: 'text-amber-700 dark:text-amber-300',
     category: 'Continuous',
     affirmative: 'subject + was/were + V1-ing',
@@ -75,6 +81,7 @@ const TENSES: {
   },
   {
     tense: 'Future Continuous',
+    meaning: 'will be in progress at a future moment',
     color: 'text-blue-700 dark:text-blue-300',
     category: 'Continuous',
     affirmative: 'subject + will be + V1-ing',
@@ -84,6 +91,7 @@ const TENSES: {
   },
   {
     tense: 'Present Perfect',
+    meaning: 'past that still matters right now',
     color: 'text-emerald-700 dark:text-emerald-300',
     category: 'Perfect',
     affirmative: 'subject + have/has + V3',
@@ -93,6 +101,7 @@ const TENSES: {
   },
   {
     tense: 'Past Perfect',
+    meaning: 'the earlier of two past events',
     color: 'text-amber-700 dark:text-amber-300',
     category: 'Perfect',
     affirmative: 'subject + had + V3',
@@ -102,6 +111,7 @@ const TENSES: {
   },
   {
     tense: 'Future Perfect',
+    meaning: 'will be finished before a future moment',
     color: 'text-blue-700 dark:text-blue-300',
     category: 'Perfect',
     affirmative: 'subject + will + have + V3',
@@ -111,6 +121,7 @@ const TENSES: {
   },
   {
     tense: 'Present Perfect Continuous',
+    meaning: 'still happening — how long so far',
     color: 'text-emerald-700 dark:text-emerald-300',
     category: 'Perfect Continuous',
     affirmative: 'subject + have/has + been + V1-ing',
@@ -120,6 +131,7 @@ const TENSES: {
   },
   {
     tense: 'Past Perfect Continuous',
+    meaning: 'how long before a past moment',
     color: 'text-amber-700 dark:text-amber-300',
     category: 'Perfect Continuous',
     affirmative: 'subject + had + been + V1-ing',
@@ -129,6 +141,7 @@ const TENSES: {
   },
   {
     tense: 'Future Perfect Continuous',
+    meaning: 'how long by a future deadline',
     color: 'text-blue-700 dark:text-blue-300',
     category: 'Perfect Continuous',
     affirmative: 'subject + will have been + V1-ing',
@@ -240,13 +253,18 @@ export function TenseFormulaModal({ isOpen, onClose }: TenseFormulaModalProps) {
                       <div className="overflow-x-auto -mx-1 px-1">
                       <table className="min-w-full text-xs border-collapse">
                         <tbody>
-                          {rows.map(({ tense, color, affirmative, negative, question, example }) => {
+                          {rows.map(({ tense, meaning, color, affirmative, negative, question, example }) => {
                             const formula = form === 'affirmative' ? affirmative : form === 'negative' ? negative : question;
                             const ex = example[form];
                             return (
                               <tr key={tense} className="border-b border-border/15 last:border-0">
-                                <td className={`py-2.5 pr-4 font-black text-[11px] uppercase tracking-wide whitespace-nowrap w-px ${color}`}>
-                                  {tense}
+                                <td className="py-2.5 pr-4 w-px">
+                                  <div className={`font-black text-[11px] uppercase tracking-wide whitespace-nowrap ${color}`}>
+                                    {tense}
+                                  </div>
+                                  <div className="text-[10px] text-text-muted/50 font-medium whitespace-nowrap mt-0.5">
+                                    {meaning}
+                                  </div>
                                 </td>
                                 <td className="py-2.5 pr-4 text-text-muted font-medium whitespace-nowrap">
                                   <FormulaText text={formula} />
