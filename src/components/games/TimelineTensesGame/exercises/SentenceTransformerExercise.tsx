@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X, Lightbulb, ArrowRight, ArrowDown, BookMarked } from 'lucide-react';
 import type { SentenceTransformerQuestion } from '@/types/activity';
 import { TimelineCanvas } from '../TimelineCanvas';
+import { InlineInfoTooltip } from '../InlineInfoTooltip';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import { areExerciseAnswersEquivalent } from '@/lib/exercise-answer-normalization';
@@ -312,7 +313,7 @@ export function SentenceTransformerExercise({
               <div className="mb-5 p-5 bg-white/40 dark:bg-white/5 rounded-3xl border border-white/20">
                 <div className="text-xs font-black uppercase tracking-[0.2em] text-text-muted/40 mb-3">Correct Transformation:</div>
                 <p className="text-xl sm:text-2xl font-display font-black text-text">&ldquo;{highlightTimeClues(question.targetSentence)}&rdquo;</p>
-                <p className="text-[10px] text-text-muted/40 font-medium mt-2">Highlighted words are time clues.</p>
+                <InlineInfoTooltip text="Highlighted words are time clues." className="mt-2" />
               </div>
 
               {/* Grammar explanation */}

@@ -6,6 +6,7 @@ import type { RealLifeDialogue, ValidVerbAnswer } from '@/types/activity';
 import {
   type TimelineVerbBlankResult,
 } from './timelineTensesUtils';
+import { InlineInfoTooltip } from './InlineInfoTooltip';
 import { TenseDialogueCard } from './TenseDialogueCard';
 import { highlightSentenceFeatures, highlightTimeClues } from './highlightUtils';
 
@@ -139,9 +140,7 @@ export function FeedbackPanel({
           <p className="text-xl sm:text-2xl font-display font-black text-text leading-snug tracking-tight">
             {highlightTimeClues(correctSentence)}
           </p>
-          <p className="text-[10px] text-text-muted/40 font-medium mt-3">
-            Highlighted words are time clues — they signal which tense to use.
-          </p>
+          <InlineInfoTooltip text="Highlighted words are time clues — they signal which tense to use." />
         </div>
       )}
 
@@ -154,9 +153,7 @@ export function FeedbackPanel({
           <p className="text-xl sm:text-2xl font-display font-black text-text leading-snug tracking-tight">
             &ldquo;{highlightSentenceFeatures(sentence, verbPhrase)}&rdquo;
           </p>
-          <p className="text-[10px] text-text-muted/40 font-medium mt-3">
-            Highlighted words are time clues. Underlined words are the verb phrase.
-          </p>
+          <InlineInfoTooltip text="Highlighted words are time clues. Underlined words are the verb phrase." />
         </div>
       )}
 

@@ -12,6 +12,7 @@ import type {
 import { TimelineCanvas } from '../TimelineCanvas';
 import { StampToolkit } from '../StampToolkit';
 import { FeedbackPanel } from '../FeedbackPanel';
+import { InlineInfoTooltip } from '../InlineInfoTooltip';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import type { TimelineDrawingAnswer } from '../hooks/useTimelineTensesState';
 import {
@@ -207,9 +208,7 @@ export function SentenceToTimelineExercise({
         <div className="text-3xl sm:text-4xl font-display font-black text-text leading-[1.15] tracking-tight">
           &ldquo;{highlightSentenceFeatures(question.sentence, question.verbPhrase)}&rdquo;
         </div>
-        <p className="mt-4 text-[11px] font-medium text-text-muted/50">
-          Highlighted words are time clues. Underlined words are the verb phrase.
-        </p>
+        <InlineInfoTooltip text="Highlighted words are time clues. Underlined words are the verb phrase." />
       </motion.div>
 
       {!showFeedback ? (
