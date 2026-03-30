@@ -338,7 +338,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
                   className="fill-amber-700 dark:fill-amber-400 font-bold"
                   style={{ fontSize: '10px', fontWeight: 700 }}
                 >
-                  LATER
+                  RECENT
                 </text>
               </>
             ) : (
