@@ -8,6 +8,7 @@ import { TimelineCanvas } from '../TimelineCanvas';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import { areExerciseAnswersEquivalent } from '@/lib/exercise-answer-normalization';
+import { TenseDialogueCard } from '../TenseDialogueCard';
 
 interface ErrorCorrectionExerciseProps {
   question: ErrorCorrectionQuestion;
@@ -209,6 +210,9 @@ export function ErrorCorrectionExercise({
                   </div>
                 </div>
               </div>
+
+              {/* Mini-dialogue */}
+              <TenseDialogueCard tenseName={question.correctTense} />
             </motion.div>
 
             {/* Correct timeline */}

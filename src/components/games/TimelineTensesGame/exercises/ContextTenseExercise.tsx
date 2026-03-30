@@ -8,6 +8,7 @@ import { TimelineCanvas } from '../TimelineCanvas';
 import { MiniTimelinePreview } from '../MiniTimelinePreview';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
+import { TenseDialogueCard } from '../TenseDialogueCard';
 
 interface ContextTenseExerciseProps {
   question: ContextTenseQuestion;
@@ -185,6 +186,9 @@ export function ContextTenseExercise({
                   </div>
                 </div>
               </div>
+
+              {/* Mini-dialogue */}
+              <TenseDialogueCard tenseName={question.options[correctIdx].tenseName} />
             </motion.div>
 
             {/* Correct option with full timeline */}

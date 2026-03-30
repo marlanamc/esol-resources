@@ -8,6 +8,7 @@ import { TimelineCanvas } from '../TimelineCanvas';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import { areExerciseAnswersEquivalent } from '@/lib/exercise-answer-normalization';
+import { TenseDialogueCard } from '../TenseDialogueCard';
 
 interface SentenceTransformerExerciseProps {
   question: SentenceTransformerQuestion;
@@ -322,6 +323,9 @@ export function SentenceTransformerExercise({
                   </div>
                 </div>
               </div>
+
+              {/* Mini-dialogue */}
+              <TenseDialogueCard tenseName={question.targetTense} />
             </motion.div>
 
             {/* Target timeline revealed */}

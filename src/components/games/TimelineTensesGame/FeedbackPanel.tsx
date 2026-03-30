@@ -6,6 +6,7 @@ import type { ValidVerbAnswer } from '@/types/activity';
 import {
   type TimelineVerbBlankResult,
 } from './timelineTensesUtils';
+import { TenseDialogueCard } from './TenseDialogueCard';
 
 interface FeedbackPanelProps {
   isCorrect: boolean;
@@ -154,6 +155,11 @@ export function FeedbackPanel({
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Mini-dialogue */}
+      <div className="mb-8">
+        <TenseDialogueCard tenseName={tenseName} />
       </div>
 
       {/* Blank-specific feedback journey */}

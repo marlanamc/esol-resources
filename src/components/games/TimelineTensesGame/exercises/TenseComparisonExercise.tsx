@@ -7,6 +7,7 @@ import type { TenseComparisonPromptType, TenseComparisonQuestion } from '@/types
 import { TimelineCanvas } from '../TimelineCanvas';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
+import { TenseDialogueCard } from '../TenseDialogueCard';
 
 interface TenseComparisonExerciseProps {
   question: TenseComparisonQuestion;
@@ -235,6 +236,9 @@ export function TenseComparisonExercise({
                 <div className="text-xs font-black uppercase tracking-widest text-text-muted/40 mb-2">Common Confusion</div>
                 <p className="text-sm text-text-muted font-medium leading-relaxed">{question.confusionExplanation}</p>
               </div>
+
+              {/* Mini-dialogue for the correct tense */}
+              <TenseDialogueCard tenseName={correctTenseName} />
             </motion.div>
 
             {/* Both timelines revealed with labels */}
