@@ -48,61 +48,139 @@ function escapeRegex(str: string): string {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+interface TextRange {
+  start: number;
+  end: number;
+}
+
+function getPatternRanges(text: string, patterns: string[]): TextRange[] {
+  const escaped = patterns.map(escapeRegex);
+  const pattern = new RegExp(`\\b(${escaped.join('|')})\\b`, 'gi');
+  const ranges: TextRange[] = [];
+  let match: RegExpExecArray | null;
+
+  while ((match = pattern.exec(text)) !== null) {
+    ranges.push({
+      start: match.index,
+      end: match.index + match[0].length,
+    });
+  }
+
+  return ranges;
+}
+
+function getVerbPhraseRanges(text: string, verbPhrase?: string): TextRange[] {
+  if (!verbPhrase) return [];
+
+  const escaped = escapeRegex(verbPhrase);
+  const pattern = new RegExp(escaped, 'i');
+  const match = pattern.exec(text);
+
+  if (!match || match.index === undefined) return [];
+
+  return [
+    {
+      start: match.index,
+      end: match.index + match[0].length,
+    },
+  ];
+}
+
+function rangeContains(ranges: TextRange[], index: number): boolean {
+  return ranges.some((range) => index >= range.start && index < range.end);
+}
+
 /** Wrap matched time expressions in an amber highlight mark. */
 export function highlightTimeClues(text: string): React.ReactNode {
   if (!text) return <>{text}</>;
 
-  // Build regex matching any clue pattern, longest first, word-boundary aware
-  const escaped = TIME_CLUE_PATTERNS.map(escapeRegex);
-  const pattern = new RegExp(`\\b(${escaped.join('|')})\\b`, 'gi');
-  const parts = text.split(pattern);
+  const timeClueRanges = getPatternRanges(text, TIME_CLUE_PATTERNS);
+  return renderHighlightedText(text, timeClueRanges, []);
+}
+
+function renderHighlightedText(
+  text: string,
+  timeClueRanges: TextRange[],
+  verbPhraseRanges: TextRange[]
+): React.ReactNode {
+  if (!text) return <>{text}</>;
+
+  const segments: Array<{ text: string; isTimeClue: boolean; isVerbPhrase: boolean }> = [];
+  let current = '';
+  let currentTime = rangeContains(timeClueRanges, 0);
+  let currentVerb = rangeContains(verbPhraseRanges, 0);
+
+  for (let index = 0; index < text.length; index += 1) {
+    const nextTime = rangeContains(timeClueRanges, index);
+    const nextVerb = rangeContains(verbPhraseRanges, index);
+
+    if (index === 0) {
+      currentTime = nextTime;
+      currentVerb = nextVerb;
+    } else if (nextTime !== currentTime || nextVerb !== currentVerb) {
+      segments.push({
+        text: current,
+        isTimeClue: currentTime,
+        isVerbPhrase: currentVerb,
+      });
+      current = '';
+      currentTime = nextTime;
+      currentVerb = nextVerb;
+    }
+
+    current += text[index];
+  }
+
+  if (current) {
+    segments.push({
+      text: current,
+      isTimeClue: currentTime,
+      isVerbPhrase: currentVerb,
+    });
+  }
 
   return (
     <>
-      {parts.map((part, i) => {
-        const isClue = TIME_CLUE_PATTERNS.some(
-          (c) => c.toLowerCase() === part.toLowerCase()
-        );
-        return isClue ? (
-          <mark
-            key={i}
-            className="bg-accent/40 text-text rounded px-0.5 not-italic font-bold"
-          >
-            {part}
-          </mark>
-        ) : (
-          <span key={i}>{part}</span>
+      {segments.map((segment, i) => {
+        if (!segment.isTimeClue && !segment.isVerbPhrase) {
+          return <span key={i}>{segment.text}</span>;
+        }
+
+        const className = [
+          segment.isTimeClue ? 'bg-accent/40 text-text rounded px-0.5 not-italic font-bold' : '',
+          segment.isVerbPhrase ? 'underline decoration-primary decoration-2 underline-offset-4 text-primary' : '',
+        ]
+          .filter(Boolean)
+          .join(' ');
+
+        return (
+          <span key={i} className={className}>
+            {segment.text}
+          </span>
         );
       })}
     </>
   );
 }
 
-/** Bold a specific verb phrase inside a sentence string. */
+/** Underline a specific verb phrase inside a sentence string. */
 export function highlightVerbPhrase(
   sentence: string,
   verbPhrase: string | undefined
 ): React.ReactNode {
   if (!verbPhrase) return <>{sentence}</>;
 
-  const escaped = escapeRegex(verbPhrase);
-  const pattern = new RegExp(`(${escaped})`, 'i');
-  const parts = sentence.split(pattern);
+  return renderHighlightedText(sentence, [], getVerbPhraseRanges(sentence, verbPhrase));
+}
 
-  return (
-    <>
-      {parts.map((part, i) =>
-        part.toLowerCase() === verbPhrase.toLowerCase() ? (
-          <span
-            key={i}
-            className="underline decoration-primary decoration-2 underline-offset-4 font-black text-primary"
-          >
-            {part}
-          </span>
-        ) : (
-          <span key={i}>{part}</span>
-        )
-      )}
-    </>
+/** Highlight time clues and underline the target verb phrase in one pass. */
+export function highlightSentenceFeatures(
+  sentence: string,
+  verbPhrase: string | undefined
+): React.ReactNode {
+  return renderHighlightedText(
+    sentence,
+    getPatternRanges(sentence, TIME_CLUE_PATTERNS),
+    getVerbPhraseRanges(sentence, verbPhrase)
   );
 }

@@ -15,7 +15,7 @@ import { FeedbackPanel } from '../FeedbackPanel';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import type { TimelineDrawingAnswer } from '../hooks/useTimelineTensesState';
 import { elementsUseSplitPast, validateTimelineDrawingElements } from '../timelineTensesUtils';
-import { highlightTimeClues } from '../highlightUtils';
+import { highlightSentenceFeatures } from '../highlightUtils';
 
 interface SentenceToTimelineExerciseProps {
   question: SentenceToTimelineQuestion;
@@ -197,8 +197,11 @@ export function SentenceToTimelineExercise({
         </div>
 
         <div className="text-3xl sm:text-4xl font-display font-black text-text leading-[1.15] tracking-tight">
-          &ldquo;{highlightTimeClues(question.sentence)}&rdquo;
+          &ldquo;{highlightSentenceFeatures(question.sentence, question.verbPhrase)}&rdquo;
         </div>
+        <p className="mt-4 text-[11px] font-medium text-text-muted/50">
+          Highlighted words are time clues. Underlined words are the verb phrase.
+        </p>
       </motion.div>
 
       {!showFeedback ? (
@@ -441,6 +444,7 @@ export function SentenceToTimelineExercise({
             tenseName={question.tenseName}
             explanation={question.explanation}
             sentence={question.sentence}
+            verbPhrase={question.verbPhrase}
             realLifeDialogue={question.realLifeDialogue}
             onContinue={onNext}
           />

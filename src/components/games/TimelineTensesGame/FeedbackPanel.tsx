@@ -7,7 +7,7 @@ import {
   type TimelineVerbBlankResult,
 } from './timelineTensesUtils';
 import { TenseDialogueCard } from './TenseDialogueCard';
-import { highlightTimeClues } from './highlightUtils';
+import { highlightSentenceFeatures, highlightTimeClues } from './highlightUtils';
 
 interface FeedbackPanelProps {
   isCorrect: boolean;
@@ -22,6 +22,8 @@ interface FeedbackPanelProps {
   sentenceTemplate?: string;
   /** Original sentence (SentenceToTimeline) — shown with time clue highlighting */
   sentence?: string;
+  /** Original sentence verb phrase for sentence-to-timeline feedback */
+  verbPhrase?: string;
   /** Optional per-question real-life dialogue */
   realLifeDialogue?: RealLifeDialogue;
 }
@@ -34,6 +36,7 @@ export function FeedbackPanel({
   blankFeedback,
   sentenceTemplate,
   sentence,
+  verbPhrase,
   realLifeDialogue,
 }: FeedbackPanelProps) {
   const hasBlankFeedback = (blankFeedback?.length ?? 0) > 0;
@@ -149,10 +152,10 @@ export function FeedbackPanel({
             The Sentence:
           </div>
           <p className="text-xl sm:text-2xl font-display font-black text-text leading-snug tracking-tight">
-            &ldquo;{highlightTimeClues(sentence)}&rdquo;
+            &ldquo;{highlightSentenceFeatures(sentence, verbPhrase)}&rdquo;
           </p>
           <p className="text-[10px] text-text-muted/40 font-medium mt-3">
-            Highlighted words are time clues — they signal which tense to use.
+            Highlighted words are time clues. Underlined words are the verb phrase.
           </p>
         </div>
       )}
