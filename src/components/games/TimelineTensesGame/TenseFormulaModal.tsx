@@ -158,6 +158,13 @@ const CATEGORY_BADGE: Record<string, string> = {
   'Perfect Continuous':'bg-rose-50 text-rose-700 dark:bg-rose-700/30 dark:text-rose-200',
 };
 
+const CATEGORY_USE_CASE: Record<string, string> = {
+  'Simple':            'for habits, facts, finished events & decisions',
+  'Continuous':        'for what was in progress at a specific moment',
+  'Perfect':           'for past results & experience that still matter now',
+  'Perfect Continuous':'for how long something has been going on',
+};
+
 /** Bold any Vx code in a formula string */
 function FormulaText({ text }: { text: string }) {
   const parts = text.split(/(V1-3rd|V1-ing|V1|V2|V3)/g);
@@ -247,9 +254,12 @@ export function TenseFormulaModal({ isOpen, onClose }: TenseFormulaModalProps) {
                   const rows = TENSES.filter((t) => t.category === category);
                   return (
                     <div key={category}>
-                      <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-2 ${CATEGORY_BADGE[category]}`}>
+                      <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] ${CATEGORY_BADGE[category]}`}>
                         {category}
                       </span>
+                      <p className="text-[11px] text-text-muted/50 font-medium mt-1 mb-2 ml-0.5">
+                        {CATEGORY_USE_CASE[category]}
+                      </p>
                       <div className="overflow-x-auto -mx-1 px-1">
                       <table className="min-w-full text-xs border-collapse">
                         <tbody>

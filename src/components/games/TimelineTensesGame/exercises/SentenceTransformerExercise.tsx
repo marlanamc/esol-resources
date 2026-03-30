@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, X, Lightbulb, ArrowRight, ArrowDown } from 'lucide-react';
+import { Check, X, Lightbulb, ArrowRight, ArrowDown, BookMarked } from 'lucide-react';
 import type { SentenceTransformerQuestion } from '@/types/activity';
 import { TimelineCanvas } from '../TimelineCanvas';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
@@ -16,6 +16,21 @@ interface SentenceTransformerExerciseProps {
   showFeedback: boolean;
   lastAnswerCorrect: boolean | null;
 }
+
+const TENSE_FORMULA_LOOKUP: Record<string, { formula: string; example: string }> = {
+  'Present Simple':             { formula: 'subject + V1 (/ V1-s for he/she/it)',       example: 'She works every day.' },
+  'Past Simple':                { formula: 'subject + V2',                               example: 'She worked yesterday.' },
+  'Future Simple':              { formula: 'subject + will + V1',                        example: 'She will work tomorrow.' },
+  'Present Continuous':         { formula: 'subject + am/is/are + V1-ing',               example: 'She is working right now.' },
+  'Past Continuous':            { formula: 'subject + was/were + V1-ing',                example: 'She was working at 8pm.' },
+  'Future Continuous':          { formula: 'subject + will be + V1-ing',                 example: 'She will be working all night.' },
+  'Present Perfect':            { formula: 'subject + have/has + V3',                    example: 'She has worked here before.' },
+  'Past Perfect':               { formula: 'subject + had + V3',                         example: 'She had worked before the meeting.' },
+  'Future Perfect':             { formula: 'subject + will have + V3',                   example: 'She will have worked 10 hours by then.' },
+  'Present Perfect Continuous': { formula: 'subject + have/has + been + V1-ing',         example: 'She has been working for hours.' },
+  'Past Perfect Continuous':    { formula: 'subject + had + been + V1-ing',              example: 'She had been working when I called.' },
+  'Future Perfect Continuous':  { formula: 'subject + will have been + V1-ing',          example: 'She will have been working for a year.' },
+};
 
 /**
  * Split a sentence into words, preserving punctuation attached to words.
@@ -49,12 +64,14 @@ export function SentenceTransformerExercise({
     Object.fromEntries(question.verbBlanks.map((b) => [b.index, '']))
   );
   const [showHint, setShowHint] = useState(false);
+  const [showFormulaHint, setShowFormulaHint] = useState(false);
   const inputRefs = useRef<Record<number, HTMLInputElement | null>>({});
   const { playPing, playThump } = useTimelineAudio();
 
   useEffect(() => {
     setUserInputs(Object.fromEntries(question.verbBlanks.map((b) => [b.index, ''])));
     setShowHint(false);
+    setShowFormulaHint(false);
     inputRefs.current = {};
   }, [question.id]);
 
@@ -187,7 +204,7 @@ export function SentenceTransformerExercise({
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="mb-6 p-5 bg-white/40 dark:bg-white/5 backdrop-blur-xl border border-white/20 rounded-3xl flex items-start gap-4"
+                  className="mb-4 p-5 bg-white/40 dark:bg-white/5 backdrop-blur-xl border border-white/20 rounded-3xl flex items-start gap-4"
                 >
                   <div className="w-9 h-9 rounded-xl bg-amber-500/10 flex items-center justify-center shrink-0">
                     <Lightbulb className="text-amber-500" size={20} />
@@ -200,6 +217,33 @@ export function SentenceTransformerExercise({
               )}
             </AnimatePresence>
           )}
+
+          {/* Formula hint */}
+          <AnimatePresence>
+            {showFormulaHint && TENSE_FORMULA_LOOKUP[question.targetTense] && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="mb-4 p-5 bg-primary/5 border border-primary/20 rounded-3xl flex items-start gap-4"
+              >
+                <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <BookMarked className="text-primary" size={18} />
+                </div>
+                <div>
+                  <div className="text-xs font-black text-primary/60 uppercase tracking-widest mb-1">
+                    {question.targetTense} Formula
+                  </div>
+                  <p className="text-text font-black font-mono text-sm leading-relaxed">
+                    {TENSE_FORMULA_LOOKUP[question.targetTense].formula}
+                  </p>
+                  <p className="text-text-muted/70 text-xs mt-1.5 italic">
+                    e.g. &ldquo;{TENSE_FORMULA_LOOKUP[question.targetTense].example}&rdquo;
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Actions */}
           <motion.div
@@ -222,6 +266,15 @@ export function SentenceTransformerExercise({
               >
                 <Lightbulb size={16} />
                 Need a Hint?
+              </button>
+            )}
+            {!showFormulaHint && TENSE_FORMULA_LOOKUP[question.targetTense] && (
+              <button
+                onClick={() => setShowFormulaHint(true)}
+                className="w-full py-3 text-sm font-black text-text-muted/70 hover:text-primary uppercase tracking-[0.18em] border border-border/40 hover:border-primary/30 bg-white/40 dark:bg-[#162b3d]/40 hover:bg-primary/5 rounded-2xl flex items-center justify-center gap-2 transition-all"
+              >
+                <BookMarked size={16} />
+                Show Formula
               </button>
             )}
           </motion.div>
