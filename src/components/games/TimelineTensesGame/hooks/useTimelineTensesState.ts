@@ -94,6 +94,7 @@ function calculateWeightedAccuracy(recentScores: number[]): number {
 
 type GamePhase =
   | 'selection'
+  | 'learn-tenses'
   | 'tutorial-intro'
   | 'tutorial'
   | 'tutorial-complete'
@@ -447,6 +448,22 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     }));
   }, []);
 
+  const startLearnTenses = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      error: null,
+      phase: 'learn-tenses',
+    }));
+  }, []);
+
+  const closeLearnTenses = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      error: null,
+      phase: 'selection',
+    }));
+  }, []);
+
   // Submit answer for current tutorial question
   const submitTutorialAnswer = useCallback(
     (answer: QuestionAnswer, isCorrect: boolean) => {
@@ -768,6 +785,8 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     selectSentenceForm,
     selectPracticeMode,
     startLab,
+    startLearnTenses,
+    closeLearnTenses,
     startRound,
     startTutorial,
     submitTutorialAnswer,

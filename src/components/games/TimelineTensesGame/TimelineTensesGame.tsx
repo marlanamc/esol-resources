@@ -7,6 +7,7 @@ import {
   ArrowLeft,
   BookMarked,
   BookOpen,
+  GraduationCap,
   FlaskConical,
   ChevronRight,
   Info,
@@ -34,6 +35,7 @@ import { TutorialIntroScreen } from './TutorialIntroScreen';
 import { TutorialCompleteScreen } from './TutorialCompleteScreen';
 import { HowToPlayModal } from './HowToPlayModal';
 import { TenseFormulaModal } from './TenseFormulaModal';
+import { LearnTensesWalkthrough } from './LearnTensesWalkthrough';
 import { useTimelineAudio } from './hooks/useTimelineAudio';
 import type { SentenceForm, TenseCategory } from '@/types/activity';
 import { categoriesToProgressKey, filterTimelineQuestions, isChallengeMode } from './timelineTensesUtils';
@@ -62,6 +64,8 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     selectSentenceForm,
     selectPracticeMode,
     startLab,
+    startLearnTenses,
+    closeLearnTenses,
     startRound,
     startTutorial,
     submitTutorialAnswer,
@@ -255,6 +259,17 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
 
             <div className="flex items-center gap-2">
               <button
+                onClick={startLearnTenses}
+                aria-label="Learn the tenses"
+                title="Learn the tenses"
+                className="inline-flex items-center justify-center gap-2 px-3 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-primary transition-colors text-sm font-medium"
+              >
+                <GraduationCap size={18} />
+                <span className="hidden sm:inline">Learn the Tenses</span>
+                <span className="sm:hidden">Learn</span>
+              </button>
+
+              <button
                 onClick={() => setIsHowToPlayOpen(true)}
                 aria-label="How to play"
                 title="How to play"
@@ -426,6 +441,15 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                 </motion.div>
               </div>
             </motion.div>
+          )}
+
+          {state.phase === 'learn-tenses' && (
+            <LearnTensesWalkthrough
+              selectedCategories={state.selectedCategories}
+              onBack={closeLearnTenses}
+              onStartPractice={startRound}
+              onOpenFormulas={() => setIsFormulaOpen(true)}
+            />
           )}
 
           {/* Tutorial Intro Phase */}
