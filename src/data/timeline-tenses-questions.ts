@@ -29,7 +29,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple',
     explanation:
-      'Present Simple can show a present fact or situation. The repeated dots at NOW represent a truth that is true now, not one finished event.',
+      'It\'s a true fact about right now — not a single event, just how things are. The repeated dots at NOW show a truth that keeps going.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -43,7 +43,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple',
     explanation:
-      'Past Simple describes a completed action at a specific point in the past. A single dot in the past zone shows this finished event.',
+      'Done and gone — the action finished and has no connection to now. One dot sits back in the past zone to mark that moment.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -57,7 +57,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple',
     explanation:
-      'Future Simple describes a future fact or plan at a specific future point. A single dot in the future zone shows that reference point.',
+      'Something will happen at a specific moment ahead. One dot in the future zone marks that upcoming point.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -110,7 +110,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
     tenseName: 'Present Simple',
     explanation:
-      'Present Simple often shows a routine. The repeated dots at NOW show something that happens again and again.',
+      'It happens the same way every day — that\'s the routine. The repeated dots show it coming around again and again.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -122,7 +122,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
     tenseName: 'Present Simple',
     explanation:
-      'A repeated daily action uses Present Simple. Multiple dots at NOW show the routine clearly.',
+      'Same time every day — this is their regular routine. Multiple dots show it repeating at NOW.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -134,7 +134,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
     tenseName: 'Present Simple',
     explanation:
-      'Present Simple can describe a regular weekly habit. The repeated dots show that it happens many times.',
+      'Every Saturday, same thing — that\'s a regular habit. The repeated dots show it happening many times.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -146,7 +146,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 45 }],
     tenseName: 'Past Simple',
     explanation:
-      'Past Simple shows one finished action in the past. A single dot marks that completed moment.',
+      'It happened, it finished, it\'s done. One dot marks that exact moment in the past.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -158,7 +158,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 35 }],
     tenseName: 'Past Simple',
     explanation:
-      'A finished event earlier today still uses Past Simple. One dot in the past zone shows that completed event.',
+      'Even earlier today counts as the past if it\'s over and done. One dot in the past zone marks that finished moment.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -170,7 +170,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 35 }],
     tenseName: 'Future Simple',
     explanation:
-      'Future Simple shows one planned or expected moment in the future. A single dot in the future marks that time.',
+      'There\'s a plan — one specific moment is coming up. A single dot in the future zone marks that time.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -182,7 +182,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 45 }],
     tenseName: 'Future Simple',
     explanation:
-      'A single future visit is one future point on the timeline, so it uses one dot in the future zone.',
+      'One visit, one moment ahead — just one dot in the future zone marks when it will happen.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -321,7 +321,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
     explanation:
-      'Present Continuous shows an action happening right now. A solid line at the NOW marker represents the ongoing activity.',
+      'It\'s happening right now, in this moment. The solid line touching NOW shows it\'s still in progress.',
     difficulty: 1,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -333,7 +333,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
     explanation:
-      'Present Continuous shows something happening at this moment. The solid line at NOW marks that ongoing action.',
+      'Right now, at this very moment, it\'s happening. The solid line at NOW shows the action is still going.',
     difficulty: 1,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -345,7 +345,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
     explanation:
-      'An action in progress now uses Present Continuous. A solid line at NOW shows that it is happening now.',
+      'Still going, not finished yet — the wait is happening right now. A solid line at NOW shows that ongoing moment.',
     difficulty: 1,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -392,7 +392,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Continuous + Past Simple',
     explanation:
-      'Past Continuous (was living) shows a longer action in progress. Past Simple (decided) shows the shorter interrupting action. The line represents the ongoing background, and the dot represents the interruption.',
+      'Life was already in motion — then one moment changed everything. The line is the long background situation; the dot is the moment it was interrupted.',
     difficulty: 2,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
@@ -445,7 +445,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 60 }],
     tenseName: 'Future Continuous',
     explanation:
-      'Future Continuous describes an action that will be in progress at a specific future time. The solid line in the future shows the ongoing nature.',
+      'At that future moment, the action will still be going — not finished yet, just in progress. The solid line in the future zone shows that ongoing stretch.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -495,7 +495,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect',
     explanation:
-      'Present Perfect connects a past action to the present. The arc shows that the action started in the past and continues to NOW.',
+      'Something from the past still matters right now — you can feel the result. The arc stretches from past all the way to NOW to show that connection.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -544,7 +544,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect + Past Simple',
     explanation:
-      'Past Perfect shows an earlier past action (had lived), and Past Simple shows the later past action (moved). The arc represents the first action, and the dot represents the second reference point.',
+      'Two things happened in the past, but one came first — and that\'s the key. The arc marks the earlier action; the dot marks when the second one happened.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -558,7 +558,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect',
     explanation:
-      'Future Perfect describes an action that will be completed by a specific future point. The dashed arc shows the action spanning from now to that future completion point.',
+      'By that future moment, it will already be done — finished before the deadline arrives. The dashed arc shows the action spanning from now to that completion point.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -608,7 +608,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous',
     explanation:
-      'Present Perfect Continuous emphasizes the duration of an action that started in the past and continues to the present. The thick line connecting to NOW shows the ongoing duration reaching the present moment.',
+      'It started in the past and is still going — you\'re measuring how long it\'s been happening. The thick line runs all the way to NOW to show that ongoing stretch.',
     difficulty: 2,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -657,7 +657,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect Continuous',
     explanation:
-      'Past Perfect Continuous shows the duration of an action that was happening before another past point. The thick line connecting to the reference dot shows the duration leading up to that past moment.',
+      'It was already in progress and had been going for a while before something else happened. The thick line leads up to that past moment to show how long it had been running.',
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -671,7 +671,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 50 }],
     tenseName: 'Future Perfect Continuous',
     explanation:
-      'Future Perfect Continuous describes the duration of an action up to a specific future point. The solid line extends from now into the future, ending at that deadline.',
+      'It will still be in progress when a future deadline arrives — you\'re measuring how long it\'s been going. The line runs right up to that future point.',
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -859,7 +859,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple (Negative)',
     explanation:
-      'Even in the negative, Present Simple shows habits and routines. The repeated dots represent an action that regularly does NOT happen.',
+      'Some things just never happen — and that\'s also a routine. The repeated dots show a pattern that regularly does NOT occur.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'negative',
@@ -875,7 +875,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple (Negative)',
     explanation:
-      'Present Simple Negative can state facts that are always NOT true. The repeated dots show a timeless truth.',
+      'Always false — it never happens, not now, not before, not ever. The repeated dots show this timeless fact.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'negative',
@@ -889,7 +889,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple (Negative)',
     explanation:
-      'Past Simple Negative describes something that did NOT happen at a specific point in the past. The single dot still marks that past moment.',
+      'That moment came and went — but the action never happened. One dot still marks that past time, even though nothing occurred.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'negative',
@@ -903,7 +903,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple (Negative)',
     explanation:
-      'Future Simple Negative describes an action that will NOT happen at a future point. The single dot marks that future moment.',
+      'That future moment is coming — but the action won\'t. One dot still marks the time, even though nothing will happen there.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'negative',
@@ -917,7 +917,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous (Negative)',
     explanation:
-      'Present Continuous Negative shows an action NOT happening at this moment. The solid line still represents the current time period.',
+      'Right now, in this moment, that action is NOT happening. The solid line still marks the current time — it just shows what isn\'t going on.',
     difficulty: 1,
     tenseCategory: 'continuous',
     sentenceForm: 'negative',
@@ -934,7 +934,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Continuous (Negative) + Past Simple',
     explanation:
-      'Past Continuous Negative shows an ongoing action that was NOT happening. The line shows what she was NOT doing, and the dot marks the moment of explanation.',
+      'Something was going on in the background — but NOT listening. The line shows that ongoing time, and the dot marks the exact moment the explaining happened.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'negative',
@@ -948,7 +948,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Negative)',
     explanation:
-      'Present Perfect Negative connects the past to the present - the action has NOT happened up to now. The arc shows this connection from past to NOW.',
+      'From the past right up to now — it still hasn\'t happened. The arc shows that whole stretch of time with nothing to show for it.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'negative',
@@ -962,7 +962,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Negative)',
     explanation:
-      '"Never" with Present Perfect shows an experience that has NOT occurred at any point from the past up to now. The arc connects past to present.',
+      'At no point in her life — not once — did it happen. The arc covers the whole span from past to now to show that zero-experience.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'negative',
@@ -976,7 +976,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect (Negative)',
     explanation:
-      'Future Perfect Negative describes something that will NOT be completed by a specific future point. The dashed arc spans from now to that deadline.',
+      'That deadline will come — but it won\'t be done in time. The dashed arc still spans from now to that future point.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'negative',
@@ -990,7 +990,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous (Negative)',
     explanation:
-      'Present Perfect Continuous Negative emphasizes that an ongoing action has NOT been happening well. The thick line connecting to NOW shows the duration reaching the present.',
+      'For a while now, it hasn\'t been going well — that\'s an ongoing problem reaching right up to today. The thick line to NOW shows how long it\'s been.',
     difficulty: 2,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'negative',
@@ -1010,7 +1010,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple (Question)',
     explanation:
-      'Present Simple questions ask about habits and routines. The repeated dots show this is asking about a regular pattern.',
+      'Asking about what someone usually does — a regular habit or routine. The repeated dots show the question is about a recurring pattern.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'question',
@@ -1026,7 +1026,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple (Question)',
     explanation:
-      'Questions about general facts use Present Simple. The repeated dots show this is a timeless truth.',
+      'Asking about a fact that is always true — no specific time, just reality. The repeated dots show it\'s a timeless truth.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'question',
@@ -1040,7 +1040,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple (Question)',
     explanation:
-      'Past Simple questions ask about completed actions at a specific past time. The single dot marks that moment in the past.',
+      'Asking whether something finished and done actually happened at a specific past time. One dot marks that moment.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'question',
@@ -1054,7 +1054,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple (Question)',
     explanation:
-      'Future Simple questions ask about actions at a specific future time. The single dot marks that future moment.',
+      'Asking about a specific moment that\'s coming up — will something happen there or not? One dot in the future marks that point.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'question',
@@ -1068,7 +1068,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous (Question)',
     explanation:
-      'Present Continuous questions ask about actions happening at this moment. The solid line represents the current ongoing time.',
+      'Asking what someone is doing right now, in this moment. The solid line shows the action is ongoing at NOW.',
     difficulty: 1,
     tenseCategory: 'continuous',
     sentenceForm: 'question',
@@ -1085,7 +1085,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Continuous (Question) + Past Simple',
     explanation:
-      'This question asks about an ongoing action at a specific past moment. The line shows the potential ongoing action, and the dot marks when the call happened.',
+      'Were you in the middle of something when the call came in? The line shows what might have been happening in the background; the dot marks when the call hit.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'question',
@@ -1099,7 +1099,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Question)',
     explanation:
-      'Present Perfect questions ask about experiences or actions connected to the present. The arc shows the connection from past to NOW.',
+      'Asking whether something ever happened between then and now — life experience up to this moment. The arc spans from past to NOW.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'question',
@@ -1113,7 +1113,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Question)',
     explanation:
-      'This question asks about an action that may have been completed before now, with relevance to the present moment.',
+      'Asking whether something is already done — the answer affects what happens now. The arc connects that past action to the present moment.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'question',
@@ -1127,7 +1127,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect (Question)',
     explanation:
-      'Future Perfect questions ask whether something will be completed by a future deadline. The dashed arc spans from now to that point.',
+      'Asking whether it will be finished before the deadline arrives. The dashed arc spans from now to that future point.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'question',
@@ -1141,7 +1141,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous (Question)',
     explanation:
-      'This question asks about the duration of an action that started in the past and continues to now. The solid line shows that duration.',
+      'Asking how long something has been going on — it started in the past and is still happening now. The solid line shows that stretch of time.',
     difficulty: 2,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'question',
@@ -1161,7 +1161,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple',
     explanation:
-      'Present Simple states general facts and truths. The repeated dots show this is a timeless pattern.',
+      'Always true — not just today, but every day. The repeated dots show this is a timeless fact.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -1175,7 +1175,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Present Simple (Scheduled Future)',
     explanation:
-      'Present Simple can describe fixed schedules and timetables in the future. The single dot marks that scheduled future moment.',
+      'It\'s on the timetable — a fixed schedule that doesn\'t change. One dot marks that locked-in future moment.',
     difficulty: 2,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -1189,7 +1189,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Present Continuous (Future Arrangement)',
     explanation:
-      'Present Continuous can describe planned arrangements in the future. The single dot marks the planned event.',
+      'It\'s already arranged — the plans are made and confirmed. One dot in the future marks when that planned event will happen.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -1206,7 +1206,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Continuous (Repeated Action)',
     explanation:
-      '"Always" with Present Continuous shows a repeated action, often expressing annoyance. The line shows this is a continuous present behavior, and the repeated dots show it happens again and again.',
+      'When "always" is used like this, it usually means the speaker is annoyed — it keeps happening over and over. The line shows it\'s an ongoing pattern; the dots show it repeating.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -1220,7 +1220,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect',
     explanation:
-      '"Just" with Present Perfect emphasizes a very recent completion. The arc connects this recent past action to the present moment.',
+      'Just finished — barely a moment ago, and the result is fresh. The arc connects that very recent past action right to now.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -1234,7 +1234,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect',
     explanation:
-      'Present Perfect describes a past action with a present result. She lost the keys at some point, and the result (no keys) affects now.',
+      'Something happened in the past and the result is still felt right now — she can\'t get in. The arc shows that past action reaching into the present.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -1251,7 +1251,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect + Past Simple',
     explanation:
-      'Past Perfect (had left) shows the earlier action, and Past Simple (arrived) shows the later reference point. The arc marks his departure, the dot marks her arrival.',
+      'He was already gone before she even got there — two past moments, one earlier than the other. The arc marks his earlier departure; the dot marks when she arrived.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -1265,7 +1265,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 50 }],
     tenseName: 'Future Perfect Continuous',
     explanation:
-      'Future Perfect Continuous describes duration up to a specific future point. Use a duration arc (ongoing link) to show the action reaching that future reference moment.',
+      'By next month, the work will have been going on for a full year — still in progress when that milestone hits. The line runs right up to that future reference point.',
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -1873,7 +1873,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple',
     explanation:
-      'Present Simple with "usually" describes a regular shopping routine. The repeated dots show this weekly pattern.',
+      'Usually means almost always — it\'s a regular weekly habit. The repeated dots show that pattern.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -1887,7 +1887,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple',
     explanation:
-      'Past Simple describes a completed doctor visit at a specific time. The single dot marks that past appointment.',
+      'The appointment happened, it\'s over — a finished moment from last week. One dot marks that past visit.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -1901,7 +1901,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple',
     explanation:
-      'Future Simple describes a planned celebration at a specific future time. The single dot marks that upcoming event.',
+      'The celebration is coming — it\'s a plan for a specific moment ahead. One dot in the future marks that upcoming event.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -1917,7 +1917,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple (Negative)',
     explanation:
-      'Present Simple Negative shows a regular pattern of NOT working. The repeated dots represent this ongoing routine.',
+      'Weekends are consistently free — that\'s just the ongoing pattern. The repeated dots show it never happens on those days.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'negative',
@@ -1931,7 +1931,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple (Question)',
     explanation:
-      'Past Simple questions ask about completed actions. The single dot marks that specific past evening.',
+      'Asking whether something finished actually happened last night. One dot marks that specific past evening.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'question',
@@ -1949,7 +1949,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
     explanation:
-      'Present Continuous shows the meeting happening at this very moment. The solid line represents the ongoing activity.',
+      'Right now, while you\'re reading this, the meeting is happening. The solid line shows that ongoing activity at NOW.',
     difficulty: 1,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -1966,7 +1966,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Continuous + Past Simple',
     explanation:
-      'Past Continuous (was feeling) shows the ongoing state, and Past Simple (woke up) marks the moment of waking. The line is the background situation.',
+      'Feeling sick was the background state — already there when waking happened. The line is the ongoing feeling; the dot marks the moment of waking.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -1980,7 +1980,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 60 }],
     tenseName: 'Future Continuous',
     explanation:
-      'Future Continuous describes an ongoing activity at a specific future time. The solid line shows her ongoing university attendance.',
+      'At that future moment, she\'ll be in the middle of her university life — it will be ongoing. The solid line shows that stretch happening in the future.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -1994,7 +1994,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous (Negative)',
     explanation:
-      'Present Continuous Negative shows what is NOT happening right now. The solid line still represents the current time period.',
+      'Right now, the wallet stays closed — that\'s what\'s NOT happening at this moment. The solid line still marks the current time.',
     difficulty: 1,
     tenseCategory: 'continuous',
     sentenceForm: 'negative',
@@ -2008,7 +2008,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 50 }],
     tenseName: 'Future Continuous (Question)',
     explanation:
-      'This question asks about an ongoing action at a specific future time. The solid line shows the future work period.',
+      'Asking whether work will still be in progress at a specific future time tonight. The solid line shows that potential ongoing stretch.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'question',
@@ -2026,7 +2026,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect',
     explanation:
-      'Present Perfect connects a past situation to the present. The arc shows the headache started in the past and continues now.',
+      'That headache started this morning and is still here now — you feel the result. The arc shows it stretching from the past right to NOW.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -2040,7 +2040,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect',
     explanation:
-      '"Already" with Present Perfect shows completed shopping with present relevance. The arc connects the purchase to now.',
+      'Shopping is done — and the result (a full list) matters right now. The arc connects that completed purchase to the present.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -2057,7 +2057,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect + Past Simple',
     explanation:
-      'Past Perfect (had started) shows the earlier action, Past Simple (arrived) shows the reference point. The meeting started before arrival.',
+      'The meeting was already underway when you walked in — it started before your arrival. The arc marks that earlier start; the dot marks when you got there.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -2071,7 +2071,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect',
     explanation:
-      'Future Perfect describes an action completed before a future point. The dashed arc spans from now to when dinner is ready.',
+      'Dinner will be ready before they walk in the door — finished ahead of that future moment. The dashed arc spans from now to when the cooking is done.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -2085,7 +2085,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Negative)',
     explanation:
-      'Present Perfect Negative shows a condition that has NOT changed up to now. The arc connects the past unwell state to the present.',
+      'Still not well — the condition has continued from the past all the way to now. The arc shows that unbroken stretch of not feeling okay.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'negative',
@@ -2099,7 +2099,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Question)',
     explanation:
-      '"Ever" with Present Perfect asks about life experience. The arc connects any past experience to the present conversation.',
+      'Asking whether this has ever happened at any point in your life up to now. The arc spans the whole past and reaches this conversation.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'question',
@@ -2117,7 +2117,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous',
     explanation:
-      'Present Perfect Continuous emphasizes the duration of ongoing work. The thick line connecting to NOW shows three months of effort reaching the present.',
+      'Three months in and still going — the work has been continuous and you can see the effort. The thick line runs all the way to NOW.',
     difficulty: 2,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -2131,7 +2131,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous',
     explanation:
-      'Present Perfect Continuous shows the duration of a habit that started in the past and continues now. The thick line connecting to NOW shows the ongoing exercise routine.',
+      'She started in January and is still keeping it up — you can see the consistency. The thick line shows that ongoing routine reaching all the way to NOW.',
     difficulty: 2,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -2148,7 +2148,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect Continuous',
     explanation:
-      'Past Perfect Continuous shows duration of an action before another past point. The thick line connecting to the reference dot shows hours of playing before dinner.',
+      'They\'d been playing for hours before dinner time arrived — a long stretch in the past. The thick line shows that duration leading right up to the dinnertime dot.',
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -2162,7 +2162,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous (Negative)',
     explanation:
-      'Present Perfect Continuous Negative shows an ongoing pattern of absence. The thick line connecting to NOW shows the duration of irregular attendance reaching the present.',
+      'It\'s been a pattern — not showing up regularly, and it\'s still happening. The thick line to NOW shows how long this has been going on.',
     difficulty: 2,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'negative',
@@ -2176,7 +2176,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous (Question)',
     explanation:
-      'This question asks about the duration of an ongoing condition. The solid line shows the period of tiredness leading up to now.',
+      'Asking how long the tiredness has been happening — it started somewhere in the past and hasn\'t stopped. The solid line shows that stretch leading up to now.',
     difficulty: 2,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'question',
@@ -2375,7 +2375,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Perfect + Future Simple',
     explanation:
-      'Present Perfect (Have you decided) asks about a decision made before now, and Future Simple (will study) refers to the future plan. The arc shows the decision connecting to now, the dot marks the future study.',
+      'This question spans two time zones — asking about a decision already made, and a plan still ahead. The arc shows the decision connecting to now; the dot marks the future study.',
     difficulty: 3,
     tenseCategory: 'mixed',
     sentenceForm: 'question',
@@ -2396,7 +2396,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect Continuous + Past Simple',
     explanation:
-      'Past Perfect Continuous (had been sleeping) shows an ongoing action before another past event. Past Simple (went off) marks the interruption. The thick line connecting to the reference dot shows the sleeping duration before the alarm.',
+      'Deep in sleep — then suddenly interrupted. The thick line shows how long that sleep had been going; the dot marks the moment the alarm cut it short.',
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -2413,7 +2413,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Future Perfect + Simple Future Reference',
     explanation:
-      'Future Perfect (will have eaten) shows completion before a future point. The arrival is the reference. The dashed arc spans to the dinner completion, the dot marks arrival.',
+      'Dinner will be finished before you even walk in — done before the future reference point. The dashed arc shows the completion; the dot marks when you arrive.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -2481,7 +2481,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple',
     explanation:
-      'Present Simple describes daily habits. The repeated dots show this happens every day.',
+      'Every morning, same thing — it\'s a daily habit. The repeated dots show it coming back day after day.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -2496,7 +2496,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple',
     explanation:
-      'Present Simple shows a regular routine. Walking to school is her usual habit.',
+      'She does it all the time — it\'s just her normal routine. The repeated dots show the habit keeps happening.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -2510,7 +2510,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple',
     explanation:
-      'Past Simple describes a completed action. The single dot marks when lunch happened.',
+      'Lunch is over — it happened at a specific time and it\'s done. One dot marks that finished moment.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -2523,7 +2523,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple',
     explanation:
-      'Past Simple shows a finished game. The dot marks yesterday in the past zone.',
+      'The game is over, it was yesterday — completely done. One dot marks that finished moment in the past.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -2537,7 +2537,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple',
     explanation:
-      'Future Simple describes a future action. The dot marks the planned phone call.',
+      'There\'s a plan to do it — at some point ahead. One dot in the future marks when that call will happen.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -2550,7 +2550,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple',
     explanation:
-      'Future Simple shows a future plan to help. The dot marks tomorrow in the future zone.',
+      'It\'s going to happen — tomorrow is ahead, and the help is planned for then. One dot marks that future moment.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -2566,7 +2566,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple (Negative)',
     explanation:
-      'Present Simple Negative shows a permanent preference. This is always true for this person.',
+      'Just not their thing — never has been, and it\'s not going to change. The repeated dots show this is always true.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'negative',
@@ -2579,7 +2579,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple (Negative)',
     explanation:
-      'Past Simple Negative shows something that did NOT happen. The dot marks today (which is now in the past).',
+      'The day happened — but he didn\'t show up. One dot marks that past moment when the absence occurred.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'negative',
@@ -2595,7 +2595,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple (Question)',
     explanation:
-      'Present Simple questions ask about abilities or habits. This asks about a general skill.',
+      'Asking about a general ability — not right now, just in general. The repeated dots show it\'s a standing skill.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'question',
@@ -2608,7 +2608,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple (Question)',
     explanation:
-      'Past Simple questions ask about completed actions. This asks about last night.',
+      'Asking about something that\'s over and done — last night is past. One dot marks that finished moment.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'question',
@@ -2698,7 +2698,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple',
     explanation:
-      'Present Simple describes scheduled transportation. The repeated dots show this daily schedule.',
+      'Same time every day — that\'s the schedule, not a one-off event. The repeated dots show it happening on a regular timetable.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -2714,7 +2714,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Continuous + Past Simple',
     explanation:
-      'Past Continuous (were driving) shows the ongoing journey. Past Simple (broke down) marks the interruption. The line is the trip, the dot is the breakdown.',
+      'Already on the road — then the car broke down and everything stopped. The line is the ongoing drive; the dot marks that moment of breakdown.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -2727,7 +2727,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect',
     explanation:
-      'Future Perfect shows the flight completing before a deadline. The dashed arc spans from now to when the plane lands.',
+      'By 6pm, the plane will already be on the ground — done before that deadline. The dashed arc spans from now to when landing is complete.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -2767,7 +2767,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
     explanation:
-      'Present Continuous shows the test happening at this moment. The solid line represents the ongoing exam.',
+      'Pencils down — not yet! The test is happening right now. The solid line shows that ongoing exam at NOW.',
     difficulty: 1,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -2780,7 +2780,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 40 }],
     tenseName: 'Present Perfect',
     explanation:
-      'Present Perfect connects past studies to the present. The arc shows five years of learning continuing to now.',
+      'Five years of English and it still matters now — that experience is part of who she is today. The arc shows that learning stretching all the way to NOW.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -2793,7 +2793,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect',
     explanation:
-      'Future Perfect describes completing the course before May. The dashed arc spans from now to graduation.',
+      'By May, they\'ll have crossed the finish line — done before that month arrives. The dashed arc spans from now to course completion.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -2836,7 +2836,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Present Simple',
     explanation:
-      'Present Simple describes general weather patterns. The repeated dots show this regular occurrence.',
+      'Seattle is just like that — it\'s a regular weather pattern, not a single event. The repeated dots show it happening again and again.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -2852,7 +2852,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Continuous + Past Simple',
     explanation:
-      'Past Continuous (was raining) shows ongoing weather. Past Simple (left) marks the action during the rain. The line is the rain, the dot is leaving.',
+      'The rain was already going when you walked out — it was the background to your action. The line is the ongoing rain; the dot marks when you left.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -2865,7 +2865,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous',
     explanation:
-      'Present Perfect Continuous emphasizes the duration of snowfall. The thick line connecting to NOW shows snow continuing from morning to the present moment.',
+      'It started this morning and hasn\'t stopped — you can see the buildup. The thick line shows that continuous snowfall running all the way to NOW.',
     difficulty: 2,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -2901,7 +2901,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     sentence: 'I am studying English at the library.',
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
-    explanation: 'Studying at the library is an action that is happening right now.',
+    explanation: 'Happening right now — the studying is in progress as we speak. The solid line at NOW shows it\'s still going.',
     difficulty: 1,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -2913,7 +2913,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     sentence: 'He works at the hospital.',
     correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
     tenseName: 'Present Simple (Habit/Fact)',
-    explanation: 'Working at the hospital is a fact or permanent situation.',
+    explanation: 'That\'s just where he works — a current fact about his life. The repeated dots show it\'s an ongoing truth.',
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -2925,7 +2925,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     sentence: 'I have cooked dinner already.',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 60 }],
     tenseName: 'Present Perfect',
-    explanation: 'The dinner is cooked and the result is relevant to now.',
+    explanation: 'Done and ready — the cooking happened in the past and the result is right here now. The arc connects that past action to the present.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -2940,7 +2940,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
     ],
     tenseName: 'Past Continuous + Past Simple',
-    explanation: 'Watching the movie was the longer ongoing action (line) interrupted by the call (dot).',
+    explanation: 'Deep into the movie — then the call arrived and interrupted it. The line shows the ongoing viewing; the dot marks when the call happened.',
     difficulty: 2,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
@@ -2955,7 +2955,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
     ],
     tenseName: 'Past Continuous + Past Simple',
-    explanation: 'Eating is the ongoing background action, and ringing is the sudden interruption.',
+    explanation: 'Mid-meal — then the phone rang and broke the moment. The line shows the meal in progress; the dot marks that sudden interruption.',
     difficulty: 2,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
@@ -2970,7 +2970,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
     ],
     tenseName: 'Past Perfect + Past Simple',
-    explanation: 'She left (earlier past) before we arrived (later past).',
+    explanation: 'She was already gone — she left before we even got there. The arc marks her earlier departure; the dot marks our arrival.',
     difficulty: 3,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
@@ -2985,7 +2985,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'future', position: 70 },
     ],
     tenseName: 'Future Perfect + Context',
-    explanation: 'Finishing the homework links NOW to a future moment BEFORE the friend arrives.',
+    explanation: 'The homework will be done before the friend walks in — finished ahead of that future arrival. The dashed arc spans to the completion point; the dot marks when they come over.',
     difficulty: 3,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
@@ -3000,7 +3000,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'solid-line', zone: 'past', position: 60, verbLabel: 'play' },
     ],
     tenseName: '2 x Past Continuous',
-    explanation: 'Two actions were happening at the same time in the past.',
+    explanation: 'Both were in progress at the same time — two parallel things happening together in the past. Two solid lines show those simultaneous actions.',
     difficulty: 2,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
@@ -3015,7 +3015,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
     ],
     tenseName: 'Past Simple Sequence',
-    explanation: 'Two completed momentary actions happening one after another in the past.',
+    explanation: 'One thing, then the next — two quick finished actions in a row. Two dots in the past show that sequence.',
     difficulty: 2,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
@@ -3030,7 +3030,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'future', position: 70 },
     ],
     tenseName: 'Time Clause (Future context)',
-    explanation: 'Both actions happen in the future! "Arrives" is the required first condition for the later "will eat".',
+    explanation: 'Both events are ahead — arrival triggers the dinner. Two dots in the future show that sequence: first she arrives, then eating begins.',
     difficulty: 2,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
@@ -3045,7 +3045,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
     tenseName: 'Present Perfect + Present Simple',
-    explanation: 'An action from the past ("have lost") officially links to a factual result playing out right now ("can\'t travel").',
+    explanation: 'Lost it in the past, stuck with the result now — that\'s the connection. The arc marks the past action; the dots show the ongoing present consequence.',
     difficulty: 3,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
@@ -3060,7 +3060,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
     tenseName: 'Past Continuous + Present Simple',
-    explanation: 'A temporary situation in the past ("was living") is being contrasted with a permanent fact right now ("live").',
+    explanation: 'Then vs. now — life looked different before, but this is the current reality. The line shows the temporary past; the dots show the present fact.',
     difficulty: 2,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
@@ -3075,7 +3075,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
     ],
     tenseName: 'Past Perfect Continuous + Past Simple',
-    explanation: 'A long continuous duration in the earlier past ("had been driving") progressing up until it was specifically interrupted by a moment ("saw").',
+    explanation: 'Hours of driving — then finally, that sign appeared. The thick line shows how long it had been going; the dot marks the moment of seeing it.',
     difficulty: 3,
     tenseCategory: 'mixed',
     sentenceForm: 'affirmative',
@@ -3090,7 +3090,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
     ],
     tenseName: 'Past Continuous + Past Simple',
-    explanation: 'A negative continuous state in the past that was interrupted by a specific moment.',
+    explanation: 'Wide awake — not sleeping at all when the call came. The line shows the background waking state; the dot marks when the call hit.',
     difficulty: 2,
     tenseCategory: 'mixed',
     sentenceForm: 'negative',
@@ -3105,7 +3105,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
     ],
     tenseName: 'Past Perfect + Past Simple',
-    explanation: 'A lack of an action in the earlier past ("hadn\'t studied") leading up to an event in the later past ("took").',
+    explanation: 'She went into the test unprepared — no studying happened before that moment. The arc marks the earlier absence of study; the dot marks when the test began.',
     difficulty: 3,
     tenseCategory: 'mixed',
     sentenceForm: 'negative',
@@ -3120,7 +3120,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
     tenseName: 'Present Perfect + Present Simple',
-    explanation: 'An incomplete action spanning from the past to now ("haven\'t finished") restricting a current factual state ("can\'t leave").',
+    explanation: 'Still not done — and that\'s why leaving isn\'t an option yet. The arc shows the unfinished work connecting to the current restriction.',
     difficulty: 3,
     tenseCategory: 'mixed',
     sentenceForm: 'negative',
@@ -3135,7 +3135,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'future', position: 50 },
     ],
     tenseName: 'Future Simple + Present Simple',
-    explanation: 'A question about two sequential momentary events in the future (the landing, and then the call).',
+    explanation: 'Two things coming up, one after the other — first landing, then calling. Two dots in the future show that order.',
     difficulty: 2,
     tenseCategory: 'mixed',
     sentenceForm: 'question',
@@ -3150,7 +3150,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
     ],
     tenseName: 'Past Simple + Past Simple',
-    explanation: 'A question asking to confirm the chronological order of two specific moments in the past.',
+    explanation: 'Asking which happened first — locking, then leaving? Two dots show those two past moments in sequence.',
     difficulty: 2,
     tenseCategory: 'mixed',
     sentenceForm: 'question',
@@ -3165,7 +3165,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
     ],
     tenseName: 'Past Perfect Continuous + Past Simple',
-    explanation: 'Wait (duration up to a point) and arrival (moment in later past).',
+    explanation: 'Thirty minutes of waiting — then the bus finally showed up. The thick line shows the ongoing wait; the dot marks when it arrived.',
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -3180,7 +3180,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 80 },
     ],
     tenseName: 'Past Perfect Continuous + Past Simple',
-    explanation: 'Work (duration up to a point) and change (moment in later past).',
+    explanation: 'Months of work already in progress — then the deadline shifted. The thick line shows that ongoing effort; the dot marks when the change happened.',
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -3192,7 +3192,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     sentence: 'Next month, I will have been living in this city for ten years.',
     correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 70 }],
     tenseName: 'Future Perfect Continuous',
-    explanation: 'Living (duration) up to a specific moment in the future.',
+    explanation: 'By next month, the living will have been going on for ten years — still in progress when that milestone hits. The line runs up to that future point.',
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -3204,7 +3204,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     sentence: 'By 5:00 PM, she will have been studying for six hours straight.',
     correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect Continuous',
-    explanation: 'Study (duration) up to a future point in time.',
+    explanation: 'Six straight hours of studying — and still going when 5pm hits. The line shows that ongoing effort running right up to the future deadline.',
     difficulty: 3,
     tenseCategory: 'perfect-continuous',
     sentenceForm: 'affirmative',
@@ -3501,7 +3501,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect + Past Simple',
     explanation:
-      'Eating dinner (Past Perfect) happened before the movie started (Past Simple reference point). The arc marks the earlier action, the dot marks when the movie began.',
+      'Dinner was already behind him when the movie started — one past thing before another. The arc marks the earlier eating; the dot marks when the movie began.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -3518,7 +3518,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect + Past Simple',
     explanation:
-      '"Had never seen" describes an experience that never occurred up to a past point. The arc covers the whole earlier past, and the dot marks when she moved.',
+      'Zero experience with snow — not once in her whole life before that move. The arc covers that whole earlier past; the dot marks when she moved.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -3535,7 +3535,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect + Past Simple',
     explanation:
-      '"Already" emphasizes that the graduation (Past Perfect) was complete before she started college (Past Simple). The arc is earlier; the dot is later.',
+      'He was done with college before she even started — two past events, clearly in order. The arc marks his earlier graduation; the dot marks when she began.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -3552,7 +3552,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect (Negative) + Past Simple',
     explanation:
-      '"Hadn\'t met" means the meeting had NOT happened before that party. The arc (earlier past action that didn\'t happen) and dot (the party) show the sequence.',
+      'Complete strangers before that party — they hadn\'t crossed paths yet. The arc covers the earlier time without meeting; the dot marks the party.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'negative',
@@ -3569,7 +3569,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect (Negative) + Past Simple',
     explanation:
-      'The studying had NOT been completed before the test started. The arc represents the incomplete earlier action, and the dot marks when the test began.',
+      'They went in without preparing — the chapter was never studied before that test began. The arc shows that empty earlier period; the dot marks the start of the test.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'negative',
@@ -3586,7 +3586,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect (Question) + Past Simple',
     explanation:
-      'This asks about an experience that may have occurred before a past reference point. The arc covers the earlier past and the dot marks when you came to the US.',
+      'Asking about your whole life before that move — had sushi ever happened before you arrived? The arc covers the earlier past; the dot marks when you came to the US.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'question',
@@ -3603,7 +3603,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     ],
     tenseName: 'Past Perfect (Question) + Past Simple',
     explanation:
-      'Asking whether the call happened before she left. The arc marks the possible earlier call, the dot marks when she left the office.',
+      'Asking which came first — the call or the departure? The arc marks the possible earlier call; the dot marks when she left.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'question',
@@ -3684,7 +3684,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect',
     explanation:
-      'Future Perfect describes an action that will be complete before a specific future point. The dashed arc shows the action spanning from now to the graduation deadline.',
+      'By next summer, she\'ll be done — finished before that season even arrives. The dashed arc spans from now to the graduation deadline.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -3698,7 +3698,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 65 }],
     tenseName: 'Future Perfect',
     explanation:
-      '"By December" is the future deadline. The dashed arc shows that saving will be complete by that specific future point.',
+      'December is the target — the money will be ready before that date. The dashed arc shows the saving being done by that future point.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -3712,7 +3712,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 75 }],
     tenseName: 'Future Perfect',
     explanation:
-      'A far future deadline (2030) with a task that will be completed by then. The dashed arc spans from now to that future point.',
+      'A big goal with a far future deadline — the research will be finished long before 2030. The dashed arc spans all the way to that future point.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'affirmative',
@@ -3726,7 +3726,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 55 }],
     tenseName: 'Future Perfect (Negative)',
     explanation:
-      'Future Perfect Negative says the task will NOT be finished by the deadline. The dashed arc still marks the future span — the negative is in the verb, not the timeline shape.',
+      'The deadline is coming but the goal won\'t be reached in time — not enough saved. The dashed arc still spans to that future point; the negative lives in the verb.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'negative',
@@ -3740,7 +3740,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect (Negative)',
     explanation:
-      '"Sunset" is the future deadline. The negative predicts the arrival will NOT be complete before that point. The dashed arc shows the future span.',
+      'Still on the road when the sun goes down — they won\'t make it in time. The dashed arc shows the future span that won\'t be completed before sunset.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'negative',
@@ -3754,7 +3754,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 55 }],
     tenseName: 'Future Perfect (Question)',
     explanation:
-      'Asking whether the test will be complete by a future time. "By noon" is the deadline and the dashed arc spans from now to that future point.',
+      'Noon is ticking closer — will the test be done before then? The dashed arc spans from now to that future deadline.',
     difficulty: 2,
     tenseCategory: 'perfect',
     sentenceForm: 'question',
@@ -3768,7 +3768,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect (Question)',
     explanation:
-      'Asking if the move will be completed before a future point. The dashed arc shows the question is about a future span with a deadline.',
+      'Asking whether everything will be unpacked and settled by next month. The dashed arc spans from now to that future deadline.',
     difficulty: 3,
     tenseCategory: 'perfect',
     sentenceForm: 'question',
