@@ -212,7 +212,10 @@ export function ErrorCorrectionExercise({
               </div>
 
               {/* Mini-dialogue */}
-              <TenseDialogueCard tenseName={question.correctTense} />
+              <TenseDialogueCard
+                dialogue={question.realLifeDialogue}
+                tenseName={question.correctTense}
+              />
             </motion.div>
 
             {/* Correct timeline */}

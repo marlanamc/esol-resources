@@ -315,6 +315,7 @@ export function TimelineToVerbExercise({
           onContinue={onNext}
           blankFeedback={blankResults}
           sentenceTemplate={question.sentenceTemplate}
+          realLifeDialogue={question.realLifeDialogue}
         />
       )}
     </div>

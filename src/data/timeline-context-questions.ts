@@ -13,6 +13,10 @@ export const TIMELINE_CONTEXT_QUESTIONS: ContextTenseQuestion[] = [
     type: "context-tense-picker",
     scenario: "Look at Maria right now! She ___ (work) on her laptop at the café.",
     blankVerb: "work",
+    realLifeDialogue: {
+      lineA: 'A: "Can Maria talk right now?"',
+      lineB: 'B: "Not yet. She is working on her laptop at the café."',
+    },
     options: [
       {
         tenseName: "Present Simple",

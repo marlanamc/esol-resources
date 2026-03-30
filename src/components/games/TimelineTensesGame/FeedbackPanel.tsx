@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Check, X, Lightbulb, ArrowRight } from 'lucide-react';
-import type { ValidVerbAnswer } from '@/types/activity';
+import type { RealLifeDialogue, ValidVerbAnswer } from '@/types/activity';
 import {
   type TimelineVerbBlankResult,
 } from './timelineTensesUtils';
@@ -22,6 +22,8 @@ interface FeedbackPanelProps {
   sentenceTemplate?: string;
   /** Original sentence (SentenceToTimeline) — shown with time clue highlighting */
   sentence?: string;
+  /** Optional per-question real-life dialogue */
+  realLifeDialogue?: RealLifeDialogue;
 }
 
 export function FeedbackPanel({
@@ -32,6 +34,7 @@ export function FeedbackPanel({
   blankFeedback,
   sentenceTemplate,
   sentence,
+  realLifeDialogue,
 }: FeedbackPanelProps) {
   const hasBlankFeedback = (blankFeedback?.length ?? 0) > 0;
 
@@ -145,7 +148,7 @@ export function FeedbackPanel({
           <div className="text-xs font-black uppercase tracking-[0.2em] text-text-muted/40 mb-4">
             The Sentence:
           </div>
-          <p className="text-xl sm:text-2xl font-display font-black text-text leading-snug tracking-tight italic">
+          <p className="text-xl sm:text-2xl font-display font-black text-text leading-snug tracking-tight">
             &ldquo;{highlightTimeClues(sentence)}&rdquo;
           </p>
           <p className="text-[10px] text-text-muted/40 font-medium mt-3">
@@ -181,7 +184,7 @@ export function FeedbackPanel({
 
       {/* Mini-dialogue */}
       <div className="mb-8">
-        <TenseDialogueCard tenseName={tenseName} />
+        <TenseDialogueCard dialogue={realLifeDialogue} tenseName={tenseName} />
       </div>
 
       {/* Blank-specific feedback journey */}

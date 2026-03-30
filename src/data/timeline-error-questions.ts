@@ -19,6 +19,10 @@ export const TIMELINE_ERROR_QUESTIONS: ErrorCorrectionQuestion[] = [
     incorrectSentence: "She is working here for three years.",
     incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-s-01-incorrect"),
     correctSentence: "She has been working here for three years.",
+    realLifeDialogue: {
+      lineA: 'A: "Does Maya still work at that clinic?"',
+      lineB: 'B: "Yes, she has been working there for three years."',
+    },
     correctElements: buildCanonicalTimelineElements(
       "presentPerfectContinuous",
       "err-s-01-correct",

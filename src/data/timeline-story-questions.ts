@@ -15,6 +15,10 @@ export const TIMELINE_STORY_QUESTIONS: StoryBuilderQuestion[] = [
     type: "story-builder",
     storyTitle: "Nina's Morning Commute",
     storyPrompt: "Tell the story of Nina's morning before she gets on the bus.",
+    realLifeDialogue: {
+      lineA: 'A: "Why was Nina late getting out the door?"',
+      lineB: 'B: "Her whole morning was rushed before she got on the bus."',
+    },
     sentences: [
       {
         template: "Nina ___ (wake) up at 7 a.m.",

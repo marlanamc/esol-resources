@@ -532,6 +532,12 @@ export interface ValidVerbAnswer {
     nuance?: string;
 }
 
+/** Short A/B exchange showing the target tense in real conversation */
+export interface RealLifeDialogue {
+    lineA: string;
+    lineB: string;
+}
+
 /** Tense categories for filtering practice */
 export type TenseCategory =
     | "simple"
@@ -551,6 +557,8 @@ export interface SentenceToTimelineQuestion {
     sentence: string;
     /** The verb phrase to bold in the sentence display, e.g., "has been cooking" */
     verbPhrase?: string;
+    /** Optional per-question dialogue shown in the "In real life" card */
+    realLifeDialogue?: RealLifeDialogue;
     /** Expected timeline elements for correct answer */
     correctElements: TimelineElement[];
     /** The tense name to reveal after submission */
@@ -582,6 +590,8 @@ export interface TimelineToVerbQuestion {
     }>;
     /** Optional scenario context */
     scenario?: string;
+    /** Optional per-question dialogue shown in the "In real life" card */
+    realLifeDialogue?: RealLifeDialogue;
     difficulty: 1 | 2 | 3;
     tenseCategory: TenseCategory;
     /** Sentence form: affirmative, negative, or question */
@@ -616,6 +626,8 @@ export interface TenseComparisonQuestion {
     confusionExplanation: string;
     /** The key visual/conceptual difference */
     keyDifference: string;
+    /** Optional per-question dialogue shown in the "In real life" card */
+    realLifeDialogue?: RealLifeDialogue;
     difficulty: 1 | 2 | 3;
     tenseCategory: TenseCategory;
 }
@@ -636,6 +648,8 @@ export interface SentenceTransformerQuestion {
     hint?: string;
     /** Grammar explanation shown in feedback */
     explanation: string;
+    /** Optional per-question dialogue shown in the "In real life" card */
+    realLifeDialogue?: RealLifeDialogue;
     difficulty: 1 | 2 | 3;
     tenseCategory: TenseCategory;
 }
@@ -659,6 +673,8 @@ export interface ContextTenseQuestion {
     /** Words/phrases in the scenario that signal the correct tense */
     contextClues: string[];
     explanation: string;
+    /** Optional per-question dialogue shown in the "In real life" card */
+    realLifeDialogue?: RealLifeDialogue;
     difficulty: 1 | 2 | 3;
     tenseCategory: TenseCategory;
 }
@@ -678,6 +694,8 @@ export interface ErrorCorrectionQuestion {
     correctTense: string;
     /** Why this mistake is so common */
     commonMistakeExplanation: string;
+    /** Optional per-question dialogue shown in the "In real life" card */
+    realLifeDialogue?: RealLifeDialogue;
     difficulty: 1 | 2 | 3;
     tenseCategory: TenseCategory;
 }
@@ -700,6 +718,8 @@ export interface StoryBuilderQuestion {
     sentences: StorySentence[];
     /** All timeline elements combined (for the final full-timeline view) */
     fullTimelineElements: TimelineElement[];
+    /** Optional per-question dialogue shown in the "In real life" card */
+    realLifeDialogue?: RealLifeDialogue;
     difficulty: 1 | 2 | 3;
     tenseCategory: TenseCategory;
 }

@@ -239,7 +239,10 @@ export function TenseComparisonExercise({
               </div>
 
               {/* Mini-dialogue for the correct tense */}
-              <TenseDialogueCard tenseName={correctTenseName} />
+              <TenseDialogueCard
+                dialogue={question.realLifeDialogue}
+                tenseName={correctTenseName}
+              />
             </motion.div>
 
             {/* Both timelines revealed with labels */}

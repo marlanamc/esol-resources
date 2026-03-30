@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verb Tenses — Affirmative</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #fef9f3;
+      color: #2b3a4a;
+      padding: 14px 16px 10px;
+    }
+
+    h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 21px;
+      font-weight: 700;
+      text-align: center;
+      background: #d97757;
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+      border: 2px solid #d1d5db;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    th, td {
+      border: 1px solid #e5e7eb;
+    }
+
+    /* Corner empty cell */
+    .corner { width: 66px; background: #f9fafb; }
+
+    /* Column headers */
+    .col-header {
+      text-align: center;
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 7px 6px 6px;
+    }
+    .col-past    { background: #fef3c7; color: #92400e; }
+    .col-present { background: #d1fae5; color: #065f46; }
+    .col-future  { background: #dbeafe; color: #1e3a8a; }
+
+    /* Row header cells */
+    .row-header-cell {
+      background: #f3f4f6;
+      vertical-align: middle;
+      text-align: center;
+      padding: 4px 3px;
+      width: 66px;
+    }
+    .row-label {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 11px;
+      color: #374151;
+      line-height: 1.25;
+      display: block;
+    }
+
+    /* Data cells */
+    .cell {
+      padding: 6px 7px 4px;
+      vertical-align: top;
+    }
+
+    .sentence {
+      font-size: 11px;
+      line-height: 1.45;
+      margin-bottom: 2px;
+    }
+    .sentence strong {
+      color: #c2410c;
+      font-weight: 700;
+    }
+
+    .formula {
+      font-size: 9px;
+      color: #6b7280;
+      font-style: italic;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    svg.timeline {
+      display: block;
+      width: 100%;
+      overflow: visible;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 10px;
+      color: #4b5563;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+    .legend-line {
+      width: 22px; height: 4px; border-radius: 2px; flex-shrink: 0;
+    }
+    .legend-arc {
+      width: 24px; height: 10px; flex-shrink: 0;
+    }
+    .legend-sep { color: #d1d5db; }
+
+    @media print {
+      body {
+        padding: 4px 6px;
+        background: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      @page { size: A4 landscape; margin: 8mm 8mm 6mm; }
+      h1 { font-size: 16px; padding: 6px 14px; margin-bottom: 7px; }
+      .sentence { font-size: 9.5px; }
+      .formula   { font-size: 8px; }
+      .legend    { font-size: 9px; margin-top: 5px; }
+      .col-header { font-size: 13px; padding: 5px 4px; }
+      .row-label  { font-size: 10px; }
+      .cell { padding: 4px 5px 3px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Verb Tenses — Affirmative</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th class="corner"></th>
+      <th class="col-header col-past">Past</th>
+      <th class="col-header col-present">Present</th>
+      <th class="col-header col-future">Future</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- ══════════════════════════════════════════════════════════
+         ROW 1 — SIMPLE
+    ══════════════════════════════════════════════════════════ -->
+    <tr>
+      <td class="row-header-cell"><span class="row-label">Simple</span></td>
+
+      <!-- Past Simple -->
+      <td class="cell">
+        <p class="sentence">I <strong>studied</strong> English last year.</p>
+        <p class="formula">Subject + verb-ed (or irregular past)</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <!-- Zone backgrounds -->
+          <rect x="15" y="22" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <!-- Axis -->
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <!-- NOW line -->
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Single amber dot -->
+          <circle cx="70" cy="38" r="7" fill="#d97706"/>
+          <!-- Labels -->
+          <text x="72"  y="58" text-anchor="middle" font-size="7" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">PAST</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7" fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7" fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+
+      <!-- Present Simple -->
+      <td class="cell">
+        <p class="sentence">I <strong>study</strong> English every day.</p>
+        <p class="formula">Subject + base verb (+ -s for he/she/it)</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="22" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Three emerald dots (repeated habit) -->
+          <circle cx="116" cy="38" r="4" fill="#16a34a" opacity="0.65"/>
+          <circle cx="140" cy="38" r="6" fill="#16a34a"/>
+          <circle cx="164" cy="38" r="4" fill="#16a34a" opacity="0.65"/>
+          <text x="72"  y="58" text-anchor="middle" font-size="7" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">PAST</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7" fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7" fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+
+      <!-- Future Simple -->
+      <td class="cell">
+        <p class="sentence">I <strong>will study</strong> English next year.</p>
+        <p class="formula">Subject + will + base verb</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="22" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Single blue dot -->
+          <circle cx="200" cy="38" r="7" fill="#2563eb"/>
+          <text x="72"  y="58" text-anchor="middle" font-size="7" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">PAST</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7" fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7" fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+    </tr>
+
+    <!-- ══════════════════════════════════════════════════════════
+         ROW 2 — CONTINUOUS
+    ══════════════════════════════════════════════════════════ -->
+    <tr>
+      <td class="row-header-cell"><span class="row-label">Continuous</span></td>
+
+      <!-- Past Continuous -->
+      <td class="cell">
+        <p class="sentence">I <strong>was studying</strong> when she called.</p>
+        <p class="formula">Subject + was/were + verb-ing</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="22" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Dashed amber duration line -->
+          <circle cx="40" cy="38" r="4.5" fill="#d97706"/>
+          <line x1="40" y1="38" x2="110" y2="38" stroke="#d97706" stroke-width="6" stroke-dasharray="8 5" stroke-linecap="round"/>
+          <circle cx="110" cy="38" r="4.5" fill="#d97706"/>
+          <text x="72"  y="58" text-anchor="middle" font-size="7" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">PAST</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7" fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7" fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+
+      <!-- Present Continuous -->
+      <td class="cell">
+        <p class="sentence">I <strong>am studying</strong> right now.</p>
+        <p class="formula">Subject + am/is/are + verb-ing</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="22" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Dashed emerald duration line centered on NOW -->
+          <circle cx="115" cy="38" r="4.5" fill="#16a34a"/>
+          <line x1="115" y1="38" x2="165" y2="38" stroke="#16a34a" stroke-width="6" stroke-dasharray="8 5" stroke-linecap="round"/>
+          <circle cx="165" cy="38" r="4.5" fill="#16a34a"/>
+          <text x="72"  y="58" text-anchor="middle" font-size="7" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">PAST</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7" fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7" fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+
+      <!-- Future Continuous -->
+      <td class="cell">
+        <p class="sentence">I <strong>will be studying</strong> all night.</p>
+        <p class="formula">Subject + will be + verb-ing</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="22" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Dashed blue duration line in future -->
+          <circle cx="162" cy="38" r="4.5" fill="#2563eb"/>
+          <line x1="162" y1="38" x2="240" y2="38" stroke="#2563eb" stroke-width="6" stroke-dasharray="8 5" stroke-linecap="round"/>
+          <circle cx="240" cy="38" r="4.5" fill="#2563eb"/>
+          <text x="72"  y="58" text-anchor="middle" font-size="7" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">PAST</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7" fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7" fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+    </tr>
+
+    <!-- ══════════════════════════════════════════════════════════
+         ROW 3 — PERFECT
+    ══════════════════════════════════════════════════════════ -->
+    <tr>
+      <td class="row-header-cell"><span class="row-label">Perfect</span></td>
+
+      <!-- Past Perfect -->
+      <td class="cell">
+        <p class="sentence">I <strong>had studied</strong> before the test.</p>
+        <p class="formula">Subject + had + past participle</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <!-- Split past: orange (earlier) + amber (later) -->
+          <rect x="15" y="22" width="62" height="28" rx="5" fill="rgba(180,83,9,0.15)"/>
+          <line x1="79" y1="22" x2="79" y2="50" stroke="#d1d5db" stroke-width="0.8" stroke-dasharray="2 2"/>
+          <rect x="81" y="22" width="50" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <!-- Axis -->
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <!-- NOW line -->
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Solid arc: orange start → amber end -->
+          <path d="M 40 38 Q 70 17 100 38" fill="none" stroke="#b45309" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="40"  cy="38" r="6" fill="#b45309"/>
+          <circle cx="100" cy="38" r="6" fill="#d97706"/>
+          <!-- Labels -->
+          <text x="46"  y="58" text-anchor="middle" font-size="6.5" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">EARLIER</text>
+          <text x="106" y="58" text-anchor="middle" font-size="6.5" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">RECENT</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7"   fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7"   fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+
+      <!-- Present Perfect -->
+      <td class="cell">
+        <p class="sentence">I <strong>have studied</strong> at this school.</p>
+        <p class="formula">Subject + have/has + past participle</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="22" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Solid arc: amber start → emerald end (NOW) -->
+          <path d="M 65 38 Q 102 17 140 38" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="65"  cy="38" r="6" fill="#d97706"/>
+          <circle cx="140" cy="38" r="7" fill="#16a34a"/>
+          <text x="72"  y="58" text-anchor="middle" font-size="7" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">PAST</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7" fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7" fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+
+      <!-- Future Perfect -->
+      <td class="cell">
+        <p class="sentence">I <strong>will have studied</strong> for 5 years by June.</p>
+        <p class="formula">Subject + will have + past participle</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="22" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Dashed arc: emerald start (NOW) → blue end (future) -->
+          <path d="M 140 38 Q 177 17 215 38" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <circle cx="140" cy="38" r="7" fill="#16a34a"/>
+          <circle cx="215" cy="38" r="6" fill="#2563eb"/>
+          <text x="72"  y="58" text-anchor="middle" font-size="7" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">PAST</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7" fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7" fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+    </tr>
+
+    <!-- ══════════════════════════════════════════════════════════
+         ROW 4 — PERFECT CONTINUOUS
+    ══════════════════════════════════════════════════════════ -->
+    <tr>
+      <td class="row-header-cell"><span class="row-label">Perfect Continuous</span></td>
+
+      <!-- Past Perfect Continuous -->
+      <td class="cell">
+        <p class="sentence">I <strong>had been studying</strong> for hours before the break.</p>
+        <p class="formula">Subject + had been + verb-ing</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <!-- Split past: orange (earlier) + amber (later) -->
+          <rect x="15" y="22" width="62" height="28" rx="5" fill="rgba(180,83,9,0.15)"/>
+          <line x1="79" y1="22" x2="79" y2="50" stroke="#d1d5db" stroke-width="0.8" stroke-dasharray="2 2"/>
+          <rect x="81" y="22" width="50" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Dashed arc (duration): orange start → amber end -->
+          <path d="M 40 38 Q 70 14 100 38" fill="none" stroke="#b45309" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+          <circle cx="40"  cy="38" r="6" fill="#b45309"/>
+          <circle cx="100" cy="38" r="6" fill="#d97706"/>
+          <text x="46"  y="58" text-anchor="middle" font-size="6.5" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">EARLIER</text>
+          <text x="106" y="58" text-anchor="middle" font-size="6.5" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">RECENT</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7"   fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7"   fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+
+      <!-- Present Perfect Continuous -->
+      <td class="cell">
+        <p class="sentence">I <strong>have been studying</strong> here for years.</p>
+        <p class="formula">Subject + have/has been + verb-ing</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="22" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Dashed arc (duration): amber start → emerald end (NOW) -->
+          <path d="M 55 38 Q 97 13 140 38" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="7 4" stroke-linecap="round"/>
+          <circle cx="55"  cy="38" r="6" fill="#d97706"/>
+          <circle cx="140" cy="38" r="7" fill="#16a34a"/>
+          <text x="72"  y="58" text-anchor="middle" font-size="7" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">PAST</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7" fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7" fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+
+      <!-- Future Perfect Continuous -->
+      <td class="cell">
+        <p class="sentence">I <strong>will have been studying</strong> for 10 years by then.</p>
+        <p class="formula">Subject + will have been + verb-ing</p>
+        <svg class="timeline" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="22" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="14" width="14" height="38" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="22" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="38" x2="258" y2="38" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,38 23,34 23,42" fill="#9ca3af"/>
+          <polygon points="265,38 257,34 257,42" fill="#9ca3af"/>
+          <line x1="140" y1="17" x2="140" y2="52" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Dashed arc (duration): emerald start (NOW) → blue end (future) -->
+          <path d="M 140 38 Q 183 13 225 38" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="7 4" stroke-linecap="round"/>
+          <circle cx="140" cy="38" r="7" fill="#16a34a"/>
+          <circle cx="225" cy="38" r="6" fill="#2563eb"/>
+          <text x="72"  y="58" text-anchor="middle" font-size="7" fill="#92400e" font-family="DM Sans, sans-serif" font-weight="500">PAST</text>
+          <text x="140" y="58" text-anchor="middle" font-size="7" fill="#065f46" font-family="DM Sans, sans-serif" font-weight="600">NOW</text>
+          <text x="207" y="58" text-anchor="middle" font-size="7" fill="#1e3a8a" font-family="DM Sans, sans-serif" font-weight="500">FUTURE</text>
+        </svg>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<!-- Legend -->
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#d97706;"></div>
+    <span style="color:#92400e; font-weight:600;">PAST</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#b45309;"></div>
+    <span style="color:#92400e; font-weight:600;">EARLIER PAST</span>
+  </div>
+  <span class="legend-sep">·</span>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#16a34a;"></div>
+    <span style="color:#065f46; font-weight:600;">NOW</span>
+  </div>
+  <span class="legend-sep">·</span>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#2563eb;"></div>
+    <span style="color:#1e3a8a; font-weight:600;">FUTURE</span>
+  </div>
+  <span class="legend-sep">·</span>
+  <div class="legend-item">
+    <svg width="22" height="10" viewBox="0 0 22 10"><circle cx="4" cy="5" r="4" fill="#d97706"/><line x1="4" y1="5" x2="18" y2="5" stroke="#d97706" stroke-width="3" stroke-dasharray="4 3"/><circle cx="18" cy="5" r="3" fill="#d97706"/></svg>
+    <span>Duration (dashed)</span>
+  </div>
+  <span class="legend-sep">·</span>
+  <div class="legend-item">
+    <svg width="22" height="10" viewBox="0 0 22 10"><path d="M 2 8 Q 11 1 20 8" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <span>Connection (arc)</span>
+  </div>
+</div>
+
+</body>
+</html>

@@ -188,7 +188,10 @@ export function ContextTenseExercise({
               </div>
 
               {/* Mini-dialogue */}
-              <TenseDialogueCard tenseName={question.options[correctIdx].tenseName} />
+              <TenseDialogueCard
+                dialogue={question.realLifeDialogue}
+                tenseName={question.options[correctIdx].tenseName}
+              />
             </motion.div>
 
             {/* Correct option with full timeline */}

@@ -23,6 +23,10 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
     targetTense: "Past Continuous",
     sourceSentence: "She cooked dinner.",
     targetSentence: "She was cooking dinner when I called.",
+    realLifeDialogue: {
+      lineA: 'A: "Why didn\'t she answer the phone?"',
+      lineB: 'B: "She was cooking dinner when I called."',
+    },
     sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-ps-pc-01-source", [
       { position: 50 },
     ]),

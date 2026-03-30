@@ -23,6 +23,7 @@ interface ComparisonConfig {
   optionB: string;
   confusionExplanation: string;
   keyDifference: string;
+  realLifeDialogue?: TenseComparisonQuestion["realLifeDialogue"];
   difficulty: 1 | 2 | 3;
   tenseCategory: TenseCategory;
   overridesA?: TimelineOverride;
@@ -50,6 +51,7 @@ function createComparisonQuestion(config: ComparisonConfig): TenseComparisonQues
     optionB: { sentence: config.optionB },
     confusionExplanation: config.confusionExplanation,
     keyDifference: config.keyDifference,
+    realLifeDialogue: config.realLifeDialogue,
     difficulty: config.difficulty,
     tenseCategory: config.tenseCategory,
   };
@@ -76,6 +78,10 @@ export const TIMELINE_COMPARISON_QUESTIONS: TenseComparisonQuestion[] = [
       "Both describe past eating, but only one keeps the result connected to now.",
     keyDifference:
       '"Already/just/yet" without a finished past time usually points to Present Perfect. A clock or calendar time points to Past Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "Do you want lunch now?"',
+      lineB: 'B: "No thanks. I have already eaten."',
+    },
     difficulty: 1,
     tenseCategory: "perfect",
   }),

@@ -24,6 +24,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-habit-1',
     sentence: 'I live in Revere now.',
+    verbPhrase: 'live',
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -56,6 +57,10 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'fs-1',
     sentence: 'I will live in the U.S. in 2027.',
     verbPhrase: 'will live',
+    realLifeDialogue: {
+      lineA: 'A: "Where do you see yourself in a few years?"',
+      lineB: 'B: "I will live in the U.S. in 2027."',
+    },
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple',
     explanation:
@@ -109,6 +114,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-habit-bus-1',
     sentence: 'My kids take the bus every morning.',
+    verbPhrase: 'take',
     correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
     tenseName: 'Present Simple',
     explanation:
@@ -121,6 +127,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-habit-dinner-1',
     sentence: 'We eat dinner at 6:00 every day.',
+    verbPhrase: 'eat',
     correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
     tenseName: 'Present Simple',
     explanation:
@@ -133,6 +140,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-habit-shop-1',
     sentence: 'I buy groceries on Saturdays.',
+    verbPhrase: 'buy',
     correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
     tenseName: 'Present Simple',
     explanation:
@@ -145,6 +153,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-past-cook-1',
     sentence: 'I cooked rice last night.',
+    verbPhrase: 'cooked',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 45 }],
     tenseName: 'Past Simple',
     explanation:
@@ -157,6 +166,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-past-rain-1',
     sentence: 'It rained this morning.',
+    verbPhrase: 'rained',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 35 }],
     tenseName: 'Past Simple',
     explanation:
@@ -169,6 +179,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fs-call-1',
     sentence: 'I will call my sister tonight.',
+    verbPhrase: 'will call',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 35 }],
     tenseName: 'Future Simple',
     explanation:
@@ -181,6 +192,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fs-library-1',
     sentence: 'We will visit the library tomorrow.',
+    verbPhrase: 'will visit',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 45 }],
     tenseName: 'Future Simple',
     explanation:
@@ -222,6 +234,10 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
       },
     ],
     scenario: 'Talking about a family morning routine',
+    realLifeDialogue: {
+      lineA: 'A: "What is your morning routine like?"',
+      lineB: 'B: "Every morning, I drink coffee and my son takes the bus to school."',
+    },
     difficulty: 1,
     tenseCategory: 'simple',
     sentenceForm: 'affirmative',
@@ -333,6 +349,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-homework-1',
     sentence: 'My daughter is doing homework right now.',
+    verbPhrase: 'is doing',
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
     explanation:
@@ -345,6 +362,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-bus-1',
     sentence: 'We are waiting for the bus right now.',
+    verbPhrase: 'are waiting',
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
     explanation:
@@ -389,6 +407,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-past-1',
     sentence: 'I was living in El Salvador when I decided to move.',
+    verbPhrase: 'was living',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -543,6 +562,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pperf-1',
     sentence: 'I had lived in Chelsea before I moved to Revere.',
+    verbPhrase: 'had lived',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -560,6 +580,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fp-1',
     sentence: 'By 2027, I will have finished school.',
+    verbPhrase: 'will have finished',
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect',
     explanation:
@@ -862,6 +883,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-habit-neg-1',
     sentence: "She doesn't cook breakfast every day.",
+    verbPhrase: "doesn't cook",
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -878,6 +900,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-fact-neg-1',
     sentence: "Water doesn't boil at 50 degrees.",
+    verbPhrase: "doesn't boil",
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -894,6 +917,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-past-neg-1',
     sentence: "I didn't finish my homework yesterday.",
+    verbPhrase: "didn't finish",
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple (Negative)',
     explanation:
@@ -908,6 +932,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fs-neg-1',
     sentence: "I won't go to the party tomorrow.",
+    verbPhrase: "won't go",
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple (Negative)',
     explanation:
@@ -922,6 +947,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-neg-1',
     sentence: "I'm not working right now.",
+    verbPhrase: "'m not working",
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous (Negative)',
     explanation:
@@ -936,6 +962,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-past-neg-1',
     sentence: "She wasn't listening when I explained the rules.",
+    verbPhrase: "wasn't listening",
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -953,6 +980,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pp-neg-1',
     sentence: "I haven't seen that movie yet.",
+    verbPhrase: "haven't seen",
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Negative)',
     explanation:
@@ -967,6 +995,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pp-exp-neg-1',
     sentence: 'She has never traveled abroad.',
+    verbPhrase: 'has never traveled',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Negative)',
     explanation:
@@ -981,6 +1010,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fp-neg-1',
     sentence: "By December, I won't have saved enough money.",
+    verbPhrase: "won't have saved",
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect (Negative)',
     explanation:
@@ -995,6 +1025,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ppc-neg-1',
     sentence: "I haven't been sleeping well lately.",
+    verbPhrase: "haven't been sleeping",
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous (Negative)',
     explanation:
@@ -1013,6 +1044,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-habit-q-1',
     sentence: 'Do you exercise every morning?',
+    verbPhrase: 'exercise',
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -1029,6 +1061,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-fact-q-1',
     sentence: 'Does the sun rise in the east?',
+    verbPhrase: 'rise',
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -1045,6 +1078,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-past-q-1',
     sentence: 'Did you finish your homework yesterday?',
+    verbPhrase: 'finish',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple (Question)',
     explanation:
@@ -1059,6 +1093,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fs-q-1',
     sentence: 'Will you come to the party tomorrow?',
+    verbPhrase: 'come',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple (Question)',
     explanation:
@@ -1073,6 +1108,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-q-1',
     sentence: 'Are you studying right now?',
+    verbPhrase: 'studying',
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous (Question)',
     explanation:
@@ -1087,6 +1123,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-past-q-1',
     sentence: 'Were you sleeping when I called?',
+    verbPhrase: 'sleeping',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -1104,6 +1141,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pp-q-1',
     sentence: 'Have you ever visited Mexico?',
+    verbPhrase: 'visited',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Question)',
     explanation:
@@ -1118,6 +1156,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pp-exp-q-1',
     sentence: 'Has she finished her work?',
+    verbPhrase: 'finished',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Question)',
     explanation:
@@ -1132,6 +1171,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fp-q-1',
     sentence: 'Will you have finished the project by Friday?',
+    verbPhrase: 'have finished',
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect (Question)',
     explanation:
@@ -1146,6 +1186,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ppc-q-1',
     sentence: 'Have you been waiting long?',
+    verbPhrase: 'been waiting',
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous (Question)',
     explanation:
@@ -1164,6 +1205,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-fact-1',
     sentence: 'The sun rises in the east.',
+    verbPhrase: 'rises',
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -1180,6 +1222,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-schedule-1',
     sentence: 'The train leaves at 9am tomorrow.',
+    verbPhrase: 'leaves',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Present Simple (Scheduled Future)',
     explanation:
@@ -1194,6 +1237,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-future-1',
     sentence: "I'm meeting my friend tomorrow.",
+    verbPhrase: "'m meeting",
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Present Continuous (Future Arrangement)',
     explanation:
@@ -1208,6 +1252,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-temp-1',
     sentence: 'She is always complaining about work.',
+    verbPhrase: 'is always complaining',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'present', position: 50 },
       { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
@@ -1225,6 +1270,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pp-recent-1',
     sentence: 'I have just finished my homework.',
+    verbPhrase: 'have just finished',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect',
     explanation:
@@ -1239,6 +1285,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pp-result-1',
     sentence: 'She has lost her keys.',
+    verbPhrase: 'has lost',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect',
     explanation:
@@ -1253,6 +1300,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pperf-2',
     sentence: 'By the time she arrived, he had already left.',
+    verbPhrase: 'had already left',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -1270,6 +1318,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fpc-2',
     sentence: 'Next month, I will have been working here for a year.',
+    verbPhrase: 'will have been working',
     correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 50 }],
     tenseName: 'Future Perfect Continuous',
     explanation:
@@ -1876,6 +1925,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-shop-1',
     sentence: 'I usually buy groceries on Saturdays.',
+    verbPhrase: 'buy',
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -1892,6 +1942,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-health-1',
     sentence: 'I visited the doctor last week.',
+    verbPhrase: 'visited',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple',
     explanation:
@@ -1906,6 +1957,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-family-1',
     sentence: 'We will celebrate my birthday next month.',
+    verbPhrase: 'will celebrate',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple',
     explanation:
@@ -1920,6 +1972,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-work-neg-1',
     sentence: "My boss doesn't work on weekends.",
+    verbPhrase: "doesn't work",
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -1936,6 +1989,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-food-q-1',
     sentence: 'Did you cook dinner last night?',
+    verbPhrase: 'cook',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple (Question)',
     explanation:
@@ -1954,6 +2008,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-work-cont-1',
     sentence: 'My colleagues are having a meeting right now.',
+    verbPhrase: 'are having',
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
     explanation:
@@ -1968,6 +2023,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-health-cont-1',
     sentence: 'I was feeling sick when I woke up this morning.',
+    verbPhrase: 'was feeling',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -1985,6 +2041,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-family-cont-1',
     sentence: 'This time next year, my daughter will be attending university.',
+    verbPhrase: 'will be attending',
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 60 }],
     tenseName: 'Future Continuous',
     explanation:
@@ -1999,6 +2056,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-shop-neg-1',
     sentence: "I'm not buying anything today.",
+    verbPhrase: "'m not buying",
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous (Negative)',
     explanation:
@@ -2013,6 +2071,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-work-q-1',
     sentence: 'Will you be working late tonight?',
+    verbPhrase: 'be working',
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 50 }],
     tenseName: 'Future Continuous (Question)',
     explanation:
@@ -2031,6 +2090,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-health-perf-1',
     sentence: 'I have had this headache since this morning.',
+    verbPhrase: 'have had',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect',
     explanation:
@@ -2045,6 +2105,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-shop-perf-1',
     sentence: 'I have already bought everything on my list.',
+    verbPhrase: 'have already bought',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect',
     explanation:
@@ -2059,6 +2120,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-work-perf-1',
     sentence: 'When I arrived at the office, the meeting had already started.',
+    verbPhrase: 'had already started',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -2076,6 +2138,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-family-perf-1',
     sentence: 'By the time the kids come home, I will have prepared dinner.',
+    verbPhrase: 'will have prepared',
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect',
     explanation:
@@ -2090,6 +2153,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-health-neg-1',
     sentence: "She hasn't felt well for days.",
+    verbPhrase: "hasn't felt",
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Negative)',
     explanation:
@@ -2104,6 +2168,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-shop-q-1',
     sentence: 'Have you ever tried this brand before?',
+    verbPhrase: 'tried',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect (Question)',
     explanation:
@@ -2122,6 +2187,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-work-ppc-1',
     sentence: 'I have been working on this project for three months.',
+    verbPhrase: 'have been working',
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous',
     explanation:
@@ -2136,6 +2202,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-health-ppc-1',
     sentence: 'She has been exercising regularly since January.',
+    verbPhrase: 'has been exercising',
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous',
     explanation:
@@ -2150,6 +2217,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-family-ppc-1',
     sentence: 'The children had been playing for hours before dinner.',
+    verbPhrase: 'had been playing',
     correctElements: [
       { id: 'e1', type: 'solid-to-point', zone: 'past-earlier', position: 20 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 60 },
@@ -2167,6 +2235,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-work-ppc-neg-1',
     sentence: "He hasn't been coming to work regularly.",
+    verbPhrase: "hasn't been coming",
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous (Negative)',
     explanation:
@@ -2181,6 +2250,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'everyday-health-ppc-q-1',
     sentence: 'How long have you been feeling tired?',
+    verbPhrase: 'been feeling',
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous (Question)',
     explanation:
@@ -2377,6 +2447,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-complex-q-1',
     sentence: 'Have you decided what you will study next year?',
+    verbPhrase: 'decided',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'future', position: 60 },
@@ -2398,6 +2469,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'adv-combo-1',
     sentence: 'I had been sleeping when the fire alarm went off.',
+    verbPhrase: 'had been sleeping',
     correctElements: [
       { id: 'e1', type: 'solid-to-point', zone: 'past-earlier', position: 20 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 60 },
@@ -2415,6 +2487,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'adv-combo-2',
     sentence: 'By the time you arrive, we will have eaten dinner.',
+    verbPhrase: 'will have eaten',
     correctElements: [
       { id: 'e1', type: 'arc-dashed', zone: 'future', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'future', position: 70 },
@@ -2484,6 +2557,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'beg-habit-1',
     sentence: 'I drink coffee every morning.',
+    verbPhrase: 'drink',
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -2499,6 +2573,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'beg-habit-2',
     sentence: 'She walks to school.',
+    verbPhrase: 'walks',
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -2515,6 +2590,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'beg-past-1',
     sentence: 'I ate lunch at 12:00.',
+    verbPhrase: 'ate',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple',
     explanation:
@@ -2528,6 +2604,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'beg-past-2',
     sentence: 'They played soccer yesterday.',
+    verbPhrase: 'played',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple',
     explanation:
@@ -2542,6 +2619,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'beg-future-1',
     sentence: 'I will call you later.',
+    verbPhrase: 'will call',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple',
     explanation:
@@ -2555,6 +2633,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'beg-future-2',
     sentence: 'She will help you tomorrow.',
+    verbPhrase: 'will help',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple',
     explanation:
@@ -2569,6 +2648,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'beg-neg-1',
     sentence: "I don't like spicy food.",
+    verbPhrase: "don't like",
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -2584,6 +2664,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'beg-neg-2',
     sentence: "He didn't come to class today.",
+    verbPhrase: "didn't come",
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple (Negative)',
     explanation:
@@ -2598,6 +2679,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'beg-q-1',
     sentence: 'Do you speak English?',
+    verbPhrase: 'speak',
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -2613,6 +2695,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'beg-q-2',
     sentence: 'Did you sleep well?',
+    verbPhrase: 'sleep',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple (Question)',
     explanation:
@@ -2701,6 +2784,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'travel-1',
     sentence: 'The bus arrives at 3pm every day.',
+    verbPhrase: 'arrives',
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -2716,6 +2800,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'travel-2',
     sentence: 'We were driving to Boston when the car broke down.',
+    verbPhrase: 'were driving',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -2732,6 +2817,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'travel-3',
     sentence: 'By 6pm, the flight will have landed.',
+    verbPhrase: 'will have landed',
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect',
     explanation:
@@ -2772,6 +2858,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'school-1',
     sentence: 'The students are taking a test right now.',
+    verbPhrase: 'are taking',
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
     explanation:
@@ -2785,6 +2872,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'school-2',
     sentence: 'She has studied English for five years.',
+    verbPhrase: 'has studied',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 40 }],
     tenseName: 'Present Perfect',
     explanation:
@@ -2798,6 +2886,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'school-3',
     sentence: 'By May, they will have completed the course.',
+    verbPhrase: 'will have completed',
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect',
     explanation:
@@ -2839,6 +2928,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'weather-1',
     sentence: 'It rains a lot in Seattle.',
+    verbPhrase: 'rains',
     correctElements: [
       { id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 },
     ],
@@ -2854,6 +2944,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'weather-2',
     sentence: 'It was raining when I left the house.',
+    verbPhrase: 'was raining',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -2870,6 +2961,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'weather-3',
     sentence: 'It has been snowing all day.',
+    verbPhrase: 'has been snowing',
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous',
     explanation:
@@ -2907,6 +2999,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-study-1',
     sentence: 'I am studying English at the library.',
+    verbPhrase: 'am studying',
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
     explanation: 'Happening right now — the studying is in progress as we speak. The solid line at NOW shows it\'s still going.',
@@ -2919,6 +3012,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-work-1',
     sentence: 'He works at the hospital.',
+    verbPhrase: 'works',
     correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
     tenseName: 'Present Simple (Habit/Fact)',
     explanation: 'That\'s just where he works — a current fact about his life. The repeated dots show it\'s an ongoing truth.',
@@ -2931,6 +3025,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pp-cook-1',
     sentence: 'I have cooked dinner already.',
+    verbPhrase: 'have cooked',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 60 }],
     tenseName: 'Present Perfect',
     explanation: 'Done and ready — the cooking happened in the past and the result is right here now. The arc connects that past action to the present.',
@@ -2943,6 +3038,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-past-watch-1',
     sentence: 'I was watching a movie when you called.',
+    verbPhrase: 'was watching',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -2958,6 +3054,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-interrupted-1',
     sentence: 'I was eating when the phone rang.',
+    verbPhrase: 'was eating',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -2973,6 +3070,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-sequence-1',
     sentence: 'She had already left before we arrived.',
+    verbPhrase: 'had already left',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -2988,6 +3086,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-future-perf-1',
     sentence: 'I will have finished my homework by the time you come over.',
+    verbPhrase: 'will have finished',
     correctElements: [
       { id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 },
       { id: 'e2', type: 'single-dot', zone: 'future', position: 70 },
@@ -3003,6 +3102,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-parallel-1',
     sentence: 'While I was studying, they were playing games.',
+    verbPhrase: 'was studying',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 40, verbLabel: 'study' },
       { id: 'e2', type: 'solid-line', zone: 'past', position: 60, verbLabel: 'play' },
@@ -3018,6 +3118,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-past-seq-1',
     sentence: 'He opened the door and ran outside.',
+    verbPhrase: 'opened',
     correctElements: [
       { id: 'e1', type: 'single-dot', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -3033,6 +3134,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-future-time-1',
     sentence: 'As soon as she arrives, we will eat dinner.',
+    verbPhrase: 'arrives',
     correctElements: [
       { id: 'e1', type: 'single-dot', zone: 'future', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'future', position: 70 },
@@ -3048,6 +3150,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-perfect-result-1',
     sentence: "I have lost my passport, so I can't travel.",
+    verbPhrase: 'have lost',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past', position: 50 },
       { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
@@ -3063,6 +3166,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-change-state-1',
     sentence: 'I was living in New York, but now I live in Tokyo.',
+    verbPhrase: 'was living',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 50 },
       { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
@@ -3078,6 +3182,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-ppc-interrupted-1',
     sentence: 'I had been driving for hours when I finally saw the sign.',
+    verbPhrase: 'had been driving',
     correctElements: [
       { id: 'e1', type: 'solid-to-point', zone: 'past-earlier', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3093,6 +3198,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-pc-neg-1',
     sentence: 'I wasn\'t sleeping when you called.',
+    verbPhrase: "wasn't sleeping",
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -3108,6 +3214,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-sequence-neg-1',
     sentence: 'She hadn\'t studied before she took the test.',
+    verbPhrase: "hadn't studied",
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3123,6 +3230,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-perf-result-neg-1',
     sentence: 'I haven\'t finished my work, so I can\'t leave yet.',
+    verbPhrase: "haven't finished",
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past', position: 50 },
       { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
@@ -3138,6 +3246,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-future-time-q-1',
     sentence: 'Will you call me when you land?',
+    verbPhrase: 'call',
     correctElements: [
       { id: 'e1', type: 'single-dot', zone: 'future', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'future', position: 50 },
@@ -3153,6 +3262,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'mixed-past-seq-q-1',
     sentence: 'Did he lock the door before he left?',
+    verbPhrase: 'lock',
     correctElements: [
       { id: 'e1', type: 'single-dot', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -3168,6 +3278,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ppc-past-3',
     sentence: 'I had been waiting for the bus for 30 minutes when it finally arrived.',
+    verbPhrase: 'had been waiting',
     correctElements: [
       { id: 'e1', type: 'solid-to-point', zone: 'past-earlier', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3183,6 +3294,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ppc-past-4',
     sentence: 'They had been working on the project for months before the deadline was changed.',
+    verbPhrase: 'had been working',
     correctElements: [
       { id: 'e1', type: 'solid-to-point', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 80 },
@@ -3198,6 +3310,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fpc-3',
     sentence: 'Next month, I will have been living in this city for ten years.',
+    verbPhrase: 'will have been living',
     correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 70 }],
     tenseName: 'Future Perfect Continuous',
     explanation: 'By next month, the living will have been going on for ten years — still in progress when that milestone hits. The line runs up to that future point.',
@@ -3210,6 +3323,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fpc-4',
     sentence: 'By 5:00 PM, she will have been studying for six hours straight.',
+    verbPhrase: 'will have been studying',
     correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect Continuous',
     explanation: 'Six straight hours of studying — and still going when 5pm hits. The line shows that ongoing effort running right up to the future deadline.',
@@ -3503,6 +3617,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pperf-eat-1',
     sentence: 'I had eaten dinner before the movie started.',
+    verbPhrase: 'had eaten',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3520,6 +3635,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pperf-snow-1',
     sentence: 'She had never seen snow before she moved to Boston.',
+    verbPhrase: 'had never seen',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3537,6 +3653,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pperf-grad-1',
     sentence: 'He had already graduated before she started college.',
+    verbPhrase: 'had already graduated',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3554,6 +3671,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pperf-neg-2',
     sentence: "I hadn't met her before the party.",
+    verbPhrase: "hadn't met",
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3571,6 +3689,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pperf-neg-3',
     sentence: "They hadn't studied the chapter before the test began.",
+    verbPhrase: "hadn't studied",
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3588,6 +3707,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pperf-q-2',
     sentence: 'Had you ever tried sushi before you came to the US?',
+    verbPhrase: 'tried',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3605,6 +3725,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pperf-q-3',
     sentence: 'Had she called you before she left the office?',
+    verbPhrase: 'called',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3689,6 +3810,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fp-2',
     sentence: 'She will have graduated by next summer.',
+    verbPhrase: 'will have graduated',
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect',
     explanation:
@@ -3703,6 +3825,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fp-3',
     sentence: 'They will have saved enough money by December.',
+    verbPhrase: 'will have saved',
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 65 }],
     tenseName: 'Future Perfect',
     explanation:
@@ -3717,6 +3840,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fp-4',
     sentence: 'By 2030, scientists will have developed new treatments for the disease.',
+    verbPhrase: 'will have developed',
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 75 }],
     tenseName: 'Future Perfect',
     explanation:
@@ -3731,6 +3855,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fp-neg-2',
     sentence: "I won't have saved enough money by the end of the month.",
+    verbPhrase: "won't have saved",
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 55 }],
     tenseName: 'Future Perfect (Negative)',
     explanation:
@@ -3745,6 +3870,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fp-neg-3',
     sentence: "They won't have arrived before sunset.",
+    verbPhrase: "won't have arrived",
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect (Negative)',
     explanation:
@@ -3759,6 +3885,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fp-q-2',
     sentence: 'Will you have finished the test by noon?',
+    verbPhrase: 'have finished',
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 55 }],
     tenseName: 'Future Perfect (Question)',
     explanation:
@@ -3773,6 +3900,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fp-q-3',
     sentence: 'Will she have moved into her new apartment by next month?',
+    verbPhrase: 'have moved',
     correctElements: [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
     tenseName: 'Future Perfect (Question)',
     explanation:

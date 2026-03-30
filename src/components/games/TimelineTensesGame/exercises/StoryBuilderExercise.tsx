@@ -8,6 +8,7 @@ import { TimelineCanvas } from '../TimelineCanvas';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import { areExerciseAnswersEquivalent } from '@/lib/exercise-answer-normalization';
+import { TenseDialogueCard } from '../TenseDialogueCard';
 
 interface StoryBuilderExerciseProps {
   question: StoryBuilderQuestion;
@@ -460,6 +461,10 @@ export function StoryBuilderExercise({
                     {buildStorySentenceReviewText(s.template, s.blanks)}
                   </p>
                 ))}
+              </div>
+
+              <div className="mt-5">
+                <TenseDialogueCard dialogue={question.realLifeDialogue} />
               </div>
             </motion.div>
 

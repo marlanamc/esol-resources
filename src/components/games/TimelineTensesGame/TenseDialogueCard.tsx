@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
+import type { RealLifeDialogue } from '@/types/activity';
 
 // Short, natural dialogues showing each tense in real conversation.
 // Keyed by the tenseName string used in question data.
@@ -57,12 +58,16 @@ const TENSE_DIALOGUES: Record<string, [string, string]> = {
 };
 
 interface TenseDialogueCardProps {
-  tenseName: string;
+  tenseName?: string;
+  dialogue?: RealLifeDialogue;
 }
 
-export function TenseDialogueCard({ tenseName }: TenseDialogueCardProps) {
-  const dialogue = TENSE_DIALOGUES[tenseName];
-  if (!dialogue) return null;
+export function TenseDialogueCard({ tenseName, dialogue }: TenseDialogueCardProps) {
+  const lines = dialogue
+    ? [dialogue.lineA, dialogue.lineB] as const
+    : (tenseName ? TENSE_DIALOGUES[tenseName] : undefined);
+
+  if (!lines) return null;
 
   return (
     <motion.div
@@ -78,7 +83,7 @@ export function TenseDialogueCard({ tenseName }: TenseDialogueCardProps) {
         </span>
       </div>
       <div className="space-y-1.5">
-        {dialogue.map((line, i) => (
+        {lines.map((line, i) => (
           <p key={i} className="text-sm font-medium text-text-muted leading-snug">
             {line}
           </p>

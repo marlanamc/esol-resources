@@ -327,7 +327,10 @@ export function SentenceTransformerExercise({
               </div>
 
               {/* Mini-dialogue */}
-              <TenseDialogueCard tenseName={question.targetTense} />
+              <TenseDialogueCard
+                dialogue={question.realLifeDialogue}
+                tenseName={question.targetTense}
+              />
             </motion.div>
 
             {/* Target timeline revealed */}
