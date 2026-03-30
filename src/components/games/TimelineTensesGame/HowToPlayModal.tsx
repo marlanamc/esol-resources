@@ -25,7 +25,7 @@ function BuildContent() {
             <StampCard
               svg={<circle cx={20} cy={15} r={6} fill="#3b82f6" />}
               title="Moment (Dot)"
-              desc='Tense clue: Simple in a time zone (Past Simple or Future Simple). Use one dot for one moment.'
+              desc='Something happened at one specific point in time — and then it was done. → Past Simple, Future Simple'
             />
             <StampCard
               svg={
@@ -36,14 +36,14 @@ function BuildContent() {
                 </>
               }
               title="Habit/Fact (Dots)"
-              desc='Tense clue: Present Simple. Use multiple dots for habits, routines, or facts.'
+              desc='It happens again and again — a routine, a habit, or an always-true fact. → Present Simple'
             />
             <StampCard
               svg={
                 <path d="M 8 15 L 32 15" stroke="#3b82f6" strokeWidth={5} strokeLinecap="round" strokeDasharray="8 6" />
               }
               title="Duration (Line)"
-              desc='Tense clue: Continuous family. Use a duration line for actions in progress over time.'
+              desc='It was happening over a stretch of time — not just once, not just a moment. → Continuous tenses'
             />
           </div>
         </div>
@@ -58,7 +58,7 @@ function BuildContent() {
             <StampCard
               svg={<path d="M 8 15 Q 20 3 32 15" fill="none" stroke="#3b82f6" strokeWidth={3} />}
               title="Link (Arc)"
-              desc='Tense clue: Perfect family. Use an arc to show one event linked to another event or to NOW.'
+              desc='One event is connected to another — the arc shows the bridge between them. The past event still matters now, or it happened before another event. → Perfect tenses'
             />
             <StampCard
               svg={
@@ -69,7 +69,7 @@ function BuildContent() {
                 </>
               }
               title="Ongoing Link"
-              desc={'Tense clue: Perfect Continuous. Use a duration + link shape when an ongoing action reaches another event or NOW.'}
+              desc='It was happening continuously AND it connects to another moment — you can feel both the duration and the link at the same time. → Perfect Continuous tenses'
             />
           </div>
         </div>
@@ -104,7 +104,7 @@ function ReadContent() {
             <StampCard
               svg={<circle cx={20} cy={15} r={6} fill="#f59e0b" />}
               title="Single Dot"
-              desc='Simple clue: one moment in time (Past Simple or Future Simple, depending on zone).'
+              desc='One specific moment — it happened and it was done. Check the zone: past dot = Past Simple, future dot = Future Simple.'
             />
             <StampCard
               svg={
@@ -115,14 +115,14 @@ function ReadContent() {
                 </>
               }
               title="Multiple Dots"
-              desc='Present Simple clue: habits, routines, and facts.'
+              desc='Happens again and again — a routine, a habit, or an always-true fact. → Present Simple'
             />
             <StampCard
               svg={
                 <path d="M 8 15 L 32 15" stroke="#f59e0b" strokeWidth={5} strokeLinecap="round" strokeDasharray="8 6" />
               }
-              title="Dashed Line"
-              desc='Continuous clue: an action in progress over time.'
+              title="Duration Line"
+              desc='Was happening over a stretch of time — not just once. Check the zone to find the tense. → Continuous family'
             />
           </div>
         </div>
@@ -142,8 +142,8 @@ function ReadContent() {
                   <circle cx={32} cy={15} r={4} fill="#10b981" />
                 </>
               }
-              title="Link Arc"
-              desc='Perfect clue: a linked action/result connected to another event or to NOW.'
+              title="Arc to NOW"
+              desc='Something from the past is connected to right now — it still matters, or you can still feel the result. → Present Perfect'
             />
             <StampCard
               svg={
@@ -153,8 +153,8 @@ function ReadContent() {
                   <circle cx={32} cy={15} r={4} fill="#10b981" />
                 </>
               }
-              title="Ongoing Link"
-              desc='Perfect Continuous clue: ongoing duration linked to another event or to NOW.'
+              title="Ongoing Arc to NOW"
+              desc='It was happening continuously AND it still connects to now — you can feel both the duration and the result. → Perfect Continuous'
             />
             <StampCard
               svg={
@@ -164,8 +164,8 @@ function ReadContent() {
                   <circle cx={32} cy={15} r={4} fill="#f59e0b" />
                 </>
               }
-              title="Arc between Events"
-              desc='Perfect clue: one event linked to another event (e.g. Past Perfect with a past reference point).'
+              title="Arc between Two Past Events"
+              desc='Two things happened in the past — the arc shows which one came first. The earlier event is the "background" to the later one. → Past Perfect'
             />
           </div>
         </div>
@@ -204,11 +204,11 @@ function StampCard({ svg, title, desc }: { svg: React.ReactNode; title: string; 
 
 function TenseCheatSheet({ className = '' }: { className?: string }) {
   const rows = [
-    { stamp: 'Dot / Moment', tense: 'Past Simple or Future Simple' },
-    { stamp: 'Multiple Dots / Habit-Fact', tense: 'Present Simple' },
-    { stamp: 'Duration Line (solid/dashed)', tense: 'Continuous Family' },
-    { stamp: 'Link / Arc', tense: 'Perfect' },
-    { stamp: 'Duration + Link (ongoing link)', tense: 'Perfect Continuous' },
+    { stamp: 'Dot — one moment, then done', tense: 'Past Simple · Future Simple' },
+    { stamp: 'Multiple Dots — again and again', tense: 'Present Simple' },
+    { stamp: 'Duration Line — over a stretch of time', tense: 'Continuous Family' },
+    { stamp: 'Arc — connected to another moment', tense: 'Perfect Family' },
+    { stamp: 'Arc + Line — ongoing AND connected', tense: 'Perfect Continuous' },
   ];
 
   return (
