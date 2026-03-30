@@ -549,6 +549,8 @@ export interface SentenceToTimelineQuestion {
     id: string;
     /** The sentence to represent, e.g., "She cooks breakfast every day" */
     sentence: string;
+    /** The verb phrase to bold in the sentence display, e.g., "has been cooking" */
+    verbPhrase?: string;
     /** Expected timeline elements for correct answer */
     correctElements: TimelineElement[];
     /** The tense name to reveal after submission */

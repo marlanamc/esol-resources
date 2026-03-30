@@ -15,6 +15,7 @@ import { FeedbackPanel } from '../FeedbackPanel';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import type { TimelineDrawingAnswer } from '../hooks/useTimelineTensesState';
 import { elementsUseSplitPast, validateTimelineDrawingElements } from '../timelineTensesUtils';
+import { highlightVerbPhrase } from '../highlightUtils';
 
 interface SentenceToTimelineExerciseProps {
   question: SentenceToTimelineQuestion;
@@ -196,7 +197,7 @@ export function SentenceToTimelineExercise({
         </div>
 
         <div className="text-3xl sm:text-4xl font-display font-black text-text leading-[1.15] tracking-tight">
-          "{question.sentence}"
+          &ldquo;{highlightVerbPhrase(question.sentence, question.verbPhrase)}&rdquo;
         </div>
       </motion.div>
 
@@ -439,6 +440,7 @@ export function SentenceToTimelineExercise({
             isCorrect={lastAnswerCorrect ?? false}
             tenseName={question.tenseName}
             explanation={question.explanation}
+            sentence={question.sentence}
             onContinue={onNext}
           />
         </div>

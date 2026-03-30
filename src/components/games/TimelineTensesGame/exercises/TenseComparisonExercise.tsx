@@ -8,6 +8,7 @@ import { TimelineCanvas } from '../TimelineCanvas';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import { TenseDialogueCard } from '../TenseDialogueCard';
+import { highlightTimeClues } from '../highlightUtils';
 
 interface TenseComparisonExerciseProps {
   question: TenseComparisonQuestion;
@@ -258,7 +259,7 @@ export function TenseComparisonExercise({
                         <span className="font-black text-base text-text">{tenseName}</span>
                       </div>
                     </div>
-                    <p className="text-sm text-text-muted font-medium italic mb-3">&ldquo;{sentence}&rdquo;</p>
+                    <p className="text-sm text-text-muted font-medium italic mb-3">&ldquo;{highlightTimeClues(sentence)}&rdquo;</p>
                     <TimelineCanvas
                       elements={elements}
                       interactive={false}

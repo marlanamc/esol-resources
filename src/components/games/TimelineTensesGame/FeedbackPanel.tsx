@@ -7,6 +7,7 @@ import {
   type TimelineVerbBlankResult,
 } from './timelineTensesUtils';
 import { TenseDialogueCard } from './TenseDialogueCard';
+import { highlightTimeClues } from './highlightUtils';
 
 interface FeedbackPanelProps {
   isCorrect: boolean;
@@ -19,6 +20,8 @@ interface FeedbackPanelProps {
   blankFeedback?: TimelineVerbBlankResult[];
   /** Original sentence template for showing full correct sentence */
   sentenceTemplate?: string;
+  /** Original sentence (SentenceToTimeline) — shown with time clue highlighting */
+  sentence?: string;
 }
 
 export function FeedbackPanel({
@@ -28,6 +31,7 @@ export function FeedbackPanel({
   onContinue,
   blankFeedback,
   sentenceTemplate,
+  sentence,
 }: FeedbackPanelProps) {
   const hasBlankFeedback = (blankFeedback?.length ?? 0) > 0;
 
@@ -120,14 +124,32 @@ export function FeedbackPanel({
         </div>
       </div>
 
-      {/* Full correct sentence */}
+      {/* Full correct sentence (TimelineToVerb) with time clue highlighting */}
       {correctSentence && (
         <div className="mb-8 p-6 bg-white/40 dark:bg-white/5 rounded-3xl border border-white/20 shadow-inner">
           <div className="text-xs font-black uppercase tracking-[0.2em] text-text-muted/40 mb-4">
             Master Sentence:
           </div>
           <p className="text-xl sm:text-2xl font-display font-black text-text leading-snug tracking-tight">
-            {correctSentence}
+            {highlightTimeClues(correctSentence)}
+          </p>
+          <p className="text-[10px] text-text-muted/40 font-medium mt-3">
+            Highlighted words are time clues — they signal which tense to use.
+          </p>
+        </div>
+      )}
+
+      {/* Original sentence (SentenceToTimeline) with time clue highlighting */}
+      {sentence && !correctSentence && (
+        <div className="mb-8 p-6 bg-white/40 dark:bg-white/5 rounded-3xl border border-white/20 shadow-inner">
+          <div className="text-xs font-black uppercase tracking-[0.2em] text-text-muted/40 mb-4">
+            The Sentence:
+          </div>
+          <p className="text-xl sm:text-2xl font-display font-black text-text leading-snug tracking-tight italic">
+            &ldquo;{highlightTimeClues(sentence)}&rdquo;
+          </p>
+          <p className="text-[10px] text-text-muted/40 font-medium mt-3">
+            Highlighted words are time clues — they signal which tense to use.
           </p>
         </div>
       )}

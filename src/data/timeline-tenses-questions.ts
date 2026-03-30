@@ -40,6 +40,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ps-past-1',
     sentence: 'I moved to Chelsea in 2022.',
+    verbPhrase: 'moved',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'past', position: 40 }],
     tenseName: 'Past Simple',
     explanation:
@@ -54,6 +55,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fs-1',
     sentence: 'I will live in the U.S. in 2027.',
+    verbPhrase: 'will live',
     correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
     tenseName: 'Future Simple',
     explanation:
@@ -318,6 +320,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pc-1',
     sentence: 'I am studying English right now.',
+    verbPhrase: 'am studying',
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous',
     explanation:
@@ -442,6 +445,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fc-1',
     sentence: 'Next year, I will be living in the U.S.',
+    verbPhrase: 'will be living',
     correctElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 60 }],
     tenseName: 'Future Continuous',
     explanation:
@@ -492,6 +496,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'pp-1',
     sentence: 'I have lived in Revere since 2024.',
+    verbPhrase: 'have lived',
     correctElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
     tenseName: 'Present Perfect',
     explanation:
@@ -605,6 +610,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ppc-1',
     sentence: 'I have been living in Revere for 2 years.',
+    verbPhrase: 'have been living',
     correctElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
     tenseName: 'Present Perfect Continuous',
     explanation:
@@ -651,6 +657,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'ppfc-1',
     sentence: 'I had been living in El Salvador before 2022.',
+    verbPhrase: 'had been living',
     correctElements: [
       { id: 'e1', type: 'solid-to-point', zone: 'past-earlier', position: 20 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 60 },
@@ -668,6 +675,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     type: 'sentence-to-timeline',
     id: 'fpc-1',
     sentence: 'By 2027, I will have been living in the U.S. for 5 years.',
+    verbPhrase: 'will have been living',
     correctElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 50 }],
     tenseName: 'Future Perfect Continuous',
     explanation:
