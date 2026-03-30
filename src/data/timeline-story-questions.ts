@@ -211,7 +211,7 @@ export const TIMELINE_STORY_QUESTIONS: StoryBuilderQuestion[] = [
         ),
         blanks: [{ index: 7, validAnswers: ["had been building"] }],
         contextHint:
-          'A duration leading up to a later past event points to Past Perfect Continuous.',
+          'A duration leading up to a recent past event points to Past Perfect Continuous.',
       },
       {
         template: "When the judges arrived, he ___ (explain) the experiment to a small crowd.",
@@ -413,7 +413,7 @@ export const TIMELINE_STORY_QUESTIONS: StoryBuilderQuestion[] = [
         ]),
         blanks: [{ index: 7, validAnswers: ["had already prepared"] }],
         contextHint:
-          '"Already" plus a later past event points to Past Perfect for the earlier completed action.',
+          '"Already" plus a recent past event points to Past Perfect for the earlier completed action.',
       },
       {
         template: "By noon, the bakery ___ (sell) most of the fresh rolls.",
@@ -534,7 +534,7 @@ export const TIMELINE_STORY_QUESTIONS: StoryBuilderQuestion[] = [
         ]),
         blanks: [{ index: 6, validAnswers: ["had already finished"] }],
         contextHint:
-          '"Already" plus a later past event points to Past Perfect.',
+          '"Already" plus a recent past event points to Past Perfect.',
       },
       {
         template: "By 5 p.m., why ___ the outreach nurse ___ (leave) the center already?",

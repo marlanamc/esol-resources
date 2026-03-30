@@ -319,7 +319,7 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
       [{ position: 50 }, { position: 35 }]
     ),
     verbBlanks: [{ index: 1, validAnswers: ["had been waiting"] }],
-    hint: 'Add "had been + -ing" and a later past reference point to show duration before another past event.',
+    hint: 'Add "had been + -ing" and a recent past reference point to show duration before another past event.',
     explanation:
       "Past Continuous only describes the background action. Past Perfect Continuous adds the idea that the waiting started earlier and continued up to another past moment.",
     difficulty: 2,

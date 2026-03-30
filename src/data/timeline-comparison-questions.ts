@@ -436,7 +436,7 @@ export const TIMELINE_COMPARISON_QUESTIONS: TenseComparisonQuestion[] = [
     confusionExplanation:
       "Learners often overuse Past Perfect even when there is only one clear past event to report.",
     keyDifference:
-      "If there is no later past reference point to compare against, Past Simple is usually enough.",
+      "If there is no recent past reference point to compare against, Past Simple is usually enough.",
     difficulty: 2,
     tenseCategory: "perfect",
   }),

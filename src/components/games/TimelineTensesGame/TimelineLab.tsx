@@ -68,10 +68,10 @@ const CHEAT_SHEET = [
   { category: 'Continuous', label: 'Present Continuous', pattern: 'Duration at NOW', exampleLead: 'He ', exampleVerb: 'is studying', exampleTail: ' right now.', color: 'text-emerald-700 dark:text-emerald-300' },
   { category: 'Continuous', label: 'Future Continuous', pattern: 'Duration in future', exampleLead: 'He ', exampleVerb: 'will be studying', exampleTail: ' all night.', color: 'text-blue-700 dark:text-blue-300' },
   { category: 'Perfect', label: 'Present Perfect', pattern: 'Arc from past → NOW', exampleLead: 'He ', exampleVerb: 'has studied', exampleTail: ' English.', color: 'text-emerald-700 dark:text-emerald-300' },
-  { category: 'Perfect', label: 'Past Perfect', pattern: 'Arc in earlier past + moment in later past', exampleLead: 'He ', exampleVerb: 'had studied', exampleTail: ' before the test.', color: 'text-amber-700 dark:text-amber-300' },
+  { category: 'Perfect', label: 'Past Perfect', pattern: 'Arc in earlier past + moment in recent past', exampleLead: 'He ', exampleVerb: 'had studied', exampleTail: ' before the test.', color: 'text-amber-700 dark:text-amber-300' },
   { category: 'Perfect', label: 'Future Perfect', pattern: 'Arc reaching into future', exampleLead: 'He ', exampleVerb: 'will have studied', exampleTail: ' by Friday.', color: 'text-blue-700 dark:text-blue-300' },
   { category: 'Perfect Continuous', label: 'Present Perfect Continuous', pattern: 'Ongoing link from past → NOW', exampleLead: 'He ', exampleVerb: 'has been studying', exampleTail: ' for hours.', color: 'text-emerald-700 dark:text-emerald-300' },
-  { category: 'Perfect Continuous', label: 'Past Perfect Continuous', pattern: 'Ongoing link in earlier past + moment in later past', exampleLead: 'He ', exampleVerb: 'had been studying', exampleTail: ' when she called.', color: 'text-amber-700 dark:text-amber-300' },
+  { category: 'Perfect Continuous', label: 'Past Perfect Continuous', pattern: 'Ongoing link in earlier past + moment in recent past', exampleLead: 'He ', exampleVerb: 'had been studying', exampleTail: ' when she called.', color: 'text-amber-700 dark:text-amber-300' },
   { category: 'Perfect Continuous', label: 'Future Perfect Continuous', pattern: 'Ongoing link reaching into future', exampleLead: 'He ', exampleVerb: 'will have been studying', exampleTail: ' for a year.', color: 'text-blue-700 dark:text-blue-300' },
 ];
 
@@ -384,7 +384,7 @@ export function TimelineLab({ onBack, onOpenFormulas }: TimelineLabProps) {
                   />
                   <button
                     style={{ flex: '0 0 19%' }}
-                    aria-label="Place stamp in later past"
+                    aria-label="Place stamp in recent past"
                     className="focus:outline-none transition-colors hover:bg-white/5"
                     onClick={() => handleTimelineClick('past-later')}
                     onMouseEnter={() => setHighlightZone('past-later')}
@@ -438,7 +438,7 @@ export function TimelineLab({ onBack, onOpenFormulas }: TimelineLabProps) {
                   onClick={() => handleTimelineClick('past-later')}
                   className="flex-1 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 text-xs font-black uppercase tracking-wider active:scale-95 transition-all"
                 >
-                  Later Past
+                  Recent Past
                 </button>
               </>
             ) : (

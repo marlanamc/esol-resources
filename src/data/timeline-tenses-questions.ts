@@ -814,7 +814,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
           {
             answer: 'moved',
             tenseName: 'Past Simple',
-            nuance: 'The move to Revere is the later past reference point.',
+            nuance: 'The move to Revere is the recent past reference point.',
           },
         ],
       },
@@ -1253,13 +1253,10 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'pc-temp-1',
     sentence: 'She is always complaining about work.',
     verbPhrase: 'is always complaining',
-    correctElements: [
-      { id: 'e1', type: 'solid-line', zone: 'present', position: 50 },
-      { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
-    ],
+    correctElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
     tenseName: 'Present Continuous (Repeated Action)',
     explanation:
-      'When "always" is used like this, it usually means the speaker is annoyed — it keeps happening over and over. The line shows it\'s an ongoing pattern; the dots show it repeating.',
+      'This is still Present Continuous: the action is framed as a current ongoing behavior. "Always" adds the speaker\'s annoyed feeling, but the core timeline stays in the present.',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -1482,7 +1479,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
         id: 'b2',
         baseVerb: 'arrive',
         validAnswers: [
-          { answer: 'arrived', tenseName: 'Past Simple', nuance: 'The later past reference point' },
+          { answer: 'arrived', tenseName: 'Past Simple', nuance: 'The recent past reference point' },
         ],
       },
     ],
@@ -1690,7 +1687,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
         id: 'b2',
         baseVerb: 'arrive',
         validAnswers: [
-          { answer: 'arrived', tenseName: 'Past Simple', nuance: 'The later past reference point' },
+          { answer: 'arrived', tenseName: 'Past Simple', nuance: 'The recent past reference point' },
         ],
       },
     ],

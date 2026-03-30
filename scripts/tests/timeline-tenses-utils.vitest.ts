@@ -17,6 +17,7 @@ import {
   calculateTimelineOverallProgress,
   elementsUseSplitPast,
   inferTimelineLabFeedback,
+  getSentenceToTimelineStampGuidance,
   parseTimelineSentenceTemplate,
   resolveTimelineConnectionPartner,
   validateTimelineDrawingElements,
@@ -225,7 +226,7 @@ describe("timeline tenses utils", () => {
     ).toBe(false);
   });
 
-  it("distinguishes repeated present continuous from plain present simple mapping", () => {
+  it("treats repeated present continuous as a present continuous timeline", () => {
     const repeatedPresentContinuous = TIMELINE_TENSES_QUESTIONS.find(
       (question) => question.type === "sentence-to-timeline" && question.id === "pc-temp-1"
     );
@@ -239,16 +240,36 @@ describe("timeline tenses utils", () => {
 
     expect(
       validateTimelineDrawingElements(repeatedPresentContinuous.correctElements, [
-        { type: "multiple-dots", zone: "present" },
+        { type: "solid-line", zone: "present" },
       ])
-    ).toBe(false);
+    ).toBe(true);
 
     expect(
       validateTimelineDrawingElements(repeatedPresentContinuous.correctElements, [
-        { type: "solid-line", zone: "present" },
         { type: "multiple-dots", zone: "present" },
       ])
-    ).toBe(true);
+    ).toBe(false);
+  });
+
+  it("describes past perfect continuous extra stamps as a reference point pattern", () => {
+    const pastPerfectContinuous = TIMELINE_TENSES_QUESTIONS.find(
+      (question) => question.type === "sentence-to-timeline" && question.id === "ppfc-1"
+    );
+
+    expect(pastPerfectContinuous).toBeDefined();
+    expect(pastPerfectContinuous?.type).toBe("sentence-to-timeline");
+
+    if (!pastPerfectContinuous || pastPerfectContinuous.type !== "sentence-to-timeline") {
+      throw new Error("Expected ppfc-1 sentence-to-timeline question");
+    }
+
+    expect(
+      getSentenceToTimelineStampGuidance(pastPerfectContinuous.correctElements)
+    ).toEqual({
+      badgeText: "2 stamps: action + past reference point",
+      hintText:
+        "Place the long action in the earlier past, then add one recent-past dot for the reference moment.",
+    });
   });
 
   it("builds rounds without mutating the full question bank and returns the requested size", () => {

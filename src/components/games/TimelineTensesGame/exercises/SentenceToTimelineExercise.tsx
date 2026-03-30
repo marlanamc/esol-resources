@@ -14,7 +14,11 @@ import { StampToolkit } from '../StampToolkit';
 import { FeedbackPanel } from '../FeedbackPanel';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import type { TimelineDrawingAnswer } from '../hooks/useTimelineTensesState';
-import { elementsUseSplitPast, validateTimelineDrawingElements } from '../timelineTensesUtils';
+import {
+  elementsUseSplitPast,
+  getSentenceToTimelineStampGuidance,
+  validateTimelineDrawingElements,
+} from '../timelineTensesUtils';
 import { highlightSentenceFeatures } from '../highlightUtils';
 
 interface SentenceToTimelineExerciseProps {
@@ -87,6 +91,7 @@ export function SentenceToTimelineExercise({
     elementsUseSplitPast(question.correctElements) ||
     (selectedStamp !== null && CONNECTION_STAMPS.includes(selectedStamp)) ||
     placedStamps.some((s) => s.zone === 'past-earlier' || s.zone === 'past-later');
+  const stampGuidance = getSentenceToTimelineStampGuidance(question.correctElements);
 
   // Generate hint based on correct elements
   const getHint = useCallback((): string => {
@@ -94,13 +99,16 @@ export function SentenceToTimelineExercise({
     const zoneNames: Record<TimelineZone, string> = {
       past: 'past',
       'past-earlier': 'earlier past (further from now)',
-      'past-later': 'later past (closer to now)',
+      'past-later': 'recent past (closer to now)',
       present: 'present (now)',
       future: 'future',
     };
     const zoneList = zones.map((z) => zoneNames[z]).join(' and ');
     const elementCount = question.correctElements.length;
 
+    if (stampGuidance?.hintText) {
+      return stampGuidance.hintText;
+    }
     if (elementCount === 1) {
       return `Place 1 element in the ${zoneList} zone.`;
     }
@@ -108,7 +116,7 @@ export function SentenceToTimelineExercise({
       return `Place ${elementCount} elements in the ${zoneList} zone.`;
     }
     return `This tense uses ${elementCount} elements across the ${zoneList} zones.`;
-  }, [question.correctElements]);
+  }, [question.correctElements, stampGuidance]);
 
   // Handle placing a stamp on the timeline
   const handleTimelineClick = useCallback(
@@ -185,13 +193,13 @@ export function SentenceToTimelineExercise({
             </div>
           </div>
           {/* Proactive stamp count indicator */}
-          {question.correctElements.length > 1 && (
+          {question.correctElements.length > 1 && stampGuidance && (
             <motion.div 
               initial={{ x: 20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               className="text-xs font-black text-amber-600 dark:text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-full uppercase tracking-wider"
             >
-              {question.correctElements.length} stamps required
+              {stampGuidance.badgeText}
             </motion.div>
           )}
         </div>
@@ -261,7 +269,7 @@ export function SentenceToTimelineExercise({
                       />
                       <button
                         style={{ flex: '0 0 19%' }}
-                        aria-label="Place stamp in later past"
+                        aria-label="Place stamp in recent past"
                         className="focus:outline-none transition-colors hover:bg-white/5"
                         onClick={() => handleTimelineClick('past-later')}
                         onMouseEnter={() => setHighlightZone('past-later')}
@@ -314,7 +322,7 @@ export function SentenceToTimelineExercise({
                         onClick={() => handleTimelineClick('past-later')}
                         className="flex-1 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 text-xs font-black uppercase tracking-wider active:scale-95 transition-all"
                       >
-                        Later Past
+                        Recent Past
                       </button>
                     </>
                   ) : (

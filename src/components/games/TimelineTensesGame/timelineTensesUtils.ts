@@ -133,6 +133,11 @@ export interface TimelineLabFeedback {
   primaryLabel?: string;
 }
 
+export interface SentenceToTimelineStampGuidance {
+  badgeText: string;
+  hintText: string;
+}
+
 export const DEFAULT_TIMELINE_PRACTICE_MODE: TimelinePracticeMode =
   "read-the-timeline";
 
@@ -899,4 +904,35 @@ export function validateTimelineDrawingElements(
     buildTimelinePatternSignature(correctElements, strictPastSubzones) ===
     buildTimelinePatternSignature(placedElements, strictPastSubzones)
   );
+}
+
+export function getSentenceToTimelineStampGuidance(
+  correctElements: Pick<TimelineElement, "type" | "zone">[]
+): SentenceToTimelineStampGuidance | null {
+  if (correctElements.length <= 1) {
+    return null;
+  }
+
+  const hasPastPerfectContinuousReferencePoint =
+    correctElements.length === 2 &&
+    correctElements.some(
+      (element) =>
+        element.type === "solid-to-point" && element.zone === "past-earlier"
+    ) &&
+    correctElements.some(
+      (element) => element.type === "single-dot" && element.zone === "past-later"
+    );
+
+  if (hasPastPerfectContinuousReferencePoint) {
+    return {
+      badgeText: "2 stamps: action + past reference point",
+      hintText:
+        "Place the long action in the earlier past, then add one recent-past dot for the reference moment.",
+    };
+  }
+
+  return {
+    badgeText: `${correctElements.length} stamps required`,
+    hintText: "",
+  };
 }

@@ -186,7 +186,7 @@ export const TIMELINE_ERROR_QUESTIONS: ErrorCorrectionQuestion[] = [
     incorrectTense: "Past Continuous (wrong)",
     correctTense: "Past Perfect Continuous",
     commonMistakeExplanation:
-      "Past Perfect Continuous needs the split-past layout: duration leading to a later past reference point. A plain past-zone duration does not match that meaning.",
+      "Past Perfect Continuous needs the split-past layout: duration leading to a recent past reference point. A plain past-zone duration does not match that meaning.",
     difficulty: 3,
     tenseCategory: "perfect-continuous",
   },

@@ -53,6 +53,12 @@ interface TextRange {
   end: number;
 }
 
+const SINGLE_WORD_TIME_CLUES = new Set(
+  TIME_CLUE_PATTERNS.filter((pattern) => !pattern.includes(' ')).map((pattern) =>
+    pattern.toLowerCase()
+  )
+);
+
 function getPatternRanges(text: string, patterns: string[]): TextRange[] {
   const escaped = patterns.map(escapeRegex);
   const pattern = new RegExp(`\\b(${escaped.join('|')})\\b`, 'gi');
@@ -78,12 +84,27 @@ function getVerbPhraseRanges(text: string, verbPhrase?: string): TextRange[] {
 
   if (!match || match.index === undefined) return [];
 
-  return [
-    {
-      start: match.index,
-      end: match.index + match[0].length,
-    },
-  ];
+  const phraseText = match[0];
+  const phraseStart = match.index;
+  const tokenPattern = /\S+/g;
+  const ranges: TextRange[] = [];
+  let tokenMatch: RegExpExecArray | null;
+
+  while ((tokenMatch = tokenPattern.exec(phraseText)) !== null) {
+    const token = tokenMatch[0];
+    const normalizedToken = token.replace(/^[^\w']+|[^\w']+$/g, '').toLowerCase();
+
+    if (!normalizedToken || SINGLE_WORD_TIME_CLUES.has(normalizedToken)) {
+      continue;
+    }
+
+    ranges.push({
+      start: phraseStart + tokenMatch.index,
+      end: phraseStart + tokenMatch.index + token.length,
+    });
+  }
+
+  return ranges;
 }
 
 function rangeContains(ranges: TextRange[], index: number): boolean {

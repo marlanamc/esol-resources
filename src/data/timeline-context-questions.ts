@@ -368,7 +368,7 @@ export const TIMELINE_CONTEXT_QUESTIONS: ContextTenseQuestion[] = [
     ],
     contextClues: ["finally got", "so hard for all year"],
     explanation:
-      '"Finally got" puts us in the past. The working happened continuously before the promotion — earlier past leading up to a later past event. Past Perfect Continuous (had been working) is correct.',
+      '"Finally got" puts us in the past. The working happened continuously before the promotion — earlier past leading up to a recent past event. Past Perfect Continuous (had been working) is correct.',
     difficulty: 3,
     tenseCategory: "perfect-continuous",
   },
