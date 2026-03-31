@@ -51,27 +51,23 @@
     .writing-line { border-bottom: 1px solid var(--line); flex: 1; height: 20px; }
     .instruction { font-size: 12px; color: var(--light); font-style: italic; margin-bottom: 12px; }
     .level-up { font-size: 12px; font-style: italic; color: var(--light); margin-top: 6px; padding-left: 14px; }
+    .station-intro { font-size: 13px; margin-bottom: 10px; }
+    .station-rules { font-size: 13px; margin: 0 0 12px 18px; color: var(--gray); }
+    .station-rules li { margin-bottom: 3px; }
+    .station-order { font-size: 13px; font-weight: bold; margin-bottom: 14px; }
+    .station-block { margin-bottom: 12px; }
+    .station-name { font-weight: bold; font-size: 13px; margin-bottom: 3px; }
+    .station-task { font-size: 13px; color: var(--gray); }
+    .station-early { font-size: 12px; font-style: italic; color: var(--light); margin-top: 3px; }
+    .station-footer { margin-top: 12px; }
+    .station-subtitle { font-weight: bold; font-size: 13px; margin-bottom: 6px; }
+    .station-list { font-size: 13px; margin: 0 0 10px 18px; color: var(--gray); }
+    .station-list li { margin-bottom: 3px; }
+    .station-goal { font-size: 13px; font-weight: bold; }
     .round { margin-bottom: 8px; font-size: 13px; }
     .round-header { font-weight: bold; }
     .round-content { margin-left: 8px; color: var(--gray); }
     .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
-    .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
-    .section:has(.reading-text) { margin-bottom: 36px; }
-    .reading-text p { margin-bottom: 8px; text-align: justify; }
-    .question { margin-bottom: 12px; }
-    .question-text { font-size: 13px; margin-bottom: 4px; }
-    .question-text b { font-weight: bold; }
-    .answer-line { border-bottom: 1px solid var(--line); height: 20px; }
-    .writing-prompt { font-size: 13px; margin-bottom: 10px; }
-    .requirements { font-size: 12px; margin-bottom: 12px; padding-left: 16px; color: var(--gray); }
-    .requirements li { margin-bottom: 1px; }
-    .writing-lines { margin-top: 10px; }
-    .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
-    .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
-    .dialogue-complete { margin-top: 12px; }
-    .dialogue-line { margin-bottom: 14px; font-size: 13px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; }
-    .dialogue-line .speaker { font-weight: bold; min-width: 75px; }
-    .dialogue-line .response-line { border-bottom: 1px solid var(--line); flex: 1; min-width: 180px; height: 22px; }
     .front-page { margin-bottom: 24px; }
     @media print { @page { size: letter; margin: 0.45in; } body { background: #fff; padding: 0; } .sheet { padding: 0; max-width: none; }
       .page-break { page-break-before: always; } }
@@ -105,18 +101,18 @@
           <div class="vocab-words">
             <div class="vocab-word"><span class="num">1.</span> <span class="blank"></span> <span class="word">catch up</span></div>
             <div class="vocab-word"><span class="num">2.</span> <span class="blank"></span> <span class="word">show up</span></div>
-            <div class="vocab-word"><span class="num">3.</span> <span class="blank"></span> <span class="word">get along with</span></div>
+            <div class="vocab-word"><span class="num">3.</span> <span class="blank"></span> <span class="word">drop by</span></div>
             <div class="vocab-word"><span class="num">4.</span> <span class="blank"></span> <span class="word">run into</span></div>
             <div class="vocab-word"><span class="num">5.</span> <span class="blank"></span> <span class="word">look forward to</span></div>
-            <div class="vocab-word"><span class="num">6.</span> <span class="blank"></span> <span class="word">get back to</span></div>
+            <div class="vocab-word"><span class="num">6.</span> <span class="blank"></span> <span class="word">hang out</span></div>
           </div>
           <div class="vocab-defs">
             <div class="vocab-def"><span class="letter">a.</span> to meet someone unexpectedly</div>
             <div class="vocab-def"><span class="letter">b.</span> to arrive at a place</div>
-            <div class="vocab-def"><span class="letter">c.</span> to have a good relationship with</div>
+            <div class="vocab-def"><span class="letter">c.</span> to visit briefly</div>
             <div class="vocab-def"><span class="letter">d.</span> to talk and share news with someone</div>
-            <div class="vocab-def"><span class="letter">e.</span> to return to doing something</div>
-            <div class="vocab-def"><span class="letter">f.</span> to feel excited about something in the future</div>
+            <div class="vocab-def"><span class="letter">e.</span> to feel excited about something in the future</div>
+            <div class="vocab-def"><span class="letter">f.</span> to spend time together socially</div>
           </div>
         </div>
       </section>
@@ -147,10 +143,10 @@
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">3) Do you get along with…?</div>
+          <div class="phrase-starter">3) Can you drop by later?</div>
           <ul class="examples">
-            <li>Do you get along with everyone on your team?</li>
-            <li>I get along with my coworkers really well.</li>
+            <li>Can you drop by my desk later? I have a quick question.</li>
+            <li>I might drop by the office on Friday to say hello.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
@@ -165,69 +161,78 @@
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">5) I should get back to work.</div>
+          <div class="phrase-starter">5) Do you want to hang out after work?</div>
           <ul class="examples">
-            <li>I should get back to work now. Talk later!</li>
-            <li>Let me get back to you on that. I need to check something first.</li>
+            <li>Do you want to hang out after work and get coffee?</li>
+            <li>Sometimes our team hangs out after a busy week.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
-        <p class="level-up">Level up: Use "hang out" (socialize) and "work out" (exercise) in your small talk.</p>
+        <p class="level-up">Level up: Use all six phrasal verbs in one short small-talk conversation.</p>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Today's Stations</h2>
+        </div>
+        <p class="station-intro">Today, you will work in groups of three and rotate around the room.</p>
+        <ul class="station-rules">
+          <li>There are six stations.</li>
+          <li>You will spend 15 minutes at each station.</li>
+          <li>You will have 1 minute to move to the next station.</li>
+          <li>Turn in your stations packet at the end of class.</li>
+        </ul>
+        <p class="station-order">Follow this order: 1 → 2 → 3 → 4 → 5 → 6</p>
+
+        <div class="station-block">
+          <div class="station-name">Station 1: Speaking with Matt</div>
+          <div class="station-task">Compare your country and the United States, then write a short reflection.</div>
+        </div>
+
+        <div class="station-block">
+          <div class="station-name">Station 2: Modals</div>
+          <div class="station-task">Write sentences using <b>must</b>, <b>have to</b>, <b>should</b>, <b>can</b>, <b>can't</b>, and <b>don't have to</b> with the word bank.</div>
+          <div class="station-early">If you finish early, answer the discussion questions.</div>
+        </div>
+
+        <div class="station-block">
+          <div class="station-name">Station 3: Timeline</div>
+          <div class="station-task">Read Sara's story, make your own timeline, and write about your English-learning journey.</div>
+          <div class="station-early">If you finish early, answer the discussion questions.</div>
+        </div>
+
+        <div class="station-block">
+          <div class="station-name">Station 4: Dice Game</div>
+          <div class="station-task">Play the speaking game: <i>Would You Rather...?</i></div>
+        </div>
+
+        <div class="station-block">
+          <div class="station-name">Station 5: Reading</div>
+          <div class="station-task">Read and find verbs with gerunds and infinitives, then answer the questions.</div>
+          <div class="station-early">If you finish early, read the second story.</div>
+        </div>
+
+        <div class="station-block">
+          <div class="station-name">Station 6: Survey</div>
+          <div class="station-task">Answer questions about your learning.</div>
+          <div class="station-early">If you finish early, discuss your answers with your group.</div>
+        </div>
+
+        <div class="station-footer">
+          <div class="station-subtitle">Important</div>
+          <ul class="station-list">
+            <li>Speak as much English as possible.</li>
+            <li>Help your group.</li>
+            <li>Do not worry about mistakes.</li>
+          </ul>
+          <p class="station-goal">Goal: Practice speaking and build confidence.</p>
+        </div>
       </section>
 
       
     </div>
 
-    <section class="section">
-      <div class="section-header"><h2 class="section-title">Reading</h2></div>
-      <div class="reading-text">
-        <p>Small talk is casual, friendly conversation. It builds connection at work. Common topics include the weather, time off, and shared interests. Avoid sensitive topics like politics, religion, or personal problems.</p>
-        <p>Phrasal verbs make small talk sound natural. "It's nice to catch up!" sounds friendlier than "It's nice to talk to you."</p>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>1)</b> What is small talk?</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>2)</b> Name two safe topics for workplace small talk.</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>3)</b> What topics should you avoid?</div>
-        <div class="answer-line"></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">Writing Homework</h2>
-        <span class="section-time">Complete the conversation</span>
-      </div>
-      <p class="instruction">Person A has already spoken. Write what Person B says in response. Use the phrasal verbs from Part A and B.</p>
-      
-      <div class="dialogue-complete">
-        <div class="dialogue-line">
-          <span class="speaker">Person A:</span> Hey! Good to see you. What time did you <b>show up</b> today?
-        </div>
-        <div class="dialogue-line">
-          <span class="speaker">Person B:</span> <div class="response-line"></div>
-        </div>
-        <div class="dialogue-line">
-          <span class="speaker">Person A:</span> It's nice to <b>catch up</b>! Do you have plans for the weekend?
-        </div>
-        <div class="dialogue-line">
-          <span class="speaker">Person B:</span> <div class="response-line"></div>
-        </div>
-        <div class="dialogue-line">
-          <span class="speaker">Person A:</span> Nice! I'm <b>looking forward to</b> some rest too. Well, I should <b>get back to</b> work. Talk later!
-        </div>
-        <div class="dialogue-line">
-          <span class="speaker">Person B:</span> <div class="response-line"></div>
-        </div>
-      </div>
-      <p class="optional-note">Optional challenge: Add "figure out" (solve), "come up" (be mentioned), or "fill in for" (replace someone) in your responses.</p>
-    </section>
   </div>
 
   <script>

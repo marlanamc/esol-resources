@@ -198,21 +198,21 @@ All vocabulary below is taken from the Part A sections of the Feb–May workshee
 |------|------------|
 | catch up | to talk and share news with someone |
 | show up | to arrive at a place |
-| get along with | to have a good relationship with |
+| drop by | to visit briefly |
 | run into | to meet someone unexpectedly |
 | look forward to | to feel excited about something in the future |
-| get back to | to return to doing something |
+| hang out | to spend time together socially |
 
 **Interview: Common Questions (Apr 2)**
 
 | Word | Definition |
 |------|------------|
-| accomplishment | something you did well or achieved |
-| example | a specific case or story that shows something |
-| situation | a set of circumstances or what is happening |
-| question | something you ask to get information |
-| prepare | to get ready for something |
-| follow-up | a next step or additional question after the first |
+| help out | to help someone with something |
+| hear from | to get news or a message from someone |
+| catch up on | to do something that you did not have time to do before |
+| work out | to exercise |
+| find out | to learn or discover information |
+| stop by | to visit briefly |
 
 ---
 
