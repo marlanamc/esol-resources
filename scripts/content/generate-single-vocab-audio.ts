@@ -17,14 +17,18 @@ if (!term) {
   process.exit(1);
 }
 
+const apiKey = API_KEY;
+
 async function main() {
+  const headers: HeadersInit = {
+    Accept: "audio/mpeg",
+    "Content-Type": "application/json",
+    "xi-api-key": apiKey,
+  };
+
   const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`, {
     method: "POST",
-    headers: {
-      Accept: "audio/mpeg",
-      "Content-Type": "application/json",
-      "xi-api-key": API_KEY,
-    },
+    headers,
     body: JSON.stringify({
       text: spokenText,
       model_id: "eleven_turbo_v2_5",
