@@ -552,14 +552,14 @@ export const TIMELINE_COMPARISON_QUESTIONS: TenseComparisonQuestion[] = [
   }),
   createComparisonQuestion({
     id: "comp-ppf-ppc-01",
-    promptText: "He had worked there for ten years before he retired.",
+    promptText: "He had been working there for ten years before he retired.",
     correctOption: "B",
     tenseA: "Past Perfect",
     tenseB: "Past Perfect Continuous",
     canonA: "pastPerfect",
     canonB: "pastPerfectContinuous",
     optionA: "He had worked there before he retired.",
-    optionB: "He had worked there for ten years before he retired.",
+    optionB: "He had been working there for ten years before he retired.",
     confusionExplanation:
       "Both place the job before retirement, but only one highlights duration leading up to the retirement point.",
     keyDifference:

@@ -37,7 +37,7 @@ export function getTenseComparisonPromptLabel(promptType: TenseComparisonPromptT
 }
 
 export function getTenseComparisonOptionOrder(randomValue: number): Array<'A' | 'B'> {
-  return randomValue < 0.5 ? ['A', 'B'] : ['B', 'A'];
+  return ['A', 'B'];
 }
 
 export function isTenseComparisonSelectionCorrect(
@@ -56,13 +56,13 @@ export function TenseComparisonExercise({
 }: TenseComparisonExerciseProps) {
   const [selected, setSelected] = useState<'A' | 'B' | null>(null);
   const [optionOrder, setOptionOrder] = useState<Array<'A' | 'B'>>(() =>
-    getTenseComparisonOptionOrder(Math.random())
+    getTenseComparisonOptionOrder(0)
   );
   const { playPing, playThump } = useTimelineAudio();
 
   useEffect(() => {
     setSelected(null);
-    setOptionOrder(getTenseComparisonOptionOrder(Math.random()));
+    setOptionOrder(getTenseComparisonOptionOrder(0));
   }, [question.id]);
 
   const splitA = elementsUseSplitPast(question.elementsA);
