@@ -1,9 +1,29 @@
 import type {
   VocabularyContent,
-  VocabularyWordListContent,
-  VocabularyWordListGroup,
 } from "@/types/activity";
 import { LEVEL1_VOCAB_CUSTOM_EXAMPLES } from "./level1-vocab-custom-examples";
+
+type VocabularyWordListGroup = {
+  id: string;
+  label: string;
+  cards: Array<{
+    term: string;
+    definition: string;
+    example?: string;
+    pos?: string;
+  }>;
+};
+
+type VocabularyWordListContent = {
+  cards?: Array<{
+    term: string;
+    definition: string;
+    example?: string;
+    pos?: string;
+  }>;
+  groups?: VocabularyWordListGroup[];
+  [key: string]: unknown;
+};
 
 type RawTerm =
   | string
