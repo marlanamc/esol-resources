@@ -208,7 +208,6 @@ export function FillInBlankActivityWrapper({
         <div className="grid gap-3 mb-6 sm:grid-cols-2">
           {currentQuestion.options.map((option, index) => {
             const label = String.fromCharCode(97 + index); // a, b, c, d
-            const displayOption = option.toLowerCase();
 
             return (
               <button
@@ -227,7 +226,7 @@ export function FillInBlankActivityWrapper({
               >
                 <p className="font-semibold">
                   <span className="inline-block w-6 text-[var(--tone-vocabulary-accent)]">{label}.</span>
-                  {displayOption}
+                  {option}
                 </p>
               </button>
             );
