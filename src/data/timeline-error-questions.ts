@@ -475,4 +475,375 @@ export const TIMELINE_ERROR_QUESTIONS: ErrorCorrectionQuestion[] = [
     difficulty: 1,
     tenseCategory: "simple",
   },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Texting & Phone
+  // ============================================================
+  {
+    id: "err-text-s-01",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "I have texted her 10 minutes ago.",
+    incorrectElements: buildCanonicalTimelineElements("presentPerfect", "err-text-s-01-incorrect"),
+    correctSentence: "I texted her 10 minutes ago.",
+    acceptedCorrections: ["texted"],
+    realLifeDialogue: {
+      lineA: 'A: "When did you text Maria?"',
+      lineB: 'B: "I texted her 10 minutes ago."',
+    },
+    correctElements: buildCanonicalTimelineElements("pastSimple", "err-text-s-01-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Present Perfect",
+    correctTense: "Past Simple",
+    commonMistakeExplanation:
+      '"10 minutes ago" is a specific past time marker. Present Perfect cannot be used with specific past times — use Past Simple.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Food & Restaurants
+  // ============================================================
+  {
+    id: "err-food-s-01",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "We are wait for our food for 30 minutes.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-food-s-01-incorrect"),
+    correctSentence: "We have been waiting for our food for 30 minutes.",
+    acceptedCorrections: ["have been waiting"],
+    realLifeDialogue: {
+      lineA: 'A: "Where is our order?"',
+      lineB: 'B: "I don\'t know. We have been waiting for 30 minutes!"',
+    },
+    correctElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "err-food-s-01-correct",
+      [{ position: 50 }]
+    ),
+    incorrectTense: "Present Continuous (malformed)",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      '"For 30 minutes" shows duration from the past to now. Use Present Perfect Continuous (have been waiting), not Present Continuous.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "err-food-s-02",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "The restaurant is close at 10 p.m. every night.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-food-s-02-incorrect"),
+    correctSentence: "The restaurant closes at 10 p.m. every night.",
+    acceptedCorrections: ["closes"],
+    realLifeDialogue: {
+      lineA: 'A: "How late is the restaurant open?"',
+      lineB: 'B: "It closes at 10 p.m. every night."',
+    },
+    correctElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "err-food-s-02-correct"
+    ),
+    incorrectTense: "Present Continuous (wrong use)",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      '"Every night" signals a regular schedule. Schedules and routines use Present Simple, not Present Continuous.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Grocery Shopping
+  // ============================================================
+  {
+    id: "err-shop-s-01",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "I always am buying organic vegetables.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-shop-s-01-incorrect"),
+    correctSentence: "I always buy organic vegetables.",
+    acceptedCorrections: ["buy", "always buy"],
+    realLifeDialogue: {
+      lineA: 'A: "Do you buy organic food?"',
+      lineB: 'B: "Yes, I always buy organic vegetables."',
+    },
+    correctElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "err-shop-s-01-correct"
+    ),
+    incorrectTense: "Present Continuous (wrong word order and tense)",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      '"Always" with a habit needs Present Simple. The correct form is "I always buy," not "I always am buying."',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Transportation
+  // ============================================================
+  {
+    id: "err-transit-s-01",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "The bus already left when I arrived at the stop.",
+    incorrectElements: [
+      ...buildCanonicalTimelineElements("pastSimple", "err-transit-s-01-incorrect-a", [
+        { position: 35 },
+      ]),
+      ...buildCanonicalTimelineElements("pastSimple", "err-transit-s-01-incorrect-b", [
+        { position: 65 },
+      ]),
+    ],
+    correctSentence: "The bus had already left when I arrived at the stop.",
+    acceptedCorrections: ["had already left", "had left"],
+    realLifeDialogue: {
+      lineA: 'A: "Did you catch the bus?"',
+      lineB: 'B: "No, it had already left when I got there."',
+    },
+    correctElements: buildCanonicalTimelineElements("pastPerfect", "err-transit-s-01-correct", [
+      { position: 30 },
+      { position: 55 },
+    ]),
+    incorrectTense: "Past Simple",
+    correctTense: "Past Perfect",
+    commonMistakeExplanation:
+      '"Already" + "when" shows one past event happened before another. Use Past Perfect (had left) for the earlier action.',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "err-transit-s-02",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "At 7 a.m., I will drive to work.",
+    incorrectElements: buildCanonicalTimelineElements("futureSimple", "err-transit-s-02-incorrect", [
+      { position: 60 },
+    ]),
+    correctSentence: "At 7 a.m., I will be driving to work.",
+    acceptedCorrections: ["will be driving"],
+    realLifeDialogue: {
+      lineA: 'A: "Can I call you at 7 tomorrow?"',
+      lineB: 'B: "I\'ll be driving then. Call me after 8."',
+    },
+    correctElements: buildCanonicalTimelineElements("futureContinuous", "err-transit-s-02-correct", [
+      { position: 60 },
+    ]),
+    incorrectTense: "Future Simple",
+    correctTense: "Future Continuous",
+    commonMistakeExplanation:
+      '"At 7 a.m." names a specific future moment. The action will be in progress at that time, so Future Continuous is more natural.',
+    difficulty: 2,
+    tenseCategory: "continuous",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Family at Home
+  // ============================================================
+  {
+    id: "err-home-s-01",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "My kids is doing their homework right now.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-home-s-01-incorrect"),
+    correctSentence: "My kids are doing their homework right now.",
+    acceptedCorrections: ["are doing", "are"],
+    realLifeDialogue: {
+      lineA: 'A: "Can the kids come out to play?"',
+      lineB: 'B: "Not yet. They are doing their homework."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentContinuous", "err-home-s-01-correct"),
+    incorrectTense: "Present Continuous (subject-verb agreement error)",
+    correctTense: "Present Continuous",
+    commonMistakeExplanation:
+      '"Kids" is plural, so use "are," not "is." The correct form is "My kids are doing," not "My kids is doing."',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "err-home-s-02",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "We are live in this apartment for three years.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-home-s-02-incorrect"),
+    correctSentence: "We have been living in this apartment for three years.",
+    acceptedCorrections: ["have been living"],
+    realLifeDialogue: {
+      lineA: 'A: "How long have you lived here?"',
+      lineB: 'B: "We have been living here for three years."',
+    },
+    correctElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "err-home-s-02-correct",
+      [{ position: 50 }]
+    ),
+    incorrectTense: "Present Continuous (malformed)",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      '"For three years" shows duration from the past to now. Use Present Perfect Continuous (have been living), and fix the verb form to "-ing."',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Question/Negative Form Errors
+  // ============================================================
+  {
+    id: "err-form-s-01",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Does she has a doctor appointment today?",
+    incorrectElements: buildCanonicalTimelineElements("presentSimpleHabit", "err-form-s-01-incorrect"),
+    correctSentence: "Does she have a doctor appointment today?",
+    acceptedCorrections: ["have", "does she have"],
+    realLifeDialogue: {
+      lineA: 'A: "Does she have an appointment today?"',
+      lineB: 'B: "Yes, at 2 p.m."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentSimpleHabit", "err-form-s-01-correct"),
+    incorrectTense: "Present Simple question (wrong verb form)",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      'After "does," use the base verb. The correct form is "Does she have," not "Does she has."',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-form-s-02",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Where you are going right now?",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-form-s-02-incorrect"),
+    correctSentence: "Where are you going right now?",
+    acceptedCorrections: ["are you going", "where are you going"],
+    realLifeDialogue: {
+      lineA: 'A: "Where are you going?"',
+      lineB: 'B: "To the store. Need anything?"',
+    },
+    correctElements: buildCanonicalTimelineElements("presentContinuous", "err-form-s-02-correct"),
+    incorrectTense: "Present Continuous question (wrong word order)",
+    correctTense: "Present Continuous",
+    commonMistakeExplanation:
+      'In English questions, the auxiliary comes before the subject. Say "Where are you going?" not "Where you are going?"',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "err-form-s-03",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "She don't work on Saturdays.",
+    incorrectElements: buildCanonicalTimelineElements("presentSimpleHabit", "err-form-s-03-incorrect"),
+    correctSentence: "She doesn't work on Saturdays.",
+    acceptedCorrections: ["doesn't work", "doesn't", "does not work"],
+    realLifeDialogue: {
+      lineA: 'A: "Is Rosa working this Saturday?"',
+      lineB: 'B: "No, she doesn\'t work on Saturdays."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentSimpleHabit", "err-form-s-03-correct"),
+    incorrectTense: "Present Simple negative (wrong auxiliary)",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      'Third person singular (she/he/it) uses "doesn\'t," not "don\'t." The correct form is "She doesn\'t work."',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-form-s-04",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Why you are waiting outside the store?",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-form-s-04-incorrect"),
+    correctSentence: "Why are you waiting outside the store?",
+    acceptedCorrections: ["are you waiting", "why are you waiting"],
+    realLifeDialogue: {
+      lineA: 'A: "Why are you waiting outside?"',
+      lineB: 'B: "The store doesn\'t open until 9."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentContinuous", "err-form-s-04-correct"),
+    incorrectTense: "Present Continuous question (wrong word order)",
+    correctTense: "Present Continuous",
+    commonMistakeExplanation:
+      'In questions, the auxiliary "are" must come before the subject "you." Say "Why are you waiting?" not "Why you are waiting?"',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Timeline Errors
+  // ============================================================
+  {
+    id: "err-t-08",
+    type: "error-correction",
+    errorLocation: "timeline",
+    incorrectSentence: "She has been waiting for the doctor for an hour.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-t-08-incorrect", [
+      { position: 50 },
+    ]),
+    correctSentence: "She has been waiting for the doctor for an hour.",
+    correctElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "err-t-08-correct",
+      [{ position: 50 }]
+    ),
+    incorrectTense: "Past Simple (wrong)",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      'Present Perfect Continuous needs a duration line reaching to NOW. A single past dot does not show "for an hour" continuing to the present.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "err-t-09",
+    type: "error-correction",
+    errorLocation: "timeline",
+    incorrectSentence: "We will be flying to Miami at this time tomorrow.",
+    incorrectElements: buildCanonicalTimelineElements("futureSimple", "err-t-09-incorrect", [
+      { position: 60 },
+    ]),
+    correctSentence: "We will be flying to Miami at this time tomorrow.",
+    correctElements: buildCanonicalTimelineElements("futureContinuous", "err-t-09-correct", [
+      { position: 60 },
+    ]),
+    incorrectTense: "Future Simple (wrong)",
+    correctTense: "Future Continuous",
+    commonMistakeExplanation:
+      'Future Continuous needs a duration shape in the future zone to show the flight in progress. A single dot represents a completed event, not an ongoing one.',
+    difficulty: 2,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "err-t-10",
+    type: "error-correction",
+    errorLocation: "timeline",
+    incorrectSentence: "They had finished dinner before the guests arrived.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-t-10-incorrect", [
+      { position: 50 },
+    ]),
+    correctSentence: "They had finished dinner before the guests arrived.",
+    correctElements: buildCanonicalTimelineElements("pastPerfect", "err-t-10-correct", [
+      { position: 30 },
+      { position: 55 },
+    ]),
+    incorrectTense: "Past Simple (wrong)",
+    correctTense: "Past Perfect",
+    commonMistakeExplanation:
+      'Past Perfect needs an arc connecting an earlier past moment to a later past reference point. A single past dot does not show the "before" relationship.',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "err-t-11",
+    type: "error-correction",
+    errorLocation: "timeline",
+    incorrectSentence: "I take the bus to work every day.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-t-11-incorrect", [
+      { position: 50 },
+    ]),
+    correctSentence: "I take the bus to work every day.",
+    correctElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "err-t-11-correct"
+    ),
+    incorrectTense: "Past Simple (wrong)",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      '"Every day" describes a habit. The timeline should show repeated dots (habit pattern), not a single past event dot.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
 ];

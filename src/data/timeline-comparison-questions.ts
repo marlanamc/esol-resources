@@ -828,4 +828,418 @@ export const TIMELINE_COMPARISON_QUESTIONS: TenseComparisonQuestion[] = [
     difficulty: 2,
     tenseCategory: "continuous",
   }),
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Texting & Phone
+  // ============================================================
+  createComparisonQuestion({
+    id: "comp-text-pp-ps-01",
+    promptText: "I have already texted her about the party.",
+    correctOption: "A",
+    tenseA: "Present Perfect",
+    tenseB: "Past Simple",
+    canonA: "presentPerfect",
+    canonB: "pastSimple",
+    optionA: "I have already texted her about the party.",
+    optionB: "I texted her about the party at noon.",
+    confusionExplanation:
+      "Both describe sending a text, but one keeps the action connected to now while the other closes the event at a specific past time.",
+    keyDifference:
+      '"Already" without a clock time keeps the result relevant now. "At noon" closes the event in the past.',
+    realLifeDialogue: {
+      lineA: 'A: "Should I text Maria about the party?"',
+      lineB: 'B: "No need. I have already texted her."',
+    },
+    difficulty: 1,
+    tenseCategory: "perfect",
+  }),
+  createComparisonQuestion({
+    id: "comp-text-prc-prs-01",
+    promptText: "He is texting his mom right now.",
+    correctOption: "A",
+    tenseA: "Present Continuous",
+    tenseB: "Present Simple",
+    canonA: "presentContinuous",
+    canonB: "presentSimpleHabit",
+    optionA: "He is texting his mom right now.",
+    optionB: "He texts his mom every day.",
+    confusionExplanation:
+      "Both describe the same action, but one is happening at this moment and the other is a regular routine.",
+    keyDifference:
+      '"Right now" signals an action in progress. "Every day" signals a repeated habit.',
+    realLifeDialogue: {
+      lineA: 'A: "Is Kevin busy?"',
+      lineB: 'B: "Yeah, he is texting his mom right now."',
+    },
+    difficulty: 1,
+    tenseCategory: "continuous",
+  }),
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Food & Restaurants
+  // ============================================================
+  createComparisonQuestion({
+    id: "comp-food-pp-ps-01",
+    promptText: "We have already ordered our food.",
+    correctOption: "A",
+    tenseA: "Present Perfect",
+    tenseB: "Past Simple",
+    canonA: "presentPerfect",
+    canonB: "pastSimple",
+    optionA: "We have already ordered our food.",
+    optionB: "We ordered our food five minutes ago.",
+    confusionExplanation:
+      "Both describe ordering, but one keeps the result relevant now and the other places the action at a specific past moment.",
+    keyDifference:
+      '"Already" without a time marker means the action affects now. "Five minutes ago" closes the event in the past.',
+    realLifeDialogue: {
+      lineA: 'A: "Are you ready to order?"',
+      lineB: 'B: "Thanks, but we have already ordered."',
+    },
+    difficulty: 1,
+    tenseCategory: "perfect",
+  }),
+  createComparisonQuestion({
+    id: "comp-food-pc-ps-01",
+    promptText: "The waiter was bringing our food when the power went out.",
+    correctOption: "A",
+    tenseA: "Past Continuous",
+    tenseB: "Past Simple",
+    canonA: "pastContinuous",
+    canonB: "pastSimple",
+    elementsA: [
+      ...buildCanonicalTimelineElements("pastContinuous", "comp-food-pc-ps-01-a"),
+      ...buildCanonicalTimelineElements("pastSimple", "comp-food-pc-ps-01-a-dot", [
+        { position: 75 },
+      ]),
+    ],
+    optionA: "The waiter was bringing our food when the power went out.",
+    optionB: "The waiter brought our food at 7 p.m.",
+    confusionExplanation:
+      "Both describe the waiter's action, but one shows it in progress when interrupted and the other shows it as completed.",
+    keyDifference:
+      '"When + interruption" needs Past Continuous for the background action. A specific time for a completed event uses Past Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "What happened at the restaurant?"',
+      lineB: 'B: "The waiter was bringing our food when the power went out!"',
+    },
+    difficulty: 1,
+    tenseCategory: "continuous",
+  }),
+  createComparisonQuestion({
+    id: "comp-food-prc-prs-01",
+    promptText: "I am eating healthier this month.",
+    correctOption: "A",
+    tenseA: "Present Continuous",
+    tenseB: "Present Simple",
+    canonA: "presentContinuous",
+    canonB: "presentSimpleHabit",
+    optionA: "I am eating healthier this month.",
+    optionB: "I eat vegetables every day.",
+    confusionExplanation:
+      "Both describe eating habits, but one is a temporary change and the other is a permanent routine.",
+    keyDifference:
+      '"This month" suggests a temporary situation, which fits Present Continuous. "Every day" suggests a regular habit, which fits Present Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "Want some pizza?"',
+      lineB: 'B: "No thanks. I am eating healthier this month."',
+    },
+    difficulty: 1,
+    tenseCategory: "continuous",
+  }),
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Grocery Shopping
+  // ============================================================
+  createComparisonQuestion({
+    id: "comp-shop-pp-ps-01",
+    promptText: "I have already bought milk.",
+    correctOption: "A",
+    tenseA: "Present Perfect",
+    tenseB: "Past Simple",
+    canonA: "presentPerfect",
+    canonB: "pastSimple",
+    optionA: "I have already bought milk.",
+    optionB: "I bought milk yesterday.",
+    confusionExplanation:
+      "Both describe buying milk, but one has current relevance and the other is a closed past event.",
+    keyDifference:
+      '"Already" without a finished time means the action matters now (no need to buy more). "Yesterday" closes the event.',
+    realLifeDialogue: {
+      lineA: 'A: "Should I get milk at the store?"',
+      lineB: 'B: "No, I have already bought some."',
+    },
+    difficulty: 1,
+    tenseCategory: "perfect",
+  }),
+  createComparisonQuestion({
+    id: "comp-shop-fpf-fs-01",
+    promptText: "By 9 p.m., the store will have closed.",
+    correctOption: "A",
+    tenseA: "Future Perfect",
+    tenseB: "Future Simple",
+    canonA: "futurePerfect",
+    canonB: "futureSimple",
+    optionA: "By 9 p.m., the store will have closed.",
+    optionB: "The store will close at 9 p.m.",
+    confusionExplanation:
+      "Both refer to 9 p.m., but one means the closing is complete before that point and the other means it happens at that exact time.",
+    keyDifference:
+      '"By 9 p.m." = complete before that time (Future Perfect). "At 9 p.m." = the action happens at that time (Future Simple).',
+    realLifeDialogue: {
+      lineA: 'A: "Can we go to the store at 9?"',
+      lineB: 'B: "No, by 9 p.m. the store will have closed."',
+    },
+    difficulty: 2,
+    tenseCategory: "perfect",
+  }),
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Transportation
+  // ============================================================
+  createComparisonQuestion({
+    id: "comp-transit-pp-ps-01",
+    promptText: "The bus has already left.",
+    correctOption: "A",
+    tenseA: "Present Perfect",
+    tenseB: "Past Simple",
+    canonA: "presentPerfect",
+    canonB: "pastSimple",
+    optionA: "The bus has already left.",
+    optionB: "The bus left five minutes ago.",
+    confusionExplanation:
+      "Both describe the bus leaving, but one connects to now (we missed it) and the other gives a specific past time.",
+    keyDifference:
+      '"Already" without a time marker keeps the result relevant now. "Five minutes ago" is a specific past time.',
+    realLifeDialogue: {
+      lineA: 'A: "Did we make it in time?"',
+      lineB: 'B: "No, the bus has already left."',
+    },
+    difficulty: 1,
+    tenseCategory: "perfect",
+  }),
+  createComparisonQuestion({
+    id: "comp-transit-fc-fs-01",
+    promptText: "At this time tomorrow, I will be driving to work.",
+    correctOption: "A",
+    tenseA: "Future Continuous",
+    tenseB: "Future Simple",
+    canonA: "futureContinuous",
+    canonB: "futureSimple",
+    optionA: "At this time tomorrow, I will be driving to work.",
+    optionB: "I will drive to work tomorrow.",
+    confusionExplanation:
+      "Both describe driving tomorrow, but one focuses on the action in progress at a future moment.",
+    keyDifference:
+      '"At this time tomorrow" imagines a future viewpoint with an action in progress — Future Continuous. Future Simple just states the plan.',
+    realLifeDialogue: {
+      lineA: 'A: "Can I call you at 8 tomorrow?"',
+      lineB: 'B: "I\'ll be driving then. Call me after 9."',
+    },
+    difficulty: 2,
+    tenseCategory: "continuous",
+  }),
+  createComparisonQuestion({
+    id: "comp-transit-ppf-ps-01",
+    promptText: "The train had already left when we arrived at the station.",
+    correctOption: "A",
+    tenseA: "Past Perfect",
+    tenseB: "Past Simple",
+    canonA: "pastPerfect",
+    canonB: "pastSimple",
+    optionA: "The train had already left when we arrived at the station.",
+    optionB: "The train left at 9 a.m.",
+    confusionExplanation:
+      "Both describe the train leaving, but one positions the leaving before another past event.",
+    keyDifference:
+      '"When we arrived" creates a past reference point. The earlier action (leaving) takes Past Perfect.',
+    realLifeDialogue: {
+      lineA: 'A: "Did you catch the train?"',
+      lineB: 'B: "No, it had already left when we got there."',
+    },
+    difficulty: 2,
+    tenseCategory: "perfect",
+  }),
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Weather
+  // ============================================================
+  createComparisonQuestion({
+    id: "comp-weather-ppc-prc-01",
+    promptText: "It has been raining all day.",
+    correctOption: "A",
+    tenseA: "Present Perfect Continuous",
+    tenseB: "Present Continuous",
+    canonA: "presentPerfectContinuous",
+    canonB: "presentContinuous",
+    optionA: "It has been raining all day.",
+    optionB: "It is raining right now.",
+    confusionExplanation:
+      "Both describe rain, but one emphasizes duration from the past to now and the other focuses only on now.",
+    keyDifference:
+      '"All day" shows duration from the past up to now — Present Perfect Continuous. "Right now" focuses only on the present moment — Present Continuous.',
+    realLifeDialogue: {
+      lineA: 'A: "Why are the streets so flooded?"',
+      lineB: 'B: "It has been raining all day!"',
+    },
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  }),
+  createComparisonQuestion({
+    id: "comp-weather-pc-ps-01",
+    promptText: "It was snowing when I woke up.",
+    correctOption: "A",
+    tenseA: "Past Continuous",
+    tenseB: "Past Simple",
+    canonA: "pastContinuous",
+    canonB: "pastSimple",
+    elementsA: [
+      ...buildCanonicalTimelineElements("pastContinuous", "comp-weather-pc-ps-01-a"),
+      ...buildCanonicalTimelineElements("pastSimple", "comp-weather-pc-ps-01-a-dot", [
+        { position: 70 },
+      ]),
+    ],
+    optionA: "It was snowing when I woke up.",
+    optionB: "It snowed last night.",
+    confusionExplanation:
+      "Both describe snow in the past, but one shows the snow as background to another action.",
+    keyDifference:
+      '"When I woke up" provides a past moment. The snow was the ongoing background — Past Continuous. "Last night" is a completed event — Past Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "What was the weather like this morning?"',
+      lineB: 'B: "It was snowing when I woke up."',
+    },
+    difficulty: 1,
+    tenseCategory: "continuous",
+  }),
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Work/Job
+  // ============================================================
+  createComparisonQuestion({
+    id: "comp-work-pp-ps-01",
+    promptText: "I have already finished my shift.",
+    correctOption: "A",
+    tenseA: "Present Perfect",
+    tenseB: "Past Simple",
+    canonA: "presentPerfect",
+    canonB: "pastSimple",
+    optionA: "I have already finished my shift.",
+    optionB: "I finished my shift at 5 p.m.",
+    confusionExplanation:
+      "Both describe finishing work, but one has current relevance (I'm free now) and the other gives a specific past time.",
+    keyDifference:
+      '"Already" without a time means the result matters now. "At 5 p.m." closes the event at a specific past time.',
+    realLifeDialogue: {
+      lineA: 'A: "Are you still at work?"',
+      lineB: 'B: "No, I have already finished my shift."',
+    },
+    difficulty: 1,
+    tenseCategory: "perfect",
+  }),
+  createComparisonQuestion({
+    id: "comp-work-ppc-prc-01",
+    promptText: "He has been working overtime all week.",
+    correctOption: "A",
+    tenseA: "Present Perfect Continuous",
+    tenseB: "Present Continuous",
+    canonA: "presentPerfectContinuous",
+    canonB: "presentContinuous",
+    optionA: "He has been working overtime all week.",
+    optionB: "He is working overtime tonight.",
+    confusionExplanation:
+      "Both describe overtime, but one emphasizes duration up to now and the other focuses on a current or near-future action.",
+    keyDifference:
+      '"All week" shows duration from the past to now — Present Perfect Continuous. "Tonight" focuses on a specific present/near-future time.',
+    realLifeDialogue: {
+      lineA: 'A: "Why is Carlos so tired?"',
+      lineB: 'B: "He has been working overtime all week."',
+    },
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  }),
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Family at Home
+  // ============================================================
+  createComparisonQuestion({
+    id: "comp-home-prc-prs-01",
+    promptText: "The kids are doing homework right now.",
+    correctOption: "A",
+    tenseA: "Present Continuous",
+    tenseB: "Present Simple",
+    canonA: "presentContinuous",
+    canonB: "presentSimpleHabit",
+    optionA: "The kids are doing homework right now.",
+    optionB: "The kids do homework every afternoon.",
+    confusionExplanation:
+      "Both describe homework, but one is happening at this moment and the other is a daily routine.",
+    keyDifference:
+      '"Right now" = action in progress at this moment (Present Continuous). "Every afternoon" = regular habit (Present Simple).',
+    realLifeDialogue: {
+      lineA: 'A: "Can the kids come play?"',
+      lineB: 'B: "Not yet. They are doing homework right now."',
+    },
+    difficulty: 1,
+    tenseCategory: "continuous",
+  }),
+  createComparisonQuestion({
+    id: "comp-home-ppf-ps-01",
+    promptText: "Mom had already made dinner when I got home.",
+    correctOption: "A",
+    tenseA: "Past Perfect",
+    tenseB: "Past Simple",
+    canonA: "pastPerfect",
+    canonB: "pastSimple",
+    optionA: "Mom had already made dinner when I got home.",
+    optionB: "Mom made dinner at 6 p.m.",
+    confusionExplanation:
+      "Both describe making dinner, but one positions the cooking before another past event.",
+    keyDifference:
+      '"When I got home" creates a past reference point. The earlier action (cooking) takes Past Perfect.',
+    realLifeDialogue: {
+      lineA: 'A: "Did you help cook dinner?"',
+      lineB: 'B: "No, Mom had already made it when I got home."',
+    },
+    difficulty: 2,
+    tenseCategory: "perfect",
+  }),
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Health/Doctor
+  // ============================================================
+  createComparisonQuestion({
+    id: "comp-health-pp-ps-02",
+    promptText: "She has already taken her medicine.",
+    correctOption: "A",
+    tenseA: "Present Perfect",
+    tenseB: "Past Simple",
+    canonA: "presentPerfect",
+    canonB: "pastSimple",
+    optionA: "She has already taken her medicine.",
+    optionB: "She took her medicine an hour ago.",
+    confusionExplanation:
+      "Both describe taking medicine, but one has current relevance (no need to remind her) and the other gives a specific past time.",
+    keyDifference:
+      '"Already" keeps the result relevant now — no need to take it again. "An hour ago" closes the event in the past.',
+    realLifeDialogue: {
+      lineA: 'A: "Should I remind Grandma to take her pills?"',
+      lineB: 'B: "No need. She has already taken them."',
+    },
+    difficulty: 1,
+    tenseCategory: "perfect",
+  }),
+  createComparisonQuestion({
+    id: "comp-health-fc-fs-01",
+    promptText: "At 3 p.m., the doctor will be examining patients.",
+    correctOption: "A",
+    tenseA: "Future Continuous",
+    tenseB: "Future Simple",
+    canonA: "futureContinuous",
+    canonB: "futureSimple",
+    optionA: "At 3 p.m., the doctor will be examining patients.",
+    optionB: "The doctor will see you at 3 p.m.",
+    confusionExplanation:
+      "Both refer to 3 p.m., but one shows an action in progress at that future time and the other schedules an appointment.",
+    keyDifference:
+      '"At 3 p.m." + action in progress = Future Continuous. A scheduled event at a specific time can use Future Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "Can I call the doctor at 3?"',
+      lineB: 'B: "She\'ll be busy. At 3 p.m. she will be examining patients."',
+    },
+    difficulty: 2,
+    tenseCategory: "continuous",
+  }),
 ];

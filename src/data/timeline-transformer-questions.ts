@@ -602,4 +602,482 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
     difficulty: 1,
     tenseCategory: "continuous",
   },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Texting & Phone
+  // ============================================================
+  {
+    id: "trans-text-ps-pp-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Present Perfect",
+    sourceSentence: "I called her yesterday.",
+    targetSentence: "I have called her three times this week already.",
+    realLifeDialogue: {
+      lineA: 'A: "Have you talked to Maria?"',
+      lineB: 'B: "Yes, I have called her three times this week already."',
+    },
+    sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-text-ps-pp-01-source", [
+      { position: 50 },
+    ]),
+    targetElements: buildCanonicalTimelineElements("presentPerfect", "trans-text-ps-pp-01-target"),
+    verbBlanks: [{ index: 1, validAnswers: ["have called"] }],
+    hint: 'Remove the specific past time and use "have + past participle" when counting experiences up to now.',
+    explanation:
+      'Present Perfect works when counting actions or experiences that matter now. "This week already" connects the calls to the present.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "trans-text-prs-prc-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Present Continuous",
+    sourceSentence: "She checks her phone every few minutes.",
+    targetSentence: "She is checking her phone right now.",
+    realLifeDialogue: {
+      lineA: 'A: "Is Aisha paying attention?"',
+      lineB: 'B: "No, she is checking her phone right now."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-text-prs-prc-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-text-prs-prc-01-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["is checking"] }],
+    hint: 'Use "is + -ing" to shift from a habit to an action happening at this moment.',
+    explanation:
+      'The source sentence describes a habit. Adding "right now" shifts the meaning to an action in progress, which needs Present Continuous.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Food & Restaurants
+  // ============================================================
+  {
+    id: "trans-food-ps-pp-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Present Perfect",
+    sourceSentence: "We ate at that restaurant last month.",
+    targetSentence: "We have eaten at that restaurant many times.",
+    realLifeDialogue: {
+      lineA: 'A: "Do you know that place?"',
+      lineB: 'B: "Yes, we have eaten there many times."',
+    },
+    sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-food-ps-pp-01-source", [
+      { position: 50 },
+    ]),
+    targetElements: buildCanonicalTimelineElements("presentPerfect", "trans-food-ps-pp-01-target"),
+    verbBlanks: [{ index: 1, validAnswers: ["have eaten"] }],
+    hint: 'Replace the closed past time with life experience using "have + past participle."',
+    explanation:
+      'Present Perfect describes life experiences connected to now. "Many times" counts past experiences without closing them off.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "trans-food-prs-prc-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Present Continuous",
+    sourceSentence: "The chef prepares fresh bread every morning.",
+    targetSentence: "The chef is preparing fresh bread right now.",
+    realLifeDialogue: {
+      lineA: 'A: "Is the bread fresh?"',
+      lineB: 'B: "Yes! The chef is preparing a new batch right now."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-food-prs-prc-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-food-prs-prc-01-target"
+    ),
+    verbBlanks: [{ index: 2, validAnswers: ["is preparing"] }],
+    hint: 'Use "is + -ing" to show the action happening at this moment.',
+    explanation:
+      'The source describes a daily routine. The target focuses on now, so Present Continuous is correct.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "trans-food-ps-pc-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Past Continuous",
+    sourceSentence: "They ordered pizza.",
+    targetSentence: "They were ordering pizza when the delivery app crashed.",
+    realLifeDialogue: {
+      lineA: 'A: "What happened with your dinner order?"',
+      lineB: 'B: "We were ordering pizza when the app crashed!"',
+    },
+    sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-food-ps-pc-01-source", [
+      { position: 50 },
+    ]),
+    targetElements: [
+      ...buildCanonicalTimelineElements("pastContinuous", "trans-food-ps-pc-01-target-a"),
+      ...buildCanonicalTimelineElements("pastSimple", "trans-food-ps-pc-01-target-b", [
+        { position: 70 },
+      ]),
+    ],
+    verbBlanks: [{ index: 1, validAnswers: ["were ordering"] }],
+    hint: 'Use "were + -ing" and add an interrupting event to show the action in progress.',
+    explanation:
+      'Past Continuous shows an action in progress when another event happened. The added clause provides that interruption.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Grocery Shopping
+  // ============================================================
+  {
+    id: "trans-shop-ps-pp-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Present Perfect",
+    sourceSentence: "I bought groceries yesterday.",
+    targetSentence: "I have already bought groceries this week.",
+    realLifeDialogue: {
+      lineA: 'A: "Should I stop at the store?"',
+      lineB: 'B: "No need. I have already bought groceries this week."',
+    },
+    sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-shop-ps-pp-01-source", [
+      { position: 50 },
+    ]),
+    targetElements: buildCanonicalTimelineElements("presentPerfect", "trans-shop-ps-pp-01-target"),
+    verbBlanks: [{ index: 1, validAnswers: ["have already bought"] }],
+    hint: 'Replace the closed past time with "already" and "this week" for present relevance.',
+    explanation:
+      'Present Perfect connects past actions to now. "Already" + "this week" shows the shopping affects the present (no need to go again).',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "trans-shop-prc-ppc-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Continuous",
+    targetTense: "Present Perfect Continuous",
+    sourceSentence: "She is shopping for dinner.",
+    targetSentence: "She has been shopping for two hours already.",
+    realLifeDialogue: {
+      lineA: 'A: "Is your mom still at the store?"',
+      lineB: 'B: "Yes, she has been shopping for two hours already!"',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-shop-prc-ppc-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "trans-shop-prc-ppc-01-target",
+      [{ position: 50 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["has been shopping"] }],
+    hint: 'Add "has been + -ing" and a duration to show how long the shopping has been going on.',
+    explanation:
+      'Present Perfect Continuous emphasizes the duration of an ongoing action. "For two hours" measures the time from start to now.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Transportation
+  // ============================================================
+  {
+    id: "trans-transit-prs-prc-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Present Continuous",
+    sourceSentence: "The bus comes every 15 minutes.",
+    targetSentence: "The bus is coming down the street right now.",
+    realLifeDialogue: {
+      lineA: 'A: "Where is the bus?"',
+      lineB: 'B: "Look! It is coming down the street right now."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-transit-prs-prc-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-transit-prs-prc-01-target"
+    ),
+    verbBlanks: [{ index: 2, validAnswers: ["is coming"] }],
+    hint: 'Use "is + -ing" to show the bus approaching at this moment.',
+    explanation:
+      'The source describes a schedule. The target shows a specific bus arriving now, so Present Continuous is correct.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "trans-transit-ps-ppf-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Past Perfect",
+    sourceSentence: "The flight left before we arrived.",
+    targetSentence: "The flight had left before we arrived.",
+    realLifeDialogue: {
+      lineA: 'A: "Did you catch your flight?"',
+      lineB: 'B: "No, it had left before we got there."',
+    },
+    sourceElements: [
+      ...buildCanonicalTimelineElements("pastSimple", "trans-transit-ps-ppf-01-source-a", [
+        { position: 30 },
+      ]),
+      ...buildCanonicalTimelineElements("pastSimple", "trans-transit-ps-ppf-01-source-b", [
+        { position: 65 },
+      ]),
+    ],
+    targetElements: buildCanonicalTimelineElements("pastPerfect", "trans-transit-ps-ppf-01-target"),
+    verbBlanks: [{ index: 2, validAnswers: ["had left"] }],
+    hint: 'Use "had + past participle" for the action that happened first.',
+    explanation:
+      'Past Perfect clearly marks the earlier of two past events. The flight leaving happened before our arriving.',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "trans-transit-prc-ppc-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Continuous",
+    targetTense: "Present Perfect Continuous",
+    sourceSentence: "I am waiting for the train.",
+    targetSentence: "I have been waiting for the train for 20 minutes.",
+    realLifeDialogue: {
+      lineA: 'A: "Are you still at the station?"',
+      lineB: 'B: "Yes, I have been waiting for 20 minutes!"',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-transit-prc-ppc-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "trans-transit-prc-ppc-01-target",
+      [{ position: 50 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["have been waiting"] }],
+    hint: 'Add "have been + -ing" and a duration to emphasize how long you have waited.',
+    explanation:
+      'Present Perfect Continuous shows duration from the past up to now. The added time phrase emphasizes frustration with the wait.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Weather
+  // ============================================================
+  {
+    id: "trans-weather-ps-pc-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Past Continuous",
+    sourceSentence: "It rained yesterday.",
+    targetSentence: "It was raining when I left for work.",
+    realLifeDialogue: {
+      lineA: 'A: "Did you get wet yesterday?"',
+      lineB: 'B: "Yes! It was raining when I left for work."',
+    },
+    sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-weather-ps-pc-01-source", [
+      { position: 50 },
+    ]),
+    targetElements: [
+      ...buildCanonicalTimelineElements("pastContinuous", "trans-weather-ps-pc-01-target-a"),
+      ...buildCanonicalTimelineElements("pastSimple", "trans-weather-ps-pc-01-target-b", [
+        { position: 70 },
+      ]),
+    ],
+    verbBlanks: [{ index: 1, validAnswers: ["was raining"] }],
+    hint: 'Use "was + -ing" and add a specific moment to show the rain as background.',
+    explanation:
+      'Past Continuous shows an action in progress at a past moment. The added clause provides that reference point.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "trans-weather-prc-ppc-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Continuous",
+    targetTense: "Present Perfect Continuous",
+    sourceSentence: "It is snowing outside.",
+    targetSentence: "It has been snowing since midnight.",
+    realLifeDialogue: {
+      lineA: 'A: "How long has it been snowing?"',
+      lineB: 'B: "It has been snowing since midnight. Look at all that snow!"',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-weather-prc-ppc-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "trans-weather-prc-ppc-01-target",
+      [{ position: 50 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["has been snowing"] }],
+    hint: 'Add "has been + -ing" and "since" to show duration from a starting point.',
+    explanation:
+      '"Since midnight" gives a specific starting point. Present Perfect Continuous connects that start to the present moment.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Work/Job
+  // ============================================================
+  {
+    id: "trans-work-prs-prc-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Present Continuous",
+    sourceSentence: "She answers emails every morning.",
+    targetSentence: "She is answering emails right now.",
+    realLifeDialogue: {
+      lineA: 'A: "Can I talk to Rosa?"',
+      lineB: 'B: "She is answering emails right now. Can I take a message?"',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-work-prs-prc-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-work-prs-prc-01-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["is answering"] }],
+    hint: 'Use "is + -ing" to shift from a routine to a current action.',
+    explanation:
+      'The source describes a daily work routine. The target shows the same action happening now.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "trans-work-ps-pp-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Present Perfect",
+    sourceSentence: "I finished the project last week.",
+    targetSentence: "I have finished the project, so we can present it now.",
+    realLifeDialogue: {
+      lineA: 'A: "Is the project ready?"',
+      lineB: 'B: "Yes, I have finished it. We can present anytime."',
+    },
+    sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-work-ps-pp-01-source", [
+      { position: 50 },
+    ]),
+    targetElements: buildCanonicalTimelineElements("presentPerfect", "trans-work-ps-pp-01-target"),
+    verbBlanks: [{ index: 1, validAnswers: ["have finished"] }],
+    hint: 'Remove the past time and add a present result to support Present Perfect.',
+    explanation:
+      'Present Perfect connects the completion to now. The added clause shows the present consequence.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Family at Home
+  // ============================================================
+  {
+    id: "trans-home-ps-pc-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Past Continuous",
+    sourceSentence: "Mom cooked dinner.",
+    targetSentence: "Mom was cooking dinner when Dad called.",
+    realLifeDialogue: {
+      lineA: 'A: "What was your mom doing when your dad called?"',
+      lineB: 'B: "She was cooking dinner."',
+    },
+    sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-home-ps-pc-01-source", [
+      { position: 50 },
+    ]),
+    targetElements: [
+      ...buildCanonicalTimelineElements("pastContinuous", "trans-home-ps-pc-01-target-a"),
+      ...buildCanonicalTimelineElements("pastSimple", "trans-home-ps-pc-01-target-b", [
+        { position: 70 },
+      ]),
+    ],
+    verbBlanks: [{ index: 1, validAnswers: ["was cooking"] }],
+    hint: 'Use "was + -ing" and add an interrupting event.',
+    explanation:
+      'Past Continuous shows an action in progress when another event happened. The phone call provides that interruption.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "trans-home-fs-fpf-01",
+    type: "sentence-transformer",
+    sourceTense: "Future Simple",
+    targetTense: "Future Perfect",
+    sourceSentence: "I will pay the rent tomorrow.",
+    targetSentence: "By Friday, I will have paid the rent.",
+    realLifeDialogue: {
+      lineA: 'A: "When will you pay the rent?"',
+      lineB: 'B: "Don\'t worry. By Friday, I will have paid it."',
+    },
+    sourceElements: buildCanonicalTimelineElements("futureSimple", "trans-home-fs-fpf-01-source"),
+    targetElements: buildCanonicalTimelineElements("futurePerfect", "trans-home-fs-fpf-01-target", [
+      { position: 65 },
+    ]),
+    verbBlanks: [{ index: 4, validAnswers: ["will have paid"] }],
+    hint: 'Use "will have + past participle" with "by" to show completion before a deadline.',
+    explanation:
+      'Future Perfect shows the action as complete before a future point. "By Friday" sets that deadline.',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Health/Doctor
+  // ============================================================
+  {
+    id: "trans-health-ps-pp-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Present Perfect",
+    sourceSentence: "I took my medicine this morning.",
+    targetSentence: "I have taken my medicine already today.",
+    realLifeDialogue: {
+      lineA: 'A: "Did you remember your pills?"',
+      lineB: 'B: "Yes, I have taken them already."',
+    },
+    sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-health-ps-pp-01-source", [
+      { position: 50 },
+    ]),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfect",
+      "trans-health-ps-pp-01-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["have taken"] }],
+    hint: 'Use "have + past participle" with "already" to show the action is complete and relevant now.',
+    explanation:
+      'Present Perfect with "already" shows completion with present relevance — no need to take the medicine again.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "trans-health-prs-prc-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Present Continuous",
+    sourceSentence: "He exercises every morning.",
+    targetSentence: "He is exercising in the gym right now.",
+    realLifeDialogue: {
+      lineA: 'A: "Where is your brother?"',
+      lineB: 'B: "He is exercising in the gym right now."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-health-prs-prc-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-health-prs-prc-01-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["is exercising"] }],
+    hint: 'Use "is + -ing" to show the action happening at this moment.',
+    explanation:
+      'The source describes a health routine. The target shows the same action in progress now.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
 ];

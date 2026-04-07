@@ -934,4 +934,714 @@ export const TIMELINE_CONTEXT_QUESTIONS: ContextTenseQuestion[] = [
     difficulty: 1,
     tenseCategory: "simple",
   },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Texting & Phone
+  // ============================================================
+  {
+    id: "ctx-text-01",
+    type: "context-tense-picker",
+    scenario:
+      "Right now, Maria ___ (text) her sister about tonight's dinner plans.",
+    blankVerb: "text",
+    realLifeDialogue: {
+      lineA: 'A: "Is Maria ready to go?"',
+      lineB: 'B: "Not yet. She is texting her sister about dinner."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "texts",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-text-01-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is texting",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-text-01-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has texted",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-text-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Right now"],
+    explanation:
+      '"Right now" tells us the action is happening at this exact moment. Present Continuous (is texting) is used for actions in progress.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "ctx-text-02",
+    type: "context-tense-picker",
+    scenario:
+      "I ___ (not hear) from Carlos yet. Maybe I should call him again.",
+    blankVerb: "hear",
+    realLifeDialogue: {
+      lineA: 'A: "Did Carlos text you back?"',
+      lineB: 'B: "No, I haven\'t heard from him yet."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "did not hear",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-text-02-a", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have not heard",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-text-02-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "am not hearing",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-text-02-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["yet", "Maybe I should call"],
+    explanation:
+      '"Yet" in a negative sentence signals Present Perfect. The expected call hasn\'t happened up to now, and the situation is still open.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Food & Restaurants
+  // ============================================================
+  {
+    id: "ctx-food-01",
+    type: "context-tense-picker",
+    scenario:
+      "We ___ (wait) for our table for thirty minutes already. This restaurant is so busy!",
+    blankVerb: "wait",
+    realLifeDialogue: {
+      lineA: 'A: "How long have you been here?"',
+      lineB: 'B: "We have been waiting for thirty minutes already!"',
+    },
+    options: [
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "are waiting",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-food-01-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "have been waiting",
+        elements: buildCanonicalTimelineElements(
+          "presentPerfectContinuous",
+          "ctx-food-01-b",
+          [{ position: 50 }]
+        ),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "were waiting",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-food-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["for thirty minutes", "already"],
+    explanation:
+      '"For thirty minutes already" shows duration from the past up to now. Present Perfect Continuous describes an ongoing action that started before and continues to the present.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "ctx-food-02",
+    type: "context-tense-picker",
+    scenario:
+      "The chef ___ (prepare) our order right now in the kitchen. The food will be out soon.",
+    blankVerb: "prepare",
+    realLifeDialogue: {
+      lineA: 'A: "Where\'s our food?"',
+      lineB: 'B: "The chef is preparing it right now."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "prepares",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-food-02-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is preparing",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-food-02-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has prepared",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-food-02-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["right now", "will be out soon"],
+    explanation:
+      '"Right now" signals an action in progress at this moment. Present Continuous is the natural choice.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "ctx-food-03",
+    type: "context-tense-picker",
+    scenario:
+      "By the time the dessert came, we ___ (already finish) the main course.",
+    blankVerb: "finish",
+    realLifeDialogue: {
+      lineA: 'A: "Were you still eating when the dessert arrived?"',
+      lineB: 'B: "No, we had already finished by then."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "already finished",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-food-03-a", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Perfect",
+        conjugatedVerb: "had already finished",
+        elements: buildCanonicalTimelineElements("pastPerfect", "ctx-food-03-b", [
+          { position: 35 },
+          { position: 55 },
+        ]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have already finished",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-food-03-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["By the time", "already"],
+    explanation:
+      '"By the time the dessert came" establishes a past reference point. The finishing happened before that moment, so Past Perfect is needed.',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Grocery Shopping
+  // ============================================================
+  {
+    id: "ctx-shop-01",
+    type: "context-tense-picker",
+    scenario:
+      "Right now, the cashier ___ (scan) the items and putting them in bags.",
+    blankVerb: "scan",
+    realLifeDialogue: {
+      lineA: 'A: "Are you almost done at the store?"',
+      lineB: 'B: "Almost! The cashier is scanning my items now."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "scans",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-shop-01-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is scanning",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-shop-01-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has scanned",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-shop-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Right now", "putting"],
+    explanation:
+      '"Right now" and the parallel "-ing" form "putting" show actions happening at this moment. Present Continuous fits.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "ctx-shop-02",
+    type: "context-tense-picker",
+    scenario:
+      "I ___ (not buy) milk yet, so we need to stop at the store on the way home.",
+    blankVerb: "buy",
+    realLifeDialogue: {
+      lineA: 'A: "Do we have milk at home?"',
+      lineB: 'B: "No, I haven\'t bought milk yet."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "did not buy",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-shop-02-a", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have not bought",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-shop-02-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "am not buying",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-shop-02-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["yet", "need to stop"],
+    explanation:
+      '"Yet" in a negative statement typically signals Present Perfect. The shopping hasn\'t happened but is still expected.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Transportation
+  // ============================================================
+  {
+    id: "ctx-transit-01",
+    type: "context-tense-picker",
+    scenario:
+      "At 8 a.m. tomorrow, I ___ (ride) the bus to work like every other day.",
+    blankVerb: "ride",
+    realLifeDialogue: {
+      lineA: 'A: "Can I call you at 8 tomorrow morning?"',
+      lineB: 'B: "I\'ll be on the bus then. Call me after 9."',
+    },
+    options: [
+      {
+        tenseName: "Future Simple",
+        conjugatedVerb: "will ride",
+        elements: buildCanonicalTimelineElements("futureSimple", "ctx-transit-01-a", [
+          { position: 60 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Future Continuous",
+        conjugatedVerb: "will be riding",
+        elements: buildCanonicalTimelineElements("futureContinuous", "ctx-transit-01-b", [
+          { position: 60 },
+        ]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "am riding",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-transit-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["At 8 a.m. tomorrow"],
+    explanation:
+      '"At 8 a.m. tomorrow" names a specific future moment when the action will be in progress. Future Continuous is the best fit.',
+    difficulty: 2,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "ctx-transit-02",
+    type: "context-tense-picker",
+    scenario:
+      "The train ___ (just leave), so we need to wait fifteen minutes for the next one.",
+    blankVerb: "leave",
+    realLifeDialogue: {
+      lineA: 'A: "Did we miss the train?"',
+      lineB: 'B: "Yeah, it has just left. The next one is in 15 minutes."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "just left",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-transit-02-a", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has just left",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-transit-02-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is just leaving",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-transit-02-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["just", "so we need to wait"],
+    explanation:
+      '"Just" with a very recent action that affects now is typical Present Perfect usage. The train leaving means we must wait now.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "ctx-transit-03",
+    type: "context-tense-picker",
+    scenario:
+      "While I ___ (stand) on the platform, my phone rang with a message from my boss.",
+    blankVerb: "stand",
+    realLifeDialogue: {
+      lineA: 'A: "When did your boss call?"',
+      lineB: 'B: "While I was standing on the platform waiting for the train."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "stood",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-transit-03-a", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "was standing",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-transit-03-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have stood",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-transit-03-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["While", "rang"],
+    explanation:
+      '"While" introduces a background action that was in progress when another action (the phone ringing) interrupted it. Past Continuous is correct.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Weather
+  // ============================================================
+  {
+    id: "ctx-weather-01",
+    type: "context-tense-picker",
+    scenario:
+      "It ___ (rain) since early this morning. The streets are flooded, and traffic is terrible.",
+    blankVerb: "rain",
+    realLifeDialogue: {
+      lineA: 'A: "Why is traffic so bad today?"',
+      lineB: 'B: "It has been raining since this morning. Everything is flooded."',
+    },
+    options: [
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is raining",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-weather-01-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "has been raining",
+        elements: buildCanonicalTimelineElements(
+          "presentPerfectContinuous",
+          "ctx-weather-01-b",
+          [{ position: 50 }]
+        ),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "was raining",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-weather-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["since early this morning", "are flooded"],
+    explanation:
+      '"Since this morning" shows duration from a past starting point to now. The visible result (flooded streets) confirms Present Perfect Continuous.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "ctx-weather-02",
+    type: "context-tense-picker",
+    scenario:
+      "When I left the house this morning, it ___ (snow) heavily. I almost couldn't see the road.",
+    blankVerb: "snow",
+    realLifeDialogue: {
+      lineA: 'A: "How was the drive this morning?"',
+      lineB: 'B: "Scary! It was snowing so hard I could barely see."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "snowed",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-weather-02-a", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "was snowing",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-weather-02-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has snowed",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-weather-02-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["When I left", "heavily"],
+    explanation:
+      '"When I left" provides a past moment. The snow was the background action in progress at that time, so Past Continuous is correct.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Work/Job
+  // ============================================================
+  {
+    id: "ctx-work-01",
+    type: "context-tense-picker",
+    scenario:
+      "Before my boss arrived at the meeting, I ___ (already send) the report to everyone on the team.",
+    blankVerb: "send",
+    realLifeDialogue: {
+      lineA: 'A: "Did your boss see the report?"',
+      lineB: 'B: "Yes, I had already sent it before she got there."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "already sent",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-work-01-a", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Perfect",
+        conjugatedVerb: "had already sent",
+        elements: buildCanonicalTimelineElements("pastPerfect", "ctx-work-01-b", [
+          { position: 35 },
+          { position: 55 },
+        ]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have already sent",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-work-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Before", "arrived", "already"],
+    explanation:
+      '"Before my boss arrived" sets a past reference point. The sending happened even earlier, so Past Perfect is needed.',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "ctx-work-02",
+    type: "context-tense-picker",
+    scenario:
+      "Every Friday, our team ___ (have) a meeting at 2 p.m. to discuss the week's progress.",
+    blankVerb: "have",
+    realLifeDialogue: {
+      lineA: 'A: "Are you free Friday afternoon?"',
+      lineB: 'B: "No, we have a team meeting every Friday at 2."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "has",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-work-02-a"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is having",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-work-02-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Future Simple",
+        conjugatedVerb: "will have",
+        elements: buildCanonicalTimelineElements("futureSimple", "ctx-work-02-c", [
+          { position: 60 },
+        ]),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Every Friday"],
+    explanation:
+      '"Every Friday" signals a regular routine or schedule. Present Simple is used for habits and fixed schedules.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Family at Home
+  // ============================================================
+  {
+    id: "ctx-home-01",
+    type: "context-tense-picker",
+    scenario:
+      "Every Sunday, my grandmother ___ (make) a big breakfast for everyone in the family.",
+    blankVerb: "make",
+    realLifeDialogue: {
+      lineA: 'A: "What does your family do on Sundays?"',
+      lineB: 'B: "My grandmother always makes a big breakfast for everyone."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "makes",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-home-01-a"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is making",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-home-01-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has made",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-home-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Every Sunday"],
+    explanation:
+      '"Every Sunday" indicates a repeated family tradition. Present Simple is used for regular habits and routines.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "ctx-home-02",
+    type: "context-tense-picker",
+    scenario:
+      "Right now, the baby ___ (sleep), so please keep your voice down.",
+    blankVerb: "sleep",
+    realLifeDialogue: {
+      lineA: 'A: "Can I turn on the TV?"',
+      lineB: 'B: "Shh! The baby is sleeping right now."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "sleeps",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-home-02-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is sleeping",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-home-02-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has slept",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-home-02-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Right now", "please keep your voice down"],
+    explanation:
+      '"Right now" shows the action is happening at this moment. Present Continuous describes the temporary current state.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
+  // ============================================================
+  // NEW EVERYDAY CONTENT - Health/Doctor
+  // ============================================================
+  {
+    id: "ctx-health-01",
+    type: "context-tense-picker",
+    scenario:
+      "I ___ (take) this medicine for two weeks now, and I finally feel better.",
+    blankVerb: "take",
+    realLifeDialogue: {
+      lineA: 'A: "How long have you been on this medication?"',
+      lineB: 'B: "I have been taking it for two weeks, and it\'s really helping."',
+    },
+    options: [
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "am taking",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-health-01-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "have been taking",
+        elements: buildCanonicalTimelineElements(
+          "presentPerfectContinuous",
+          "ctx-health-01-b",
+          [{ position: 50 }]
+        ),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "was taking",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-health-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["for two weeks now", "finally feel better"],
+    explanation:
+      '"For two weeks now" shows duration from the past up to now. The present result (feeling better) confirms Present Perfect Continuous.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "ctx-health-02",
+    type: "context-tense-picker",
+    scenario:
+      "The pharmacist ___ (fill) my prescription right now. It should be ready in ten minutes.",
+    blankVerb: "fill",
+    realLifeDialogue: {
+      lineA: 'A: "Is your medicine ready?"',
+      lineB: 'B: "Not yet. The pharmacist is filling it right now."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "fills",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-health-02-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is filling",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-health-02-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has filled",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-health-02-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["right now", "should be ready in ten minutes"],
+    explanation:
+      '"Right now" signals an action in progress at this moment. Present Continuous is the correct choice.',
+    difficulty: 1,
+    tenseCategory: "continuous",
+  },
 ];
