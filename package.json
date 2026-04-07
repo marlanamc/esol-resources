@@ -35,6 +35,7 @@
     "test:e2e:install": "playwright install --with-deps",
     "lint": "eslint",
     "audit:grammar-dark-mode": "node --import tsx scripts/checks/audit-grammar-dark-mode.ts",
+    "report:level1-definitions": "node --import tsx scripts/checks/report-level1-definition-audit.ts",
     "audit:answer-position": "node scripts/checks/audit-answer-position-bias.js",
     "audit:answer-position:update-baseline": "node scripts/checks/audit-answer-position-bias.js --update-baseline",
     "check:nullable-upserts": "node scripts/checks/check-null-assignment-upserts.mjs",

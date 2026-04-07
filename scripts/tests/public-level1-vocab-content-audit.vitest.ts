@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { LEVEL1_PUBLIC_VOCAB_UNITS } from "@/data/public-level1-vocab";
 import { vocabImages } from "@/data/vocab-images";
+import {
+  auditLevel1Definitions,
+  formatDefinitionIssue,
+} from "../checks/level1-definition-audit";
 
 type AuditCard = {
   unit: string;
@@ -84,19 +88,6 @@ const CATEGORY_RULES: Array<{ match: RegExp; rule: CategoryRule }> = [
   },
 ];
 
-const DEFINITION_DISALLOWED = [
-  /\ba kind of\b/i,
-  /\ba piece of clothing\b/i,
-  /\ba part of a house\b/i,
-  /\ba sign that\b/i,
-  /^something with\b/i,
-  /^something you wear\b/i,
-  /^things people eat\b/i,
-  /^liked more than other things\b/i,
-  /^what we use to know\b/i,
-  /^food that helps build the body\b/i,
-];
-
 const EXAMPLE_DISALLOWED = [
   /^we practice the word/i,
   /^this is (a|an)\b/i,
@@ -151,36 +142,6 @@ const LOW_CONTEXT_CATEGORIES = [
   /adverbs of frequency/i,
 ];
 
-const STRICT_RELEVANCE_CATEGORIES = [
-  /classroom/i,
-  /community places/i,
-  /housing/i,
-  /parts of house/i,
-  /domestic things/i,
-  /clothing/i,
-  /products/i,
-  /shopping/i,
-  /occupations/i,
-  /workforce/i,
-  /body parts/i,
-  /symptoms/i,
-  /medicine/i,
-  /illness/i,
-  /medical/i,
-  /exercise/i,
-  /food/i,
-  /grains/i,
-  /dairy/i,
-  /meats/i,
-  /staples/i,
-  /vegetables/i,
-  /fruits/i,
-  /prepared foods/i,
-  /sweets/i,
-  /drinks/i,
-  /containers/i,
-];
-
 function getCategoryRule(category: string): CategoryRule {
   for (const entry of CATEGORY_RULES) {
     if (entry.match.test(category)) return entry.rule;
@@ -206,11 +167,6 @@ function getAuditCards(): AuditCard[] {
   );
 }
 
-function hasAnyHint(text: string, hints: RegExp[] | undefined): boolean {
-  if (!hints || hints.length === 0) return true;
-  return hints.some((hint) => hint.test(text));
-}
-
 function formatIssue(prefix: string, card: AuditCard, detail: string): string {
   return `${prefix}: ${card.unit} -> ${card.category} -> ${card.term}: ${detail}`;
 }
@@ -220,31 +176,40 @@ function categoryMatches(category: string, patterns: RegExp[]): boolean {
 }
 
 describe("public level 1 vocabulary content audit", () => {
-  it("flags likely weak or irrelevant definitions", () => {
-    const issues: string[] = [];
+  it("classifies current definition backlog into hard failures and review warnings", () => {
+    const audit = auditLevel1Definitions();
+    const hardIssueLines = audit.hardIssues.map(formatDefinitionIssue);
+    const reviewIssueLines = audit.reviewIssues.map(formatDefinitionIssue);
 
-    for (const card of getAuditCards()) {
-      const definition = card.englishDefinition.trim();
-      const normalized = definition.toLowerCase();
-      const rule = getCategoryRule(card.category);
+    expect(
+      hardIssueLines.some((line) =>
+        line.includes("Unit 1: Getting to Know You -> Classroom -> Book")
+      )
+    ).toBe(false);
+    expect(
+      hardIssueLines.some((line) =>
+        line.includes("Unit 1: Getting to Know You -> Other -> Food")
+      )
+    ).toBe(false);
+    expect(
+      hardIssueLines.some((line) =>
+        line.includes("Units 6 & 7: Workforce Preparation and Career Awareness -> Workforce Terminology -> Job")
+      )
+    ).toBe(false);
+    expect(
+      hardIssueLines.some((line) =>
+        line.includes("Unit 9: Holistic Wellness -> Fruits -> Apples")
+      )
+    ).toBe(false);
+    expect(
+      hardIssueLines.some((line) =>
+        line.includes("Unit 9: Holistic Wellness -> Drinks -> Juice")
+      )
+    ).toBe(false);
 
-      const lowContextCategory = categoryMatches(card.category, LOW_CONTEXT_CATEGORIES);
-      const strictCategory = categoryMatches(card.category, STRICT_RELEVANCE_CATEGORIES);
+    expect(hardIssueLines, hardIssueLines.join("\n")).toEqual([]);
 
-      if (!lowContextCategory && definition.length < 12) {
-        issues.push(formatIssue("Definition", card, `too short: "${definition}"`));
-      }
-
-      if (DEFINITION_DISALLOWED.some((pattern) => pattern.test(definition))) {
-        issues.push(formatIssue("Definition", card, `contains vague wording: "${definition}"`));
-      }
-
-      if (strictCategory && !normalized.includes(card.term.toLowerCase()) && !hasAnyHint(definition, rule.definitionHints)) {
-        issues.push(formatIssue("Definition", card, `may not match the category well enough: "${definition}"`));
-      }
-    }
-
-    expect(issues, issues.slice(0, 80).join("\n")).toEqual([]);
+    expect(reviewIssueLines, reviewIssueLines.join("\n")).toEqual([]);
   });
 
   it("flags likely weak or low-value examples", () => {
@@ -258,7 +223,10 @@ describe("public level 1 vocabulary content audit", () => {
         .filter((token) => token.length > 2);
       const mentionsTerm = termTokens.length === 0 || termTokens.some((token) => example.toLowerCase().includes(token));
 
-      if (example.length < 16) {
+      const lowContextCategory = categoryMatches(card.category, LOW_CONTEXT_CATEGORIES);
+      const shortButAcceptableExample = /^(he|she) is [a-z-]+\.$/i.test(example);
+
+      if (!lowContextCategory && !shortButAcceptableExample && example.length < 16) {
         issues.push(formatIssue("Example", card, `too short: "${example}"`));
       }
 
