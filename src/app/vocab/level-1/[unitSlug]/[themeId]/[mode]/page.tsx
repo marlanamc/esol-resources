@@ -100,13 +100,13 @@ export default async function ThemeActivityPage({ params }: Props) {
           <div className="flex items-center justify-between">
             {/* Back Link */}
             <Link
-              href={`/vocab/level-1/${unitSlug}/${themeId}`}
+              href="/vocab/level-1"
               className="flex items-center gap-2 text-sm font-medium text-[var(--tone-vocabulary-accent-strong)] transition hover:gap-3"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M19 12H5M12 19l-7-7 7-7"/>
               </svg>
-              <span className="hidden sm:inline">Back to activities</span>
+              <span className="hidden sm:inline">Back to units</span>
               <span className="sm:hidden">Back</span>
             </Link>
 
