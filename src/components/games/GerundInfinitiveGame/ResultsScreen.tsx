@@ -88,7 +88,7 @@ export function ResultsScreen({ group, results, nextGroup, completedGroupsCount 
               ? `You have mastered ${group.title}! You can now move on to the next challenge.`
               : results.nextStep === 'round2'
               ? `Great work! You have unlocked Round 2 — targeted practice for your missed patterns.`
-              : `You passed ${group.title}! ${nextGroup ? `${nextGroup.shortTitle} is now unlocked!` : 'All groups complete!'}`
+              : `You passed ${group.title}! ${nextGroup ? `You can keep going with ${nextGroup.shortTitle} or jump to any other level.` : 'You can jump to any other level from here.'}`
             : `Score ${GI_UNLOCK_THRESHOLD}% or more to pass this pattern group. You scored ${accuracy}%. Try again!`
           }
         </p>

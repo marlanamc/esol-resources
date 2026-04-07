@@ -123,7 +123,7 @@ export const GROUP_0B: GerundInfinitiveGroup = {
   colorClass: 'bg-blue-100 border-blue-300 text-blue-900',
   difficulty: 1,
   phase: 'foundation',
-  prerequisite: 'group-0a',
+  prerequisite: null,
   memoryTrick: 'Infinitive = TO + verb = pointing TO the future!',
   icon: '🎯',
   patterns: [
@@ -222,7 +222,7 @@ export const GROUP_1: GerundInfinitiveGroup = {
   colorClass: 'bg-terracotta-100 border-terracotta-300 text-terracotta-900',
   difficulty: 2,
   phase: 'development',
-  prerequisite: 'group-2c',
+  prerequisite: null,
   memoryTrick: 'PREP = ING',
   icon: '🔑',
   patterns: [
@@ -552,7 +552,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
   colorClass: 'bg-terracotta-100 border-terracotta-300 text-terracotta-900',
   difficulty: 2,
   phase: 'development',
-  prerequisite: 'group-1',
+  prerequisite: null,
   memoryTrick: 'Each adjective has ONE preposition partner!',
   icon: '📌',
   patterns: [
@@ -845,7 +845,7 @@ export const GROUP_1D: GerundInfinitiveGroup = {
   colorClass: 'bg-purple-100 border-purple-300 text-purple-900',
   difficulty: 2,
   phase: 'development',
-  prerequisite: 'group-1b',
+  prerequisite: null,
   memoryTrick: 'Two blanks, two answers: Preposition + Gerund!',
   icon: '🎯',
   patterns: [
@@ -986,7 +986,7 @@ export const GROUP_1C: GerundInfinitiveGroup = {
   colorClass: 'bg-amber-100 border-amber-300 text-amber-900',
   difficulty: 3,
   phase: 'mastery',
-  prerequisite: 'group-6b',
+  prerequisite: null,
   memoryTrick: 'Look forward TO = preposition = gerund! (to meeting, not to meet)',
   icon: '🪤',
   patterns: [
@@ -1069,7 +1069,7 @@ export const GROUP_2A: GerundInfinitiveGroup = {
   colorClass: 'bg-sage-100 border-sage-300 text-sage-900',
   difficulty: 2,
   phase: 'core-verbs',
-  prerequisite: 'group-4',
+  prerequisite: null,
   memoryTrick: 'Gerund verbs = EXPERIENCE verbs. They ask "What activity?" not "What\'s your goal?"',
   icon: '😊',
   patterns: [
@@ -1259,7 +1259,7 @@ export const GROUP_2B: GerundInfinitiveGroup = {
   colorClass: 'bg-sky-100 border-sky-300 text-sky-900',
   difficulty: 2,
   phase: 'core-verbs',
-  prerequisite: 'group-2a',
+  prerequisite: null,
   memoryTrick: 'Infinitive verbs = GOAL verbs. They point TO the future: "What do you want TO achieve?"',
   icon: '🎯',
   patterns: [
@@ -1476,7 +1476,7 @@ export const GROUP_2C: GerundInfinitiveGroup = {
   colorClass: 'bg-purple-100 border-purple-300 text-purple-900',
   difficulty: 2,
   phase: 'core-verbs',
-  prerequisite: 'group-2b',
+  prerequisite: null,
   memoryTrick: 'GERUND verbs = enjoy the moment (-ing). INFINITIVE verbs = look to the future (to + verb).',
   icon: '🔀',
   patterns: [
@@ -1625,7 +1625,7 @@ export const GROUP_3A: GerundInfinitiveGroup = {
   colorClass: 'bg-yellow-100 border-yellow-300 text-yellow-900',
   difficulty: 2,
   phase: 'development',
-  prerequisite: 'checkpoint-2',
+  prerequisite: null,
   memoryTrick: 'Adjectives about feelings/states point TO the action: "How do you feel about doing it?"',
   icon: '😃',
   patterns: [
@@ -1743,7 +1743,7 @@ export const GROUP_3B: GerundInfinitiveGroup = {
   colorClass: 'bg-indigo-100 border-indigo-300 text-indigo-900',
   difficulty: 2,
   phase: 'development',
-  prerequisite: 'group-3a',
+  prerequisite: null,
   memoryTrick: 'These nouns ask: "What can I do?" or "What might happen?" → Use TO + verb',
   icon: '📋',
   patterns: [
@@ -1847,7 +1847,7 @@ export const GROUP_3C: GerundInfinitiveGroup = {
   colorClass: 'bg-violet-100 border-violet-300 text-violet-900',
   difficulty: 2,
   phase: 'development',
-  prerequisite: 'group-3b',
+  prerequisite: null,
   memoryTrick: 'Ask "Why?" → Answer with TO + verb (your purpose/goal)',
   icon: '🎯',
   patterns: [
@@ -1998,7 +1998,7 @@ export const GROUP_4: GerundInfinitiveGroup = {
   colorClass: 'bg-emerald-100 border-emerald-300 text-emerald-900',
   difficulty: 1,
   phase: 'foundation',
-  prerequisite: 'group-5',
+  prerequisite: null,
   memoryTrick: 'GO -ING for fun activities! Think: "What activity are you doing?" → go SWIMMING, go SHOPPING',
   icon: '🏃',
   patterns: [
@@ -2121,7 +2121,7 @@ export const GROUP_5: GerundInfinitiveGroup = {
   colorClass: 'bg-purple-100 border-purple-300 text-purple-900',
   difficulty: 1,
   phase: 'foundation',
-  prerequisite: 'group-0b',
+  prerequisite: null,
   memoryTrick: 'Subject = -ING (Swimming IS fun, Learning TAKES time)',
   icon: '🔤',
   patterns: [
@@ -2226,7 +2226,7 @@ export const GROUP_PERSONAL: GerundInfinitiveGroup = {
   colorClass: 'bg-rose-100 border-rose-300 text-rose-900',
   difficulty: 3,
   phase: 'mastery',
-  prerequisite: 'checkpoint-3',
+  prerequisite: null,
   memoryTrick: 'Real communication = using ALL patterns together!',
   icon: '💬',
   patterns: [
@@ -2441,7 +2441,7 @@ export const GROUP_6A: GerundInfinitiveGroup = {
   colorClass: 'bg-violet-100 border-violet-300 text-violet-900',
   difficulty: 3,
   phase: 'mastery',
-  prerequisite: 'checkpoint-3',
+  prerequisite: null,
   memoryTrick: 'Begin, start, continue, like = flexible! Either form is correct!',
   icon: '🔀',
   patterns: [
@@ -2511,7 +2511,7 @@ export const GROUP_6B: GerundInfinitiveGroup = {
   colorClass: 'bg-amber-100 border-amber-300 text-amber-900',
   difficulty: 3,
   phase: 'mastery',
-  prerequisite: 'group-6a',
+  prerequisite: null,
   memoryTrick: 'PAST = -ING (memory), FUTURE = TO (duty)',
   icon: '⚠️',
   patterns: [
@@ -2621,7 +2621,7 @@ export const GROUP_7: GerundInfinitiveGroup = {
   colorClass: 'bg-rose-100 border-rose-300 text-rose-900',
   difficulty: 3,
   phase: 'mastery',
-  prerequisite: 'group-1c',
+  prerequisite: null,
   memoryTrick: 'These formal phrases all use "TO" as a preposition!',
   icon: '🎓',
   patterns: [
@@ -2707,7 +2707,7 @@ export const CHECKPOINT_1: GerundInfinitiveGroup = {
   colorClass: 'bg-gradient-to-r from-emerald-100 to-blue-100 border-emerald-300 text-emerald-900',
   difficulty: 2,
   phase: 'core-verbs',
-  prerequisite: 'group-2c',
+  prerequisite: null,
   memoryTrick: 'Foundation = Gerund basics + Infinitive basics. Can you tell them apart when mixed?',
   icon: '🏁',
   isCheckpoint: true,
@@ -2729,7 +2729,7 @@ export const CHECKPOINT_2: GerundInfinitiveGroup = {
   colorClass: 'bg-gradient-to-r from-terracotta-100 to-purple-100 border-terracotta-300 text-terracotta-900',
   difficulty: 2,
   phase: 'development',
-  prerequisite: 'group-1d',
+  prerequisite: null,
   memoryTrick: 'Preposition rule is the KING: after preposition = always -ing!',
   icon: '🏁',
   isCheckpoint: true,
@@ -2751,7 +2751,7 @@ export const CHECKPOINT_3: GerundInfinitiveGroup = {
   colorClass: 'bg-gradient-to-r from-yellow-100 to-indigo-100 border-yellow-300 text-yellow-900',
   difficulty: 2,
   phase: 'development',
-  prerequisite: 'group-3b',
+  prerequisite: null,
   memoryTrick: 'Core patterns mastered? Time to prove it! Then tackle the exceptions.',
   icon: '🏁',
   isCheckpoint: true,

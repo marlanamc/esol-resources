@@ -230,7 +230,7 @@ export function GroupSelectionScreen({ categoryData, onSelectGroup }: GroupSelec
         {finalUnlocked && (
           <GroupSection
             title="Grammar Guru — Final Challenge"
-            subtitle="Complete all patterns first to unlock this boss level"
+            subtitle="Available anytime if students want the full mixed challenge"
             groups={[finalGroup]}
             categoryData={categoryData}
             onSelectGroup={onSelectGroup}

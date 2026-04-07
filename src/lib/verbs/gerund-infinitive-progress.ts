@@ -152,7 +152,8 @@ export function normalizeGroupProgress(
   progress: GIGroupProgress | undefined,
   groupId: string
 ): GIGroupProgress {
-  const locked = progress?.locked ?? groupId !== GI_GROUPS[0]?.id;
+  void groupId;
+  const locked = false;
   const completed = progress?.completed ?? false;
   const accuracy = progress?.accuracy ?? 0;
   const attempts = progress?.attempts ?? 0;
@@ -200,8 +201,8 @@ export function normalizeProgressData(
 export function initializeProgressData(): Record<string, GIGroupProgress> {
   const categoryData: Record<string, GIGroupProgress> = {};
 
-  GI_GROUPS.forEach((group, index) => {
-    categoryData[group.id] = createEmptyGroupProgress(index !== 0);
+  GI_GROUPS.forEach((group) => {
+    categoryData[group.id] = createEmptyGroupProgress(false);
   });
 
   if (GI_GROUPS.length > 0) {
@@ -212,8 +213,8 @@ export function initializeProgressData(): Record<string, GIGroupProgress> {
     };
   }
 
-  categoryData[GI_REVIEW_GROUP_ID] = createEmptyGroupProgress(true);
-  categoryData[GI_FINAL_GROUP_ID] = createEmptyGroupProgress(true);
+  categoryData[GI_REVIEW_GROUP_ID] = createEmptyGroupProgress(false);
+  categoryData[GI_FINAL_GROUP_ID] = createEmptyGroupProgress(false);
 
   return categoryData;
 }

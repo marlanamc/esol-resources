@@ -26,10 +26,8 @@ import {
   GI_REVIEW_GROUP_ID,
   GI_FINAL_GROUP_ID,
   GI_GROUPS,
-  getGIGroupById,
 } from '@/data/gerund-infinitive-groups';
 import {
-  isGroupUnlocked,
   normalizeProgressData,
   processRoundResults,
   calculateOverallProgress,
@@ -194,16 +192,6 @@ export function useGerundInfinitiveGameState(activityId: string) {
   }, [activityId]);
 
   const selectGroup = useCallback((group: GerundInfinitiveGroup) => {
-    const unlocked = isGroupUnlocked(group.id, state.categoryData);
-    if (!unlocked) {
-      // Find the prerequisite group and show its name in the error
-      const prerequisiteGroup = group.prerequisite ? getGIGroupById(group.prerequisite) : null;
-      const errorMessage = prerequisiteGroup
-        ? `Complete "${prerequisiteGroup.shortTitle}" first to unlock this level`
-        : 'Complete the prerequisite group first';
-      setState(prev => ({ ...prev, lockedGroupError: errorMessage }));
-      return;
-    }
     const roundMode = getDefaultRoundMode(group, state.categoryData);
     setState(prev => ({
       ...prev,
@@ -348,7 +336,7 @@ export function useGerundInfinitiveGameState(activityId: string) {
 
     const currentIndex = GI_GROUPS.findIndex(g => g.id === selectedGroup.id);
     const nextGroup = GI_GROUPS[currentIndex + 1];
-    if (nextGroup && isGroupUnlocked(nextGroup.id, effectiveCategoryData)) {
+    if (nextGroup) {
       const nextRoundMode = getDefaultRoundMode(nextGroup, effectiveCategoryData);
       setState(prev => ({
         ...prev,
