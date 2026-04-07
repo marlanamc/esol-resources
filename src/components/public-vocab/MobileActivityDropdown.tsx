@@ -31,7 +31,6 @@ export function MobileActivityDropdown({
     >
       <option value="wordlist">📄 Word List</option>
       <option value="flashcards">🎴 Flashcards</option>
-      <option value="matching">🧩 Matching</option>
       <option value="fillblank">✍️ Fill in Blank</option>
     </select>
   );

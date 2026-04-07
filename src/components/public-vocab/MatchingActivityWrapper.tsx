@@ -19,13 +19,7 @@ const MATCHING_EXCLUDED_CATEGORIES = new Set([
   "Prepositions of Location",
   "Adverbs of Frequency",
   "Adverbs of Location",
-  // Abstract concepts that can't be unambiguously pictured
-  "Personal Information",
-  "Numbers",
-  "Time of Day",
-  "Days and Months",
-  "Routines",
-  "Adjectives",
+  // Abstract concepts - pruned list (removed items with recently added pictures)
   "Civic Vocabulary",
   "Community Services / Needs",
   "Messages",

@@ -41,14 +41,14 @@ export function VocabWordImage({
   if (variant === "square") {
     return (
       <div
-        className={`relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden flex-shrink-0 shadow-sm ${className ?? ""}`}
+        className={`relative w-48 h-48 sm:w-64 sm:h-64 rounded-2xl overflow-hidden flex-shrink-0 shadow-sm ${className ?? ""}`}
       >
         <Image
           src={src}
           alt={alt}
           fill
           className="object-cover"
-          sizes="(max-width: 640px) 128px, 160px"
+          sizes="(max-width: 640px) 192px, 256px"
           unoptimized
           referrerPolicy="no-referrer-when-downgrade"
         />

@@ -141,16 +141,6 @@ export default async function ThemeActivityPage({ params }: Props) {
                   🎴 Cards
                 </Link>
                 <Link
-                  href={`/vocab/level-1/${unitSlug}/${themeId}/matching`}
-                  className={`rounded-lg px-3 py-1.5 text-xs font-medium transition ${
-                    mode === "matching"
-                      ? "bg-[var(--tone-vocabulary-accent)] text-white"
-                      : "text-text-muted hover:bg-[var(--color-bg-light)] hover:text-text"
-                  }`}
-                >
-                  🧩 Match
-                </Link>
-                <Link
                   href={`/vocab/level-1/${unitSlug}/${themeId}/fillblank`}
                   className={`rounded-lg px-3 py-1.5 text-xs font-medium transition ${
                     mode === "fillblank"

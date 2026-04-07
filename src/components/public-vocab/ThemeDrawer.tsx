@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, BookOpen } from "lucide-react";
 import Link from "next/link";
-import { PublicLevel1VocabularyUnit } from "@/data/public-level1-vocab";
+import { PublicLevel1VocabularyUnit, VocabTheme, PublicLevel1VocabularyCard } from "@/data/public-level1-vocab";
 import { useEffect } from "react";
 
 interface ThemeDrawerProps {
@@ -85,7 +85,23 @@ export function ThemeDrawer({ isOpen, onClose, unit }: ThemeDrawerProps) {
                   Choose a Theme to Practice
                 </h3>
 
-                <div className="mt-4 space-y-4">
+                {/* Unit Matching Review Game */}
+                {unit.themes?.some((t: VocabTheme) => t.cards.some((c: PublicLevel1VocabularyCard) => c.isConcrete)) && (
+                  <Link
+                    href={`/vocab/level-1/${unit.slug}/matching`}
+                    className="mt-6 flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-[var(--tone-vocabulary-accent)]/30 bg-[var(--tone-vocabulary-accent)]/5 p-6 transition-all hover:border-[var(--tone-vocabulary-accent)]/60 hover:bg-[var(--tone-vocabulary-accent)]/10 group active:scale-[0.98]"
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--tone-vocabulary-accent)] text-white shadow-md transition-transform group-hover:scale-110">
+                      <span className="text-xl">🧩</span>
+                    </div>
+                    <div className="text-center">
+                      <h4 className="font-display font-bold text-text">Unit Review Game</h4>
+                      <p className="text-xs text-text-muted">Match picture words from this unit</p>
+                    </div>
+                  </Link>
+                )}
+
+                <div className="mt-6 space-y-4">
                   {unit.themes?.map((theme) => (
                     <Link
                       key={theme.id}

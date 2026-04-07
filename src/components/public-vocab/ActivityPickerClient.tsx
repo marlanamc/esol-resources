@@ -27,13 +27,6 @@ const BASE_ACTIVITIES: Activity[] = [
     minutes: 5,
   },
   {
-    mode: "matching",
-    icon: "🧩",
-    title: "Matching",
-    description: "Match pictures to the correct English words in short rounds.",
-    minutes: 5,
-  },
-  {
     mode: "fillblank",
     icon: "✍️",
     title: "Fill in the Blank",
@@ -46,7 +39,6 @@ const BASE_ACTIVITIES: Activity[] = [
 const MODE_TO_PROGRESS_KEY: Record<string, "wordList" | "flashcards" | "matching" | "fillBlank"> = {
   wordlist: "wordList",
   flashcards: "flashcards",
-  matching: "matching",
   fillblank: "fillBlank",
 };
 
