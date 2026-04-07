@@ -163,11 +163,11 @@ export function FillInBlankActivityWrapper({
         </div>
 
         {/* Question Card */}
-        <div className="bg-white rounded-2xl border border-[var(--color-border-subtle)] p-6 sm:p-8 shadow-sm mb-6">
+        <div className="bg-[var(--color-surface-elevated)] rounded-2xl border border-[var(--color-border-subtle)] p-6 sm:p-8 shadow-sm mb-6">
           <p className="text-sm font-bold uppercase tracking-wider text-[var(--tone-vocabulary-accent-strong)] mb-3">
             Fill in the Blank
           </p>
-          <p className="text-lg sm:text-xl text-text leading-relaxed">
+          <p className="text-lg sm:text-xl text-[var(--color-text-base)] leading-relaxed">
             {currentQuestion.sentence.split("_____").map((part, index, arr) => (
               <span key={index}>
                 {part}
@@ -186,15 +186,15 @@ export function FillInBlankActivityWrapper({
           <div
             className={`mb-6 p-4 rounded-xl border-2 ${
               isCorrect
-                ? "bg-emerald-50 border-emerald-300"
-                : "bg-rose-50 border-rose-300"
+                ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-800"
+                : "bg-rose-50 dark:bg-rose-950/30 border-rose-300 dark:border-rose-800"
             }`}
           >
-            <p className={`font-semibold ${isCorrect ? "text-emerald-900" : "text-rose-900"}`}>
+            <p className={`font-semibold ${isCorrect ? "text-emerald-900 dark:text-emerald-400" : "text-rose-900 dark:text-rose-400"}`}>
               {isCorrect ? "✓ Correct!" : "✗ Try again"}
             </p>
             {!isCorrect && (
-              <p className={`text-sm mt-1 ${isCorrect ? "text-emerald-800" : "text-rose-800"}`}>
+              <p className={`text-sm mt-1 ${isCorrect ? "text-emerald-800 dark:text-emerald-300" : "text-rose-800 dark:text-rose-300"}`}>
                 The correct answer is: <strong>{currentQuestion.correctAnswer}</strong>
               </p>
             )}
@@ -205,7 +205,6 @@ export function FillInBlankActivityWrapper({
         <div className="grid gap-3 mb-6 sm:grid-cols-2">
           {currentQuestion.options.map((option, index) => {
             const label = String.fromCharCode(97 + index); // a, b, c, d
-            // Lowercase all options since they come from vocabulary list
             const displayOption = option.toLowerCase();
 
             return (
@@ -215,12 +214,12 @@ export function FillInBlankActivityWrapper({
                 disabled={selectedAnswer !== null}
                 className={`text-left p-4 rounded-xl border-2 transition-all ${
                   selectedAnswer === null
-                    ? "border-[var(--color-border-subtle)] hover:border-[var(--tone-vocabulary-accent)] hover:bg-[var(--tone-vocabulary-accent)]/5 cursor-pointer"
+                    ? "border-[var(--color-border-subtle)] hover:border-[var(--tone-vocabulary-accent)] hover:bg-[var(--tone-vocabulary-accent)]/5 cursor-pointer text-[var(--color-text-base)]"
                     : option === currentQuestion.correctAnswer
-                    ? "border-emerald-300 bg-emerald-50 text-emerald-950"
+                    ? "border-emerald-300 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-950 dark:text-emerald-100"
                     : option === selectedAnswer && !isCorrect
-                    ? "border-rose-300 bg-rose-50 text-rose-950"
-                    : "border-[var(--color-border-subtle)] opacity-50 bg-gray-50"
+                    ? "border-rose-300 dark:border-rose-700 bg-rose-50 dark:bg-rose-900/30 text-rose-950 dark:text-rose-100"
+                    : "border-[var(--color-border-subtle)] opacity-50 bg-[var(--color-surface-subtle)]"
                 }`}
               >
                 <p className="font-semibold">
