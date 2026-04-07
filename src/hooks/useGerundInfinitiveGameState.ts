@@ -26,6 +26,7 @@ import {
   GI_REVIEW_GROUP_ID,
   GI_FINAL_GROUP_ID,
   GI_GROUPS,
+  getGIGroupById,
 } from '@/data/gerund-infinitive-groups';
 import {
   normalizeProgressData,
