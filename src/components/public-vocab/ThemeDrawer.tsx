@@ -3,8 +3,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, BookOpen } from "lucide-react";
 import Link from "next/link";
-import { PublicLevel1VocabularyUnit, VocabTheme, PublicLevel1VocabularyCard } from "@/data/public-level1-vocab";
+import { PublicLevel1VocabularyUnit } from "@/data/public-level1-vocab";
 import { useEffect } from "react";
+import { getUnitMatchingAvailability } from "@/lib/public-level1-unit-matching";
 
 interface ThemeDrawerProps {
   isOpen: boolean;
@@ -26,6 +27,8 @@ export function ThemeDrawer({ isOpen, onClose, unit }: ThemeDrawerProps) {
   }, [isOpen]);
 
   if (!unit) return null;
+
+  const { hasPlayableUnitMatching } = getUnitMatchingAvailability(unit);
 
   return (
     <AnimatePresence>
@@ -85,21 +88,6 @@ export function ThemeDrawer({ isOpen, onClose, unit }: ThemeDrawerProps) {
                   Choose a Theme to Practice
                 </h3>
 
-                {/* Unit Matching Review Game */}
-                {unit.themes?.some((t: VocabTheme) => t.cards.some((c: PublicLevel1VocabularyCard) => c.isConcrete)) && (
-                  <Link
-                    href={`/vocab/level-1/${unit.slug}/matching`}
-                    className="mt-6 flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-[var(--tone-vocabulary-accent)]/30 bg-[var(--tone-vocabulary-accent)]/5 p-6 transition-all hover:border-[var(--tone-vocabulary-accent)]/60 hover:bg-[var(--tone-vocabulary-accent)]/10 group active:scale-[0.98]"
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--tone-vocabulary-accent)] text-white shadow-md transition-transform group-hover:scale-110">
-                      <span className="text-xl">🧩</span>
-                    </div>
-                    <div className="text-center">
-                      <h4 className="font-display font-bold text-text">Unit Review Game</h4>
-                      <p className="text-xs text-text-muted">Match picture words from this unit</p>
-                    </div>
-                  </Link>
-                )}
 
                 <div className="mt-6 space-y-4">
                   {unit.themes?.map((theme) => (
@@ -131,18 +119,28 @@ export function ThemeDrawer({ isOpen, onClose, unit }: ThemeDrawerProps) {
                     </Link>
                   ))}
 
-                  {(!unit.themes || unit.themes.length === 0) && (
-                    <div className="rounded-2xl border border-dashed border-[var(--color-border-subtle)] p-8 text-center">
-                      <p className="text-sm text-text-muted">No specific themes available for this unit yet.</p>
-                      <Link 
-                        href={`/vocab/level-1/${unit.slug}`}
-                        className="mt-4 inline-block text-sm font-bold text-[var(--tone-vocabulary-accent-strong)]"
-                      >
-                        Try full word list instead →
-                      </Link>
-                    </div>
-                  )}
                 </div>
+
+                {/* Unit Matching Review Game (Bottom Version) */}
+                {hasPlayableUnitMatching && (
+                  <div className="mt-8 space-y-3">
+                    <p className="text-center text-xs font-bold uppercase tracking-[0.1em] text-[var(--tone-vocabulary-accent-strong)]/60">
+                      Finish your unit with a game! 🧩
+                    </p>
+                    <Link
+                      href={`/vocab/level-1/${unit.slug}/matching`}
+                      className="flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-[var(--tone-vocabulary-accent)]/30 bg-[var(--tone-vocabulary-accent)]/5 p-6 transition-all hover:border-[var(--tone-vocabulary-accent)]/60 hover:bg-[var(--tone-vocabulary-accent)]/10 group active:scale-[0.98]"
+                    >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--tone-vocabulary-accent)] text-white shadow-md transition-transform group-hover:scale-110">
+                        <span className="text-xl">🧩</span>
+                      </div>
+                      <div className="text-center">
+                        <h4 className="font-display font-bold text-text text-lg">Unit Review Game</h4>
+                        <p className="text-xs text-text-muted">Match picture words from this unit</p>
+                      </div>
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* Bottom Decoration */}

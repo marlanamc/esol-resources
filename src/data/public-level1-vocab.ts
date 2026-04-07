@@ -2,6 +2,7 @@ import type {
   VocabularyContent,
 } from "@/types/activity";
 import { LEVEL1_VOCAB_CUSTOM_EXAMPLES } from "./level1-vocab-custom-examples";
+import { vocabImages } from "./vocab-images";
 
 type VocabularyWordListGroup = {
   id: string;
@@ -29,8 +30,8 @@ type RawTerm =
   | string
   | {
       term: string;
-      englishDefinition: string;
-      spanishDefinition: string;
+      englishDefinition?: string;
+      spanishDefinition?: string;
       example?: string;
       fillBlankSentence?: string; // NEW: Custom pedagogical sentence for fill-in-the-blank
       isConcrete?: boolean; // NEW: Flag for high-success matching games
@@ -287,7 +288,7 @@ const RAW_LEVEL1_UNITS: RawUnit[] = [
     theme: "Places, services, messages, and directions",
     categories: [
       { label: "Civic Vocabulary", terms: ["Candidate", "Ballot", "Voter", "Election", "Campaign", "Political Party"] },
-      { label: "Community Places", terms: ["Doctor's office", "Dentist's office", "Hospital", "Hotel", "House", "Park", "Playground", "Supermarket", "Bank", "Library", "Post Office", "Fire Department", "Police Station", "RMV", "Bus Stop", "Station", "Public Transportation", "City Hall", "Clinic", "School", "Museum", "Restaurant", "Store", "Pharmacy", "Gym", "Airport", "Laundromat"] },
+      { label: "Community Places", terms: ["Doctor's office", "Dentist's office", { term: "Hospital", isConcrete: true }, { term: "Hotel", isConcrete: true }, { term: "House", isConcrete: true }, { term: "Park", isConcrete: true }, { term: "Playground", isConcrete: true }, { term: "Supermarket", isConcrete: true }, { term: "Bank", isConcrete: true }, { term: "Library", isConcrete: true }, { term: "Post Office", isConcrete: true }, { term: "Fire Department", isConcrete: true }, { term: "Police Station", isConcrete: true }, "RMV", { term: "Bus Stop", isConcrete: true }, "Station", "Public Transportation", "City Hall", "Clinic", { term: "School", isConcrete: true }, { term: "Museum", isConcrete: true }, { term: "Restaurant", isConcrete: true }, { term: "Store", isConcrete: true }, { term: "Pharmacy", isConcrete: true }, { term: "Gym", isConcrete: true }, { term: "Airport", isConcrete: true }, { term: "Laundromat", isConcrete: true }] },
       { label: "Community Services / Needs", terms: ["Transportation", "Medical Care", "Education", "Shopping", "Housing"] },
       { label: "Messages", terms: ["Call", "Message", "Voicemail", "Email"] },
       { label: "Adverbs of Location", terms: ["Left", "Right", "Straight", "Around"] },
@@ -301,8 +302,8 @@ const RAW_LEVEL1_UNITS: RawUnit[] = [
     title: "Unit 4: Consumer Smarts",
     theme: "Clothing, products, and shopping",
     categories: [
-      { label: "Clothing", terms: ["Shirt", "Suit", "Sweater", "Cap", "Dress", "Socks", "Hat", "Shoes", "Sneakers", "Blouse", "Coat", "Skirt", "Belt", "Pants", "Shorts"] },
-      { label: "Products", terms: ["Electronics", "Computer", "Car", "Cellphone"] },
+      { label: "Clothing", terms: [{ term: "Shirt", isConcrete: true }, { term: "Suit", isConcrete: true }, { term: "Sweater", isConcrete: true }, { term: "Cap", isConcrete: true }, { term: "Dress", isConcrete: true }, { term: "Socks", isConcrete: true }, { term: "Hat", isConcrete: true }, { term: "Shoes", isConcrete: true }, { term: "Sneakers", isConcrete: true }, { term: "Blouse", isConcrete: true }, { term: "Coat", isConcrete: true }, { term: "Skirt", isConcrete: true }, { term: "Belt", isConcrete: true }, { term: "Pants", isConcrete: true }, { term: "Shorts", isConcrete: true }] },
+      { label: "Products", terms: ["Electronics", { term: "Computer", isConcrete: true }, { term: "Car", isConcrete: true }, { term: "Cellphone", isConcrete: true }] },
       { label: "Shopping & Finance", terms: ["Receipt", "Tax", "Price", "Cash", "Credit Card", "Debit Card", "Check", "Money Order", "Signature", "ATM", "Withdraw", "Deposit", "Online", "Return", "Exchange", "Refund"] },
       { label: "Quantifiers", terms: ["Large", "Big", "Medium", "Small", "New", "Used", "Old"] },
       { label: "Christmas", terms: ["Christmas Tree", "Ornaments", "Lights", "Santa", "Gift"] },
@@ -314,8 +315,8 @@ const RAW_LEVEL1_UNITS: RawUnit[] = [
     theme: "Home, rental, and household vocabulary",
     categories: [
       { label: "Housing & Rental", terms: ["Landlord", "Manager", "Agent", "Real Estate", "Tenant", "Leak", "Broken Window", "Clogged Toilet", "Complaint", "House", "Home", "Apartment", "Condominium", "Unit", "Rent", "Lease", "Fee", "Security deposit", "Laundry", "Mortgage", "Down payment", "Utilities", "Gas", "Water", "Electric", "Heat"] },
-      { label: "Parts of House", terms: ["Room", "Bathroom", "Kitchen", "Bedroom", "Living room", "Hall", "Floor", "Basement", "Attic", "Roof", "Chimney", "Door", "Front", "Back", "Lock", "Stairs", "Porch", "Deck", "Garage", "Driveway", "Yard", "Garden"] },
-      { label: "Domestic Things", terms: ["Window", "End table", "Coffee table", "Plant", "Lamp", "Light", "Painting", "Rug", "Carpet", "Bathtub", "Sink", "Toilet", "Curtain", "Bed", "Closet", "Bedtable", "Car", "Chair", "Refrigerator", "Microwave", "Oven", "Counter", "Cabinet", "Sofa", "Armchair", "TV", "Fireplace", "Washer", "Dryer"] },
+      { label: "Parts of House", terms: ["Room", { term: "Bathroom", isConcrete: true }, { term: "Kitchen", isConcrete: true }, { term: "Bedroom", isConcrete: true }, { term: "Living room", isConcrete: true }, "Hall", "Floor", "Basement", "Attic", "Roof", "Chimney", { term: "Door", isConcrete: true }, "Front", "Back", "Lock", { term: "Stairs", isConcrete: true }, "Porch", "Deck", { term: "Garage", isConcrete: true }, "Driveway", "Yard", { term: "Garden", isConcrete: true }] },
+      { label: "Domestic Things", terms: [{ term: "Window", isConcrete: true }, "End table", "Coffee table", "Plant", { term: "Lamp", isConcrete: true }, "Light", "Painting", "Rug", "Carpet", "Bathtub", "Sink", { term: "Toilet", isConcrete: true }, "Curtain", { term: "Bed", isConcrete: true }, "Closet", "Bedtable", "Car", { term: "Chair", isConcrete: true }, { term: "Refrigerator", isConcrete: true }, { term: "Microwave", isConcrete: true }, { term: "Oven", isConcrete: true }, "Counter", "Cabinet", { term: "Sofa", isConcrete: true }, "Armchair", { term: "TV", isConcrete: true }, "Fireplace", "Washer", "Dryer"] },
       { label: "Prepositions of Location", terms: ["In", "On", "Next to", "Between", "Under", "Over"] },
     ],
   },
@@ -335,7 +336,7 @@ const RAW_LEVEL1_UNITS: RawUnit[] = [
     title: "Unit 8: Health",
     theme: "Body parts, symptoms, and medical care",
     categories: [
-      { label: "Body Parts", terms: ["Head", "Arms", "Chest", "Hands", "Stomach", "Back", "Fingers", "Legs", "Foot", "Feet", "Toes", "Neck", "Eyes", "Ears", "Mouth", "Nose", "Tooth", "Teeth", "Throat"] },
+      { label: "Body Parts", terms: [{ term: "Head", isConcrete: true }, { term: "Arms", isConcrete: true }, "Chest", { term: "Hands", isConcrete: true }, { term: "Stomach", isConcrete: true }, { term: "Back", isConcrete: true }, { term: "Fingers", isConcrete: true }, { term: "Legs", isConcrete: true }, { term: "Foot", isConcrete: true }, { term: "Feet", isConcrete: true }, { term: "Toes", isConcrete: true }, { term: "Neck", isConcrete: true }, { term: "Eyes", isConcrete: true }, { term: "Ears", isConcrete: true }, { term: "Mouth", isConcrete: true }, { term: "Nose", isConcrete: true }, { term: "Tooth", isConcrete: true }, { term: "Teeth", isConcrete: true }, "Throat"] },
       { label: "Symptoms", terms: ["Pain", "Cut", "Dry cough", "Fever", "Headache", "Runny nose", "Sore Throat", "Sneezing", "Backache", "Toothache", "Chills", "Sweats", "Fatigue", "Dizziness", "Itch", "Rash", "Swelling", "Nausea", "Stress"] },
       { label: "Medicine", terms: ["Prescription", "Reliever", "Syrup", "Lozenges", "Pills", "Tablets", "Vaccine"] },
       { label: "Illness", terms: ["Allergy", "Cold", "Flu", "Infection", "Sprain"] },
@@ -350,16 +351,16 @@ const RAW_LEVEL1_UNITS: RawUnit[] = [
     theme: "Food, nutrition, and healthy habits",
     categories: [
       { label: "Food Groups", terms: ["Vegetables", "Fruits", "Whole grains", "Protein", "Dairy", "Junk food"] },
-      { label: "Grains & Breakfast", terms: ["Cereal", "Bread", "Toast", "Nuts", "Walnuts", "Peanuts", "Almonds"] },
-      { label: "Dairy & Eggs", terms: ["Eggs", "Milk", "Cheese", "Yogurt"] },
-      { label: "Meats & Proteins", terms: ["Chicken", "Beef", "Pork", "Turkey", "Fish", "Tuna"] },
-      { label: "Staples", terms: ["Rice", "Beans", "Soup"] },
-      { label: "Vegetables", terms: ["Tomatoes", "Carrots", "Avocados", "Broccoli", "Cucumber", "Corn", "Celery", "Lettuce", "Spinach", "Salad"] },
+      { label: "Grains & Breakfast", terms: ["Cereal", { term: "Bread", isConcrete: true }, "Toast", "Nuts", "Walnuts", "Peanuts", "Almonds"] },
+      { label: "Dairy & Eggs", terms: [{ term: "Eggs", isConcrete: true }, { term: "Milk", isConcrete: true }, { term: "Cheese", isConcrete: true }, { term: "Yogurt", isConcrete: true }] },
+      { label: "Meats & Proteins", terms: [{ term: "Chicken", isConcrete: true }, { term: "Beef", isConcrete: true }, "Pork", "Turkey", { term: "Fish", isConcrete: true }, "Tuna"] },
+      { label: "Staples", terms: [{ term: "Rice", isConcrete: true }, { term: "Beans", isConcrete: true }, { term: "Soup", isConcrete: true }] },
+      { label: "Vegetables", terms: [{ term: "Tomatoes", isConcrete: true }, { term: "Carrots", isConcrete: true }, "Avocados", "Broccoli", "Cucumber", { term: "Corn", isConcrete: true }, "Celery", "Lettuce", "Spinach", "Salad"] },
       { label: "Condiments & Seasoning", terms: ["Oil", "Salt", "Pepper", "Garlic", "Ketchup", "Mustard", "Jam", "Jelly", "Peanut butter"] },
-      { label: "Fruits", terms: ["Apples", "Oranges", "Bananas", "Pears", "Watermelon", "Melon", "Strawberry", "Pineapple", "Blueberry"] },
+      { label: "Fruits", terms: [{ term: "Apples", isConcrete: true }, { term: "Oranges", isConcrete: true }, { term: "Bananas", isConcrete: true }, { term: "Pears", isConcrete: true }, { term: "Watermelon", isConcrete: true }, "Melon", "Strawberry", { term: "Pineapple", isConcrete: true }, "Blueberry"] },
       { label: "Prepared Foods", terms: ["French Fries", "Hamburger", "Pasta", "Sandwich", "Crackers"] },
-      { label: "Sweets & Snacks", terms: ["Cookies", "Ice Cream", "Cake", "Candy", "Potato Chips"] },
-      { label: "Drinks", terms: ["Bottled water", "Juice", "Soda"] },
+      { label: "Sweets & Snacks", terms: [{ term: "Cookies", isConcrete: true }, { term: "Ice Cream", isConcrete: true }, { term: "Cake", isConcrete: true }, { term: "Candy", isConcrete: true }, "Potato Chips"] },
+      { label: "Drinks", terms: ["Bottled water", { term: "Juice", isConcrete: true }, "Soda"] },
       { label: "Containers", terms: ["Can", "Jar", "Bag", "Box", "Package"] },
       { label: "Other Wellness", terms: ["Food", "Nutrition", "Sugar", "Fat", "Carbohydrates", "Calories", "Menu", "Food label", "Restaurant", "Supermarket", "Habits"] },
     ],
@@ -2885,11 +2886,15 @@ function buildUnit(rawUnit: RawUnit): PublicLevel1VocabularyUnit {
       if (seen.has(normalized)) continue;
       seen.add(normalized);
       const englishDefinition =
-        typeof rawTerm === "string" ? buildDefinition(term, category.label) : rawTerm.englishDefinition;
+        typeof rawTerm === "string" 
+          ? buildDefinition(term, category.label) 
+          : rawTerm.englishDefinition ?? buildDefinition(term, category.label);
       const spanishDefinition =
         SPANISH_TRANSLATIONS_BY_CATEGORY[category.label]?.[term] ??
         SPANISH_TRANSLATIONS[term] ??
-        (typeof rawTerm === "string" ? buildSpanishDefinition(term, category.label) : rawTerm.spanishDefinition);
+        (typeof rawTerm === "string" 
+          ? buildSpanishDefinition(term, category.label) 
+          : rawTerm.spanishDefinition ?? buildSpanishDefinition(term, category.label));
       const example =
         typeof rawTerm === "string"
           ? getLevel1ExampleSentence(rawUnit.slug, term, category.label, rawUnit.title)
@@ -2907,6 +2912,8 @@ function buildUnit(rawUnit: RawUnit): PublicLevel1VocabularyUnit {
         example,
         fillBlankSentence,
         category: category.label,
+        imageUrl: vocabImages[term] ?? vocabImages[normalized],
+        isConcrete: typeof rawTerm === "object" ? rawTerm.isConcrete : undefined,
       });
     }
     if (cards.length > 0) categories.push({ label: category.label, spanishLabel: categoryLabelSpanish(category.label), cards });
