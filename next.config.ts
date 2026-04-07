@@ -17,6 +17,15 @@ const nextConfig: NextConfig = {
   ...(process.env.NEXT_DIST_DIR
     ? { distDir: process.env.NEXT_DIST_DIR }
     : {}),
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
+      { protocol: "https", hostname: "plus.unsplash.com", pathname: "/**" },
+      { protocol: "https", hostname: "pixabay.com", pathname: "/**" },
+      { protocol: "https", hostname: "cdn.pixabay.com", pathname: "/**" },
+      { protocol: "https", hostname: "static.photos", pathname: "/**" },
+    ],
+  },
   outputFileTracingIncludes: {
     "/api/legacy-guide": [
       "./_legacy/activities/**/*",

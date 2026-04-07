@@ -142,7 +142,7 @@ export function categorizeActivity(activity: Pick<ActivityInput, "type" | "categ
     }
 
     // Pronunciation
-    if (category === "pronunciation") {
+    if (category === "pronunciation" || type === "pronunciation-listening") {
         return "pronunciation";
     }
 

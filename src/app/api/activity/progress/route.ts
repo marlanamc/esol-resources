@@ -392,7 +392,12 @@ export async function POST(request: NextRequest) {
     const activityGameUi = activity ? resolveActivityGameUi(activity) : "unknown";
     const isPronunciationPracticeActivity =
         activity?.type === "game" &&
-        (activity.category === "pronunciation" || activityGameUi === "ed-pronunciation" || activityGameUi === "minimal-pairs");
+        (
+            activity.category === "pronunciation" ||
+            activityGameUi === "ed-pronunciation" ||
+            activityGameUi === "minimal-pairs" ||
+            activityGameUi === "pronunciation-listening"
+        );
 
     // Handle category data updates (Numbers Game uses accuracy; Matching Game uses category-only rounds)
     // and guide resume state (grammar guides: last section index)
@@ -617,6 +622,7 @@ export async function POST(request: NextRequest) {
                     'word-list': 'Word List',
                     'ed-pronunciation': '-ed Pronunciation',
                     'minimal-pairs': 'Minimal Pairs',
+                    'pronunciation-listening': 'Pronunciation Listening',
                 };
                 if (activity.type === 'game' && gameTypeLabels[activityGameUi]) {
                     activityTypeLabel = gameTypeLabels[activityGameUi];

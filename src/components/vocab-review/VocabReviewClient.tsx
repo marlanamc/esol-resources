@@ -13,6 +13,7 @@ import type {
 } from "@/types/vocab-review";
 import { ALL_VOCAB_SOURCE_KEY } from "@/lib/vocab-review-sources";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
 
 type SessionCard = VocabReviewCard & {
   sessionKey: string;
@@ -213,7 +214,7 @@ export function VocabReviewClient({ initialSummary, initialQueue }: VocabReviewC
 
   const handlePlayAudio = useCallback((term: string, cardId: string) => {
     audioPlayedRef.current = cardId;
-    const audio = new Audio(`/audio/vocab/${encodeURIComponent(term)}.mp3`);
+    const audio = new Audio(getVocabAudioUrl(term));
     audio.currentTime = 0;
     void audio.play().catch(() => {
       // Audio is optional (file may not exist)

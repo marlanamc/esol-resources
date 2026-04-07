@@ -33,6 +33,7 @@ export function getGameEmojiForActivity({
       return "🔤";
     case "ed-pronunciation":
     case "minimal-pairs":
+    case "pronunciation-listening":
       return "🔊";
     case "flashcards":
       return "🃏";

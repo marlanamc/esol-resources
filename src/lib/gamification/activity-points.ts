@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -19,6 +19,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "verb-forms" || ui === "verbforms") return "verb-forms";
     if (ui === "ed-pronunciation" || ui === "ed-sounds" || ui === "pronunciation") return "ed-pronunciation";
     if (ui === "minimal-pairs" || ui === "minimalpairs" || ui === "minimal-pairs-listening") return "minimal-pairs";
+    if (ui === "pronunciation-listening" || ui === "sentence-listening") return "pronunciation-listening";
     if (ui === "irregular-verbs") return "irregular-verbs";
     if (ui === "gerund-infinitive" || ui === "gerunds-infinitives" || ui === "gerund-infinitive-patterns") return "gerund-infinitive";
     if (ui === "timeline-tenses" || ui === "timeline" || ui === "tenses-timeline") return "timeline-tenses";
@@ -46,6 +47,10 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     // Check for minimal-pairs content type
     if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "minimal-pairs") {
       return "minimal-pairs";
+    }
+    // Check for pronunciation-listening content type
+    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "pronunciation-listening") {
+      return "pronunciation-listening";
     }
     // Check for irregular-verbs content type
     if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "irregular-verbs") {
@@ -93,11 +98,15 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
         return POINTS.ED_PRONUNCIATION;
       case "minimal-pairs":
         return POINTS.MINIMAL_PAIRS;
+      case "pronunciation-listening":
+        return POINTS.MINIMAL_PAIRS;
       case "timeline-tenses":
         return POINTS.TIMELINE_TENSES;
       default:
         return POINTS.ACTIVITY_COMPLETION;
     }
+  } else if (type === "writing") {
+    return POINTS.TIMED_WRITING;
   } else if (type === "guide") {
     return POINTS.GRAMMAR_GUIDE;
   } else if (type === "speaking") {

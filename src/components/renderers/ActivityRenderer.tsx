@@ -15,7 +15,9 @@ import {
     isLegacyGuideContent,
     parseActivityContent,
     isVocabularyContent,
-    type VocabularyContent
+    isTimedWritingContent,
+    type VocabularyContent,
+    type TimedWritingContent
 } from "@/types/activity";
 import dynamic from "next/dynamic";
 import { sanitizeCss, sanitizeHtml } from "@/utils/sanitize";
@@ -42,12 +44,14 @@ const NumbersGame = dynamic(() => import("../games/NumbersGame"), { loading: Act
 const VerbFormsGame = dynamic(() => import("../games/VerbFormsGame"), { loading: ActivityLoadingFallback });
 const EdPronunciationGame = dynamic(() => import("../games/EdPronunciationGame"), { loading: ActivityLoadingFallback });
 const MinimalPairsGame = dynamic(() => import("../games/MinimalPairsGame"), { loading: ActivityLoadingFallback });
+const PronunciationSentenceListeningGame = dynamic(() => import("../games/PronunciationSentenceListeningGame"), { loading: ActivityLoadingFallback });
 const IrregularVerbsGame = dynamic(() => import("../games/IrregularVerbsGame/IrregularVerbsGame").then(m => ({ default: m.IrregularVerbsGame })), { loading: ActivityLoadingFallback });
 const GerundInfinitiveGame = dynamic(() => import("../games/GerundInfinitiveGame").then(m => ({ default: m.GerundInfinitiveGame })), { loading: ActivityLoadingFallback });
 const TimelineTensesGame = dynamic(() => import("../games/TimelineTensesGame").then(m => ({ default: m.TimelineTensesGame })), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("../activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("../activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
 const VocabularyRenderer = dynamic(() => import("../activities/VocabularyRenderer"), { loading: ActivityLoadingFallback });
+const TimedWritingRenderer = dynamic(() => import("../activities/TimedWritingRenderer"), { loading: ActivityLoadingFallback });
 
 interface Props {
     activity: {
@@ -66,9 +70,10 @@ interface Props {
         content: unknown;
         score: number | null;
     } | null;
+    userRole?: string | null;
 }
 
-export default function ActivityRenderer({ activity, assignmentId, existingSubmission }: Props) {
+export default function ActivityRenderer({ activity, assignmentId, existingSubmission, userRole }: Props) {
     const content = parseActivityContent(activity.content);
     if (!content && activity.type === "resource") {
         return (
@@ -162,6 +167,8 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <EdPronunciationGame contentStr={activity.content} activityId={activity.id} assignmentId={assignmentId} />;
                     case "minimal-pairs":
                         return <MinimalPairsGame contentStr={activity.content} activityId={activity.id} assignmentId={assignmentId} />;
+                    case "pronunciation-listening":
+                        return <PronunciationSentenceListeningGame contentStr={activity.content} activityId={activity.id} assignmentId={assignmentId} />;
                      case "matching":
                          return (
                              <MatchingGame
@@ -189,6 +196,19 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }
             }
+            case "writing":
+                if (isTimedWritingContent(content)) {
+                    return (
+                        <TimedWritingRenderer
+                            content={content as TimedWritingContent}
+                            activityId={activity.id}
+                            assignmentId={assignmentId}
+                            existingSubmission={existingSubmission}
+                            userRole={userRole ?? undefined}
+                        />
+                    );
+                }
+                return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid writing activity content.</div>;
             case "resource":
                 return (
                     <ResourceRenderer

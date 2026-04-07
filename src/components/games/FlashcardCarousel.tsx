@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { BackButton } from "@/components/ui/BackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
+import { VocabWordImage } from "@/components/public-vocab/VocabWordImage";
+import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
 
 /**
  * FlashcardData interface matching the parser output in ActivityRenderer
@@ -13,6 +15,7 @@ interface FlashcardData {
     term: string;
     definition: string;
     example?: string;
+    imageUrl?: string;
 }
 
 interface FlashcardCarouselProps {
@@ -49,7 +52,7 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
 
     const playTermAudio = useCallback(
         (term: string) => {
-            const audioUrl = `/audio/vocab/${encodeURIComponent(term)}.mp3`;
+            const audioUrl = getVocabAudioUrl(term);
 
             // Recreate the element each time so we always pick up latest src
             audioRef.current = new Audio(audioUrl);
@@ -341,7 +344,7 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
             >
-                <div className="w-full h-full max-w-2xl max-h-[600px] md:aspect-[4/3]">
+                <div className="w-full h-full max-w-3xl max-h-[600px] md:aspect-[4/3]">
                     <div
                         className={`relative w-full h-full duration-500 transform-style-3d transition-transform ease-in-out ${isFlipped ? "rotate-y-180" : ""}`}
                         style={{ transform: swipeOffset !== 0 ? `translateX(${swipeOffset}px) ${isFlipped ? 'rotateY(180deg)' : ''}` : undefined }}
@@ -353,6 +356,7 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
                                 variant="front"
                                 theme="light"
                                 onPlayTerm={playTermAudio}
+                                imageUrl={currentCard.imageUrl}
                             />
                         </div>
 
@@ -363,6 +367,7 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
                                 variant="back"
                                 theme="colored"
                                 onPlayTerm={playTermAudio}
+                                imageUrl={currentCard.imageUrl}
                             />
                         </div>
                     </div>
@@ -419,11 +424,13 @@ function CardFace({
     variant,
     theme,
     onPlayTerm,
+    imageUrl,
 }: {
     content: { type: string; text: string; example?: string | null };
     variant: "front" | "back";
     theme: "light" | "colored";
     onPlayTerm?: (term: string) => void;
+    imageUrl?: string;
 }) {
 
     const containerClasses = "bg-[var(--color-surface-elevated)] text-[var(--color-text)] shadow-[0_10px_30px_rgba(0,0,0,0.14)] border border-[var(--color-border-subtle)]";
@@ -438,6 +445,10 @@ function CardFace({
     const labelClasses = content.type === "Term"
         ? "bg-[var(--color-primary)] text-white border border-[var(--color-primary-dark)] shadow-[0_2px_6px_rgba(0,0,0,0.05)]"
         : "bg-[#8DAA91] text-white border border-[#6E8C7C] shadow-[0_2px_6px_rgba(0,0,0,0.05)]";
+
+    const bilingualDefinition = parseBilingualDefinition(content.text);
+    const isDefinitionCard = content.type === "Definition";
+    const hasBilingualDefinition = isDefinitionCard && bilingualDefinition !== null;
 
     return (
         <div
@@ -465,18 +476,54 @@ function CardFace({
             </div>
 
             {/* Content */}
-            <div className="text-center w-full max-w-3xl flex flex-col gap-4 sm:gap-6">
-                <h3 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-[0.5px] font-display text-[var(--color-text)]">
-                    {content.text}
-                </h3>
-
-                {/* Example Section */}
-                {content.example && (
-                    <div className="mt-2 sm:mt-4 pt-4 sm:pt-6 border-t border-[var(--color-border-subtle)]">
-                        <p className="text-[0.95rem] sm:text-base md:text-lg italic leading-relaxed text-[var(--color-text-muted)]/80">
-                            "{content.example}"
-                        </p>
-                    </div>
+            <div className="w-full max-w-3xl flex flex-col gap-4 sm:gap-6 items-center text-center">
+                {content.type === "Term" && imageUrl && (
+                    <VocabWordImage src={imageUrl} alt={content.text} variant="square" />
+                )}
+                {hasBilingualDefinition ? (
+                    <>
+                        <h3 className="font-display font-bold leading-tight tracking-[0.5px] text-[var(--color-text)] text-xl sm:text-3xl md:text-4xl">
+                            {bilingualDefinition.english}
+                        </h3>
+                        <div className="w-full max-w-2xl pt-4 sm:pt-5 border-t border-[var(--color-border-subtle)] text-left mt-2 sm:mt-4">
+                            <div className="flex items-start justify-between gap-4 mb-1.5">
+                                <div>
+                                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)] mb-1.5">
+                                        Example
+                                    </p>
+                                    {content.example && (
+                                        <p className="text-[0.95rem] sm:text-base md:text-lg italic leading-relaxed text-[var(--color-text-muted)]/80">
+                                            &ldquo;{content.example}&rdquo;
+                                        </p>
+                                    )}
+                                </div>
+                                <div lang="es" className="text-right shrink-0">
+                                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)] mb-1.5">
+                                        Español
+                                    </p>
+                                    <p className="text-[0.95rem] sm:text-base md:text-lg text-[var(--color-text-muted)]/80">
+                                        {bilingualDefinition.spanish}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <h3 className={`font-display font-bold leading-tight tracking-[0.5px] text-[var(--color-text)] ${isDefinitionCard ? "text-xl sm:text-3xl md:text-4xl" : "text-4xl sm:text-5xl md:text-6xl"}`}>
+                            {content.text}
+                        </h3>
+                        {content.example && (
+                            <div className="w-full max-w-2xl pt-4 sm:pt-5 border-t border-[var(--color-border-subtle)] text-left mt-2 sm:mt-4">
+                                <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                                    Example
+                                </p>
+                                <p className="text-[0.95rem] sm:text-base md:text-lg italic leading-relaxed text-[var(--color-text-muted)]/80">
+                                    &ldquo;{content.example}&rdquo;
+                                </p>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
 
@@ -486,6 +533,18 @@ function CardFace({
             </div>
         </div>
     );
+}
+
+function parseBilingualDefinition(text: string): { english: string; spanish: string } | null {
+    const parts = text.split(/\n?Español:\s*/i);
+    if (parts.length < 2) return null;
+
+    const english = parts[0]?.trim();
+    const spanish = parts.slice(1).join(" ").trim();
+
+    if (!english || !spanish) return null;
+
+    return { english, spanish };
 }
 
 // Icons

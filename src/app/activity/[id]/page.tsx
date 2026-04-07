@@ -106,7 +106,8 @@ export default async function ActivityPage({ params, searchParams }: Props) {
             gameUi === "gerund-infinitive" ||
             gameUi === "matching" ||
             gameUi === "ed-pronunciation" ||
-            gameUi === "minimal-pairs"
+            gameUi === "minimal-pairs" ||
+            gameUi === "pronunciation-listening"
         )
     ) {
         return renderImmersiveActivity(
@@ -173,6 +174,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                         activity={activityForRender}
                         assignmentId={assignmentId}
                         existingSubmission={submission}
+                        userRole={userRole}
                     />
                 </div>
 
@@ -232,6 +234,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                             activity={activityForRender}
                             assignmentId={assignmentId}
                             existingSubmission={submission}
+                            userRole={userRole}
                         />
                     </div>
 
@@ -282,7 +285,6 @@ function renderImmersiveActivity(
         !(activity.type === "vocabulary" && activity.ui) &&
         immersiveGameUi !== "irregular-verbs" &&
         immersiveGameUi !== "gerund-infinitive";
-
     return (
         <div className="min-h-screen bg-bg flex flex-col">
             {overlays}
@@ -299,7 +301,10 @@ function renderImmersiveActivity(
                                     <ActivityProgressBadge activityId={activityId} initialProgress={progressValue} userRole={userRole} />
                                 )}
                             </div>
-                            <h1 className="text-base font-bold text-white line-clamp-2 leading-snug" style={{ color: "#ffffff" }}>
+                            <h1
+                                className="text-base font-bold line-clamp-2 leading-snug"
+                                style={{ color: "var(--text-color)" }}
+                            >
                                 {activity.title}
                             </h1>
                         </div>
@@ -310,7 +315,10 @@ function renderImmersiveActivity(
                                 <ContextualBackButton aria-label="Return to previous page" />
                             </div>
 
-                            <h1 className="absolute left-1/2 -translate-x-1/2 text-2xl font-bold text-white" style={{ color: "#ffffff" }}>
+                            <h1
+                                className="absolute left-1/2 -translate-x-1/2 text-2xl font-bold"
+                                style={{ color: "var(--text-color)" }}
+                            >
                                 {activity.title}
                             </h1>
 
@@ -327,6 +335,7 @@ function renderImmersiveActivity(
                     activity={activity}
                     assignmentId={assignmentId}
                     existingSubmission={submission}
+                    userRole={userRole}
                 />
             </div>
         </div>

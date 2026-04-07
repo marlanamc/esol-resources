@@ -129,12 +129,12 @@ const RAW_LEVEL1_UNITS: RawUnit[] = [
         { term: "I'm", englishDefinition: "the short form of I am", spanishDefinition: "la forma corta de I am; significa yo soy o yo estoy", example: "I'm from Brazil.", fillBlankSentence: "_____ a teacher in this school." },
       ] },
       { label: "Possessive Adjectives", terms: [
-        { term: "My", englishDefinition: "used to show something belongs to me", spanishDefinition: "mi; se usa para mostrar que algo me pertenece", example: "My book is blue.", fillBlankSentence: "_____ family lives in Massachusetts." },
-        { term: "Your", englishDefinition: "used to show something belongs to you", spanishDefinition: "tu o su; se usa para mostrar que algo te pertenece", example: "Your name is on the list.", fillBlankSentence: "What is _____ address?" },
-        { term: "His", englishDefinition: "used to show something belongs to a man or boy", spanishDefinition: "su, de él; se usa para mostrar que algo le pertenece a un hombre", example: "His phone is on the table.", fillBlankSentence: "_____ job is as an accountant." },
-        { term: "Her", englishDefinition: "used to show something belongs to a woman or girl", spanishDefinition: "su, de ella; se usa para mostrar que algo le pertenece a una mujer", example: "Her bag is black.", fillBlankSentence: "_____ birthday is in March." },
-        { term: "Our", englishDefinition: "used to show something belongs to us", spanishDefinition: "nuestro o nuestra; se usa para mostrar que algo nos pertenece", example: "Our class starts at nine.", fillBlankSentence: "_____ classroom is on the second floor." },
-        { term: "Their", englishDefinition: "used to show something belongs to them", spanishDefinition: "su, de ellos o de ellas; se usa para mostrar que algo les pertenece", example: "Their house is small.", fillBlankSentence: "_____ children go to school downtown." },
+        { term: "My", englishDefinition: "used to show something belongs to me", spanishDefinition: "mi; se usa para mostrar que algo me pertenece", example: "My teddy bear is blue.", fillBlankSentence: "_____ family lives in Massachusetts." },
+        { term: "Your", englishDefinition: "used to show something belongs to you", spanishDefinition: "tu o su; se usa para mostrar que algo te pertenece", example: "Here is your gift.", fillBlankSentence: "What is _____ address?" },
+        { term: "His", englishDefinition: "used to show something belongs to a man or boy", spanishDefinition: "su, de él; se usa para mostrar que algo le pertenece a un hombre", example: "His car is black.", fillBlankSentence: "_____ job is as an accountant." },
+        { term: "Her", englishDefinition: "used to show something belongs to a woman or girl", spanishDefinition: "su, de ella; se usa para mostrar que algo le pertenece a una mujer", example: "Here is her gift.", fillBlankSentence: "_____ birthday is in March." },
+        { term: "Our", englishDefinition: "used to show something belongs to us", spanishDefinition: "nuestro o nuestra; se usa para mostrar que algo nos pertenece", example: "Our baby is one year old.", fillBlankSentence: "_____ classroom is on the second floor." },
+        { term: "Their", englishDefinition: "used to show something belongs to them", spanishDefinition: "su, de ellos o de ellas; se usa para mostrar que algo les pertenece", example: "Their family is large.", fillBlankSentence: "_____ children go to school downtown." },
       ] },
       { label: "Numbers", terms: [
         { term: "One", englishDefinition: "the number 1", spanishDefinition: "uno; el número 1", example: "I have one pencil.", fillBlankSentence: "There is _____ person in the office." },

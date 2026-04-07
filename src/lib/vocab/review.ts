@@ -16,6 +16,7 @@ import type {
   VocabReviewRating,
   VocabReviewSummary,
 } from "@/types/vocab-review";
+import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
 
 export const DEFAULT_VOCAB_REVIEW_LIMIT = 6;
 const MASTERED_STEP_THRESHOLD = 5;
@@ -216,7 +217,7 @@ function extractTopicFromActivity(activity: ActivityCatalogRow, source: VocabRev
 }
 
 function makeAudioPath(term: string): string {
-  return `/audio/vocab/${encodeURIComponent(term)}.mp3`;
+  return getVocabAudioUrl(term);
 }
 
 export function buildVocabReviewSeedCards(activities: ActivityCatalogRow[]): VocabReviewSeedCard[] {

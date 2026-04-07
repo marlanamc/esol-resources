@@ -245,6 +245,14 @@ const ActivityCard = React.memo(function ActivityCard({
                                 }
                             </button>
                         )}
+                        {activity.type === 'writing' && (
+                            <Link
+                                href={`/dashboard/activities/${activity.id}/submissions`}
+                                className="px-4 py-2 text-sm font-semibold transition-[transform,box-shadow] rounded-full border border-border/50 text-text bg-white shadow-sm hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                            >
+                                View Submissions
+                            </Link>
+                        )}
                     </div>
                     {assignError && (
                         <p className="text-[11px] text-red-600 mt-2">{assignError}</p>
@@ -747,7 +755,8 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                 activities: activities.filter((a: Activity) =>
                     a.category === 'pronunciation' ||
                     a.ui === 'ed-pronunciation' ||
-                    a.ui === 'minimal-pairs'
+                    a.ui === 'minimal-pairs' ||
+                    a.ui === 'pronunciation-listening'
                 )
             },
             {

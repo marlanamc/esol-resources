@@ -19,6 +19,7 @@ import { GrammarGuideVisual, hasGrammarGuideVisual } from './GrammarGuideVisual'
 import { VocabActivityVisual } from './VocabActivityVisual';
 import { GameActivityVisual, getGameCardCopy } from './GameActivityVisual';
 import { PronunciationActivityVisual, getPronunciationCardCopy } from './PronunciationActivityVisual';
+import { comparePronunciationActivities, getPronunciationActivityDescriptor } from '@/lib/pronunciation-activity';
 import { getSubcategorySubtitle } from '@/lib/subcategory-labels';
 
 interface Activity {
@@ -339,7 +340,7 @@ const isPronunciationPracticeActivity = (activity: Activity) => {
     if (activity.category === 'pronunciation') return true;
     if (activity.type !== 'game') return false;
     const gameUi = resolveActivityGameUi(activity);
-    return gameUi === 'ed-pronunciation' || gameUi === 'minimal-pairs';
+    return gameUi === 'ed-pronunciation' || gameUi === 'minimal-pairs' || gameUi === 'pronunciation-listening';
 };
 
 const getDisplayProgress = (
@@ -751,7 +752,7 @@ const QUIZ_TEXTURES: Record<QuizFamily, ActivityTexture> = {
 // Visual metaphors for voice and communication
 // -----------------------------------------------------------------------------
 type SpeakingFamily = 'pronunciation' | 'conversation' | 'speaking-other';
-type PronunciationFamily = 'minimal-pairs' | 'ed-sounds' | 'pronunciation-other';
+type PronunciationFamily = 'minimal-pairs' | 'ed-sounds' | 'sentence-listening' | 'mixed-review' | 'pronunciation-other';
 
 const SPEAKING_TEXTURES: Record<SpeakingFamily, ActivityTexture> = {
     pronunciation: {
@@ -796,6 +797,22 @@ const PRONUNCIATION_TEXTURES: Record<PronunciationFamily, ActivityTexture> = {
         gradient: 'linear-gradient(90deg, rgba(219, 39, 119, 0.03) 0%, rgba(236, 72, 153, 0.08) 50%, rgba(219, 39, 119, 0.03) 100%)',
         pattern: 'dots',
         icon: '〰',
+    },
+    'sentence-listening': {
+        id: 'sentence-listening',
+        color: '#0ea5a4',
+        bgColor: 'rgba(14, 165, 164, 0.05)',
+        gradient: 'linear-gradient(135deg, rgba(45, 212, 191, 0.08) 0%, rgba(14, 165, 164, 0.02) 100%)',
+        pattern: 'wave',
+        icon: '🗣',
+    },
+    'mixed-review': {
+        id: 'mixed-review',
+        color: '#7c3aed',
+        bgColor: 'rgba(124, 58, 237, 0.05)',
+        gradient: 'linear-gradient(135deg, rgba(167, 139, 250, 0.1) 0%, rgba(124, 58, 237, 0.03) 100%)',
+        pattern: 'mixed',
+        icon: '◌',
     },
     'pronunciation-other': {
         id: 'pronunciation-other',
@@ -914,11 +931,18 @@ const detectSpeakingType = (title: string): SpeakingFamily => {
     return 'speaking-other';
 };
 
-const detectPronunciationType = (activityId: string, title: string, ui: string | null): PronunciationFamily => {
-    const haystack = `${activityId} ${title} ${ui ?? ''}`.toLowerCase();
+const detectPronunciationType = (activity: Pick<Activity, 'id' | 'title' | 'ui' | 'content'>): PronunciationFamily => {
+    const descriptor = getPronunciationActivityDescriptor({
+        id: activity.id,
+        title: activity.title,
+        ui: activity.ui,
+        content: activity.content,
+    });
 
-    if (haystack.includes('minimal-pairs') || haystack.includes('minimal pairs')) return 'minimal-pairs';
-    if (haystack.includes('ed-pronunciation') || haystack.includes('ed sounds') || haystack.includes('-ed')) return 'ed-sounds';
+    if (descriptor.motif === 'minimal-pairs') return 'minimal-pairs';
+    if (descriptor.motif === 'ed-sounds') return 'ed-sounds';
+    if (descriptor.motif === 'sentence-listening') return 'sentence-listening';
+    if (descriptor.motif === 'mixed-review') return 'mixed-review';
     return 'pronunciation-other';
 };
 
@@ -959,8 +983,8 @@ const getActivityTexture = (activity: Activity, sectionLabel?: string): Activity
     }
 
     // Pronunciation activities
-    if (category === 'pronunciation' || activity.ui === 'ed-pronunciation' || activity.ui === 'minimal-pairs') {
-        const pronunciationType = detectPronunciationType(activity.id, activity.title, activity.ui);
+    if (category === 'pronunciation' || activity.ui === 'ed-pronunciation' || activity.ui === 'minimal-pairs' || activity.ui === 'pronunciation-listening') {
+        const pronunciationType = detectPronunciationType(activity);
         return PRONUNCIATION_TEXTURES[pronunciationType];
     }
 
@@ -1805,7 +1829,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 writing.push(activity);
             }
 
-            if (category === 'pronunciation' || activity.ui === 'ed-pronunciation' || activity.ui === 'minimal-pairs') {
+            if (category === 'pronunciation' || activity.ui === 'ed-pronunciation' || activity.ui === 'minimal-pairs' || activity.ui === 'pronunciation-listening') {
                 pronunciation.push(activity);
             }
 
@@ -1828,12 +1852,14 @@ export const ActivityCategories = React.memo(function ActivityCategories({
             return getWeekNum(a.title || '') - getWeekNum(b.title || '');
         });
 
+        const sortedPronunciation = [...pronunciation].sort(comparePronunciationActivities);
+
         return {
             vocabById,
             games: sortedGames,
             reading,
             writing,
-            pronunciation,
+            pronunciation: sortedPronunciation,
             speaking: sortedSpeaking,
             quizzes: sortedQuizzes,
         };
@@ -2233,7 +2259,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                             const vocabTheme = cardMeta?.vocabThemeChip ? capitalizeFirstLetter(cardMeta.vocabThemeChip) : 'Build topic vocabulary';
                                             const vocabSupport = cardMeta?.vocabWordsChip || activity.description || 'Study and use key words in context.';
                                             const gameCopy = cardMeta?.gameCardCopy;
-                                            const pronunciationCopy = getPronunciationCardCopy(activity.id, activity.title);
+                                            const pronunciationCopy = getPronunciationCardCopy(activity.id, activity.title, activity.content, activity.ui);
 
                                             return (
                                                 <ActivityLink
@@ -2328,10 +2354,12 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                         color: texture?.color ?? '#d97757',
                                                                     }}
                                                                 >
-                                                                    {(() => {
-                                                                    const shortened = cardTitle.replace(/ Guide$/i, '').replace(/ Review$/i, '');
-                                                                    return shortened === 'Cycle 1' ? 'Cycle 1 Review' : shortened;
-                                                                  })()}
+                                                                    {filterCategory === 'pronunciation' && pronunciationCopy.pathChip
+                                                                        ? pronunciationCopy.pathChip
+                                                                        : (() => {
+                                                                            const shortened = cardTitle.replace(/ Guide$/i, '').replace(/ Review$/i, '');
+                                                                            return shortened === 'Cycle 1' ? 'Cycle 1 Review' : shortened;
+                                                                        })()}
                                                                 </span>
 
                                                                 {isCompleted && (
@@ -2365,7 +2393,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                             )}
                                                             {filterCategory === 'pronunciation' && (
                                                                 <div className="mb-1 -mx-1">
-                                                                    <PronunciationActivityVisual activityId={activity.id} title={activity.title} />
+                                                                    <PronunciationActivityVisual activityId={activity.id} title={activity.title} content={activity.content} ui={activity.ui} />
                                                                 </div>
                                                             )}
 
@@ -2645,7 +2673,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                             const grammarCopy = getGrammarChipCopyForActivity(activity);
                                                                                             const hasGrammarVisual = hasGrammarGuideVisual(activity.title);
                                                                                             const points = getActivityPoints(activity.type, { id: activity.id, ui: activity.ui ?? undefined, content: activity.content ?? undefined });
-                                                                                            const pronunciationCopy = getPronunciationCardCopy(activity.id, activity.title);
+                                                                                            const pronunciationCopy = getPronunciationCardCopy(activity.id, activity.title, activity.content, activity.ui);
 
                                                                                             return (
                                                                                                 <ActivityLink
@@ -2696,10 +2724,12 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                                                             : texture?.color ?? '#d97757',
                                                                                                                     }}
                                                                                                                 >
-                                                                                                                    {(() => {
-                                                                    const shortened = cardTitle.replace(/ Guide$/i, '').replace(/ Review$/i, '');
-                                                                    return shortened === 'Cycle 1' ? 'Cycle 1 Review' : shortened;
-                                                                  })()}
+                                                                    {filterCategory === 'pronunciation' && pronunciationCopy.pathChip
+                                                                        ? pronunciationCopy.pathChip
+                                                                        : (() => {
+                                                                            const shortened = cardTitle.replace(/ Guide$/i, '').replace(/ Review$/i, '');
+                                                                            return shortened === 'Cycle 1' ? 'Cycle 1 Review' : shortened;
+                                                                        })()}
                                                                                                                 </span>
 
                                                                 {showCompletedState && (
@@ -2733,7 +2763,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                                             )}
                                                                                                             {filterCategory === 'pronunciation' && (
                                                                                                                 <div className="mb-2 -mx-1">
-                                                                                                                    <PronunciationActivityVisual activityId={activity.id} title={activity.title} />
+                                                                                                                    <PronunciationActivityVisual activityId={activity.id} title={activity.title} content={activity.content} ui={activity.ui} />
                                                                                                                 </div>
                                                                                                             )}
 

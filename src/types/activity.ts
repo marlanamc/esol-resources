@@ -5,7 +5,8 @@ export type ActivityType =
     | "guide"
     | "game"
     | "resource"
-    | "speaking";
+    | "speaking"
+    | "writing";
 
 export type FormulaPartType = "subject" | "verb" | "object" | "other";
 
@@ -338,6 +339,8 @@ export interface GuideSection {
     content: string;
 }
 
+import type { MinimalPairContrastId } from "@/lib/minimal-pairs-data";
+
 export interface GuideContent {
     title?: string;
     sections?: GuideSection[];
@@ -352,6 +355,28 @@ export interface FlashcardContent {
         example?: string;
         pos?: string;
     }>;
+    [key: string]: unknown;
+}
+
+export interface VocabularyWordListGroup {
+    id: string;
+    label: string;
+    cards: Array<{
+        term: string;
+        definition: string;
+        example?: string;
+        pos?: string;
+    }>;
+}
+
+export interface VocabularyWordListContent {
+    cards?: Array<{
+        term: string;
+        definition: string;
+        example?: string;
+        pos?: string;
+    }>;
+    groups?: VocabularyWordListGroup[];
     [key: string]: unknown;
 }
 
@@ -370,13 +395,15 @@ export interface FillInBlankContent {
         text: string;
         blanks: string[];
         correctAnswers: string[];
+        options?: string[];
+        explanation?: string;
     }>;
     [key: string]: unknown;
 }
 
 export interface VocabularyContent {
     type: "vocabulary";
-    wordList?: Record<string, unknown>;
+    wordList?: VocabularyWordListContent;
     flashcards?: FlashcardContent;
     matching?: MatchingContent;
     fillInBlank?: FillInBlankContent;
@@ -390,13 +417,89 @@ export interface EdPronunciationContent {
     verbs?: string[];
     /** Number of verbs per round (default: 15) */
     roundSize?: number;
+    meta?: PronunciationActivityMetadata;
+}
+
+export type PronunciationSkillFamily =
+    | "minimal-pairs"
+    | "ed-endings"
+    | "sentence-listening"
+    | "mixed-review";
+
+export type PronunciationPracticeMode = "listening" | "sentence-context" | "mixed-review";
+
+export interface PronunciationActivityMetadata {
+    skillFamily: PronunciationSkillFamily;
+    practiceMode: PronunciationPracticeMode;
+    targetLabel: string;
+    targetDescription?: string;
+    recommendedOrder?: number;
 }
 
 export interface MinimalPairsContent {
     type: "minimal-pairs";
-    contrastId?: "mixed" | "short-i-long-e" | "b-v" | "r-l" | "sh-ch";
+    contrastId?: MinimalPairContrastId | "mixed";
     difficulty?: "easy" | "medium" | "hard" | "mixed";
     roundSize?: number;
+    meta?: PronunciationActivityMetadata;
+}
+
+export interface PronunciationSentenceListeningQuestion {
+    id: string;
+    audioPrompt: string;
+    prompt?: string;
+    choices: Array<{
+        label: string;
+        cue?: string;
+    }>;
+    correctChoiceIndex: number;
+    transcript: string;
+    revealFocus?: string;
+    coachingTip?: string;
+}
+
+export interface SoundExplainerItem {
+    label: string;    // e.g. "Short i /ɪ/"
+    tip: string;      // e.g. "Tongue relaxed in the middle of your mouth"
+    examples: string; // e.g. "sit, ship, bit"
+}
+
+export interface SoundExplainer {
+    sounds: [SoundExplainerItem, SoundExplainerItem];
+    commonMistake: string;
+}
+
+export interface PronunciationSentenceListeningContent {
+    type: "pronunciation-listening";
+    targetSound: string;
+    instructions?: string;
+    roundSize?: number;
+    sentences: PronunciationSentenceListeningQuestion[];
+    setKeys?: string[];
+    meta?: PronunciationActivityMetadata;
+    soundExplainer?: SoundExplainer;
+}
+
+export interface WritingPrompt {
+    text: string;
+    imageUrl?: string;
+    suggestions?: {
+        starters: string[];
+        vocab: string[];
+    };
+}
+
+export interface TimedWritingContent {
+    type: "writing";
+    prompts: WritingPrompt[];
+    timerSeconds: number;
+    showWordCount?: boolean;
+}
+
+export function isTimedWritingContent(value: unknown): value is TimedWritingContent {
+    if (!value || typeof value !== "object") return false;
+    const c = value as Record<string, unknown>;
+    return c["type"] === "writing" && Array.isArray(c["prompts"]) && typeof c["timerSeconds"] === "number";
 }
 
 export type ActivityContent =
@@ -410,7 +513,9 @@ export type ActivityContent =
     | VocabularyContent
     | EdPronunciationContent
     | MinimalPairsContent
+    | PronunciationSentenceListeningContent
     | TimelineTensesContent
+    | TimedWritingContent
     | Record<string, unknown>;
 
 export interface LegacyGuideResponse {
@@ -467,6 +572,12 @@ export function isMinimalPairsContent(value: unknown): value is MinimalPairsCont
     if (!value || typeof value !== "object") return false;
     const candidate = value as Record<string, unknown>;
     return candidate["type"] === "minimal-pairs";
+}
+
+export function isPronunciationSentenceListeningContent(value: unknown): value is PronunciationSentenceListeningContent {
+    if (!value || typeof value !== "object") return false;
+    const candidate = value as Record<string, unknown>;
+    return candidate["type"] === "pronunciation-listening" && Array.isArray(candidate["sentences"]);
 }
 
 // ============================================================================

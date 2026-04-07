@@ -46,7 +46,7 @@ function parseSubjects(activities: Array<Record<string, unknown>>): Record<strin
         speaking: visibleActivities.some((a) => a.category === "speaking"),
         writing: visibleActivities.some((a) => a.category === "writing" || a.category === "writing-reading"),
         pronunciation: visibleActivities.some(
-            (a) => a.category === "pronunciation" || a.ui === "ed-pronunciation" || a.ui === "minimal-pairs"
+            (a) => a.category === "pronunciation" || a.ui === "ed-pronunciation" || a.ui === "minimal-pairs" || a.ui === "pronunciation-listening"
         ),
     };
 }

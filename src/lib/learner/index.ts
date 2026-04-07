@@ -243,7 +243,7 @@ function categoryKeywords(activity: SearchActivitySource): string[] {
     const category = (activity.category || "").toLowerCase();
     const keywords = new Set<string>();
     const isPronunciationActivity =
-        category === "pronunciation" || activity.ui === "minimal-pairs" || activity.ui === "ed-pronunciation";
+        category === "pronunciation" || activity.ui === "minimal-pairs" || activity.ui === "ed-pronunciation" || activity.ui === "pronunciation-listening";
 
     if (category === "grammar" || type === "guide") {
         keywords.add("grammar");
@@ -288,7 +288,7 @@ function toActivityDestinationLabel(activity: SearchActivitySource): string {
     const type = (activity.type || "").toLowerCase();
     const category = (activity.category || "").toLowerCase();
     const isPronunciationActivity =
-        category === "pronunciation" || activity.ui === "minimal-pairs" || activity.ui === "ed-pronunciation";
+        category === "pronunciation" || activity.ui === "minimal-pairs" || activity.ui === "ed-pronunciation" || activity.ui === "pronunciation-listening";
 
     if (type === "guide" && category === "grammar") {
         return "Grammar Guide";
@@ -314,7 +314,7 @@ function toActivityDestinationLabel(activity: SearchActivitySource): string {
 
 function toSearchCategory(activity: SearchActivitySource): string | null {
     const category = (activity.category || "").toLowerCase();
-    if (category === "games" && (activity.ui === "minimal-pairs" || activity.ui === "ed-pronunciation")) {
+    if (category === "games" && (activity.ui === "minimal-pairs" || activity.ui === "ed-pronunciation" || activity.ui === "pronunciation-listening")) {
         return "pronunciation";
     }
     if (activity.id.startsWith("vocab-") || category === "vocabulary" || category === "vocab" || category === "numbers" || category === "number") {

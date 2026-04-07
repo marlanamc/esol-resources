@@ -58,7 +58,7 @@ const CATEGORY_CARDS: CategoryCardDef[] = [
     {
         key: 'pronunciation',
         name: 'Pronunciation',
-        subtitle: 'Sounds · minimal pairs',
+        subtitle: 'Listening path · sentence audio',
         icon: <Volume2 className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
     },
     {
@@ -150,7 +150,7 @@ export function ActivityCategoryPicker({
 
         // Pronunciation
         map['pronunciation'] = activities.some(
-            (a) => a.category === 'pronunciation' || a.ui === 'ed-pronunciation' || a.ui === 'minimal-pairs'
+            (a) => a.category === 'pronunciation' || a.ui === 'ed-pronunciation' || a.ui === 'minimal-pairs' || a.ui === 'pronunciation-listening'
         );
 
         return map;

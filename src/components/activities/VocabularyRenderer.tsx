@@ -14,6 +14,7 @@ import { saveActivityProgress } from "@/lib/activityProgress";
 import { parseCategoryData } from "@/lib/categoryData";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
+import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
 
 interface VocabularyRendererProps {
     content: VocabularyContent;
@@ -553,7 +554,7 @@ function WordListRenderer({ content, activityId, assignmentId, vocabType }: Word
     }, [content]);
 
     const playTermAudio = (term: string) => {
-        const audioUrl = `/audio/vocab/${encodeURIComponent(term)}.mp3`;
+        const audioUrl = getVocabAudioUrl(term);
         const audio = new Audio(audioUrl);
         audio.currentTime = 0;
         void audio.play().catch(() => {
