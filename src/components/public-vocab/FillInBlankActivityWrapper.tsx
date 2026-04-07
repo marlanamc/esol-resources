@@ -172,8 +172,11 @@ export function FillInBlankActivityWrapper({
               <span key={index}>
                 {part}
                 {index < arr.length - 1 && (
-                  <span className="inline-block px-3 py-1 mx-1 bg-[var(--tone-vocabulary-accent)]/10 border-b-2 border-[var(--tone-vocabulary-accent)] min-w-[120px] text-center font-semibold text-[var(--tone-vocabulary-accent)]">
-                    _____
+                  <span
+                    aria-hidden="true"
+                    className="inline-block mx-1 h-[1.6em] min-w-[120px] align-[-0.2em] border-b-2 border-[var(--tone-vocabulary-accent)] bg-[var(--tone-vocabulary-accent)]/10"
+                  >
+                    &nbsp;
                   </span>
                 )}
               </span>
