@@ -208,6 +208,7 @@ export function FillInBlankActivityWrapper({
         <div className="grid gap-3 mb-6 sm:grid-cols-2">
           {currentQuestion.options.map((option, index) => {
             const label = String.fromCharCode(97 + index); // a, b, c, d
+            const displayOption = formatOptionLabel(option);
 
             return (
               <button
@@ -226,7 +227,7 @@ export function FillInBlankActivityWrapper({
               >
                 <p className="font-semibold">
                   <span className="inline-block w-6 text-[var(--tone-vocabulary-accent)]">{label}.</span>
-                  {option}
+                  {displayOption}
                 </p>
               </button>
             );
@@ -252,6 +253,32 @@ export function FillInBlankActivityWrapper({
       </div>
     </div>
   );
+}
+
+const PROPER_NOUN_OPTIONS = new Set([
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+]);
+
+function formatOptionLabel(option: string): string {
+  return PROPER_NOUN_OPTIONS.has(option) ? option : option.toLowerCase();
 }
 
 function hashStringToSeed(s: string): number {
