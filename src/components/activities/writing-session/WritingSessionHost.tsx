@@ -68,9 +68,13 @@ export function WritingSessionHost({ sessionId, content, onSessionEnd, onResetSe
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body),
             });
-            const data = await res.json() as { status?: string; error?: string };
+            const data = await res.json() as { status?: string; error?: string; timerEndsAt?: string };
             if (!res.ok) setError(data.error ?? "Failed to advance");
-            else setState((prev) => prev ? { ...prev, status: (data.status ?? prev.status) as TeacherState["status"] } : prev);
+            else setState((prev) => prev ? {
+                ...prev,
+                status: (data.status ?? prev.status) as TeacherState["status"],
+                ...(data.timerEndsAt ? { timerEndsAt: data.timerEndsAt } : {}),
+            } : prev);
         } catch {
             setError("Network error");
         } finally {
@@ -198,6 +202,34 @@ export function WritingSessionHost({ sessionId, content, onSessionEnd, onResetSe
                 >
                     {isAdvancing ? "Loading…" : (advanceLabel[state.status] ?? "Advance")}
                 </button>
+            )}
+
+            {/* Teacher controls: extend timer / skip round */}
+            {(state.status === "writing" || state.status === "group-vote") && (
+                <div className="flex gap-2">
+                    {state.status === "writing" && (
+                        <button
+                            type="button"
+                            onClick={() => advance({ action: "extend", extendSeconds: 120 })}
+                            disabled={isAdvancing}
+                            className="flex-1 py-2 px-4 rounded-xl text-sm font-medium border border-gray-200 text-gray-600 hover:bg-gray-50 transition-all disabled:opacity-50"
+                        >
+                            + 2 min
+                        </button>
+                    )}
+                    <button
+                        type="button"
+                        onClick={() => {
+                            if (window.confirm("Skip this round? No points will be awarded.")) {
+                                void advance({ action: "skip" });
+                            }
+                        }}
+                        disabled={isAdvancing}
+                        className="flex-1 py-2 px-4 rounded-xl text-sm font-medium border border-red-200 text-red-500 hover:bg-red-50 transition-all disabled:opacity-50"
+                    >
+                        Skip Round
+                    </button>
+                </div>
             )}
 
             {state.status === "waiting" && state.currentRound === 0 && (

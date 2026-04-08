@@ -168,14 +168,20 @@ export async function GET(_request: NextRequest, { params }: Params) {
     if (!currentRound) return NextResponse.json(base);
 
     if (ws.status === "writing") {
-        const mySubmission = await prisma.writingSubmission.findUnique({
-            where: { roundId_studentId: { roundId: currentRound.id, studentId: userId } },
-        });
+        const [mySubmission, submittedCount] = await Promise.all([
+            prisma.writingSubmission.findUnique({
+                where: { roundId_studentId: { roundId: currentRound.id, studentId: userId } },
+            }),
+            prisma.writingSubmission.count({ where: { roundId: currentRound.id } }),
+        ]);
+        const totalCount = ws.groups.reduce((acc, g) => acc + g.members.length, 0);
         return NextResponse.json({
             ...base,
             promptText: currentRound.promptText,
             promptImageUrl: currentRound.promptImageUrl,
             mySubmission: mySubmission ? { text: mySubmission.text } : null,
+            submittedCount,
+            totalCount,
         });
     }
 
@@ -218,7 +224,7 @@ export async function GET(_request: NextRequest, { params }: Params) {
         // Check if the current student's submission was voted group winner
         const myGroupWinnerSub = await prisma.writingSubmission.findFirst({
             where: { roundId: currentRound.id, studentId: userId, isGroupWinner: true },
-            select: { id: true },
+            include: { groupVotes: true },
         });
         return NextResponse.json({
             ...base,
@@ -230,6 +236,8 @@ export async function GET(_request: NextRequest, { params }: Params) {
                 }
                 : null,
             isGroupWinner: !!myGroupWinnerSub,
+            classVoteCount: classWinnerSub?.classVotes.length ?? 0,
+            groupVoteCount: myGroupWinnerSub?.groupVotes.length ?? 0,
         });
     }
 

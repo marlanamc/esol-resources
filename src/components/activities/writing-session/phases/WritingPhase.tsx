@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 interface WritingPhaseProps {
     sessionId: string;
+    roundIndex: number;
     promptText: string;
     promptImageUrl?: string | null;
     timerEndsAt: string | null;
@@ -11,8 +12,11 @@ interface WritingPhaseProps {
     suggestions?: { starters: string[]; vocab: string[] };
     initialText?: string;
     hasSubmitted?: boolean;
+    groupName: string;
     groupEmoji: string;
     groupColor: string;
+    submittedCount?: number;
+    totalCount?: number;
 }
 
 function countWords(text: string) {
@@ -30,6 +34,7 @@ const CIRC = 2 * Math.PI * RADIUS;
 
 export function WritingPhase({
     sessionId,
+    roundIndex,
     promptText,
     promptImageUrl,
     timerEndsAt,
@@ -37,16 +42,28 @@ export function WritingPhase({
     suggestions,
     initialText = "",
     hasSubmitted = false,
+    groupName,
     groupEmoji,
     groupColor,
+    submittedCount,
+    totalCount,
 }: WritingPhaseProps) {
+    const draftKey = `writing-draft-${sessionId}-${roundIndex}`;
+
     const initialSecondsRef = useRef(
         timerEndsAt
             ? Math.max(1, Math.round((new Date(timerEndsAt).getTime() - Date.now()) / 1000))
             : 300
     );
 
-    const [text, setText] = useState(initialText);
+    const [text, setText] = useState(() => {
+        if (hasSubmitted) return initialText;
+        if (typeof window !== "undefined") {
+            const saved = localStorage.getItem(`writing-draft-${sessionId}-${roundIndex}`);
+            if (saved !== null) return saved;
+        }
+        return initialText;
+    });
     const [secondsLeft, setSecondsLeft] = useState(() => {
         if (!timerEndsAt) return 0;
         return Math.max(0, Math.round((new Date(timerEndsAt).getTime() - Date.now()) / 1000));
@@ -104,6 +121,7 @@ export function WritingPhase({
                 body: JSON.stringify({ text }),
             });
             if (!res.ok) throw new Error("Submission failed");
+            localStorage.removeItem(draftKey);
             setSubmitted(true);
         } catch {
             submitRef.current = false; // allow retry
@@ -136,6 +154,14 @@ export function WritingPhase({
                         </p>
                     )}
                 </div>
+                {submittedCount !== undefined && totalCount !== undefined && totalCount > 0 && (
+                    <div
+                        className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium"
+                        style={{ backgroundColor: groupColor + "18", color: groupColor }}
+                    >
+                        {submittedCount} of {totalCount} submitted
+                    </div>
+                )}
                 <p className="text-sm text-gray-400 max-w-xs leading-relaxed">
                     Waiting for your teacher to open group voting…
                 </p>
@@ -183,7 +209,7 @@ export function WritingPhase({
                         }}
                     >
                         <span className="text-base">{groupEmoji}</span>
-                        <span>Your group</span>
+                        <span>{groupName}</span>
                     </div>
 
                     {/* Circular countdown ring */}
@@ -331,7 +357,10 @@ export function WritingPhase({
                     <textarea
                         ref={textareaRef}
                         value={text}
-                        onChange={(e) => setText(e.target.value)}
+                        onChange={(e) => {
+                            setText(e.target.value);
+                            if (!submitted) localStorage.setItem(draftKey, e.target.value);
+                        }}
                         placeholder="Start writing here…"
                         className="w-full px-5 text-[var(--text)] text-base resize-none focus:outline-none rounded-2xl"
                         style={{

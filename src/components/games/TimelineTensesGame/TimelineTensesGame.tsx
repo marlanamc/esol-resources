@@ -49,6 +49,17 @@ interface TimelineTensesGameProps {
   assignmentId?: string | null;
 }
 
+function StepLabel({ step, label }: { step: number; label: string }) {
+  return (
+    <div className="flex items-center gap-2 mb-5">
+      <span className="w-6 h-6 rounded-full bg-primary text-white text-xs font-black flex items-center justify-center flex-shrink-0">
+        {step}
+      </span>
+      <span className="text-xs font-black uppercase tracking-[0.18em] text-text-muted/70">{label}</span>
+    </div>
+  );
+}
+
 export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesGameProps) {
   const router = useRouter();
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
@@ -186,17 +197,6 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   ).length;
   const totalRoundQuestions = state.roundQuestions.length;
   const totalTutorialQuestions = TIMELINE_TUTORIAL_QUESTIONS.length;
-
-  function StepLabel({ step, label }: { step: number; label: string }) {
-    return (
-      <div className="flex items-center gap-2 mb-5">
-        <span className="w-6 h-6 rounded-full bg-primary text-white text-xs font-black flex items-center justify-center flex-shrink-0">
-          {step}
-        </span>
-        <span className="text-xs font-black uppercase tracking-[0.18em] text-text-muted/70">{label}</span>
-      </div>
-    );
-  }
 
   const TENSE_LABELS: Record<string, string> = {
     all: 'All Tenses',

@@ -5,11 +5,13 @@ interface ResultsPhaseProps {
     myGroupName: string;
     isFinished: boolean;
     isGroupWinner?: boolean;
+    classVoteCount?: number;
+    groupVoteCount?: number;
 }
 
 const CONFETTI_COLORS = ["#d97757", "#f4d35e", "#7ba884", "#d97757", "#f4d35e", "#7ba884"];
 
-export function ResultsPhase({ classWinner, myGroupName, isFinished, isGroupWinner }: ResultsPhaseProps) {
+export function ResultsPhase({ classWinner, myGroupName, isFinished, isGroupWinner, classVoteCount, groupVoteCount }: ResultsPhaseProps) {
     const wonClass = classWinner?.groupName === myGroupName;
 
     return (
@@ -80,7 +82,7 @@ export function ResultsPhase({ classWinner, myGroupName, isFinished, isGroupWinn
                                     animationDelay: "0.1s",
                                 }}
                             >
-                                🌟 Your writing was voted best by your group!
+                                🌟 Your writing was voted best by your group{groupVoteCount ? ` (${groupVoteCount} ${groupVoteCount === 1 ? "vote" : "votes"})` : ""}!
                             </div>
                         )}
 
@@ -105,7 +107,7 @@ export function ResultsPhase({ classWinner, myGroupName, isFinished, isGroupWinn
                                     {classWinner.groupName}
                                 </span>
                                 <span className="text-xs text-amber-600 ml-auto font-medium">
-                                    ✨ winning writing
+                                    ✨ winning writing{classVoteCount ? ` · ${classVoteCount} ${classVoteCount === 1 ? "vote" : "votes"}` : ""}
                                 </span>
                             </div>
                             <div className="px-5 py-5">

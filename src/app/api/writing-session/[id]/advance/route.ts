@@ -28,7 +28,46 @@ export async function POST(request: NextRequest, { params }: Params) {
     if (!ws) return NextResponse.json({ error: "Session not found" }, { status: 404 });
     if (ws.teacherId !== userId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-    const body = await request.json().catch(() => ({})) as { timerSeconds?: number; promptText?: string; promptImageUrl?: string };
+    const body = await request.json().catch(() => ({})) as {
+        action?: "extend" | "skip";
+        extendSeconds?: number;
+        timerSeconds?: number;
+        promptText?: string;
+        promptImageUrl?: string;
+    };
+    const { action, extendSeconds } = body;
+
+    // ── Out-of-band actions (extend timer, skip round) ─────────────────────
+
+    if (action === "extend") {
+        if (ws.status !== "writing") {
+            return NextResponse.json({ error: "Can only extend timer during writing phase" }, { status: 400 });
+        }
+        const seconds = extendSeconds && extendSeconds > 0 ? extendSeconds : 120;
+        const baseTime = ws.timerEndsAt ?? new Date();
+        const newEndsAt = new Date(baseTime.getTime() + seconds * 1000);
+        await prisma.writingSession.update({ where: { id: sessionId }, data: { timerEndsAt: newEndsAt } });
+        return NextResponse.json({ timerEndsAt: newEndsAt.toISOString() });
+    }
+
+    if (action === "skip") {
+        if (ws.status !== "writing" && ws.status !== "group-vote") {
+            return NextResponse.json({ error: "Can only skip during writing or voting phase" }, { status: 400 });
+        }
+        let totalPrompts = 1;
+        try {
+            const parsed = JSON.parse(ws.activity.content) as { prompts?: unknown[] };
+            if (Array.isArray(parsed.prompts)) totalPrompts = parsed.prompts.length;
+        } catch { /* use default */ }
+
+        const nextRound = ws.currentRound + 1;
+        if (nextRound >= totalPrompts) {
+            await prisma.writingSession.update({ where: { id: sessionId }, data: { status: "finished", timerEndsAt: null } });
+            return NextResponse.json({ status: "finished" });
+        }
+        await prisma.writingSession.update({ where: { id: sessionId }, data: { status: "waiting", currentRound: nextRound, timerEndsAt: null } });
+        return NextResponse.json({ status: "waiting", currentRound: nextRound });
+    }
 
     // ── State machine ──────────────────────────────────────────────────────
 

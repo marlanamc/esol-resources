@@ -97,6 +97,7 @@ export function WritingSessionParticipant({ sessionId, content }: Props) {
         phase = (
             <WritingPhase
                 sessionId={sessionId}
+                roundIndex={state.currentRound}
                 promptText={state.promptText ?? ""}
                 promptImageUrl={state.promptImageUrl}
                 timerEndsAt={state.timerEndsAt}
@@ -104,8 +105,11 @@ export function WritingSessionParticipant({ sessionId, content }: Props) {
                 suggestions={suggestions}
                 initialText={state.mySubmission?.text ?? ""}
                 hasSubmitted={!!state.mySubmission}
+                groupName={state.myGroupName ?? ""}
                 groupEmoji={state.myGroupEmoji ?? "✏️"}
                 groupColor={state.myGroupColor ?? "#d97757"}
+                submittedCount={state.submittedCount}
+                totalCount={state.totalCount}
             />
         );
     } else if (state.status === "group-vote") {
@@ -135,6 +139,8 @@ export function WritingSessionParticipant({ sessionId, content }: Props) {
                 myGroupName={state.myGroupName ?? ""}
                 isFinished={state.status === "finished"}
                 isGroupWinner={state.isGroupWinner}
+                classVoteCount={state.classVoteCount}
+                groupVoteCount={state.groupVoteCount}
             />
         );
     }

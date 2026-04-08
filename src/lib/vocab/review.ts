@@ -1,4 +1,5 @@
 import type { PrismaClient, UserVocabReviewState, VocabCard } from "@prisma/client";
+import { logger } from "@/lib/shared/logger";
 import { isVocabularyContent, parseActivityContent, type VocabularyContent } from "@/types/activity";
 import { parseFlashcards, parsePlainVocabulary } from "./parser";
 import {
@@ -843,7 +844,7 @@ async function persistReviewState(
 async function loadCardsAndStates(db: VocabReviewDbClient, userId: string) {
   const cardsCount = await db.vocabCard.count();
   if (cardsCount === 0) {
-    console.log("Vocab catalog empty, triggering sync...");
+    logger.info("Vocab catalog empty, triggering sync...");
     await syncVocabReviewCatalog(db);
   }
 

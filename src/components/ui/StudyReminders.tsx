@@ -79,7 +79,6 @@ export default function StudyReminders({ className = "" }: StudyRemindersProps) 
             const granted = await requestPermission();
             if (granted) {
                 // Schedule notifications (this would need a service worker for real implementation)
-                console.log("Reminders saved and notifications enabled");
             }
         }
     };

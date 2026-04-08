@@ -41,6 +41,8 @@ export interface StudentState {
     promptText?: string;
     promptImageUrl?: string | null;
     mySubmission?: { text: string } | null;
+    submittedCount?: number;
+    totalCount?: number;
     // group-vote phase
     teamSubmissions?: TeamSubmission[];
     myVote?: string | null;
@@ -49,6 +51,8 @@ export interface StudentState {
     // results phase
     classWinner?: { text: string; groupName: string; groupEmoji: string } | null;
     isGroupWinner?: boolean;
+    classVoteCount?: number;
+    groupVoteCount?: number;
 }
 
 export interface TeacherState {
