@@ -379,18 +379,9 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     categoryProgress={state.categoryProgress}
                     onSelectMode={selectPracticeMode}
                   />
-                </motion.div>
-
-                {/* Start Game */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="mb-12 rounded-[2rem] border border-white/30 bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl p-5 sm:p-6 shadow-xl"
-                >
                   {/* Sentence Form — compact pills, hidden for challenge modes */}
                   {!isChallengeMode(state.selectedPracticeMode) && (
-                    <div className="mb-5">
+                    <div className="mt-5">
                       <p className="text-xs font-black uppercase tracking-[0.18em] text-text-muted/50 mb-3">
                         Sentence Form
                       </p>
@@ -401,7 +392,15 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                       />
                     </div>
                   )}
+                </motion.div>
 
+                {/* Start Game */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="mb-12 rounded-[2rem] border border-white/30 bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl p-5 sm:p-6 shadow-xl"
+                >
                   <p className="text-center text-xs font-black uppercase tracking-[0.2em] text-text-muted/50 mb-4">
                     Current Selection
                   </p>

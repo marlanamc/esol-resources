@@ -138,8 +138,7 @@ export function TenseFilterBar({
                 
                 <div className="flex-1 min-w-0">
                   <div className={`font-bold transition-colors ${isSelected ? 'text-text' : 'text-text-muted group-hover:text-text'}`}>
-                    <span className="hidden sm:inline text-base">{category.label}</span>
-                    <span className="sm:hidden text-sm">{category.shortLabel}</span>
+                    <span className="text-sm sm:text-base">{category.label}</span>
                   </div>
                   <div className="text-xs text-text-muted/60 font-medium leading-tight mt-1 line-clamp-2">
                     {category.description}
