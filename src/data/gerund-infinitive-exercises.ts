@@ -1249,6 +1249,11 @@ const AMBIGUOUS_VERB_PATTERNS = new Set([
 const AMBIGUOUS_TRIGGERS = ['love', 'like', 'hate', 'start', 'begin', 'continue', 'prefer'];
 
 function getAllPatterns(group: GerundInfinitiveGroup): GerundInfinitivePattern[] {
+  // GROUP_6A is specifically about "both forms OK" verbs - don't filter them out!
+  if (group.id === 'group-6a') {
+    return group.patterns;
+  }
+
   // Filter out patterns that use ambiguous verbs
   return group.patterns.filter(pattern => {
     // Skip if pattern ID is in the blocklist
