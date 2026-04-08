@@ -182,10 +182,6 @@ function createExerciseFromCSV(
   switch (type) {
     case 'pattern-choice':
       return createPatternChoiceFromCSV(sentence, groupId, hideExplanations);
-    case 'swipe-choice': {
-      const ex = createSwipeChoiceFromCSV(sentence, groupId, hideExplanations);
-      return ex ?? createPatternChoiceFromCSV(sentence, groupId, hideExplanations);
-    }
     case 'pattern-identifier': {
       const ex = createPatternIdentifierFromCSV(sentence, groupId, hideExplanations);
       return ex ?? createPatternChoiceFromCSV(sentence, groupId, hideExplanations);
@@ -323,19 +319,6 @@ function createErrorCorrectionFromCSV(
     showPattern: !hideExplanations,
     realWorldContext: sentence.topic,
   };
-}
-
-/**
- * Swipe Choice Exercise from CSV (levels 1–2 only)
- * Same as pattern-choice but swipe left=gerund, right=infinitive UX
- */
-function createSwipeChoiceFromCSV(
-  sentence: CSVSentence,
-  groupId: string,
-  hideExplanations: boolean
-): GIExercise {
-  const ex = createPatternChoiceFromCSV(sentence, groupId, hideExplanations);
-  return { ...ex, type: 'swipe-choice' };
 }
 
 /**
@@ -593,16 +576,6 @@ function createPromptWithBlank(sentence: CSVSentence): string {
  * Get exercise types for a group
  */
 function getExerciseTypesForGroup(groupId: string, count: number): GIExerciseType[] {
-  // Levels 1–2 only: include swipe-choice (group-0a, group-0b)
-  const swipeTypes: GIExerciseType[] = [
-    'swipe-choice',
-    'pattern-choice',
-    'sentence-completion',
-    'swipe-choice',
-    'pattern-identifier',
-    'error-correction',
-  ];
-
   // Default mix for most groups
   // Note: match-pair, dialogue-completion, chain-sentences, memory-match, rapid-fire
   // require multi-sentence data and are not yet supported in CSV flow
@@ -613,19 +586,9 @@ function getExerciseTypesForGroup(groupId: string, count: number): GIExerciseTyp
     'drag-order',
     'error-correction',
     'scenario-choice',
-    'swipe-choice',
     'pattern-identifier',
   ];
 
-  if (groupId === 'group-0a' || groupId === 'group-0b') {
-    const types: GIExerciseType[] = [];
-    for (let i = 0; i < count; i++) {
-      types.push(swipeTypes[i % swipeTypes.length]);
-    }
-    return types;
-  }
-
-  // All other groups use the default varied exercise type mix
   const types: GIExerciseType[] = [];
   for (let i = 0; i < count; i++) {
     types.push(defaultTypes[i % defaultTypes.length]);

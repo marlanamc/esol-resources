@@ -19,7 +19,6 @@ import { DragOrderExercise } from './exercises/DragOrderExercise';
 import { DialogueCompletionExercise } from './exercises/DialogueCompletionExercise';
 import { ScenarioChoiceExercise } from './exercises/ScenarioChoiceExercise';
 import { ChainSentencesExercise } from './exercises/ChainSentencesExercise';
-import { SwipeChoiceExercise } from './exercises/SwipeChoiceExercise';
 import { MemoryMatchExercise } from './exercises/MemoryMatchExercise';
 import { RapidFireExercise } from './exercises/RapidFireExercise';
 import { PersonalResponseExercise } from './exercises/PersonalResponseExercise';
@@ -540,7 +539,6 @@ function renderExercise(
     case 'dialogue-completion': return <DialogueCompletionExercise {...props} />;
     case 'scenario-choice':    return <ScenarioChoiceExercise {...props} />;
     case 'chain-sentences':    return <ChainSentencesExercise {...props} />;
-    case 'swipe-choice':       return <SwipeChoiceExercise {...props} />;
     case 'memory-match':       return <MemoryMatchExercise {...props} />;
     case 'rapid-fire':         return <RapidFireExercise {...props} />;
     case 'personal-response':  return <PersonalResponseExercise {...props} />;

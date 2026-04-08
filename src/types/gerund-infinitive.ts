@@ -82,7 +82,6 @@ export type GIExerciseType =
   | 'dialogue-completion'   // Complete two blanks in a conversation
   | 'scenario-choice'      // Real-world scenario + complete the sentence
   | 'chain-sentences'       // 2–3 related sentences with blanks (narrative)
-  | 'swipe-choice'          // Swipe left=gerund, right=infinitive (levels 1–2 only)
   | 'memory-match'          // Flip cards to match trigger + form (mastery/checkpoints)
   | 'rapid-fire'            // Quick succession of questions, no next (mastery/checkpoints)
   | 'personal-response';    // Personal questions requiring typed answers with pattern validation

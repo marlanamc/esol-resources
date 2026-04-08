@@ -43,7 +43,7 @@ export function generateExercises(
   hideExplanations = false,
   includePatternSorting = true
 ): GIExercise[] {
-  // Foundation intro groups (0a, 0b): always use hardcoded to guarantee swipe-choice and variety
+  // Foundation intro groups (0a, 0b): always use hardcoded for variety
   const isFoundationIntro = group.id === 'group-0a' || group.id === 'group-0b';
   if (isFoundationIntro) {
     return generateHardcodedExercises(group, count, hideExplanations, includePatternSorting);
@@ -93,20 +93,10 @@ function generateHardcodedExercises(
 
   const isPrepositionChoiceGroup = group.id === 'group-1b';
   const isComboGroup = group.id === 'group-1d';
-  const isFoundationIntro = group.id === 'group-0a' || group.id === 'group-0b';
   const nonSortingTypes: GIExerciseType[] = isComboGroup
     ? ['combo-challenge', 'combo-challenge', 'combo-challenge']
     : isPrepositionChoiceGroup
     ? ['preposition-choice', 'error-correction', 'preposition-choice']
-    : isFoundationIntro
-    ? [
-        'swipe-choice',
-        'pattern-choice',
-        'sentence-completion',
-        'pattern-identifier',
-        'swipe-choice',
-        'error-correction',
-      ]
     : [
         'pattern-choice',
         'pattern-identifier',
@@ -129,28 +119,14 @@ function generateHardcodedExercises(
     plannedTypes.push(nonSortingTypes[i % nonSortingTypes.length]);
   }
 
-  // Foundation groups: don't shuffle so swipe-choice is guaranteed; others shuffle for variety
-  const shuffledTypes = isFoundationIntro
-    ? plannedTypes.slice(0, count)
-    : shuffleArray(plannedTypes).slice(0, count);
+  const shuffledTypes = shuffleArray(plannedTypes).slice(0, count);
   const patternPool = shuffleArray([...allPatterns]);
 
   const exercises: GIExercise[] = [];
-  const swipePrependCount = isFoundationIntro ? 2 : 0;
-  const loopCount = count - swipePrependCount;
 
-  // Foundation groups: prepend 2 swipe-choice so they're guaranteed to appear first
-  if (swipePrependCount > 0 && allPatterns.length > 0) {
-    for (let i = 0; i < swipePrependCount; i++) {
-      const pattern = patternPool[i % patternPool.length];
-      const ex = createExercise('swipe-choice', group, pattern, hideExplanations);
-      if (ex) exercises.push(ex);
-    }
-  }
-
-  for (let i = 0; i < loopCount; i++) {
+  for (let i = 0; i < count; i++) {
     const type = shuffledTypes[i];
-    const pattern = patternPool[(swipePrependCount + i) % patternPool.length];
+    const pattern = patternPool[i % patternPool.length];
     let ex = createExercise(type, group, pattern, hideExplanations);
     if (!ex && type !== 'pattern-choice') {
       ex = createExercise('pattern-choice', group, pattern, hideExplanations);
@@ -609,9 +585,6 @@ function createExercise(
       return createMeaningDistinctionExercise(group, pattern, hideExplanations);
     case 'combo-challenge':
       return createComboChallengeExercise(group, pattern, hideExplanations);
-    case 'swipe-choice':
-      if (isPrepositionChoicePattern) return null;
-      return createSwipeChoiceFromPattern(group, pattern, hideExplanations);
     case 'personal-response':
       return createPersonalResponseFromPattern(pattern, group.id, hideExplanations);
     default: return null;
@@ -765,38 +738,6 @@ function createComboChallengeExercise(
       realWorldContext: example.context,
     };
   }
-}
-
-// ---------------------------------------------------------------------------
-// SWIPE CHOICE (Foundation groups 0a, 0b - gerund vs infinitive tap)
-// ---------------------------------------------------------------------------
-
-function createSwipeChoiceFromPattern(
-  group: GerundInfinitiveGroup,
-  pattern: GerundInfinitivePattern,
-  hideExplanations: boolean
-): GIExercise {
-  const example = pickRandom(pattern.examples);
-  const sentence = example.sentence;
-  const correctAnswer = example.blank;
-
-  const isGerund = pattern.correctForm === 'gerund';
-  const gerundForm = isGerund ? correctAnswer : gerundFrom(correctAnswer.replace(/^to /, ''));
-  const infinitiveForm = isGerund ? 'to ' + baseFrom(correctAnswer) : correctAnswer;
-
-  const options = [gerundForm, infinitiveForm];
-
-  return {
-    id: `swipe-${pattern.id}-${Date.now()}`,
-    type: 'swipe-choice',
-    groupId: group.id,
-    patternId: pattern.id,
-    prompt: sentence,
-    correctAnswer,
-    options,
-    showPattern: !hideExplanations,
-    realWorldContext: example.context,
-  };
 }
 
 // ---------------------------------------------------------------------------
@@ -1227,7 +1168,6 @@ export function getExerciseTypeLabel(type: GIExerciseType): string {
     'dialogue-completion': 'Complete the Dialogue',
     'scenario-choice': 'Scenario',
     'chain-sentences': 'Chain Sentences',
-    'swipe-choice': 'Gerund or Infinitive?',
     'memory-match': 'Memory Match',
     'rapid-fire': 'Rapid Fire',
     'personal-response': 'Personal Response',
