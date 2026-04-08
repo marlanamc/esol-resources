@@ -30,6 +30,8 @@ const GROUP_TO_CSV_PATTERN: Record<string, PatternGroupId[]> = {
   'group-0b': ['infinitive_after_verb', 'infinitive_purpose'],
   'group-1': ['preposition_gerund'],
   'group-1a': ['preposition_gerund'],
+  'group-2a': ['gerund_after_verb'],  // Gerund Verbs (enjoy, finish, avoid, etc.)
+  'group-2b': ['infinitive_after_verb'],  // Infinitive Verbs (want, hope, plan, etc.)
   'group-2c': ['gerund_after_verb', 'infinitive_after_verb'],  // Mixed Verb Challenge - uses CSV 3rd person forms
   'group-3a': ['adjective_infinitive'],
   'group-3b': ['noun_infinitive'],

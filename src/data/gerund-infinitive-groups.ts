@@ -88,7 +88,7 @@ export const GROUP_0A: GerundInfinitiveGroup = {
         { sentence: "Do you want to go ___?", blank: 'hiking', context: 'Invitation' },
         { sentence: "They go ___ every weekend.", blank: 'camping', context: 'Hobbies' },
         { sentence: "I love going ___.", blank: 'dancing', context: 'Entertainment' },
-        { sentence: "She goes ___ on Saturdays.", blank: 'jogging', context: 'Exercise' }
+        { sentence: "She goes ___ on Saturdays.", blank: 'walking', context: 'Exercise' }
       ]
     },
     {
@@ -2094,14 +2094,14 @@ export const GROUP_4: GerundInfinitiveGroup = {
       ]
     },
     {
-      id: 'go-skiing',
-      trigger: 'go skiing',
+      id: 'go-walking',
+      trigger: 'go walking',
       correctForm: 'gerund',
       category: 'go-activity',
       examples: [
-        { sentence: "We go ___ every winter.", blank: 'skiing', context: 'Sports' },
-        { sentence: "Have you ever gone ___?", blank: 'skiing', context: 'Experience' },
-        { sentence: "Let's go ___ in Colorado.", blank: 'skiing', context: 'Travel' }
+        { sentence: "We go ___ every evening.", blank: 'walking', context: 'Exercise' },
+        { sentence: "Have you ever gone ___ in the park?", blank: 'walking', context: 'Experience' },
+        { sentence: "Let's go ___ after dinner.", blank: 'walking', context: 'Activity' }
       ]
     }
   ]
