@@ -263,8 +263,9 @@ export function generateMixedReviewExercises(
   count = 12,
   hideExplanations = false
 ): GIExercise[] {
+  // Use getAllPatterns to filter out ambiguous verbs (love/like/hate/etc.)
   const pool = groups.flatMap(group =>
-    group.patterns.map(pattern => ({ group, pattern }))
+    getAllPatterns(group).map(pattern => ({ group, pattern }))
   );
 
   const prioritized = pool.sort(({ pattern: a }, { pattern: b }) => {
@@ -338,9 +339,9 @@ export function generateCheckpointExercises(
   count = 10,
   currentStreak = 0
 ): GIExercise[] {
-  // Pool all patterns from review groups
+  // Pool all patterns from review groups, filtering out ambiguous verbs
   const pool = reviewGroups.flatMap(group =>
-    group.patterns.map(pattern => ({ group, pattern }))
+    getAllPatterns(group).map(pattern => ({ group, pattern }))
   );
 
   if (pool.length === 0) return [];
@@ -427,8 +428,9 @@ export function generateFinalChallengeExercises(
   passedGroups: GerundInfinitiveGroup[],
   count = 20,
 ): GIExercise[] {
+  // Use getAllPatterns to filter out ambiguous verbs (love/like/hate/etc.)
   const pool = passedGroups.flatMap(group =>
-    group.patterns.map(pattern => ({ group, pattern }))
+    getAllPatterns(group).map(pattern => ({ group, pattern }))
   );
 
   const types: GIExerciseType[] = [
