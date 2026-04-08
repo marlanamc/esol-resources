@@ -6,7 +6,6 @@ import { CelebrationAnimation } from '@/components/ui/CelebrationAnimation';
 import { GI_FINAL_GROUP_ID, GI_REVIEW_GROUP_ID } from '@/data/gerund-infinitive-groups';
 import { REVIEW_UNLOCK_COUNT } from '@/lib/gerund-infinitive-progress';
 import { formatMissedPatternsForDisplay } from '@/lib/csv/gerund-infinitive-csv';
-import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
 import type { GerundInfinitiveGroup, GIRoundResults } from '@/types/gerund-infinitive';
 import { GI_UNLOCK_THRESHOLD, GI_MASTERY_THRESHOLD } from '@/types/gerund-infinitive';
 
@@ -31,7 +30,7 @@ export function ResultsScreen({ group, results, nextGroup, completedGroupsCount 
   const { accuracy, correctAnswers, exercisesCompleted, completed, pointsAwarded, streak, newAchievements, missedPatternIds } = results;
   const passed = completed;
   const isFinal = group.id === GI_FINAL_GROUP_ID;
-  const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/activity/gerund-infinitive-game' });
+  const returnHref = '/activity/gerund-infinitive-game';
   const isReview = group.id === GI_REVIEW_GROUP_ID;
   const mastered = results.masteryAchieved;
 
