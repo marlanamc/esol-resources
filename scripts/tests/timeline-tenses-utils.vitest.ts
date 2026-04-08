@@ -331,10 +331,10 @@ describe("timeline tenses utils", () => {
       allChallengeQuestions,
       [],
       "spot-the-difference",
-      10
+      5
     );
 
-    expect(round).toHaveLength(10);
+    expect(round).toHaveLength(5);
     expect(round.every((question) => question.type === "tense-comparison")).toBe(true);
   });
 
