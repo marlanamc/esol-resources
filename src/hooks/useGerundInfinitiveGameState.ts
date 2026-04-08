@@ -209,13 +209,38 @@ export function useGerundInfinitiveGameState(activityId: string) {
 
   const startGroupChallenge = useCallback(() => {
     if (!state.selectedGroup) return;
-    // For Mixed Verbs group (group-2c), show sorting mini-game first (only on round1)
-    if (state.selectedGroup.id === 'group-2c' && state.selectedRoundMode === 'round1') {
-      setState(prev => ({ ...prev, phase: 'sorting', error: null }));
-      return;
+    try {
+      // For Mixed Verbs group (group-2c), show sorting mini-game first (only on round1)
+      if (state.selectedGroup.id === 'group-2c' && state.selectedRoundMode === 'round1') {
+        setState(prev => ({ ...prev, phase: 'sorting', error: null }));
+        return;
+      }
+
+      const exercises = buildExercisesForMode(state.selectedGroup, state.selectedRoundMode, state.categoryData);
+
+      if (exercises.length === 0) {
+        setState(prev => ({
+          ...prev,
+          saveError: 'This level could not start because no exercises were generated. Please try another level or reload.',
+        }));
+        return;
+      }
+
+      setState(prev => ({
+        ...prev,
+        exercises,
+        currentExerciseIndex: 0,
+        roundResults: null,
+        exerciseResults: [],
+        phase: 'exercise',
+        error: null,
+      }));
+    } catch {
+      setState(prev => ({
+        ...prev,
+        saveError: 'This level could not start. Please reload and try again.',
+      }));
     }
-    const exercises = buildExercisesForMode(state.selectedGroup, state.selectedRoundMode, state.categoryData);
-    setState(prev => ({ ...prev, exercises, currentExerciseIndex: 0, roundResults: null, exerciseResults: [], phase: 'exercise', error: null }));
   }, [state.selectedGroup, state.selectedRoundMode, state.categoryData]);
 
   const completeSortingMiniGame = useCallback(() => {

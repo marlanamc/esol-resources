@@ -109,6 +109,9 @@ export function PatternIntroScreen({
     }));
 
   const ctaLabel = isFinal ? 'Start Final Challenge' : isReview ? 'Start Review' : isRound2 ? 'Start Round 2' : 'Start Challenge';
+  const handleStartChallenge = () => {
+    onStartChallenge();
+  };
 
   return (
     <div className="space-y-6 max-w-2xl mx-auto pb-24 sm:pb-0">
@@ -255,11 +258,6 @@ export function PatternIntroScreen({
                       ex.sentence
                     )}
                   </p>
-                  {ex.context && (
-                    <span className="inline-block mt-1.5 px-2 py-0.5 rounded-md bg-bg-light dark:bg-white/5 text-xs text-text-muted font-medium">
-                      {ex.context}
-                    </span>
-                  )}
                 </div>
                 <ChevronRight size={16} className="text-primary/50 flex-shrink-0 mt-0.5" />
               </motion.div>
@@ -541,16 +539,18 @@ export function PatternIntroScreen({
         className="hidden sm:flex flex-row gap-3 pt-2"
       >
         <button
+          type="button"
           onClick={onBack}
           className="flex-none px-6 py-3 rounded-xl border border-border text-text-muted hover:text-text hover:border-border-dark transition-colors font-semibold"
         >
           ← Back
         </button>
         <motion.button
-          onClick={onStartChallenge}
+          type="button"
+          onClick={handleStartChallenge}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
+          className="relative z-10 flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors pointer-events-auto"
         >
           <Play size={18} />
           {ctaLabel}
@@ -558,8 +558,9 @@ export function PatternIntroScreen({
       </motion.div>
 
       {/* Fixed bottom bar - mobile only: Back (left) | Start Challenge (right) */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between gap-3 px-4 py-3 bg-bg/95 backdrop-blur-md border-t border-border pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between gap-3 px-4 py-3 bg-bg/95 backdrop-blur-md border-t border-border pb-[max(0.75rem,env(safe-area-inset-bottom))] pointer-events-auto">
         <button
+          type="button"
           onClick={onBack}
           className="flex items-center gap-2 px-5 py-3 rounded-xl border border-border text-text-muted hover:text-text hover:border-border-dark transition-colors font-semibold min-h-[48px]"
         >
@@ -567,10 +568,11 @@ export function PatternIntroScreen({
           Back
         </button>
         <motion.button
-          onClick={onStartChallenge}
+          type="button"
+          onClick={handleStartChallenge}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors min-h-[48px] flex-1"
+          className="relative z-10 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors min-h-[48px] flex-1 pointer-events-auto"
         >
           <Play size={20} />
           {ctaLabel}
