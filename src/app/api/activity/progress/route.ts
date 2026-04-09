@@ -563,7 +563,7 @@ export async function POST(request: NextRequest) {
     // - For other activities, award once when overall progress hits 100%
     const isVocabularyTypeUpdate = vocabType && ['word-list', 'flashcards', 'matching', 'fill-blank'].includes(vocabType);
     const existingCategoryData = existing?.categoryData ? JSON.parse(existing.categoryData) : {};
-    const isGroupRoundUpdate = activityGameUi === 'gerund-infinitive' || activityGameUi === 'irregular-verbs';
+    const isGroupRoundUpdate = activityGameUi === 'gerund-infinitive' || activityGameUi === 'irregular-verbs' || activityGameUi === 'parts-of-speech';
     const validRoundModes = ['round1', 'round2', 'review', 'final'];
     const hasRoundParams = typeof groupId === 'string' && groupId.length > 0
         && validRoundModes.includes(roundMode)
@@ -638,10 +638,17 @@ export async function POST(request: NextRequest) {
                 const isRound1 = roundMode === 'round1';
                 const passed = sanitizedRoundAccuracy >= (isRound1 ? 80 : 85);
                 const giRoundMode = isRound1 ? 'round1' : 'round2';
-                points = activityGameUi === 'gerund-infinitive'
-                    ? calculateGIGroupPoints(sanitizedRoundAccuracy, sanitizedRoundExercises, passed, giRoundMode)
-                    : calculateVerbGroupPoints(sanitizedRoundAccuracy, sanitizedRoundExercises, passed, roundMode as 'round1' | 'round2' | 'review');
-                activityTypeLabel = activityGameUi === 'gerund-infinitive' ? 'Gerunds & Infinitives' : 'Irregular Verbs';
+                if (activityGameUi === 'parts-of-speech') {
+                    // POS game: simple points based on difficulty field passed from client
+                    const difficulty = typeof groupId === 'string' && groupId.includes('-3-') ? 3 : groupId.includes('-2-') ? 2 : 1;
+                    points = passed ? (difficulty === 3 ? 8 : difficulty === 2 ? 5 : 3) : 0;
+                    activityTypeLabel = 'Parts of Speech';
+                } else {
+                    points = activityGameUi === 'gerund-infinitive'
+                        ? calculateGIGroupPoints(sanitizedRoundAccuracy, sanitizedRoundExercises, passed, giRoundMode)
+                        : calculateVerbGroupPoints(sanitizedRoundAccuracy, sanitizedRoundExercises, passed, roundMode as 'round1' | 'round2' | 'review');
+                    activityTypeLabel = activityGameUi === 'gerund-infinitive' ? 'Gerunds & Infinitives' : 'Irregular Verbs';
+                }
             }
             // Special handling for numbers game - award difficulty-based points per category
             if (activityGameUi === 'numbers') {

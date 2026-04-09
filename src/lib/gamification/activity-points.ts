@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -23,6 +23,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "irregular-verbs") return "irregular-verbs";
     if (ui === "gerund-infinitive" || ui === "gerunds-infinitives" || ui === "gerund-infinitive-patterns") return "gerund-infinitive";
     if (ui === "timeline-tenses" || ui === "timeline" || ui === "tenses-timeline") return "timeline-tenses";
+    if (ui === "parts-of-speech" || ui === "pos-game") return "parts-of-speech";
   }
 
   const content = activity?.content;
@@ -63,6 +64,10 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     // Check for timeline-tenses content type
     if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "timeline-tenses") {
       return "timeline-tenses";
+    }
+    // Check for parts-of-speech content type
+    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "parts-of-speech") {
+      return "parts-of-speech";
     }
   }
 

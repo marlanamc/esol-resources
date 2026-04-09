@@ -1857,7 +1857,7 @@ export const GROUP_3C: GerundInfinitiveGroup = {
       correctForm: 'infinitive',
       category: 'purpose',
       examples: [
-        { sentence: "I study English ___ my career.", blank: 'to improve', context: 'Education' },
+        { sentence: "I study English ___ my career.", blank: 'to advance', context: 'Education' },
         { sentence: "She studies hard ___ good grades.", blank: 'to get', context: 'School' },
         { sentence: "We study ___ more about the world.", blank: 'to learn', context: 'Education' },
         { sentence: "He studied all night ___ the test.", blank: 'to pass', context: 'School' },

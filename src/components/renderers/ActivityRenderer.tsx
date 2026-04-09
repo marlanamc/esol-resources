@@ -47,6 +47,7 @@ const MinimalPairsGame = dynamic(() => import("../games/MinimalPairsGame"), { lo
 const PronunciationSentenceListeningGame = dynamic(() => import("../games/PronunciationSentenceListeningGame"), { loading: ActivityLoadingFallback });
 const IrregularVerbsGame = dynamic(() => import("../games/IrregularVerbsGame/IrregularVerbsGame").then(m => ({ default: m.IrregularVerbsGame })), { loading: ActivityLoadingFallback });
 const GerundInfinitiveGame = dynamic(() => import("../games/GerundInfinitiveGame").then(m => ({ default: m.GerundInfinitiveGame })), { loading: ActivityLoadingFallback });
+const PartsOfSpeechGame = dynamic(() => import("../games/PartsOfSpeechGame/PartsOfSpeechGame").then(m => ({ default: m.PartsOfSpeechGame })), { loading: ActivityLoadingFallback });
 const TimelineTensesGame = dynamic(() => import("../games/TimelineTensesGame").then(m => ({ default: m.TimelineTensesGame })), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("../activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("../activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
@@ -155,6 +156,10 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                 if (activity.id === "gerund-infinitive-game" || activity.ui === "gerund-infinitive") {
                     return <GerundInfinitiveGame activityId={activity.id} />;
                 }
+                // Always render parts-of-speech game when ID matches
+                if (activity.id === "parts-of-speech-game" || activity.ui === "parts-of-speech") {
+                    return <PartsOfSpeechGame activityId={activity.id} />;
+                }
                 const gameUi = resolveActivityGameUi(activity);
                 switch (gameUi) {
                     case "numbers":
@@ -192,6 +197,8 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <GerundInfinitiveGame activityId={activity.id} />;
                     case "timeline-tenses":
                         return <TimelineTensesGame activityId={activity.id} assignmentId={assignmentId} />;
+                    case "parts-of-speech":
+                        return <PartsOfSpeechGame activityId={activity.id} />;
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }

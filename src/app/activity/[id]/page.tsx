@@ -284,7 +284,8 @@ function renderImmersiveActivity(
     const shouldRenderImmersiveHeader =
         !(activity.type === "vocabulary" && activity.ui) &&
         immersiveGameUi !== "irregular-verbs" &&
-        immersiveGameUi !== "gerund-infinitive";
+        immersiveGameUi !== "gerund-infinitive" &&
+        immersiveGameUi !== "parts-of-speech";
     return (
         <div className="min-h-screen bg-bg flex flex-col">
             {overlays}

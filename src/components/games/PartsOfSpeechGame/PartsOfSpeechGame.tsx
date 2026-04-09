@@ -6,49 +6,44 @@ import { AlertCircle, ArrowLeft } from 'lucide-react';
 import { ErrorToast } from '@/components/ui/ErrorToast';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { useRouter } from 'next/navigation';
-import {
-  GI_GROUPS,
-} from '@/data/gerund-infinitive-groups';
-import { getProgressSummary, normalizeProgressData } from '@/lib/gerund-infinitive-progress';
-import {
-  useGerundInfinitiveGameState,
-} from '@/hooks/useGerundInfinitiveGameState';
+import { ALL_POS_GROUPS } from '@/data/parts-of-speech-groups';
+import { usePartsOfSpeechGameState } from '@/hooks/usePartsOfSpeechGameState';
 import { GroupSelectionScreen } from './GroupSelectionScreen';
 import { PatternIntroScreen } from './PatternIntroScreen';
-import { GerundInfinitiveWalkthroughScreen } from './GerundInfinitiveWalkthroughScreen';
-import { VerbSortingMiniGame } from './VerbSortingMiniGame';
+import { PatternWalkthroughScreen } from './PatternWalkthroughScreen';
 import { ExerciseScreen } from './ExerciseScreen';
 import { ResultsScreen } from './ResultsScreen';
-import type { GerundInfinitiveGroup } from '@/types/gerund-infinitive';
+import type { POSGroup } from '@/types/parts-of-speech';
 
-interface GerundInfinitiveGameProps {
+interface PartsOfSpeechGameProps {
   activityId: string;
 }
 
-export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) {
+export function PartsOfSpeechGame({ activityId }: PartsOfSpeechGameProps) {
   const router = useRouter();
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
+
   const {
     state,
     selectGroup,
     startGroupChallenge,
-    completeSortingMiniGame,
-    skipSortingMiniGame,
-    returnToGroupIntro,
     submitAnswer,
     saveProgress,
     retryGroup,
+    returnToGroupIntro,
     continueToNext,
     quitGame,
+    resetProgress,
     dismissSaveError,
     dismissLockedGroupError,
-  } = useGerundInfinitiveGameState(activityId);
+    isGroupUnlocked,
+  } = usePartsOfSpeechGameState(activityId);
 
-  // Save progress whenever round results change
+  // Save progress when round ends
   useEffect(() => {
     if (state.phase === 'results' && state.roundResults) {
-      void saveProgress(state.roundResults).then((result) => {
+      void saveProgress(state.roundResults).then(result => {
         if (result?.pointsAwarded && result.pointsAwarded > 0) {
           setPointsToast({ points: result.pointsAwarded, key: Date.now() });
         }
@@ -56,12 +51,19 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
     }
   }, [state.phase, state.roundResults, saveProgress]);
 
-  // Scroll top on phase / question change
+  // Scroll to top on phase change
   useEffect(() => {
     contentScrollRef.current?.scrollTo({ top: 0, behavior: 'auto' });
   }, [state.phase, state.currentExerciseIndex, state.selectedGroup?.id]);
 
-  // Loading
+  // Helper: get next group for results screen
+  const getNextGroupForResults = (): POSGroup | null => {
+    if (!state.roundResults?.unlocked || !state.selectedGroup) return null;
+    const currentIndex = ALL_POS_GROUPS.findIndex(g => g.id === state.selectedGroup!.id);
+    if (currentIndex < 0) return null;
+    return ALL_POS_GROUPS[currentIndex + 1] ?? null;
+  };
+
   if (state.loading) {
     return (
       <div className="min-h-screen bg-bg flex items-center justify-center">
@@ -88,7 +90,6 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
     );
   }
 
-  // Error
   if (state.error && state.phase === 'selection') {
     return (
       <motion.div
@@ -96,15 +97,10 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
         animate={{ opacity: 1, y: 0 }}
         className="min-h-screen bg-bg flex items-center justify-center p-4"
       >
-        <div className="max-w-md w-full p-8 bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 shadow-lg text-center">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: 'spring', stiffness: 200 }}
-            className="w-16 h-16 mx-auto mb-6 rounded-full bg-error/10 flex items-center justify-center"
-          >
+        <div className="max-w-md w-full p-8 bg-white dark:bg-[#162b3d] rounded-2xl border border-border shadow-lg text-center">
+          <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-error/10 flex items-center justify-center">
             <AlertCircle size={32} className="text-error" />
-          </motion.div>
+          </div>
           <h2 className="font-display text-2xl text-text mb-3">Unable to Load</h2>
           <p className="text-text-muted mb-6">{state.error}</p>
           <button
@@ -118,25 +114,17 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
     );
   }
 
-  // Helper: find the next group for the results screen
-  const getNextGroup = (): GerundInfinitiveGroup | null => {
-    if (!state.roundResults?.unlocked || !state.selectedGroup) return null;
-    const currentIndex = GI_GROUPS.findIndex(g => g.id === state.selectedGroup!.id);
-    if (currentIndex < 0) return null;
-    return GI_GROUPS[currentIndex + 1] ?? null;
-  };
-
   return (
     <div
       ref={contentScrollRef}
       className="fixed inset-0 overflow-y-auto overscroll-contain bg-bg touch-manipulation"
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
-      {/* Grain texture overlay */}
+      {/* Grain texture */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.04] z-0"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23888' fill-opacity='0.4'%3E%3Ccircle cx='5' cy='5' r='1'/%3E%3Ccircle cx='25' cy='10' r='0.8'/%3E%3Ccircle cx='45' cy='3' r='1'/%3E%3Ccircle cx='15' cy='25' r='0.6'/%3E%3Ccircle cx='35' cy='20' r='1'/%3E%3Ccircle cx='55' cy='28' r='0.7'/%3E%3Ccircle cx='10' cy='40' r='0.8'/%3E%3Ccircle cx='30' cy='45' r='1'/%3E%3Ccircle cx='50' cy='38' r='0.6'/%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23888' fill-opacity='0.4'%3E%3Ccircle cx='5' cy='5' r='1'/%3E%3Ccircle cx='25' cy='10' r='0.8'/%3E%3Ccircle cx='45' cy='3' r='1'/%3E%3Ccircle cx='15' cy='25' r='0.6'/%3E%3Ccircle cx='35' cy='20' r='1'/%3E%3Ccircle cx='55' cy='28' r='0.7'/%3E%3C/g%3E%3C/svg%3E")`,
           backgroundSize: '60px 60px',
         }}
       />
@@ -150,7 +138,7 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
             : 'max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
         }`}
       >
-        {/* Back button — selection phase */}
+        {/* Back button — selection */}
         {state.phase === 'selection' && (
           <div className="px-3 sm:px-0 pb-2">
             <button
@@ -163,7 +151,7 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
           </div>
         )}
 
-        {/* Back button — intro phase (desktop only) */}
+        {/* Back button — intro (desktop only) */}
         {state.phase === 'intro' && (
           <div className="hidden sm:block px-3 sm:px-0 pb-2">
             <button
@@ -187,7 +175,9 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
             >
               <GroupSelectionScreen
                 categoryData={state.categoryData}
-                onSelectGroup={(group: GerundInfinitiveGroup) => selectGroup(group)}
+                onSelectGroup={selectGroup}
+                isGroupUnlocked={isGroupUnlocked}
+                onResetProgress={resetProgress}
               />
             </motion.div>
           )}
@@ -201,7 +191,7 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
             >
               {state.selectedRoundMode === 'round1' && !state.selectedGroup.isCheckpoint ? (
-                <GerundInfinitiveWalkthroughScreen
+                <PatternWalkthroughScreen
                   group={state.selectedGroup}
                   roundMode={state.selectedRoundMode}
                   onStartChallenge={startGroupChallenge}
@@ -215,22 +205,6 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
                   onBack={quitGame}
                 />
               )}
-            </motion.div>
-          )}
-
-          {state.phase === 'sorting' && state.selectedGroup && (
-            <motion.div
-              key="sorting"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            >
-              <VerbSortingMiniGame
-                group={state.selectedGroup}
-                onComplete={completeSortingMiniGame}
-                onSkip={skipSortingMiniGame}
-              />
             </motion.div>
           )}
 
@@ -265,33 +239,22 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
               <ResultsScreen
                 group={state.selectedGroup}
                 results={state.roundResults}
-                nextGroup={getNextGroup()}
-                completedGroupsCount={state.roundResults.updatedCategoryData
-                  ? getProgressSummary(normalizeProgressData(state.roundResults.updatedCategoryData)).completedGroups
-                  : 0}
+                nextGroup={getNextGroupForResults()}
                 onRetry={retryGroup}
                 onContinue={continueToNext}
+                onReturnToSelection={quitGame}
               />
             </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
 
-      {/* Save error toast - shown regardless of phase */}
       {state.saveError && (
-        <ErrorToast
-          message={state.saveError}
-          onDismiss={dismissSaveError}
-        />
+        <ErrorToast message={state.saveError} onDismiss={dismissSaveError} />
       )}
-      {/* Locked group toast - when tapping a locked group */}
       {state.lockedGroupError && (
-        <ErrorToast
-          message={state.lockedGroupError}
-          onDismiss={dismissLockedGroupError}
-        />
+        <ErrorToast message={state.lockedGroupError} onDismiss={dismissLockedGroupError} />
       )}
-      {/* Points earned toast */}
       {pointsToast && (
         <PointsToast
           key={pointsToast.key}
