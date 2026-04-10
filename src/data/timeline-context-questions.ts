@@ -1667,4 +1667,643 @@ export const TIMELINE_CONTEXT_QUESTIONS: ContextTenseQuestion[] = [
     difficulty: 1,
     tenseCategory: "continuous",
   },
+  // ============================================================
+  // SIMPLE — extra questions
+  // ============================================================
+  {
+    id: "ctx-simple-01",
+    type: "context-tense-picker",
+    scenario: "My boss always ___ (send) emails on Sunday nights. It drives everyone crazy.",
+    blankVerb: "send",
+    realLifeDialogue: {
+      lineA: 'A: "Did you see that email?"',
+      lineB: 'B: "Of course — he always sends them on Sunday nights."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "sends",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-simple-01-a"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is sending",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-simple-01-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has sent",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-simple-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["always", "on Sunday nights"],
+    explanation:
+      '"Always" and a fixed time ("Sunday nights") describe a repeated habit. Present Simple is used for routines. Present Continuous would mean it\'s happening right now; Present Perfect would focus on past results.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "ctx-simple-02",
+    type: "context-tense-picker",
+    scenario: "I ___ (miss) the bus this morning because I woke up late.",
+    blankVerb: "miss",
+    realLifeDialogue: {
+      lineA: 'A: "Why were you late to class?"',
+      lineB: 'B: "I missed the bus this morning."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "missed",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-simple-02-a", [{ position: 35 }]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have missed",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-simple-02-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "was missing",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-simple-02-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["this morning", "woke up late"],
+    explanation:
+      '"This morning" is a specific finished time — the event is over and closed. Past Simple is used for completed actions at a specific past time. "Have missed" connects to the present; "was missing" implies an ongoing background action.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "ctx-simple-03",
+    type: "context-tense-picker",
+    scenario: "When Ana was a child, she ___ (walk) to school every day with her older brother.",
+    blankVerb: "walk",
+    realLifeDialogue: {
+      lineA: 'A: "Did you grow up nearby?"',
+      lineB: 'B: "Yes — I walked to school every day when I was little."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "walked",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-simple-03-a", [{ position: 35 }]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "walks",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-simple-03-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "was walking",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-simple-03-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["When Ana was a child", "every day"],
+    explanation:
+      '"When Ana was a child" sets the whole story in the past. A repeated past habit uses Past Simple — not Past Continuous, which describes a background action in progress at one past moment.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "ctx-simple-04",
+    type: "context-tense-picker",
+    scenario: "Don't worry — I ___ (be) at the appointment on time. I already booked a cab.",
+    blankVerb: "be",
+    realLifeDialogue: {
+      lineA: 'A: "Are you sure you can make it by 9?"',
+      lineB: 'B: "I will be there on time — I already have a cab."',
+    },
+    options: [
+      {
+        tenseName: "Future Simple",
+        conjugatedVerb: "will be",
+        elements: buildCanonicalTimelineElements("futureSimple", "ctx-simple-04-a", [{ position: 65 }]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "am",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-simple-04-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "am being",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-simple-04-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["Don't worry", "I already booked"],
+    explanation:
+      'The speaker is making a promise about a future event. Future Simple ("will be") is used for promises and decisions made at the moment of speaking.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "ctx-simple-05",
+    type: "context-tense-picker",
+    scenario: "He never ___ (eat) breakfast. He says he's not hungry in the morning.",
+    blankVerb: "eat",
+    realLifeDialogue: {
+      lineA: 'A: "Should we wait for Tomás to eat?"',
+      lineB: 'B: "No — he never eats breakfast."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "eats",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-simple-05-a"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is eating",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-simple-05-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has eaten",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-simple-05-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["never", "He says he's not hungry in the morning"],
+    explanation:
+      '"Never" with a general statement about a person\'s habits calls for Present Simple. Present Continuous would mean he\'s not eating right now; Present Perfect would describe a life experience.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "ctx-simple-06",
+    type: "context-tense-picker",
+    scenario: "The dentist ___ (call) me last Tuesday to reschedule my appointment.",
+    blankVerb: "call",
+    realLifeDialogue: {
+      lineA: 'A: "When did you find out about the change?"',
+      lineB: 'B: "The dentist called me last Tuesday."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "called",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-simple-06-a", [{ position: 40 }]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has called",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-simple-06-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "calls",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-simple-06-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["last Tuesday"],
+    explanation:
+      '"Last Tuesday" is a specific, finished past time — the event is closed. Past Simple is always used with specific past time markers. Present Perfect cannot be used with "last Tuesday."',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "ctx-simple-07",
+    type: "context-tense-picker",
+    scenario: "Don't throw that charger away — I think you ___ (need) it later.",
+    blankVerb: "need",
+    realLifeDialogue: {
+      lineA: 'A: "Should I keep this old charger?"',
+      lineB: 'B: "Yes — I think you will need it later."',
+    },
+    options: [
+      {
+        tenseName: "Future Simple",
+        conjugatedVerb: "will need",
+        elements: buildCanonicalTimelineElements("futureSimple", "ctx-simple-07-a", [{ position: 65 }]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "need",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-simple-07-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have needed",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-simple-07-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["later", "I think"],
+    explanation:
+      '"Later" points to the future. "I think" introduces a prediction. Future Simple ("will need") is used for predictions and opinions about what will happen.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  // ============================================================
+  // PERFECT — extra questions
+  // ============================================================
+  {
+    id: "ctx-perf-01",
+    type: "context-tense-picker",
+    scenario: "I can't find my keys. I think I ___ (leave) them at the office.",
+    blankVerb: "leave",
+    realLifeDialogue: {
+      lineA: 'A: "What are you looking for?"',
+      lineB: 'B: "My keys — I think I have left them at the office."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "left",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-perf-01-a", [{ position: 40 }]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have left",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-perf-01-b"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "was leaving",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-perf-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["I can't find", "I think"],
+    explanation:
+      'The missing keys are a problem right now — the past action has a present consequence. Present Perfect connects a past event to the current situation. Past Simple would just report an event without that present relevance.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "ctx-perf-02",
+    type: "context-tense-picker",
+    scenario: "When we arrived at the restaurant, our table ___ (already/give) away to someone else.",
+    blankVerb: "give",
+    realLifeDialogue: {
+      lineA: 'A: "What happened at the restaurant?"',
+      lineB: 'B: "When we arrived, our table had already been given away."',
+    },
+    options: [
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has already been given",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-perf-02-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "was already given",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-perf-02-b", [{ position: 40 }]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Perfect",
+        conjugatedVerb: "had already been given",
+        elements: buildCanonicalTimelineElements("pastPerfect", "ctx-perf-02-c", [{ position: 35 }, { position: 55 }]),
+        isCorrect: true,
+      },
+    ],
+    contextClues: ["When we arrived", "already"],
+    explanation:
+      '"When we arrived" sets a past reference point. The table being given away happened before that moment — Past Perfect shows one past event completed before another past event.',
+    difficulty: 2,
+    tenseCategory: "perfect",
+  },
+  // ============================================================
+  // PERFECT CONTINUOUS — extra questions
+  // ============================================================
+  {
+    id: "ctx-ppc-01",
+    type: "context-tense-picker",
+    scenario: "You look exhausted! How long ___ (you/study) for this exam?",
+    blankVerb: "study",
+    realLifeDialogue: {
+      lineA: 'A: "You look exhausted! How long have you been studying?"',
+      lineB: 'B: "Since seven this morning — I can\'t stop now."',
+    },
+    options: [
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "are you studying",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-ppc-01-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "have you been studying",
+        elements: buildCanonicalTimelineElements("presentPerfectContinuous", "ctx-ppc-01-b", [{ position: 50 }]),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "did you study",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-ppc-01-c", [{ position: 40 }]),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["How long", "You look exhausted"],
+    explanation:
+      '"How long" asks about the duration of an activity that started in the past and is still ongoing. Present Perfect Continuous is used for this. Present Continuous only asks about right now; Past Simple implies the studying is over.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "ctx-ppc-02",
+    type: "context-tense-picker",
+    scenario: "The baby ___ (cry) for the past hour. I don't know what's wrong.",
+    blankVerb: "cry",
+    realLifeDialogue: {
+      lineA: 'A: "Is everything okay?"',
+      lineB: 'B: "The baby has been crying for the past hour — I\'m so tired."',
+    },
+    options: [
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is crying",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-ppc-02-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "has cried",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-ppc-02-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "has been crying",
+        elements: buildCanonicalTimelineElements("presentPerfectContinuous", "ctx-ppc-02-c", [{ position: 50 }]),
+        isCorrect: true,
+      },
+    ],
+    contextClues: ["for the past hour"],
+    explanation:
+      '"For the past hour" shows an ongoing activity that started in the past and is still happening. Present Perfect Continuous expresses this duration. "Is crying" only describes this moment; "has cried" treats it as a completed event.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "ctx-ppc-03",
+    type: "context-tense-picker",
+    scenario: "My neighbor ___ (renovate) his kitchen since last month. The noise is constant.",
+    blankVerb: "renovate",
+    realLifeDialogue: {
+      lineA: 'A: "What\'s all that noise next door?"',
+      lineB: 'B: "My neighbor has been renovating his kitchen since last month."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "renovates",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-ppc-03-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is renovating",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-ppc-03-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "has been renovating",
+        elements: buildCanonicalTimelineElements("presentPerfectContinuous", "ctx-ppc-03-c", [{ position: 50 }]),
+        isCorrect: true,
+      },
+    ],
+    contextClues: ["since last month"],
+    explanation:
+      '"Since last month" marks the start of an ongoing activity. Present Perfect Continuous connects that past start to the present. "Is renovating" only captures this moment without the history.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "ctx-ppc-04",
+    type: "context-tense-picker",
+    scenario: "We ___ (wait) for the plumber since nine this morning. He still hasn't shown up.",
+    blankVerb: "wait",
+    realLifeDialogue: {
+      lineA: 'A: "Is the plumber there yet?"',
+      lineB: 'B: "No — we have been waiting since nine this morning!"',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "waited",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-ppc-04-a", [{ position: 40 }]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "are waiting",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-ppc-04-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "have been waiting",
+        elements: buildCanonicalTimelineElements("presentPerfectContinuous", "ctx-ppc-04-c", [{ position: 50 }]),
+        isCorrect: true,
+      },
+    ],
+    contextClues: ["since nine this morning", "still hasn't shown up"],
+    explanation:
+      '"Since nine this morning" and "still hasn\'t shown up" both confirm the waiting is ongoing from the past to now. Present Perfect Continuous is the only tense that captures that continuous duration.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "ctx-ppc-05",
+    type: "context-tense-picker",
+    scenario: "My sister ___ (train) for a half-marathon for the past three months. She runs every morning.",
+    blankVerb: "train",
+    realLifeDialogue: {
+      lineA: 'A: "Is your sister still running every day?"',
+      lineB: 'B: "Yes — she has been training for a half-marathon for three months."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "trains",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-ppc-05-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "trained",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-ppc-05-b", [{ position: 40 }]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "has been training",
+        elements: buildCanonicalTimelineElements("presentPerfectContinuous", "ctx-ppc-05-c", [{ position: 50 }]),
+        isCorrect: true,
+      },
+    ],
+    contextClues: ["for the past three months"],
+    explanation:
+      '"For the past three months" shows an activity in progress from a point in the past up to now. Present Perfect Continuous expresses this ongoing effort. Past Simple would mean the training is finished.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "ctx-ppc-06",
+    type: "context-tense-picker",
+    scenario: "The construction crew ___ (work) on this road all week. It should be done by Friday.",
+    blankVerb: "work",
+    realLifeDialogue: {
+      lineA: 'A: "Is the road still blocked?"',
+      lineB: 'B: "Yes — they have been working on it all week."',
+    },
+    options: [
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "worked",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-ppc-06-a", [{ position: 40 }]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "is working",
+        elements: buildCanonicalTimelineElements("presentContinuous", "ctx-ppc-06-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "has been working",
+        elements: buildCanonicalTimelineElements("presentPerfectContinuous", "ctx-ppc-06-c", [{ position: 50 }]),
+        isCorrect: true,
+      },
+    ],
+    contextClues: ["all week"],
+    explanation:
+      '"All week" shows the activity has been ongoing since the start of the week and is still continuing. Present Perfect Continuous captures that unbroken duration up to now.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "ctx-ppc-07",
+    type: "context-tense-picker",
+    scenario: "She was out of breath when she got home because she ___ (run) for thirty minutes.",
+    blankVerb: "run",
+    realLifeDialogue: {
+      lineA: 'A: "Why was she so out of breath?"',
+      lineB: 'B: "She had been running for thirty minutes before she got home."',
+    },
+    options: [
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "was running",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-ppc-07-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "has been running",
+        elements: buildCanonicalTimelineElements("presentPerfectContinuous", "ctx-ppc-07-b", [{ position: 50 }]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Perfect Continuous",
+        conjugatedVerb: "had been running",
+        elements: buildCanonicalTimelineElements("pastPerfectContinuous", "ctx-ppc-07-c", [{ position: 35 }, { position: 55 }]),
+        isCorrect: true,
+      },
+    ],
+    contextClues: ["was out of breath", "when she got home", "for thirty minutes"],
+    explanation:
+      'Everything is in the past. She got home (past reference point) and the running happened for thirty minutes before that — leading up to her arrival. Past Perfect Continuous shows an ongoing past activity that caused a result at another past moment.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "ctx-ppc-08",
+    type: "context-tense-picker",
+    scenario: "By the time the doctor saw her, she ___ (feel) sick for three days.",
+    blankVerb: "feel",
+    realLifeDialogue: {
+      lineA: 'A: "How long had she been sick before seeing the doctor?"',
+      lineB: 'B: "She had been feeling sick for three days by the time she went in."',
+    },
+    options: [
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "was feeling",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-ppc-08-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "has been feeling",
+        elements: buildCanonicalTimelineElements("presentPerfectContinuous", "ctx-ppc-08-b", [{ position: 50 }]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Perfect Continuous",
+        conjugatedVerb: "had been feeling",
+        elements: buildCanonicalTimelineElements("pastPerfectContinuous", "ctx-ppc-08-c", [{ position: 35 }, { position: 55 }]),
+        isCorrect: true,
+      },
+    ],
+    contextClues: ["By the time the doctor saw her", "for three days"],
+    explanation:
+      '"By the time the doctor saw her" sets a past reference point. The illness lasted three days leading up to that visit — Past Perfect Continuous shows an ongoing activity that continued right up to another past moment.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "ctx-ppc-09",
+    type: "context-tense-picker",
+    scenario: "I ___ (take) the same bus route to work for five years. I know every stop by heart.",
+    blankVerb: "take",
+    realLifeDialogue: {
+      lineA: 'A: "Do you know this neighborhood well?"',
+      lineB: 'B: "Very well — I have been taking the same bus route for five years."',
+    },
+    options: [
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "take",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-ppc-09-a"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect",
+        conjugatedVerb: "have taken",
+        elements: buildCanonicalTimelineElements("presentPerfect", "ctx-ppc-09-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Perfect Continuous",
+        conjugatedVerb: "have been taking",
+        elements: buildCanonicalTimelineElements("presentPerfectContinuous", "ctx-ppc-09-c", [{ position: 50 }]),
+        isCorrect: true,
+      },
+    ],
+    contextClues: ["for five years"],
+    explanation:
+      '"For five years" shows an activity that started in the past and is still happening now — the route is ongoing. Present Perfect Continuous emphasises the unbroken continuity. "Take" (habit) misses the duration; "have taken" sounds like a count of trips rather than a continuous activity.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
 ];
