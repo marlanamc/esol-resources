@@ -869,4 +869,129 @@ export const TIMELINE_ERROR_QUESTIONS: ErrorCorrectionQuestion[] = [
     difficulty: 1,
     tenseCategory: "simple",
   },
+  // ============================================================
+  // DO / DOES / DID — Common "to be" substitution errors
+  // ============================================================
+  {
+    id: "err-do-s-01",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "She is work every day.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-do-s-01-incorrect"),
+    correctSentence: "She works every day.",
+    realLifeDialogue: {
+      lineA: 'A: "What does Ana do for work?"',
+      lineB: 'B: "She works at a school every day."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentSimpleHabit", "err-do-s-01-correct"),
+    incorrectTense: "Present Continuous (wrong)",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      'Present Simple uses do/does, not "is/are." "She is work" mixes a to-be verb with a base verb — you need either "She is working" (right now) or "She works" (habit/routine).',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-do-s-02",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "They are not go to the gym on Sundays.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-do-s-02-incorrect"),
+    correctSentence: "They don't go to the gym on Sundays.",
+    realLifeDialogue: {
+      lineA: 'A: "Do they exercise on weekends?"',
+      lineB: 'B: "No, they don\'t go to the gym on Sundays."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentSimpleHabit", "err-do-s-02-correct"),
+    incorrectTense: "Present Continuous (wrong)",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      'Negative Present Simple uses "don\'t / doesn\'t," not "am not / are not." "Are not go" combines a to-be verb with a base verb — use "don\'t go" for a routine that doesn\'t happen.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-do-s-03",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "He is not understand the question.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-do-s-03-incorrect"),
+    correctSentence: "He doesn't understand the question.",
+    realLifeDialogue: {
+      lineA: 'A: "Can Carlos answer?"',
+      lineB: 'B: "No, he doesn\'t understand the question."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentSimpleHabit", "err-do-s-03-correct"),
+    incorrectTense: "Present Continuous (wrong)",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      '"Understand" is a state verb — it describes a mental state, not an action in progress. State verbs (understand, know, like, need, want) almost never use continuous forms. Use "doesn\'t understand."',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-do-s-04",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Did you went to the store yesterday?",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-do-s-04-incorrect", [
+      { position: 40 },
+    ]),
+    correctSentence: "Did you go to the store yesterday?",
+    realLifeDialogue: {
+      lineA: 'A: "Did you go to the store yesterday?"',
+      lineB: 'B: "Yes, I went after work."',
+    },
+    correctElements: buildCanonicalTimelineElements("pastSimple", "err-do-s-04-correct", [
+      { position: 40 },
+    ]),
+    incorrectTense: "Past Simple (wrong form)",
+    correctTense: "Past Simple",
+    commonMistakeExplanation:
+      'When you use "did" to form a question, the main verb goes back to its base form — not past tense. "Did you went" doubles the past marking. Correct: "Did you go?"',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-do-s-05",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "I didn't went to class last Monday.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-do-s-05-incorrect", [
+      { position: 40 },
+    ]),
+    correctSentence: "I didn't go to class last Monday.",
+    realLifeDialogue: {
+      lineA: 'A: "Were you at class on Monday?"',
+      lineB: 'B: "No, I didn\'t go. I was sick."',
+    },
+    correctElements: buildCanonicalTimelineElements("pastSimple", "err-do-s-05-correct", [
+      { position: 40 },
+    ]),
+    incorrectTense: "Past Simple (wrong form)",
+    correctTense: "Past Simple",
+    commonMistakeExplanation:
+      '"Didn\'t" already carries the past meaning — the main verb after it stays in base form. "Didn\'t went" double-marks the past. Correct: "didn\'t go."',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "err-do-s-06",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Does she knows the answer?",
+    incorrectElements: buildCanonicalTimelineElements("presentSimpleHabit", "err-do-s-06-incorrect"),
+    correctSentence: "Does she know the answer?",
+    realLifeDialogue: {
+      lineA: 'A: "Does she know the answer?"',
+      lineB: 'B: "I think so — she studied all night."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentSimpleHabit", "err-do-s-06-correct"),
+    incorrectTense: "Present Simple (wrong form)",
+    correctTense: "Present Simple",
+    commonMistakeExplanation:
+      '"Does" already adds the third-person -s. The main verb after does/do stays in base form — never add -s again. "Does she know," not "does she knows."',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
 ];
