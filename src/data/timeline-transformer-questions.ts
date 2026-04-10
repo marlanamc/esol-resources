@@ -285,7 +285,7 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
     type: "sentence-transformer",
     sourceTense: "Present Simple",
     targetTense: "Present Perfect",
-    sourceSentence: "We know that restaurant well.",
+    sourceSentence: "We eat at that restaurant often.",
     targetSentence: "We have eaten at that restaurant many times.",
     sourceElements: buildCanonicalTimelineElements(
       "presentSimpleHabit",
@@ -296,9 +296,9 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
       "trans-prs-pp-01-target"
     ),
     verbBlanks: [{ index: 1, validAnswers: ["have eaten"] }],
-    hint: 'Use "have/has + past participle" when past experience explains present knowledge.',
+    hint: 'Use "have/has + past participle" to describe repeated past experiences that are still relevant.',
     explanation:
-      "The target sentence rewrites the idea as life experience connected to now. Present Perfect works because those past visits matter in the present.",
+      "The source sentence describes a current habit. Present Perfect rewrites it as repeated past experience — both use the same verb (eat/eaten), but the tense shifts the focus from routine to accumulated experience.",
     difficulty: 2,
     tenseCategory: "perfect",
   },
@@ -564,7 +564,7 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
     sourceTense: "Present Continuous",
     targetTense: "Present Simple",
     sourceSentence: "She is not eating now.",
-    targetSentence: "She does not eat meat.",
+    targetSentence: "She does not eat in the mornings.",
     sourceElements: buildCanonicalTimelineElements(
       "presentContinuous",
       "trans-beginner-neg-prsc-prs-01-source"
@@ -576,7 +576,7 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
     verbBlanks: [{ index: 3, validAnswers: ["eat"] }],
     hint: 'Use the base verb after "does not" in Present Simple.',
     explanation:
-      "The source sentence is a negative action happening now. The target sentence becomes a general fact, so Present Simple is the better fit.",
+      "The source sentence is a negative action happening right now. The target sentence states a general habit, so Present Simple is the better fit. Only the tense changes — the verb (eat) stays the same.",
     difficulty: 1,
     tenseCategory: "simple",
   },
