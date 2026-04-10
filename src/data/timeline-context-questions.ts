@@ -4,8 +4,31 @@ import { buildCanonicalTimelineElements } from "./timeline-challenge-stamp-canon
 /**
  * Context-Based Tense Picker questions for the "In Context" challenge mode.
  *
- * Students read a scenario with a blank and choose the tense that fits.
- * contextClues lists the words/phrases in the scenario that signal the answer.
+ * Students read a real-world scenario containing a blank, then choose which
+ * conjugated verb (and its tense) fits the context.
+ *
+ * ─── AUTHORING RULES ───────────────────────────────────────────────────────
+ *
+ * 1. SIGNAL WORDS IN SCENARIO — every scenario must contain at least one
+ *    explicit context clue that points to the correct tense. List those clues
+ *    in contextClues so the feedback screen can highlight them.
+ *    ✅  "Look at Maria right now! She ___ (work)..."  → clues: ["right now", "Look at"]
+ *    ❌  "Maria ___ (work) on her laptop."  (no clue — any tense could fit)
+ *
+ * 2. EXACTLY ONE isCorrect: true — the options array must have exactly one
+ *    correct answer. All other options should be genuinely plausible given the
+ *    verb (i.e., grammatically possible tenses for that verb, just wrong here).
+ *
+ * 3. THREE OPTIONS — always provide exactly 3 options. Pick the two wrong tenses
+ *    that students most commonly confuse with the correct one.
+ *
+ * 4. blankVerb — the base (infinitive) form shown in parentheses in the scenario.
+ *    This is displayed as a hint so students know which verb to conjugate.
+ *
+ * 5. explanation — explain why the correct tense fits AND briefly why the
+ *    distractors don't. Name the specific clue word(s).
+ *
+ * ───────────────────────────────────────────────────────────────────────────
  */
 export const TIMELINE_CONTEXT_QUESTIONS: ContextTenseQuestion[] = [
   {

@@ -60,8 +60,33 @@ function createComparisonQuestion(config: ComparisonConfig): TenseComparisonQues
 /**
  * Tense Comparison questions for the "Spot the Difference" challenge mode.
  *
- * These items now foreground one prompt at a time so students must read the time
- * meaning carefully, then choose the timeline that actually matches it.
+ * Students see one sentence (or timeline) and pick the timeline (or sentence)
+ * that correctly matches its tense meaning.
+ *
+ * ─── AUTHORING RULES ───────────────────────────────────────────────────────
+ *
+ * 1. PROMPT TYPES — set via promptType (default: "sentence-to-timeline"):
+ *    - "sentence-to-timeline": student reads a sentence, picks the matching timeline
+ *    - "timeline-to-sentence": student reads a timeline, picks the matching sentence
+ *    Mix both types across the question bank to vary the direction of reasoning.
+ *
+ * 2. MEANINGFUL CONTRAST — optionA and optionB must represent genuinely
+ *    confusable tenses, not obviously different ones.
+ *    ✅  Present Perfect vs. Past Simple (both describe past events)
+ *    ❌  Present Perfect vs. Future Simple (no real confusion between these)
+ *
+ * 3. confusionExplanation — one sentence describing WHY students mix up the
+ *    two options. Focus on the surface similarity, not the correct answer.
+ *    ✅  "Both describe past eating, but only one keeps the result connected to now."
+ *    ❌  "Present Perfect uses have/has." (that's grammar explanation, not confusion)
+ *
+ * 4. keyDifference — the deciding rule students should walk away with.
+ *    Name the signal word or structural clue that separates the two tenses.
+ *    ✅  '"Already/just/yet" without a finished time → Present Perfect.'
+ *
+ * 5. correctOption — must be "A" or "B". Double-check this matches canonA/canonB.
+ *
+ * ───────────────────────────────────────────────────────────────────────────
  */
 export const TIMELINE_COMPARISON_QUESTIONS: TenseComparisonQuestion[] = [
   createComparisonQuestion({

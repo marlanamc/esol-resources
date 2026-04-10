@@ -4,10 +4,37 @@ import { buildCanonicalTimelineElements } from "./timeline-challenge-stamp-canon
 /**
  * Story Builder questions for the "Story Builder" challenge mode.
  *
- * Students complete a multi-sentence narrative, one tense at a time.
- * After each sentence, the timeline grows with new elements.
- * blanks: index is the 0-based word position in the sentence template split by spaces.
- * "___ (verb)" in the template marks where inputs appear.
+ * Students complete a short narrative sentence by sentence. Each sentence
+ * introduces one tense; after each correct answer the timeline grows.
+ *
+ * ─── AUTHORING RULES ───────────────────────────────────────────────────────
+ *
+ * 1. TENSE PROGRESSION — sentences within a story should move through time
+ *    in a way that naturally requires different tenses, ideally building on
+ *    each other (e.g., past simple → past continuous → past perfect).
+ *    Avoid repeating the same tense consecutively unless it serves the narrative.
+ *
+ * 2. TEMPLATE FORMAT — use "___ (baseVerb)" to mark each blank.
+ *    blanks maps the 0-based word index (splitting by spaces) to accepted answers.
+ *    Always double-check the index after editing the template wording.
+ *    ✅  "Nina ___ (wake) up at 7 a.m."  → blanks: [{ index: 1, validAnswers: ["woke"] }]
+ *
+ * 3. MULTIPLE BLANKS — a single sentence can have more than one blank
+ *    (e.g., "While she ___ (shower), her phone ___ (ring).").
+ *    Each blank gets its own entry in the blanks array.
+ *
+ * 4. contextHint — a short cue shown to students before they type.
+ *    Name the signal word or structure, then the tense it points to.
+ *    ✅  '"While" + ongoing action = Past Continuous. The interruption = Past Simple.'
+ *
+ * 5. fullTimelineElements — the combined timeline shown at the story summary
+ *    screen after all sentences are complete. Build this by spreading all the
+ *    per-sentence elements together (see existing examples).
+ *
+ * 6. STORY COHERENCE — all sentences must describe the same character/event.
+ *    The narrative should read naturally when sentences are concatenated.
+ *
+ * ───────────────────────────────────────────────────────────────────────────
  */
 export const TIMELINE_STORY_QUESTIONS: StoryBuilderQuestion[] = [
   {

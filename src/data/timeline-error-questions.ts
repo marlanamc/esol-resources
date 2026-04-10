@@ -4,12 +4,35 @@ import { buildCanonicalTimelineElements } from "./timeline-challenge-stamp-canon
 /**
  * Error Correction questions for the "Fix It" challenge mode.
  *
- * Each question presents either:
- *  - A sentence with the wrong tense ("sentence" errorLocation)
- *  - A timeline that doesn't match the sentence ("timeline" errorLocation)
+ * Each question shows a sentence + timeline where one of them is wrong.
+ * Students identify which is wrong, then fix it.
  *
- * Students first identify where the error is, then type the corrected verb
- * (sentence errors) or view the correct timeline (timeline errors).
+ * ─── AUTHORING RULES ───────────────────────────────────────────────────────
+ *
+ * 1. ERROR TYPES — set via errorLocation:
+ *    - "sentence": the sentence uses the wrong tense; the timeline is correct.
+ *      Students type the corrected verb (matched against verbBlanks).
+ *    - "timeline": the timeline doesn't match the sentence; the sentence is correct.
+ *      Students identify the mismatch; no typing required.
+ *
+ * 2. REAL STUDENT MISTAKES — incorrectSentence should reflect errors that
+ *    actual ESOL learners produce, not random wrong answers.
+ *    ✅  "She is working here for three years."  (confusion: continuous vs. perfect-continuous)
+ *    ❌  "She will work here for three years."  (no common learner confusion)
+ *
+ * 3. SAME VERB — incorrectSentence and correctSentence must use the same base
+ *    verb. Only the tense form changes.
+ *    ✅  "I have seen that film last Friday." → "I saw that film last Friday."
+ *    ❌  Changing any word other than the verb form
+ *
+ * 4. commonMistakeExplanation — explain the specific rule that was broken, not
+ *    just what the correct answer is. Name the time marker or structural clue.
+ *    ✅  '"Last Friday" is a specific past time — Present Perfect can't be used with it.'
+ *
+ * 5. incorrectTense / correctTense — use the full display name for both
+ *    (e.g., "Present Perfect Continuous", not "ppc"). Used in feedback UI.
+ *
+ * ───────────────────────────────────────────────────────────────────────────
  */
 export const TIMELINE_ERROR_QUESTIONS: ErrorCorrectionQuestion[] = [
   {
