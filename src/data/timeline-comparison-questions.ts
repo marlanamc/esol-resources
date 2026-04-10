@@ -1267,4 +1267,304 @@ export const TIMELINE_COMPARISON_QUESTIONS: TenseComparisonQuestion[] = [
     difficulty: 2,
     tenseCategory: "continuous",
   }),
+  // ============================================================
+  // SIMPLE — extra questions
+  // ============================================================
+  createComparisonQuestion({
+    id: "comp-simple-01",
+    promptText: "She teaches yoga at the gym on Monday evenings.",
+    correctOption: "A",
+    tenseA: "Present Simple",
+    tenseB: "Past Simple",
+    canonA: "presentSimpleHabit",
+    canonB: "pastSimple",
+    optionA: "She teaches yoga at the gym on Monday evenings.",
+    optionB: "She taught yoga at the gym last Monday evening.",
+    confusionExplanation:
+      "Both sentences use the same verb and setting — the only difference is whether the routine is current or finished.",
+    keyDifference:
+      '"Monday evenings" (repeated plural) signals an ongoing routine → Present Simple. "Last Monday evening" (specific finished time) closes the event → Past Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "Does she still teach yoga?"',
+      lineB: 'B: "Yes — she teaches every Monday evening."',
+    },
+    difficulty: 1,
+    tenseCategory: "simple",
+  }),
+  createComparisonQuestion({
+    id: "comp-simple-02",
+    promptText: "He walked to school every day as a child.",
+    correctOption: "B",
+    tenseA: "Present Simple",
+    tenseB: "Past Simple",
+    canonA: "presentSimpleHabit",
+    canonB: "pastSimple",
+    optionA: "He walks to work every day.",
+    optionB: "He walked to school every day as a child.",
+    confusionExplanation:
+      "Both describe a regular habit with the same verb — students may miss the time frame that closes one in the past.",
+    keyDifference:
+      '"As a child" closes the habit in a finished period → Past Simple. No time marker means the habit is current → Present Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "Did he grow up nearby?"',
+      lineB: 'B: "Yes — he walked to school every day as a child."',
+    },
+    difficulty: 1,
+    tenseCategory: "simple",
+  }),
+  createComparisonQuestion({
+    id: "comp-simple-03",
+    promptText: "I will call my mom tonight.",
+    correctOption: "A",
+    tenseA: "Future Simple",
+    tenseB: "Present Simple",
+    canonA: "futureSimple",
+    canonB: "presentSimpleHabit",
+    optionA: "I will call my mom tonight.",
+    optionB: "I call my mom every Sunday.",
+    confusionExplanation:
+      "Both involve calling mom — but one is a specific future intention and the other is a weekly habit.",
+    keyDifference:
+      '"Tonight" + "will" = a specific future plan. "Every Sunday" = a recurring routine → Present Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "Are you going to call your mom?"',
+      lineB: 'B: "Yes — I will call her tonight."',
+    },
+    difficulty: 1,
+    tenseCategory: "simple",
+  }),
+  createComparisonQuestion({
+    id: "comp-simple-04",
+    promptText: "The pharmacy opens at 8 a.m. every day.",
+    correctOption: "A",
+    tenseA: "Present Simple",
+    tenseB: "Future Simple",
+    canonA: "presentSimpleHabit",
+    canonB: "futureSimple",
+    optionA: "The pharmacy opens at 8 a.m. every day.",
+    optionB: "The new pharmacy will open next month.",
+    confusionExplanation:
+      "Both describe a pharmacy opening — but one is a daily fact and the other is a future event.",
+    keyDifference:
+      '"Every day" = a current scheduled fact → Present Simple (even though it\'s future each day). "Next month" + "will" = an upcoming event → Future Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "What time does the pharmacy open?"',
+      lineB: 'B: "It opens at 8 every morning."',
+    },
+    difficulty: 1,
+    tenseCategory: "simple",
+  }),
+  createComparisonQuestion({
+    id: "comp-simple-05",
+    promptText: "The school cafeteria doesn't serve breakfast.",
+    correctOption: "A",
+    tenseA: "Present Simple",
+    tenseB: "Past Simple",
+    canonA: "presentSimpleHabit",
+    canonB: "pastSimple",
+    optionA: "The school cafeteria doesn't serve breakfast.",
+    optionB: "The school cafeteria didn't serve breakfast last year.",
+    confusionExplanation:
+      "Both are negatives about the same fact — students need to notice whether it is still true now or was true in the past.",
+    keyDifference:
+      'No time marker = the fact is current → Present Simple. "Last year" closes it in a finished period → Past Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "Can we eat breakfast at school?"',
+      lineB: 'B: "No — the cafeteria doesn\'t serve breakfast."',
+    },
+    difficulty: 1,
+    tenseCategory: "simple",
+  }),
+  createComparisonQuestion({
+    id: "comp-simple-06",
+    promptText: "The train leaves at 6:15 every evening.",
+    correctOption: "A",
+    tenseA: "Present Simple",
+    tenseB: "Future Simple",
+    canonA: "presentSimpleHabit",
+    canonB: "futureSimple",
+    optionA: "The train leaves at 6:15 every evening.",
+    optionB: "The train will leave at 6:15 this evening.",
+    confusionExplanation:
+      "Both mention 6:15 — the difference is whether this is a fixed timetable or a specific upcoming departure.",
+    keyDifference:
+      'Timetables and schedules use Present Simple even for future times. "Will leave this evening" focuses on one specific upcoming departure.',
+    realLifeDialogue: {
+      lineA: 'A: "When does the train leave?"',
+      lineB: 'B: "It leaves at 6:15 every evening."',
+    },
+    difficulty: 2,
+    tenseCategory: "simple",
+  }),
+  createComparisonQuestion({
+    id: "comp-simple-07",
+    promptText: "I missed the meeting yesterday.",
+    correctOption: "A",
+    tenseA: "Past Simple",
+    tenseB: "Future Simple",
+    canonA: "pastSimple",
+    canonB: "futureSimple",
+    optionA: "I missed the meeting yesterday.",
+    optionB: "I will miss the meeting tomorrow.",
+    confusionExplanation:
+      "Same verb, same situation — only the time marker and tense change.",
+    keyDifference:
+      '"Yesterday" = a completed past event → Past Simple. "Tomorrow" + "will" = a future event or warning → Future Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "Were you at the meeting?"',
+      lineB: 'B: "No — I missed it yesterday."',
+    },
+    difficulty: 1,
+    tenseCategory: "simple",
+  }),
+  createComparisonQuestion({
+    id: "comp-simple-08",
+    promptText: "My landlord fixes small problems in the apartment himself.",
+    correctOption: "A",
+    tenseA: "Present Simple",
+    tenseB: "Past Simple",
+    canonA: "presentSimpleHabit",
+    canonB: "pastSimple",
+    optionA: "My landlord fixes small problems in the apartment himself.",
+    optionB: "My landlord fixed the broken pipe last week.",
+    confusionExplanation:
+      "Both describe the landlord fixing things — the difference is a general habit versus one specific completed event.",
+    keyDifference:
+      'No time marker = a current habit or general truth → Present Simple. "Last week" = one specific completed event → Past Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "Is your landlord helpful?"',
+      lineB: 'B: "Yes — he fixes small problems himself."',
+    },
+    difficulty: 1,
+    tenseCategory: "simple",
+  }),
+  createComparisonQuestion({
+    id: "comp-simple-09",
+    promptText: "He will retire next year.",
+    correctOption: "A",
+    tenseA: "Future Simple",
+    tenseB: "Present Simple",
+    canonA: "futureSimple",
+    canonB: "presentSimpleHabit",
+    optionA: "He will retire next year.",
+    optionB: "He retires at 65 according to company policy.",
+    confusionExplanation:
+      "Both describe retirement — one is a personal plan and the other is a company rule.",
+    keyDifference:
+      '"Next year" + "will" = a specific future plan. A company rule or general policy uses Present Simple with no "will."',
+    realLifeDialogue: {
+      lineA: 'A: "Is Mr. Lim leaving soon?"',
+      lineB: 'B: "Yes — he will retire next year."',
+    },
+    difficulty: 2,
+    tenseCategory: "simple",
+  }),
+  createComparisonQuestion({
+    id: "comp-simple-10",
+    promptText: "She lived in Chicago when she was a student.",
+    correctOption: "A",
+    tenseA: "Past Simple",
+    tenseB: "Present Simple",
+    canonA: "pastSimple",
+    canonB: "presentSimpleHabit",
+    optionA: "She lived in Chicago when she was a student.",
+    optionB: "She lives in Chicago with her family.",
+    confusionExplanation:
+      "Same verb, same city — students must notice whether the situation is closed in the past or true right now.",
+    keyDifference:
+      '"When she was a student" closes the situation in a finished period → Past Simple. No time marker = currently true → Present Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "Where did she go to university?"',
+      lineB: 'B: "She lived in Chicago when she was a student."',
+    },
+    difficulty: 1,
+    tenseCategory: "simple",
+  }),
+  createComparisonQuestion({
+    id: "comp-simple-11",
+    promptText: "The manager will announce the results tomorrow morning.",
+    correctOption: "A",
+    tenseA: "Future Simple",
+    tenseB: "Present Simple",
+    canonA: "futureSimple",
+    canonB: "presentSimpleHabit",
+    optionA: "The manager will announce the results tomorrow morning.",
+    optionB: "The manager announces the results every quarter.",
+    confusionExplanation:
+      "Both describe the manager announcing results — the difference is a one-time upcoming event versus a regular pattern.",
+    keyDifference:
+      '"Tomorrow morning" + "will" = one specific upcoming event → Future Simple. "Every quarter" = a recurring routine → Present Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "When do we find out?"',
+      lineB: 'B: "The manager will announce the results tomorrow morning."',
+    },
+    difficulty: 1,
+    tenseCategory: "simple",
+  }),
+  // ============================================================
+  // PERFECT CONTINUOUS — extra questions
+  // ============================================================
+  createComparisonQuestion({
+    id: "comp-ppc-ps-01",
+    promptText: "She has been trying to sleep for hours, but the baby keeps crying.",
+    correctOption: "B",
+    tenseA: "Past Simple",
+    tenseB: "Present Perfect Continuous",
+    canonA: "pastSimple",
+    canonB: "presentPerfectContinuous",
+    optionA: "She tried to sleep but the baby kept crying.",
+    optionB: "She has been trying to sleep for hours, but the baby keeps crying.",
+    confusionExplanation:
+      "Same scenario — exhausted parent, crying baby — but one closes the story as a finished memory and the other keeps it alive right now.",
+    keyDifference:
+      '"Has been trying…keeps crying" = the situation is still happening now, unresolved. Past Simple closes the scene — it\'s over.',
+    realLifeDialogue: {
+      lineA: 'A: "How is she doing?"',
+      lineB: 'B: "Not great — she has been trying to sleep for hours but the baby keeps crying."',
+    },
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  }),
+  createComparisonQuestion({
+    id: "comp-ppc-pppc-01",
+    promptText: "He has been waiting at the clinic all morning.",
+    correctOption: "B",
+    tenseA: "Past Perfect Continuous",
+    tenseB: "Present Perfect Continuous",
+    canonA: "pastPerfectContinuous",
+    canonB: "presentPerfectContinuous",
+    optionA: "He had been waiting at the clinic all morning before they finally called his name.",
+    optionB: "He has been waiting at the clinic all morning.",
+    confusionExplanation:
+      "Both describe a long wait at the clinic — the difference is whether the waiting is still going on or ended at a past moment.",
+    keyDifference:
+      '"Has been waiting" = still there, still waiting now → Present Perfect Continuous. "Had been waiting…before they called" = the wait ended at a past point → Past Perfect Continuous.',
+    realLifeDialogue: {
+      lineA: 'A: "Is your dad still at the clinic?"',
+      lineB: 'B: "Yes — he has been waiting there all morning."',
+    },
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  }),
+  createComparisonQuestion({
+    id: "comp-ppc-ps-02",
+    promptText: "He has been looking for a new job for six months.",
+    correctOption: "B",
+    tenseA: "Past Simple",
+    tenseB: "Present Perfect Continuous",
+    canonA: "pastSimple",
+    canonB: "presentPerfectContinuous",
+    optionA: "He looked for a job for six months and finally found one.",
+    optionB: "He has been looking for a new job for six months.",
+    confusionExplanation:
+      "Both describe six months of job searching — but one ends with success and the other is still ongoing.",
+    keyDifference:
+      '"Has been looking" = still searching, no result yet → Present Perfect Continuous. "Looked…and found" = the search is over, story closed → Past Simple.',
+    realLifeDialogue: {
+      lineA: 'A: "Any luck with the job search?"',
+      lineB: 'B: "Not yet — he has been looking for six months."',
+    },
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  }),
 ];
