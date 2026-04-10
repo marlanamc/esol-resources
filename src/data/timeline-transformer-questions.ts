@@ -1096,4 +1096,89 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
     difficulty: 1,
     tenseCategory: "continuous",
   },
+  // ============================================================
+  // SIMPLE — extra questions to fill out the category pool
+  // ============================================================
+  {
+    id: "trans-prs-ps-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Past Simple",
+    sourceSentence: "They play soccer on weekends.",
+    targetSentence: "They played soccer last weekend.",
+    realLifeDialogue: {
+      lineA: 'A: "Did they play soccer recently?"',
+      lineB: 'B: "Yes, they played last weekend."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-prs-ps-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "pastSimple",
+      "trans-prs-ps-01-target",
+      [{ position: 40 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["played"] }],
+    hint: 'Add a specific past time and use the past form of the verb.',
+    explanation:
+      'The source describes a habit. The target describes one completed event in the past — same verb, just in its past form.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-ps-fs-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Future Simple",
+    sourceSentence: "She studied for the exam all night.",
+    targetSentence: "She will study for the exam all night.",
+    realLifeDialogue: {
+      lineA: 'A: "Is she ready for the test tomorrow?"',
+      lineB: 'B: "She will study for the exam all night."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "pastSimple",
+      "trans-ps-fs-01-source",
+      [{ position: 40 }]
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "futureSimple",
+      "trans-ps-fs-01-target",
+      [{ position: 65 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["will study"] }],
+    hint: 'Use "will + base verb" to move the same action into the future.',
+    explanation:
+      'The base verb stays the same (study). Only the time changes — "will" moves it forward to the future.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-fs-prs-01",
+    type: "sentence-transformer",
+    sourceTense: "Future Simple",
+    targetTense: "Present Simple",
+    sourceSentence: "I will call you every day.",
+    targetSentence: "I call you every day.",
+    realLifeDialogue: {
+      lineA: 'A: "Do you two stay in touch?"',
+      lineB: 'B: "Yes, I call you every day."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "futureSimple",
+      "trans-fs-prs-01-source",
+      [{ position: 65 }]
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-fs-prs-01-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["call"] }],
+    hint: 'Drop "will" and use the base verb to describe a routine that already happens.',
+    explanation:
+      'A future plan becomes an established routine. Remove "will" and use Present Simple — the verb itself does not change.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
 ];

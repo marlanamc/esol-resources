@@ -195,7 +195,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       roundQuestions: TimelineTensesQuestion[]
     ) => {
       const filterKey = buildFilterMemoryKey(category, practiceMode, sentenceForm);
-      const cap = Math.max(DEFAULT_ROUND_SIZE * 2, roundQuestions.length * 2);
+      const cap = roundQuestions.length * 4;
       const roundIds = roundQuestions.map((question) => question.id);
 
       setRecentQuestionIdsByFilter((prev) => {
