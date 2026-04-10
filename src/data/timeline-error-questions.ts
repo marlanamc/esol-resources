@@ -870,6 +870,350 @@ export const TIMELINE_ERROR_QUESTIONS: ErrorCorrectionQuestion[] = [
     tenseCategory: "simple",
   },
   // ============================================================
+  // PRESENT PERFECT — extra questions
+  // ============================================================
+  {
+    id: "err-pp-s-01",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "I live in this city for ten years.",
+    incorrectElements: buildCanonicalTimelineElements("presentSimpleHabit", "err-pp-s-01-incorrect"),
+    correctSentence: "I have lived in this city for ten years.",
+    realLifeDialogue: {
+      lineA: 'A: "How long have you been here?"',
+      lineB: 'B: "I have lived in this city for ten years."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfect", "err-pp-s-01-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Present Simple",
+    correctTense: "Present Perfect",
+    commonMistakeExplanation:
+      '"For ten years" shows duration that started in the past and continues now. Present Simple treats it like a current fact with no past connection — Present Perfect is needed to show the ongoing duration.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "err-pp-s-02",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Have you seen her yesterday?",
+    incorrectElements: buildCanonicalTimelineElements("presentPerfect", "err-pp-s-02-incorrect"),
+    correctSentence: "Did you see her yesterday?",
+    realLifeDialogue: {
+      lineA: 'A: "Did you see her yesterday?"',
+      lineB: 'B: "Yes, we had coffee after work."',
+    },
+    correctElements: buildCanonicalTimelineElements("pastSimple", "err-pp-s-02-correct", [
+      { position: 40 },
+    ]),
+    incorrectTense: "Present Perfect",
+    correctTense: "Past Simple",
+    commonMistakeExplanation:
+      '"Yesterday" closes the event in the finished past. Present Perfect cannot be used with specific past time markers — switch to Past Simple.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "err-pp-s-03",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "She already submitted the report.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-pp-s-03-incorrect", [
+      { position: 45 },
+    ]),
+    correctSentence: "She has already submitted the report.",
+    realLifeDialogue: {
+      lineA: 'A: "Does the manager have the report yet?"',
+      lineB: 'B: "Yes, she has already submitted it."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfect", "err-pp-s-03-correct"),
+    incorrectTense: "Past Simple",
+    correctTense: "Present Perfect",
+    commonMistakeExplanation:
+      '"Already" signals that a past action is relevant right now — the report is in hand. That present relevance makes Present Perfect the right choice.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "err-pp-s-04",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "I never tried sushi before.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-pp-s-04-incorrect", [
+      { position: 45 },
+    ]),
+    correctSentence: "I have never tried sushi before.",
+    realLifeDialogue: {
+      lineA: 'A: "Do you want to try the new sushi place?"',
+      lineB: 'B: "Sure — I have never tried sushi before."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfect", "err-pp-s-04-correct"),
+    incorrectTense: "Past Simple",
+    correctTense: "Present Perfect",
+    commonMistakeExplanation:
+      '"Never…before" describes a life experience up to this moment — no specific past time is named. That open-ended life span calls for Present Perfect, not Past Simple.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "err-pp-s-05",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "Did you finish your homework yet?",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-pp-s-05-incorrect", [
+      { position: 45 },
+    ]),
+    correctSentence: "Have you finished your homework yet?",
+    realLifeDialogue: {
+      lineA: 'A: "Have you finished your homework yet?"',
+      lineB: 'B: "Almost — just one more question."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfect", "err-pp-s-05-correct"),
+    incorrectTense: "Past Simple",
+    correctTense: "Present Perfect",
+    commonMistakeExplanation:
+      '"Yet" signals that the result matters right now — is the homework done or not? Questions with "yet" use Present Perfect because the outcome connects to the present moment.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "err-pp-s-06",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "He worked at that hospital since 2019.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-pp-s-06-incorrect", [
+      { position: 45 },
+    ]),
+    correctSentence: "He has worked at that hospital since 2019.",
+    realLifeDialogue: {
+      lineA: 'A: "Is Dr. Reyes still there?"',
+      lineB: 'B: "Yes, he has worked at that hospital since 2019."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfect", "err-pp-s-06-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Past Simple",
+    correctTense: "Present Perfect",
+    commonMistakeExplanation:
+      '"Since 2019" anchors the start of an action that still continues today. Past Simple would mean the job ended — Present Perfect keeps the connection to the present.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  {
+    id: "err-pp-s-07",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "I just ate — I am not hungry.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimple", "err-pp-s-07-incorrect", [
+      { position: 45 },
+    ]),
+    correctSentence: "I have just eaten — I am not hungry.",
+    realLifeDialogue: {
+      lineA: 'A: "Do you want some pizza?"',
+      lineB: 'B: "No thanks — I have just eaten."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfect", "err-pp-s-07-correct"),
+    incorrectTense: "Past Simple",
+    correctTense: "Present Perfect",
+    commonMistakeExplanation:
+      '"Just" means the action happened moments ago and the result (being full) is still true now. That present result is exactly what Present Perfect expresses.',
+    difficulty: 1,
+    tenseCategory: "perfect",
+  },
+  // ============================================================
+  // PRESENT PERFECT CONTINUOUS — extra questions
+  // ============================================================
+  {
+    id: "err-ppc-s-01",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "She is studying English for two years.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-ppc-s-01-incorrect"),
+    correctSentence: "She has been studying English for two years.",
+    realLifeDialogue: {
+      lineA: 'A: "Her English is really good!"',
+      lineB: 'B: "She has been studying it for two years."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfectContinuous", "err-ppc-s-01-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Present Continuous",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      '"For two years" shows the activity started in the past and is still going. Present Continuous only describes right now — Present Perfect Continuous adds the duration from past to present.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "err-ppc-s-02",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "I have waited here for forty minutes.",
+    incorrectElements: buildCanonicalTimelineElements("presentPerfect", "err-ppc-s-02-incorrect"),
+    correctSentence: "I have been waiting here for forty minutes.",
+    realLifeDialogue: {
+      lineA: 'A: "Is the doctor late?"',
+      lineB: 'B: "I have been waiting here for forty minutes!"',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfectContinuous", "err-ppc-s-02-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Present Perfect",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      'Waiting is a continuous, ongoing action — not a single completed event. "Have been waiting" emphasises the unbroken duration. "Have waited" treats it like a finished action.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "err-ppc-s-03",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "They are living in that apartment since March.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-ppc-s-03-incorrect"),
+    correctSentence: "They have been living in that apartment since March.",
+    realLifeDialogue: {
+      lineA: 'A: "Are they still in the same place?"',
+      lineB: 'B: "Yes, they have been living there since March."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfectContinuous", "err-ppc-s-03-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Present Continuous",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      '"Since March" connects the past start point to now. Present Continuous has no past dimension — Present Perfect Continuous shows the unbroken duration from March to today.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "err-ppc-s-04",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "He is feeling tired because he worked all day.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-ppc-s-04-incorrect"),
+    correctSentence: "He is feeling tired because he has been working all day.",
+    realLifeDialogue: {
+      lineA: 'A: "Why does Marco look exhausted?"',
+      lineB: 'B: "He has been working all day without a break."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfectContinuous", "err-ppc-s-04-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Past Simple",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      'The tiredness right now is the result of an activity that has been going on all day and is just now ending. That ongoing recent activity causing a present result = Present Perfect Continuous.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "err-ppc-s-05",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "We are saving money for a trip for six months.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-ppc-s-05-incorrect"),
+    correctSentence: "We have been saving money for a trip for six months.",
+    realLifeDialogue: {
+      lineA: 'A: "When are you going to Costa Rica?"',
+      lineB: 'B: "Hopefully this summer — we have been saving for six months."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfectContinuous", "err-ppc-s-05-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Present Continuous",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      '"For six months" shows the saving started in the past and is still happening now. Present Continuous only captures this moment — Present Perfect Continuous shows the full ongoing stretch.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "err-ppc-s-06",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "My daughter is learning to drive since summer.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-ppc-s-06-incorrect"),
+    correctSentence: "My daughter has been learning to drive since summer.",
+    realLifeDialogue: {
+      lineA: 'A: "Can your daughter drive yet?"',
+      lineB: 'B: "She has been learning since summer — almost ready."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfectContinuous", "err-ppc-s-06-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Present Continuous",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      '"Since summer" marks the start of an ongoing activity. "Is learning" treats it as only happening now — "has been learning" connects that past start point to the present.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "err-ppc-s-07",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "The kids are playing outside since this morning.",
+    incorrectElements: buildCanonicalTimelineElements("presentContinuous", "err-ppc-s-07-incorrect"),
+    correctSentence: "The kids have been playing outside since this morning.",
+    realLifeDialogue: {
+      lineA: 'A: "Where are the kids?"',
+      lineB: 'B: "They have been playing outside since this morning."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfectContinuous", "err-ppc-s-07-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Present Continuous",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      '"Since this morning" shows the activity has been going on continuously for hours. "Are playing" only describes right now — "have been playing" captures the full duration.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "err-ppc-s-08",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "I have taken care of my mother for the past year.",
+    incorrectElements: buildCanonicalTimelineElements("presentPerfect", "err-ppc-s-08-incorrect"),
+    correctSentence: "I have been taking care of my mother for the past year.",
+    realLifeDialogue: {
+      lineA: 'A: "You seem tired lately."',
+      lineB: 'B: "I have been taking care of my mother for the past year."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfectContinuous", "err-ppc-s-08-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Present Perfect",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      'Caregiving is a continuous, ongoing activity — not a single completed event. "Have been taking care of" emphasises the unbroken effort over the past year.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "err-ppc-s-09",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "He was working at the front desk all morning.",
+    incorrectElements: buildCanonicalTimelineElements("pastContinuous", "err-ppc-s-09-incorrect"),
+    correctSentence: "He has been working at the front desk all morning.",
+    realLifeDialogue: {
+      lineA: 'A: "Is Carlos available?"',
+      lineB: 'B: "He has been working at the front desk all morning — he must be tired."',
+    },
+    correctElements: buildCanonicalTimelineElements("presentPerfectContinuous", "err-ppc-s-09-correct", [
+      { position: 50 },
+    ]),
+    incorrectTense: "Past Continuous",
+    correctTense: "Present Perfect Continuous",
+    commonMistakeExplanation:
+      'Past Continuous describes a background action at a past moment. If the activity is still going on now — or just finished with a present result — use Present Perfect Continuous.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  // ============================================================
   // DO / DOES / DID — Common "to be" substitution errors
   // ============================================================
   {
