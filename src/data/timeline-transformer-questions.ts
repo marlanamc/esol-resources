@@ -1181,4 +1181,417 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
     difficulty: 1,
     tenseCategory: "simple",
   },
+  {
+    id: "trans-prs-fs-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Future Simple",
+    sourceSentence: "My mom picks me up from school every day.",
+    targetSentence: "My mom will pick me up from school tomorrow.",
+    realLifeDialogue: {
+      lineA: 'A: "How are you getting home today?"',
+      lineB: 'B: "My mom will pick me up after school."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-prs-fs-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "futureSimple",
+      "trans-prs-fs-01-target",
+      [{ position: 65 }]
+    ),
+    verbBlanks: [{ index: 2, validAnswers: ["will pick"] }],
+    hint: 'Add "will" before the base verb to move a routine into a specific future event.',
+    explanation:
+      'The source describes an everyday habit. The target moves the same action to a specific future moment — add "will" and keep the base verb unchanged.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-fs-ps-01",
+    type: "sentence-transformer",
+    sourceTense: "Future Simple",
+    targetTense: "Past Simple",
+    sourceSentence: "She will present her report next Friday.",
+    targetSentence: "She presented her report last Friday.",
+    realLifeDialogue: {
+      lineA: 'A: "Did the presentation go well?"',
+      lineB: 'B: "Yes — she presented her report last Friday and it went great."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "futureSimple",
+      "trans-fs-ps-01-source",
+      [{ position: 65 }]
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "pastSimple",
+      "trans-fs-ps-01-target",
+      [{ position: 35 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["presented"] }],
+    hint: 'Remove "will" and use the past form of the verb to move the event into the finished past.',
+    explanation:
+      'Future Simple describes what will happen. Past Simple reports what already happened — drop "will" and change the verb to its past form.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-prs-ps-02",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Past Simple",
+    sourceSentence: "The kids finish school at 3 p.m. every afternoon.",
+    targetSentence: "The kids finished school at 3 p.m. yesterday.",
+    realLifeDialogue: {
+      lineA: 'A: "When did the kids get home?"',
+      lineB: 'B: "They finished school at 3 p.m. yesterday."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-prs-ps-02-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "pastSimple",
+      "trans-prs-ps-02-target",
+      [{ position: 40 }]
+    ),
+    verbBlanks: [{ index: 2, validAnswers: ["finished"] }],
+    hint: 'Change the verb to its past form to move a routine into a single completed past event.',
+    explanation:
+      'A daily routine (Present Simple) becomes one specific completed event (Past Simple). Only the verb form changes — nothing else.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-ps-prs-02",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Present Simple",
+    sourceSentence: "The pharmacy closed at 6 p.m. when I was a student.",
+    targetSentence: "The pharmacy closes at 6 p.m. every day.",
+    realLifeDialogue: {
+      lineA: 'A: "What time does the pharmacy close?"',
+      lineB: 'B: "It closes at 6 p.m. every day."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "pastSimple",
+      "trans-ps-prs-02-source",
+      [{ position: 40 }]
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-ps-prs-02-target"
+    ),
+    verbBlanks: [{ index: 2, validAnswers: ["closes"] }],
+    hint: 'Use the base verb (+ -s for third person) to turn a past event into a current routine.',
+    explanation:
+      'A completed past situation becomes a current, ongoing fact. Present Simple uses the base verb — add -s for third person singular.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-ps-fs-02",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Future Simple",
+    sourceSentence: "The manager approved the budget last quarter.",
+    targetSentence: "The manager will approve the budget next quarter.",
+    realLifeDialogue: {
+      lineA: 'A: "Has the budget been approved yet?"',
+      lineB: 'B: "Not yet — the manager will approve it next quarter."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "pastSimple",
+      "trans-ps-fs-02-source",
+      [{ position: 40 }]
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "futureSimple",
+      "trans-ps-fs-02-target",
+      [{ position: 65 }]
+    ),
+    verbBlanks: [{ index: 2, validAnswers: ["will approve"] }],
+    hint: 'Replace the past verb form with "will + base verb" to move the action into the future.',
+    explanation:
+      'Past Simple reports a completed event. Future Simple predicts or plans the same action in the future — use "will" and return the verb to its base form.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-prs-fs-neg-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Future Simple",
+    sourceSentence: "He doesn't work on weekends.",
+    targetSentence: "He won't work this weekend.",
+    realLifeDialogue: {
+      lineA: 'A: "Can we call him on Saturday?"',
+      lineB: 'B: "He won\'t work this weekend, so yes."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-prs-fs-neg-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "futureSimple",
+      "trans-prs-fs-neg-01-target",
+      [{ position: 65 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["won't work", "will not work"] }],
+    hint: 'Replace "doesn\'t" with "won\'t" to shift a negative habit into a specific future.',
+    explanation:
+      'Negative Present Simple uses "doesn\'t + base verb." Negative Future Simple uses "won\'t + base verb." The main verb stays the same.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-prs-ps-neg-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Past Simple",
+    sourceSentence: "She doesn't drive to work.",
+    targetSentence: "She didn't drive to work last week.",
+    realLifeDialogue: {
+      lineA: 'A: "Did she take the bus last week?"',
+      lineB: 'B: "Yes — she didn\'t drive to work at all last week."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-prs-ps-neg-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "pastSimple",
+      "trans-prs-ps-neg-01-target",
+      [{ position: 40 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["didn't drive", "did not drive"] }],
+    hint: 'Replace "doesn\'t" with "didn\'t" to move a negative routine into the finished past.',
+    explanation:
+      'Negative Present Simple uses "doesn\'t + base verb." Negative Past Simple uses "didn\'t + base verb." The main verb stays in base form — only the auxiliary changes.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  {
+    id: "trans-fs-prs-02",
+    type: "sentence-transformer",
+    sourceTense: "Future Simple",
+    targetTense: "Present Simple",
+    sourceSentence: "I will visit my grandmother every Sunday when I move back home.",
+    targetSentence: "I visit my grandmother every Sunday.",
+    realLifeDialogue: {
+      lineA: 'A: "Do you see your grandmother often?"',
+      lineB: 'B: "Yes — I visit her every Sunday."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "futureSimple",
+      "trans-fs-prs-02-source",
+      [{ position: 65 }]
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-fs-prs-02-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["visit"] }],
+    hint: 'Drop "will" and use the base verb — the future plan has become a current habit.',
+    explanation:
+      'A future intention becomes an established present routine. Drop "will" and use Present Simple — the base verb stays the same.',
+    difficulty: 1,
+    tenseCategory: "simple",
+  },
+  // ============================================================
+  // PERFECT CONTINUOUS — extra questions
+  // ============================================================
+  {
+    id: "trans-prc-ppc-new-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Continuous",
+    targetTense: "Present Perfect Continuous",
+    sourceSentence: "She is teaching English at the community center.",
+    targetSentence: "She has been teaching English at the community center for two years.",
+    realLifeDialogue: {
+      lineA: 'A: "Does she have teaching experience?"',
+      lineB: 'B: "Yes — she has been teaching at the community center for two years."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-prc-ppc-new-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "trans-prc-ppc-new-01-target",
+      [{ position: 50 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["has been teaching"] }],
+    hint: 'Add "has been" before the -ing verb and include a duration to show how long.',
+    explanation:
+      '"Is teaching" describes right now. "Has been teaching for two years" shows the activity started in the past and is still ongoing — adding the duration makes it Present Perfect Continuous.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "trans-pp-ppc-new-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Perfect",
+    targetTense: "Present Perfect Continuous",
+    sourceSentence: "He has fixed computers for clients since he was a teenager.",
+    targetSentence: "He has been fixing computers for clients since he was a teenager.",
+    realLifeDialogue: {
+      lineA: 'A: "How long has he done this kind of work?"',
+      lineB: 'B: "He has been fixing computers since he was a teenager."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentPerfect",
+      "trans-pp-ppc-new-01-source",
+      [{ position: 50 }]
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "trans-pp-ppc-new-01-target",
+      [{ position: 50 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["has been fixing"] }],
+    hint: 'Add "been" and change the verb to -ing to shift the focus from results to ongoing process.',
+    explanation:
+      '"Has fixed" focuses on the result or count of completions. "Has been fixing" emphasises the continuous, unbroken activity over time — same verb, just add "been" and -ing.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "trans-ppc-pppc-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Perfect Continuous",
+    targetTense: "Past Perfect Continuous",
+    sourceSentence: "She has been managing that team for three years.",
+    targetSentence: "She had been managing that team for three years before her promotion.",
+    realLifeDialogue: {
+      lineA: 'A: "Had she led a team before the promotion?"',
+      lineB: 'B: "Yes — she had been managing that team for three years."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "trans-ppc-pppc-01-source",
+      [{ position: 50 }]
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "pastPerfectContinuous",
+      "trans-ppc-pppc-01-target",
+      [{ position: 35 }, { position: 55 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["had been managing"] }],
+    hint: 'Change "has/have been" to "had been" to move the whole activity into the past.',
+    explanation:
+      '"Has been managing" runs from the past up to now. "Had been managing" shifts the same ongoing activity entirely into the past — everything before a specific past moment.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "trans-prs-ppc-new-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Present Perfect Continuous",
+    sourceSentence: "My brother runs every morning before work.",
+    targetSentence: "My brother has been running every morning for the past year.",
+    realLifeDialogue: {
+      lineA: 'A: "Is your brother still into running?"',
+      lineB: 'B: "Yes — he has been running every morning for the past year."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-prs-ppc-new-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "trans-prs-ppc-new-01-target",
+      [{ position: 50 }]
+    ),
+    verbBlanks: [{ index: 2, validAnswers: ["has been running"] }],
+    hint: 'Add "has been" and -ing, plus a duration phrase, to show the habit has been going on since a past point.',
+    explanation:
+      'Present Simple describes a current habit with no start point. Present Perfect Continuous adds duration ("for the past year") — it tells us when the habit began and that it\'s still continuing.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "trans-pc-ppc-new-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Continuous",
+    targetTense: "Past Perfect Continuous",
+    sourceSentence: "They were arguing about the budget.",
+    targetSentence: "They had been arguing about the budget for an hour before the meeting ended.",
+    realLifeDialogue: {
+      lineA: 'A: "What happened in that meeting?"',
+      lineB: 'B: "They had been arguing about the budget for an hour before it ended."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "pastContinuous",
+      "trans-pc-ppc-new-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "pastPerfectContinuous",
+      "trans-pc-ppc-new-01-target",
+      [{ position: 35 }, { position: 60 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["had been arguing"] }],
+    hint: 'Change "were" to "had been" to show the activity was already going on before another past event.',
+    explanation:
+      'Past Continuous describes a background action at a past moment. Past Perfect Continuous adds the idea that the arguing started even earlier and continued up to another past event.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "trans-prc-ppc-new-02",
+    type: "sentence-transformer",
+    sourceTense: "Present Continuous",
+    targetTense: "Present Perfect Continuous",
+    sourceSentence: "The team is preparing for the presentation.",
+    targetSentence: "The team has been preparing for the presentation all week.",
+    realLifeDialogue: {
+      lineA: 'A: "Are they ready?"',
+      lineB: 'B: "Almost — the team has been preparing all week."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentContinuous",
+      "trans-prc-ppc-new-02-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "trans-prc-ppc-new-02-target",
+      [{ position: 50 }]
+    ),
+    verbBlanks: [{ index: 2, validAnswers: ["has been preparing"] }],
+    hint: 'Replace "is" with "has been" to add the duration from past to present.',
+    explanation:
+      '"Is preparing" only describes this moment. "Has been preparing all week" shows the activity started earlier in the week and has continued up to now.',
+    difficulty: 1,
+    tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "trans-pp-ppc-new-02",
+    type: "sentence-transformer",
+    sourceTense: "Present Perfect",
+    targetTense: "Present Perfect Continuous",
+    sourceSentence: "I have learned a lot at this job.",
+    targetSentence: "I have been learning a lot at this job since I started.",
+    realLifeDialogue: {
+      lineA: 'A: "Do you like working there?"',
+      lineB: 'B: "Yes — I have been learning so much since I started."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentPerfect",
+      "trans-pp-ppc-new-02-source",
+      [{ position: 50 }]
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentPerfectContinuous",
+      "trans-pp-ppc-new-02-target",
+      [{ position: 50 }]
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["have been learning"] }],
+    hint: 'Add "been" and the -ing form to shift the focus from achievements to ongoing growth.',
+    explanation:
+      '"Have learned" describes completed results — knowledge gained. "Have been learning" emphasises the ongoing, continuous process of growing. Add "been" and change to -ing.',
+    difficulty: 2,
+    tenseCategory: "perfect-continuous",
+  },
 ];
