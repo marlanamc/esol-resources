@@ -7,13 +7,29 @@ import { buildCanonicalTimelineElements } from "./timeline-challenge-stamp-canon
  * Students see a sentence in Tense A with its timeline, then rewrite it in
  * Tense B by filling in the verb blanks.
  *
- * Authoring rule: the target sentence must be a natural example of the target
- * tense. If that means adding a time reference, duration phrase, or result clue,
- * author that context directly into targetSentence instead of forcing a
- * word-for-word tense swap.
+ * ─── AUTHORING RULES ───────────────────────────────────────────────────────
  *
- * verbBlanks: each entry maps a 0-based word index in the targetSentence
- * (split by spaces) to a list of accepted answers.
+ * 1. SAME BASE VERB — the main verb must be identical in both sentences.
+ *    Students are learning tense transformation, not vocabulary substitution.
+ *    ✅  "She cooked dinner."  →  "She was cooking dinner when I called."
+ *    ❌  "We know that restaurant."  →  "We have eaten there many times."
+ *        (know ≠ eat — this looks arbitrary and confuses students)
+ *
+ * 2. SAME SUBJECT & OBJECT — only the tense machinery should change.
+ *    You MAY add or remove time references, duration phrases, or result clues
+ *    to make the target tense sound natural, but keep who is doing what.
+ *    ✅  "She cooked dinner."  →  "She was cooking dinner when I called."
+ *    ❌  "She is not eating now."  →  "She does not eat meat."
+ *        (different object/meaning — use "She does not eat in the mornings.")
+ *
+ * 3. NATURAL ENGLISH — the target sentence should sound like something a real
+ *    person would say. Add a time reference or context phrase if needed.
+ *
+ * 4. verbBlanks — each entry maps a 0-based word index in targetSentence
+ *    (split by spaces) to a list of accepted answers. Double-check the index
+ *    after any wording changes.
+ *
+ * ───────────────────────────────────────────────────────────────────────────
  */
 export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
   {
