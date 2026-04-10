@@ -130,14 +130,12 @@ interface GameState {
 }
 
 const DEFAULT_ROUND_SIZE = 10;
-const SPOT_THE_DIFFERENCE_ROUND_SIZE = 5;
+const CHALLENGE_ROUND_SIZE = 5;
 const PASSES_REQUIRED_PER_LEVEL = 2;
 const RECENT_QUESTION_MEMORY_KEY = 'timeline-recent-questions-v1';
 
 function getRoundSizeForPracticeMode(practiceMode: TimelinePracticeMode): number {
-  return practiceMode === 'spot-the-difference'
-    ? SPOT_THE_DIFFERENCE_ROUND_SIZE
-    : DEFAULT_ROUND_SIZE;
+  return isChallengeMode(practiceMode) ? CHALLENGE_ROUND_SIZE : DEFAULT_ROUND_SIZE;
 }
 
 function markTimelineTutorialCompleted(category: TenseCategory | 'all') {

@@ -1,7 +1,26 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useMemo } from 'react';
 import { Check, X, Lightbulb, ArrowRight } from 'lucide-react';
+
+const CORRECT_PHRASES = [
+  'Stellar Work!',
+  'Nailed It!',
+  'Boom! Correct!',
+  'You Got It!',
+  'Spot On!',
+  'Tense Master!',
+  'Brilliant!',
+  'That\'s the One!',
+  'Crushing It!',
+  'Grammar Genius!',
+  'Perfect!',
+  'Yes! Exactly!',
+  'On Fire!',
+  'Sharp!',
+  'Locked In!',
+];
 import type { RealLifeDialogue, ValidVerbAnswer } from '@/types/activity';
 import {
   type TimelineVerbBlankResult,
@@ -41,6 +60,12 @@ export function FeedbackPanel({
   realLifeDialogue,
 }: FeedbackPanelProps) {
   const hasBlankFeedback = (blankFeedback?.length ?? 0) > 0;
+
+  const correctPhrase = useMemo(
+    () => CORRECT_PHRASES[Math.floor(Math.random() * CORRECT_PHRASES.length)],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   // Escape special regex characters in a string
   const escapeRegex = (str: string): string => {
@@ -119,7 +144,7 @@ export function FeedbackPanel({
                 : 'text-amber-700 dark:text-amber-400'
             }`}
           >
-            {isCorrect ? 'Stellar Work!' : 'Almost There'}
+            {isCorrect ? correctPhrase : 'Almost There'}
           </h3>
           <div className="mt-2">
             <span
