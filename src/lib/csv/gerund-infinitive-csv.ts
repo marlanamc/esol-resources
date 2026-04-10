@@ -34,7 +34,9 @@ export type PatternGroupId =
   | 'go_gerund'
   | 'preposition_gerund'
   | 'adjective_infinitive'
-  | 'noun_infinitive';
+  | 'noun_infinitive'
+  | 'suggestion_gerund'
+  | 'purpose_contrast';
 
 // Valid pattern groups (used for validation and parsing)
 const VALID_PATTERN_GROUPS = new Set<PatternGroupId>([
@@ -45,7 +47,9 @@ const VALID_PATTERN_GROUPS = new Set<PatternGroupId>([
   'go_gerund',
   'preposition_gerund',
   'adjective_infinitive',
-  'noun_infinitive'
+  'noun_infinitive',
+  'suggestion_gerund',
+  'purpose_contrast'
 ]);
 
 /** Student-friendly labels for pattern groups (used in "Patterns to review") */
@@ -58,6 +62,8 @@ export const PATTERN_GROUP_LABELS: Record<PatternGroupId, string> = {
   preposition_gerund: 'Preposition + gerund',
   adjective_infinitive: 'Adjective + infinitive',
   noun_infinitive: 'Noun + infinitive',
+  suggestion_gerund: 'Suggestion phrase + gerund',
+  purpose_contrast: 'Use for/to: purpose contrast',
 };
 
 /**

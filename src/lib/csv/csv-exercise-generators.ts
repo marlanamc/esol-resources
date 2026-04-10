@@ -37,6 +37,8 @@ const GROUP_TO_CSV_PATTERN: Record<string, PatternGroupId[]> = {
   'group-3b': ['noun_infinitive'],
   'group-4': ['go_gerund'],
   'group-5': ['gerund_subject'],  // Subject Gerunds - sentence-initial blanks
+  'group-8a': ['suggestion_gerund'],  // Making Suggestions (How about, What about, Have you tried, Have you thought of)
+  'group-8b': ['purpose_contrast'],   // Use for/to: Purpose Contrast
   // For mixed groups, list multiple pattern groups
 };
 
@@ -402,6 +404,8 @@ const PATTERN_GROUP_TO_CATEGORY_LABEL: Record<PatternGroupId, string> = {
   preposition_gerund: 'preposition',
   adjective_infinitive: 'adjective',
   noun_infinitive: 'noun',
+  suggestion_gerund: 'preposition', // "about" is a preposition; "of" is a preposition
+  purpose_contrast: 'preposition',  // "for" is a preposition; "to" is an infinitive marker
 };
 
 const PATTERN_IDENTIFIER_OPTIONS = ['verb', 'noun', 'preposition', 'adjective', 'adverb'];
@@ -462,6 +466,9 @@ function createPatternIdentifierFromCSV(
 ): GIExercise | null {
   // Subject position has nothing meaningful "before" the gerund in the sentence
   if (sentence.patternGroup === 'gerund_subject') return null;
+  // Purpose infinitives answer "why?"; the word before the blank is often an object
+  // or location, so a parts-of-speech question teaches the wrong cue here.
+  if (sentence.patternGroup === 'infinitive_purpose') return null;
 
   // Use actual word before blank when it's an adverb (e.g. "She left early to avoid" → adverb)
   const adverbBefore = getPartOfSpeechBeforeBlank(sentence);

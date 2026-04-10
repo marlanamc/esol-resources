@@ -36,6 +36,8 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
     completeSortingMiniGame,
     skipSortingMiniGame,
     returnToGroupIntro,
+    reviewWalkthrough,
+    exitWalkthrough,
     submitAnswer,
     saveProgress,
     retryGroup,
@@ -200,12 +202,12 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
             >
-              {state.selectedRoundMode === 'round1' && !state.selectedGroup.isCheckpoint ? (
+              {(state.selectedRoundMode === 'round1' && !state.selectedGroup.isCheckpoint) || state.showWalkthrough ? (
                 <GerundInfinitiveWalkthroughScreen
                   group={state.selectedGroup}
                   roundMode={state.selectedRoundMode}
                   onStartChallenge={startGroupChallenge}
-                  onBack={quitGame}
+                  onBack={state.showWalkthrough ? exitWalkthrough : quitGame}
                 />
               ) : (
                 <PatternIntroScreen
@@ -213,6 +215,7 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
                   roundMode={state.selectedRoundMode}
                   onStartChallenge={startGroupChallenge}
                   onBack={quitGame}
+                  onReviewWalkthrough={reviewWalkthrough}
                 />
               )}
             </motion.div>

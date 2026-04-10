@@ -39,40 +39,37 @@ function getVocabReminder(group: GerundInfinitiveGroup): { title: string; exampl
       note: 'In these phrases, "to" is a preposition (not part of an infinitive), so use gerund!',
     };
   }
-  if (group.id === 'group-3a') {
+  if (group.id === 'group-8a') {
     return {
-      title: 'What is an adjective?',
-      examples: 'happy, ready, important, easy, difficult, nice, hard, possible',
-      note: "Adjectives describe feelings or qualities. They often come after \"be\" (I'm happy, It's easy).",
+      title: 'Why is this gerund?',
+      examples: 'How about, What about, thought of',
+      note: 'These phrases end with a preposition, so the next verb must be -ing.',
     };
   }
-  if (group.id === 'group-2a') {
+  if (group.id === 'group-8b') {
     return {
-      title: 'What makes these "experience" verbs?',
-      examples: 'enjoy, finish, avoid, consider, suggest, keep, quit, miss',
-      note: 'These verbs focus on the activity happening NOW or in the past (not your future goal).',
+      title: 'Look at the word before the blank',
+      examples: 'for + -ing, to + base verb',
+      note: 'The meaning stays the same. The grammar changes because "for" is a preposition and "to" starts an infinitive.',
     };
   }
-  if (group.id === 'group-2b') {
-    return {
-      title: 'What makes these "goal" verbs?',
-      examples: 'want, hope, plan, decide, need, learn, offer, agree, refuse',
-      note: 'These verbs express what you WANT or INTEND to do in the future.',
-    };
+  return null;
+}
+
+// ── Derive corrected form from the error example ─────────────────────────────
+// Extracts the base verb from commonError (last word) and converts to gerund/infinitive,
+// so the correction badge matches the verb in the error for consistency.
+function correctedFormFromError(commonError: string, correctForm: 'gerund' | 'infinitive' | 'both'): string | null {
+  const lastWord = commonError.trim().split(/\s+/).pop()?.replace(/[?.!,]$/, '') ?? '';
+  if (!lastWord || lastWord.endsWith('ing')) return null; // already a gerund in the error — don't double-convert
+
+  if (correctForm === 'gerund') {
+    if (lastWord.endsWith('ie')) return lastWord.slice(0, -2) + 'ying';   // die→dying
+    if (/e$/.test(lastWord) && !/[eo]e$/.test(lastWord)) return lastWord.slice(0, -1) + 'ing'; // take→taking
+    return lastWord + 'ing';
   }
-  if (group.id === 'group-3b') {
-    return {
-      title: 'What is a noun?',
-      examples: 'ability, chance, time, decision, opportunity, way, permission, reason',
-      note: 'Nouns are people, places, things, or concepts. These nouns describe possibilities or potential actions.',
-    };
-  }
-  if (group.id === 'group-4') {
-    return {
-      title: 'What activities use GO + gerund?',
-      examples: 'swimming, shopping, hiking, fishing, dancing, skiing, bowling, camping',
-      note: 'Recreational activities and sports use this pattern (NOT "go to swim").',
-    };
+  if (correctForm === 'infinitive') {
+    return `to ${lastWord}`;
   }
   return null;
 }
@@ -117,6 +114,10 @@ function buildFormula(group: GerundInfinitiveGroup): FormulaToken[] {
       return [formGerund, { text: '=', kind: 'sep' }, { text: 'SUBJECT of sentence', kind: 'trigger' }];
     case 'purpose':
       return [subject, plus, { text: 'VERB', kind: 'trigger' }, plus, formInf, { text: '(= why?)', kind: 'note' }];
+    case 'suggestion':
+      return [{ text: 'SUGGESTION PHRASE', kind: 'trigger' }, plus, formGerund];
+    case 'purpose-contrast':
+      return [subject, plus, { text: 'USE [X] FOR', kind: 'trigger' }, plus, formGerund, { text: 'or', kind: 'sep' }, { text: 'USE [X] TO', kind: 'trigger' }, plus, formInf];
     default:
       return [{ text: 'TRIGGER', kind: 'trigger' }, plus, form];
   }
@@ -175,34 +176,37 @@ function FormulaChain({ group }: { group: GerundInfinitiveGroup }) {
 // ── Annotated pattern example ─────────────────────────────────────────────────
 
 function PatternExampleDiagram({ group }: { group: GerundInfinitiveGroup }) {
-  if (!group.patternExample) return null;
+  const representativePattern = group.patterns.find((pattern) => pattern.examples.length > 0);
+  const representativeExample = representativePattern?.examples[0];
+  const labelForm = representativePattern?.correctForm ?? 'gerund';
 
-  // Find a representative trigger from the group
-  const trigger = group.patterns[0]?.trigger ?? '';
-  const example = group.patternExample;
+  if (!group.patternExample && !representativeExample) return null;
 
-  // Try to split example into [before trigger] [trigger] [answer]
-  const lowerEx = example.toLowerCase();
-  const lowerTrigger = trigger.toLowerCase();
-  const triggerIdx = lowerEx.indexOf(lowerTrigger);
+  const renderedExample = representativeExample
+    ? representativeExample.sentence.includes('___')
+      ? (
+        <>
+          {representativeExample.sentence.split('___')[0]}
+          <span className={`px-2 py-0.5 rounded-lg border ${
+            labelForm === 'gerund'
+              ? 'bg-secondary/15 text-secondary border-secondary/40'
+              : labelForm === 'infinitive'
+                ? 'bg-primary/10 text-primary border-primary/30'
+                : 'bg-accent/10 text-amber-700 dark:text-amber-300 border-accent/30'
+          }`}>
+            {representativeExample.blank}
+          </span>
+          {representativeExample.sentence.split('___')[1]}
+        </>
+      )
+      : representativeExample.sentence
+    : group.patternExample;
 
-  // Find the last word(s) — assume the answer form is the last word group after trigger
-  let beforeTrigger = '';
-  let triggerText = '';
-  let answerText = '';
-
-  if (triggerIdx >= 0) {
-    beforeTrigger = example.slice(0, triggerIdx);
-    triggerText = example.slice(triggerIdx, triggerIdx + trigger.length);
-    answerText = example.slice(triggerIdx + trigger.length).trim();
-  } else {
-    // Fallback: split on last space cluster
-    const words = example.split(' ');
-    answerText = words.slice(-1).join(' ');
-    beforeTrigger = words.slice(0, -1).join(' ') + ' ';
-  }
-
-  const dominantForm = group.patterns.find(p => p.correctForm !== 'both')?.correctForm ?? 'gerund';
+  const formLabel = labelForm === 'gerund'
+    ? 'gerund'
+    : labelForm === 'infinitive'
+      ? 'infinitive'
+      : 'both';
 
   return (
     <motion.div
@@ -212,33 +216,26 @@ function PatternExampleDiagram({ group }: { group: GerundInfinitiveGroup }) {
       className="p-5 rounded-2xl bg-white dark:bg-[#162b3d] border-2 border-border shadow-sm"
     >
       <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted mb-4">Example</p>
-      <div className="flex flex-wrap items-end gap-x-1 gap-y-2 text-xl font-semibold text-text">
-        {beforeTrigger && <span>{beforeTrigger}</span>}
-        {triggerText && (
-          <span className="relative inline-flex flex-col items-center">
-            <span className="bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-300 px-2 py-0.5 rounded-lg border border-amber-200 dark:border-amber-700">
-              {triggerText}
+      <div className="space-y-4">
+        <p className="text-xl font-semibold text-text leading-relaxed">
+          {renderedExample}
+        </p>
+
+        {representativePattern && (
+          <div className="flex flex-wrap gap-2">
+            <span className="px-3 py-1 rounded-full text-xs font-bold border bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-300 border-amber-200 dark:border-amber-700">
+              trigger: {representativePattern.trigger}
             </span>
-            <span className="text-[9px] font-black uppercase tracking-wider text-amber-600 dark:text-amber-400 mt-1">
-              trigger
-            </span>
-          </span>
-        )}
-        {answerText && (
-          <span className="relative inline-flex flex-col items-center">
-            <span className={`px-2 py-0.5 rounded-lg border ${
-              dominantForm === 'gerund'
-                ? 'bg-secondary/15 text-secondary border-secondary/40'
-                : 'bg-primary/10 text-primary border-primary/30'
+            <span className={`px-3 py-1 rounded-full text-xs font-bold border ${
+              labelForm === 'gerund'
+                ? 'bg-secondary/10 text-secondary border-secondary/30'
+                : labelForm === 'infinitive'
+                  ? 'bg-primary/10 text-primary border-primary/30'
+                  : 'bg-accent/10 text-amber-700 dark:text-amber-300 border-accent/30'
             }`}>
-              {answerText}
+              {formLabel}
             </span>
-            <span className={`text-[9px] font-black uppercase tracking-wider mt-1 ${
-              dominantForm === 'gerund' ? 'text-secondary' : 'text-primary'
-            }`}>
-              {dominantForm === 'gerund' ? 'gerund' : 'infinitive'}
-            </span>
-          </span>
+          </div>
         )}
       </div>
     </motion.div>
@@ -260,16 +257,29 @@ interface GICheckpointQuestion {
   feedbackWrong: string;
 }
 
+// Ambiguous triggers that shouldn't appear in walkthrough questions
+const AMBIGUOUS_TRIGGERS_SET = new Set(['love', 'like', 'hate', 'start', 'begin', 'continue', 'prefer']);
+
 function buildCheckpointQuestion(
   group: GerundInfinitiveGroup,
   patternIndex: number,
   seed: number,
 ): GICheckpointQuestion | null {
-  const definitivePatterns = group.patterns.filter(p => p.correctForm !== 'both');
+  const definitivePatterns = group.patterns.filter(p => {
+    if (p.correctForm === 'both') return false;
+    // Exclude ambiguous verbs that can take either form
+    const triggerLower = p.trigger.toLowerCase();
+    if (AMBIGUOUS_TRIGGERS_SET.has(triggerLower)) return false;
+    if ([...AMBIGUOUS_TRIGGERS_SET].some(v => triggerLower.includes(v))) return false;
+    return true;
+  });
   if (definitivePatterns.length === 0) return null;
 
   const pattern = definitivePatterns[patternIndex % definitivePatterns.length];
-  const example = pattern.examples[0];
+  // Use a different example for each step to avoid repetition
+  const exampleOffset = Math.floor(patternIndex / definitivePatterns.length);
+  const exampleIndex = exampleOffset % Math.max(1, pattern.examples.length);
+  const example = pattern.examples[exampleIndex];
   if (!example) return null;
 
   const correctLabel = pattern.correctForm === 'gerund' ? GERUND_LABEL : INFINITIVE_LABEL;
@@ -450,7 +460,7 @@ export function GerundInfinitiveWalkthroughScreen({
                   <div className="absolute top-2 right-3 text-5xl opacity-10 select-none">{group.icon}</div>
                   <p className="text-sm font-bold text-amber-700 dark:text-amber-400 flex items-center gap-2 mb-2">
                     <Sparkles size={16} className="flex-shrink-0" />
-                    Quick rule to remember
+                    Quick rule
                   </p>
                   <p className="text-lg font-bold text-text leading-relaxed">{group.memoryTrick}</p>
                 </motion.div>
@@ -476,7 +486,7 @@ export function GerundInfinitiveWalkthroughScreen({
               <PatternExampleDiagram group={group} />
 
               <p className="text-sm text-text-muted leading-relaxed">
-                Study the pattern above, then answer the quick check below to move on.
+                Use the pattern and example to answer the quick check.
               </p>
             </>
           )}
@@ -516,7 +526,7 @@ export function GerundInfinitiveWalkthroughScreen({
               </motion.div>
 
               <p className="text-sm text-text-muted leading-relaxed">
-                You&apos;ll see these words in the exercises — recognizing them helps you apply the pattern faster.
+                These are the phrases that matter in this level.
               </p>
             </div>
           )}
@@ -629,7 +639,7 @@ export function GerundInfinitiveWalkthroughScreen({
             <div className="space-y-4">
               <div className="flex items-center gap-2 px-1">
                 <AlertCircle size={16} className="text-error flex-shrink-0" />
-                <p className="text-sm font-bold text-error">Watch out for these errors</p>
+                <p className="text-sm font-bold text-error">Watch these errors</p>
               </div>
 
               <div className="space-y-4">
@@ -661,7 +671,7 @@ export function GerundInfinitiveWalkthroughScreen({
                             ? 'bg-secondary/10 text-secondary border-secondary/30'
                             : 'bg-primary/10 text-primary border-primary/30'
                         }`}>
-                          {p.correctForm === 'gerund' ? 'verb + -ing' : 'to + verb'}
+                          {(p.commonError ? correctedFormFromError(p.commonError, p.correctForm) : null) ?? p.examples[0]?.blank ?? (p.correctForm === 'gerund' ? 'verb + -ing' : 'to + verb')}
                         </span>
                         {p.errorExplanation && (
                           <span className="block text-xs font-normal text-text-muted mt-1">{p.errorExplanation}</span>
@@ -687,8 +697,8 @@ export function GerundInfinitiveWalkthroughScreen({
                 className="rounded-2xl overflow-hidden border border-border shadow-sm"
               >
                 <div className="bg-gradient-to-r from-primary to-primary-dark px-5 py-4">
-                  <p className="text-white font-bold text-base">Your game plan</p>
-                  <p className="text-white/70 text-xs mt-0.5">Three stages to mastery</p>
+                  <p className="text-white font-bold text-base">What happens next</p>
+                  <p className="text-white/70 text-xs mt-0.5">Keep the rule in mind while you answer</p>
                 </div>
                 <div className="divide-y divide-border bg-white dark:bg-[#162b3d]">
                   <div className="flex items-start gap-4 px-5 py-4">
@@ -696,29 +706,29 @@ export function GerundInfinitiveWalkthroughScreen({
                       <Shuffle size={18} />
                     </span>
                     <div>
-                      <p className="font-bold text-text text-sm">Warm-Up · Sorting Game</p>
-                      <p className="text-xs text-text-muted mt-0.5">Sort verbs into gerund vs. infinitive buckets to activate your memory</p>
+                      <p className="font-bold text-text text-sm">Warm-up</p>
+                      <p className="text-xs text-text-muted mt-0.5">Sort the verbs before the main round.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 px-5 py-4">
                     <span className="flex-shrink-0 w-9 h-9 rounded-xl bg-primary/15 text-primary font-bold flex items-center justify-center text-base">1</span>
                     <div>
-                      <p className="font-bold text-text text-sm">Round 1 · Learn the Pattern</p>
-                      <p className="text-xs text-text-muted mt-0.5">Score <strong>80%+</strong> to pass → unlocks Round 2</p>
+                      <p className="font-bold text-text text-sm">Round 1</p>
+                      <p className="text-xs text-text-muted mt-0.5">Score <strong>80%+</strong> to unlock Round 2.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 px-5 py-4">
                     <span className="flex-shrink-0 w-9 h-9 rounded-xl bg-secondary/15 text-secondary font-bold flex items-center justify-center text-base">2</span>
                     <div>
-                      <p className="font-bold text-text text-sm">Round 2 · Prove Mastery</p>
-                      <p className="text-xs text-text-muted mt-0.5">Score <strong>90%+</strong> → earn ✦ mastery badge</p>
+                      <p className="font-bold text-text text-sm">Round 2</p>
+                      <p className="text-xs text-text-muted mt-0.5">Score <strong>90%+</strong> to earn mastery.</p>
                     </div>
                   </div>
                 </div>
               </motion.div>
 
               <p className="text-sm text-text-muted leading-relaxed px-1">
-                You&apos;ve studied the pattern, seen it in action, and know what to avoid. Let&apos;s go!
+                You have the rule, the model, and the warning. Start the round when you are ready.
               </p>
             </div>
           )}

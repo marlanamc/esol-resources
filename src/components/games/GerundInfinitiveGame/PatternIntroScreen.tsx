@@ -5,6 +5,18 @@ import { ArrowLeft, Play, BookOpen, ChevronRight, Trophy, AlertCircle, Check, Li
 import { GI_REVIEW_GROUP_ID, GI_FINAL_GROUP_ID } from '@/data/gerund-infinitive-groups';
 import type { GerundInfinitiveGroup, GIRoundMode, PatternExample } from '@/types/gerund-infinitive';
 
+function correctedFormFromError(commonError: string, correctForm: 'gerund' | 'infinitive' | 'both'): string | null {
+  const lastWord = commonError.trim().split(/\s+/).pop()?.replace(/[?.!,]$/, '') ?? '';
+  if (!lastWord || lastWord.endsWith('ing')) return null;
+  if (correctForm === 'gerund') {
+    if (lastWord.endsWith('ie')) return lastWord.slice(0, -2) + 'ying';
+    if (/e$/.test(lastWord) && !/[eo]e$/.test(lastWord)) return lastWord.slice(0, -1) + 'ing';
+    return lastWord + 'ing';
+  }
+  if (correctForm === 'infinitive') return `to ${lastWord}`;
+  return null;
+}
+
 /** Split pattern text into scannable bullets (by sentence) */
 function patternToBullets(pattern: string): string[] {
   return pattern
@@ -35,51 +47,21 @@ function getVocabReminder(group: GerundInfinitiveGroup): { title: string; exampl
     };
   }
 
-  // Adjective + Infinitive group
-  if (group.id === 'group-3a') {
+  if (group.id === 'group-8a') {
     return {
-      title: 'What is an adjective?',
-      examples: 'happy, ready, important, easy, difficult, nice, hard, possible',
-      note: 'Adjectives describe feelings or qualities. They often come after "be" (I\'m happy, It\'s easy).',
+      title: 'Why is this gerund?',
+      examples: 'How about, What about, thought of',
+      note: 'These phrases end with a preposition, so the next verb must be -ing.',
     };
   }
 
-  // Gerund Verbs group
-  if (group.id === 'group-2a') {
+  if (group.id === 'group-8b') {
     return {
-      title: 'What makes these "experience" verbs?',
-      examples: 'enjoy, finish, avoid, consider, suggest, keep, quit, miss',
-      note: 'These verbs focus on the activity happening NOW or in the past (not your future goal).',
+      title: 'Look at the word before the blank',
+      examples: 'for + -ing, to + base verb',
+      note: 'The meaning stays the same. The grammar changes because "for" is a preposition and "to" starts an infinitive.',
     };
   }
-
-  // Infinitive Verbs group
-  if (group.id === 'group-2b') {
-    return {
-      title: 'What makes these "goal" verbs?',
-      examples: 'want, hope, plan, decide, need, learn, offer, agree, refuse',
-      note: 'These verbs express what you WANT or INTEND to do in the future.',
-    };
-  }
-
-  // Noun + Infinitive group
-  if (group.id === 'group-3b') {
-    return {
-      title: 'What is a noun?',
-      examples: 'ability, chance, time, decision, opportunity, way, permission, reason',
-      note: 'Nouns are people, places, things, or concepts. These nouns describe possibilities or potential actions.',
-    };
-  }
-
-  // GO + Gerund group
-  if (group.id === 'group-4') {
-    return {
-      title: 'What activities use GO + gerund?',
-      examples: 'swimming, shopping, hiking, fishing, dancing, skiing, bowling, camping',
-      note: 'Recreational activities and sports use this pattern (NOT "go to swim").',
-    };
-  }
-
   return null;
 }
 
@@ -88,6 +70,7 @@ interface PatternIntroScreenProps {
   roundMode: GIRoundMode;
   onStartChallenge: () => void;
   onBack: () => void;
+  onReviewWalkthrough?: () => void;
 }
 
 export function PatternIntroScreen({
@@ -95,6 +78,7 @@ export function PatternIntroScreen({
   roundMode,
   onStartChallenge,
   onBack,
+  onReviewWalkthrough,
 }: PatternIntroScreenProps) {
   const isReview = group.id === GI_REVIEW_GROUP_ID;
   const isFinal = group.id === GI_FINAL_GROUP_ID;
@@ -276,11 +260,11 @@ export function PatternIntroScreen({
         >
           {/* Difficulty Warning */}
           <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-800/50">
-            <p className="font-bold text-amber-900 dark:text-amber-200 text-sm mb-2">⚡ Difficulty spike</p>
+            <p className="font-bold text-amber-900 dark:text-amber-200 text-sm mb-2">Mixed rules</p>
             <ul className="space-y-1 text-sm text-amber-800 dark:text-amber-300 list-disc list-inside">
-              <li>Combines Groups 5 & 6 — gerund vs infinitive mixed together</li>
-              <li>You learned them separately; mixing is harder!</li>
-              <li>Take your time and study the tables below</li>
+              <li>Some verbs take gerund.</li>
+              <li>Some verbs take infinitive.</li>
+              <li>Use the verb before the blank to decide.</li>
             </ul>
           </div>
 
@@ -288,7 +272,7 @@ export function PatternIntroScreen({
             <BookOpen size={18} className="text-primary" />
             Know Your Verbs
           </h2>
-          <p className="text-sm text-text-muted">These verbs look similar but follow different rules. Study them before the challenge!</p>
+          <p className="text-sm text-text-muted">Use this list if you need a quick reminder.</p>
 
           <div className="grid grid-cols-2 gap-3">
             {/* Gerund verbs column */}
@@ -329,20 +313,20 @@ export function PatternIntroScreen({
           </div>
 
           <div className="p-4 bg-accent/10 border border-accent/30 rounded-xl">
-            <p className="font-bold text-text text-sm mb-3">💡 Quick rule</p>
+            <p className="font-bold text-text text-sm mb-3">Quick contrast</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="flex items-start gap-2">
                 <span className="flex-shrink-0 w-6 h-6 rounded-full bg-secondary/20 text-secondary text-xs font-bold flex items-center justify-center">-ing</span>
                 <div>
                   <p className="font-semibold text-secondary text-sm">Gerund</p>
-                  <p className="text-xs text-text-muted">About the <em>experience</em> — enjoy, finish, avoid what you&apos;re doing</p>
+                  <p className="text-xs text-text-muted">Use this when the verb names the activity itself.</p>
                 </div>
               </div>
               <div className="flex items-start gap-2">
                 <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary text-xs font-bold flex items-center justify-center">to</span>
                 <div>
                   <p className="font-semibold text-primary text-sm">Infinitive</p>
-                  <p className="text-xs text-text-muted">About the <em>goal</em> — want, hope, decide what TO do</p>
+                  <p className="text-xs text-text-muted">Use this when the verb points to a goal or next action.</p>
                 </div>
               </div>
             </div>
@@ -362,7 +346,7 @@ export function PatternIntroScreen({
             <BookOpen size={18} className="text-primary" />
             Master These Pairings
           </h2>
-          <p className="text-sm text-text-muted">Remember: each adjective has ONE correct preposition, then add the gerund (-ing).</p>
+          <p className="text-sm text-text-muted">Pick the fixed preposition first. Then use the gerund.</p>
 
           <div className="rounded-xl border border-border overflow-hidden bg-white dark:bg-[#162b3d]">
             <table className="w-full text-sm">
@@ -388,7 +372,7 @@ export function PatternIntroScreen({
           </div>
 
           <div className="p-3 bg-error/5 border border-error/20 rounded-xl">
-            <p className="text-sm text-error/80 font-medium mb-2">Common Mistakes to Avoid:</p>
+            <p className="text-sm text-error/80 font-medium mb-2">Common mistakes:</p>
             <ul className="text-xs text-error/70 space-y-1">
               <li>✗ interested <strong>for</strong> learning → ✓ interested <strong>in</strong> learning</li>
               <li>✗ good <strong>in</strong> cooking → ✓ good <strong>at</strong> cooking</li>
@@ -452,7 +436,7 @@ export function PatternIntroScreen({
                     <span className="text-text-muted mx-1">→</span>
                     <span className="text-sm text-secondary font-medium flex items-center gap-1">
                       <Check size={12} />
-                      {pattern.trigger} {pattern.correctForm === 'gerund' ? '-ing' : 'to + verb'}
+                      {pattern.trigger} {(pattern.commonError ? correctedFormFromError(pattern.commonError, pattern.correctForm) : null) ?? pattern.examples[0]?.blank ?? (pattern.correctForm === 'gerund' ? '-ing' : 'to + verb')}
                     </span>
                   </motion.div>
                 )
@@ -494,23 +478,22 @@ export function PatternIntroScreen({
           transition={{ delay: 0.45 }}
           className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50"
         >
-          <p className="font-bold text-text mb-3 text-sm">📘 How it works</p>
+          <p className="font-bold text-text mb-3 text-sm">Round goals</p>
           <div className="space-y-3">
             <div className="flex items-start gap-3">
               <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold flex items-center justify-center">1</span>
               <div>
-                <p className="font-semibold text-text text-sm">Round 1 · Learn</p>
-                <p className="text-xs text-text-muted">Score <strong>80%+</strong> to pass → unlocks Round 2</p>
+                <p className="font-semibold text-text text-sm">Round 1</p>
+                <p className="text-xs text-text-muted">Score <strong>80%+</strong> to unlock Round 2.</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-secondary/20 text-secondary text-sm font-bold flex items-center justify-center">2</span>
               <div>
-                <p className="font-semibold text-text text-sm">Round 2 · Master</p>
-                <p className="text-xs text-text-muted">Score <strong>90%+</strong> → earn ✦ mastery badge</p>
+                <p className="font-semibold text-text text-sm">Round 2</p>
+                <p className="text-xs text-text-muted">Score <strong>90%+</strong> to earn mastery.</p>
               </div>
             </div>
-            <p className="text-xs text-text-muted italic pt-1">You can skip Round 2 or go for mastery!</p>
           </div>
         </motion.div>
       )}
@@ -523,11 +506,30 @@ export function PatternIntroScreen({
           transition={{ delay: 0.45 }}
           className="p-4 rounded-xl bg-primary/5 border border-primary/20"
         >
-          <p className="font-bold text-text text-sm mb-2">Round 2 · Mastery Check</p>
+          <p className="font-bold text-text text-sm mb-2">Round 2</p>
           <ul className="space-y-1 text-sm text-text-muted list-disc list-inside">
-            <li>Exercises target your trickiest patterns from Round 1</li>
-            <li>Score <strong className="text-text">90%+</strong> → earn the ✦ mastery badge</li>
+            <li>This round focuses on the patterns you missed in Round 1.</li>
+            <li>Score <strong className="text-text">90%+</strong> to earn mastery.</li>
           </ul>
+        </motion.div>
+      )}
+
+      {/* Review Walkthrough button — only show for non-special groups */}
+      {onReviewWalkthrough && !isReview && !isFinal && !group.isCheckpoint && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="hidden sm:flex justify-center"
+        >
+          <button
+            type="button"
+            onClick={onReviewWalkthrough}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-primary hover:text-primary-dark hover:bg-primary/5 transition-colors"
+          >
+            <BookOpen size={16} />
+            Review the full lesson
+          </button>
         </motion.div>
       )}
 
@@ -558,7 +560,18 @@ export function PatternIntroScreen({
       </motion.div>
 
       {/* Fixed bottom bar - mobile only: Back (left) | Start Challenge (right) */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between gap-3 px-4 py-3 bg-bg/95 backdrop-blur-md border-t border-border pb-[max(0.75rem,env(safe-area-inset-bottom))] pointer-events-auto">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 flex flex-col gap-2 px-4 py-3 bg-bg/95 backdrop-blur-md border-t border-border pb-[max(0.75rem,env(safe-area-inset-bottom))] pointer-events-auto">
+        {onReviewWalkthrough && !isReview && !isFinal && !group.isCheckpoint && (
+          <button
+            type="button"
+            onClick={onReviewWalkthrough}
+            className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-primary hover:text-primary-dark transition-colors"
+          >
+            <BookOpen size={16} />
+            Review the full lesson
+          </button>
+        )}
+        <div className="flex items-center justify-between gap-3">
         <button
           type="button"
           onClick={onBack}
@@ -577,6 +590,7 @@ export function PatternIntroScreen({
           <Play size={20} />
           {ctaLabel}
         </motion.button>
+        </div>
       </div>
     </div>
   );

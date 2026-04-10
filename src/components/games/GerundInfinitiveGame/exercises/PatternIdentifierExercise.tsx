@@ -17,7 +17,7 @@ export function PatternIdentifierExercise({
   answered,
 }: PatternIdentifierExerciseProps) {
   const [selected, setSelected] = useState<string | null>(null);
-  const { prompt, options = [] } = exercise;
+  const { prompt, options = [], triggerText } = exercise;
 
   const handleSelect = (option: string) => {
     if (answered || selected) return;
@@ -36,11 +36,19 @@ export function PatternIdentifierExercise({
   const beforeBlank = prompt.slice(0, blankIndex).trim();
   const afterBlank = prompt.slice(blankIndex + 3).trim();
 
-  // Extract the last word before the blank to underline
-  const wordsBeforeBlank = beforeBlank.split(/\s+/);
-  const triggerWord = wordsBeforeBlank[wordsBeforeBlank.length - 1];
-  const beforeTrigger =
-    wordsBeforeBlank.length > 1 ? wordsBeforeBlank.slice(0, -1).join(' ') + ' ' : '';
+  const normalizedBeforeBlank = beforeBlank.replace(/\s+/g, ' ').trim();
+  const normalizedTriggerText = triggerText?.replace(/\s+/g, ' ').trim();
+  const hasExactTrigger =
+    !!normalizedTriggerText &&
+    normalizedBeforeBlank.toLowerCase().endsWith(normalizedTriggerText.toLowerCase());
+
+  const triggerWord = hasExactTrigger
+    ? normalizedTriggerText!
+    : normalizedBeforeBlank.split(/\s+/).pop() ?? '';
+
+  const beforeTrigger = hasExactTrigger
+    ? normalizedBeforeBlank.slice(0, normalizedBeforeBlank.length - normalizedTriggerText!.length).trimEnd()
+    : normalizedBeforeBlank.slice(0, Math.max(0, normalizedBeforeBlank.length - triggerWord.length)).trimEnd();
 
   return (
     <div className="space-y-6">
@@ -52,7 +60,7 @@ export function PatternIdentifierExercise({
 
         <div className="bg-white dark:bg-[#162b3d] p-6 sm:p-8 rounded-2xl border-2 border-border">
           <p className="font-display text-lg sm:text-2xl text-text text-center leading-relaxed">
-            {beforeTrigger}
+            {beforeTrigger ? `${beforeTrigger} ` : null}
             <span className="underline decoration-2 underline-offset-2 decoration-primary font-semibold">
               {triggerWord}
             </span>

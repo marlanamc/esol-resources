@@ -15,9 +15,21 @@ export function SwipeChoiceExercise({ exercise, onAnswer, answered }: Props) {
   const [swipeDir, setSwipeDir] = useState<'left' | 'right' | null>(null);
   const { prompt, options = [] } = exercise;
 
-  // options: [gerund, infinitive] or [infinitive, gerund] - we need to map swipe to answer
-  const gerundOpt = options.find(o => o.endsWith('ing') || o.startsWith('to ') === false && !o.includes(' to '));
-  const infinitiveOpt = options.find(o => o.startsWith('to '));
+  // Map left/right to the actual option values instead of guessing from display text alone.
+  const infinitiveOptions = options.filter((option) => option.startsWith('to '));
+  const gerundOptions = options.filter((option) => !option.startsWith('to '));
+
+  const gerundOpt =
+    gerundOptions.find((option) => validateAnswer(exercise, option))
+    ?? gerundOptions[0]
+    ?? options[0];
+  const infinitiveOpt =
+    infinitiveOptions.find((option) => validateAnswer(exercise, option))
+    ?? infinitiveOptions[0]
+    ?? options.find((option) => option !== gerundOpt)
+    ?? options[1]
+    ?? options[0];
+
   const isGerundCorrect = validateAnswer(exercise, gerundOpt ?? '');
   const isInfinitiveCorrect = validateAnswer(exercise, infinitiveOpt ?? '');
 

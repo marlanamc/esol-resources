@@ -93,10 +93,13 @@ function generateHardcodedExercises(
 
   const isPrepositionChoiceGroup = group.id === 'group-1b';
   const isComboGroup = group.id === 'group-1d';
+  const isPurposeContrastGroup = group.id === 'group-8b';
   const nonSortingTypes: GIExerciseType[] = isComboGroup
     ? ['combo-challenge', 'combo-challenge', 'combo-challenge']
     : isPrepositionChoiceGroup
     ? ['preposition-choice', 'error-correction', 'preposition-choice']
+    : isPurposeContrastGroup
+    ? ['pattern-choice', 'error-correction', 'sentence-completion', 'pattern-choice', 'error-correction']
     : [
         'pattern-choice',
         'pattern-identifier',
@@ -135,7 +138,7 @@ function generateHardcodedExercises(
   }
 
   // Mix in personal response questions (1-2 per round for variety) if available
-  const personalPatterns = allPatterns.filter(p => p.question);
+  const personalPatterns = group.patterns.filter(p => p.question);
   if (personalPatterns.length > 0 && count >= 8) {
     const personalCount = Math.min(2, Math.floor(count * 0.2)); // 20% of exercises
     const insertIndices = new Set<number>();
@@ -556,6 +559,7 @@ function createExercise(
 
   // For preposition-choice patterns, only preposition-choice and error-correction apply
   const isPrepositionChoicePattern = pattern.category === 'preposition-choice';
+  const isPurposePattern = pattern.category === 'purpose';
 
   switch (type) {
     case 'preposition-choice':
@@ -568,9 +572,15 @@ function createExercise(
       if (isPrepositionChoicePattern) return null;
       // Skip subject patterns (nothing before the gerund)
       if (pattern.category === 'subject') return null;
+      // Purpose infinitives answer "why?"; the word before the blank is often just an object,
+      // so this parts-of-speech prompt is misleading for that category.
+      if (isPurposePattern) return null;
       return createPatternIdentifierExercise(group, pattern, hideExplanations);
     case 'rule-application':
       if (isPrepositionChoicePattern) return createPrepositionChoiceExercise(group, pattern, hideExplanations);
+      // Same issue as pattern-identifier: "what comes before?" is not a stable teaching cue
+      // for purpose infinitives like "use a calendar to keep..." or "go to the store to buy..."
+      if (isPurposePattern) return null;
       return createRuleApplicationExercise(group, pattern, hideExplanations);
     case 'sentence-completion':
       if (isPrepositionChoicePattern) return createPrepositionChoiceExercise(group, pattern, hideExplanations);
@@ -788,10 +798,22 @@ function createPatternChoiceExercise(
 
   let options: string[];
   if (isBoth) {
-    // For "both OK", show both forms as acceptable — we display the gerund
-    const gerundForm = correctAnswer.split(' / ')[0];
-    const infinitiveForm = correctAnswer.split(' / ')[1] ?? ('to ' + gerundForm.replace(/ing$/, ''));
-    options = [gerundForm, infinitiveForm];
+    // For "both OK" patterns, detect which form this specific example uses
+    // and generate the complement as the alternative
+    if (correctAnswer.includes(' / ')) {
+      // Standard "gerund / infinitive" format (e.g. "raining / to rain")
+      const gerundForm = correctAnswer.split(' / ')[0];
+      const infinitiveForm = correctAnswer.split(' / ')[1];
+      options = [gerundForm, infinitiveForm];
+    } else if (correctAnswer.startsWith('to ')) {
+      // This example is infinitive — generate the gerund alternative
+      const baseVerb = correctAnswer.replace(/^to /, '');
+      options = [correctAnswer, gerundFrom(baseVerb)];
+    } else {
+      // This example is gerund — generate the infinitive alternative
+      const baseVerb = baseFrom(correctAnswer);
+      options = [correctAnswer, 'to ' + baseVerb];
+    }
   } else {
     // Create distractors from alternate forms - aim for 4 options
     options = [correctAnswer];
@@ -860,6 +882,7 @@ function createPatternIdentifierExercise(
     correctAnswer: categoryLabel,
     options,
     highlightedWord: correctAnswer,
+    triggerText: pattern.trigger,
     showPattern: !hideExplanations,
     realWorldContext: example.context,
   };
@@ -891,6 +914,7 @@ function createRuleApplicationExercise(
     correctAnswer: categoryLabel,
     options,
     highlightedWord: example.blank,
+    triggerText: pattern.trigger,
     showPattern: !hideExplanations,
     realWorldContext: example.context,
   };
@@ -913,6 +937,8 @@ function getCategoryLabel(category: GerundInfinitivePattern['category']): string
     'meaning-change': 'verb',
     'to-preposition': 'preposition',
     'purpose': 'verb',
+    'suggestion': 'preposition',
+    'purpose-contrast': 'preposition',
   };
   return map[category] ?? category;
 }
@@ -1193,11 +1219,15 @@ const AMBIGUOUS_TRIGGERS = ['love', 'like', 'hate', 'start', 'begin', 'continue'
 function getAllPatterns(group: GerundInfinitiveGroup): GerundInfinitivePattern[] {
   // GROUP_6A is specifically about "both forms OK" verbs - don't filter them out!
   if (group.id === 'group-6a') {
-    return group.patterns;
+    return group.patterns.filter(pattern => pattern.examples.length > 0);
   }
 
   // Filter out patterns that use ambiguous verbs
   return group.patterns.filter(pattern => {
+    // Personal-response-only patterns should not be used for standard exercise generation.
+    if (pattern.examples.length === 0) {
+      return false;
+    }
     // Skip if pattern ID is in the blocklist
     if (AMBIGUOUS_VERB_PATTERNS.has(pattern.id)) {
       return false;
@@ -1303,13 +1333,15 @@ function baseFrom(gerund: string): string {
       return stem.slice(0, -1);
     }
 
-    // 2. ying -> ie (lying -> lie, tying -> tie, BUT NOT buying -> buy)
+    // 2. ying -> ie (lying -> lie, tying -> tie, dying -> die)
+    // Only restore 'ie' for very short stems (1 char before 'y'): die, lie, tie, vie
+    // Longer words just end in 'y': apply->applying, study->studying, carry->carrying
     if (gerund.endsWith('ying')) {
-      // Only change to 'ie' if it's a very short stem (ly, ty, dy) or has a consonant before 'y'
-      const prevChar = stem.length >= 2 ? stem[stem.length - 2] : '';
-      if (!vowels.includes(prevChar)) {
-        return stem.slice(0, -1) + 'ie';
+      const stemWithoutY = stem.slice(0, -1);
+      if (stemWithoutY.length <= 1) {
+        return stemWithoutY + 'ie';
       }
+      return stem; // apply, study, carry, etc.
     }
 
     // 3. Handle silent 'e' restoration (solving -> solve, making -> make)

@@ -57,6 +57,7 @@ interface GIGameState {
   saveError: string | null;  // Shown as toast when save fails (any phase)
   lockedGroupError: string | null;  // Shown as toast when tapping locked group
   exerciseResults: ExerciseOutcome[];
+  showWalkthrough: boolean;  // When true, show walkthrough even on round2/review
 }
 
 export { GI_REVIEW_GROUP_ID, GI_FINAL_GROUP_ID };
@@ -166,6 +167,7 @@ export function useGerundInfinitiveGameState(activityId: string) {
     saveError: null,
     lockedGroupError: null,
     exerciseResults: [],
+    showWalkthrough: false,
   });
 
   // Load progress on mount and reset sentence selection for fresh variety
@@ -204,6 +206,7 @@ export function useGerundInfinitiveGameState(activityId: string) {
       exerciseResults: [],
       phase: 'intro',
       error: null,
+      showWalkthrough: false,
     }));
   }, [state.categoryData]);
 
@@ -323,8 +326,16 @@ export function useGerundInfinitiveGameState(activityId: string) {
 
   const returnToGroupIntro = useCallback(() => {
     if (!state.selectedGroup) return;
-    setState(prev => ({ ...prev, phase: 'intro', exercises: [], currentExerciseIndex: 0, roundResults: null, exerciseResults: [], error: null }));
+    setState(prev => ({ ...prev, phase: 'intro', exercises: [], currentExerciseIndex: 0, roundResults: null, exerciseResults: [], error: null, showWalkthrough: false }));
   }, [state.selectedGroup]);
+
+  const reviewWalkthrough = useCallback(() => {
+    setState(prev => ({ ...prev, showWalkthrough: true }));
+  }, []);
+
+  const exitWalkthrough = useCallback(() => {
+    setState(prev => ({ ...prev, showWalkthrough: false }));
+  }, []);
 
   const continueToNext = useCallback(() => {
     if (!state.selectedGroup) return;
@@ -424,6 +435,8 @@ export function useGerundInfinitiveGameState(activityId: string) {
     completeSortingMiniGame,
     skipSortingMiniGame,
     returnToGroupIntro,
+    reviewWalkthrough,
+    exitWalkthrough,
     submitAnswer,
     saveProgress,
     retryGroup,

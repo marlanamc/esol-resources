@@ -9,7 +9,7 @@ interface Props { exercise: GIExercise; onAnswer: (correct: boolean) => void; an
 
 export function RuleApplicationExercise({ exercise, onAnswer, answered }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
-  const { prompt, options = [], highlightedWord } = exercise;
+  const { prompt, options = [], highlightedWord, triggerText } = exercise;
 
   const handleSelect = (option: string) => {
     if (answered || selected) return;
@@ -21,11 +21,20 @@ export function RuleApplicationExercise({ exercise, onAnswer, answered }: Props)
     ? prompt.split('___')
     : null;
 
-  // Extract the word immediately before the highlighted word (the "trigger") and underline it
+  // Prefer the exact trigger phrase from exercise data when available.
   const beforePart = sentenceParts?.[0] ?? '';
-  const triggerMatch = beforePart.match(/(.*?)(\S+)\s*$/);
-  const textBeforeTrigger = triggerMatch ? triggerMatch[1] : '';
-  const triggerWord = triggerMatch ? triggerMatch[2] : '';
+  const normalizedBeforePart = beforePart.replace(/\s+/g, ' ').trim();
+  const normalizedTriggerText = triggerText?.replace(/\s+/g, ' ').trim();
+  const hasExactTrigger =
+    !!normalizedTriggerText &&
+    normalizedBeforePart.toLowerCase().endsWith(normalizedTriggerText.toLowerCase());
+
+  const triggerWord = hasExactTrigger
+    ? normalizedTriggerText!
+    : normalizedBeforePart.split(/\s+/).pop() ?? '';
+  const textBeforeTrigger = hasExactTrigger
+    ? normalizedBeforePart.slice(0, normalizedBeforePart.length - normalizedTriggerText!.length).trimEnd()
+    : normalizedBeforePart.slice(0, Math.max(0, normalizedBeforePart.length - triggerWord.length)).trimEnd();
 
   return (
     <div className="space-y-5">
@@ -34,11 +43,11 @@ export function RuleApplicationExercise({ exercise, onAnswer, answered }: Props)
         <p className="font-display text-xl sm:text-2xl text-text leading-relaxed px-2">
           {sentenceParts ? (
             <>
-              {textBeforeTrigger}
+              {textBeforeTrigger ? `${textBeforeTrigger} ` : null}
               {triggerWord ? (
                 <span className="underline decoration-2 underline-offset-2 decoration-primary">{triggerWord}</span>
               ) : (
-                beforePart
+                normalizedBeforePart
               )}
               {triggerWord ? ' ' : null}
               <span className="bg-primary/20 text-primary px-1 rounded font-semibold">{highlightedWord}</span>

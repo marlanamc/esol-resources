@@ -19,7 +19,9 @@ export type PatternCategory =
   | 'meaning-change'   // Verbs where form changes meaning (stop, remember, try)
   | 'to-preposition'   // "TO" as preposition trap (look forward to + gerund)
   | 'preposition-choice' // Choose correct preposition (interested in vs good at)
-  | 'purpose';         // Infinitive showing purpose (I study to learn)
+  | 'purpose'          // Infinitive showing purpose (I study to learn)
+  | 'suggestion'       // Social suggestion phrases (How about, What about, Have you tried, Have you thought of)
+  | 'purpose-contrast'; // use X for + gerund vs use X to + infinitive
 
 // Individual pattern within a group
 export interface GerundInfinitivePattern {
@@ -133,6 +135,7 @@ export interface GIExercise {
   realWorldContext?: string;             // Context like "Job interview"
   baseVerb?: string;                     // Base form hint (e.g., "be")
   highlightedWord?: string;              // For rule-application: the gerund/infinitive to highlight
+  triggerText?: string;                  // Exact trigger phrase before the blank when available
   showPattern: boolean;                  // Whether to show pattern hint
   difficulty?: 1 | 2 | 3;
   // New variety types
