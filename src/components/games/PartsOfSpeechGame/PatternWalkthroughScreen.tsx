@@ -308,7 +308,7 @@ export function PatternWalkthroughScreen({
           {/* ── Step: rules ─────────────────────────────── */}
           {step.id === 'rules' && (
             <div className="space-y-4">
-              <div className={`p-6 bg-gradient-to-br ${group.colorClass.replace(/bg-\w+-50/, 'from-transparent to-black/5 dark:to-white/5').replace('border-', 'border-2 border-')} border-dashed rounded-3xl shadow-sm relative overflow-hidden`}>
+              <div className={`p-6 rounded-3xl border-2 border-dashed shadow-sm relative overflow-hidden dark:bg-[#1a2435] dark:border-white/20 ${group.colorClass}`}>
                 <div className="absolute top-0 right-0 p-4 opacity-10">
                   <span className="text-6xl">{group.icon}</span>
                 </div>
@@ -319,11 +319,11 @@ export function PatternWalkthroughScreen({
                   </p>
                   <div className="space-y-4">
                     {patternToBullets(group.pattern).map((bullet, i) => (
-                      <div key={i} className="flex gap-4 p-4 rounded-2xl bg-white/80 dark:bg-black/20 shadow-sm border border-black/5 dark:border-white/5 backdrop-blur-sm">
+                      <div key={i} className="flex gap-4 p-4 rounded-2xl bg-white/80 dark:bg-white/10 shadow-sm border border-black/5 dark:border-white/10">
                         <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-sm">
                           {i + 1}
                         </div>
-                        <p className="text-base text-text-strong font-medium leading-relaxed pt-0.5">
+                        <p className="text-base text-text font-medium leading-relaxed pt-0.5">
                           {bullet}
                         </p>
                       </div>

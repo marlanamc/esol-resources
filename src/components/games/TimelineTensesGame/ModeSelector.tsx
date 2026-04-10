@@ -100,7 +100,7 @@ export function ModeSelector({
     () => (isChallengeMode(selectedMode) ? 'challenge' : 'practice')
   );
 
-  const anyUnlocked = isUnlocked(categoryProgress, 2);
+  const anyUnlocked = true;
 
   function handleTabChange(tab: 'practice' | 'challenge') {
     setActiveTab(tab);
@@ -230,7 +230,7 @@ export function ModeSelector({
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {CHALLENGE_MODE_META.map((mode, i) => {
-                  const unlocked = isUnlocked(categoryProgress, mode.unlockLevel);
+                  const unlocked = true;
                   const isActive = selectedMode === mode.id;
 
                   return (

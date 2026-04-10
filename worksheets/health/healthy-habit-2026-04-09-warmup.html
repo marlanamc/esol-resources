@@ -69,6 +69,30 @@
     .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
     .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
     .front-page { margin-bottom: 24px; }
+
+    /* Part C: Sort It */
+    .sentence-bank { margin-bottom: 14px; }
+    .sentence-bank-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; row-gap: 5px; font-size: 13px; }
+    .sentence-bank-list li { padding: 3px 0; }
+    .sentence-bank-list li span.snum { font-weight: bold; margin-right: 4px; }
+    .sort-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+    .sort-box { border: 2px dashed var(--ink); border-radius: 4px; padding: 10px 12px; min-height: 110px; }
+    .sort-box-label { font-weight: bold; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .sort-box-sub { font-size: 11px; font-style: italic; color: var(--light); margin-bottom: 8px; }
+    .sort-write-lines { display: flex; flex-direction: column; gap: 8px; }
+    .sort-line { border-bottom: 1px solid var(--line); height: 20px; }
+    .tricky-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
+
+    /* Part D: Sentence Scramble */
+    .scramble-item { margin-bottom: 14px; }
+    .scramble-num { font-weight: bold; font-size: 13px; margin-bottom: 5px; }
+    .tiles { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
+    .tile { border: 1.5px solid var(--ink); border-radius: 3px; padding: 2px 7px; font-size: 12px; background: #f9f9f9; }
+    .scramble-answer { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+    .scramble-answer-label { font-size: 11px; font-style: italic; color: var(--light); white-space: nowrap; }
+    .scramble-line { border-bottom: 1px solid var(--line); flex: 1; height: 28px; }
+    .circle-choice { font-size: 12px; color: var(--gray); margin-left: 2px; }
+    .circle-choice span { border: 1.5px solid var(--gray); border-radius: 10px; padding: 1px 8px; margin: 0 3px; font-size: 11px; font-weight: bold; }
     @media print {
       @page { size: letter; margin: 0.45in; }
       body { background: #fff; padding: 0; }
@@ -76,13 +100,32 @@
       .page-break { page-break-before: always; }
     }
       .pron { font-size: 11px; color: var(--light); font-style: italic; margin-left: 4px; }
+
+    /* Part B redesign */
+    .grammar-box { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 2px solid var(--ink); margin-bottom: 14px; font-size: 13px; }
+    .grammar-col { padding: 10px 12px; }
+    .grammar-col:first-child { border-right: 2px solid var(--ink); }
+    .grammar-col-title { font-weight: bold; font-size: 13px; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
+    .grammar-col-rule { font-style: italic; color: var(--gray); margin-bottom: 6px; font-size: 12px; }
+    .grammar-col-verbs { margin-bottom: 6px; }
+    .grammar-col-verbs strong { font-weight: bold; }
+    .grammar-example { color: var(--gray); font-size: 12px; }
+    .part-b-activity { margin-bottom: 14px; }
+    .part-b-activity-title { font-weight: bold; font-size: 13px; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-bottom: 8px; }
+    .circle-item { margin-bottom: 8px; font-size: 13px; line-height: 1.5; }
+    .circle-item .inum { font-weight: bold; margin-right: 4px; }
+    .option { border: 1px solid #999; border-radius: 10px; padding: 1px 7px; margin: 0 2px; font-size: 12px; cursor: default; }
+    .fill-item { display: flex; align-items: baseline; gap: 8px; margin-bottom: 9px; font-size: 13px; }
+    .fill-num { font-weight: bold; min-width: 16px; }
+    .fill-hint { color: var(--light); font-style: italic; font-size: 12px; white-space: nowrap; }
+    .fill-line { border-bottom: 1px solid var(--line); width: 120px; height: 20px; display: inline-block; }
   </style>
 </head>
 <body>
   <div class="sheet">
     <div class="front-page">
       <header class="header">
-      <h1>Healthy Habit Tracker (Grammar Review)</h1>
+      <h1>Healthy Habit Tracker</h1>
       <div class="header-fields">
         <div class="field">
           <label>Name</label>
@@ -121,106 +164,131 @@
       </section>
       <section class="section">
         <div class="section-header">
-          <h2 class="section-title">Part B: Phrases</h2>
-          <span class="section-time">8 min</span>
+          <h2 class="section-title">Part B: Gerund or Infinitive?</h2>
+          <span class="section-time">7 min</span>
         </div>
-        <p class="instruction"><strong>Grammar Review:</strong> This week we practice gerunds, conditionals, modals, phrasal verbs, and reported speech (we'll review tenses next week). Read the examples, then write your own. Use vocabulary from Part A when you can.</p>
-        <div class="phrase">
-          <div class="phrase-starter">1) I enjoy / avoid / quit… (verb + gerund)</div>
-          <ul class="examples">
-            <li>I enjoy exercising in the morning. I avoid eating junk food. I quit smoking two years ago.</li>
-          </ul>
-          <div class="your-turn">
-            <span class="your-turn-label">Your turn:</span>
-            <div class="writing-line"></div>
+
+        <div class="grammar-box">
+          <div class="grammar-col">
+            <div class="grammar-col-title">&#x1F3C3; Gerund &nbsp;(verb + -ing)</div>
+            <div class="grammar-col-rule">Use for activities and experiences — things you do or did.</div>
+            <div class="grammar-col-verbs">Use after: <strong>enjoy, avoid, quit, keep, finish, practice</strong></div>
+            <div class="grammar-example">
+              I enjoy <u>walking</u> after dinner.<br>
+              She quit <u>smoking</u> last year.<br>
+              I avoid <u>eating</u> fast food.
+            </div>
+          </div>
+          <div class="grammar-col">
+            <div class="grammar-col-title">&#x1F3AF; Infinitive &nbsp;(to + verb)</div>
+            <div class="grammar-col-rule">Use for goals and plans — things you want or decided to do.</div>
+            <div class="grammar-col-verbs">Use after: <strong>want, plan, decide, need, hope, try</strong></div>
+            <div class="grammar-example">
+              I want <u>to drink</u> more water.<br>
+              We plan <u>to join</u> a gym.<br>
+              He decided <u>to sleep</u> earlier.
+            </div>
           </div>
         </div>
-        <div class="phrase">
-          <div class="phrase-starter">2) I keep / continue / I'm considering… (verb + gerund)</div>
-          <ul class="examples">
-            <li>I keep forgetting to drink water. I'm considering joining a gym.</li>
-          </ul>
-          <div class="your-turn">
-            <span class="your-turn-label">Your turn:</span>
-            <div class="writing-line"></div>
-          </div>
+
+        <div class="part-b-activity">
+          <div class="part-b-activity-title">Activity 1 — Circle the correct form</div>
+          <div class="circle-item"><span class="inum">1.</span> I enjoy <span class="option">walk</span> <span class="option">walking</span> <span class="option">to walk</span> after dinner.</div>
+          <div class="circle-item"><span class="inum">2.</span> She wants <span class="option">quit</span> <span class="option">quitting</span> <span class="option">to quit</span> sugar.</div>
+          <div class="circle-item"><span class="inum">3.</span> He avoids <span class="option">eat</span> <span class="option">eating</span> <span class="option">to eat</span> fast food.</div>
+          <div class="circle-item"><span class="inum">4.</span> They decided <span class="option">sleep</span> <span class="option">sleeping</span> <span class="option">to sleep</span> eight hours a night.</div>
+          <div class="circle-item"><span class="inum">5.</span> I keep <span class="option">forget</span> <span class="option">forgetting</span> <span class="option">to forget</span> to drink water.</div>
         </div>
-        <div class="phrase">
-          <div class="phrase-starter">3) If I ___ (habit), I ___ / I will ___ (Zero or First Conditional)</div>
-          <ul class="examples">
-            <li>If I exercise every day, I feel better.</li>
-            <li>If I keep tracking my habits, I will reach my goal.</li>
-          </ul>
-          <div class="your-turn">
-            <span class="your-turn-label">Your turn:</span>
-            <div class="writing-line"></div>
-          </div>
+
+        <div class="part-b-activity">
+          <div class="part-b-activity-title">Activity 2 — Write the correct form of the verb</div>
+          <div class="fill-item"><span class="fill-num">1.</span> I need <div class="fill-line"></div> <span class="fill-hint">(drink) more water.</span></div>
+          <div class="fill-item"><span class="fill-num">2.</span> She quit <div class="fill-line"></div> <span class="fill-hint">(smoke) last year.</span></div>
+          <div class="fill-item"><span class="fill-num">3.</span> We plan <div class="fill-line"></div> <span class="fill-hint">(join) a gym next month.</span></div>
+          <div class="fill-item"><span class="fill-num">4.</span> I practice <div class="fill-line"></div> <span class="fill-hint">(stretch) every morning.</span></div>
         </div>
-        <div class="phrase">
-          <div class="phrase-starter">4) I gave up / took up / cut down on ___ (phrasal verbs)</div>
-          <ul class="examples">
-            <li>I gave up soda. I took up walking. I'm trying to cut down on sugar.</li>
-          </ul>
-          <div class="your-turn">
-            <span class="your-turn-label">Your turn:</span>
-            <div class="writing-line"></div>
-          </div>
-        </div>
-        <div class="phrase">
-          <div class="phrase-starter">5) My doctor / friend said (that) I ___ (reported speech)</div>
-          <ul class="examples">
-            <li>My doctor said I should exercise more. My friend said she had quit smoking.</li>
-          </ul>
-          <div class="your-turn">
-            <span class="your-turn-label">Your turn:</span>
-            <div class="writing-line"></div>
-          </div>
-        </div>
-        <p class="level-up">Level up: Use at least three different structures (gerunds, conditionals, modals, phrasal verbs, or reported speech) in your sentences.</p>
       </section>
       
     </div>
+    <div class="page-break"></div>
     <section class="section">
       <div class="section-header">
-        <h2 class="section-title">Reading</h2>
+        <h2 class="section-title">Part C: Sentence Scramble &#x1F9E9;</h2>
+        <span class="section-time">5 min</span>
       </div>
-      <div class="reading-text">
-        <p>Tracking healthy habits helps you see your progress. We use many grammar structures when we talk about habits: <strong>verbs + gerunds</strong> ("I enjoy exercising," "I quit smoking," "I'm considering joining a gym"), <strong>conditionals</strong> for cause and effect ("If I exercise daily, I feel better"), <strong>phrasal verbs</strong> like <em>give up</em>, <em>take up</em>, or <em>cut down on</em> ("I gave up soda," "I took up walking"), and <strong>reported speech</strong> to share what others said ("My doctor said I should exercise more").</p>
-        <p>This week we're reviewing these structures (we'll do the big tense review next week). Small changes matter—if you gave up one soda per day, you've made real progress!</p>
+      <p class="instruction">Unscramble the words to make a correct sentence. Write it on the line, then circle whether it uses a <strong>gerund</strong> or an <strong>infinitive</strong>.</p>
+
+      <div class="scramble-item">
+        <div class="scramble-num">1.</div>
+        <div class="tiles">
+          <span class="tile">enjoy</span><span class="tile">I</span><span class="tile">after</span><span class="tile">walking</span><span class="tile">dinner</span>
+        </div>
+        <div class="scramble-answer">
+          <span class="scramble-answer-label">Answer:</span>
+          <div class="scramble-line"></div>
+        </div>
+        <div class="circle-choice">Circle one: <span>GERUND</span> <span>INFINITIVE</span></div>
       </div>
-      <div class="question">
-        <div class="question-text"><b>1)</b> Why is tracking healthy habits helpful?</div>
-        <div class="answer-line"></div>
+
+      <div class="scramble-item">
+        <div class="scramble-num">2.</div>
+        <div class="tiles">
+          <span class="tile">to</span><span class="tile">every</span><span class="tile">drink</span><span class="tile">want</span><span class="tile">more</span><span class="tile">I</span><span class="tile">day</span><span class="tile">water</span>
+        </div>
+        <div class="scramble-answer">
+          <span class="scramble-answer-label">Answer:</span>
+          <div class="scramble-line"></div>
+        </div>
+        <div class="circle-choice">Circle one: <span>GERUND</span> <span>INFINITIVE</span></div>
       </div>
-      <div class="question">
-        <div class="question-text"><b>2)</b> Name two different grammar structures you can use when talking about habits (gerunds, conditionals, phrasal verbs, or reported speech), and give an example of each.</div>
-        <div class="answer-line"></div>
+
+      <div class="scramble-item">
+        <div class="scramble-num">3.</div>
+        <div class="tiles">
+          <span class="tile">junk</span><span class="tile">she</span><span class="tile">eating</span><span class="tile">quit</span><span class="tile">food</span>
+        </div>
+        <div class="scramble-answer">
+          <span class="scramble-answer-label">Answer:</span>
+          <div class="scramble-line"></div>
+        </div>
+        <div class="circle-choice">Circle one: <span>GERUND</span> <span>INFINITIVE</span></div>
       </div>
-      <div class="question">
-        <div class="question-text"><b>3)</b> What does "My doctor said I should exercise more" show? (Reported speech—who said it? What was the advice?)</div>
-        <div class="answer-line"></div>
+
+      <div class="scramble-item">
+        <div class="scramble-num">4.</div>
+        <div class="tiles">
+          <span class="tile">decided</span><span class="tile">he</span><span class="tile">earlier</span><span class="tile">bed</span><span class="tile">to</span><span class="tile">go</span><span class="tile">to</span>
+        </div>
+        <div class="scramble-answer">
+          <span class="scramble-answer-label">Answer:</span>
+          <div class="scramble-line"></div>
+        </div>
+        <div class="circle-choice">Circle one: <span>GERUND</span> <span>INFINITIVE</span></div>
       </div>
-    </section>
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">Writing Homework</h2>
-        <span class="section-time">6–8 sentences</span>
+
+      <div class="scramble-item">
+        <div class="scramble-num">5.</div>
+        <div class="tiles">
+          <span class="tile">keep</span><span class="tile">I</span><span class="tile">at</span><span class="tile">my</span><span class="tile">checking</span><span class="tile">phone</span><span class="tile">night</span>
+        </div>
+        <div class="scramble-answer">
+          <span class="scramble-answer-label">Answer:</span>
+          <div class="scramble-line"></div>
+        </div>
+        <div class="circle-choice">Circle one: <span>GERUND</span> <span>INFINITIVE</span></div>
       </div>
-      <div class="writing-prompt">
-        <b>Prompt:</b> Write about your healthy habits journey (real or imagined). Example: "I enjoy walking. I gave up soda last year. If I exercise every day, I feel better. My doctor said I should drink more water."
+
+      <div class="scramble-item">
+        <div class="scramble-num">6.</div>
+        <div class="tiles">
+          <span class="tile">going</span><span class="tile">she</span><span class="tile">is</span><span class="tile">to</span><span class="tile">start</span><span class="tile">running</span><span class="tile">week</span><span class="tile">next</span>
+        </div>
+        <div class="scramble-answer">
+          <span class="scramble-answer-label">Answer:</span>
+          <div class="scramble-line"></div>
+        </div>
+        <div class="circle-choice">Circle one: <span>GERUND</span> <span>INFINITIVE</span></div>
       </div>
-      
-      <div class="writing-lines">
-        <div class="homework-line"></div>
-        <div class="homework-line"></div>
-        <div class="homework-line"></div>
-        <div class="homework-line"></div>
-        <div class="homework-line"></div>
-        <div class="homework-line"></div>
-        <div class="homework-line"></div>
-        <div class="homework-line"></div>
-      </div>
-      <p class="optional-note">Optional challenge: Add modals (You should / must / can...) or another phrasal verb (keep up, look after).</p>
     </section>
   </div>
 

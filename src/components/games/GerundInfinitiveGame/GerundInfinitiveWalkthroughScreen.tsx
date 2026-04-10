@@ -528,7 +528,7 @@ export function GerundInfinitiveWalkthroughScreen({
               <FormulaChain group={group} />
 
               {/* Rule bullets */}
-              <div className={`p-6 rounded-3xl border-2 border-dashed shadow-sm relative overflow-hidden ${group.colorClass}`}>
+              <div className={`p-6 rounded-3xl border-2 border-dashed shadow-sm relative overflow-hidden dark:bg-[#1a2435] dark:border-white/20 ${group.colorClass}`}>
                 <div className="absolute top-0 right-0 p-4 opacity-10 select-none">
                   <span className="text-7xl">{group.icon}</span>
                 </div>
@@ -539,7 +539,7 @@ export function GerundInfinitiveWalkthroughScreen({
                       initial={{ opacity: 0, x: -12 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + i * 0.08 }}
-                      className="flex gap-4 p-4 rounded-2xl bg-white/80 dark:bg-black/20 shadow-sm border border-black/5 dark:border-white/5 backdrop-blur-sm"
+                      className="flex gap-4 p-4 rounded-2xl bg-white/80 dark:bg-white/10 shadow-sm border border-black/5 dark:border-white/10"
                     >
                       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-sm">
                         {i + 1}
