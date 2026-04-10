@@ -11,7 +11,7 @@ const ONLINE_STABLE_AFTER_MS = 600;
 /** Re-probe reachability while offline so the banner can recover even if `navigator.onLine` is wrong. */
 const OFFLINE_RECOVERY_POLL_MS = 5000;
 /** Same-origin check: if this succeeds, we do not show offline (navigator was wrong). */
-const REACHABILITY_URL = "/manifest.json";
+const REACHABILITY_URL = "/api/ping";
 
 function getOfflineDelayMs(): number {
   if (typeof window === "undefined") return OFFLINE_SHOW_AFTER_MS;
@@ -102,7 +102,7 @@ export default function NetworkStatusBanner() {
         const fetchAc = new AbortController();
         fetchProbeAbortRef.current?.abort();
         fetchProbeAbortRef.current = fetchAc;
-        const timeoutId = window.setTimeout(() => fetchAc.abort(), 2800);
+        const timeoutId = window.setTimeout(() => fetchAc.abort(), 5000);
 
         void checkSiteReachable(fetchAc.signal)
           .then((reachable) => {
@@ -145,7 +145,7 @@ export default function NetworkStatusBanner() {
 
         const fetchAc = new AbortController();
         fetchProbeAbortRef.current = fetchAc;
-        const timeoutId = window.setTimeout(() => fetchAc.abort(), 2800);
+        const timeoutId = window.setTimeout(() => fetchAc.abort(), 5000);
 
         void checkSiteReachable(fetchAc.signal)
           .then((reachable) => {
