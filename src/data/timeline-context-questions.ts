@@ -2306,4 +2306,154 @@ export const TIMELINE_CONTEXT_QUESTIONS: ContextTenseQuestion[] = [
     difficulty: 1,
     tenseCategory: "perfect-continuous",
   },
+  {
+    id: "ctx-ut-01",
+    type: "context-tense-picker",
+    scenario:
+      "Maria is looking at old photos. She says: \"Look at this — I ___ (have) such long hair when I was a teenager. I cut it short years ago.\"",
+    blankVerb: "have",
+    realLifeDialogue: {
+      lineA: 'A: "Wow, is that you? Your hair is so different!"',
+      lineB: 'B: "I know! I used to have really long hair. I cut it years ago."',
+    },
+    options: [
+      {
+        tenseName: "Used to",
+        conjugatedVerb: "used to have",
+        elements: buildCanonicalTimelineElements("pastSimpleHabit", "ctx-ut-01-a"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "had",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-ut-01-b", [{ position: 40 }]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "have",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-ut-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["when I was a teenager", "years ago", "looking at old photos"],
+    explanation:
+      '"When I was a teenager" and "years ago" signal a past state that lasted a long time but is no longer true. "Used to have" is the natural choice — it expresses a past habit or state that has ended. "Had" (Past Simple) describes a single finished moment, not an ongoing state. "Have" (Present Simple) is factually wrong here — the hair is gone.',
+    difficulty: 3,
+    tenseCategory: "used-to",
+  },
+  {
+    id: "ctx-ut-02",
+    type: "context-tense-picker",
+    scenario:
+      "Paulo talks about his childhood: \"When I was a kid, we ___ (walk) to the market every Saturday morning with my grandmother. It was our tradition.\"",
+    blankVerb: "walk",
+    realLifeDialogue: {
+      lineA: 'A: "Did you spend a lot of time with your grandmother growing up?"',
+      lineB: 'B: "Yes — we used to walk to the market every Saturday. It was our thing."',
+    },
+    options: [
+      {
+        tenseName: "Used to",
+        conjugatedVerb: "used to walk",
+        elements: buildCanonicalTimelineElements("pastSimpleHabit", "ctx-ut-02-a"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Past Continuous",
+        conjugatedVerb: "were walking",
+        elements: buildCanonicalTimelineElements("pastContinuous", "ctx-ut-02-b"),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "walk",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-ut-02-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["when I was a kid", "every Saturday morning", "our tradition"],
+    explanation:
+      '"When I was a kid" and "every Saturday morning" together signal a repeated past habit — no longer happening. "Used to walk" captures both the repetition and the fact that it ended. Past Continuous ("were walking") describes an action in progress at one past moment, not a repeated routine. Present Simple ("walk") would mean they still do it now.',
+    difficulty: 3,
+    tenseCategory: "used-to",
+  },
+  {
+    id: "ctx-pc-nf-01",
+    type: "context-tense-picker",
+    scenario:
+      "Rosa just got off the phone. She says: \"Great news — I ___ (see) the apartment on Thursday at 2 PM. The landlord confirmed it.\"",
+    blankVerb: "see",
+    realLifeDialogue: {
+      lineA: 'A: "Did you find a new place yet?"',
+      lineB: 'B: "I\'m seeing the apartment on Thursday at 2 PM. The landlord confirmed it."',
+    },
+    options: [
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "am seeing",
+        elements: buildCanonicalTimelineElements("presentContinuousNearFuture", "ctx-pc-nf-01-a"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Future Simple",
+        conjugatedVerb: "will see",
+        elements: buildCanonicalTimelineElements("futureSimple", "ctx-pc-nf-01-b", [
+          { position: 55 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Present Simple",
+        conjugatedVerb: "see",
+        elements: buildCanonicalTimelineElements("presentSimpleHabit", "ctx-pc-nf-01-c"),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["on Thursday at 2 PM", "confirmed it"],
+    explanation:
+      '"On Thursday at 2 PM" and "confirmed it" tell us this is a fixed, arranged appointment — not a spontaneous decision. Present Continuous (am seeing) is the natural choice for confirmed near-future plans. "Will see" sounds like a decision made right now; "see" (Present Simple) describes a habit, not a specific plan.',
+    difficulty: 2,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "ctx-pc-nf-02",
+    type: "context-tense-picker",
+    scenario:
+      "Marco checks his calendar and tells his coworker: \"I can't do lunch on Friday — I ___ (have) a dentist appointment that morning.\"",
+    blankVerb: "have",
+    realLifeDialogue: {
+      lineA: 'A: "Are you free for lunch on Friday?"',
+      lineB: 'B: "Sorry, I\'m having a dentist appointment that morning."',
+    },
+    options: [
+      {
+        tenseName: "Present Continuous",
+        conjugatedVerb: "am having",
+        elements: buildCanonicalTimelineElements("presentContinuousNearFuture", "ctx-pc-nf-02-a"),
+        isCorrect: true,
+      },
+      {
+        tenseName: "Future Simple",
+        conjugatedVerb: "will have",
+        elements: buildCanonicalTimelineElements("futureSimple", "ctx-pc-nf-02-b", [
+          { position: 55 },
+        ]),
+        isCorrect: false,
+      },
+      {
+        tenseName: "Past Simple",
+        conjugatedVerb: "had",
+        elements: buildCanonicalTimelineElements("pastSimple", "ctx-pc-nf-02-c", [
+          { position: 50 },
+        ]),
+        isCorrect: false,
+      },
+    ],
+    contextClues: ["can't do lunch on Friday", "checks his calendar", "that morning"],
+    explanation:
+      '"Checks his calendar" and "that morning" signal a scheduled appointment already in place. Present Continuous (am having) is used for arranged near-future plans. "Will have" suggests deciding right now, which contradicts the calendar detail. Past Simple (had) points backward in time, not forward.',
+    difficulty: 2,
+    tenseCategory: "continuous",
+  },
 ];

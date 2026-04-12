@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useMemo } from 'react';
+import { useState } from 'react';
 import { Check, X, Lightbulb, ArrowRight } from 'lucide-react';
 
 const CORRECT_PHRASES = [
@@ -44,6 +44,8 @@ interface FeedbackPanelProps {
   sentence?: string;
   /** Original sentence verb phrase for sentence-to-timeline feedback */
   verbPhrase?: string;
+  /** Second verb phrase (for two-verb mixed sentences) */
+  verbPhrase2?: string;
   /** Optional per-question real-life dialogue */
   realLifeDialogue?: RealLifeDialogue;
 }
@@ -57,14 +59,13 @@ export function FeedbackPanel({
   sentenceTemplate,
   sentence,
   verbPhrase,
+  verbPhrase2,
   realLifeDialogue,
 }: FeedbackPanelProps) {
   const hasBlankFeedback = (blankFeedback?.length ?? 0) > 0;
 
-  const correctPhrase = useMemo(
-    () => CORRECT_PHRASES[Math.floor(Math.random() * CORRECT_PHRASES.length)],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+  const [correctPhrase] = useState(
+    () => CORRECT_PHRASES[Math.floor(Math.random() * CORRECT_PHRASES.length)]
   );
 
   // Escape special regex characters in a string
@@ -176,7 +177,7 @@ export function FeedbackPanel({
             The Sentence:
           </div>
           <p className="text-xl sm:text-2xl font-display font-black text-text leading-snug tracking-tight">
-            &ldquo;{highlightSentenceFeatures(sentence, verbPhrase)}&rdquo;
+            &ldquo;{highlightSentenceFeatures(sentence, verbPhrase, verbPhrase2)}&rdquo;
           </p>
           <InlineInfoTooltip text="Highlighted words are time clues. Underlined words are the verb phrase." />
         </div>

@@ -194,14 +194,17 @@ export function highlightVerbPhrase(
   return renderHighlightedText(sentence, [], getVerbPhraseRanges(sentence, verbPhrase));
 }
 
-/** Highlight time clues and underline the target verb phrase in one pass. */
+/** Highlight time clues and underline the target verb phrase(s) in one pass. */
 export function highlightSentenceFeatures(
   sentence: string,
-  verbPhrase: string | undefined
+  verbPhrase: string | undefined,
+  verbPhrase2?: string | undefined
 ): React.ReactNode {
+  const ranges1 = getVerbPhraseRanges(sentence, verbPhrase);
+  const ranges2 = getVerbPhraseRanges(sentence, verbPhrase2);
   return renderHighlightedText(
     sentence,
     getPatternRanges(sentence, TIME_CLUE_PATTERNS),
-    getVerbPhraseRanges(sentence, verbPhrase)
+    [...ranges1, ...ranges2]
   );
 }

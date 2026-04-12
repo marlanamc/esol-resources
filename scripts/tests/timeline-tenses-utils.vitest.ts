@@ -298,22 +298,22 @@ describe("timeline tenses utils", () => {
     expect(correctA.length).toBeGreaterThan(0);
     expect(correctB.length).toBeGreaterThan(0);
 
+    /** Prompt can be a separate stem; options carry the fuller contrast sentences. */
+    const promptStemExceptions = new Set(["comp-ut-ps-01"]);
+
     for (const question of TIMELINE_COMPARISON_QUESTIONS) {
       expect(question.promptText.trim().length).toBeGreaterThan(0);
       expect(question.promptType).toBeTruthy();
       expect(question.optionA.sentence.trim().length).toBeGreaterThan(0);
       expect(question.optionB.sentence.trim().length).toBeGreaterThan(0);
-      expect(
-        question.correctOption === "A"
-          ? question.promptText
-          : question.correctOption === "B"
-            ? question.promptText
-            : ""
-      ).toBe(
+      if (promptStemExceptions.has(question.id)) {
+        continue;
+      }
+      const correctSentence =
         question.correctOption === "A"
           ? question.optionA.sentence
-          : question.optionB.sentence
-      );
+          : question.optionB.sentence;
+      expect(question.promptText.trim()).toBe(correctSentence.trim());
     }
   });
 
@@ -472,6 +472,7 @@ describe("timeline tenses utils", () => {
       "build-the-timeline",
       12,
       "affirmative",
+      "all",
       1
     );
 
@@ -574,6 +575,7 @@ describe("timeline tenses utils", () => {
       "build-the-timeline",
       5,
       "affirmative",
+      "all",
       1
     );
 
@@ -591,7 +593,8 @@ describe("timeline tenses utils", () => {
       mixed: { completed: false },
     });
 
-    expect(progress).toBe(20);
+    // REAL_TENSE_CATEGORIES has 6 entries; 2 completed (all + simple) → 2/6 ≈ 33%
+    expect(progress).toBe(33);
   });
 
   it("keeps the all-category tutorial focused on common introductory patterns", () => {

@@ -19,9 +19,7 @@ afterEach(() => {
 });
 
 describe("TenseComparisonExercise", () => {
-  it("randomizes timeline card order from the question data", () => {
-    vi.spyOn(Math, "random").mockReturnValue(0.9);
-
+  it("shows timeline A before timeline B in the question view (fixed order)", () => {
     const html = renderToStaticMarkup(
       React.createElement(TenseComparisonExercise, {
         question: baseQuestion,
@@ -32,10 +30,10 @@ describe("TenseComparisonExercise", () => {
       })
     );
 
-    expect(getTenseComparisonOptionOrder(0.9)).toEqual(["B", "A"]);
+    expect(getTenseComparisonOptionOrder()).toEqual(["A", "B"]);
     expect(html.indexOf("Timeline B")).toBeGreaterThan(-1);
     expect(html.indexOf("Timeline A")).toBeGreaterThan(-1);
-    expect(html.indexOf("Timeline B")).toBeLessThan(html.indexOf("Timeline A"));
+    expect(html.indexOf("Timeline A")).toBeLessThan(html.indexOf("Timeline B"));
   });
 
   it("grades against the declared correct option instead of assuming A", () => {
@@ -55,13 +53,18 @@ describe("TenseComparisonExercise", () => {
       })
     );
 
-    expect(html).toContain(baseQuestion.optionA.sentence);
-    expect(html).toContain(baseQuestion.optionB.sentence);
+    // Feedback uses highlightTimeClues(); sentences may be split across spans.
+    expect(html).toMatch(/I will call you/);
+    expect(html).toMatch(/will be working at 8/);
     expect(html).toContain("Key Difference");
     expect(html).toContain(
       baseQuestion.keyDifference.replaceAll('"', "&quot;")
     );
-    expect(html).toContain(`Correct match: Timeline ${baseQuestion.correctOption}`);
+    const correctTense =
+      baseQuestion.correctOption === "A" ? baseQuestion.tenseA : baseQuestion.tenseB;
+    expect(html).toContain(
+      `Correct match: Timeline ${baseQuestion.correctOption} = ${correctTense}`
+    );
   });
 
   it("uses the prompt type to label the task", () => {

@@ -1035,7 +1035,7 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
     targetElements: buildCanonicalTimelineElements("futurePerfect", "trans-home-fs-fpf-01-target", [
       { position: 65 },
     ]),
-    verbBlanks: [{ index: 4, validAnswers: ["will have paid"] }],
+    verbBlanks: [{ index: 3, validAnswers: ["will have paid"] }],
     hint: 'Use "will have + past participle" with "by" to show completion before a deadline.',
     explanation:
       'Future Perfect shows the action as complete before a future point. "By Friday" sets that deadline.',
@@ -1593,5 +1593,101 @@ export const TIMELINE_TRANSFORMER_QUESTIONS: SentenceTransformerQuestion[] = [
       '"Have learned" describes completed results — knowledge gained. "Have been learning" emphasises the ongoing, continuous process of growing. Add "been" and change to -ing.',
     difficulty: 2,
     tenseCategory: "perfect-continuous",
+  },
+  {
+    id: "trans-fs-pc-nf-01",
+    type: "sentence-transformer",
+    sourceTense: "Future Simple",
+    targetTense: "Present Continuous",
+    sourceSentence: "She will visit her parents this weekend.",
+    targetSentence: "She is visiting her parents this weekend.",
+    realLifeDialogue: {
+      lineA: 'A: "Does she have plans this weekend?"',
+      lineB: 'B: "Yes — she\'s visiting her parents. It\'s already arranged."',
+    },
+    sourceElements: buildCanonicalTimelineElements("futureSimple", "trans-fs-pc-nf-01-source", [
+      { position: 55 },
+    ]),
+    targetElements: buildCanonicalTimelineElements(
+      "presentContinuousNearFuture",
+      "trans-fs-pc-nf-01-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["is visiting"] }],
+    hint: 'Use "is/are + -ing" to show the plan is confirmed, not just a possibility.',
+    explanation:
+      '"Will visit" can sound like an open decision. "Is visiting" signals the plan is fixed — it\'s already on the calendar. Switch to am/is/are + -ing.',
+    difficulty: 2,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "trans-prs-pc-nf-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Present Continuous",
+    sourceSentence: "They meet their new teacher on Monday.",
+    targetSentence: "They are meeting their new teacher on Monday.",
+    realLifeDialogue: {
+      lineA: 'A: "When do they meet the new teacher?"',
+      lineB: 'B: "They\'re meeting her on Monday — it\'s already scheduled."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-prs-pc-nf-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements(
+      "presentContinuousNearFuture",
+      "trans-prs-pc-nf-01-target"
+    ),
+    verbBlanks: [{ index: 1, validAnswers: ["are meeting"] }],
+    hint: 'Use "are + -ing" to show this is a specific, arranged appointment — not just a scheduled routine.',
+    explanation:
+      'Present Simple ("meet") can describe a timetable event, but Present Continuous ("are meeting") adds the personal, arranged feeling — we made this happen. Use are + -ing.',
+    difficulty: 2,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "trans-ps-ut-01",
+    type: "sentence-transformer",
+    sourceTense: "Past Simple",
+    targetTense: "Used to",
+    sourceSentence: "She walked to work every morning.",
+    targetSentence: "She used to walk to work every morning.",
+    realLifeDialogue: {
+      lineA: 'A: "Does she still walk to work?"',
+      lineB: 'B: "No, she used to walk every morning, but she drives now."',
+    },
+    sourceElements: buildCanonicalTimelineElements("pastSimple", "trans-ps-ut-01-source", [
+      { position: 40 },
+    ]),
+    targetElements: buildCanonicalTimelineElements("pastSimpleHabit", "trans-ps-ut-01-target"),
+    verbBlanks: [{ index: 1, validAnswers: ["used to walk"] }],
+    hint: 'Replace the past tense verb with "used to + base verb" to show this was a repeated past habit — not just one time.',
+    explanation:
+      '"Walked" (Past Simple) just means it happened once or at a specific time. "Used to walk" tells us it was a regular routine that no longer continues. Use: used to + V1.',
+    difficulty: 3,
+    tenseCategory: "used-to",
+  },
+  {
+    id: "trans-prs-ut-01",
+    type: "sentence-transformer",
+    sourceTense: "Present Simple",
+    targetTense: "Used to",
+    sourceSentence: "He drinks tea every morning.",
+    targetSentence: "He used to drink tea every morning.",
+    realLifeDialogue: {
+      lineA: 'A: "He only drinks coffee now. Did that change?"',
+      lineB: 'B: "Yes — he used to drink tea every morning, but he switched."',
+    },
+    sourceElements: buildCanonicalTimelineElements(
+      "presentSimpleHabit",
+      "trans-prs-ut-01-source"
+    ),
+    targetElements: buildCanonicalTimelineElements("pastSimpleHabit", "trans-prs-ut-01-target"),
+    verbBlanks: [{ index: 1, validAnswers: ["used to drink"] }],
+    hint: 'Move the habit to the past — change "drinks" to "used to drink" and shift it to the past zone.',
+    explanation:
+      'Present Simple ("drinks") = current habit. "Used to drink" = past habit that stopped. The stamp moves from the present zone to the past zone. Use: used to + V1.',
+    difficulty: 3,
+    tenseCategory: "used-to",
   },
 ];

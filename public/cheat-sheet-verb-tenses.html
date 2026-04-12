@@ -12,6 +12,10 @@
       font-family: 'DM Sans', system-ui, sans-serif;
       background: #fef9f3;
       color: #2b3a4a;
+      margin: 0;
+    }
+
+    .sheet-page {
       padding: 4px 8px 4px;
       max-width: 100%;
       height: 100vh;
@@ -250,6 +254,60 @@
       margin-bottom: 2px;
     }
 
+    /* ── Page 2: Special Tense Uses ── */
+    .page2-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+    .page2-panel {
+      border: 2px solid #d1d5db;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .page2-panel .cell-copy {
+      justify-content: flex-start;
+      flex: 0 0 auto;
+    }
+    .cell-notes {
+      padding: 5px 8px 5px;
+      flex: 1 1 auto;
+      border-top: 1px solid #eceef2;
+      background: linear-gradient(180deg, rgba(249,250,251,0.5) 0%, #fff 100%);
+    }
+    .cell-notes .formula-block { margin-top: 0; }
+    .page2-panel-header {
+      text-align: center;
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 6px 8px 5px;
+      flex-shrink: 0;
+    }
+    .p2-near-future .page2-panel-header {
+      background: #dbeafe;
+      color: #1e3a8a;
+    }
+    .p2-timetable .page2-panel-header {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    .p2-going-to .page2-panel-header {
+      background: #dbeafe;
+      color: #1e3a8a;
+    }
+    .p2-used-to .page2-panel-header {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
     @media (max-width: 780px) {
       .sheet-footer .verb-key {
         border-left: none;
@@ -281,25 +339,28 @@
       html, body {
         height: 100%;
         width: 100%;
-      }
-      body {
-        padding: 5mm 6mm !important;
-        margin: 0 !important;
         background: #fff;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+      }
+      body { margin: 0 !important; }
+      @page {
+        size: letter landscape;
+        margin: 0;
+      }
+      .sheet-page {
+        padding: 5mm 6mm;
         display: flex;
         flex-direction: column;
+        height: 100%;
+        overflow: visible;
       }
-      @page { 
-        size: letter landscape; 
-        margin: 0; 
-      }
+      .page-2 { break-before: page; }
 
-      h1 { 
-        font-size: 24px; 
-        padding: 6px 20px; 
-        margin-bottom: 6px; 
+      h1 {
+        font-size: 24px;
+        padding: 6px 20px;
+        margin-bottom: 6px;
       }
 
       table {
@@ -307,6 +368,13 @@
         height: 100%;
         min-height: 0;
       }
+      .page2-grid {
+        flex: 1 1 auto;
+        min-height: 0;
+        grid-template-rows: 1fr 1fr;
+      }
+      .page2-panel-header { font-size: 17px; padding: 7px 10px; }
+      .cell-notes { padding: 4px 8px 4px; }
 
       .col-header { 
         font-size: 16px; 
@@ -383,6 +451,7 @@
 </head>
 <body>
 
+<div class="sheet-page">
 <h1>Verb Tenses</h1>
 
 <table>
@@ -552,7 +621,7 @@
           <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
           <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
           <!-- Dashed amber duration -->
-          <line x1="40" y1="24" x2="110" y2="24" stroke="#d97706" stroke-width="6" stroke-dasharray="8 5" stroke-linecap="butt"/>
+          <line x1="40" y1="24" x2="110" y2="24" stroke="#d97706" stroke-width="6" stroke-dasharray="8 6" stroke-linecap="round"/>
           <circle cx="110" cy="24" r="4.5" fill="#d97706"/>
         </svg>
         </div>
@@ -589,7 +658,7 @@
           <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
           <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
           <!-- Dashed emerald duration line centered on NOW -->
-          <line x1="115" y1="24" x2="165" y2="24" stroke="#16a34a" stroke-width="6" stroke-dasharray="8 5" stroke-linecap="butt"/>
+          <line x1="115" y1="24" x2="165" y2="24" stroke="#16a34a" stroke-width="6" stroke-dasharray="8 6" stroke-linecap="round"/>
         </svg>
         </div>
         </div>
@@ -625,7 +694,7 @@
           <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
           <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
           <!-- Dashed blue duration line in future -->
-          <line x1="162" y1="24" x2="240" y2="24" stroke="#2563eb" stroke-width="6" stroke-dasharray="8 5" stroke-linecap="butt"/>
+          <line x1="162" y1="24" x2="240" y2="24" stroke="#2563eb" stroke-width="6" stroke-dasharray="8 6" stroke-linecap="round"/>
         </svg>
         </div>
         </div>
@@ -797,7 +866,7 @@
           <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
           <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
           <!-- Dashed arc (duration): orange start → amber end -->
-          <path d="M 40 24 Q 70 0 100 24" fill="none" stroke="#b45309" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+          <path d="M 40 24 Q 70 0 100 24" fill="none" stroke="#b45309" stroke-width="2.5" stroke-dasharray="8 6" stroke-linecap="round"/>
           <circle cx="40"  cy="24" r="6" fill="#b45309"/>
           <circle cx="100" cy="24" r="6" fill="#d97706"/>
         </svg>
@@ -835,7 +904,7 @@
           <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
           <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
           <!-- Dashed arc (duration): amber start → emerald end (NOW) -->
-          <path d="M 55 24 Q 97 -1 140 24" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="7 4" stroke-linecap="round"/>
+          <path d="M 55 24 Q 97 -1 140 24" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="8 6" stroke-linecap="round"/>
           <circle cx="55"  cy="24" r="6" fill="#d97706"/>
           <circle cx="140" cy="24" r="7" fill="#16a34a"/>
         </svg>
@@ -873,7 +942,7 @@
           <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
           <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
           <!-- Dashed arc (duration): emerald start (NOW) → blue end (future) -->
-          <path d="M 140 24 Q 183 -1 225 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="7 4" stroke-linecap="round"/>
+          <path d="M 140 24 Q 183 -1 225 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="8 6" stroke-linecap="round"/>
           <circle cx="140" cy="24" r="7" fill="#16a34a"/>
           <circle cx="225" cy="24" r="6" fill="#2563eb"/>
         </svg>
@@ -931,6 +1000,239 @@
   <span><strong>V3</strong> = past participle</span>
 </p>
 </div>
+</div><!-- end .sheet-page page 1 -->
+
+<!-- ════════════════════════════════════════════
+     PAGE 2 — Special Tense Uses
+════════════════════════════════════════════ -->
+<div class="sheet-page page-2">
+
+<h1>Special Tense Uses</h1>
+
+<div class="page2-grid">
+
+  <!-- ── Panel 1 (top-left): Present Simple → Future Timetable ── -->
+  <div class="page2-panel p2-timetable">
+    <div class="page2-panel-header">Present Simple → Future Timetable</div>
+    <div class="cell-copy">
+      <p class="sentence">The train <strong>leaves</strong> at 6 pm tonight.</p>
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Aff.</span>
+          <span class="fm-text">subject + <strong>V1</strong> / <strong>V1-3rd</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Neg.</span>
+          <span class="fm-text">subject + doesn't/don't + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Q.</span>
+          <span class="fm-text">Does + subject + <strong>V1</strong>? / When does it <strong>V1</strong>?</span>
+        </div>
+      </div>
+    </div>
+    <div class="cell-vis">
+      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="188" cy="24" r="7" fill="#2563eb"/>
+      </svg>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Key</span>
+          <span class="fm-text"><strong>Fixed timetables only</strong> — transport, shows, programs, class schedules</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Not</span>
+          <span class="fm-text">Not for personal plans → use present cont. or <em>going to</em> instead</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panel 2 (top-right): Used To / Would ── -->
+  <div class="page2-panel p2-used-to">
+    <div class="page2-panel-header">Used To / Would — Past Habit</div>
+    <div class="cell-copy">
+      <p class="sentence">I <strong>used to walk</strong> / <strong>would walk</strong> to school.</p>
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Aff.</span>
+          <span class="fm-text">subject + <strong>used to</strong> + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Neg.</span>
+          <span class="fm-text">subject + <strong>didn't use to</strong> + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Also</span>
+          <span class="fm-text">subject + <strong>would</strong> + <strong>V1</strong> &nbsp;(actions only)</span>
+        </div>
+      </div>
+    </div>
+    <div class="cell-vis">
+      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="55" cy="24" r="4.5" fill="#d97706" opacity="0.65"/>
+        <circle cx="82" cy="24" r="6.5" fill="#d97706"/>
+        <circle cx="109" cy="24" r="4.5" fill="#d97706" opacity="0.65"/>
+      </svg>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Key</span>
+          <span class="fm-text"><strong>used to</strong> = habits &amp; states &nbsp;·&nbsp; <strong>would</strong> = actions only (not states)</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">e.g.</span>
+          <span class="fm-text"><em>"I used to be shy"</em> ✓ &nbsp;·&nbsp; <em>"I would be shy"</em> ✗</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">⚠</span>
+          <span class="fm-text"><strong>be used to</strong> + V-ing = accustomed to &nbsp;·&nbsp; <strong>get used to</strong> + V-ing = become accustomed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panel 3 (bottom-left): Present Continuous → Near Future ── -->
+  <div class="page2-panel p2-near-future">
+    <div class="page2-panel-header">Present Continuous → Near Future</div>
+    <div class="cell-copy">
+      <p class="sentence">I <strong>am meeting</strong> them tomorrow at 3 pm.</p>
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Aff.</span>
+          <span class="fm-text">subject + am/is/are + <strong>V1-ing</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Neg.</span>
+          <span class="fm-text">subject + am/is/are + not + <strong>V1-ing</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Q.</span>
+          <span class="fm-text">Am/Is/Are + subject + <strong>V1-ing</strong>?</span>
+        </div>
+      </div>
+    </div>
+    <div class="cell-vis">
+      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="152" y1="24" x2="215" y2="24" stroke="#2563eb" stroke-width="6" stroke-dasharray="8 6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Key</span>
+          <span class="fm-text">Event is <strong>arranged or scheduled</strong> — needs a time: <em>tonight, tomorrow, on Friday</em></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">vs.</span>
+          <span class="fm-text"><em>"I'll call you"</em> = decision now &nbsp;·&nbsp; <em>"I'm calling Ana at 5"</em> = already arranged</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panel 4 (bottom-right): "Going to" ── -->
+  <div class="page2-panel p2-going-to">
+    <div class="page2-panel-header">"Going to" → Future Plans &amp; Predictions</div>
+    <div class="cell-copy">
+      <p class="sentence">I <strong>am going to</strong> call her tomorrow.</p>
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Aff.</span>
+          <span class="fm-text">subject + am/is/are + <strong>going to</strong> + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Neg.</span>
+          <span class="fm-text">subject + am/is/are + not + <strong>going to</strong> + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Q.</span>
+          <span class="fm-text">Am/Is/Are + subject + <strong>going to</strong> + <strong>V1</strong>?</span>
+        </div>
+      </div>
+    </div>
+    <div class="cell-vis">
+      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="152" y1="24" x2="215" y2="24" stroke="#2563eb" stroke-width="6" stroke-dasharray="8 6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Key</span>
+          <span class="fm-text">Pre-decided <strong>plans</strong>, OR predictions based on <strong>present evidence</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">vs.</span>
+          <span class="fm-text"><em>will</em> = decision/promise made NOW &nbsp;·&nbsp; <em>going to</em> = already decided</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end .page2-grid -->
+
+<div class="sheet-footer">
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#16a34a;"></div>
+      <span style="color:#065f46; font-weight:600;">NOW</span>
+    </div>
+    <span class="legend-sep">·</span>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#2563eb;"></div>
+      <span style="color:#1e3a8a; font-weight:600;">FUTURE</span>
+    </div>
+    <span class="legend-sep">·</span>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#d97706;"></div>
+      <span style="color:#92400e; font-weight:600;">PAST</span>
+    </div>
+    <span class="legend-sep">·</span>
+    <div class="legend-item">
+      <svg width="22" height="10" viewBox="0 0 22 10"><line x1="1" y1="5" x2="21" y2="5" stroke="#2563eb" stroke-width="4" stroke-dasharray="5 4" stroke-linecap="round"/></svg>
+      <span>Near-future arrangement (dashed)</span>
+    </div>
+    <span class="legend-sep">·</span>
+    <div class="legend-item">
+      <svg width="22" height="10" viewBox="0 0 22 10"><circle cx="4" cy="5" r="3" fill="#d97706" opacity="0.6"/><circle cx="11" cy="5" r="4" fill="#d97706"/><circle cx="18" cy="5" r="3" fill="#d97706" opacity="0.6"/></svg>
+      <span>Repeated past (used to)</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .sheet-page page 2 -->
 
 </body>
 </html>

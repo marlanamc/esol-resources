@@ -10,24 +10,16 @@ describe("timeline learn the tenses walkthrough", () => {
   });
 
   it("shows the full walkthrough when multiple families or all are selected", () => {
-    expect(getLearnTensesFamilySequence([])).toEqual([
+    const fullOrder = [
       "simple",
       "continuous",
       "perfect",
       "perfect-continuous",
-    ]);
-    expect(getLearnTensesFamilySequence(["simple", "continuous"])).toEqual([
-      "simple",
-      "continuous",
-      "perfect",
-      "perfect-continuous",
-    ]);
-    expect(getLearnTensesFamilySequence(["mixed"])).toEqual([
-      "simple",
-      "continuous",
-      "perfect",
-      "perfect-continuous",
-    ]);
+      "used-to",
+    ] as const;
+    expect(getLearnTensesFamilySequence([])).toEqual(fullOrder);
+    expect(getLearnTensesFamilySequence(["simple", "continuous"])).toEqual(fullOrder);
+    expect(getLearnTensesFamilySequence(["mixed"])).toEqual(fullOrder);
   });
 
   it("renders a focused single-family walkthrough", () => {

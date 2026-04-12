@@ -189,13 +189,6 @@ export function TimelineToVerbExercise({
             pastTimelineLayout={useSplitPast ? 'split' : 'single'}
           />
         </div>
-
-        {/* Scenario context */}
-        {question.scenario && (
-          <div className="mt-8 p-4 bg-white/20 dark:bg-white/5 rounded-2xl border border-white/10 text-center text-text-muted text-sm font-medium italic">
-            "{question.scenario}"
-          </div>
-        )}
       </motion.div>
 
       {!showFeedback ? (

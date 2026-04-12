@@ -19,6 +19,7 @@ export function TutorialIntroScreen({ onStart, onSkip, tenseCategory }: Tutorial
     perfect: 'Perfect Tenses',
     'perfect-continuous': 'Perfect Continuous Tenses',
     mixed: 'Mixed Tenses',
+    'used-to': 'Used To, Be Used To & Get Used To',
     all: 'the Timeline',
   };
 
@@ -28,6 +29,7 @@ export function TutorialIntroScreen({ onStart, onSkip, tenseCategory }: Tutorial
     perfect: 'Perfect tenses connect the past to now, or one past event to another.',
     'perfect-continuous': 'Perfect Continuous tenses show the duration of an ongoing action.',
     mixed: 'Mixed practice covers all categories. Let\'s review the basics.',
+    'used-to': 'Three expressions that look similar but mean very different things.',
     all: 'Start with the most common timeline patterns first, then build up to advanced tenses.',
   };
 

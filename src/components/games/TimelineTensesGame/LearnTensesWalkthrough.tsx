@@ -60,6 +60,16 @@ const FAMILY_STYLE: Record<LearnTensesFamilyId, { chip: string; accent: string; 
       future: 'text-blue-700 dark:text-blue-300',
     },
   },
+  'used-to': {
+    chip: 'bg-[#f0eef8] text-[#6b4fb8] border-[#6b4fb8]/15',
+    accent: 'from-[#f0eef8] via-white to-[#f7f5fd]',
+    dot: 'bg-[#6b4fb8]',
+    slot: {
+      past: 'text-amber-700 dark:text-amber-300',
+      present: 'text-emerald-700 dark:text-emerald-300',
+      future: 'text-blue-700 dark:text-blue-300',
+    },
+  },
 };
 
 const FAMILY_TAB_STYLE: Record<LearnTensesFamilyId, { active: string; inactive: string }> = {
@@ -78,6 +88,10 @@ const FAMILY_TAB_STYLE: Record<LearnTensesFamilyId, { active: string; inactive: 
   'perfect-continuous': {
     active: 'bg-[#b56e1a] text-white shadow-[0_10px_24px_-14px_rgba(181,110,26,0.65)]',
     inactive: 'bg-white/70 text-[#b56e1a] hover:bg-[#f5f0e8] dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10',
+  },
+  'used-to': {
+    active: 'bg-[#6b4fb8] text-white shadow-[0_10px_24px_-14px_rgba(107,79,184,0.65)]',
+    inactive: 'bg-white/70 text-[#6b4fb8] hover:bg-[#f0eef8] dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10',
   },
 };
 

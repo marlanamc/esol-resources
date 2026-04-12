@@ -1320,6 +1320,90 @@ export const TIMELINE_ERROR_QUESTIONS: ErrorCorrectionQuestion[] = [
     tenseCategory: "simple",
   },
   {
+    id: "err-ut-s-01",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "I use to walk to school when I was young.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimpleHabit", "err-ut-s-01-incorrect"),
+    correctSentence: "I used to walk to school when I was young.",
+    realLifeDialogue: {
+      lineA: 'A: "Did you live close to your school?"',
+      lineB: 'B: "Yes — I used to walk every day. It was only ten minutes."',
+    },
+    correctElements: buildCanonicalTimelineElements("pastSimpleHabit", "err-ut-s-01-correct"),
+    incorrectTense: "Used to (wrong form)",
+    correctTense: "Used to",
+    commonMistakeExplanation:
+      'The affirmative form is "used to" — always with a -d. "Use to" (without -d) only appears in questions and negatives with "did": "Did you use to…?" and "I did not use to…". In an affirmative sentence, it must be "used to".',
+    difficulty: 3,
+    tenseCategory: "used-to",
+  },
+  {
+    id: "err-ut-s-02",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "She used to living near the park.",
+    incorrectElements: buildCanonicalTimelineElements("pastSimpleHabit", "err-ut-s-02-incorrect"),
+    correctSentence: "She used to live near the park.",
+    realLifeDialogue: {
+      lineA: 'A: "Does she know that neighborhood well?"',
+      lineB: 'B: "Very well — she used to live there for years."',
+    },
+    correctElements: buildCanonicalTimelineElements("pastSimpleHabit", "err-ut-s-02-correct"),
+    incorrectTense: "Used to (wrong form)",
+    correctTense: "Used to",
+    commonMistakeExplanation:
+      '"Used to" is always followed by the base verb (V1), never the -ing form. "Used to living" is a common confusion with "be used to living" (which means accustomed to). "Used to live" = past habit. "Be used to living" = current familiarity.',
+    difficulty: 3,
+    tenseCategory: "used-to",
+  },
+  {
+    id: "err-pc-nf-s-01",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "I meet my doctor tomorrow morning.",
+    incorrectElements: buildCanonicalTimelineElements("presentSimpleHabit", "err-pc-nf-s-01-incorrect"),
+    correctSentence: "I am meeting my doctor tomorrow morning.",
+    realLifeDialogue: {
+      lineA: 'A: "Are you free tomorrow morning?"',
+      lineB: 'B: "I\'m meeting my doctor tomorrow morning. I made the appointment last week."',
+    },
+    correctElements: buildCanonicalTimelineElements(
+      "presentContinuousNearFuture",
+      "err-pc-nf-s-01-correct"
+    ),
+    incorrectTense: "Present Simple",
+    correctTense: "Present Continuous",
+    commonMistakeExplanation:
+      '"Tomorrow morning" + a confirmed appointment = an arranged plan. Present Simple ("meet") describes a habit or timetable. Present Continuous ("am meeting") shows a personal arrangement — something you booked.',
+    difficulty: 2,
+    tenseCategory: "continuous",
+  },
+  {
+    id: "err-pc-nf-s-02",
+    type: "error-correction",
+    errorLocation: "sentence",
+    incorrectSentence: "We will have dinner with the neighbors this Saturday.",
+    incorrectElements: buildCanonicalTimelineElements("futureSimple", "err-pc-nf-s-02-incorrect", [
+      { position: 55 },
+    ]),
+    correctSentence: "We are having dinner with the neighbors this Saturday.",
+    realLifeDialogue: {
+      lineA: 'A: "Any plans this Saturday?"',
+      lineB: 'B: "We\'re having dinner with the neighbors. They invited us last week."',
+    },
+    correctElements: buildCanonicalTimelineElements(
+      "presentContinuousNearFuture",
+      "err-pc-nf-s-02-correct"
+    ),
+    incorrectTense: "Future Simple",
+    correctTense: "Present Continuous",
+    commonMistakeExplanation:
+      '"This Saturday" + an invitation accepted = a fixed arrangement. "Will have" sounds like a spontaneous decision made right now. "Are having" is natural for plans already in place.',
+    difficulty: 2,
+    tenseCategory: "continuous",
+  },
+  {
     id: "err-do-s-06",
     type: "error-correction",
     errorLocation: "sentence",

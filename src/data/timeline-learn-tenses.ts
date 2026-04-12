@@ -4,7 +4,8 @@ export type LearnTensesFamilyId =
   | 'simple'
   | 'continuous'
   | 'perfect'
-  | 'perfect-continuous';
+  | 'perfect-continuous'
+  | 'used-to';
 
 export type LearnTensesTimeSlot = 'past' | 'present' | 'future';
 
@@ -40,6 +41,7 @@ export const LEARN_TENSES_FAMILY_ORDER: LearnTensesFamilyId[] = [
   'continuous',
   'perfect',
   'perfect-continuous',
+  'used-to',
 ];
 
 export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamilyLesson> = {
@@ -143,6 +145,23 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
           question: { sentence: 'Are they working right now?', verbPhrase: 'Are they working' },
         },
         timelineElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
+      },
+      {
+        id: 'continuous-present-near-future',
+        timeSlot: 'present',
+        tenseName: 'Present Continuous (Near Future)',
+        shortMeaning: 'A fixed plan or arrangement happening soon.',
+        formulas: {
+          affirmative: 'subject + am/is/are + V1-ing',
+          negative: 'subject + am/is/are + not + V1-ing',
+          question: 'Am/Is/Are + subject + V1-ing?',
+        },
+        examples: {
+          affirmative: { sentence: 'I am visiting my grandma next week.', verbPhrase: 'am visiting' },
+          negative: { sentence: 'I am not working this Saturday.', verbPhrase: 'am not working' },
+          question: { sentence: 'Are you coming to the party tonight?', verbPhrase: 'Are you coming' },
+        },
+        timelineElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 60 }],
       },
       {
         id: 'continuous-future',
@@ -286,6 +305,66 @@ export const LEARN_TENSES_LESSONS: Record<LearnTensesFamilyId, LearnTensesFamily
           question: { sentence: 'Will you have been teaching here for a year by June?', verbPhrase: 'Will you have been teaching' },
         },
         timelineElements: [{ id: 'e1', type: 'solid-to-point', zone: 'future', position: 50 }],
+      },
+    ],
+  },
+  'used-to': {
+    id: 'used-to',
+    title: 'Used To, Be Used To, Get Used To',
+    badge: 'Used To',
+    intro: 'Three expressions with "used to" — they look similar but mean very different things.',
+    helper: 'Focus on the difference: past habit that ended, current familiarity, or the process of adapting.',
+    cards: [
+      {
+        id: 'used-to-past-habit',
+        timeSlot: 'past',
+        tenseName: 'Used to (Past Habit)',
+        shortMeaning: 'A repeated action or state that was true in the past — but no longer is.',
+        formulas: {
+          affirmative: 'subject + used to + V1',
+          negative: 'subject + did not + use to + V1',
+          question: 'Did + subject + use to + V1?',
+        },
+        examples: {
+          affirmative: { sentence: 'I used to walk to school every day.', verbPhrase: 'used to walk' },
+          negative: { sentence: 'I did not use to drink coffee.', verbPhrase: 'did not use to drink' },
+          question: { sentence: 'Did you use to live near here?', verbPhrase: 'Did you use to live' },
+        },
+        timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+      },
+      {
+        id: 'be-used-to-present',
+        timeSlot: 'present',
+        tenseName: 'Be Used to (Current Familiarity)',
+        shortMeaning: 'Already accustomed to something — it feels normal now.',
+        formulas: {
+          affirmative: 'subject + am/is/are + used to + V1-ing / noun',
+          negative: 'subject + am/is/are + not + used to + V1-ing / noun',
+          question: 'Am/Is/Are + subject + used to + V1-ing / noun?',
+        },
+        examples: {
+          affirmative: { sentence: 'I am used to waking up early.', verbPhrase: 'am used to waking' },
+          negative: { sentence: 'She is not used to the cold weather yet.', verbPhrase: 'is not used to' },
+          question: { sentence: 'Are you used to working nights?', verbPhrase: 'Are you used to' },
+        },
+        timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
+      },
+      {
+        id: 'get-used-to-present',
+        timeSlot: 'present',
+        tenseName: 'Get Used to (Becoming Accustomed)',
+        shortMeaning: 'The process of adapting — not there yet, but it is getting easier.',
+        formulas: {
+          affirmative: 'subject + am/is/are + getting used to + V1-ing / noun',
+          negative: 'subject + am/is/are + not + getting used to + V1-ing / noun',
+          question: 'Am/Is/Are + subject + getting used to + V1-ing / noun?',
+        },
+        examples: {
+          affirmative: { sentence: 'I am getting used to the new schedule.', verbPhrase: 'am getting used to' },
+          negative: { sentence: 'He is not getting used to the long commute.', verbPhrase: 'is not getting used to' },
+          question: { sentence: 'Are you getting used to life in the city?', verbPhrase: 'Are you getting used to' },
+        },
+        timelineElements: [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
       },
     ],
   },

@@ -90,6 +90,9 @@ ESOL_LMS/
 /class_uploads/Class-Objectives/*
 !/class_uploads/Class-Objectives/week*-SIMPLIFIED.html
 
+# Local HTML backup copies alongside public assets (keep working file in git)
+public/*_original.html
+
 # temporary documentation
 vocab-comparison.md
 

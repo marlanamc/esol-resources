@@ -36,7 +36,7 @@ export function getTenseComparisonPromptLabel(promptType: TenseComparisonPromptT
   return 'Which timeline matches this sentence?';
 }
 
-export function getTenseComparisonOptionOrder(randomValue: number): Array<'A' | 'B'> {
+export function getTenseComparisonOptionOrder(): Array<'A' | 'B'> {
   return ['A', 'B'];
 }
 
@@ -56,13 +56,13 @@ export function TenseComparisonExercise({
 }: TenseComparisonExerciseProps) {
   const [selected, setSelected] = useState<'A' | 'B' | null>(null);
   const [optionOrder, setOptionOrder] = useState<Array<'A' | 'B'>>(() =>
-    getTenseComparisonOptionOrder(0)
+    getTenseComparisonOptionOrder()
   );
   const { playPing, playThump } = useTimelineAudio();
 
   useEffect(() => {
     setSelected(null);
-    setOptionOrder(getTenseComparisonOptionOrder(0));
+    setOptionOrder(getTenseComparisonOptionOrder());
   }, [question.id]);
 
   const splitA = elementsUseSplitPast(question.elementsA);

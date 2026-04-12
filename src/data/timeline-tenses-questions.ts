@@ -328,6 +328,485 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
   },
 
   // ============================================================================
+  // USED TO — PAST HABITS & STATES
+  // ============================================================================
+
+  // ── Difficulty 2: simple, clear sentences ─────────────────────────────────
+
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-d2-1',
+    sentence: 'I used to be very shy.',
+    verbPhrase: 'used to be',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Used to (Past State)',
+    explanation:
+      'A past state — shyness was a real part of life back then. Repeated dots in the past zone show it was ongoing, not a single moment. It\'s no longer true today.',
+    difficulty: 2,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-d2-2',
+    sentence: 'She used to have really long hair.',
+    verbPhrase: 'used to have',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Used to (Past State)',
+    explanation:
+      'A past state that lasted a long time — the long hair was part of who she was. Repeated dots in the past zone. No dots at NOW — it\'s gone.',
+    difficulty: 2,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-d2-3',
+    sentence: 'My family used to eat dinner together every night.',
+    verbPhrase: 'used to eat',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Used to (Past Habit)',
+    explanation:
+      '"Every night" is the signal — this was a repeated family routine. Repeated dots in the past zone show the pattern. It no longer happens.',
+    difficulty: 2,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-d2-neg-1',
+    sentence: 'He did not use to like vegetables.',
+    verbPhrase: 'did not use to like',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Used to (Past State)',
+    explanation:
+      'The negative tells us what was NOT true in the past — not liking vegetables was the norm back then. Same stamp, past zone. The habit is over.',
+    difficulty: 2,
+    tenseCategory: 'used-to',
+    sentenceForm: 'negative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-d2-q-1',
+    sentence: 'Did you use to walk to school?',
+    verbPhrase: 'Did you use to walk',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Used to (Past Habit)',
+    explanation:
+      'Asking whether this was a repeated habit in the past. "Did you use to" is the question form — note "use to" without the -d. Repeated dots in the past zone.',
+    difficulty: 2,
+    tenseCategory: 'used-to',
+    sentenceForm: 'question',
+  },
+
+  // ── Difficulty 3: full sentences with context ──────────────────────────────
+
+  // Type 1: Used to (affirmative)
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-1',
+    sentence: 'I used to walk to school every day.',
+    verbPhrase: 'used to walk',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Used to (Past Habit)',
+    explanation:
+      'A routine that repeated in the past — but it\'s over now. The repeated dots in the past zone show the habit. It no longer happens today.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-2',
+    sentence: 'She used to live in a small town.',
+    verbPhrase: 'used to live',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Used to (Past State)',
+    explanation:
+      'A past state that was true for a long time — but is no longer true. Repeated dots in the past show it was a stable, ongoing reality back then.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-3',
+    sentence: 'We used to have dinner together every Sunday.',
+    verbPhrase: 'used to have',
+    realLifeDialogue: {
+      lineA: 'A: "Do you still get together with your family on Sundays?"',
+      lineB: 'B: "No, not anymore. We used to have dinner together every Sunday."',
+    },
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Used to (Past Habit)',
+    explanation:
+      '"Not anymore" is the key signal — this was a regular past habit that stopped. The dots in the past zone show the repeated dinners. Nothing in the present zone.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+
+  // Type 1: Used to (negative)
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-neg-1',
+    sentence: 'I did not use to like coffee.',
+    verbPhrase: 'did not use to like',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Used to (Past Habit)',
+    explanation:
+      'The negative shows something that was NOT a habit in the past. The dots are still in the past zone — the repeated situation (not liking coffee) was true back then.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'negative',
+  },
+
+  // Type 1: Used to (question)
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-q-1',
+    sentence: 'Did you use to take the bus to work?',
+    verbPhrase: 'Did you use to take',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Used to (Past Habit)',
+    explanation:
+      'Asking about a past habit — did this repeated action happen in your past? Dots in the past zone.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'question',
+  },
+
+  // ── Contrast questions: past habit + present reality (two stamps) ──────────
+
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-contrast-1',
+    sentence: 'I used to take the bus, but now I drive to work.',
+    verbPhrase: 'used to take',
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 },
+      { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
+    ],
+    tenseName: 'Used to + Present Simple (Contrast)',
+    explanation:
+      'Two stamps: the past dots show the old habit (taking the bus), and the present dots show the new habit that replaced it (driving). "But now" is the key signal — life changed.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-contrast-2',
+    sentence: 'He used to smoke, but now he runs every morning.',
+    verbPhrase: 'used to smoke',
+    realLifeDialogue: {
+      lineA: 'A: "Wow, he looks so healthy. Was he always like that?"',
+      lineB: 'B: "No — he used to smoke. Now he runs every single morning."',
+    },
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 },
+      { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
+    ],
+    tenseName: 'Used to + Present Simple (Contrast)',
+    explanation:
+      'The old habit (smoking) lives in the past zone. The new habit (running) lives in the present zone. Two sets of repeated dots — one dead, one alive.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-contrast-3',
+    sentence: 'We used to order pizza every Friday, but now we cook at home.',
+    verbPhrase: 'used to order',
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 },
+      { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
+    ],
+    tenseName: 'Used to + Present Simple (Contrast)',
+    explanation:
+      '"Every Friday" shows it was a real routine — past dots. "Now" signals the switch — present dots. The timeline shows exactly when life changed.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-contrast-4',
+    sentence: 'I did not use to like spicy food, but now I eat it all the time.',
+    verbPhrase: 'did not use to like',
+    verbPhrase2: 'eat',
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 },
+      { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
+    ],
+    tenseName: 'Used to + Present Simple (Contrast)',
+    explanation:
+      'Even in the negative, the contrast works the same way. Past dots = what was NOT true then. Present dots = what IS true now. The taste changed — the timeline shows it.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'negative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-contrast-5',
+    sentence: 'My parents used to work long hours, but they retired last year.',
+    verbPhrase: 'used to work',
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
+    ],
+    tenseName: 'Used to + Past Simple (Contrast)',
+    explanation:
+      'The repeated dots show the long habit of working. The single dot marks the moment it ended — retirement. Two past stamps: the pattern, then the event that stopped it.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+
+  // ── "Would" for past habits (actions only) ─────────────────────────────────
+
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-would-1',
+    sentence: 'My grandfather would tell us stories every night before bed.',
+    verbPhrase: 'would tell',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Would (Past Habit)',
+    explanation:
+      '"Would" can replace "used to" for repeated past actions. Same stamp, same zone — it\'s still a repeated habit in the past. "Would" often has a warm, nostalgic feeling.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-would-2',
+    sentence: 'When I was young, we would spend summers at the beach.',
+    verbPhrase: 'would spend',
+    realLifeDialogue: {
+      lineA: 'A: "Do you have good childhood memories?"',
+      lineB: 'B: "So many. We would spend every summer at the beach — those were the best days."',
+    },
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Would (Past Habit)',
+    explanation:
+      '"When I was young" anchors this firmly in the past. "Would spend" = a repeated past action, same as "used to spend." The repeated dots land in the past zone.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-would-3',
+    sentence: 'After school, my friends and I would stop at the corner store every day.',
+    verbPhrase: 'would stop',
+    correctElements: [{ id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 }],
+    tenseName: 'Would (Past Habit)',
+    explanation:
+      '"Every day" makes the repetition clear. "Would stop" = a past routine, no longer happening. Same repeated-dots pattern as "used to" — just a different word choice.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+
+  // ── Mixed two-verb sentences ───────────────────────────────────────────────
+
+  // used to + Past Simple (habit → the moment it ended)
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-mix-ps-1',
+    sentence: 'I used to drink coffee every morning, but I switched to tea last year.',
+    verbPhrase: 'used to drink',
+    verbPhrase2: 'switched',
+    realLifeDialogue: {
+      lineA: 'A: "No coffee? I thought you loved it!"',
+      lineB: 'B: "I used to drink it every morning. I switched to tea last year — much better for me."',
+    },
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
+    ],
+    tenseName: 'Used to + Past Simple',
+    explanation:
+      'The repeated dots show the daily coffee habit. The single dot marks the moment the habit ended — switching to tea last year. Two past stamps: the pattern, then the turning point.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-mix-ps-2',
+    sentence: 'We used to rent an apartment, but we bought our first home two years ago.',
+    verbPhrase: 'used to rent',
+    verbPhrase2: 'bought',
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
+    ],
+    tenseName: 'Used to + Past Simple',
+    explanation:
+      'Renting was the ongoing situation for a long time — repeated dots. Buying the home was one specific event that changed everything — single dot. Both in the past zone.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-mix-ps-3',
+    sentence: 'She used to be afraid of dogs, but she adopted one last spring.',
+    verbPhrase: 'used to be afraid',
+    verbPhrase2: 'adopted',
+    realLifeDialogue: {
+      lineA: 'A: "Is that her dog? I remember she was terrified of them!"',
+      lineB: 'B: "She used to be afraid. She adopted him last spring and never looked back."',
+    },
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 30 },
+      { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
+    ],
+    tenseName: 'Used to + Past Simple',
+    explanation:
+      'Fear was a long-standing state — repeated dots in the past. Adoption was the single event that changed it all — one dot in the past. The dot ended the dots.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+
+  // used to + Present Continuous (old habit → current ongoing situation)
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-mix-pc-1',
+    sentence: 'She used to work nights, but she is studying full time now.',
+    verbPhrase: 'used to work',
+    verbPhrase2: 'is studying',
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 },
+      { id: 'e2', type: 'solid-line', zone: 'present', position: 50 },
+    ],
+    tenseName: 'Used to + Present Continuous',
+    explanation:
+      'The past dots show the old night-shift routine. The solid line at NOW shows studying is happening and ongoing right now. Two very different stamps — one finished, one still going.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-mix-pc-2',
+    sentence: 'He used to watch TV all evening, but these days he is learning guitar.',
+    verbPhrase: 'used to watch',
+    verbPhrase2: 'is learning',
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 },
+      { id: 'e2', type: 'solid-line', zone: 'present', position: 50 },
+    ],
+    tenseName: 'Used to + Present Continuous',
+    explanation:
+      '"These days" signals something temporary and ongoing right now — solid line at NOW. The old TV habit is finished — repeated dots in the past. Different stamps, different zones.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-mix-pc-3',
+    sentence: 'I used to live alone, but I am staying with my sister while I look for a new place.',
+    verbPhrase: 'used to live',
+    verbPhrase2: 'am staying',
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 40 },
+      { id: 'e2', type: 'solid-line', zone: 'present', position: 50 },
+    ],
+    tenseName: 'Used to + Present Continuous',
+    explanation:
+      '"While I look for a new place" tells us the current situation is temporary — that\'s Present Continuous, solid line at NOW. Living alone was the long-term past state — repeated dots.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+
+  // used to + Present Perfect (old habit → result still felt now)
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-mix-pp-1',
+    sentence: 'I used to struggle with English, but I have made so much progress.',
+    verbPhrase: 'used to struggle',
+    verbPhrase2: 'have made',
+    realLifeDialogue: {
+      lineA: 'A: "Your English is incredible now. Was it always like this?"',
+      lineB: 'B: "No! I used to struggle so much. But I have made a lot of progress."',
+    },
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 35 },
+      { id: 'e2', type: 'arc', zone: 'past', position: 65 },
+    ],
+    tenseName: 'Used to + Present Perfect',
+    explanation:
+      'The old struggle was a repeated state — past dots. The progress is a past achievement that is still real and relevant right now — arc connecting past to NOW. The result is alive today.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-mix-pp-2',
+    sentence: 'He used to eat fast food every day, but he has completely changed his diet.',
+    verbPhrase: 'used to eat',
+    verbPhrase2: 'has completely changed',
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 35 },
+      { id: 'e2', type: 'arc', zone: 'past', position: 65 },
+    ],
+    tenseName: 'Used to + Present Perfect',
+    explanation:
+      'The daily fast food habit lives in the past — repeated dots. The diet change is a past action whose result (being healthier now) still matters today — arc to NOW.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+
+  // used to + Future Simple (old habit → future plan or decision)
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-mix-fs-1',
+    sentence: 'I used to hate cooking, but I will open a small catering business next year.',
+    verbPhrase: 'used to hate',
+    verbPhrase2: 'will open',
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 35 },
+      { id: 'e2', type: 'single-dot', zone: 'future', position: 60 },
+    ],
+    tenseName: 'Used to + Future Simple',
+    explanation:
+      'The old feeling (hating cooking) was a past state — repeated dots in the past. The business plan is one specific future event — a single dot in the future. Past and future on the same timeline.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'ut-mix-fs-2',
+    sentence: 'She used to be terrified of public speaking, but she will give a talk at the conference next month.',
+    verbPhrase: 'used to be terrified',
+    verbPhrase2: 'will give',
+    realLifeDialogue: {
+      lineA: 'A: "I heard she is speaking at the conference. Wasn\'t she always nervous?"',
+      lineB: 'B: "She used to be terrified. But she will give a full talk next month — huge growth."',
+    },
+    correctElements: [
+      { id: 'e1', type: 'multiple-dots', zone: 'past', position: 35 },
+      { id: 'e2', type: 'single-dot', zone: 'future', position: 60 },
+    ],
+    tenseName: 'Used to + Future Simple',
+    explanation:
+      'The fear was a long-standing past state — repeated dots. The upcoming talk is one planned future event — single dot ahead of NOW. The sentence spans the whole timeline.',
+    difficulty: 3,
+    tenseCategory: 'used-to',
+    sentenceForm: 'affirmative',
+  },
+
+  // ============================================================================
   // CONTINUOUS TENSES
   // ============================================================================
 
@@ -408,6 +887,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'pc-past-1',
     sentence: 'I was living in El Salvador when I decided to move.',
     verbPhrase: 'was living',
+    verbPhrase2: 'decided',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -1238,10 +1718,110 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'pc-future-1',
     sentence: "I'm meeting my friend tomorrow.",
     verbPhrase: "'m meeting",
-    correctElements: [{ id: 'e1', type: 'single-dot', zone: 'future', position: 50 }],
+    correctElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 60 }],
     tenseName: 'Present Continuous (Future Arrangement)',
     explanation:
-      'It\'s already arranged — the plans are made and confirmed. One dot in the future marks when that planned event will happen.',
+      'It\'s an arranged plan — already confirmed, not just imagined. The solid line stretches into the future because the meeting has real duration, and the arrangement feels as certain as something happening right now.',
+    difficulty: 2,
+    tenseCategory: 'continuous',
+    sentenceForm: 'affirmative',
+  },
+
+  {
+    type: 'sentence-to-timeline',
+    id: 'pc-future-2',
+    sentence: "We're visiting my grandma this Sunday.",
+    verbPhrase: "'re visiting",
+    correctElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 60 }],
+    tenseName: 'Present Continuous (Future Arrangement)',
+    explanation:
+      'The visit is already planned and confirmed — it\'s happening this Sunday. The solid line in the future zone shows it\'s a real arrangement, not just an idea.',
+    difficulty: 2,
+    tenseCategory: 'continuous',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'pc-future-3',
+    sentence: "I'm not working this Saturday.",
+    verbPhrase: "am not working",
+    correctElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 60 }],
+    tenseName: 'Present Continuous (Future Arrangement)',
+    explanation:
+      'A confirmed arrangement — the schedule is already set and Saturday is free. Negative present continuous works the same way: solid line in the future zone.',
+    difficulty: 2,
+    tenseCategory: 'continuous',
+    sentenceForm: 'negative',
+  },
+  {
+    type: 'sentence-to-timeline',
+    id: 'pc-future-q-1',
+    sentence: "Are you coming to the party tonight?",
+    verbPhrase: "Are you coming",
+    correctElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 55 }],
+    tenseName: 'Present Continuous (Future Arrangement)',
+    explanation:
+      'Asking about a near-future plan — tonight is almost here, and the question treats the party as a real, arranged event. Solid line in the future zone.',
+    difficulty: 2,
+    tenseCategory: 'continuous',
+    sentenceForm: 'question',
+  },
+  {
+    type: 'timeline-to-verb',
+    id: 'pc-verb-visit-future-1',
+    timelineElements: [
+      { id: 'e1', type: 'solid-line', zone: 'future', position: 60, verbLabel: 'visit' },
+    ],
+    sentenceTemplate: 'I ___[visit]___ my grandma next weekend.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'visit',
+        validAnswers: [
+          {
+            answer: 'am visiting',
+            tenseName: 'Present Continuous',
+            nuance: 'Near-future arrangement — the plan is already made.',
+          },
+          {
+            answer: "'m visiting",
+            tenseName: 'Present Continuous',
+            nuance: 'Contracted form of the near-future arrangement.',
+          },
+        ],
+      },
+    ],
+    scenario: 'Telling someone about a confirmed family plan for next weekend',
+    difficulty: 2,
+    tenseCategory: 'continuous',
+    sentenceForm: 'affirmative',
+  },
+  {
+    type: 'timeline-to-verb',
+    id: 'pc-verb-meet-future-1',
+    timelineElements: [
+      { id: 'e1', type: 'solid-line', zone: 'future', position: 60, verbLabel: 'meet' },
+    ],
+    sentenceTemplate: 'We ___[meet]___ the new teacher tomorrow morning.',
+    blanks: [
+      {
+        id: 'b1',
+        baseVerb: 'meet',
+        validAnswers: [
+          {
+            answer: 'are meeting',
+            tenseName: 'Present Continuous',
+            nuance: 'Arranged appointment — already on the schedule for tomorrow.',
+          },
+          {
+            answer: "'re meeting",
+            tenseName: 'Present Continuous',
+            nuance: 'Contracted form of the arranged meeting.',
+          },
+        ],
+      },
+    ],
+    scenario: 'Talking about a scheduled meeting that is already confirmed',
     difficulty: 2,
     tenseCategory: 'continuous',
     sentenceForm: 'affirmative',
@@ -2445,6 +3025,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-complex-q-1',
     sentence: 'Have you decided what you will study next year?',
     verbPhrase: 'decided',
+    verbPhrase2: 'will study',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'future', position: 60 },
@@ -3036,6 +3617,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'pc-past-watch-1',
     sentence: 'I was watching a movie when you called.',
     verbPhrase: 'was watching',
+    verbPhrase2: 'called',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -3052,6 +3634,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-interrupted-1',
     sentence: 'I was eating when the phone rang.',
     verbPhrase: 'was eating',
+    verbPhrase2: 'rang',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -3068,6 +3651,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-sequence-1',
     sentence: 'She had already left before we arrived.',
     verbPhrase: 'had already left',
+    verbPhrase2: 'arrived',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3084,6 +3668,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-future-perf-1',
     sentence: 'I will have finished my homework by the time you come over.',
     verbPhrase: 'will have finished',
+    verbPhrase2: 'come',
     correctElements: [
       { id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 },
       { id: 'e2', type: 'single-dot', zone: 'future', position: 70 },
@@ -3100,6 +3685,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-parallel-1',
     sentence: 'While I was studying, they were playing games.',
     verbPhrase: 'was studying',
+    verbPhrase2: 'were playing',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 40, verbLabel: 'study' },
       { id: 'e2', type: 'solid-line', zone: 'past', position: 60, verbLabel: 'play' },
@@ -3116,6 +3702,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-past-seq-1',
     sentence: 'He opened the door and ran outside.',
     verbPhrase: 'opened',
+    verbPhrase2: 'ran',
     correctElements: [
       { id: 'e1', type: 'single-dot', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -3132,6 +3719,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-future-time-1',
     sentence: 'As soon as she arrives, we will eat dinner.',
     verbPhrase: 'arrives',
+    verbPhrase2: 'will eat',
     correctElements: [
       { id: 'e1', type: 'single-dot', zone: 'future', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'future', position: 70 },
@@ -3148,6 +3736,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-perfect-result-1',
     sentence: "I have lost my passport, so I can't travel.",
     verbPhrase: 'have lost',
+    verbPhrase2: "can't travel",
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past', position: 50 },
       { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
@@ -3164,6 +3753,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-change-state-1',
     sentence: 'I was living in New York, but now I live in Tokyo.',
     verbPhrase: 'was living',
+    verbPhrase2: 'live',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 50 },
       { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
@@ -3180,6 +3770,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-ppc-interrupted-1',
     sentence: 'I had been driving for hours when I finally saw the sign.',
     verbPhrase: 'had been driving',
+    verbPhrase2: 'saw',
     correctElements: [
       { id: 'e1', type: 'solid-to-point', zone: 'past-earlier', position: 40 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3196,6 +3787,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-pc-neg-1',
     sentence: 'I wasn\'t sleeping when you called.',
     verbPhrase: "wasn't sleeping",
+    verbPhrase2: 'called',
     correctElements: [
       { id: 'e1', type: 'solid-line', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },
@@ -3212,6 +3804,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-sequence-neg-1',
     sentence: 'She hadn\'t studied before she took the test.',
     verbPhrase: "hadn't studied",
+    verbPhrase2: 'took',
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past-earlier', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
@@ -3228,6 +3821,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-perf-result-neg-1',
     sentence: 'I haven\'t finished my work, so I can\'t leave yet.',
     verbPhrase: "haven't finished",
+    verbPhrase2: "can't leave",
     correctElements: [
       { id: 'e1', type: 'arc', zone: 'past', position: 50 },
       { id: 'e2', type: 'multiple-dots', zone: 'present', position: 50 },
@@ -3244,6 +3838,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-future-time-q-1',
     sentence: 'Will you call me when you land?',
     verbPhrase: 'call',
+    verbPhrase2: 'land',
     correctElements: [
       { id: 'e1', type: 'single-dot', zone: 'future', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'future', position: 50 },
@@ -3260,6 +3855,7 @@ export const TIMELINE_TENSES_QUESTIONS: TimelineTensesQuestion[] = [
     id: 'mixed-past-seq-q-1',
     sentence: 'Did he lock the door before he left?',
     verbPhrase: 'lock',
+    verbPhrase2: 'left',
     correctElements: [
       { id: 'e1', type: 'single-dot', zone: 'past', position: 30 },
       { id: 'e2', type: 'single-dot', zone: 'past', position: 70 },

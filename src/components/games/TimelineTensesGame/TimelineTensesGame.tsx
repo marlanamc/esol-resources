@@ -6,13 +6,11 @@ import {
   AlertCircle,
   ArrowLeft,
   BookMarked,
-  BookOpen,
-  GraduationCap,
-  FlaskConical,
   ChevronRight,
   Info,
+  Microscope,
   RotateCcw,
-  HelpCircle
+  HelpCircle,
 } from 'lucide-react';
 import { ErrorToast } from '@/components/ui/ErrorToast';
 import { PointsToast } from '@/components/ui/PointsToast';
@@ -21,6 +19,7 @@ import { useRouter } from 'next/navigation';
 import { useTimelineTensesState } from './hooks/useTimelineTensesState';
 import { TenseFilterBar } from './TenseFilterBar';
 import { SentenceFormFilter } from './SentenceFormFilter';
+import { TimeFrameFilter } from './TimeFrameFilter';
 import { SentenceToTimelineExercise } from './exercises/SentenceToTimelineExercise';
 import { TimelineToVerbExercise } from './exercises/TimelineToVerbExercise';
 import { TenseComparisonExercise } from './exercises/TenseComparisonExercise';
@@ -36,8 +35,10 @@ import { TutorialCompleteScreen } from './TutorialCompleteScreen';
 import { HowToPlayModal } from './HowToPlayModal';
 import { TenseFormulaModal } from './TenseFormulaModal';
 import { LearnTensesWalkthrough } from './LearnTensesWalkthrough';
+import { TimeSignalsMode } from './TimeSignalsMode/TimeSignalsMode';
+import { TenseToolsExerciseMenu, TenseToolsPanel } from './TenseToolsPanel';
 import { useTimelineAudio } from './hooks/useTimelineAudio';
-import type { SentenceForm, TenseCategory } from '@/types/activity';
+import type { SentenceForm, TimelineTimeFrame } from '@/types/activity';
 import { categoriesToProgressKey, filterTimelineQuestions, isChallengeMode } from './timelineTensesUtils';
 import {
   TIMELINE_TUTORIAL_QUESTIONS,
@@ -67,16 +68,23 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
   const [isFormulaOpen, setIsFormulaOpen] = useState(false);
+  const [tenseToolsExpanded, setTenseToolsExpanded] = useState(false);
+  const [exerciseTenseToolsOpen, setExerciseTenseToolsOpen] = useState(false);
+  const exerciseTenseToolsRef = useRef<HTMLDivElement | null>(null);
   const { playLevelUp } = useTimelineAudio();
 
   const {
     state,
     toggleTenseCategory,
     selectSentenceForm,
+    selectTimeFrame,
     selectPracticeMode,
     startLab,
     startLearnTenses,
     closeLearnTenses,
+    startTimeSignals,
+    closeTimeSignals,
+    exitLab,
     startRound,
     startTutorial,
     submitTutorialAnswer,
@@ -126,6 +134,26 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   useEffect(() => {
     contentScrollRef.current?.scrollTo({ top: 0, behavior: 'auto' });
   }, [state.phase, state.currentQuestionIndex, state.tutorialStep]);
+
+  useEffect(() => {
+    if (!exerciseTenseToolsOpen) return;
+    const close = (e: MouseEvent) => {
+      if (
+        exerciseTenseToolsRef.current &&
+        !exerciseTenseToolsRef.current.contains(e.target as Node)
+      ) {
+        setExerciseTenseToolsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', close);
+    return () => document.removeEventListener('mousedown', close);
+  }, [exerciseTenseToolsOpen]);
+
+  useEffect(() => {
+    if (state.phase !== 'exercise') {
+      setExerciseTenseToolsOpen(false);
+    }
+  }, [state.phase]);
 
   // Loading state
   if (state.loading) {
@@ -193,7 +221,8 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     state.questionBank,
     state.selectedCategories,
     state.selectedPracticeMode,
-    state.selectedSentenceForm
+    state.selectedSentenceForm,
+    state.selectedTimeFrame
   ).length;
   const totalRoundQuestions = state.roundQuestions.length;
   const totalTutorialQuestions = TIMELINE_TUTORIAL_QUESTIONS.length;
@@ -205,6 +234,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     perfect: 'Perfect',
     'perfect-continuous': 'Perfect Continuous',
     mixed: 'Mixed',
+    'used-to': 'Used To',
   };
   const MODE_LABELS: Record<string, string> = {
     'read-the-timeline': 'Read',
@@ -219,6 +249,12 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   };
   const FORM_LABELS: Record<string, string> = {
     'all': 'Any Form', 'affirmative': 'Affirmative', 'negative': 'Negative', 'question': 'Questions'
+  };
+  const TIME_FRAME_LABELS: Record<string, string> = {
+    'all': 'Any Time',
+    'past': 'Past',
+    'present': 'Present',
+    'future': 'Future',
   };
 
   return (
@@ -259,17 +295,6 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
 
             <div className="flex items-center gap-2">
               <button
-                onClick={startLearnTenses}
-                aria-label="Learn the tenses"
-                title="Learn the tenses"
-                className="inline-flex items-center justify-center gap-2 px-3 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-primary transition-colors text-sm font-medium"
-              >
-                <GraduationCap size={18} />
-                <span className="hidden sm:inline">Learn the Tenses</span>
-                <span className="sm:hidden">Learn</span>
-              </button>
-
-              <button
                 onClick={() => setIsHowToPlayOpen(true)}
                 aria-label="How to play"
                 title="How to play"
@@ -307,16 +332,6 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
               className="flex-1 flex flex-col"
             >
               <div className="text-center mb-12 pt-4">
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.1, duration: 0.5 }}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-primary-dark mb-6"
-                >
-                  <BookOpen size={18} />
-                  <span className="text-xs font-black tracking-[0.2em] uppercase">Timeline Practice</span>
-                </motion.div>
-
                 <h1 className="font-display text-5xl sm:text-6xl font-black text-text mb-4 tracking-tighter">
                   Timeline Tenses
                 </h1>
@@ -330,24 +345,19 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
 
               {/* Selection Sections */}
               <div className="flex flex-col gap-8">
-                {/* Timeline Practice Lab */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="flex justify-center"
+                  className="flex justify-center px-1"
                 >
-                  <button
-                    onClick={startLab}
-                    className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-amber-200/70 bg-gradient-to-r from-[#ffe5b8] via-[#ffd3dc] to-[#cdeeff] px-6 py-3.5 text-sm font-black uppercase tracking-[0.16em] text-slate-900 shadow-[0_14px_34px_-18px_rgba(15,23,42,0.42)] transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_42px_-18px_rgba(14,116,144,0.35)] dark:border-white/10 dark:from-amber-400/20 dark:via-rose-400/20 dark:to-cyan-400/20 dark:text-white"
-                  >
-                    <span className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.55),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.18),transparent_30%)] opacity-90 transition-opacity group-hover:opacity-100 dark:bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.10),transparent_30%)]" />
-                    <span className="absolute inset-[1px] rounded-full bg-gradient-to-r from-[#fff1cf]/90 via-[#ffe0ea]/80 to-[#e0f5ff]/90 dark:from-amber-300/12 dark:via-rose-300/10 dark:to-cyan-300/12" />
-                    <span className="relative flex items-center gap-3">
-                      <FlaskConical size={18} />
-                      <span>Timeline Practice Lab</span>
-                    </span>
-                  </button>
+                  <TenseToolsPanel
+                    expanded={tenseToolsExpanded}
+                    onToggleExpanded={() => setTenseToolsExpanded((v) => !v)}
+                    onOpenLab={startLab}
+                    onOpenWalkthrough={startLearnTenses}
+                    onOpenTimeSignals={startTimeSignals}
+                  />
                 </motion.div>
 
                 {/* Step 1: Choose Tenses */}
@@ -356,7 +366,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                 >
-                  <StepLabel step={1} label="Choose Your Tenses" />
+                  <StepLabel step={1} label="Choose Your Focus" />
                   <p className="text-sm text-text-muted/60 font-medium mb-5 -mt-2">
                     Pick one tense to focus on, or mix a few together for variety.
                   </p>
@@ -379,18 +389,40 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     categoryProgress={state.categoryProgress}
                     onSelectMode={selectPracticeMode}
                   />
-                  {/* Sentence Form — compact pills, hidden for challenge modes */}
+                  {/* Sentence Form — premium pills, hidden for challenge modes */}
                   {!isChallengeMode(state.selectedPracticeMode) && (
-                    <div className="mt-5">
-                      <p className="text-xs font-black uppercase tracking-[0.18em] text-text-muted/50 mb-3">
-                        Sentence Form
-                      </p>
-                      <SentenceFormFilter
-                        selectedForm={state.selectedSentenceForm}
-                        onSelectForm={(form: SentenceForm | 'all') => selectSentenceForm(form)}
-                        compact
-                      />
-                    </div>
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.25 }}
+                      className="mt-8 grid gap-8 sm:grid-cols-2 lg:gap-12"
+                    >
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-2 px-1">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
+                          <p className="text-[11px] font-black uppercase tracking-[0.25em] text-text-muted/40">
+                            Sentence Form
+                          </p>
+                        </div>
+                        <SentenceFormFilter
+                          selectedForm={state.selectedSentenceForm}
+                          onSelectForm={(form: SentenceForm | 'all') => selectSentenceForm(form)}
+                          compact
+                        />
+                      </div>
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-2 px-1">
+                          <div className="w-1.5 h-1.5 rounded-full bg-secondary/40" />
+                          <p className="text-[11px] font-black uppercase tracking-[0.25em] text-text-muted/40">
+                            Time Frame
+                          </p>
+                        </div>
+                        <TimeFrameFilter
+                          selectedTimeFrame={state.selectedTimeFrame}
+                          onSelectTimeFrame={(timeFrame: TimelineTimeFrame | 'all') => selectTimeFrame(timeFrame)}
+                        />
+                      </div>
+                    </motion.div>
                   )}
                 </motion.div>
 
@@ -416,6 +448,11 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     <span className="px-3 py-1 rounded-full bg-border/20 text-text-muted font-bold text-xs border border-border/20">
                       {FORM_LABELS[state.selectedSentenceForm] || 'All Forms'}
                     </span>
+                    {!isChallengeMode(state.selectedPracticeMode) && (
+                      <span className="px-3 py-1 rounded-full bg-border/20 text-text-muted font-bold text-xs border border-border/20">
+                        {TIME_FRAME_LABELS[state.selectedTimeFrame] || 'Any Time'}
+                      </span>
+                    )}
                   </div>
 
                   <button
@@ -449,6 +486,10 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
               onStartPractice={startRound}
               onOpenFormulas={() => setIsFormulaOpen(true)}
             />
+          )}
+
+          {state.phase === 'time-signals' && (
+            <TimeSignalsMode onBack={closeTimeSignals} />
           )}
 
           {/* Tutorial Intro Phase */}
@@ -559,6 +600,26 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     <span className="text-sm font-medium text-text-muted">
                       Question {state.currentQuestionIndex + 1} of {totalRoundQuestions}
                     </span>
+                    <div className="relative" ref={exerciseTenseToolsRef}>
+                      <button
+                        type="button"
+                        onClick={() => setExerciseTenseToolsOpen((open) => !open)}
+                        aria-expanded={exerciseTenseToolsOpen}
+                        aria-haspopup="true"
+                        aria-label="Tense Tools — review anytime"
+                        title="Tense Tools — review anytime"
+                        className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-border bg-white/90 text-text-muted shadow-sm transition-colors hover:border-primary/40 hover:text-primary dark:border-white/10 dark:bg-[#162b3d]"
+                      >
+                        <Microscope className="h-4 w-4 shrink-0" strokeWidth={2.5} />
+                      </button>
+                      <TenseToolsExerciseMenu
+                        open={exerciseTenseToolsOpen}
+                        onClose={() => setExerciseTenseToolsOpen(false)}
+                        onOpenLab={startLab}
+                        onOpenWalkthrough={startLearnTenses}
+                        onOpenTimeSignals={startTimeSignals}
+                      />
+                    </div>
                     <button
                       onClick={() => setIsFormulaOpen(true)}
                       className="p-1.5 text-text-muted hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
@@ -567,17 +628,23 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     >
                       <BookMarked size={18} />
                     </button>
-                    {(state.selectedPracticeMode === 'build-the-timeline' || state.selectedPracticeMode === 'read-the-timeline') && (
+                    {state.selectedPracticeMode === 'build-the-timeline' ? (
                       <button
                         onClick={() => {
-                          if (state.selectedPracticeMode === 'build-the-timeline') {
-                            startTutorial();
-                          } else {
-                            setIsHowToPlayOpen(true);
-                          }
+                          startTutorial();
                         }}
                         className="p-1.5 text-text-muted hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
-                        title="Help"
+                        title="Interactive tutorial"
+                        aria-label="Interactive tutorial"
+                      >
+                        <HelpCircle size={18} />
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => setIsHowToPlayOpen(true)}
+                        className="p-1.5 text-text-muted hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
+                        title="How to play"
+                        aria-label="How to play"
                       >
                         <HelpCircle size={18} />
                       </button>
@@ -670,7 +737,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
               className="flex-1 flex flex-col"
             >
-              <TimelineLab onBack={retryRound} onOpenFormulas={() => setIsFormulaOpen(true)} />
+              <TimelineLab onBack={exitLab} onOpenFormulas={() => setIsFormulaOpen(true)} />
             </motion.div>
           )}
 
@@ -702,11 +769,13 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
         isOpen={isHowToPlayOpen}
         onClose={() => setIsHowToPlayOpen(false)}
         mode={
-          state.phase === 'exercise'
-            ? state.selectedPracticeMode === 'read-the-timeline' ? 'read'
-              : state.selectedPracticeMode === 'build-the-timeline' ? 'build'
-              : 'overview'
-            : 'overview'
+          state.phase !== 'exercise'
+            ? 'overview'
+            : state.selectedPracticeMode === 'read-the-timeline'
+              ? 'read'
+              : state.selectedPracticeMode === 'build-the-timeline'
+                ? 'build'
+                : 'challenge'
         }
       />
 

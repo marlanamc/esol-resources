@@ -76,7 +76,7 @@ export function SentenceTransformerExercise({
     setShowHint(false);
     setShowFormulaHint(false);
     inputRefs.current = {};
-  }, [question.id]);
+  }, [question.id, question.verbBlanks]);
 
   const sourceSplit = elementsUseSplitPast(question.sourceElements);
   const targetSplit = elementsUseSplitPast(question.targetElements);

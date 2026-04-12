@@ -62,11 +62,13 @@ const autoLayoutStamps = (stamps: PlacedStamp[]): PlacedStamp[] => {
 
 const CHEAT_SHEET = [
   { category: 'Simple', label: 'Past Simple', pattern: 'Moment in past', exampleLead: 'He ', exampleVerb: 'studied', exampleTail: ' last night.', color: 'text-amber-700 dark:text-amber-300' },
+  { category: 'Simple', label: 'Used to (Past Habit)', pattern: 'Repeated dots in past', exampleLead: 'He ', exampleVerb: 'used to walk', exampleTail: ' to school.', color: 'text-amber-700 dark:text-amber-300' },
   { category: 'Simple', label: 'Present Simple', pattern: 'Repeated dots at NOW', exampleLead: 'He ', exampleVerb: 'studies', exampleTail: ' every day.', color: 'text-emerald-700 dark:text-emerald-300' },
   { category: 'Simple', label: 'Future Simple', pattern: 'Moment in future', exampleLead: 'He ', exampleVerb: 'will study', exampleTail: ' tomorrow.', color: 'text-blue-700 dark:text-blue-300' },
   { category: 'Continuous', label: 'Past Continuous', pattern: 'Duration in past', exampleLead: 'He ', exampleVerb: 'was studying', exampleTail: ' at 8pm.', color: 'text-amber-700 dark:text-amber-300' },
   { category: 'Continuous', label: 'Present Continuous', pattern: 'Duration at NOW', exampleLead: 'He ', exampleVerb: 'is studying', exampleTail: ' right now.', color: 'text-emerald-700 dark:text-emerald-300' },
-  { category: 'Continuous', label: 'Future Continuous', pattern: 'Duration in future', exampleLead: 'He ', exampleVerb: 'will be studying', exampleTail: ' all night.', color: 'text-blue-700 dark:text-blue-300' },
+  { category: 'Continuous', label: 'Present Continuous (Near Future)', pattern: 'Duration in future (arranged plan)', exampleLead: 'He ', exampleVerb: 'is studying', exampleTail: ' tomorrow (already arranged).', color: 'text-blue-700 dark:text-blue-300' },
+  { category: 'Continuous', label: 'Future Continuous', pattern: 'Duration in future (in progress at a time)', exampleLead: 'He ', exampleVerb: 'will be studying', exampleTail: ' all night.', color: 'text-blue-700 dark:text-blue-300' },
   { category: 'Perfect', label: 'Present Perfect', pattern: 'Arc from past → NOW', exampleLead: 'He ', exampleVerb: 'has studied', exampleTail: ' English.', color: 'text-emerald-700 dark:text-emerald-300' },
   { category: 'Perfect', label: 'Past Perfect', pattern: 'Arc in earlier past + moment in recent past', exampleLead: 'He ', exampleVerb: 'had studied', exampleTail: ' before the test.', color: 'text-amber-700 dark:text-amber-300' },
   { category: 'Perfect', label: 'Future Perfect', pattern: 'Arc reaching into future', exampleLead: 'He ', exampleVerb: 'will have studied', exampleTail: ' by Friday.', color: 'text-blue-700 dark:text-blue-300' },

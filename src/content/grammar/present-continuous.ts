@@ -131,15 +131,27 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 },
                 {
                     title: "🤝 3. Plans in the Near Future",
-                    description: "Arranged future plans (similar to 'going to')",
+                    description: "Arranged future plans — already confirmed, not just imagined",
                     examples: [
                         {
                             sentence: "I'm <strong>meeting</strong> my friend for coffee at 3 PM.",
-                            explanation: "✓ Scheduled soon",
+                            explanation: "✓ Scheduled appointment — already arranged",
                         },
                         {
                             sentence: "They're <strong>going</strong> to the movies tonight.",
-                            explanation: "✓ Near-future arrangement",
+                            explanation: "✓ Near-future plan, already decided",
+                        },
+                        {
+                            sentence: "We're <strong>visiting</strong> my grandma next Sunday.",
+                            explanation: "✓ Family plan — confirmed and on the calendar",
+                        },
+                        {
+                            sentence: "I'm <strong>not working</strong> this Saturday.",
+                            explanation: "✓ Negative form — the arrangement is to be off",
+                        },
+                        {
+                            sentence: "📅 <em>On the timeline:</em> same solid-line stamp as 'right now' — but it lands in the <strong>future zone</strong>. Same stamp, different position.",
+                            explanation: "✓ The plan feels as confirmed as something happening this moment",
                         },
                     ],
                 },

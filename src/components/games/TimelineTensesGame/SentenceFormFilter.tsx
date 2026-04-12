@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CheckCircle2, XCircle, HelpCircle, Shuffle } from 'lucide-react';
+import { HelpCircle, Shuffle, Check, Plus, Minus } from 'lucide-react';
 import type { SentenceForm } from '@/types/activity';
 
 interface SentenceFormFilterProps {
@@ -13,7 +13,7 @@ interface SentenceFormFilterProps {
 const FORM_CONFIG: Array<{
   id: SentenceForm | 'all';
   label: string;
-  icon: typeof CheckCircle2;
+  icon: typeof Plus;
   description: string;
   example: string;
 }> = [
@@ -27,14 +27,14 @@ const FORM_CONFIG: Array<{
   {
     id: 'affirmative',
     label: 'Affirmative',
-    icon: CheckCircle2,
+    icon: Plus,
     description: 'Positive statements',
     example: 'She works here.',
   },
   {
     id: 'negative',
     label: 'Negative',
-    icon: XCircle,
+    icon: Minus,
     description: 'Negative statements',
     example: "She doesn't work here.",
   },
@@ -54,21 +54,38 @@ export function SentenceFormFilter({
 }: SentenceFormFilterProps) {
   if (compact) {
     return (
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2.5">
         {FORM_CONFIG.map((form) => {
           const isSelected = selectedForm === form.id;
+          const Icon = form.icon;
+
           return (
-            <button
+            <motion.button
               key={form.id}
               onClick={() => onSelectForm(form.id)}
-              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-200 border ${
+              whileHover={{ y: -1, scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              aria-pressed={isSelected}
+              className={`relative inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border-2 ${
                 isSelected
-                  ? 'bg-primary text-white border-primary shadow-sm'
-                  : 'bg-white/40 dark:bg-white/5 text-text-muted border-border/30 hover:text-text hover:bg-white/60 dark:hover:bg-white/10'
+                  ? 'bg-secondary text-white border-secondary-dark shadow-[0_8px_16px_-4px_rgba(106,141,115,0.3)] pr-5'
+                  : 'bg-white/50 dark:bg-white/5 text-text-muted border-transparent hover:bg-white/80 dark:hover:bg-white/10 hover:text-text'
               }`}
             >
+              <div className="relative">
+                <Icon size={16} className={isSelected ? 'text-white' : 'text-text-muted/60 group-hover:text-primary'} />
+                {isSelected && (
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="absolute -top-1.5 -right-1.5 bg-white text-secondary rounded-full p-1 shadow-sm"
+                  >
+                    <Check size={12} strokeWidth={4} />
+                  </motion.div>
+                )}
+              </div>
               {form.label}
-            </button>
+            </motion.button>
           );
         })}
       </div>
@@ -90,17 +107,23 @@ export function SentenceFormFilter({
               onClick={() => onSelectForm(form.id)}
               whileHover={{ y: -2, scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
+              aria-pressed={isSelected}
               className={`group relative p-5 rounded-3xl border-2 text-left transition-all duration-300 ${
                 isSelected
-                  ? 'border-primary bg-white dark:bg-[#162b3d] shadow-xl'
+                  ? 'border-primary bg-gradient-to-br from-primary/10 via-white to-white dark:from-primary/20 dark:via-[#162b3d] dark:to-[#162b3d] ring-2 ring-primary/20 shadow-[0_18px_36px_-18px_rgba(var(--primary-color-rgb),0.45)]'
                   : 'border-transparent bg-white/40 dark:bg-white/5 backdrop-blur-md hover:bg-white/60 dark:hover:bg-white/10 shadow-sm'
               }`}
             >
+              {isSelected && (
+                <div className="absolute right-4 top-4 rounded-full border border-primary/25 bg-primary px-2 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-white">
+                  Selected
+                </div>
+              )}
               <div className="flex flex-col items-center sm:items-start gap-4">
                 <div
                   className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                     isSelected
-                      ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-110'
+                      ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-110 ring-4 ring-primary/10'
                       : 'bg-surface-elevated text-text-muted group-hover:bg-primary/10 group-hover:text-primary'
                   }`}
                 >

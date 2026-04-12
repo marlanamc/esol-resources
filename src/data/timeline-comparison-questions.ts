@@ -1567,4 +1567,92 @@ export const TIMELINE_COMPARISON_QUESTIONS: TenseComparisonQuestion[] = [
     difficulty: 2,
     tenseCategory: "perfect-continuous",
   }),
+  createComparisonQuestion({
+    id: "comp-ut-ps-01",
+    promptText: "I used to take the bus to work.",
+    correctOption: "A",
+    tenseA: "Used to",
+    tenseB: "Past Simple",
+    canonA: "pastSimpleHabit",
+    canonB: "pastSimple",
+    overridesB: [{ position: 40 }],
+    optionA: "I used to take the bus every day.",
+    optionB: "I took the bus last Monday.",
+    confusionExplanation:
+      "Both describe past actions involving a bus — but one was a repeated habit and the other was a single trip.",
+    keyDifference:
+      '"Used to" = repeated past habit that no longer happens — multiple dots in the past. Past Simple = one finished event at a specific time — single dot in the past.',
+    realLifeDialogue: {
+      lineA: 'A: "How do you get to work now?"',
+      lineB: 'B: "I drive. I used to take the bus, but the schedule changed."',
+    },
+    difficulty: 3,
+    tenseCategory: "used-to",
+  }),
+  createComparisonQuestion({
+    id: "comp-ut-prs-01",
+    promptType: "sentence-to-timeline",
+    promptText: "She used to live near the school.",
+    correctOption: "B",
+    tenseA: "Present Simple",
+    tenseB: "Used to",
+    canonA: "presentSimpleHabit",
+    canonB: "pastSimpleHabit",
+    optionA: "She lives near the school.",
+    optionB: "She used to live near the school.",
+    confusionExplanation:
+      "Both use repeated dots — but one is in the present zone and one is in the past. Students may forget the zone shift.",
+    keyDifference:
+      '"Used to" = past zone, no longer true. Present Simple = present zone, still true now. Same stamp, completely different time.',
+    realLifeDialogue: {
+      lineA: 'A: "Does she walk to school?"',
+      lineB: 'B: "Not anymore. She used to live nearby, but she moved."',
+    },
+    difficulty: 3,
+    tenseCategory: "used-to",
+  }),
+  createComparisonQuestion({
+    id: "comp-pc-nf-fs-01",
+    promptText: "She is flying to Miami on Saturday.",
+    correctOption: "A",
+    tenseA: "Present Continuous",
+    tenseB: "Future Simple",
+    canonA: "presentContinuousNearFuture",
+    canonB: "futureSimple",
+    overridesB: [{ position: 55 }],
+    optionA: "She is flying to Miami on Saturday.",
+    optionB: "She will fly to Miami one day.",
+    confusionExplanation:
+      "Both sentences describe a future trip — the difference is whether the trip is a confirmed plan or just a vague intention.",
+    keyDifference:
+      "Present Continuous = arranged, specific, already booked. Future Simple = a general intention or prediction, often with no fixed date.",
+    realLifeDialogue: {
+      lineA: 'A: "Is she going to the conference?"',
+      lineB: 'B: "Yes — she\'s flying to Miami on Saturday. Tickets are booked."',
+    },
+    difficulty: 2,
+    tenseCategory: "continuous",
+  }),
+  createComparisonQuestion({
+    id: "comp-pc-nf-fc-01",
+    promptType: "sentence-to-timeline",
+    promptText: "We are having dinner with the Garcias this Friday.",
+    correctOption: "A",
+    tenseA: "Present Continuous",
+    tenseB: "Future Continuous",
+    canonA: "presentContinuousNearFuture",
+    canonB: "futureContinuous",
+    optionA: "We are having dinner with the Garcias this Friday.",
+    optionB: "We will be having dinner when they arrive.",
+    confusionExplanation:
+      "Both use the same -ing form in the future zone — but one is an arranged plan and the other is an action in progress at a future moment.",
+    keyDifference:
+      "Present Continuous (near future) = a fixed plan with a specific date. Future Continuous = an action that will be happening at a future time point.",
+    realLifeDialogue: {
+      lineA: 'A: "Do you have plans this Friday?"',
+      lineB: 'B: "We\'re having dinner with the Garcias. It\'s been on the calendar for weeks."',
+    },
+    difficulty: 3,
+    tenseCategory: "continuous",
+  }),
 ];

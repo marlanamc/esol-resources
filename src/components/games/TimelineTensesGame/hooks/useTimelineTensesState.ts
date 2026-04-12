@@ -6,6 +6,7 @@ import type {
   TenseCategory,
   SentenceForm,
   TimelineElement,
+  TimelineTimeFrame,
 } from '@/types/activity';
 import { fetchActivityProgress, saveActivityProgress } from '@/lib/activityProgress';
 import { TIMELINE_TENSES_QUESTIONS } from '@/data/timeline-tenses-questions';
@@ -95,6 +96,7 @@ function calculateWeightedAccuracy(recentScores: number[]): number {
 type GamePhase =
   | 'selection'
   | 'learn-tenses'
+  | 'time-signals'
   | 'tutorial-intro'
   | 'tutorial'
   | 'tutorial-complete'
@@ -113,6 +115,7 @@ interface GameState {
   /** Empty array means "all tenses" */
   selectedCategories: TenseCategory[];
   selectedSentenceForm: SentenceForm | 'all';
+  selectedTimeFrame: TimelineTimeFrame | 'all';
   selectedPracticeMode: TimelinePracticeMode;
   categoryProgress: Record<string, CategoryProgress>;
   showFeedback: boolean;
@@ -127,6 +130,8 @@ interface GameState {
   // Tutorial state
   tutorialStep: number;
   tutorialCompleted: boolean;
+  /** When opening Tense Tools (lab / walkthrough / time signals) from an active round */
+  phaseBeforeTenseTools: 'exercise' | 'selection' | null;
 }
 
 const DEFAULT_ROUND_SIZE = 10;
@@ -182,8 +187,9 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     (
       category: TenseCategory | 'all',
       practiceMode: TimelinePracticeMode,
-      sentenceForm: SentenceForm | 'all'
-    ) => `${category}::${practiceMode}::${sentenceForm}`,
+      sentenceForm: SentenceForm | 'all',
+      timeFrame: TimelineTimeFrame | 'all'
+    ) => `${category}::${practiceMode}::${sentenceForm}::${timeFrame}`,
     []
   );
 
@@ -192,9 +198,10 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       category: TenseCategory | 'all',
       practiceMode: TimelinePracticeMode,
       sentenceForm: SentenceForm | 'all',
+      timeFrame: TimelineTimeFrame | 'all',
       roundQuestions: TimelineTensesQuestion[]
     ) => {
-      const filterKey = buildFilterMemoryKey(category, practiceMode, sentenceForm);
+      const filterKey = buildFilterMemoryKey(category, practiceMode, sentenceForm, timeFrame);
       const cap = roundQuestions.length * 4;
       const roundIds = roundQuestions.map((question) => question.id);
 
@@ -234,6 +241,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       roundSize: getRoundSizeForPracticeMode(DEFAULT_TIMELINE_PRACTICE_MODE),
       selectedCategories: [],
       selectedSentenceForm: 'all',
+      selectedTimeFrame: 'all',
       selectedPracticeMode: DEFAULT_TIMELINE_PRACTICE_MODE,
       categoryProgress: {},
       showFeedback: false,
@@ -242,6 +250,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       questionResults: [],
       tutorialStep: 0,
       tutorialCompleted: isTutorialCompleted('all'),
+      phaseBeforeTenseTools: null,
     };
   });
 
@@ -337,6 +346,14 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     }));
   }, []);
 
+  const selectTimeFrame = useCallback((timeFrame: TimelineTimeFrame | 'all') => {
+    setState((prev) => ({
+      ...prev,
+      error: null,
+      selectedTimeFrame: timeFrame,
+    }));
+  }, []);
+
   const selectPracticeMode = useCallback((practiceMode: TimelinePracticeMode) => {
     setState((prev) => ({
       ...prev,
@@ -347,17 +364,25 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
   }, []);
 
   const startLab = useCallback(() => {
-    setState((prev) => ({
-      ...prev,
-      error: null,
-      phase: 'lab',
-      currentQuestionIndex: 0,
-      roundQuestions: [],
-      questionResults: [],
-      showFeedback: false,
-      lastAnswerCorrect: null,
-      roundResults: null,
-    }));
+    setState((prev) => {
+      const fromExercise = prev.phase === 'exercise';
+      return {
+        ...prev,
+        error: null,
+        phase: 'lab',
+        phaseBeforeTenseTools: fromExercise ? 'exercise' : 'selection',
+        ...(fromExercise
+          ? {}
+          : {
+              currentQuestionIndex: 0,
+              roundQuestions: [],
+              questionResults: [],
+              showFeedback: false,
+              lastAnswerCorrect: null,
+              roundResults: null,
+            }),
+      };
+    });
   }, []);
 
   // Start a new round (or tutorial if first time in build mode)
@@ -368,6 +393,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
           ...prev,
           error: null,
           phase: 'lab',
+          phaseBeforeTenseTools: 'selection',
           currentQuestionIndex: 0,
           roundQuestions: [],
           questionResults: [],
@@ -404,12 +430,14 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         prev.selectedPracticeMode,
         prev.roundSize,
         prev.selectedSentenceForm,
+        prev.selectedTimeFrame,
         prev.categoryProgress[effectiveCategoryKey]?.level || 1,
         recentQuestionIdsByFilter[
           buildFilterMemoryKey(
             effectiveCategoryKey,
             prev.selectedPracticeMode,
-            prev.selectedSentenceForm
+            prev.selectedSentenceForm,
+            prev.selectedTimeFrame
           )
         ] || []
       );
@@ -425,6 +453,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         effectiveCategoryKey,
         prev.selectedPracticeMode,
         prev.selectedSentenceForm,
+        prev.selectedTimeFrame,
         roundQuestions
       );
 
@@ -432,6 +461,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         ...prev,
         error: null,
         phase: 'exercise',
+        phaseBeforeTenseTools: null,
         currentQuestionIndex: 0,
         roundQuestions,
         questionResults: [],
@@ -459,6 +489,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       ...prev,
       error: null,
       phase: 'learn-tenses',
+      phaseBeforeTenseTools: prev.phase === 'exercise' ? 'exercise' : 'selection',
     }));
   }, []);
 
@@ -466,8 +497,52 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     setState((prev) => ({
       ...prev,
       error: null,
-      phase: 'selection',
+      phase: prev.phaseBeforeTenseTools === 'exercise' ? 'exercise' : 'selection',
+      phaseBeforeTenseTools: null,
     }));
+  }, []);
+
+  const startTimeSignals = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      error: null,
+      phase: 'time-signals',
+      phaseBeforeTenseTools: prev.phase === 'exercise' ? 'exercise' : 'selection',
+    }));
+  }, []);
+
+  const closeTimeSignals = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      error: null,
+      phase: prev.phaseBeforeTenseTools === 'exercise' ? 'exercise' : 'selection',
+      phaseBeforeTenseTools: null,
+    }));
+  }, []);
+
+  const exitLab = useCallback(() => {
+    setState((prev) => {
+      if (prev.phaseBeforeTenseTools === 'exercise') {
+        return {
+          ...prev,
+          error: null,
+          phase: 'exercise',
+          phaseBeforeTenseTools: null,
+        };
+      }
+      return {
+        ...prev,
+        error: null,
+        phase: 'selection',
+        phaseBeforeTenseTools: null,
+        currentQuestionIndex: 0,
+        roundQuestions: [],
+        showFeedback: false,
+        lastAnswerCorrect: null,
+        roundResults: null,
+        questionResults: [],
+      };
+    });
   }, []);
 
   // Submit answer for current tutorial question
@@ -521,12 +596,14 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         prev.selectedPracticeMode,
         prev.roundSize,
         prev.selectedSentenceForm,
+        prev.selectedTimeFrame,
         prev.categoryProgress[effectiveKey]?.level || 1,
         recentQuestionIdsByFilter[
           buildFilterMemoryKey(
             effectiveKey,
             prev.selectedPracticeMode,
-            prev.selectedSentenceForm
+            prev.selectedSentenceForm,
+            prev.selectedTimeFrame
           )
         ] || []
       );
@@ -544,6 +621,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         effectiveKey,
         prev.selectedPracticeMode,
         prev.selectedSentenceForm,
+        prev.selectedTimeFrame,
         roundQuestions
       );
 
@@ -552,6 +630,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         tutorialCompleted: true,
         error: null,
         phase: 'exercise',
+        phaseBeforeTenseTools: null,
         currentQuestionIndex: 0,
         roundQuestions,
         questionResults: [],
@@ -572,12 +651,14 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         prev.selectedPracticeMode,
         prev.roundSize,
         prev.selectedSentenceForm,
+        prev.selectedTimeFrame,
         prev.categoryProgress[effectiveKey]?.level || 1,
         recentQuestionIdsByFilter[
           buildFilterMemoryKey(
             effectiveKey,
             prev.selectedPracticeMode,
-            prev.selectedSentenceForm
+            prev.selectedSentenceForm,
+            prev.selectedTimeFrame
           )
         ] || []
       );
@@ -594,6 +675,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         effectiveKey,
         prev.selectedPracticeMode,
         prev.selectedSentenceForm,
+        prev.selectedTimeFrame,
         roundQuestions
       );
 
@@ -601,6 +683,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         ...prev,
         error: null,
         phase: 'exercise',
+        phaseBeforeTenseTools: null,
         currentQuestionIndex: 0,
         roundQuestions,
         questionResults: [],
@@ -767,6 +850,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       ...prev,
       error: null,
       phase: 'selection',
+      phaseBeforeTenseTools: null,
       currentQuestionIndex: 0,
       roundQuestions: [],
       showFeedback: false,
@@ -789,10 +873,14 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
     tutorialQuestions,
     toggleTenseCategory,
     selectSentenceForm,
+    selectTimeFrame,
     selectPracticeMode,
     startLab,
     startLearnTenses,
     closeLearnTenses,
+    startTimeSignals,
+    closeTimeSignals,
+    exitLab,
     startRound,
     startTutorial,
     submitTutorialAnswer,
@@ -810,6 +898,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         ...prev,
         categoryProgress: {},
         tutorialCompleted: false,
+        phaseBeforeTenseTools: null,
       }));
       
       if (typeof window !== 'undefined') {

@@ -2,7 +2,9 @@ import type { TimelineElement } from "@/types/activity";
 
 export type TimelineStampCanonName =
   | "presentSimpleHabit"
+  | "pastSimpleHabit"
   | "presentContinuous"
+  | "presentContinuousNearFuture"
   | "pastSimple"
   | "futureSimple"
   | "presentPerfect"
@@ -26,8 +28,14 @@ const CANONICAL_TIMELINE_PATTERNS: Record<
   presentSimpleHabit: [
     { id: "base-1", type: "multiple-dots", zone: "present", position: 50 },
   ],
+  pastSimpleHabit: [
+    { id: "base-1", type: "multiple-dots", zone: "past", position: 40 },
+  ],
   presentContinuous: [
     { id: "base-1", type: "solid-line", zone: "present", position: 50 },
+  ],
+  presentContinuousNearFuture: [
+    { id: "base-1", type: "solid-line", zone: "future", position: 60 },
   ],
   pastSimple: [
     { id: "base-1", type: "single-dot", zone: "past", position: 40 },

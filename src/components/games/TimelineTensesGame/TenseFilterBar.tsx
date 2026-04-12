@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Clock, Zap, Link2, Layers } from 'lucide-react';
+import { Clock, Zap, Link2, Layers, Repeat } from 'lucide-react';
 import type { TenseCategory } from '@/types/activity';
 import { TIMELINE_TENSES_QUESTIONS } from '@/data/timeline-tenses-questions';
 import type { CategoryProgress } from './hooks/useTimelineTensesState';
@@ -68,6 +68,14 @@ const CATEGORY_CONFIG: Array<{
     description: 'Two things — two different times',
     color: 'rose',
   },
+  {
+    id: 'used-to',
+    label: 'Used To',
+    shortLabel: 'Used To',
+    icon: Repeat,
+    description: 'Past habits & states that no longer exist',
+    color: 'violet',
+  },
 ];
 
 const CATEGORY_STYLE: Record<string, { tone: string; iconBg: string; activeBg: string; border: string }> = {
@@ -77,6 +85,7 @@ const CATEGORY_STYLE: Record<string, { tone: string; iconBg: string; activeBg: s
   perfect: { tone: 'text-[#c44a28]', iconBg: 'bg-[#fff7ed] dark:bg-[#c44a28]/10', activeBg: 'bg-[#c44a28]', border: 'border-[#c44a28]/20' },
   'perfect-continuous': { tone: 'text-[#b56e1a]', iconBg: 'bg-[#f5f0e8] dark:bg-[#b56e1a]/10', activeBg: 'bg-[#b56e1a]', border: 'border-[#b56e1a]/20' },
   mixed: { tone: 'text-[#7d3fa6]', iconBg: 'bg-[#f5f0fa] dark:bg-[#7d3fa6]/10', activeBg: 'bg-[#7d3fa6]', border: 'border-[#7d3fa6]/20' },
+  'used-to': { tone: 'text-[#6b4fb8]', iconBg: 'bg-[#f0eef8] dark:bg-[#6b4fb8]/10', activeBg: 'bg-[#6b4fb8]', border: 'border-[#6b4fb8]/20' },
 };
 
 const CATEGORY_QUESTION_COUNTS = CATEGORY_CONFIG.reduce<Record<string, number>>(

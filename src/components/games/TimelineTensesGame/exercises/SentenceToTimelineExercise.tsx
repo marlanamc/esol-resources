@@ -206,7 +206,7 @@ export function SentenceToTimelineExercise({
         </div>
 
         <div className="text-3xl sm:text-4xl font-display font-black text-text leading-[1.15] tracking-tight">
-          &ldquo;{highlightSentenceFeatures(question.sentence, question.verbPhrase)}&rdquo;
+          &ldquo;{highlightSentenceFeatures(question.sentence, question.verbPhrase, question.verbPhrase2)}&rdquo;
         </div>
         <InlineInfoTooltip text="Highlighted words are time clues. Underlined words are the verb phrase." />
       </motion.div>
@@ -452,6 +452,7 @@ export function SentenceToTimelineExercise({
             explanation={question.explanation}
             sentence={question.sentence}
             verbPhrase={question.verbPhrase}
+            verbPhrase2={question.verbPhrase2}
             realLifeDialogue={question.realLifeDialogue}
             onContinue={onNext}
           />

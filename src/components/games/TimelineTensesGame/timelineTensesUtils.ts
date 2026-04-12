@@ -8,6 +8,7 @@ import type {
   TenseCategory,
   TimelineElement,
   TimelineElementType,
+  TimelineTimeFrame,
   TimelineTensesQuestion,
   TimelineToVerbQuestion,
   TimelineZone,
@@ -101,6 +102,7 @@ export const REAL_TENSE_CATEGORIES: TenseCategory[] = [
   "perfect",
   "perfect-continuous",
   "mixed",
+  "used-to",
 ];
 
 export type TimelinePracticeMode =
@@ -108,6 +110,7 @@ export type TimelinePracticeMode =
   | "build-the-timeline"
   | "mixed-practice"
   | "lab"
+  | "time-signals"
   // Challenge modes (unlocked at level 2+)
   | "spot-the-difference"
   | "transformer"
@@ -341,7 +344,8 @@ export function filterTimelineQuestions(
   questionBank: TimelineTensesQuestion[],
   categories: TenseCategory[],   // empty = all tenses
   practiceMode: TimelinePracticeMode,
-  sentenceForm: SentenceForm | "all" = "all"
+  sentenceForm: SentenceForm | "all" = "all",
+  timeFrame: TimelineTimeFrame | "all" = "all"
 ): TimelineTensesQuestion[] {
   return questionBank.filter((question) => {
     const matchesCategory =
@@ -372,6 +376,13 @@ export function filterTimelineQuestions(
       sentenceForm === "all" ? true : (question as { sentenceForm?: string }).sentenceForm === sentenceForm;
 
     if (!matchesSentenceForm) {
+      return false;
+    }
+
+    const matchesTimeFrame =
+      timeFrame === "all" ? true : getQuestionTimeFrame(question) === timeFrame;
+
+    if (!matchesTimeFrame) {
       return false;
     }
 
@@ -571,6 +582,7 @@ export function buildTimelineRoundQuestions(
   practiceMode: TimelinePracticeMode,
   roundSize: number,
   sentenceForm: SentenceForm | "all" = "all",
+  timeFrame: TimelineTimeFrame | "all" = "all",
   level: number = 1,
   recentlySeenQuestionIds: string[] = []
 ): TimelineTensesQuestion[] {
@@ -578,7 +590,8 @@ export function buildTimelineRoundQuestions(
     questionBank,
     categories,
     practiceMode,
-    sentenceForm
+    sentenceForm,
+    timeFrame
   );
 
   if (allFilteredQuestions.length === 0) return [];
@@ -604,9 +617,46 @@ export function buildTimelineRoundQuestions(
 export function getTimelineQuestionCount(
   questionBank: TimelineTensesQuestion[],
   categories: TenseCategory[],
-  practiceMode: TimelinePracticeMode
+  practiceMode: TimelinePracticeMode,
+  sentenceForm: SentenceForm | "all" = "all",
+  timeFrame: TimelineTimeFrame | "all" = "all"
 ): number {
-  return filterTimelineQuestions(questionBank, categories, practiceMode).length;
+  return filterTimelineQuestions(
+    questionBank,
+    categories,
+    practiceMode,
+    sentenceForm,
+    timeFrame
+  ).length;
+}
+
+export function getQuestionTimeFrame(
+  question: TimelineTensesQuestion
+): TimelineTimeFrame | "all" {
+  const tenseNames =
+    question.type === "sentence-to-timeline"
+      ? [question.tenseName]
+      : question.type === "timeline-to-verb"
+        ? question.blanks.flatMap((blank) => blank.validAnswers.map((answer) => answer.tenseName))
+        : [];
+
+  for (const tenseName of tenseNames) {
+    const lower = tenseName.toLowerCase();
+
+    if (lower.includes("future")) {
+      return "future";
+    }
+
+    if (lower.includes("present")) {
+      return "present";
+    }
+
+    if (lower.includes("past") || lower.includes("used to")) {
+      return "past";
+    }
+  }
+
+  return "all";
 }
 
 export function calculateTimelineOverallProgress(
@@ -772,6 +822,7 @@ function buildTimelinePatternSignature(
 
 const TIMELINE_LAB_GUIDE_LABELS = new Map<string, string>([
   ["multiple-dots:present#1", "Present Simple"],
+  ["multiple-dots:past#1", "Used to (Past Habit)"],
   ["single-dot:past#1", "Past Simple"],
   ["single-dot:past-earlier#1", "Past Simple"],
   ["single-dot:past-later#1", "Past Simple"],
@@ -785,7 +836,7 @@ const TIMELINE_LAB_GUIDE_LABELS = new Map<string, string>([
   ["single-dot:past-later#1|solid-line:past-earlier#1", "Past Continuous + Past Simple"],
   ["single-dot:past-earlier#1|solid-line:past-earlier#1", "Past Continuous + Past Simple"],
   ["single-dot:past-later#1|solid-line:past-later#1", "Past Continuous + Past Simple"],
-  ["solid-line:future#1", "Future Continuous"],
+  ["solid-line:future#1", "Future Continuous / Present Continuous (Near Future)"],
   ["arc:past#1", "Present Perfect"],
   ["arc:past-earlier#1", "Past Perfect"],
   ["arc:past-later#1", "Present Perfect"],

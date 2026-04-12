@@ -138,6 +138,19 @@ export const CATEGORIZED_TUTORIAL_QUESTIONS: Record<TenseCategory | 'all', Sente
       sentenceForm: 'affirmative',
     },
   ],
+  'used-to': [
+    {
+      type: 'sentence-to-timeline' as const,
+      id: 'tut-usedto-1',
+      sentence: 'I used to walk to school every day.',
+      correctElements: [{ id: 'e1', type: 'multiple-dots' as const, zone: 'past' as const, position: 40 }],
+      tenseName: 'Used to (Past Habit)',
+      explanation: '"Used to" shows a repeated past habit that no longer happens. Use repeated dots in the PAST zone.',
+      difficulty: 3 as const,
+      tenseCategory: 'used-to' as const,
+      sentenceForm: 'affirmative' as const,
+    },
+  ],
 };
 
 // Also keep the flat version for easier indexing if needed, but categorized is better

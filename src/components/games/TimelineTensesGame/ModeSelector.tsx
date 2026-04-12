@@ -82,20 +82,12 @@ const CHALLENGE_MODE_META = [
   // },
 ];
 
-function isUnlocked(
-  categoryProgress: Record<string, CategoryProgress>,
-  requiredLevel: number
-): boolean {
-  return Object.values(categoryProgress).some(
-    (p) => (p.level ?? 1) >= requiredLevel
-  );
-}
-
 export function ModeSelector({
   selectedMode,
   categoryProgress,
   onSelectMode,
 }: ModeSelectorProps) {
+  void categoryProgress;
   const [activeTab, setActiveTab] = useState<'practice' | 'challenge'>(
     () => (isChallengeMode(selectedMode) ? 'challenge' : 'practice')
   );
@@ -112,24 +104,30 @@ export function ModeSelector({
   return (
     <div>
       {/* Tab bar */}
-      <div className="flex items-center gap-2 mb-5">
-        <button
+      <div className="flex items-center gap-2.5 mb-6">
+        <motion.button
           onClick={() => handleTabChange('practice')}
-          className={`relative px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 ${
+          whileHover={{ y: -1, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          aria-pressed={activeTab === 'practice'}
+          className={`relative px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border-2 ${
             activeTab === 'practice'
-              ? 'bg-primary text-white shadow-md'
-              : 'bg-white/40 dark:bg-white/5 text-text-muted hover:text-text hover:bg-white/60 dark:hover:bg-white/10'
+              ? 'bg-secondary text-white border-secondary-dark shadow-[0_8px_20px_-6px_rgba(106,141,115,0.3)]'
+              : 'border-transparent bg-white/50 dark:bg-white/5 text-text-muted hover:text-text hover:bg-white/80 dark:hover:bg-white/10'
           }`}
         >
           Practice
-        </button>
+        </motion.button>
 
-        <button
+        <motion.button
           onClick={() => handleTabChange('challenge')}
-          className={`relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 ${
+          whileHover={{ y: -1, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          aria-pressed={activeTab === 'challenge'}
+          className={`relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border-2 ${
             activeTab === 'challenge'
-              ? 'bg-primary text-white shadow-md'
-              : 'bg-white/40 dark:bg-white/5 text-text-muted hover:text-text hover:bg-white/60 dark:hover:bg-white/10'
+              ? 'bg-secondary text-white border-secondary-dark shadow-[0_8px_20px_-6px_rgba(106,141,115,0.3)]'
+              : 'border-transparent bg-white/50 dark:bg-white/5 text-text-muted hover:text-text hover:bg-white/80 dark:hover:bg-white/10'
           }`}
         >
           Challenge Modes
@@ -139,9 +137,9 @@ export function ModeSelector({
               Tier 2
             </span>
           ) : (
-            <span className="text-[10px] font-black text-amber-400 opacity-90">★</span>
+            <span className="text-amber-400 animate-pulse">★</span>
           )}
-        </button>
+        </motion.button>
       </div>
 
       {/* Tab content */}
@@ -163,9 +161,10 @@ export function ModeSelector({
                     onClick={() => onSelectMode(mode.id)}
                     whileHover={{ y: -2, scale: 1.01 }}
                     whileTap={{ scale: 0.98 }}
+                    aria-pressed={isActive}
                     className={`group relative p-4 sm:p-5 rounded-3xl border-2 text-left transition-all duration-300 ${
                       isActive
-                        ? 'border-primary bg-white dark:bg-[#162b3d] shadow-xl'
+                        ? 'border-primary bg-gradient-to-br from-primary/10 via-white to-white dark:from-primary/20 dark:via-[#162b3d] dark:to-[#162b3d] ring-2 ring-primary/20 shadow-[0_18px_36px_-18px_rgba(var(--primary-color-rgb),0.45)]'
                         : 'border-transparent bg-white/40 dark:bg-white/5 backdrop-blur-md hover:bg-white/60 dark:hover:bg-white/10 shadow-sm'
                     }`}
                   >
@@ -173,7 +172,7 @@ export function ModeSelector({
                       <div
                         className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                           isActive
-                            ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-110'
+                            ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-110 ring-4 ring-primary/10'
                             : 'bg-surface-elevated text-text-muted group-hover:bg-primary/10 group-hover:text-primary'
                         }`}
                       >
@@ -243,9 +242,10 @@ export function ModeSelector({
                       transition={{ delay: i * 0.05 }}
                       whileHover={unlocked ? { y: -2, scale: 1.01 } : {}}
                       whileTap={unlocked ? { scale: 0.98 } : {}}
+                      aria-pressed={isActive}
                       className={`group relative p-4 rounded-3xl border-2 text-left transition-all duration-300 ${
                         isActive && unlocked
-                          ? 'border-primary bg-white dark:bg-[#162b3d] shadow-xl'
+                          ? 'border-primary bg-gradient-to-br from-primary/10 via-white to-white dark:from-primary/20 dark:via-[#162b3d] dark:to-[#162b3d] ring-2 ring-primary/20 shadow-[0_18px_36px_-18px_rgba(var(--primary-color-rgb),0.45)]'
                           : !unlocked
                           ? 'border-transparent bg-white/20 dark:bg-white/3 cursor-not-allowed opacity-60'
                           : 'border-transparent bg-white/40 dark:bg-white/5 backdrop-blur-md hover:bg-white/60 dark:hover:bg-white/10 shadow-sm'
@@ -266,7 +266,7 @@ export function ModeSelector({
                         <div
                           className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                             isActive && unlocked
-                              ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-110'
+                              ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-110 ring-4 ring-primary/10'
                               : 'bg-surface-elevated text-text-muted group-hover:bg-primary/10 group-hover:text-primary'
                           }`}
                         >

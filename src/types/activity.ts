@@ -655,10 +655,14 @@ export type TenseCategory =
     | "continuous"
     | "perfect"
     | "perfect-continuous"
-    | "mixed";
+    | "mixed"
+    | "used-to";
 
 /** Sentence forms for filtering practice */
 export type SentenceForm = "affirmative" | "negative" | "question";
+
+/** Main timeline reference point for filtering practice */
+export type TimelineTimeFrame = "past" | "present" | "future";
 
 /** Type 1: Student draws timeline from sentence */
 export interface SentenceToTimelineQuestion {
@@ -668,6 +672,8 @@ export interface SentenceToTimelineQuestion {
     sentence: string;
     /** The verb phrase to bold in the sentence display, e.g., "has been cooking" */
     verbPhrase?: string;
+    /** Second verb phrase to underline (for two-verb mixed sentences) */
+    verbPhrase2?: string;
     /** Optional per-question dialogue shown in the "In real life" card */
     realLifeDialogue?: RealLifeDialogue;
     /** Expected timeline elements for correct answer */
