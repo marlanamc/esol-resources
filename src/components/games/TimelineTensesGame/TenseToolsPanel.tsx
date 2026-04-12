@@ -8,24 +8,21 @@ type StationTone = 'amber' | 'rose' | 'cyan';
 
 const STATION_STYLES: Record<
   StationTone,
-  { ring: string; glow: string; badge: string; iconBg: string }
+  { ring: string; glow: string; iconBg: string }
 > = {
   amber: {
     ring: 'border-amber-300/60 dark:border-amber-400/35',
     glow: 'shadow-[0_0_0_1px_rgba(251,191,36,0.12),0_18px_40px_-24px_rgba(245,158,11,0.35)]',
-    badge: 'bg-amber-500/15 text-amber-900 dark:text-amber-100 border border-amber-400/30',
     iconBg: 'bg-amber-400/20 text-amber-900 dark:text-amber-200',
   },
   rose: {
     ring: 'border-rose-300/55 dark:border-rose-400/35',
     glow: 'shadow-[0_0_0_1px_rgba(244,114,182,0.1),0_18px_40px_-24px_rgba(244,114,182,0.28)]',
-    badge: 'bg-rose-500/12 text-rose-900 dark:text-rose-100 border border-rose-400/28',
     iconBg: 'bg-rose-400/20 text-rose-900 dark:text-rose-200',
   },
   cyan: {
     ring: 'border-cyan-300/55 dark:border-cyan-400/35',
     glow: 'shadow-[0_0_0_1px_rgba(34,211,238,0.1),0_18px_40px_-24px_rgba(6,182,212,0.28)]',
-    badge: 'bg-cyan-500/12 text-cyan-900 dark:text-cyan-100 border border-cyan-400/28',
     iconBg: 'bg-cyan-400/20 text-cyan-900 dark:text-cyan-200',
   },
 };
@@ -121,7 +118,6 @@ export function TenseToolsPanel({
             >
               <div className="space-y-3 px-3 pb-4 pt-3">
                 <TenseToolStation
-                  station="01"
                   tone="amber"
                   title="Timeline Lab"
                   description="Place stamps on the line and see the shape of each tense in time."
@@ -129,7 +125,6 @@ export function TenseToolsPanel({
                   onSelect={onOpenLab}
                 />
                 <TenseToolStation
-                  station="02"
                   tone="rose"
                   title="Tense walkthrough"
                   description="Short explanations and examples — one tense at a time."
@@ -137,7 +132,6 @@ export function TenseToolsPanel({
                   onSelect={onOpenWalkthrough}
                 />
                 <TenseToolStation
-                  station="03"
                   tone="cyan"
                   title="Time signals"
                   description="Practice words and phrases that point to past, present, or future."
@@ -154,14 +148,12 @@ export function TenseToolsPanel({
 }
 
 function TenseToolStation({
-  station,
   tone,
   title,
   description,
   icon,
   onSelect,
 }: {
-  station: string;
   tone: StationTone;
   title: string;
   description: string;
@@ -176,18 +168,11 @@ function TenseToolStation({
       className={`group w-full rounded-2xl border bg-white/90 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:brightness-[1.02] dark:bg-[#152433]/90 ${s.ring} ${s.glow}`}
     >
       <div className="flex gap-3">
-        <div className="flex flex-col items-center gap-1.5 pt-0.5">
-          <span
-            className={`font-mono text-[10px] font-bold uppercase tracking-widest ${s.badge} rounded px-1.5 py-0.5`}
-          >
-            {station}
-          </span>
-          <span
-            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${s.iconBg}`}
-          >
-            {icon}
-          </span>
-        </div>
+        <span
+          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl pt-0.5 ${s.iconBg}`}
+        >
+          {icon}
+        </span>
         <div className="min-w-0 flex-1 pt-0.5">
           <p className="font-display text-base font-black text-text">{title}</p>
           <p className="mt-1 text-sm leading-relaxed text-text-muted">{description}</p>

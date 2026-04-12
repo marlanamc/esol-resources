@@ -75,9 +75,6 @@ export function GroupSelectionScreen({ categoryData, onSelectGroup }: GroupSelec
         <h1 className="font-display text-4xl sm:text-5xl text-text mb-2 tracking-tight">
           Gerunds & Infinitives
         </h1>
-        <p className="text-text-muted text-base mb-4">
-          Learn when to use <span className="font-semibold text-primary">-ing</span> and when to use <span className="font-semibold text-primary">to + verb</span>
-        </p>
 
         {/* Visual Two-Round Structure */}
         <motion.div
@@ -178,7 +175,7 @@ export function GroupSelectionScreen({ categoryData, onSelectGroup }: GroupSelec
       <div className="space-y-8">
         <GroupSection
           title="Foundation"
-          subtitle="Simple patterns to build your base"
+          subtitle="Spot -ing and to + verb first: what each form is for, then four starter patterns."
           groups={GI_GROUPS.filter(g => g.phase === 'foundation')}
           categoryData={categoryData}
           onSelectGroup={onSelectGroup}
@@ -187,7 +184,7 @@ export function GroupSelectionScreen({ categoryData, onSelectGroup }: GroupSelec
         />
         <GroupSection
           title="Core Verbs"
-          subtitle="Master which verbs take gerund vs infinitive"
+          subtitle="Learn which verbs use -ing next, and which use to + verb—then mix them."
           groups={GI_GROUPS.filter(g => g.phase === 'core-verbs')}
           categoryData={categoryData}
           onSelectGroup={onSelectGroup}
@@ -196,7 +193,7 @@ export function GroupSelectionScreen({ categoryData, onSelectGroup }: GroupSelec
         />
         <GroupSection
           title="Development"
-          subtitle="Expanding to prepositions, adjectives, and purpose"
+          subtitle="Prepositions come in fixed chunks—after a prep, use -ing. Other lessons add to + verb after adjectives, nouns, and why."
           groups={GI_GROUPS.filter(g => g.phase === 'development')}
           categoryData={categoryData}
           onSelectGroup={onSelectGroup}
@@ -205,7 +202,7 @@ export function GroupSelectionScreen({ categoryData, onSelectGroup }: GroupSelec
         />
         <GroupSection
           title="Mastery"
-          subtitle="Complex patterns and subtle distinctions"
+          subtitle="Fine-tune the hard parts: when both forms work, when meaning changes, and when to is part of a phrase (then use -ing)."
           groups={GI_GROUPS.filter(g => g.phase === 'mastery')}
           categoryData={categoryData}
           onSelectGroup={onSelectGroup}

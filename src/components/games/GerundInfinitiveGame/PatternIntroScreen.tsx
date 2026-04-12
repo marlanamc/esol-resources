@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Play, BookOpen, ChevronRight, Trophy, AlertCircle, Check, Lightbulb, Sparkles } from 'lucide-react';
 import { GI_REVIEW_GROUP_ID, GI_FINAL_GROUP_ID } from '@/data/gerund-infinitive-groups';
+import { getGIVocabReminder } from './gerund-infinitive-vocab-reminders';
+import { GIBigPictureCallout } from './GIBigPictureCallout';
 import type { GerundInfinitiveGroup, GIRoundMode, PatternExample } from '@/types/gerund-infinitive';
 
 function correctedFormFromError(commonError: string, correctForm: 'gerund' | 'infinitive' | 'both'): string | null {
@@ -23,46 +25,6 @@ function patternToBullets(pattern: string): string[] {
     .split(/(?<=[.!])\s+/)
     .map(s => s.trim())
     .filter(Boolean);
-}
-
-/**
- * Get vocabulary reminder based on the group type
- */
-function getVocabReminder(group: GerundInfinitiveGroup): { title: string; examples: string; note?: string } | null {
-  // Preposition groups
-  if (group.id === 'group-1' || group.id === 'group-1b' || group.id === 'group-1d') {
-    return {
-      title: 'What is a preposition?',
-      examples: 'in, at, for, of, about, to, from, with, without, before, after',
-      note: 'Prepositions are small words that show relationships (location, time, direction).',
-    };
-  }
-
-  // "TO" trap group
-  if (group.id === 'group-1c') {
-    return {
-      title: 'When is "to" a preposition?',
-      examples: 'look forward to, be used to, get used to, committed to',
-      note: 'In these phrases, "to" is a preposition (not part of an infinitive), so use gerund!',
-    };
-  }
-
-  if (group.id === 'group-8a') {
-    return {
-      title: 'Why is this gerund?',
-      examples: 'How about, What about, thought of',
-      note: 'These phrases end with a preposition, so the next verb must be -ing.',
-    };
-  }
-
-  if (group.id === 'group-8b') {
-    return {
-      title: 'Look at the word before the blank',
-      examples: 'for + -ing, to + base verb',
-      note: 'The meaning stays the same. The grammar changes because "for" is a preposition and "to" starts an infinitive.',
-    };
-  }
-  return null;
 }
 
 interface PatternIntroScreenProps {
@@ -128,6 +90,8 @@ export function PatternIntroScreen({
       >
         <h1 className="font-display text-3xl sm:text-4xl text-text leading-tight">{group.title}</h1>
 
+        {group.bigPicture && <GIBigPictureCallout text={group.bigPicture} />}
+
         {/* Memory trick first - most memorable, scannable */}
         {group.memoryTrick && (
           <motion.div
@@ -169,7 +133,7 @@ export function PatternIntroScreen({
 
         {/* Vocabulary reminder */}
         {(() => {
-          const reminder = getVocabReminder(group);
+          const reminder = getGIVocabReminder(group);
           if (!reminder) return null;
           const examples = reminder.examples.split(/,\s*/).slice(0, 8);
           return (

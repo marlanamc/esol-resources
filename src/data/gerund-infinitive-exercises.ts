@@ -790,38 +790,40 @@ function createPatternChoiceExercise(
 ): GIExercise {
   const example = pickRandom(pattern.examples);
   const sentence = example.sentence;
-  const correctAnswer = example.blank;
+  const blank = example.blank;
 
   // Build alternative options - aim for 4 for consistent 2x2 grid
   const isGerund = pattern.correctForm === 'gerund';
   const isBoth = pattern.correctForm === 'both';
 
   let options: string[];
+  /** For "both OK" patterns, both gerund and infinitive must count as correct */
+  let correctAnswer: string | string[] = blank;
+
   if (isBoth) {
-    // For "both OK" patterns, detect which form this specific example uses
-    // and generate the complement as the alternative
-    if (correctAnswer.includes(' / ')) {
+    let gerundForm: string;
+    let infinitiveForm: string;
+    if (blank.includes(' / ')) {
       // Standard "gerund / infinitive" format (e.g. "raining / to rain")
-      const gerundForm = correctAnswer.split(' / ')[0];
-      const infinitiveForm = correctAnswer.split(' / ')[1];
-      options = [gerundForm, infinitiveForm];
-    } else if (correctAnswer.startsWith('to ')) {
-      // This example is infinitive — generate the gerund alternative
-      const baseVerb = correctAnswer.replace(/^to /, '');
-      options = [correctAnswer, gerundFrom(baseVerb)];
+      gerundForm = blank.split(' / ')[0].trim();
+      infinitiveForm = blank.split(' / ')[1].trim();
+    } else if (blank.startsWith('to ')) {
+      infinitiveForm = blank;
+      gerundForm = gerundFrom(blank.replace(/^to /, ''));
     } else {
-      // This example is gerund — generate the infinitive alternative
-      const baseVerb = baseFrom(correctAnswer);
-      options = [correctAnswer, 'to ' + baseVerb];
+      gerundForm = blank;
+      infinitiveForm = 'to ' + baseFrom(blank);
     }
+    correctAnswer = [gerundForm, infinitiveForm];
+    options = shuffleArray([gerundForm, infinitiveForm]);
   } else {
     // Create distractors from alternate forms - aim for 4 options
-    options = [correctAnswer];
+    options = [blank];
 
     if (isGerund) {
       // For gerund patterns, add: infinitive, bare verb, 3rd person
       // Handle phrasal verbs like "listening to" - extract just the gerund
-      const parts = correctAnswer.split(' ');
+      const parts = blank.split(' ');
       const gerundPart = parts[0]; // e.g., "listening"
       const particle = parts.length > 1 ? ' ' + parts.slice(1).join(' ') : ''; // e.g., " to"
       const baseVerb = baseFrom(gerundPart);
@@ -830,7 +832,7 @@ function createPatternChoiceExercise(
       options.push(baseVerb + 's' + particle);    // "listens to"
     } else {
       // For infinitive patterns, add: gerund, bare verb, 3rd person (same 4 as gerund pattern)
-      const baseVerb = correctAnswer.replace(/^to /, '');
+      const baseVerb = blank.replace(/^to /, '');
       options.push(gerundFrom(baseVerb));
       options.push(baseVerb);
       options.push(getThirdPersonSingular(baseVerb));
@@ -847,7 +849,7 @@ function createPatternChoiceExercise(
     groupId: group.id,
     patternId: pattern.id,
     prompt: sentence,
-    correctAnswer: isBoth ? correctAnswer.split(' / ')[0] : correctAnswer,
+    correctAnswer,
     options,
     showPattern: !hideExplanations,
     realWorldContext: example.context,

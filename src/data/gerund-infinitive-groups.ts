@@ -22,13 +22,15 @@ export const GROUP_0A: GerundInfinitiveGroup = {
   id: 'group-0a',
   title: 'What is a Gerund?',
   shortTitle: '1. Gerunds Intro',
-  pattern: 'A gerund is a verb with -ing that acts like a thing or activity. You often see it as the subject of a sentence or after a preposition.',
+  pattern: 'Gerund = verb + -ing used like a noun. It can be the subject or come after a preposition.',
   patternExample: 'Cooking at home saves money',
   colorClass: 'bg-emerald-100 border-emerald-300 text-emerald-900',
   difficulty: 1,
   phase: 'foundation',
   prerequisite: null,
-  memoryTrick: 'Gerund = -ing used like a thing or activity.',
+  memoryTrick: '-ing names the activity as a thing.',
+  bigPicture:
+    'Sometimes an action has to act like a noun in the sentence. Verb + -ing is one common way English does that.\nThis level trains your eye to spot that -ing shape.',
   icon: '🏊',
   patterns: [
     {
@@ -118,13 +120,15 @@ export const GROUP_0B: GerundInfinitiveGroup = {
   id: 'group-0b',
   title: 'What is an Infinitive?',
   shortTitle: '2. Infinitives Intro',
-  pattern: 'An infinitive is to + verb. It often shows a goal, a plan, or a reason.',
+  pattern: 'Infinitive = to + base verb. It often shows a goal or the next step.',
   patternExample: 'She plans to apply next week',
   colorClass: 'bg-blue-100 border-blue-300 text-blue-900',
   difficulty: 1,
   phase: 'foundation',
   prerequisite: null,
-  memoryTrick: 'Infinitive = to + verb for a goal, plan, or purpose.',
+  memoryTrick: 'to + verb = where you are headed.',
+  bigPicture:
+    'English often uses to + verb to show a goal, plan, or purpose—what you want to do next.\nHere you learn to recognize that chunk, not random letters.',
   icon: '🎯',
   patterns: [
     {
@@ -217,13 +221,15 @@ export const GROUP_1: GerundInfinitiveGroup = {
   id: 'group-1',
   title: 'After Preposition = Gerund',
   shortTitle: '9. Prepositions',
-  pattern: 'After a preposition, use the gerund. Listen for words like in, at, for, about, of, before, after, and without.',
+  pattern: 'After any preposition, use -ing. Do not put to + verb right after a preposition.',
   patternExample: 'She is interested in taking classes',
   colorClass: 'bg-terracotta-100 border-terracotta-300 text-terracotta-900',
   difficulty: 2,
   phase: 'development',
   prerequisite: null,
-  memoryTrick: 'Preposition first, gerund next.',
+  memoryTrick: 'Prep spotted? Next verb shape is -ing.',
+  bigPicture:
+    'A preposition cannot be followed by to + base verb right away.\nAfter a preposition, the verb takes -ing.',
   icon: '🔑',
   patterns: [
     {
@@ -547,13 +553,15 @@ export const GROUP_1B: GerundInfinitiveGroup = {
   id: 'group-1b',
   title: 'Which Preposition?',
   shortTitle: '10. Which Preposition?',
-  pattern: 'Some adjectives need a fixed preposition. Learn the whole phrase, then use a gerund after it.',
+  pattern: 'Some adjectives need one fixed preposition. Learn the chunk; after it, always use -ing.',
   patternExample: 'afraid of making a mistake',
   colorClass: 'bg-terracotta-100 border-terracotta-300 text-terracotta-900',
   difficulty: 2,
   phase: 'development',
   prerequisite: null,
-  memoryTrick: 'Learn the adjective and preposition as one phrase.',
+  memoryTrick: 'Memorize adjective + prep as one bite.',
+  bigPicture:
+    'Here you are not choosing -ing vs to—the verb after the prep is always -ing.\nYour job is which preposition goes with that adjective (interested in, good at, tired of…).',
   icon: '📌',
   patterns: [
     // === ORIGINAL PATTERNS (kept) ===
@@ -564,7 +572,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'in',
       commonError: 'interested FOR/AT',
-      errorExplanation: 'Many languages use "for" or "at" here, but English always uses IN with "interested."',
+      errorExplanation: 'English says interested in, not *for/at.',
       memoryTrick: 'Interested IN = you want to get INto something!',
       examples: [
         { sentence: "I'm interested ___ learning Spanish.", blank: 'in', context: 'Education' },
@@ -582,7 +590,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'at',
       commonError: 'good IN/FOR',
-      errorExplanation: 'In Spanish/Portuguese we say "bueno en" (good in), but English uses AT for skills.',
+      errorExplanation: 'Use good at + -ing for skills.',
       memoryTrick: 'Good AT = you hit the target AT that skill!',
       examples: [
         { sentence: "I'm good ___ solving problems.", blank: 'at', context: 'Job interview' },
@@ -600,7 +608,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'for',
       commonError: 'thank you TO/OF',
-      errorExplanation: 'Students often want to use "to" (thank you to help), but English uses FOR + gerund.',
+      errorExplanation: 'Say thank you for + -ing.',
       memoryTrick: 'Thank you FOR = FOR what reason? The help!',
       examples: [
         { sentence: "Thank you ___ helping me.", blank: 'for', context: 'Polite' },
@@ -618,7 +626,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'of',
       commonError: 'tired FROM/WITH',
-      errorExplanation: '"Tired from" means physically exhausted BY an activity. "Tired of" means bored/fed up WITH something.',
+      errorExplanation: 'Tired of = fed up with; tired from = exhausted by.',
       memoryTrick: 'Tired OF = you want to get rid OF it!',
       examples: [
         { sentence: "I'm tired ___ waiting for the bus.", blank: 'of', context: 'Transportation' },
@@ -636,7 +644,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'about',
       commonError: 'excited FOR/WITH',
-      errorExplanation: '"Excited for" is used for events (excited for the party), but use ABOUT + gerund for activities.',
+      errorExplanation: 'Excited about + -ing for activities.',
       memoryTrick: 'Excited ABOUT = thinking ABOUT what\'s coming!',
       examples: [
         { sentence: "I'm excited ___ starting my new job.", blank: 'about', context: 'Career' },
@@ -655,7 +663,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'of',
       commonError: 'afraid TO (infinitive)',
-      errorExplanation: '"Afraid to do" = unwilling to try. "Afraid of doing" = worried it might happen. For this exercise, use OF.',
+      errorExplanation: 'Here: afraid of + -ing.',
       memoryTrick: 'Afraid OF = OF what? The scary thing!',
       examples: [
         { sentence: "I'm afraid ___ making mistakes.", blank: 'of', context: 'Speaking anxiety' },
@@ -673,7 +681,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'about',
       commonError: 'worried FOR/OF',
-      errorExplanation: '"Worried for someone" = worried about a person. But with gerunds, always use ABOUT.',
+      errorExplanation: 'Worried about + -ing.',
       memoryTrick: 'Worried ABOUT = thinking ABOUT problems!',
       examples: [
         { sentence: "She's worried ___ losing her job.", blank: 'about', context: 'Career stress' },
@@ -691,7 +699,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'of',
       commonError: 'proud FOR/ABOUT',
-      errorExplanation: 'Many languages use "for" with proud, but English always uses OF.',
+      errorExplanation: 'English: proud of + -ing.',
       memoryTrick: 'Proud OF = ownership OF your achievement!',
       examples: [
         { sentence: "He's proud ___ finishing school.", blank: 'of', context: 'Achievement' },
@@ -709,7 +717,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'for',
       commonError: 'sorry ABOUT/OF',
-      errorExplanation: '"Sorry about" works for nouns (sorry about the mess), but use FOR with gerunds when apologizing for actions.',
+      errorExplanation: 'Sorry for + -ing when you apologize for an action.',
       memoryTrick: 'Sorry FOR = FOR what action? What you did!',
       examples: [
         { sentence: "I'm sorry ___ being late.", blank: 'for', context: 'Apologizing' },
@@ -727,7 +735,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'for',
       commonError: 'responsible OF/TO',
-      errorExplanation: 'In Spanish "responsable de," but English uses FOR. "Responsible to" means reporting to someone.',
+      errorExplanation: 'Responsible for + -ing (the task).',
       memoryTrick: 'Responsible FOR = FOR what task? Your duty!',
       examples: [
         { sentence: "Who's responsible ___ cleaning up?", blank: 'for', context: 'Workplace' },
@@ -745,7 +753,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'from',
       commonError: 'different TO/THAN',
-      errorExplanation: 'American English sometimes uses "than," British prefers "from." In formal English, FROM is safest.',
+      errorExplanation: 'Standard: different from.',
       memoryTrick: 'Different FROM = separated FROM the original!',
       examples: [
         { sentence: "This is different ___ what I expected.", blank: 'from', context: 'Comparison' },
@@ -763,7 +771,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'for',
       commonError: 'famous OF/BY',
-      errorExplanation: 'We say "known for" and "famous for" - both use FOR to show the reason.',
+      errorExplanation: 'Famous for + -ing.',
       memoryTrick: 'Famous FOR = FOR what reason? Their talent!',
       examples: [
         { sentence: "The restaurant is famous ___ making great tacos.", blank: 'for', context: 'Food' },
@@ -781,7 +789,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'at',
       commonError: 'bad IN/FOR',
-      errorExplanation: 'Just like "good at," we use AT with "bad" for skills. Think of them as opposites with the same preposition!',
+      errorExplanation: 'Bad at + -ing (same pattern as good at).',
       memoryTrick: 'Bad AT = same as good AT, just the opposite skill level!',
       examples: [
         { sentence: "I'm bad ___ remembering names.", blank: 'at', context: 'Self-description' },
@@ -799,7 +807,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'about',
       commonError: 'crazy FOR/WITH',
-      errorExplanation: '"Crazy for" is informal American English. Standard English uses ABOUT for enthusiasm.',
+      errorExplanation: 'Crazy about + -ing.',
       memoryTrick: 'Crazy ABOUT = can\'t stop thinking ABOUT it!',
       examples: [
         { sentence: "He's crazy ___ watching soccer.", blank: 'about', context: 'Sports' },
@@ -817,7 +825,7 @@ export const GROUP_1B: GerundInfinitiveGroup = {
       category: 'preposition-choice',
       correctPreposition: 'of',
       commonError: 'capable TO (infinitive)',
-      errorExplanation: '"Able to" uses infinitive, but "capable" always uses OF + gerund. They\'re similar but different!',
+      errorExplanation: 'Capable of + -ing (not capable to).',
       memoryTrick: 'Capable OF = full OF ability!',
       examples: [
         { sentence: "She's capable ___ managing the team.", blank: 'of', context: 'Professional' },
@@ -840,13 +848,15 @@ export const GROUP_1D: GerundInfinitiveGroup = {
   id: 'group-1d',
   title: 'Combo Challenge',
   shortTitle: '11. Combo Challenge',
-  pattern: 'This level combines two choices: the correct preposition and the correct gerund. If the first blank is a preposition, the second blank must be -ing.',
+  pattern: 'Two blanks: choose the preposition first. The word after it is always -ing.',
   patternExample: 'interested in learning',
   colorClass: 'bg-purple-100 border-purple-300 text-purple-900',
   difficulty: 2,
   phase: 'development',
   prerequisite: null,
-  memoryTrick: 'Pick the preposition, then use the gerund.',
+  memoryTrick: 'Lock the prep chunk, then add -ing.',
+  bigPicture:
+    'Same rule as before, with two steps: pick the right preposition with the adjective, then put the verb in -ing.\nPrep first; -ing second.',
   icon: '🎯',
   patterns: [
     {
@@ -981,13 +991,15 @@ export const GROUP_1C: GerundInfinitiveGroup = {
   id: 'group-1c',
   title: 'The "TO" Trap',
   shortTitle: '21. The "TO" Trap',
-  pattern: 'In these phrases, to is a preposition, not part of an infinitive. Because it is a preposition, the next verb must be a gerund.',
+  pattern: 'In phrases like look forward to or be used to, to belongs to the chunk, not to + infinitive. After that to, use -ing.',
   patternExample: 'We look forward to meeting the new teacher',
   colorClass: 'bg-amber-100 border-amber-300 text-amber-900',
   difficulty: 3,
   phase: 'mastery',
   prerequisite: null,
-  memoryTrick: 'If "to" belongs to the phrase, use -ing after it.',
+  memoryTrick: 'Is to glued to the words before it? → -ing next.',
+  bigPicture:
+    'You already know: after a preposition, English uses -ing.\nIn these phrases, to works like a preposition—it is not starting a new to + verb. Learn the whole chunk, then put -ing after it.',
   icon: '🪤',
   patterns: [
     {
@@ -1064,13 +1076,15 @@ export const GROUP_2A: GerundInfinitiveGroup = {
   id: 'group-2a',
   title: 'Gerund Verbs',
   shortTitle: '5. Gerund Verbs',
-  pattern: 'Some verbs are followed by a gerund. These verbs usually name the activity itself, not a future goal.',
+  pattern: 'These verbs name an activity you do or experience — not mainly a future plan. After them, use -ing.',
   patternExample: 'I enjoy reading on the bus',
   colorClass: 'bg-sage-100 border-sage-300 text-sage-900',
   difficulty: 2,
   phase: 'core-verbs',
   prerequisite: null,
-  memoryTrick: 'Ask: what activity? These verbs usually take -ing.',
+  memoryTrick: 'Name the activity → -ing.',
+  bigPicture:
+    'Some verbs talk about what you are doing or experiencing right now.\nAfter those verbs, English usually puts verb + -ing (the activity as a thing).',
   icon: '😊',
   patterns: [
     {
@@ -1254,13 +1268,15 @@ export const GROUP_2B: GerundInfinitiveGroup = {
   id: 'group-2b',
   title: 'Infinitive Verbs',
   shortTitle: '6. Infinitive Verbs',
-  pattern: 'Some verbs are followed by an infinitive. These verbs often point to a goal, a decision, or the next action.',
+  pattern: 'These verbs point to a goal, a decision, or what happens next. After them, use to + base verb.',
   patternExample: 'I want to finish my certificate',
   colorClass: 'bg-sky-100 border-sky-300 text-sky-900',
   difficulty: 2,
   phase: 'core-verbs',
   prerequisite: null,
-  memoryTrick: 'Ask: what do you want or plan to do?',
+  memoryTrick: 'Point to the next step → to + verb.',
+  bigPicture:
+    'Other verbs talk about what you want, plan, or decide to do next.\nAfter those verbs, English usually puts to + base verb (the goal or next action).',
   icon: '🎯',
   patterns: [
     {
@@ -1463,21 +1479,23 @@ export const GROUP_2B: GerundInfinitiveGroup = {
 };
 
 /**
- * GROUP 2C: MIXED VERB CHALLENGE (Development)
- * This is where students must THINK: which verb needs gerund vs infinitive?
- * Mixes patterns from GROUP_2A and GROUP_2B to create contrast
+ * GROUP 2C: MIXED VERB CHALLENGE (Core Verbs)
+ * Students choose gerund vs infinitive from the main verb before the blank.
+ * Mixes patterns from GROUP_2A and GROUP_2B to create contrast.
  */
 export const GROUP_2C: GerundInfinitiveGroup = {
   id: 'group-2c',
   title: 'Mixed Verb Challenge',
   shortTitle: '7. Mixed Verbs',
-  pattern: 'Now the two verb patterns are mixed together. Use the verb before the blank to decide whether you need a gerund or an infinitive.',
+  pattern: 'Look at the main verb before the blank. Activity-style verbs take -ing; goal-style verbs take to + verb.',
   patternExample: 'I enjoy cooking, but I plan to cook less on weekdays',
   colorClass: 'bg-purple-100 border-purple-300 text-purple-900',
   difficulty: 2,
   phase: 'core-verbs',
   prerequisite: null,
-  memoryTrick: 'Gerund verbs name the activity. Infinitive verbs point to the goal.',
+  memoryTrick: 'Find the verb before ___. That verb picks the form.',
+  bigPicture:
+    'Here the same exercise mixes both kinds of verbs.\nDo not guess the ending—look at the verb right before the blank; it tells you -ing or to + verb.',
   icon: '🔀',
   patterns: [
     // Gerund verbs mixed in
@@ -1620,13 +1638,15 @@ export const GROUP_3A: GerundInfinitiveGroup = {
   id: 'group-3a',
   title: 'Adjective + Infinitive',
   shortTitle: '13. Adjective + Infinitive',
-  pattern: 'Many adjectives are followed by an infinitive. This pattern often describes a feeling, a reaction, or whether something is easy, hard, important, or ready.',
+  pattern: 'After many adjectives (happy, ready, easy, important…), the next verb is to + base verb.',
   patternExample: "I'm ready to start the interview",
   colorClass: 'bg-yellow-100 border-yellow-300 text-yellow-900',
   difficulty: 2,
   phase: 'development',
   prerequisite: null,
-  memoryTrick: 'After many adjectives, use to + verb.',
+  memoryTrick: 'How you feel or what is next → often to + verb.',
+  bigPicture:
+    'Many feeling and state adjectives are followed by to + base verb: what you are willing, ready, or able to do next.\nThis level focuses on that adjective + to pattern.',
   icon: '😃',
   patterns: [
     {
@@ -1738,13 +1758,15 @@ export const GROUP_3B: GerundInfinitiveGroup = {
   id: 'group-3b',
   title: 'Noun + Infinitive',
   shortTitle: '14. Noun + Infinitive',
-  pattern: 'Some nouns are followed by an infinitive. They often describe ability, time, chance, opportunity, or a decision.',
+  pattern: 'Nouns like chance, time, ability, and decision are often followed by to + verb.',
   patternExample: 'the chance to apply this month',
   colorClass: 'bg-indigo-100 border-indigo-300 text-indigo-900',
   difficulty: 2,
   phase: 'development',
   prerequisite: null,
-  memoryTrick: 'Ability, chance, time, and decision often take to + verb.',
+  memoryTrick: 'Opportunity or next step → to + verb.',
+  bigPicture:
+    'Words like chance, time, way, and ability often introduce what could happen or what to do next.\nEnglish usually uses to + verb for that next step or possibility.',
   icon: '📋',
   patterns: [
     {
@@ -1842,13 +1864,15 @@ export const GROUP_3C: GerundInfinitiveGroup = {
   id: 'group-3c',
   title: 'Purpose: Why? To...',
   shortTitle: '15. Purpose: To...',
-  pattern: 'Use an infinitive to answer why. This pattern shows purpose or reason.',
+  pattern: 'Answer why with to + verb. Same idea as purpose: reason for the action.',
   patternExample: 'I take the bus to save money',
   colorClass: 'bg-violet-100 border-violet-300 text-violet-900',
   difficulty: 2,
   phase: 'development',
   prerequisite: null,
-  memoryTrick: 'Why? Answer with to + verb.',
+  memoryTrick: 'Say the reason in one chunk: to + verb.',
+  bigPicture:
+    'When you say why someone does something, English often uses to + base verb for the reason or goal.\nWhy? → to + verb.',
   icon: '🎯',
   patterns: [
     {
@@ -1993,13 +2017,15 @@ export const GROUP_4: GerundInfinitiveGroup = {
   id: 'group-4',
   title: 'GO + Gerund',
   shortTitle: '4. Go + Gerund',
-  pattern: 'Use go + gerund for common activities like shopping, swimming, hiking, and walking. Do not use go + infinitive for these activities.',
+  pattern: 'For everyday activities, say go shopping, go swimming — go + -ing. Avoid go to swim for these.',
   patternExample: 'We go shopping on Saturday mornings',
   colorClass: 'bg-emerald-100 border-emerald-300 text-emerald-900',
   difficulty: 1,
   phase: 'foundation',
   prerequisite: null,
-  memoryTrick: 'Go + activity usually means go + -ing.',
+  memoryTrick: 'go + fun activity = go + -ing.',
+  bigPicture:
+    'For common free-time activities, English usually says go + -ing (go swimming), not go to swim.\nIt is a fixed, everyday habit—learn the chunk.',
   icon: '🏃',
   patterns: [
     {
@@ -2116,13 +2142,15 @@ export const GROUP_5: GerundInfinitiveGroup = {
   id: 'group-5',
   title: 'Subject = Gerund',
   shortTitle: '3. Subject Gerunds',
-  pattern: 'When an action is the subject of the sentence, use a gerund. The -ing form acts like the name of the activity.',
+  pattern: 'When the action is the subject, start with verb + -ing. It names the activity like a noun.',
   patternExample: 'Learning English takes patience',
   colorClass: 'bg-purple-100 border-purple-300 text-purple-900',
   difficulty: 1,
   phase: 'foundation',
   prerequisite: null,
-  memoryTrick: 'If the action comes first as the subject, use -ing.',
+  memoryTrick: 'Action in the subject slot → gerund.',
+  bigPicture:
+    'The subject slot needs something noun-like; a gerund names the action so it can go first.\nSame -ing idea as the gerund intro—now at the front of the sentence.',
   icon: '🔤',
   patterns: [
     {
@@ -2216,19 +2244,21 @@ export const GROUP_5: GerundInfinitiveGroup = {
  * GROUP 6A: BOTH FORMS OK (Same Meaning)
  * Verbs that take both gerund and infinitive with the same meaning
  * STREAMLINED: Quick intro before the harder "meaning changes" group
- * Only 4 core verbs - the concept is simple, no need for exhaustive practice
+ * Verbs: begin, start, continue, like, love, hate, prefer
  */
 export const GROUP_6A: GerundInfinitiveGroup = {
   id: 'group-6a',
   title: 'Both Forms OK',
   shortTitle: '19. Both Forms OK',
-  pattern: 'A small group of verbs can use either a gerund or an infinitive with little or no change in meaning.',
+  pattern: 'A few verbs allow -ing or to + verb with the same basic meaning. This level uses: begin, start, continue, like, love, hate, and prefer. With these verbs, either form often sounds natural.',
   patternExample: 'It started raining / It started to rain',
   colorClass: 'bg-violet-100 border-violet-300 text-violet-900',
   difficulty: 3,
   phase: 'mastery',
   prerequisite: null,
-  memoryTrick: 'Some verbs are flexible: both forms can work.',
+  memoryTrick: 'Same idea—either form often works.',
+  bigPicture:
+    'Verbs in this lesson: begin, start, continue, like, love, hate, prefer.\nAfter these verbs, -ing and to + verb often mean the same thing.\nYour job is to recognize the pattern—not to stress over which one is better.',
   icon: '🔀',
   patterns: [
     {
@@ -2292,13 +2322,15 @@ export const GROUP_6B: GerundInfinitiveGroup = {
   id: 'group-6b',
   title: 'Meaning Changes',
   shortTitle: '20. Meaning Changes',
-  pattern: 'With stop, remember, and try, the form changes the meaning. Here you must choose the form and the meaning together.',
+  pattern: 'For stop, remember, and try, -ing and to + verb are not interchangeable. Decide what the sentence means, then choose the form.',
   patternExample: 'stop working = quit; stop to eat = pause in order to eat',
   colorClass: 'bg-amber-100 border-amber-300 text-amber-900',
   difficulty: 3,
   phase: 'mastery',
   prerequisite: null,
-  memoryTrick: 'Do not guess here. Match the meaning first.',
+  memoryTrick: 'What is happening? Then pick -ing or to.',
+  bigPicture:
+    'This level is different from Both forms OK. Here, the form changes the message (quit vs pause, memory vs reminder, experiment vs effort).\nRead the situation in the sentence first—then match the form to that meaning.',
   icon: '⚠️',
   patterns: [
     {
@@ -2402,13 +2434,15 @@ export const GROUP_7: GerundInfinitiveGroup = {
   id: 'group-7',
   title: 'Advanced "TO" Traps',
   shortTitle: '22. Advanced TO Traps',
-  pattern: 'These advanced phrases also use to as a preposition. Because to belongs to the phrase, the next verb must be a gerund.',
+  pattern: 'In more formal phrases (object to, admit to, devoted to…), to is a preposition. After it, use -ing.',
   patternExample: 'object to working overtime',
   colorClass: 'bg-rose-100 border-rose-300 text-rose-900',
   difficulty: 3,
   phase: 'mastery',
   prerequisite: null,
-  memoryTrick: 'If to is part of the phrase, use -ing after it.',
+  memoryTrick: 'Treat to like any prep in that phrase → -ing.',
+  bigPicture:
+    'These are advanced collocations you often see in school, work, or formal English.\nSame idea as the other “to trap” level: learn the phrase as a unit; the verb after to takes -ing.',
   icon: '🎓',
   patterns: [
     {
@@ -2480,21 +2514,21 @@ export const GROUP_7: GerundInfinitiveGroup = {
 // =============================================================================
 
 /**
- * CHECKPOINT 1: Foundation Review
+ * CHECKPOINT 1: Mixed review
  * Reviews: Gerunds Intro, Infinitives Intro, Subject Gerunds, Go + Gerund, Gerund Verbs, Infinitive Verbs, Mixed Verbs
  * Unlocks: Preposition Rules section
  */
 export const CHECKPOINT_1: GerundInfinitiveGroup = {
   id: 'checkpoint-1',
-  title: 'Checkpoint: Foundation Review',
+  title: 'Checkpoint 1: Mixed review',
   shortTitle: '8. 🏁 Checkpoint 1',
-  pattern: 'This checkpoint reviews the foundation patterns: gerunds, infinitives, subject gerunds, go + gerund, and the first verb patterns.',
-  patternExample: 'Mixed review of foundation patterns',
+  pattern: 'Sentences from your earlier levels: intro patterns, go + -ing, subject -ing, plus gerund verbs and infinitive verbs. Use the word before the blank to choose -ing or to + verb.',
+  patternExample: 'Same skills, mixed together',
   colorClass: 'bg-gradient-to-r from-emerald-100 to-blue-100 border-emerald-300 text-emerald-900',
   difficulty: 2,
   phase: 'core-verbs',
   prerequisite: null,
-  memoryTrick: 'Use the trigger before the blank to choose the form.',
+  memoryTrick: 'Read the trigger or verb before the blank first.',
   icon: '🏁',
   isCheckpoint: true,
   reviewsGroups: ['group-0a', 'group-0b', 'group-5', 'group-4', 'group-2a', 'group-2b', 'group-2c'],
@@ -2502,21 +2536,21 @@ export const CHECKPOINT_1: GerundInfinitiveGroup = {
 };
 
 /**
- * CHECKPOINT 2: Preposition Mastery Review
- * Reviews: All foundation + Preposition rules
+ * CHECKPOINT 2: Mixed review (preposition focus)
+ * Reviews: foundation + core verbs + preposition rules (group-1, 1b, 1d)
  * Unlocks: Adjective/Noun + Infinitive section
  */
 export const CHECKPOINT_2: GerundInfinitiveGroup = {
   id: 'checkpoint-2',
-  title: 'Checkpoint: Preposition Mastery',
+  title: 'Checkpoint 2: Mixed review (prepositions)',
   shortTitle: '12. 🏁 Checkpoint 2',
-  pattern: 'This checkpoint reviews the preposition levels. Focus on the fixed preposition and the gerund that follows it.',
-  patternExample: 'Mixed review with a preposition focus',
+  pattern: 'Sentences from levels you already did, with extra weight on preposition chunks. After a preposition, use -ing. Read the trigger or adjective before the blank.',
+  patternExample: 'Same skills, preposition-heavy mix',
   colorClass: 'bg-gradient-to-r from-terracotta-100 to-purple-100 border-terracotta-300 text-terracotta-900',
   difficulty: 2,
   phase: 'development',
   prerequisite: null,
-  memoryTrick: 'Preposition first, gerund next.',
+  memoryTrick: 'Chunk the prep, then -ing after it.',
   icon: '🏁',
   isCheckpoint: true,
   reviewsGroups: ['group-0a', 'group-0b', 'group-5', 'group-4', 'group-2a', 'group-2b', 'group-2c', 'group-1', 'group-1b', 'group-1d'],
@@ -2532,13 +2566,15 @@ export const GROUP_8A: GerundInfinitiveGroup = {
   id: 'group-8a',
   title: 'Making Suggestions',
   shortTitle: '16. Making Suggestions',
-  pattern: 'These suggestion phrases end with a preposition, so the next verb must be a gerund.',
+  pattern: 'How about, what about, and thought of end with a preposition. Next word: -ing.',
   patternExample: 'How about taking the earlier bus?',
   colorClass: 'bg-teal-100 border-teal-300 text-teal-900',
   difficulty: 2,
   phase: 'development',
   prerequisite: null,
-  memoryTrick: 'How about, what about, and thought of all lead to -ing.',
+  memoryTrick: 'About / of = preposition → -ing next.',
+  bigPicture:
+    'These suggestion phrases end with a preposition (about, of).\nSame golden rule: after a preposition, use -ing—not to + verb.',
   icon: '💡',
   patterns: [
     {
@@ -2547,7 +2583,7 @@ export const GROUP_8A: GerundInfinitiveGroup = {
       correctForm: 'gerund',
       category: 'suggestion',
       commonError: 'How about to go',
-      errorExplanation: '"About" is a preposition — prepositions are always followed by -ing, never "to + verb".',
+      errorExplanation: 'About is a prep → -ing, not to + verb.',
       memoryTrick: '"About" = preposition → -ing. How about GOING? How about TRYING?',
       examples: [
         { sentence: "How about ___ the landlord about the leak?", blank: 'calling', context: 'Housing' },
@@ -2564,7 +2600,7 @@ export const GROUP_8A: GerundInfinitiveGroup = {
       correctForm: 'gerund',
       category: 'suggestion',
       commonError: 'What about to take',
-      errorExplanation: '"About" is always a preposition — it requires -ing, never "to + verb".',
+      errorExplanation: 'About → -ing only.',
       memoryTrick: 'What about = How about. Same "about" = same preposition = same -ing rule.',
       examples: [
         { sentence: "What about ___ to the free clinic?", blank: 'going', context: 'Health' },
@@ -2581,7 +2617,7 @@ export const GROUP_8A: GerundInfinitiveGroup = {
       correctForm: 'gerund',
       category: 'suggestion',
       commonError: 'Have you thought of to invest',
-      errorExplanation: '"Of" is a preposition — it cannot be followed by an infinitive in any English construction.',
+      errorExplanation: 'Of is a prep → -ing next.',
       memoryTrick: '"Of" = preposition = -ing! Have you thought OF INVESTING? "Of" always signals gerund.',
       examples: [
         { sentence: "Have you thought of ___ for citizenship?", blank: 'applying', context: 'Immigration' },
@@ -2615,13 +2651,15 @@ export const GROUP_8B: GerundInfinitiveGroup = {
   id: 'group-8b',
   title: 'Use for... / Use to...',
   shortTitle: '17. Use for/to: Purpose',
-  pattern: 'Use for + gerund and use to + base verb can both show purpose. Look at the word before the blank to choose the grammar.',
+  pattern: 'for + -ing and to + verb can both show purpose. Watch the word before the blank.',
   patternExample: 'I use this app for tracking expenses',
   colorClass: 'bg-cyan-100 border-cyan-300 text-cyan-900',
   difficulty: 2,
   phase: 'development',
   prerequisite: null,
-  memoryTrick: 'for + -ing, to + base verb',
+  memoryTrick: 'Let for vs to tell you -ing vs base verb.',
+  bigPicture:
+    'You can express purpose with for + -ing or with to + base verb.\nRead the word before the blank: for is a preposition (-ing); to here starts the infinitive (base verb).',
   icon: '🔧',
   patterns: [
     {
@@ -2630,7 +2668,7 @@ export const GROUP_8B: GerundInfinitiveGroup = {
       correctForm: 'gerund',
       category: 'purpose-contrast',
       commonError: 'use this for to open',
-      errorExplanation: '"For" is a preposition — it requires -ing. Never write "for to do" in English.',
+      errorExplanation: 'For is a prep → -ing. No for to.',
       memoryTrick: '"For" = preposition → gerund rule. What is it FOR? FOR + -ing.',
       examples: [
         { sentence: "I use this tool for ___ the pipes.", blank: 'fixing', context: 'Home Repair' },
@@ -2647,7 +2685,7 @@ export const GROUP_8B: GerundInfinitiveGroup = {
       correctForm: 'infinitive',
       category: 'purpose-contrast',
       commonError: 'use laptop to sending',
-      errorExplanation: '"Use X to" = infinitive to show purpose. This is the standard purpose infinitive — "to" here is not a preposition.',
+      errorExplanation: 'Use X to + verb: to starts the infinitive.',
       memoryTrick: '"To" here is the infinitive marker. Use it TO DO something. What do you want to accomplish?',
       examples: [
         { sentence: "She uses her laptop ___ job applications.", blank: 'to submit', context: 'Employment' },
@@ -2664,7 +2702,7 @@ export const GROUP_8B: GerundInfinitiveGroup = {
       correctForm: 'both',
       category: 'purpose-contrast',
       commonError: 'confusing for -ing with to infinitive',
-      errorExplanation: 'Look at the word before the blank: "for" → use -ing, "to" → use base verb. Same meaning, different grammar.',
+      errorExplanation: 'for → -ing; to → base verb.',
       memoryTrick: 'FOR → -ING. TO → base verb. The structural cue is right there in the sentence!',
       examples: [
         { sentence: "I use this key for ___ the front door.", blank: 'locking', context: 'Housing' },
@@ -2698,13 +2736,13 @@ export const CHECKPOINT_3: GerundInfinitiveGroup = {
   id: 'checkpoint-3',
   title: 'Checkpoint: Ready for Mastery?',
   shortTitle: '18. 🏁 Checkpoint 3',
-  pattern: 'This checkpoint reviews all core patterns before the exception levels. Use it to check whether you can choose the form from the trigger.',
+  pattern: 'Review all main patterns before the meaning-change and exception levels.',
   patternExample: 'Comprehensive review of core patterns',
   colorClass: 'bg-gradient-to-r from-yellow-100 to-indigo-100 border-yellow-300 text-yellow-900',
   difficulty: 2,
   phase: 'development',
   prerequisite: null,
-  memoryTrick: 'Read the trigger carefully. That is where the answer starts.',
+  memoryTrick: 'Trigger first; form second.',
   icon: '🏁',
   isCheckpoint: true,
   reviewsGroups: ['group-0a', 'group-0b', 'group-5', 'group-4', 'group-2a', 'group-2b', 'group-2c', 'group-1', 'group-1b', 'group-1d', 'group-3a', 'group-3b', 'group-3c', 'group-8a', 'group-8b'],
@@ -2718,9 +2756,9 @@ export const CHECKPOINT_3: GerundInfinitiveGroup = {
  * PHASE 1: FOUNDATION (Recognize patterns, build confidence)
  * PHASE 2: CORE RULES (Learn the main verb rules)
  * PHASE 2B: MIXED CHALLENGE (choose gerund vs infinitive)
- * CHECKPOINT 1: Foundation Review
- * PHASE 3: PREPOSITION MASTERY
- * CHECKPOINT 2: Preposition Review
+ * CHECKPOINT 1: Mixed review
+ * PHASE 3: PREPOSITION TRACK (prep + -ing; collocations; combo)
+ * CHECKPOINT 2: Mixed review (preposition focus)
  * PHASE 4: BEYOND VERBS
  * CHECKPOINT 3: Pre-Mastery Review
  * PHASE 5: MASTERY (The hard stuff)
@@ -2739,16 +2777,16 @@ export const GI_GROUPS: GerundInfinitiveGroup[] = [
   // === PHASE 2B: MIXED CHALLENGE (apply gerund vs infinitive choice) ===
   GROUP_2C,       // 7. Mixed Verb Challenge - THE KEY LEVEL!
 
-  // === CHECKPOINT 1: Foundation Review ===
-  CHECKPOINT_1,   // 8. 🏁 Checkpoint 1 - Review all foundation patterns
+  // === CHECKPOINT 1: Mixed review (foundation + core verb levels) ===
+  CHECKPOINT_1,   // 8. 🏁 Checkpoint 1 - mixed sentences from earlier levels
 
-  // === PHASE 3: PREPOSITION MASTERY ===
+  // === PHASE 3: PREPOSITION TRACK ===
   GROUP_1,        // 9. Prepositions → Gerund - the golden rule
   GROUP_1B,       // 10. Which Preposition? - adj+prep collocations (difficulty 2)
   GROUP_1D,       // 11. Combo Challenge - preposition + gerund together (difficulty 2)
 
-  // === CHECKPOINT 2: Preposition Review ===
-  CHECKPOINT_2,   // 12. 🏁 Checkpoint 2 - Review with preposition focus
+  // === CHECKPOINT 2: Mixed review (preposition focus) ===
+  CHECKPOINT_2,   // 12. 🏁 Checkpoint 2 - mixed sentences, extra preposition practice
 
   // === PHASE 4: BEYOND VERBS (Adjectives, Nouns, Purpose) ===
   GROUP_3A,       // 13. Adjective + Infinitive - happy to help

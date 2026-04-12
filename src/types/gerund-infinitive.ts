@@ -26,7 +26,8 @@ export type PatternCategory =
 // Individual pattern within a group
 export interface GerundInfinitivePattern {
   id: string;                    // e.g., "prep-in", "verb-enjoy", "adj-happy"
-  trigger: string;               // The word/phrase before the verb (e.g., "interested in", "enjoy", "happy")
+  /** Cue before the blank in most categories. For `purpose`, this is often an internal bucket label; walkthrough UI prefers the last word before `___` when showing examples. */
+  trigger: string;
   correctForm: VerbForm;         // Which form to use
   category: PatternCategory;
   examples: PatternExample[];
@@ -62,6 +63,8 @@ export interface GerundInfinitiveGroup {
   patterns: GerundInfinitivePattern[];
   memoryTrick?: string;          // Group-level memory trick (e.g., "PREP = ING")
   icon?: string;                 // Emoji icon for the group
+  /** 1–2 short sentences: why this pattern exists in English (optional; Foundation often sets this). */
+  bigPicture?: string;
   // Checkpoint-specific fields
   isCheckpoint?: boolean;        // True if this is a review checkpoint
   reviewsGroups?: string[];      // For checkpoints: IDs of groups to review

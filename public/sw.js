@@ -23,24 +23,70 @@ function isHashedStaticAsset(pathname) {
   return false;
 }
 
+/** Guaranteed valid Response for respondWith (never reject). */
+function offlinePlainResponse() {
+  return new Response("Offline", {
+    status: 503,
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
+  });
+}
+
+/**
+ * Wrap so event.respondWith never receives a rejected promise or non-Response.
+ * Rejections become Response.error() (valid for the SW API); bad values fall back to offline text for navigations only where needed.
+ * @param {Response | Promise<Response>} r
+ */
+function asRespondWithPromise(r) {
+  return Promise.resolve(r).then(
+    (res) => (res instanceof Response ? res : offlinePlainResponse()),
+    () => Response.error()
+  );
+}
+
 async function networkFirstWithTimeout(request, timeoutMs) {
-  const cache = await caches.open(CACHE_NAME);
+  let cache;
+  try {
+    cache = await caches.open(CACHE_NAME);
+  } catch {
+    try {
+      const direct = await fetch(request);
+      return direct instanceof Response ? direct : offlinePlainResponse();
+    } catch {
+      return offlinePlainResponse();
+    }
+  }
+
   const timeoutPromise = new Promise((_, reject) => {
     setTimeout(() => reject(new Error("network timeout")), timeoutMs);
   });
 
   try {
     const response = await Promise.race([fetch(request), timeoutPromise]);
-    if (response && response.ok) {
+    if (response instanceof Response && response.ok) {
       const url = new URL(request.url);
       if (NAVIGATION_CACHE_ALLOWLIST.has(url.pathname)) {
-        cache.put(request, response.clone());
+        try {
+          await cache.put(request, response.clone());
+        } catch {
+          /* ignore cache write failures */
+        }
       }
     }
-    return response;
+    return response instanceof Response ? response : offlinePlainResponse();
   } catch {
-    const cached = await cache.match(request);
-    return cached || cache.match(OFFLINE_URL);
+    try {
+      const cached = await cache.match(request);
+      if (cached instanceof Response) return cached;
+    } catch {
+      /* ignore */
+    }
+    try {
+      const offline = await cache.match(OFFLINE_URL);
+      if (offline instanceof Response) return offline;
+    } catch {
+      /* ignore */
+    }
+    return offlinePlainResponse();
   }
 }
 
@@ -132,6 +178,31 @@ self.addEventListener("notificationclick", (event) => {
   );
 });
 
+async function handleHashedStaticAsset(request) {
+  try {
+    const cache = await caches.open(CACHE_NAME);
+    const cached = await cache.match(request);
+    if (cached instanceof Response) return cached;
+
+    const response = await fetch(request);
+    if (response instanceof Response && response.ok) {
+      try {
+        await cache.put(request, response.clone());
+      } catch {
+        /* ignore */
+      }
+    }
+    return response instanceof Response ? response : Response.error();
+  } catch {
+    try {
+      const fallback = await fetch(request);
+      return fallback instanceof Response ? fallback : Response.error();
+    } catch {
+      return Response.error();
+    }
+  }
+}
+
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
@@ -139,32 +210,21 @@ self.addEventListener("fetch", (event) => {
   if (requestUrl.origin !== self.location.origin) return;
 
   if (requestUrl.pathname === "/sw.js") {
-    event.respondWith(fetch(event.request));
+    event.respondWith(asRespondWithPromise(fetch(event.request)));
     return;
   }
 
   if (requestUrl.pathname.startsWith("/api/")) {
-    event.respondWith(fetch(event.request));
+    event.respondWith(asRespondWithPromise(fetch(event.request)));
     return;
   }
 
   if (event.request.mode === "navigate") {
-    event.respondWith(networkFirstWithTimeout(event.request, 4000));
+    event.respondWith(asRespondWithPromise(networkFirstWithTimeout(event.request, 4000)));
     return;
   }
 
   if (isHashedStaticAsset(requestUrl.pathname)) {
-    event.respondWith(
-      caches.open(CACHE_NAME).then(async (cache) => {
-        const cached = await cache.match(event.request);
-        if (cached) return cached;
-
-        const response = await fetch(event.request);
-        if (response && response.ok) {
-          cache.put(event.request, response.clone());
-        }
-        return response;
-      })
-    );
+    event.respondWith(asRespondWithPromise(handleHashedStaticAsset(event.request)));
   }
 });

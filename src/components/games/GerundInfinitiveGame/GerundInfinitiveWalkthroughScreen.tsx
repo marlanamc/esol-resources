@@ -7,6 +7,9 @@ import {
   CheckCircle2, XCircle, Shuffle, ArrowDown,
 } from 'lucide-react';
 import type { GerundInfinitiveGroup, GIRoundMode, PatternCategory } from '@/types/gerund-infinitive';
+import { getGIVocabReminder } from './gerund-infinitive-vocab-reminders';
+import { getTriggerBadgeLabel } from './gerund-infinitive-pattern-display';
+import { GIBigPictureCallout } from './GIBigPictureCallout';
 
 function patternToBullets(pattern: string): string[] {
   return pattern
@@ -22,38 +25,6 @@ function seededShuffle<T>(arr: T[], seed: number): T[] {
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
   return copy;
-}
-
-function getVocabReminder(group: GerundInfinitiveGroup): { title: string; examples: string; note?: string } | null {
-  if (group.id === 'group-1' || group.id === 'group-1b' || group.id === 'group-1d') {
-    return {
-      title: 'What is a preposition?',
-      examples: 'in, at, for, of, about, to, from, with, without, before, after',
-      note: 'Prepositions are small words that show relationships (location, time, direction).',
-    };
-  }
-  if (group.id === 'group-1c') {
-    return {
-      title: 'When is "to" a preposition?',
-      examples: 'look forward to, be used to, get used to, committed to',
-      note: 'In these phrases, "to" is a preposition (not part of an infinitive), so use gerund!',
-    };
-  }
-  if (group.id === 'group-8a') {
-    return {
-      title: 'Why is this gerund?',
-      examples: 'How about, What about, thought of',
-      note: 'These phrases end with a preposition, so the next verb must be -ing.',
-    };
-  }
-  if (group.id === 'group-8b') {
-    return {
-      title: 'Look at the word before the blank',
-      examples: 'for + -ing, to + base verb',
-      note: 'The meaning stays the same. The grammar changes because "for" is a preposition and "to" starts an infinitive.',
-    };
-  }
-  return null;
 }
 
 // ── Derive corrected form from the error example ─────────────────────────────
@@ -76,7 +47,7 @@ function correctedFormFromError(commonError: string, correctForm: 'gerund' | 'in
 
 // ── Formula chain ─────────────────────────────────────────────────────────────
 
-type FormulaKind = 'subject' | 'trigger' | 'form-gerund' | 'form-inf' | 'form-both' | 'sep' | 'note';
+type FormulaKind = 'subject' | 'trigger' | 'form-gerund' | 'form-inf' | 'form-both' | 'sep' | 'note' | 'break';
 interface FormulaToken { text: string; kind: FormulaKind }
 
 function buildFormula(group: GerundInfinitiveGroup): FormulaToken[] {
@@ -113,11 +84,32 @@ function buildFormula(group: GerundInfinitiveGroup): FormulaToken[] {
     case 'subject':
       return [formGerund, { text: '=', kind: 'sep' }, { text: 'SUBJECT of sentence', kind: 'trigger' }];
     case 'purpose':
-      return [subject, plus, { text: 'VERB', kind: 'trigger' }, plus, formInf, { text: '(= why?)', kind: 'note' }];
+      // Often: I study English to advance… (object between verb and purpose infinitive; optional)
+      return [
+        subject,
+        plus,
+        { text: 'VERB', kind: 'trigger' },
+        plus,
+        { text: 'OBJECT (optional)', kind: 'trigger' },
+        plus,
+        formInf,
+        { text: '(= why?)', kind: 'note' },
+      ];
     case 'suggestion':
       return [{ text: 'SUGGESTION PHRASE', kind: 'trigger' }, plus, formGerund];
     case 'purpose-contrast':
-      return [subject, plus, { text: 'USE [X] FOR', kind: 'trigger' }, plus, formGerund, { text: 'or', kind: 'sep' }, { text: 'USE [X] TO', kind: 'trigger' }, plus, formInf];
+      return [
+        subject,
+        plus,
+        { text: 'USE [X] FOR', kind: 'trigger' },
+        plus,
+        formGerund,
+        { text: '', kind: 'break' },
+        { text: 'or', kind: 'sep' },
+        { text: 'USE [X] TO', kind: 'trigger' },
+        plus,
+        formInf,
+      ];
     default:
       return [{ text: 'TRIGGER', kind: 'trigger' }, plus, form];
   }
@@ -134,6 +126,7 @@ function FormulaChain({ group }: { group: GerundInfinitiveGroup }) {
     'form-both':'bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300 border border-purple-200 dark:border-purple-700',
     sep:   '',
     note:  '',
+    break: '',
   };
 
   return (
@@ -144,8 +137,11 @@ function FormulaChain({ group }: { group: GerundInfinitiveGroup }) {
       className="p-5 rounded-2xl bg-gradient-to-br from-bg to-border/10 border-2 border-border shadow-sm"
     >
       <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted mb-4">Pattern formula</p>
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
         {tokens.map((token, i) => {
+          if (token.kind === 'break') {
+            return <div key={i} className="basis-full h-0 w-full" aria-hidden="true" />;
+          }
           if (token.kind === 'sep') {
             return (
               <span key={i} className="text-text-muted font-bold text-base px-1">{token.text}</span>
@@ -223,9 +219,6 @@ function PatternExampleDiagram({ group }: { group: GerundInfinitiveGroup }) {
 
         {representativePattern && (
           <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 rounded-full text-xs font-bold border bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-300 border-amber-200 dark:border-amber-700">
-              trigger: {representativePattern.trigger}
-            </span>
             <span className={`px-3 py-1 rounded-full text-xs font-bold border ${
               labelForm === 'gerund'
                 ? 'bg-secondary/10 text-secondary border-secondary/30'
@@ -244,17 +237,31 @@ function PatternExampleDiagram({ group }: { group: GerundInfinitiveGroup }) {
 
 // ── Checkpoint question helpers ───────────────────────────────────────────────
 
-const GERUND_LABEL = 'Gerund (verb + -ing)';
-const INFINITIVE_LABEL = 'Infinitive (to + verb)';
+/** Short primary label + one-word grammar name (shown smaller under the button). */
+const GERUND_CHOICE = { label: '-ing', hint: 'gerund' as const };
+const INFINITIVE_CHOICE = { label: 'to + verb', hint: 'infinitive' as const };
+
+interface GICheckpointOption {
+  label: string;
+  hint: string;
+}
 
 interface GICheckpointQuestion {
   questionText: string;
   sentenceDisplay: string;
   blank: string;
-  options: string[];
+  options: GICheckpointOption[];
   correctIndex: number;
   feedbackCorrect: string;
   feedbackWrong: string;
+}
+
+function formatTriggerForFeedback(trigger: string): string {
+  const t = trigger.trim();
+  if (t.length > 36 || /subject\s+position/i.test(t) || /^preposition\s*\+\s*___$/i.test(t)) {
+    return 'here';
+  }
+  return `"${t}"`;
 }
 
 // Ambiguous triggers that shouldn't appear in walkthrough questions
@@ -282,20 +289,35 @@ function buildCheckpointQuestion(
   const example = pattern.examples[exampleIndex];
   if (!example) return null;
 
-  const correctLabel = pattern.correctForm === 'gerund' ? GERUND_LABEL : INFINITIVE_LABEL;
-  const wrongLabel = pattern.correctForm === 'gerund' ? INFINITIVE_LABEL : GERUND_LABEL;
-  const options = seededShuffle([correctLabel, wrongLabel], seed);
-  const correctIndex = options.indexOf(correctLabel);
-  const formName = pattern.correctForm === 'gerund' ? 'gerund' : 'infinitive';
+  const correctChoice = pattern.correctForm === 'gerund' ? GERUND_CHOICE : INFINITIVE_CHOICE;
+  const otherChoice = pattern.correctForm === 'gerund' ? INFINITIVE_CHOICE : GERUND_CHOICE;
+  const shuffled = seededShuffle(
+    [
+      { label: correctChoice.label, hint: correctChoice.hint },
+      { label: otherChoice.label, hint: otherChoice.hint },
+    ],
+    seed,
+  );
+  const correctIndex = shuffled.findIndex(
+    (o) => o.hint === (pattern.correctForm === 'gerund' ? 'gerund' : 'infinitive'),
+  );
+  const trig = formatTriggerForFeedback(pattern.trigger);
+  const need = pattern.correctForm === 'gerund' ? '-ing' : 'to + verb';
 
   return {
-    questionText: 'What form goes in the blank?',
+    questionText: 'Does the blank need -ing or to + verb?',
     sentenceDisplay: example.sentence,
     blank: example.blank,
-    options,
+    options: shuffled,
     correctIndex,
-    feedbackCorrect: `Correct! After "${pattern.trigger}", use the ${formName}.`,
-    feedbackWrong: `Not quite. After "${pattern.trigger}", use the ${formName} (${correctLabel}).`,
+    feedbackCorrect:
+      trig === 'here'
+        ? `Yes — this blank needs ${need}.`
+        : `Yes — after ${trig}, use ${need}.`,
+    feedbackWrong:
+      trig === 'here'
+        ? `This blank needs ${need}.`
+        : `This blank needs ${need} (after ${trig}).`,
   };
 }
 
@@ -331,30 +353,31 @@ export function GerundInfinitiveWalkthroughScreen({
       ...p.examples[0],
       trigger: p.trigger,
       correctForm: p.correctForm,
+      category: p.category,
     })), [group]);
 
   const mistakePatterns = useMemo(() => group.patterns.filter(p => p.commonError), [group]);
 
   const hasDefinitivePatterns = group.patterns.some(p => p.correctForm !== 'both');
   const hasMistakes = mistakePatterns.length > 0;
-  const vocabReminder = useMemo(() => getVocabReminder(group), [group]);
+  const vocabReminder = useMemo(() => getGIVocabReminder(group), [group]);
 
   const steps: WalkthroughStep[] = useMemo(() => {
     let idx = 0;
     const list: WalkthroughStep[] = [
-      { id: 'intro', label: "What we're learning", patternIndex: idx++, hasQuestion: hasDefinitivePatterns },
+      { id: 'intro', label: 'Big idea', patternIndex: idx++, hasQuestion: hasDefinitivePatterns },
     ];
     if (vocabReminder) {
-      list.push({ id: 'vocab', label: 'The vocabulary', patternIndex: idx++, hasQuestion: hasDefinitivePatterns });
+      list.push({ id: 'vocab', label: 'Words to know', patternIndex: idx++, hasQuestion: hasDefinitivePatterns });
     }
-    list.push({ id: 'rules', label: 'The rules', patternIndex: idx++, hasQuestion: hasDefinitivePatterns });
+    list.push({ id: 'rules', label: 'The rule', patternIndex: idx++, hasQuestion: hasDefinitivePatterns });
     if (displayExamples.length > 0) {
-      list.push({ id: 'examples', label: 'In action', patternIndex: idx++, hasQuestion: hasDefinitivePatterns });
+      list.push({ id: 'examples', label: 'See it', patternIndex: idx++, hasQuestion: hasDefinitivePatterns });
     }
     if (hasMistakes) {
-      list.push({ id: 'mistakes', label: 'Watch out', patternIndex: idx++, hasQuestion: hasDefinitivePatterns });
+      list.push({ id: 'mistakes', label: 'Common slip', patternIndex: idx++, hasQuestion: hasDefinitivePatterns });
     }
-    list.push({ id: 'ready', label: "You're ready!", patternIndex: 0, hasQuestion: false });
+    list.push({ id: 'ready', label: 'Ready?', patternIndex: 0, hasQuestion: false });
     return list;
   }, [hasDefinitivePatterns, vocabReminder, displayExamples.length, hasMistakes]);
 
@@ -450,6 +473,7 @@ export function GerundInfinitiveWalkthroughScreen({
           {/* ── Step: intro ──────────────────────────────── */}
           {step.id === 'intro' && (
             <>
+              {group.bigPicture && <GIBigPictureCallout text={group.bigPicture} />}
               {/* Memory trick / topic */}
               {group.memoryTrick ? (
                 <motion.div
@@ -486,7 +510,7 @@ export function GerundInfinitiveWalkthroughScreen({
               <PatternExampleDiagram group={group} />
 
               <p className="text-sm text-text-muted leading-relaxed">
-                Use the pattern and example to answer the quick check.
+                Quick check below.
               </p>
             </>
           )}
@@ -526,7 +550,7 @@ export function GerundInfinitiveWalkthroughScreen({
               </motion.div>
 
               <p className="text-sm text-text-muted leading-relaxed">
-                These are the phrases that matter in this level.
+                These show up in the questions.
               </p>
             </div>
           )}
@@ -534,10 +558,7 @@ export function GerundInfinitiveWalkthroughScreen({
           {/* ── Step: rules ──────────────────────────────── */}
           {step.id === 'rules' && (
             <div className="space-y-4">
-              {/* Formula at top */}
-              <FormulaChain group={group} />
-
-              {/* Rule bullets */}
+              {/* Rule bullets only — formula + example stay on Big idea */}
               <div className={`p-6 rounded-3xl border-2 border-dashed shadow-sm relative overflow-hidden dark:bg-[#1a2435] dark:border-white/20 ${group.colorClass}`}>
                 <div className="absolute top-0 right-0 p-4 opacity-10 select-none">
                   <span className="text-7xl">{group.icon}</span>
@@ -559,9 +580,6 @@ export function GerundInfinitiveWalkthroughScreen({
                   ))}
                 </div>
               </div>
-
-              {/* Annotated example */}
-              <PatternExampleDiagram group={group} />
             </div>
           )}
 
@@ -600,8 +618,8 @@ export function GerundInfinitiveWalkthroughScreen({
                     >
                       <div className="flex-shrink-0 flex flex-col items-center gap-1 pt-0.5">
                         {/* Trigger badge */}
-                        <span className="px-2 py-0.5 rounded-md text-[10px] font-black border bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-700 whitespace-nowrap">
-                          {ex.trigger}
+                        <span className="px-2 py-0.5 rounded-md text-[10px] font-black border bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-700 whitespace-nowrap max-w-[9rem] text-center leading-tight">
+                          {getTriggerBadgeLabel(ex.category, ex.trigger, ex.sentence)}
                         </span>
                         {/* Form badge */}
                         <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold border ${badgeClass}`}>
@@ -623,9 +641,6 @@ export function GerundInfinitiveWalkthroughScreen({
                             </>
                           ) : ex.sentence}
                         </p>
-                        {ex.context && (
-                          <p className="text-xs text-text-muted mt-1 italic">{ex.context}</p>
-                        )}
                       </div>
                     </motion.div>
                   );
@@ -683,7 +698,7 @@ export function GerundInfinitiveWalkthroughScreen({
               </div>
 
               <p className="text-sm text-text-muted leading-relaxed px-1">
-                Spotting the mistake before you make it is half the battle.
+                Fix it here first — then in the game.
               </p>
             </div>
           )}
@@ -697,8 +712,8 @@ export function GerundInfinitiveWalkthroughScreen({
                 className="rounded-2xl overflow-hidden border border-border shadow-sm"
               >
                 <div className="bg-gradient-to-r from-primary to-primary-dark px-5 py-4">
-                  <p className="text-white font-bold text-base">What happens next</p>
-                  <p className="text-white/70 text-xs mt-0.5">Keep the rule in mind while you answer</p>
+                  <p className="text-white font-bold text-base">Next up</p>
+                  <p className="text-white/70 text-xs mt-0.5">Sort → practice → level up</p>
                 </div>
                 <div className="divide-y divide-border bg-white dark:bg-[#162b3d]">
                   <div className="flex items-start gap-4 px-5 py-4">
@@ -707,28 +722,28 @@ export function GerundInfinitiveWalkthroughScreen({
                     </span>
                     <div>
                       <p className="font-bold text-text text-sm">Warm-up</p>
-                      <p className="text-xs text-text-muted mt-0.5">Sort the verbs before the main round.</p>
+                      <p className="text-xs text-text-muted mt-0.5">Sort verbs into buckets.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 px-5 py-4">
                     <span className="flex-shrink-0 w-9 h-9 rounded-xl bg-primary/15 text-primary font-bold flex items-center justify-center text-base">1</span>
                     <div>
                       <p className="font-bold text-text text-sm">Round 1</p>
-                      <p className="text-xs text-text-muted mt-0.5">Score <strong>80%+</strong> to unlock Round 2.</p>
+                      <p className="text-xs text-text-muted mt-0.5"><strong>80%+</strong> unlocks Round 2.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4 px-5 py-4">
                     <span className="flex-shrink-0 w-9 h-9 rounded-xl bg-secondary/15 text-secondary font-bold flex items-center justify-center text-base">2</span>
                     <div>
                       <p className="font-bold text-text text-sm">Round 2</p>
-                      <p className="text-xs text-text-muted mt-0.5">Score <strong>90%+</strong> to earn mastery.</p>
+                      <p className="text-xs text-text-muted mt-0.5"><strong>90%+</strong> = mastery.</p>
                     </div>
                   </div>
                 </div>
               </motion.div>
 
               <p className="text-sm text-text-muted leading-relaxed px-1">
-                You have the rule, the model, and the warning. Start the round when you are ready.
+                Tap Start when you are ready.
               </p>
             </div>
           )}
@@ -821,12 +836,8 @@ function GICheckpointQuestionCard({
       transition={{ delay: 0.2 }}
       className="mt-8 p-5 sm:p-6 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/20 border-2 border-indigo-100 dark:border-indigo-900/50 space-y-5 shadow-sm"
     >
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3 border-b border-indigo-100 dark:border-indigo-900/30 pb-3 mb-1">
-        <div className="flex items-center gap-2">
-          <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-200 text-indigo-700 dark:bg-indigo-800 dark:text-indigo-200 flex items-center justify-center font-bold text-xs">?</span>
-          <h3 className="font-display font-semibold text-text text-lg">Your turn</h3>
-        </div>
-        <p className="text-xs text-text-muted sm:ml-auto">Quick check to continue</p>
+      <div className="border-b border-indigo-100 dark:border-indigo-900/30 pb-3 mb-1">
+        <h3 className="font-display font-semibold text-text text-lg">Quick check</h3>
       </div>
 
       <div className="space-y-3">
@@ -849,7 +860,7 @@ function GICheckpointQuestionCard({
             ) : question.sentenceDisplay}
           </p>
         )}
-        <p className="text-sm font-semibold text-text-muted">{question.questionText}</p>
+        <p className="text-base font-semibold text-text">{question.questionText}</p>
       </div>
 
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 pt-2">
@@ -870,11 +881,14 @@ function GICheckpointQuestionCard({
               type="button"
               onClick={() => onAnswer(i)}
               disabled={isAnswered}
-              className={`w-full px-4 py-3 rounded-xl text-sm transition-all duration-200 flex items-center justify-center gap-2 ${buttonClass}`}
+              className={`w-full px-4 py-3 rounded-xl text-sm transition-all duration-200 flex flex-col items-center justify-center gap-0.5 min-h-[3.25rem] ${buttonClass}`}
             >
-              {isAnswered && isThisCorrect && <CheckCircle2 size={16} className="flex-shrink-0" />}
-              {isAnswered && isSelected && !isThisCorrect && <XCircle size={16} className="flex-shrink-0" />}
-              {option}
+              <span className="flex items-center justify-center gap-2">
+                {isAnswered && isThisCorrect && <CheckCircle2 size={16} className="flex-shrink-0" />}
+                {isAnswered && isSelected && !isThisCorrect && <XCircle size={16} className="flex-shrink-0" />}
+                <span className="text-base font-bold">{option.label}</span>
+              </span>
+              <span className="text-[11px] font-medium text-text-muted uppercase tracking-wide">{option.hint}</span>
             </button>
           );
         })}
@@ -899,7 +913,7 @@ function GICheckpointQuestionCard({
       <AnimatePresence>
         {!isAnswered && (
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-xs text-text-muted text-center">
-            Answer to continue
+            Tap one option to continue
           </motion.p>
         )}
       </AnimatePresence>
