@@ -11,12 +11,6 @@ const SHELL_CACHE = [
   OFFLINE_URL,
 ];
 
-const NAVIGATION_CACHE_ALLOWLIST = new Set([
-  "/",
-  "/login",
-  "/offline",
-]);
-
 function isHashedStaticAsset(pathname) {
   if (pathname.startsWith("/_next/static/")) return true;
   if (/\.[a-f0-9]{8,}\.(js|css)$/.test(pathname)) return true;
@@ -62,16 +56,8 @@ async function networkFirstWithTimeout(request, timeoutMs) {
 
   try {
     const response = await Promise.race([fetch(request), timeoutPromise]);
-    if (response instanceof Response && response.ok) {
-      const url = new URL(request.url);
-      if (NAVIGATION_CACHE_ALLOWLIST.has(url.pathname)) {
-        try {
-          await cache.put(request, response.clone());
-        } catch {
-          /* ignore cache write failures */
-        }
-      }
-    }
+    // Do not cache HTML navigations — stale shells + cache-first static assets caused
+    // a visible "old UI then flash to new" after deploys. Offline still falls back below.
     return response instanceof Response ? response : offlinePlainResponse();
   } catch {
     try {
@@ -178,12 +164,24 @@ self.addEventListener("notificationclick", (event) => {
   );
 });
 
+/**
+ * Network-first for build assets so online users always get the latest JS/CSS that
+ * matches the document. Cache is updated for offline use only (fallback when fetch fails).
+ */
 async function handleHashedStaticAsset(request) {
+  let cache;
   try {
-    const cache = await caches.open(CACHE_NAME);
-    const cached = await cache.match(request);
-    if (cached instanceof Response) return cached;
+    cache = await caches.open(CACHE_NAME);
+  } catch {
+    try {
+      const direct = await fetch(request);
+      return direct instanceof Response ? direct : Response.error();
+    } catch {
+      return Response.error();
+    }
+  }
 
+  try {
     const response = await fetch(request);
     if (response instanceof Response && response.ok) {
       try {
@@ -194,6 +192,12 @@ async function handleHashedStaticAsset(request) {
     }
     return response instanceof Response ? response : Response.error();
   } catch {
+    try {
+      const cached = await cache.match(request);
+      if (cached instanceof Response) return cached;
+    } catch {
+      /* ignore */
+    }
     try {
       const fallback = await fetch(request);
       return fallback instanceof Response ? fallback : Response.error();
@@ -220,7 +224,12 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (event.request.mode === "navigate") {
-    event.respondWith(asRespondWithPromise(networkFirstWithTimeout(event.request, 4000)));
+    // Bypass the HTTP cache for documents so we never paint a stale app shell after a deploy.
+    const navRequest =
+      event.request.cache === "only-if-cached"
+        ? event.request
+        : new Request(event.request, { cache: "no-store" });
+    event.respondWith(asRespondWithPromise(networkFirstWithTimeout(navRequest, 4000)));
     return;
   }
 

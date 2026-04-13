@@ -77,7 +77,7 @@ export function TenseToolsPanel({
           aria-expanded={expanded}
           aria-controls={regionId}
           onClick={onToggleExpanded}
-          className={`group relative flex w-full items-center justify-between gap-3 overflow-hidden border-0 bg-gradient-to-r from-[#ffe5b8] via-[#ffd3dc] to-[#cdeeff] px-4 py-3.5 text-left transition-transform dark:from-[#1a354d] dark:via-[#1f3d56] dark:to-[#20465d] ${headerRound}`}
+          className={`group relative flex w-full items-center justify-between gap-3 overflow-hidden border-0 bg-gradient-to-r from-[#ffe5b8] via-[#ffd3dc] to-[#cdeeff] px-4 py-3.5 text-left text-slate-900 transition-transform dark:from-[#1a354d] dark:via-[#1f3d56] dark:to-[#20465d] dark:text-slate-50 ${headerRound}`}
         >
           <span
             className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.55),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.18),transparent_30%)] opacity-90 transition-opacity group-hover:opacity-100 dark:bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.10),transparent_30%)]"
@@ -89,26 +89,29 @@ export function TenseToolsPanel({
           />
           <span className="relative z-10 flex min-w-0 flex-1 items-center gap-3">
             <span
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-amber-300/50 bg-white/50 text-slate-900 shadow-sm backdrop-blur-[2px] dark:border-white/20 dark:bg-white/10 dark:text-white"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-amber-300/50 bg-white/50 text-slate-800 shadow-sm backdrop-blur-[2px] dark:border-sky-200/35 dark:bg-slate-950/50 dark:text-sky-200"
               aria-hidden
             >
-              <Microscope className="h-5 w-5" strokeWidth={2.25} />
+              <Microscope
+                className="h-5 w-5 shrink-0 text-slate-800 dark:text-sky-200"
+                strokeWidth={2.25}
+              />
             </span>
             <span className="min-w-0 text-left">
-              <span className="font-display text-lg font-black tracking-tight text-slate-900 dark:text-white">
+              <span className="font-display text-lg font-black tracking-tight text-slate-900 dark:text-slate-50">
                 Tense Tools
               </span>
-              <span className="mt-0.5 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-800/75 dark:text-white/75">
+              <span className="mt-0.5 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-700/90 dark:text-slate-300/95">
                 Start here · review anytime
               </span>
             </span>
           </span>
           <span
-            className={`relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-amber-300/60 bg-white/70 text-slate-800 shadow-sm backdrop-blur-sm transition-transform dark:border-white/25 dark:bg-slate-900/40 dark:text-white ${
+            className={`relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-amber-300/60 bg-white/70 text-slate-700 shadow-sm backdrop-blur-sm transition-transform dark:border-sky-200/35 dark:bg-slate-950/55 dark:text-sky-200 ${
               expanded ? 'rotate-180' : ''
             }`}
           >
-            <ChevronDown className="h-5 w-5" />
+            <ChevronDown className="h-5 w-5 shrink-0 text-slate-700 dark:text-sky-200" />
           </span>
         </button>
 
@@ -184,7 +187,7 @@ function TenseToolStation({
         <div className="min-w-0 flex-1 pt-0.5">
           <p className="font-display text-base font-black text-slate-900 dark:text-slate-50">{title}</p>
           <p className="mt-1 text-sm leading-relaxed text-slate-700 dark:text-slate-200/92">{description}</p>
-          <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary/90 group-hover:text-primary dark:text-cyan-200">
+          <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary/90 group-hover:text-primary dark:text-sky-200 dark:group-hover:text-sky-100">
             Open station →
           </p>
         </div>
@@ -219,13 +222,13 @@ export function TenseToolsExerciseMenu({
           transition={{ duration: 0.2 }}
           className="absolute right-0 top-full z-[60] mt-2 w-[min(100vw-2rem,20rem)] rounded-2xl border border-border/80 bg-white/95 p-2 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-[#122433]/95"
         >
-          <p className="border-b border-border/50 px-2 pb-2 text-center text-[11px] font-medium leading-snug text-text-muted dark:border-white/10">
+          <p className="border-b border-border/50 px-2 pb-2 text-center text-[11px] font-medium leading-snug text-text-muted dark:border-white/10 dark:text-slate-400">
             You can open this anytime — your round is saved.
           </p>
           <div className="mt-1 space-y-0.5">
             <button
               type="button"
-              className="flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-left text-sm font-semibold text-text hover:bg-primary/10"
+              className="flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-left text-sm font-semibold text-text hover:bg-primary/10 dark:hover:bg-white/10"
               onClick={() => {
                 onOpenLab();
                 onClose();
@@ -236,7 +239,7 @@ export function TenseToolsExerciseMenu({
             </button>
             <button
               type="button"
-              className="flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-left text-sm font-semibold text-text hover:bg-primary/10"
+              className="flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-left text-sm font-semibold text-text hover:bg-primary/10 dark:hover:bg-white/10"
               onClick={() => {
                 onOpenWalkthrough();
                 onClose();
@@ -247,7 +250,7 @@ export function TenseToolsExerciseMenu({
             </button>
             <button
               type="button"
-              className="flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-left text-sm font-semibold text-text hover:bg-primary/10"
+              className="flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-left text-sm font-semibold text-text hover:bg-primary/10 dark:hover:bg-white/10"
               onClick={() => {
                 onOpenTimeSignals();
                 onClose();
