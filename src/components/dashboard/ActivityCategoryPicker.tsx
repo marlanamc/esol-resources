@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { PenLine, Gamepad2, BookOpen, ClipboardList, Mic, PenTool, Volume2 } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { getLearnerCategoryTone } from '@/lib/learner-theme';
+import { createLearnerContentMetadataCache, getLearnerContentMetadata } from '@/lib/learner-visibility';
 
 // Re-use the Activity type shape from ActivityCategories
 interface Activity {
@@ -95,6 +96,7 @@ export function ActivityCategoryPicker({
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
+    const activityContentMetadataCache = useMemo(() => createLearnerContentMetadataCache(), []);
     // Determine which categories actually have activities so we can hide empty ones
     const categoryHasActivities = useMemo(() => {
         const map: Record<string, boolean> = {};
@@ -124,23 +126,15 @@ export function ActivityCategoryPicker({
         // Quizzes
         map['quizzes'] = activities.some((a) => {
             if (a.category !== 'quizzes') return false;
-            try {
-                const content = JSON.parse(a.content || '{}');
-                return content.released === true;
-            } catch {
-                return false;
-            }
+            const contentMetadata = getLearnerContentMetadata(a.content, activityContentMetadataCache);
+            return contentMetadata.releasedInContent;
         });
 
         // Speaking
         map['speaking'] = activities.some((a) => {
             if (a.category !== 'speaking') return false;
-            try {
-                const content = JSON.parse(a.content || '{}');
-                return content.released === true;
-            } catch {
-                return false;
-            }
+            const contentMetadata = getLearnerContentMetadata(a.content, activityContentMetadataCache);
+            return contentMetadata.releasedInContent;
         });
 
         // Writing
@@ -154,7 +148,7 @@ export function ActivityCategoryPicker({
         );
 
         return map;
-    }, [activities]);
+    }, [activities, activityContentMetadataCache]);
 
     const visibleCards = CATEGORY_CARDS.filter((c) => categoryHasActivities[c.key]);
     const validInitialCategory =

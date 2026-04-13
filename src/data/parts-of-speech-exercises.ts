@@ -13,8 +13,12 @@ import type {
   PartOfSpeech,
   POSSortingItem,
   PhotoSortItem,
+  WordFamilyMember,
 } from '@/types/parts-of-speech';
-import { PHOTO_SORT_DISTRACTOR_BANK } from '@/data/pos-photos';
+import {
+  PHOTO_SORT_DISTRACTOR_BANK,
+  buildPhotoGalleryFromWords,
+} from '@/data/pos-photos';
 import {
   ALL_POS_GROUPS,
   getPOSGroup,
@@ -54,8 +58,41 @@ function pickRandom<T>(arr: T[], n: number): T[] {
   return shuffle(arr).slice(0, n);
 }
 
+function getPatternWordVariants(pattern: POSPattern): string[] {
+  const raw = pattern.word.trim();
+  if (!raw) return [];
+
+  const seen = new Set<string>();
+  const variants: string[] = [];
+  const addVariant = (value: string) => {
+    const candidate = value.trim();
+    if (!candidate) return;
+    const key = normalize(candidate);
+    if (seen.has(key)) return;
+    seen.add(key);
+    variants.push(candidate);
+  };
+
+  const parentheticalMatch = raw.match(/^([^()]+)\(([^)]+)\)$/);
+  if (parentheticalMatch) {
+    addVariant(parentheticalMatch[1]);
+    parentheticalMatch[2]
+      .split('/')
+      .map(part => part.trim())
+      .forEach(addVariant);
+    return variants;
+  }
+
+  raw
+    .split('/')
+    .map(part => part.trim())
+    .forEach(addVariant);
+
+  return variants.length ? variants : [raw];
+}
+
 function getPatternBaseWord(pattern: POSPattern): string {
-  return pattern.word.split('(')[0].split('/')[0].trim();
+  return getPatternWordVariants(pattern)[0] ?? pattern.word.trim();
 }
 
 function getPatternChoiceWord(pattern: POSPattern): string {
@@ -68,6 +105,157 @@ function getPatternChoiceWord(pattern: POSPattern): string {
 
 function getPatternDisplayWord(pattern: POSPattern): string {
   return pattern.word.trim();
+}
+
+function toPOSLabel(pos: PartOfSpeech): string {
+  return pos === 'article'
+    ? 'Article'
+    : pos === 'adjective'
+      ? 'Adjective'
+      : pos === 'adverb'
+        ? 'Adverb'
+        : pos.charAt(0).toUpperCase() + pos.slice(1);
+}
+
+function inferCommonErrorFromPOS(pattern: POSPattern): string | null {
+  if (pattern.commonError) return pattern.commonError;
+
+  switch (pattern.partOfSpeech) {
+    case 'article':
+      return 'Articles and determiners are tricky. "A" before consonant sounds, "an" before vowel sounds, and "the" for specific items.';
+    case 'noun':
+      return 'Many words can be nouns or verbs. Watch context closely to place the word correctly.';
+    case 'verb':
+      return `When this word changes meaning with tense, think carefully about whether it is acting as a ${toPOSLabel(pattern.partOfSpeech)} here.`;
+    case 'adjective':
+      return 'Adjectives describe nouns, usually before them. Be careful not to switch to adverb form.';
+    case 'adverb':
+      return 'Adverbs usually describe how, when, or where — many end with -ly.';
+    case 'preposition':
+      return 'Prepositions connect a word to another part of the sentence. Position is the big clue.';
+    case 'conjunction':
+      return 'Conjunctions connect words and clauses. They are often small function words, not content words.';
+    case 'pronoun':
+      return 'Subject and object pronouns are common to mix up. Check placement in the sentence.';
+    default:
+      return null;
+  }
+}
+
+function dedupeWordFamilyMembers(members: WordFamilyMember[]): WordFamilyMember[] {
+  const seen = new Set<string>();
+  const out: WordFamilyMember[] = [];
+
+  for (const member of members) {
+    const key = `${member.partOfSpeech}:${member.word.trim().toLowerCase()}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(member);
+  }
+
+  return out;
+}
+
+const NOUN_VERB_BLACKLIST = new Set<string>([
+  'money',
+  'time',
+  'water',
+  'music',
+  'language',
+  'information',
+  'weather',
+  'traffic',
+  'homework',
+  'furniture',
+  'evidence',
+  'feedback',
+  'advice',
+  'research',
+  'knowledge',
+  'education',
+  'coffee',
+  'software',
+]);
+
+const nounCanActAsVerb = (noun: string): boolean => !NOUN_VERB_BLACKLIST.has(noun);
+
+function buildFallbackWordFamily(pattern: POSPattern): WordFamilyMember[] {
+  const base = getPatternBaseWord(pattern);
+  const lower = base.toLowerCase();
+  const suffixCandidates: WordFamilyMember[] = [];
+
+  const add = (word: string, partOfSpeech: PartOfSpeech, usage: string) => {
+    const cleaned = word.trim();
+    if (cleaned && cleaned.length >= 2 && cleaned !== base) {
+      suffixCandidates.push({ word: cleaned, partOfSpeech, usage });
+    }
+  };
+
+  const pastSimple = (verb: string): string => {
+    if (verb.endsWith('ie')) return `${verb.slice(0, -2)}ied`;
+    if (verb.endsWith('e')) return `${verb}d`;
+    if (verb.endsWith('y') && verb.length > 1 && !/[aeiou]y$/.test(verb)) {
+      return `${verb.slice(0, -1)}ied`;
+    }
+    if (/(s|x|z|ch|sh)$/.test(verb)) return `${verb}ed`;
+    return `${verb}ed`;
+  };
+
+  const gerund = (verb: string): string => {
+    if (verb.endsWith('ie')) return `${verb.slice(0, -2)}ying`;
+    if (verb.endsWith('e')) return `${verb.slice(0, -1)}ing`;
+    if (verb.length > 1 && /([bcdfghjklmnpqrstvwxyz])\1$/.test(verb)) return `${verb}ing`;
+    if (/(s|x|z|ch|sh)$/.test(verb)) return `${verb}ing`;
+    return `${verb}ing`;
+  };
+
+  const thirdPerson = (verb: string): string => {
+    if (verb.endsWith('y') && verb.length > 1 && !/[aeiou]y$/.test(verb)) return `${verb.slice(0, -1)}ies`;
+    if (/(s|x|z|ch|sh)$/.test(verb)) return `${verb}es`;
+    return `${verb}s`;
+  };
+
+  if (pattern.partOfSpeech === 'verb') {
+    if (lower.length > 2) {
+      const verbGerund = gerund(lower);
+      const verbPast = pastSimple(lower);
+      const verbThird = thirdPerson(lower);
+      const agent = lower.endsWith('e') ? `${lower.slice(0, -1)}er` : `${lower}er`;
+      add(verbGerund, 'verb', `They are ${verbGerund} during group work.`);
+      add(verbPast, 'verb', `She ${verbPast} at the office yesterday.`);
+      add(agent, 'noun', `A ${agent} can be very helpful in real-life situations.`);
+      add(verbThird, 'verb', `They ${verbThird} after class.`);
+    }
+  }
+
+  if (pattern.partOfSpeech === 'noun') {
+    if (nounCanActAsVerb(lower)) {
+      add(lower, 'verb', `Could you ${lower} this sentence before class starts?`);
+      if (lower.length > 3) {
+        const verbPast = pastSimple(lower);
+        add(verbPast, 'verb', `They ${verbPast} this plan after the meeting.`);
+      }
+    }
+  }
+
+  if (pattern.partOfSpeech === 'adjective') {
+    if (!lower.endsWith('ly')) add(`${lower}ly`, 'adverb', `She explained it ${lower}ly.`);
+    if (lower.length > 2) add(`${lower}ness`, 'noun', `The ${lower}ness of this task is important.`);
+  }
+
+  if (pattern.partOfSpeech === 'adverb') {
+    const adjective = lower.endsWith('ly') && lower.length > 2 ? lower.slice(0, -2) : null;
+    if (adjective) add(adjective, 'adjective', `The adverb "${lower}" often relates to "${adjective}".`);
+  }
+
+  return dedupeWordFamilyMembers(suffixCandidates);
+}
+
+function getPatternWordFamily(pattern: POSPattern): WordFamilyMember[] {
+  return dedupeWordFamilyMembers([
+    ...(pattern.wordFamily ?? []),
+    ...(pattern.wordFamily?.length ? [] : buildFallbackWordFamily(pattern)),
+  ]);
 }
 
 type ExampleTracker = Map<string, Set<number>>;
@@ -165,34 +353,54 @@ function getPOSOptions(correct: PartOfSpeech, count = 4): string[] {
   return shuffle([correct, ...pickRandom(distractors, count - 1)]);
 }
 
+function toOptions(correct: string, wrongAnswers: string[], maxChoices = 4): string[] {
+  const candidates = [correct, ...wrongAnswers]
+    .map(w => w.trim())
+    .filter(Boolean);
+  const unique: string[] = [];
+  const seen = new Set<string>();
+  for (const value of candidates) {
+    const key = value.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    unique.push(value);
+    if (unique.length >= maxChoices) break;
+  }
+  return shuffle(unique).slice(0, maxChoices);
+}
+
 // Returns which exercise types are available for a given phase × round.
 // Harder types are unlocked progressively so the game gets more complex as students advance.
 function getAvailableExerciseTypes(phase: POSPhase, round: number): POSExerciseType[] {
   const base: POSExerciseType[] = ['pattern-choice', 'sentence-completion', 'odd-one-out'];
   if (phase === 'foundation') {
-    return round === 1 ? ['photo-sort', 'pattern-choice'] : [...base, 'photo-sort'];
+    if (round === 1) return ['photo-sort', 'pattern-choice'];
+    return [...base, 'photo-sort', 'error-correction', 'contrast-pair'];
   }
   if (phase === 'sentence-roles') {
     // Round 1: basics only. Round 2+: add sentence-level recognition.
-    return round === 1 ? base : [...base, 'pos-tagging', 'word-family'];
+    return round === 1
+      ? base
+      : [...base, 'photo-sort', 'pos-tagging', 'word-family', 'error-correction', 'contrast-pair'];
   }
   if (phase === 'modifiers') {
     // Minimal-pair and word-transform unlock in Round 2 for modifiers.
     return round === 1
       ? [...base, 'pos-tagging']
-      : [...base, 'pos-tagging', 'word-family', 'minimal-pair', 'word-transform'];
+      : [...base, 'photo-sort', 'pos-tagging', 'word-family', 'minimal-pair', 'word-transform', 'error-correction', 'contrast-pair'];
   }
   if (phase === 'connectors') {
     // Function-match and mad-libs unlock in Round 2 for connectors.
     return round === 1
       ? [...base, 'pos-tagging', 'function-match']
-      : [...base, 'pos-tagging', 'word-family', 'minimal-pair', 'word-transform', 'function-match', 'mad-libs'];
+      : [...base, 'photo-sort', 'pos-tagging', 'word-family', 'minimal-pair', 'word-transform', 'function-match', 'mad-libs', 'error-correction', 'contrast-pair'];
   }
   // application-bridge: all types from Round 1
   return [
     'pattern-choice', 'sentence-completion', 'odd-one-out',
     'pos-tagging', 'word-family', 'minimal-pair',
-    'word-transform', 'function-match', 'mad-libs', 'sentence-builder',
+    'photo-sort', 'word-transform', 'function-match', 'mad-libs', 'sentence-builder',
+    'error-correction', 'contrast-pair',
   ] as POSExerciseType[];
 }
 
@@ -449,10 +657,11 @@ function makeWordFamilyBuilder(
   showPattern: boolean,
   _tracker?: ExampleTracker,
 ): POSExercise | null {
-  if (!pattern.wordFamily || pattern.wordFamily.length < 2) return null;
+  const family = getPatternWordFamily(pattern);
+  if (family.length < 2) return null;
   
   const baseWord = getPatternBaseWord(pattern);
-  const nodes = pattern.wordFamily.map(m => ({
+  const nodes = family.map(m => ({
     word: m.word,
     partOfSpeech: m.partOfSpeech,
     isCorrect: false
@@ -571,16 +780,17 @@ function makeWordTransform(
   showPattern: boolean,
   _tracker?: ExampleTracker,
 ): POSExercise | null {
-  if (!pattern.wordFamily || pattern.wordFamily.length < 2) return null;
+  const family = getPatternWordFamily(pattern);
+  if (family.length < 2) return null;
   const baseWord = getPatternBaseWord(pattern);
   // Prefer a family member with a different surface form (avoids work(verb) → work(noun))
-  const target = pattern.wordFamily.find(m => m.word !== baseWord) ?? pattern.wordFamily[0];
+  const target = family.find(m => m.word !== baseWord) ?? family[0];
   // If the only option is the same word, skip (zero-derivation isn't a useful transformation exercise)
   if (target.word === baseWord) return null;
 
   // Build candidate pool: other wordFamily members + base word
   const candidatePool: string[] = [];
-  for (const member of pattern.wordFamily) {
+  for (const member of family) {
     if (member.word !== target.word && !candidatePool.includes(member.word)) {
       candidatePool.push(member.word);
     }
@@ -672,7 +882,10 @@ function makePhotoSort(
   pattern: POSPattern,
   showPattern: boolean,
 ): POSExercise | null {
-  const gallery = group.photoGallery;
+  const gallery = group.photoGallery ?? buildPhotoGalleryFromWords(
+    group.patterns.map(p => getPatternBaseWord(p)),
+    pattern.partOfSpeech,
+  );
   if (!gallery || gallery.length < 2) return null;
 
   const targetPOS = pattern.partOfSpeech;
@@ -728,6 +941,157 @@ function makePhotoSort(
   };
 }
 
+function getErrorCorrectionWrongWords(
+  group: POSGroup,
+  pattern: POSPattern,
+  correctWord: string,
+): string[] {
+  const wrongWords: string[] = [];
+  const seen = new Set<string>([normalize(correctWord)]);
+
+  const addWrong = (word: string) => {
+    const candidate = word.trim();
+    if (!candidate) return;
+    const key = normalize(candidate);
+    if (seen.has(key)) return;
+    seen.add(key);
+    wrongWords.push(candidate);
+  };
+
+  const family = getPatternWordFamily(pattern);
+  if (family.length) {
+    const sameFamilyDifferentPOS = family.filter(m => m.partOfSpeech !== pattern.partOfSpeech);
+    for (const member of sameFamilyDifferentPOS) {
+      addWrong(member.word);
+      if (wrongWords.length >= 3) break;
+    }
+  }
+
+  const groupedForms = getPatternWordVariants(pattern);
+  for (const form of groupedForms) {
+    if (!form || normalize(form) === normalize(correctWord)) continue;
+    addWrong(form);
+    if (wrongWords.length >= 3) break;
+  }
+
+  // Use sibling patterns as near-collision distractors (same lesson context).
+  for (const sibling of group.patterns) {
+    if (sibling.id === pattern.id) continue;
+    addWrong(getPatternChoiceWord(sibling));
+    if (wrongWords.length >= 3) break;
+  }
+
+  // Fallback to global distractor bank (prefer not same POS).
+  for (const bankItem of shuffle(CLOZE_DISTRACTOR_BANK)) {
+    if (bankItem.partOfSpeech === pattern.partOfSpeech) continue;
+    addWrong(bankItem.word);
+    if (wrongWords.length >= 3) break;
+  }
+
+  return wrongWords;
+}
+
+function pickContrastNeighborPattern(group: POSGroup, pattern: POSPattern): POSPattern | null {
+  const siblings = group.patterns.filter(p => p.id !== pattern.id);
+  if (!siblings.length) return null;
+
+  const differentPOS = siblings.filter(p => p.partOfSpeech !== pattern.partOfSpeech);
+  const pool = (differentPOS.length ? differentPOS : siblings);
+  const correctWord = getPatternChoiceWord(pattern).toLowerCase();
+
+  for (const candidate of shuffle(pool)) {
+    if (normalize(getPatternChoiceWord(candidate)) !== correctWord) {
+      return candidate;
+    }
+  }
+  return pool[0] ?? null;
+}
+
+function makeErrorCorrectionExercise(
+  group: POSGroup,
+  pattern: POSPattern,
+  showPattern: boolean,
+  tracker?: ExampleTracker,
+): POSExercise | null {
+  const commonError = inferCommonErrorFromPOS(pattern);
+  if (!commonError) return null;
+
+  const selection = selectPatternExample(pattern, tracker, { requireBlank: true }) ?? selectPatternExample(pattern, tracker);
+  if (!selection) return null;
+  const example = selection.example;
+  const sentence = example.blank ? example.sentence.replace('___', example.blank) : example.sentence;
+  const correctWord = example.blank ? example.blank : getPatternChoiceWord(pattern);
+
+  const wrongWords = getErrorCorrectionWrongWords(group, pattern, correctWord);
+  if (!wrongWords.length) return null;
+
+  return {
+    id: nextId(group.id, 'ec'),
+    type: 'error-correction',
+    groupId: group.id,
+    patternId: pattern.id,
+    prompt: `A common mistake for this part of speech: ${commonError}`,
+    correctAnswer: correctWord,
+    options: toOptions(correctWord, wrongWords, 4),
+    errorCorrection: {
+      sentence,
+      prompt: `Many learners make this mistake. Pick the best option to complete this sentence.`,
+      correctWord,
+      wrongWords,
+      commonError,
+      explanation: pattern.errorExplanation ?? `In this context, the correct word is "${correctWord}".`,
+    },
+    explanation: pattern.errorExplanation,
+    showPattern,
+    realWorldContext: example.context,
+  };
+}
+
+function makeContrastPairExercise(
+  group: POSGroup,
+  pattern: POSPattern,
+  showPattern: boolean,
+  tracker?: ExampleTracker,
+): POSExercise | null {
+  const selection = selectPatternExample(pattern, tracker, { requireBlank: true }) ?? selectPatternExample(pattern, tracker);
+  if (!selection) return null;
+  const example = selection.example;
+  const sentence = example.blank ? example.sentence.replace('___', example.blank) : example.sentence;
+
+  const contrastPattern = pickContrastNeighborPattern(group, pattern);
+  if (!contrastPattern) return null;
+
+  const correctWord = example.blank ? example.blank : getPatternChoiceWord(pattern);
+  const contrastWord = getPatternChoiceWord(contrastPattern);
+  if (normalize(correctWord) === normalize(contrastWord)) return null;
+
+  const explanation = pattern.word !== contrastPattern.word
+    ? `Use ${correctWord} for a ${pattern.partOfSpeech} use here; ${contrastWord} is a ${contrastPattern.partOfSpeech} option.`
+    : `Compare the surrounding options: one option is better for the target part of speech.`;
+
+  return {
+    id: nextId(group.id, 'cp'),
+    type: 'contrast-pair',
+    groupId: group.id,
+    patternId: pattern.id,
+    prompt: `Which word better fits the sentence?`,
+    correctAnswer: correctWord,
+    options: shuffle([correctWord, contrastWord]),
+    contrastPair: {
+      sentence,
+      prompt: `Both "${correctWord}" and "${contrastWord}" are close options. Which one is the correct fit here?`,
+      correctWord,
+      distractorWord: contrastWord,
+      targetPOS: pattern.partOfSpeech,
+      distractorPOS: contrastPattern.partOfSpeech,
+      explanation,
+    },
+    explanation,
+    showPattern,
+    realWorldContext: example.context,
+  };
+}
+
 // ─── Round generator ──────────────────────────────────────────────────────────
 
 type ExerciseFactory = (
@@ -744,6 +1108,8 @@ const FACTORY_MAP: Record<POSExerciseType, ExerciseFactory | null> = {
   'pos-tagging': makePOSTagging,
   'word-transform': makeWordTransform,
   'function-match': makeFunctionMatch,
+  'error-correction': makeErrorCorrectionExercise,
+  'contrast-pair': makeContrastPairExercise,
   'pattern-sorting': null, // multi-pattern, handled separately
   'word-family': makeWordFamilyBuilder,
   'mad-libs': makeMadLibs,
@@ -824,6 +1190,16 @@ export function generateRound1Exercises(group: POSGroup): POSExercise[] {
       if (fm) exercises.push(fm);
     }
 
+    if (available.includes('error-correction')) {
+      const ec = makeErrorCorrectionExercise(group, pattern, true, tracker);
+      if (ec) exercises.push(ec);
+    }
+
+    if (available.includes('contrast-pair')) {
+      const cp = makeContrastPairExercise(group, pattern, true, tracker);
+      if (cp) exercises.push(cp);
+    }
+
     // Sentence-builder: application-bridge phase
     if (available.includes('sentence-builder')) {
       const sb = makeSentenceBuilder(group, pattern, true, tracker);
@@ -853,17 +1229,42 @@ export function generateRound2Exercises(
 
   const exercises: POSExercise[] = [];
   const tracker = createExampleTracker();
+  const available = getAvailableExerciseTypes(group.phase, 2);
+  let photoSortCount = 0;
 
   for (const pattern of patterns) {
-    // Use harder exercise types in round 2
-    const fm = makeFunctionMatch(group, pattern, false, tracker);
-    if (fm) exercises.push(fm);
+    if (available.includes('photo-sort') && photoSortCount < 1) {
+      const ps = makePhotoSort(group, pattern, false);
+      if (ps) {
+        exercises.push(ps);
+        photoSortCount += 1;
+      }
+    }
 
-    const pt = makePOSTagging(group, pattern, false, tracker);
-    if (pt) exercises.push(pt);
+    if (available.includes('function-match')) {
+      const fm = makeFunctionMatch(group, pattern, false, tracker);
+      if (fm) exercises.push(fm);
+    }
 
-    const ooo = makeOddOneOut(group, pattern, false);
-    if (ooo) exercises.push(ooo);
+    if (available.includes('pos-tagging')) {
+      const pt = makePOSTagging(group, pattern, false, tracker);
+      if (pt) exercises.push(pt);
+    }
+
+    if (available.includes('error-correction')) {
+      const ec = makeErrorCorrectionExercise(group, pattern, false, tracker);
+      if (ec) exercises.push(ec);
+    }
+
+    if (available.includes('contrast-pair')) {
+      const cp = makeContrastPairExercise(group, pattern, false, tracker);
+      if (cp) exercises.push(cp);
+    }
+
+    if (available.includes('odd-one-out')) {
+      const ooo = makeOddOneOut(group, pattern, false);
+      if (ooo) exercises.push(ooo);
+    }
   }
 
   // Add mad-libs for mastery (where we used rapid-fire)
@@ -976,7 +1377,8 @@ function makeMinimalPair(
   showPattern: boolean,
   tracker?: ExampleTracker,
 ): POSExercise | null {
-  if (!pattern.wordFamily || pattern.wordFamily.length < 1) return null;
+  const family = getPatternWordFamily(pattern);
+  if (!family.length) return null;
 
   const baseWord = getPatternBaseWord(pattern);
   const basePOS = pattern.partOfSpeech;
@@ -986,7 +1388,7 @@ function makeMinimalPair(
   if (!baseExample) return null;
 
   // Find a family member with a different POS that has a usage sentence
-  const altMember = pattern.wordFamily.find(m => m.partOfSpeech !== basePOS && m.usage);
+  const altMember = family.find(m => m.partOfSpeech !== basePOS && m.usage);
   if (!altMember) return null;
 
   const sentence1 = baseExample.blank
@@ -1030,19 +1432,41 @@ export function generateRound3Exercises(group: POSGroup): POSExercise[] {
 
   const exercises: POSExercise[] = [];
   const tracker = createExampleTracker();
+  const available = getAvailableExerciseTypes(group.phase, 3);
+  let photoSortCount = 0;
 
   for (const pattern of group.patterns) {
-    // pos-tagging: tap the highlighted word and select its POS
-    const pt = makePOSTagging(group, pattern, false, tracker);
-    if (pt) exercises.push(pt);
-    else {
-      // Fallback: pattern-choice with a different example than Round 1 used
-      exercises.push(makePatternChoice(group, pattern, false, tracker));
+    if (available.includes('photo-sort') && photoSortCount < 1) {
+      const ps = makePhotoSort(group, pattern, false);
+      if (ps) {
+        exercises.push(ps);
+        photoSortCount += 1;
+      }
     }
 
-    // function-match: what role does this word play? (subject / verb / modifier / etc.)
-    const fm = makeFunctionMatch(group, pattern, false, tracker);
-    if (fm) exercises.push(fm);
+    if (available.includes('pos-tagging')) {
+      const pt = makePOSTagging(group, pattern, false, tracker);
+      if (pt) exercises.push(pt);
+      else {
+        // Fallback: pattern-choice with a different example than Round 1 used
+        exercises.push(makePatternChoice(group, pattern, false, tracker));
+      }
+    }
+
+    if (available.includes('function-match')) {
+      const fm = makeFunctionMatch(group, pattern, false, tracker);
+      if (fm) exercises.push(fm);
+    }
+
+    if (available.includes('error-correction')) {
+      const ec = makeErrorCorrectionExercise(group, pattern, false, tracker);
+      if (ec) exercises.push(ec);
+    }
+
+    if (available.includes('contrast-pair')) {
+      const cp = makeContrastPairExercise(group, pattern, false, tracker);
+      if (cp) exercises.push(cp);
+    }
   }
 
   // Add odd-one-out at group level (cross-POS recognition under pressure)
@@ -1066,8 +1490,17 @@ export function generateRound4Exercises(group: POSGroup): POSExercise[] {
 
   const exercises: POSExercise[] = [];
   const tracker = createExampleTracker();
+  let photoSortCount = 0;
 
   for (const pattern of group.patterns) {
+    if (photoSortCount < 1) {
+      const ps = makePhotoSort(group, pattern, false);
+      if (ps) {
+        exercises.push(ps);
+        photoSortCount += 1;
+      }
+    }
+
     // sentence-builder: drag words to fill the slot (primary)
     const sb = makeSentenceBuilder(group, pattern, false, tracker);
     if (sb) exercises.push(sb);
@@ -1120,8 +1553,17 @@ export function generateRound5Exercises(
 
   const exercises: POSExercise[] = [];
   const tracker = createExampleTracker();
+  let photoSortCount = 0;
 
   for (const pattern of targetPatterns) {
+    if (photoSortCount < 2) {
+      const ps = makePhotoSort(group, pattern, false);
+      if (ps) {
+        exercises.push(ps);
+        photoSortCount += 1;
+      }
+    }
+
     // sentence-completion (cloze) is the hardest — primary type for R5
     const sc = makeSentenceCompletion(group, pattern, false, tracker);
     if (sc) exercises.push(sc);

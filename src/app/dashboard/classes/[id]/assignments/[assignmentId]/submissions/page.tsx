@@ -41,7 +41,13 @@ export default async function SubmissionsPage({ params }: Props) {
     const assignment = await prisma.assignment.findUnique({
         where: { id: assignmentId },
         include: {
-            activity: true,
+            activity: {
+                select: {
+                    id: true,
+                    title: true,
+                    type: true,
+                },
+            },
             class: {
                 include: {
                     enrollments: {

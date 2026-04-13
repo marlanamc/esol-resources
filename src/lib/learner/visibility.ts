@@ -6,23 +6,65 @@ export type LearnerVisibleActivityInput = {
     category?: string | null;
     isReleased?: boolean | null;
     content?: string | null;
+    isReleasedInContent?: boolean | null;
     createdBy?: string | null;
 };
 
-function hasReleasedContentFlag(content: string | null | undefined): boolean {
-    if (!content) {
-        return false;
-    }
+export type LearnerContentMetadata = {
+    type: string | null;
+    releasedInContent: boolean;
+};
 
-    const parsed = parseActivityContent(content);
-    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
-        return false;
-    }
+export type LearnerContentMetadataCache = Map<string, LearnerContentMetadata>;
 
-    return (parsed as { released?: unknown }).released === true;
+export function createLearnerContentMetadataCache(): LearnerContentMetadataCache {
+    return new Map();
 }
 
-export function isLearnerVisibleActivity(activity: LearnerVisibleActivityInput): boolean {
+export function getLearnerContentMetadata(
+    content: string | Record<string, unknown> | null | undefined,
+    cache?: LearnerContentMetadataCache
+): LearnerContentMetadata {
+    if (!content) {
+        return { type: null, releasedInContent: false };
+    }
+
+    if (typeof content === "string") {
+        if (cache && cache.has(content)) {
+            return cache.get(content) as LearnerContentMetadata;
+        }
+
+        const parsed = parseActivityContent(content);
+        if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+            const metadata = { type: null, releasedInContent: false };
+            if (cache) cache.set(content, metadata);
+            return metadata;
+        }
+
+        const parsedMetadata = parsed as Record<string, unknown>;
+        const activityType = typeof parsedMetadata.type === "string" ? parsedMetadata.type : null;
+        const releasedInContent = parsedMetadata.released === true;
+        const metadata = { type: activityType, releasedInContent };
+        if (cache) cache.set(content, metadata);
+        return metadata;
+    }
+
+    if (typeof content !== "object" || Array.isArray(content)) {
+        const metadata = { type: null, releasedInContent: false };
+        return metadata;
+    }
+
+    const contentMetadata = content as Record<string, unknown>;
+    const activityType = typeof contentMetadata.type === "string" ? contentMetadata.type : null;
+    const releasedInContent = contentMetadata.released === true;
+    const metadata = { type: activityType, releasedInContent };
+    return metadata;
+}
+
+export function isLearnerVisibleActivity(
+    activity: LearnerVisibleActivityInput,
+    cache?: LearnerContentMetadataCache
+): boolean {
     if (activity.deletedAt) {
         return false;
     }
@@ -35,20 +77,28 @@ export function isLearnerVisibleActivity(activity: LearnerVisibleActivityInput):
     }
 
     if (type === "speaking" || type === "quiz" || category === "quizzes") {
-        return hasReleasedContentFlag(activity.content);
+        const contentMetadata = getLearnerContentMetadata(activity.content, cache);
+        if (typeof activity.isReleasedInContent === "boolean") {
+            return activity.isReleasedInContent;
+        }
+        return contentMetadata.releasedInContent;
     }
 
     return true;
 }
 
-export function filterLearnerVisibleActivities<T extends LearnerVisibleActivityInput>(activities: T[]): T[] {
-    return activities.filter((activity) => isLearnerVisibleActivity(activity));
+export function filterLearnerVisibleActivities<T extends LearnerVisibleActivityInput>(activities: T[], cache?: LearnerContentMetadataCache): T[] {
+    return activities.filter((activity) => isLearnerVisibleActivity(activity, cache));
 }
 
-export function assertLearnerCanAccessActivity(activity: LearnerVisibleActivityInput, userRole: string | null | undefined): boolean {
+export function assertLearnerCanAccessActivity(
+    activity: LearnerVisibleActivityInput,
+    userRole: string | null | undefined,
+    cache?: LearnerContentMetadataCache
+): boolean {
     if (userRole !== "student") {
         return true;
     }
 
-    return isLearnerVisibleActivity(activity);
+    return isLearnerVisibleActivity(activity, cache);
 }

@@ -143,7 +143,9 @@ export type POSExerciseType =
   | 'pattern-choice'        // Choose the POS of a highlighted word
   | 'pattern-sorting'       // Sort words into POS buckets
   | 'sentence-completion'   // Fill in the blank with correct word
+  | 'error-correction'      // Spot a common error and pick the correct form
   | 'odd-one-out'           // Find the word that is a different POS
+  | 'contrast-pair'         // Compare two POS options for the same sentence context
   | 'word-family'           // Build word derivatives
   | 'mad-libs'              // Fill blanks using POS hints
   // POS-specific new types
@@ -219,6 +221,27 @@ export interface MinimalPairData {
   correctAnswer: string;
 }
 
+// error-correction: pick the correct form to fix a targeted error
+export interface POSErrorCorrectionData {
+  sentence: string;
+  prompt: string;
+  correctWord: string;
+  wrongWords: string[];          // Distractors to show in options
+  commonError: string;           // The learner-facing error reminder
+  explanation?: string;
+}
+
+// contrast-pair: choose the best-fit word when two close options are offered
+export interface POSContrastPairData {
+  sentence: string;
+  prompt: string;
+  correctWord: string;
+  distractorWord: string;
+  targetPOS: PartOfSpeech;
+  distractorPOS: PartOfSpeech;
+  explanation?: string;
+}
+
 // pattern-sorting bucket
 export interface POSSortingItem {
   phrase: string;            // e.g., "run quickly"
@@ -276,6 +299,8 @@ export interface POSExercise {
   wordFamilyData?: POSWordFamilyData;      // word-family
   madLibsData?: POSMadLibsData;            // mad-libs
   photoSortData?: POSPhotoSortData;        // photo-sort
+  errorCorrection?: POSErrorCorrectionData; // error-correction
+  contrastPair?: POSContrastPairData;      // contrast-pair
 }
 
 // ─── Progress tracking ────────────────────────────────────────────────────────

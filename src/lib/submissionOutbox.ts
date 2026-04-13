@@ -6,6 +6,7 @@ const STORAGE_KEY = "submission-outbox-v1";
 const OUTBOX_EVENT = "submissionOutboxUpdate";
 const MAX_RETRY_COUNT = 5;
 export const isSubmissionOutboxEnabled = process.env.NEXT_PUBLIC_ENABLE_SUBMISSION_OUTBOX === "true";
+const OUTBOX_LOG_PREFIX = "[Outbox]";
 
 function hasWindow(): boolean {
   return typeof window !== "undefined";
@@ -101,15 +102,23 @@ export async function replayQueuedSubmissions(): Promise<SubmissionOutboxSnapsho
   }
 
   emitOutboxUpdate(getSubmissionOutboxSnapshot({ syncing: true }));
+  const syncStartedAt = Date.now();
+  let attempted = 0;
+  let succeeded = 0;
+  let failed = 0;
+  let requeued = 0;
 
   const nextQueue: QueuedSubmission[] = [];
   for (const item of queue) {
     if (item.retryCount >= MAX_RETRY_COUNT) {
+      attempted += 1;
+      failed += 1;
       nextQueue.push({ ...item, status: "failed", lastError: item.lastError || "Retry limit reached" });
       continue;
     }
 
     try {
+      attempted += 1;
       const response = await fetch(item.endpoint, {
         method: item.method,
         headers: {
@@ -120,6 +129,7 @@ export async function replayQueuedSubmissions(): Promise<SubmissionOutboxSnapsho
       });
 
       if (response.ok) {
+        succeeded += 1;
         continue;
       }
 
@@ -128,6 +138,10 @@ export async function replayQueuedSubmissions(): Promise<SubmissionOutboxSnapsho
         return {};
       });
       const errorMessage = typeof body?.error === "string" ? body.error : `HTTP ${response.status}`;
+      failed += 1;
+      if (response.status >= 500) {
+        requeued += 1;
+      }
       nextQueue.push({
         ...item,
         retryCount: item.retryCount + 1,
@@ -135,6 +149,9 @@ export async function replayQueuedSubmissions(): Promise<SubmissionOutboxSnapsho
         lastError: errorMessage,
       });
     } catch (error) {
+      attempted += 1;
+      failed += 1;
+      requeued += 1;
       nextQueue.push({
         ...item,
         retryCount: item.retryCount + 1,
@@ -145,9 +162,38 @@ export async function replayQueuedSubmissions(): Promise<SubmissionOutboxSnapsho
   }
 
   writeQueue(nextQueue);
+  const durationMs = Date.now() - syncStartedAt;
+  const outcome: "success" | "partial" | "failed" = succeeded === queue.length ? "success" : requeued > 0 ? "partial" : "failed";
+  const metrics = {
+    lastSyncDurationMs: durationMs,
+    lastSyncAttempted: attempted,
+    lastSyncSucceeded: succeeded,
+    lastSyncFailed: failed,
+    lastSyncRequeued: requeued,
+  };
+  if (hasWindow() && process.env.NODE_ENV !== "production") {
+    // Lightweight debug surface for reliability during classroom rollouts.
+    console.info(
+      `${OUTBOX_LOG_PREFIX} replay finished`,
+      `outcome=${outcome}`,
+      `durationMs=${durationMs}`,
+      `attempted=${attempted}`,
+      `succeeded=${succeeded}`,
+      `failed=${failed}`,
+      `requeued=${requeued}`,
+      `pending=${nextQueue.filter((item) => item.status === "pending").length}`,
+      `failedQueued=${nextQueue.filter((item) => item.status === "failed").length}`
+    );
+  } else if (typeof process !== "undefined" && process.env.NODE_ENV === "production") {
+    // Keep a minimal production log for support visibility.
+    // eslint-disable-next-line no-console
+    console.log(`${OUTBOX_LOG_PREFIX} replay finished`, { attempted, succeeded, failed, requeued, durationMs });
+  }
+
   const snapshot = getSubmissionOutboxSnapshot({
     syncing: false,
     lastSyncAt: new Date().toISOString(),
+    ...metrics,
   });
   emitOutboxUpdate(snapshot);
   return snapshot;

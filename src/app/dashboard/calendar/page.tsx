@@ -23,9 +23,25 @@ export default async function CalendarPage() {
             where: admin ? {} : { teacherId: userId },
             include: {
                 assignments: {
-                    include: { activity: true },
+                    include: {
+                        activity: {
+                            select: {
+                                id: true,
+                                title: true,
+                            },
+                        },
+                    },
                 },
-                calendarEvents: true,
+                calendarEvents: {
+                    select: {
+                        id: true,
+                        title: true,
+                        description: true,
+                        date: true,
+                        endDate: true,
+                        type: true,
+                    },
+                },
             },
             orderBy: { createdAt: "desc" },
         });
@@ -59,12 +75,26 @@ export default async function CalendarPage() {
                 class: {
                     include: {
                         assignments: {
-                            include: {
-                                activity: true,
-                            },
+                                include: {
+                                    activity: {
+                                        select: {
+                                            id: true,
+                                            title: true,
+                                        },
+                                    },
+                                },
                             orderBy: { createdAt: "desc" },
                         },
-                        calendarEvents: true,
+                            calendarEvents: {
+                                select: {
+                                    id: true,
+                                    title: true,
+                                    description: true,
+                                    date: true,
+                                    endDate: true,
+                                    type: true,
+                                },
+                            },
                     },
                 },
             },

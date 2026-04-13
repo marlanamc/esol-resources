@@ -3,6 +3,7 @@ const swUrl = new URL(self.location.href);
 const buildId = swUrl.searchParams.get("build") || "local-dev";
 const CACHE_NAME = `class-companion-${buildId}`;
 const OFFLINE_URL = "/offline";
+const NAVIGATION_NETWORK_TIMEOUT_MS = 8000;
 
 const SHELL_CACHE = [
   "/manifest.json",
@@ -229,7 +230,7 @@ self.addEventListener("fetch", (event) => {
       event.request.cache === "only-if-cached"
         ? event.request
         : new Request(event.request, { cache: "no-store" });
-    event.respondWith(asRespondWithPromise(networkFirstWithTimeout(navRequest, 4000)));
+    event.respondWith(asRespondWithPromise(networkFirstWithTimeout(navRequest, NAVIGATION_NETWORK_TIMEOUT_MS)));
     return;
   }
 

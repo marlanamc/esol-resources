@@ -106,6 +106,7 @@ model Activity {
   updatedAt           DateTime             @updatedAt
   ui                  String?
   isReleased          Boolean              @default(false)
+  isReleasedInContent Boolean?
   deletedAt           DateTime?
   progress            ActivityProgress[]
   assignments         Assignment[]
@@ -115,6 +116,7 @@ model Activity {
   writingSessions     WritingSession[]
 
   @@index([isReleased])
+  @@index([isReleasedInContent])
   @@index([type, category, isReleased])
   @@index([deletedAt])
 }

@@ -75,7 +75,16 @@ export async function GET() {
             include: {
                 assignments: {
                     include: {
-                        activity: true,
+                        activity: {
+                            select: {
+                                id: true,
+                                title: true,
+                                description: true,
+                                type: true,
+                                category: true,
+                                ui: true,
+                            },
+                        },
                     },
                 },
             },

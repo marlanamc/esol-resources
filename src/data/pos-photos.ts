@@ -8,7 +8,59 @@
  * To update: browse Unsplash → open image in new tab → copy CDN URL → append query string above.
  */
 
-import type { POSPhotoEntry } from '@/types/parts-of-speech';
+import type { POSPhotoEntry, PartOfSpeech } from '@/types/parts-of-speech';
+import { vocabImagesGenerated } from '@/data/vocab-images-generated';
+
+const VOCAB_IMAGE_LOOKUP = new Map<string, string>();
+for (const [word, imageUrl] of Object.entries(vocabImagesGenerated)) {
+  const key = word.trim().toLowerCase();
+  if (!VOCAB_IMAGE_LOOKUP.has(key)) {
+    VOCAB_IMAGE_LOOKUP.set(key, imageUrl);
+  }
+}
+
+function capitalize(value: string): string {
+  return value.length > 0 ? value.charAt(0).toUpperCase() + value.slice(1) : value;
+}
+
+function resolveImageUrl(word: string): string | undefined {
+  const trimmed = word.trim();
+  if (!trimmed) return;
+
+  const lower = trimmed.toLowerCase();
+  return (
+    VOCAB_IMAGE_LOOKUP.get(lower)
+    || VOCAB_IMAGE_LOOKUP.get(capitalize(lower))
+    || VOCAB_IMAGE_LOOKUP.get(trimmed)
+  );
+}
+
+export function buildPhotoGalleryFromWords(words: string[], partOfSpeech: PartOfSpeech): POSPhotoEntry[] {
+  const used = new Set<string>();
+  const gallery: POSPhotoEntry[] = [];
+
+  for (const rawWord of words) {
+    const imageUrl = resolveImageUrl(rawWord);
+    if (!imageUrl) continue;
+
+    const word = rawWord.trim();
+    const key = word.toLowerCase();
+    if (used.has(key)) continue;
+    used.add(key);
+
+    gallery.push({
+      word,
+      partOfSpeech,
+      subcategoryLabel: `${partOfSpeech} vocabulary`,
+      imageUrl,
+      altText: `Photo representing "${word}"`,
+    });
+
+    if (gallery.length >= 6) break;
+  }
+
+  return gallery;
+}
 
 // ─── Noun photos ──────────────────────────────────────────────────────────────
 
@@ -98,10 +150,10 @@ export const PRONOUN_PHOTOS: POSPhotoEntry[] = [
   },
 ];
 
-// NOTE: No photo galleries for adjectives, adverbs, articles, prepositions, or conjunctions.
-// These POS are abstract — a photo of a "happy" person would make students think "woman" (noun),
-// not "happy" (adjective). For those groups, the walkthrough uses bold sentence highlighting
-// with large colorful text instead of photos.
+// NOTE: Abstract POS (adjectives, adverbs, articles, prepositions, conjunctions) are still
+// harder to represent with single images, so we prioritize sentence-highlight scaffolding.
+// These groups can still receive limited visual variety through generated galleries when the
+// vocabulary map provides a safe photo match.
 //
 // Photos work clearly for: nouns (the thing itself) and action verbs (the action itself).
 // Pronouns get simple person/group portrait photos with careful labeling.

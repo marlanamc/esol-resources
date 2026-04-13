@@ -47,6 +47,7 @@ interface POSGameInternalState {
   saveError: string | null;
   lockedGroupError: string | null;
   exerciseResults: ExerciseOutcome[];
+  recentlyUsedSentences: Record<string, string[]>;
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -215,6 +216,80 @@ function calculateOverallProgress(categoryData: Record<string, POSGroupProgress>
   return Math.round((passed / contentGroups.length) * 100);
 }
 
+function normalizeSentence(sentence: string): string {
+  return sentence.trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+function getExerciseSentence(exercise: POSExercise): string | null {
+  if (exercise.type === 'sentence-completion' || exercise.type === 'pattern-choice') {
+    return exercise.prompt;
+  }
+
+  if (exercise.type === 'error-correction' && exercise.errorCorrection?.sentence) {
+    return exercise.errorCorrection.sentence;
+  }
+
+  if (exercise.type === 'contrast-pair' && exercise.contrastPair?.sentence) {
+    return exercise.contrastPair.sentence;
+  }
+
+  if (exercise.type === 'function-match' && exercise.functionMatch?.sentence) {
+    return exercise.functionMatch.sentence;
+  }
+
+  if (exercise.type === 'minimal-pair' && exercise.minimalPair?.sentence1) {
+    return `${exercise.minimalPair.sentence1} ${exercise.minimalPair.sentence2}`;
+  }
+
+  if (exercise.type === 'mad-libs' && exercise.madLibsData?.sentenceParts) {
+    return exercise.madLibsData.sentenceParts.map(part => part.text).join(' ');
+  }
+
+  if (exercise.type === 'sentence-builder' && exercise.builderSlots?.length) {
+    return exercise.builderSlots.map(slot => slot.correctWord).join(' ');
+  }
+
+  if (exercise.type === 'pos-tagging' && exercise.taggingTokens?.length) {
+    return exercise.taggingTokens.map(token => token.word).join(' ');
+  }
+
+  return null;
+}
+
+function filterRecentSentences(exercises: POSExercise[], recentSentences: string[]): POSExercise[] {
+  const banned = new Set(recentSentences.map(sentence => normalizeSentence(sentence)));
+  if (!banned.size) return exercises;
+
+  const seen = new Set<string>();
+  const filtered: POSExercise[] = [];
+  for (const exercise of exercises) {
+    const sentence = getExerciseSentence(exercise);
+    const normalized = sentence ? normalizeSentence(sentence) : null;
+
+    if (normalized) {
+      if (banned.has(normalized) || seen.has(normalized)) continue;
+      seen.add(normalized);
+    }
+
+    filtered.push(exercise);
+  }
+
+  return filtered;
+}
+
+function getRoundSentences(exercises: POSExercise[]): string[] {
+  const sentences = new Set<string>();
+  for (const exercise of exercises) {
+    const sentence = getExerciseSentence(exercise);
+    if (sentence) sentences.add(normalizeSentence(sentence));
+  }
+  return [...sentences];
+}
+
+function getRecentSentences(state: POSGameInternalState, groupId: string): string[] {
+  return state.recentlyUsedSentences[groupId] ?? [];
+}
+
 function initializeProgressData(): Record<string, POSGroupProgress> {
   return {};
 }
@@ -235,6 +310,7 @@ export function usePartsOfSpeechGameState(activityId: string) {
     saveError: null,
     lockedGroupError: null,
     exerciseResults: [],
+    recentlyUsedSentences: {},
   });
 
   // Load progress on mount
@@ -282,12 +358,15 @@ export function usePartsOfSpeechGameState(activityId: string) {
           .filter(([, s]) => s.needsReview)
           .map(([id]) => id)
         : [];
+      const recentSentences = getRecentSentences(state, state.selectedGroup.id);
 
-      const exercises = generatePOSExercises(
+      const generatedExercises = generatePOSExercises(
         state.selectedGroup.id,
         state.selectedRoundMode,
         missedIds,
       );
+      const filtered = filterRecentSentences(generatedExercises, recentSentences);
+      const exercises = filtered.length ? filtered : generatedExercises;
 
       if (!exercises.length) {
         setState(prev => ({
@@ -312,7 +391,7 @@ export function usePartsOfSpeechGameState(activityId: string) {
         saveError: 'This level could not start. Please reload and try again.',
       }));
     }
-  }, [state.selectedGroup, state.selectedRoundMode, state.categoryData]);
+  }, [state.selectedGroup, state.selectedRoundMode, state.categoryData, state.recentlyUsedSentences]);
 
   const submitAnswer = useCallback((correct: boolean, exercise: POSExercise) => {
     setState(prev => {
@@ -328,12 +407,18 @@ export function usePartsOfSpeechGameState(activityId: string) {
           prev.categoryData,
         );
         const updatedCategoryData = roundResults.updatedCategoryData ?? prev.categoryData;
+        const usedSentences = getRoundSentences(prev.exercises);
+        const updatedRecent = {
+          ...prev.recentlyUsedSentences,
+          [prev.selectedGroup.id]: usedSentences,
+        };
         return {
           ...prev,
           currentExerciseIndex: newIndex,
           exerciseResults: newResults,
           roundResults,
           categoryData: updatedCategoryData,
+          recentlyUsedSentences: updatedRecent,
           phase: 'results',
         };
       }
@@ -378,10 +463,13 @@ export function usePartsOfSpeechGameState(activityId: string) {
 
   const retryGroup = useCallback(() => {
     if (!state.selectedGroup) return;
-    const exercises = generatePOSExercises(
+    const recentSentences = getRecentSentences(state, state.selectedGroup.id);
+    const generatedExercises = generatePOSExercises(
       state.selectedGroup.id,
       state.selectedRoundMode,
     );
+    const filtered = filterRecentSentences(generatedExercises, recentSentences);
+    const exercises = filtered.length ? filtered : generatedExercises;
     setState(prev => ({
       ...prev,
       exercises,
@@ -391,7 +479,7 @@ export function usePartsOfSpeechGameState(activityId: string) {
       phase: 'exercise',
       error: null,
     }));
-  }, [state.selectedGroup, state.selectedRoundMode]);
+  }, [state.selectedGroup, state.selectedRoundMode, state.recentlyUsedSentences]);
 
   const returnToGroupIntro = useCallback(() => {
     setState(prev => ({
@@ -409,16 +497,19 @@ export function usePartsOfSpeechGameState(activityId: string) {
     if (!state.selectedGroup) return;
     const nextStep = state.roundResults?.nextStep;
     const effectiveCategoryData = state.roundResults?.updatedCategoryData ?? state.categoryData;
+    const recentSentences = getRecentSentences(state, state.selectedGroup.id);
 
     // Advance to any next round (round2 through round5)
     const nextRoundModes: POSRoundMode[] = ['round2', 'round3', 'round4', 'round5'];
     if (nextStep && nextRoundModes.includes(nextStep as POSRoundMode)) {
       const nextRoundMode = nextStep as POSRoundMode;
-      const exercises = generatePOSExercises(
+      const generatedExercises = generatePOSExercises(
         state.selectedGroup.id,
         nextRoundMode,
         state.roundResults?.missedPatternIds,
       );
+      const filtered = filterRecentSentences(generatedExercises, recentSentences);
+      const exercises = filtered.length ? filtered : generatedExercises;
       setState(prev => ({
         ...prev,
         selectedRoundMode: nextRoundMode,
@@ -465,7 +556,7 @@ export function usePartsOfSpeechGameState(activityId: string) {
       exerciseResults: [],
       error: null,
     }));
-  }, [state.selectedGroup, state.roundResults, state.categoryData]);
+  }, [state.selectedGroup, state.roundResults, state.categoryData, state.recentlyUsedSentences]);
 
   const quitGame = useCallback(() => {
     setState(prev => ({
@@ -496,6 +587,7 @@ export function usePartsOfSpeechGameState(activityId: string) {
       setState(prev => ({
         ...prev,
         categoryData: {},
+        recentlyUsedSentences: {},
         phase: 'selection',
         selectedGroup: null,
         exercises: [],

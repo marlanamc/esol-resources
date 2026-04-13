@@ -20,15 +20,27 @@ let cachedSubjects: Record<string, boolean> | null = null;
 let cacheTimestamp = 0;
 let inflight: Promise<Record<string, boolean>> | null = null;
 
-function parseSubjects(activities: Array<Record<string, unknown>>): Record<string, boolean> {
-    const visibleActivities = activities.filter((activity) =>
-        isLearnerVisibleActivity({
-            type: typeof activity.type === "string" ? activity.type : null,
-            category: typeof activity.category === "string" ? activity.category : null,
-            isReleased: activity.isReleased === true,
-            content: typeof activity.content === "string" ? activity.content : null,
-        })
-    );
+interface LearnerMenuActivity {
+    id?: string;
+    type?: string | null;
+    category?: string | null;
+    isReleased?: boolean;
+    ui?: string | null;
+    isVisible?: boolean;
+}
+
+function isMenuActivityVisible(activity: LearnerMenuActivity): boolean {
+    if (typeof activity.isVisible === "boolean") return activity.isVisible;
+
+    return isLearnerVisibleActivity({
+        type: typeof activity.type === "string" ? activity.type : null,
+        category: activity.category ?? null,
+        isReleased: activity.isReleased === true,
+    });
+}
+
+function parseSubjects(activities: LearnerMenuActivity[]): Record<string, boolean> {
+    const visibleActivities = activities.filter(isMenuActivityVisible);
 
     return {
         vocabulary: visibleActivities.some((a) => typeof a.id === "string" && a.id.startsWith("vocab-")),
@@ -60,7 +72,7 @@ function fetchSubjectsCached(): Promise<Record<string, boolean>> {
         .then((res) => res.json())
         .then((activities) => {
             if (!Array.isArray(activities)) return {};
-            const subjects = parseSubjects(activities);
+            const subjects = parseSubjects(activities as LearnerMenuActivity[]);
             cachedSubjects = subjects;
             cacheTimestamp = Date.now();
             inflight = null;

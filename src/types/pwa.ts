@@ -24,4 +24,9 @@ export interface SubmissionOutboxSnapshot {
   failed: number;
   syncing: boolean;
   lastSyncAt?: string;
+  lastSyncDurationMs?: number;
+  lastSyncAttempted?: number;
+  lastSyncSucceeded?: number;
+  lastSyncFailed?: number;
+  lastSyncRequeued?: number;
 }

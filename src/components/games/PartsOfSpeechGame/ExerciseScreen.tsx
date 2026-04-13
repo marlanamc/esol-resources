@@ -16,6 +16,8 @@ import { FunctionMatchExercise } from './exercises/FunctionMatchExercise';
 import { MinimalPairExercise } from './exercises/MinimalPairExercise';
 import { SentenceBuilderExercise } from './exercises/SentenceBuilderExercise';
 import { PhotoSortExercise } from './exercises/PhotoSortExercise';
+import { ErrorCorrectionExercise } from './exercises/ErrorCorrectionExercise';
+import { ContrastPairExercise } from './exercises/ContrastPairExercise';
 import { SpeakButton } from './SpeakButton';
 import type { POSGroup, POSExercise, POSRoundMode } from '@/types/parts-of-speech';
 
@@ -32,6 +34,8 @@ const EXERCISE_TYPE_LABELS: Record<string, string> = {
   'minimal-pair': 'Compare Sentences',
   'sentence-builder': 'Build a Sentence',
   'photo-sort': 'Photo Match',
+  'error-correction': 'Fix the Common Error',
+  'contrast-pair': 'Choose the Best Fit',
 };
 
 function getRoundBadgeColor(roundMode: POSRoundMode): string {
@@ -68,6 +72,8 @@ function renderExercise(exercise: POSExercise, onAnswer: (correct: boolean) => v
     case 'minimal-pair':       return <MinimalPairExercise {...props} />;
     case 'sentence-builder':   return <SentenceBuilderExercise {...props} />;
     case 'photo-sort':         return <PhotoSortExercise {...props} />;
+    case 'error-correction':   return <ErrorCorrectionExercise {...props} />;
+    case 'contrast-pair':      return <ContrastPairExercise {...props} />;
     default: return <PatternChoiceExercise {...props} />;
   }
 }

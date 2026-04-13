@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { logger } from '@/lib/logger';
+import { createLearnerContentMetadataCache, getLearnerContentMetadata } from '@/lib/learner-visibility';
+import { parseActivityContent } from '@/types/activity';
 
 interface Activity {
     id: string;
@@ -101,13 +103,17 @@ const parseVerbQuizNum = (activity: Activity): number | null => {
     const match = title.match(/verb\s*quiz\s*(\d+)/i);
     if (match) return Number(match[1]);
 
-    try {
-        const content = JSON.parse(activity.content || '{}');
-        if (content?.type === 'verb-quiz' && typeof content?.week === 'string') {
-            const weekMatch = content.week.match(/week\s*(\d+)/i);
-            if (weekMatch) return Number(weekMatch[1]);
-        }
-    } catch { }
+    const content = parseActivityContent(activity.content || '{}');
+    if (!content || typeof content !== 'object' || Array.isArray(content)) return null;
+
+    const metadata = content as Record<string, unknown>;
+    const contentType = typeof metadata.type === 'string' ? metadata.type : null;
+    const weekValue = typeof metadata.week === 'string' ? metadata.week : null;
+
+    if (contentType === 'verb-quiz' && weekValue) {
+        const weekMatch = weekValue.match(/week\s*(\d+)/i);
+        if (weekMatch) return Number(weekMatch[1]);
+    }
 
     return null;
 };
@@ -788,6 +794,8 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
         ];
     }, [activities, buildGrammarSubCategories, buildGameSubCategories]);
 
+    const activityContentMetadataCache = useMemo(() => createLearnerContentMetadataCache(), []);
+
     const renderActivityCard = useCallback((activity: Activity) => {
         let isQuiz = false;
         let isSpeaking = false;
@@ -798,12 +806,10 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
             isGrammarGuide = true;
             isReleased = grammarReleases[activity.id] ?? activity.isReleased ?? false;
         } else {
-            try {
-                const content = JSON.parse(activity.content || '{}');
-                isQuiz = content.type === 'verb-quiz';
-                isSpeaking = content.type === 'speaking';
-                isReleased = content.released === true;
-            } catch {}
+            const contentMetadata = getLearnerContentMetadata(activity.content, activityContentMetadataCache);
+            isQuiz = contentMetadata.type === 'verb-quiz';
+            isSpeaking = contentMetadata.type === 'speaking';
+            isReleased = contentMetadata.releasedInContent;
         }
 
         return (
@@ -823,7 +829,17 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                 defaultClassId={defaultClassId}
             />
         );
-    }, [grammarReleases, featuredIds, handleReleaseLocal, handleAssignLocal, handleUnassignLocal, assigningId, assignError, defaultClassId]);
+    }, [
+        grammarReleases,
+        featuredIds,
+        activityContentMetadataCache,
+        handleReleaseLocal,
+        handleAssignLocal,
+        handleUnassignLocal,
+        assigningId,
+        assignError,
+        defaultClassId,
+    ]);
 
     const renderChunkedActivities = useCallback(
         (listKey: string, activitiesList: Activity[], className: string) => {

@@ -5,6 +5,8 @@ import { prisma } from "@/lib/prisma";
 import { isTeacherAdmin } from "@/lib/roles";
 import { ApiErrors, apiError } from "@/lib/api-response";
 import { logger } from "@/lib/logger";
+import { getLearnerContentMetadata } from "@/lib/learner-visibility";
+import { supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -50,7 +52,10 @@ export async function POST(request: Request) {
     await prisma.activity.update({
         where: { id: activityId },
         data: {
-            content: JSON.stringify(content)
+            content: JSON.stringify(content),
+            ...(supportsActivityIsReleasedInContent()
+                ? { isReleasedInContent: getLearnerContentMetadata(content).releasedInContent }
+                : {}),
         }
     });
 

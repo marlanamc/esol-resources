@@ -4,6 +4,8 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { canManageActivity, ensureTeacher } from "@/lib/policies";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { getLearnerContentMetadata } from "@/lib/learner-visibility";
+import { supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -55,6 +57,9 @@ export async function PUT(request: NextRequest, { params }: Props) {
                 category: category || null,
                 level: level || null,
                 content,
+                ...(supportsActivityIsReleasedInContent()
+                    ? { isReleasedInContent: getLearnerContentMetadata(content).releasedInContent }
+                    : {}),
             },
         });
 

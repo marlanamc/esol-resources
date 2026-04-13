@@ -43,7 +43,15 @@ export default async function ClassDetailPage({ params }: Props) {
             },
             assignments: {
                 include: {
-                    activity: true,
+                        activity: {
+                            select: {
+                                id: true,
+                                title: true,
+                                description: true,
+                                type: true,
+                                ui: true,
+                            },
+                        },
                 },
                 orderBy: { createdAt: "desc" },
             },

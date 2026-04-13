@@ -10,6 +10,7 @@ import { calculateNumbersGameCompletionPercentage, isNumbersGameCategoryName } f
 import { applyAwardChain } from "@/lib/gamification-award-chain";
 import { logger } from "@/lib/logger";
 import { ApiErrors, apiError } from "@/lib/api-response";
+import { timedQuery } from "@/lib/perf-log";
 
 const VOCAB_TYPES = ['word-list', 'flashcards', 'matching', 'fill-blank'] as const;
 
@@ -42,6 +43,19 @@ function asObject(value: unknown): Record<string, unknown> | null {
 
 function asBoolean(value: unknown): boolean {
     return value === true;
+}
+
+function readIdempotencyKey(request: Request): string | null {
+    const key = request.headers.get("x-idempotency-key");
+    if (!key) return null;
+    const trimmed = key.trim();
+    return trimmed.length > 0 ? trimmed : null;
+}
+
+function getProgressIdempotencyKey(categoryData: Record<string, unknown> | null): string | null {
+    if (!categoryData) return null;
+    const idempotencyValue = categoryData.pwaLastProgressIdempotencyKey;
+    return typeof idempotencyValue === "string" && idempotencyValue.trim().length > 0 ? idempotencyValue : null;
 }
 
 function asNumber(value: unknown): number | null {
@@ -343,7 +357,9 @@ export function shouldAwardProgressPoints(params: {
 }
 
 export async function POST(request: NextRequest) {
+    const idempotencyKey = readIdempotencyKey(request);
     const session = await getServerSession(authOptions);
+    const startedAt = Date.now();
 
     if (!session?.user) {
         return ApiErrors.unauthorized();
@@ -385,10 +401,19 @@ export async function POST(request: NextRequest) {
         where: progressWhere,
     });
 
-    const activity = await prisma.activity.findUnique({
-        where: { id: activityId },
-        select: { type: true, title: true, content: true, ui: true, category: true }
-    });
+    const activity = await timedQuery(
+        {
+            route: "/api/activity/progress",
+            queryLabel: "activity.findUnique.progress",
+            userRole: session.user?.role,
+        },
+        () =>
+            prisma.activity.findUnique({
+                where: { id: activityId },
+                select: { type: true, title: true, content: true, ui: true, category: true }
+            }),
+        (result) => (result ? 1 : 0)
+    );
     const activityGameUi = activity ? resolveActivityGameUi(activity) : "unknown";
     const isPronunciationPracticeActivity =
         activity?.type === "game" &&
@@ -412,6 +437,24 @@ export async function POST(request: NextRequest) {
             }
         })()
         : {};
+    const duplicateProgressIdempotencyKey = getProgressIdempotencyKey(currentData);
+    if (idempotencyKey && existing && duplicateProgressIdempotencyKey === idempotencyKey) {
+        const payload = {
+            ok: true,
+            progress: existing.progress,
+            status: existing.status,
+            pointsAwarded: 0,
+        };
+        logger.info("api.activity.progress.response", {
+            route: "/api/activity/progress",
+            userRole: session.user?.role,
+            durationMs: Date.now() - startedAt,
+            payloadBytes: JSON.stringify(payload).length,
+            duplicate: true,
+            pointsAwarded: 0,
+        });
+        return NextResponse.json(payload);
+    }
 
     if (category) {
         // Update or add this category's progress
@@ -482,6 +525,14 @@ export async function POST(request: NextRequest) {
         progress: progressValue,
         status: finalStatus,
     };
+    if (idempotencyKey) {
+        currentData.pwaLastProgressIdempotencyKey = idempotencyKey;
+        currentData.pwaLastProgressSyncedAt = new Date().toISOString();
+        if (!updatedCategoryData) {
+            updatedCategoryData = JSON.stringify(currentData);
+        }
+    }
+
     if (updatedCategoryData) {
         Object.assign(progressData, { categoryData: updatedCategoryData });
     }
@@ -758,5 +809,19 @@ export async function POST(request: NextRequest) {
         }
     }
 
-    return NextResponse.json({ ok: true, progress: record.progress, status: record.status, pointsAwarded });
+    const payload = {
+        ok: true,
+        progress: record.progress,
+        status: record.status,
+        pointsAwarded,
+    };
+    logger.info("api.activity.progress.response", {
+        route: "/api/activity/progress",
+        userRole: session.user?.role,
+        durationMs: Date.now() - startedAt,
+        payloadBytes: JSON.stringify(payload).length,
+        pointsAwarded,
+        duplicate: false,
+    });
+    return NextResponse.json(payload);
 }

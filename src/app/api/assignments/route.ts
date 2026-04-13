@@ -39,6 +39,10 @@ export async function POST(request: NextRequest) {
                 id: activityId,
                 deletedAt: null,
             },
+            select: {
+                id: true,
+                createdBy: true,
+            },
         });
 
         if (!activity) {

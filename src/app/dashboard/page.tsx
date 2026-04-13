@@ -33,9 +33,13 @@ import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPending
 import { isTeacherAdmin } from "@/lib/roles";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
-import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import {
+    createLearnerContentMetadataCache,
+    isLearnerVisibleActivity,
+} from "@/lib/learner-visibility";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
 import { resolveLearnerMode } from "@/lib/learner-mode";
+import { supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 
 type TeacherAssignment = {
     id: string;
@@ -759,6 +763,9 @@ export default async function DashboardPage() {
                                                     type: true,
                                                     category: true,
                                                     isReleased: true,
+                            ...(supportsActivityIsReleasedInContent()
+                                ? { isReleasedInContent: true }
+                                : {}),
                                                     content: true,
                                                 },
                                             },
@@ -788,12 +795,14 @@ export default async function DashboardPage() {
                 type: string;
                 category?: string | null;
                 isReleased?: boolean;
+                isReleasedInContent?: boolean | null;
                 content?: string | null;
             };
         };
 
+        const learnerVisibilityCache = createLearnerContentMetadataCache();
         const filterReleasedActivities = (assignment: ReleasableAssignment) => {
-            return isLearnerVisibleActivity(assignment.activity);
+            return isLearnerVisibleActivity(assignment.activity, learnerVisibilityCache);
         };
 
         const allAssignments = enrollments.flatMap((enrollment: StudentEnrollment) =>
@@ -825,34 +834,37 @@ export default async function DashboardPage() {
             () =>
                 withPrismaReadRetry(() =>
                     prisma.assignment.findMany({
-            where: {
-                classId: { in: featuredClassIds },
-                isFeatured: true,
-                activity: { id: { not: "" } }
-            },
-            include: {
-                activity: {
-                    select: {
-                        id: true,
-                        title: true,
-                        description: true,
-                                        type: true,
-                                        category: true,
-                                        isReleased: true,
-                                        content: true,
-                                    },
+                        where: {
+                            classId: { in: featuredClassIds },
+                            isFeatured: true,
+                            activity: { id: { not: "" } },
+                        },
+                        include: {
+                            activity: {
+                                select: {
+                                    id: true,
+                                    title: true,
+                                    description: true,
+                                    type: true,
+                                    category: true,
+                                    isReleased: true,
+                                    ...(supportsActivityIsReleasedInContent()
+                                        ? { isReleasedInContent: true }
+                                        : {}),
+                                    content: true,
                                 },
-                submissions: {
-                    where: { userId },
-                    select: {
-                        id: true,
-                        status: true,
-                        completedAt: true,
-                        score: true
-                    }
-                }
-            },
-            orderBy: { createdAt: "desc" }
+                            },
+                            submissions: {
+                                where: { userId },
+                                select: {
+                                    id: true,
+                                    status: true,
+                                    completedAt: true,
+                                    score: true,
+                                },
+                            },
+                        },
+                        orderBy: { createdAt: "desc" },
                     })
                 ),
             (result) => result.length

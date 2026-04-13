@@ -6,6 +6,7 @@ import { grammarTopics } from "@/data/grammar-map";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { parseActivityContent } from "@/types/activity";
+import { supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 import type {
     LearnerSearchAvailability,
     LearnerSearchFilter,
@@ -26,6 +27,7 @@ type SearchActivitySource = {
     ui: string | null;
     content: string | null;
     isReleased: boolean;
+    isReleasedInContent?: boolean | null;
     deletedAt: Date | null;
     createdBy: string | null;
 };
@@ -584,6 +586,9 @@ async function fetchActivitySources(): Promise<SearchActivitySource[]> {
                 ui: true,
                 content: true,
                 isReleased: true,
+                ...(supportsActivityIsReleasedInContent()
+                    ? { isReleasedInContent: true }
+                    : {}),
                 deletedAt: true,
                 createdBy: true,
             },

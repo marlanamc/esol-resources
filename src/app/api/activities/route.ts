@@ -4,8 +4,11 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import { ensureTeacher } from "@/lib/policies";
-import { filterLearnerVisibleActivities } from "@/lib/learner-visibility";
+import { createLearnerContentMetadataCache, filterLearnerVisibleActivities, getLearnerContentMetadata } from "@/lib/learner-visibility";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { logger } from "@/lib/logger";
+import { timedQuery } from "@/lib/perf-log";
+import { supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 
 export async function POST(request: NextRequest) {
     try {
@@ -33,6 +36,9 @@ export async function POST(request: NextRequest) {
                 category: category || null,
                 level: level || null,
                 content,
+                ...(supportsActivityIsReleasedInContent()
+                    ? { isReleasedInContent: getLearnerContentMetadata(content).releasedInContent }
+                    : {}),
                 createdBy: session.user.id,
             },
         });
@@ -57,14 +63,57 @@ export async function GET() {
 
         // For students, filter at database level for grammar guides
         if (userRole === "student") {
-            const activities = await prisma.activity.findMany({
-                where: {
-                    deletedAt: null,
+            const visibilityCache = createLearnerContentMetadataCache();
+            const studentActivities = await timedQuery(
+                {
+                    route: "/api/activities",
+                    queryLabel: "activity.findMany.student",
+                    userRole,
                 },
-                orderBy: { createdAt: "desc" },
-            });
+                () =>
+                    prisma.activity.findMany({
+                        where: {
+                            deletedAt: null,
+                        },
+                        select: {
+                            id: true,
+                            title: true,
+                            description: true,
+                            type: true,
+                            category: true,
+                            level: true,
+                            ui: true,
+                            isReleased: true,
+                            ...(supportsActivityIsReleasedInContent() ? { isReleasedInContent: true } : {}),
+                            content: true,
+                        },
+                        orderBy: { createdAt: "desc" },
+                    }),
+                (result) => result.length
+            );
 
-            return NextResponse.json(collapseEdPronunciationActivities(filterLearnerVisibleActivities(activities)));
+            const visibleActivities = collapseEdPronunciationActivities(
+                filterLearnerVisibleActivities(studentActivities, visibilityCache)
+            )
+                .map((activity) => ({
+                    id: activity.id,
+                    title: activity.title,
+                    description: activity.description,
+                    type: activity.type,
+                    category: activity.category,
+                    level: activity.level,
+                    ui: activity.ui,
+                    isReleased: activity.isReleased,
+                    isVisible: true,
+                }));
+
+            logger.info("api.activities.student.payload", {
+                route: "/api/activities",
+                role: userRole,
+                payloadBytes: JSON.stringify(visibleActivities).length,
+                activityCount: visibleActivities.length,
+            });
+            return NextResponse.json(visibleActivities);
         }
 
         const teacherCheck = ensureTeacher(session.user);
@@ -74,14 +123,42 @@ export async function GET() {
         const admin = teacherCheck.admin;
 
         // Teachers see their own activities. Admin sees all activities.
-        const activities = await prisma.activity.findMany({
-            where: admin
-                ? { deletedAt: null }
-                : { deletedAt: null, createdBy: session.user.id },
-            orderBy: { createdAt: "desc" },
-        });
+        const activities = await timedQuery(
+            {
+                route: "/api/activities",
+                queryLabel: "activity.findMany.teacherAdmin",
+                userRole,
+            },
+            () =>
+                prisma.activity.findMany({
+                    where: admin
+                        ? { deletedAt: null }
+                        : { deletedAt: null, createdBy: session.user.id },
+                    select: {
+                        id: true,
+                        title: true,
+                        description: true,
+                        type: true,
+                        category: true,
+                        level: true,
+                        ui: true,
+                        isReleased: true,
+                        ...(supportsActivityIsReleasedInContent() ? { isReleasedInContent: true } : {}),
+                    },
+                    orderBy: { createdAt: "desc" },
+                }),
+            (result) => result.length
+        );
 
-        return NextResponse.json(collapseEdPronunciationActivities(activities));
+        const response = collapseEdPronunciationActivities(activities).map((activity) => ({ ...activity, isVisible: true }));
+        logger.info("api.activities.teacher.payload", {
+            route: "/api/activities",
+            role: userRole,
+            payloadBytes: JSON.stringify(response).length,
+            activityCount: response.length,
+            admin,
+        });
+        return NextResponse.json(response);
     } catch (error) {
         return handleApiError(error, {
             defaultMessage: "Failed to fetch activities",

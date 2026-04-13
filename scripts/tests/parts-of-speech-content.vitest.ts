@@ -3,18 +3,9 @@ import { ALL_POS_GROUPS, getPOSGroup } from "@/data/parts-of-speech-groups";
 import {
   generateCheckpointExercises,
   generateRound1Exercises,
+  generateRound4Exercises,
 } from "@/data/parts-of-speech-exercises";
 import type { POSExercise, POSGroup } from "@/types/parts-of-speech";
-
-const HIGH_VARIETY_GROUP_IDS = new Set([
-  "pos-1-verbs",
-  "pos-2-nouns",
-  "pos-3-pronouns",
-  "pos-4-articles",
-  "pos-9-adjective",
-  "pos-11-adverb",
-  "pos-13-preposition",
-]);
 
 function sentenceFromExercise(exercise: POSExercise): string | null {
   switch (exercise.type) {
@@ -40,12 +31,30 @@ function groupOrThrow(id: string): POSGroup {
   return group;
 }
 
-describe("Parts of speech content expansion", () => {
-  it("gives each non-checkpoint pattern at least the target number of examples", () => {
+describe("Parts of speech content integrity", () => {
+  it("does not include synthetic sentence extensions in authored examples", () => {
+    const bannedFragments = [
+      "Before the appointment, ",
+      "At the clinic, ",
+      "At urgent care, ",
+      "During care visits, ",
+      "Most days, ",
+      "In daily life, ",
+      "As a reminder, ",
+      "Over time, ",
+      "before I call the nurse back",
+      "while I wait for results",
+      "during follow-up care",
+      "to sound more natural",
+    ];
+
     for (const group of ALL_POS_GROUPS.filter((entry) => !entry.isCheckpoint)) {
-      const minExamples = HIGH_VARIETY_GROUP_IDS.has(group.id) ? 5 : 4;
       for (const pattern of group.patterns) {
-        expect(pattern.examples.length, `${group.id}/${pattern.id}`).toBeGreaterThanOrEqual(minExamples);
+        for (const example of pattern.examples) {
+          for (const fragment of bannedFragments) {
+            expect(example.sentence, `${pattern.id} includes synthetic fragment: ${fragment}`).not.toContain(fragment);
+          }
+        }
       }
     }
   });
@@ -67,7 +76,7 @@ describe("Parts of speech content expansion", () => {
     }
   });
 
-  it("avoids unnatural frequency adverbs on origin sentences", () => {
+  it("keeps the original be-verb introduction sentence intact", () => {
     const beGroup = groupOrThrow("pos-1-verbs");
     const bePattern = beGroup.patterns.find((pattern) => pattern.id === "verb-state-be");
 
@@ -77,13 +86,43 @@ describe("Parts of speech content expansion", () => {
     }
 
     const originExamples = bePattern.examples.filter((example) =>
-      /from el salvador/i.test(example.sentence)
+      /^I ___ from El Salvador\.$/i.test(example.sentence)
     );
 
     expect(originExamples.length).toBeGreaterThan(0);
     for (const example of originExamples) {
-      expect(example.sentence).not.toMatch(/^(Usually|Most days|In daily life),/);
+      expect(example.sentence).toBe("I ___ from El Salvador.");
     }
+  });
+
+  it('keeps grouped verb forms intact in round 4 choices', () => {
+    const beGroup = groupOrThrow("pos-1-verbs");
+    const malformedChoices = new Set<string>();
+    const groupedChoices = new Set<string>();
+
+    for (let i = 0; i < 30; i += 1) {
+      const exercises = generateRound4Exercises(beGroup);
+      for (const exercise of exercises) {
+        const pool = [
+          ...(exercise.options ?? []),
+          ...(exercise.errorCorrection?.wrongWords ?? []),
+        ];
+
+        for (const choice of pool) {
+          if (choice === "be (am" || choice === "are)") {
+            malformedChoices.add(choice);
+          }
+          if (choice === "am" || choice === "is" || choice === "are") {
+            groupedChoices.add(choice);
+          }
+        }
+      }
+    }
+
+    expect(malformedChoices.size).toBe(0);
+    expect([...groupedChoices]).toEqual(
+      expect.arrayContaining(["am", "is", "are"])
+    );
   });
 });
 

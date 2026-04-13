@@ -44,8 +44,17 @@ export async function GET() {
         const featuredAssignments = featuredClassIds.length === 0 ? [] : await prisma.assignment.findMany({
             where: buildFeaturedAssignmentsWhere(featuredClassIds),
             include: {
-                activity: true,
-                class: true,
+                activity: {
+                    select: {
+                        id: true,
+                        title: true,
+                        description: true,
+                        type: true,
+                        category: true,
+                        ui: true,
+                        isReleased: true,
+                    },
+                },
                 submissions: {
                     where: { userId },
                     select: {

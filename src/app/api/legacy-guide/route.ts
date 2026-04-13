@@ -8,7 +8,6 @@ import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 import type { LegacyGuideResponse } from "@/types/activity";
 
 // This route intentionally reads from project-level legacy assets outside src/.
-// Tell Turbopack not to treat process.cwd() as a broad tracing root.
 const LEGACY_BASE = path.join(/*turbopackIgnore: true*/ process.cwd(), "_legacy", "activities");
 const LEGACY_CSS_BASE = path.join(/*turbopackIgnore: true*/ process.cwd(), "css-from-legacy", "main.css");
 
@@ -22,30 +21,12 @@ async function fileExists(filePath: string) {
 }
 
 /**
- * Ensures the resolved path is contained under LEGACY_BASE to prevent path traversal.
- * Uses path.resolve + path.relative to enforce containment.
+ * Ensures the requested path is contained under LEGACY_BASE to prevent traversal.
  */
 function isPathUnderBase(filePath: string, base: string): boolean {
-    const resolved = path.resolve(filePath);
-    const relative = path.relative(base, resolved);
+    const normalized = path.normalize(filePath);
+    const relative = path.relative(/*turbopackIgnore: true*/ base, normalized);
     return !relative.startsWith("..") && !path.isAbsolute(relative);
-}
-
-async function findFileByName(fileName: string) {
-    const stack = [LEGACY_BASE];
-    while (stack.length) {
-        const current = stack.pop()!;
-        const entries = await fs.readdir(current, { withFileTypes: true });
-        for (const entry of entries) {
-            const fullPath = path.join(current, entry.name);
-            if (entry.isDirectory()) {
-                stack.push(fullPath);
-            } else if (entry.isFile() && entry.name === fileName) {
-                return fullPath;
-            }
-        }
-    }
-    return null;
 }
 
 export async function GET(req: Request) {
@@ -67,22 +48,13 @@ export async function GET(req: Request) {
 
     // Sanitize: remove leading slashes and path separators that could escape base
     const sanitized = fileParam.replace(/^[/\\]+/, "").replace(/\.\./g, "");
-    const requestedPath = path.resolve(LEGACY_BASE, sanitized);
+    const requestedPath = path.join(/*turbopackIgnore: true*/ LEGACY_BASE, sanitized);
 
     let resolvedPath: string | null = null;
 
     // Only use requested path if it stays inside LEGACY_BASE and exists
     if (isPathUnderBase(requestedPath, LEGACY_BASE) && (await fileExists(requestedPath))) {
         resolvedPath = requestedPath;
-    } else {
-        // Fallback: search by filename (basename only, no path) anywhere inside legacy activities
-        const basename = path.basename(sanitized);
-        if (basename && !basename.includes("..")) {
-            const found = await findFileByName(basename);
-            if (found && isPathUnderBase(found, LEGACY_BASE)) {
-                resolvedPath = found;
-            }
-        }
     }
 
     if (!resolvedPath) {

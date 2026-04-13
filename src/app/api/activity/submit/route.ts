@@ -9,6 +9,8 @@ import { applyAwardChain } from "@/lib/gamification-award-chain";
 import { acquireUserActivityScopeLock } from "@/lib/db-locks";
 import { normalizeAssignmentId } from "@/lib/assignment-scope";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { logger } from "@/lib/logger";
+import { timedQuery } from "@/lib/perf-log";
 
 export { normalizeAssignmentId };
 
@@ -183,6 +185,7 @@ export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
         const idempotencyKey = readIdempotencyKey(request);
+        const startedAt = Date.now();
 
         if (!session?.user) {
             return ApiErrors.unauthorized();
@@ -200,13 +203,22 @@ export async function POST(request: NextRequest) {
         const userId = session.user.id;
 
         // Fetch activity to calculate points server-side
-        const activity = await prisma.activity.findFirst({
-            where: {
-                id: activityId,
-                deletedAt: null,
+        const activity = await timedQuery(
+            {
+                route: "/api/activity/submit",
+                queryLabel: "activity.findFirst.submit",
+                userRole: session.user?.role,
             },
-            select: { title: true, type: true, id: true, content: true, ui: true }
-        });
+            () =>
+                prisma.activity.findFirst({
+                    where: {
+                        id: activityId,
+                        deletedAt: null,
+                    },
+                    select: { title: true, type: true, id: true, content: true, ui: true }
+                }),
+            (result) => (result ? 1 : 0)
+        );
 
         if (!activity) {
             return ApiErrors.notFound("Activity", activityId);
@@ -318,13 +330,23 @@ export async function POST(request: NextRequest) {
         });
 
         if (submissionResult.duplicateFromIdempotency) {
-            return NextResponse.json({
+            const responsePayload = {
                 ok: true,
                 duplicate: true,
                 submissionId: submissionResult.submissionId,
                 score: submissionResult.score,
                 points: 0,
+            };
+            logger.info("api.activity.submit.response", {
+                route: "/api/activity/submit",
+                userRole: session.user.role,
+                durationMs: Date.now() - startedAt,
+                duplicate: true,
+                payloadBytes: JSON.stringify(responsePayload).length,
+                pointsAwarded: 0,
+                assignmentProvided: Boolean(assignmentId),
             });
+            return NextResponse.json(responsePayload);
         }
 
         const duplicate = submissionResult.duplicateFromClaim;
@@ -355,13 +377,23 @@ export async function POST(request: NextRequest) {
             }
         }
 
-        return NextResponse.json({
+        const responsePayload = {
             ok: true,
             duplicate,
             submissionId: submissionResult.submissionId,
             score: submissionResult.score,
-            points: duplicate ? 0 : calculatedPoints
+            points: duplicate ? 0 : calculatedPoints,
+        };
+        logger.info("api.activity.submit.response", {
+            route: "/api/activity/submit",
+            userRole: session.user.role,
+            durationMs: Date.now() - startedAt,
+            duplicate,
+            payloadBytes: JSON.stringify(responsePayload).length,
+            pointsAwarded: duplicate ? 0 : calculatedPoints,
+            assignmentProvided: Boolean(assignmentId),
         });
+        return NextResponse.json(responsePayload);
     } catch (error) {
         return handleApiError(error, {
             defaultMessage: "Failed to submit activity",

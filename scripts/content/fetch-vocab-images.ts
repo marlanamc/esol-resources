@@ -31,12 +31,16 @@ import { LEVEL1_PUBLIC_VOCAB_UNITS } from "../../src/data/public-level1-vocab";
 const OUT_FILE = path.join(__dirname, "../../src/data/vocab-images-generated.ts");
 const OVERRIDES_FILE = path.join(__dirname, "../../src/data/vocab-images-overrides.ts");
 
-/** Pixabay Access Key for --search mode. */
-const ACCESS_KEY = process.env.PIXABAY_API_KEY?.trim();
+/** Unsplash Access Key for --search mode. */
+const ACCESS_KEY =
+  process.env.UNSPLASH_ACCESS_KEY?.trim() ||
+  process.env.UNSPLASH_CLIENT_ID?.trim() ||
+  process.env.UNSPLASH_ACCESS_KEY_ID?.trim() ||
+  process.env.PIXABAY_API_KEY?.trim();
 
 const DEFAULT_DELAY_MS = 500;
 const DELAY_MS = (() => {
-  const raw = process.env.PIXABAY_DELAY_MS?.trim();
+  const raw = process.env.UNSPLASH_DELAY_MS?.trim() || process.env.PIXABAY_DELAY_MS?.trim();
   if (!raw) return DEFAULT_DELAY_MS;
   const n = Number.parseInt(raw, 10);
   return Number.isFinite(n) && n >= 0 ? n : DEFAULT_DELAY_MS;
@@ -792,53 +796,56 @@ ${entries}
   fs.writeFileSync(OUT_FILE, output, "utf-8");
 }
 
-interface PixabayPhoto {
-  id: number;
-  webformatURL: string;
-  largeImageURL?: string;
-}
-
-interface PixabaySearchResponse {
-  hits: PixabayPhoto[];
-  totalHits: number;
+interface UnsplashPhoto {
+  id: string;
+  urls: {
+    raw?: string;
+    full?: string;
+    regular?: string;
+    small?: string;
+  };
 }
 
 /**
- * Picks an image for `query`, avoiding Pixabay photo IDs already used in this run
+ * Picks an image for `query`, avoiding Unsplash photo IDs already used in this run
  * (stops “same #1 result” when searches overlap). May request a second page if needed.
  */
-async function fetchPixabayImage(
+async function fetchUnsplashImage(
   query: string,
   usedPhotoIds: Set<string>
 ): Promise<{ url: string; id: string } | null> {
   if (!ACCESS_KEY) return null;
 
-  const fetchPage = async (page: number): Promise<PixabayPhoto[]> => {
-    const url = new URL("https://pixabay.com/api/");
-    url.searchParams.set("key", ACCESS_KEY);
-    url.searchParams.set("q", query);
-    url.searchParams.set("image_type", "photo");
+  const fetchPage = async (page: number): Promise<UnsplashPhoto[]> => {
+    const url = new URL("https://api.unsplash.com/search/photos");
+    url.searchParams.set("query", query);
     url.searchParams.set("per_page", "30");
     url.searchParams.set("page", String(page));
-    url.searchParams.set("safesearch", "true");
+    url.searchParams.set("content_filter", "high");
+    url.searchParams.set("orientation", "landscape");
 
-    const response = await fetch(url.toString());
+    const response = await fetch(url.toString(), {
+      headers: {
+        Authorization: `Client-ID ${ACCESS_KEY}`,
+        "Accept-Version": "v1",
+      },
+    });
 
     if (response.status === 429) {
-      throw new Error(`Pixabay rate limit exceeded. Wait or check account.`) as Error & {
+      throw new Error(`Unsplash rate limit exceeded. Wait or check quota.`) as Error & {
         isRateLimit: boolean;
       };
     }
 
     if (!response.ok) {
-      throw new Error(`Pixabay API error ${response.status}: ${response.statusText}`);
+      throw new Error(`Unsplash API error ${response.status}: ${response.statusText}`);
     }
 
-    const data: PixabaySearchResponse = await response.json();
-    return data.hits ?? [];
+    const data = (await response.json()) as { results?: UnsplashPhoto[] };
+    return data.results ?? [];
   };
 
-  let firstPageForFallback: PixabayPhoto[] = [];
+  let firstPageForFallback: UnsplashPhoto[] = [];
 
   for (let page = 1; page <= 2; page++) {
     const results = await fetchPage(page);
@@ -848,7 +855,7 @@ async function fetchPixabayImage(
     for (const photo of results) {
       if (!photo.id) continue;
       const idStr = String(photo.id);
-      const imageUrl = photo.webformatURL ?? photo.largeImageURL;
+      const imageUrl = photo.urls?.regular || photo.urls?.small || photo.urls?.full || photo.urls?.raw;
       if (!imageUrl) continue;
       if (!usedPhotoIds.has(idStr)) {
         usedPhotoIds.add(idStr);
@@ -860,14 +867,14 @@ async function fetchPixabayImage(
   const fallback = firstPageForFallback[0];
   if (!fallback?.id) return null;
   const fallbackStr = String(fallback.id);
-  const imageUrl = fallback.webformatURL ?? fallback.largeImageURL;
-  if (!imageUrl) return null;
+  const fallbackUrl = fallback.urls?.regular || fallback.urls?.small || fallback.urls?.full || fallback.urls?.raw;
+  if (!fallbackUrl) return null;
 
   console.warn(
-    `  [vocab:images] No unused photo for "${query.slice(0, 80)}${query.length > 80 ? "…" : ""}" — reusing Pixabay id ${fallbackStr}`
+    `  [vocab:images] No unused photo for "${query.slice(0, 80)}${query.length > 80 ? "…" : ""}" — reusing Unsplash id ${fallbackStr}`
   );
   usedPhotoIds.add(fallbackStr);
-  return { url: imageUrl, id: fallbackStr };
+  return { url: fallbackUrl, id: fallbackStr };
 }
 
 async function resolveUrl(
@@ -883,10 +890,10 @@ async function resolveUrl(
   if (query === null) {
     return buildStaticUrl(term, category);
   }
-  let picked = await fetchPixabayImage(query, usedPhotoIds);
+  let picked = await fetchUnsplashImage(query, usedPhotoIds);
   if (!picked && query !== term) {
     await sleep(DELAY_MS);
-    picked = await fetchPixabayImage(term, usedPhotoIds);
+    picked = await fetchUnsplashImage(term, usedPhotoIds);
   }
   return picked?.url ?? buildStaticUrl(term, category);
 }
@@ -913,7 +920,7 @@ async function main(): Promise<void> {
     (args.includes("--theme") ? args[args.indexOf("--theme") + 1] ?? "" : "");
 
   if (useSearch && !ACCESS_KEY) {
-    console.error("Error: --search requires PIXABAY_API_KEY in .env");
+    console.error("Error: --search requires UNSPLASH_ACCESS_KEY in .env");
     process.exit(1);
   }
 
@@ -930,7 +937,7 @@ async function main(): Promise<void> {
   if (forceAll) {
     toProcess = allTerms;
     console.log(
-      `--force: regenerating ${allTerms.length} terms (${useSearch ? "Pixabay" : "static.photos"}).\n`
+      `--force: regenerating ${allTerms.length} terms (${useSearch ? "Unsplash" : "static.photos"}).\n`
     );
   } else if (refetchTerms.size > 0) {
     toProcess = allTerms.filter((t) => refetchTerms.has(t.term));
@@ -968,7 +975,7 @@ async function main(): Promise<void> {
 
   console.log(
     useSearch
-      ? `Pixabay delay: ${DELAY_MS}ms between requests (set PIXABAY_DELAY_MS to tune).\n`
+      ? `Unsplash delay: ${DELAY_MS}ms between requests (set UNSPLASH_DELAY_MS to tune).\n`
       : `Using static.photos (no API). Size: ${DEFAULT_SIZE} (VOCAB_IMAGE_SIZE).\n`
   );
 
@@ -986,7 +993,7 @@ async function main(): Promise<void> {
   let errors = 0;
 
   const list = toProcess;
-  /** One run = one set of Pixabay IDs so we don’t reuse the same stock photo across terms. */
+  /** One run = one set of Unsplash IDs so we don’t reuse the same stock photo across terms. */
   const usedUnsplashPhotoIds = new Set<string>();
 
   for (let i = 0; i < list.length; i++) {
