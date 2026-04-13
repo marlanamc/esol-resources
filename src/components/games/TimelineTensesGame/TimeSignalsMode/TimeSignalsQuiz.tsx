@@ -6,13 +6,17 @@ import { CheckCircle, XCircle } from 'lucide-react';
 import { TimelineCanvas } from '../TimelineCanvas';
 import { highlightSentenceFeatures } from '../highlightUtils';
 import type { TimeSignalExample, TimeSignalGroup, TimeSignalEntry } from '@/data/timeline-time-expressions';
+import { getAllTimeSignalEntries } from '@/data/timeline-time-expressions';
 import type { TimelineElement } from '@/types/activity';
 
 interface QuizQuestion {
   entry: TimeSignalEntry;
   groupId: string;
   example: TimeSignalExample;
-  options: TimelineElement[][];
+  options: {
+    elements: TimelineElement[];
+    label: string;
+  }[];
   correctIndex: number;
 }
 
@@ -34,18 +38,137 @@ function shuffleArray<T>(arr: T[], seed: number): T[] {
 }
 
 const MAX_QUIZ_QUESTIONS = 8;
+const MAX_QUIZ_OPTIONS = 4;
+
+type TimelineOption = {
+  elements: TimelineElement[];
+  label: string;
+};
+
+const ALL_TIME_SIGNAL_ENTRIES = getAllTimeSignalEntries();
+
+function timelineSignature(elements: TimelineElement[]): string {
+  return elements
+    .map((element) => `${element.type}|${element.zone}|${Math.round(element.position / 5) * 5}`)
+    .sort()
+    .join('::');
+}
+
+function timelineLabelForElements(elements: TimelineElement[]): string {
+  const hasDuration = elements.some((element) => element.type === 'solid-line' || element.type === 'dashed-line' || element.type === 'solid-to-now' || element.type === 'solid-to-point');
+  const hasArc = elements.some((element) => element.type === 'arc' || element.type === 'arc-dashed');
+  const hasRepeats = elements.some((element) => element.type === 'multiple-dots');
+  const hasFuture = elements.some((element) => element.zone === 'future');
+  const hasPresent = elements.some((element) => element.zone === 'present');
+  const hasPast = elements.some((element) => element.zone === 'past' || element.zone === 'past-earlier' || element.zone === 'past-later');
+
+  if (hasDuration) {
+    return 'Duration';
+  }
+  if (hasArc) {
+    return hasFuture ? 'Future arc' : 'Arc to now';
+  }
+  if (hasRepeats) {
+    return 'Repeated moments';
+  }
+  if (hasFuture) {
+    return 'Future point';
+  }
+  if (hasPresent) {
+    return 'Current point';
+  }
+  if (hasPast) {
+    return 'Past point';
+  }
+  return 'Single point';
+}
+
+function cloneTimelineElements(elements: TimelineElement[], suffix: string): TimelineElement[] {
+  return elements.map((element, index) => ({
+    ...element,
+    id: `${element.id}-${suffix}-${index}`,
+  }));
+}
+
+function makeWrongVariant(elements: TimelineElement[], variantIndex: number): TimelineElement[] {
+  const variant = variantIndex % 4;
+  const fallbackVariants: Array<{
+    zone: TimelineElement['zone'];
+    type: TimelineElement['type'];
+    positionShift: number;
+  }> = [
+    { zone: 'future', type: 'arc-dashed', positionShift: -12 },
+    { zone: 'present', type: 'multiple-dots', positionShift: 12 },
+    { zone: 'past-earlier', type: 'solid-line', positionShift: 0 },
+    { zone: 'past-later', type: 'single-dot', positionShift: 8 },
+  ];
+
+  const selected = fallbackVariants[variant];
+
+  return elements.map((element, index) => ({
+    ...element,
+    id: `${element.id}-wrong-${variantIndex}-${index}`,
+    zone: selected.zone,
+    type: selected.type,
+    position: Math.max(20, Math.min(380, element.position + selected.positionShift + (index * 4))),
+  }));
+}
+
+function buildTimelineOptions(group: TimeSignalGroup, entry: TimeSignalEntry): TimelineOption[] {
+  const correctSignature = timelineSignature(entry.timelineElements);
+  const seen = new Set<string>([correctSignature]);
+  const options: TimelineOption[] = [];
+
+  const tryAdd = (elements: TimelineElement[], label: string) => {
+    const signature = timelineSignature(elements);
+    if (seen.has(signature)) return;
+    seen.add(signature);
+    options.push({ elements, label });
+  };
+
+  if (entry.quizDistractors && entry.quizDistractors.length > 0) {
+    for (const distractor of entry.quizDistractors) {
+      tryAdd(cloneTimelineElements(distractor, 'entry-distractor'), timelineLabelForElements(distractor));
+    }
+  }
+
+  for (const candidate of group.expressions) {
+    if (candidate.word === entry.word) continue;
+    if (options.length >= MAX_QUIZ_OPTIONS - 1) break;
+    tryAdd(cloneTimelineElements(candidate.timelineElements, `same-group-${candidate.word}`), timelineLabelForElements(candidate.timelineElements));
+  }
+
+  if (options.length < MAX_QUIZ_OPTIONS - 1) {
+    for (const candidate of ALL_TIME_SIGNAL_ENTRIES) {
+      if (candidate.word === entry.word || candidate.groupId === group.id) continue;
+      if (options.length >= MAX_QUIZ_OPTIONS - 1) break;
+      tryAdd(cloneTimelineElements(candidate.timelineElements, `global-${candidate.groupId}-${candidate.word}`), candidate.groupId);
+    }
+  }
+
+  let fallbackIndex = 0;
+  while (options.length < MAX_QUIZ_OPTIONS - 1 && fallbackIndex < 6) {
+    tryAdd(makeWrongVariant(entry.timelineElements, fallbackIndex), 'Common trap');
+    fallbackIndex += 1;
+  }
+
+  return options;
+}
 
 function buildQuestions(group: TimeSignalGroup): QuizQuestion[] {
   const allQuestions = group.expressions.flatMap((entry, i) => {
-    const distractors = entry.quizDistractors ?? [
-      [{ id: 'e1', type: 'single-dot' as const, zone: 'past' as const, position: 50 }],
-      [{ id: 'e1', type: 'multiple-dots' as const, zone: 'present' as const, position: 50 }],
-      [{ id: 'e1', type: 'solid-line' as const, zone: 'past' as const, position: 50 }],
-    ];
+    const correctTimeline = cloneTimelineElements(entry.timelineElements, `correct-${entry.word}`);
+    const options: TimelineOption[] = buildTimelineOptions(group, entry);
+    const preparedOptions = shuffleArray(
+      [
+        { elements: correctTimeline, label: timelineLabelForElements(correctTimeline) },
+        ...options,
+      ],
+      i * 37 + group.id.charCodeAt(0)
+    );
 
-    const pool: TimelineElement[][] = [entry.timelineElements, ...distractors.slice(0, 3)];
-    const shuffled = shuffleArray(pool, i * 37 + group.id.charCodeAt(0));
-    const correctIndex = shuffled.indexOf(entry.timelineElements);
+    const correctSignature = timelineSignature(correctTimeline);
+    const correctIndex = preparedOptions.findIndex((option) => timelineSignature(option.elements) === correctSignature);
     const examples = entry.commonExamples ?? [
       { sentence: entry.exampleSentence, verbPhrase: entry.verbPhrase },
     ];
@@ -54,7 +177,7 @@ function buildQuestions(group: TimeSignalGroup): QuizQuestion[] {
       entry,
       groupId: group.id,
       example,
-      options: shuffled,
+      options: preparedOptions.slice(0, MAX_QUIZ_OPTIONS),
       correctIndex,
     }));
   });
@@ -170,7 +293,7 @@ export function TimeSignalsQuiz({ group, onComplete, onGoToExercises }: TimeSign
 
           {/* Options grid */}
           <div className="grid grid-cols-2 gap-3">
-            {question.options.map((elements, i) => {
+            {question.options.map((option, i) => {
               const isSelected = selected === i;
               const isRight = i === question.correctIndex;
               let borderClass = 'border-border/40 hover:border-border';
@@ -205,7 +328,8 @@ export function TimeSignalsQuiz({ group, onComplete, onGoToExercises }: TimeSign
                       }
                     </div>
                   )}
-                  <TimelineCanvas elements={elements} showLabels={false} />
+                  <TimelineCanvas elements={option.elements} showLabels={false} />
+                  <p className="text-[10px] text-text-muted mt-2 font-medium">{option.label}</p>
                 </motion.button>
               );
             })}
