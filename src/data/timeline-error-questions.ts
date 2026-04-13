@@ -1175,12 +1175,12 @@ export const TIMELINE_ERROR_QUESTIONS: ErrorCorrectionQuestion[] = [
     id: "err-ppc-s-08",
     type: "error-correction",
     errorLocation: "sentence",
-    incorrectSentence: "I have taken care of my mother for the past year.",
+    incorrectSentence: "She has painted the kitchen since 2 p.m.",
     incorrectElements: buildCanonicalTimelineElements("presentPerfect", "err-ppc-s-08-incorrect"),
-    correctSentence: "I have been taking care of my mother for the past year.",
+    correctSentence: "She has been painting the kitchen since 2 p.m.",
     realLifeDialogue: {
-      lineA: 'A: "You seem tired lately."',
-      lineB: 'B: "I have been taking care of my mother for the past year."',
+      lineA: 'A: "Why are her clothes covered in paint?"',
+      lineB: 'B: "She has been painting the kitchen since 2 p.m."',
     },
     correctElements: buildCanonicalTimelineElements("presentPerfectContinuous", "err-ppc-s-08-correct", [
       { position: 50 },
@@ -1188,7 +1188,7 @@ export const TIMELINE_ERROR_QUESTIONS: ErrorCorrectionQuestion[] = [
     incorrectTense: "Present Perfect",
     correctTense: "Present Perfect Continuous",
     commonMistakeExplanation:
-      'Caregiving is a continuous, ongoing activity — not a single completed event. "Have been taking care of" emphasises the unbroken effort over the past year.',
+      '"Since 2 p.m." gives a start point for an activity that is still in progress now. "Has painted the kitchen" sounds finished, but the situation is ongoing, so Present Perfect Continuous fits.',
     difficulty: 2,
     tenseCategory: "perfect-continuous",
   },
