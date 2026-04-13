@@ -8,7 +8,38 @@ export interface ActivityMeta {
   content?: string | null;
 }
 
+function gameUiFromJsonType(parsed: unknown): GameUi | null {
+  if (!parsed || typeof parsed !== "object" || !("type" in parsed)) return null;
+  const t = (parsed as Record<string, unknown>).type;
+  switch (t) {
+    case "numbers-game":
+      return "numbers";
+    case "ed-pronunciation":
+      return "ed-pronunciation";
+    case "minimal-pairs":
+      return "minimal-pairs";
+    case "pronunciation-listening":
+      return "pronunciation-listening";
+    case "irregular-verbs":
+      return "irregular-verbs";
+    case "gerund-infinitive":
+      return "gerund-infinitive";
+    case "timeline-tenses":
+      return "timeline-tenses";
+    case "parts-of-speech":
+      return "parts-of-speech";
+    default:
+      return null;
+  }
+}
+
 export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
+  const content = activity?.content;
+  const parsed = typeof content === "string" ? safeJsonParse(content) : null;
+  // Structured JSON payloads must win over `ui` (e.g. ui: "flashcards" + type: "parts-of-speech" misroutes to FlashcardRenderer and can SSR/hydration mismatch with ResourceRenderer fallbacks).
+  const fromJson = gameUiFromJsonType(parsed);
+  if (fromJson) return fromJson;
+
   const ui = activity?.ui?.trim().toLowerCase();
   if (ui) {
     if (ui === "matching") return "matching";
@@ -26,12 +57,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "parts-of-speech" || ui === "pos-game") return "parts-of-speech";
   }
 
-  const content = activity?.content;
   if (typeof content === "string") {
-    const parsed = safeJsonParse(content);
-    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "numbers-game") {
-      return "numbers";
-    }
     if (content.includes("Q:") && content.includes("OPTIONS:")) {
       return "fill-in-blank";
     }
@@ -40,34 +66,6 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     }
     if (content.includes("Verb,V1,V1-3rd") || content.includes(".csv")) {
       return "verb-forms";
-    }
-    // Check for ed-pronunciation content type
-    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "ed-pronunciation") {
-      return "ed-pronunciation";
-    }
-    // Check for minimal-pairs content type
-    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "minimal-pairs") {
-      return "minimal-pairs";
-    }
-    // Check for pronunciation-listening content type
-    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "pronunciation-listening") {
-      return "pronunciation-listening";
-    }
-    // Check for irregular-verbs content type
-    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "irregular-verbs") {
-      return "irregular-verbs";
-    }
-    // Check for gerund-infinitive content type
-    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "gerund-infinitive") {
-      return "gerund-infinitive";
-    }
-    // Check for timeline-tenses content type
-    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "timeline-tenses") {
-      return "timeline-tenses";
-    }
-    // Check for parts-of-speech content type
-    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "parts-of-speech") {
-      return "parts-of-speech";
     }
   }
 

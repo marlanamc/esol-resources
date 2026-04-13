@@ -14,7 +14,6 @@ interface Props {
 export function MadLibsExercise({ exercise, onAnswer, answered }: Props) {
   const data = exercise.madLibsData;
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
-  
   const [blankValue, setBlankValue] = useState<string | null>(null);
 
   if (!data) return null;
@@ -24,18 +23,23 @@ export function MadLibsExercise({ exercise, onAnswer, answered }: Props) {
 
   const handleWordSelect = (word: string) => {
     if (answered) return;
-    setSelectedWord(selectedWord === word ? null : word);
+    if (blankValue === word) {
+      setBlankValue(null);
+      setSelectedWord(null);
+      return;
+    }
+
+    setSelectedWord(word);
+    setBlankValue(word);
+    // This exercise only uses one blank, so selecting a word should place it immediately.
+    onAnswer(word === blankPart?.correctWord);
   };
 
   const handleSlotSelect = () => {
     if (answered) return;
-    if (selectedWord) {
-      setBlankValue(selectedWord);
-      setSelectedWord(null);
-      // Auto-submit since there is only 1 blank
-      onAnswer(selectedWord === blankPart?.correctWord);
-    } else if (blankValue) {
+    if (blankValue) {
       setBlankValue(null);
+      setSelectedWord(null);
     }
   };
 

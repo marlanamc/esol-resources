@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { ArrowLeft, BookOpen, Play, Sparkles, Lightbulb, AlertCircle } from 'lucide-react';
-import type { POSGroup, POSRoundMode } from '@/types/parts-of-speech';
+import Image from 'next/image';
+import type { POSGroup, POSPhase, POSRoundMode } from '@/types/parts-of-speech';
 import { POS_COLORS, POS_LABELS, POS_ROUND_LABELS } from '@/types/parts-of-speech';
 import { DiagramSentence } from './DiagramSentence';
 
@@ -12,6 +13,20 @@ function patternToBullets(pattern: string): string[] {
     .map(s => s.trim())
     .filter(Boolean);
 }
+
+function pickRotatingExampleCount(length: number, offset: number): number {
+  if (length <= 0) return 0;
+  return offset % length;
+}
+
+/** Human-readable phase name; must match tier label when phase === foundation (avoids "Foundation · Foundation"). */
+const PHASE_DISPLAY: Record<POSPhase, string> = {
+  foundation: 'Foundation',
+  'sentence-roles': 'Sentence Roles',
+  modifiers: 'Modifiers',
+  connectors: 'Connectors',
+  'application-bridge': 'Application Bridge',
+};
 
 interface PatternIntroScreenProps {
   group: POSGroup;
@@ -38,14 +53,19 @@ export function PatternIntroScreen({
   // Gather examples from patterns (one per pattern, max 5)
   const displayExamples = group.patterns
     .slice(0, 5)
-    .map(p => ({
-      ...p.examples[0],
+    .map((p, index) => ({
+      ...p.examples[pickRotatingExampleCount(p.examples.length, roundNum + index)],
       word: p.word,
       partOfSpeech: p.partOfSpeech,
     }));
 
   // Collect unique POS in this group for the color legend
   const groupPOS = [...new Set(group.patterns.map(p => p.partOfSpeech))];
+
+  const tierLabel =
+    group.difficulty === 1 ? 'Foundation' : group.difficulty === 2 ? 'Core' : 'Bridge';
+  const phaseLabel = PHASE_DISPLAY[group.phase];
+  const phaseTierBadge = tierLabel === phaseLabel ? tierLabel : `${tierLabel} · ${phaseLabel}`;
 
   return (
     <div className="space-y-6 max-w-2xl mx-auto pb-24 sm:pb-0">
@@ -59,12 +79,7 @@ export function PatternIntroScreen({
         <div className="flex items-center gap-2">
           <span className="text-2xl">{group.icon ?? '📚'}</span>
           <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
-            {group.difficulty === 1
-              ? 'Foundation'
-              : group.difficulty === 2
-              ? 'Core'
-              : 'Bridge'}{' '}
-            · {group.phase.replace(/-/g, ' ')}
+            {phaseTierBadge}
           </span>
         </div>
         {!isRound1 && roundLabel && (
@@ -83,6 +98,39 @@ export function PatternIntroScreen({
       >
         {group.title}
       </motion.h1>
+
+      {/* Photo recall strip — shown for groups with visual gallery (nouns, verbs) */}
+      {group.photoGallery && group.photoGallery.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.06 }}
+          className="flex gap-3 overflow-x-auto pb-1"
+        >
+          {group.photoGallery.map(entry => (
+            <div key={entry.word} className="flex-shrink-0 relative w-32 h-32 sm:w-36 sm:h-36 rounded-xl overflow-hidden border border-border shadow-sm">
+              <Image
+                src={entry.imageUrl}
+                alt={entry.altText}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 128px, 144px"
+                unoptimized
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              {/* Solid bar. Inline color: theme `text-white` maps to dark navy in .dark; some builds also lose arbitrary text-[#…] to specificity. */}
+              <div className="absolute inset-x-0 bottom-0 border-t border-white/15 bg-neutral-950 px-2 py-2">
+                <span
+                  className="block min-w-0 truncate text-left text-xs font-bold leading-tight !text-[#f8fafc] sm:text-sm"
+                  style={{ color: '#f8fafc' }}
+                >
+                  {entry.word}
+                </span>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      )}
 
       {/* Memory trick */}
       {group.memoryTrick && (
@@ -119,7 +167,7 @@ export function PatternIntroScreen({
             <div className="space-y-4">
               {patternToBullets(group.pattern).map((bullet, i) => (
                 <div key={i} className="flex gap-4 p-4 rounded-2xl bg-white/80 dark:bg-black/20 shadow-sm border border-black/5 dark:border-white/5 backdrop-blur-sm">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-sm">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-[#ffffff] flex items-center justify-center font-bold shadow-sm">
                     {i + 1}
                   </div>
                   <p className="text-base text-text-strong font-medium leading-relaxed pt-0.5">
@@ -282,7 +330,7 @@ export function PatternIntroScreen({
               { n: 3, label: 'Connect', desc: 'Spot them in real sentences',       threshold: '80%' },
               { n: 4, label: 'Build',   desc: 'Use them to build sentences',       threshold: '85%' },
               { n: 5, label: 'Master',  desc: 'Full fluency — earn the ✦ badge',  threshold: '90%' },
-            ].filter(r => r.n <= group.maxRounds).map((r, i) => (
+            ].filter(r => r.n <= group.maxRounds).map((r) => (
               <div key={r.n} className="flex items-start gap-3">
                 <span className={`flex-shrink-0 w-7 h-7 rounded-lg text-sm font-bold flex items-center justify-center ${
                   r.n === group.maxRounds ? 'bg-accent/20 text-primary-dark' : 'bg-primary/15 text-primary'
@@ -333,7 +381,7 @@ export function PatternIntroScreen({
           onClick={onStartChallenge}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-[#ffffff] font-semibold hover:bg-primary-dark transition-colors"
         >
           <Play size={18} />
           {ctaLabel}
@@ -355,7 +403,7 @@ export function PatternIntroScreen({
           onClick={onStartChallenge}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors min-h-[48px] flex-1"
+          className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-[#ffffff] font-semibold hover:bg-primary-dark transition-colors min-h-[48px] flex-1"
         >
           <Play size={20} />
           {ctaLabel}

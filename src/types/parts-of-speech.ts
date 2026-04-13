@@ -100,6 +100,15 @@ export interface POSPattern {
   wordFamily?: WordFamilyMember[];   // Related forms (work/worker/working)
 }
 
+// Photo entry for the visual gallery in walkthroughs
+export interface POSPhotoEntry {
+  imageUrl: string;           // e.g. "https://images.unsplash.com/photo-xxx?w=400&q=80&auto=format&fit=crop"
+  word: string;               // e.g. "doctor"
+  partOfSpeech: PartOfSpeech;
+  subcategoryLabel?: string;  // e.g. "Person", "Place", "Action"
+  altText: string;
+}
+
 // Group of related patterns
 export interface POSGroup {
   id: string;                        // e.g., "pos-1-verbs-intro", "pos-checkpoint-1"
@@ -117,6 +126,7 @@ export interface POSGroup {
   icon?: string;                     // Emoji icon
   isCheckpoint?: boolean;
   reviewsGroups?: string[];          // For checkpoints: IDs of groups reviewed
+  photoGallery?: POSPhotoEntry[];    // Visual anchors shown in the walkthrough intro
 }
 
 export type POSPhase =
@@ -141,7 +151,26 @@ export type POSExerciseType =
   | 'sentence-builder'      // Drag words from bins to build a sentence
   | 'word-transform'        // Transform word between POS (work → worker)
   | 'function-match'        // Match highlighted word to its grammatical function
-  | 'minimal-pair';         // Compare two sentences, identify what POS changed
+  | 'minimal-pair'          // Compare two sentences, identify what POS changed
+  | 'photo-sort';           // Tap the photo(s) whose word matches the target POS
+
+// photo-sort: one image card in the 2×2 grid
+export interface PhotoSortItem {
+  id: string;
+  word: string;
+  imageUrl: string;
+  partOfSpeech: PartOfSpeech;
+  subcategoryLabel?: string;
+  altText: string;
+}
+
+// photo-sort exercise data
+export interface POSPhotoSortData {
+  items: PhotoSortItem[];      // always 4 items
+  targetPOS: PartOfSpeech;
+  multiSelect: boolean;        // true = tap ALL matching, false = tap THE one
+  correctIds: string[];
+}
 
 // ─── Exercise-specific data structures ───────────────────────────────────────
 
@@ -235,6 +264,7 @@ export interface POSExercise {
   showPattern: boolean;                    // Whether to show pattern hint
   realWorldContext?: string;               // Context label for the sentence
   highlightedWord?: string;               // Word to highlight in sentence
+  choiceCount?: number;                     // graduated Round 1: display only N options (2, 3, or 4)
   // Type-specific fields
   taggingTokens?: TaggingToken[];          // pos-tagging
   builderSlots?: BuilderSlot[];           // sentence-builder
@@ -245,6 +275,7 @@ export interface POSExercise {
   oddOneOutData?: POSOddOneOutData;        // odd-one-out
   wordFamilyData?: POSWordFamilyData;      // word-family
   madLibsData?: POSMadLibsData;            // mad-libs
+  photoSortData?: POSPhotoSortData;        // photo-sort
 }
 
 // ─── Progress tracking ────────────────────────────────────────────────────────

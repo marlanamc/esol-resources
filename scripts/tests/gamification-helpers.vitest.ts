@@ -57,4 +57,13 @@ describe("gamification helpers", () => {
   it("content-based fallback should detect matching games", () => {
     expect(resolveActivityGameUi({ content: "word :: countable" })).toBe("matching");
   });
+
+  it("JSON type parts-of-speech wins over misleading ui flashcards", () => {
+    expect(
+      resolveActivityGameUi({
+        ui: "flashcards",
+        content: JSON.stringify({ type: "parts-of-speech", version: 1 }),
+      })
+    ).toBe("parts-of-speech");
+  });
 });

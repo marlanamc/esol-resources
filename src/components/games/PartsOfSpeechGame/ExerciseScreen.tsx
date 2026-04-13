@@ -15,6 +15,8 @@ import { WordTransformExercise } from './exercises/WordTransformExercise';
 import { FunctionMatchExercise } from './exercises/FunctionMatchExercise';
 import { MinimalPairExercise } from './exercises/MinimalPairExercise';
 import { SentenceBuilderExercise } from './exercises/SentenceBuilderExercise';
+import { PhotoSortExercise } from './exercises/PhotoSortExercise';
+import { SpeakButton } from './SpeakButton';
 import type { POSGroup, POSExercise, POSRoundMode } from '@/types/parts-of-speech';
 
 const EXERCISE_TYPE_LABELS: Record<string, string> = {
@@ -29,6 +31,7 @@ const EXERCISE_TYPE_LABELS: Record<string, string> = {
   'function-match': 'Grammatical Function',
   'minimal-pair': 'Compare Sentences',
   'sentence-builder': 'Build a Sentence',
+  'photo-sort': 'Photo Match',
 };
 
 function getRoundBadgeColor(roundMode: POSRoundMode): string {
@@ -64,6 +67,7 @@ function renderExercise(exercise: POSExercise, onAnswer: (correct: boolean) => v
     case 'function-match':     return <FunctionMatchExercise {...props} />;
     case 'minimal-pair':       return <MinimalPairExercise {...props} />;
     case 'sentence-builder':   return <SentenceBuilderExercise {...props} />;
+    case 'photo-sort':         return <PhotoSortExercise {...props} />;
     default: return <PatternChoiceExercise {...props} />;
   }
 }
@@ -280,11 +284,15 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
         className={`mx-3 mt-2 flex flex-col overflow-hidden rounded-xl border sm:mx-0 sm:mt-6 sm:rounded-2xl sm:border-2 ${shellClass}`}
       >
-        {/* Exercise type badge */}
-        <div className={`border-b px-3 py-2 sm:px-6 sm:py-3 ${shellHeaderClass}`}>
-          <p className="text-xs sm:text-sm text-text-muted font-medium">
+        {/* Exercise type badge + optional listen button */}
+        <div className={`border-b px-3 py-2 sm:px-6 sm:py-3 flex items-center gap-3 ${shellHeaderClass}`}>
+          <p className="text-xs sm:text-sm text-text-muted font-medium flex-1">
             {EXERCISE_TYPE_LABELS[currentExercise.type] ?? 'Exercise'}
           </p>
+          {/* Show listen button for sentence-based exercises */}
+          {currentExercise.prompt && !['photo-sort', 'pattern-sorting', 'odd-one-out', 'word-family', 'sentence-builder'].includes(currentExercise.type) && (
+            <SpeakButton text={currentExercise.prompt.replace('___', currentExercise.correctAnswer as string ?? '')} size="sm" />
+          )}
         </div>
 
         {/* Content */}

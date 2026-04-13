@@ -523,10 +523,9 @@ export function usePartsOfSpeechGameState(activityId: string) {
   }, []);
 
   // Derived helpers
-  const isGroupUnlocked = useCallback((group: POSGroup): boolean => {
-    if (!group.prerequisite) return true;
-    return !!state.categoryData[group.prerequisite]?.completed;
-  }, [state.categoryData]);
+  // All groups are always unlocked — students can review any POS type freely
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const isGroupUnlocked = useCallback((_group: POSGroup): boolean => true, []);
 
   const getGroupStagePublic = useCallback((groupId: string) => {
     return getGroupStage(state.categoryData[groupId]);

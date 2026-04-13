@@ -1309,9 +1309,19 @@ const BASE_FROM_OVERRIDES: Record<string, string> = {
   pocketing: 'pocket', rocketing: 'rocket', bracketing: 'bracket',
 };
 
+const IRREGULAR_THIRD_PERSON_SINGULAR: Record<string, string> = {
+  be: 'is',
+  have: 'has',
+  do: 'does',
+  go: 'goes',
+};
+
 /** Get 3rd person singular form (take -> takes, try -> tries) */
 function getThirdPersonSingular(verb: string): string {
   const v = verb.toLowerCase();
+  if (IRREGULAR_THIRD_PERSON_SINGULAR[v]) {
+    return IRREGULAR_THIRD_PERSON_SINGULAR[v];
+  }
   if (v.endsWith('y') && !'aeiou'.includes(v[v.length - 2] ?? '')) {
     return verb.slice(0, -1) + 'ies';
   }

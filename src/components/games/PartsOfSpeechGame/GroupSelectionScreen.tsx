@@ -69,15 +69,16 @@ const PHASE_CONFIG: Record<POSPhase, PhaseConfig> = {
 
 // ─── POS hero pills ───────────────────────────────────────────────────────────
 
+/** Same order as levels first introduce each part of speech (see ALL_POS_GROUPS). */
 const POS_PILLS = [
-  { label: 'Noun', color: 'bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900/30 dark:text-blue-200 dark:border-blue-700' },
   { label: 'Verb', color: 'bg-red-100 text-red-800 border-red-300 dark:bg-red-900/30 dark:text-red-200 dark:border-red-700' },
+  { label: 'Noun', color: 'bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900/30 dark:text-blue-200 dark:border-blue-700' },
+  { label: 'Pronoun', color: 'bg-green-100 text-green-800 border-green-300 dark:bg-green-900/30 dark:text-green-200 dark:border-green-700' },
+  { label: 'Article', color: 'bg-gray-100 text-gray-700 border-gray-300 dark:bg-gray-700/40 dark:text-gray-300 dark:border-gray-600' },
   { label: 'Adjective', color: 'bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-900/30 dark:text-amber-200 dark:border-amber-700' },
   { label: 'Adverb', color: 'bg-purple-100 text-purple-800 border-purple-300 dark:bg-purple-900/30 dark:text-purple-200 dark:border-purple-700' },
   { label: 'Preposition', color: 'bg-teal-100 text-teal-800 border-teal-300 dark:bg-teal-900/30 dark:text-teal-200 dark:border-teal-700' },
   { label: 'Conjunction', color: 'bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900/30 dark:text-orange-200 dark:border-orange-700' },
-  { label: 'Pronoun', color: 'bg-green-100 text-green-800 border-green-300 dark:bg-green-900/30 dark:text-green-200 dark:border-green-700' },
-  { label: 'Article', color: 'bg-gray-100 text-gray-700 border-gray-300 dark:bg-gray-700/40 dark:text-gray-300 dark:border-gray-600' },
 ];
 
 // ─── Props ────────────────────────────────────────────────────────────────────
@@ -130,9 +131,6 @@ export function GroupSelectionScreen({
         <h1 className="font-display text-4xl sm:text-5xl text-text mb-3 tracking-tight">
           Parts of Speech
         </h1>
-        <p className="text-text-muted text-base max-w-md mx-auto leading-relaxed">
-          Discover all 8 parts of speech through real-world examples from East Boston life.
-        </p>
 
         {/* POS pill cloud */}
         <motion.div
@@ -154,31 +152,39 @@ export function GroupSelectionScreen({
           ))}
         </motion.div>
 
-        {/* Two-round structure */}
+        {/* Multi-round structure */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45 }}
-          className="mt-8 mx-auto max-w-xs"
+          className="mt-8 mx-auto max-w-md"
         >
           <p className="text-xs font-semibold text-text-muted mb-4 uppercase tracking-wide">For each level:</p>
-          <div className="flex items-center justify-center gap-8">
+          <div className="grid grid-cols-5 gap-3 text-center">
             <div className="flex flex-col items-center">
-              <div className="text-3xl mb-2">🎯</div>
+              <div className="text-2xl mb-2">👀</div>
               <div className="font-display text-lg text-primary mb-0.5">Round 1</div>
-              <div className="text-xs text-text-muted mb-2">Discover</div>
-              <div className="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">
-                80% pass
-              </div>
+              <div className="text-xs text-text-muted">Notice</div>
             </div>
-            <div className="h-14 w-px bg-border/40" />
             <div className="flex flex-col items-center">
-              <div className="text-3xl mb-2">🏆</div>
+              <div className="text-2xl mb-2">🗂️</div>
               <div className="font-display text-lg text-primary-dark mb-0.5">Round 2</div>
-              <div className="text-xs text-text-muted mb-2">Master</div>
-              <div className="px-2.5 py-0.5 rounded-full bg-accent/20 text-primary-dark text-xs font-bold border border-accent/30">
-                90% master
-              </div>
+              <div className="text-xs text-text-muted">Sort</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="text-2xl mb-2">🔗</div>
+              <div className="font-display text-lg text-primary-dark mb-0.5">Round 3</div>
+              <div className="text-xs text-text-muted">Connect</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="text-2xl mb-2">🛠️</div>
+              <div className="font-display text-lg text-primary-dark mb-0.5">Round 4</div>
+              <div className="text-xs text-text-muted">Build</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="text-2xl mb-2">🏆</div>
+              <div className="font-display text-lg text-primary-dark mb-0.5">Round 5</div>
+              <div className="text-xs text-text-muted">Master</div>
             </div>
           </div>
         </motion.div>

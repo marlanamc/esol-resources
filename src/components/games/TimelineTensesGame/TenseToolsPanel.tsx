@@ -49,7 +49,7 @@ export function TenseToolsPanel({
 
   return (
     <div
-      className="relative mx-auto w-full max-w-lg"
+      className="relative mx-auto w-full max-w-lg rounded-2xl bg-white/50 dark:bg-[#102131]"
       style={{
         backgroundImage: `
           linear-gradient(rgba(15, 118, 110, 0.05) 1px, transparent 1px),
@@ -58,8 +58,16 @@ export function TenseToolsPanel({
         backgroundSize: '20px 20px',
       }}
     >
+      <span
+        className="pointer-events-none absolute inset-0 rounded-2xl border border-amber-200/60 dark:border-white/12"
+        aria-hidden
+      />
+      <span
+        className="pointer-events-none absolute inset-0 rounded-2xl bg-white/65 dark:bg-[linear-gradient(180deg,rgba(9,20,31,0.92),rgba(16,33,49,0.96))]"
+        aria-hidden
+      />
       <div
-        className={`overflow-hidden border border-amber-200/70 shadow-[0_14px_34px_-18px_rgba(15,23,42,0.42)] transition-all dark:border-white/10 ${
+        className={`relative overflow-hidden border border-amber-200/70 shadow-[0_14px_34px_-18px_rgba(15,23,42,0.42)] transition-all dark:border-white/10 ${
           expanded ? '' : 'hover:-translate-y-0.5 hover:shadow-[0_20px_42px_-18px_rgba(14,116,144,0.35)]'
         } rounded-2xl`}
       >
@@ -114,7 +122,7 @@ export function TenseToolsPanel({
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.28, ease: [0.23, 1, 0.32, 1] }}
-              className="overflow-hidden border-t border-amber-200/50 bg-white/90 dark:border-white/10 dark:bg-[#0f1f2e]/95"
+              className="overflow-hidden border-t border-amber-200/50 bg-white/92 dark:border-white/10 dark:bg-[#102131]/98"
             >
               <div className="space-y-3 px-3 pb-4 pt-3">
                 <TenseToolStation
@@ -165,7 +173,7 @@ function TenseToolStation({
     <button
       type="button"
       onClick={onSelect}
-      className={`group w-full rounded-2xl border bg-white/90 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:brightness-[1.02] dark:bg-[#152433]/90 ${s.ring} ${s.glow}`}
+      className={`group w-full rounded-2xl border bg-white/92 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:brightness-[1.02] dark:bg-[#183044] ${s.ring} ${s.glow}`}
     >
       <div className="flex gap-3">
         <span

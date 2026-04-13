@@ -260,12 +260,12 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   return (
     <div
       ref={contentScrollRef}
-      className="fixed inset-0 overflow-y-auto overscroll-contain bg-bg touch-manipulation"
+      className="relative min-h-dvh overflow-x-hidden overscroll-contain bg-bg touch-manipulation"
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
       {/* Grain texture overlay */}
       <div
-        className="fixed inset-0 pointer-events-none opacity-[0.04] z-0"
+        className="pointer-events-none absolute inset-0 z-0 opacity-[0.03] sm:opacity-[0.04]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23888' fill-opacity='0.4'%3E%3Ccircle cx='5' cy='5' r='1'/%3E%3Ccircle cx='25' cy='10' r='0.8'/%3E%3Ccircle cx='45' cy='3' r='1'/%3E%3Ccircle cx='15' cy='25' r='0.6'/%3E%3Ccircle cx='35' cy='20' r='1'/%3E%3Ccircle cx='55' cy='28' r='0.7'/%3E%3Ccircle cx='10' cy='40' r='0.8'/%3E%3Ccircle cx='30' cy='45' r='1'/%3E%3Ccircle cx='50' cy='38' r='0.6'/%3E%3C/g%3E%3C/svg%3E")`,
           backgroundSize: '60px 60px',
@@ -275,7 +275,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className={`relative z-10 mx-auto flex min-h-full w-full flex-col ${
+        className={`relative z-10 mx-auto flex min-h-dvh w-full flex-col ${
           state.phase === 'exercise' || state.phase === 'tutorial'
             ? 'w-full max-w-none px-0 py-2 sm:max-w-4xl sm:px-6 sm:py-10'
             : 'max-w-4xl px-4 py-6 sm:px-6 sm:py-10'
