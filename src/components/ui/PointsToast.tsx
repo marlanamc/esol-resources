@@ -6,9 +6,10 @@ import { createPortal } from "react-dom";
 interface PointsToastProps {
     points: number;
     onComplete?: () => void;
+    message?: string;
 }
 
-export function PointsToast({ points, onComplete }: PointsToastProps) {
+export function PointsToast({ points, onComplete, message }: PointsToastProps) {
     const [isVisible, setIsVisible] = useState(false);
     const [isLeaving, setIsLeaving] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
@@ -65,7 +66,10 @@ export function PointsToast({ points, onComplete }: PointsToastProps) {
                 }}
             >
                 <span className="text-2xl leading-none drop-shadow-[0_1px_1px_rgba(8,16,24,0.28)]">+{points}</span>
-                <span className="text-sm leading-none opacity-95">points!</span>
+                <div className="flex flex-col leading-none">
+                    <span className="text-sm opacity-95">points!</span>
+                    {message ? <span className="text-[10px] opacity-85 mt-1">{message}</span> : null}
+                </div>
             </div>
         </div>,
         document.body

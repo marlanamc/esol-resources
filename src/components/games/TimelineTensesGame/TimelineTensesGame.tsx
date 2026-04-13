@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { ErrorToast } from '@/components/ui/ErrorToast';
 import { PointsToast } from '@/components/ui/PointsToast';
+import { saveActivityProgress } from '@/lib/activityProgress';
 import { GameErrorBoundary } from '@/components/system/ErrorBoundary';
 import { useRouter } from 'next/navigation';
 import { useTimelineTensesState } from './hooks/useTimelineTensesState';
@@ -65,7 +66,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   const router = useRouter();
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const lastProcessedResultsKeyRef = useRef<string | null>(null);
-  const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
+  const [pointsToast, setPointsToast] = useState<{ points: number; key: number; message?: string } | null>(null);
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
   const [isFormulaOpen, setIsFormulaOpen] = useState(false);
   const [tenseToolsExpanded, setTenseToolsExpanded] = useState(false);
@@ -105,6 +106,30 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
       setPointsToast({ points: result.pointsAwarded, key: Date.now() });
     }
   }, [saveProgress]);
+
+  const handleTimeSignalsQuizComplete = useCallback(
+    async (correct: number, total: number) => {
+      const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+      const result = await saveActivityProgress(
+        activityId,
+        100,
+        'completed',
+        accuracy,
+        'time-signals',
+        assignmentId ?? undefined
+      );
+
+      if (result?.pointsAwarded && result.pointsAwarded > 0) {
+        setPointsToast({
+          points: result.pointsAwarded,
+          key: Date.now(),
+          message: 'Time Signals Quiz',
+        });
+      }
+    },
+    [activityId, assignmentId]
+  );
 
   // Save progress when round completes
   useEffect(() => {
@@ -489,7 +514,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
           )}
 
           {state.phase === 'time-signals' && (
-            <TimeSignalsMode onBack={closeTimeSignals} />
+            <TimeSignalsMode onBack={closeTimeSignals} onTimeSignalsQuizComplete={handleTimeSignalsQuizComplete} />
           )}
 
           {/* Tutorial Intro Phase */}
@@ -793,6 +818,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
         <PointsToast
           key={pointsToast.key}
           points={pointsToast.points}
+          message={pointsToast.message}
           onComplete={() => setPointsToast(null)}
         />
       )}

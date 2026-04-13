@@ -458,11 +458,19 @@ export async function POST(request: NextRequest) {
 
     if (category) {
         // Update or add this category's progress
+        const isTimeSignalsCategory = category.toLowerCase() === 'time-signals';
+        const previousCategoryData = asObject(currentData[category]) ?? {};
+        const wasCategoryCompleted = asBoolean(previousCategoryData.completed);
+        const categoryCompleted = isTimeSignalsCategory
+            ? wasCategoryCompleted || (typeof sanitizedAccuracy === 'number' && sanitizedAccuracy >= 70)
+            : rawProgress >= 100;
         currentData[category] = {
-            completed: rawProgress >= 100,
+            completed: categoryCompleted,
             ...(sanitizedAccuracy !== undefined ? { accuracy: sanitizedAccuracy } : {}),
-            completedAt: rawProgress >= 100 ? new Date().toISOString() : (currentData[category] as { completedAt?: string })?.completedAt,
-            attempts: ((currentData[category] as { attempts?: number })?.attempts || 0) + 1
+            completedAt: categoryCompleted
+                ? (wasCategoryCompleted ? (previousCategoryData as { completedAt?: string })?.completedAt : new Date().toISOString())
+                : (currentData[category] as { completedAt?: string })?.completedAt,
+            attempts: (asNumber(previousCategoryData.attempts) || 0) + 1
         };
 
         if (isNumbersGameCategoryName(category)) {
@@ -622,8 +630,10 @@ export async function POST(request: NextRequest) {
         && typeof roundExercisesCompleted === 'number' && Number.isFinite(roundExercisesCompleted) && roundExercisesCompleted >= 0;
     const shouldAwardGroupRoundPoints = isGroupRoundUpdate && hasRoundParams;
     const isTimelineRoundCompletion = activityGameUi === 'timeline-tenses' && sanitizedAccuracy !== undefined;
+    const isTimeSignalsRound = isTimelineRoundCompletion && typeof category === 'string' && category.toLowerCase() === 'time-signals';
+    const isPassingTimeSignalsQuiz = isTimeSignalsRound && sanitizedAccuracy >= 70;
     
-    const shouldAwardPoints = shouldAwardGroupRoundPoints || isTimelineRoundCompletion || shouldAwardProgressPoints({
+    const shouldAwardProgress = shouldAwardProgressPoints({
         rawProgress,
         progressValue,
         category,
@@ -633,6 +643,9 @@ export async function POST(request: NextRequest) {
         existingProgress: existing?.progress,
         existingCategoryData,
     });
+
+    const canAwardTimeSignals = !isTimeSignalsRound || isPassingTimeSignalsQuiz;
+    const shouldAwardPoints = shouldAwardGroupRoundPoints || (isTimelineRoundCompletion && canAwardTimeSignals) || (shouldAwardProgress && canAwardTimeSignals);
 
     let pointsAwarded = 0;
 
@@ -768,14 +781,19 @@ export async function POST(request: NextRequest) {
 
                 points = sessionPoints;
             } else if (activityGameUi === 'timeline-tenses') {
-                if (sanitizedAccuracy === 100) {
+                if (isTimeSignalsRound) {
+                    points = POINTS.TIMELINE_TENSES_TIME_SIGNALS;
+                    activityTypeLabel = 'Timeline Time Signals Quiz';
+                } else if (sanitizedAccuracy === 100) {
                     points = POINTS.TIMELINE_TENSES_PERFECT;
+                    activityTypeLabel = 'Timeline Tenses';
                 } else if (sanitizedAccuracy !== undefined && sanitizedAccuracy >= 80) {
                     points = POINTS.TIMELINE_TENSES_HIGH;
+                    activityTypeLabel = 'Timeline Tenses';
                 } else {
                     points = POINTS.TIMELINE_TENSES;
+                    activityTypeLabel = 'Timeline Tenses';
                 }
-                activityTypeLabel = 'Timeline Tenses';
             }
 
             // Include activity type in the reason for better display

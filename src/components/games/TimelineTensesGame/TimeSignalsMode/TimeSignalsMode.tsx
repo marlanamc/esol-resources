@@ -17,9 +17,10 @@ type SubView = 'group-select' | 'explore' | 'quiz' | 'production' | 'mixed-quiz'
 
 interface TimeSignalsModeProps {
   onBack: () => void;
+  onTimeSignalsQuizComplete?: (correct: number, total: number) => void | Promise<void>;
 }
 
-export function TimeSignalsMode({ onBack }: TimeSignalsModeProps) {
+export function TimeSignalsMode({ onBack, onTimeSignalsQuizComplete }: TimeSignalsModeProps) {
   const [subView, setSubView] = useState<SubView>('group-select');
   const [selectedGroup, setSelectedGroup] = useState<TimeSignalGroup | null>(null);
   const mixedGroup = useMemo<TimeSignalGroup>(() => ({
@@ -244,7 +245,9 @@ export function TimeSignalsMode({ onBack }: TimeSignalsModeProps) {
           >
             <TimeSignalsQuiz
               group={selectedGroup}
-              onComplete={() => {}}
+              onComplete={(correct, total) => {
+                void onTimeSignalsQuizComplete?.(correct, total);
+              }}
               onGoToExercises={handleGoToExercises}
             />
           </motion.div>
@@ -260,7 +263,9 @@ export function TimeSignalsMode({ onBack }: TimeSignalsModeProps) {
           >
             <TimeSignalsQuiz
               group={selectedGroup}
-              onComplete={() => {}}
+              onComplete={(correct, total) => {
+                void onTimeSignalsQuizComplete?.(correct, total);
+              }}
               onGoToExercises={handleGoToExercises}
             />
           </motion.div>
