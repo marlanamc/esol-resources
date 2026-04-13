@@ -49,7 +49,7 @@ export function TenseToolsPanel({
 
   return (
     <div
-      className="relative mx-auto w-full max-w-lg rounded-2xl bg-white/50 dark:bg-[#102131]"
+      className="relative mx-auto w-full max-w-lg rounded-2xl bg-[#fff6e8] dark:bg-[#13293d]"
       style={{
         backgroundImage: `
           linear-gradient(rgba(15, 118, 110, 0.05) 1px, transparent 1px),
@@ -59,11 +59,11 @@ export function TenseToolsPanel({
       }}
     >
       <span
-        className="pointer-events-none absolute inset-0 rounded-2xl border border-amber-200/60 dark:border-white/12"
+        className="pointer-events-none absolute inset-0 rounded-2xl border border-amber-200/80 dark:border-cyan-200/15"
         aria-hidden
       />
       <span
-        className="pointer-events-none absolute inset-0 rounded-2xl bg-white/65 dark:bg-[linear-gradient(180deg,rgba(9,20,31,0.92),rgba(16,33,49,0.96))]"
+        className="pointer-events-none absolute inset-0 rounded-2xl bg-[linear-gradient(135deg,rgba(255,245,224,0.96),rgba(255,232,240,0.9),rgba(221,244,255,0.94))] dark:bg-[linear-gradient(180deg,rgba(15,31,46,0.98),rgba(19,41,61,0.98))]"
         aria-hidden
       />
       <div
@@ -77,14 +77,14 @@ export function TenseToolsPanel({
           aria-expanded={expanded}
           aria-controls={regionId}
           onClick={onToggleExpanded}
-          className={`group relative flex w-full items-center justify-between gap-3 overflow-hidden border-0 bg-gradient-to-r from-[#ffe5b8] via-[#ffd3dc] to-[#cdeeff] px-4 py-3.5 text-left transition-transform dark:from-amber-400/20 dark:via-rose-400/20 dark:to-cyan-400/20 ${headerRound}`}
+          className={`group relative flex w-full items-center justify-between gap-3 overflow-hidden border-0 bg-gradient-to-r from-[#ffe5b8] via-[#ffd3dc] to-[#cdeeff] px-4 py-3.5 text-left transition-transform dark:from-[#1a354d] dark:via-[#1f3d56] dark:to-[#20465d] ${headerRound}`}
         >
           <span
             className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.55),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.18),transparent_30%)] opacity-90 transition-opacity group-hover:opacity-100 dark:bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.10),transparent_30%)]"
             aria-hidden
           />
           <span
-            className={`absolute inset-[1px] bg-gradient-to-r from-[#fff1cf]/90 via-[#ffe0ea]/80 to-[#e0f5ff]/90 dark:from-amber-300/12 dark:via-rose-300/10 dark:to-cyan-300/12 ${expanded ? 'rounded-t-[0.95rem]' : 'rounded-[0.95rem]'}`}
+            className={`absolute inset-[1px] bg-gradient-to-r from-[#fff1cf]/90 via-[#ffe0ea]/80 to-[#e0f5ff]/90 dark:from-[#1d3d58] dark:via-[#244763] dark:to-[#27516c] ${expanded ? 'rounded-t-[0.95rem]' : 'rounded-[0.95rem]'}`}
             aria-hidden
           />
           <span className="relative z-10 flex min-w-0 flex-1 items-center gap-3">
@@ -173,7 +173,7 @@ function TenseToolStation({
     <button
       type="button"
       onClick={onSelect}
-      className={`group w-full rounded-2xl border bg-white/92 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:brightness-[1.02] dark:bg-[#183044] ${s.ring} ${s.glow}`}
+      className={`group w-full rounded-2xl border bg-white/95 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:brightness-[1.02] dark:bg-[#1c3950] ${s.ring} ${s.glow}`}
     >
       <div className="flex gap-3">
         <span
@@ -182,9 +182,9 @@ function TenseToolStation({
           {icon}
         </span>
         <div className="min-w-0 flex-1 pt-0.5">
-          <p className="font-display text-base font-black text-text">{title}</p>
-          <p className="mt-1 text-sm leading-relaxed text-text-muted">{description}</p>
-          <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary/80 group-hover:text-primary">
+          <p className="font-display text-base font-black text-slate-900 dark:text-slate-50">{title}</p>
+          <p className="mt-1 text-sm leading-relaxed text-slate-700 dark:text-slate-200/92">{description}</p>
+          <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary/90 group-hover:text-primary dark:text-cyan-200">
             Open station →
           </p>
         </div>

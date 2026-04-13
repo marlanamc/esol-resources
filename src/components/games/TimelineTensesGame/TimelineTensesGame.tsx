@@ -260,7 +260,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
   return (
     <div
       ref={contentScrollRef}
-      className="relative min-h-dvh overflow-x-hidden overscroll-contain bg-bg touch-manipulation"
+      className="fixed inset-0 overflow-y-auto overscroll-contain bg-bg touch-manipulation"
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
       {/* Grain texture overlay */}
@@ -275,7 +275,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className={`relative z-10 mx-auto flex min-h-dvh w-full flex-col ${
+        className={`relative z-10 mx-auto flex min-h-full w-full flex-col ${
           state.phase === 'exercise' || state.phase === 'tutorial'
             ? 'w-full max-w-none px-0 py-2 sm:max-w-4xl sm:px-6 sm:py-10'
             : 'max-w-4xl px-4 py-6 sm:px-6 sm:py-10'
