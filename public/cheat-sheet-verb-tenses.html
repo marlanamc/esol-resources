@@ -257,11 +257,14 @@
     /* ── Page 2: Special Tense Uses ── */
     .page2-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: 1fr 1fr auto;
       gap: 8px;
       flex: 1 1 auto;
       min-height: 0;
+    }
+    .p2-row-span-2 {
+      grid-column: 1 / -1;
     }
     .page2-panel {
       border: 2px solid #d1d5db;
@@ -307,8 +310,57 @@
       background: #fef3c7;
       color: #92400e;
     }
+    .p2-two-verb .page2-panel-header {
+      background: #ede9fe;
+      color: #5b21b6;
+    }
+    .page-2 .p2-two-verb {
+      grid-column: 1 / -1;
+    }
+    .pattern-timelines {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      width: 100%;
+    }
+    .pattern-timeline-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fff;
+      padding: 4px 6px 2px;
+    }
+    .pattern-timeline-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #6b7280;
+      text-align: center;
+      margin-bottom: 2px;
+      display: block;
+    }
+    .pattern-example {
+      font-size: 10px;
+      line-height: 1.25;
+      color: #374151;
+      text-align: center;
+      margin: 0 0 4px;
+    }
+    .pattern-example strong {
+      color: #1f2937;
+    }
 
     @media (max-width: 780px) {
+      .page2-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .pattern-timelines {
+        grid-template-columns: 1fr;
+      }
+      .p2-row-span-2 {
+        grid-column: auto;
+      }
       .sheet-footer .verb-key {
         border-left: none;
         padding-left: 0;
@@ -371,7 +423,8 @@
       .page2-grid {
         flex: 1 1 auto;
         min-height: 0;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: 1fr 1fr auto;
       }
       .page2-panel-header { font-size: 17px; padding: 7px 10px; }
       .cell-notes { padding: 4px 8px 4px; }
@@ -445,6 +498,66 @@
       .verb-key-title { 
         font-size: 9.5px; 
         margin-bottom: 2px; 
+      }
+
+      /* Page 2 print compaction to prevent overflow/crowding */
+      .page-2 h1 {
+        font-size: 21px;
+        padding: 5px 16px;
+        margin-bottom: 4px;
+      }
+      .page-2 .page2-grid {
+        gap: 6px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto auto auto;
+      }
+      .page-2 .page2-panel-header {
+        font-size: 13.5px;
+        padding: 5px 8px 4px;
+      }
+      .page-2 .cell-copy {
+        padding: 4px 7px 0;
+      }
+      .page-2 .cell-notes {
+        padding: 3px 7px 3px;
+      }
+      .page-2 .sentence {
+        font-size: 11.5px;
+        line-height: 1.18;
+        margin-bottom: 1px;
+      }
+      .page-2 .fm-label {
+        font-size: 8.8px;
+      }
+      .page-2 .fm-text {
+        font-size: 10.2px;
+        line-height: 1.2;
+      }
+      .page-2 .pattern-timelines {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .page-2 .pattern-timeline-card {
+        padding: 3px 5px 1px;
+      }
+      .page-2 .pattern-timeline-label {
+        font-size: 8.2px;
+        margin-bottom: 1px;
+      }
+      .page-2 .pattern-example {
+        font-size: 8.7px;
+        margin-bottom: 2px;
+      }
+      .page-2 .pattern-timeline-card svg.timeline {
+        max-height: 30px;
+      }
+      .page-2 .sheet-footer {
+        padding: 4px 8px;
+        margin-top: 4px;
+      }
+      .page-2 .legend {
+        font-size: 9.6px;
+        gap: 5px 10px;
       }
     }
   </style>
@@ -1011,105 +1124,7 @@
 
 <div class="page2-grid">
 
-  <!-- ── Panel 1 (top-left): Present Simple → Future Timetable ── -->
-  <div class="page2-panel p2-timetable">
-    <div class="page2-panel-header">Present Simple → Future Timetable</div>
-    <div class="cell-copy">
-      <p class="sentence">The train <strong>leaves</strong> at 6 pm tonight.</p>
-      <div class="formula-block">
-        <div class="fm-row">
-          <span class="fm-label">Aff.</span>
-          <span class="fm-text">subject + <strong>V1</strong> / <strong>V1-3rd</strong></span>
-        </div>
-        <div class="fm-row">
-          <span class="fm-label">Neg.</span>
-          <span class="fm-text">subject + doesn't/don't + <strong>V1</strong></span>
-        </div>
-        <div class="fm-row">
-          <span class="fm-label">Q.</span>
-          <span class="fm-text">Does + subject + <strong>V1</strong>? / When does it <strong>V1</strong>?</span>
-        </div>
-      </div>
-    </div>
-    <div class="cell-vis">
-      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
-        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
-        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
-        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
-        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
-        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
-        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
-        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="188" cy="24" r="7" fill="#2563eb"/>
-      </svg>
-    </div>
-    <div class="cell-notes">
-      <div class="formula-block">
-        <div class="fm-row">
-          <span class="fm-label">Key</span>
-          <span class="fm-text"><strong>Fixed timetables only</strong> — transport, shows, programs, class schedules</span>
-        </div>
-        <div class="fm-row">
-          <span class="fm-label">Not</span>
-          <span class="fm-text">Not for personal plans → use present cont. or <em>going to</em> instead</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Panel 2 (top-right): Used To / Would ── -->
-  <div class="page2-panel p2-used-to">
-    <div class="page2-panel-header">Used To / Would — Past Habit</div>
-    <div class="cell-copy">
-      <p class="sentence">I <strong>used to walk</strong> / <strong>would walk</strong> to school.</p>
-      <div class="formula-block">
-        <div class="fm-row">
-          <span class="fm-label">Aff.</span>
-          <span class="fm-text">subject + <strong>used to</strong> + <strong>V1</strong></span>
-        </div>
-        <div class="fm-row">
-          <span class="fm-label">Neg.</span>
-          <span class="fm-text">subject + <strong>didn't use to</strong> + <strong>V1</strong></span>
-        </div>
-        <div class="fm-row">
-          <span class="fm-label">Also</span>
-          <span class="fm-text">subject + <strong>would</strong> + <strong>V1</strong> &nbsp;(actions only)</span>
-        </div>
-      </div>
-    </div>
-    <div class="cell-vis">
-      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
-        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
-        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
-        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
-        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
-        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
-        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
-        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="55" cy="24" r="4.5" fill="#d97706" opacity="0.65"/>
-        <circle cx="82" cy="24" r="6.5" fill="#d97706"/>
-        <circle cx="109" cy="24" r="4.5" fill="#d97706" opacity="0.65"/>
-      </svg>
-    </div>
-    <div class="cell-notes">
-      <div class="formula-block">
-        <div class="fm-row">
-          <span class="fm-label">Key</span>
-          <span class="fm-text"><strong>used to</strong> = habits &amp; states &nbsp;·&nbsp; <strong>would</strong> = actions only (not states)</span>
-        </div>
-        <div class="fm-row">
-          <span class="fm-label">e.g.</span>
-          <span class="fm-text"><em>"I used to be shy"</em> ✓ &nbsp;·&nbsp; <em>"I would be shy"</em> ✗</span>
-        </div>
-        <div class="fm-row">
-          <span class="fm-label">⚠</span>
-          <span class="fm-text"><strong>be used to</strong> + V-ing = accustomed to &nbsp;·&nbsp; <strong>get used to</strong> + V-ing = become accustomed</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Panel 3 (bottom-left): Present Continuous → Near Future ── -->
+  <!-- ── Panel 1 (top-left): Present Continuous → Near Future ── -->
   <div class="page2-panel p2-near-future">
     <div class="page2-panel-header">Present Continuous → Near Future</div>
     <div class="cell-copy">
@@ -1155,7 +1170,7 @@
     </div>
   </div>
 
-  <!-- ── Panel 4 (bottom-right): "Going to" ── -->
+  <!-- ── Panel 2 (top-right): "Going to" ── -->
   <div class="page2-panel p2-going-to">
     <div class="page2-panel-header">"Going to" → Future Plans &amp; Predictions</div>
     <div class="cell-copy">
@@ -1196,6 +1211,174 @@
         <div class="fm-row">
           <span class="fm-label">vs.</span>
           <span class="fm-text"><em>will</em> = decision/promise made NOW &nbsp;·&nbsp; <em>going to</em> = already decided</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panel 3 (bottom-left): Present Simple → Future Timetable ── -->
+  <div class="page2-panel p2-timetable">
+    <div class="page2-panel-header">Present Simple → Future Timetable</div>
+    <div class="cell-copy">
+      <p class="sentence">The train <strong>leaves</strong> at 6 pm tonight.</p>
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Aff.</span>
+          <span class="fm-text">subject + <strong>V1</strong> / <strong>V1-3rd</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Neg.</span>
+          <span class="fm-text">subject + doesn't/don't + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Q.</span>
+          <span class="fm-text">Does + subject + <strong>V1</strong>? / When does it <strong>V1</strong>?</span>
+        </div>
+      </div>
+    </div>
+    <div class="cell-vis">
+      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="188" cy="24" r="7" fill="#2563eb"/>
+      </svg>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Key</span>
+          <span class="fm-text"><strong>Fixed timetables only</strong> — transport, shows, programs, class schedules</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Not</span>
+          <span class="fm-text">Not for personal plans → use present cont. or <em>going to</em> instead</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panel 4 (bottom-right): Used To / Would / Past Habit ── -->
+  <div class="page2-panel p2-used-to">
+    <div class="page2-panel-header">Used To / Would / Past Habit</div>
+    <div class="cell-copy">
+      <p class="sentence">I <strong>used to walk</strong> / <strong>would walk</strong> to school.</p>
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Aff.</span>
+          <span class="fm-text">subject + <strong>used to</strong> + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Neg.</span>
+          <span class="fm-text">subject + <strong>didn't use to</strong> + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Also</span>
+          <span class="fm-text">subject + <strong>would</strong> + <strong>V1</strong> &nbsp;(actions only)</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Freq.</span>
+          <span class="fm-text">subject + <strong>used to / would</strong> + <strong>frequency marker</strong> + <strong>V1</strong><br><em>always, usually, often, sometimes, every day, twice a week</em></span>
+        </div>
+      </div>
+    </div>
+    <div class="cell-vis">
+      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="55" cy="24" r="4.5" fill="#d97706" opacity="0.65"/>
+        <circle cx="82" cy="24" r="6.5" fill="#d97706"/>
+        <circle cx="109" cy="24" r="4.5" fill="#d97706" opacity="0.65"/>
+      </svg>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Key</span>
+          <span class="fm-text"><strong>used to</strong> = habits &amp; states &nbsp;·&nbsp; <strong>would</strong> = actions only (not states)</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">e.g.</span>
+          <span class="fm-text"><em>"I used to be shy"</em> ✓ &nbsp;·&nbsp; <em>"I would be shy"</em> ✗</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">⚠</span>
+          <span class="fm-text"><strong>be used to</strong> + V-ing = accustomed to &nbsp;·&nbsp; <strong>get used to</strong> + V-ing = become accustomed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panel 5 (row 3): Common 2-Verb Patterns ── -->
+  <div class="page2-panel p2-two-verb p2-row-span-2">
+    <div class="page2-panel-header">Common 2-Verb Patterns (Context Controls the Tense)</div>
+    <div class="cell-vis">
+      <div class="pattern-timelines">
+        <div class="pattern-timeline-card">
+          <span class="pattern-timeline-label">Interruption</span>
+          <p class="pattern-example">When I arrived, she <strong>was cooking</strong>.</p>
+          <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+            <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+            <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+            <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+            <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="62" y1="24" x2="128" y2="24" stroke="#d97706" stroke-width="6" stroke-dasharray="8 6" stroke-linecap="round"/>
+            <circle cx="112" cy="24" r="6.5" fill="#b45309"/>
+          </svg>
+        </div>
+        <div class="pattern-timeline-card">
+          <span class="pattern-timeline-label">Earlier Past</span>
+          <p class="pattern-example">When I arrived at the station, the train <strong>had already left</strong>.</p>
+          <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+            <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+            <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+            <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+            <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 58 24 Q 83 8 108 24" fill="none" stroke="#b45309" stroke-width="2.8" stroke-linecap="round"/>
+            <circle cx="114" cy="24" r="6" fill="#d97706"/>
+          </svg>
+        </div>
+        <div class="pattern-timeline-card">
+          <span class="pattern-timeline-label">Future Clause</span>
+          <p class="pattern-example">When I start my job, I <strong>will take</strong> the bus.</p>
+          <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+            <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+            <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+            <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+            <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="132" cy="24" r="3.2" fill="#16a34a" opacity="0.72"/>
+            <circle cx="140" cy="24" r="4.4" fill="#16a34a"/>
+            <circle cx="148" cy="24" r="3.2" fill="#16a34a" opacity="0.72"/>
+            <line x1="153" y1="24" x2="228" y2="24" stroke="#2563eb" stroke-width="6" stroke-dasharray="8 6" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Rule 1</span>
+          <span class="fm-text"><strong>when + past simple</strong> often interrupts a background <strong>past continuous</strong> action</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Rule 2</span>
+          <span class="fm-text"><strong>past perfect</strong> marks the earlier of two past actions</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Rule 3</span>
+          <span class="fm-text">in future time clauses, use <strong>present</strong> after <em>when/if</em>, then <strong>will + V1</strong> in the main clause</span>
         </div>
       </div>
     </div>

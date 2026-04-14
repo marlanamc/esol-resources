@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { TimelineCanvas } from '../TimelineCanvas';
 import { highlightSentenceFeatures } from '../highlightUtils';
 import type { TimeSignalGroup } from '@/data/timeline-time-expressions';
+import type { TimelineElement } from '@/types/activity';
 
 interface TimeSignalsExploreProps {
   group: TimeSignalGroup;
@@ -25,6 +26,59 @@ export function TimeSignalsExplore({ group }: TimeSignalsExploreProps) {
   function go(delta: 1 | -1) {
     setDirection(delta);
     setIndex((prev) => (prev + delta + total) % total);
+  }
+
+  function getUsageTone(context: string, tenseName: string) {
+    const normalizedContext = context.toLowerCase();
+    const normalizedTense = tenseName.toLowerCase();
+
+    if (normalizedContext.includes('life pattern')) {
+      return {
+        border: 'border-l-[#7c3aed] dark:border-l-[#c4b5fd]',
+        label: 'text-[#7c3aed] dark:text-[#c4b5fd]',
+        badge: 'bg-[#7c3aed]/10 text-[#7c3aed] dark:bg-[#7c3aed]/25 dark:text-[#c4b5fd]',
+      };
+    }
+
+    if (normalizedTense.includes('past')) {
+      return {
+        border: 'border-l-[#ea580c] dark:border-l-[#fb923c]',
+        label: 'text-[#ea580c] dark:text-[#fb923c]',
+        badge: 'bg-[#ea580c]/10 text-[#ea580c] dark:bg-[#ea580c]/25 dark:text-[#fdba74]',
+      };
+    }
+
+    if (normalizedTense.includes('future')) {
+      return {
+        border: 'border-l-[#2563eb] dark:border-l-[#60a5fa]',
+        label: 'text-[#2563eb] dark:text-[#60a5fa]',
+        badge: 'bg-[#2563eb]/10 text-[#2563eb] dark:bg-[#2563eb]/25 dark:text-[#93c5fd]',
+      };
+    }
+
+    return {
+      border: 'border-l-[#16a34a] dark:border-l-[#4ade80]',
+      label: 'text-[#16a34a] dark:text-[#4ade80]',
+      badge: 'bg-[#16a34a]/10 text-[#16a34a] dark:bg-[#16a34a]/25 dark:text-[#86efac]',
+    };
+  }
+
+  function getNoteBulletTone(line: string) {
+    const normalized = line.toLowerCase();
+
+    if (normalized.includes('life pattern')) {
+      return 'text-[#7c3aed] dark:text-[#c4b5fd]';
+    }
+    if (normalized.includes('future')) {
+      return 'text-[#2563eb] dark:text-[#93c5fd]';
+    }
+    if (normalized.includes('past')) {
+      return 'text-[#ea580c] dark:text-[#fdba74]';
+    }
+    if (normalized.includes('present')) {
+      return 'text-[#16a34a] dark:text-[#86efac]';
+    }
+    return '';
   }
 
   return (
@@ -100,16 +154,42 @@ export function TimeSignalsExplore({ group }: TimeSignalsExploreProps) {
                 Context changes the tense
               </p>
               <div className="flex flex-col gap-5">
-                {contextualUsages.map((usage, usageIndex) => (
-                  <div
-                    key={`${entry.word}-context-${usageIndex}`}
-                    className="border-l-4 border-secondary/70 pl-4"
-                  >
+                {contextualUsages.map((usage, usageIndex) => {
+                  const tone = getUsageTone(usage.context, usage.tenseName);
+                  const hasDurationElement = usage.timelineElements.some(
+                    (element) => element.type === 'solid-line' || element.type === 'dashed-line'
+                  );
+                  const pastRepeatedElement = usage.timelineElements.find(
+                    (element) =>
+                      element.type === 'multiple-dots' &&
+                      (element.zone === 'past' || element.zone === 'past-earlier' || element.zone === 'past-later')
+                  );
+                  const shouldAddPastDuration =
+                    !hasDurationElement &&
+                    usage.context.toLowerCase().includes('past habit') &&
+                    Boolean(pastRepeatedElement);
+                  const contextualTimelineElements: TimelineElement[] = shouldAddPastDuration && pastRepeatedElement
+                    ? [
+                        {
+                          id: `${entry.word}-context-${usageIndex}-duration`,
+                          type: 'solid-line',
+                          zone: pastRepeatedElement.zone,
+                          position: pastRepeatedElement.position,
+                        },
+                        ...usage.timelineElements,
+                      ]
+                    : usage.timelineElements;
+
+                  return (
+                    <div
+                      key={`${entry.word}-context-${usageIndex}`}
+                      className={`border-l-4 pl-4 ${tone.border}`}
+                    >
                     <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span className="text-[11px] font-black uppercase tracking-wide text-secondary">
+                      <span className={`text-[11px] font-black uppercase tracking-wide ${tone.label}`}>
                         {usage.context}
                       </span>
-                      <span className="text-[11px] px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-bold">
+                      <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${tone.badge}`}>
                         {usage.tenseName}
                       </span>
                     </div>
@@ -117,13 +197,14 @@ export function TimeSignalsExplore({ group }: TimeSignalsExploreProps) {
                       &ldquo;{highlightSentenceFeatures(usage.exampleSentence, usage.verbPhrase)}&rdquo;
                     </p>
                     <div className="rounded-xl border border-border/50 dark:border-white/10 bg-[var(--color-bg-light)]/40 dark:bg-white/[0.03] p-3">
-                      <TimelineCanvas elements={usage.timelineElements} showLabels={false} />
+                      <TimelineCanvas elements={contextualTimelineElements} showLabels={false} />
                     </div>
                     {usage.note && (
                       <p className="text-xs text-text-muted mt-2 italic leading-snug">{usage.note}</p>
                     )}
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
@@ -135,7 +216,33 @@ export function TimeSignalsExplore({ group }: TimeSignalsExploreProps) {
                 <span className={`text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded ${group.activeBg} text-white mt-0.5`}>
                   Tip
                 </span>
-                <p className={`text-sm font-medium leading-snug ${group.tone}`}>{entry.notes}</p>
+                <div className={`text-sm font-medium leading-snug ${group.tone}`}>
+                  {(() => {
+                    const noteLines = entry.notes
+                      .split('\n')
+                      .map((line) => line.trim())
+                      .filter(Boolean);
+                    const intro = noteLines.find((line) => !line.startsWith('•'));
+                    const bullets = noteLines.filter((line) => line.startsWith('•'));
+
+                    return (
+                      <div className="space-y-2">
+                        {intro ? <p>{intro}</p> : null}
+                        {bullets.length > 0 ? (
+                          <ul className="space-y-1 pl-5 list-disc marker:text-current">
+                            {bullets.map((line, lineIndex) => (
+                              <li key={`${entry.word}-note-line-${lineIndex}`}>
+                                <span className={getNoteBulletTone(line)}>
+                                  {line.replace(/^•\s*/, '')}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                    );
+                  })()}
+                </div>
               </div>
             </div>
           )}

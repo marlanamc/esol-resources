@@ -569,12 +569,12 @@
         "v2": "took",
         "v3": "taken"
       },
-      "swallow": {
-        "v1": "swallow",
-        "v1_3rd": "swallows",
-        "v1_ing": "swallowing",
-        "v2": "swallowed",
-        "v3": "swallowed"
+      "need": {
+        "v1": "need",
+        "v1_3rd": "needs",
+        "v1_ing": "needing",
+        "v2": "needed",
+        "v3": "needed"
       },
       "use": {
         "v1": "use",

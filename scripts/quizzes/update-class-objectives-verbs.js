@@ -7,7 +7,7 @@ const weekVerbMappings = {
   '26': ['chat', 'discuss', 'mention', 'ask', 'talk'],
   '27': ['resolve', 'address', 'solve', 'handle', 'suggest'],
   '29': ['feel', 'hurt', 'see', 'examine', 'prescribe'],
-  '30': ['take', 'swallow', 'use', 'store', 'refill'],
+  '30': ['take', 'need', 'use', 'store', 'refill'],
   '31': ['book', 'cancel', 'reschedule', 'register', 'update'],
   '32': ['prepare', 'plan', 'cook', 'avoid', 'consume'],
   '33': ['mix', 'heat', 'rest', 'apply', 'try'],

@@ -201,6 +201,117 @@ function makeContextualSources(usages: ContextualUsage[]): QuizQuestionSource[] 
   }));
 }
 
+function normalizeSentence(sentence: string): string {
+  return sentence.toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+function timelineBucket(question: QuizQuestion): string {
+  const elements = question.source.timelineElements;
+  const hasArc = elements.some((element) => element.type === 'arc' || element.type === 'arc-dashed');
+  const hasRepeats = elements.some((element) => element.type === 'multiple-dots');
+  const hasPast = elements.some((element) => element.zone === 'past' || element.zone === 'past-earlier' || element.zone === 'past-later');
+  const hasPresent = elements.some((element) => element.zone === 'present');
+  const hasFuture = elements.some((element) => element.zone === 'future');
+
+  if (hasArc && hasFuture) return 'future-perfect';
+  if (hasArc) return 'present-perfect';
+  if (hasRepeats && hasPast) return 'past-habit';
+  if (hasRepeats && hasPresent) return 'present-habit';
+  if (hasFuture) return 'future';
+  if (hasPast) return 'past';
+  if (hasPresent) return 'present';
+  return 'other';
+}
+
+function selectDiverseQuestions(allQuestions: QuizQuestion[], maxQuestions: number): QuizQuestion[] {
+  const selected: QuizQuestion[] = [];
+  const usedSentences = new Set<string>();
+  const usedWords = new Set<string>();
+  const usedBuckets = new Set<string>();
+  const remaining = [...allQuestions];
+
+  const takeQuestion = (index: number) => {
+    const [question] = remaining.splice(index, 1);
+    selected.push(question);
+    usedSentences.add(normalizeSentence(question.source.sentence));
+    usedWords.add(question.entry.word);
+    usedBuckets.add(timelineBucket(question));
+  };
+
+  // First pass: spread across timeline buckets so one run is not overloaded with the same
+  // present-vs-past pattern, especially in dense groups like Frequency Markers.
+  while (selected.length < maxQuestions && remaining.length > 0) {
+    const lastWord = selected[selected.length - 1]?.entry.word;
+
+    const freshBucketIndex = remaining.findIndex((question) => {
+      const normalized = normalizeSentence(question.source.sentence);
+      const bucket = timelineBucket(question);
+      return !usedSentences.has(normalized) && !usedBuckets.has(bucket) && question.entry.word !== lastWord;
+    });
+
+    if (freshBucketIndex >= 0) {
+      takeQuestion(freshBucketIndex);
+      continue;
+    }
+
+    break;
+  }
+
+  while (selected.length < maxQuestions && remaining.length > 0) {
+    const lastWord = selected[selected.length - 1]?.entry.word;
+
+    const preferredFreshWordIndex = remaining.findIndex((question) => {
+      const normalized = normalizeSentence(question.source.sentence);
+      return !usedSentences.has(normalized) && !usedWords.has(question.entry.word) && question.entry.word !== lastWord;
+    });
+
+    if (preferredFreshWordIndex >= 0) {
+      takeQuestion(preferredFreshWordIndex);
+      continue;
+    }
+
+    const anyFreshWordIndex = remaining.findIndex((question) => {
+      const normalized = normalizeSentence(question.source.sentence);
+      return !usedSentences.has(normalized) && !usedWords.has(question.entry.word);
+    });
+
+    if (anyFreshWordIndex >= 0) {
+      takeQuestion(anyFreshWordIndex);
+      continue;
+    }
+
+    break;
+  }
+
+  while (selected.length < maxQuestions && remaining.length > 0) {
+    const lastWord = selected[selected.length - 1]?.entry.word;
+
+    const preferredIndex = remaining.findIndex((question) => {
+      const normalized = normalizeSentence(question.source.sentence);
+      return !usedSentences.has(normalized) && question.entry.word !== lastWord;
+    });
+
+    if (preferredIndex >= 0) {
+      takeQuestion(preferredIndex);
+      continue;
+    }
+
+    const uniqueSentenceIndex = remaining.findIndex((question) => {
+      const normalized = normalizeSentence(question.source.sentence);
+      return !usedSentences.has(normalized);
+    });
+
+    if (uniqueSentenceIndex >= 0) {
+      takeQuestion(uniqueSentenceIndex);
+      continue;
+    }
+
+    break;
+  }
+
+  return selected;
+}
+
 function buildQuestions(group: TimeSignalGroup): QuizQuestion[] {
   const allQuestions = group.expressions.flatMap((entry, i) => {
     const sources = [
@@ -243,7 +354,7 @@ function buildQuestions(group: TimeSignalGroup): QuizQuestion[] {
   // Cap at MAX_QUIZ_QUESTIONS using a deterministic shuffle so every student gets the same set
   const seed = group.id.charCodeAt(0) * 31 + group.expressions.length;
   const shuffledAll = shuffleArray(allQuestions, seed);
-  return shuffledAll.slice(0, MAX_QUIZ_QUESTIONS);
+  return selectDiverseQuestions(shuffledAll, MAX_QUIZ_QUESTIONS);
 }
 
 export function TimeSignalsQuiz({ group, onComplete, onGoToExercises }: TimeSignalsQuizProps) {
