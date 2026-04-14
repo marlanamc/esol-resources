@@ -22,8 +22,10 @@ export async function POST(request: NextRequest) {
     const cls = await prisma.class.findFirst({ where: { id: classId, teacherId: userId } });
     if (!cls) return NextResponse.json({ error: "Class not found" }, { status: 404 });
 
-    // Verify activity exists and is released
-    const activity = await prisma.activity.findFirst({ where: { id: activityId, deletedAt: null } });
+    const activity = await prisma.activity.findFirst({
+        where: { id: activityId, deletedAt: null },
+        select: { id: true, isReleased: true },
+    });
     if (!activity) return NextResponse.json({ error: "Activity not found" }, { status: 404 });
     if (!activity.isReleased) return NextResponse.json({ error: "This activity is not released yet." }, { status: 403 });
 

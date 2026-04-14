@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "prebuild": "node scripts/check-env.mjs && npm run check:repo-hygiene && npm run check:nullable-upserts && npm run audit:answer-position && npm run sync:gerund-csv:check",
-    "build": "prisma generate && next build",
+    "build": "prisma generate && prisma migrate deploy && next build",
     "deploy": "next build",
     "postinstall": "prisma generate",
     "start": "next start",

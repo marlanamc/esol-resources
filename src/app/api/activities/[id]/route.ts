@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { canManageActivity, ensureTeacher } from "@/lib/policies";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 import { getLearnerContentMetadata } from "@/lib/learner-visibility";
-import { supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
+import { probeActivityIsReleasedInContentColumn } from "@/lib/prisma-field-support";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -31,12 +31,14 @@ export async function PUT(request: NextRequest, { params }: Props) {
             return apiError("Title, type, and content are required", 400);
         }
 
-        // Verify activity exists
+        const hasReleasedColumn = await probeActivityIsReleasedInContentColumn();
+
         const existingActivity = await prisma.activity.findFirst({
             where: {
                 id,
                 deletedAt: null,
             },
+            select: { id: true, createdBy: true },
         });
 
         if (!existingActivity) {
@@ -47,7 +49,6 @@ export async function PUT(request: NextRequest, { params }: Props) {
             return ApiErrors.forbidden();
         }
 
-        // Update activity
         const activity = await prisma.activity.update({
             where: { id },
             data: {
@@ -57,9 +58,23 @@ export async function PUT(request: NextRequest, { params }: Props) {
                 category: category || null,
                 level: level || null,
                 content,
-                ...(supportsActivityIsReleasedInContent()
+                ...(hasReleasedColumn
                     ? { isReleasedInContent: getLearnerContentMetadata(content).releasedInContent }
                     : {}),
+            },
+            select: {
+                id: true,
+                title: true,
+                description: true,
+                type: true,
+                category: true,
+                level: true,
+                content: true,
+                ui: true,
+                isReleased: true,
+                createdAt: true,
+                updatedAt: true,
+                ...(hasReleasedColumn ? { isReleasedInContent: true } : {}),
             },
         });
 
@@ -86,29 +101,29 @@ export async function DELETE(request: NextRequest, { params }: Props) {
 
         const { id } = await params;
 
-        // Verify activity exists
-        const activity = await prisma.activity.findFirst({
+        const activityToDelete = await prisma.activity.findFirst({
             where: {
                 id,
                 deletedAt: null,
             },
+            select: { id: true, createdBy: true },
         });
 
-        if (!activity) {
+        if (!activityToDelete) {
             return ApiErrors.notFound("Activity", id);
         }
 
-        if (!canManageActivity(session.user, admin, activity.createdBy)) {
+        if (!canManageActivity(session.user, admin, activityToDelete.createdBy)) {
             return ApiErrors.forbidden();
         }
 
-        // Soft-delete activity to preserve historical submissions and recoverability.
         await prisma.activity.update({
             where: { id },
             data: {
                 deletedAt: new Date(),
                 isReleased: false,
             },
+            select: { id: true },
         });
 
         return NextResponse.json({ message: "Activity archived successfully" });

@@ -10,6 +10,7 @@ import { RETURN_TO_QUERY_PARAM, sanitizeInternalHref } from "@/lib/learner-navig
 import { isTeacherAdmin } from "@/lib/roles";
 import { type ActivityContent, parseActivityContent } from "@/types/activity";
 import { assertLearnerCanAccessActivity } from "@/lib/learner-visibility";
+import { probeActivityIsReleasedInContentColumn } from "@/lib/prisma-field-support";
 
 type SessionUser = Session["user"];
 
@@ -103,12 +104,34 @@ function redirectSpecialActivityIfNeeded(
   redirect(`/dashboard/vocab-review${qs.toString() ? `?${qs.toString()}` : ""}`);
 }
 
+const ACTIVITY_BASE_SELECT = {
+  id: true,
+  title: true,
+  description: true,
+  type: true,
+  category: true,
+  level: true,
+  content: true,
+  createdBy: true,
+  createdAt: true,
+  updatedAt: true,
+  ui: true,
+  isReleased: true,
+  deletedAt: true,
+} as const;
+
 async function loadActivityOrRedirect(activityId: string) {
+  const hasReleasedColumn = await probeActivityIsReleasedInContentColumn();
+
   try {
     const activity = await prisma.activity.findFirst({
       where: {
         id: activityId,
         deletedAt: null,
+      },
+      select: {
+        ...ACTIVITY_BASE_SELECT,
+        ...(hasReleasedColumn ? { isReleasedInContent: true } : {}),
       },
     });
 
@@ -116,7 +139,7 @@ async function loadActivityOrRedirect(activityId: string) {
       notFound();
     }
 
-    return activity;
+    return activity as Prisma.ActivityGetPayload<object>;
   } catch (error) {
     logger.error("Failed to load activity", error, { activityId });
     redirect("/dashboard");

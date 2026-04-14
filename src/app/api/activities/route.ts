@@ -8,7 +8,7 @@ import { createLearnerContentMetadataCache, filterLearnerVisibleActivities, getL
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 import { logger } from "@/lib/logger";
 import { timedQuery } from "@/lib/perf-log";
-import { supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
+import { probeActivityIsReleasedInContentColumn, supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 
 export async function POST(request: NextRequest) {
     try {
@@ -28,6 +28,7 @@ export async function POST(request: NextRequest) {
             return apiError("Title, type, and content are required", 400);
         }
 
+        const hasReleasedColumn = await probeActivityIsReleasedInContentColumn();
         const activity = await prisma.activity.create({
             data: {
                 title,
@@ -36,10 +37,24 @@ export async function POST(request: NextRequest) {
                 category: category || null,
                 level: level || null,
                 content,
-                ...(supportsActivityIsReleasedInContent()
+                ...(hasReleasedColumn
                     ? { isReleasedInContent: getLearnerContentMetadata(content).releasedInContent }
                     : {}),
                 createdBy: session.user.id,
+            },
+            select: {
+                id: true,
+                title: true,
+                description: true,
+                type: true,
+                category: true,
+                level: true,
+                content: true,
+                ui: true,
+                isReleased: true,
+                createdAt: true,
+                updatedAt: true,
+                ...(hasReleasedColumn ? { isReleasedInContent: true } : {}),
             },
         });
 
@@ -59,9 +74,9 @@ export async function GET() {
             return ApiErrors.unauthorized();
         }
 
+        await probeActivityIsReleasedInContentColumn();
         const userRole = session.user?.role;
 
-        // For students, filter at database level for grammar guides
         if (userRole === "student") {
             const visibilityCache = createLearnerContentMetadataCache();
             const studentActivities = await timedQuery(

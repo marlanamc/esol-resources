@@ -39,7 +39,7 @@ import {
 } from "@/lib/learner-visibility";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
 import { resolveLearnerMode } from "@/lib/learner-mode";
-import { supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
+import { probeActivityIsReleasedInContentColumn, supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 
 type TeacherAssignment = {
     id: string;
@@ -134,7 +134,8 @@ export default async function DashboardPage() {
     const userId = session.user.id;
     const admin = isTeacherAdmin(session.user);
 
-    // Count daily app opens toward streak without blocking dashboard render.
+    await probeActivityIsReleasedInContentColumn();
+
     void trackLogin(userId).catch((err) => {
         logger.warn("Failed to track login for streak", { userId, error: String(err) });
     });

@@ -6,7 +6,7 @@ import { grammarTopics } from "@/data/grammar-map";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { parseActivityContent } from "@/types/activity";
-import { supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
+import { probeActivityIsReleasedInContentColumn, supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 import type {
     LearnerSearchAvailability,
     LearnerSearchFilter,
@@ -571,6 +571,7 @@ export function buildCanonicalLearnerSearchDataset(params: {
 }
 
 async function fetchActivitySources(): Promise<SearchActivitySource[]> {
+    await probeActivityIsReleasedInContentColumn();
     return withPrismaReadRetry(() =>
         prisma.activity.findMany({
             where: {

@@ -6,7 +6,7 @@ import { isTeacherAdmin } from "@/lib/roles";
 import { ApiErrors, apiError } from "@/lib/api-response";
 import { logger } from "@/lib/logger";
 import { getLearnerContentMetadata } from "@/lib/learner-visibility";
-import { supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
+import { probeActivityIsReleasedInContentColumn } from "@/lib/prisma-field-support";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -49,14 +49,16 @@ export async function POST(request: Request) {
     const content = JSON.parse(activity.content);
     content.released = released;
 
+    const hasReleasedColumn = await probeActivityIsReleasedInContentColumn();
     await prisma.activity.update({
         where: { id: activityId },
         data: {
             content: JSON.stringify(content),
-            ...(supportsActivityIsReleasedInContent()
+            ...(hasReleasedColumn
                 ? { isReleasedInContent: getLearnerContentMetadata(content).releasedInContent }
                 : {}),
-        }
+        },
+        select: { id: true },
     });
 
     // If this is a verb quiz being released, create calendar events for all classes
