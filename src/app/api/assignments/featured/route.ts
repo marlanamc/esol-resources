@@ -8,6 +8,8 @@ import { ApiErrors } from "@/lib/api-response";
 import { requireTeacher } from "@/lib/api-auth";
 import { logger } from "@/lib/logger";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
+import { createLearnerContentMetadataCache, isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import { probeActivityIsReleasedInContentColumn, supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 import {
     buildActivitySubmissionMap,
     buildFeaturedAssignmentsWhere,
@@ -30,6 +32,7 @@ export async function GET() {
         }
 
         const userId = session.user?.id;
+        await probeActivityIsReleasedInContentColumn();
 
         // Get student's enrolled classes
         const enrollments: { classId: string }[] = await prisma.classEnrollment.findMany({
@@ -53,6 +56,8 @@ export async function GET() {
                         category: true,
                         ui: true,
                         isReleased: true,
+                        ...(supportsActivityIsReleasedInContent() ? { isReleasedInContent: true } : {}),
+                        content: true,
                     },
                 },
                 submissions: {
@@ -69,9 +74,13 @@ export async function GET() {
                 createdAt: 'desc'
             }
         });
+        const visibilityCache = createLearnerContentMetadataCache();
+        const visibleFeaturedAssignments = featuredAssignments.filter((assignment) =>
+            isLearnerVisibleActivity(assignment.activity, visibilityCache)
+        );
 
-        const activityIds = Array.from(new Set(featuredAssignments.map((a) => a.activityId)));
-        const activityTitles = Array.from(new Set(featuredAssignments.map((a) => a.activity.title).filter(Boolean))) as string[];
+        const activityIds = Array.from(new Set(visibleFeaturedAssignments.map((a) => a.activityId)));
+        const activityTitles = Array.from(new Set(visibleFeaturedAssignments.map((a) => a.activity.title).filter(Boolean))) as string[];
 
         // Fetch all submissions for these activities to ensure we catch completion
         // even if it wasn't recorded under the exact assigned ID (e.g. canonical resolution shifted it).
@@ -130,7 +139,7 @@ export async function GET() {
             new Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>()
         );
 
-        const withProgress = featuredAssignments.map((a) => {
+        const withProgress = visibleFeaturedAssignments.map((a) => {
             const p = progressMap.get(a.activityId);
             const derived = deriveFeaturedAssignmentProgress({
                 assignment: {

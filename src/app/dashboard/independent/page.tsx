@@ -11,6 +11,7 @@ import { resolveLearnerMode } from "@/lib/learner-mode";
 import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 import {
     getCurrentIndependentRecommendation,
+    filterIndependentVisibleActivities,
     getIndependentRecommendationActivityIds,
     getIndependentRecommendationActivityTitles,
 } from "@/lib/independent-learning";
@@ -29,6 +30,7 @@ import {
 } from "@/components/dashboard/independent";
 import { InviteFriendsCard } from "@/components/dashboard";
 import { IndependentDashboardClient } from "./IndependentDashboardClient";
+import { probeActivityIsReleasedInContentColumn, supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 
 export default async function IndependentDashboardPage() {
     const session = await getServerSession(authOptions);
@@ -93,8 +95,9 @@ export default async function IndependentDashboardPage() {
 
     const sequenceActivityIds = getIndependentRecommendationActivityIds();
     const sequenceActivityTitles = getIndependentRecommendationActivityTitles();
+    await probeActivityIsReleasedInContentColumn();
 
-    const sequenceActivities = await timedQuery(
+    const sequenceActivitiesRaw = await timedQuery(
         {
             route: "/dashboard/independent",
             queryLabel: "activity.findMany.independentSequence",
@@ -117,14 +120,16 @@ export default async function IndependentDashboardPage() {
                         type: true,
                         category: true,
                         isReleased: true,
+                        ...(supportsActivityIsReleasedInContent() ? { isReleasedInContent: true } : {}),
                         content: true,
                         createdAt: true,
                         updatedAt: true,
                     },
                 })
-            ),
+        ),
         (result) => result.length
     );
+    const sequenceActivities = filterIndependentVisibleActivities(sequenceActivitiesRaw);
 
     const [progressRows, submissions, independentLeaderboard, dailyVocabHabit] = await Promise.all([
         sequenceActivityIds.length === 0
