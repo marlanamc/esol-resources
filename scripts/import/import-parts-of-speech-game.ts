@@ -6,17 +6,55 @@
  */
 
 import { PrismaClient } from '@prisma/client';
+import * as fs from 'fs';
+import * as path from 'path';
+import { parsePartsOfSpeechOverrideCSV, type PosPhaseOverrideMap } from '../lib/parts-of-speech-round-overrides';
 
 const prisma = new PrismaClient();
+const ROUND_OVERRIDE_CSV = path.join(process.cwd(), 'src', 'data', 'parts-of-speech-round-phase-overrides.csv');
 
 const GAME_CONTENT = {
   type: 'parts-of-speech',
   roundSize: 10,
 };
 
+function loadRoundOverrides(): PosPhaseOverrideMap {
+  if (!fs.existsSync(ROUND_OVERRIDE_CSV)) {
+    return {};
+  }
+
+  const raw = fs.readFileSync(ROUND_OVERRIDE_CSV, 'utf-8');
+  const parsed = parsePartsOfSpeechOverrideCSV(raw);
+  if (parsed.errors.length > 0) {
+    console.error(`❌ Invalid data in ${path.relative(process.cwd(), ROUND_OVERRIDE_CSV)}:`);
+    for (const error of parsed.errors) {
+      console.error(`  line ${error.line}: ${error.message}`);
+    }
+    process.exit(1);
+  }
+
+  if (parsed.warnings.length > 0) {
+    console.log(`⚠️  Parsed ${parsed.warnings.length} warning(s) from override CSV:`);
+    for (const warning of parsed.warnings) {
+      console.log(`  line ${warning.line}: ${warning.message}`);
+    }
+  }
+
+  const applied = parsed.rows.length
+    ? ` (${parsed.rows.length} override row${parsed.rows.length === 1 ? '' : 's'})`
+    : '';
+  console.log(`✅ Loaded override config from parts-of-speech-round-phase-overrides.csv${applied}`);
+  return parsed.phaseOverrides;
+}
+
 async function importGame() {
   try {
     console.log('🎮 Importing Parts of Speech Pattern Discovery Game...\n');
+    const roundOverrides = loadRoundOverrides();
+    const gameContent = {
+      ...GAME_CONTENT,
+      roundOverrides,
+    };
 
     const teacher = await prisma.user.findFirst({
       where: { role: 'teacher' },
@@ -39,7 +77,7 @@ async function importGame() {
       category: 'games',
       level: 'beginner',
       ui: 'parts-of-speech',
-      content: JSON.stringify(GAME_CONTENT),
+      content: JSON.stringify(gameContent),
     };
 
     if (existing) {

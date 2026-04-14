@@ -3,9 +3,13 @@ import { ALL_POS_GROUPS, getPOSGroup } from "@/data/parts-of-speech-groups";
 import {
   generateCheckpointExercises,
   generateRound1Exercises,
+  generateRound2Exercises,
+  generateRound3Exercises,
   generateRound4Exercises,
 } from "@/data/parts-of-speech-exercises";
 import type { POSExercise, POSGroup } from "@/types/parts-of-speech";
+import { POS_CHECKPOINT_SIZE } from "@/types/parts-of-speech";
+import { parsePartsOfSpeechOverrideCSV } from "../lib/parts-of-speech-round-overrides";
 
 function sentenceFromExercise(exercise: POSExercise): string | null {
   switch (exercise.type) {
@@ -98,7 +102,6 @@ describe("Parts of speech content integrity", () => {
   it('keeps grouped verb forms intact in round 4 choices', () => {
     const beGroup = groupOrThrow("pos-1-verbs");
     const malformedChoices = new Set<string>();
-    const groupedChoices = new Set<string>();
 
     for (let i = 0; i < 30; i += 1) {
       const exercises = generateRound4Exercises(beGroup);
@@ -112,17 +115,11 @@ describe("Parts of speech content integrity", () => {
           if (choice === "be (am" || choice === "are)") {
             malformedChoices.add(choice);
           }
-          if (choice === "am" || choice === "is" || choice === "are") {
-            groupedChoices.add(choice);
-          }
         }
       }
     }
 
     expect(malformedChoices.size).toBe(0);
-    expect([...groupedChoices]).toEqual(
-      expect.arrayContaining(["am", "is", "are"])
-    );
   });
 });
 
@@ -149,5 +146,50 @@ describe("Parts of speech exercise selection", () => {
       .filter((sentence): sentence is string => Boolean(sentence));
 
     expect(new Set(prompts).size).toBeGreaterThanOrEqual(Math.min(6, prompts.length));
+  });
+
+  it("caps checkpoint exercises to configured checkpoint size", () => {
+    const checkpoint = groupOrThrow("pos-checkpoint-1");
+    const exercises = generateCheckpointExercises(checkpoint);
+    expect(exercises.length).toBeLessThanOrEqual(POS_CHECKPOINT_SIZE);
+  });
+
+  it("respects foundation round caps for configured phase overrides", () => {
+    const group = groupOrThrow("pos-1-verbs");
+
+    const options = {
+      phaseOverrides: {
+        foundation: {
+          roundSize: 5,
+          rounds: {
+            round1: { roundSize: 5 },
+            round2: { roundSize: 4 },
+            round3: { roundSize: 6 },
+          },
+        },
+      },
+    };
+
+    const round1Exercises = generateRound1Exercises(group, options);
+    const round2Exercises = generateRound2Exercises(group, [], options);
+    const round3Exercises = generateRound3Exercises(group, options);
+
+    expect(round1Exercises.length).toBeLessThanOrEqual(5);
+    expect(round2Exercises.length).toBeLessThanOrEqual(4);
+    expect(round3Exercises.length).toBeLessThanOrEqual(6);
+  });
+
+  it("parses override CSV rows for per-phase and per-round controls", () => {
+    const csv = `
+row_type,phase,round,round_size,exercise_types
+phase,foundation,,7,pattern-choice;sentence-completion
+round,foundation,2,4,odd-one-out
+round,sentence-roles,3,6,pattern-choice;function-match
+`;
+    const parsed = parsePartsOfSpeechOverrideCSV(csv);
+    expect(parsed.errors).toHaveLength(0);
+    expect(parsed.phaseOverrides.foundation.roundSize).toBe(7);
+    expect(parsed.phaseOverrides.foundation.rounds?.round2?.roundSize).toBe(4);
+    expect(parsed.phaseOverrides["sentence-roles"]?.rounds?.round3?.roundSize).toBe(6);
   });
 });

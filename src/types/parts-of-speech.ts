@@ -187,7 +187,7 @@ export interface TaggingToken {
 // sentence-builder: students drag words from bins to build a sentence
 export interface BuilderSlot {
   id: string;
-  partOfSpeech: PartOfSpeech;
+  partOfSpeech?: PartOfSpeech;
   correctWord: string;
   isProvided: boolean;       // Pre-filled (true) vs student fills (false)
 }
@@ -405,12 +405,31 @@ export interface POSRoundResults {
   masteryAchieved?: boolean;
 }
 
+export interface POSRoundOverride {
+  roundSize?: number;
+  exerciseTypes?: POSExerciseType[];
+}
+
+export type POSRoundModeOverride = Exclude<POSRoundMode, 'review' | 'final'>;
+export type POSRoundOverrideByMode = Partial<Record<POSRoundModeOverride, POSRoundOverride>>;
+
+export interface POSPhaseRoundOverrides {
+  /** Override for all rounds in this phase unless a round-specific override is provided. */
+  roundSize?: number;
+  exerciseTypes?: POSExerciseType[];
+  /** Optional per-round overrides for stricter control and CSV-driven tuning. */
+  rounds?: POSRoundOverrideByMode;
+}
+
+export type POSPhaseRoundOverridesMap = Partial<Record<POSPhase, POSPhaseRoundOverrides>>;
+
 // Activity content type for database
 export interface PartsOfSpeechContent {
   type: 'parts-of-speech';
   groupId?: string;
   exerciseTypes?: POSExerciseType[];
   roundSize?: number;
+  roundOverrides?: POSPhaseRoundOverridesMap;
 }
 
 // ─── Constants ────────────────────────────────────────────────────────────────

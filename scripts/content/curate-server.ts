@@ -162,7 +162,9 @@ const server = http.createServer(async (req, res) => {
             largeImageURL: imageUrl,
           };
         })
-        .filter((hit): hit is Record<string, unknown> => Boolean(hit));
+        .filter((hit): hit is { webformatURL: string; largeImageURL: string } =>
+          hit !== null && typeof hit === 'object' && 'webformatURL' in hit && 'largeImageURL' in hit
+        );
       
       setUnsplashRateHeaders(res, state);
       res.writeHead(200, { "Content-Type": "application/json" });

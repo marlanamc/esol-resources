@@ -10,6 +10,7 @@
 
 import type { POSPhotoEntry, PartOfSpeech } from '@/types/parts-of-speech';
 import { vocabImagesGenerated } from '@/data/vocab-images-generated';
+import { POS_FREQUENCY_WORDS_BY_PART_OF_SPEECH } from '@/data/parts-of-speech-frequency.generated';
 
 const VOCAB_IMAGE_LOOKUP = new Map<string, string>();
 for (const [word, imageUrl] of Object.entries(vocabImagesGenerated)) {
@@ -33,6 +34,64 @@ function resolveImageUrl(word: string): string | undefined {
     || VOCAB_IMAGE_LOOKUP.get(capitalize(lower))
     || VOCAB_IMAGE_LOOKUP.get(trimmed)
   );
+}
+
+const PHOTO_SORT_POS_ORDER: PartOfSpeech[] = [
+  'noun',
+  'verb',
+  'adjective',
+  'adverb',
+  'preposition',
+  'conjunction',
+  'pronoun',
+  'article',
+];
+
+function buildImageBackedPOSPhotoEntries(pos: PartOfSpeech, limit: number): POSPhotoEntry[] {
+  const entries: POSPhotoEntry[] = [];
+  const used = new Set<string>();
+
+  for (const candidate of POS_FREQUENCY_WORDS_BY_PART_OF_SPEECH[pos] ?? []) {
+    if (entries.length >= limit) break;
+    const imageUrl = resolveImageUrl(candidate);
+    if (!imageUrl) continue;
+    const key = candidate.toLowerCase();
+    if (used.has(key)) continue;
+    used.add(key);
+    entries.push({
+      word: candidate,
+      partOfSpeech: pos,
+      subcategoryLabel: `${pos} vocabulary`,
+      imageUrl,
+      altText: `Photo representing "${candidate}"`,
+    });
+  }
+
+  return entries;
+}
+
+export function getPhotoSortDistractors(
+  targetPOS: PartOfSpeech,
+  limit: number,
+): POSPhotoEntry[] {
+  const pool: POSPhotoEntry[] = [];
+  const used = new Set<string>();
+
+  for (const pos of PHOTO_SORT_POS_ORDER) {
+    if (pos === targetPOS) continue;
+    const entries = buildImageBackedPOSPhotoEntries(pos, limit * 2);
+    for (const entry of entries) {
+      const key = `${entry.partOfSpeech}:${entry.word.toLowerCase()}`;
+      if (used.has(key)) continue;
+      used.add(key);
+      pool.push(entry);
+      if (pool.length >= limit * 3) break;
+    }
+
+    if (pool.length >= limit * 3) break;
+  }
+
+  return pool.slice(0, limit);
 }
 
 export function buildPhotoGalleryFromWords(words: string[], partOfSpeech: PartOfSpeech): POSPhotoEntry[] {
@@ -159,7 +218,7 @@ export const PRONOUN_PHOTOS: POSPhotoEntry[] = [
 // Pronouns get simple person/group portrait photos with careful labeling.
 
 // ─── Photo sort distractor bank ───────────────────────────────────────────────
-// Used to fill photo-sort exercises with non-target POS images (nouns + verbs only)
+// Base images (nouns + verbs) plus frequency-backed fallback from vocabulary images.
 
 export const PHOTO_SORT_DISTRACTOR_BANK: POSPhotoEntry[] = [
   ...NOUN_PHOTOS,

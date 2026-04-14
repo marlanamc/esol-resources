@@ -6,8 +6,10 @@
 import type {
   POSExercise,
   POSExerciseType,
+  POSPhaseRoundOverridesMap,
   POSGroup,
   POSPattern,
+  POSPhotoEntry,
   POSRoundMode,
   POSPhase,
   PartOfSpeech,
@@ -18,11 +20,16 @@ import type {
 import {
   PHOTO_SORT_DISTRACTOR_BANK,
   buildPhotoGalleryFromWords,
+  getPhotoSortDistractors,
 } from '@/data/pos-photos';
 import {
   ALL_POS_GROUPS,
   getPOSGroup,
 } from '@/data/parts-of-speech-groups';
+import {
+  POS_FREQUENCY_WORDS_BY_PART_OF_SPEECH,
+  POS_TRICKY_VERBS,
+} from '@/data/parts-of-speech-frequency.generated';
 import {
   POS_ROUND1_SIZE,
   POS_ROUND2_SIZE,
@@ -306,9 +313,8 @@ const POS_OPTION_LABELS: PartOfSpeech[] = [
   'noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'pronoun', 'article',
 ];
 
-// Fallback cloze distractors: one or two common words per POS from the game's East Boston vocabulary.
-// Used when a group's sibling patterns can't supply enough cross-POS distractors (e.g., all-verb groups).
-const CLOZE_DISTRACTOR_BANK: { word: string; partOfSpeech: PartOfSpeech }[] = [
+// Frequency-driven distractors from the merged corpus + compact fallback list.
+const FALLBACK_CLOZE_DISTRACTOR_BANK: { word: string; partOfSpeech: PartOfSpeech }[] = [
   { word: 'doctor',    partOfSpeech: 'noun' },
   { word: 'school',    partOfSpeech: 'noun' },
   { word: 'walks',     partOfSpeech: 'verb' },
@@ -327,6 +333,98 @@ const CLOZE_DISTRACTOR_BANK: { word: string; partOfSpeech: PartOfSpeech }[] = [
   { word: 'a',         partOfSpeech: 'article' },
 ];
 
+function buildClozeDistractorBank() {
+  const deduped = new Map<string, { word: string; partOfSpeech: PartOfSpeech }>();
+  const addDistractor = (word: string, partOfSpeech: PartOfSpeech) => {
+    const normalized = normalize(word);
+    if (!normalized) return;
+    const key = `${partOfSpeech}:${normalized}`;
+    if (deduped.has(key)) return;
+    deduped.set(key, { word, partOfSpeech });
+  };
+
+  for (const pos of POS_OPTION_LABELS) {
+    for (const word of POS_FREQUENCY_WORDS_BY_PART_OF_SPEECH[pos].slice(0, 12)) {
+      addDistractor(word, pos);
+    }
+  }
+
+  for (const verb of POS_TRICKY_VERBS) {
+    addDistractor(verb, 'verb');
+  }
+
+  for (const fallback of FALLBACK_CLOZE_DISTRACTOR_BANK) {
+    addDistractor(fallback.word, fallback.partOfSpeech);
+  }
+
+  return Array.from(deduped.values());
+}
+
+const CLOZE_DISTRACTOR_BANK = buildClozeDistractorBank();
+
+function buildFrequencyHintWords(
+  targetPOS: PartOfSpeech,
+  exclude: string[],
+  options: {
+    limit?: number;
+    includeSamePOS?: boolean;
+    preferConfusablePOS?: boolean;
+  } = {},
+): string[] {
+  const limit = options.limit ?? 16;
+  const includeSamePOS = options.includeSamePOS ?? false;
+  const preferConfusablePOS = options.preferConfusablePOS ?? false;
+
+  const used = new Set<string>(exclude.map(word => normalize(word)));
+  const pool: string[] = [];
+  const addWord = (word: string) => {
+    const normalized = normalize(word);
+    if (!normalized) return;
+    if (used.has(normalized)) return;
+    used.add(normalized);
+    pool.push(word);
+  };
+
+  const preferredPoses: PartOfSpeech[] = [];
+  const seenPOS = new Set<PartOfSpeech>();
+
+  if (preferConfusablePOS) {
+    const confusionPOS = POS_CONFUSION_MAP[targetPOS];
+    if (confusionPOS) {
+      preferredPoses.push(confusionPOS);
+      seenPOS.add(confusionPOS);
+    }
+  }
+
+  if (includeSamePOS) {
+    preferredPoses.push(targetPOS);
+    seenPOS.add(targetPOS);
+  }
+
+  for (const pos of POS_OPTION_LABELS) {
+    if (!seenPOS.has(pos)) preferredPoses.push(pos);
+    seenPOS.add(pos);
+  }
+
+  for (const pos of preferredPoses) {
+    if (!POS_FREQUENCY_WORDS_BY_PART_OF_SPEECH[pos]?.length) continue;
+    for (const word of POS_FREQUENCY_WORDS_BY_PART_OF_SPEECH[pos]) {
+      addWord(word);
+      if (pool.length >= limit) return pool;
+    }
+  }
+
+  // Additional confusing verbal forms are often helpful near the sentence-builder level.
+  if (targetPOS === 'verb') {
+    for (const word of POS_TRICKY_VERBS) {
+      addWord(word);
+      if (pool.length >= limit) return pool;
+    }
+  }
+
+  return pool;
+}
+
 // Maps each POS to its most commonly confused counterpart — used for graduated Round 1 2-choice questions
 const POS_CONFUSION_MAP: Record<PartOfSpeech, PartOfSpeech> = {
   noun:        'verb',
@@ -338,6 +436,41 @@ const POS_CONFUSION_MAP: Record<PartOfSpeech, PartOfSpeech> = {
   pronoun:     'noun',
   article:     'adjective',
 };
+
+const FOUNDATION_ROUND_SIZE = 6;
+const CHECKPOINT_REVIEW_GROUP_LIMIT = 4;
+
+const ROUND_SIZE_BY_MODE: Record<Exclude<POSRoundMode, 'review' | 'final'>, number> = {
+  round1: POS_ROUND1_SIZE,
+  round2: POS_ROUND2_SIZE,
+  round3: POS_ROUND3_SIZE,
+  round4: POS_ROUND4_SIZE,
+  round5: POS_ROUND5_SIZE,
+};
+
+const FOUNDATION_ROUND_OVERRIDE = new Set<POSRoundMode>(['round1', 'round2', 'round3']);
+
+const VALID_EXERCISE_TYPES: Record<POSExerciseType, POSExerciseType> = {
+  "pattern-choice": "pattern-choice",
+  "pattern-sorting": "pattern-sorting",
+  "sentence-completion": "sentence-completion",
+  "error-correction": "error-correction",
+  "odd-one-out": "odd-one-out",
+  "contrast-pair": "contrast-pair",
+  "word-family": "word-family",
+  "mad-libs": "mad-libs",
+  "pos-tagging": "pos-tagging",
+  "sentence-builder": "sentence-builder",
+  "word-transform": "word-transform",
+  "function-match": "function-match",
+  "minimal-pair": "minimal-pair",
+  "photo-sort": "photo-sort",
+};
+
+export interface POSGenerationOptions {
+  phaseOverrides?: POSPhaseRoundOverridesMap;
+  exerciseTypes?: POSExerciseType[];
+}
 
 function getPOSOptions(correct: PartOfSpeech, count = 4): string[] {
   if (count === 2) {
@@ -369,37 +502,108 @@ function toOptions(correct: string, wrongAnswers: string[], maxChoices = 4): str
   return shuffle(unique).slice(0, maxChoices);
 }
 
+function getRoundMode(round: number): Exclude<POSRoundMode, 'review' | 'final'> | null {
+  if (round < 1 || round > 5) return null;
+  return `round${round}` as Exclude<POSRoundMode, 'review' | 'final'>;
+}
+
+function normalizeExerciseTypeList(exerciseTypes?: readonly (POSExerciseType | string)[]): POSExerciseType[] {
+  if (!exerciseTypes?.length) return [];
+  const normalized: POSExerciseType[] = [];
+  const seen = new Set<string>();
+  for (const rawType of exerciseTypes) {
+    const type = typeof rawType === 'string' ? rawType.toLowerCase().trim() : '';
+    const validType = VALID_EXERCISE_TYPES[type as POSExerciseType];
+    if (!type || !validType || seen.has(type)) continue;
+    seen.add(type);
+    normalized.push(validType);
+  }
+  return normalized;
+}
+
+function resolveRoundSize(
+  group: POSGroup,
+  round: number,
+  options?: POSGenerationOptions,
+): number {
+  const roundMode = getRoundMode(round);
+  if (!roundMode) return POS_ROUND1_SIZE;
+
+  const phaseOverrides = options?.phaseOverrides?.[group.phase];
+  const byRound = phaseOverrides?.rounds?.[roundMode];
+  if (byRound?.roundSize !== undefined) return byRound.roundSize;
+  if (phaseOverrides?.roundSize !== undefined) return phaseOverrides.roundSize;
+
+  if (FOUNDATION_ROUND_OVERRIDE.has(roundMode) && group.phase === 'foundation') {
+    return FOUNDATION_ROUND_SIZE;
+  }
+
+  return ROUND_SIZE_BY_MODE[roundMode];
+}
+
+function resolveExerciseTypes(
+  phase: POSPhase,
+  round: number,
+  options?: POSGenerationOptions,
+): POSExerciseType[] | null {
+  const roundMode = getRoundMode(round);
+  if (!roundMode) return null;
+
+  const phaseOverrides = options?.phaseOverrides?.[phase];
+  const byRound = phaseOverrides?.rounds?.[roundMode];
+  const overrideTypes = byRound?.exerciseTypes ?? phaseOverrides?.exerciseTypes ?? options?.exerciseTypes;
+  const normalized = normalizeExerciseTypeList(overrideTypes);
+  return normalized.length ? normalized : null;
+}
+
 // Returns which exercise types are available for a given phase × round.
 // Harder types are unlocked progressively so the game gets more complex as students advance.
-function getAvailableExerciseTypes(phase: POSPhase, round: number): POSExerciseType[] {
+// This function is the phase-transition control point for both hardcoded pedagogical logic
+// and CSV-driven overrides from imported configuration.
+function getAvailableExerciseTypes(
+  phase: POSPhase,
+  round: number,
+  options?: POSGenerationOptions,
+): POSExerciseType[] {
+  const overrideTypes = resolveExerciseTypes(phase, round, options);
+  if (overrideTypes) return overrideTypes;
+
   const base: POSExerciseType[] = ['pattern-choice', 'sentence-completion', 'odd-one-out'];
+  const allowFunctionMatch = round >= 4;
+
   if (phase === 'foundation') {
-    if (round === 1) return ['photo-sort', 'pattern-choice'];
-    return [...base, 'photo-sort', 'error-correction', 'contrast-pair'];
+    if (round === 1) return ['pattern-choice'];
+    if (round === 2) return [...base];
+    return [...base, 'contrast-pair'];
   }
   if (phase === 'sentence-roles') {
-    // Round 1: basics only. Round 2+: add sentence-level recognition.
-    return round === 1
-      ? base
-      : [...base, 'photo-sort', 'pos-tagging', 'word-family', 'error-correction', 'contrast-pair'];
+    if (round === 1) return ['pattern-choice', 'sentence-completion', 'odd-one-out'];
+    if (round === 2) return [...base, 'pos-tagging'];
+    const types = [...base, 'pos-tagging', 'word-family', 'error-correction', 'contrast-pair'] as POSExerciseType[];
+    if (allowFunctionMatch) types.push('function-match');
+    return types;
   }
   if (phase === 'modifiers') {
-    // Minimal-pair and word-transform unlock in Round 2 for modifiers.
-    return round === 1
-      ? [...base, 'pos-tagging']
-      : [...base, 'photo-sort', 'pos-tagging', 'word-family', 'minimal-pair', 'word-transform', 'error-correction', 'contrast-pair'];
+    if (round === 1) return ['pattern-choice', 'sentence-completion', 'odd-one-out'];
+    if (round === 2) return [...base, 'pos-tagging', 'word-family'];
+    if (round === 3) return [...base, 'pos-tagging', 'word-family', 'minimal-pair', 'error-correction', 'contrast-pair'];
+    const types = [...base, 'pos-tagging', 'word-family', 'minimal-pair', 'word-transform', 'error-correction', 'contrast-pair'] as POSExerciseType[];
+    if (allowFunctionMatch) types.push('function-match');
+    return types;
   }
   if (phase === 'connectors') {
-    // Function-match and mad-libs unlock in Round 2 for connectors.
-    return round === 1
-      ? [...base, 'pos-tagging', 'function-match']
-      : [...base, 'photo-sort', 'pos-tagging', 'word-family', 'minimal-pair', 'word-transform', 'function-match', 'mad-libs', 'error-correction', 'contrast-pair'];
+    if (round === 1) return ['pattern-choice', 'sentence-completion', 'odd-one-out', 'pos-tagging'];
+    if (round === 2) return [...base, 'pos-tagging', 'word-family', 'error-correction', 'contrast-pair'];
+    if (round === 3) return [...base, 'pos-tagging', 'word-family', 'minimal-pair', 'mad-libs', 'error-correction', 'contrast-pair'];
+    const types = [...base, 'pos-tagging', 'word-family', 'minimal-pair', 'word-transform', 'mad-libs', 'error-correction', 'contrast-pair'] as POSExerciseType[];
+    if (allowFunctionMatch) types.push('function-match');
+    return types;
   }
   // application-bridge: all types from Round 1
   return [
     'pattern-choice', 'sentence-completion', 'odd-one-out',
     'pos-tagging', 'word-family', 'minimal-pair',
-    'photo-sort', 'word-transform', 'function-match', 'mad-libs', 'sentence-builder',
+    'word-transform', 'function-match', 'mad-libs', 'sentence-builder',
     'error-correction', 'contrast-pair',
   ] as POSExerciseType[];
 }
@@ -433,7 +637,7 @@ function makePatternChoice(
     highlightedWord: example.highlightWord,
     correctAnswer: pattern.partOfSpeech,
     options: getPOSOptions(pattern.partOfSpeech),
-    explanation: example.explanation,
+    explanation: example.explanation ?? pattern.errorExplanation ?? pattern.commonError ?? pattern.memoryTrick,
     showPattern,
     realWorldContext: example.context,
   };
@@ -898,9 +1102,23 @@ function makePhotoSort(
   const correctPhoto = pickRandom(correctPhotos, 1)[0];
 
   // Distractors: photos of different POS from the distractor bank
-  const distractors = PHOTO_SORT_DISTRACTOR_BANK
-    .filter(p => p.partOfSpeech !== targetPOS)
-    .slice(0, 3);
+  const dynamicDistractors = getPhotoSortDistractors(targetPOS, 8);
+  const mixedDistractors = shuffle([
+    ...PHOTO_SORT_DISTRACTOR_BANK,
+    ...dynamicDistractors,
+  ]);
+  const distractors: POSPhotoEntry[] = [];
+  const usedDistractorKeys = new Set<string>();
+
+  for (const item of mixedDistractors) {
+    if (item.partOfSpeech === targetPOS) continue;
+    const key = `${item.partOfSpeech}:${item.word.toLowerCase()}`;
+    if (usedDistractorKeys.has(key)) continue;
+
+    usedDistractorKeys.add(key);
+    distractors.push(item);
+    if (distractors.length >= 3) break;
+  }
 
   if (distractors.length < 3) return null;
 
@@ -986,6 +1204,18 @@ function getErrorCorrectionWrongWords(
     if (bankItem.partOfSpeech === pattern.partOfSpeech) continue;
     addWrong(bankItem.word);
     if (wrongWords.length >= 3) break;
+  }
+
+  if (wrongWords.length < 3) {
+    const confidenceHints = buildFrequencyHintWords(pattern.partOfSpeech, [...wrongWords, correctWord], {
+      limit: 8,
+      includeSamePOS: false,
+      preferConfusablePOS: true,
+    });
+    for (const hintWord of confidenceHints) {
+      addWrong(hintWord);
+      if (wrongWords.length >= 3) break;
+    }
   }
 
   return wrongWords;
@@ -1122,13 +1352,12 @@ const FACTORY_MAP: Record<POSExerciseType, ExerciseFactory | null> = {
  * Generate exercises for Round 1 (introduction).
  *
  * Foundation phase:
- *  - Starts with photo-sort exercises (concrete visual anchor)
- *  - Uses graduated difficulty: Q1-2 = 2 choices, Q3-4 = 3 choices, Q5-6 = 4 choices
+ *  - Noticing-first flow: clear 2/3-choice pattern-choice with optional follow-up checks
  *  - Limited to 6 questions (less intimidating for first attempt)
  *
  * Other phases: standard 8-question mix with phase-appropriate exercise types.
  */
-export function generateRound1Exercises(group: POSGroup): POSExercise[] {
+export function generateRound1Exercises(group: POSGroup, options?: POSGenerationOptions): POSExercise[] {
   if (group.isCheckpoint) return generateCheckpointExercises(group);
 
   const exercises: POSExercise[] = [];
@@ -1137,26 +1366,29 @@ export function generateRound1Exercises(group: POSGroup): POSExercise[] {
   if (!patterns.length) return exercises;
 
   const isFoundation = group.phase === 'foundation';
-  const roundSize = isFoundation ? 6 : POS_ROUND1_SIZE;
+  const roundSize = resolveRoundSize(group, 1, options);
 
   if (isFoundation) {
-    // Foundation Round 1: start with photo-sort exercises, then graduated pattern-choice
-    // 1. Photo sort exercises (up to 2, one per pattern that has gallery photos)
-    for (const pattern of patterns.slice(0, 2)) {
-      const ps = makePhotoSort(group, pattern, true);
-      if (ps) exercises.push(ps);
-    }
-
-    // 2. Pattern choice with graduated options — built with all 4 options first, graduation applied after slicing
+    // Foundation Round 1: 3-choice cap for pattern-choice + short supporting types.
     for (const pattern of patterns) {
       exercises.push(makePatternChoice(group, pattern, true, tracker));
+    }
+    for (const pattern of patterns) {
+      if (exercises.length >= roundSize) break;
+      const sc = makeSentenceCompletion(group, pattern, true, tracker);
+      if (sc) exercises.push(sc);
+    }
+    for (const pattern of patterns) {
+      if (exercises.length >= roundSize) break;
+      const ooo = makeOddOneOut(group, pattern, true);
+      if (ooo) exercises.push(ooo);
     }
 
     // Shuffle and slice, then apply graduation
     const sliced = shuffle(exercises).slice(0, roundSize);
     return sliced.map((ex, i) => {
       if (ex.type !== 'pattern-choice') return ex;
-      const choiceCount = i < 2 ? 2 : i < 4 ? 3 : 4;
+      const choiceCount = i < 2 ? 2 : 3;
       return {
         ...ex,
         choiceCount,
@@ -1166,7 +1398,7 @@ export function generateRound1Exercises(group: POSGroup): POSExercise[] {
   }
 
   // Non-foundation phases: mix gated by phase/round
-  const available = getAvailableExerciseTypes(group.phase, 1);
+  const available = getAvailableExerciseTypes(group.phase, 1, options);
 
   for (const pattern of patterns) {
     // Always include a pattern-choice as the baseline recognition exercise
@@ -1211,7 +1443,7 @@ export function generateRound1Exercises(group: POSGroup): POSExercise[] {
   const sort = makePatternSorting(group, patterns, true) ?? makeSubcategorySorting(group, patterns, true);
   if (sort) exercises.push(sort);
 
-  return shuffle(exercises).slice(0, POS_ROUND1_SIZE);
+  return shuffle(exercises).slice(0, roundSize);
 }
 
 /**
@@ -1220,6 +1452,7 @@ export function generateRound1Exercises(group: POSGroup): POSExercise[] {
 export function generateRound2Exercises(
   group: POSGroup,
   missedPatternIds: string[],
+  options?: POSGenerationOptions,
 ): POSExercise[] {
   if (group.isCheckpoint) return generateCheckpointExercises(group);
 
@@ -1229,7 +1462,7 @@ export function generateRound2Exercises(
 
   const exercises: POSExercise[] = [];
   const tracker = createExampleTracker();
-  const available = getAvailableExerciseTypes(group.phase, 2);
+  const available = getAvailableExerciseTypes(group.phase, 2, options);
   let photoSortCount = 0;
 
   for (const pattern of patterns) {
@@ -1244,6 +1477,11 @@ export function generateRound2Exercises(
     if (available.includes('function-match')) {
       const fm = makeFunctionMatch(group, pattern, false, tracker);
       if (fm) exercises.push(fm);
+    }
+
+    if (available.includes('sentence-completion')) {
+      const sc = makeSentenceCompletion(group, pattern, false, tracker);
+      if (sc) exercises.push(sc);
     }
 
     if (available.includes('pos-tagging')) {
@@ -1268,16 +1506,23 @@ export function generateRound2Exercises(
   }
 
   // Add mad-libs for mastery (where we used rapid-fire)
-  for (const pattern of patterns) {
-    const ml = makeMadLibs(group, pattern, false, tracker);
-    if (ml) { exercises.push(ml); break; }
+  if (available.includes('mad-libs')) {
+    for (const pattern of patterns) {
+      const ml = makeMadLibs(group, pattern, false, tracker);
+      if (ml) {
+        exercises.push(ml);
+        break;
+      }
+    }
   }
 
-  return shuffle(exercises).slice(0, POS_ROUND2_SIZE);
+  const roundLimit = resolveRoundSize(group, 2, options);
+  return shuffle(exercises).slice(0, roundLimit);
 }
 
 /**
  * Generate exercises for a checkpoint (mixed review)
+ * Keep this review group count constrained to avoid transition overload.
  */
 export function generateCheckpointExercises(group: POSGroup): POSExercise[] {
   if (!group.reviewsGroups?.length) return [];
@@ -1285,19 +1530,30 @@ export function generateCheckpointExercises(group: POSGroup): POSExercise[] {
   const reviewGroups = group.reviewsGroups
     .map(id => ALL_POS_GROUPS.find(g => g.id === id))
     .filter((g): g is POSGroup => !!g && !g.isCheckpoint);
+  const checkpointReviewGroups = reviewGroups.slice(-CHECKPOINT_REVIEW_GROUP_LIMIT);
 
   const exercises: POSExercise[] = [];
   const tracker = createExampleTracker();
+  let madLibsUsed = 0;
 
-  for (const rg of reviewGroups) {
-    for (const pattern of rg.patterns.slice(0, 2)) {
+  for (const rg of checkpointReviewGroups) {
+    const pattern = rg.patterns[0];
+    if (pattern) {
       exercises.push(makePatternChoice(rg, pattern, false, tracker));
 
-      const ml = makeMadLibs(rg, pattern, false, tracker);
-      if (ml) exercises.push(ml);
+      if (madLibsUsed < 2) {
+        const ml = makeMadLibs(rg, pattern, false, tracker);
+        if (ml) {
+          exercises.push(ml);
+          madLibsUsed += 1;
+        }
+      }
     }
+  }
 
-    const wfb = makeWordFamilyBuilder(rg, rg.patterns[0], false, tracker);
+  const familySource = checkpointReviewGroups[0];
+  if (familySource) {
+    const wfb = makeWordFamilyBuilder(familySource, familySource.patterns[0], false, tracker);
     if (wfb) exercises.push(wfb);
   }
 
@@ -1332,18 +1588,36 @@ function makeSentenceBuilder(
   const targetPOS = pattern.partOfSpeech;
 
   // Build slots: pre-fill everything except the target word
-  const slots = words.map((w, i) => ({
-    id: `slot-${i}`,
-    partOfSpeech: normalize(w) === normalize(targetWord) ? targetPOS : ('noun' as PartOfSpeech),
-    correctWord: w,
-    isProvided: normalize(w) !== normalize(targetWord),
-  }));
+  const seenTargets = new Set<string>();
+  const targetNormalized = normalize(targetWord);
+  const slots = words.map((w, i) => {
+    const normalized = normalize(w);
+    const isTarget = !seenTargets.has(targetNormalized) && normalized === targetNormalized;
+    if (isTarget) {
+      seenTargets.add(targetNormalized);
+      return {
+        id: `slot-${i}`,
+        partOfSpeech: targetPOS,
+        correctWord: w,
+        isProvided: false,
+      };
+    }
+    return {
+      id: `slot-${i}`,
+      correctWord: w,
+      isProvided: true,
+    };
+  });
 
   // Collect distractor words from the distractor bank (same length as target ± 3 chars)
-  const distractors = CLOZE_DISTRACTOR_BANK
-    .filter(d => d.partOfSpeech !== targetPOS && d.word !== targetWord)
+  const distractors = buildFrequencyHintWords(targetPOS, [targetWord], {
+    limit: 6,
+    includeSamePOS: true,
+    preferConfusablePOS: true,
+  })
+    .filter(d => normalize(d) !== targetNormalized)
     .slice(0, 3)
-    .map(d => d.word);
+    .map(d => d);
 
   // Word bank: correct word + distractors
   const wordBank = shuffle([targetWord, ...distractors]);
@@ -1427,12 +1701,12 @@ function makeMinimalPair(
  * Core types: pos-tagging (tap & label) + function-match (grammatical role).
  * No pattern hints. Builds understanding of how POS works in real sentences.
  */
-export function generateRound3Exercises(group: POSGroup): POSExercise[] {
+export function generateRound3Exercises(group: POSGroup, options?: POSGenerationOptions): POSExercise[] {
   if (group.isCheckpoint) return generateCheckpointExercises(group);
 
   const exercises: POSExercise[] = [];
   const tracker = createExampleTracker();
-  const available = getAvailableExerciseTypes(group.phase, 3);
+  const available = getAvailableExerciseTypes(group.phase, 3, options);
   let photoSortCount = 0;
 
   for (const pattern of group.patterns) {
@@ -1470,12 +1744,18 @@ export function generateRound3Exercises(group: POSGroup): POSExercise[] {
   }
 
   // Add odd-one-out at group level (cross-POS recognition under pressure)
-  for (const pattern of group.patterns) {
-    const ooo = makeOddOneOut(group, pattern, false);
-    if (ooo) { exercises.push(ooo); break; }
+  if (available.includes('odd-one-out')) {
+    for (const pattern of group.patterns) {
+      const ooo = makeOddOneOut(group, pattern, false);
+      if (ooo) {
+        exercises.push(ooo);
+        break;
+      }
+    }
   }
 
-  return shuffle(exercises).slice(0, POS_ROUND3_SIZE);
+  const roundLimit = resolveRoundSize(group, 3, options);
+  return shuffle(exercises).slice(0, roundLimit);
 }
 
 // ─── Round 4: Build (production — using the language) ────────────────────────
@@ -1485,15 +1765,16 @@ export function generateRound3Exercises(group: POSGroup): POSExercise[] {
  * Core types: sentence-builder + mad-libs + minimal-pair (for wordFamily patterns).
  * No hints. Activates the two previously-stubbed exercise types.
  */
-export function generateRound4Exercises(group: POSGroup): POSExercise[] {
+export function generateRound4Exercises(group: POSGroup, options?: POSGenerationOptions): POSExercise[] {
   if (group.isCheckpoint) return generateCheckpointExercises(group);
 
   const exercises: POSExercise[] = [];
   const tracker = createExampleTracker();
+  const available = getAvailableExerciseTypes(group.phase, 4, options);
   let photoSortCount = 0;
 
   for (const pattern of group.patterns) {
-    if (photoSortCount < 1) {
+    if (available.includes('photo-sort') && photoSortCount < 1) {
       const ps = makePhotoSort(group, pattern, false);
       if (ps) {
         exercises.push(ps);
@@ -1501,33 +1782,49 @@ export function generateRound4Exercises(group: POSGroup): POSExercise[] {
       }
     }
 
-    // sentence-builder: drag words to fill the slot (primary)
-    const sb = makeSentenceBuilder(group, pattern, false, tracker);
-    if (sb) exercises.push(sb);
-    else {
-      // Fallback to mad-libs (same concept, simpler interaction)
+    if (available.includes('sentence-builder')) {
+      // sentence-builder: drag words to fill the slot (primary)
+      const sb = makeSentenceBuilder(group, pattern, false, tracker);
+      if (sb) {
+        exercises.push(sb);
+        continue;
+      }
+    }
+
+    if (available.includes('mad-libs')) {
       const ml = makeMadLibs(group, pattern, false, tracker);
       if (ml) exercises.push(ml);
     }
 
-    // minimal-pair: same root word, different POS (great for verbs, nouns with wordFamily)
-    const mp = makeMinimalPair(group, pattern, false, tracker);
-    if (mp) exercises.push(mp);
+    if (available.includes('minimal-pair')) {
+      const mp = makeMinimalPair(group, pattern, false, tracker);
+      if (mp) exercises.push(mp);
+    }
   }
 
-  // Word-family builder at group level (match all forms of a word to their POS)
-  for (const pattern of group.patterns) {
-    const wfb = makeWordFamilyBuilder(group, pattern, false, tracker);
-    if (wfb) { exercises.push(wfb); break; }
+  if (available.includes('word-family')) {
+    // Word-family builder at group level (match all forms of a word to their POS)
+    for (const pattern of group.patterns) {
+      const wfb = makeWordFamilyBuilder(group, pattern, false, tracker);
+      if (wfb) {
+        exercises.push(wfb);
+        break;
+      }
+    }
   }
 
-  // Word-transform: change a word from one POS to another
-  for (const pattern of group.patterns) {
-    const wt = makeWordTransform(group, pattern, false, tracker);
-    if (wt) { exercises.push(wt); break; }
+  if (available.includes('word-transform')) {
+    // Word-transform: change a word from one POS to another
+    for (const pattern of group.patterns) {
+      const wt = makeWordTransform(group, pattern, false, tracker);
+      if (wt) {
+        exercises.push(wt);
+        break;
+      }
+    }
   }
 
-  return shuffle(exercises).slice(0, POS_ROUND4_SIZE);
+  return shuffle(exercises).slice(0, resolveRoundSize(group, 4, options));
 }
 
 // ─── Round 5: Master (full fluency, hardest mix) ──────────────────────────────
@@ -1540,6 +1837,7 @@ export function generateRound4Exercises(group: POSGroup): POSExercise[] {
 export function generateRound5Exercises(
   group: POSGroup,
   missedPatternIds?: string[],
+  options?: POSGenerationOptions,
 ): POSExercise[] {
   if (group.isCheckpoint) return generateCheckpointExercises(group);
 
@@ -1553,10 +1851,11 @@ export function generateRound5Exercises(
 
   const exercises: POSExercise[] = [];
   const tracker = createExampleTracker();
+  const available = getAvailableExerciseTypes(group.phase, 5, options);
   let photoSortCount = 0;
 
   for (const pattern of targetPatterns) {
-    if (photoSortCount < 2) {
+    if (available.includes('photo-sort') && photoSortCount < 2) {
       const ps = makePhotoSort(group, pattern, false);
       if (ps) {
         exercises.push(ps);
@@ -1564,49 +1863,98 @@ export function generateRound5Exercises(
       }
     }
 
-    // sentence-completion (cloze) is the hardest — primary type for R5
-    const sc = makeSentenceCompletion(group, pattern, false, tracker);
-    if (sc) exercises.push(sc);
-    else {
-      // Fallback: pattern-choice with a harder example (3rd example if available)
-      const selection = selectPatternExample(pattern, tracker, { preferredIndex: 2 })
-        ?? selectPatternExample(pattern, tracker)
-        ?? { example: pattern.examples[0], index: 0 };
-      const ex = selection.example;
-      const sentence = ex.blank ? ex.sentence.replace('___', ex.blank) : ex.sentence;
-      exercises.push({
-        id: nextId(group.id, 'pc-r5'),
-        type: 'pattern-choice',
-        groupId: group.id,
-        patternId: pattern.id,
-        prompt: sentence,
-        highlightedWord: ex.highlightWord,
-        correctAnswer: pattern.partOfSpeech,
-        options: getPOSOptions(pattern.partOfSpeech),
-        explanation: ex.explanation,
-        showPattern: false,
-        realWorldContext: ex.context,
-      });
+    if (available.includes('sentence-completion')) {
+      // sentence-completion (cloze) is the hardest — primary type for R5
+      const sc = makeSentenceCompletion(group, pattern, false, tracker);
+      if (sc) exercises.push(sc);
+      else {
+        // Fallback: pattern-choice with a harder example (3rd example if available)
+        const selection = selectPatternExample(pattern, tracker, { preferredIndex: 2 })
+          ?? selectPatternExample(pattern, tracker)
+          ?? { example: pattern.examples[0], index: 0 };
+        const ex = selection.example;
+        const sentence = ex.blank ? ex.sentence.replace('___', ex.blank) : ex.sentence;
+        exercises.push({
+          id: nextId(group.id, 'pc-r5'),
+          type: 'pattern-choice',
+          groupId: group.id,
+          patternId: pattern.id,
+          prompt: sentence,
+          highlightedWord: ex.highlightWord,
+          correctAnswer: pattern.partOfSpeech,
+          options: getPOSOptions(pattern.partOfSpeech),
+          explanation: ex.explanation,
+          showPattern: false,
+          realWorldContext: ex.context,
+        });
+      }
     }
 
-    // function-match: role identification at full difficulty
-    const fm = makeFunctionMatch(group, pattern, false, tracker);
-    if (fm) exercises.push(fm);
+    if (available.includes('function-match')) {
+      // function-match: role identification at full difficulty
+      const fm = makeFunctionMatch(group, pattern, false, tracker);
+      if (fm) exercises.push(fm);
+    }
+
+    if (available.includes('error-correction')) {
+      const ec = makeErrorCorrectionExercise(group, pattern, false, tracker);
+      if (ec) exercises.push(ec);
+    }
+
+    if (available.includes('contrast-pair')) {
+      const cp = makeContrastPairExercise(group, pattern, false, tracker);
+      if (cp) exercises.push(cp);
+    }
+
+    if (available.includes('pos-tagging')) {
+      const pt = makePOSTagging(group, pattern, false, tracker);
+      if (pt) exercises.push(pt);
+    }
+
+    if (available.includes('word-family')) {
+      const wfb = makeWordFamilyBuilder(group, pattern, false, tracker);
+      if (wfb) exercises.push(wfb);
+    }
+
+    if (available.includes('minimal-pair')) {
+      const mp = makeMinimalPair(group, pattern, false, tracker);
+      if (mp) exercises.push(mp);
+    }
+
+    if (available.includes('word-transform')) {
+      const wt = makeWordTransform(group, pattern, false, tracker);
+      if (wt) exercises.push(wt);
+    }
+
+    if (available.includes('odd-one-out')) {
+      const ooo = makeOddOneOut(group, pattern, false);
+      if (ooo) {
+        exercises.push(ooo);
+        break;
+      }
+    }
+
+    if (available.includes('mad-libs')) {
+      const ml = makeMadLibs(group, pattern, false, tracker);
+      if (ml) {
+        exercises.push(ml);
+        break;
+      }
+    }
   }
 
-  // Odd-one-out (cross-POS recognition)
-  for (const pattern of targetPatterns) {
-    const ooo = makeOddOneOut(group, pattern, false);
-    if (ooo) { exercises.push(ooo); break; }
+  if (available.includes('sentence-builder')) {
+    // sentence-builder as a final production check, if we have capacity
+    for (const pattern of targetPatterns) {
+      const sb = makeSentenceBuilder(group, pattern, false, tracker);
+      if (sb) {
+        exercises.push(sb);
+        break;
+      }
+    }
   }
 
-  // Mad-libs as a final production exercise
-  for (const pattern of targetPatterns) {
-    const ml = makeMadLibs(group, pattern, false, tracker);
-    if (ml) { exercises.push(ml); break; }
-  }
-
-  return shuffle(exercises).slice(0, POS_ROUND5_SIZE);
+  return shuffle(exercises).slice(0, resolveRoundSize(group, 5, options));
 }
 
 /**
@@ -1616,25 +1964,27 @@ export function generatePOSExercises(
   groupId: string,
   roundMode: POSRoundMode,
   missedPatternIds?: string[],
+  options?: POSGenerationOptions,
 ): POSExercise[] {
   const group = getPOSGroup(groupId);
   if (!group) return [];
+  const normalizedOptions = options ?? {};
 
   switch (roundMode) {
     case 'round1':
-      return generateRound1Exercises(group);
+      return generateRound1Exercises(group, normalizedOptions);
     case 'round2':
-      return generateRound2Exercises(group, missedPatternIds ?? []);
+      return generateRound2Exercises(group, missedPatternIds ?? [], normalizedOptions);
     case 'round3':
-      return generateRound3Exercises(group);
+      return generateRound3Exercises(group, normalizedOptions);
     case 'round4':
-      return generateRound4Exercises(group);
+      return generateRound4Exercises(group, normalizedOptions);
     case 'round5':
-      return generateRound5Exercises(group, missedPatternIds);
+      return generateRound5Exercises(group, missedPatternIds, normalizedOptions);
     case 'review':
     case 'final':
       return generateCheckpointExercises(group);
     default:
-      return generateRound1Exercises(group);
+      return generateRound1Exercises(group, normalizedOptions);
   }
 }

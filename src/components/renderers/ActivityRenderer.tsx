@@ -28,6 +28,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
+import type { PartsOfSpeechContent } from "@/types/parts-of-speech";
 
 const ActivityLoadingFallback = () => (
     <div className="flex items-center justify-center min-h-[300px]">
@@ -158,7 +159,7 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                 }
                 // Always render parts-of-speech game when ID matches
                 if (activity.id === "parts-of-speech-game" || activity.ui === "parts-of-speech") {
-                    return <PartsOfSpeechGame activityId={activity.id} />;
+                    return <PartsOfSpeechGame activityId={activity.id} gameContent={content as PartsOfSpeechContent | null} />;
                 }
                 const gameUi = resolveActivityGameUi(activity);
                 switch (gameUi) {
@@ -198,7 +199,7 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                     case "timeline-tenses":
                         return <TimelineTensesGame activityId={activity.id} assignmentId={assignmentId} />;
                     case "parts-of-speech":
-                        return <PartsOfSpeechGame activityId={activity.id} />;
+                        return <PartsOfSpeechGame activityId={activity.id} gameContent={content as PartsOfSpeechContent | null} />;
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }

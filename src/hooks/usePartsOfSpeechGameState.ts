@@ -12,6 +12,7 @@ import type {
   POSRoundResults,
   POSGroupProgress,
   POSRoundMode,
+  PartsOfSpeechContent,
 } from '@/types/parts-of-speech';
 import {
   POS_UNLOCK_THRESHOLD,
@@ -296,7 +297,11 @@ function initializeProgressData(): Record<string, POSGroupProgress> {
 
 // ─── Main hook ────────────────────────────────────────────────────────────────
 
-export function usePartsOfSpeechGameState(activityId: string) {
+interface PartsOfSpeechGameConfig {
+  gameContent?: PartsOfSpeechContent | null;
+}
+
+export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSpeechGameConfig) {
   const [state, setState] = useState<POSGameInternalState>({
     phase: 'selection',
     selectedGroup: null,
@@ -312,6 +317,11 @@ export function usePartsOfSpeechGameState(activityId: string) {
     exerciseResults: [],
     recentlyUsedSentences: {},
   });
+
+  const generationConfig = {
+    phaseOverrides: config?.gameContent?.roundOverrides,
+    exerciseTypes: config?.gameContent?.exerciseTypes,
+  };
 
   // Load progress on mount
   useEffect(() => {
@@ -364,6 +374,7 @@ export function usePartsOfSpeechGameState(activityId: string) {
         state.selectedGroup.id,
         state.selectedRoundMode,
         missedIds,
+      generationConfig,
       );
       const filtered = filterRecentSentences(generatedExercises, recentSentences);
       const exercises = filtered.length ? filtered : generatedExercises;
@@ -467,6 +478,8 @@ export function usePartsOfSpeechGameState(activityId: string) {
     const generatedExercises = generatePOSExercises(
       state.selectedGroup.id,
       state.selectedRoundMode,
+      undefined,
+      generationConfig,
     );
     const filtered = filterRecentSentences(generatedExercises, recentSentences);
     const exercises = filtered.length ? filtered : generatedExercises;
@@ -507,6 +520,7 @@ export function usePartsOfSpeechGameState(activityId: string) {
         state.selectedGroup.id,
         nextRoundMode,
         state.roundResults?.missedPatternIds,
+        generationConfig,
       );
       const filtered = filterRecentSentences(generatedExercises, recentSentences);
       const exercises = filtered.length ? filtered : generatedExercises;

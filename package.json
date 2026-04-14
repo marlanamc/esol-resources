@@ -47,6 +47,7 @@
     "health:monthly": "npm run report:maintenance -- --skip-vitest",
     "health:release": "npm run health:gate && npm run test:e2e:smoke",
     "generate:content": "npm run sync:gerund-csv",
+    "sync:pos-frequency-corpus": "npx tsx scripts/sync-pos-frequency-corpus.ts",
     "sync:gerund-csv": "node --import tsx scripts/sync-gerund-csv.ts",
     "sync:gerund-csv:check": "node --import tsx scripts/sync-gerund-csv.ts --check",
     "typecheck": "tsc --noEmit",
