@@ -13,6 +13,7 @@ export type LearnerVisibleActivityInput = {
 export type LearnerContentMetadata = {
     type: string | null;
     releasedInContent: boolean;
+    hasExplicitReleasedField?: boolean;
 };
 
 export type LearnerContentMetadataCache = Map<string, LearnerContentMetadata>;
@@ -25,49 +26,57 @@ export function getLearnerContentMetadata(
     content: string | Record<string, unknown> | null | undefined,
     cache?: LearnerContentMetadataCache
 ): LearnerContentMetadata {
-    const deriveReleasedInContent = (parsed: Record<string, unknown>): boolean => {
-        if (Object.prototype.hasOwnProperty.call(parsed, "released")) {
-            return parsed.released === true;
-        }
+    const readParsedMetadata = (parsed: Record<string, unknown>): LearnerContentMetadata => {
+        const hasExplicitReleasedField = Object.prototype.hasOwnProperty.call(parsed, "released");
+        const activityType = typeof parsed.type === "string" ? parsed.type : null;
+        const releasedInContent = hasExplicitReleasedField ? parsed.released === true : true;
 
-        // Legacy activities may not have explicit release metadata in content yet.
-        // In that case, keep them visible by default for backward compatibility.
-        return true;
+        return {
+            type: activityType,
+            releasedInContent,
+            hasExplicitReleasedField,
+        };
     };
 
     if (!content) {
-        return { type: null, releasedInContent: false };
+        return { type: null, releasedInContent: false, hasExplicitReleasedField: false };
     }
 
     if (typeof content === "string") {
         if (cache && cache.has(content)) {
-            return cache.get(content) as LearnerContentMetadata;
+            const cached = cache.get(content);
+            if (cached) {
+                return cached;
+            }
         }
 
         const parsed = parseActivityContent(content);
         if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
-            const metadata = { type: null, releasedInContent: false };
+            const metadata = {
+                type: null,
+                releasedInContent: false,
+                hasExplicitReleasedField: false,
+            };
             if (cache) cache.set(content, metadata);
             return metadata;
         }
 
-        const parsedMetadata = parsed as Record<string, unknown>;
-        const activityType = typeof parsedMetadata.type === "string" ? parsedMetadata.type : null;
-        const releasedInContent = deriveReleasedInContent(parsedMetadata);
-        const metadata = { type: activityType, releasedInContent };
+        const metadata = readParsedMetadata(parsed as Record<string, unknown>);
         if (cache) cache.set(content, metadata);
         return metadata;
     }
 
     if (typeof content !== "object" || Array.isArray(content)) {
-        const metadata = { type: null, releasedInContent: false };
+        const metadata = { type: null, releasedInContent: false, hasExplicitReleasedField: false };
         return metadata;
     }
 
-    const contentMetadata = content as Record<string, unknown>;
-    const activityType = typeof contentMetadata.type === "string" ? contentMetadata.type : null;
-    const releasedInContent = deriveReleasedInContent(contentMetadata);
-    const metadata = { type: activityType, releasedInContent };
+    const contentMetadata = readParsedMetadata(content as Record<string, unknown>);
+    const metadata = {
+        type: contentMetadata.type,
+        releasedInContent: contentMetadata.releasedInContent,
+        hasExplicitReleasedField: contentMetadata.hasExplicitReleasedField,
+    };
     return metadata;
 }
 
@@ -88,8 +97,11 @@ export function isLearnerVisibleActivity(
 
     if (type === "speaking" || type === "quiz" || category === "quizzes") {
         const contentMetadata = getLearnerContentMetadata(activity.content, cache);
-        if (typeof activity.isReleasedInContent === "boolean") {
-            return activity.isReleasedInContent;
+        if (activity.isReleasedInContent === true && !contentMetadata.hasExplicitReleasedField) {
+            return true;
+        }
+        if (activity.isReleasedInContent === false && contentMetadata.hasExplicitReleasedField) {
+            return contentMetadata.releasedInContent;
         }
         return contentMetadata.releasedInContent;
     }
