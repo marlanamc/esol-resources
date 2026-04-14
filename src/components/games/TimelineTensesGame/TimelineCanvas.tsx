@@ -94,34 +94,56 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
       }
 
       for (const element of elements) {
-        if (element.type !== 'single-dot') {
-          continue;
+        const elementBaseX = baseXMap.get(element.id) ?? getTimelineElementX(element, pastLayout);
+        const isPastHabitZone =
+          element.zone === 'past' || element.zone === 'past-earlier' || element.zone === 'past-later';
+
+        if (element.type === 'single-dot') {
+          const dotBaseX = elementBaseX;
+          const durationPeers = elements.filter(
+            (peer) =>
+              peer.zone === element.zone &&
+              (peer.type === 'solid-line' || peer.type === 'dashed-line')
+          );
+
+          if (durationPeers.length === 0) {
+            continue;
+          }
+
+          const nearestDuration = durationPeers.reduce((closest, peer) => {
+            const peerX = baseXMap.get(peer.id) ?? getTimelineElementX(peer, pastLayout);
+            const closestX = baseXMap.get(closest.id) ?? getTimelineElementX(closest, pastLayout);
+            return Math.abs(peerX - dotBaseX) < Math.abs(closestX - dotBaseX) ? peer : closest;
+          });
+
+          const durationX =
+            baseXMap.get(nearestDuration.id) ?? getTimelineElementX(nearestDuration, pastLayout);
+          const direction = dotBaseX >= durationX ? 1 : -1;
+          const touchingX =
+            durationX + direction * (DURATION_LINE_HALF_LENGTH + SINGLE_DOT_RADIUS);
+
+          map.set(element.id, touchingX);
+        } else if (element.type === 'multiple-dots' && isPastHabitZone) {
+          const durationPeers = elements.filter(
+            (peer) =>
+              peer.zone === element.zone &&
+              (peer.type === 'solid-line' || peer.type === 'dashed-line')
+          );
+
+          if (durationPeers.length === 0) {
+            continue;
+          }
+
+          const nearestDuration = durationPeers.reduce((closest, peer) => {
+            const peerX = baseXMap.get(peer.id) ?? getTimelineElementX(peer, pastLayout);
+            const closestX = baseXMap.get(closest.id) ?? getTimelineElementX(closest, pastLayout);
+            return Math.abs(peerX - elementBaseX) < Math.abs(closestX - elementBaseX) ? peer : closest;
+          });
+
+          const durationX =
+            baseXMap.get(nearestDuration.id) ?? getTimelineElementX(nearestDuration, pastLayout);
+          map.set(element.id, durationX - 1);
         }
-
-        const dotBaseX = baseXMap.get(element.id) ?? getTimelineElementX(element, pastLayout);
-        const durationPeers = elements.filter(
-          (peer) =>
-            peer.zone === element.zone &&
-            (peer.type === 'solid-line' || peer.type === 'dashed-line')
-        );
-
-        if (durationPeers.length === 0) {
-          continue;
-        }
-
-        const nearestDuration = durationPeers.reduce((closest, peer) => {
-          const peerX = baseXMap.get(peer.id) ?? getTimelineElementX(peer, pastLayout);
-          const closestX = baseXMap.get(closest.id) ?? getTimelineElementX(closest, pastLayout);
-          return Math.abs(peerX - dotBaseX) < Math.abs(closestX - dotBaseX) ? peer : closest;
-        });
-
-        const durationX =
-          baseXMap.get(nearestDuration.id) ?? getTimelineElementX(nearestDuration, pastLayout);
-        const direction = dotBaseX >= durationX ? 1 : -1;
-        const touchingX =
-          durationX + direction * (DURATION_LINE_HALF_LENGTH + SINGLE_DOT_RADIUS);
-
-        map.set(element.id, touchingX);
       }
 
       if (showLabels) {
@@ -386,17 +408,32 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
           }
 
           let yOffset = 0;
+          const zonePeers = elements.filter((e) => e.zone === element.zone);
+          const hasDurationPeer = zonePeers.some(
+            (e) => e.type === 'solid-line' || e.type === 'dashed-line'
+          );
+          const hasRepeatedPeer = zonePeers.some((e) => e.type === 'multiple-dots');
+
+          // When a repeated habit and a duration share the same zone, keep the duration on the
+          // main timeline axis and lift the repeated dots above it. This matches the mental model
+          // of "background time frame on the line, repeated events within it above the line."
+          if (element.type === 'multiple-dots' && hasDurationPeer) {
+            const isPastHabitZone =
+              element.zone === 'past' || element.zone === 'past-earlier' || element.zone === 'past-later';
+            yOffset -= isPastHabitZone ? 12 : 18;
+          }
+
           // Offset durations vertically if they share a zone, avoiding direct overlap constraint
           if (element.type === 'solid-line' || element.type === 'dashed-line') {
-            const peers = elements.filter(
-              (e) => e.zone === element.zone && (e.type === 'solid-line' || e.type === 'dashed-line')
+            const durationPeers = zonePeers.filter(
+              (e) => e.type === 'solid-line' || e.type === 'dashed-line'
             );
-            if (peers.length > 1) {
-              const sorted = [...peers].sort((a, b) => a.id.localeCompare(b.id));
+            if (durationPeers.length > 1) {
+              const sorted = [...durationPeers].sort((a, b) => a.id.localeCompare(b.id));
               const idx = sorted.findIndex((e) => e.id === element.id);
-              // Distribute strictly ABOVE the axis line so they don't overlap the zone text labels below
-              const offsets = [-24, -12, -36, -8];
-              yOffset = offsets[idx % offsets.length] || 0;
+              // Keep the first duration on-axis, then distribute additional durations around it.
+              const offsets = [0, 12, -12, 24];
+              yOffset += offsets[idx % offsets.length] || 0;
             }
           }
 

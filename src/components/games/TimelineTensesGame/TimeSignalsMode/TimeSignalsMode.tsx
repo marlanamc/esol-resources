@@ -123,15 +123,28 @@ export function TimeSignalsMode({ onBack, onTimeSignalsQuizComplete }: TimeSigna
                 transition={{ delay: i * 0.05 }}
                 className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-5 shadow-sm"
               >
+                {(() => {
+                  const hasContextualUsages = group.expressions.some((entry) => (entry.contextualUsages?.length ?? 0) > 0);
+
+                  return (
                 <div className="flex items-start justify-between gap-4 mb-4">
                   <div>
-                    <h3 className={`font-bold text-base ${group.tone}`}>{group.label}</h3>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className={`font-bold text-base ${group.tone}`}>{group.label}</h3>
+                      {hasContextualUsages && (
+                        <span className="text-[10px] font-black uppercase tracking-wide px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300">
+                          Context-dependent
+                        </span>
+                      )}
+                    </div>
                     <p className="text-xs text-text-muted/60 font-medium mt-0.5">{group.description}</p>
                   </div>
                   <span className={`text-xs font-black px-2.5 py-1 rounded-full ${group.iconBg} ${group.tone} flex-shrink-0`}>
                     {group.expressions.length} words
                   </span>
                 </div>
+                  );
+                })()}
 
                 {/* Word chips preview */}
                 <div className="flex flex-wrap gap-1.5 mb-4">

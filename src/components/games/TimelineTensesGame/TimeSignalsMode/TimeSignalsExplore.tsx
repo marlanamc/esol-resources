@@ -20,6 +20,7 @@ export function TimeSignalsExplore({ group }: TimeSignalsExploreProps) {
   const examples = entry.commonExamples ?? [
     { sentence: entry.exampleSentence, verbPhrase: entry.verbPhrase },
   ];
+  const contextualUsages = entry.contextualUsages ?? [];
 
   function go(delta: 1 | -1) {
     setDirection(delta);
@@ -92,6 +93,40 @@ export function TimeSignalsExplore({ group }: TimeSignalsExploreProps) {
               ))}
             </div>
           </div>
+
+          {contextualUsages.length > 0 && (
+            <div className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-5 shadow-sm">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-text-muted/50 mb-4">
+                Context changes the tense
+              </p>
+              <div className="flex flex-col gap-5">
+                {contextualUsages.map((usage, usageIndex) => (
+                  <div
+                    key={`${entry.word}-context-${usageIndex}`}
+                    className="border-l-4 border-secondary/70 pl-4"
+                  >
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <span className="text-[11px] font-black uppercase tracking-wide text-secondary">
+                        {usage.context}
+                      </span>
+                      <span className="text-[11px] px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-bold">
+                        {usage.tenseName}
+                      </span>
+                    </div>
+                    <p className="text-lg font-display font-bold text-text leading-snug mb-3">
+                      &ldquo;{highlightSentenceFeatures(usage.exampleSentence, usage.verbPhrase)}&rdquo;
+                    </p>
+                    <div className="rounded-xl border border-border/50 dark:border-white/10 bg-[var(--color-bg-light)]/40 dark:bg-white/[0.03] p-3">
+                      <TimelineCanvas elements={usage.timelineElements} showLabels={false} />
+                    </div>
+                    {usage.note && (
+                      <p className="text-xs text-text-muted mt-2 italic leading-snug">{usage.note}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Notes */}
           {entry.notes && (

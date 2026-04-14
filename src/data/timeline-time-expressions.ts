@@ -5,6 +5,16 @@ export interface TimeSignalExample {
   verbPhrase: string;
 }
 
+export interface ContextualUsage {
+  context: string;           // e.g., "Past habit (time frame established)"
+  tenseName: string;         // "Past Simple" | "Present Simple" | "Present Perfect" etc.
+  exampleSentence: string;
+  verbPhrase: string;
+  timelineElements: TimelineElement[];
+  note?: string;             // Why this context triggers this tense
+  quizDistractors?: TimelineElement[][];  // Wrong timelines for quiz questions in this context
+}
+
 export interface TimeSignalEntry {
   word: string;
   meaning: string;
@@ -14,6 +24,7 @@ export interface TimeSignalEntry {
   timelineElements: TimelineElement[];
   notes?: string;
   quizDistractors?: TimelineElement[][];
+  contextualUsages?: ContextualUsage[];  // Alternative tense contexts for this time signal
 }
 
 export interface ProductionOption {
@@ -63,11 +74,26 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'I have already eaten breakfast.',
         verbPhrase: 'have already eaten',
         timelineElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 60 }],
-        notes: '"Already" usually goes between the auxiliary and the main verb: "I have already eaten." It can also go at the end: "I\'ve eaten already." Both are correct.',
+        notes: '"Already" works with multiple tenses:\n• RESULT NOW: "I have already eaten" → Present Perfect\n• PAST NARRATIVE: "When I arrived, she had already left" → Past Perfect\n• SURPRISE: "You\'re already leaving?" → Present Continuous\nPosition: between auxiliary and main verb, or at sentence end.',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 60 }],
           [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
           [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Past narrative (before another past event)',
+            tenseName: 'Past Perfect',
+            exampleSentence: 'When I arrived at the station, the train had already left.',
+            verbPhrase: 'had already left',
+            timelineElements: [{ id: 'ctx-1', type: 'arc', zone: 'past-earlier', position: 40 }],
+            note: 'Two past events: the leaving happened BEFORE the arriving, so Past Perfect is used.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'arc', zone: 'past', position: 60 }],
+              [{ id: 'd2', type: 'single-dot', zone: 'past', position: 40 }],
+              [{ id: 'd3', type: 'solid-line', zone: 'past', position: 50 }],
+            ],
+          },
         ],
       },
       {
@@ -76,11 +102,39 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'She has just left the building.',
         verbPhrase: 'has just left',
         timelineElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 75 }],
-        notes: '"Just" sits very close to NOW on the arc — the action is barely in the past.',
+        notes: '"Just" works with multiple tenses:\n• VERY RECENT: "She has just left" → Present Perfect (British English prefers this)\n• VERY RECENT: "She just left" → Past Simple (American English often uses this)\n• PAST SEQUENCE: "I had just arrived when..." → Past Perfect\nBoth Present Perfect and Past Simple are correct for recent events!',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 30 }],
           [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
           [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Recent action (American English style)',
+            tenseName: 'Past Simple',
+            exampleSentence: 'I just saw your message.',
+            verbPhrase: 'saw',
+            timelineElements: [{ id: 'ctx-1', type: 'single-dot', zone: 'past', position: 75 }],
+            note: 'American English often uses Past Simple with "just" for very recent events.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'arc', zone: 'past', position: 75 }],
+              [{ id: 'd2', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd3', type: 'solid-line', zone: 'past', position: 50 }],
+            ],
+          },
+          {
+            context: 'Past sequence (before another past event)',
+            tenseName: 'Past Perfect',
+            exampleSentence: 'I had just arrived when the phone rang.',
+            verbPhrase: 'had just arrived',
+            timelineElements: [{ id: 'ctx-2', type: 'arc', zone: 'past-earlier', position: 60 }],
+            note: 'The arrival happened moments before the phone rang, so Past Perfect is used.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'arc', zone: 'past', position: 75 }],
+              [{ id: 'd2', type: 'single-dot', zone: 'past', position: 60 }],
+              [{ id: 'd3', type: 'solid-line', zone: 'past', position: 50 }],
+            ],
+          },
         ],
       },
       {
@@ -132,11 +186,39 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
           { sentence: 'He is still sleeping.', verbPhrase: 'is sleeping' },
         ],
         timelineElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
-        notes: '"Still" in a negative sentence expresses surprise or frustration: "She still hasn\'t replied." In a positive sentence it means the action continues: "He is still sleeping."',
+        notes: '"Still" works with multiple tenses:\n• NOT DONE YET: "She still hasn\'t replied" → Present Perfect (negative)\n• ONGOING NOW: "He is still sleeping" → Present Continuous (positive)\n• WAS ONGOING: "She was still working when I left" → Past Continuous\nNegative = surprise/frustration; Positive = continuing action.',
         quizDistractors: [
           [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
           [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 50 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Ongoing action now (positive)',
+            tenseName: 'Present Continuous',
+            exampleSentence: 'He is still sleeping.',
+            verbPhrase: 'is sleeping',
+            timelineElements: [{ id: 'ctx-1', type: 'solid-line', zone: 'present', position: 50 }],
+            note: 'Positive "still" + Present Continuous = the action continues (longer than expected).',
+            quizDistractors: [
+              [{ id: 'd1', type: 'arc', zone: 'past', position: 50 }],
+              [{ id: 'd2', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'present', position: 50 }],
+            ],
+          },
+          {
+            context: 'Ongoing action in the past',
+            tenseName: 'Past Continuous',
+            exampleSentence: 'She was still working when I left the office.',
+            verbPhrase: 'was still working',
+            timelineElements: [{ id: 'ctx-2', type: 'solid-line', zone: 'past', position: 50 }],
+            note: '"Still" + Past Continuous = the action was continuing at that past moment.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'arc', zone: 'past', position: 50 }],
+              [{ id: 'd2', type: 'solid-line', zone: 'present', position: 50 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'past', position: 50 }],
+            ],
+          },
         ],
       },
       {
@@ -176,11 +258,26 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
           { sentence: 'We have made good progress this month.', verbPhrase: 'have made' },
         ],
         timelineElements: [{ id: 'e1', type: 'arc', zone: 'past', position: 55 }],
-        notes: 'These periods are not finished yet, so they usually take Present Perfect, not Past Simple. Exception: if the period is already finished ("this morning" when it is now afternoon), use Past Simple: "I had coffee this morning." The period must still be open for Present Perfect.',
+        notes: '"This week/month/year" works with multiple tenses:\n• UNFINISHED PERIOD: "I have had 3 meetings this week" → Present Perfect\n• FINISHED SUB-PERIOD: "I had coffee this morning" (now afternoon) → Past Simple\nKey rule: If the period is still open, use Present Perfect. If it\'s closed, use Past Simple.',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 55 }],
           [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
           [{ id: 'e1', type: 'solid-line', zone: 'past', position: 55 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Finished sub-period (e.g., this morning → now afternoon)',
+            tenseName: 'Past Simple',
+            exampleSentence: 'I had coffee this morning.',
+            verbPhrase: 'had',
+            timelineElements: [{ id: 'ctx-1', type: 'single-dot', zone: 'past', position: 55 }],
+            note: 'If "this morning" is now over (it\'s afternoon), the period is closed → Past Simple.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'arc', zone: 'past', position: 55 }],
+              [{ id: 'd2', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd3', type: 'solid-line', zone: 'past', position: 55 }],
+            ],
+          },
         ],
       },
       {
@@ -235,11 +332,39 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
           { sentence: 'I have been waiting for a long time.', verbPhrase: 'have been waiting' },
         ],
         timelineElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
-        notes: '"For" answers "How long?" — use it with a measurement: for 2 days, for a month. With Present Perfect: "I have lived here for three years" (result). With Present Perfect Continuous: "She has been studying for two hours" (activity still in progress).',
+        notes: '"For" works with multiple tenses:\n• DURATION TO NOW: "I have lived here for 3 years" → Present Perfect\n• ONGOING ACTIVITY: "She has been studying for 2 hours" → Present Perfect Continuous\n• FINISHED PAST: "I lived in Paris for 5 years" (then moved) → Past Simple\n"For" answers "How long?" with a measurement.',
         quizDistractors: [
           [{ id: 'e1', type: 'arc', zone: 'past', position: 30 }],
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 35 }],
           [{ id: 'e1', type: 'solid-line', zone: 'past', position: 35 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Ongoing activity (emphasis on process)',
+            tenseName: 'Present Perfect Continuous',
+            exampleSentence: 'She has been studying for two hours.',
+            verbPhrase: 'has been studying',
+            timelineElements: [{ id: 'ctx-1', type: 'solid-to-now', zone: 'past', position: 30 }],
+            note: 'Present Perfect Continuous emphasizes the activity is STILL in progress.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'arc', zone: 'past', position: 30 }],
+              [{ id: 'd2', type: 'single-dot', zone: 'past', position: 35 }],
+              [{ id: 'd3', type: 'solid-line', zone: 'past', position: 35 }],
+            ],
+          },
+          {
+            context: 'Finished past duration',
+            tenseName: 'Past Simple',
+            exampleSentence: 'I lived in Paris for five years. (Then I moved away.)',
+            verbPhrase: 'lived',
+            timelineElements: [{ id: 'ctx-2', type: 'solid-line', zone: 'past', position: 40 }],
+            note: 'If the duration is completely finished (no connection to now), use Past Simple.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'solid-to-now', zone: 'past', position: 30 }],
+              [{ id: 'd2', type: 'arc', zone: 'past', position: 40 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'past', position: 40 }],
+            ],
+          },
         ],
       },
       {
@@ -279,11 +404,26 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'She has been working all morning.',
         verbPhrase: 'has been working',
         timelineElements: [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 25 }],
-        notes: 'These phrases stress the full stretch of time up to NOW, so Present Perfect Continuous is the natural match.',
+        notes: '"All day/morning/week" works with multiple tenses:\n• ONGOING TO NOW: "She has been working all morning" → Present Perfect Continuous\n• PAST DURATION: "I worked all day yesterday" → Past Simple\nIf the period is still open, use Perfect Continuous. If finished, use Past Simple.',
         quizDistractors: [
           [{ id: 'e1', type: 'arc', zone: 'past', position: 25 }],
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 25 }],
           [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Past finished duration',
+            tenseName: 'Past Simple',
+            exampleSentence: 'I worked all day yesterday.',
+            verbPhrase: 'worked',
+            timelineElements: [{ id: 'ctx-1', type: 'solid-line', zone: 'past', position: 40 }],
+            note: '"Yesterday" is finished, so the full-day duration is in a completed past period.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'solid-to-now', zone: 'past', position: 25 }],
+              [{ id: 'd2', type: 'arc', zone: 'past', position: 40 }],
+              [{ id: 'd3', type: 'multiple-dots', zone: 'past', position: 40 }],
+            ],
+          },
         ],
       },
     ],
@@ -309,11 +449,29 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
           { id: 'e1', type: 'arc', zone: 'past-earlier', position: 40 },
           { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 },
         ],
-        notes: 'Use Past Perfect for the FIRST event (the one that happened before).',
+        notes: '"Before" works with multiple tenses:\n• PAST SEQUENCE: "She had eaten before he arrived" → Past Perfect + Past Simple\n• FUTURE PLAN: "I\'ll call you before I leave" → Present Simple (future meaning)\n• PAST HABIT: "I always ate breakfast before leaving" → Past Simple\nUse Past Perfect when emphasizing the earlier event\'s completion.',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 30 }, { id: 'e2', type: 'single-dot', zone: 'past', position: 70 }],
           [{ id: 'e1', type: 'solid-line', zone: 'past', position: 40 }, { id: 'e2', type: 'single-dot', zone: 'past', position: 70 }],
           [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Future sequence (Present Simple for future)',
+            tenseName: 'Present Simple',
+            exampleSentence: 'I\'ll call you before I leave.',
+            verbPhrase: 'leave',
+            timelineElements: [
+              { id: 'ctx-1', type: 'single-dot', zone: 'future', position: 40 },
+              { id: 'ctx-2', type: 'single-dot', zone: 'future', position: 65 },
+            ],
+            note: 'After "before" in future contexts, use Present Simple, not "will."',
+            quizDistractors: [
+              [{ id: 'd1', type: 'arc', zone: 'past-earlier', position: 40 }, { id: 'd2', type: 'single-dot', zone: 'past-later', position: 70 }],
+              [{ id: 'd1', type: 'arc-dashed', zone: 'future', position: 55 }],
+              [{ id: 'd1', type: 'solid-line', zone: 'future', position: 50 }],
+            ],
+          },
         ],
       },
       {
@@ -346,11 +504,29 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
           { id: 'e1', type: 'arc-dashed', zone: 'future', position: 55 },
           { id: 'e2', type: 'single-dot', zone: 'future', position: 75 },
         ],
-        notes: '"By the time" triggers Future Perfect — the action completes BEFORE the future reference point.',
+        notes: '"By the time" works with multiple tenses:\n• FUTURE: "I will have finished by the time you arrive" → Future Perfect\n• PAST: "By the time I arrived, she had already left" → Past Perfect\nThe tense depends on whether you\'re looking ahead or back.',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'future', position: 60 }],
           [{ id: 'e1', type: 'arc', zone: 'past-earlier', position: 40 }, { id: 'e2', type: 'single-dot', zone: 'past-later', position: 70 }],
           [{ id: 'e1', type: 'solid-line', zone: 'future', position: 60 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Past sequence (looking back)',
+            tenseName: 'Past Perfect',
+            exampleSentence: 'By the time I arrived, she had already left.',
+            verbPhrase: 'had already left',
+            timelineElements: [
+              { id: 'ctx-1', type: 'arc', zone: 'past-earlier', position: 40 },
+              { id: 'ctx-2', type: 'single-dot', zone: 'past-later', position: 70 },
+            ],
+            note: 'Looking back: the leaving was complete BEFORE the arriving.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'arc-dashed', zone: 'future', position: 55 }, { id: 'd2', type: 'single-dot', zone: 'future', position: 75 }],
+              [{ id: 'd1', type: 'single-dot', zone: 'past', position: 40 }, { id: 'd2', type: 'single-dot', zone: 'past', position: 70 }],
+              [{ id: 'd1', type: 'solid-line', zone: 'past', position: 50 }],
+            ],
+          },
         ],
       },
       {
@@ -477,11 +653,42 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
           { sentence: 'We always eat dinner together on Fridays.', verbPhrase: 'eat' },
         ],
         timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
-        notes: '"Always" often marks a Present Simple routine, but frequency words are not limited to one tense. Context can shift them into past or perfect forms too: "While I was living in Japan, I always tried something new on Fridays."',
+        notes: '"Always" works with multiple tenses:\n• PRESENT HABIT: "She always drinks coffee" → Present Simple\n• PAST HABIT: "While living in Japan, I always tried..." → Past Simple\n• LIFE PATTERN: "He has always been late" → Present Perfect\nThe CONTEXT determines which tense to use!',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 60 }],
           [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
           [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Past habit (time frame established)',
+            tenseName: 'Past Simple',
+            exampleSentence: 'While I was living in Japan, I always tried something new.',
+            verbPhrase: 'tried',
+            timelineElements: [
+              { id: 'ctx-1', type: 'solid-line', zone: 'past', position: 44 },
+              { id: 'ctx-2', type: 'multiple-dots', zone: 'past', position: 50 },
+            ],
+            note: 'The background clause "while I was living in Japan" creates an ongoing past time frame, and the repeated trying happens inside that past period.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd2', type: 'arc', zone: 'past', position: 50 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'past', position: 50 }],
+            ],
+          },
+          {
+            context: 'Life pattern (stretches to now)',
+            tenseName: 'Present Perfect',
+            exampleSentence: 'He has always been late to meetings.',
+            verbPhrase: 'has always been',
+            timelineElements: [{ id: 'ctx-2', type: 'arc', zone: 'past', position: 50 }],
+            note: '"Has always been" describes a pattern from past continuing to now.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd2', type: 'multiple-dots', zone: 'past', position: 50 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'past', position: 50 }],
+            ],
+          },
         ],
       },
       {
@@ -490,11 +697,26 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'I usually walk to school.',
         verbPhrase: 'walk',
         timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
-        notes: '"Usually" commonly fits Present Simple for normal patterns, but it can also appear with past patterns when the sentence clearly refers to an earlier period.',
+        notes: '"Usually" works with multiple tenses:\n• PRESENT HABIT: "I usually walk to school" → Present Simple\n• PAST HABIT: "When I was a child, I usually walked..." → Past Simple\n• ONGOING PERIOD: "I\'ve usually been early this month" → Present Perfect\nThe CONTEXT determines which tense to use!',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 55 }],
           [{ id: 'e1', type: 'arc', zone: 'past', position: 55 }],
           [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 35 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Past habit (childhood/earlier period)',
+            tenseName: 'Past Simple',
+            exampleSentence: 'When I was a child, my grandmother usually told stories at bedtime.',
+            verbPhrase: 'told',
+            timelineElements: [{ id: 'ctx-1', type: 'multiple-dots', zone: 'past', position: 50 }],
+            note: '"When I was a child" establishes a past time frame for the repeated action.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd2', type: 'arc', zone: 'past', position: 50 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'past', position: 50 }],
+            ],
+          },
         ],
       },
       {
@@ -503,11 +725,42 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'They often visit their grandparents on Sundays.',
         verbPhrase: 'visit',
         timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
-        notes: '"Often" shows repetition. In this timeline set it usually points to a present habit, but a fuller sentence can place it in the past too: "I often tried sushi while I was living in Japan."',
+        notes: '"Often" works with multiple tenses:\n• PRESENT HABIT: "They often visit..." → Present Simple\n• PAST HABIT: "I often tried sushi while living in Japan" → Past Simple\n• LIFE EXPERIENCE: "I have often thought about..." → Present Perfect\nThe CONTEXT determines which tense to use!',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'future', position: 40 }],
           [{ id: 'e1', type: 'arc', zone: 'past', position: 45 }],
           [{ id: 'e1', type: 'solid-line', zone: 'past', position: 50 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Past habit (during a past period)',
+            tenseName: 'Past Simple',
+            exampleSentence: 'While I was living in Japan, I often tried new foods.',
+            verbPhrase: 'tried',
+            timelineElements: [
+              { id: 'ctx-1', type: 'solid-line', zone: 'past', position: 44 },
+              { id: 'ctx-2', type: 'multiple-dots', zone: 'past', position: 50 },
+            ],
+            note: '"While I was living" creates an ongoing past background, and the repeated trying happens within that period.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd2', type: 'arc', zone: 'past', position: 50 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'past', position: 50 }],
+            ],
+          },
+          {
+            context: 'Life experience (no specific time)',
+            tenseName: 'Present Perfect',
+            exampleSentence: 'I have often thought about learning another language.',
+            verbPhrase: 'have often thought',
+            timelineElements: [{ id: 'ctx-2', type: 'arc', zone: 'past', position: 50 }],
+            note: 'No finished time period specified, so Present Perfect shows the experience connects to now.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd2', type: 'multiple-dots', zone: 'past', position: 50 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'past', position: 50 }],
+            ],
+          },
         ],
       },
       {
@@ -516,11 +769,26 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'He sometimes cooks dinner for the family.',
         verbPhrase: 'cooks',
         timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
-        notes: '"Sometimes" still describes repetition, but the time frame depends on the rest of the sentence, not on "sometimes" alone.',
+        notes: '"Sometimes" works with multiple tenses:\n• PRESENT HABIT: "He sometimes cooks..." → Present Simple\n• PAST HABIT: "Back then, we sometimes took the bus" → Past Simple\n• UNFINISHED PERIOD: "I\'ve sometimes wondered..." → Present Perfect\nThe CONTEXT determines which tense to use!',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 45 }],
           [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 55 }],
           [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 30 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Past habit (finished period)',
+            tenseName: 'Past Simple',
+            exampleSentence: 'Back then, we sometimes took the bus instead of walking.',
+            verbPhrase: 'took',
+            timelineElements: [{ id: 'ctx-1', type: 'multiple-dots', zone: 'past', position: 50 }],
+            note: '"Back then" clearly places the repeated action in a finished past period.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd2', type: 'arc', zone: 'past', position: 50 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'past', position: 50 }],
+            ],
+          },
         ],
       },
       {
@@ -529,11 +797,26 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'We rarely eat out during the week.',
         verbPhrase: 'eat out',
         timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
-        notes: 'These still show repeated habit dots, but the meaning is very low frequency. Compare with "never" in Completion, which means zero experience.',
+        notes: '"Rarely/hardly ever" works with multiple tenses:\n• PRESENT HABIT: "We rarely eat out..." → Present Simple\n• PAST HABIT: "During my first winter, we rarely went out" → Past Simple\nThese show low-frequency repetition. Compare with "never" (Completion), which means zero experience.',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 50 }],
           [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
           [{ id: 'e1', type: 'solid-line', zone: 'present', position: 50 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Past habit (specific past period)',
+            tenseName: 'Past Simple',
+            exampleSentence: 'During my first winter in Boston, we rarely went out after 9 PM.',
+            verbPhrase: 'went out',
+            timelineElements: [{ id: 'ctx-1', type: 'multiple-dots', zone: 'past', position: 50 }],
+            note: '"During my first winter" establishes a finished past time frame.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd2', type: 'arc', zone: 'past', position: 50 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'past', position: 50 }],
+            ],
+          },
         ],
       },
       {
@@ -542,11 +825,39 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'He studies English every day.',
         verbPhrase: 'studies',
         timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
-        notes: '"Every day / every week" marks routine repetition, so Present Simple is the default choice, but longer contexts can support other tenses: "She has been calling her mother every day this week."',
+        notes: '"Every day/week" works with multiple tenses:\n• PRESENT HABIT: "He studies every day" → Present Simple\n• UNFINISHED PERIOD: "She has called every day this week" → Present Perfect\n• PAST ROUTINE: "Last month, I exercised every day" → Past Simple\nThe CONTEXT determines which tense to use!',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'future', position: 30 }],
           [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
           [{ id: 'e1', type: 'solid-to-now', zone: 'past', position: 40 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Unfinished period (this week/month)',
+            tenseName: 'Present Perfect',
+            exampleSentence: 'She has called her mother every day this week.',
+            verbPhrase: 'has called',
+            timelineElements: [{ id: 'ctx-1', type: 'arc', zone: 'past', position: 50 }],
+            note: '"This week" is not finished yet, so Present Perfect connects the repeated action to now.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd2', type: 'multiple-dots', zone: 'past', position: 50 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'past', position: 50 }],
+            ],
+          },
+          {
+            context: 'Past routine (finished period)',
+            tenseName: 'Past Simple',
+            exampleSentence: 'Last month, I exercised every day.',
+            verbPhrase: 'exercised',
+            timelineElements: [{ id: 'ctx-2', type: 'multiple-dots', zone: 'past', position: 50 }],
+            note: '"Last month" is a finished time period, so Past Simple is used.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'multiple-dots', zone: 'present', position: 50 }],
+              [{ id: 'd2', type: 'arc', zone: 'past', position: 50 }],
+              [{ id: 'd3', type: 'single-dot', zone: 'past', position: 50 }],
+            ],
+          },
         ],
       },
     ],
@@ -935,6 +1246,19 @@ const TIME_SIGNAL_PRODUCTION_BY_GROUP: Record<string, ProductionExercise[]> = {
         { conjugated: 'is calling', tenseName: 'Present Continuous', isCorrect: false },
       ],
       explanation: '"Every day" shows repetition, but "this week" is an unfinished period connected to now, so Present Perfect is the best match.',
+    },
+    {
+      id: 'frequency-6',
+      sentence: 'He has always ______ punctual, ever since I met him.',
+      verbBase: 'be',
+      timeSignal: 'always',
+      options: [
+        { conjugated: 'been', tenseName: 'Present Perfect', isCorrect: true },
+        { conjugated: 'is', tenseName: 'Present Simple', isCorrect: false },
+        { conjugated: 'was', tenseName: 'Past Simple', isCorrect: false },
+        { conjugated: 'being', tenseName: 'Present Continuous', isCorrect: false },
+      ],
+      explanation: '"Always" shows frequency, but "ever since I met him" creates a pattern from past to now, so Present Perfect is required.',
     },
   ],
   'past-habits': [

@@ -5,14 +5,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { TimelineCanvas } from '../TimelineCanvas';
 import { highlightSentenceFeatures } from '../highlightUtils';
-import type { TimeSignalExample, TimeSignalGroup, TimeSignalEntry } from '@/data/timeline-time-expressions';
+import type { ContextualUsage, TimeSignalExample, TimeSignalGroup, TimeSignalEntry } from '@/data/timeline-time-expressions';
 import { getAllTimeSignalEntries } from '@/data/timeline-time-expressions';
 import type { TimelineElement } from '@/types/activity';
+
+interface QuizQuestionSource {
+  sentence: string;
+  verbPhrase: string;
+  timelineElements: TimelineElement[];
+  quizDistractors?: TimelineElement[][];
+  contextLabel?: string;
+  note?: string;
+  isContextual: boolean;
+}
 
 interface QuizQuestion {
   entry: TimeSignalEntry;
   groupId: string;
-  example: TimeSignalExample;
+  source: QuizQuestionSource;
   options: {
     elements: TimelineElement[];
     label: string;
@@ -114,8 +124,14 @@ function makeWrongVariant(elements: TimelineElement[], variantIndex: number): Ti
   }));
 }
 
-function buildTimelineOptions(group: TimeSignalGroup, entry: TimeSignalEntry): TimelineOption[] {
-  const correctSignature = timelineSignature(entry.timelineElements);
+function buildTimelineOptions(
+  group: TimeSignalGroup,
+  entry: TimeSignalEntry,
+  correctTimelineElements: TimelineElement[],
+  quizDistractors?: TimelineElement[][],
+  includeBaseTimelineAsDistractor = false
+): TimelineOption[] {
+  const correctSignature = timelineSignature(correctTimelineElements);
   const seen = new Set<string>([correctSignature]);
   const options: TimelineOption[] = [];
 
@@ -126,14 +142,17 @@ function buildTimelineOptions(group: TimeSignalGroup, entry: TimeSignalEntry): T
     options.push({ elements, label });
   };
 
-  if (entry.quizDistractors && entry.quizDistractors.length > 0) {
-    for (const distractor of entry.quizDistractors) {
+  if (quizDistractors && quizDistractors.length > 0) {
+    for (const distractor of quizDistractors) {
       tryAdd(cloneTimelineElements(distractor, 'entry-distractor'), timelineLabelForElements(distractor));
     }
   }
 
+  if (includeBaseTimelineAsDistractor) {
+    tryAdd(cloneTimelineElements(entry.timelineElements, `base-${entry.word}`), 'Base use');
+  }
+
   for (const candidate of group.expressions) {
-    if (candidate.word === entry.word) continue;
     if (options.length >= MAX_QUIZ_OPTIONS - 1) break;
     tryAdd(cloneTimelineElements(candidate.timelineElements, `same-group-${candidate.word}`), timelineLabelForElements(candidate.timelineElements));
   }
@@ -155,31 +174,71 @@ function buildTimelineOptions(group: TimeSignalGroup, entry: TimeSignalEntry): T
   return options;
 }
 
+function makePrimarySources(entry: TimeSignalEntry): QuizQuestionSource[] {
+  const examples: TimeSignalExample[] = entry.commonExamples ?? [
+    { sentence: entry.exampleSentence, verbPhrase: entry.verbPhrase },
+  ];
+
+  return examples.map((example) => ({
+    sentence: example.sentence,
+    verbPhrase: example.verbPhrase,
+    timelineElements: entry.timelineElements,
+    quizDistractors: entry.quizDistractors,
+    note: entry.notes,
+    isContextual: false,
+  }));
+}
+
+function makeContextualSources(usages: ContextualUsage[]): QuizQuestionSource[] {
+  return usages.map((usage) => ({
+    sentence: usage.exampleSentence,
+    verbPhrase: usage.verbPhrase,
+    timelineElements: usage.timelineElements,
+    quizDistractors: usage.quizDistractors,
+    contextLabel: usage.context,
+    note: usage.note,
+    isContextual: true,
+  }));
+}
+
 function buildQuestions(group: TimeSignalGroup): QuizQuestion[] {
   const allQuestions = group.expressions.flatMap((entry, i) => {
-    const correctTimeline = cloneTimelineElements(entry.timelineElements, `correct-${entry.word}`);
-    const options: TimelineOption[] = buildTimelineOptions(group, entry);
-    const preparedOptions = shuffleArray(
-      [
-        { elements: correctTimeline, label: timelineLabelForElements(correctTimeline) },
-        ...options,
-      ],
-      i * 37 + group.id.charCodeAt(0)
-    );
-
-    const correctSignature = timelineSignature(correctTimeline);
-    const correctIndex = preparedOptions.findIndex((option) => timelineSignature(option.elements) === correctSignature);
-    const examples = entry.commonExamples ?? [
-      { sentence: entry.exampleSentence, verbPhrase: entry.verbPhrase },
+    const sources = [
+      ...makePrimarySources(entry),
+      ...makeContextualSources(entry.contextualUsages ?? []),
     ];
 
-    return examples.map((example) => ({
-      entry,
-      groupId: group.id,
-      example,
-      options: preparedOptions.slice(0, MAX_QUIZ_OPTIONS),
-      correctIndex,
-    }));
+    return sources.map((source, sourceIndex) => {
+      const correctTimeline = cloneTimelineElements(
+        source.timelineElements,
+        `correct-${entry.word}-${source.isContextual ? 'context' : 'base'}-${sourceIndex}`
+      );
+      const options: TimelineOption[] = buildTimelineOptions(
+        group,
+        entry,
+        source.timelineElements,
+        source.quizDistractors,
+        source.isContextual
+      );
+      const preparedOptions = shuffleArray(
+        [
+          { elements: correctTimeline, label: timelineLabelForElements(correctTimeline) },
+          ...options,
+        ],
+        i * 37 + sourceIndex * 17 + group.id.charCodeAt(0)
+      ).slice(0, MAX_QUIZ_OPTIONS);
+
+      const correctSignature = timelineSignature(correctTimeline);
+      const correctIndex = preparedOptions.findIndex((option) => timelineSignature(option.elements) === correctSignature);
+
+      return {
+        entry,
+        groupId: group.id,
+        source,
+        options: preparedOptions,
+        correctIndex,
+      };
+    });
   });
   // Cap at MAX_QUIZ_QUESTIONS using a deterministic shuffle so every student gets the same set
   const seed = group.id.charCodeAt(0) * 31 + group.expressions.length;
@@ -286,8 +345,18 @@ export function TimeSignalsQuiz({ group, onComplete, onGoToExercises }: TimeSign
             <p className="text-xs font-black uppercase tracking-[0.18em] text-text-muted/50 mb-3">
               Which timeline matches this example use?
             </p>
+            {question.source.contextLabel && (
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <span className="text-[11px] font-black uppercase tracking-wide text-secondary">
+                  {question.source.contextLabel}
+                </span>
+                <span className="text-[11px] px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-bold">
+                  Context shift
+                </span>
+              </div>
+            )}
             <p className="text-xl font-display font-bold text-text leading-snug">
-              &ldquo;{highlightSentenceFeatures(question.example.sentence, question.example.verbPhrase)}&rdquo;
+              &ldquo;{highlightSentenceFeatures(question.source.sentence, question.source.verbPhrase)}&rdquo;
             </p>
           </div>
 
@@ -350,7 +419,14 @@ export function TimeSignalsQuiz({ group, onComplete, onGoToExercises }: TimeSign
                 {isCorrect ? 'Correct!' : 'Not quite.'}
               </p>
               <p className="text-sm text-text-muted leading-snug">{question.entry.meaning}</p>
-              {question.entry.notes && (
+              {question.source.contextLabel && (
+                <p className="text-xs text-secondary mt-2 font-black uppercase tracking-wide">
+                  {question.source.contextLabel}
+                </p>
+              )}
+              {question.source.note ? (
+                <p className="text-xs text-text-muted/70 mt-2 font-medium">{question.source.note}</p>
+              ) : question.entry.notes && (
                 <p className="text-xs text-text-muted/70 mt-2 font-medium">{question.entry.notes}</p>
               )}
             </motion.div>
