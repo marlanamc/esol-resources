@@ -9,7 +9,6 @@ import { requireTeacher } from "@/lib/api-auth";
 import { logger } from "@/lib/logger";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
 import { createLearnerContentMetadataCache, isLearnerVisibleActivity } from "@/lib/learner-visibility";
-import { probeActivityIsReleasedInContentColumn, supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 import {
     buildActivitySubmissionMap,
     buildFeaturedAssignmentsWhere,
@@ -32,8 +31,7 @@ export async function GET() {
         }
 
         const userId = session.user?.id;
-        await probeActivityIsReleasedInContentColumn();
-
+    
         // Get student's enrolled classes
         const enrollments: { classId: string }[] = await prisma.classEnrollment.findMany({
             where: { studentId: userId },
@@ -56,8 +54,7 @@ export async function GET() {
                         category: true,
                         ui: true,
                         isReleased: true,
-                        ...(supportsActivityIsReleasedInContent() ? { isReleasedInContent: true } : {}),
-                        content: true,
+                                        content: true,
                     },
                 },
                 submissions: {

@@ -91,6 +91,15 @@ export function isLearnerVisibleActivity(
     const type = (activity.type || "").toLowerCase();
     const category = (activity.category || "").toLowerCase();
 
+    if (
+        type === "speaking" ||
+        category === "speaking" ||
+        category === "writing" ||
+        category === "writing-reading"
+    ) {
+        return false;
+    }
+
     if (type === "guide" && category === "grammar") {
         return activity.isReleased === true;
     }

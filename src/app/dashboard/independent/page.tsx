@@ -30,7 +30,6 @@ import {
 } from "@/components/dashboard/independent";
 import { InviteFriendsCard } from "@/components/dashboard";
 import { IndependentDashboardClient } from "./IndependentDashboardClient";
-import { probeActivityIsReleasedInContentColumn, supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 
 export default async function IndependentDashboardPage() {
     const session = await getServerSession(authOptions);
@@ -95,7 +94,6 @@ export default async function IndependentDashboardPage() {
 
     const sequenceActivityIds = getIndependentRecommendationActivityIds();
     const sequenceActivityTitles = getIndependentRecommendationActivityTitles();
-    await probeActivityIsReleasedInContentColumn();
 
     const sequenceActivitiesRaw = await timedQuery(
         {
@@ -120,8 +118,7 @@ export default async function IndependentDashboardPage() {
                         type: true,
                         category: true,
                         isReleased: true,
-                        ...(supportsActivityIsReleasedInContent() ? { isReleasedInContent: true } : {}),
-                        content: true,
+                                        content: true,
                         createdAt: true,
                         updatedAt: true,
                     },

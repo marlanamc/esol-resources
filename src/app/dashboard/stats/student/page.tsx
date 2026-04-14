@@ -6,7 +6,6 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { StudentStatsView } from "@/components/dashboard/StudentStatsView";
 import { createLearnerContentMetadataCache, filterLearnerVisibleActivities } from "@/lib/learner-visibility";
-import { probeActivityIsReleasedInContentColumn, supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 
 export default async function StudentStatsPage() {
     const session = await getServerSession(authOptions);
@@ -22,7 +21,6 @@ export default async function StudentStatsPage() {
         redirect("/dashboard/stats");
     }
 
-    await probeActivityIsReleasedInContentColumn();
     const activitiesRaw = await prisma.activity.findMany({
         where: { deletedAt: null },
         orderBy: { createdAt: "desc" },
@@ -32,8 +30,7 @@ export default async function StudentStatsPage() {
             category: true,
             type: true,
             isReleased: true,
-            ...(supportsActivityIsReleasedInContent() ? { isReleasedInContent: true } : {}),
-            content: true,
+                content: true,
         },
     });
     const activities = filterLearnerVisibleActivities(

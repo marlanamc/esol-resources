@@ -8,7 +8,7 @@ import { createLearnerContentMetadataCache, filterLearnerVisibleActivities, getL
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 import { logger } from "@/lib/logger";
 import { timedQuery } from "@/lib/perf-log";
-import { probeActivityIsReleasedInContentColumn, supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
+import { probeActivityIsReleasedInContentColumn } from "@/lib/prisma-field-support";
 
 export async function POST(request: NextRequest) {
     try {
@@ -54,7 +54,6 @@ export async function POST(request: NextRequest) {
                 isReleased: true,
                 createdAt: true,
                 updatedAt: true,
-                ...(hasReleasedColumn ? { isReleasedInContent: true } : {}),
             },
         });
 
@@ -74,8 +73,7 @@ export async function GET() {
             return ApiErrors.unauthorized();
         }
 
-        await probeActivityIsReleasedInContentColumn();
-        const userRole = session.user?.role;
+            const userRole = session.user?.role;
 
         if (userRole === "student") {
             const visibilityCache = createLearnerContentMetadataCache();
@@ -99,8 +97,7 @@ export async function GET() {
                             level: true,
                             ui: true,
                             isReleased: true,
-                            ...(supportsActivityIsReleasedInContent() ? { isReleasedInContent: true } : {}),
-                            content: true,
+                                                content: true,
                         },
                         orderBy: { createdAt: "desc" },
                     }),
@@ -158,8 +155,7 @@ export async function GET() {
                         level: true,
                         ui: true,
                         isReleased: true,
-                        ...(supportsActivityIsReleasedInContent() ? { isReleasedInContent: true } : {}),
-                    },
+                                    },
                     orderBy: { createdAt: "desc" },
                 }),
             (result) => result.length

@@ -8,6 +8,7 @@ import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import { isTeacherAdmin } from "@/lib/roles";
 import { TeacherActivityCategories } from "@/components/dashboard";
 import { ActivityCategoryPicker } from "@/components/dashboard/ActivityCategoryPicker";
+import { createLearnerContentMetadataCache, filterLearnerVisibleActivities } from "@/lib/learner-visibility";
 
 type Props = { searchParams: Promise<{ category?: string }> };
 const VOCAB_TYPES = ["word-list", "flashcards", "matching", "fill-blank"] as const;
@@ -187,8 +188,7 @@ export default async function ActivitiesPage({ searchParams }: Props) {
     const userRole = session.user?.role;
     const admin = isTeacherAdmin(session.user);
 
-    // Filter activities by release status for students
-    const activities = await timedQuery(
+    const activitiesRaw = await timedQuery(
         {
             route: "/dashboard/activities",
             queryLabel: "activity.findMany.activitiesPage",
@@ -197,17 +197,11 @@ export default async function ActivitiesPage({ searchParams }: Props) {
         () =>
             withPrismaReadRetry(() =>
                 prisma.activity.findMany({
-                    where: userRole === "student"
-                        ? {
-                            deletedAt: null,
-                            OR: [
-                                { type: "guide", category: "grammar", isReleased: true },
-                                { NOT: { AND: [{ type: "guide" }, { category: "grammar" }] } }
-                            ]
-                        }
-                        : admin
+                    where: admin
                             ? { deletedAt: null }
-                            : { deletedAt: null, createdBy: userId },
+                            : userRole === "teacher"
+                                ? { deletedAt: null, createdBy: userId }
+                                : { deletedAt: null },
                     select: {
                         id: true,
                         title: true,
@@ -224,7 +218,14 @@ export default async function ActivitiesPage({ searchParams }: Props) {
             ),
         (result) => result.length
     );
-    const visibleActivities = collapseEdPronunciationActivities(activities);
+    const visibleActivities = collapseEdPronunciationActivities(
+        userRole === "student"
+            ? filterLearnerVisibleActivities(
+                activitiesRaw,
+                createLearnerContentMetadataCache()
+            )
+            : activitiesRaw
+    );
 
     if (userRole === "teacher") {
         // Teacher View - Get featured assignments and class info

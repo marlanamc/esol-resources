@@ -31,8 +31,7 @@ export async function PUT(request: NextRequest, { params }: Props) {
             return apiError("Title, type, and content are required", 400);
         }
 
-        const hasReleasedColumn = await probeActivityIsReleasedInContentColumn();
-
+      
         const existingActivity = await prisma.activity.findFirst({
             where: {
                 id,
@@ -49,6 +48,7 @@ export async function PUT(request: NextRequest, { params }: Props) {
             return ApiErrors.forbidden();
         }
 
+        const hasReleasedColumn = await probeActivityIsReleasedInContentColumn();
         const activity = await prisma.activity.update({
             where: { id },
             data: {
@@ -74,7 +74,6 @@ export async function PUT(request: NextRequest, { params }: Props) {
                 isReleased: true,
                 createdAt: true,
                 updatedAt: true,
-                ...(hasReleasedColumn ? { isReleasedInContent: true } : {}),
             },
         });
 
@@ -134,7 +133,6 @@ export async function DELETE(request: NextRequest, { params }: Props) {
         });
     }
 }
-
 
 
 

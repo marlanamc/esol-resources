@@ -39,7 +39,6 @@ import {
 } from "@/lib/learner-visibility";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
 import { resolveLearnerMode } from "@/lib/learner-mode";
-import { probeActivityIsReleasedInContentColumn, supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 
 type TeacherAssignment = {
     id: string;
@@ -134,7 +133,6 @@ export default async function DashboardPage() {
     const userId = session.user.id;
     const admin = isTeacherAdmin(session.user);
 
-    await probeActivityIsReleasedInContentColumn();
 
     void trackLogin(userId).catch((err) => {
         logger.warn("Failed to track login for streak", { userId, error: String(err) });
@@ -764,9 +762,6 @@ export default async function DashboardPage() {
                                                     type: true,
                                                     category: true,
                                                     isReleased: true,
-                            ...(supportsActivityIsReleasedInContent()
-                                ? { isReleasedInContent: true }
-                                : {}),
                                                     content: true,
                                                 },
                                             },
@@ -849,9 +844,6 @@ export default async function DashboardPage() {
                                     type: true,
                                     category: true,
                                     isReleased: true,
-                                    ...(supportsActivityIsReleasedInContent()
-                                        ? { isReleasedInContent: true }
-                                        : {}),
                                     content: true,
                                 },
                             },

@@ -10,7 +10,6 @@ import { prisma } from "@/lib/prisma";
 import { ApiErrors, handleApiError } from "@/lib/api-response";
 import { analyzeWeakAreas } from "@/lib/independent-progress";
 import { createLearnerContentMetadataCache, filterLearnerVisibleActivities } from "@/lib/learner-visibility";
-import { probeActivityIsReleasedInContentColumn, supportsActivityIsReleasedInContent } from "@/lib/prisma-field-support";
 
 /**
  * GET /api/user/weak-areas
@@ -47,8 +46,7 @@ export async function GET(request: Request) {
 
         // Fetch activities for these submissions
         const activityIds = [...new Set(submissions.map((s) => s.activityId))];
-        await probeActivityIsReleasedInContentColumn();
-        const activitiesRaw = await prisma.activity.findMany({
+            const activitiesRaw = await prisma.activity.findMany({
             where: {
                 id: { in: activityIds },
                 deletedAt: null,
@@ -59,8 +57,7 @@ export async function GET(request: Request) {
                 type: true,
                 category: true,
                 isReleased: true,
-                ...(supportsActivityIsReleasedInContent() ? { isReleasedInContent: true } : {}),
-                content: true,
+                        content: true,
             },
         });
         const activities = filterLearnerVisibleActivities(
