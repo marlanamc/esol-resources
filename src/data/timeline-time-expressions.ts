@@ -459,7 +459,7 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
     id: 'frequency',
     label: 'Frequency Markers',
     shortLabel: 'Frequency',
-    description: 'Show repeated habits and routines in the present.',
+    description: 'Show repeated habits and routines, usually in the present but sometimes in other time frames when the context is clear.',
     color: 'indigo',
     tone: 'text-[#4338ca] dark:text-[#9ea8ff]',
     iconBg: 'bg-[#eef2ff] dark:bg-[#4338ca]/18',
@@ -477,7 +477,7 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
           { sentence: 'We always eat dinner together on Fridays.', verbPhrase: 'eat' },
         ],
         timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
-        notes: '"Always" is a strong Present Simple habit marker for regular routine actions. All frequency words in this group share the same timeline — they all signal Present Simple habits. The difference between them is only how often the action repeats.',
+        notes: '"Always" often marks a Present Simple routine, but frequency words are not limited to one tense. Context can shift them into past or perfect forms too: "While I was living in Japan, I always tried something new on Fridays."',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 60 }],
           [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
@@ -490,7 +490,7 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'I usually walk to school.',
         verbPhrase: 'walk',
         timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
-        notes: '"Usually" fits Present Simple because it describes a normal pattern, not one finished event.',
+        notes: '"Usually" commonly fits Present Simple for normal patterns, but it can also appear with past patterns when the sentence clearly refers to an earlier period.',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 55 }],
           [{ id: 'e1', type: 'arc', zone: 'past', position: 55 }],
@@ -503,7 +503,7 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'They often visit their grandparents on Sundays.',
         verbPhrase: 'visit',
         timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
-        notes: '"Often" signals repeated present habit, so the timeline shows multiple recurring points.',
+        notes: '"Often" shows repetition. In this timeline set it usually points to a present habit, but a fuller sentence can place it in the past too: "I often tried sushi while I was living in Japan."',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'future', position: 40 }],
           [{ id: 'e1', type: 'arc', zone: 'past', position: 45 }],
@@ -516,7 +516,7 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'He sometimes cooks dinner for the family.',
         verbPhrase: 'cooks',
         timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
-        notes: '"Sometimes" still describes a recurring present habit, even if the frequency is lower.',
+        notes: '"Sometimes" still describes repetition, but the time frame depends on the rest of the sentence, not on "sometimes" alone.',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'past', position: 45 }],
           [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 55 }],
@@ -542,7 +542,7 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         exampleSentence: 'He studies English every day.',
         verbPhrase: 'studies',
         timelineElements: [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
-        notes: '"Every day / every week" marks routine repetition, so Present Simple is the default tense.',
+        notes: '"Every day / every week" marks routine repetition, so Present Simple is the default choice, but longer contexts can support other tenses: "She has been calling her mother every day this week."',
         quizDistractors: [
           [{ id: 'e1', type: 'single-dot', zone: 'future', position: 30 }],
           [{ id: 'e1', type: 'arc', zone: 'past', position: 50 }],
@@ -886,20 +886,20 @@ const TIME_SIGNAL_PRODUCTION_BY_GROUP: Record<string, ProductionExercise[]> = {
     },
     {
       id: 'frequency-2',
-      sentence: 'They often ______ their grandparents on Sundays.',
-      verbBase: 'visit',
+      sentence: 'While I was living in Japan, I often ______ sushi after work.',
+      verbBase: 'try',
       timeSignal: 'often',
       options: [
-        { conjugated: 'visit', tenseName: 'Present Simple', isCorrect: true },
-        { conjugated: 'are visiting', tenseName: 'Present Continuous', isCorrect: false },
-        { conjugated: 'visited', tenseName: 'Past Simple', isCorrect: false },
-        { conjugated: 'have visited', tenseName: 'Present Perfect', isCorrect: false },
+        { conjugated: 'tried', tenseName: 'Past Simple', isCorrect: true },
+        { conjugated: 'try', tenseName: 'Present Simple', isCorrect: false },
+        { conjugated: 'was trying', tenseName: 'Past Continuous', isCorrect: false },
+        { conjugated: 'have tried', tenseName: 'Present Perfect', isCorrect: false },
       ],
-      explanation: '"Often" marks routine repetition, so Present Simple fits.',
+      explanation: '"Often" shows repetition, but the past context "while I was living in Japan" makes Past Simple the best choice here.',
     },
     {
       id: 'frequency-3',
-      sentence: 'He sometimes ______ dinner for the family.',
+      sentence: 'He sometimes ______ dinner for the family when his partner works late.',
       verbBase: 'cook',
       timeSignal: 'sometimes',
       options: [
@@ -912,29 +912,29 @@ const TIME_SIGNAL_PRODUCTION_BY_GROUP: Record<string, ProductionExercise[]> = {
     },
     {
       id: 'frequency-4',
-      sentence: 'We rarely ______ out during the week.',
-      verbBase: 'eat',
+      sentence: 'During my first winter in Boston, we rarely ______ out after 9 PM.',
+      verbBase: 'go',
       timeSignal: 'rarely',
       options: [
-        { conjugated: 'eat', tenseName: 'Present Simple', isCorrect: true },
-        { conjugated: 'are eating', tenseName: 'Present Continuous', isCorrect: false },
-        { conjugated: 'ate', tenseName: 'Past Simple', isCorrect: false },
-        { conjugated: 'have eaten', tenseName: 'Present Perfect', isCorrect: false },
+        { conjugated: 'went', tenseName: 'Past Simple', isCorrect: true },
+        { conjugated: 'go', tenseName: 'Present Simple', isCorrect: false },
+        { conjugated: 'were going', tenseName: 'Past Continuous', isCorrect: false },
+        { conjugated: 'have gone', tenseName: 'Present Perfect', isCorrect: false },
       ],
-      explanation: '"Rarely" is a frequency adverb, so it still takes Present Simple for habit.',
+      explanation: '"Rarely" marks frequency, but "during my first winter in Boston" places the whole sentence in the past, so Past Simple fits best.',
     },
     {
       id: 'frequency-5',
-      sentence: 'He ______ English every day.',
-      verbBase: 'study',
+      sentence: 'She ______ her mother every day this week.',
+      verbBase: 'call',
       timeSignal: 'every day',
       options: [
-        { conjugated: 'studies', tenseName: 'Present Simple', isCorrect: true },
-        { conjugated: 'is studying', tenseName: 'Present Continuous', isCorrect: false },
-        { conjugated: 'studied', tenseName: 'Past Simple', isCorrect: false },
-        { conjugated: 'has studied', tenseName: 'Present Perfect', isCorrect: false },
+        { conjugated: 'has called', tenseName: 'Present Perfect', isCorrect: true },
+        { conjugated: 'calls', tenseName: 'Present Simple', isCorrect: false },
+        { conjugated: 'called', tenseName: 'Past Simple', isCorrect: false },
+        { conjugated: 'is calling', tenseName: 'Present Continuous', isCorrect: false },
       ],
-      explanation: '"Every day" shows routine repetition, so Present Simple is correct.',
+      explanation: '"Every day" shows repetition, but "this week" is an unfinished period connected to now, so Present Perfect is the best match.',
     },
   ],
   'past-habits': [
@@ -1020,7 +1020,7 @@ const TIME_SIGNAL_PRODUCTION_BY_GROUP: Record<string, ProductionExercise[]> = {
     },
     {
       id: 'point-2',
-      sentence: 'We ______ apartments last month.',
+      sentence: 'We ______ apartments last month after the rent went up.',
       verbBase: 'move',
       timeSignal: 'last month',
       options: [
@@ -1087,7 +1087,7 @@ const TIME_SIGNAL_PRODUCTION_BY_GROUP: Record<string, ProductionExercise[]> = {
     },
     {
       id: 'ongoing-2',
-      sentence: 'She ______ right now.',
+      sentence: 'She ______ right now, so she cannot come to the phone.',
       verbBase: 'work',
       timeSignal: 'right now',
       options: [
@@ -1193,7 +1193,7 @@ const TIME_SIGNAL_PRODUCTION_BY_GROUP: Record<string, ProductionExercise[]> = {
     },
     {
       id: 'future-5',
-      sentence: 'We ______ tonight.',
+      sentence: 'We ______ tonight to talk about the lease.',
       verbBase: 'meet',
       timeSignal: 'tonight',
       options: [
@@ -1247,7 +1247,7 @@ const TIME_SIGNAL_PRODUCTION_BY_GROUP: Record<string, ProductionExercise[]> = {
     },
     {
       id: 'completion-4',
-      sentence: 'Have you ever ______ sushi?',
+      sentence: 'Have you ever ______ sushi with sea urchin on top?',
       verbBase: 'try',
       timeSignal: 'ever',
       options: [
@@ -1288,7 +1288,7 @@ const TIME_SIGNAL_PRODUCTION_BY_GROUP: Record<string, ProductionExercise[]> = {
     },
     {
       id: 'duration-2',
-      sentence: 'She ______ for two hours.',
+      sentence: 'She ______ for two hours for tomorrow\'s exam.',
       verbBase: 'study',
       timeSignal: 'for two hours',
       options: [
@@ -1342,7 +1342,7 @@ const TIME_SIGNAL_PRODUCTION_BY_GROUP: Record<string, ProductionExercise[]> = {
   interruption: [
     {
       id: 'interruption-1',
-      sentence: 'I ______ when the phone rang.',
+      sentence: 'I ______ dinner when the smoke alarm rang.',
       verbBase: 'cook',
       timeSignal: 'when',
       options: [
@@ -1422,7 +1422,7 @@ const TIME_SIGNAL_PRODUCTION_BY_GROUP: Record<string, ProductionExercise[]> = {
     },
     {
       id: 'sequence-2',
-      sentence: 'After he ______ work, he called me.',
+      sentence: 'After he ______ work, he called me from the parking lot.',
       verbBase: 'finish',
       timeSignal: 'After',
       options: [
