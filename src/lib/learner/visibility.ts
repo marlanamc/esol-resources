@@ -25,6 +25,16 @@ export function getLearnerContentMetadata(
     content: string | Record<string, unknown> | null | undefined,
     cache?: LearnerContentMetadataCache
 ): LearnerContentMetadata {
+    const deriveReleasedInContent = (parsed: Record<string, unknown>): boolean => {
+        if (Object.prototype.hasOwnProperty.call(parsed, "released")) {
+            return parsed.released === true;
+        }
+
+        // Legacy activities may not have explicit release metadata in content yet.
+        // In that case, keep them visible by default for backward compatibility.
+        return true;
+    };
+
     if (!content) {
         return { type: null, releasedInContent: false };
     }
@@ -43,7 +53,7 @@ export function getLearnerContentMetadata(
 
         const parsedMetadata = parsed as Record<string, unknown>;
         const activityType = typeof parsedMetadata.type === "string" ? parsedMetadata.type : null;
-        const releasedInContent = parsedMetadata.released === true;
+        const releasedInContent = deriveReleasedInContent(parsedMetadata);
         const metadata = { type: activityType, releasedInContent };
         if (cache) cache.set(content, metadata);
         return metadata;
@@ -56,7 +66,7 @@ export function getLearnerContentMetadata(
 
     const contentMetadata = content as Record<string, unknown>;
     const activityType = typeof contentMetadata.type === "string" ? contentMetadata.type : null;
-    const releasedInContent = contentMetadata.released === true;
+    const releasedInContent = deriveReleasedInContent(contentMetadata);
     const metadata = { type: activityType, releasedInContent };
     return metadata;
 }

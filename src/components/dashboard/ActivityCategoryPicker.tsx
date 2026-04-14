@@ -97,6 +97,10 @@ export function ActivityCategoryPicker({
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const activityContentMetadataCache = useMemo(() => createLearnerContentMetadataCache(), []);
+    const isReleasedActivityContent = (content: string | undefined) => {
+        return getLearnerContentMetadata(content, activityContentMetadataCache).releasedInContent;
+    };
+
     // Determine which categories actually have activities so we can hide empty ones
     const categoryHasActivities = useMemo(() => {
         const map: Record<string, boolean> = {};
@@ -126,15 +130,13 @@ export function ActivityCategoryPicker({
         // Quizzes
         map['quizzes'] = activities.some((a) => {
             if (a.category !== 'quizzes') return false;
-            const contentMetadata = getLearnerContentMetadata(a.content, activityContentMetadataCache);
-            return contentMetadata.releasedInContent;
+            return isReleasedActivityContent(a.content);
         });
 
         // Speaking
         map['speaking'] = activities.some((a) => {
             if (a.category !== 'speaking') return false;
-            const contentMetadata = getLearnerContentMetadata(a.content, activityContentMetadataCache);
-            return contentMetadata.releasedInContent;
+            return isReleasedActivityContent(a.content);
         });
 
         // Writing

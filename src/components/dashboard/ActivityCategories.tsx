@@ -21,6 +21,7 @@ import { GameActivityVisual, getGameCardCopy } from './GameActivityVisual';
 import { PronunciationActivityVisual, getPronunciationCardCopy } from './PronunciationActivityVisual';
 import { comparePronunciationActivities, getPronunciationActivityDescriptor } from '@/lib/pronunciation-activity';
 import { getSubcategorySubtitle } from '@/lib/subcategory-labels';
+import { getLearnerContentMetadata } from '@/lib/learner-visibility';
 
 interface Activity {
     id: string;
@@ -61,12 +62,7 @@ interface ActivityCategoriesProps {
 }
 
 function isReleasedActivityContent(content?: string): boolean {
-    try {
-        const parsed = JSON.parse(content || '{}') as { released?: unknown };
-        return parsed.released === true;
-    } catch {
-        return false;
-    }
+    return getLearnerContentMetadata(content).releasedInContent;
 }
 
 const extractVocabTermsFromPlainTextContent = (content: string): string[] => {
