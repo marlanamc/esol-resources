@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { POS_LABELS } from '@/types/parts-of-speech';
 import type { POSExercise, PartOfSpeech } from '@/types/parts-of-speech';
@@ -11,7 +11,7 @@ interface Props {
   answered: boolean;
 }
 
-export function MadLibsExercise({ exercise, onAnswer, answered }: Props) {
+export const MadLibsExercise = memo(function MadLibsExercise({ exercise, onAnswer, answered }: Props) {
   const data = exercise.madLibsData;
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [blankValue, setBlankValue] = useState<string | null>(null);
@@ -112,4 +112,4 @@ export function MadLibsExercise({ exercise, onAnswer, answered }: Props) {
       </div>
     </div>
   );
-}
+});

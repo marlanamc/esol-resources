@@ -213,8 +213,17 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
           [filterKey]: merged,
         };
 
+        // Defer localStorage write to avoid blocking the main thread
         if (typeof window !== 'undefined') {
-          window.localStorage.setItem(RECENT_QUESTION_MEMORY_KEY, JSON.stringify(next));
+          if ('requestIdleCallback' in window) {
+            (window as Window & { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(() => {
+              window.localStorage.setItem(RECENT_QUESTION_MEMORY_KEY, JSON.stringify(next));
+            });
+          } else {
+            setTimeout(() => {
+              window.localStorage.setItem(RECENT_QUESTION_MEMORY_KEY, JSON.stringify(next));
+            }, 0);
+          }
         }
         return next;
       });

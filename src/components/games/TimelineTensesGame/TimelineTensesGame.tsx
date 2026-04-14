@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   AlertCircle,
@@ -180,29 +180,45 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     }
   }, [state.phase]);
 
-  // Loading state
+  // Memoize derived values to prevent child re-renders
+  // These must come before any early returns to satisfy hooks rules
+  const currentQuestion = useMemo(
+    () => state.roundQuestions[state.currentQuestionIndex],
+    [state.roundQuestions, state.currentQuestionIndex]
+  );
+  const currentTutorialQuestion = useMemo(
+    () => TIMELINE_TUTORIAL_QUESTIONS[state.tutorialStep],
+    [state.tutorialStep]
+  );
+  const currentTutorialHint = useMemo(
+    () => currentTutorialQuestion ? TUTORIAL_HINTS[currentTutorialQuestion.id] : undefined,
+    [currentTutorialQuestion]
+  );
+  const availableQuestionCount = useMemo(
+    () => filterTimelineQuestions(
+      state.questionBank,
+      state.selectedCategories,
+      state.selectedPracticeMode,
+      state.selectedSentenceForm,
+      state.selectedTimeFrame
+    ).length,
+    [state.questionBank, state.selectedCategories, state.selectedPracticeMode, state.selectedSentenceForm, state.selectedTimeFrame]
+  );
+  const totalRoundQuestions = state.roundQuestions.length;
+  const totalTutorialQuestions = TIMELINE_TUTORIAL_QUESTIONS.length;
+
+  // Loading state - uses CSS animation to avoid main thread work
   if (state.loading) {
     return (
       <div className="min-h-screen bg-bg flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center"
-        >
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-            className="w-16 h-16 mx-auto mb-6 rounded-full border-4 border-border border-t-primary"
+        <div className="text-center">
+          <div
+            className="w-16 h-16 mx-auto mb-6 rounded-full border-4 border-border border-t-primary animate-spin"
           />
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-text-muted font-display text-lg"
-          >
+          <p className="text-text-muted font-display text-lg">
             Loading timeline activity...
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </div>
     );
   }
@@ -236,21 +252,6 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
       </motion.div>
     );
   }
-
-  const currentQuestion = state.roundQuestions[state.currentQuestionIndex];
-  const currentTutorialQuestion = TIMELINE_TUTORIAL_QUESTIONS[state.tutorialStep];
-  const currentTutorialHint = currentTutorialQuestion
-    ? TUTORIAL_HINTS[currentTutorialQuestion.id]
-    : undefined;
-  const availableQuestionCount = filterTimelineQuestions(
-    state.questionBank,
-    state.selectedCategories,
-    state.selectedPracticeMode,
-    state.selectedSentenceForm,
-    state.selectedTimeFrame
-  ).length;
-  const totalRoundQuestions = state.roundQuestions.length;
-  const totalTutorialQuestions = TIMELINE_TUTORIAL_QUESTIONS.length;
 
   const TENSE_LABELS: Record<string, string> = {
     all: 'All Tenses',
@@ -370,12 +371,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
 
               {/* Selection Sections */}
               <div className="flex flex-col gap-8">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="flex justify-center px-1"
-                >
+                <div className="flex justify-center px-1">
                   <TenseToolsPanel
                     expanded={tenseToolsExpanded}
                     onToggleExpanded={() => setTenseToolsExpanded((v) => !v)}
@@ -383,14 +379,10 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     onOpenWalkthrough={startLearnTenses}
                     onOpenTimeSignals={startTimeSignals}
                   />
-                </motion.div>
+                </div>
 
                 {/* Step 1: Choose Tenses */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                >
+                <div>
                   <StepLabel step={1} label="Choose Your Focus" />
                   <p className="text-sm text-text-muted/60 font-medium mb-5 -mt-2">
                     Pick one tense to focus on, or mix a few together for variety.
@@ -400,14 +392,10 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     categoryProgress={state.categoryProgress}
                     onToggleCategory={toggleTenseCategory}
                   />
-                </motion.div>
+                </div>
 
                 {/* Step 2: Choose Mode */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
+                <div>
                   <StepLabel step={2} label="Choose Your Mode" />
                   <ModeSelector
                     selectedMode={state.selectedPracticeMode}
@@ -416,12 +404,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                   />
                   {/* Sentence Form — premium pills, hidden for challenge modes */}
                   {!isChallengeMode(state.selectedPracticeMode) && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.25 }}
-                      className="mt-8 grid gap-8 sm:grid-cols-2 lg:gap-12"
-                    >
+                    <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:gap-12">
                       <div className="space-y-4">
                         <div className="flex items-center gap-2 px-1">
                           <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
@@ -447,17 +430,12 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                           onSelectTimeFrame={(timeFrame: TimelineTimeFrame | 'all') => selectTimeFrame(timeFrame)}
                         />
                       </div>
-                    </motion.div>
+                    </div>
                   )}
-                </motion.div>
+                </div>
 
                 {/* Start Game */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="mb-12 rounded-[2rem] border border-white/30 bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl p-5 sm:p-6 shadow-xl"
-                >
+                <div className="mb-12 rounded-[2rem] border border-white/30 bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl p-5 sm:p-6 shadow-xl">
                   <p className="text-center text-xs font-black uppercase tracking-[0.2em] text-text-muted/50 mb-4">
                     Current Selection
                   </p>
@@ -499,7 +477,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                     </p>
                   )}
 
-                </motion.div>
+                </div>
               </div>
             </motion.div>
           )}
@@ -560,13 +538,9 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                   </div>
                 </div>
                 <div className="h-2 bg-border/30 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-secondary rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{
-                      width: `${((state.tutorialStep + 1) / totalTutorialQuestions) * 100}%`,
-                    }}
-                    transition={{ duration: 0.3 }}
+                  <div
+                    className="h-full bg-secondary rounded-full transition-[width] duration-300 ease-out"
+                    style={{ width: `${((state.tutorialStep + 1) / totalTutorialQuestions) * 100}%` }}
                   />
                 </div>
               </div>
@@ -677,15 +651,13 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
                   </div>
                 </div>
                 <div className="h-2 bg-border/30 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-primary rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{
+                  <div
+                    className="h-full bg-primary rounded-full transition-[width] duration-300 ease-out"
+                    style={{
                       width: totalRoundQuestions > 0
                         ? `${((state.currentQuestionIndex + 1) / totalRoundQuestions) * 100}%`
                         : '0%'
                     }}
-                    transition={{ duration: 0.3 }}
                   />
                 </div>
               </div>

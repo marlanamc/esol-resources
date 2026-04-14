@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X, Lightbulb, ArrowRight } from 'lucide-react';
 import type { TenseComparisonPromptType, TenseComparisonQuestion } from '@/types/activity';
@@ -47,7 +47,7 @@ export function isTenseComparisonSelectionCorrect(
   return selected === correctOption;
 }
 
-export function TenseComparisonExercise({
+export const TenseComparisonExercise = memo(function TenseComparisonExercise({
   question,
   onSubmit,
   onNext,
@@ -290,4 +290,4 @@ export function TenseComparisonExercise({
       )}
     </div>
   );
-}
+});

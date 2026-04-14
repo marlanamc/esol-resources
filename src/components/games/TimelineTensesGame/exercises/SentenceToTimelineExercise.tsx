@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Lightbulb } from 'lucide-react';
 import type {
@@ -67,7 +67,7 @@ const autoLayoutStamps = (stamps: PlacedStamp[]): PlacedStamp[] => {
   });
 };
 
-export function SentenceToTimelineExercise({
+export const SentenceToTimelineExercise = memo(function SentenceToTimelineExercise({
   question,
   onSubmit,
   onNext,
@@ -460,4 +460,4 @@ export function SentenceToTimelineExercise({
       )}
     </div>
   );
-}
+});

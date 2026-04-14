@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X, Lightbulb, ArrowRight } from 'lucide-react';
 import type { ContextTenseQuestion } from '@/types/activity';
@@ -45,7 +45,7 @@ function highlightClues(scenario: string, clues: string[], highlight: boolean): 
   );
 }
 
-export function ContextTenseExercise({
+export const ContextTenseExercise = memo(function ContextTenseExercise({
   question,
   onSubmit,
   onNext,
@@ -227,4 +227,4 @@ export function ContextTenseExercise({
       )}
     </div>
   );
-}
+});

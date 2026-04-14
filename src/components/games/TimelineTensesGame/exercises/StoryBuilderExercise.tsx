@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X, Lightbulb, ArrowRight, BookOpen } from 'lucide-react';
 import type { StoryBuilderQuestion } from '@/types/activity';
@@ -146,7 +146,7 @@ export function buildStorySentenceReviewText(
     .join(" ");
 }
 
-export function StoryBuilderExercise({
+export const StoryBuilderExercise = memo(function StoryBuilderExercise({
   question,
   onSubmit,
   onNext,
@@ -499,4 +499,4 @@ export function StoryBuilderExercise({
       )}
     </div>
   );
-}
+});

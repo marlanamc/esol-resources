@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { validatePOSAnswer } from '@/data/parts-of-speech-exercises';
 import { POS_LABELS, POS_COLORS } from '@/types/parts-of-speech';
@@ -12,7 +12,7 @@ interface Props {
   answered: boolean;
 }
 
-export function POSTaggingExercise({ exercise, onAnswer, answered }: Props) {
+export const POSTaggingExercise = memo(function POSTaggingExercise({ exercise, onAnswer, answered }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const [showOptions, setShowOptions] = useState(false);
   const { options = [], highlightedWord, taggingTokens } = exercise;
@@ -128,4 +128,4 @@ export function POSTaggingExercise({ exercise, onAnswer, answered }: Props) {
       )}
     </div>
   );
-}
+});

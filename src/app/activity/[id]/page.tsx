@@ -286,7 +286,8 @@ function renderImmersiveActivity(
         !(activity.type === "vocabulary" && activity.ui) &&
         immersiveGameUi !== "irregular-verbs" &&
         immersiveGameUi !== "gerund-infinitive" &&
-        immersiveGameUi !== "parts-of-speech";
+        immersiveGameUi !== "parts-of-speech" &&
+        immersiveGameUi !== "timeline-tenses";
     return (
         <div className="min-h-screen bg-bg flex flex-col">
             {overlays}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import { validatePOSAnswer } from '@/data/parts-of-speech-exercises';
 import type { POSExercise } from '@/types/parts-of-speech';
@@ -11,14 +11,12 @@ interface Props {
   answered: boolean;
 }
 
-export function ErrorCorrectionExercise({ exercise, onAnswer, answered }: Props) {
+export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({ exercise, onAnswer, answered }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const data = exercise.errorCorrection;
 
-  if (!data) return null;
-
-  const { sentence, correctWord, wrongWords } = data;
-  const explanation = data.explanation ?? exercise.explanation;
+  const { sentence, correctWord, wrongWords } = data ?? { sentence: '', correctWord: '', wrongWords: [] };
+  const explanation = data?.explanation ?? exercise.explanation;
   const options = exercise.options ?? [correctWord, ...wrongWords];
 
   const sentenceParts = useMemo(() => {
@@ -33,6 +31,8 @@ export function ErrorCorrectionExercise({ exercise, onAnswer, answered }: Props)
       sentence.slice(idx + clean.length),
     ];
   }, [sentence, correctWord]);
+
+  if (!data) return null;
 
   const handleSelect = (option: string) => {
     if (answered || selected) return;
@@ -116,5 +116,5 @@ export function ErrorCorrectionExercise({ exercise, onAnswer, answered }: Props)
       )}
     </div>
   );
-}
+});
 

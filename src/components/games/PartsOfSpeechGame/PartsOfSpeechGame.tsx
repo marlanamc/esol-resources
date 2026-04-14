@@ -13,13 +13,15 @@ import { PatternIntroScreen } from './PatternIntroScreen';
 import { PatternWalkthroughScreen } from './PatternWalkthroughScreen';
 import { ExerciseScreen } from './ExerciseScreen';
 import { ResultsScreen } from './ResultsScreen';
+import type { PartsOfSpeechContent } from '@/types/parts-of-speech';
 import type { POSGroup } from '@/types/parts-of-speech';
 
 interface PartsOfSpeechGameProps {
   activityId: string;
+  gameContent?: PartsOfSpeechContent | null;
 }
 
-export function PartsOfSpeechGame({ activityId }: PartsOfSpeechGameProps) {
+export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGameProps) {
   const router = useRouter();
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
@@ -38,7 +40,7 @@ export function PartsOfSpeechGame({ activityId }: PartsOfSpeechGameProps) {
     dismissSaveError,
     dismissLockedGroupError,
     isGroupUnlocked,
-  } = usePartsOfSpeechGameState(activityId);
+  } = usePartsOfSpeechGameState(activityId, { gameContent });
 
   // Save progress when round ends
   useEffect(() => {
@@ -64,28 +66,16 @@ export function PartsOfSpeechGame({ activityId }: PartsOfSpeechGameProps) {
     return ALL_POS_GROUPS[currentIndex + 1] ?? null;
   };
 
+  // Loading state - uses CSS animation to avoid main thread work
   if (state.loading) {
     return (
       <div className="min-h-screen bg-bg flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center"
-        >
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-            className="w-16 h-16 mx-auto mb-6 rounded-full border-4 border-border border-t-primary"
-          />
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-text-muted font-display text-lg"
-          >
+        <div className="text-center">
+          <div className="w-16 h-16 mx-auto mb-6 rounded-full border-4 border-border border-t-primary animate-spin" />
+          <p className="text-text-muted font-display text-lg">
             Preparing your lesson...
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </div>
     );
   }

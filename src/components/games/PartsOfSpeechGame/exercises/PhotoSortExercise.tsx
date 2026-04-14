@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, XCircle } from 'lucide-react';
 import Image from 'next/image';
@@ -24,7 +24,7 @@ interface Props {
  * Photos only used for nouns and action verbs — never adjectives/adverbs/articles
  * (abstract POS would make students focus on the noun in the photo, not the concept).
  */
-export function PhotoSortExercise({ exercise, onAnswer, answered }: Props) {
+export const PhotoSortExercise = memo(function PhotoSortExercise({ exercise, onAnswer, answered }: Props) {
   const data = exercise.photoSortData;
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [submitted, setSubmitted] = useState(false);
@@ -211,4 +211,4 @@ export function PhotoSortExercise({ exercise, onAnswer, answered }: Props) {
       </AnimatePresence>
     </div>
   );
-}
+});

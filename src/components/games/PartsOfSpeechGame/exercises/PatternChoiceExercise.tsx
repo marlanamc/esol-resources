@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import { validatePOSAnswer } from '@/data/parts-of-speech-exercises';
 import { POS_LABELS, POS_COLORS } from '@/types/parts-of-speech';
 import type { POSExercise, PartOfSpeech } from '@/types/parts-of-speech';
+import { findStandaloneHighlightMatch } from './highlight-match';
 
 interface Props {
   exercise: POSExercise;
@@ -12,7 +13,7 @@ interface Props {
   answered: boolean;
 }
 
-export function PatternChoiceExercise({ exercise, onAnswer, answered }: Props) {
+export const PatternChoiceExercise = memo(function PatternChoiceExercise({ exercise, onAnswer, answered }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const { prompt, options = [], highlightedWord } = exercise;
 
@@ -24,17 +25,19 @@ export function PatternChoiceExercise({ exercise, onAnswer, answered }: Props) {
 
   // Render sentence with highlighted word
   const renderSentence = () => {
-    if (!highlightedWord || !prompt.includes(highlightedWord)) {
+    const match = highlightedWord
+      ? findStandaloneHighlightMatch(prompt, highlightedWord)
+      : null;
+    if (!match) {
       return <span>{prompt}</span>;
     }
-    const parts = prompt.split(highlightedWord);
     return (
       <>
-        {parts[0]}
+        {match.before}
         <span className="bg-primary/20 text-primary font-semibold px-1 rounded">
-          {highlightedWord}
+          {match.match}
         </span>
-        {parts[1]}
+        {match.after}
       </>
     );
   };
@@ -108,4 +111,4 @@ export function PatternChoiceExercise({ exercise, onAnswer, answered }: Props) {
       )}
     </div>
   );
-}
+});

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X, Lightbulb, ArrowRight, AlertTriangle } from 'lucide-react';
 import type { ErrorCorrectionQuestion } from '@/types/activity';
@@ -36,7 +36,7 @@ export function isErrorCorrectionAnswerCorrect(
   );
 }
 
-export function ErrorCorrectionExercise({
+export const ErrorCorrectionExercise = memo(function ErrorCorrectionExercise({
   question,
   onSubmit,
   onNext,
@@ -249,4 +249,4 @@ export function ErrorCorrectionExercise({
       )}
     </div>
   );
-}
+});

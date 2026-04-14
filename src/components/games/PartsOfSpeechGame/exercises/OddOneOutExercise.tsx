@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import { validatePOSAnswer } from '@/data/parts-of-speech-exercises';
 import type { POSExercise } from '@/types/parts-of-speech';
@@ -11,7 +11,7 @@ interface Props {
   answered: boolean;
 }
 
-export function OddOneOutExercise({ exercise, onAnswer, answered }: Props) {
+export const OddOneOutExercise = memo(function OddOneOutExercise({ exercise, onAnswer, answered }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const data = exercise.oddOneOutData;
 
@@ -72,4 +72,4 @@ export function OddOneOutExercise({ exercise, onAnswer, answered }: Props) {
       )}
     </div>
   );
-}
+});

@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import { validatePOSAnswer } from '@/data/parts-of-speech-exercises';
 import type { POSExercise, GrammaticalRole } from '@/types/parts-of-speech';
+import { findStandaloneHighlightMatch } from './highlight-match';
 
 interface Props {
   exercise: POSExercise;
@@ -12,26 +13,26 @@ interface Props {
 }
 
 const ROLE_LABELS: Record<GrammaticalRole, string> = {
-  subject: 'Subject',
-  verb: 'Verb',
-  'direct-object': 'Object',
-  'indirect-object': 'Indirect Object',
-  modifier: 'Modifier',
-  complement: 'Complement',
-  connector: 'Connector',
+  subject: 'Who does it?',
+  verb: 'What is happening?',
+  'direct-object': 'Who/what receives it?',
+  'indirect-object': 'Who it helps',
+  modifier: 'Adds detail',
+  complement: 'Completes sentence',
+  connector: 'What it connects?',
 };
 
 const ROLE_DESCRIPTIONS: Record<GrammaticalRole, string> = {
-  subject: 'Who or what does the action',
-  verb: 'The action or state',
-  'direct-object': 'Who or what receives the action',
-  'indirect-object': 'To/for whom',
-  modifier: 'Describes another word',
-  complement: 'Completes the meaning',
-  connector: 'Links parts of the sentence',
+  subject: 'The "doer" or person/thing the sentence is about.',
+  verb: 'The action or state word in the sentence.',
+  'direct-object': 'The person/thing that receives the action.',
+  'indirect-object': 'The person/thing the action is for.',
+  modifier: 'A word that adds detail to another word.',
+  complement: 'A word/phrase that finishes the sentence meaning.',
+  connector: 'A word that links parts of the sentence.',
 };
 
-export function FunctionMatchExercise({ exercise, onAnswer, answered }: Props) {
+export const FunctionMatchExercise = memo(function FunctionMatchExercise({ exercise, onAnswer, answered }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const { functionMatch, options = [], highlightedWord } = exercise;
 
@@ -47,17 +48,19 @@ export function FunctionMatchExercise({ exercise, onAnswer, answered }: Props) {
   };
 
   const renderSentence = () => {
-    if (!highlightedWord || !sentence.includes(highlightedWord)) {
+    const match = highlightedWord
+      ? findStandaloneHighlightMatch(sentence, highlightedWord)
+      : null;
+    if (!match) {
       return <span>{sentence}</span>;
     }
-    const parts = sentence.split(highlightedWord);
     return (
       <>
-        {parts[0]}
+        {match.before}
         <span className="bg-primary/20 text-primary font-bold px-1 rounded">
-          {highlightedWord}
+          {match.match}
         </span>
-        {parts[1]}
+        {match.after}
       </>
     );
   };
@@ -65,7 +68,7 @@ export function FunctionMatchExercise({ exercise, onAnswer, answered }: Props) {
   return (
     <div className="space-y-6">
       <p className="font-display text-lg sm:text-xl text-text-muted uppercase tracking-wider text-center">
-        What is the grammatical role of the highlighted word?
+        What is this word doing in the sentence?
       </p>
 
       <div className="bg-white dark:bg-[#162b3d] p-6 rounded-2xl border-2 border-border text-center">
@@ -125,4 +128,4 @@ export function FunctionMatchExercise({ exercise, onAnswer, answered }: Props) {
       )}
     </div>
   );
-}
+});

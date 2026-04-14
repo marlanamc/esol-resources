@@ -225,11 +225,9 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
           </div>
         </div>
         <div className="mt-2 sm:hidden h-1.5 bg-bg-gray rounded-full overflow-hidden">
-          <motion.div
-            initial={{ width: `${((currentIndex) / exercises.length) * 100}%` }}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="h-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent"
+          <div
+            className="h-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent transition-[width] duration-500 ease-out"
+            style={{ width: `${progress}%` }}
           />
         </div>
 
@@ -267,11 +265,9 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
           </div>
           <div className="mt-3 space-y-2">
             <div className="h-2 bg-bg-gray rounded-full overflow-hidden relative">
-              <motion.div
-                initial={{ width: `${((currentIndex) / exercises.length) * 100}%` }}
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="h-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent"
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent transition-[width] duration-500 ease-out"
+                style={{ width: `${progress}%` }}
               />
             </div>
             <div className="flex justify-between text-sm text-text-muted">

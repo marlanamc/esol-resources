@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { POS_LABELS } from '@/types/parts-of-speech';
 import type { POSExercise, PartOfSpeech } from '@/types/parts-of-speech';
@@ -11,7 +11,7 @@ interface Props {
   answered: boolean;
 }
 
-export function WordFamilyBuilderExercise({ exercise, onAnswer, answered }: Props) {
+export const WordFamilyBuilderExercise = memo(function WordFamilyBuilderExercise({ exercise, onAnswer, answered }: Props) {
   const data = exercise.wordFamilyData;
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [placements, setPlacements] = useState<Record<string, string>>({});
@@ -130,4 +130,4 @@ export function WordFamilyBuilderExercise({ exercise, onAnswer, answered }: Prop
       )}
     </div>
   );
-}
+});

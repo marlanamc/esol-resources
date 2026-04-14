@@ -63,13 +63,7 @@ export function TimeSignalsMode({ onBack, onTimeSignalsQuizComplete }: TimeSigna
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -16 }}
-      transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
-      className="flex flex-col gap-6 max-w-2xl mx-auto w-full px-4 py-6"
-    >
+    <div className="flex flex-col gap-6 max-w-2xl mx-auto w-full px-4 py-6">
       {/* Header */}
       <div className="flex items-center gap-3">
         <button
@@ -290,6 +284,6 @@ export function TimeSignalsMode({ onBack, onTimeSignalsQuizComplete }: TimeSigna
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }

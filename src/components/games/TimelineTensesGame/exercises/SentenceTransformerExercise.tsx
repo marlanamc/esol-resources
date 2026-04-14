@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X, Lightbulb, ArrowRight, ArrowDown, BookMarked } from 'lucide-react';
 import type { SentenceTransformerQuestion } from '@/types/activity';
@@ -43,7 +43,7 @@ function splitSentence(sentence: string): string[] {
   return sentence.split(/\s+/);
 }
 
-export function SentenceTransformerExercise({
+export const SentenceTransformerExercise = memo(function SentenceTransformerExercise({
   question,
   onSubmit,
   onNext,
@@ -366,4 +366,4 @@ export function SentenceTransformerExercise({
       )}
     </div>
   );
-}
+});

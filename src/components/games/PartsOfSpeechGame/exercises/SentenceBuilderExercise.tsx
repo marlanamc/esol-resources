@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import type { POSExercise, BuilderSlot } from '@/types/parts-of-speech';
 import { POS_LABELS, POS_COLORS } from '@/types/parts-of-speech';
@@ -11,7 +11,7 @@ interface Props {
   answered: boolean;
 }
 
-export function SentenceBuilderExercise({ exercise, onAnswer }: Props) {
+export const SentenceBuilderExercise = memo(function SentenceBuilderExercise({ exercise, onAnswer }: Props) {
   const { builderSlots = [], prompt } = exercise;
 
   // Collect word bank from non-provided slots (shuffled)
@@ -104,9 +104,13 @@ export function SentenceBuilderExercise({ exercise, onAnswer }: Props) {
                   {value || '____'}
                 </motion.button>
                 {/* POS label under slot */}
-                <span className={`text-[10px] font-semibold uppercase tracking-wide ${POS_COLORS[slot.partOfSpeech].split(' ')[1]}`}>
-                  {POS_LABELS[slot.partOfSpeech]}
-                </span>
+                {slot.partOfSpeech ? (
+                  <span className={`text-[10px] font-semibold uppercase tracking-wide ${POS_COLORS[slot.partOfSpeech].split(' ')[1]}`}>
+                    {POS_LABELS[slot.partOfSpeech]}
+                  </span>
+                ) : (
+                  <span className="text-[10px] text-text-muted uppercase tracking-wide">Word</span>
+                )}
               </div>
             );
           })}
@@ -177,4 +181,4 @@ export function SentenceBuilderExercise({ exercise, onAnswer }: Props) {
       )}
     </div>
   );
-}
+});

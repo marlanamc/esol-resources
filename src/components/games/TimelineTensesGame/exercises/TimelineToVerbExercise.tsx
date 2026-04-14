@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Lightbulb } from 'lucide-react';
 import type { TimelineToVerbQuestion } from '@/types/activity';
@@ -24,7 +24,7 @@ interface TimelineToVerbExerciseProps {
   lastAnswerCorrect: boolean | null;
 }
 
-export function TimelineToVerbExercise({
+export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
   question,
   onSubmit,
   onNext,
@@ -313,4 +313,4 @@ export function TimelineToVerbExercise({
       )}
     </div>
   );
-}
+});

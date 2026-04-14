@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import { validatePOSAnswer } from '@/data/parts-of-speech-exercises';
 import { POS_LABELS } from '@/types/parts-of-speech';
@@ -12,7 +12,7 @@ interface Props {
   answered: boolean;
 }
 
-export function WordTransformExercise({ exercise, onAnswer }: Props) {
+export const WordTransformExercise = memo(function WordTransformExercise({ exercise, onAnswer }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const { options = [], wordTransform } = exercise;
 
@@ -123,7 +123,7 @@ export function WordTransformExercise({ exercise, onAnswer }: Props) {
       )}
     </div>
   );
-}
+});
 
 // ─── Legacy text fallback (wordFamily < 2, options not generated) ─────────────
 

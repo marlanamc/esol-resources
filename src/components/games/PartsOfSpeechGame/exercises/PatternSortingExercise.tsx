@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import type { POSExercise, PartOfSpeech } from '@/types/parts-of-speech';
 import { POS_LABELS, POS_COLORS } from '@/types/parts-of-speech';
@@ -50,7 +50,7 @@ function getBucketLabel(bucket: string): string {
   return POS_LABELS[bucket as PartOfSpeech] ?? bucket;
 }
 
-export function PatternSortingExercise({ exercise, onAnswer, answered }: Props) {
+export const PatternSortingExercise = memo(function PatternSortingExercise({ exercise, onAnswer, answered }: Props) {
   const { sortingItems = [], prompt } = exercise;
 
   const bucketKeys = [...new Set(sortingItems.map(i => i.correctBucket))];
@@ -182,4 +182,4 @@ export function PatternSortingExercise({ exercise, onAnswer, answered }: Props) 
       )}
     </div>
   );
-}
+});

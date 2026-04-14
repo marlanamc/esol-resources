@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import { validatePOSAnswer } from '@/data/parts-of-speech-exercises';
 import { POS_LABELS } from '@/types/parts-of-speech';
 import type { POSExercise, PartOfSpeech } from '@/types/parts-of-speech';
+import { findStandaloneHighlightMatch } from './highlight-match';
 
 interface Props {
   exercise: POSExercise;
@@ -12,7 +13,7 @@ interface Props {
   answered: boolean;
 }
 
-export function MinimalPairExercise({ exercise, onAnswer, answered }: Props) {
+export const MinimalPairExercise = memo(function MinimalPairExercise({ exercise, onAnswer, answered }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const { minimalPair, options = [] } = exercise;
 
@@ -34,13 +35,13 @@ export function MinimalPairExercise({ exercise, onAnswer, answered }: Props) {
   };
 
   const highlightInSentence = (sentence: string, word: string) => {
-    if (!sentence.includes(word)) return <span>{sentence}</span>;
-    const parts = sentence.split(word);
+    const match = findStandaloneHighlightMatch(sentence, word);
+    if (!match) return <span>{sentence}</span>;
     return (
       <>
-        {parts[0]}
-        <span className="bg-accent/30 text-primary-dark font-bold px-1 rounded">{word}</span>
-        {parts[1]}
+        {match.before}
+        <span className="bg-accent/30 text-primary-dark font-bold px-1 rounded">{match.match}</span>
+        {match.after}
       </>
     );
   };
@@ -121,4 +122,4 @@ export function MinimalPairExercise({ exercise, onAnswer, answered }: Props) {
       )}
     </div>
   );
-}
+});

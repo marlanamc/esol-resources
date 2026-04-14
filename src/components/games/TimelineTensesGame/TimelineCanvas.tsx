@@ -218,7 +218,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
                 width={PAST_EARLIER_SPLIT.end - PAST_EARLIER_SPLIT.start + 8}
                 height={56}
                 rx={12}
-                className="fill-orange-100/60 dark:fill-orange-900/20 transition-colors duration-300"
+                className="fill-orange-100/60 dark:fill-orange-900/20 "
               />
               <rect
                 x={PAST_LATER_SPLIT.start - 4}
@@ -226,7 +226,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
                 width={NOW_POSITION - PAST_LATER_SPLIT.start - 6}
                 height={56}
                 rx={12}
-                className="fill-amber-100/40 dark:fill-amber-900/10 transition-colors duration-300"
+                className="fill-amber-100/40 dark:fill-amber-900/10 "
               />
             </>
           ) : (
@@ -236,7 +236,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
               width={NOW_POSITION - PAST_SINGLE.start - 6}
               height={56}
               rx={12}
-              className="fill-amber-100/40 dark:fill-amber-900/15 transition-colors duration-300"
+              className="fill-amber-100/40 dark:fill-amber-900/15 "
             />
           )}
 
@@ -246,7 +246,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
             width={FUTURE_ZONE.end - FUTURE_ZONE.start + 8}
             height={56}
             rx={12}
-            className="fill-blue-100/40 dark:fill-blue-900/15 transition-colors duration-300"
+            className="fill-blue-100/40 dark:fill-blue-900/15 "
           />
 
           <rect
@@ -255,7 +255,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
             width={32}
             height={56}
             rx={10}
-            className="fill-emerald-100/50 dark:fill-emerald-900/20 transition-colors duration-300"
+            className="fill-emerald-100/50 dark:fill-emerald-900/20 "
           />
         </g>
 
@@ -285,7 +285,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
           y2={AXIS_Y}
           strokeWidth={4}
           strokeLinecap="round"
-          className="stroke-slate-300 dark:stroke-slate-700 transition-colors duration-300"
+          className="stroke-slate-300 dark:stroke-slate-700 "
         />
 
         {/* Glow underneath now marker for emphasis */}
@@ -305,7 +305,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
           y2={AXIS_Y + 20}
           strokeWidth={4}
           strokeLinecap="round"
-          className="stroke-emerald-500 dark:stroke-emerald-400 transition-colors duration-300"
+          className="stroke-emerald-500 dark:stroke-emerald-400 "
         />
 
         {/* 4. Zone Labels */}
