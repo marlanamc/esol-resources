@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verb Tenses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #fef9f3;
+      color: #2b3a4a;
+      margin: 0;
+    }
+
+    .sheet-page {
+      padding: 4px 8px 4px;
+      max-width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      background: #d97757;
+      color: #fff;
+      padding: 5px 14px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+      border: 2px solid #d1d5db;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      flex: 1 1 auto;
+    }
+    tbody tr {
+      height: 25%;
+    }
+
+    th, td {
+      border: 1px solid #e5e7eb;
+    }
+
+    /* Corner empty cell */
+    .corner { width: 70px; background: #f9fafb; }
+
+    /* Column headers */
+    .col-header {
+      text-align: center;
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 5px 5px 4px;
+    }
+    .col-past    { background: #fef3c7; color: #92400e; }
+    .col-present { background: #d1fae5; color: #065f46; }
+    .col-future  { background: #dbeafe; color: #1e3a8a; }
+
+    /* Row header cells */
+    .row-header-cell {
+      background: #f3f4f6;
+      vertical-align: middle;
+      text-align: center;
+      padding: 3px 4px;
+      width: 70px;
+    }
+    .row-label {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 12.5px;
+      color: #374151;
+      line-height: 1.25;
+      display: block;
+    }
+
+    /* Data cells: sentence + formulas | timeline */
+    .cell {
+      padding: 0;
+      vertical-align: stretch;
+    }
+    .cell-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .cell-copy {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 6px 8px 2px 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .cell-vis {
+      flex: 0 0 auto;
+      width: 100%;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px 4px;
+      border-top: 1px solid #eceef2;
+      background: linear-gradient(180deg, rgba(249,250,251,0.7) 0%, #fff 100%);
+    }
+
+    .sentence {
+      font-size: 13px;
+      line-height: 1.3;
+      margin-bottom: 0;
+    }
+    .sentence strong {
+      color: #c2410c;
+      font-weight: 700;
+    }
+
+    .formula-block {
+      display: grid;
+      grid-template-columns: minmax(1.75rem, auto) minmax(0, 1fr);
+      column-gap: 6px;
+      row-gap: 0;
+      margin-top: 3px;
+      margin-bottom: 0;
+    }
+    .fm-row {
+      display: contents;
+    }
+    .fm-label {
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #9ca3af;
+      padding-top: 1px;
+      white-space: nowrap;
+      text-align: right;
+    }
+    .fm-text {
+      font-size: 11px;
+      color: #374151;
+      line-height: 1.25;
+    }
+    .fm-text strong {
+      color: #1f2937;
+      font-weight: 700;
+    }
+
+    svg.timeline {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 44px;
+      min-height: 24px;
+      margin-top: 0;
+      overflow: visible;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 6px;
+      font-size: 9.5px;
+      color: #4b5563;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+    .legend-line {
+      width: 22px; height: 4px; border-radius: 2px; flex-shrink: 0;
+    }
+    .legend-arc {
+      width: 24px; height: 10px; flex-shrink: 0;
+    }
+    .legend-sep { color: #d1d5db; }
+
+    .verb-key {
+      margin-top: 8px;
+      padding: 6px 10px;
+      font-size: 9.5px;
+      color: #4b5563;
+      line-height: 1.4;
+      text-align: center;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      max-width: 100%;
+    }
+    .verb-key-title {
+      display: block;
+      font-size: 8.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+    .verb-key-sep { color: #d1d5db; }
+
+    /* Footer: legend + V-key share one horizontal band */
+    .sheet-footer {
+      margin-top: 4px;
+      padding: 5px 10px 5px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px 16px;
+      flex-shrink: 0;
+    }
+    .sheet-footer .legend {
+      margin-top: 0;
+      justify-content: flex-start;
+      flex: 1 1 auto;
+    }
+    .sheet-footer .verb-key {
+      margin-top: 0;
+      padding: 0 0 0 12px;
+      border-left: 1px solid #eceef2;
+      text-align: left;
+      background: transparent;
+      border-radius: 0;
+      border-top: none;
+      border-right: none;
+      border-bottom: none;
+      flex: 1 1 280px;
+      max-width: min(48%, 420px);
+    }
+    .sheet-footer .verb-key-title {
+      margin-bottom: 2px;
+    }
+
+    /* ── Page 2: Special Tense Uses ── */
+    .page2-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: 1fr 1fr auto;
+      gap: 8px;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+    .p2-row-span-2 {
+      grid-column: 1 / -1;
+    }
+    .page2-panel {
+      border: 2px solid #d1d5db;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .page2-panel .cell-copy {
+      justify-content: flex-start;
+      flex: 0 0 auto;
+    }
+    .cell-notes {
+      padding: 5px 8px 5px;
+      flex: 1 1 auto;
+      border-top: 1px solid #eceef2;
+      background: linear-gradient(180deg, rgba(249,250,251,0.5) 0%, #fff 100%);
+    }
+    .cell-notes .formula-block { margin-top: 0; }
+    .page2-panel-header {
+      text-align: center;
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 6px 8px 5px;
+      flex-shrink: 0;
+    }
+    .p2-near-future .page2-panel-header {
+      background: #dbeafe;
+      color: #1e3a8a;
+    }
+    .p2-timetable .page2-panel-header {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    .p2-going-to .page2-panel-header {
+      background: #dbeafe;
+      color: #1e3a8a;
+    }
+    .p2-used-to .page2-panel-header {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .p2-two-verb .page2-panel-header {
+      background: #ede9fe;
+      color: #5b21b6;
+    }
+    .page-2 .p2-two-verb {
+      grid-column: 1 / -1;
+    }
+    .pattern-timelines {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      width: 100%;
+    }
+    .pattern-timeline-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fff;
+      padding: 4px 6px 2px;
+    }
+    .pattern-timeline-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #6b7280;
+      text-align: center;
+      margin-bottom: 2px;
+      display: block;
+    }
+    .pattern-example {
+      font-size: 10px;
+      line-height: 1.25;
+      color: #374151;
+      text-align: center;
+      margin: 0 0 4px;
+    }
+    .pattern-example strong {
+      color: #1f2937;
+    }
+
+    @media (max-width: 780px) {
+      .page2-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .pattern-timelines {
+        grid-template-columns: 1fr;
+      }
+      .p2-row-span-2 {
+        grid-column: auto;
+      }
+      .sheet-footer .verb-key {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid #eceef2;
+        padding-top: 8px;
+        max-width: none;
+        flex-basis: 100%;
+      }
+      .cell-inner {
+        flex-direction: column;
+        min-height: 0;
+      }
+      .cell-vis {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: none;
+        border-left: none;
+        border-top: 1px solid #eceef2;
+        padding: 6px 6px 2px;
+        background: #fafafa;
+      }
+      svg.timeline {
+        max-height: 44px;
+      }
+    }
+
+    @media print {
+      html, body {
+        height: 100%;
+        width: 100%;
+        background: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body { margin: 0 !important; }
+      @page {
+        size: letter landscape;
+        margin: 0;
+      }
+      .sheet-page {
+        padding: 5mm 6mm;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: visible;
+      }
+      .page-2 { break-before: page; }
+
+      h1 {
+        font-size: 24px;
+        padding: 6px 20px;
+        margin-bottom: 6px;
+      }
+
+      table {
+        flex: 1 1 auto;
+        height: 100%;
+        min-height: 0;
+      }
+      .page2-grid {
+        flex: 1 1 auto;
+        min-height: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: 1fr 1fr auto;
+      }
+      .page2-panel-header { font-size: 17px; padding: 7px 10px; }
+      .cell-notes { padding: 4px 8px 4px; }
+
+      .col-header { 
+        font-size: 16px; 
+        padding: 6px; 
+      }
+
+      .row-header-cell {
+        width: 75px; 
+      }
+      .row-label { 
+        font-size: 14px; 
+      }
+
+      .cell-inner {
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .cell-copy { 
+        flex: 1 1 auto; 
+        width: 100%;
+        padding: 5px 8px 0; 
+      }
+      .cell-vis { 
+        flex: 0 0 auto; 
+        width: 100%; 
+        padding: 4px 8px 4px; 
+        border-left: none;
+        border-top: 1px solid #eceef2;
+      }
+
+      .sentence { 
+        font-size: 15px; 
+        margin-bottom: 2px; 
+      }
+      
+      .formula-block {
+        row-gap: 0px;
+      }
+      .fm-label { 
+        font-size: 10px; 
+        padding-top: 1px;
+      }
+      .fm-text { 
+        font-size: 12.5px; 
+      }
+
+      svg.timeline { 
+        max-height: 48px; 
+        width: 100%; 
+        margin: 0 auto;
+      }
+
+      .sheet-footer { 
+        padding: 6px 12px; 
+        margin-top: 6px; 
+      }
+      .legend { 
+        font-size: 11.5px; 
+        gap: 8px 16px; 
+      }
+      .legend-dot { width: 10px; height: 10px; }
+      .legend-line { width: 24px; height: 4px; }
+      
+      .verb-key { 
+        font-size: 11.5px; 
+        padding-left: 14px !important;
+      }
+      .verb-key-title { 
+        font-size: 9.5px; 
+        margin-bottom: 2px; 
+      }
+
+      /* Page 2 print compaction to prevent overflow/crowding */
+      .page-2 h1 {
+        font-size: 21px;
+        padding: 5px 16px;
+        margin-bottom: 4px;
+      }
+      .page-2 .page2-grid {
+        gap: 6px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto auto auto;
+      }
+      .page-2 .page2-panel-header {
+        font-size: 13.5px;
+        padding: 5px 8px 4px;
+      }
+      .page-2 .cell-copy {
+        padding: 4px 7px 0;
+      }
+      .page-2 .cell-notes {
+        padding: 3px 7px 3px;
+      }
+      .page-2 .sentence {
+        font-size: 11.5px;
+        line-height: 1.18;
+        margin-bottom: 1px;
+      }
+      .page-2 .fm-label {
+        font-size: 8.8px;
+      }
+      .page-2 .fm-text {
+        font-size: 10.2px;
+        line-height: 1.2;
+      }
+      .page-2 .pattern-timelines {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .page-2 .pattern-timeline-card {
+        padding: 3px 5px 1px;
+      }
+      .page-2 .pattern-timeline-label {
+        font-size: 8.2px;
+        margin-bottom: 1px;
+      }
+      .page-2 .pattern-example {
+        font-size: 8.7px;
+        margin-bottom: 2px;
+      }
+      .page-2 .pattern-timeline-card svg.timeline {
+        max-height: 30px;
+      }
+      .page-2 .sheet-footer {
+        padding: 4px 8px;
+        margin-top: 4px;
+      }
+      .page-2 .legend {
+        font-size: 9.6px;
+        gap: 5px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sheet-page">
+<h1>Verb Tenses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th class="corner"></th>
+      <th class="col-header col-past">Past</th>
+      <th class="col-header col-present">Present</th>
+      <th class="col-header col-future">Future</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- ══════════════════════════════════════════════════════════
+         ROW 1 — SIMPLE
+    ══════════════════════════════════════════════════════════ -->
+    <tr>
+      <td class="row-header-cell"><span class="row-label">Simple</span></td>
+
+      <!-- Past Simple -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>studied</strong> English last year.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + <strong>V2</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + did + not + <strong>V1</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Did + subject + <strong>V1</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <!-- Zone backgrounds -->
+          <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <!-- Axis -->
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <!-- NOW line -->
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+
+      <!-- Present Simple -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>study</strong> English every day.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + <strong>V1</strong> / <strong>V1-3rd</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + do(es) + not + <strong>V1</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Do(es) + subject + <strong>V1</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+
+      <!-- Future Simple -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>will study</strong> English next year.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + will + <strong>V1</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + will + not + <strong>V1</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Will + subject + <strong>V1</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- ══════════════════════════════════════════════════════════
+         ROW 2 — CONTINUOUS
+    ══════════════════════════════════════════════════════════ -->
+    <tr>
+      <td class="row-header-cell"><span class="row-label">Cont.</span></td>
+
+      <!-- Past Continuous -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>was studying</strong> when she called.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + was/were + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + was/were + not + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Was/Were + subject + <strong>V1-ing</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+
+      <!-- Present Continuous -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>am studying</strong> right now.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + am/is/are + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + am/is/are + not + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Am/Is/Are + subject + <strong>V1-ing</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+
+      <!-- Future Continuous -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>will be studying</strong> all night.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + will be + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + will not be + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Will + subject + be + <strong>V1-ing</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- ══════════════════════════════════════════════════════════
+         ROW 3 — PERFECT
+    ══════════════════════════════════════════════════════════ -->
+    <tr>
+      <td class="row-header-cell"><span class="row-label">Perfect</span></td>
+
+      <!-- Past Perfect -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>had studied</strong> before the test.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + had + <strong>V3</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + had + not + <strong>V3</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Had + subject + <strong>V3</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <!-- Split past: orange (earlier) + amber (later) -->
+          <rect x="15" y="8" width="62" height="28" rx="5" fill="rgba(180,83,9,0.15)"/>
+          <line x1="79" y1="8" x2="79" y2="36" stroke="#d1d5db" stroke-width="0.8" stroke-dasharray="2 2"/>
+          <rect x="81" y="8" width="50" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <!-- Axis -->
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <!-- NOW line -->
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+
+      <!-- Present Perfect -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>have studied</strong> at this school.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + have/has + <strong>V3</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + have/has + not + <strong>V3</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Have/Has + subject + <strong>V3</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+
+      <!-- Future Perfect -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>will have studied</strong> for 5 years by June.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + will + have + <strong>V3</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + will + not + have + <strong>V3</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Will + subject + have + <strong>V3</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- ══════════════════════════════════════════════════════════
+         ROW 4 — PERFECT CONTINUOUS
+    ══════════════════════════════════════════════════════════ -->
+    <tr>
+      <td class="row-header-cell"><span class="row-label">Perfect Cont.</span></td>
+
+      <!-- Past Perfect Continuous -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>had been studying</strong> for hours before the break.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + had + been + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + had + not + been + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Had + subject + been + <strong>V1-ing</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <!-- Split past: orange (earlier) + amber (later) -->
+          <rect x="15" y="8" width="62" height="28" rx="5" fill="rgba(180,83,9,0.15)"/>
+          <line x1="79" y1="8" x2="79" y2="36" stroke="#d1d5db" stroke-width="0.8" stroke-dasharray="2 2"/>
+          <rect x="81" y="8" width="50" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+
+      <!-- Present Perfect Continuous -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>have been studying</strong> here for years.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + have/has + been + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + have/has + not + been + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Have/Has + subject + been + <strong>V1-ing</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+
+      <!-- Future Perfect Continuous -->
+      <td class="cell">
+        <div class="cell-inner">
+        <div class="cell-copy">
+        <p class="sentence">I <strong>will have been studying</strong> for 10 years by then.</p>
+        <div class="formula-block">
+          <div class="fm-row">
+            <span class="fm-label">Aff.</span>
+            <span class="fm-text">subject + will have been + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Neg.</span>
+            <span class="fm-text">subject + won't have been + <strong>V1-ing</strong></span>
+          </div>
+          <div class="fm-row">
+            <span class="fm-label">Q.</span>
+            <span class="fm-text">Will + subject + have been + <strong>V1-ing</strong>?</span>
+          </div>
+        </div>
+        </div>
+        <div class="cell-vis">
+        <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+          <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+          <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+          <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+          <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+          <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        </div>
+        </div>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<!-- Legend + verb key (two columns on wide / print) -->
+<div class="sheet-footer">
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#d97706;"></div>
+    <span style="color:#92400e; font-weight:600;">PAST</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#b45309;"></div>
+    <span style="color:#92400e; font-weight:600;">EARLIER PAST</span>
+  </div>
+  <span class="legend-sep">·</span>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#16a34a;"></div>
+    <span style="color:#065f46; font-weight:600;">NOW</span>
+  </div>
+  <span class="legend-sep">·</span>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#2563eb;"></div>
+    <span style="color:#1e3a8a; font-weight:600;">FUTURE</span>
+  </div>
+  <span class="legend-sep">·</span>
+  <div class="legend-item">
+    <svg width="22" height="10" viewBox="0 0 22 10"><circle cx="4" cy="5" r="4" fill="#d97706"/><line x1="4" y1="5" x2="18" y2="5" stroke="#d97706" stroke-width="3" stroke-dasharray="4 3"/><circle cx="18" cy="5" r="3" fill="#d97706"/></svg>
+    <span>Duration (dashed)</span>
+  </div>
+  <span class="legend-sep">·</span>
+  <div class="legend-item">
+    <svg width="22" height="10" viewBox="0 0 22 10"><path d="M 2 8 Q 11 1 20 8" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <span>Connection (arc)</span>
+  </div>
+</div>
+
+<p class="verb-key">
+  <span class="verb-key-title">Verb form key (same as Tense Formulas in the app):</span>
+  <span><strong>V1</strong> = base form</span>
+  <span class="verb-key-sep">·</span>
+  <span><strong>V1-3rd</strong> = 3rd person <em>-s</em></span>
+  <span class="verb-key-sep">·</span>
+  <span><strong>V1-ing</strong> = continuous <em>-ing</em></span>
+  <span class="verb-key-sep">·</span>
+  <span><strong>V2</strong> = past simple</span>
+  <span class="verb-key-sep">·</span>
+  <span><strong>V3</strong> = past participle</span>
+</p>
+</div>
+</div><!-- end .sheet-page page 1 -->
+
+<!-- ════════════════════════════════════════════
+     PAGE 2 — Special Tense Uses
+════════════════════════════════════════════ -->
+<div class="sheet-page page-2">
+
+<h1>Special Tense Uses</h1>
+
+<div class="page2-grid">
+
+  <!-- ── Panel 1 (top-left): Present Continuous → Near Future ── -->
+  <div class="page2-panel p2-near-future">
+    <div class="page2-panel-header">Present Continuous → Near Future</div>
+    <div class="cell-copy">
+      <p class="sentence">I <strong>am meeting</strong> them tomorrow at 3 pm.</p>
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Aff.</span>
+          <span class="fm-text">subject + am/is/are + <strong>V1-ing</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Neg.</span>
+          <span class="fm-text">subject + am/is/are + not + <strong>V1-ing</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Q.</span>
+          <span class="fm-text">Am/Is/Are + subject + <strong>V1-ing</strong>?</span>
+        </div>
+      </div>
+    </div>
+    <div class="cell-vis">
+      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="152" y1="24" x2="215" y2="24" stroke="#2563eb" stroke-width="6" stroke-dasharray="8 6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Key</span>
+          <span class="fm-text">Event is <strong>arranged or scheduled</strong> — needs a time: <em>tonight, tomorrow, on Friday</em></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">vs.</span>
+          <span class="fm-text"><em>"I'll call you"</em> = decision now &nbsp;·&nbsp; <em>"I'm calling Ana at 5"</em> = already arranged</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panel 2 (top-right): "Going to" ── -->
+  <div class="page2-panel p2-going-to">
+    <div class="page2-panel-header">"Going to" → Future Plans &amp; Predictions</div>
+    <div class="cell-copy">
+      <p class="sentence">I <strong>am going to</strong> call her tomorrow.</p>
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Aff.</span>
+          <span class="fm-text">subject + am/is/are + <strong>going to</strong> + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Neg.</span>
+          <span class="fm-text">subject + am/is/are + not + <strong>going to</strong> + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Q.</span>
+          <span class="fm-text">Am/Is/Are + subject + <strong>going to</strong> + <strong>V1</strong>?</span>
+        </div>
+      </div>
+    </div>
+    <div class="cell-vis">
+      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="152" y1="24" x2="215" y2="24" stroke="#2563eb" stroke-width="6" stroke-dasharray="8 6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Key</span>
+          <span class="fm-text">Pre-decided <strong>plans</strong>, OR predictions based on <strong>present evidence</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">vs.</span>
+          <span class="fm-text"><em>will</em> = decision/promise made NOW &nbsp;·&nbsp; <em>going to</em> = already decided</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panel 3 (bottom-left): Present Simple → Future Timetable ── -->
+  <div class="page2-panel p2-timetable">
+    <div class="page2-panel-header">Present Simple → Future Timetable</div>
+    <div class="cell-copy">
+      <p class="sentence">The train <strong>leaves</strong> at 6 pm tonight.</p>
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Aff.</span>
+          <span class="fm-text">subject + <strong>V1</strong> / <strong>V1-3rd</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Neg.</span>
+          <span class="fm-text">subject + doesn't/don't + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Q.</span>
+          <span class="fm-text">Does + subject + <strong>V1</strong>? / When does it <strong>V1</strong>?</span>
+        </div>
+      </div>
+    </div>
+    <div class="cell-vis">
+      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="188" cy="24" r="7" fill="#2563eb"/>
+      </svg>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Key</span>
+          <span class="fm-text"><strong>Fixed timetables only</strong> — transport, shows, programs, class schedules</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Not</span>
+          <span class="fm-text">Not for personal plans → use present cont. or <em>going to</em> instead</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panel 4 (bottom-right): Used To / Would / Past Habit ── -->
+  <div class="page2-panel p2-used-to">
+    <div class="page2-panel-header">Used To / Would / Past Habit</div>
+    <div class="cell-copy">
+      <p class="sentence">I <strong>used to walk</strong> / <strong>would walk</strong> to school.</p>
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Aff.</span>
+          <span class="fm-text">subject + <strong>used to</strong> + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Neg.</span>
+          <span class="fm-text">subject + <strong>didn't use to</strong> + <strong>V1</strong></span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Also</span>
+          <span class="fm-text">subject + <strong>would</strong> + <strong>V1</strong> &nbsp;(actions only)</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Freq.</span>
+          <span class="fm-text">subject + <strong>used to / would</strong> + <strong>frequency marker</strong> + <strong>V1</strong><br><em>always, usually, often, sometimes, every day, twice a week</em></span>
+        </div>
+      </div>
+    </div>
+    <div class="cell-vis">
+      <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+        <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+        <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+        <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="15,24 23,20 23,28" fill="#9ca3af"/>
+        <polygon points="265,24 257,20 257,28" fill="#9ca3af"/>
+        <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="55" cy="24" r="4.5" fill="#d97706" opacity="0.65"/>
+        <circle cx="82" cy="24" r="6.5" fill="#d97706"/>
+        <circle cx="109" cy="24" r="4.5" fill="#d97706" opacity="0.65"/>
+      </svg>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Key</span>
+          <span class="fm-text"><strong>used to</strong> = habits &amp; states &nbsp;·&nbsp; <strong>would</strong> = actions only (not states)</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">e.g.</span>
+          <span class="fm-text"><em>"I used to be shy"</em> ✓ &nbsp;·&nbsp; <em>"I would be shy"</em> ✗</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">⚠</span>
+          <span class="fm-text"><strong>be used to</strong> + V-ing = accustomed to &nbsp;·&nbsp; <strong>get used to</strong> + V-ing = become accustomed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panel 5 (row 3): Common 2-Verb Patterns ── -->
+  <div class="page2-panel p2-two-verb p2-row-span-2">
+    <div class="page2-panel-header">Common 2-Verb Patterns (Context Controls the Tense)</div>
+    <div class="cell-vis">
+      <div class="pattern-timelines">
+        <div class="pattern-timeline-card">
+          <span class="pattern-timeline-label">Interruption</span>
+          <p class="pattern-example">When I arrived, she <strong>was cooking</strong>.</p>
+          <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+            <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+            <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+            <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+            <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="62" y1="24" x2="128" y2="24" stroke="#d97706" stroke-width="6" stroke-dasharray="8 6" stroke-linecap="round"/>
+            <circle cx="112" cy="24" r="6.5" fill="#b45309"/>
+          </svg>
+        </div>
+        <div class="pattern-timeline-card">
+          <span class="pattern-timeline-label">Earlier Past</span>
+          <p class="pattern-example">When I arrived at the station, the train <strong>had already left</strong>.</p>
+          <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+            <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+            <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+            <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+            <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 58 24 Q 83 8 108 24" fill="none" stroke="#b45309" stroke-width="2.8" stroke-linecap="round"/>
+            <circle cx="114" cy="24" r="6" fill="#d97706"/>
+          </svg>
+        </div>
+        <div class="pattern-timeline-card">
+          <span class="pattern-timeline-label">Future Clause</span>
+          <p class="pattern-example">When I start my job, I <strong>will take</strong> the bus.</p>
+          <svg class="timeline" viewBox="0 0 280 44" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="8" width="117" height="28" rx="5" fill="rgba(245,158,11,0.13)"/>
+            <rect x="133" y="0" width="14" height="44" rx="6" fill="rgba(16,163,74,0.12)"/>
+            <rect x="149" y="8" width="117" height="28" rx="5" fill="rgba(37,99,235,0.10)"/>
+            <line x1="22" y1="24" x2="258" y2="24" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+            <line x1="140" y1="3" x2="140" y2="41" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="132" cy="24" r="3.2" fill="#16a34a" opacity="0.72"/>
+            <circle cx="140" cy="24" r="4.4" fill="#16a34a"/>
+            <circle cx="148" cy="24" r="3.2" fill="#16a34a" opacity="0.72"/>
+            <line x1="153" y1="24" x2="228" y2="24" stroke="#2563eb" stroke-width="6" stroke-dasharray="8 6" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="cell-notes">
+      <div class="formula-block">
+        <div class="fm-row">
+          <span class="fm-label">Rule 1</span>
+          <span class="fm-text"><strong>when + past simple</strong> often interrupts a background <strong>past continuous</strong> action</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Rule 2</span>
+          <span class="fm-text"><strong>past perfect</strong> marks the earlier of two past actions</span>
+        </div>
+        <div class="fm-row">
+          <span class="fm-label">Rule 3</span>
+          <span class="fm-text">in future time clauses, use <strong>present</strong> after <em>when/if</em>, then <strong>will + V1</strong> in the main clause</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end .page2-grid -->
+
+<div class="sheet-footer">
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#16a34a;"></div>
+      <span style="color:#065f46; font-weight:600;">NOW</span>
+    </div>
+    <span class="legend-sep">·</span>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#2563eb;"></div>
+      <span style="color:#1e3a8a; font-weight:600;">FUTURE</span>
+    </div>
+    <span class="legend-sep">·</span>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#d97706;"></div>
+      <span style="color:#92400e; font-weight:600;">PAST</span>
+    </div>
+    <span class="legend-sep">·</span>
+    <div class="legend-item">
+      <svg width="22" height="10" viewBox="0 0 22 10"><line x1="1" y1="5" x2="21" y2="5" stroke="#2563eb" stroke-width="4" stroke-dasharray="5 4" stroke-linecap="round"/></svg>
+      <span>Near-future arrangement (dashed)</span>
+    </div>
+    <span class="legend-sep">·</span>
+    <div class="legend-item">
+      <svg width="22" height="10" viewBox="0 0 22 10"><circle cx="4" cy="5" r="3" fill="#d97706" opacity="0.6"/><circle cx="11" cy="5" r="4" fill="#d97706"/><circle cx="18" cy="5" r="3" fill="#d97706" opacity="0.6"/></svg>
+      <span>Repeated past (used to)</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .sheet-page page 2 -->
+
+</body>
+</html>
