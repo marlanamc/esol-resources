@@ -46,6 +46,18 @@ describe("time signals canon", () => {
     }
   });
 
+  it("keeps will-based this evening uses as future points when they are modeled contextually", () => {
+    const eveningEntry = getEntry("future-reference", "tonight / this evening");
+    const futureSimpleUsage = eveningEntry.contextualUsages?.find(
+      (usage) => usage.exampleSentence === "I will call you this evening."
+    );
+
+    expect(futureSimpleUsage).toBeDefined();
+    expect(
+      getTimeSignalTimelineFamily(futureSimpleUsage?.timelineElements ?? [])
+    ).toBe("future-point");
+  });
+
   it("keeps plain future markers as future points", () => {
     const futurePointWords = [
       "tomorrow",

@@ -1165,7 +1165,6 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
         verbPhrase: 'are meeting',
         commonExamples: [
           { sentence: 'We are meeting tonight.', verbPhrase: 'are meeting' },
-          { sentence: 'I will call you this evening.', verbPhrase: 'will call' },
           { sentence: 'They are coming over tonight.', verbPhrase: 'are coming' },
         ],
         timelineElements: [{ id: 'e1', type: 'solid-line', zone: 'future', position: 25 }],
@@ -1174,6 +1173,21 @@ const TIME_SIGNAL_GROUPS_RAW: TimeSignalGroup[] = [
           [{ id: 'e1', type: 'arc-dashed', zone: 'future', position: 60 }],
           [{ id: 'e1', type: 'multiple-dots', zone: 'present', position: 50 }],
           [{ id: 'e1', type: 'single-dot', zone: 'future', position: 25 }],
+        ],
+        contextualUsages: [
+          {
+            context: 'Simple future statement',
+            tenseName: 'Future Simple',
+            exampleSentence: 'I will call you this evening.',
+            verbPhrase: 'will call',
+            timelineElements: [{ id: 'ctx-1', type: 'single-dot', zone: 'future', position: 25 }],
+            note: 'With "will call," this sentence is a plain future point rather than an arranged-plan pattern.',
+            quizDistractors: [
+              [{ id: 'd1', type: 'solid-line', zone: 'future', position: 25 }],
+              [{ id: 'd2', type: 'arc-dashed', zone: 'future', position: 60 }],
+              [{ id: 'd3', type: 'multiple-dots', zone: 'present', position: 50 }],
+            ],
+          },
         ],
       },
     ],
