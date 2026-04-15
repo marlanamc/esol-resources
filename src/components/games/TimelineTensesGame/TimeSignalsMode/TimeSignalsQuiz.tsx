@@ -14,6 +14,7 @@ import { getTimeSignalQuizExamples } from './timeSignalQuizBank';
 interface QuizQuestionSource {
   sentence: string;
   verbPhrase: string;
+  verbPhrase2?: string;
   timelineElements: TimelineElement[];
   quizDistractors?: TimelineElement[][];
   contextLabel?: string;
@@ -153,6 +154,7 @@ function makePrimarySources(group: TimeSignalGroup, entry: TimeSignalEntry): Qui
   return examples.map((example) => ({
     sentence: example.sentence,
     verbPhrase: example.verbPhrase,
+    verbPhrase2: example.verbPhrase2,
     timelineElements: example.timelineElements,
     quizDistractors: entry.quizDistractors,
     note: example.note ?? entry.notes,
@@ -423,7 +425,11 @@ export function TimeSignalsQuiz({ group, onComplete, onGoToExercises }: TimeSign
               </div>
             )}
             <p className="text-xl font-display font-bold text-text leading-snug">
-              &ldquo;{highlightSentenceFeatures(question.source.sentence, question.source.verbPhrase)}&rdquo;
+              &ldquo;{highlightSentenceFeatures(
+                question.source.sentence,
+                question.source.verbPhrase,
+                question.source.verbPhrase2
+              )}&rdquo;
             </p>
           </div>
 

@@ -59,4 +59,12 @@ describe("time signal quiz bank", () => {
     );
     expect(sentences.length).toBeGreaterThan(0);
   });
+
+  it("preserves a second verb phrase when a quiz example comes from a mixed main-game sentence", () => {
+    const group = getGroup("past-habits");
+    const entry = getEntry("past-habits", "used to");
+    const examples = getTimeSignalQuizExamples(group, entry);
+
+    expect(examples.some((example) => Boolean(example.verbPhrase2))).toBe(true);
+  });
 });

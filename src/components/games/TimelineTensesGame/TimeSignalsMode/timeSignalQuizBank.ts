@@ -14,6 +14,7 @@ import {
 export interface TimeSignalQuizExample {
   sentence: string;
   verbPhrase: string;
+  verbPhrase2?: string;
   timelineElements: TimelineElement[];
   note?: string;
 }
@@ -83,10 +84,11 @@ function sentenceMatchesTerms(sentence: string, terms: string[]): boolean {
 function sentenceToQuizExample(
   sentence: string,
   verbPhrase: string,
+  verbPhrase2: string | undefined,
   timelineElements: TimelineElement[],
   note?: string
 ): TimeSignalQuizExample {
-  return { sentence, verbPhrase, timelineElements, note };
+  return { sentence, verbPhrase, verbPhrase2, timelineElements, note };
 }
 
 function buildExampleFromProduction(
@@ -101,6 +103,7 @@ function buildExampleFromProduction(
   return sentenceToQuizExample(
     exercise.sentence.replace("______", correctOption.conjugated),
     correctOption.conjugated,
+    undefined,
     timelineElements,
     exercise.explanation
   );
@@ -116,6 +119,7 @@ function getMainGameSentenceBank(): TimeSignalQuizExample[] {
       sentenceToQuizExample(
         question.sentence,
         question.verbPhrase ?? "",
+        question.verbPhrase2,
         question.correctElements,
         question.explanation
       ),
@@ -127,18 +131,21 @@ function getMainGameSentenceBank(): TimeSignalQuizExample[] {
       sentenceToQuizExample(
         card.examples.affirmative.sentence,
         card.examples.affirmative.verbPhrase,
+        undefined,
         card.timelineElements,
         card.shortMeaning
       ),
       sentenceToQuizExample(
         card.examples.negative.sentence,
         card.examples.negative.verbPhrase,
+        undefined,
         card.timelineElements,
         card.shortMeaning
       ),
       sentenceToQuizExample(
         card.examples.question.sentence,
         card.examples.question.verbPhrase,
+        undefined,
         card.timelineElements,
         card.shortMeaning
       ),
@@ -198,7 +205,7 @@ export function getTimeSignalQuizExamples(
   }
 
   return uniqueExamples(
-    [{ sentence: entry.exampleSentence, verbPhrase: entry.verbPhrase, timelineElements: entry.timelineElements, note: entry.notes }],
+    [{ sentence: entry.exampleSentence, verbPhrase: entry.verbPhrase, verbPhrase2: undefined, timelineElements: entry.timelineElements, note: entry.notes }],
     new Set<string>()
   );
 }
