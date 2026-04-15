@@ -44,8 +44,7 @@ export const vocabImageOverrides: Record<string, string> = {
   /** https://unsplash.com/photos/man-in-orange-and-black-vest-wearing-white-helmet-holding-yellow-and-black-power-tool-VLPUm5wP5Z0 */
   Job: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1080&q=80&auto=format&fit=crop",
   /** https://unsplash.com/photos/a-group-of-people-walking-on-a-train-platform-3F76TfkhEH0 */
-  Monday:
-    "https://images.unsplash.com/photo-1716556165208-563b2c7802e4?w=1080&q=80&auto=format&fit=crop",
+  "Monday": "https://images.unsplash.com/photo-1691097097192-03866b391c97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwxfHxNb25kYXklMjBjYWxlbmRhciUyMHNlYXNvbiUyMHNjaGVkdWxlfGVufDB8MHx8fDE3NzYxOTU0Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
   // Months of the year (calendar-feel picks; overrides generated search).
   /** https://unsplash.com/photos/x_4IoG7Kp7Q */
   January:
@@ -245,4 +244,16 @@ export const vocabImageOverrides: Record<string, string> = {
   "Armchair": "https://pixabay.com/get/g0746bc4fe520498b6cd1c703485aecdf86638c2411b88ef4da1db5edaf326c4212eefc33cf1af8ff28c756552a8aaec2ee78c792a2463990fd6413ad9dd082e4_640.jpg",
   "TV": "https://pixabay.com/get/g6c8d0bb2af8b7a23c432fb6b66989022c48611a9e99a3056a3e7e6fc35ecc4bafec03d87c1249f0077072be88f8bcc072b32c7421e28034f0141b567fdaba261_640.jpg",
   "Fireplace": "https://pixabay.com/get/ge6a6d7098670c216f4f84e883cc272f5e4fe9a0ef738575dc11afa655065a187a09cf70d2558c431529af4dabf8bd98d6228faa0bc62e0761d341b517e9390aa_640.jpg",
+  "Tuesday": "https://images.unsplash.com/photo-1691097097368-3715f5cb5f7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHw3fHxUdWVzZGF5JTIwY2FsZW5kYXIlMjBzZWFzb24lMjBzY2hlZHVsZXxlbnwwfDB8fHwxNzc2MTk1NDM5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+  "Friday": "https://images.unsplash.com/photo-1691097097106-4d8c330266f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHw3fHxGcmlkYXklMjBjYWxlbmRhciUyMHNlYXNvbiUyMHNjaGVkdWxlfGVufDB8MHx8fDE3NzYxOTU0Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+  "Saturday": "https://images.unsplash.com/photo-1691097097517-e30038aeda68?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwxfHxTYXR1cmRheSUyMHxlbnwwfDB8fHwxNzc2MTk1NDc5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+  "Week": "https://images.unsplash.com/photo-1615776649547-038afe604c5f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwxM3x8V2VlayUyMGNhbGVuZGFyJTIwc2Vhc29uJTIwc2NoZWR1bGV8ZW58MHwwfHx8MTc3NjE5NTQ0MHww&ixlib=rb-4.1.0&q=80&w=1080",
+  "Yesterday": "https://images.unsplash.com/photo-1607523751409-dfd21c533288?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwyfHxZZXN0ZXJkYXklMjBzY2hlZHVsZXxlbnwwfDB8fHwxNzc2MTk1Nzg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+  "Tomorrow": "https://images.unsplash.com/photo-1519500883398-1f823b076c3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwzfHxUb21vcnJvd3xlbnwwfDB8fHwxNzc2MTk1ODA1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+  "Today": "https://images.unsplash.com/photo-1667669325817-b387fd46700c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwxfHxUb2RheXxlbnwwfDB8fHwxNzc2MTk1ODE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+  "Month": "https://images.unsplash.com/photo-1698749507514-d7a93924aa74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwxNHx8TW9udGh8ZW58MHwwfHx8MTc3NjE5NTgzMHww&ixlib=rb-4.1.0&q=80&w=1080",
+  "Textbook": "https://images.unsplash.com/photo-1758875630351-b65d256e4dfe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwxMnx8dGV4dGJvb2slMjBzY2hvb2wlMjBlZHVjYXRpb258ZW58MHwwfHx8MTc3NjE5NjAzMnww&ixlib=rb-4.1.0&q=80&w=1080",
+  "Teacher": "https://images.unsplash.com/photo-1758270704925-fa59d93119c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwyfHx0ZWFjaGVyJTIwY2xhc3Nyb29tJTIwc2Nob29sfGVufDB8MHx8fDE3NzYxOTYwMzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+  "Hair": "https://images.unsplash.com/photo-1747398690600-ffe8ecda9df1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwyfHxoZWFsdGh5JTIwbG9uZyUyMGhhaXIlMjBicnVzaCUyMGJhY2slMjBoZWFkJTIwaXNvbGF0ZWR8ZW58MHwwfHx8MTc3NjE5NjE3MHww&ixlib=rb-4.1.0&q=80&w=1080",
+  "Short": "https://images.unsplash.com/photo-1604545579383-58dbd58dc91c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHw3fHxzaG9ydCUyMHBlcnNvbiUyMHN0YW5kaW5nJTIwaGVpZ2h0JTIwbWVhc3VyZW1lbnQlMjBzaW1wbGUlMjBiYWNrZ3JvdW5kfGVufDB8MHx8fDE3NzYxOTYxOTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
 };

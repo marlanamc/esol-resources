@@ -8,6 +8,7 @@ import { highlightSentenceFeatures } from '../highlightUtils';
 import type { ContextualUsage, TimeSignalExample, TimeSignalGroup, TimeSignalEntry } from '@/data/timeline-time-expressions';
 import { getAllTimeSignalEntries } from '@/data/timeline-time-expressions';
 import type { TimelineElement } from '@/types/activity';
+import { getTimeSignalTimelineLabel } from './timeSignalTimelineCanon';
 
 interface QuizQuestionSource {
   sentence: string;
@@ -64,35 +65,6 @@ function timelineSignature(elements: TimelineElement[]): string {
     .join('::');
 }
 
-function timelineLabelForElements(elements: TimelineElement[]): string {
-  const hasDuration = elements.some((element) => element.type === 'solid-line' || element.type === 'dashed-line' || element.type === 'solid-to-now' || element.type === 'solid-to-point');
-  const hasArc = elements.some((element) => element.type === 'arc' || element.type === 'arc-dashed');
-  const hasRepeats = elements.some((element) => element.type === 'multiple-dots');
-  const hasFuture = elements.some((element) => element.zone === 'future');
-  const hasPresent = elements.some((element) => element.zone === 'present');
-  const hasPast = elements.some((element) => element.zone === 'past' || element.zone === 'past-earlier' || element.zone === 'past-later');
-
-  if (hasDuration) {
-    return 'Duration';
-  }
-  if (hasArc) {
-    return hasFuture ? 'Future arc' : 'Arc to now';
-  }
-  if (hasRepeats) {
-    return 'Repeated moments';
-  }
-  if (hasFuture) {
-    return 'Future point';
-  }
-  if (hasPresent) {
-    return 'Current point';
-  }
-  if (hasPast) {
-    return 'Past point';
-  }
-  return 'Single point';
-}
-
 function cloneTimelineElements(elements: TimelineElement[], suffix: string): TimelineElement[] {
   return elements.map((element, index) => ({
     ...element,
@@ -144,7 +116,7 @@ function buildTimelineOptions(
 
   if (quizDistractors && quizDistractors.length > 0) {
     for (const distractor of quizDistractors) {
-      tryAdd(cloneTimelineElements(distractor, 'entry-distractor'), timelineLabelForElements(distractor));
+      tryAdd(cloneTimelineElements(distractor, 'entry-distractor'), getTimeSignalTimelineLabel(distractor));
     }
   }
 
@@ -154,7 +126,7 @@ function buildTimelineOptions(
 
   for (const candidate of group.expressions) {
     if (options.length >= MAX_QUIZ_OPTIONS - 1) break;
-    tryAdd(cloneTimelineElements(candidate.timelineElements, `same-group-${candidate.word}`), timelineLabelForElements(candidate.timelineElements));
+    tryAdd(cloneTimelineElements(candidate.timelineElements, `same-group-${candidate.word}`), getTimeSignalTimelineLabel(candidate.timelineElements));
   }
 
   if (options.length < MAX_QUIZ_OPTIONS - 1) {
@@ -333,7 +305,7 @@ function buildQuestions(group: TimeSignalGroup): QuizQuestion[] {
       );
       const preparedOptions = shuffleArray(
         [
-          { elements: correctTimeline, label: timelineLabelForElements(correctTimeline) },
+          { elements: correctTimeline, label: getTimeSignalTimelineLabel(correctTimeline) },
           ...options,
         ],
         i * 37 + sourceIndex * 17 + group.id.charCodeAt(0)
@@ -420,7 +392,7 @@ export function TimeSignalsQuiz({ group, onComplete, onGoToExercises }: TimeSign
             onClick={onGoToExercises}
             className="px-6 py-3 rounded-xl font-bold border border-border bg-white dark:bg-[#162b3d] text-text hover:border-primary/30 transition-colors"
           >
-            Go to Exercises →
+            Back to Time Signals
           </button>
         )}
       </motion.div>

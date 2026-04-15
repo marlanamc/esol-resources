@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Studies – Current Events</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f5f5f5;
+    color: #111;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0 auto;
+    padding: 0.35in 0.45in 0.3in;
+    background: white;
+  }
+
+  @media screen { .page + .page { margin-top: 16px; } }
+
+  @media print {
+    body { background: white; }
+    .page {
+      margin: 0;
+      min-height: auto;
+      box-shadow: none;
+      width: 100%;
+    }
+    .page-break { page-break-before: always; }
+    @page { margin: 0.25in; size: letter; }
+  }
+
+  /* ── TOP BAR ── */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 2.5px solid #111;
+  }
+  .case-number {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 3.2rem;
+    line-height: 1;
+    color: #e0ddd6;
+    letter-spacing: -0.02em;
+  }
+  .title-block { flex: 1; padding: 0 16px; }
+  .case-emoji { font-size: 1.3rem; margin-bottom: 2px; }
+  .case-title {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.65rem;
+    line-height: 1.15;
+    color: #111;
+  }
+  .case-subtitle {
+    font-size: 11.5px;
+    color: #777;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-top: 3px;
+  }
+  .case-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #888;
+  }
+
+  /* ── ACCENT COLORS ── */
+  .c1 .accent { color: #1d4ed8; }
+  .c1 .accent-bg { background: #1d4ed8; }
+  .c1 .section-tag { background: #dbeafe; color: #1d4ed8; }
+  .c1 .question-box { border-color: #1d4ed8; }
+  .c1 .vocab-box { border-color: #93c5fd; }
+  .c1 .check-box { border-left-color: #1d4ed8; }
+
+  .c2 .accent { color: #b45309; }
+  .c2 .accent-bg { background: #b45309; }
+  .c2 .section-tag { background: #fef3c7; color: #92400e; }
+  .c2 .question-box { border-color: #b45309; }
+  .c2 .vocab-box { border-color: #fcd34d; }
+  .c2 .check-box { border-left-color: #b45309; }
+
+  .c3 .accent { color: #15803d; }
+  .c3 .accent-bg { background: #15803d; }
+  .c3 .section-tag { background: #dcfce7; color: #15803d; }
+  .c3 .question-box { border-color: #15803d; }
+  .c3 .vocab-box { border-color: #86efac; }
+  .c3 .check-box { border-left-color: #15803d; }
+
+  .c4 .accent { color: #7c3aed; }
+  .c4 .accent-bg { background: #7c3aed; }
+  .c4 .section-tag { background: #ede9fe; color: #7c3aed; }
+  .c4 .question-box { border-color: #7c3aed; }
+  .c4 .vocab-box { border-color: #c4b5fd; }
+  .c4 .check-box { border-left-color: #7c3aed; }
+
+  /* ── SECTION TAG ── */
+  .section-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
+
+  /* ── CASE BODY ── */
+  .case-body {
+    background: #f7f6f2;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .case-body p {
+    margin-bottom: 8px;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .case-body p:last-child { margin-bottom: 0; }
+  .case-body strong { font-weight: 600; }
+
+  /* ── STAT STRIP ── */
+  .stat-strip {
+    display: flex;
+    gap: 8px;
+    margin: 10px 0 2px;
+  }
+  .stat {
+    flex: 1;
+    background: white;
+    border-radius: 4px;
+    padding: 7px 10px;
+    text-align: center;
+    border: 1px solid #e5e2da;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .stat-desc {
+    font-size: 10px;
+    color: #666;
+    line-height: 1.3;
+  }
+
+  /* ── VOCABULARY BOX ── */
+  .vocab-box {
+    border: 1.5px solid;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+  }
+  .vocab-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px 16px;
+  }
+  .vocab-item {
+    font-size: 12.5px;
+    line-height: 1.4;
+  }
+  .vocab-item b { font-weight: 600; }
+  .vocab-item span { color: #555; }
+
+  /* ── BACK PAGE HEADER ── */
+  .back-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #111;
+  }
+  .back-title {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.3rem;
+    color: #111;
+  }
+
+  /* ── COMPREHENSION CHECK ── */
+  .check-section { margin-bottom: 12px; }
+  .check-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .check-box {
+    border-left: 3px solid;
+    padding: 5px 10px;
+    background: #f7f6f2;
+    border-radius: 0 4px 4px 0;
+  }
+  .check-q {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  .check-line {
+    border-bottom: 1.5px solid #ccc;
+    height: 18px;
+  }
+
+  /* ── REACT / DISCUSS ── */
+  .react-section { margin-bottom: 10px; }
+  .react-prompts {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 6px;
+  }
+  .prompt {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 6px 10px;
+    background: #f7f6f2;
+    border-radius: 4px;
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+  .prompt-arrow {
+    font-size: 11px;
+    color: #aaa;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  /* ── QUESTION BOX ── */
+  .question-box {
+    border: 2px solid;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .question-box-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .question-box-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+  .question-box-subtitle {
+    font-size: 11.5px;
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .write-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .write-line-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .q-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #aaa;
+  }
+  .starter {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 2px;
+  }
+  .write-line {
+    border-bottom: 1.5px solid #ccc;
+    width: 100%;
+    height: 20px;
+  }
+
+  /* ── SHARE OUT ── */
+  .share-out {
+    background: #111;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .share-out strong { font-weight: 600; }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 10px;
+    font-size: 10px;
+    color: #bbb;
+    text-align: right;
+    letter-spacing: 0.05em;
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid #e5e2da;
+    margin: 8px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     CASE STUDY 1: WAYMO — FRONT
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page c1">
+  <div class="top-bar">
+    <div class="case-number">01</div>
+    <div class="title-block">
+      <div class="case-emoji">🚗</div>
+      <div class="case-title">The Driverless Taxi</div>
+      <div class="case-subtitle">Technology &amp; Work · United States, 2026</div>
+    </div>
+    <div class="case-label">Case Study</div>
+  </div>
+
+  <div class="vocab-box">
+    <div class="vocab-title">Key Vocabulary</div>
+    <div class="vocab-grid">
+      <div class="vocab-item"><b>self-driving</b> — <span>a car that uses computers to drive, with no person at the wheel</span></div>
+      <div class="vocab-item"><b>expand</b> — <span>to move into new cities or areas</span></div>
+      <div class="vocab-item"><b>Senate hearing</b> — <span>an official government meeting where leaders ask questions</span></div>
+      <div class="vocab-item"><b>overseas</b> — <span>in a different country</span></div>
+      <div class="vocab-item"><b>admitted</b> — <span>said something true that was difficult or embarrassing</span></div>
+      <div class="vocab-item"><b>benefit</b> — <span>to get something good from a change or situation</span></div>
+    </div>
+  </div>
+
+  <div class="section-tag">Read Together</div>
+
+  <div class="case-body">
+    <p>Waymo is a company owned by Google. It makes self-driving taxis — cars with no human driver inside. You order one on an app, the same way you would call an Uber or Lyft. Right now, Waymo runs in Phoenix, Los Angeles, San Francisco, and Atlanta. It plans to expand to Boston and more cities soon.</p>
+
+    <p>Waymo says its cars are <strong>much safer than human drivers</strong>. The company's data shows 90% fewer serious injuries compared to regular cars. Researchers who studied the numbers mostly agree. Waymo has now driven more than 170 million miles with no person behind the wheel.</p>
+
+    <p>But in February 2026, a U.S. Senate hearing brought out a surprising fact. Waymo's leaders admitted that about <strong>half of the workers who help guide the cars from a distance are based in the Philippines</strong>. These workers don't actually drive the car — they give advice when the car gets confused, like a backup helper. The car's computer stays in control. Still, some senators were angry. One said: <em>"It's one thing when a taxi is replaced by Uber. It's another when the jobs go completely overseas."</em></p>
+
+    <p>This raises a bigger question: <strong>who benefits when technology replaces old jobs?</strong> Taxi drivers, truck drivers, and delivery workers across the country are paying close attention. Some experts say self-driving cars will create new types of jobs. Others say those new jobs will pay less and go to workers in other countries. At the same time, the Filipino workers are grateful — the pay is much better than most jobs available to them locally.</p>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="stat-num accent">90%</div>
+        <div class="stat-desc">fewer serious crashes than human drivers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num accent">~35</div>
+        <div class="stat-desc">Filipino workers helping at any given moment</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num accent">170M</div>
+        <div class="stat-desc">miles driven without a human driver</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Case Study 01 · The Driverless Taxi · April 2026</div>
+</div>
+
+<!-- CASE STUDY 1: WAYMO — BACK -->
+<div class="page c1 page-break">
+  <div class="back-header">
+    <div class="back-title">01 · The Driverless Taxi — Discuss</div>
+    <div class="case-label">Back</div>
+  </div>
+
+  <div class="check-section">
+    <div class="section-tag">Quick Check</div>
+    <div class="check-list">
+      <div class="check-box">
+        <div class="check-q">1. What does Waymo's car do when it gets confused?</div>
+        <div class="check-line"></div>
+      </div>
+      <div class="check-box">
+        <div class="check-q">2. Why were some U.S. senators angry about Waymo?</div>
+        <div class="check-line"></div>
+      </div>
+      <div class="check-box">
+        <div class="check-q">3. Is the car safer or more dangerous than a human driver? How do you know?</div>
+        <div class="check-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="react-section">
+    <div class="section-tag">Talk It Over</div>
+    <div class="react-prompts">
+      <div class="prompt"><span class="prompt-arrow">→</span> What was the most surprising thing you read? Did anything change how you feel about self-driving cars?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> Have you ever used Uber or Lyft? Would you feel differently in a car with no driver at all?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> The numbers show the car is safer — but people are still scared. Why do you think that is?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> Workers in the Philippines help guide the cars and get paid well for their country. Is that a good thing or a problem?</div>
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="question-box-header">
+      <div class="question-box-title">Your Turn: Ask the Class</div>
+    </div>
+    <div class="question-box-subtitle">Write 2 questions to ask your classmates. Pick questions your whole group finds interesting — things you actually want to hear other people's answers to.</div>
+    <div class="write-lines">
+      <div class="write-line-group">
+        <div class="q-label">Question 1</div>
+        <div class="starter">You can start with: "Would you…" / "Do you think…" / "How would you feel if…"</div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+      </div>
+      <div class="write-line-group">
+        <div class="q-label">Question 2</div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+      </div>
+    </div>
+    <div class="share-out">
+      <span>📢</span>
+      <span><strong>Share out:</strong> Tell the class 2 things you learned, then ask your questions.</span>
+    </div>
+  </div>
+
+  <div class="footer">Case Study 01 · The Driverless Taxi · April 2026</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     CASE STUDY 2: DIGITAL NOMADS — FRONT
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page c2 page-break">
+  <div class="top-bar">
+    <div class="case-number">02</div>
+    <div class="title-block">
+      <div class="case-emoji">🌎</div>
+      <div class="case-title">The New Neighbors</div>
+      <div class="case-subtitle">Housing &amp; Displacement · Medellín, Colombia</div>
+    </div>
+    <div class="case-label">Case Study</div>
+  </div>
+
+  <div class="vocab-box">
+    <div class="vocab-title">Key Vocabulary</div>
+    <div class="vocab-grid">
+      <div class="vocab-item"><b>digital nomad</b> — <span>a person who works online and lives in different countries</span></div>
+      <div class="vocab-item"><b>gentrification</b> — <span>when wealthier people move in and prices rise for everyone</span></div>
+      <div class="vocab-item"><b>displacement</b> — <span>when people are pushed out of their neighborhood</span></div>
+      <div class="vocab-item"><b>short-term rental</b> — <span>an apartment rented for days or weeks, like on Airbnb</span></div>
+      <div class="vocab-item"><b>remote work</b> — <span>working from home or a café instead of an office</span></div>
+      <div class="vocab-item"><b>afford</b> — <span>to have enough money to pay for something</span></div>
+    </div>
+  </div>
+
+  <div class="section-tag">Read Together</div>
+
+  <div class="case-body">
+    <p>Since the COVID-19 pandemic, thousands of Americans and Europeans have moved to Medellín, Colombia — not as tourists, but to <strong>live and work from their laptops</strong>. These people are called <em>digital nomads</em>. They earn American or European salaries but pay Colombian prices. For them, Medellín had everything: warm weather, good food, fast internet, and affordable rent. But that rent is not affordable anymore.</p>
+
+    <p>The problem is simple: <strong>when people with higher salaries move into a neighborhood, prices go up for everyone</strong>. This is called <em>gentrification</em>. In popular areas like El Poblado and Laureles, rents have gone up <strong>80%</strong> in just a few years. Colombian families who lived there for decades can no longer afford to stay. They are being pushed out of their own neighborhoods.</p>
+
+    <p>Many digital nomads say they love Medellín and its culture. Some learn Spanish, volunteer, and try to give back. But local residents are frustrated. One said: <em>"The rent prices are increasing because foreigners can pay that. Sometimes you see an apartment and think, this isn't worth that much."</em> Local businesses — bakeries, repair shops, family restaurants — are closing and being replaced by co-working spaces and international cafés.</p>
+
+    <p>The Colombian government is now looking at new laws to control rents and limit short-term rentals. Cities like Lisbon and Barcelona have already passed laws like this. <strong>This is not just a Medellín problem — it is happening everywhere that remote workers move to cheaper cities.</strong></p>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="stat-num accent">80%</div>
+        <div class="stat-desc">rent increase in El Poblado &amp; Laureles</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num accent">60%</div>
+        <div class="stat-desc">of Medellín Airbnbs booked for 30+ nights</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num accent">$1,500</div>
+        <div class="stat-desc">average monthly cost of living for a nomad</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Case Study 02 · The New Neighbors · April 2026</div>
+</div>
+
+<!-- CASE STUDY 2: DIGITAL NOMADS — BACK -->
+<div class="page c2 page-break">
+  <div class="back-header">
+    <div class="back-title">02 · The New Neighbors — Discuss</div>
+    <div class="case-label">Back</div>
+  </div>
+
+  <div class="check-section">
+    <div class="section-tag">Quick Check</div>
+    <div class="check-list">
+      <div class="check-box">
+        <div class="check-q">1. Why do digital nomads choose to move to Medellín?</div>
+        <div class="check-line"></div>
+      </div>
+      <div class="check-box">
+        <div class="check-q">2. What happens to local families when rents go up?</div>
+        <div class="check-line"></div>
+      </div>
+      <div class="check-box">
+        <div class="check-q">3. What is the Colombian government thinking about doing?</div>
+        <div class="check-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="react-section">
+    <div class="section-tag">Talk It Over</div>
+    <div class="react-prompts">
+      <div class="prompt"><span class="prompt-arrow">→</span> Have you seen or heard about this in Medellín or another city you know? What did you notice?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> Is this different from or similar to what happens when immigrants move into a new neighborhood in the U.S.?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> The nomads say they love Colombia — but locals feel pushed out. Who is responsible for what happens?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> If you could make one rule to help, what would it be?</div>
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="question-box-header">
+      <div class="question-box-title">Your Turn: Ask the Class</div>
+    </div>
+    <div class="question-box-subtitle">Write 2 questions to ask your classmates. Pick questions your whole group finds interesting — things you actually want to hear other people's answers to.</div>
+    <div class="write-lines">
+      <div class="write-line-group">
+        <div class="q-label">Question 1</div>
+        <div class="starter">You can start with: "Have you ever…" / "Do you think it's fair that…" / "What would you do if…"</div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+      </div>
+      <div class="write-line-group">
+        <div class="q-label">Question 2</div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+      </div>
+    </div>
+    <div class="share-out">
+      <span>📢</span>
+      <span><strong>Share out:</strong> Tell the class 2 things you learned, then ask your questions.</span>
+    </div>
+  </div>
+
+  <div class="footer">Case Study 02 · The New Neighbors · April 2026</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     CASE STUDY 3: TARIFFS — FRONT
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page c3 page-break">
+  <div class="top-bar">
+    <div class="case-number">03</div>
+    <div class="title-block">
+      <div class="case-emoji">💰</div>
+      <div class="case-title">Why Is Everything So Expensive?</div>
+      <div class="case-subtitle">Trade &amp; Prices · United States, 2026</div>
+    </div>
+    <div class="case-label">Case Study</div>
+  </div>
+
+  <div class="vocab-box">
+    <div class="vocab-title">Key Vocabulary</div>
+    <div class="vocab-grid">
+      <div class="vocab-item"><b>tariff</b> — <span>a tax added to products that come from other countries</span></div>
+      <div class="vocab-item"><b>imported</b> — <span>brought into the country from somewhere else</span></div>
+      <div class="vocab-item"><b>absorb (a cost)</b> — <span>to pay an extra cost yourself instead of charging the customer</span></div>
+      <div class="vocab-item"><b>income</b> — <span>the money you earn from your job</span></div>
+      <div class="vocab-item"><b>impact</b> — <span>the real effect that something has on people's lives</span></div>
+      <div class="vocab-item"><b>debate</b> — <span>a discussion where people disagree and share different views</span></div>
+    </div>
+  </div>
+
+  <div class="section-tag">Read Together</div>
+
+  <div class="case-body">
+    <p>Have you noticed your grocery bill getting bigger? There is a real reason. In 2025 and 2026, the U.S. government added <strong>new taxes on products coming from other countries</strong>. These taxes are called <em>tariffs</em>. The idea was to protect American businesses — if foreign products cost more, maybe people will buy American products instead.</p>
+
+    <p>But the problem is that <strong>the U.S. cannot grow or make everything it needs</strong>. About 80% of the seafood Americans eat comes from other countries. So does 80% of the coffee, 59% of fresh fruit, and almost all bananas and chocolate. When the government adds a tariff, the companies that bring these products in pay more — and then they charge you more at the store.</p>
+
+    <p>Experts say the full impact of these tariffs is hitting now, in 2026. Food prices are expected to go up nearly 3% just because of tariffs. Coffee from Brazil now has a <strong>50% tariff</strong>. Olive oil, seafood, cheese, and tropical fruits are all getting more expensive. Smaller grocery stores, which often serve immigrant communities, are raising prices faster than big chains like Walmart, because they don't have extra money to absorb the costs.</p>
+
+    <p>Some people support the tariffs. They say America needs to make its own products and stop depending on other countries. But others say tariffs hurt the poorest families the most — families who already spend a large part of their income on food. <strong>The debate about tariffs is really a question: who pays the price?</strong></p>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="stat-num accent">80%</div>
+        <div class="stat-desc">of coffee Americans drink is imported</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num accent">50%</div>
+        <div class="stat-desc">tariff now on Brazilian coffee</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num accent">~3%</div>
+        <div class="stat-desc">expected rise in food prices in 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Case Study 03 · Tariffs &amp; Prices · April 2026</div>
+</div>
+
+<!-- CASE STUDY 3: TARIFFS — BACK -->
+<div class="page c3 page-break">
+  <div class="back-header">
+    <div class="back-title">03 · Why Is Everything So Expensive? — Discuss</div>
+    <div class="case-label">Back</div>
+  </div>
+
+  <div class="check-section">
+    <div class="section-tag">Quick Check</div>
+    <div class="check-list">
+      <div class="check-box">
+        <div class="check-q">1. What is a tariff? Explain it in your own words.</div>
+        <div class="check-line"></div>
+      </div>
+      <div class="check-box">
+        <div class="check-q">2. Why can't the U.S. just stop buying food from other countries?</div>
+        <div class="check-line"></div>
+      </div>
+      <div class="check-box">
+        <div class="check-q">3. Why do smaller grocery stores raise prices faster than big stores like Walmart?</div>
+        <div class="check-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="react-section">
+    <div class="section-tag">Talk It Over</div>
+    <div class="react-prompts">
+      <div class="prompt"><span class="prompt-arrow">→</span> Have you noticed prices going up at the grocery store? Which items surprised you the most?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> When your budget gets tight, what do you cut first — and what do you never cut?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> Tariffs also hurt the countries that sell food to the U.S. Does your home country sell food or products to America?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> Some people say "buy American" is the answer. What do you think? Is it always possible?</div>
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="question-box-header">
+      <div class="question-box-title">Your Turn: Ask the Class</div>
+    </div>
+    <div class="question-box-subtitle">Write 2 questions to ask your classmates. Pick questions your whole group finds interesting — things you actually want to hear other people's answers to.</div>
+    <div class="write-lines">
+      <div class="write-line-group">
+        <div class="q-label">Question 1</div>
+        <div class="starter">You can start with: "Has your family felt…" / "Do you think the government should…" / "What would you do if…"</div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+      </div>
+      <div class="write-line-group">
+        <div class="q-label">Question 2</div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+      </div>
+    </div>
+    <div class="share-out">
+      <span>📢</span>
+      <span><strong>Share out:</strong> Tell the class 2 things you learned, then ask your questions.</span>
+    </div>
+  </div>
+
+  <div class="footer">Case Study 03 · Tariffs &amp; Prices · April 2026</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     CASE STUDY 4: AI & HEALTH — FRONT
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="page c4 page-break">
+  <div class="top-bar">
+    <div class="case-number">04</div>
+    <div class="title-block">
+      <div class="case-emoji">🤖</div>
+      <div class="case-title">Should You Ask AI About Your Health?</div>
+      <div class="case-subtitle">Technology &amp; Health · United States, 2026</div>
+    </div>
+    <div class="case-label">Case Study</div>
+  </div>
+
+  <div class="vocab-box">
+    <div class="vocab-title">Key Vocabulary</div>
+    <div class="vocab-grid">
+      <div class="vocab-item"><b>survey</b> — <span>a study that asks many people the same questions</span></div>
+      <div class="vocab-item"><b>language barrier</b> — <span>when you can't get help because you don't speak the language well</span></div>
+      <div class="vocab-item"><b>symptoms</b> — <span>signs that something is wrong with your body (pain, fever, rash)</span></div>
+      <div class="vocab-item"><b>inaccurate</b> — <span>wrong; not correct</span></div>
+      <div class="vocab-item"><b>hallucination</b> — <span>(AI) when the computer makes up an answer that sounds true but is not</span></div>
+      <div class="vocab-item"><b>pharmacist</b> — <span>the person at the pharmacy who gives you your medicine</span></div>
+    </div>
+  </div>
+
+  <div class="section-tag">Read Together</div>
+
+  <div class="case-body">
+    <p>You have a bad headache or a rash that won't go away. Do you go to the doctor — or do you ask ChatGPT? More and more Americans are <strong>using AI instead of talking to a doctor</strong>. A 2026 survey found that <strong>51% of adults in the U.S. used AI to make an important health decision</strong> without calling a doctor or nurse first.</p>
+
+    <p>It's easy to see why. AI is free. It's always available. And it answers fast. For immigrant families who face language barriers, expensive doctor visits, or no health insurance, AI can feel like the only option. You can describe your symptoms in any language and get an answer in seconds.</p>
+
+    <p>But doctors are worried. AI sometimes gives wrong answers — and it sounds very sure of itself when it does. A doctor at Ohio State University said: <em>"We know that 2% of the time, AI is going to be inaccurate. I would be really concerned about a patient who is following AI."</em> Two percent doesn't sound like a lot. But millions of people use AI every day. That means thousands of people could be getting bad advice.</p>
+
+    <p>In other parts of the world, the story is different. In rural Kenya, there are almost no doctors. AI-powered apps help pharmacists figure out what is wrong with patients and what medicine to give them. The same technology that worries doctors in the U.S. is <strong>saving lives in places that don't have enough doctors</strong>. So the real question is: <strong>when is AI helpful for your health, and when is it dangerous?</strong></p>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="stat-num accent">51%</div>
+        <div class="stat-desc">of Americans used AI for a health decision without a doctor</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num accent">42%</div>
+        <div class="stat-desc">open to AI in healthcare — down from 52% last year</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num accent">2%</div>
+        <div class="stat-desc">of the time AI produces a hallucinated answer</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Case Study 04 · AI &amp; Health · April 2026</div>
+</div>
+
+<!-- CASE STUDY 4: AI & HEALTH — BACK -->
+<div class="page c4 page-break">
+  <div class="back-header">
+    <div class="back-title">04 · Should You Ask AI About Your Health? — Discuss</div>
+    <div class="case-label">Back</div>
+  </div>
+
+  <div class="check-section">
+    <div class="section-tag">Quick Check</div>
+    <div class="check-list">
+      <div class="check-box">
+        <div class="check-q">1. Why do many people choose AI instead of a doctor?</div>
+        <div class="check-line"></div>
+      </div>
+      <div class="check-box">
+        <div class="check-q">2. What is the danger of using AI for health questions?</div>
+        <div class="check-line"></div>
+      </div>
+      <div class="check-box">
+        <div class="check-q">3. How is AI being used differently in Kenya compared to the U.S.?</div>
+        <div class="check-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="react-section">
+    <div class="section-tag">Talk It Over</div>
+    <div class="react-prompts">
+      <div class="prompt"><span class="prompt-arrow">→</span> Have you ever searched your symptoms online or asked AI about your health? What happened?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> Is it harder to see a doctor here than in your home country? What makes it hard?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> In Kenya, AI is helping pharmacies in communities with almost no doctors. Does that change how you think about it?</div>
+      <div class="prompt"><span class="prompt-arrow">→</span> If AI is right 98% of the time, is that good enough for health? What about for driving? For school?</div>
+    </div>
+  </div>
+
+  <div class="question-box">
+    <div class="question-box-header">
+      <div class="question-box-title">Your Turn: Ask the Class</div>
+    </div>
+    <div class="question-box-subtitle">Write 2 questions to ask your classmates. Pick questions your whole group finds interesting — things you actually want to hear other people's answers to.</div>
+    <div class="write-lines">
+      <div class="write-line-group">
+        <div class="q-label">Question 1</div>
+        <div class="starter">You can start with: "Do you trust…" / "Would you ever…" / "Is it different in your country when…"</div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+      </div>
+      <div class="write-line-group">
+        <div class="q-label">Question 2</div>
+        <div class="write-line"></div>
+        <div class="write-line"></div>
+      </div>
+    </div>
+    <div class="share-out">
+      <span>📢</span>
+      <span><strong>Share out:</strong> Tell the class 2 things you learned, then ask your questions.</span>
+    </div>
+  </div>
+
+  <div class="footer">Case Study 04 · AI &amp; Health · April 2026</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Station 1 — Gerunds and Infinitives</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #000;
+    --dark: #1a1a1a;
+    --mid: #555;
+    --light: #777;
+    --rule: #000;
+    --fill: #f0f0f0;
+  }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  .page {
+    max-width: 8in;
+    margin: 0 auto;
+    padding: 0.45in 0.55in 0.35in;
+    background: #fff;
+  }
+  .page + .page { margin-top: 20px; }
+
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; padding: 0; max-width: none; }
+    .page + .page { page-break-before: always; margin-top: 0; }
+    @page { margin: 0.45in; size: letter; }
+  }
+
+  /* ── Header ── */
+  .top-bar {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+    border-bottom: 2.5px solid var(--ink);
+  }
+  .station-num {
+    font-size: 42px;
+    font-weight: bold;
+    line-height: 1;
+    color: #ccc;
+  }
+  .title-block { flex: 1; }
+  .title-block h1 {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.15;
+  }
+  .title-sub {
+    font-size: 12.5px;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+  .station-badge {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    border: 1.5px solid var(--ink);
+    padding: 3px 10px;
+    align-self: center;
+    white-space: nowrap;
+  }
+
+  /* ── Reference Box ── */
+  .ref-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 2px solid var(--ink);
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .ref-col { padding: 10px 12px; }
+  .ref-col:first-child { border-right: 2px solid var(--ink); }
+  .ref-head {
+    font-size: 12.5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+  .ref-rule {
+    font-size: 12px;
+    color: var(--mid);
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+  .ref-verbs {
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 5px;
+    line-height: 1.4;
+  }
+  .ref-ex {
+    font-size: 12px;
+    color: var(--mid);
+    margin-bottom: 1px;
+  }
+  .ref-ex u {
+    font-weight: bold;
+    color: var(--dark);
+    text-underline-offset: 2px;
+  }
+
+  /* ── Section Labels ── */
+  .act-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 3px;
+    margin-bottom: 7px;
+  }
+  .act-title {
+    font-size: 13.5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .act-time {
+    font-size: 11.5px;
+    color: var(--light);
+    font-style: italic;
+  }
+  .act-intro {
+    font-size: 13px;
+    color: var(--mid);
+    font-style: italic;
+    margin-bottom: 7px;
+  }
+  .activity { margin-bottom: 14px; }
+
+  /* ── Activity 1: Circle ── */
+  .circle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 20px;
+    font-size: 14px;
+  }
+  .c-item {
+    padding: 3px 0;
+    line-height: 1.5;
+  }
+  .c-item .num { font-weight: bold; margin-right: 2px; }
+  .c-item .choice { font-weight: bold; }
+
+  /* ── Activity 2: Fill-in ── */
+  .fill-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    font-size: 14px;
+  }
+  .f-item {
+    line-height: 1.55;
+    padding: 4px 0;
+  }
+  .f-item .num { font-weight: bold; margin-right: 2px; }
+  .f-blank {
+    display: inline-block;
+    border-bottom: 1px solid var(--rule);
+    width: 150px;
+    height: 16px;
+    vertical-align: bottom;
+    margin: 0 2px;
+  }
+  .f-hint {
+    font-size: 12px;
+    color: var(--light);
+    font-style: italic;
+  }
+
+  /* ── Activity 3: Matching ── */
+  .match-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 24px;
+    font-size: 14px;
+  }
+  .match-starts, .match-ends {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .m-start {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    padding: 4px 0;
+  }
+  .m-start .num { font-weight: bold; min-width: 20px; }
+  .m-start .m-blank {
+    display: inline-block;
+    border-bottom: 1px solid var(--rule);
+    width: 26px;
+    height: 16px;
+    margin-right: 4px;
+  }
+  .m-end {
+    padding: 4px 0;
+  }
+  .m-end .letter { font-weight: bold; margin-right: 4px; }
+
+  /* ── Activity 4: Write ── */
+  .write-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 18px;
+  }
+  .w-item {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 7px 9px;
+  }
+  .w-starter {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .w-line {
+    border-bottom: 1px solid var(--rule);
+    height: 20px;
+  }
+  .w-line + .w-line { margin-top: 2px; }
+
+  /* ── Bonus ── */
+  .bonus-box {
+    border: 1.5px dashed var(--rule);
+    border-radius: 3px;
+    padding: 8px 10px;
+    margin-top: 12px;
+  }
+  .bonus-label {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--mid);
+    margin-bottom: 4px;
+  }
+  .bonus-intro {
+    font-size: 13px;
+    color: var(--mid);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .b-starter {
+    font-size: 13.5px;
+    color: var(--mid);
+    margin-bottom: 3px;
+  }
+  .b-line {
+    border-bottom: 1px solid var(--rule);
+    height: 20px;
+  }
+  .b-item { margin-bottom: 8px; }
+  .b-item:last-child { margin-bottom: 0; }
+
+  .footer {
+    margin-top: 10px;
+    font-size: 10px;
+    color: #bbb;
+    text-align: right;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ PAGE 1: FRONT ═══════════════ -->
+<div class="page">
+
+  <div class="top-bar">
+    <div class="station-num">1</div>
+    <div class="title-block">
+      <h1>Gerund or Infinitive?</h1>
+      <div class="title-sub">Independent Work &bull; ~15 min &bull; Use the reference box if you need help</div>
+    </div>
+    <div class="station-badge">Station 1</div>
+  </div>
+
+  <!-- REFERENCE -->
+  <div class="ref-box">
+    <div class="ref-col">
+      <div class="ref-head">Gerund &mdash; verb + ing</div>
+      <div class="ref-rule">Use after verbs about activities &amp; experiences.</div>
+      <div class="ref-verbs">enjoy, avoid, quit, keep, finish, practice, consider, suggest, miss, mind, recommend, imagine, risk</div>
+      <div class="ref-ex">I enjoy <u>walking</u> after dinner.</div>
+      <div class="ref-ex">She quit <u>smoking</u> last year.</div>
+      <div class="ref-ex">I avoid <u>eating</u> fast food.</div>
+    </div>
+    <div class="ref-col">
+      <div class="ref-head">Infinitive &mdash; to + verb</div>
+      <div class="ref-rule">Use after verbs about goals, plans &amp; decisions.</div>
+      <div class="ref-verbs">want, plan, decide, need, hope, try, agree, afford, expect, choose, refuse, offer, promise, learn, manage</div>
+      <div class="ref-ex">I want <u>to drink</u> more water.</div>
+      <div class="ref-ex">We plan <u>to join</u> a gym.</div>
+      <div class="ref-ex">He decided <u>to sleep</u> earlier.</div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY 1 -->
+  <div class="activity">
+    <div class="act-header">
+      <div class="act-title">Activity 1 &middot; Circle the Correct Form</div>
+      <div class="act-time">~3 min</div>
+    </div>
+    <div class="act-intro">Circle the correct word to complete each sentence.</div>
+    <div class="circle-grid">
+      <div class="c-item"><span class="num">1.</span> She wants <span class="choice">( eating / to eat )</span> more vegetables this year.</div>
+      <div class="c-item"><span class="num">2.</span> He decided <span class="choice">( moving / to move )</span> to a new city for work.</div>
+      <div class="c-item"><span class="num">3.</span> I enjoy <span class="choice">( cooking / to cook )</span> food from my home country.</div>
+      <div class="c-item"><span class="num">4.</span> They need <span class="choice">( finding / to find )</span> a cheaper apartment.</div>
+      <div class="c-item"><span class="num">5.</span> My doctor suggested <span class="choice">( exercising / to exercise )</span> three times a week.</div>
+      <div class="c-item"><span class="num">6.</span> We hope <span class="choice">( saving / to save )</span> enough money to visit family.</div>
+      <div class="c-item"><span class="num">7.</span> I avoid <span class="choice">( drinking / to drink )</span> too much coffee at night.</div>
+      <div class="c-item"><span class="num">8.</span> The families could not afford <span class="choice">( staying / to stay )</span> in their neighborhood.</div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY 2 -->
+  <div class="activity">
+    <div class="act-header">
+      <div class="act-title">Activity 2 &middot; Fill in the Blank</div>
+      <div class="act-time">~3 min</div>
+    </div>
+    <div class="act-intro">Write the gerund or infinitive form of the verb in parentheses.</div>
+    <div class="fill-grid">
+      <div class="f-item"><span class="num">1.</span> Many people have started <span class="f-blank"></span> AI for health questions. <span class="f-hint">(use)</span></div>
+      <div class="f-item"><span class="num">2.</span> She keeps <span class="f-blank"></span> her doctor&rsquo;s advice. <span class="f-hint">(follow)</span></div>
+      <div class="f-item"><span class="num">3.</span> The government plans <span class="f-blank"></span> new laws about rent. <span class="f-hint">(make)</span></div>
+      <div class="f-item"><span class="num">4.</span> He quit <span class="f-blank"></span> fast food after his checkup. <span class="f-hint">(eat)</span></div>
+      <div class="f-item"><span class="num">5.</span> Local families could not afford <span class="f-blank"></span> the higher rent. <span class="f-hint">(pay)</span></div>
+      <div class="f-item"><span class="num">6.</span> I practice <span class="f-blank"></span> English every day after work. <span class="f-hint">(speak)</span></div>
+      <div class="f-item"><span class="num">7.</span> We decided <span class="f-blank"></span> more fresh food from the market. <span class="f-hint">(buy)</span></div>
+      <div class="f-item"><span class="num">8.</span> The company expects <span class="f-blank"></span> more cities next year. <span class="f-hint">(expand into)</span></div>
+    </div>
+  </div>
+
+  <div class="footer">Station 1 &bull; Gerunds &amp; Infinitives &bull; April 2026</div>
+</div>
+
+<!-- ═══════════════ PAGE 2: BACK ═══════════════ -->
+<div class="page">
+
+  <!-- ACTIVITY 3: MATCHING -->
+  <div class="activity">
+    <div class="act-header">
+      <div class="act-title">Activity 3 &middot; Finish the Sentence</div>
+      <div class="act-time">~3 min</div>
+    </div>
+    <div class="act-intro">Match each beginning to the correct ending. Write the letter on the line. (The ending must use the right form &mdash; gerund or infinitive.)</div>
+
+    <div class="match-container">
+      <div class="match-starts">
+        <div class="m-start"><span class="num">1.</span><span class="m-blank"></span> She enjoys&hellip;</div>
+        <div class="m-start"><span class="num">2.</span><span class="m-blank"></span> He decided&hellip;</div>
+        <div class="m-start"><span class="num">3.</span><span class="m-blank"></span> The doctor recommended&hellip;</div>
+        <div class="m-start"><span class="num">4.</span><span class="m-blank"></span> They can&rsquo;t afford&hellip;</div>
+        <div class="m-start"><span class="num">5.</span><span class="m-blank"></span> I keep&hellip;</div>
+        <div class="m-start"><span class="num">6.</span><span class="m-blank"></span> We plan&hellip;</div>
+        <div class="m-start"><span class="num">7.</span><span class="m-blank"></span> My friend hopes&hellip;</div>
+      </div>
+      <div class="match-ends">
+        <div class="m-end"><span class="letter">a.</span> &hellip;to eat less sugar before his next checkup.</div>
+        <div class="m-end"><span class="letter">b.</span> &hellip;forgetting to take my vitamins.</div>
+        <div class="m-end"><span class="letter">c.</span> &hellip;to buy healthier food at the market.</div>
+        <div class="m-end"><span class="letter">d.</span> &hellip;exercising at the park after dinner.</div>
+        <div class="m-end"><span class="letter">e.</span> &hellip;to pay for the new medicine.</div>
+        <div class="m-end"><span class="letter">f.</span> &hellip;to lose weight by swimming three times a week.</div>
+        <div class="m-end"><span class="letter">g.</span> &hellip;walking thirty minutes every morning.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY 4: WRITE YOUR OWN -->
+  <div class="activity">
+    <div class="act-header">
+      <div class="act-title">Activity 4 &middot; Write Your Own Sentences</div>
+      <div class="act-time">~6 min</div>
+    </div>
+    <div class="act-intro">Use each verb to write a sentence about your life, health, or something from tonight. Use the correct form &mdash; gerund or infinitive.</div>
+
+    <div class="write-grid">
+      <div class="w-item">
+        <div class="w-starter">1. I enjoy&hellip;</div>
+        <div class="w-line"></div>
+        <div class="w-line"></div>
+      </div>
+      <div class="w-item">
+        <div class="w-starter">2. I want&hellip;</div>
+        <div class="w-line"></div>
+        <div class="w-line"></div>
+      </div>
+      <div class="w-item">
+        <div class="w-starter">3. I avoid&hellip;</div>
+        <div class="w-line"></div>
+        <div class="w-line"></div>
+      </div>
+      <div class="w-item">
+        <div class="w-starter">4. I decided&hellip;</div>
+        <div class="w-line"></div>
+        <div class="w-line"></div>
+      </div>
+      <div class="w-item">
+        <div class="w-starter">5. I hope&hellip;</div>
+        <div class="w-line"></div>
+        <div class="w-line"></div>
+      </div>
+      <div class="w-item">
+        <div class="w-starter">6. I need&hellip;</div>
+        <div class="w-line"></div>
+        <div class="w-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BONUS -->
+  <div class="bonus-box">
+    <div class="bonus-label">If You Finish Early</div>
+    <div class="bonus-intro">Write 2 sentences about someone else &mdash; a family member, friend, or neighbor. Use a gerund in one and an infinitive in the other.</div>
+    <div class="b-item">
+      <div class="b-starter">My ____________ enjoys / avoids / keeps&hellip;</div>
+      <div class="b-line"></div>
+    </div>
+    <div class="b-item">
+      <div class="b-starter">My ____________ wants / needs / decided&hellip;</div>
+      <div class="b-line"></div>
+    </div>
+  </div>
+
+  <div class="footer">Station 1 &bull; Gerunds &amp; Infinitives &bull; April 2026</div>
+</div>
+
+</body>
+</html>

@@ -50,7 +50,8 @@ export function TimeSignalsMode({ onBack, onTimeSignalsQuizComplete }: TimeSigna
   }
 
   function handleGoToExercises() {
-    onBack();
+    setSubView('group-select');
+    setSelectedGroup(null);
   }
 
   function goBack() {

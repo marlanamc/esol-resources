@@ -7,6 +7,7 @@ import { TimelineCanvas } from '../TimelineCanvas';
 import { highlightSentenceFeatures } from '../highlightUtils';
 import type { TimeSignalGroup } from '@/data/timeline-time-expressions';
 import type { TimelineElement } from '@/types/activity';
+import { getTimeSignalTimelineLabel } from './timeSignalTimelineCanon';
 
 interface TimeSignalsExploreProps {
   group: TimeSignalGroup;
@@ -22,6 +23,7 @@ export function TimeSignalsExplore({ group }: TimeSignalsExploreProps) {
     { sentence: entry.exampleSentence, verbPhrase: entry.verbPhrase },
   ];
   const contextualUsages = entry.contextualUsages ?? [];
+  const baseTimelineLabel = getTimeSignalTimelineLabel(entry.timelineElements);
 
   function go(delta: 1 | -1) {
     setDirection(delta);
@@ -132,6 +134,9 @@ export function TimeSignalsExplore({ group }: TimeSignalsExploreProps) {
               On the timeline
             </p>
             <TimelineCanvas elements={entry.timelineElements} showLabels={true} />
+            <p className="mt-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-text-muted/60">
+              {baseTimelineLabel}
+            </p>
           </div>
 
           {/* Common examples */}
@@ -199,6 +204,9 @@ export function TimeSignalsExplore({ group }: TimeSignalsExploreProps) {
                     <div className="rounded-xl border border-border/50 dark:border-white/10 bg-[var(--color-bg-light)]/40 dark:bg-white/[0.03] p-3">
                       <TimelineCanvas elements={contextualTimelineElements} showLabels={false} />
                     </div>
+                    <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-text-muted/60">
+                      {getTimeSignalTimelineLabel(contextualTimelineElements)}
+                    </p>
                     {usage.note && (
                       <p className="text-xs text-text-muted mt-2 italic leading-snug">{usage.note}</p>
                     )}

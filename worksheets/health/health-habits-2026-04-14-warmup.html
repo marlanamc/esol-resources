@@ -3,87 +3,400 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Health: Past & Present Habits (ESOL Level 3)</title>
+  <title>Warm-Up: Health Habits — Past & Present (ESOL Level 3)</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --ink: #1a1a1a; --gray: #444; --light: #666; --line: #333; }
-    body { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); background: #f5f5f5; padding: 20px; line-height: 1.45; font-size: 14px; }
-    .sheet { max-width: 8in; margin: 0 auto; background: #fff; padding: 0.45in 0.55in; }
+    :root {
+      --ink: #000;
+      --dark: #1a1a1a;
+      --mid: #555;
+      --light: #777;
+      --rule: #000;
+      --rule-light: #999;
+      --fill-light: #f0f0f0;
+    }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--dark);
+      background: #e8e8e8;
+      padding: 20px;
+      line-height: 1.5;
+      font-size: 13.5px;
+    }
+    .sheet {
+      max-width: 8in;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0.5in 0.6in 0.4in;
+    }
+
+    /* ── Header ── */
     .header {
-      border-bottom: 2px solid var(--ink);
-      padding-bottom: 8px;
-      margin-bottom: 16px;
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2.5px solid var(--ink);
     }
     .header h1 {
-      text-align: center;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
-      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
     }
-    .header-left .subtitle { font-size: 12px; color: var(--gray); }
+    .header .subtitle {
+      font-size: 12px;
+      font-style: italic;
+      color: var(--mid);
+      margin-bottom: 10px;
+    }
     .header-fields {
       display: flex;
-      gap: 32px;
+      gap: 40px;
       justify-content: center;
       font-size: 13px;
     }
-    .field { display: flex; align-items: baseline; gap: 5px; }
+    .field { display: flex; align-items: baseline; gap: 6px; }
     .field label { font-weight: bold; }
-    .field-line { border-bottom: 1px solid var(--ink); width: 100px; height: 16px; }
+    .field-line { border-bottom: 1px solid var(--ink); width: 150px; height: 16px; }
     .date-value { font-weight: normal; }
-    .section { margin-bottom: 18px; }
-    .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
-    .section-title { text-align: center; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
-    .section-time { font-size: 12px; color: var(--light); font-style: italic; }
-    .vocab-matching { display: grid; grid-template-columns: minmax(0, max-content) 1fr; row-gap: 8px; column-gap: 12px; font-size: 14px; }
-    .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
-    .vocab-word .num { font-weight: bold; min-width: 20px; }
-    .vocab-word .word { flex: 1; }
-    .vocab-word .blank { border-bottom: 1px solid var(--line); width: 30px; margin-right: 2px; }
-    .vocab-def { padding: 3px 0; }
-    .vocab-def .letter { font-weight: bold; margin-right: 6px; }
-    .phrase { margin-bottom: 14px; }
-    .phrase-starter { font-weight: bold; font-size: 14px; margin-bottom: 3px; }
-    .examples { margin-left: 14px; font-size: 13px; color: var(--gray); margin-bottom: 4px; }
-    .examples li { margin-bottom: 1px; list-style: none; }
-    .examples li::before { content: "• "; color: var(--ink); }
-    .your-turn { display: flex; align-items: baseline; gap: 6px; font-size: 13px; margin-left: 14px; }
-    .your-turn-label { font-style: italic; color: var(--light); white-space: nowrap; }
-    .writing-line { border-bottom: 1px solid var(--line); flex: 1; height: 20px; }
-    .instruction { font-size: 12px; color: var(--light); font-style: italic; margin-bottom: 12px; }
-    .level-up { font-size: 12px; font-style: italic; color: var(--light); margin-top: 6px; margin-left: 14px; }
-    .round { margin-bottom: 8px; font-size: 13px; }
-    .round-header { font-weight: bold; }
-    .round-content { margin-left: 8px; color: var(--gray); }
-    .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
-    .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
-    .section:has(.reading-text) { margin-bottom: 36px; }
-    .reading-text p { margin-bottom: 8px; text-align: justify; }
-    .question { margin-bottom: 12px; }
-    .question-text { font-size: 13px; margin-bottom: 4px; }
-    .question-text b { font-weight: bold; }
-    .answer-line { border-bottom: 1px solid var(--line); height: 20px; }
-    .writing-prompt { font-size: 13px; margin-bottom: 10px; }
-    .requirements { font-size: 12px; margin-bottom: 12px; margin-left: 16px; color: var(--gray); }
-    .requirements li { margin-bottom: 1px; }
-    .writing-lines { margin-top: 10px; }
-    .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
-    .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
-    .front-page { margin-bottom: 24px; }
-    @media print { @page { size: letter; margin: 0.45in; } body { background: #fff; padding: 0; } .sheet { padding: 0; max-width: none; }
-      .page-break { page-break-before: always; } }
-      .pron { font-size: 11px; color: var(--light); font-style: italic; margin-left: 4px; }
+
+    /* ── Sections ── */
+    .section { margin-bottom: 20px; }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .section-time {
+      font-size: 11px;
+      color: var(--light);
+      font-style: italic;
+    }
+    .instruction {
+      font-size: 12px;
+      color: var(--mid);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    /* ── Part A: Vocab ── */
+    .vocab-matching {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 24px;
+      row-gap: 0;
+      font-size: 13.5px;
+      padding: 0 6px;
+    }
+    .vocab-words, .vocab-defs {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .vocab-word {
+      display: flex;
+      align-items: baseline;
+      padding: 2px 0;
+    }
+    .vocab-word .num { font-weight: bold; min-width: 22px; }
+    .vocab-word .blank {
+      display: inline-block;
+      border-bottom: 1px solid var(--rule);
+      width: 28px;
+      margin-right: 6px;
+    }
+    .vocab-word .word { font-style: italic; }
+    .vocab-def { padding: 2px 0; font-size: 13px; }
+    .vocab-def .letter { font-weight: bold; margin-right: 5px; }
+
+    /* ── Part B: Timeline ── */
+    .timeline-container {
+      margin: 6px 0 4px;
+      padding: 14px 18px 12px;
+      border: 1.5px solid var(--rule);
+      border-radius: 4px;
+    }
+    .timeline-instruction {
+      font-size: 12px;
+      color: var(--dark);
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+    .timeline-instruction b { font-weight: bold; }
+    .stamp-bank {
+      margin-bottom: 14px;
+      padding: 10px 12px 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: var(--fill-light);
+    }
+    .stamp-bank-label {
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--mid);
+      margin-bottom: 8px;
+    }
+    .stamp-options {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .stamp-option {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10.5px;
+      line-height: 1.3;
+    }
+    .stamp-option em {
+      color: var(--light);
+      font-size: 9.5px;
+    }
+    .stamp-option svg { flex-shrink: 0; }
+
+    .timeline-svg-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    svg.timeline {
+      display: block;
+      width: 100%;
+      max-width: 520px;
+      height: auto;
+      overflow: visible;
+    }
+    .timeline-answer-area { margin-top: 12px; }
+    .tl-question {
+      font-size: 13px;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .tl-question b { font-weight: bold; }
+    .inline-blank {
+      display: inline-block;
+      border-bottom: 1px solid var(--rule);
+      width: 110px;
+      height: 15px;
+      vertical-align: bottom;
+    }
+    .long-blank { width: 180px; }
+
+    /* ── Part C: Gerund / Infinitive ── */
+    .gi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 24px;
+      row-gap: 7px;
+      font-size: 13px;
+    }
+    .gi-item { line-height: 1.55; }
+    .gi-item .num { font-weight: bold; }
+    .gi-blank {
+      display: inline-block;
+      border-bottom: 1px solid var(--rule);
+      width: 115px;
+      height: 15px;
+      vertical-align: bottom;
+      margin: 0 1px;
+    }
+    .gi-hint {
+      font-size: 11px;
+      color: var(--light);
+      font-style: italic;
+    }
+    /* ── Page 2: Week Plan ── */
+    .page-break { page-break-before: always; }
+    .p2 {
+      max-width: 8in;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0.4in 0.55in 0.35in;
+      font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--dark);
+    }
+    .p2-header {
+      text-align: center;
+      border-bottom: 2.5px solid var(--ink);
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+    }
+    .p2-header h1 {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+    }
+    .p2-header .p2-sub {
+      font-size: 11px;
+      color: var(--mid);
+    }
+    .p2-why {
+      border: 1.5px solid var(--ink);
+      padding: 8px 10px;
+      margin-bottom: 14px;
+      font-size: 11.5px;
+      line-height: 1.45;
+    }
+    .p2-why b { font-weight: 800; }
+    .p2-section-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 3px;
+      margin: 0 0 8px;
+    }
+    .p2-goals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 16px;
+      margin-bottom: 14px;
+      font-size: 11.5px;
+    }
+    .p2-goal {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+    }
+    .p2-cb {
+      width: 11px;
+      height: 11px;
+      border: 1.5px solid var(--ink);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .p2-days {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .p2-day {
+      border: 1.5px solid var(--ink);
+    }
+    .p2-day-header {
+      background: var(--fill-light);
+      padding: 5px 8px;
+      font-weight: 800;
+      font-size: 11.5px;
+      border-bottom: 1px solid var(--ink);
+    }
+    .p2-day-body {
+      padding: 7px 8px;
+      font-size: 11.5px;
+    }
+    .p2-day-body p {
+      margin: 0 0 4px;
+    }
+    .p2-day-body p:last-child { margin-bottom: 0; }
+    .p2-after {
+      margin-bottom: 14px;
+    }
+    .p2-checklist {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 16px;
+      font-size: 11.5px;
+    }
+    .p2-check {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+    }
+    .p2-quiz-card {
+      border: 2px solid var(--ink);
+      padding: 10px 12px;
+    }
+    .p2-quiz-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .p2-quiz-badge {
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--ink);
+      padding: 1px 6px;
+    }
+    .p2-quiz-header h2 {
+      font-size: 14px;
+      font-weight: 800;
+      margin: 0;
+    }
+    .p2-quiz-item {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      padding: 6px 8px;
+      background: var(--fill-light);
+      border-left: 3px solid var(--ink);
+      margin-bottom: 8px;
+      font-size: 11.5px;
+    }
+    .p2-quiz-meta {
+      font-size: 10.5px;
+      color: var(--mid);
+      font-style: italic;
+      margin-top: 2px;
+    }
+    .p2-verb-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 12px;
+    }
+    .p2-verb-table th,
+    .p2-verb-table td {
+      border: 1.5px solid var(--ink);
+      padding: 7px 6px;
+      text-align: center;
+    }
+    .p2-verb-table th {
+      background: var(--fill-light);
+      font-weight: 800;
+      font-size: 11px;
+    }
+    .p2-verb-table td.v1 {
+      text-align: left;
+      font-weight: 700;
+    }
+
+    @media print {
+      @page { size: letter; margin: 0.45in; }
+      body { background: #fff; padding: 0; }
+      .sheet, .p2 { padding: 0; max-width: none; }
+    }
   </style>
 </head>
 <body>
   <div class="sheet">
-    <div class="front-page">
-      <header class="header">
-      <h1>Health: Past & Present Habits</h1>
+
+    <header class="header">
+      <h1>Warm-Up: Health Habits</h1>
+      <div class="subtitle">Past &amp; Present &mdash; Getting Ready for &ldquo;Used To&rdquo;</div>
       <div class="header-fields">
         <div class="field">
           <label>Name</label>
-          <div class="field-line" style="width: 160px;"></div>
+          <div class="field-line"></div>
         </div>
         <div class="field">
           <label>Date</label>
@@ -92,201 +405,264 @@
       </div>
     </header>
 
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">Part A: Vocabulary</h2>
-          <span class="section-time">3 min</span>
+    <!-- ═══════ PART A ═══════ -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Part A &middot; Vocabulary Match</h2>
+        <span class="section-time">2 min</span>
+      </div>
+      <p class="instruction">Write the letter of the correct meaning on the line.</p>
+      <div class="vocab-matching">
+        <div class="vocab-words">
+          <div class="vocab-word"><span class="num">1.</span><span class="blank"></span><span class="word">used to</span></div>
+          <div class="vocab-word"><span class="num">2.</span><span class="blank"></span><span class="word">exercise</span></div>
+          <div class="vocab-word"><span class="num">3.</span><span class="blank"></span><span class="word">pattern</span></div>
+          <div class="vocab-word"><span class="num">4.</span><span class="blank"></span><span class="word">lifestyle</span></div>
+          <div class="vocab-word"><span class="num">5.</span><span class="blank"></span><span class="word">prevent</span></div>
+          <div class="vocab-word"><span class="num">6.</span><span class="blank"></span><span class="word">adjust</span></div>
         </div>
-        <p class="instruction">Match each word to its meaning. Write the letter on the line.</p>
-        <div class="vocab-matching">
-          <div class="vocab-words">
-            <div class="vocab-word"><span class="num">1.</span> <span class="blank"></span> <span class="word">used to</span></div>
-            <div class="vocab-word"><span class="num">2.</span> <span class="blank"></span> <span class="word">exercise</span></div>
-            <div class="vocab-word"><span class="num">3.</span> <span class="blank"></span> <span class="word">pattern</span></div>
-            <div class="vocab-word"><span class="num">4.</span> <span class="blank"></span> <span class="word">lifestyle</span></div>
-            <div class="vocab-word"><span class="num">5.</span> <span class="blank"></span> <span class="word">prevent</span></div>
-            <div class="vocab-word"><span class="num">6.</span> <span class="blank"></span> <span class="word">adjust</span></div>
+        <div class="vocab-defs">
+          <div class="vocab-def"><span class="letter">a.</span> something you did regularly in the past but not now</div>
+          <div class="vocab-def"><span class="letter">b.</span> to do physical activity to stay healthy</div>
+          <div class="vocab-def"><span class="letter">c.</span> a regular way of doing things; a habit</div>
+          <div class="vocab-def"><span class="letter">d.</span> to stop something bad from happening</div>
+          <div class="vocab-def"><span class="letter">e.</span> to change a little to fit a new situation</div>
+          <div class="vocab-def"><span class="letter">f.</span> the way you live your daily life</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ PART B ═══════ -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Part B &middot; Where Does &ldquo;Used To&rdquo; Live?</h2>
+        <span class="section-time">4 min</span>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-instruction">
+          Think about the stamps from the <b>Timeline Tenses Game</b>.
+          If you wanted to show <b>&ldquo;used to&rdquo;</b> on this timeline, <b>which stamp</b> would you choose, and <b>where</b> would you place it? Draw it on the timeline.
+        </div>
+
+        <div class="stamp-bank">
+          <div class="stamp-bank-label">Stamps</div>
+          <div class="stamp-options">
+            <div class="stamp-option">
+              <svg width="32" height="20" viewBox="0 0 32 20"><circle cx="16" cy="10" r="6" fill="#000"/></svg>
+              <span>Moment<br><em>(one event)</em></span>
+            </div>
+            <div class="stamp-option">
+              <svg width="40" height="20" viewBox="0 0 40 20"><circle cx="8" cy="10" r="4" fill="#000"/><circle cx="20" cy="10" r="4" fill="#000"/><circle cx="32" cy="10" r="4" fill="#000"/></svg>
+              <span>Habit / Fact<br><em>(again &amp; again)</em></span>
+            </div>
+            <div class="stamp-option">
+              <svg width="40" height="20" viewBox="0 0 40 20"><line x1="6" y1="10" x2="34" y2="10" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-dasharray="6 5"/></svg>
+              <span>Duration<br><em>(over time)</em></span>
+            </div>
+            <div class="stamp-option">
+              <svg width="40" height="20" viewBox="0 0 40 20"><path d="M 6 16 Q 20 -4 34 16" stroke="#000" stroke-width="2.5" fill="none"/></svg>
+              <span>Link<br><em>(connects events)</em></span>
+            </div>
+            <div class="stamp-option">
+              <svg width="40" height="20" viewBox="0 0 40 20"><line x1="6" y1="14" x2="22" y2="14" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="6 5"/><path d="M 20 14 Q 30 0 38 14" stroke="#000" stroke-width="2.5" fill="none" stroke-dasharray="5 4"/></svg>
+              <span>Link + Duration<br><em>(ongoing &amp; connected)</em></span>
+            </div>
           </div>
-          <div class="vocab-defs">
-            <div class="vocab-def"><span class="letter">a.</span> something you did in the past but not now</div>
-            <div class="vocab-def"><span class="letter">b.</span> to do physical activity to stay healthy</div>
-            <div class="vocab-def"><span class="letter">c.</span> a regular way you do things (like a habit)</div>
-            <div class="vocab-def"><span class="letter">d.</span> to stop something from happening</div>
-            <div class="vocab-def"><span class="letter">e.</span> to change to fit a new situation</div>
-            <div class="vocab-def"><span class="letter">f.</span> the way you live, your daily habits</div>
+        </div>
+
+        <div class="timeline-svg-wrap">
+          <svg class="timeline" viewBox="0 0 520 78" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="hatch-left" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#bbb" stroke-width="0.7"/>
+              </pattern>
+              <pattern id="hatch-right" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#bbb" stroke-width="0.7"/>
+              </pattern>
+              <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse">
+                <circle cx="4" cy="4" r="0.8" fill="#aaa"/>
+              </pattern>
+            </defs>
+
+            <!-- zone fills -->
+            <rect x="40" y="38" width="140" height="14" fill="url(#hatch-left)" rx="1"/>
+            <rect x="210" y="38" width="100" height="14" fill="url(#dots)" rx="1"/>
+            <rect x="345" y="38" width="140" height="14" fill="url(#hatch-right)" rx="1"/>
+
+            <!-- axis -->
+            <line x1="30" y1="45" x2="495" y2="45" stroke="#000" stroke-width="2"/>
+            <polygon points="493,40 506,45 493,50" fill="#000"/>
+
+            <!-- zone dividers -->
+            <line x1="185" y1="35" x2="185" y2="55" stroke="#000" stroke-width="1.2" stroke-dasharray="3,2"/>
+            <line x1="340" y1="35" x2="340" y2="55" stroke="#000" stroke-width="1.2" stroke-dasharray="3,2"/>
+
+            <!-- NOW marker -->
+            <line x1="260" y1="26" x2="260" y2="64" stroke="#000" stroke-width="2.5"/>
+            <text x="260" y="20" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#000" font-family="Georgia, serif">NOW</text>
+
+            <!-- zone labels -->
+            <text x="110" y="74" text-anchor="middle" font-size="11" font-weight="bold" fill="#000" font-family="Georgia, serif">PAST</text>
+            <text x="260" y="74" text-anchor="middle" font-size="11" font-weight="bold" fill="#000" font-family="Georgia, serif">PRESENT</text>
+            <text x="425" y="74" text-anchor="middle" font-size="11" font-weight="bold" fill="#000" font-family="Georgia, serif">FUTURE</text>
+
+            <!-- tick marks -->
+            <line x1="80" y1="42" x2="80" y2="48" stroke="#666" stroke-width="0.8"/>
+            <line x1="130" y1="42" x2="130" y2="48" stroke="#666" stroke-width="0.8"/>
+            <line x1="230" y1="42" x2="230" y2="48" stroke="#666" stroke-width="0.8"/>
+            <line x1="290" y1="42" x2="290" y2="48" stroke="#666" stroke-width="0.8"/>
+            <line x1="380" y1="42" x2="380" y2="48" stroke="#666" stroke-width="0.8"/>
+            <line x1="440" y1="42" x2="440" y2="48" stroke="#666" stroke-width="0.8"/>
+          </svg>
+        </div>
+
+        <div class="timeline-answer-area">
+          <div class="tl-question">
+            <b>A.</b> I chose the <span class="inline-blank"></span> stamp because &ldquo;used to&rdquo; describes <span class="inline-blank long-blank"></span> .
+          </div>
+          <div class="tl-question">
+            <b>B.</b> I placed it in the <span class="inline-blank"></span> zone because <span class="inline-blank long-blank"></span> .
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">Part B: Phrases</h2>
-          <span class="section-time">8 min</span>
+    <!-- ═══════ PART C ═══════ -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Part C &middot; Gerund or Infinitive?</h2>
+        <span class="section-time">4 min</span>
+      </div>
+      <p class="instruction">Fill in the blank with the <b>gerund</b> (-ing) or <b>infinitive</b> (to + verb) form of the word in parentheses.</p>
+
+      <div class="gi-grid">
+        <div class="gi-item">
+          <span class="num">1.</span> I enjoy <span class="gi-blank"></span> every morning. <span class="gi-hint">(exercise)</span>
         </div>
-        <p class="instruction">Read the examples. Then write your own sentence. Try to use vocabulary from Part A.</p>
-
-        <div class="phrase">
-          <div class="phrase-starter">1) I used to…, but now I…</div>
-          <ul class="examples">
-            <li>I used to eat fast food every day, but now I cook at home.</li>
-            <li>I used to skip breakfast, but now I eat a healthy meal every morning.</li>
-          </ul>
-          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        <div class="gi-item">
+          <span class="num">2.</span> My doctor told me <span class="gi-blank"></span> more water. <span class="gi-hint">(drink)</span>
         </div>
-
-        <div class="phrase">
-          <div class="phrase-starter">2) My old routine was…, but my new one is…</div>
-          <ul class="examples">
-            <li>My old routine was staying up late, but my new one is going to bed early.</li>
-            <li>My old routine was never exercising, but my new one includes daily walks.</li>
-          </ul>
-          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        <div class="gi-item">
+          <span class="num">3.</span> She avoids <span class="gi-blank"></span> sugary snacks at night. <span class="gi-hint">(eat)</span>
         </div>
-
-        <div class="phrase">
-          <div class="phrase-starter">3) I didn't use to…, but now I…</div>
-          <ul class="examples">
-            <li>I didn't use to drink water, but now I drink eight glasses a day.</li>
-            <li>I didn't use to see a doctor regularly, but now I have annual checkups.</li>
-          </ul>
-          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        <div class="gi-item">
+          <span class="num">4.</span> We decided <span class="gi-blank"></span> to the gym three times a week. <span class="gi-hint">(go)</span>
         </div>
-
-        <div class="phrase">
-          <div class="phrase-starter">4) It took time to adjust to…</div>
-          <ul class="examples">
-            <li>It took time to adjust to eating healthier.</li>
-            <li>It took time to adjust to my new exercise routine.</li>
-          </ul>
-          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        <div class="gi-item">
+          <span class="num">5.</span> He can&rsquo;t stop <span class="gi-blank"></span> about his old lifestyle. <span class="gi-hint">(think)</span>
         </div>
-
-        <div class="phrase">
-          <div class="phrase-starter">5) I miss… from my old lifestyle</div>
-          <ul class="examples">
-            <li>I miss eating whatever I wanted, but I feel better now.</li>
-            <li>I miss staying up late, but I have more energy in the morning.</li>
-          </ul>
-          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        <div class="gi-item">
+          <span class="num">6.</span> It&rsquo;s important <span class="gi-blank"></span> enough sleep. <span class="gi-hint">(get)</span>
         </div>
+        <div class="gi-item">
+          <span class="num">7.</span> I used to hate <span class="gi-blank"></span> vegetables. <span class="gi-hint">(cook)</span>
+        </div>
+        <div class="gi-item">
+          <span class="num">8.</span> The nurse recommended <span class="gi-blank"></span> a food diary. <span class="gi-hint">(keep)</span>
+        </div>
+      </div>
 
-        <p class="level-up">Level up: Use "even though" (e.g., "Even though I miss junk food, I know my new diet prevents health problems").</p>
-      </section>
+    </section>
 
-      
+  </div>
+
+  <!-- ═══════════════ PAGE 2: WEEK PLAN ═══════════════ -->
+  <div class="page-break"></div>
+  <div class="p2">
+
+    <div class="p2-header">
+      <h1>Your Week 29 Plan</h1>
+      <div class="p2-sub">April 14&ndash;16, 2026 &bull; Time Signals, <em>Used To</em>, and Gerunds &amp; Infinitives</div>
     </div>
 
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">Part C: Parts of Speech (Tricky Verbs)</h2>
-        <span class="section-time">8 min</span>
-      </div>
-      <p class="instruction">Circle or write the part of speech for the underlined word. If a word works as two parts of speech, write both. Use: N = noun, V = verb, Adj = adjective, Adv = adverb.</p>
+    <div class="p2-why">
+      <b>Why this matters for you:</b> You&rsquo;ll practice talking about past habits, health changes, and time signals. This helps you describe what was true before, what is true now, and how to connect events clearly.
+    </div>
 
-      <div class="question">
-        <div class="question-text"><b>1)</b> The nutritionist helped us <u>record</u> our blood pressure readings.</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>2)</b> A full <u>record</u> helps the clinic track your progress.</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>3)</b> The instructor will <u>present</u> the new exercise routine tomorrow.</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>4)</b> I bought him a small but useful <u>present</u>.</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>5)</b> We need to <u>project</u> our water usage for the next month.</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>6)</b> Their heart-health <u>project</u> started in January.</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>7)</b> Some students <u>suspect</u> sugary drinks cause fast energy crashes.</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>8)</b> She is a reliable <u>suspect</u> in this case.</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>9)</b> The class will <u>conduct</u> a survey about sleep habits.</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>10)</b> The conduct of the clinic study was very professional.</div>
-        <div class="answer-line"></div>
-      </div>
+    <h3 class="p2-section-title">Your Goals This Week</h3>
+    <div class="p2-goals">
+      <div class="p2-goal"><div class="p2-cb"></div> Talk about past habits with <em>used to</em></div>
+      <div class="p2-goal"><div class="p2-cb"></div> Practice gerunds &amp; infinitives in common patterns</div>
+      <div class="p2-goal"><div class="p2-cb"></div> Use time signals and timelines to show order &amp; duration</div>
+      <div class="p2-goal"><div class="p2-cb"></div> Discuss health routines, symptoms, and treatment clearly</div>
+      <div class="p2-goal" style="grid-column: 1 / -1;"><div class="p2-cb"></div> Build confidence through stations, games, and case studies</div>
+    </div>
 
-      <p class="level-up">Challenge: For items 11-14, write one extra sentence for each word in another part of speech than above.</p>
-      <div class="question">
-        <div class="question-text"><b>11)</b> <u>Permit</u> (word class: ____  Sentence: _____________________________________________)</div>
-        <div class="answer-line"></div>
+    <h3 class="p2-section-title">This Week</h3>
+    <div class="p2-days">
+      <div class="p2-day">
+        <div class="p2-day-header">Tuesday, April 14</div>
+        <div class="p2-day-body">
+          <p><b>Warm-up:</b> Health: Past &amp; Present Habits</p>
+          <p><b>Classwork:</b> Station activities &mdash; case studies, gerunds &amp; infinitives, time signals</p>
+        </div>
       </div>
-      <div class="question">
-        <div class="question-text"><b>12)</b> <u>Increase</u> (word class: ____  Sentence: _____________________________________________)</div>
-        <div class="answer-line"></div>
+      <div class="p2-day">
+        <div class="p2-day-header">Thursday, April 16</div>
+        <div class="p2-day-body">
+          <p><b>Warm-up:</b> Symptoms &amp; Treatment: Result vs Duration</p>
+          <p><b>Classwork:</b> <em>Used to</em>, gerunds &amp; infinitives, timelines &amp; time signals, health game</p>
+        </div>
       </div>
-      <div class="question">
-        <div class="question-text"><b>13)</b> <u>Object</u> (word class: ____  Sentence: _____________________________________________)</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>14)</b> <u>Refuse</u> (word class: ____  Sentence: _____________________________________________)</div>
-        <div class="answer-line"></div>
-      </div>
-    </section>
+    </div>
 
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">Writing Homework</h2>
-        <span class="section-time">6–8 sentences</span>
+    <div class="p2-after">
+      <h3 class="p2-section-title">After Class</h3>
+      <div class="p2-checklist">
+        <div class="p2-check"><div class="p2-cb"></div> Review April 14&ndash;16 Vocabulary Flash Cards</div>
+        <div class="p2-check"><div class="p2-cb"></div> Play the Gerunds &amp; Infinitives Pattern Game</div>
+        <div class="p2-check"><div class="p2-cb"></div> Play the Timeline Tense Game</div>
+        <div class="p2-check"><div class="p2-cb"></div> Take Verb Quiz 15</div>
+        <div class="p2-check" style="grid-column: 1 / -1;"><div class="p2-cb"></div> Next week is spring break &mdash; no class!</div>
       </div>
-      <div class="writing-prompt">
-        <b>Prompt:</b> Compare your health habits before and now. You can use your own experience, or imagine you used to eat fast food every day but now you cook at home and exercise three times a week. What did you use to do? What do you do now? What was different? What do you like better about your new habits?
+    </div>
+
+    <div class="p2-quiz-card">
+      <div class="p2-quiz-header">
+        <div class="p2-quiz-badge">Don&rsquo;t Forget</div>
+        <h2>Quizzes &amp; Due Dates</h2>
       </div>
-      
-      <div class="writing-lines">
-        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
-        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
+      <div class="p2-quiz-item">
+        <div class="p2-cb"></div>
+        <div>
+          <b>Verb Quiz 15</b>
+          <div class="p2-quiz-meta">Due Tuesday, April 28 &bull; Online, 5 verbs, ~5 min</div>
+        </div>
       </div>
-      <p class="optional-note">Optional challenge: Use "would" for repeated past actions (e.g., "I would eat fast food every Friday").</p>
-    </section>
+      <table class="p2-verb-table">
+        <thead>
+          <tr><th>V1</th><th>V1-3rd</th><th>V1-ing</th><th>V2</th><th>V3</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="v1">take</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">need</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">use</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">store</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">refill</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 
   <script>
-    // Shuffle vocab definitions on page load for randomized matching exercises
     (function() {
-      const defsContainer = document.querySelector('.vocab-defs');
+      var defsContainer = document.querySelector('.vocab-defs');
       if (!defsContainer) return;
-
-      const defs = Array.from(defsContainer.querySelectorAll('.vocab-def'));
+      var defs = Array.from(defsContainer.querySelectorAll('.vocab-def'));
       if (defs.length === 0) return;
-
-      // Fisher-Yates shuffle
-      for (let i = defs.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [defs[i], defs[j]] = [defs[j], defs[i]];
+      for (var i = defs.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = defs[i]; defs[i] = defs[j]; defs[j] = tmp;
       }
-
-      // Re-assign letters after shuffling
-      const letters = 'abcdefghijklmnopqrstuvwxyz';
-      defs.forEach((def, idx) => {
-        const letterSpan = def.querySelector('.letter');
-        if (letterSpan) {
-          letterSpan.textContent = letters[idx] + '.';
-        }
+      var letters = 'abcdefghijklmnopqrstuvwxyz';
+      defs.forEach(function(def, idx) {
+        var letterSpan = def.querySelector('.letter');
+        if (letterSpan) letterSpan.textContent = letters[idx] + '.';
       });
-
-      // Clear and re-append in shuffled order
       defsContainer.innerHTML = '';
-      defs.forEach(def => defsContainer.appendChild(def));
+      defs.forEach(function(def) { defsContainer.appendChild(def); });
     })();
   </script>
 </body>

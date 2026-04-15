@@ -145,7 +145,7 @@ export function TimeSignalsProduction({
           onClick={onGoToExercises}
           className="px-6 py-3 rounded-xl font-bold border border-border bg-white dark:bg-[#162b3d] text-text hover:border-primary/30 transition-colors"
         >
-          Go to Exercises →
+          Back to Time Signals
         </button>
       </motion.div>
     );
