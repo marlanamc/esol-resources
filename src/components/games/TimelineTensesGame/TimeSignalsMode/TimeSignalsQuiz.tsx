@@ -5,10 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { TimelineCanvas } from '../TimelineCanvas';
 import { highlightSentenceFeatures } from '../highlightUtils';
-import type { ContextualUsage, TimeSignalExample, TimeSignalGroup, TimeSignalEntry } from '@/data/timeline-time-expressions';
+import type { TimeSignalGroup, TimeSignalEntry } from '@/data/timeline-time-expressions';
 import { getAllTimeSignalEntries } from '@/data/timeline-time-expressions';
 import type { TimelineElement } from '@/types/activity';
 import { getTimeSignalTimelineLabel } from './timeSignalTimelineCanon';
+import { getTimeSignalQuizExamples } from './timeSignalQuizBank';
 
 interface QuizQuestionSource {
   sentence: string;
@@ -146,30 +147,16 @@ function buildTimelineOptions(
   return options;
 }
 
-function makePrimarySources(entry: TimeSignalEntry): QuizQuestionSource[] {
-  const examples: TimeSignalExample[] = entry.commonExamples ?? [
-    { sentence: entry.exampleSentence, verbPhrase: entry.verbPhrase },
-  ];
+function makePrimarySources(group: TimeSignalGroup, entry: TimeSignalEntry): QuizQuestionSource[] {
+  const examples = getTimeSignalQuizExamples(group, entry);
 
   return examples.map((example) => ({
     sentence: example.sentence,
     verbPhrase: example.verbPhrase,
-    timelineElements: entry.timelineElements,
+    timelineElements: example.timelineElements,
     quizDistractors: entry.quizDistractors,
-    note: entry.notes,
+    note: example.note ?? entry.notes,
     isContextual: false,
-  }));
-}
-
-function makeContextualSources(usages: ContextualUsage[]): QuizQuestionSource[] {
-  return usages.map((usage) => ({
-    sentence: usage.exampleSentence,
-    verbPhrase: usage.verbPhrase,
-    timelineElements: usage.timelineElements,
-    quizDistractors: usage.quizDistractors,
-    contextLabel: usage.context,
-    note: usage.note,
-    isContextual: true,
   }));
 }
 
@@ -286,10 +273,7 @@ function selectDiverseQuestions(allQuestions: QuizQuestion[], maxQuestions: numb
 
 function buildQuestions(group: TimeSignalGroup): QuizQuestion[] {
   const allQuestions = group.expressions.flatMap((entry, i) => {
-    const sources = [
-      ...makePrimarySources(entry),
-      ...makeContextualSources(entry.contextualUsages ?? []),
-    ];
+    const sources = makePrimarySources(group, entry);
 
     return sources.map((source, sourceIndex) => {
       const correctTimeline = cloneTimelineElements(
