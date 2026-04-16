@@ -130,6 +130,23 @@ function buildExampleFromProduction(
   );
 }
 
+function resolveTimelineForProduction(
+  entry: TimeSignalEntry,
+  exercise: ProductionExercise
+): TimelineElement[] {
+  const correctOption = exercise.options.find((option) => option.isCorrect);
+
+  if (!correctOption) {
+    return entry.timelineElements;
+  }
+
+  const contextualMatch = (entry.contextualUsages ?? []).find(
+    (usage) => usage.tenseName === correctOption.tenseName
+  );
+
+  return contextualMatch?.timelineElements ?? entry.timelineElements;
+}
+
 function getMainGameSentenceBank(): TimeSignalQuizExample[] {
   const fromQuestions = TIMELINE_TENSES_QUESTIONS.flatMap((question) => {
     if (question.type !== "sentence-to-timeline") {
@@ -205,7 +222,12 @@ export function getTimeSignalQuizExamples(
 
   const productionExamples = (group.productionExercises ?? [])
     .filter((exercise) => sentenceMatchesTerms(exercise.sentence, searchTerms) || sentenceMatchesTerms(exercise.timeSignal, searchTerms))
-    .map((exercise) => buildExampleFromProduction(exercise, entry.timelineElements))
+    .map((exercise) =>
+      buildExampleFromProduction(
+        exercise,
+        resolveTimelineForProduction(entry, exercise)
+      )
+    )
     .filter((example): example is TimeSignalQuizExample => example !== null);
 
   const exactPatternExamples = MAIN_GAME_SENTENCE_BANK.filter((example) => {

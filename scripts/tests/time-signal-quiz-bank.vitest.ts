@@ -4,6 +4,7 @@ import {
   getTimeSignalContextQuizExamples,
   getTimeSignalQuizExamples,
 } from "@/components/games/TimelineTensesGame/TimeSignalsMode/timeSignalQuizBank";
+import { getTimeSignalTimelineFamily } from "@/components/games/TimelineTensesGame/TimeSignalsMode/timeSignalTimelineCanon";
 
 function getGroup(id: string) {
   const group = TIME_SIGNAL_GROUPS.find((candidate) => candidate.id === id);
@@ -90,5 +91,18 @@ describe("time signal quiz bank", () => {
         example.sentence.toLowerCase().includes("while i was")
       )
     ).toBe(true);
+  });
+
+  it("maps past-framed production frequency sentences to a past-habit timeline", () => {
+    const group = getGroup("frequency");
+    const entry = getEntry("frequency", "rarely / hardly ever");
+    const example = getTimeSignalQuizExamples(group, entry).find((candidate) =>
+      candidate.sentence.includes("During my first winter in Boston")
+    );
+
+    expect(example).toBeDefined();
+    expect(getTimeSignalTimelineFamily(example?.timelineElements ?? [])).toBe(
+      "past-habit"
+    );
   });
 });
