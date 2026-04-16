@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { TIME_SIGNAL_GROUPS } from "@/data/timeline-time-expressions";
-import { getTimeSignalQuizExamples } from "@/components/games/TimelineTensesGame/TimeSignalsMode/timeSignalQuizBank";
+import {
+  getTimeSignalContextQuizExamples,
+  getTimeSignalQuizExamples,
+} from "@/components/games/TimelineTensesGame/TimeSignalsMode/timeSignalQuizBank";
 
 function getGroup(id: string) {
   const group = TIME_SIGNAL_GROUPS.find((candidate) => candidate.id === id);
@@ -60,11 +63,32 @@ describe("time signal quiz bank", () => {
     expect(sentences.length).toBeGreaterThan(0);
   });
 
-  it("preserves a second verb phrase when a quiz example comes from a mixed main-game sentence", () => {
+  it("prefers exact past-habit timelines over mixed used-to timelines", () => {
     const group = getGroup("past-habits");
     const entry = getEntry("past-habits", "used to");
     const examples = getTimeSignalQuizExamples(group, entry);
 
-    expect(examples.some((example) => Boolean(example.verbPhrase2))).toBe(true);
+    expect(examples.some((example) => example.sentence === "I used to walk to school every day.")).toBe(true);
+    expect(
+      examples.some((example) => example.sentence.includes("but now"))
+    ).toBe(false);
+    expect(examples.every((example) => !example.verbPhrase2)).toBe(true);
+  });
+
+  it("includes contextual past-continuous-plus-past-habit practice for frequency markers", () => {
+    const entry = getEntry("frequency", "often");
+    const usage = entry.contextualUsages?.find(
+      (candidate) => candidate.context === "Past habit (during a past period)"
+    );
+
+    expect(usage).toBeDefined();
+
+    const examples = getTimeSignalContextQuizExamples(entry, usage!);
+    expect(examples.length).toBeGreaterThan(0);
+    expect(
+      examples.some((example) =>
+        example.sentence.toLowerCase().includes("while i was")
+      )
+    ).toBe(true);
   });
 });

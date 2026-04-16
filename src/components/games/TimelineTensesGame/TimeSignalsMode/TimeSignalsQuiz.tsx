@@ -5,11 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, XCircle } from 'lucide-react';
 import { TimelineCanvas } from '../TimelineCanvas';
 import { highlightSentenceFeatures } from '../highlightUtils';
-import type { TimeSignalGroup, TimeSignalEntry } from '@/data/timeline-time-expressions';
+import type { ContextualUsage, TimeSignalGroup, TimeSignalEntry } from '@/data/timeline-time-expressions';
 import { getAllTimeSignalEntries } from '@/data/timeline-time-expressions';
 import type { TimelineElement } from '@/types/activity';
 import { getTimeSignalTimelineLabel } from './timeSignalTimelineCanon';
-import { getTimeSignalQuizExamples } from './timeSignalQuizBank';
+import { getTimeSignalContextQuizExamples, getTimeSignalQuizExamples } from './timeSignalQuizBank';
 
 interface QuizQuestionSource {
   sentence: string;
@@ -162,6 +162,21 @@ function makePrimarySources(group: TimeSignalGroup, entry: TimeSignalEntry): Qui
   }));
 }
 
+function makeContextualSources(entry: TimeSignalEntry, usages: ContextualUsage[]): QuizQuestionSource[] {
+  return usages.flatMap((usage) =>
+    getTimeSignalContextQuizExamples(entry, usage).map((example) => ({
+      sentence: example.sentence,
+      verbPhrase: example.verbPhrase,
+      verbPhrase2: example.verbPhrase2,
+      timelineElements: example.timelineElements,
+      quizDistractors: usage.quizDistractors ?? entry.quizDistractors,
+      contextLabel: usage.context,
+      note: example.note ?? usage.note,
+      isContextual: true,
+    }))
+  );
+}
+
 function normalizeSentence(sentence: string): string {
   return sentence.toLowerCase().replace(/\s+/g, ' ').trim();
 }
@@ -275,7 +290,10 @@ function selectDiverseQuestions(allQuestions: QuizQuestion[], maxQuestions: numb
 
 function buildQuestions(group: TimeSignalGroup): QuizQuestion[] {
   const allQuestions = group.expressions.flatMap((entry, i) => {
-    const sources = makePrimarySources(group, entry);
+    const sources = [
+      ...makePrimarySources(group, entry),
+      ...makeContextualSources(entry, entry.contextualUsages ?? []),
+    ];
 
     return sources.map((source, sourceIndex) => {
       const correctTimeline = cloneTimelineElements(

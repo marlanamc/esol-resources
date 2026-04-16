@@ -6,240 +6,359 @@
   <title>Symptoms & Treatment: Result vs Duration (ESOL Level 3)</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --ink: #1a1a1a; --gray: #444; --light: #666; --line: #333; }
-    body { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); background: #f5f5f5; padding: 20px; line-height: 1.45; font-size: 14px; }
-    .sheet { max-width: 8in; margin: 0 auto; background: #fff; padding: 0.45in 0.55in; }
+    :root { --ink: #1a1a1a; --dark: #444; --mid: #777; --rule: #555; --fill: #f4f4f4; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--ink);
+      background: #f5f5f5;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .sheet {
+      max-width: 8in;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0.5in 0.65in 0.4in;
+    }
+
+    @media print {
+      @page { size: letter; margin: 0.4in; }
+      body { background: #fff; padding: 0; }
+      .sheet { padding: 0; max-width: none; }
+      .page-break { page-break-before: always; }
+    }
+
+    /* ── HEADER ── */
     .header {
-      border-bottom: 2px solid var(--ink);
-      padding-bottom: 8px;
-      margin-bottom: 16px;
+      border-bottom: 2.5px solid var(--ink);
+      padding-bottom: 7px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
     }
     .header h1 {
-      text-align: center;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
+      letter-spacing: -0.01em;
+    }
+    .header-meta {
+      font-size: 11px;
+      color: var(--mid);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      margin-bottom: 16px;
+    }
+    .section-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 3px;
       margin-bottom: 8px;
     }
-    .header-fields {
-      display: flex;
-      gap: 32px;
-      justify-content: center;
+    .section-title {
       font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
     }
-    .field { display: flex; align-items: baseline; gap: 5px; }
-    .field label { font-weight: bold; }
-    .field-line { border-bottom: 1px solid var(--ink); width: 160px; height: 16px; }
-    .date-value { font-weight: normal; }
-    .section { margin-bottom: 18px; }
-    .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
-    .section-title { text-align: center; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
-    .section-time { font-size: 12px; color: var(--light); font-style: italic; }
-    .vocab-matching { display: grid; grid-template-columns: minmax(0, max-content) 1fr; row-gap: 8px; column-gap: 12px; font-size: 14px; }
-    .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
-    .vocab-word .num { font-weight: bold; min-width: 20px; }
-    .vocab-word .word { flex: 1; }
-    .vocab-word .blank { border-bottom: 1px solid var(--line); width: 30px; margin-right: 2px; }
-    .vocab-def { padding: 3px 0; }
-    .vocab-def .letter { font-weight: bold; margin-right: 6px; }
-    .phrase { margin-bottom: 14px; }
-    .phrase-starter { font-weight: bold; font-size: 14px; margin-bottom: 3px; }
-    .examples { margin-left: 14px; font-size: 13px; color: var(--gray); margin-bottom: 4px; }
-    .examples li { margin-bottom: 1px; list-style: none; }
-    .examples li::before { content: "• "; color: var(--ink); }
-    .your-turn { display: flex; align-items: baseline; gap: 6px; font-size: 13px; margin-left: 14px; }
-    .your-turn-label { font-style: italic; color: var(--light); white-space: nowrap; }
-    .writing-line { border-bottom: 1px solid var(--line); flex: 1; height: 20px; }
-    .instruction { font-size: 12px; color: var(--light); font-style: italic; margin-bottom: 12px; }
-    .level-up { font-size: 12px; font-style: italic; color: var(--light); margin-top: 6px; padding-left: 14px; }
-    .round { margin-bottom: 8px; font-size: 13px; }
-    .round-header { font-weight: bold; }
-    .round-content { margin-left: 8px; color: var(--gray); }
-    .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
-    .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
-    .section:has(.reading-text) { margin-bottom: 36px; }
-    .reading-text p { margin-bottom: 8px; text-align: justify; }
-    .question { margin-bottom: 12px; }
-    .question-text { font-size: 13px; margin-bottom: 4px; }
-    .question-text b { font-weight: bold; }
-    .answer-line { border-bottom: 1px solid var(--line); height: 20px; }
-    .writing-prompt { font-size: 13px; margin-bottom: 10px; }
-    .requirements { font-size: 12px; margin-bottom: 12px; padding-left: 16px; color: var(--gray); }
-    .requirements li { margin-bottom: 1px; }
-    .writing-lines { margin-top: 10px; }
-    .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
-    .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
-    .front-page { margin-bottom: 24px; }
-    @media print { @page { size: letter; margin: 0.45in; } body { background: #fff; padding: 0; } .sheet { padding: 0; max-width: none; }
-      .page-break { page-break-before: always; } }
-      .pron { font-size: 11px; color: var(--light); font-style: italic; margin-left: 4px; }
+    .section-time {
+      font-size: 11px;
+      color: var(--mid);
+      font-style: italic;
+    }
+    .instruction {
+      font-size: 12px;
+      color: var(--dark);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    /* ── VOCAB: FILL-IN ── */
+    .word-bank {
+      border: 1.5px solid var(--ink);
+      padding: 6px 14px;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .vocab-sentences {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .vocab-sent {
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    .vocab-sent .num {
+      font-weight: bold;
+      margin-right: 3px;
+    }
+    .v-blank {
+      display: inline-block;
+      border-bottom: 1.5px solid var(--rule);
+      width: 110px;
+      height: 1px;
+      vertical-align: -2px;
+    }
+
+    /* ── DIALOGUES ── */
+    .dialogue-box {
+      border: 1.5px solid var(--ink);
+      border-radius: 3px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+    }
+    .dialogue-label {
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--mid);
+      margin-bottom: 6px;
+    }
+    .d-line {
+      font-size: 13.5px;
+      line-height: 1.55;
+      margin-bottom: 4px;
+    }
+    .d-line:last-child { margin-bottom: 0; }
+    .speaker {
+      font-weight: bold;
+    }
+    .grammar-tag {
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid var(--ink);
+      padding: 1px 5px;
+      margin-left: 6px;
+      vertical-align: 1px;
+    }
+    .dialogue-q {
+      font-size: 12.5px;
+      font-style: italic;
+      color: var(--dark);
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed var(--rule);
+    }
+
+    /* ── FILL-IN DIALOGUE ── */
+    .fill-dialogue {
+      border: 1.5px solid var(--ink);
+      border-radius: 3px;
+      padding: 10px 14px;
+    }
+    .d-blank {
+      display: inline-block;
+      border-bottom: 1.5px solid var(--rule);
+      width: 200px;
+      height: 1px;
+      vertical-align: -2px;
+    }
+    .hint {
+      font-size: 11px;
+      color: var(--mid);
+      font-style: italic;
+    }
+
+    /* ── CHOOSE ── */
+    .choose-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .choose-item {
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    .choose-item .num {
+      font-weight: bold;
+      margin-right: 3px;
+    }
+    .options {
+      margin-left: 18px;
+      font-size: 13px;
+      color: var(--dark);
+    }
+    .options span {
+      margin-right: 16px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      margin-top: 10px;
+      font-size: 9.5px;
+      color: #bbb;
+      text-align: right;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── PAGE 2 HEADER ── */
+    .p2-header {
+      border-bottom: 2.5px solid var(--ink);
+      padding-bottom: 5px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.03em;
+    }
   </style>
 </head>
 <body>
   <div class="sheet">
-    <div class="front-page">
-      <header class="header">
-      <h1>Symptoms & Treatment: Result vs Duration</h1>
-      <div class="header-fields">
-        <div class="field">
-          <label>Name</label>
-          <div class="field-line" style="width: 160px;"></div>
-        </div>
-        <div class="field">
-          <label>Date</label>
-          <span class="date-value">April 16, 2026</span>
-        </div>
-      </div>
+
+    <!-- ═══════════ PAGE 1: FRONT ═══════════ -->
+
+    <header class="header">
+      <h1>Symptoms &amp; Treatment: Result vs Duration</h1>
+      <div class="header-meta">April 16, 2026 &middot; Warm-up</div>
     </header>
 
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">Part A: Vocabulary</h2>
-          <span class="section-time">3 min</span>
-        </div>
-        <p class="instruction">Match each word to its meaning. Write the letter on the line.</p>
-        <div class="vocab-matching">
-          <div class="vocab-words">
-            <div class="vocab-word"><span class="num">1.</span> <span class="blank"></span> <span class="word">complete</span></div>
-            <div class="vocab-word"><span class="num">2.</span> <span class="blank"></span> <span class="word">ongoing</span></div>
-            <div class="vocab-word"><span class="num">3.</span> <span class="blank"></span> <span class="word">joints</span></div>
-            <div class="vocab-word"><span class="num">4.</span> <span class="blank"></span> <span class="word">arthritis</span> <span class="pron">(ar-THRY-tis)</span></div>
-            <div class="vocab-word"><span class="num">5.</span> <span class="blank"></span> <span class="word">recover</span></div>
-            <div class="vocab-word"><span class="num">6.</span> <span class="blank"></span> <span class="word">advance</span></div>
-          </div>
-          <div class="vocab-defs">
-            <div class="vocab-def"><span class="letter">a.</span> to end, to be done</div>
-            <div class="vocab-def"><span class="letter">b.</span> still happening, not finished</div>
-            <div class="vocab-def"><span class="letter">c.</span> places where bones meet (e.g. knees, elbows)</div>
-            <div class="vocab-def"><span class="letter">d.</span> pain or swelling in the joints</div>
-            <div class="vocab-def"><span class="letter">e.</span> to get better after being sick</div>
-            <div class="vocab-def"><span class="letter">f.</span> to move forward, to make progress</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">Part B: Phrases</h2>
-          <span class="section-time">8 min</span>
-        </div>
-        <p class="instruction">Read the examples. Practice choosing between Present Perfect (RESULT) and Present Perfect Continuous (DURATION). Try to use vocabulary from Part A.</p>
-
-        <div class="phrase">
-          <div class="phrase-starter">1) I have taken… (RESULT - completed action)</div>
-          <ul class="examples">
-            <li>I have taken all my medicine. (finished - shows result)</li>
-            <li>I have taken three pills today. (completed actions)</li>
-          </ul>
-          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
-        </div>
-
-        <div class="phrase">
-          <div class="phrase-starter">2) I have been taking… (DURATION - ongoing action)</div>
-          <ul class="examples">
-            <li>I have been taking this medicine for two weeks. (still taking it - shows duration)</li>
-            <li>I have been taking care of myself since Monday. (how long it's been happening)</li>
-          </ul>
-          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
-        </div>
-
-        <div class="phrase">
-          <div class="phrase-starter">3) I have improved… (RESULT - completed change)</div>
-          <ul class="examples">
-            <li>I have improved a lot since starting treatment. (result - you're better now)</li>
-            <li>My symptoms have improved. (completed change)</li>
-          </ul>
-          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
-        </div>
-
-        <div class="phrase">
-          <div class="phrase-starter">4) I have been improving… (DURATION - ongoing process)</div>
-          <ul class="examples">
-            <li>I have been improving slowly for the past week. (ongoing process - still improving)</li>
-            <li>I have been getting better since I started the treatment. (how long the improvement has been happening)</li>
-          </ul>
-          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
-        </div>
-
-        <div class="phrase">
-          <div class="phrase-starter">5) I have finished… / I have been waiting for…</div>
-          <ul class="examples">
-            <li>I have finished my treatment. (RESULT - completed)</li>
-            <li>I have been waiting for my test results for three days. (DURATION - still waiting)</li>
-          </ul>
-          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
-        </div>
-
-        <p class="level-up">Level up: Ask yourself: Is the action finished? Use Present Perfect (result). Is it still happening? Use Present Perfect Continuous (duration).</p>
-      </section>
-
-      
-    </div>
-
+    <!-- PART A: VOCAB -->
     <section class="section">
-      <div class="section-header"><h2 class="section-title">Reading</h2></div>
-      <div class="reading-text">
-        <p>Knowing when to use Present Perfect versus Present Perfect Continuous is important when talking about your health. Present Perfect shows RESULT: "I have taken all my medicine" means you finished - it's done. Present Perfect Continuous shows DURATION: "I have been taking this medicine for two weeks" means you started two weeks ago and you're still taking it.</p>
-        <p>Think about what you want to say: Do you want to show that something is finished (result)? Use Present Perfect. Do you want to show how long something has been happening (duration)? Use Present Perfect Continuous. "I have improved" means you're better now (result). "I have been improving" means you're still getting better (ongoing process).</p>
+      <div class="section-bar">
+        <h2 class="section-title">Part A &middot; Vocabulary</h2>
+        <span class="section-time">3 min</span>
       </div>
-      <div class="question">
-        <div class="question-text"><b>1)</b> When do you use Present Perfect (have/has + past participle) versus Present Perfect Continuous (have/has been + verb + -ing)?</div>
-        <div class="answer-line"></div>
+      <p class="instruction">Use the words in the box to complete each sentence.</p>
+
+      <div class="word-bank">
+        <span>result</span>
+        <span>duration</span>
+        <span>bladder</span>
+        <span>liver</span>
+        <span>recover</span>
+        <span>improve</span>
       </div>
-      <div class="question">
-        <div class="question-text"><b>2)</b> What is the difference between "I have improved" and "I have been improving"?</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>3)</b> How can you decide which tense to use when talking about your treatment?</div>
-        <div class="answer-line"></div>
+
+      <div class="vocab-sentences">
+        <div class="vocab-sent"><span class="num">1.</span> The doctor said it will take a few weeks to <span class="v-blank"></span> from the surgery.</div>
+        <div class="vocab-sent"><span class="num">2.</span> Drinking too much alcohol can damage your <span class="v-blank"></span>.</div>
+        <div class="vocab-sent"><span class="num">3.</span> We are still waiting for the <span class="v-blank"></span> of your blood test.</div>
+        <div class="vocab-sent"><span class="num">4.</span> The <span class="v-blank"></span> of the treatment is usually six weeks.</div>
+        <div class="vocab-sent"><span class="num">5.</span> She has a <span class="v-blank"></span> infection, so it hurts when she goes to the bathroom.</div>
+        <div class="vocab-sent"><span class="num">6.</span> Your blood pressure will <span class="v-blank"></span> if you eat less salt and walk every day.</div>
       </div>
     </section>
 
+    <!-- PART B: DIALOGUES -->
     <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">Writing Homework</h2>
-        <span class="section-time">6–8 sentences</span>
+      <div class="section-bar">
+        <h2 class="section-title">Part B &middot; At the Doctor's Office</h2>
+        <span class="section-time">5 min &middot; read with a partner</span>
       </div>
-      <div class="writing-prompt">
-        <b>Prompt:</b> Imagine you have been seeing a doctor for high blood pressure for 3 months. You started taking medication and have been following a diet plan. Write about your treatment using both Present Perfect (result) and Present Perfect Continuous (duration). What have you finished? (result) What have you been doing? (duration) Example: "I have finished my first week of treatment. I have been taking medicine for seven days."
+      <p class="instruction">Read each dialogue with a partner. Notice: which sentences show a <b>result</b> (finished)? Which show <b>duration</b> (still happening)?</p>
+
+      <div class="dialogue-box">
+        <div class="dialogue-label">Dialogue 1 — Follow-up visit</div>
+        <div class="d-line"><span class="speaker">Doctor:</span> How are you feeling since the surgery?</div>
+        <div class="d-line"><span class="speaker">Patient:</span> Much better. I <b>have recovered</b> a lot. <span class="grammar-tag">result</span></div>
+        <div class="d-line"><span class="speaker">Doctor:</span> Good. And the medicine?</div>
+        <div class="d-line"><span class="speaker">Patient:</span> I <b>have been taking</b> it every morning for three weeks. <span class="grammar-tag">duration</span></div>
+        <div class="d-line"><span class="speaker">Doctor:</span> Great. Your liver looks much better on the new test.</div>
+        <div class="dialogue-q">&#9654; Which sentence means "I am still taking it"?</div>
       </div>
-      
-      <div class="writing-lines">
-        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
-        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
+
+      <div class="dialogue-box">
+        <div class="dialogue-label">Dialogue 2 — Calling for results</div>
+        <div class="d-line"><span class="speaker">Patient:</span> Hi, I'm calling about my blood test. I <b>have been waiting</b> for the result since Monday. <span class="grammar-tag">duration</span></div>
+        <div class="d-line"><span class="speaker">Nurse:</span> Let me check… Yes, your result <b>has come</b> in. <span class="grammar-tag">result</span></div>
+        <div class="d-line"><span class="speaker">Patient:</span> Oh, thank you! Has my bladder infection <b>improved</b>?</div>
+        <div class="d-line"><span class="speaker">Nurse:</span> Yes, it <b>has improved</b>. But the doctor says you need to keep taking the medicine for the full duration — two more weeks.</div>
+        <div class="dialogue-q">&#9654; Which sentence means "I started waiting and I'm still waiting"?</div>
       </div>
-      <p class="optional-note">Optional challenge: Use both tenses in the same sentence to show result and duration: "I have completed my tests, and I have been waiting for results since yesterday."</p>
     </section>
+
+    <div class="footer">Symptoms &amp; Treatment Warm-up · Page 1</div>
+
+    <!-- ═══════════ PAGE 2: BACK ═══════════ -->
+    <div class="page-break"></div>
+
+    <div class="p2-header">Symptoms &amp; Treatment — continued</div>
+
+    <!-- PART C: YOUR TURN -->
+    <section class="section">
+      <div class="section-bar">
+        <h2 class="section-title">Part C &middot; Finish the Dialogue</h2>
+        <span class="section-time">5 min</span>
+      </div>
+      <p class="instruction">Complete the patient's lines. Use vocabulary from Part A and try to use <b>have + past participle</b> (result) or <b>have been + verb-ing</b> (duration).</p>
+
+      <div class="fill-dialogue">
+        <div class="dialogue-label">At the clinic — bladder infection follow-up</div>
+        <div class="d-line"><span class="speaker">Doctor:</span> How long have you been taking the antibiotic?</div>
+        <div class="d-line"><span class="speaker">Patient:</span> <span class="d-blank"></span> <span class="hint">(duration — how long?)</span></div>
+        <div class="d-line" style="margin-top: 4px;"><span class="speaker">Doctor:</span> And how do you feel now? Any better?</div>
+        <div class="d-line"><span class="speaker">Patient:</span> <span class="d-blank"></span> <span class="hint">(result — better or not?)</span></div>
+        <div class="d-line" style="margin-top: 4px;"><span class="speaker">Doctor:</span> Good. We got the result of your urine test. The infection has improved. But we need to continue for the full duration — one more week.</div>
+        <div class="d-line"><span class="speaker">Patient:</span> OK. So how long do I need to keep taking it?</div>
+        <div class="d-line"><span class="speaker">Doctor:</span> One more week. Your liver and bladder both look fine on the blood work.</div>
+        <div class="d-line"><span class="speaker">Patient:</span> That's good news. <span class="d-blank"></span> <span class="hint">(say something about recovering)</span></div>
+      </div>
+    </section>
+
+    <!-- PART D: CHOOSE -->
+    <section class="section">
+      <div class="section-bar">
+        <h2 class="section-title">Part D &middot; Result or Duration?</h2>
+        <span class="section-time">3 min</span>
+      </div>
+      <p class="instruction">Circle the correct sentence. Ask yourself: is it finished (result) or still happening (duration)?</p>
+
+      <div class="choose-grid">
+        <div class="choose-item">
+          <span class="num">1.</span> The patient feels much better now.
+          <div class="options">
+            <span>a) She has recovered well.</span>
+            <span>b) She has been recovering well.</span>
+          </div>
+        </div>
+        <div class="choose-item">
+          <span class="num">2.</span> He started the medicine on Monday. Today is Thursday. He still takes it every day.
+          <div class="options">
+            <span>a) He has taken the medicine.</span>
+            <span>b) He has been taking the medicine since Monday.</span>
+          </div>
+        </div>
+        <div class="choose-item">
+          <span class="num">3.</span> Maria sent her blood to the lab a week ago. She doesn't have the answer yet.
+          <div class="options">
+            <span>a) She has waited for the result.</span>
+            <span>b) She has been waiting for the result for a week.</span>
+          </div>
+        </div>
+        <div class="choose-item">
+          <span class="num">4.</span> The doctor checked his liver. Everything is normal.
+          <div class="options">
+            <span>a) His liver has improved.</span>
+            <span>b) His liver has been improving.</span>
+          </div>
+        </div>
+        <div class="choose-item">
+          <span class="num">5.</span> Ana has a bladder infection. She started antibiotics 5 days ago. She still takes them.
+          <div class="options">
+            <span>a) She has taken antibiotics for 5 days.</span>
+            <span>b) She has been taking antibiotics for 5 days.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">Symptoms &amp; Treatment Warm-up · Page 2</div>
+
   </div>
-
-  <script>
-    // Shuffle vocab definitions on page load for randomized matching exercises
-    (function() {
-      const defsContainer = document.querySelector('.vocab-defs');
-      if (!defsContainer) return;
-
-      const defs = Array.from(defsContainer.querySelectorAll('.vocab-def'));
-      if (defs.length === 0) return;
-
-      // Fisher-Yates shuffle
-      for (let i = defs.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [defs[i], defs[j]] = [defs[j], defs[i]];
-      }
-
-      // Re-assign letters after shuffling
-      const letters = 'abcdefghijklmnopqrstuvwxyz';
-      defs.forEach((def, idx) => {
-        const letterSpan = def.querySelector('.letter');
-        if (letterSpan) {
-          letterSpan.textContent = letters[idx] + '.';
-        }
-      });
-
-      // Clear and re-append in shuffled order
-      defsContainer.innerHTML = '';
-      defs.forEach(def => defsContainer.appendChild(def));
-    })();
-  </script>
 </body>
 </html>

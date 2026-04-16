@@ -1,5 +1,6 @@
 import { LEARN_TENSES_LESSONS } from "@/data/timeline-learn-tenses";
 import {
+  type ContextualUsage,
   type ProductionExercise,
   type TimeSignalEntry,
   type TimeSignalGroup,
@@ -21,6 +22,26 @@ export interface TimeSignalQuizExample {
 
 function normalizeText(text: string): string {
   return text.toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function normalizeElementType(type: TimelineElement["type"]): string {
+  switch (type) {
+    case "dashed-line":
+      return "solid-line";
+    case "arc-dashed":
+      return "arc";
+    case "solid-to-point":
+      return "solid-to-now";
+    default:
+      return type;
+  }
+}
+
+function buildTimelinePatternSignature(elements: TimelineElement[]): string {
+  return elements
+    .map((element) => `${normalizeElementType(element.type)}:${element.zone}`)
+    .sort()
+    .join("|");
 }
 
 function getExploreSentences(entry: TimeSignalEntry): Set<string> {
@@ -179,6 +200,7 @@ export function getTimeSignalQuizExamples(
 ): TimeSignalQuizExample[] {
   const blockedSentences = getExploreSentences(entry);
   const family = getTimeSignalTimelineFamily(entry.timelineElements);
+  const entrySignature = buildTimelinePatternSignature(entry.timelineElements);
   const searchTerms = entrySearchTerms(entry.word);
 
   const productionExamples = (group.productionExercises ?? [])
@@ -186,7 +208,15 @@ export function getTimeSignalQuizExamples(
     .map((exercise) => buildExampleFromProduction(exercise, entry.timelineElements))
     .filter((example): example is TimeSignalQuizExample => example !== null);
 
-  const mainGameExamples = MAIN_GAME_SENTENCE_BANK.filter((example) => {
+  const exactPatternExamples = MAIN_GAME_SENTENCE_BANK.filter((example) => {
+    if (!sentenceMatchesTerms(example.sentence, searchTerms)) {
+      return false;
+    }
+
+    return buildTimelinePatternSignature(example.timelineElements) === entrySignature;
+  });
+
+  const sameFamilyFallbackExamples = MAIN_GAME_SENTENCE_BANK.filter((example) => {
     if (!sentenceMatchesTerms(example.sentence, searchTerms)) {
       return false;
     }
@@ -196,7 +226,7 @@ export function getTimeSignalQuizExamples(
   });
 
   const uniqueSupplemental = uniqueExamples(
-    [...productionExamples, ...mainGameExamples],
+    [...productionExamples, ...exactPatternExamples],
     blockedSentences
   );
 
@@ -204,8 +234,53 @@ export function getTimeSignalQuizExamples(
     return uniqueSupplemental;
   }
 
+  const sameFamilySupplemental = uniqueExamples(
+    sameFamilyFallbackExamples,
+    blockedSentences
+  );
+
+  if (sameFamilySupplemental.length > 0) {
+    return sameFamilySupplemental;
+  }
+
   return uniqueExamples(
     [{ sentence: entry.exampleSentence, verbPhrase: entry.verbPhrase, verbPhrase2: undefined, timelineElements: entry.timelineElements, note: entry.notes }],
+    new Set<string>()
+  );
+}
+
+export function getTimeSignalContextQuizExamples(
+  entry: TimeSignalEntry,
+  usage: ContextualUsage
+): TimeSignalQuizExample[] {
+  const blockedSentences = getExploreSentences(entry);
+  const usageSignature = buildTimelinePatternSignature(usage.timelineElements);
+  const searchTerms = entrySearchTerms(entry.word);
+
+  const exactPatternExamples = MAIN_GAME_SENTENCE_BANK.filter((example) => {
+    if (!sentenceMatchesTerms(example.sentence, searchTerms)) {
+      return false;
+    }
+
+    return buildTimelinePatternSignature(example.timelineElements) === usageSignature;
+  });
+
+  const exactSupplemental = uniqueExamples(exactPatternExamples, blockedSentences);
+
+  if (exactSupplemental.length > 0) {
+    return exactSupplemental;
+  }
+
+  return uniqueExamples(
+    [
+      {
+        sentence: usage.exampleSentence,
+        verbPhrase: usage.verbPhrase,
+        verbPhrase2: undefined,
+        timelineElements: usage.timelineElements,
+        note: usage.note,
+      },
+    ],
     new Set<string>()
   );
 }
