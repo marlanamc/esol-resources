@@ -69,7 +69,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
   // Loading state - uses CSS animation to avoid main thread work
   if (state.loading) {
     return (
-      <div className="min-h-screen bg-bg flex items-center justify-center">
+      <div className="h-full min-h-full bg-bg flex items-center justify-center p-6">
         <div className="text-center">
           <div className="w-16 h-16 mx-auto mb-6 rounded-full border-4 border-border border-t-primary animate-spin" />
           <p className="text-text-muted font-display text-lg">
@@ -85,7 +85,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="min-h-screen bg-bg flex items-center justify-center p-4"
+        className="h-full min-h-full bg-bg flex items-center justify-center p-4"
       >
         <div className="max-w-md w-full p-8 bg-white dark:bg-[#162b3d] rounded-2xl border border-border shadow-lg text-center">
           <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-error/10 flex items-center justify-center">
@@ -107,12 +107,12 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
   return (
     <div
       ref={contentScrollRef}
-      className="fixed inset-0 overflow-y-auto overscroll-contain bg-bg touch-manipulation"
+      className="relative h-full min-h-full overflow-y-auto overscroll-contain bg-bg touch-manipulation"
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
       {/* Grain texture */}
       <div
-        className="fixed inset-0 pointer-events-none opacity-[0.04] z-0"
+        className="absolute inset-0 pointer-events-none opacity-[0.04] z-0"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23888' fill-opacity='0.4'%3E%3Ccircle cx='5' cy='5' r='1'/%3E%3Ccircle cx='25' cy='10' r='0.8'/%3E%3Ccircle cx='45' cy='3' r='1'/%3E%3Ccircle cx='15' cy='25' r='0.6'/%3E%3Ccircle cx='35' cy='20' r='1'/%3E%3Ccircle cx='55' cy='28' r='0.7'/%3E%3C/g%3E%3C/svg%3E")`,
           backgroundSize: '60px 60px',

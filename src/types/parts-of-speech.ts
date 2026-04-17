@@ -154,7 +154,9 @@ export type POSExerciseType =
   | 'word-transform'        // Transform word between POS (work → worker)
   | 'function-match'        // Match highlighted word to its grammatical function
   | 'minimal-pair'          // Compare two sentences, identify what POS changed
-  | 'photo-sort';           // Tap the photo(s) whose word matches the target POS
+  | 'photo-sort'            // Drag photos into POS bins
+  | 'swipe-sort'            // Swipe each word/phrase left or right into a POS
+  | 'sentence-diagram';     // Tap each chunk of a sentence and label its grammatical role
 
 // photo-sort: one image card in the 2×2 grid
 export interface PhotoSortItem {
@@ -249,6 +251,33 @@ export interface POSSortingItem {
   explanation?: string;
 }
 
+// swipe-sort: binary (or ternary) Tinder-style sorter
+export interface POSSwipeSortCard {
+  id: string;
+  word: string;
+  correctBucket: PartOfSpeech;
+}
+
+export interface POSSwipeSortData {
+  leftBucket: PartOfSpeech;
+  rightBucket: PartOfSpeech;
+  cards: POSSwipeSortCard[];
+}
+
+// sentence-diagram: tap-to-label the grammatical role of each chunk
+export interface POSDiagramChunk {
+  id: string;
+  text: string;
+  correctRole: GrammaticalRole | null; // null = punctuation / non-target; auto-labeled
+  isTarget: boolean;                    // only targets are labeled by the student
+}
+
+export interface POSDiagramData {
+  sentence: string;
+  chunks: POSDiagramChunk[];
+  roles: GrammaticalRole[]; // which roles to offer (e.g. subject, verb, direct-object)
+}
+
 // odd-one-out item
 export interface POSOddOneOutData {
   items: { word: string; partOfSpeech: PartOfSpeech; isIntruder: boolean }[];
@@ -301,6 +330,8 @@ export interface POSExercise {
   photoSortData?: POSPhotoSortData;        // photo-sort
   errorCorrection?: POSErrorCorrectionData; // error-correction
   contrastPair?: POSContrastPairData;      // contrast-pair
+  swipeSortData?: POSSwipeSortData;        // swipe-sort
+  diagramData?: POSDiagramData;            // sentence-diagram
 }
 
 // ─── Progress tracking ────────────────────────────────────────────────────────

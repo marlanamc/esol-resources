@@ -1,37 +1,16 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  ArrowLeft, ArrowRight, BookOpen, Play, Sparkles, AlertCircle,
-  CheckCircle2, XCircle, ArrowDown,
+  ArrowLeft, ArrowRight, Play, Sparkles, AlertCircle,
+  CheckCircle2, XCircle, ArrowDown, Info,
 } from 'lucide-react';
 import Image from 'next/image';
 import type { POSGroup, POSRoundMode, PartOfSpeech } from '@/types/parts-of-speech';
 import { POS_COLORS, POS_LABELS } from '@/types/parts-of-speech';
 import { DiagramSentence } from './DiagramSentence';
 import { SpeakButton } from './SpeakButton';
-
-function patternToBullets(pattern: string): string[] {
-  return pattern
-    .split(/(?<=[.!])\s+/)
-    .map(s => s.trim())
-    .filter(Boolean);
-}
-
-function pickSeededExampleIndex(length: number, seed: number): number {
-  if (length <= 0) return 0;
-  return Math.abs(seed) % length;
-}
-
-function seededShuffle<T>(arr: T[], seed: number): T[] {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.abs((seed * (i + 7)) % (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
 
 const DISTRACTOR_POS: PartOfSpeech[] = ['noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction'];
 
@@ -45,11 +24,21 @@ interface CheckpointQuestion {
   feedbackWrong: string;
 }
 
-function buildCheckpointQuestion(
-  group: POSGroup,
-  patternIndex: number,
-  seed: number,
-): CheckpointQuestion | null {
+function seededShuffle<T>(arr: T[], seed: number): T[] {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.abs((seed * (i + 7)) % (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function pickSeededExampleIndex(length: number, seed: number): number {
+  if (length <= 0) return 0;
+  return Math.abs(seed) % length;
+}
+
+function buildCheckpointQuestion(group: POSGroup, patternIndex: number, seed: number): CheckpointQuestion | null {
   const pattern = group.patterns[patternIndex % group.patterns.length];
   const example = pattern?.examples?.[pickSeededExampleIndex(pattern?.examples?.length ?? 0, seed + patternIndex * 13)];
   if (!pattern || !example) return null;
@@ -85,446 +74,337 @@ interface PatternWalkthroughScreenProps {
   onBack: () => void;
 }
 
-interface WalkthroughStep {
-  id: string;
-  label: string;
-  patternIndex: number;
-  hasQuestion: boolean;
+// Tint every word in a sentence by looking it up in the group's patterns/photo gallery.
+function tintSentence(sentence: string, group: POSGroup): React.ReactNode[] {
+  const lookup = new Map<string, PartOfSpeech>();
+  for (const p of group.patterns) {
+    const w = p.word.trim().toLowerCase();
+    if (w) lookup.set(w, p.partOfSpeech);
+    for (const ex of p.examples) {
+      const hw = ex.highlightWord?.trim().toLowerCase();
+      if (hw) lookup.set(hw, p.partOfSpeech);
+      const bl = ex.blank?.trim().toLowerCase();
+      if (bl) lookup.set(bl, p.partOfSpeech);
+    }
+  }
+  for (const entry of group.photoGallery ?? []) {
+    lookup.set(entry.word.trim().toLowerCase(), entry.partOfSpeech);
+  }
+
+  const parts = sentence.split(/(\s+)/);
+  return parts.map((segment, i) => {
+    if (!segment.trim()) return segment;
+    const key = segment.replace(/[.,!?;:"'()]/g, '').toLowerCase();
+    const pos = lookup.get(key);
+    if (!pos) return <span key={i}>{segment}</span>;
+    return (
+      <span
+        key={i}
+        className={`inline-block rounded-md border px-1 mx-[1px] font-bold shadow-sm ${POS_COLORS[pos]}`}
+        style={{ textShadow: 'none' }}
+      >
+        {segment}
+      </span>
+    );
+  });
 }
 
 export function PatternWalkthroughScreen({
   group,
-  roundMode: _roundMode,
+  roundMode,
   onStartChallenge,
   onBack,
 }: PatternWalkthroughScreenProps) {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [direction, setDirection] = useState<1 | -1>(1);
-  const [answers, setAnswers] = useState<Record<number, number | null>>({});
-
+  const currentRoundNumber = parseInt(String(roundMode).replace(/[^0-9]/g, ''), 10) || 1;
   const groupPOS = useMemo(() => [...new Set(group.patterns.map(p => p.partOfSpeech))], [group]);
-  const hasMistakes = group.patterns.some(p => p.commonError);
   const hasPhotoGallery = (group.photoGallery?.length ?? 0) > 0;
+  const heroPhoto = hasPhotoGallery ? group.photoGallery?.[0] : null;
+  const rawHeroSentence = group.patternExample || group.patterns[0]?.examples?.[0]?.sentence || '';
+  // Trim compound/contrast examples (split on "/" or " — ") so the hero stays punchy and legible.
+  // Longer explanations live in the Rule and Pattern card sections below.
+  const heroSentence = useMemo(() => {
+    if (!rawHeroSentence) return '';
+    const firstClause = rawHeroSentence.split(/\s*\/\s*/)[0] ?? rawHeroSentence;
+    const stripped = firstClause.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
+    return stripped || firstClause.trim();
+  }, [rawHeroSentence]);
 
-  const steps: WalkthroughStep[] = useMemo(() => {
-    const list: WalkthroughStep[] = [];
-    // Photo gallery replaces the old text-only "intro" + "examples" steps.
-    // Only shown when the group has photos (nouns, action verbs — NOT adjectives/adverbs/etc.)
-    if (hasPhotoGallery) {
-      list.push({ id: 'photo-gallery', label: 'See it in real life', patternIndex: 0, hasQuestion: true });
-    }
-    list.push({ id: 'rules', label: 'The rules', patternIndex: hasPhotoGallery ? 1 : 0, hasQuestion: true });
-    if (hasMistakes) {
-      list.push({ id: 'mistakes', label: 'Watch out', patternIndex: hasPhotoGallery ? 2 : 1, hasQuestion: true });
-    }
-    list.push({ id: 'ready', label: "You're ready!", patternIndex: 0, hasQuestion: false });
-    return list;
-  }, [hasPhotoGallery, hasMistakes]);
-
-  const questions = useMemo(() =>
-    steps.map((s, i) =>
-      s.hasQuestion ? buildCheckpointQuestion(group, s.patternIndex, i * 31 + group.id.charCodeAt(0)) : null
-    ),
-    [steps, group]
+  const checkpointQuestion = useMemo(
+    () => buildCheckpointQuestion(group, 0, 17 + group.id.charCodeAt(0)),
+    [group],
   );
-
-  const step = steps[currentStep];
-  const question = questions[currentStep];
-  const selectedAnswer = answers[currentStep] ?? null;
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const isAnswered = selectedAnswer !== null;
-  const isCorrect = isAnswered && question !== null && selectedAnswer === question.correctIndex;
-  const isFirst = currentStep === 0;
-  const isLast = currentStep === steps.length - 1;
-  const canAdvance = !step.hasQuestion || isAnswered;
+  const isCorrect = isAnswered && checkpointQuestion !== null && selectedAnswer === checkpointQuestion.correctIndex;
 
-  const goNext = useCallback(() => {
-    if (!canAdvance) return;
-    if (isLast) {
-      onStartChallenge();
-    } else {
-      setDirection(1);
-      setCurrentStep(s => s + 1);
-    }
-  }, [canAdvance, isLast, onStartChallenge]);
-
-  const goPrev = useCallback(() => {
-    if (isFirst) {
-      onBack();
-    } else {
-      setDirection(-1);
-      setCurrentStep(s => s - 1);
-    }
-  }, [isFirst, onBack]);
-
-  const handleAnswer = useCallback((optionIndex: number) => {
-    if (isAnswered) return;
-    setAnswers(prev => ({ ...prev, [currentStep]: optionIndex }));
-  }, [isAnswered, currentStep]);
-
-  const eyebrow = isLast ? 'Last step' : `Step ${currentStep + 1} of ${steps.length}`;
-
-  const variants = {
-    enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 36 : -36 }),
-    center: { opacity: 1, x: 0 },
-    exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -36 : 36 }),
-  };
+  const mistakes = group.patterns.filter(p => p.commonError).slice(0, 4);
 
   return (
-    <div className="max-w-2xl mx-auto pb-28 sm:pb-8">
-      {/* Progress dots */}
-      <motion.div
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex items-center justify-center gap-2 mb-6"
-      >
-        {steps.map((s, i) => (
-          <div
-            key={s.id}
-            className={`rounded-full transition-all duration-300 ${
-              i < currentStep
-                ? 'w-2 h-2 bg-primary/60'
-                : i === currentStep
-                ? 'w-6 h-2 bg-primary'
-                : 'w-2 h-2 bg-border'
-            }`}
-          />
-        ))}
-      </motion.div>
-
-      {/* Group badge + eyebrow */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="flex items-center gap-2 mb-3"
-      >
-        <span className="text-xl">{group.icon ?? '📚'}</span>
-        <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
-          {group.title}
-        </span>
-        <span className="ml-auto text-xs font-medium text-text-muted">{eyebrow}</span>
-      </motion.div>
-
-      {/* Step heading */}
-      <AnimatePresence mode="wait" custom={direction}>
-        <motion.h2
-          key={`heading-${step.id}`}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
-          className="font-display text-2xl sm:text-3xl text-text mb-5 leading-tight"
-        >
-          {step.label}
-        </motion.h2>
-      </AnimatePresence>
-
-      {/* Step content + checkpoint */}
-      <AnimatePresence mode="wait" custom={direction}>
-        <motion.div
-          key={step.id}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.28, ease: [0.23, 1, 0.32, 1] }}
-          className="space-y-5"
-        >
-
-          {/* ── Step: photo-gallery ──────────────────────── */}
-          {step.id === 'photo-gallery' && group.photoGallery && (
-            <div className="space-y-4">
-              {/* Memory trick above the gallery */}
-              {group.memoryTrick && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.97 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="relative overflow-hidden p-4 rounded-2xl bg-gradient-to-br from-accent/20 to-amber-100/30 dark:from-accent/15 dark:to-amber-900/20 border-2 border-accent/40"
-                >
-                  <div className="absolute top-2 right-3 text-4xl opacity-10 select-none">{group.icon}</div>
-                  <p className="text-xs font-bold text-amber-700 dark:text-amber-400 flex items-center gap-2 mb-1">
-                    <Sparkles size={14} className="flex-shrink-0" />
-                    Remember this
-                  </p>
-                  <p className="text-base font-bold text-text leading-relaxed">{group.memoryTrick}</p>
-                </motion.div>
-              )}
-
-              {/* POS badge(s) */}
-              <div className="flex flex-wrap gap-2">
-                {groupPOS.map(pos => (
-                  <span key={pos} className={`px-3 py-1.5 rounded-xl text-sm font-bold border-2 ${POS_COLORS[pos]}`}>
-                    {POS_LABELS[pos]}
-                  </span>
-                ))}
-              </div>
-
-              {/* 2×2 photo grid */}
-              <div className="grid grid-cols-2 gap-3">
-                {group.photoGallery.map((entry, i) => (
-                  <motion.div
-                    key={entry.word}
-                    initial={{ opacity: 0, scale: 0.93 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.08, type: 'spring', stiffness: 300, damping: 22 }}
-                    className="relative aspect-square rounded-2xl overflow-hidden border-2 border-border shadow-sm"
-                  >
-                    <Image
-                      src={entry.imageUrl}
-                      alt={entry.altText}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 44vw, 240px"
-                      unoptimized
-                      referrerPolicy="no-referrer-when-downgrade"
-                    />
-                    {/* Dark gradient strip at bottom */}
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-10 pb-3 px-3">
-                      {entry.subcategoryLabel && (
-                        <p className="text-xs font-bold text-[#f8fafc]/80 uppercase tracking-wider leading-none mb-1">
-                          {entry.subcategoryLabel}
-                        </p>
-                      )}
-                      <p className="text-base font-bold text-[#f8fafc] leading-tight">{entry.word}</p>
-                    </div>
-                    {/* Speak button — bottom-right corner */}
-                    <div className="absolute bottom-2 right-2">
-                      <SpeakButton text={entry.word} size="sm" />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <p className="text-sm text-text-muted leading-relaxed">
-                These are all <strong>{groupPOS.map(p => POS_LABELS[p]).join(' / ')}</strong>. Tap 🔊 to hear each word, then answer the question below.
-              </p>
-            </div>
-          )}
-
-          {/* ── Step: rules ─────────────────────────────── */}
-          {step.id === 'rules' && (
-            <div className="space-y-4">
-              {/* If no photo gallery, show memory trick + POS badges here instead */}
-              {!hasPhotoGallery && (
-                <>
-                  {group.memoryTrick && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.97 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="relative overflow-hidden p-4 rounded-2xl bg-gradient-to-br from-accent/20 to-amber-100/30 dark:from-accent/15 dark:to-amber-900/20 border-2 border-accent/40"
-                    >
-                      <div className="absolute top-2 right-3 text-4xl opacity-10 select-none">{group.icon}</div>
-                      <p className="text-xs font-bold text-amber-700 dark:text-amber-400 flex items-center gap-2 mb-1">
-                        <Sparkles size={14} className="flex-shrink-0" />
-                        Remember this
-                      </p>
-                      <p className="text-base font-bold text-text leading-relaxed">{group.memoryTrick}</p>
-                    </motion.div>
-                  )}
-                  {groupPOS.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {groupPOS.map(pos => (
-                        <span key={pos} className={`px-3 py-1.5 rounded-xl text-sm font-bold border-2 ${POS_COLORS[pos]}`}>
-                          {POS_LABELS[pos]}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </>
-              )}
-
-              <div className={`p-5 rounded-3xl border-2 border-dashed shadow-sm relative overflow-hidden dark:bg-[#1a2435] dark:border-white/20 ${group.colorClass}`}>
-                <div className="absolute top-0 right-0 p-4 opacity-10">
-                  <span className="text-6xl">{group.icon}</span>
-                </div>
-                <div className="relative z-10">
-                  <p className="text-sm font-bold text-text uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <BookOpen size={16} className="text-primary" />
-                    The pattern
-                  </p>
-                  <div className="space-y-3">
-                    {patternToBullets(group.pattern).map((bullet, i) => (
-                      <div key={i} className="flex gap-3 p-3 rounded-xl bg-white/80 dark:bg-white/10 shadow-sm border border-black/5 dark:border-white/10">
-                        <div className="flex-shrink-0 w-7 h-7 rounded-full bg-primary text-[#ffffff] flex items-center justify-center font-bold text-sm shadow-sm">
-                          {i + 1}
-                        </div>
-                        <p className="text-sm text-text font-medium leading-relaxed pt-0.5">
-                          {bullet}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {group.patternExample && (
-                <div className="p-4 sm:p-5 bg-white dark:bg-[#162b3d] border-2 border-border shadow-sm rounded-3xl">
-                  <p className="text-xs font-bold text-text-muted uppercase tracking-wider mb-3">
-                    Example
-                  </p>
-                  <DiagramSentence text={group.patternExample} colorClass={group.colorClass} />
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* ── Step: mistakes ──────────────────────────── */}
-          {step.id === 'mistakes' && (
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 px-1">
-                <AlertCircle size={16} className="text-error flex-shrink-0" />
-                <p className="text-sm font-bold text-error">Watch out for these errors</p>
-              </div>
-
-              <div className="space-y-3">
-                {group.patterns.filter(p => p.commonError).slice(0, 4).map((p, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="rounded-2xl overflow-hidden border border-border shadow-sm"
-                  >
-                    <div className="flex items-start gap-3 px-4 py-3 bg-error/5 border-b border-error/15">
-                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-error text-[#ffffff] flex items-center justify-center text-xs font-bold mt-0.5">✗</span>
-                      <p className="text-sm text-error/90 font-medium">{p.commonError}</p>
-                    </div>
-                    <div className="flex justify-center py-1 bg-bg-light dark:bg-white/5">
-                      <ArrowDown size={14} className="text-text-muted" />
-                    </div>
-                    <div className="flex items-start gap-3 px-4 py-3 bg-secondary/5">
-                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-secondary text-[#ffffff] flex items-center justify-center text-xs font-bold mt-0.5">✓</span>
-                      <p className="text-sm text-secondary font-semibold">
-                        <span className={`inline-flex px-2 py-0.5 rounded-md text-xs font-bold border mr-2 ${POS_COLORS[p.partOfSpeech]}`}>
-                          {POS_LABELS[p.partOfSpeech]}
-                        </span>
-                        {p.word}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <p className="text-sm text-text-muted leading-relaxed px-1">
-                Spotting the mistake before you make it is half the battle.
-              </p>
-            </div>
-          )}
-
-          {/* ── Step: ready ─────────────────────────────── */}
-          {step.id === 'ready' && (
-            <div className="space-y-4">
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="rounded-2xl overflow-hidden border border-border shadow-sm"
-              >
-                <div className="bg-gradient-to-r from-primary to-primary-dark px-5 py-4">
-                  <p className="text-[#ffffff] font-bold text-base">Your game plan</p>
-                  <p className="text-[#ffffff]/70 text-xs mt-0.5">{group.maxRounds} rounds to mastery</p>
-                </div>
-                <div className="divide-y divide-border bg-white dark:bg-[#162b3d]">
-                  {[
-                    { n: 1, label: 'Notice', threshold: '70%', desc: 'Pass Round 1 to unlock the next group.' },
-                    { n: 2, label: 'Sort', threshold: '75%', desc: 'Group similar words and spot patterns faster.' },
-                    { n: 3, label: 'Connect', threshold: '80%', desc: 'Recognize the target in real sentences.' },
-                    { n: 4, label: 'Build', threshold: '85%', desc: 'Use the target in more active tasks.' },
-                    { n: 5, label: 'Master', threshold: '90%', desc: 'Finish the full progression and earn ✦ mastery.' },
-                  ].filter((round) => round.n <= group.maxRounds).map((round) => (
-                    <div key={round.n} className="flex items-start gap-4 px-5 py-3">
-                      <span className={`flex-shrink-0 w-8 h-8 rounded-xl font-bold flex items-center justify-center text-sm ${
-                        round.n === group.maxRounds
-                          ? 'bg-secondary/15 text-secondary'
-                          : 'bg-primary/15 text-primary'
-                      }`}>{round.n}</span>
-                      <div>
-                        <p className="font-bold text-text text-sm">Round {round.n} · {round.label}</p>
-                        <p className="text-xs text-text-muted mt-0.5">
-                          Score <strong>{round.threshold}+</strong> · {round.desc}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-              <p className="text-sm text-text-muted leading-relaxed px-1">
-                You&apos;ve seen the pattern and what to watch out for. Time to try it yourself!
-              </p>
-            </div>
-          )}
-
-          {/* ── Checkpoint question ─────────────────────── */}
-          {question && (
-            <CheckpointQuestionCard
-              question={question}
-              selectedAnswer={selectedAnswer}
-              isAnswered={isAnswered}
-              isCorrect={isCorrect}
-              onAnswer={handleAnswer}
-            />
-          )}
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Desktop nav */}
-      <div className="hidden sm:flex gap-3 pt-8">
+    <div className="pb-28 sm:pb-24">
+      {/* Back button */}
+      <div className="px-4 sm:px-6 pt-4 sm:pt-6">
         <button
           type="button"
-          onClick={goPrev}
-          className="flex-none flex items-center gap-2 px-6 py-3 rounded-xl border border-border text-text-muted hover:text-text transition-colors font-semibold"
+          onClick={onBack}
+          className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-text transition-colors"
         >
-          <ArrowLeft size={18} />
-          {isFirst ? 'Back' : 'Previous'}
+          <ArrowLeft size={16} /> Back
         </button>
-        <motion.button
-          type="button"
-          onClick={goNext}
-          disabled={!canAdvance}
-          whileHover={canAdvance ? { scale: 1.02 } : {}}
-          whileTap={canAdvance ? { scale: 0.98 } : {}}
-          className={`flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold transition-colors ${
-            canAdvance
-              ? 'bg-primary text-[#ffffff] hover:bg-primary-dark'
-              : 'bg-border text-text-muted cursor-not-allowed'
-          }`}
-        >
-          {isLast ? (
-            <><Play size={18} />Start Challenge</>
-          ) : (
-            <>Next<ArrowRight size={18} /></>
-          )}
-        </motion.button>
       </div>
 
-      {/* Mobile fixed bottom bar */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center gap-3 px-4 py-3 bg-bg/95 backdrop-blur-md border-t border-border pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+      {/* ── Hero ──────────────────────────────────────────────────── */}
+      <section className="relative mt-4 mx-4 sm:mx-6 rounded-3xl overflow-hidden border border-border shadow-lg">
+        {heroPhoto ? (
+          <div className="relative aspect-[4/3] sm:aspect-[16/9] w-full">
+            <Image
+              src={heroPhoto.imageUrl}
+              alt={heroPhoto.altText}
+              fill
+              className="object-cover"
+              sizes="(max-width: 640px) 100vw, 960px"
+              unoptimized
+              referrerPolicy="no-referrer-when-downgrade"
+              priority
+            />
+            {/* Layered scrim: stronger at the bottom where text lives, plus a subtle full overlay for overall legibility */}
+            <div className="absolute inset-0 bg-black/25" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-transparent" />
+          </div>
+        ) : (
+          <div className={`aspect-[16/9] ${group.colorClass}`} />
+        )}
+
+        <div
+          className="absolute inset-x-0 bottom-0 p-5 sm:p-7"
+          style={{ textShadow: '0 2px 12px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.6)' }}
+        >
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-2xl sm:text-3xl leading-none">{group.icon ?? '📚'}</span>
+            <span
+              className="text-[10px] sm:text-xs font-black uppercase tracking-[0.18em] px-2 py-0.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/20"
+              style={{ color: '#ffffff' }}
+            >
+              Discover
+            </span>
+          </div>
+          <h1
+            className="font-display text-2xl sm:text-4xl font-bold leading-tight mb-2"
+            style={{ color: '#ffffff' }}
+          >
+            {group.title}
+          </h1>
+          {heroSentence && (
+            <div
+              className="text-base sm:text-xl font-semibold leading-snug flex flex-wrap items-center gap-1.5"
+              style={{ color: '#ffffff' }}
+            >
+              <span>{tintSentence(heroSentence, group)}</span>
+              <SpeakButton text={heroSentence} size="sm" />
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ── Tint legend + memory trick ───────────────────────────── */}
+      <section className="px-4 sm:px-6 mt-6 space-y-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs font-bold uppercase tracking-wider text-text-muted">You'll meet:</span>
+          {groupPOS.map(pos => (
+            <span key={pos} className={`px-2.5 py-1 rounded-lg text-xs font-bold border ${POS_COLORS[pos]}`}>
+              {POS_LABELS[pos]}
+            </span>
+          ))}
+        </div>
+
+        {group.memoryTrick && (
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="relative overflow-hidden p-4 rounded-2xl bg-gradient-to-br from-accent/20 to-amber-100/30 dark:from-accent/15 dark:to-amber-900/20 border-2 border-accent/40"
+          >
+            <div className="absolute top-2 right-3 text-4xl opacity-10 select-none">{group.icon}</div>
+            <p className="text-xs font-bold text-amber-700 dark:text-amber-400 flex items-center gap-2 mb-1">
+              <Sparkles size={14} className="flex-shrink-0" />
+              Remember this
+            </p>
+            <p className="text-base font-bold text-text leading-relaxed">{group.memoryTrick}</p>
+          </motion.div>
+        )}
+      </section>
+
+      {/* ── Pattern cards (horizontal scroll row) ────────────────── */}
+      <section className="mt-6">
+        <div className="flex items-end justify-between px-4 sm:px-6 mb-3">
+          <div>
+            <h2 className="font-display text-lg sm:text-xl font-bold text-text">The patterns</h2>
+            <p className="text-xs text-text-muted">Swipe to explore each one.</p>
+          </div>
+          <span className="text-xs font-medium text-text-muted hidden sm:inline">{group.patterns.length} patterns</span>
+        </div>
+        <div className="flex gap-3 overflow-x-auto px-4 sm:px-6 pb-2 -mx-0 snap-x snap-mandatory">
+          {group.patterns.slice(0, 6).map((pattern, i) => {
+            const example = pattern.examples[0];
+            const sentence = example?.blank ? example.sentence.replace('___', example.blank) : example?.sentence ?? '';
+            return (
+              <motion.div
+                key={pattern.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05 }}
+                className="flex-shrink-0 w-[82%] sm:w-[320px] snap-start rounded-2xl border-2 border-border bg-white dark:bg-[#162b3d] shadow-sm overflow-hidden flex flex-col"
+              >
+                <div className={`px-4 py-2 flex items-center justify-between border-b-2 border-border ${POS_COLORS[pattern.partOfSpeech]}`}>
+                  <span className="text-[11px] font-black uppercase tracking-widest">{POS_LABELS[pattern.partOfSpeech]}</span>
+                  <span className="text-xs font-semibold opacity-75">#{i + 1}</span>
+                </div>
+                <div className="p-4 flex-1 flex flex-col gap-3">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-2xl font-bold text-text">{pattern.word}</span>
+                    <SpeakButton text={pattern.word} size="sm" />
+                  </div>
+                  {sentence && (
+                    <p className="text-sm text-text leading-relaxed">
+                      {tintSentence(sentence, group)}
+                    </p>
+                  )}
+                  {pattern.memoryTrick && (
+                    <p className="text-xs text-text-muted italic border-t border-border pt-2 flex items-start gap-1.5">
+                      <Info size={12} className="flex-shrink-0 mt-0.5" />
+                      {pattern.memoryTrick}
+                    </p>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ── The rule ─────────────────────────────────────────────── */}
+      <section className="mt-6 px-4 sm:px-6">
+        <div className={`p-5 rounded-3xl border-2 border-dashed shadow-sm relative overflow-hidden dark:bg-[#1a2435] dark:border-white/20 ${group.colorClass}`}>
+          <div className="absolute top-0 right-0 p-4 opacity-10">
+            <span className="text-6xl">{group.icon}</span>
+          </div>
+          <div className="relative z-10 space-y-3">
+            <p className="text-xs font-bold text-text uppercase tracking-wider">The rule</p>
+            <p className="text-base sm:text-lg text-text font-medium leading-relaxed">{group.pattern}</p>
+            {group.patternExample && (
+              <div className="pt-2 border-t border-black/10 dark:border-white/10">
+                <p className="text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Example</p>
+                <DiagramSentence text={group.patternExample} colorClass={group.colorClass} />
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Common mistakes ──────────────────────────────────────── */}
+      {mistakes.length > 0 && (
+        <section className="mt-6 px-4 sm:px-6">
+          <div className="flex items-center gap-2 mb-3">
+            <AlertCircle size={16} className="text-error flex-shrink-0" />
+            <h2 className="font-display text-base font-bold text-error">Watch out for these</h2>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {mistakes.map((p, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08 }}
+                className="rounded-2xl overflow-hidden border border-border shadow-sm"
+              >
+                <div className="flex items-start gap-3 px-4 py-3 bg-error/5 border-b border-error/15">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-error text-[#ffffff] flex items-center justify-center text-xs font-bold mt-0.5">✗</span>
+                  <p className="text-sm text-error/90 font-medium">{p.commonError}</p>
+                </div>
+                <div className="flex justify-center py-1 bg-bg-light dark:bg-white/5">
+                  <ArrowDown size={14} className="text-text-muted" />
+                </div>
+                <div className="flex items-start gap-3 px-4 py-3 bg-secondary/5">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-secondary text-[#ffffff] flex items-center justify-center text-xs font-bold mt-0.5">✓</span>
+                  <p className="text-sm text-secondary font-semibold">
+                    <span className={`inline-flex px-2 py-0.5 rounded-md text-xs font-bold border mr-2 ${POS_COLORS[p.partOfSpeech]}`}>
+                      {POS_LABELS[p.partOfSpeech]}
+                    </span>
+                    {p.word}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ── Checkpoint question ──────────────────────────────────── */}
+      {checkpointQuestion && (
+        <section className="mt-6 px-4 sm:px-6">
+          <CheckpointQuestionCard
+            question={checkpointQuestion}
+            selectedAnswer={selectedAnswer}
+            isAnswered={isAnswered}
+            isCorrect={isCorrect}
+            onAnswer={(i) => { if (!isAnswered) setSelectedAnswer(i); }}
+          />
+        </section>
+      )}
+
+      {/* ── Game plan ─────────────────────────────────────────────── */}
+      <section className="mt-6 px-4 sm:px-6">
+        <h2 className="font-display text-base font-bold text-text mb-3">Your game plan</h2>
+        <div className="rounded-2xl overflow-hidden border border-border shadow-sm">
+          <div className="bg-gradient-to-r from-primary to-primary-dark px-5 py-3">
+            <p className="text-[#ffffff] font-bold text-sm">{group.maxRounds} rounds to mastery</p>
+          </div>
+          <div className="divide-y divide-border bg-white dark:bg-[#162b3d]">
+            {[
+              { n: 1, label: 'Notice', threshold: '70%' },
+              { n: 2, label: 'Sort', threshold: '75%' },
+              { n: 3, label: 'Connect', threshold: '80%' },
+              { n: 4, label: 'Build', threshold: '85%' },
+              { n: 5, label: 'Master', threshold: '90%' },
+            ].filter(r => r.n <= group.maxRounds).map(round => {
+              const isCurrent = round.n === currentRoundNumber;
+              return (
+                <div
+                  key={round.n}
+                  className={`flex items-center gap-4 px-5 py-2.5 ${isCurrent ? 'bg-primary/5' : ''}`}
+                  aria-current={isCurrent ? 'step' : undefined}
+                >
+                  <span className={`flex-shrink-0 w-7 h-7 rounded-lg font-bold flex items-center justify-center text-xs ${
+                    isCurrent ? 'bg-primary text-[#ffffff]' : round.n === group.maxRounds ? 'bg-secondary/15 text-secondary' : 'bg-primary/15 text-primary'
+                  }`}>{round.n}</span>
+                  <p className={`font-semibold text-sm flex-1 ${isCurrent ? 'text-primary' : 'text-text'}`}>
+                    Round {round.n} &middot; {round.label}
+                    {isCurrent && <span className="ml-2 text-[10px] uppercase tracking-wide text-primary font-bold">You&rsquo;re here</span>}
+                  </p>
+                  <span className="text-xs font-bold text-text-muted">{round.threshold}+</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Sticky CTA ────────────────────────────────────────────── */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 flex items-center gap-3 px-4 py-3 bg-bg/95 backdrop-blur-md border-t border-border pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <button
           type="button"
-          onClick={goPrev}
-          className="flex items-center gap-2 px-5 py-3 rounded-xl border border-border text-text-muted hover:text-text transition-colors font-semibold min-h-[48px]"
+          onClick={onBack}
+          className="hidden sm:inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-border text-text-muted hover:text-text transition-colors font-semibold min-h-[48px]"
         >
-          <ArrowLeft size={20} />
-          {isFirst ? 'Back' : 'Prev'}
+          <ArrowLeft size={18} /> Back
         </button>
         <motion.button
           type="button"
-          onClick={goNext}
-          disabled={!canAdvance}
-          whileHover={canAdvance ? { scale: 1.02 } : {}}
-          whileTap={canAdvance ? { scale: 0.98 } : {}}
-          className={`flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold transition-colors min-h-[48px] flex-1 ${
-            canAdvance
-              ? 'bg-primary text-[#ffffff] hover:bg-primary-dark'
-              : 'bg-border text-text-muted cursor-not-allowed'
-          }`}
+          onClick={onStartChallenge}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-bold bg-primary text-[#ffffff] hover:bg-primary-dark transition-colors min-h-[48px]"
         >
-          {isLast ? (
-            <><Play size={20} />Start Challenge</>
-          ) : (
-            <>Next<ArrowRight size={20} /></>
-          )}
+          <Play size={20} /> Try it
+          <ArrowRight size={18} />
         </motion.button>
       </div>
     </div>
@@ -552,16 +432,15 @@ function CheckpointQuestionCard({
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 }}
-      className="mt-6 p-5 sm:p-6 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/20 border-2 border-indigo-100 dark:border-indigo-900/50 space-y-4 shadow-sm"
+      transition={{ delay: 0.1 }}
+      className="p-5 sm:p-6 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/20 border-2 border-indigo-100 dark:border-indigo-900/50 space-y-4 shadow-sm"
     >
       <div className="flex items-center gap-2 border-b border-indigo-100 dark:border-indigo-900/30 pb-3">
         <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-200 text-indigo-700 dark:bg-indigo-800 dark:text-indigo-200 flex items-center justify-center font-bold text-xs">?</span>
-        <h3 className="font-display font-semibold text-text text-base">Your turn</h3>
-        <p className="text-xs text-text-muted ml-auto">Answer to continue</p>
+        <h3 className="font-display font-semibold text-text text-base">Quick check</h3>
+        <p className="text-xs text-text-muted ml-auto">Answer to confirm you&rsquo;re ready</p>
       </div>
 
-      {/* Sentence with speak button */}
       {question.sentenceDisplay && question.highlightWord && (
         <div className="flex items-start gap-3">
           <SpeakButton text={question.sentenceDisplay} size="sm" className="mt-0.5 flex-shrink-0" />
@@ -592,7 +471,6 @@ function CheckpointQuestionCard({
 
       <p className="text-sm font-semibold text-text-muted">{question.questionText}</p>
 
-      {/* Options */}
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
         {question.options.map((option, i) => {
           const isSelected = selectedAnswer === i;
@@ -622,7 +500,6 @@ function CheckpointQuestionCard({
         })}
       </div>
 
-      {/* Feedback */}
       <AnimatePresence>
         {isAnswered && (
           <motion.div

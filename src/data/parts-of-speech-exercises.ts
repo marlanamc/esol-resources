@@ -16,6 +16,8 @@ import type {
   POSSortingItem,
   PhotoSortItem,
   WordFamilyMember,
+  POSDiagramChunk,
+  GrammaticalRole,
 } from '@/types/parts-of-speech';
 import {
   PHOTO_SORT_DISTRACTOR_BANK,
@@ -465,6 +467,8 @@ const VALID_EXERCISE_TYPES: Record<POSExerciseType, POSExerciseType> = {
   "function-match": "function-match",
   "minimal-pair": "minimal-pair",
   "photo-sort": "photo-sort",
+  "swipe-sort": "swipe-sort",
+  "sentence-diagram": "sentence-diagram",
 };
 
 export interface POSGenerationOptions {
@@ -573,21 +577,22 @@ function getAvailableExerciseTypes(
 
   if (phase === 'foundation') {
     if (round === 1) return ['pattern-choice'];
-    if (round === 2) return [...base];
-    return [...base, 'contrast-pair'];
+    if (round === 2) return [...base, 'swipe-sort'];
+    return [...base, 'swipe-sort', 'contrast-pair'];
   }
   if (phase === 'sentence-roles') {
-    if (round === 1) return ['pattern-choice', 'sentence-completion', 'odd-one-out'];
-    if (round === 2) return [...base, 'pos-tagging'];
-    const types = [...base, 'pos-tagging', 'word-family', 'error-correction', 'contrast-pair'] as POSExerciseType[];
+    if (round === 1) return ['pattern-choice', 'sentence-completion', 'odd-one-out', 'swipe-sort'];
+    if (round === 2) return [...base, 'pos-tagging', 'photo-sort'];
+    if (round === 3) return [...base, 'pos-tagging', 'photo-sort', 'word-family', 'sentence-diagram', 'error-correction', 'contrast-pair'];
+    const types = [...base, 'pos-tagging', 'photo-sort', 'word-family', 'sentence-diagram', 'error-correction', 'contrast-pair'] as POSExerciseType[];
     if (allowFunctionMatch) types.push('function-match');
     return types;
   }
   if (phase === 'modifiers') {
     if (round === 1) return ['pattern-choice', 'sentence-completion', 'odd-one-out'];
-    if (round === 2) return [...base, 'pos-tagging', 'word-family'];
-    if (round === 3) return [...base, 'pos-tagging', 'word-family', 'minimal-pair', 'error-correction', 'contrast-pair'];
-    const types = [...base, 'pos-tagging', 'word-family', 'minimal-pair', 'word-transform', 'error-correction', 'contrast-pair'] as POSExerciseType[];
+    if (round === 2) return [...base, 'pos-tagging', 'photo-sort', 'word-family'];
+    if (round === 3) return [...base, 'pos-tagging', 'photo-sort', 'word-family', 'minimal-pair', 'error-correction', 'contrast-pair'];
+    const types = [...base, 'pos-tagging', 'photo-sort', 'word-family', 'minimal-pair', 'word-transform', 'error-correction', 'contrast-pair'] as POSExerciseType[];
     if (allowFunctionMatch) types.push('function-match');
     return types;
   }
@@ -604,6 +609,7 @@ function getAvailableExerciseTypes(
     'pattern-choice', 'sentence-completion', 'odd-one-out',
     'pos-tagging', 'word-family', 'minimal-pair',
     'word-transform', 'function-match', 'mad-libs', 'sentence-builder',
+    'sentence-diagram', 'photo-sort', 'swipe-sort',
     'error-correction', 'contrast-pair',
   ] as POSExerciseType[];
 }
@@ -1322,6 +1328,160 @@ function makeContrastPairExercise(
   };
 }
 
+// ─── Swipe sort factory ───────────────────────────────────────────────────────
+
+/**
+ * Build a swipe-sort exercise: two POS buckets, a deck of cards to triage.
+ * Chooses the target POS as the right bucket and the most-present non-target
+ * POS across sibling patterns + distractor bank as the left bucket.
+ */
+function makeSwipeSort(
+  group: POSGroup,
+  pattern: POSPattern,
+  showPattern: boolean,
+): POSExercise | null {
+  const targetPOS = pattern.partOfSpeech;
+  const targetWords = new Set<string>();
+  const otherPOSCount = new Map<PartOfSpeech, Set<string>>();
+
+  const addTarget = (w: string) => { const t = w.trim(); if (t) targetWords.add(t); };
+  const addOther = (pos: PartOfSpeech, w: string) => {
+    const t = w.trim();
+    if (!t || pos === targetPOS) return;
+    if (!otherPOSCount.has(pos)) otherPOSCount.set(pos, new Set());
+    otherPOSCount.get(pos)!.add(t);
+  };
+
+  for (const p of group.patterns) {
+    const word = getPatternDisplayWord(p);
+    if (p.partOfSpeech === targetPOS) addTarget(word);
+    else addOther(p.partOfSpeech, word);
+  }
+  for (const entry of CLOZE_DISTRACTOR_BANK) {
+    if (entry.partOfSpeech === targetPOS) addTarget(entry.word);
+    else addOther(entry.partOfSpeech, entry.word);
+  }
+
+  // Pick the non-target POS with the most words as the contrast bucket.
+  let leftPOS: PartOfSpeech | null = null;
+  let best = 0;
+  for (const [pos, set] of otherPOSCount) {
+    if (set.size > best) { best = set.size; leftPOS = pos; }
+  }
+  if (!leftPOS) return null;
+
+  const leftPool = Array.from(otherPOSCount.get(leftPOS) ?? []);
+  const rightPool = Array.from(targetWords);
+  if (leftPool.length < 2 || rightPool.length < 2) return null;
+
+  const leftCards = pickRandom(leftPool, Math.min(3, leftPool.length)).map((word, i) => ({
+    id: `ss-l-${i}-${word}`,
+    word,
+    correctBucket: leftPOS!,
+  }));
+  const rightCards = pickRandom(rightPool, Math.min(3, rightPool.length)).map((word, i) => ({
+    id: `ss-r-${i}-${word}`,
+    word,
+    correctBucket: targetPOS,
+  }));
+  const cards = shuffle([...leftCards, ...rightCards]);
+  if (cards.length < 4) return null;
+
+  return {
+    id: nextId(group.id, 'swipe'),
+    type: 'swipe-sort',
+    groupId: group.id,
+    patternId: pattern.id,
+    prompt: `Swipe each card into the correct part of speech.`,
+    correctAnswer: targetPOS,
+    swipeSortData: {
+      leftBucket: leftPOS,
+      rightBucket: targetPOS,
+      cards,
+    },
+    showPattern,
+  };
+}
+
+// ─── Sentence diagram factory ─────────────────────────────────────────────────
+
+/**
+ * Build a tap-to-label sentence diagram. Uses one of the pattern's example
+ * sentences; the highlightWord becomes a target chunk labeled with the mapped
+ * grammatical role, and the verb (detected heuristically) becomes another
+ * target chunk. Students pick from a small set of roles.
+ */
+function makeSentenceDiagram(
+  group: POSGroup,
+  pattern: POSPattern,
+  showPattern: boolean,
+  tracker?: ExampleTracker,
+): POSExercise | null {
+  const selection = selectPatternExample(pattern, tracker);
+  if (!selection) return null;
+  const example = selection.example;
+  const rawSentence = example.blank ? example.sentence.replace('___', example.blank) : example.sentence;
+  if (!rawSentence) return null;
+
+  const highlight = (example.highlightWord || example.blank || getPatternBaseWord(pattern)).trim();
+  if (!highlight) return null;
+
+  // Tokenise the sentence while keeping punctuation attached to the preceding
+  // word. We treat each whitespace-separated token as a chunk.
+  const tokens = rawSentence.split(/\s+/).filter(Boolean);
+  if (tokens.length < 2) return null;
+
+  // Decide which token should be labeled with which role.
+  const highlightRole: GrammaticalRole =
+    example.role ??
+    (pattern.partOfSpeech === 'verb'
+      ? 'verb'
+      : pattern.partOfSpeech === 'adjective' || pattern.partOfSpeech === 'adverb'
+      ? 'modifier'
+      : pattern.partOfSpeech === 'preposition' || pattern.partOfSpeech === 'conjunction'
+      ? 'connector'
+      : 'subject');
+
+  const cleanToken = (t: string) => t.replace(/[.,!?;:"'()]/g, '').toLowerCase();
+  const highlightKey = cleanToken(highlight);
+
+  let matchedHighlight = false;
+  const chunks: POSDiagramChunk[] = tokens.map((token, idx) => {
+    const isHighlight = !matchedHighlight && cleanToken(token) === highlightKey;
+    if (isHighlight) matchedHighlight = true;
+    return {
+      id: `d-${idx}`,
+      text: token,
+      correctRole: isHighlight ? highlightRole : null,
+      isTarget: isHighlight,
+    };
+  });
+
+  if (!matchedHighlight) return null;
+
+  // Offer 3-4 role options including the correct one plus plausible distractors.
+  const offered: GrammaticalRole[] = ['subject', 'verb', 'direct-object', 'modifier', 'connector'];
+  if (!offered.includes(highlightRole)) offered.push(highlightRole);
+  const roles = shuffle(offered).slice(0, 4);
+  if (!roles.includes(highlightRole)) roles[0] = highlightRole;
+
+  return {
+    id: nextId(group.id, 'diag'),
+    type: 'sentence-diagram',
+    groupId: group.id,
+    patternId: pattern.id,
+    prompt: `Label the highlighted chunk with its grammatical role.`,
+    correctAnswer: highlightRole,
+    diagramData: {
+      sentence: rawSentence,
+      chunks,
+      roles: shuffle(roles),
+    },
+    showPattern,
+    explanation: example.explanation,
+  };
+}
+
 // ─── Round generator ──────────────────────────────────────────────────────────
 
 type ExerciseFactory = (
@@ -1346,6 +1506,8 @@ const FACTORY_MAP: Record<POSExerciseType, ExerciseFactory | null> = {
   'minimal-pair': null,    // handled separately
   'sentence-builder': null, // handled separately
   'photo-sort': makePhotoSort, // photo-based visual recognition
+  'swipe-sort': makeSwipeSort,
+  'sentence-diagram': makeSentenceDiagram,
 };
 
 /**
@@ -1399,6 +1561,9 @@ export function generateRound1Exercises(group: POSGroup, options?: POSGeneration
 
   // Non-foundation phases: mix gated by phase/round
   const available = getAvailableExerciseTypes(group.phase, 1, options);
+  let swipeSortCount = 0;
+  let sentenceDiagramCount = 0;
+  let r1PhotoSortCount = 0;
 
   for (const pattern of patterns) {
     // Always include a pattern-choice as the baseline recognition exercise
@@ -1437,6 +1602,21 @@ export function generateRound1Exercises(group: POSGroup, options?: POSGeneration
       const sb = makeSentenceBuilder(group, pattern, true, tracker);
       if (sb) exercises.push(sb);
     }
+
+    if (available.includes('swipe-sort') && swipeSortCount < 1) {
+      const ss = makeSwipeSort(group, pattern, true);
+      if (ss) { exercises.push(ss); swipeSortCount += 1; }
+    }
+
+    if (available.includes('sentence-diagram') && sentenceDiagramCount < 1) {
+      const sd = makeSentenceDiagram(group, pattern, true, tracker);
+      if (sd) { exercises.push(sd); sentenceDiagramCount += 1; }
+    }
+
+    if (available.includes('photo-sort') && r1PhotoSortCount < 1) {
+      const ps = makePhotoSort(group, pattern, true);
+      if (ps) { exercises.push(ps); r1PhotoSortCount += 1; }
+    }
   }
 
   // Sorting exercise as a round-out (cross-POS or intra-POS subcategory)
@@ -1464,6 +1644,8 @@ export function generateRound2Exercises(
   const tracker = createExampleTracker();
   const available = getAvailableExerciseTypes(group.phase, 2, options);
   let photoSortCount = 0;
+  let swipeSortCount = 0;
+  let sentenceDiagramCount = 0;
 
   for (const pattern of patterns) {
     if (available.includes('photo-sort') && photoSortCount < 1) {
@@ -1472,6 +1654,16 @@ export function generateRound2Exercises(
         exercises.push(ps);
         photoSortCount += 1;
       }
+    }
+
+    if (available.includes('swipe-sort') && swipeSortCount < 1) {
+      const ss = makeSwipeSort(group, pattern, false);
+      if (ss) { exercises.push(ss); swipeSortCount += 1; }
+    }
+
+    if (available.includes('sentence-diagram') && sentenceDiagramCount < 1) {
+      const sd = makeSentenceDiagram(group, pattern, false, tracker);
+      if (sd) { exercises.push(sd); sentenceDiagramCount += 1; }
     }
 
     if (available.includes('function-match')) {
@@ -1708,6 +1900,8 @@ export function generateRound3Exercises(group: POSGroup, options?: POSGeneration
   const tracker = createExampleTracker();
   const available = getAvailableExerciseTypes(group.phase, 3, options);
   let photoSortCount = 0;
+  let swipeSortCount = 0;
+  let sentenceDiagramCount = 0;
 
   for (const pattern of group.patterns) {
     if (available.includes('photo-sort') && photoSortCount < 1) {
@@ -1716,6 +1910,16 @@ export function generateRound3Exercises(group: POSGroup, options?: POSGeneration
         exercises.push(ps);
         photoSortCount += 1;
       }
+    }
+
+    if (available.includes('swipe-sort') && swipeSortCount < 1) {
+      const ss = makeSwipeSort(group, pattern, false);
+      if (ss) { exercises.push(ss); swipeSortCount += 1; }
+    }
+
+    if (available.includes('sentence-diagram') && sentenceDiagramCount < 1) {
+      const sd = makeSentenceDiagram(group, pattern, false, tracker);
+      if (sd) { exercises.push(sd); sentenceDiagramCount += 1; }
     }
 
     if (available.includes('pos-tagging')) {
@@ -1772,6 +1976,8 @@ export function generateRound4Exercises(group: POSGroup, options?: POSGeneration
   const tracker = createExampleTracker();
   const available = getAvailableExerciseTypes(group.phase, 4, options);
   let photoSortCount = 0;
+  let swipeSortCount = 0;
+  let sentenceDiagramCount = 0;
 
   for (const pattern of group.patterns) {
     if (available.includes('photo-sort') && photoSortCount < 1) {
@@ -1780,6 +1986,16 @@ export function generateRound4Exercises(group: POSGroup, options?: POSGeneration
         exercises.push(ps);
         photoSortCount += 1;
       }
+    }
+
+    if (available.includes('swipe-sort') && swipeSortCount < 1) {
+      const ss = makeSwipeSort(group, pattern, false);
+      if (ss) { exercises.push(ss); swipeSortCount += 1; }
+    }
+
+    if (available.includes('sentence-diagram') && sentenceDiagramCount < 1) {
+      const sd = makeSentenceDiagram(group, pattern, false, tracker);
+      if (sd) { exercises.push(sd); sentenceDiagramCount += 1; }
     }
 
     if (available.includes('sentence-builder')) {
@@ -1853,6 +2069,8 @@ export function generateRound5Exercises(
   const tracker = createExampleTracker();
   const available = getAvailableExerciseTypes(group.phase, 5, options);
   let photoSortCount = 0;
+  let swipeSortCount = 0;
+  let sentenceDiagramCount = 0;
 
   for (const pattern of targetPatterns) {
     if (available.includes('photo-sort') && photoSortCount < 2) {
@@ -1861,6 +2079,16 @@ export function generateRound5Exercises(
         exercises.push(ps);
         photoSortCount += 1;
       }
+    }
+
+    if (available.includes('swipe-sort') && swipeSortCount < 1) {
+      const ss = makeSwipeSort(group, pattern, false);
+      if (ss) { exercises.push(ss); swipeSortCount += 1; }
+    }
+
+    if (available.includes('sentence-diagram') && sentenceDiagramCount < 2) {
+      const sd = makeSentenceDiagram(group, pattern, false, tracker);
+      if (sd) { exercises.push(sd); sentenceDiagramCount += 1; }
     }
 
     if (available.includes('sentence-completion')) {

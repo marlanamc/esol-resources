@@ -89,6 +89,9 @@
     "push:generate-vapid": "node -e \"const webpush=require('web-push');const v=webpush.generateVAPIDKeys();console.log('VAPID_PUBLIC_KEY='+v.publicKey);console.log('VAPID_PRIVATE_KEY='+v.privateKey);\""
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@prisma/client": "^6.19.2",
     "@sentry/nextjs": "^10.42.0",
     "@vercel/analytics": "^1.6.1",

@@ -108,7 +108,8 @@ export default async function ActivityPage({ params, searchParams }: Props) {
             gameUi === "timeline-tenses" ||
             gameUi === "ed-pronunciation" ||
             gameUi === "minimal-pairs" ||
-            gameUi === "pronunciation-listening"
+            gameUi === "pronunciation-listening" ||
+            gameUi === "parts-of-speech"
         )
     ) {
         return renderImmersiveActivity(
