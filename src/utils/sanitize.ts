@@ -11,13 +11,14 @@ type SanitizeHtmlOptions = {
 
 const BASE_ALLOWED_TAGS = [
     "a", "b", "blockquote", "br", "code", "div", "em",
-    "h1", "h2", "h3", "h4", "h5", "h6", "hr", "i", "li",
+    "h1", "h2", "h3", "h4", "h5", "h6", "hr", "i", "img", "li",
     "mark", "ol", "p", "pre", "span", "strong", "sub", "sup",
     "table", "tbody", "td", "tfoot", "th", "thead", "tr", "u", "ul",
 ];
 
 const BASE_ALLOWED_ATTR: Record<string, string[]> = {
     a: ["href", "rel", "target"],
+    img: ["src", "alt", "loading", "width", "height", "decoding", "referrerpolicy"],
     "*": ["class", "colspan", "rowspan"],
 };
 

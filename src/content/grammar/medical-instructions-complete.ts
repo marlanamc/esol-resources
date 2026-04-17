@@ -1,51 +1,130 @@
-import type { InteractiveGuideContent, ExerciseItem } from "@/types/activity";
+import type { InteractiveGuideContent } from "@/types/activity";
+import { medicalInstructionsImages as img } from "@/data/medical-instructions-images.generated";
+
+// ---------------------------------------------------------------------------
+// Reusable inline HTML helpers
+// ---------------------------------------------------------------------------
+// Kept as template builders so the section explanations stay readable and
+// every scene card / dialogue / diagram renders consistently.
+// Only tags allowed by src/utils/sanitize.ts are used here — no <figure> etc.
+// ---------------------------------------------------------------------------
+
+const sceneCard = (
+  sceneId: keyof typeof img,
+  caption: string,
+  accent: "terracotta" | "sage" | "blue" | "amber" | "green" | "red" | "purple" = "terracotta"
+): string => {
+  const scene = img[sceneId];
+  if (!scene) return "";
+  return `
+    <div class="gc-bg-white" style="margin: 0 0 1.5rem 0; padding: 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 10px rgba(0,0,0,0.06)">
+      <img src="${scene.url}" alt="${scene.alt}" loading="lazy" style="display: block; width: 100%; height: auto; max-height: 260px; object-fit: cover" />
+      <div style="padding: 0.55rem 0.9rem; font-size: 0.82rem; background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; gap: 0.5rem; align-items: center; flex-wrap: wrap">
+        <span><span class="gc-text-${accent}" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.72rem">Scene</span> &nbsp;${caption}</span>
+        <span style="font-size: 0.68rem; opacity: 0.7">Photo: <a href="${scene.credit.url}" rel="noopener" target="_blank">${scene.credit.name}</a> / Unsplash</span>
+      </div>
+    </div>
+  `;
+};
+
+type Turn = { speaker: string; avatar: string; text: string; side: "left" | "right"; tone: "terracotta" | "sage" | "blue" | "amber" | "purple" | "green" };
+
+const dialogue = (turns: Turn[]): string => {
+  const bubbles = turns
+    .map((t) => {
+      const bgClass = `gc-bg-${t.tone}-alpha`;
+      const radius =
+        t.side === "left"
+          ? "0.875rem 0.875rem 0.875rem 0.25rem"
+          : "0.875rem 0.875rem 0.25rem 0.875rem";
+      const rowStyle =
+        t.side === "left"
+          ? "display: flex; gap: 0.625rem; align-items: flex-start"
+          : "display: flex; gap: 0.625rem; align-items: flex-start; flex-direction: row-reverse";
+      return `
+        <div style="${rowStyle}">
+          <div style="font-size: 1.65rem; line-height: 1; flex-shrink: 0; padding-top: 0.25rem">${t.avatar}</div>
+          <div class="${bgClass}" style="padding: 0.65rem 0.9rem; border-radius: ${radius}; max-width: 82%">
+            <div class="gc-text-${t.tone}" style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 0.15rem">${t.speaker}</div>
+            <div style="line-height: 1.5">${t.text}</div>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  return `
+    <div style="display: flex; flex-direction: column; gap: 0.625rem; margin: 1.25rem 0; padding: 1rem; border-radius: 0.75rem; background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.06)">
+      ${bubbles}
+    </div>
+  `;
+};
+
+// ---------------------------------------------------------------------------
+// Guide content
+// ---------------------------------------------------------------------------
 
 export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
   type: "interactive-guide",
   tableOfContents: true,
   sections: [
-    // Section 1: Introduction
+    // =================================================================
+    // 1. INTRO — ER Triage
+    // =================================================================
     {
-      id: "introduction",
-      title: "Medical Instructions: Modals, Imperatives & Declaratives",
-      icon: "🗣️",
+      id: "intro-triage",
+      title: "You just walked into the ER",
+      icon: "🚑",
       explanation: `
-        <div class="gc-grad-terracotta" style="padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
-          <p style="font-size: 1.125rem; margin-bottom: 0">"<strong>Take</strong> this medicine twice a day." vs "<strong>You should</strong> take this medicine twice a day." vs "<strong>You must</strong> take this medicine twice a day." — The difference is small, but the meaning and tone are completely different!</p>
+        ${sceneCard("triageWaiting", "Hospital entrance — 8:15 AM", "terracotta")}
+
+        <div class="gc-grad-terracotta" style="padding: 1.25rem 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem">
+          <p style="font-size: 1.1rem; margin: 0"><strong>You:</strong> <em>"My head is pounding and I can't keep food down."</em></p>
+          <p style="font-size: 1.1rem; margin: 0.5rem 0 0"><strong>Nurse:</strong> <em>"Please sit down. You should fill out this form. You must not leave until the doctor sees you."</em></p>
+          <p style="margin: 0.75rem 0 0; font-weight: 600">Three small sentences. Three different kinds of grammar. That's today's guide.</p>
         </div>
 
-        <h3>What You'll Learn</h3>
-        <p>This guide teaches three essential grammar concepts for healthcare and workplace communication:</p>
+        <h3>Your journey through this guide</h3>
+        <ol style="margin: 0.5rem 0 1.25rem 1rem; line-height: 1.75">
+          <li>🚪 <strong>ER Triage</strong> — what kind of sentence is each one?</li>
+          <li>💊 <strong>Pharmacy & Prescription labels</strong> — imperatives everywhere</li>
+          <li>👩‍⚕️ <strong>Doctor's office</strong> — declaratives and polite questions</li>
+          <li>🎚️ <strong>Tone ladder</strong> — same meaning, different strength</li>
+          <li>🔑 <strong>Modals crash course</strong> — should, must, can, need to</li>
+          <li>⚠️ <strong>Pharmacist's warning</strong> — advice vs. danger</li>
+          <li>🙋 <strong>Reception desk</strong> — your rights and permission</li>
+          <li>🎭 <strong>Role-play stack</strong> — rebuild real conversations</li>
+          <li>💼 <strong>Calling out sick at work</strong> — respectful language</li>
+          <li>🏁 <strong>Discharge paperwork</strong> — quick review</li>
+        </ol>
 
-        <div style="display: grid; gap: 1rem; margin: 1.5rem 0">
-          <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem; border-radius: 0.5rem; ">
-            <h4 class="gc-text-terracotta" style="margin: 0 0 0.5rem 0; ">1. Imperatives (Commands)</h4>
-            <p style="margin: 0"><strong>Take</strong> this medicine. <strong>Don't</strong> drive after taking this.</p>
+        <h3>Three tiny sentences, three big ideas</h3>
+
+        <div style="display: grid; gap: 0.875rem; margin: 1.25rem 0">
+          <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 0.875rem 1rem; border-radius: 0.5rem">
+            <h4 class="gc-text-terracotta" style="margin: 0 0 0.25rem 0">🗯️ Imperatives — a command</h4>
+            <p style="margin: 0">"<strong>Take</strong> this medicine." &nbsp;·&nbsp; "<strong>Don't</strong> drive after."</p>
           </div>
-
-          <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem; border-radius: 0.5rem; ">
-            <h4 class="gc-text-sage" style="margin: 0 0 0.5rem 0; ">2. Declaratives (Statements)</h4>
-            <p style="margin: 0"><strong>You need to</strong> take this medicine. <strong>I recommend</strong> resting.</p>
+          <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 0.875rem 1rem; border-radius: 0.5rem">
+            <h4 class="gc-text-sage" style="margin: 0 0 0.25rem 0">💬 Declaratives — a statement</h4>
+            <p style="margin: 0">"<strong>You need to</strong> take this." &nbsp;·&nbsp; "<strong>I recommend</strong> resting."</p>
           </div>
-
-          <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem; border-radius: 0.5rem; ">
-            <h4 class="gc-text-blue" style="margin: 0 0 0.5rem 0; ">3. Modals (Meaning Changers)</h4>
-            <p style="margin: 0"><strong>You should</strong> rest (advice). <strong>You must</strong> finish (required). <strong>You can</strong> ask (permission).</p>
+          <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.875rem 1rem; border-radius: 0.5rem">
+            <h4 class="gc-text-blue" style="margin: 0 0 0.25rem 0">🔑 Modals — meaning-changers inside declaratives</h4>
+            <p style="margin: 0"><strong>should</strong> (advice) · <strong>must</strong> (required) · <strong>can</strong> (permission) · <strong>need to</strong> (necessity)</p>
           </div>
         </div>
-
-        <h3>Why This Matters</h3>
-        <ul>
-          <li><strong>Medical settings:</strong> Understanding prescription labels, doctor's advice, and patient rights</li>
-          <li><strong>Workplace:</strong> Knowing how to communicate with bosses, coworkers, and customers</li>
-          <li><strong>Politeness:</strong> Using the right tone shows cultural awareness and professionalism</li>
-        </ul>
       `,
+      tipBox: {
+        title: "💡 Why this matters",
+        content:
+          "At a clinic you'll SEE imperatives on signs and labels, HEAR modals from your doctor, and NEED declaratives to speak respectfully back. Same grammar, very different jobs.",
+      },
       exercises: [
         {
           id: "intro-diagnostic-1",
           title: "Quick Check: What Type of Sentence?",
-          instructions: "Identify the sentence type.",
+          instructions: "Identify each sentence the nurse just said to you.",
           items: [
             {
               type: "radio",
@@ -72,72 +151,76 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "caution", label: "Caution (required/dangerous)" },
                 { value: "advice", label: "Advice (recommended)" },
                 { value: "permission", label: "Permission (allowed)" },
-            ],
-            expectedAnswer: "caution",
+              ],
+              expectedAnswer: "caution",
             },
           ],
         },
       ],
     },
 
-    // Section 2: Imperatives
+    // =================================================================
+    // 2. Imperatives on signs & labels
+    // =================================================================
     {
-      id: "imperatives",
+      id: "imperatives-signs",
       stepNumber: 1,
-      title: "Imperatives: Commands and Instructions",
-      icon: "📢",
+      title: "Clinic signs & prescription labels",
+      icon: "🪧",
       explanation: `
-        <h3>What Is an Imperative?</h3>
-        <p>An <strong>imperative sentence</strong> gives a command, instruction, or request. The subject (you) is understood but not stated.</p>
+        ${sceneCard("clinicSign", "Walking in the front door", "terracotta")}
 
-        <div class="gc-bg-terracotta-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
-          <h4>Formula:</h4>
-          <p class="gc-text-terracotta" style="font-size: 1.25rem; font-weight: bold; ">Base Verb + (object/details)</p>
-          <p style="font-style: italic; margin-top: 0.5rem">(No subject! Start with the verb.)</p>
+        <h3>Imperatives: the language of signs</h3>
+        <p>Every sign, sticker, and prescription label you pass in a clinic is an <strong>imperative</strong>: a short command with no subject. The subject "you" is understood.</p>
 
-          <h4 style="margin-top: 1rem">Examples:</h4>
-          <ul>
-            <li><strong>Take</strong> this medicine.</li>
-            <li><strong>Rest</strong> for 3 days.</li>
-            <li><strong>Don't</strong> drive after taking this medication.</li>
-          </ul>
+        <div class="gc-bg-terracotta-alpha" style="padding: 1rem 1.25rem; border-radius: 0.625rem; margin: 1rem 0">
+          <h4 style="margin: 0 0 0.375rem 0">Formula</h4>
+          <p style="margin: 0; font-size: 1.2rem; font-weight: 700" class="gc-text-terracotta">[Base verb] + (object/details)</p>
+          <p style="margin: 0.25rem 0 0; font-style: italic; opacity: 0.8">The subject "you" is invisible.</p>
         </div>
 
-        <h3>Three Types of Imperatives</h3>
+        <h3>Real prescription sticker</h3>
 
-        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
-          <h4 class="gc-text-terracotta">1. Direct Commands (Strong)</h4>
-          <ul>
-            <li><strong>Stop</strong> smoking.</li>
-            <li><strong>Take</strong> this twice a day.</li>
-          </ul>
+        <div style="max-width: 440px; margin: 1.25rem auto; border: 2px solid #1a202c; border-radius: 0.375rem; overflow: hidden; font-family: 'Courier New', 'Consolas', monospace; background: #fffdf6">
+          <div style="background: #dc2626; color: white; padding: 0.4rem 0.85rem; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.1em">⚠️ WARNING &nbsp;·&nbsp; READ CAREFULLY</div>
+          <div style="padding: 0.85rem 1rem 0.95rem; font-size: 0.92rem; line-height: 1.7">
+            <div>▸ <strong class="gc-text-terracotta">Take</strong> 1 tablet twice daily with food.</div>
+            <div>▸ <strong class="gc-text-terracotta">Finish</strong> the entire bottle, even if you feel better.</div>
+            <div>▸ <strong class="gc-text-red">Do not</strong> drink alcohol while taking this medication.</div>
+            <div>▸ <strong class="gc-text-red">Avoid</strong> driving or operating heavy machinery.</div>
+            <div>▸ <strong class="gc-text-terracotta">Call</strong> your doctor if rash or swelling occurs.</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.05); padding: 0.35rem 0.85rem; font-size: 0.72rem; letter-spacing: 0.05em">RX# 48291 &nbsp;·&nbsp; Dr. Chen &nbsp;·&nbsp; City Clinic Pharmacy</div>
         </div>
 
-        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
-          <h4 class="gc-text-sage">2. Polite Requests ("Please")</h4>
-          <ul>
-            <li><strong>Please</strong> fill out this form.</li>
-            <li><strong>Please</strong> wait here.</li>
-          </ul>
-        </div>
+        <p>Notice — every line starts with a verb: <em>Take, Finish, Do not, Avoid, Call</em>. No "you". That's the whole trick.</p>
 
-        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
-          <h4 class="gc-text-red">3. Negative Imperatives ("Don't")</h4>
-          <ul>
-            <li><strong>Don't</strong> eat before the test.</li>
-            <li><strong>Don't</strong> take this on an empty stomach.</li>
-          </ul>
+        <h3>Three flavors of imperative</h3>
+
+        <div style="display: grid; gap: 0.875rem; margin: 1rem 0">
+          <div class="gc-bg-white" style="padding: 0.875rem 1rem; border-radius: 0.5rem; border-left: 4px solid #c86b51">
+            <h4 class="gc-text-terracotta" style="margin: 0 0 0.25rem 0">1. Direct command (strong)</h4>
+            <p style="margin: 0">"<strong>Stop</strong> smoking." &nbsp;·&nbsp; "<strong>Take</strong> this twice a day."</p>
+          </div>
+          <div class="gc-bg-white" style="padding: 0.875rem 1rem; border-radius: 0.5rem; border-left: 4px solid #7ba884">
+            <h4 class="gc-text-sage" style="margin: 0 0 0.25rem 0">2. Polite request (+ please)</h4>
+            <p style="margin: 0">"<strong>Please</strong> fill out this form." &nbsp;·&nbsp; "<strong>Please</strong> wait here."</p>
+          </div>
+          <div class="gc-bg-white" style="padding: 0.875rem 1rem; border-radius: 0.5rem; border-left: 4px solid #dc2626">
+            <h4 class="gc-text-red" style="margin: 0 0 0.25rem 0">3. Negative (Don't / Do not)</h4>
+            <p style="margin: 0">"<strong>Don't</strong> eat before the test." &nbsp;·&nbsp; "<strong>Do not</strong> take on empty stomach."</p>
+          </div>
         </div>
       `,
       tipBox: {
         title: "💡 Key Point",
-        content: "Imperatives have NO subject (no 'you'). They start directly with the verb.",
+        content: "Imperatives have NO subject (no 'you'). They start directly with the verb — that's how you spot them.",
       },
       exercises: [
         {
           id: "imperatives-ex-1",
           title: "Practice: Identifying Imperatives",
-          instructions: "Choose which sentences are imperatives.",
+          instructions: "Short checks on sentence structure.",
           items: [
             {
               type: "radio",
@@ -146,8 +229,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "b", label: "You take this medicine." },
                 { value: "a", label: "Take this medicine." },
                 { value: "c", label: "You should take this medicine." },
-            ],
-            expectedAnswer: "a",
+              ],
+              expectedAnswer: "a",
             },
             {
               type: "radio",
@@ -156,8 +239,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "b", label: "Has a subject and verb" },
                 { value: "c", label: "Uses past tense" },
                 { value: "a", label: "Starts with base verb, no subject (you is understood)" },
-            ],
-            expectedAnswer: "a",
+              ],
+              expectedAnswer: "a",
             },
             {
               type: "radio",
@@ -171,68 +254,86 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
             },
           ],
         },
+        {
+          id: "imperatives-word-select",
+          title: "Spot the imperatives on a real leaflet",
+          instructions: "Click every verb that is functioning as an imperative (a command).",
+          items: [
+            {
+              type: "word-select",
+              label: "Tap the imperative verbs in this leaflet text:",
+              selectWhat: "imperative verbs",
+              tokens: [
+                { text: "Take", isTarget: true }, { text: "one" }, { text: "tablet" }, { text: "every" }, { text: "morning." },
+                { text: "Drink", isTarget: true }, { text: "plenty" }, { text: "of" }, { text: "water." },
+                { text: "Do", isTarget: true }, { text: "not", isTarget: true }, { text: "skip" }, { text: "doses." },
+                { text: "You" }, { text: "should" }, { text: "rest" }, { text: "at" }, { text: "home." },
+                { text: "Call", isTarget: true }, { text: "your" }, { text: "doctor" }, { text: "if" }, { text: "symptoms" }, { text: "return." },
+              ],
+            },
+          ],
+        },
       ],
     },
 
-    // Section 3: Declaratives
+    // =================================================================
+    // 3. Declaratives — Doctor's office
+    // =================================================================
     {
-      id: "declaratives",
+      id: "declaratives-doctor",
       stepNumber: 2,
-      title: "Declaratives: Statements and Advice",
-      icon: "💬",
+      title: "Dr. Chen's office: declaratives",
+      icon: "👩‍⚕️",
       explanation: `
-        <h3>What Is a Declarative?</h3>
-        <p>A <strong>declarative sentence</strong> makes a statement. It has a subject and gives information or advice.</p>
+        ${sceneCard("doctorPatientConsult", "Exam room 3 — 9:20 AM", "sage")}
 
-        <div class="gc-bg-sage-alpha" style="margin: 1.5rem 0; padding: 1.5rem; ; border-radius: 0.5rem">
-          <h4>Formula:</h4>
-          <p class="gc-text-sage" style="font-size: 1.25rem; font-weight: bold; ">Subject + Verb + (object/details)</p>
+        <h3>Declaratives: the language of conversations</h3>
+        <p>When your doctor explains what's happening, she uses <strong>declaratives</strong>: full sentences with a subject. They feel softer and more human than imperatives — perfect for talking.</p>
 
-          <h4 style="margin-top: 1rem">Examples:</h4>
-          <ul>
-            <li><strong>You need to</strong> take this medicine.</li>
-            <li><strong>You should</strong> rest for 3 days.</li>
-            <li><strong>I recommend</strong> drinking plenty of water.</li>
-          </ul>
+        <div class="gc-bg-sage-alpha" style="padding: 1rem 1.25rem; border-radius: 0.625rem; margin: 1rem 0">
+          <h4 style="margin: 0 0 0.375rem 0">Formula</h4>
+          <p style="margin: 0; font-size: 1.2rem; font-weight: 700" class="gc-text-sage">Subject + Verb + (object/details)</p>
+          <p style="margin: 0.25rem 0 0; font-style: italic; opacity: 0.8">"You…", "I…", "We…", "The medicine…"</p>
         </div>
 
-        <h3>Common Declarative Patterns</h3>
+        <h3>Listen in on a real appointment</h3>
+
+        ${dialogue([
+          { speaker: "Dr. Chen", avatar: "👩‍⚕️", side: "left", tone: "terracotta", text: "\"<strong>I think</strong> you have a sinus infection. <strong>You need to</strong> take antibiotics for ten days.\"" },
+          { speaker: "Rosa (patient)", avatar: "🧕", side: "right", tone: "sage", text: "\"<strong>I have</strong> two small children at home. <strong>Can I</strong> still pick them up?\"" },
+          { speaker: "Dr. Chen", avatar: "👩‍⚕️", side: "left", tone: "terracotta", text: "\"<strong>You can</strong> lift them, but <strong>you should</strong> rest when they nap. <strong>You shouldn't</strong> drive if you feel dizzy.\"" },
+          { speaker: "Rosa (patient)", avatar: "🧕", side: "right", tone: "sage", text: "\"<strong>I'll</strong> take the medicine with breakfast. <strong>Do I need</strong> another appointment?\"" },
+          { speaker: "Dr. Chen", avatar: "👩‍⚕️", side: "left", tone: "terracotta", text: "\"<strong>You don't need to</strong> come back unless the fever returns. <strong>You're allowed to</strong> call the nurse line any time.\"" },
+          { speaker: "Rosa (patient)", avatar: "🧕", side: "right", tone: "sage", text: "\"Thank you. <strong>I'll</strong> call if anything changes.\"" },
+        ])}
+
+        <h3>Common declarative patterns in healthcare</h3>
+
         <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
           <thead>
-            <tr style="background: rgba(110, 145, 118, 0.2)">
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Pattern</th>
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Example</th>
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Tone</th>
+            <tr class="gc-bg-sage-alpha">
+              <th style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Pattern</th>
+              <th style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Example</th>
+              <th style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Tone</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td style="padding: 0.75rem; border: 1px solid #ddd">You need to...</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd">You need to rest.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd">Strong/Required</td>
-            </tr>
-            <tr style="background: rgba(0, 0, 0, 0.02)">
-              <td style="padding: 0.75rem; border: 1px solid #ddd">You should...</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd">You should exercise.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd">Advice/Suggestion</td>
-            </tr>
-            <tr>
-              <td style="padding: 0.75rem; border: 1px solid #ddd">I recommend...</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd">I recommend this.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd">Professional advice</td>
-            </tr>
-            <tr style="background: rgba(0, 0, 0, 0.02)">
-              <td style="padding: 0.75rem; border: 1px solid #ddd">You have to...</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd">You have to fast.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd">Obligation</td>
-            </tr>
+            <tr><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)"><strong>You need to…</strong></td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">You need to rest.</td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">Required (firm, friendly)</td></tr>
+            <tr style="background: rgba(0,0,0,0.02)"><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)"><strong>You should…</strong></td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">You should exercise.</td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">Advice / suggestion</td></tr>
+            <tr><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)"><strong>I recommend…</strong></td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">I recommend this.</td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">Professional advice</td></tr>
+            <tr style="background: rgba(0,0,0,0.02)"><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)"><strong>You have to…</strong></td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">You have to fast.</td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">Obligation</td></tr>
+            <tr><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)"><strong>I'll / I will…</strong></td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">I'll call tomorrow.</td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">Promise / plan</td></tr>
           </tbody>
         </table>
       `,
+      tipBox: {
+        title: "💡 Patient tip",
+        content: "When speaking to your doctor, start with \"I\" or \"Could I\" whenever possible. That simple choice turns any sentence into a respectful declarative.",
+      },
       exercises: [
         {
           id: "declaratives-ex-1",
-          title: "Practice: Understanding Declaratives",
+          title: "Practice: understanding declaratives",
           instructions: "Identify declarative sentences and their patterns.",
           items: [
             {
@@ -242,8 +343,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "b", label: "A sentence that gives a command without a subject" },
                 { value: "a", label: "A sentence that makes a statement and has a subject" },
                 { value: "c", label: "A sentence that asks a question" },
-            ],
-            expectedAnswer: "a",
+              ],
+              expectedAnswer: "a",
             },
             {
               type: "radio",
@@ -252,12 +353,12 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "b", label: "Imperative command" },
                 { value: "c", label: "Question" },
                 { value: "a", label: "Declarative with 'should' (advice/suggestion)" },
-            ],
-            expectedAnswer: "a",
+              ],
+              expectedAnswer: "a",
             },
             {
               type: "radio",
-              label: "Which sentence is a declarative?",
+              label: "Which sentence from Dr. Chen is a declarative?",
               options: [
                 { value: "a", label: "You have to call if you have questions." },
                 { value: "b", label: "Call if you have questions." },
@@ -267,142 +368,222 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
             },
           ],
         },
-      ],
-    },
-
-    // Section 4: Comparison
-    {
-      id: "comparison",
-      stepNumber: 3,
-      title: "Side by Side: Same Meaning, Different Tone",
-      icon: "⚖️",
-      explanation: `
-        <h3>Imperatives vs Declaratives</h3>
-        <p>You can express the same idea with either form, but the tone changes:</p>
-
-        <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0">
-          <thead>
-            <tr style="background: rgba(200, 107, 81, 0.2)">
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Imperative (Direct)</th>
-              <th style="padding: 0.75rem; text-align: left; border: 1px solid #ddd">Declarative (Indirect/Polite)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Take</strong> this twice a day.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You need to take</strong> this twice a day.</td>
-            </tr>
-            <tr style="background: rgba(0, 0, 0, 0.02)">
-              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Rest</strong> for a week.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You should rest</strong> for a week.</td>
-            </tr>
-            <tr>
-              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Don't</strong> lift anything heavy.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You shouldn't</strong> lift anything heavy.</td>
-            </tr>
-            <tr style="background: rgba(0, 0, 0, 0.02)">
-              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>Call</strong> if you have pain.</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd"><strong>You should call</strong> if you have pain.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div style="background: rgba(244, 211, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1.5rem 0">
-          <h4 style="color: #d4a843">Which Should You Use?</h4>
-          <ul>
-            <li><strong>Imperatives:</strong> Common in medical instructions (prescriptions, clinic signs)</li>
-            <li><strong>Declaratives:</strong> Sound more polite in conversations</li>
-            <li><strong>In writing:</strong> Imperatives are standard (medication labels)</li>
-            <li><strong>In speaking:</strong> Declaratives sound friendlier</li>
-          </ul>
-        </div>
-      `,
-      exercises: [
         {
-          id: "comparison-ex-1",
-          title: "Practice: Comparing Forms",
-          instructions: "Identify the sentence type and when to use each.",
+          id: "declaratives-scramble",
+          title: "Rebuild Dr. Chen's instruction",
+          instructions: "Drag or type the words in the correct order.",
           items: [
             {
-              type: "radio",
-              label: "\"Take this twice a day.\" What type is this?",
-              options: [
-                { value: "b", label: "Declarative - statement with subject" },
-                { value: "a", label: "Imperative - direct command/instruction" },
-            ],
-            expectedAnswer: "a",
+              type: "word-scramble",
+              label: "Doctor to patient — an imperative instruction:",
+              words: ["take", "this", "twice", "a", "day"],
+              correctAnswer: "Take this twice a day",
+              hint: "Start with the verb. No subject.",
             },
             {
-              type: "radio",
-              label: "\"You need to take this twice a day.\" What type is this?",
-              options: [
-                { value: "a", label: "Declarative - statement with subject 'you'" },
-                { value: "b", label: "Imperative - command without subject" },
-              ],
-              expectedAnswer: "a",
-            },
-            {
-              type: "radio",
-              label: "When should you use declaratives?",
-              options: [
-                { value: "a", label: "When you want to sound more polite in conversations" },
-                { value: "b", label: "On prescription labels" },
-                { value: "c", label: "Never, they're too indirect" },
-              ],
-              expectedAnswer: "a",
+              type: "word-scramble",
+              label: "Patient to doctor — a respectful declarative:",
+              words: ["I", "will", "take", "it", "with", "breakfast"],
+              correctAnswer: "I will take it with breakfast",
+              hint: "Start with 'I'.",
             },
           ],
         },
       ],
     },
 
-    // Section 5: Modals Review
+    // =================================================================
+    // 4. Tone Ladder
+    // =================================================================
     {
-      id: "modals-review",
+      id: "tone-ladder",
+      stepNumber: 3,
+      title: "Same idea, five tones",
+      icon: "🎚️",
+      explanation: `
+        <h3>The tone ladder</h3>
+        <p>English has many ways to say "<em>I want you to take this medicine.</em>" The difference is <strong>tone</strong> — how strong or soft it feels. Climb the ladder from urgent at the top to gentle at the bottom.</p>
+
+        <div style="display: grid; gap: 0.55rem; margin: 1.25rem 0">
+          <div style="display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 0.85rem; padding: 0.8rem 1rem; border-radius: 0.55rem; background: rgba(220,38,38,0.14); border-left: 5px solid #dc2626">
+            <span style="font-size: 1.6rem; text-align: center">🚨</span>
+            <span><strong>"Take it now!"</strong> <span style="opacity: 0.75">— bare imperative, urgent</span></span>
+            <span class="gc-text-red" style="font-weight: 800; font-size: 0.75rem; letter-spacing: 0.05em">STRONGEST</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 0.85rem; padding: 0.8rem 1rem; border-radius: 0.55rem; background: rgba(234,88,12,0.14); border-left: 5px solid #ea580c">
+            <span style="font-size: 1.6rem; text-align: center">⚠️</span>
+            <span><strong>"You must take this."</strong> <span style="opacity: 0.75">— required / no choice</span></span>
+            <span style="color: #ea580c; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.05em">STRONG</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 0.85rem; padding: 0.8rem 1rem; border-radius: 0.55rem; background: rgba(217,119,6,0.14); border-left: 5px solid #d97706">
+            <span style="font-size: 1.6rem; text-align: center">📋</span>
+            <span><strong>"You need to take this."</strong> <span style="opacity: 0.75">— firm, conversational</span></span>
+            <span style="color: #b45309; font-weight: 800; font-size: 0.75rem; letter-spacing: 0.05em">FIRM</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 0.85rem; padding: 0.8rem 1rem; border-radius: 0.55rem; background: rgba(5,150,105,0.14); border-left: 5px solid #059669">
+            <span style="font-size: 1.6rem; text-align: center">💡</span>
+            <span><strong>"You should take this."</strong> <span style="opacity: 0.75">— good idea, your choice</span></span>
+            <span class="gc-text-green" style="font-weight: 800; font-size: 0.75rem; letter-spacing: 0.05em">ADVICE</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 0.85rem; padding: 0.8rem 1rem; border-radius: 0.55rem; background: rgba(37,99,235,0.14); border-left: 5px solid #2563eb">
+            <span style="font-size: 1.6rem; text-align: center">🕊️</span>
+            <span><strong>"You could try taking this."</strong> <span style="opacity: 0.75">— gentle suggestion</span></span>
+            <span class="gc-text-blue" style="font-weight: 800; font-size: 0.75rem; letter-spacing: 0.05em">GENTLEST</span>
+          </div>
+        </div>
+
+        <h3>Same day, four different speakers</h3>
+
+        ${dialogue([
+          { speaker: "Sign on door", avatar: "🪧", side: "left", tone: "terracotta", text: "\"<strong>Wash</strong> your hands before entering.\" <em style='opacity: 0.7'>(bare imperative)</em>" },
+          { speaker: "Nurse", avatar: "👩‍⚕️", side: "right", tone: "amber", text: "\"<strong>You need to</strong> wash your hands before entering.\" <em style='opacity: 0.7'>(firm declarative)</em>" },
+          { speaker: "Dr. Chen", avatar: "🧑‍⚕️", side: "left", tone: "green", text: "\"<strong>You should</strong> always wash your hands before seeing the baby.\" <em style='opacity: 0.7'>(advice)</em>" },
+          { speaker: "Pharmacist", avatar: "💊", side: "right", tone: "blue", text: "\"<strong>You could</strong> use this hand sanitizer too, if you prefer.\" <em style='opacity: 0.7'>(suggestion)</em>" },
+        ])}
+      `,
+      tipBox: {
+        title: "💡 Choose your rung",
+        content: "The verb you pick (must / need to / should / could) tells the listener exactly how much choice they have. Match the rung to the situation.",
+      },
+      exercises: [
+        {
+          id: "tone-ladder-match",
+          title: "Practice: match each sentence to its rung",
+          instructions: "Choose the rung each sentence belongs on.",
+          items: [
+            {
+              type: "radio",
+              label: "\"You must finish the full bottle of antibiotics.\"",
+              options: [
+                { value: "gentle", label: "Gentlest suggestion" },
+                { value: "advice", label: "Advice (your choice)" },
+                { value: "strong", label: "Strong — required / no choice" },
+              ],
+              expectedAnswer: "strong",
+            },
+            {
+              type: "radio",
+              label: "\"You could try a warm compress before bed.\"",
+              options: [
+                { value: "strongest", label: "Strongest — urgent command" },
+                { value: "firm", label: "Firm — needed" },
+                { value: "gentle", label: "Gentlest — soft suggestion" },
+              ],
+              expectedAnswer: "gentle",
+            },
+            {
+              type: "radio",
+              label: "\"You should drink more water during the day.\"",
+              options: [
+                { value: "advice", label: "Advice — good idea, your choice" },
+                { value: "strong", label: "Strong — no choice" },
+                { value: "strongest", label: "Strongest — urgent command" },
+              ],
+              expectedAnswer: "advice",
+            },
+            {
+              type: "radio",
+              label: "\"Call 911 now!\"",
+              options: [
+                { value: "strongest", label: "Strongest — urgent bare imperative" },
+                { value: "advice", label: "Advice" },
+                { value: "gentle", label: "Gentle suggestion" },
+              ],
+              expectedAnswer: "strongest",
+            },
+          ],
+        },
+      ],
+    },
+
+    // =================================================================
+    // 5. Modals crash course
+    // =================================================================
+    {
+      id: "modals-crashcourse",
       stepNumber: 4,
-      title: "Modals Review: Changing Meaning",
+      title: "Modals crash course",
       icon: "🔑",
       explanation: `
-        <h3>Quick Modals Review</h3>
-        <p>Remember, <strong>modals</strong> are special verbs that change the meaning of a sentence. They express advice, requirement, permission, or necessity.</p>
+        ${sceneCard("stethoscopeDesk", "Doctor's desk, end of shift", "purple")}
 
-        <div class="gc-bg-white" style="margin: 1.5rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 2px solid #7ba884">
-          <h4>Modal Formula:</h4>
-          <p style="font-size: 1.25rem; text-align: center; margin: 0">
-            <span class="gc-text-blue">Subject</span> +
-            <span class="gc-text-terracotta" style="font-weight: 600"> Modal </span> +
-            <span class="gc-text-green">Base Verb</span>
+        <h3>What is a modal?</h3>
+        <p>A <strong>modal</strong> is a small helper verb (<em>should, must, can, may, need to</em>) that changes the meaning of the main verb. It sits between the subject and the base verb — and <strong>never changes form</strong>.</p>
+
+        <div class="gc-bg-white" style="margin: 1.25rem 0; padding: 1rem 1.25rem; border-radius: 0.625rem; border: 2px solid #7ba884">
+          <h4 style="margin: 0 0 0.5rem 0">Modal formula</h4>
+          <p style="font-size: 1.3rem; text-align: center; margin: 0; line-height: 1.5">
+            <span class="gc-text-blue" style="font-weight: 700">Subject</span>
+            &nbsp;+&nbsp;
+            <span class="gc-text-purple" style="font-weight: 700">Modal</span>
+            &nbsp;+&nbsp;
+            <span class="gc-text-terracotta" style="font-weight: 700">Base Verb</span>
           </p>
-          <p style="margin: 0.5rem 0 0 0; text-align: center; font-style: italic">
-            You <strong class="gc-text-terracotta">should</strong> rest. You <strong class="gc-text-terracotta">must</strong> take it. You <strong class="gc-text-terracotta">can</strong> ask.
+          <p style="margin: 0.5rem 0 0; text-align: center; font-style: italic; opacity: 0.85">
+            <span class="gc-text-blue">You</span>
+            <span class="gc-text-purple"> should </span>
+            <span class="gc-text-terracotta">rest</span>. &nbsp;·&nbsp;
+            <span class="gc-text-blue">You</span>
+            <span class="gc-text-purple"> must </span>
+            <span class="gc-text-terracotta">finish</span>. &nbsp;·&nbsp;
+            <span class="gc-text-blue">I</span>
+            <span class="gc-text-purple"> can </span>
+            <span class="gc-text-terracotta">ask</span>.
           </p>
         </div>
 
-        <h3>Three Categories of Modals in Healthcare</h3>
+        <h3>The modal decision tree</h3>
+        <p>Not sure which modal to use? Follow the questions:</p>
 
-        <div class="gc-bg-green-alpha gc-callout-green" style="margin-top: 1.5rem; ; padding: 1rem; border-radius: 0.5rem; ">
-          <h4 class="gc-text-green" style="margin-top: 0">💡 ADVICE (should/shouldn't)</h4>
-          <p style="margin: 0">Recommendations - good for you, but not required</p>
+        <div style="display: grid; gap: 0.625rem; margin: 1rem 0">
+          <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; border: 2px dashed #888; text-align: center; font-weight: 700; background: rgba(0,0,0,0.03)">Q1 · Is it DANGEROUS or legally required?</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem">
+            <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; text-align: center; background: #dc2626; color: #ffffff; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.15)"><strong style="color: #ffffff">YES</strong> → must / must not</div>
+            <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; border: 1px dashed #aaa; text-align: center">NO → next question ↓</div>
+          </div>
+          <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; border: 2px dashed #888; text-align: center; font-weight: 700; background: rgba(0,0,0,0.03)">Q2 · Is it a GOOD IDEA but optional?</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem">
+            <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; text-align: center; background: #059669; color: #ffffff; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.15)"><strong style="color: #ffffff">YES</strong> → should / shouldn't</div>
+            <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; border: 1px dashed #aaa; text-align: center">NO → next question ↓</div>
+          </div>
+          <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; border: 2px dashed #888; text-align: center; font-weight: 700; background: rgba(0,0,0,0.03)">Q3 · Are you ASKING for permission?</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem">
+            <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; text-align: center; background: #2563eb; color: #ffffff; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.15)"><strong style="color: #ffffff">YES</strong> → can / may (formal)</div>
+            <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; border: 1px dashed #aaa; text-align: center">NO → next question ↓</div>
+          </div>
+          <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; border: 2px dashed #888; text-align: center; font-weight: 700; background: rgba(0,0,0,0.03)">Q4 · Is it NECESSARY in everyday speech?</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem">
+            <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; text-align: center; background: #b45309; color: #ffffff; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.15)"><strong style="color: #ffffff">YES</strong> → need to</div>
+            <div style="padding: 0.7rem 1rem; border-radius: 0.5rem; text-align: center; background: #7c3aed; color: #ffffff; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.15)">Right / legal permission → <strong style="color: #ffffff">are allowed to</strong></div>
+          </div>
         </div>
 
-        <div style="margin-top: 1rem; background: rgba(220, 38, 38, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #dc2626">
-          <h4 class="gc-text-red" style="margin-top: 0">⚠️ CAUTION (must/must not)</h4>
-          <p style="margin: 0">Required for safety or dangerous/forbidden</p>
-        </div>
+        <h3>Common mistakes to avoid</h3>
 
-        <div class="gc-bg-blue-alpha gc-callout-blue" style="margin-top: 1rem; ; padding: 1rem; border-radius: 0.5rem; ">
-          <h4 class="gc-text-blue" style="margin-top: 0">✅ CONSENT (can/may/are allowed to)</h4>
-          <p style="margin: 0">What you're permitted to do or request</p>
-        </div>
+        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
+          <thead>
+            <tr style="background: #b91c1c; color: #ffffff">
+              <th style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1); text-align: left; color: #ffffff">❌ Wrong</th>
+              <th style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1); text-align: left; color: #ffffff">✅ Correct</th>
+              <th style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1); text-align: left; color: #ffffff">Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">She shoulds rest.</td><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">She <strong>should</strong> rest.</td><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">Modals never add -s.</td></tr>
+            <tr style="background: rgba(0,0,0,0.02)"><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">You must to finish.</td><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>must finish</strong>.</td><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">No "to" after true modals.</td></tr>
+            <tr><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">You musted take it.</td><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>had to</strong> take it.</td><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">Modals don't take -ed.</td></tr>
+            <tr style="background: rgba(0,0,0,0.02)"><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">You can driving.</td><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>can drive</strong>.</td><td style="padding: 0.55rem; border: 1px solid rgba(0,0,0,0.1)">Base verb only — no -ing.</td></tr>
+          </tbody>
+        </table>
       `,
       tipBox: {
         title: "💡 Grammar Rule",
-        content: "Modals don't change form! No -s, no -ed, no -ing. 'She shoulds'? NO. 'You musted'? NO. Just: You should, She must, I can.",
+        content: "True modals (should, must, can, may, will) never change form. No -s, no -ed, no -ing, no 'to' after them. 'Need to' is a semi-modal — it DOES take 'to' and changes form (he needs to…).",
       },
       exercises: [
         {
           id: "modals-intro-ex-1",
-          title: "Practice: Modal + Base Verb",
+          title: "Practice: modal + base verb",
           instructions: "Choose the correct sentence.",
           items: [
             {
@@ -412,8 +593,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "b", label: "You should takes this medicine with food." },
                 { value: "a", label: "You should take this medicine with food." },
                 { value: "c", label: "You should to take this medicine with food." },
-            ],
-            expectedAnswer: "a",
+              ],
+              expectedAnswer: "a",
             },
             {
               type: "radio",
@@ -422,71 +603,113 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "a", label: "You must not to drive after taking this." },
                 { value: "c", label: "You must not driving after taking this." },
                 { value: "b", label: "You must not drive after taking this." },
-            ],
-            expectedAnswer: "b",
+              ],
+              expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "modals-decision-tree",
+          title: "Run a scenario through the decision tree",
+          instructions: "Pick the best modal for each situation.",
+          items: [
+            {
+              type: "radio",
+              label: "Label says: \"DO NOT OPERATE HEAVY MACHINERY AFTER USE.\" (Q1 = dangerous)",
+              options: [
+                { value: "should", label: "You should not drive." },
+                { value: "must", label: "You must not drive." },
+                { value: "could", label: "You could not drive." },
+              ],
+              expectedAnswer: "must",
+            },
+            {
+              type: "radio",
+              label: "Nurse to patient: drinking more water is a good idea. (Q2 = good idea, optional)",
+              options: [
+                { value: "must", label: "You must drink more water." },
+                { value: "should", label: "You should drink more water." },
+                { value: "may", label: "You may drink more water." },
+              ],
+              expectedAnswer: "should",
+            },
+            {
+              type: "radio",
+              label: "Patient at reception, asking politely: (Q3 = asking permission, formal)",
+              options: [
+                { value: "may", label: "May I have a copy of my records?" },
+                { value: "must", label: "Must I have a copy of my records?" },
+                { value: "should", label: "Should I have a copy of my records?" },
+              ],
+              expectedAnswer: "may",
             },
           ],
         },
       ],
     },
 
-    // Section 6: Advice & Caution (should/must)
+    // =================================================================
+    // 6. Should vs Must — The pharmacist's warning
+    // =================================================================
     {
-      id: "modals-advice-caution",
+      id: "should-vs-must",
       stepNumber: 5,
-      title: "Advice & Caution: should/must",
-      icon: "⚠️",
+      title: "The pharmacist's warning: should vs. must",
+      icon: "💊",
       explanation: `
-        <h3>Should/Shouldn't = Health Advice</h3>
-        <p><strong>Should</strong> gives advice - things that are good for you, but you have a choice:</p>
+        ${sceneCard("pharmacyCounter", "At the pharmacy counter", "amber")}
 
-        <div class="gc-bg-green-alpha gc-callout-green" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; ">
-          <ul style="margin: 0">
+        ${dialogue([
+          { speaker: "Pharmacist", avatar: "💊", side: "left", tone: "terracotta", text: "\"Before I hand this over — a few things. <strong>You should</strong> take it with food. <strong>You must</strong> finish the full bottle. And <strong>you must not</strong> drink alcohol while taking it.\"" },
+          { speaker: "Patient", avatar: "🧑", side: "right", tone: "sage", text: "\"What about coffee?\"" },
+          { speaker: "Pharmacist", avatar: "💊", side: "left", tone: "terracotta", text: "\"Coffee is fine. <strong>You can</strong> have your normal cup.\"" },
+        ])}
+
+        <h3>Should = friendly advice</h3>
+        <p><strong>Should</strong> means <em>this is a good idea, but you have a choice</em>.</p>
+        <div class="gc-bg-green-alpha gc-callout-green" style="margin: 0.75rem 0; padding: 0.9rem 1rem; border-radius: 0.5rem">
+          <ul style="margin: 0; padding-left: 1.25rem">
             <li>You <strong>should</strong> drink plenty of water.</li>
-            <li>You <strong>should</strong> take this medicine with food.</li>
-            <li>You <strong>shouldn't</strong> skip doses of your medication.</li>
+            <li>You <strong>should</strong> take this with food.</li>
+            <li>You <strong>shouldn't</strong> skip any doses.</li>
           </ul>
         </div>
 
-        <h3>Must/Must Not = Safety Caution</h3>
-        <p><strong>Must</strong> expresses strong requirements. <strong>Must not</strong> means dangerous/forbidden:</p>
-
-        <div style="margin: 1rem 0; padding: 1rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem; border-left: 4px solid #dc2626">
-          <ul style="margin: 0">
+        <h3>Must / Must not = safety warning</h3>
+        <p><strong>Must</strong> means <em>required</em>. <strong>Must not</strong> means <em>dangerous or forbidden</em>.</p>
+        <div class="gc-bg-red" style="margin: 0.75rem 0; padding: 0.9rem 1rem; border-radius: 0.5rem">
+          <ul style="margin: 0; padding-left: 1.25rem">
             <li>You <strong>must</strong> finish all the antibiotics.</li>
-            <li>You <strong>must not</strong> drink alcohol while taking this medication.</li>
-            <li>You <strong>must not</strong> drive after taking this medicine.</li>
+            <li>You <strong>must not</strong> drink alcohol with this medication.</li>
+            <li>You <strong>must not</strong> drive after taking this.</li>
           </ul>
         </div>
 
-        <h3>Should vs Must: What's the Difference?</h3>
+        <h3>Side by side</h3>
         <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
-          <tr>
-            <td class="gc-bg-green-alpha" style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); "><strong>Should</strong></td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Recommended (good idea, but optional)</td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>should</strong> take it with food.</td>
-          </tr>
-          <tr>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)"><strong>Must</strong></td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Required (necessary, no choice)</td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>must</strong> take it twice daily.</td>
-          </tr>
-          <tr>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)"><strong>Must Not</strong></td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">Forbidden (dangerous)</td>
-            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>must not</strong> drink alcohol.</td>
-          </tr>
+          <thead>
+            <tr class="gc-bg-amber-alpha">
+              <th style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Form</th>
+              <th style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Meaning</th>
+              <th style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1); text-align: left">Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="gc-bg-green-alpha"><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)"><strong>should</strong></td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">Recommended (good idea, but optional)</td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>should</strong> take it with food.</td></tr>
+            <tr style="background: rgba(220,38,38,0.08)"><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)"><strong>must</strong></td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">Required (necessary, no choice)</td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>must</strong> finish all doses.</td></tr>
+            <tr style="background: rgba(220,38,38,0.15)"><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)"><strong>must not</strong></td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">Forbidden (dangerous)</td><td style="padding: 0.6rem; border: 1px solid rgba(0,0,0,0.1)">You <strong>must not</strong> drink alcohol.</td></tr>
+          </tbody>
         </table>
       `,
       tipBox: {
         title: "⚠️ Safety First",
-        content: "When you see 'must not' on medication labels or from your doctor, take it seriously. It's not just advice - it's a warning about something dangerous!",
+        content: "When a label or doctor says 'must not', treat it seriously — it's a warning about something dangerous, not just advice you can choose to follow.",
       },
       exercises: [
         {
           id: "advice-caution-ex-1",
-          title: "Practice: Should vs Must",
-          instructions: "Choose the correct modal for each situation.",
+          title: "Practice: should vs. must",
+          instructions: "Type the missing modal or choose one.",
           items: [
             {
               type: "text",
@@ -520,56 +743,77 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
             },
           ],
         },
+        {
+          id: "advice-caution-warning-label",
+          title: "Read this real warning label — pick every line that means DANGEROUS",
+          instructions: "Check every box that signals a safety warning (not just advice).",
+          items: [
+            {
+              type: "checkbox",
+              label: "From a prescription label. Which lines are DANGEROUS warnings?",
+              options: [
+                { value: "a", label: "You must not drink alcohol while taking this." },
+                { value: "b", label: "You should take this with food to avoid stomach upset." },
+                { value: "c", label: "Do not drive or operate heavy machinery after use." },
+                { value: "d", label: "You may take this medication with other vitamins." },
+                { value: "e", label: "Call 911 immediately if you experience chest pain." },
+                { value: "f", label: "You can refill this prescription up to 3 times." },
+              ],
+              expectedAnswers: ["a", "c", "e"],
+            },
+          ],
+        },
       ],
     },
 
-    // Section 7: Permission & Necessity
+    // =================================================================
+    // 7. Reception Desk — Permission & Necessity
+    // =================================================================
     {
-      id: "modals-permission-necessity",
+      id: "permission-rights",
       stepNumber: 6,
-      title: "Permission & Necessity: can/may/need to",
-      icon: "✅",
+      title: "Reception desk: can, may, need to, allowed to",
+      icon: "🙋",
       explanation: `
-        <h3>Can/May/Are Allowed To = Permission & Rights</h3>
-        <p>In healthcare, you have rights. These modals show what you're allowed to do:</p>
+        ${sceneCard("receptionDesk", "Front desk — check-in window", "blue")}
 
-        <div class="gc-bg-green-alpha gc-callout-green" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; ">
-          <h4 class="gc-text-green" style="margin-top: 0">CAN = Informal Permission</h4>
-          <ul style="margin: 0.5rem 0 0 0">
-            <li><strong>Can I</strong> ask you a question about my prescription?</li>
-            <li><strong>Can I</strong> bring someone with me to the appointment?</li>
-          </ul>
+        <h3>Your rights in a clinic</h3>
+        <p>You're not just a patient — you have rights. Four patterns help you use them out loud:</p>
+
+        <div style="display: grid; gap: 0.75rem; margin: 1rem 0">
+          <div class="gc-bg-green-alpha gc-callout-green" style="padding: 0.85rem 1rem; border-radius: 0.5rem">
+            <h4 class="gc-text-green" style="margin: 0 0 0.25rem 0">CAN I…? — informal permission</h4>
+            <p style="margin: 0">"<strong>Can I</strong> ask a quick question?" &nbsp;·&nbsp; "<strong>Can I</strong> bring my husband?"</p>
+          </div>
+          <div class="gc-callout-purple" style="padding: 0.85rem 1rem; border-radius: 0.5rem; background: rgba(168,85,247,0.12)">
+            <h4 class="gc-text-purple" style="margin: 0 0 0.25rem 0">MAY I…? — formal / respectful</h4>
+            <p style="margin: 0">"<strong>May I</strong> have a copy of my records?" &nbsp;·&nbsp; "<strong>May I</strong> request a translator?"</p>
+          </div>
+          <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 0.85rem 1rem; border-radius: 0.5rem">
+            <h4 class="gc-text-blue" style="margin: 0 0 0.25rem 0">I'M ALLOWED TO… — your right</h4>
+            <p style="margin: 0">"I<strong>'m allowed to</strong> see my test results." &nbsp;·&nbsp; "I<strong>'m allowed to</strong> request a second opinion."</p>
+          </div>
+          <div class="gc-bg-amber-alpha" style="padding: 0.85rem 1rem; border-radius: 0.5rem; border-left: 4px solid #d97706">
+            <h4 style="margin: 0 0 0.25rem 0; color: #b45309">NEED TO — everyday necessity</h4>
+            <p style="margin: 0">"<strong>I need to</strong> speak with a nurse." &nbsp;·&nbsp; "Do <strong>I need to</strong> fast before the test?"</p>
+          </div>
         </div>
 
-        <div class="gc-callout-purple" style="margin: 1rem 0; padding: 1rem; background: rgba(168, 85, 247, 0.1); border-radius: 0.5rem; ">
-          <h4 style="color: #a855f7; margin-top: 0">MAY = Formal Permission</h4>
-          <ul style="margin: 0.5rem 0 0 0">
-            <li><strong>May I</strong> request a copy of my medical records?</li>
-            <li><strong>May I</strong> have a translator for my appointment?</li>
-          </ul>
-        </div>
+        <h3>Rosa's second visit</h3>
 
-        <div class="gc-bg-blue-alpha gc-callout-blue" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; ">
-          <h4 class="gc-text-blue" style="margin-top: 0">ARE ALLOWED TO = Your Rights</h4>
-          <ul style="margin: 0.5rem 0 0 0">
-            <li>You <strong>are allowed to</strong> request a second opinion.</li>
-            <li>You <strong>are allowed to</strong> access your health records.</li>
-          </ul>
-        </div>
-
-        <h3>Need To = Necessity</h3>
-        <p><strong>Need to</strong> expresses something required for your health (similar to must, but more natural in conversation):</p>
-        <div class="gc-bg-white" style="margin: 1rem 0; padding: 1rem; ; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">
-          <ul style="margin: 0">
-            <li>You <strong>need to</strong> fast for 12 hours before the blood test.</li>
-            <li>Do I <strong>need to</strong> make an appointment?</li>
-          </ul>
-        </div>
+        ${dialogue([
+          { speaker: "Rosa", avatar: "🧕", side: "left", tone: "sage", text: "\"Good morning. <strong>May I</strong> pick up my test results?\"" },
+          { speaker: "Receptionist", avatar: "💁", side: "right", tone: "blue", text: "\"Of course. <strong>You need to</strong> show a photo ID.\"" },
+          { speaker: "Rosa", avatar: "🧕", side: "left", tone: "sage", text: "\"Here's my license. <strong>Can I</strong> also request a copy in Spanish?\"" },
+          { speaker: "Receptionist", avatar: "💁", side: "right", tone: "blue", text: "\"Yes — <strong>you're allowed to</strong> ask for any document in your preferred language.\"" },
+          { speaker: "Rosa", avatar: "🧕", side: "left", tone: "sage", text: "\"Thank you. Do <strong>I need to</strong> sign anything?\"" },
+          { speaker: "Receptionist", avatar: "💁", side: "right", tone: "blue", text: "\"Just this release form. Then <strong>you can</strong> leave whenever you're ready.\"" },
+        ])}
       `,
       exercises: [
         {
           id: "permission-necessity-ex-1",
-          title: "Practice: Permission & Necessity",
+          title: "Practice: permission & necessity",
           instructions: "Choose the best modal for each situation.",
           items: [
             {
@@ -579,8 +823,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "may", label: "May I ask you a question?" },
                 { value: "must", label: "Must I ask you something?" },
                 { value: "can", label: "Can I ask you something?" },
-            ],
-            expectedAnswer: "can",
+              ],
+              expectedAnswer: "can",
             },
             {
               type: "radio",
@@ -589,8 +833,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "allowed", label: "I am allowed to access my medical records." },
                 { value: "can", label: "I can see my records." },
                 { value: "should", label: "I should see my records." },
-            ],
-            expectedAnswer: "allowed",
+              ],
+              expectedAnswer: "allowed",
             },
             {
               type: "text",
@@ -601,145 +845,208 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
               type: "text",
               label: "You ___ bring anything special for a routine checkup. (not required)",
               expectedAnswers: ["don't need to", "do not need to"],
-            } as ExerciseItem,
+            },
+          ],
+        },
+        {
+          id: "permission-fill-blanks",
+          title: "Finish Rosa's reception-desk sentences",
+          instructions: "Type the missing words.",
+          items: [
+            {
+              type: "text",
+              label: "Rosa (formal request): \"___ I have my results in Spanish?\"",
+              expectedAnswers: ["May", "may"],
+            },
+            {
+              type: "text",
+              label: "Receptionist: \"Yes, you ___ ___ ask for any document in your language.\" (two words — legal right)",
+              expectedAnswers: ["are allowed to", "'re allowed to"],
+            },
+            {
+              type: "text",
+              label: "Receptionist: \"You ___ ___ show a photo ID.\" (two words — required)",
+              expectedAnswer: "need to",
+            },
           ],
         },
       ],
     },
 
-    // Section 8: Medical Contexts
+    // =================================================================
+    // 8. Role-play stack
+    // =================================================================
     {
-      id: "medical-contexts",
+      id: "medical-roleplays",
       stepNumber: 7,
-      title: "Real-World Medical Contexts",
-      icon: "🏥",
+      title: "Role-play stack: 3 real scenes",
+      icon: "🎭",
       explanation: `
-        <h3>Prescription Labels (Imperatives)</h3>
-        <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #d97757; border-radius: 0.5rem; margin: 1rem 0">
-          <p class="gc-text-terracotta" style="font-weight: bold; ; margin: 0 0 0.5rem 0">MEDICATION INSTRUCTIONS:</p>
-          <ul style="margin: 0">
-            <li><strong>Take</strong> 1 tablet twice daily with food.</li>
-            <li><strong>Avoid</strong> alcohol while taking this medication.</li>
-            <li><strong>Do not</strong> drive or operate heavy machinery.</li>
-          </ul>
+        ${sceneCard("nurseInstructions", "Bedside, second floor", "red")}
+
+        <h3>Three mini-scenes — whose turn to speak?</h3>
+
+        <div style="display: grid; gap: 1.5rem; margin: 1.25rem 0">
+
+          <div class="gc-bg-white" style="padding: 1rem 1.25rem; border-radius: 0.75rem; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 6px rgba(0,0,0,0.04)">
+            <h4 class="gc-text-terracotta" style="margin: 0 0 0.5rem 0">Scene A · Patient ↔ Doctor</h4>
+            ${dialogue([
+              { speaker: "Doctor", avatar: "🧑‍⚕️", side: "left", tone: "terracotta", text: "\"Your blood pressure is high. <strong>You must</strong> start this medication today.\"" },
+              { speaker: "Patient", avatar: "👨", side: "right", tone: "sage", text: "\"<strong>I understand</strong>. <strong>Can I</strong> take it at night instead of morning?\"" },
+              { speaker: "Doctor", avatar: "🧑‍⚕️", side: "left", tone: "terracotta", text: "\"Yes — <strong>you can</strong> take it whenever works, as long as it's the same time every day.\"" },
+            ])}
+          </div>
+
+          <div class="gc-bg-white" style="padding: 1rem 1.25rem; border-radius: 0.75rem; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 6px rgba(0,0,0,0.04)">
+            <h4 class="gc-text-purple" style="margin: 0 0 0.5rem 0">Scene B · Patient ↔ Pharmacist</h4>
+            ${dialogue([
+              { speaker: "Pharmacist", avatar: "💊", side: "left", tone: "purple", text: "\"Before you leave — <strong>don't mix</strong> this with cold medicine. <strong>Call</strong> us if you feel dizzy.\"" },
+              { speaker: "Patient", avatar: "👵", side: "right", tone: "sage", text: "\"<strong>May I</strong> take it with my blood pressure pill?\"" },
+              { speaker: "Pharmacist", avatar: "💊", side: "left", tone: "purple", text: "\"<strong>You should</strong> wait one hour between them.\"" },
+            ])}
+          </div>
+
+          <div class="gc-bg-white" style="padding: 1rem 1.25rem; border-radius: 0.75rem; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 6px rgba(0,0,0,0.04)">
+            <h4 class="gc-text-blue" style="margin: 0 0 0.5rem 0">Scene C · Nurse ↔ Patient (bedside)</h4>
+            ${dialogue([
+              { speaker: "Nurse", avatar: "👩‍⚕️", side: "left", tone: "blue", text: "\"<strong>Please</strong> press this button if you need anything. <strong>Don't</strong> get up by yourself tonight.\"" },
+              { speaker: "Patient", avatar: "🧓", side: "right", tone: "sage", text: "\"<strong>Can I</strong> still have visitors?\"" },
+              { speaker: "Nurse", avatar: "👩‍⚕️", side: "left", tone: "blue", text: "\"Yes, but <strong>you need to</strong> rest between visits.\"" },
+            ])}
+          </div>
+
         </div>
 
-        <h3>Doctor's Advice (Declaratives with Modals)</h3>
-        <div class="gc-bg-white" style="padding: 1rem; border: 2px solid #7ba884; border-radius: 0.5rem; margin: 1rem 0">
-          <p class="gc-text-sage" style="font-weight: bold; ; margin: 0 0 0.5rem 0">DOCTOR SPEAKING TO PATIENT:</p>
-          <ul style="margin: 0">
-            <li>"<strong>You should</strong> take 1 tablet twice a day with food."</li>
-            <li>"<strong>You must not</strong> drink alcohol while on this medication."</li>
-            <li>"<strong>You can</strong> call if you have any questions."</li>
-          </ul>
-        </div>
-
-        <h3>Clinic Signs (Imperatives)</h3>
-        <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
-          <ul style="margin: 0">
-            <li><strong>Please</strong> check in at the front desk.</li>
-            <li><strong>Wash</strong> your hands before entering.</li>
-            <li><strong>Do not</strong> bring food into the exam room.</li>
-          </ul>
-        </div>
-
-        <h3>Patient to Doctor (Use Declaratives!)</h3>
-        <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
-          <p style="font-weight: bold">✅ Patients should use declaratives:</p>
-          <ul>
-            <li>"<strong>I will</strong> take it twice a day."</li>
-            <li>"<strong>I need to</strong> ask about the side effects."</li>
-            <li>"<strong>Can I</strong> have a referral?"</li>
-          </ul>
-          <p style="margin-top: 1rem"><strong>❌ DON'T use imperatives with doctors</strong> (too direct/rude)</p>
-        </div>
+        <p><strong>Your turn:</strong> rebuild the missing line in each scene.</p>
       `,
-      tipBox: {
-        title: "💡 Cultural Note",
-        content: "In American medical settings, doctors can use imperatives (they're the authority), but patients should use declaratives to show respect.",
-      },
       exercises: [
         {
-          id: "medical-contexts-ex-1",
-          title: "Practice: Medical Communication",
-          instructions: "Choose the best option for each medical situation.",
+          id: "roleplay-scramble",
+          title: "Rebuild the patient's lines",
+          instructions: "Drag the words into the right order.",
+          items: [
+            {
+              type: "word-scramble",
+              label: "Scene A — patient asking about timing:",
+              words: ["Can", "I", "take", "it", "at", "night"],
+              correctAnswer: "Can I take it at night",
+              hint: "Start with the permission question.",
+            },
+            {
+              type: "word-scramble",
+              label: "Scene B — patient using a formal request:",
+              words: ["May", "I", "take", "it", "with", "my", "blood", "pressure", "pill"],
+              correctAnswer: "May I take it with my blood pressure pill",
+              hint: "Formal = 'May I…?'",
+            },
+            {
+              type: "word-scramble",
+              label: "Nurse — a negative imperative at bedside:",
+              words: ["Don't", "get", "up", "by", "yourself", "tonight"],
+              correctAnswer: "Don't get up by yourself tonight",
+              hint: "Negative imperative — start with \"Don't\".",
+            },
+          ],
+        },
+        {
+          id: "roleplay-match-register",
+          title: "Match the sentence to its scene",
+          instructions: "Who would most likely say each line?",
           items: [
             {
               type: "radio",
-              label: "The medication label says: 'Take with food to avoid stomach upset.'",
+              label: "\"You must start this medication today.\" — who said it?",
               options: [
-                { value: "must", label: "You must take this with food. (required)" },
-                { value: "should", label: "You should take this with food. (advice)" },
-                { value: "can", label: "You can take this with food. (permission)" },
-            ],
-            expectedAnswer: "should",
-            },
-            {
-              type: "radio",
-              label: "The warning says: 'Do not operate machinery after taking.'",
-              options: [
-                { value: "should not", label: "You should not drive. (advice)" },
-                { value: "don't need to", label: "You don't need to drive. (not required)" },
-                { value: "must not", label: "You must not drive. (dangerous)" },
-            ],
-            expectedAnswer: "must not",
-            },
-            {
-              type: "radio",
-              label: "What should patients use when speaking to doctors?",
-              options: [
-                { value: "a", label: "Declaratives - 'I will take it twice a day'" },
-                { value: "b", label: "Imperatives - 'Give me stronger medication'" },
-                { value: "c", label: "Either is fine" },
+                { value: "doctor", label: "A doctor to a patient" },
+                { value: "patient-doctor", label: "A patient to a doctor" },
+                { value: "patient-pharmacist", label: "A patient to a pharmacist" },
               ],
-              expectedAnswer: "a",
+              expectedAnswer: "doctor",
+            },
+            {
+              type: "radio",
+              label: "\"May I take it with my blood pressure pill?\" — who said it?",
+              options: [
+                { value: "pharmacist", label: "A pharmacist to a patient" },
+                { value: "patient", label: "A patient to a pharmacist" },
+                { value: "nurse", label: "A nurse to a patient" },
+              ],
+              expectedAnswer: "patient",
+            },
+            {
+              type: "radio",
+              label: "\"Press this button if you need anything.\" — who said it?",
+              options: [
+                { value: "nurse", label: "A nurse to a patient" },
+                { value: "patient", label: "A patient to a nurse" },
+                { value: "doctor", label: "A patient to a doctor" },
+              ],
+              expectedAnswer: "nurse",
             },
           ],
         },
       ],
     },
 
-    // Section 9: Workplace Communication
+    // =================================================================
+    // 9. Workplace — Calling out sick
+    // =================================================================
     {
-      id: "workplace",
+      id: "workplace-callout",
       stepNumber: 8,
-      title: "Workplace Communication",
+      title: "Back to work: calling out sick",
       icon: "💼",
       explanation: `
-        <h3>Boss to Employee (Can Use Both)</h3>
-        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0">
-          <p><strong>Imperative:</strong> "Please submit your timesheet by Friday."</p>
-          <p><strong>Declarative:</strong> "You need to submit your timesheet by Friday."</p>
+        ${sceneCard("workplaceEmailLaptop", "Kitchen table, 7:02 AM", "blue")}
+
+        <h3>Same grammar, different power dynamic</h3>
+        <p>Your boss can use imperatives with you ("Send the report by noon"). You usually <strong>shouldn't</strong> do the same back — it sounds like an order. Declaratives and polite questions are your safer tools.</p>
+
+        <h3>Two ways to call in sick</h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0">
+          <div style="padding: 0.9rem 1rem; border-radius: 0.625rem; background: #dc2626; color: #ffffff; box-shadow: 0 1px 4px rgba(0,0,0,0.15)">
+            <h4 style="margin: 0 0 0.4rem 0; color: #ffffff">❌ Too direct</h4>
+            <p style="margin: 0; color: #ffffff"><em>"Give me the day off. I'm sick."</em></p>
+            <p style="margin: 0.4rem 0 0; color: #ffffff; font-size: 0.85rem; opacity: 0.92">Bare imperative to your manager = sounds like a demand.</p>
+          </div>
+          <div class="gc-bg-green-alpha gc-callout-green" style="padding: 0.9rem 1rem; border-radius: 0.625rem">
+            <h4 class="gc-text-green" style="margin: 0 0 0.4rem 0">✅ Respectful</h4>
+            <p style="margin: 0"><em>"Hi Maria — <strong>I'm not feeling well</strong> and <strong>I'd like to</strong> take a sick day. <strong>Could I</strong> join the meeting tomorrow instead?"</em></p>
+            <p style="margin: 0.4rem 0 0; font-size: 0.85rem; opacity: 0.85">Declarative + polite question = professional.</p>
+          </div>
         </div>
 
-        <h3>Employee to Boss (Use Declaratives!)</h3>
-        <div class="gc-bg-terracotta-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
-          <p>✅ <strong>Use declaratives</strong> to sound respectful:</p>
-          <ul>
-            <li>"<strong>I will submit</strong> it by Friday."</li>
-            <li>"<strong>I'd like to</strong> request time off."</li>
-            <li>"<strong>Could I</strong> have more time?"</li>
-          </ul>
-          <p style="margin-top: 1rem">❌ <strong>DON'T use imperatives</strong> with your boss:</p>
-          <ul>
-            <li>❌ "Give me more time." → ✅ "Could I have more time?"</li>
-            <li>❌ "Approve my request." → ✅ "Could you please approve my request?"</li>
-          </ul>
-        </div>
+        <h3>Monday morning call</h3>
 
-        <h3>Coworker to Coworker (Polite Imperatives OK)</h3>
-        <div class="gc-bg-sage-alpha" style="padding: 1rem; border-radius: 0.5rem; margin: 1rem 0">
-          <ul>
-            <li>"<strong>Please</strong> send me that file."</li>
-            <li>"<strong>Let me know</strong> if you need help."</li>
+        ${dialogue([
+          { speaker: "Manager", avatar: "👩‍💼", side: "left", tone: "blue", text: "\"Good morning, Luis. What's up?\"" },
+          { speaker: "Luis", avatar: "👨", side: "right", tone: "sage", text: "\"Hi Maria. <strong>I'm really sorry</strong> — <strong>I have</strong> a bad fever. <strong>I think I need to</strong> stay home today.\"" },
+          { speaker: "Manager", avatar: "👩‍💼", side: "left", tone: "blue", text: "\"Okay. <strong>Please</strong> rest. <strong>You don't need to</strong> join the standup.\"" },
+          { speaker: "Luis", avatar: "👨", side: "right", tone: "sage", text: "\"Thank you. <strong>Could I</strong> submit the report tomorrow instead?\"" },
+          { speaker: "Manager", avatar: "👩‍💼", side: "left", tone: "blue", text: "\"Sure — <strong>you can</strong>. Feel better.\"" },
+        ])}
+
+        <h3>Employee-to-boss toolkit</h3>
+        <div class="gc-bg-blue-alpha" style="padding: 0.9rem 1rem; border-radius: 0.625rem; margin: 1rem 0">
+          <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.85">
+            <li>"<strong>I'd like to</strong> request time off next Friday."</li>
+            <li>"<strong>Could I</strong> have a little more time to finish this?"</li>
+            <li>"<strong>Would you</strong> mind reviewing my draft when you're free?"</li>
+            <li>"<strong>I will</strong> send the updated file by 5 PM."</li>
+            <li>"<strong>I'm not sure</strong> I understand — <strong>could you</strong> explain again?"</li>
           </ul>
         </div>
       `,
+      tipBox: {
+        title: "💡 Cultural note",
+        content: "In American workplaces, 'please' and 'could you' do a lot of work. Using them with your boss is expected — not a sign of weakness.",
+      },
       exercises: [
         {
           id: "workplace-ex-1",
-          title: "Practice: Workplace Communication",
-          instructions: "Choose the appropriate form for workplace situations.",
+          title: "Practice: workplace communication",
+          instructions: "Choose the appropriate form for each workplace situation.",
           items: [
             {
               type: "radio",
@@ -748,8 +1055,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "b", label: "Imperatives - 'Submit it by Friday'" },
                 { value: "a", label: "Declaratives - 'I will submit it by Friday'" },
                 { value: "c", label: "Either is fine" },
-            ],
-            expectedAnswer: "a",
+              ],
+              expectedAnswer: "a",
             },
             {
               type: "radio",
@@ -758,8 +1065,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "b", label: "Only imperatives" },
                 { value: "c", label: "Only declaratives" },
                 { value: "a", label: "Both imperatives and declaratives" },
-            ],
-            expectedAnswer: "a",
+              ],
+              expectedAnswer: "a",
             },
             {
               type: "radio",
@@ -768,8 +1075,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "b", label: "I'd like to request time off." },
                 { value: "a", label: "Approve my time off request." },
                 { value: "c", label: "Give me Friday off." },
-            ],
-            expectedAnswer: "b",
+              ],
+              expectedAnswer: "b",
             },
             {
               type: "radio",
@@ -778,35 +1085,57 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "b", label: "It's grammatically incorrect" },
                 { value: "a", label: "It sounds too direct and disrespectful" },
                 { value: "c", label: "Bosses don't understand imperatives" },
-            ],
-            expectedAnswer: "a",
+              ],
+              expectedAnswer: "a",
+            },
+          ],
+        },
+        {
+          id: "workplace-rude-filter",
+          title: "Check every line that would sound RUDE to your manager",
+          instructions: "You're writing an email to your boss. Check every line that would sound too direct or disrespectful.",
+          items: [
+            {
+              type: "checkbox",
+              label: "Pick all the lines that WOULD sound rude to your manager:",
+              options: [
+                { value: "a", label: "Give me Friday off." },
+                { value: "b", label: "I'd like to request Friday off." },
+                { value: "c", label: "Approve my PTO request now." },
+                { value: "d", label: "Could I have Friday off next week?" },
+                { value: "e", label: "Send me the updated file." },
+                { value: "f", label: "Would you mind sharing the updated file when you have a moment?" },
+              ],
+              expectedAnswers: ["a", "c", "e"],
             },
           ],
         },
       ],
     },
 
-    // Section 10: Summary
+    // =================================================================
+    // 10. Summary — Discharge paperwork
+    // =================================================================
     {
-      id: "summary",
-      title: "Quick Reference Summary",
-      icon: "📋",
+      id: "summary-discharge",
+      title: "Discharge paperwork: your quick reference",
+      icon: "🏁",
       explanation: `
+        ${sceneCard("hospitalHallway", "Walking out — feeling better", "green")}
+
         <h3>Imperatives</h3>
         <ul>
-          <li><strong>Structure:</strong> Base verb (no subject)</li>
-          <li><strong>Examples:</strong> Take this. Don't drive. Please wait.</li>
-          <li><strong>Use:</strong> Instructions, signs, prescriptions, authority to subordinate</li>
+          <li><strong>Structure:</strong> base verb (no subject) — <em>Take this. Don't drive. Please wait.</em></li>
+          <li><strong>Where you see it:</strong> signs, labels, prescriptions; bosses, doctors, nurses giving instructions.</li>
         </ul>
 
         <h3>Declaratives</h3>
         <ul>
-          <li><strong>Structure:</strong> Subject + verb</li>
-          <li><strong>Examples:</strong> You should rest. You need to take this. I will call.</li>
-          <li><strong>Use:</strong> Advice, conversation, speaking to authority</li>
+          <li><strong>Structure:</strong> subject + verb — <em>You should rest. I'll call tomorrow.</em></li>
+          <li><strong>Where you use it:</strong> speaking to doctors, bosses, anyone you want to respect.</li>
         </ul>
 
-        <h3>Modals Cheat Sheet</h3>
+        <h3>Modals cheat sheet</h3>
         <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem">
           <thead>
             <tr class="gc-bg-terracotta-alpha">
@@ -816,53 +1145,32 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="gc-bg-green-alpha" style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); ">Advice</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">should/shouldn't</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Recommended</td>
-            </tr>
-            <tr>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)">Caution</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">must/must not</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Required/Forbidden</td>
-            </tr>
-            <tr>
-              <td class="gc-bg-blue-alpha" style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); ">Consent</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">can/may</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Permission</td>
-            </tr>
-            <tr>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(251, 191, 36, 0.1)">Necessity</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">need to</td>
-              <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Required</td>
-            </tr>
+            <tr><td class="gc-bg-green-alpha" style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Advice</td><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">should / shouldn't</td><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Recommended</td></tr>
+            <tr><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(220, 38, 38, 0.1)">Caution</td><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">must / must not</td><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Required / Forbidden</td></tr>
+            <tr><td class="gc-bg-blue-alpha" style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Consent</td><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">can / may</td><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Permission</td></tr>
+            <tr><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); background: rgba(251, 191, 36, 0.1)">Necessity</td><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">need to</td><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Required (conversational)</td></tr>
+            <tr><td class="gc-bg-purple-alpha" style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Rights</td><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">are allowed to</td><td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1)">Legal / official permission</td></tr>
           </tbody>
         </table>
 
-        <h3>Politeness Guidelines</h3>
+        <h3>Politeness cheat sheet</h3>
         <table style="width: 100%; border-collapse: collapse; margin: 1rem 0">
-          <tr>
-            <td style="padding: 0.5rem; border: 1px solid #ddd"><strong>Speaking to boss/doctor</strong></td>
-            <td style="padding: 0.5rem; border: 1px solid #ddd">Declaratives only</td>
-          </tr>
-          <tr style="background: rgba(0,0,0,0.02)">
-            <td style="padding: 0.5rem; border: 1px solid #ddd"><strong>Speaking to coworker</strong></td>
-            <td style="padding: 0.5rem; border: 1px solid #ddd">Polite imperatives OK</td>
-          </tr>
-          <tr>
-            <td style="padding: 0.5rem; border: 1px solid #ddd"><strong>Written instructions</strong></td>
-            <td style="padding: 0.5rem; border: 1px solid #ddd">Imperatives standard</td>
-          </tr>
+          <tr><td style="padding: 0.55rem; border: 1px solid #ddd"><strong>Speaking to boss / doctor</strong></td><td style="padding: 0.55rem; border: 1px solid #ddd">Declaratives + polite questions only</td></tr>
+          <tr style="background: rgba(0,0,0,0.02)"><td style="padding: 0.55rem; border: 1px solid #ddd"><strong>Speaking to coworker</strong></td><td style="padding: 0.55rem; border: 1px solid #ddd">Polite imperatives ("Please send me the file.") are OK</td></tr>
+          <tr><td style="padding: 0.55rem; border: 1px solid #ddd"><strong>Written instructions</strong></td><td style="padding: 0.55rem; border: 1px solid #ddd">Imperatives are standard</td></tr>
+          <tr style="background: rgba(0,0,0,0.02)"><td style="padding: 0.55rem; border: 1px solid #ddd"><strong>Labels / signs</strong></td><td style="padding: 0.55rem; border: 1px solid #ddd">Imperatives, often with "Please"</td></tr>
         </table>
+
+        ${sceneCard("recoveryHome", "Back home, resting — you've got this.", "sage")}
       `,
       tipBox: {
         title: "💡 Remember",
-        content: "Imperatives = direct/bossy. Declaratives = polite/indirect. When in doubt with authority, use declaratives!",
+        content: "Imperatives = direct. Declaratives = polite. When in doubt with authority, use declaratives — and drop in 'could', 'would', or 'please' to soften any request.",
       },
       exercises: [
         {
           id: "summary-ex-1",
-          title: "Final Review",
+          title: "Final review",
           instructions: "Test your understanding of all concepts.",
           items: [
             {
@@ -872,8 +1180,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
                 { value: "b", label: "You should take this medicine twice a day." },
                 { value: "c", label: "I will take this medicine twice a day." },
                 { value: "a", label: "Take this medicine twice a day." },
-            ],
-            expectedAnswer: "a",
+              ],
+              expectedAnswer: "a",
             },
             {
               type: "radio",
@@ -916,11 +1224,32 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
             },
           ],
         },
+        {
+          id: "summary-word-select",
+          title: "One last check — find every imperative verb",
+          instructions: "Click each word that is working as an imperative (a command) in this discharge summary.",
+          items: [
+            {
+              type: "word-select",
+              label: "Tap the imperatives:",
+              selectWhat: "imperative verbs",
+              tokens: [
+                { text: "Rest", isTarget: true }, { text: "for" }, { text: "three" }, { text: "days." },
+                { text: "You" }, { text: "should" }, { text: "drink" }, { text: "plenty" }, { text: "of" }, { text: "water." },
+                { text: "Do", isTarget: true }, { text: "not", isTarget: true }, { text: "skip" }, { text: "meals." },
+                { text: "I" }, { text: "recommend" }, { text: "a" }, { text: "follow-up" }, { text: "visit." },
+                { text: "Call", isTarget: true }, { text: "the" }, { text: "nurse" }, { text: "if" }, { text: "the" }, { text: "fever" }, { text: "returns." },
+              ],
+            },
+          ],
+        },
       ],
     },
   ],
 
-  // Mini Quiz (16 questions)
+  // ===================================================================
+  // Mini Quiz (20 questions — 16 preserved skillTags + 4 new)
+  // ===================================================================
   miniQuiz: [
     {
       id: "quiz-1",
@@ -932,7 +1261,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       ],
       correctAnswer: "b",
       explanation:
-        "Imperatives start with the base verb and have no subject. 'Rest for a week' is an imperative command, the subject 'you' is understood.",
+        "Imperatives start with the base verb and have no subject. 'Rest for a week' is an imperative command — the subject 'you' is understood.",
       skillTag: "sentence-type-identification-imperative",
       difficulty: "easy",
     },
@@ -946,7 +1275,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       ],
       correctAnswer: "c",
       explanation:
-        "Declaratives have a subject + verb. 'You need to fast before the test' includes the subject 'you' and gives information/advice.",
+        "Declaratives have a subject + verb. 'You need to fast before the test' has the subject 'you' and gives information.",
       skillTag: "sentence-type-identification-declarative",
       difficulty: "easy",
     },
@@ -957,8 +1286,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "b", label: "Take this twice a day." },
         { value: "a", label: "You take this twice a day." },
         { value: "c", label: "Taking this twice a day." },
-    ],
-    correctAnswer: "b",
+      ],
+      correctAnswer: "b",
       explanation:
         "To form an imperative, remove the subject and start with the base verb: 'Take this twice a day.'",
       skillTag: "transformation-declarative-to-imperative",
@@ -968,18 +1297,9 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       id: "quiz-4",
       question: "Convert to declarative: 'Don't drive after taking this medication.'",
       options: [
-        {
-          value: "a",
-          label: "You must drive after taking this medication.",
-        },
-        {
-          value: "b",
-          label: "You shouldn't drive after taking this medication.",
-        },
-        {
-          value: "c",
-          label: "You will drive after taking this medication.",
-        },
+        { value: "a", label: "You must drive after taking this medication." },
+        { value: "b", label: "You shouldn't drive after taking this medication." },
+        { value: "c", label: "You will drive after taking this medication." },
       ],
       correctAnswer: "b",
       explanation:
@@ -1008,10 +1328,10 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "a", label: "You must take this medicine twice daily." },
         { value: "c", label: "You can take this medicine with food." },
         { value: "b", label: "You should take this medicine with food." },
-    ],
-    correctAnswer: "b",
+      ],
+      correctAnswer: "b",
       explanation:
-        "'Should' expresses advice or recommendation. 'Must' is required/necessary. 'Can' is permission.",
+        "'Should' expresses advice or recommendation. 'Must' is required. 'Can' is permission.",
       skillTag: "modals-should-vs-must-vs-can-advice",
       difficulty: "easy",
     },
@@ -1022,8 +1342,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "b", label: "You must not drink alcohol while taking this." },
         { value: "a", label: "You should not drink alcohol." },
         { value: "c", label: "You don't need to drink alcohol." },
-    ],
-    correctAnswer: "b",
+      ],
+      correctAnswer: "b",
       explanation:
         "'Must not' is used for strong safety warnings: something is dangerous or forbidden.",
       skillTag: "modals-must-not-safety-warning",
@@ -1050,8 +1370,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "a", label: "Give me a referral." },
         { value: "c", label: "Refer me to a specialist." },
         { value: "b", label: "I need a referral." },
-    ],
-    correctAnswer: "b",
+      ],
+      correctAnswer: "b",
       explanation:
         "Patients should use declaratives with doctors to sound respectful: 'I need a referral.'",
       skillTag: "politeness-patient-to-doctor-declarative",
@@ -1064,8 +1384,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "b", label: "May I ask you a question?" },
         { value: "a", label: "Can I ask you a question?" },
         { value: "c", label: "I must ask you a question." },
-    ],
-    correctAnswer: "b",
+      ],
+      correctAnswer: "b",
       explanation:
         "'May I' is more formal and polite than 'Can I' when asking for permission in medical or workplace settings.",
       skillTag: "permission-can-vs-may-polite",
@@ -1076,10 +1396,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       question: "Which sentence talks about a patient right?",
       options: [
         { value: "a", label: "I can see my records." },
-        {
-          value: "b",
-          label: "I am allowed to access my medical records.",
-        },
+        { value: "b", label: "I am allowed to access my medical records." },
         { value: "c", label: "I should see my records." },
       ],
       correctAnswer: "b",
@@ -1098,7 +1415,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       ],
       correctAnswer: "b",
       explanation:
-        "'Need to' shows necessity in conversation, similar to 'must', but more natural with patients.",
+        "'Need to' shows necessity in conversation, similar to 'must' but more natural with patients.",
       skillTag: "necessity-need-to-vs-should",
       difficulty: "medium",
     },
@@ -1110,8 +1427,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "b", label: "must not" },
         { value: "c", label: "should" },
         { value: "a", label: "don't need to" },
-    ],
-    correctAnswer: "a",
+      ],
+      correctAnswer: "a",
       explanation:
         "'Don't need to' means something is not necessary, which matches 'not required'.",
       skillTag: "necessity-dont-need-to-not-required",
@@ -1124,8 +1441,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "b", label: "I'd like to request time off." },
         { value: "a", label: "Approve my time off request." },
         { value: "c", label: "Give me Friday off." },
-    ],
-    correctAnswer: "b",
+      ],
+      correctAnswer: "b",
       explanation:
         "Employees should use polite declaratives with bosses: 'I'd like to request time off.'",
       skillTag: "register-employee-to-boss-declarative",
@@ -1152,24 +1469,87 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "a", label: "You should turn off your phone." },
         { value: "c", label: "I recommend turning off your phone." },
         { value: "b", label: "Please turn off your phone." },
-    ],
-    correctAnswer: "b",
+      ],
+      correctAnswer: "b",
       explanation:
         "Clinic signs typically use polite imperatives: 'Please turn off your phone.'",
       skillTag: "context-clinic-sign-polite-imperative",
       difficulty: "easy",
     },
+    // --- NEW diagnostic items ---
+    {
+      id: "quiz-17",
+      question:
+        "Rearranged correctly, which word order is the doctor's imperative instruction?",
+      options: [
+        { value: "a", label: "Twice a day take this." },
+        { value: "b", label: "You twice a day take this." },
+        { value: "c", label: "Take this twice a day." },
+      ],
+      correctAnswer: "c",
+      explanation:
+        "Imperatives start with the base verb: 'Take this twice a day.' No subject needed.",
+      skillTag: "dialogue-builder-imperative",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-18",
+      question:
+        "Which line on a prescription label is a DANGEROUS warning, not just advice?",
+      options: [
+        { value: "a", label: "Take with food to avoid stomach upset." },
+        { value: "b", label: "You may take this with other vitamins." },
+        { value: "c", label: "Do not drive or operate heavy machinery after use." },
+      ],
+      correctAnswer: "c",
+      explanation:
+        "'Do not drive or operate heavy machinery' signals a safety warning — matches 'must not' in meaning.",
+      skillTag: "warning-label-checkbox",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-19",
+      question:
+        "On the tone ladder, which rung is 'You could try taking this at night instead.'?",
+      options: [
+        { value: "a", label: "Gentlest suggestion" },
+        { value: "b", label: "Strongest / urgent command" },
+        { value: "c", label: "Required (no choice)" },
+      ],
+      correctAnswer: "a",
+      explanation:
+        "'Could' signals the softest rung of the ladder — a gentle suggestion leaving full choice to the listener.",
+      skillTag: "tone-ladder-matching",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-20",
+      question:
+        "In a patient-to-pharmacist role-play, which line uses the correct register?",
+      options: [
+        { value: "a", label: "Give me the cheaper version." },
+        { value: "b", label: "May I get the generic instead?" },
+        { value: "c", label: "You must give me the generic." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Patients should use polite declaratives/questions with pharmacists: 'May I get the generic instead?'",
+      skillTag: "role-play-register-choice",
+      difficulty: "medium",
+    },
   ],
 
   /*
-  TEACHER DIAGNOSTIC NOTES – Medical Instructions Mini Quiz
+  TEACHER DIAGNOSTIC NOTES – Medical Instructions Mini Quiz (20 items)
 
   This mini quiz checks whether students can:
   - Recognize imperatives vs declaratives by structure (subject/no subject).
   - Transform between imperatives and declaratives with matching meaning.
   - Use modals (should/must/can/need to/don't need to) accurately for advice, requirements, safety, and permission.
   - Choose respectful language when speaking to doctors and bosses.
-  - Recognize typical contexts: prescription labels, clinic signs, workplace emails, patient rights.
+  - Rebuild real dialogues (pharmacy, clinic, bedside) using the right register.
+  - Spot dangerous warnings on real medication labels.
+  - Place a sentence on the five-rung tone ladder (strongest → gentlest).
 
   Skill tags:
 
@@ -1199,12 +1579,18 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
   - context-prescription-label-imperative
   - context-clinic-sign-polite-imperative
 
+  NEW (this revision):
+  - dialogue-builder-imperative  → Can the student rebuild a scrambled imperative in correct order?
+  - warning-label-checkbox        → Can the student distinguish a DANGEROUS warning from plain advice on a real label?
+  - tone-ladder-matching          → Can the student place a sentence on the strongest → gentlest ladder?
+  - role-play-register-choice     → Does the student pick the right register when role-playing with a pharmacist/doctor/boss?
+
   How to read the diagnostics:
   - If sentence-type tags are weak →
     Revisit the basic formulas:
     • Imperative: base verb (no subject) → 'Take this.', 'Don't drive.'
     • Declarative: subject + verb → 'You should take this.', 'You must not drive.'
-    Use side‑by‑side tables from this guide and have students label each sentence as IMP or DEC.
+    Use side-by-side tables from this guide and have students label each sentence IMP or DEC.
 
   - If transformation tags are weak →
     Practice converting in both directions:
@@ -1214,38 +1600,44 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
     Emphasize keeping the same meaning (advice vs requirement vs danger).
 
   - If modal tags (should/must/can/need to/don't need to) are weak →
-    Build a three‑column chart on the board:
-    • ADVICE (should/shouldn't) → good idea
-    • SAFETY (must/must not) → dangerous/required
-    • NECESSITY (need to/don't need to) → required/not required
-    Sort real sentences from the guide into the chart and ask students to explain why.
+    Revisit the decision tree in the "Modals crash course" section and sort
+    real sentences into ADVICE / CAUTION / CONSENT / NECESSITY.
 
   - If permission and rights tags are weak →
     Contrast informal vs formal permission and rights:
     • Can I…? (informal question)
     • May I…? (formal question, respectful)
     • I am allowed to… (right/legal permission)
-    Practice short role‑plays: patient with doctor, patient with receptionist, employee with HR.
+    Practice short role-plays: patient with doctor, patient with receptionist, employee with HR.
 
-  - If politeness/register tags are weak →
-    Re‑teach the power relationships:
-    • Doctor/Boss → use declaratives and polite questions ('I need…', 'Could I…?').
+  - If politeness/register tags are weak (incl. role-play-register-choice) →
+    Re-teach the power relationships:
+    • Doctor/Boss → declaratives and polite questions ('I need…', 'Could I…?').
     • Patient/Employee giving instructions → usually not appropriate.
     • Coworkers → polite imperatives with 'please' are okay.
-    Have students rewrite too‑direct imperatives as polite declaratives/questions.
+    Have students rewrite too-direct imperatives as polite declaratives/questions.
 
-  - If context tags (labels/signs/emails) are weak →
+  - If context tags are weak (labels/signs/emails, incl. warning-label-checkbox) →
     Sort sentences by context:
     • Prescription labels and clinic signs → mostly imperatives.
-    • Patient‑to‑doctor and employee‑to‑boss → declaratives/questions.
+    • Patient-to-doctor and employee-to-boss → declaratives/questions.
     • Workplace emails → polite declaratives and indirect questions.
     Ask: Where would you see this sentence? Who is speaking to whom?
 
+  - If dialogue-builder-imperative is weak →
+    Students are likely inserting a subject ("You") into imperative commands.
+    Practice scrambled-word rebuilding with a strict rule: base verb first, no subject.
+
+  - If tone-ladder-matching is weak →
+    Students may not yet feel the continuum "must → need to → should → could".
+    Do a board activity: write one sentence, then have students rewrite it across the five rungs.
+
   Suggested use:
-  - Use this mini quiz after students complete the main sections on imperatives, declaratives, and modals in medical/workplace contexts.
+  - Assign after students complete the main sections on imperatives, declaratives, and modals in medical/workplace contexts.
   - At the class level:
-    • If sentence‑type and transformation tags are red → slow down and do more structural practice and sentence‑rewriting.
-    • If modal and safety tags are red → spend time on ADVICE vs MUST vs MUST NOT with real medication examples.
-    • If politeness/register and rights tags are red → focus on role‑plays (doctor visits, clinic front desk, workplace conversations).
+    • Sentence-type & transformation tags red → slow down, more structural rewriting.
+    • Modal & safety tags red → spend time on ADVICE vs MUST vs MUST NOT with real medication examples.
+    • Politeness/register & rights tags red → focus on role-plays (doctor visits, pharmacy, workplace).
+    • Dialogue-builder / tone-ladder / warning-label tags red → give more scene-based practice from this guide.
   */
 };
