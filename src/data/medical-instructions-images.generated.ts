@@ -12,13 +12,13 @@ export interface MedicalSceneImage {
 
 export const medicalInstructionsImages: Record<string, MedicalSceneImage> = {
   triageWaiting: {
-    url: "https://images.unsplash.com/photo-1764345676856-eaf84d541dc9?w=1200&q=80&auto=format&fit=crop",
-    alt: "A busy hospital emergency room waiting area with rows of chairs.",
-    unsplashId: "xTi__UtunmA",
-    unsplashPage: "https://unsplash.com/photos/dark-hospital-hallway-with-warm-light-xTi__UtunmA",
+    url: "https://images.unsplash.com/photo-1755995083683-50d08cd83d09?w=1200&q=80&auto=format&fit=crop",
+    alt: "A bright, well-lit hospital hallway with doors and clear overhead lighting.",
+    unsplashId: "jhSkpyCwJI0",
+    unsplashPage: "https://unsplash.com/photos/well-lit-hospital-hallway-with-doors-at-the-end-of-the-corridor-jhSkpyCwJI0",
     credit: {
-      name: "Adhitya Sibikumar",
-      url: "https://unsplash.com/@adhitya_2505",
+      name: "Fabio Sasso",
+      url: "https://unsplash.com/@abduzeedo",
     },
   },
   pharmacyCounter: {

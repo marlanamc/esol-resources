@@ -61,8 +61,8 @@ const GLOBAL_EXCLUDE_USERNAMES = new Set(["navymedicine"]);
 export const MEDICAL_SCENES: SceneDefinition[] = [
   {
     id: "triageWaiting",
-    query: "emergency room waiting room hospital chairs triage people",
-    alt: "A busy hospital emergency room waiting area with rows of chairs.",
+    query: "bright hospital waiting area lobby chairs windows daytime clean",
+    alt: "A bright, well-lit hospital hallway or waiting area with clear lighting.",
   },
   {
     id: "pharmacyCounter",
