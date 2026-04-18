@@ -187,7 +187,7 @@ export const vocabImageOverrides: Record<string, string> = {
   "Online": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwxfHxPbmxpbmUlMjBiYW5raW5nfGVufDB8MHx8fDE3NzYzNTk5NTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
   "Refund": "https://images.unsplash.com/photo-1771736006700-cfcf7770bdb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHw4fHxtb25leSUyMGhhbmRlZCUyMHRvJTIweW91fGVufDB8MHx8fDE3NzYzNjAwMzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
   "Landlord": "https://pixabay.com/get/gaa737e5b28d4c371c84952dee96cab007196acd438b68bacb8ba315804a92c3968370676788ae9a099ac3c5740e2bdf5b25418da81d70aa3bf987b8b075558d8_640.jpg",
-  "Manager": "https://pixabay.com/get/g41c6b423c69c323951911a96cdb5d9849729367cc4795290aedd779ffb23d5bb594203178c663466fe6bed9f9b6598f6a1dda7ab7a40d9b8e4ee569b9dfb3c08_640.jpg",
+  "Manager": "https://images.unsplash.com/photo-1664463760781-f159dfe3af30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyMzd8MHwxfHNlYXJjaHwxMXx8cHJvcGVydHklMjBtYW5hZ2VyJTIwY2xpcGJvYXJkJTIwaGFuZGluZyUyMGtleXMlMjBpc29sYXRlZHxlbnwwfDB8fHwxNzc2NDYyOTc5fDA&ixlib=rb-4.1.0&q=80&w=1080",
   "Agent": "https://pixabay.com/get/ge97f16e60bd0d92f9ba55634fd12d3a1a7d485ad22431acfc3e916d69135a56998968d0a0404a7944dee0bf3b3958b95fbc823bb3a82a632b1cb0896d8ae5093_640.jpg",
   "Real Estate": "https://pixabay.com/get/g4318c0ae3f321e33bfdea6ad5f52e5eaddfae3dde20be4c4f84a0650d8e4de58f560a8ce08adce5be83e4fd1c72f0664b4d5555a9af764cc9ea3c998df5883cd_640.jpg",
   "Leak": "https://pixabay.com/get/g346aac06432f889d17e21564dac2dc36a1b87db7bd46659f6a95c1db003552e522f1c6a467c14cfa66f39de9b02ebebb_640.jpg",
