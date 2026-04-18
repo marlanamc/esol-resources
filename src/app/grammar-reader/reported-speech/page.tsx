@@ -10,7 +10,7 @@ import { prisma } from "@/lib/prisma";
 export const metadata: Metadata = {
     title: "Reported Speech - Interactive Grammar Guide | ESOL Teacher Resources",
     description:
-        "Master reported speech (indirect speech) for communicating messages from MyChart, phone calls, and medical appointments. Learn say vs tell and tense backshifting.",
+        "Healthcare-themed reported speech (indirect speech): follow a clinic day with photos, dialogues, and mixed practice for MyChart, reception, exam rooms, pharmacy, and discharge. Say vs tell, tense backshift, and commands.",
 };
 
 export default async function ReportedSpeechPage() {

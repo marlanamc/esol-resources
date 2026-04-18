@@ -67,6 +67,7 @@
     "vocab:images:search": "npx tsx scripts/content/fetch-vocab-images.ts --search",
     "vocab:images:calendar-feel": "npx tsx scripts/content/fetch-calendar-feel-images.ts",
     "content:medical-images": "npx tsx scripts/content/fetch-medical-instructions-images.ts",
+    "content:reported-speech-images": "npx tsx scripts/content/fetch-reported-speech-images.ts",
     "db:seed:weekly-vocab": "node scripts/vocab/seed-weekly-vocab.js && npm run db:sync:vocab-review",
     "db:seed:quizzes": "npm run import:countable-uncountable && npm run import:gerund-infinitive && npm run import:verb-quizzes",
     "db:seed:full": "npx tsx prisma/seed-full-reset.ts && npx tsx prisma/seed-users-only.ts && npx tsx prisma/seed-grammar-only.ts && node prisma/seed.js && npm run db:seed:vocab && npm run db:seed:quizzes && npx tsx prisma/seed-daily-vocab.ts",

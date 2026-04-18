@@ -13,7 +13,7 @@ async function main() {
       title: "Reported Speech Guide",
       type: "guide",
       category: "grammar",
-      description: "Master reported speech for communicating messages from MyChart, phone calls, and medical appointments. Learn say vs tell and tense backshifting.",
+      description: "Healthcare-themed reported speech: clinic-day journey with photos and dialogues for MyChart, reception, exam rooms, pharmacy, and discharge. Say vs tell, tense backshift, and commands.",
     },
     create: {
       id: "reported-speech",
@@ -21,7 +21,7 @@ async function main() {
       type: "guide",
       category: "grammar",
       content: JSON.stringify(reportedSpeechContent),
-      description: "Master reported speech for communicating messages from MyChart, phone calls, and medical appointments. Learn say vs tell and tense backshifting.",
+      description: "Healthcare-themed reported speech: clinic-day journey with photos and dialogues for MyChart, reception, exam rooms, pharmacy, and discharge. Say vs tell, tense backshift, and commands.",
     },
   });
 
