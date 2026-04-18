@@ -1,0 +1,21 @@
+---
+description: Unsplash imagery for grammar guides — avoid cross-guide repeats
+globs:
+  - src/data/*-images.generated.ts
+  - scripts/content/fetch-*-images*.ts
+  - src/content/grammar/**/*.ts
+alwaysApply: false
+---
+
+# Grammar guide images (Unsplash)
+
+## No accidental reuse across guides
+
+- Each grammar guide that uses Unsplash should keep its own `*-images.generated.ts` (or equivalent) module.
+- **Do not reuse the same `unsplashId` in another grammar guide** unless the repetition is **intentional** (for example a deliberate cross-reference learners should recognize) or **strictly necessary** for clarity. When reusing, add a short comment next to the entry (or in the fetch script) explaining why.
+- When adding or refetching images for one guide, treat **every other guide’s `unsplashId` values as reserved**. Prefer extending the relevant `fetch-*.ts` script so the Unsplash picker seeds `usedPhotoIds` from other generated modules (see `fetch-reported-speech-images.ts` and `medical-instructions-images.generated.ts`).
+- After edits, ensure **no duplicate `unsplashId` strings** appear across `src/data/*-images.generated.ts` except where documented as intentional.
+
+## Attribution
+
+- Keep `credit.name`, `credit.url`, `unsplashPage`, and `alt` accurate and learner-appropriate when swapping photos.
