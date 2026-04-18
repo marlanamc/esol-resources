@@ -161,12 +161,18 @@ function redirectCanonicalGrammarGuideIfNeeded(
     return;
   }
 
-  const slug = completionKeyFromActivityTitle(activity.title);
+  // Prefer stable activity id when it matches a grammar-reader route (e.g. medical-instructions-complete),
+  // so guides that embed asset URLs from TS stay fresh instead of serving stale JSON from Activity.content.
+  const slug =
+    activity.id === "medical-instructions-complete"
+      ? "medical-instructions-complete"
+      : completionKeyFromActivityTitle(activity.title);
   const known = new Set([
     ...grammarTopics.map((topic) => topic.id),
     "present-perfect-family",
     "past-perfect-family",
     "future-perfect-family",
+    "medical-instructions-complete",
   ]);
 
   if (!known.has(slug)) {
