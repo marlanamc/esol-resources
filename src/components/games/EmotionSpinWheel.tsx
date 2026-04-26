@@ -863,11 +863,11 @@ export default function EmotionSpinWheel({}: Props) {
                                 className="rounded-2xl p-6 text-center shadow-md"
                                 style={{ backgroundColor: emotion.color }}
                             >
-                                <p className="text-sm font-medium text-gray-600 mb-1 uppercase tracking-wide">You landed on</p>
-                                <h2 className="font-display text-5xl md:text-6xl font-bold text-gray-900 mb-3 capitalize">
+                                <p className="text-sm font-medium mb-1 uppercase tracking-wide" style={{ color: "#334155" }}>You landed on</p>
+                                <h2 className="font-display text-5xl md:text-6xl font-bold mb-3 capitalize" style={{ color: "#111827" }}>
                                     {emotion.word}
                                 </h2>
-                                <p className="text-lg text-gray-700 italic">"{emotion.exampleSentence}"</p>
+                                <p className="text-lg italic" style={{ color: "#334155" }}>"{emotion.exampleSentence}"</p>
                             </div>
 
                             {/* Definition panel */}
