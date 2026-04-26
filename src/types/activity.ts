@@ -502,6 +502,15 @@ export function isTimedWritingContent(value: unknown): value is TimedWritingCont
     return c["type"] === "writing" && Array.isArray(c["prompts"]) && typeof c["timerSeconds"] === "number";
 }
 
+export interface EmotionSpinWheelContent {
+    type: "emotion-spin-wheel";
+}
+
+export function isEmotionSpinWheelContent(value: unknown): value is EmotionSpinWheelContent {
+    if (!value || typeof value !== "object") return false;
+    return (value as Record<string, unknown>)["type"] === "emotion-spin-wheel";
+}
+
 export type ActivityContent =
     | QuizContent
     | WorksheetContent
@@ -516,6 +525,7 @@ export type ActivityContent =
     | PronunciationSentenceListeningContent
     | TimelineTensesContent
     | TimedWritingContent
+    | EmotionSpinWheelContent
     | Record<string, unknown>;
 
 export interface LegacyGuideResponse {

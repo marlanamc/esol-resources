@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -28,6 +28,8 @@ function gameUiFromJsonType(parsed: unknown): GameUi | null {
       return "timeline-tenses";
     case "parts-of-speech":
       return "parts-of-speech";
+    case "emotion-spin-wheel":
+      return "emotion-spin-wheel";
     default:
       return null;
   }
@@ -55,6 +57,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "gerund-infinitive" || ui === "gerunds-infinitives" || ui === "gerund-infinitive-patterns") return "gerund-infinitive";
     if (ui === "timeline-tenses" || ui === "timeline" || ui === "tenses-timeline") return "timeline-tenses";
     if (ui === "parts-of-speech" || ui === "pos-game") return "parts-of-speech";
+    if (ui === "emotion-spin-wheel") return "emotion-spin-wheel";
   }
 
   if (typeof content === "string") {
@@ -105,6 +108,8 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
         return POINTS.MINIMAL_PAIRS;
       case "timeline-tenses":
         return POINTS.TIMELINE_TENSES;
+      case "emotion-spin-wheel":
+        return POINTS.SPEAKING_ACTIVITY;
       default:
         return POINTS.ACTIVITY_COMPLETION;
     }

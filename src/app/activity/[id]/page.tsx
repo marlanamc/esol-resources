@@ -109,7 +109,8 @@ export default async function ActivityPage({ params, searchParams }: Props) {
             gameUi === "ed-pronunciation" ||
             gameUi === "minimal-pairs" ||
             gameUi === "pronunciation-listening" ||
-            gameUi === "parts-of-speech"
+            gameUi === "parts-of-speech" ||
+            gameUi === "emotion-spin-wheel"
         )
     ) {
         return renderImmersiveActivity(
@@ -288,7 +289,8 @@ function renderImmersiveActivity(
         immersiveGameUi !== "irregular-verbs" &&
         immersiveGameUi !== "gerund-infinitive" &&
         immersiveGameUi !== "parts-of-speech" &&
-        immersiveGameUi !== "timeline-tenses";
+        immersiveGameUi !== "timeline-tenses" &&
+        immersiveGameUi !== "emotion-spin-wheel";
     return (
         <div className="min-h-screen bg-bg flex flex-col">
             {overlays}

@@ -50,6 +50,7 @@ const IrregularVerbsGame = dynamic(() => import("../games/IrregularVerbsGame/Irr
 const GerundInfinitiveGame = dynamic(() => import("../games/GerundInfinitiveGame").then(m => ({ default: m.GerundInfinitiveGame })), { loading: ActivityLoadingFallback });
 const PartsOfSpeechGame = dynamic(() => import("../games/PartsOfSpeechGame/PartsOfSpeechGame").then(m => ({ default: m.PartsOfSpeechGame })), { loading: ActivityLoadingFallback });
 const TimelineTensesGame = dynamic(() => import("../games/TimelineTensesGame").then(m => ({ default: m.TimelineTensesGame })), { loading: ActivityLoadingFallback });
+const EmotionSpinWheel = dynamic(() => import("../games/EmotionSpinWheel"), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("../activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("../activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
 const VocabularyRenderer = dynamic(() => import("../activities/VocabularyRenderer"), { loading: ActivityLoadingFallback });
@@ -200,6 +201,8 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <TimelineTensesGame activityId={activity.id} assignmentId={assignmentId} />;
                     case "parts-of-speech":
                         return <PartsOfSpeechGame activityId={activity.id} gameContent={content as PartsOfSpeechContent | null} />;
+                    case "emotion-spin-wheel":
+                        return <EmotionSpinWheel activityId={activity.id} contentStr={activity.content} assignmentId={assignmentId} />;
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }

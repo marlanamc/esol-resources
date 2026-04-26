@@ -76,7 +76,7 @@ export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activiti
                             <span style={{ color: tone.accentStrong }}>
                                 {activity.category === 'numbers' || activity.category === 'number' ? 'NUMBERS' : activity.category?.toUpperCase() || 'GENERAL'}
                             </span>
-                            {typeof progressMap?.[activity.id] === "number" && (
+                            {typeof progressMap?.[activity.id] === "number" && progressMap[activity.id] > 0 && (
                                 <span
                                     className="text-[11px] px-2 py-1 rounded-full border"
                                     style={{
