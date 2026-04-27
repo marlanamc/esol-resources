@@ -205,7 +205,7 @@ const EMOTIONS: EmotionData[] = [
     },
     {
         word: "disappointed",
-        wheelLabel: "disappoint",
+        wheelLabel: "disappointed",
         category: "negative",
         color: "#ffdab3",
         definition: "Feeling sad because something did not happen the way you hoped.",
