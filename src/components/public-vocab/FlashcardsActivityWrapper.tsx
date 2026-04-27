@@ -34,7 +34,7 @@ export function FlashcardsActivityWrapper({
     imageUrl: card.imageUrl,
   }));
 
-  return <FlashcardCarousel cards={flashcards} />;
+  return <FlashcardCarousel cards={flashcards} reserveMobileTopNavSpace />;
 }
 
 export default FlashcardsActivityWrapper;

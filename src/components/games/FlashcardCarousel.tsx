@@ -23,11 +23,18 @@ interface FlashcardCarouselProps {
     activityId?: string;
     assignmentId?: string | null;
     vocabType?: string;
+    reserveMobileTopNavSpace?: boolean;
 }
 
 type CardMode = "term-first" | "def-first";
 
-export default function FlashcardCarousel({ cards, activityId, assignmentId, vocabType }: FlashcardCarouselProps) {
+export default function FlashcardCarousel({
+    cards,
+    activityId,
+    assignmentId,
+    vocabType,
+    reserveMobileTopNavSpace = false,
+}: FlashcardCarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFlipped, setIsFlipped] = useState(false);
     const [order, setOrder] = useState(cards.map((_, i) => i));
@@ -202,7 +209,9 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
     const [showSettings, setShowSettings] = useState(false);
 
     return (
-        <div className="fixed inset-0 bg-bg flex flex-col touch-manipulation md:static md:h-auto md:min-h-screen md:w-full md:max-w-4xl md:mx-auto md:px-4 md:py-4">
+        <div
+            className={`fixed inset-x-0 bottom-0 ${reserveMobileTopNavSpace ? "top-[68px]" : "top-0"} bg-bg flex flex-col touch-manipulation md:static md:h-auto md:min-h-screen md:w-full md:max-w-4xl md:mx-auto md:px-4 md:py-4`}
+        >
             {/* Points Toast */}
             {pointsToast && (
                 <PointsToast
