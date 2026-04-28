@@ -15,6 +15,24 @@ const UNSPLASH_ACCESS_KEY =
   process.env.UNSPLASH_ACCESS_KEY_ID?.trim() ||
   process.env.PIXABAY_API_KEY?.trim();
 const OVERRIDES_FILE = path.join(__dirname, "../../src/data/vocab-images-overrides.ts");
+
+function readOverrides(): Record<string, string> {
+  try {
+    const content = fs.readFileSync(OVERRIDES_FILE, "utf-8");
+    const out: Record<string, string> = {};
+    const re = /"([^"]+)":\s*"(https?:\/\/[^"]+)"/g;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(content)) !== null) out[m[1]] = m[2];
+    return out;
+  } catch { return {}; }
+}
+
+function getImageStatus(term: string, overrides: Record<string, string>): "pixabay" | "missing" | "ok" {
+  const url = overrides[term];
+  if (!url) return "missing";
+  if (url.includes("pixabay.com")) return "pixabay";
+  return "ok";
+}
 const PORT = 4000;
 const UNSPLASH_RATE_LIMIT_PER_HOUR = (() => {
   const raw = process.env.UNSPLASH_RATE_LIMIT_PER_HOUR?.trim();
@@ -101,10 +119,13 @@ const server = http.createServer(async (req, res) => {
     if (url.pathname === "/api/terms") {
       const theme = url.searchParams.get("theme");
       const terms = getAllTermsWithContext(undefined, theme || undefined);
+      const overrides = readOverrides();
       const results = terms.map(t => ({
         ...t,
-        query: buildSearchQuery(t.term, t.category)
-      })).filter(t => t.query); // Filter out skipped terms
+        query: buildSearchQuery(t.term, t.category),
+        imageStatus: getImageStatus(t.term, overrides),
+        currentImageUrl: overrides[t.term] ?? null,
+      })).filter(t => t.query);
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify(results));
       return;
@@ -219,11 +240,25 @@ const HTML_CONTENT = `
   <style>
     body { font-family: -apple-system, system-ui, sans-serif; background: #fafafa; color: #111; padding: 2rem; max-width: 1200px; margin: 0 auto; }
     h1 { font-weight: 800; letter-spacing: -1px; }
-    select { padding: 10px; font-size: 16px; margin-bottom: 2rem; border-radius: 8px; border: 1px solid #ccc; width: 300px;}
+    .controls { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    select { padding: 10px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc; width: 300px; }
+    .filter-btn { padding: 8px 16px; border-radius: 8px; border: 1px solid #ccc; background: white; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .filter-btn.active { background: #1d4ed8; color: white; border-color: #1d4ed8; }
     .rate-panel { background: #ffffff; border: 1px solid #ddd; border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 1rem; font-size: 0.95rem; color: #1f2937; }
     .term-block { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .term-title { font-size: 1.5rem; font-weight: bold; margin-top: 0; }
-    .query-text { color: #666; font-family: monospace; font-size: 0.9rem; margin-bottom: 1rem;}
+    .term-block.status-pixabay { border-left: 4px solid #f59e0b; }
+    .term-block.status-missing { border-left: 4px solid #ef4444; }
+    .term-block.status-ok { border-left: 4px solid #22c55e; }
+    .term-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+    .term-title { font-size: 1.5rem; font-weight: bold; margin: 0; }
+    .status-badge { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .status-badge.pixabay { background: #fef3c7; color: #92400e; }
+    .status-badge.missing { background: #fee2e2; color: #991b1b; }
+    .status-badge.ok { background: #dcfce7; color: #166534; }
+    .current-img { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+    .current-img img { width: 120px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid #e5e7eb; }
+    .current-img-label { font-size: 12px; color: #6b7280; margin-bottom: 4px; }
+    .query-text { color: #666; font-family: monospace; font-size: 0.9rem; margin-bottom: 1rem; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
     .img-card { position: relative; cursor: pointer; border-radius: 8px; overflow: hidden; transition: 0.2s; border: 3px solid transparent; }
     .img-card:hover { transform: scale(1.03); box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
@@ -235,12 +270,17 @@ const HTML_CONTENT = `
 </head>
 <body>
   <h1>📸 Vocab Curation Dashboard</h1>
-  <p>Browse Unsplash results and lock in terms fast from one place. This dashboard now tracks your local hourly search budget to reduce rate-limit interruptions.</p>
+  <p>Browse Unsplash results and lock in terms fast from one place.</p>
   <div id="ratePanel" class="rate-panel">Unsplash budget: loading…</div>
-  
-  <select id="themeSelect">
-    <option value="">-- Choose a Theme --</option>
-  </select>
+
+  <div class="controls">
+    <select id="themeSelect">
+      <option value="">-- Choose a Topic --</option>
+    </select>
+    <button class="filter-btn active" data-filter="needs" onclick="setFilter('needs')">🔴 Needs attention</button>
+    <button class="filter-btn" data-filter="all" onclick="setFilter('all')">Show all</button>
+    <span id="countLabel" style="font-size:14px;color:#6b7280;"></span>
+  </div>
 
   <div id="content"></div>
 
@@ -250,6 +290,28 @@ const HTML_CONTENT = `
       remaining: 50,
       resetAt: Date.now() + 60 * 60 * 1000
     };
+
+    let currentFilter = 'needs';
+
+    function setFilter(f) {
+      currentFilter = f;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.filter === f);
+      });
+      applyFilter();
+    }
+
+    function applyFilter() {
+      const blocks = document.querySelectorAll('.term-block');
+      let visible = 0;
+      blocks.forEach(b => {
+        const show = currentFilter === 'all' || b.dataset.status === 'pixabay' || b.dataset.status === 'missing';
+        b.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      const label = document.getElementById('countLabel');
+      if (label) label.textContent = visible + ' term' + (visible !== 1 ? 's' : '') + ' shown';
+    }
 
     async function init() {
       const res = await fetch('/api/categories');
@@ -263,7 +325,7 @@ const HTML_CONTENT = `
       const select = document.getElementById('themeSelect');
       renderRatePanel();
       setInterval(renderRatePanel, 1000);
-      
+
       units.forEach(unit => {
         const group = document.createElement('optgroup');
         group.label = unit.title;
@@ -337,31 +399,57 @@ const HTML_CONTENT = `
     async function loadTheme(theme) {
       const content = document.getElementById('content');
       content.innerHTML = "<h3>Loading terms...</h3>";
-      
+
       const res = await fetch('/api/terms?theme=' + encodeURIComponent(theme));
       const terms = await res.json();
-      
+
       content.innerHTML = '';
-      
+
       for (const t of terms) {
+        const safeId = t.term.replace(/[^a-zA-Z0-9]/g, '');
+        const statusLabel = t.imageStatus === 'pixabay' ? '⚠️ Pixabay — replace'
+          : t.imageStatus === 'missing' ? '❌ No image yet'
+          : '✅ Unsplash';
+
         const block = document.createElement('div');
-        block.className = 'term-block';
+        block.className = \`term-block status-\${t.imageStatus}\`;
+        block.dataset.status = t.imageStatus;
+
+        const currentImgHtml = t.currentImageUrl
+          ? \`<div class="current-img">
+              <div>
+                <div class="current-img-label">Current image</div>
+                <img src="\${t.currentImageUrl}" onerror="this.style.opacity=0.3;this.title='Dead link'" />
+              </div>
+            </div>\`
+          : '';
+
         block.innerHTML = \`
-          <p class="term-title">\${t.term}</p>
+          <div class="term-header">
+            <p class="term-title">\${t.term}</p>
+            <span class="status-badge \${t.imageStatus}">\${statusLabel}</span>
+          </div>
+          \${currentImgHtml}
           <div class="query-text">
-            <input type="text" value="\${t.query}" id="input-\${t.term.replace(/[^a-zA-Z]/g, '')}" style="padding: 6px; width: 350px; border-radius: 4px; border: 1px solid #ccc; font-family: monospace;"/>
-            <button style="padding: 6px 12px; cursor: pointer;" onclick="fetchImages('\${t.term}', document.getElementById('input-\${t.term.replace(/[^a-zA-Z]/g, '')}').value, document.getElementById('grid-\${t.term.replace(/[^a-zA-Z]/g, '')}'))">Search Again</button>
+            <input type="text" value="\${t.query}" id="input-\${safeId}" style="padding: 6px; width: 350px; border-radius: 4px; border: 1px solid #ccc; font-family: monospace;"/>
+            <button style="padding: 6px 12px; cursor: pointer;" onclick="fetchImages('\${t.term}', document.getElementById('input-\${safeId}').value, document.getElementById('grid-\${safeId}'))">Search Again</button>
           </div>
         \`;
-        
+
         const grid = document.createElement('div');
         grid.className = 'grid';
-        grid.id = 'grid-' + t.term.replace(/[^a-zA-Z]/g, '');
+        grid.id = 'grid-' + safeId;
         block.appendChild(grid);
         content.appendChild(block);
 
-        fetchImages(t.term, t.query, grid);
+        if (t.imageStatus !== 'ok') {
+          fetchImages(t.term, t.query, grid);
+        } else {
+          grid.innerHTML = '<i style="color:#6b7280;font-size:13px;">✅ Image looks good — click Search Again to browse alternatives.</i>';
+        }
       }
+
+      applyFilter();
     }
 
     async function fetchImages(term, query, grid) {
@@ -398,16 +486,28 @@ const HTML_CONTENT = `
         \`;
         
         card.onclick = async () => {
-          // Visual select
           Array.from(grid.children).forEach(c => c.classList.remove('selected'));
           card.classList.add('selected');
-          
+
           Object.assign(card.style, { opacity: '0.5', pointerEvents: 'none' });
           await fetch('/api/override', {
             method: 'POST',
             body: JSON.stringify({ term, url })
           });
           Object.assign(card.style, { opacity: '1', pointerEvents: 'auto' });
+
+          // Update block status to ok
+          const block = grid.closest('.term-block');
+          if (block) {
+            block.dataset.status = 'ok';
+            block.className = 'term-block status-ok';
+            const badge = block.querySelector('.status-badge');
+            if (badge) { badge.className = 'status-badge ok'; badge.textContent = '✅ Unsplash'; }
+            // Update current image preview
+            const currentDiv = block.querySelector('.current-img img');
+            if (currentDiv) currentDiv.src = url;
+            applyFilter();
+          }
         };
 
         grid.appendChild(card);

@@ -56,14 +56,10 @@ export function MatchingActivityWrapper({ theme, unitSlug }: MatchingActivityWra
   const pairSignature = `${theme.id}:${pairs.map((p) => p.term).join("|")}`;
 
   return (
-    <div className="px-4 pt-6 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-4xl">
-        <ImageWordMatchingGame
-          pairs={pairs}
-          pairSignature={pairSignature}
-          onComplete={completeMatching}
-        />
-      </div>
-    </div>
+    <ImageWordMatchingGame
+      pairs={pairs}
+      pairSignature={pairSignature}
+      onComplete={completeMatching}
+    />
   );
 }

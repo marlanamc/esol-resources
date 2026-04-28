@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
-import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
+import { useEffect, useState } from "react";
+import { ChevronDown, ChevronUp, LayoutGrid, X } from "lucide-react";
 import { useVocabProgress } from "@/hooks/useVocabProgress";
 import { VocabWordImage } from "./VocabWordImage";
+import { AudioButton, GlassCard, PrimaryActionButton, ProgressBar } from "./level1-ui";
 import type { VocabTheme } from "@/data/public-level1-vocab";
 
 interface WordListActivityWrapperProps {
@@ -12,110 +13,167 @@ interface WordListActivityWrapperProps {
 }
 
 /**
- * Word list activity with audio playback and progress tracking
+ * "Learn Words" — one card at a time. Big audio button, image, simple
+ * meaning. Spanish + example collapse behind a "More" toggle on small
+ * screens to reduce scroll.
  */
-export function WordListActivityWrapper({
-  theme,
-  unitSlug,
-}: WordListActivityWrapperProps) {
+export function WordListActivityWrapper({ theme, unitSlug }: WordListActivityWrapperProps) {
   const { viewWordList } = useVocabProgress(unitSlug, theme.id);
+  const [index, setIndex] = useState(0);
+  const [showMore, setShowMore] = useState(false);
+  const [completed, setCompleted] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
-  // Mark word list as viewed on mount
+  const cards = theme.cards;
+  const card = cards[index];
+  const total = cards.length;
+  const isLast = index === total - 1;
+
+  // Reset "more" toggle when moving to a new word.
   useEffect(() => {
-    viewWordList();
-  }, [viewWordList]);
+    setShowMore(false);
+  }, [index]);
 
-  const playAudio = (term: string) => {
-    const audioUrl = getVocabAudioUrl(term);
-    const audio = new Audio(audioUrl);
-    audio.play().catch(() => {
-      // Silently handle audio errors
-    });
+  // Mark the activity as viewed/completed when the learner reaches the
+  // end of the deck. Avoids triggering on every navigation.
+  useEffect(() => {
+    if (isLast && !completed) {
+      viewWordList();
+      setCompleted(true);
+    }
+  }, [isLast, completed, viewWordList]);
+
+  if (!card) return null;
+
+  const goNext = () => {
+    if (isLast) {
+      setIndex(0);
+      return;
+    }
+    setIndex((v) => v + 1);
   };
 
   return (
-    <div className="min-h-[60vh] bg-gradient-to-b from-[var(--color-bg)] to-[var(--color-surface-base)] p-4 sm:p-8">
-      <div className="mx-auto max-w-5xl">
-        {/* Header */}
-        <div className="mb-8">
-          <h2 className="font-display text-3xl font-bold text-text sm:text-4xl">Word List</h2>
-          <p className="mt-2 text-sm font-medium text-text-muted">{theme.cards.length} words</p>
+    <div className="space-y-4">
+      {/* Progress */}
+      <div className="flex items-center justify-between text-sm font-semibold text-slate-600">
+        <span>
+          {index + 1} of {total}
+        </span>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setShowAll((v) => !v)}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0a6b62] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 rounded"
+          >
+            {showAll ? <X size={14} /> : <LayoutGrid size={14} />}
+            {showAll ? "Close" : "See All"}
+          </button>
+          <span className="text-xs uppercase tracking-[0.16em] text-[#0a6b62]">Learn Words</span>
         </div>
+      </div>
+      <ProgressBar value={(index + 1) / total} />
 
-        {/* Cards Grid */}
-        <div className="grid gap-6 sm:grid-cols-2">
-          {theme.cards.map((card, index) => (
-            <div
-              key={index}
-              className="group relative flex flex-col rounded-2xl border border-[var(--color-border-subtle)] bg-white p-6 shadow-sm transition-all hover:border-[var(--tone-vocabulary-accent)]/30 hover:shadow-md"
+      {/* All-words grid */}
+      {showAll ? (
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+          {cards.map((c, i) => (
+            <button
+              key={c.term}
+              type="button"
+              onClick={() => { setIndex(i); setShowAll(false); }}
+              className={`flex flex-col items-center gap-1 rounded-2xl border p-2 text-center transition active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 ${
+                i === index
+                  ? "border-[#0a6b62] bg-emerald-50/80 ring-1 ring-[#0a6b62]/30"
+                  : "border-white/70 bg-white/70 hover:bg-white"
+              }`}
             >
-              {/* Number Badge */}
-              <div className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--tone-vocabulary-accent)]/10 text-xs font-bold text-[var(--tone-vocabulary-accent)]">
-                {String(index + 1).padStart(2, "0")}
-              </div>
-
-              {/* Term with Audio Button */}
-              <div className="flex items-start justify-between gap-3 mb-4 pr-8">
-                <h3 className="font-display text-2xl font-bold text-text flex-1">{card.term}</h3>
-                <button
-                  onClick={() => playAudio(card.term)}
-                  className="mt-1 flex-shrink-0 rounded-lg bg-[var(--tone-vocabulary-accent)]/10 p-2 text-[var(--tone-vocabulary-accent-strong)] transition hover:bg-[var(--tone-vocabulary-accent)]/20 hover:scale-105"
-                  aria-label={`Play pronunciation for ${card.term}`}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M11 5L6 9H3v6h3l5 4V5z" />
-                    <path d="M15.54 8.46a5 5 0 010 7.07" />
-                    <path d="M18.07 5.93a9 9 0 010 12.73" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Illustration image (concrete nouns only — abstract words will have no image) */}
-              {card.imageUrl && (
-                <div className="mb-4">
-                  <VocabWordImage src={card.imageUrl} alt={card.term} variant="banner" />
+              {c.imageUrl ? (
+                <div className="w-full overflow-hidden rounded-xl">
+                  <VocabWordImage src={c.imageUrl} alt={c.term} variant="tile" />
+                </div>
+              ) : (
+                <div className="flex h-14 w-full items-center justify-center rounded-xl bg-slate-100 text-2xl">
+                  💬
                 </div>
               )}
-
-              {/* Definitions and Example */}
-              <div className="space-y-3">
-                {/* English Definition */}
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-text-muted mb-1">English</p>
-                  <p className="text-sm leading-relaxed text-text">
-                    {card.englishDefinition}
-                  </p>
-                </div>
-
-                {/* Spanish Definition */}
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-text-muted mb-1">Español</p>
-                  <p className="text-sm leading-relaxed italic text-text">
-                    {card.spanishDefinition}
-                  </p>
-                </div>
-
-                {/* Example */}
-                <div className="border-t border-[var(--color-border-subtle)] pt-3">
-                  <p className="text-xs font-bold uppercase tracking-wide text-text-muted mb-1">Example</p>
-                  <p className="text-sm italic text-text-muted">
-                    "{card.example}"
-                  </p>
-                </div>
-              </div>
-            </div>
+              <span className="text-xs font-semibold leading-tight text-slate-800">{c.term}</span>
+            </button>
           ))}
         </div>
+      ) : null}
+
+      {/* Word card */}
+      <GlassCard raised className="p-5 sm:p-6">
+        {/* Header row: word + audio */}
+        <div className="flex items-start justify-between gap-3">
+          <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
+            {card.term}
+          </h2>
+          <AudioButton term={card.term} size="lg" />
+        </div>
+
+        {/* Image */}
+        {card.imageUrl ? (
+          <div className="mt-4 overflow-hidden rounded-2xl">
+            <VocabWordImage src={card.imageUrl} alt={card.term} variant="banner" />
+          </div>
+        ) : null}
+
+        {/* Simple meaning — always shown */}
+        <p className="mt-4 text-lg leading-relaxed text-slate-800 sm:text-xl">
+          {card.englishDefinition}
+        </p>
+
+        {/* More toggle */}
+        <button
+          type="button"
+          onClick={() => setShowMore((v) => !v)}
+          className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#0a6b62] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 rounded"
+          aria-expanded={showMore}
+        >
+          {showMore ? "Hide details" : "More"}
+          {showMore ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+        </button>
+
+        {showMore ? (
+          <div className="mt-3 space-y-3">
+            <div className="rounded-2xl bg-white/60 p-3">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                Español
+              </p>
+              <p className="mt-0.5 text-base leading-relaxed text-slate-800">
+                {card.spanishDefinition}
+              </p>
+            </div>
+            {card.example ? (
+              <div className="rounded-2xl bg-amber-50/70 p-3 ring-1 ring-amber-200/60">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-amber-700">
+                  Example
+                </p>
+                <p className="mt-0.5 text-base italic leading-relaxed text-slate-800">
+                  &ldquo;{card.example}&rdquo;
+                </p>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+      </GlassCard>
+
+      {/* Next */}
+      <div className="flex items-center justify-between gap-3 pt-1">
+        <button
+          type="button"
+          onClick={() => setIndex((v) => Math.max(0, v - 1))}
+          disabled={index === 0}
+          className="text-sm font-semibold text-slate-500 hover:text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60 rounded px-2 py-1"
+        >
+          ← Back
+        </button>
+
+        <PrimaryActionButton onClick={goNext} showArrow={!isLast}>
+          {isLast ? "Start Over" : "Next Word"}
+        </PrimaryActionButton>
       </div>
     </div>
   );

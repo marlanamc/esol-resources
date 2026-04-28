@@ -17,6 +17,13 @@ type Props = {
   pairs: ImageWordPair[];
   onComplete?: () => void;
   pairSignature?: string;
+  /**
+   * When true, swap to "listen" mode: word text is hidden and learners
+   * tap a sound chip first, then the matching picture. Controlled by
+   * the parent surface so the chrome (instructions, toggles) stays in
+   * sync with the game state. Defaults to false (picture-first).
+   */
+  audioMatchMode?: boolean;
 };
 
 const ROUND_SIZE = 4;
@@ -34,7 +41,12 @@ function shuffleArray<T>(arr: T[]): T[] {
  * Round-based picture-to-word matching game.
  * Shows ROUND_SIZE pairs at a time in a compact layout that fits mobile screens.
  */
-export function ImageWordMatchingGame({ pairs, onComplete, pairSignature }: Props) {
+export function ImageWordMatchingGame({
+  pairs,
+  onComplete,
+  pairSignature,
+  audioMatchMode = false,
+}: Props) {
   const sig = pairSignature ?? pairs.map((p) => p.id).join(",");
 
   const [mounted, setMounted] = useState(false);
@@ -56,67 +68,18 @@ export function ImageWordMatchingGame({ pairs, onComplete, pairSignature }: Prop
   const wordAudioRef = useRef<HTMLAudioElement | null>(null);
 
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const [audioMatchMode, setAudioMatchMode] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
 
   useEffect(() => {
+    // Listen mode is no longer user-toggleable on the public surface.
+    // Clear any stale flag from earlier visits so the game always starts
+    // in picture-first mode for everyone.
     try {
-      const storedAudio = localStorage.getItem(MATCHING_AUDIO_MATCH_STORAGE_KEY);
-      if (storedAudio === "1") {
-        setAudioMatchMode(true);
-        setSoundEnabled(true);
-        localStorage.setItem(MATCHING_SOUND_STORAGE_KEY, "1");
-        return;
-      }
+      localStorage.removeItem(MATCHING_AUDIO_MATCH_STORAGE_KEY);
       const stored = localStorage.getItem(MATCHING_SOUND_STORAGE_KEY);
       if (stored === "0") setSoundEnabled(false);
-      else if (stored === "1") setSoundEnabled(true);
     } catch {
       /* ignore */
     }
-  }, []);
-
-  useEffect(() => {
-    if (!soundEnabled && audioMatchMode) {
-      setAudioMatchMode(false);
-      try {
-        localStorage.setItem(MATCHING_AUDIO_MATCH_STORAGE_KEY, "0");
-      } catch {
-        /* ignore */
-      }
-    }
-  }, [soundEnabled, audioMatchMode]);
-
-  const toggleSoundEnabled = useCallback(() => {
-    setSoundEnabled((v) => {
-      const next = !v;
-      try {
-        localStorage.setItem(MATCHING_SOUND_STORAGE_KEY, next ? "1" : "0");
-      } catch {
-        /* ignore */
-      }
-      return next;
-    });
-  }, []);
-
-  const toggleAudioMatchMode = useCallback(() => {
-    setAudioMatchMode((v) => {
-      const next = !v;
-      try {
-        localStorage.setItem(MATCHING_AUDIO_MATCH_STORAGE_KEY, next ? "1" : "0");
-      } catch {
-        /* ignore */
-      }
-      if (next) {
-        setSoundEnabled(true);
-        try {
-          localStorage.setItem(MATCHING_SOUND_STORAGE_KEY, "1");
-        } catch {
-          /* ignore */
-        }
-      }
-      return next;
-    });
   }, []);
 
   const playWordAudio = useCallback(
@@ -292,21 +255,9 @@ export function ImageWordMatchingGame({ pairs, onComplete, pairSignature }: Prop
           <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
             Round {currentRound + 1} of {rounds.length}
           </span>
-          <div className="flex items-center gap-2 shrink-0">
-            <button
-              type="button"
-              onClick={() => setShowSettings((s) => !s)}
-              aria-expanded={showSettings}
-              aria-controls="matching-game-settings"
-              aria-label={showSettings ? "Close matching game settings" : "Open matching game settings"}
-              className="inline-flex items-center justify-center rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] p-1.5 text-text-muted hover:border-[var(--primary-color-light)] hover:text-text transition-colors touch-manipulation"
-            >
-              <SettingsIcon className="w-4 h-4" />
-            </button>
-            <span className="text-xs font-bold tabular-nums text-text-muted">
-              {totalMatched}/{pairs.length}
-            </span>
-          </div>
+          <span className="text-xs font-bold tabular-nums text-text-muted">
+            {totalMatched}/{pairs.length}
+          </span>
         </div>
         <div className="relative h-2 rounded-full bg-[var(--color-border-subtle)]/40 overflow-hidden">
           <div
@@ -317,42 +268,6 @@ export function ImageWordMatchingGame({ pairs, onComplete, pairSignature }: Prop
             }}
           />
         </div>
-        {showSettings && (
-          <div
-            id="matching-game-settings"
-            className="mt-3 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-base)]/80 p-3 space-y-3"
-          >
-            <label className="flex cursor-pointer items-start gap-2.5 touch-manipulation">
-              <input
-                type="checkbox"
-                checked={soundEnabled}
-                onChange={toggleSoundEnabled}
-                className="mt-0.5 h-4 w-4 shrink-0 rounded border-[var(--color-border-subtle)] text-[var(--primary-color)] focus:ring-[var(--primary-color)]"
-              />
-              <span className="text-sm text-text">
-                <span className="font-semibold">Word sound</span>
-                <span className="block text-xs text-text-muted mt-0.5">
-                  Hear pronunciation when you tap a word chip
-                  {audioMatchMode ? " (on in listen mode)" : ""}
-                </span>
-              </span>
-            </label>
-            <label className="flex cursor-pointer items-start gap-2.5 touch-manipulation">
-              <input
-                type="checkbox"
-                checked={audioMatchMode}
-                onChange={toggleAudioMatchMode}
-                className="mt-0.5 h-4 w-4 shrink-0 rounded border-[var(--color-border-subtle)] text-[var(--primary-color)] focus:ring-[var(--primary-color)]"
-              />
-              <span className="text-sm text-text">
-                <span className="font-semibold">Listen mode</span>
-                <span className="block text-xs text-text-muted mt-0.5">
-                  Hide word text — listen first, then tap the matching picture
-                </span>
-              </span>
-            </label>
-          </div>
-        )}
       </div>
 
       {/* Game Area */}
@@ -528,30 +443,6 @@ export function ImageWordMatchingGame({ pairs, onComplete, pairSignature }: Prop
         </div>
       )}
     </div>
-  );
-}
-
-function SettingsIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden
-    >
-      <circle cx="12" cy="12" r="3" />
-      <path d="M12 1v6m0 6v6" />
-      <path d="m4.93 4.93 4.24 4.24m5.66 5.66 4.24 4.24" />
-      <path d="M1 12h6m6 0h6" />
-      <path d="m4.93 19.07 4.24-4.24m5.66-5.66 4.24-4.24" />
-    </svg>
   );
 }
 

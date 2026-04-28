@@ -1,8 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Check, X, RotateCcw } from "lucide-react";
 import { useVocabProgress } from "@/hooks/useVocabProgress";
 import type { VocabTheme } from "@/data/public-level1-vocab";
+import {
+  AudioButton,
+  GlassCard,
+  PrimaryActionButton,
+  ProgressBar,
+} from "./level1-ui";
 
 interface FillInBlankActivityWrapperProps {
   theme: VocabTheme;
@@ -17,9 +24,11 @@ interface Question {
   options: string[];
 }
 
+const QUIZ_ACCENT = "#3b82c4";
+
 /**
- * Public vocabulary fill-in-the-blank game
- * Students fill in blanks with vocabulary words from the theme
+ * "Quiz" — pick the correct word. One question at a time, big stacked
+ * answer buttons, big feedback card with audio of the correct word.
  */
 export function FillInBlankActivityWrapper({
   theme,
@@ -28,12 +37,9 @@ export function FillInBlankActivityWrapper({
   const { completeFillBlank } = useVocabProgress(unitSlug, theme.id);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [score, setScore] = useState(0);
-  const [showFeedback, setShowFeedback] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
-  // Build questions from theme cards (deterministic option order — no Math.random — so SSR matches hydration)
   const questions: Question[] = useMemo(
     () =>
       theme.cards
@@ -44,7 +50,7 @@ export function FillInBlankActivityWrapper({
           sentence: card.fillBlankSentence!,
           correctAnswer: card.term,
           options: generateOptions(
-            card.term,
+            card,
             theme.cards,
             card.fillBlankSentence!,
             `${unitSlug}:${theme.id}:${index}:${card.term}`
@@ -55,202 +61,238 @@ export function FillInBlankActivityWrapper({
 
   const currentQuestion = questions[currentIndex];
   const isLastQuestion = currentIndex === questions.length - 1;
-  const progress = ((currentIndex + (selectedAnswer ? 1 : 0)) / questions.length) * 100;
+  const isCorrect = selectedAnswer
+    ? selectedAnswer === currentQuestion?.correctAnswer
+    : null;
 
   const handleAnswerSelect = (answer: string) => {
-    if (selectedAnswer) return; // Already answered
-
+    if (selectedAnswer || !currentQuestion) return;
     setSelectedAnswer(answer);
-    const correct = answer === currentQuestion.correctAnswer;
-    setIsCorrect(correct);
-    setShowFeedback(true);
-
-    if (correct) {
+    if (answer === currentQuestion.correctAnswer) {
       setScore((prev) => prev + 1);
-    }
-
-    if (isLastQuestion && correct) {
-      setIsComplete(true);
-      // Save completion
-      completeFillBlank(
-        Math.round((score + 1) / questions.length * 100)
-      );
     }
   };
 
   const handleNext = () => {
     if (isLastQuestion) {
+      const finalScore =
+        selectedAnswer === currentQuestion?.correctAnswer ? score : score;
       setIsComplete(true);
-      completeFillBlank(Math.round(score / questions.length * 100));
-    } else {
-      setCurrentIndex((prev) => prev + 1);
-      setSelectedAnswer(null);
-      setIsCorrect(null);
-      setShowFeedback(false);
+      completeFillBlank(Math.round((finalScore / questions.length) * 100));
+      return;
     }
+    setCurrentIndex((prev) => prev + 1);
+    setSelectedAnswer(null);
+  };
+
+  const handleRestart = () => {
+    setCurrentIndex(0);
+    setSelectedAnswer(null);
+    setScore(0);
+    setIsComplete(false);
   };
 
   if (questions.length === 0) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center px-4">
-        <div className="text-center">
-          <div className="text-6xl">✍️</div>
-          <h2 className="mt-4 text-2xl font-bold text-text">No Fill-in-the-Blank Sentences Yet</h2>
-          <p className="mt-2 text-text-muted max-w-md">
-            Custom fill-in-the-blank sentences are being added. Check back soon!
-          </p>
+      <GlassCard className="p-8 text-center">
+        <div className="text-5xl" aria-hidden>
+          ✍️
         </div>
-      </div>
+        <h2 className="font-display mt-3 text-2xl font-bold text-slate-900">
+          No quiz yet
+        </h2>
+        <p className="mt-2 text-base text-slate-600">
+          Quiz sentences are being added for this topic. Check back soon!
+        </p>
+      </GlassCard>
     );
   }
 
   if (isComplete) {
-    const percentage = Math.round(score / questions.length * 100);
+    const percentage = Math.round((score / questions.length) * 100);
+    const emoji = percentage === 100 ? "🎉" : percentage >= 70 ? "⭐" : "✅";
     return (
-      <div className="flex min-h-[60vh] items-center justify-center px-4">
-        <div className="text-center max-w-md">
-          <div className="text-6xl mb-4">
-            {percentage === 100 ? "🎉" : percentage >= 70 ? "⭐" : "✅"}
+      <div className="space-y-4">
+        <GlassCard raised className="p-6 text-center sm:p-8">
+          <div className="text-6xl" aria-hidden>
+            {emoji}
           </div>
-          <h2 className="text-3xl font-bold text-text mb-2">Complete!</h2>
-          <p className="text-2xl font-bold text-[var(--tone-vocabulary-accent-strong)] mb-4">
-            {score} / {questions.length} correct
-          </p>
-          <p className="text-lg text-text-muted mb-6">
-            {percentage === 100
-              ? "Perfect score! You've mastered these vocabulary words!"
-              : percentage >= 70
-              ? "Great job! Keep practicing to improve."
-              : "Good effort! Review and try again."}
-          </p>
-          <button
-            onClick={() => {
-              setCurrentIndex(0);
-              setSelectedAnswer(null);
-              setIsCorrect(null);
-              setShowFeedback(false);
-              setIsComplete(false);
-              setScore(0);
-            }}
-            className="inline-block px-6 py-2 rounded-lg bg-[var(--tone-vocabulary-accent)] text-white font-semibold hover:opacity-90 transition"
+          <h2 className="font-display mt-3 text-3xl font-bold text-slate-900">
+            All done!
+          </h2>
+          <p
+            className="mt-2 text-2xl font-bold tabular-nums"
+            style={{ color: QUIZ_ACCENT }}
           >
-            Try Again
-          </button>
-        </div>
+            {score} of {questions.length} correct
+          </p>
+          <p className="mx-auto mt-3 max-w-sm text-base text-slate-600">
+            {percentage === 100
+              ? "Perfect score! You know these words!"
+              : percentage >= 70
+                ? "Great job! Keep practicing."
+                : "Good effort! Review and try again."}
+          </p>
+          <div className="mt-6 flex justify-center">
+            <PrimaryActionButton onClick={handleRestart}>
+              <RotateCcw size={18} aria-hidden /> Try Again
+            </PrimaryActionButton>
+          </div>
+        </GlassCard>
       </div>
     );
   }
 
+  if (!currentQuestion) return null;
+
+  const answered = selectedAnswer !== null;
+
   return (
-    <div className="min-h-[60vh] bg-gradient-to-b from-[var(--color-bg)] to-[var(--color-surface-base)] p-4 sm:p-8">
-      <div className="mx-auto max-w-3xl">
-        {/* Progress Bar */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-semibold text-text-muted">
-              Question {currentIndex + 1} of {questions.length}
-            </p>
-            <p className="text-sm font-semibold text-[var(--tone-vocabulary-accent-strong)]">
-              {Math.round(progress)}%
-            </p>
-          </div>
-          <div className="w-full h-2 bg-[var(--color-border-subtle)] rounded-full overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-[var(--tone-vocabulary-accent)] to-emerald-500 transition-all duration-300"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-        </div>
+    <div className="space-y-4">
+      {/* Progress */}
+      <div className="flex items-center justify-between text-sm font-semibold text-slate-600">
+        <span>
+          Question {currentIndex + 1} of {questions.length}
+        </span>
+        <span className="tabular-nums" style={{ color: QUIZ_ACCENT }}>
+          Score {score} / {questions.length}
+        </span>
+      </div>
+      <ProgressBar
+        value={(currentIndex + (answered ? 1 : 0)) / questions.length}
+        accent={QUIZ_ACCENT}
+      />
 
-        {/* Question Card */}
-        <div className="bg-[var(--color-surface-elevated)] rounded-2xl border border-[var(--color-border-subtle)] p-6 sm:p-8 shadow-sm mb-6">
-          <p className="text-sm font-bold uppercase tracking-wider text-[var(--tone-vocabulary-accent-strong)] mb-3">
-            Fill in the Blank
-          </p>
-          <p className="text-lg sm:text-xl text-[var(--color-text-base)] leading-relaxed">
-            {currentQuestion.sentence.split("_____").map((part, index, arr) => (
-              <span key={index}>
-                {part}
-                {index < arr.length - 1 && (
-                  <span
-                    aria-hidden="true"
-                    className="inline-block mx-1 h-[1.6em] min-w-[120px] align-[-0.2em] border-b-2 border-[var(--tone-vocabulary-accent)] bg-[var(--tone-vocabulary-accent)]/10"
-                  >
-                    &nbsp;
-                  </span>
-                )}
-              </span>
-            ))}
-          </p>
-        </div>
+      {/* Question card */}
+      <GlassCard
+        raised
+        className="p-5 sm:p-6"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(59,130,196,0.08), rgba(255,255,255,0.85))",
+        }}
+      >
+        <p
+          className="text-xs font-bold uppercase tracking-[0.16em]"
+          style={{ color: "#1f5a8c" }}
+        >
+          Pick the correct word
+        </p>
+        <p className="mt-3 text-xl leading-relaxed text-slate-900 sm:text-2xl">
+          {currentQuestion.sentence.split("_____").map((part, index, arr) => (
+            <span key={index}>
+              {part}
+              {index < arr.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  className="mx-1 inline-block min-w-[100px] rounded-md border-b-2 align-[-0.2em] sm:min-w-[120px]"
+                  style={{
+                    borderColor: QUIZ_ACCENT,
+                    backgroundColor: "rgba(59,130,196,0.10)",
+                    height: "1.5em",
+                  }}
+                >
+                  &nbsp;
+                </span>
+              )}
+            </span>
+          ))}
+        </p>
+      </GlassCard>
 
-        {/* Feedback */}
-        {showFeedback && (
+      {/* Options — stacked on mobile, 2-col from sm */}
+      <div className="grid gap-3 sm:grid-cols-2">
+        {currentQuestion.options.map((option) => {
+          const correct = option === currentQuestion.correctAnswer;
+          const active = selectedAnswer === option;
+          const display = formatOptionLabel(option);
+
+          let stateClass =
+            "bg-white/80 backdrop-blur border border-white/80 text-slate-900 hover:bg-white hover:-translate-y-0.5";
+          if (answered) {
+            if (correct) {
+              stateClass =
+                "bg-emerald-50 border-emerald-300 text-emerald-900 ring-2 ring-emerald-300";
+            } else if (active) {
+              stateClass = "bg-rose-50 border-rose-300 text-rose-900 ring-2 ring-rose-300";
+            } else {
+              stateClass = "bg-white/60 border-white/60 text-slate-500 opacity-60";
+            }
+          }
+
+          return (
+            <button
+              key={option}
+              type="button"
+              onClick={() => handleAnswerSelect(option)}
+              disabled={answered}
+              aria-pressed={active}
+              className={`relative flex min-h-[56px] items-center justify-between rounded-2xl px-5 text-left text-lg font-semibold shadow-[0_4px_12px_-6px_rgba(20,60,70,0.18)] transition-all active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/60 disabled:cursor-not-allowed ${stateClass}`}
+            >
+              <span>{display}</span>
+              {answered && correct ? (
+                <Check size={20} strokeWidth={3} className="text-emerald-600" />
+              ) : answered && active && !correct ? (
+                <X size={20} strokeWidth={3} className="text-rose-600" />
+              ) : null}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Feedback card */}
+      {answered ? (
+        <GlassCard
+          raised
+          className="p-5 text-center"
+          style={{
+            background: isCorrect
+              ? "linear-gradient(135deg, rgba(16,185,129,0.12), rgba(255,255,255,0.85))"
+              : "linear-gradient(135deg, rgba(244,63,94,0.10), rgba(255,255,255,0.85))",
+          }}
+        >
           <div
-            className={`mb-6 p-4 rounded-xl border-2 ${
-              isCorrect
-                ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-800"
-                : "bg-rose-50 dark:bg-rose-950/30 border-rose-300 dark:border-rose-800"
-            }`}
+            className="mx-auto flex h-16 w-16 items-center justify-center rounded-full text-white shadow-md"
+            style={{ background: isCorrect ? "#10b981" : "#f43f5e" }}
+            aria-hidden
           >
-            <p className={`font-semibold ${isCorrect ? "text-emerald-900 dark:text-emerald-400" : "text-rose-900 dark:text-rose-400"}`}>
-              {isCorrect ? "✓ Correct!" : "✗ Try again"}
-            </p>
-            {!isCorrect && (
-              <p className={`text-sm mt-1 ${isCorrect ? "text-emerald-800 dark:text-emerald-300" : "text-rose-800 dark:text-rose-300"}`}>
-                The correct answer is: <strong>{currentQuestion.correctAnswer}</strong>
-              </p>
+            {isCorrect ? (
+              <Check size={32} strokeWidth={3} />
+            ) : (
+              <X size={32} strokeWidth={3} />
             )}
           </div>
-        )}
-
-        {/* Options */}
-        <div className="grid gap-3 mb-6 sm:grid-cols-2">
-          {currentQuestion.options.map((option, index) => {
-            const label = String.fromCharCode(97 + index); // a, b, c, d
-            const displayOption = formatOptionLabel(option);
-
-            return (
-              <button
-                key={option}
-                onClick={() => handleAnswerSelect(option)}
-                disabled={selectedAnswer !== null}
-                className={`text-left p-4 rounded-xl border-2 transition-all ${
-                  selectedAnswer === null
-                    ? "border-[var(--color-border-subtle)] hover:border-[var(--tone-vocabulary-accent)] hover:bg-[var(--tone-vocabulary-accent)]/5 cursor-pointer text-[var(--color-text-base)]"
-                    : option === currentQuestion.correctAnswer
-                    ? "border-emerald-300 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-950 dark:text-emerald-100"
-                    : option === selectedAnswer && !isCorrect
-                    ? "border-rose-300 dark:border-rose-700 bg-rose-50 dark:bg-rose-900/30 text-rose-950 dark:text-rose-100"
-                    : "border-[var(--color-border-subtle)] opacity-50 bg-[var(--color-surface-subtle)]"
-                }`}
-              >
-                <p className="font-semibold">
-                  <span className="inline-block w-6 text-[var(--tone-vocabulary-accent)]">{label}.</span>
-                  {displayOption}
-                </p>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Next Button */}
-        {selectedAnswer && (
-          <button
-            onClick={handleNext}
-            className="w-full px-6 py-3 rounded-lg bg-[var(--tone-vocabulary-accent)] text-white font-semibold hover:opacity-90 transition"
-          >
-            {isLastQuestion ? "See Results" : "Next Question"}
-          </button>
-        )}
-
-        {/* Score Display */}
-        <div className="mt-8 text-center">
-          <p className="text-sm text-text-muted">
-            Score: <span className="font-bold text-[var(--tone-vocabulary-accent-strong)]">{score}</span> / {questions.length}
+          <p className="font-display mt-3 text-2xl font-bold text-slate-900">
+            {isCorrect ? "Correct!" : "Try again"}
           </p>
-        </div>
-      </div>
+          <p className="mx-auto mt-3 max-w-md text-lg leading-relaxed text-slate-800">
+            {currentQuestion.sentence
+              .split("_____")
+              .map((part, i, arr) => (
+                <span key={i}>
+                  {part}
+                  {i < arr.length - 1 ? (
+                    <strong
+                      className="font-bold underline decoration-2 underline-offset-4"
+                      style={{ color: isCorrect ? "#0a6b62" : "#9f1239" }}
+                    >
+                      {formatOptionLabel(currentQuestion.correctAnswer)}
+                    </strong>
+                  ) : null}
+                </span>
+              ))}
+          </p>
+          <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1.5 text-base font-bold text-slate-900">
+            <span>{currentQuestion.correctAnswer}</span>
+            <AudioButton term={currentQuestion.correctAnswer} size="sm" />
+          </div>
+          <div className="mt-5">
+            <PrimaryActionButton onClick={handleNext} showArrow={!isLastQuestion}>
+              {isLastQuestion ? "See Results" : "Next Question"}
+            </PrimaryActionButton>
+          </div>
+        </GlassCard>
+      ) : null}
     </div>
   );
 }
@@ -310,29 +352,35 @@ function shuffleDeterministic<T>(arr: T[], seedStr: string): T[] {
 }
 
 /**
- * Multiple choice options: correct answer + up to 3 incorrect options from other cards.
- * Order is deterministic from `seedKey` so server and client match (no hydration mismatch).
+ * Build 4 options: the correct answer plus 3 distractors.
+ *
+ * Distractor selection prefers cards from a *different* category than the
+ * answer, so semantically swappable words (Man/Woman, Morning/Afternoon)
+ * don't end up as alternate "correct" choices in the same frame sentence.
+ * Falls back to same-category cards only if cross-category candidates run
+ * out — better a slightly confusable option than fewer than 4 buttons.
  */
 function generateOptions(
-  correctAnswer: string,
-  allCards: { term: string }[],
+  answer: { term: string; category: string },
+  allCards: { term: string; category: string }[],
   sentence: string,
   seedKey: string
 ): string[] {
-  const options = [correctAnswer];
   const sentenceWords = sentence.toLowerCase().split(/\s+/);
 
-  const pool = allCards
-    .filter(
-      (c) =>
-        c.term !== correctAnswer &&
-        !sentenceWords.includes(c.term.toLowerCase())
-    )
-    .map((c) => c.term);
+  const candidates = allCards.filter(
+    (c) => c.term !== answer.term && !sentenceWords.includes(c.term.toLowerCase())
+  );
 
-  const incorrect = shuffleDeterministic(pool, `${seedKey}:pool`).slice(0, 3);
-  options.push(...incorrect);
+  const crossCategory = candidates.filter((c) => c.category !== answer.category);
+  const sameCategory = candidates.filter((c) => c.category === answer.category);
 
+  const ordered = [
+    ...shuffleDeterministic(crossCategory, `${seedKey}:cross`),
+    ...shuffleDeterministic(sameCategory, `${seedKey}:same`),
+  ].map((c) => c.term);
+
+  const options = [answer.term, ...ordered.slice(0, 3)];
   return shuffleDeterministic(options, `${seedKey}:options`);
 }
 

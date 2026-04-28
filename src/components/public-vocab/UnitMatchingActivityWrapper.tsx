@@ -8,9 +8,13 @@ import { getUnitMatchingAvailability } from "@/lib/public-level1-unit-matching";
 
 interface UnitMatchingActivityWrapperProps {
   unit: PublicLevel1VocabularyUnit;
+  audioMatchMode?: boolean;
 }
 
-export function UnitMatchingActivityWrapper({ unit }: UnitMatchingActivityWrapperProps) {
+export function UnitMatchingActivityWrapper({
+  unit,
+  audioMatchMode = false,
+}: UnitMatchingActivityWrapperProps) {
   const { completeMatching } = useVocabProgress(unit.slug, "unit-review");
 
   const { imageBackedCards, eligibleCards, hasPlayableUnitMatching } = useMemo(
@@ -57,19 +61,12 @@ export function UnitMatchingActivityWrapper({ unit }: UnitMatchingActivityWrappe
   }
 
   return (
-    <div className="px-4 pt-6 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-4xl">
-        <div className="mb-6 text-center">
-          <h2 className="text-2xl font-bold text-text mb-1">Unit Review</h2>
-          <p className="text-text-muted text-sm">Match the picture to the word</p>
-        </div>
-        
-        <ImageWordMatchingGame
-          pairs={pairs}
-          pairSignature={pairSignature}
-          onComplete={completeMatching}
-        />
-      </div>
-    </div>
+    <ImageWordMatchingGame
+      key={audioMatchMode ? "listen" : "look"}
+      pairs={pairs}
+      pairSignature={pairSignature}
+      onComplete={completeMatching}
+      audioMatchMode={audioMatchMode}
+    />
   );
 }

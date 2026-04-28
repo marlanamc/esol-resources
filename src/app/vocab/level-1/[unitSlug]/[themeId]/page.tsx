@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import type { Metadata } from "next";
 import {
   getLevel1PublicVocabUnit,
   getLevel1PublicVocabTheme,
   LEVEL1_PUBLIC_VOCAB_UNITS,
 } from "@/data/public-level1-vocab";
+import { getUnitMatchingAvailability } from "@/lib/public-level1-unit-matching";
 import { ActivityPickerClient } from "@/components/public-vocab/ActivityPickerClient";
 
 interface Props {
@@ -51,33 +51,15 @@ export default async function ThemeActivityPickerPage({ params }: Props) {
     notFound();
   }
 
-  return (
-    <div className="min-h-screen bg-[var(--color-bg)]">
-      {/* Sticky header */}
-      <div className="sticky top-0 z-10 border-b border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] shadow-sm">
-        <div className="mx-auto max-w-3xl px-4 py-3">
-          <Link
-            href="/vocab/level-1"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--tone-vocabulary-accent-strong)] transition hover:gap-3"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-            <span className="hidden sm:inline">Back to units</span>
-            <span className="sm:hidden">Back</span>
-          </Link>
-        </div>
-      </div>
+  const { hasPlayableUnitMatching } = getUnitMatchingAvailability(unit);
 
-      {/* Content */}
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
-        <ActivityPickerClient
-          unitSlug={unitSlug}
-          themeId={themeId}
-          themeTitle={theme.title}
-          themeIcon={theme.icon}
-        />
-      </div>
-    </div>
+  return (
+    <ActivityPickerClient
+      unitSlug={unitSlug}
+      themeId={themeId}
+      themeTitle={theme.title}
+      themeIcon={theme.icon}
+      unitGameAvailable={hasPlayableUnitMatching}
+    />
   );
 }
