@@ -1,0 +1,84 @@
+You are auditing English vocabulary definitions for an adult ESL learning app.
+Learners are at NRS Beginning Literacy / Beginning Basic ESL (CASAS ~180-200,
+roughly grade 1-3 reading). They are ADULTS — do not patronize them. They
+also use Google Translate liberally, so the goal is NOT to oversimplify; it
+is to make every definition CLEAR, PRECISE, and UNAMBIGUOUS.
+
+Audit each definition below for these specific failure modes:
+
+  - vague: doesn't distinguish this word from similar ones (e.g. "clothing
+    you wear" doesn't tell you a shirt from pants)
+  - broad: too general — would fit many other words
+  - narrow: excludes legitimate normal uses of the word
+  - circular: defines the word using itself or its root
+  - ambiguous: could fit a different word equally well
+  - hard: uses uncommon English that the learner cannot reasonably translate
+  - ok: definition is clear, precise, and adult-appropriate as-is
+
+Output STRICT JSON, no markdown fences, no commentary. One object per item:
+
+  { "id": <number>, "status": "ok" | "vague" | "broad" | "narrow" | "circular" | "ambiguous" | "hard", "suggestion": "<rewrite or empty string if ok>" }
+
+When you suggest a rewrite, keep it under 15 words, use common English, and
+treat the learner as a competent adult — concrete and specific over baby talk.
+
+This is chunk 3 of 3 (54 items). Return a JSON
+array with exactly 54 entries, in the same order as the input.
+
+INPUT:
+[
+  { "id": 164, "term": "Rent", "englishDefinition": "money you pay every month to live in a home" },
+  { "id": 166, "term": "Security deposit", "englishDefinition": "money you pay before moving into a home" },
+  { "id": 167, "term": "Laundry", "englishDefinition": "clothes in the home that you need to wash" },
+  { "id": 171, "term": "Floor", "englishDefinition": "the part of a room that you walk on" },
+  { "id": 172, "term": "Chimney", "englishDefinition": "the part of a house that carries smoke outside" },
+  { "id": 173, "term": "Door", "englishDefinition": "the house part you open to go in or out" },
+  { "id": 174, "term": "Stairs", "englishDefinition": "house steps that go up or down" },
+  { "id": 175, "term": "Window", "englishDefinition": "a house opening with glass in the wall" },
+  { "id": 176, "term": "End table", "englishDefinition": "a small home table next to a sofa or chair" },
+  { "id": 177, "term": "Coffee table", "englishDefinition": "a low home table in front of a sofa" },
+  { "id": 182, "term": "Bed", "englishDefinition": "the bedroom furniture where you sleep" },
+  { "id": 186, "term": "Refrigerator", "englishDefinition": "a kitchen machine that keeps food cold" },
+  { "id": 187, "term": "Microwave", "englishDefinition": "a kitchen machine that heats food quickly" },
+  { "id": 188, "term": "Oven", "englishDefinition": "the kitchen part of a stove where you bake food" },
+  { "id": 189, "term": "Sofa", "englishDefinition": "a soft living room seat for several people" },
+  { "id": 190, "term": "Armchair", "englishDefinition": "a living room chair with arms for one person" },
+  { "id": 192, "term": "Washer", "englishDefinition": "a laundry machine that washes clothes" },
+  { "id": 193, "term": "Dryer", "englishDefinition": "a laundry machine that dries clothes" },
+  { "id": 194, "term": "Receptionist", "englishDefinition": "a worker who welcomes people and answers phones" },
+  { "id": 195, "term": "Manager", "englishDefinition": "a worker who is in charge of other workers" },
+  { "id": 196, "term": "Server", "englishDefinition": "a restaurant worker who brings food to customers" },
+  { "id": 198, "term": "Doctor", "englishDefinition": "a medical worker who treats sick people" },
+  { "id": 200, "term": "Salesperson", "englishDefinition": "a store worker who sells things" },
+  { "id": 201, "term": "Job", "englishDefinition": "work you do to earn money" },
+  { "id": 203, "term": "Back", "englishDefinition": "the body part behind your chest and stomach" },
+  { "id": 204, "term": "Toes", "englishDefinition": "the small body parts on your feet" },
+  { "id": 205, "term": "Eyes", "englishDefinition": "the body parts you use to see" },
+  { "id": 206, "term": "Mouth", "englishDefinition": "the body opening you use to eat and speak" },
+  { "id": 207, "term": "Teeth", "englishDefinition": "the hard white parts in your mouth" },
+  { "id": 210, "term": "Appointment", "englishDefinition": "a time to meet the doctor or another person" },
+  { "id": 212, "term": "Weight", "englishDefinition": "how heavy your body is" },
+  { "id": 215, "term": "Almonds", "englishDefinition": "long light-brown nuts people eat" },
+  { "id": 218, "term": "Carrots", "englishDefinition": "long orange vegetables" },
+  { "id": 219, "term": "Avocados", "englishDefinition": "soft green fruit often used in salads or guacamole" },
+  { "id": 221, "term": "Cucumber", "englishDefinition": "a long green vegetable with a lot of water" },
+  { "id": 222, "term": "Corn", "englishDefinition": "a yellow vegetable with many kernels" },
+  { "id": 223, "term": "Celery", "englishDefinition": "a long green vegetable with crisp sticks" },
+  { "id": 224, "term": "Lettuce", "englishDefinition": "a leafy green vegetable used in salads" },
+  { "id": 228, "term": "Apples", "englishDefinition": "round fruits with red, green, or yellow skin" },
+  { "id": 229, "term": "Oranges", "englishDefinition": "round orange fruits full of juice" },
+  { "id": 230, "term": "Bananas", "englishDefinition": "long yellow fruits with soft fruit inside" },
+  { "id": 231, "term": "Pears", "englishDefinition": "sweet fruits with a narrow top and round bottom" },
+  { "id": 232, "term": "Watermelon", "englishDefinition": "a large green fruit with red fruit inside" },
+  { "id": 234, "term": "Strawberry", "englishDefinition": "a small red fruit with seeds on the outside" },
+  { "id": 236, "term": "Blueberry", "englishDefinition": "a small round blue fruit" },
+  { "id": 237, "term": "French Fries", "englishDefinition": "fried potato pieces people eat hot" },
+  { "id": 238, "term": "Hamburger", "englishDefinition": "a sandwich with meat inside a bun" },
+  { "id": 240, "term": "Sandwich", "englishDefinition": "food with meat, cheese, or other food between bread" },
+  { "id": 242, "term": "Bottled water", "englishDefinition": "water sold in a bottle" },
+  { "id": 243, "term": "Juice", "englishDefinition": "a drink made from fruit" },
+  { "id": 244, "term": "Soda", "englishDefinition": "a sweet cold drink with bubbles" },
+  { "id": 245, "term": "Can", "englishDefinition": "a metal container for food or drink" },
+  { "id": 246, "term": "Jar", "englishDefinition": "a glass food container with a lid" },
+  { "id": 247, "term": "Bag", "englishDefinition": "a soft container for food or other things" }
+]

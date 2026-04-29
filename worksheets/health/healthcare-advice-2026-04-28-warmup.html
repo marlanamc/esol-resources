@@ -231,6 +231,151 @@
       font-weight: bold;
       letter-spacing: 0.03em;
     }
+
+    /* ── WEEK PLAN (Page 3) ── */
+    .p3 {
+      max-width: 8in;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0.4in 0.55in 0.35in;
+      font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+    .p3-header {
+      text-align: center;
+      border-bottom: 2.5px solid var(--ink);
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+    }
+    .p3-header h1 {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+    }
+    .p3-sub {
+      font-size: 11px;
+      color: var(--mid);
+    }
+    .p3-why {
+      border: 1.5px solid var(--ink);
+      padding: 8px 10px;
+      margin-bottom: 14px;
+      font-size: 11.5px;
+      line-height: 1.45;
+    }
+    .p3-why b { font-weight: 800; }
+    .p3-section-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 3px;
+      margin: 0 0 8px;
+    }
+    .p3-goals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 16px;
+      margin-bottom: 14px;
+      font-size: 11.5px;
+    }
+    .p3-goal {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+    }
+    .p3-cb {
+      width: 11px;
+      height: 11px;
+      border: 1.5px solid var(--ink);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .p3-days {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .p3-day { border: 1.5px solid var(--ink); }
+    .p3-day-header {
+      background: #f4f4f4;
+      padding: 5px 8px;
+      font-weight: 800;
+      font-size: 11.5px;
+      border-bottom: 1px solid var(--ink);
+    }
+    .p3-day-body { padding: 7px 8px; font-size: 11.5px; }
+    .p3-day-body p { margin: 0 0 4px; }
+    .p3-day-body p:last-child { margin-bottom: 0; }
+    .p3-after { margin-bottom: 14px; }
+    .p3-checklist {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 16px;
+      font-size: 11.5px;
+    }
+    .p3-check { display: flex; align-items: baseline; gap: 5px; }
+    .p3-quiz-card { border: 2px solid var(--ink); padding: 10px 12px; }
+    .p3-quiz-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .p3-quiz-badge {
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--ink);
+      padding: 1px 6px;
+    }
+    .p3-quiz-header h2 { font-size: 14px; font-weight: 800; margin: 0; }
+    .p3-quiz-item {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      padding: 6px 8px;
+      background: #f4f4f4;
+      border-left: 3px solid var(--ink);
+      margin-bottom: 8px;
+      font-size: 11.5px;
+    }
+    .p3-quiz-meta {
+      font-size: 10.5px;
+      color: var(--mid);
+      font-style: italic;
+      margin-top: 2px;
+    }
+    .p3-verb-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 12px;
+    }
+    .p3-verb-table th,
+    .p3-verb-table td {
+      border: 1.5px solid var(--ink);
+      padding: 7px 6px;
+      text-align: center;
+    }
+    .p3-verb-table th {
+      background: #f4f4f4;
+      font-weight: 800;
+      font-size: 11px;
+    }
+    .p3-verb-table td.v1 { text-align: left; font-weight: 700; }
+
+    @media print {
+      @page { size: letter; margin: 0.4in; }
+      body { background: #fff; padding: 0; }
+      .sheet, .p3 { padding: 0; max-width: none; }
+    }
   </style>
 </head>
 <body>
@@ -270,48 +415,13 @@
       </div>
     </section>
 
-    <!-- PART B: DIALOGUES -->
-    <section class="section">
-      <div class="section-bar">
-        <h2 class="section-title">Part B &middot; At the Doctor's Office</h2>
-        <span class="section-time">5 min &middot; read with a partner</span>
-      </div>
-      <p class="instruction">Read each dialogue out loud. Notice the bold words — <b>should</b> = advice, <b>must / have to</b> = required, <b>need to</b> = necessary.</p>
-
-      <div class="dialogue-box">
-        <div class="dialogue-label">Dialogue 1 — A sick child</div>
-        <div class="d-line"><span class="speaker">Parent:</span> My daughter has had a fever since yesterday. What <b>should</b> I do? <span class="modal-tag">advice</span></div>
-        <div class="d-line"><span class="speaker">Doctor:</span> She <b>needs to</b> rest and drink a lot of fluids. <span class="modal-tag">necessary</span></div>
-        <div class="d-line"><span class="speaker">Parent:</span> Can she go to school tomorrow?</div>
-        <div class="d-line"><span class="speaker">Doctor:</span> No. She <b>must</b> stay home until the fever is gone for 24 hours. It could be contagious. <span class="modal-tag">required</span></div>
-        <div class="d-line"><span class="speaker">Parent:</span> OK. <b>Should</b> I give her medicine for the fever?</div>
-        <div class="d-line"><span class="speaker">Doctor:</span> Yes, you <b>should</b> give children's Tylenol. Here's a prescription.</div>
-        <div class="dialogue-q">&#9654; Which rule is stronger — "She <i>should</i> stay home" or "She <i>must</i> stay home"?</div>
-      </div>
-
-      <div class="dialogue-box">
-        <div class="dialogue-label">Dialogue 2 — Annual checkup</div>
-        <div class="d-line"><span class="speaker">Doctor:</span> Everything looks good today. Your checkup is normal.</div>
-        <div class="d-line"><span class="speaker">Patient:</span> That's great. Do I <b>have to</b> come back soon? <span class="modal-tag">required?</span></div>
-        <div class="d-line"><span class="speaker">Doctor:</span> Not right away, but you <b>should</b> schedule your next appointment for next year. <span class="modal-tag">advice</span></div>
-        <div class="d-line"><span class="speaker">Patient:</span> What about the blood test? Do I <b>need to</b> fast before it?</div>
-        <div class="d-line"><span class="speaker">Doctor:</span> Yes, you <b>must not</b> eat anything for 12 hours before the test. <span class="modal-tag">required</span></div>
-        <div class="dialogue-q">&#9654; The patient asks "Do I <i>have to</i> come back?" — is the doctor's answer "yes, you must" or "it's a good idea"?</div>
-      </div>
-    </section>
-
-    <div class="footer">Healthcare Advice Warm-up · Page 1</div>
 
     <!-- ═══════════ PAGE 2: BACK ═══════════ -->
-    <div class="page-break"></div>
-
-    <div class="p2-header">Healthcare: Advice Modals — continued</div>
-
-    <!-- PART C: FIX THE BAD ADVICE -->
+    <!-- PART B: FIX THE BAD ADVICE -->
     <section class="section">
       <div class="section-bar">
-        <h2 class="section-title">Part C &middot; Fix the Bad Advice</h2>
-        <span class="section-time">4 min</span>
+        <h2 class="section-title">Part B &middot; Fix the Bad Advice</h2>
+        <span class="section-time">6 min</span>
       </div>
       <p class="instruction">Each sentence uses the wrong modal. Cross it out and rewrite the sentence with a better one.</p>
 
@@ -346,46 +456,99 @@
           <span class="num">5.</span> You <span class="wrong">should</span> bring your ID to the pharmacy to pick up a prescription. (Can you get it without ID?)
           <span class="fix-line"></span>
         </div>
-      </div>
-    </section>
-
-    <!-- PART D: GIVE ADVICE -->
-    <section class="section">
-      <div class="section-bar">
-        <h2 class="section-title">Part D &middot; Give Advice</h2>
-        <span class="section-time">4 min &middot; with a partner</span>
-      </div>
-      <p class="instruction">Read each problem. Write one piece of advice using <b>should</b>, <b>must</b>, <b>need to</b>, or <b>have to</b>.</p>
-
-      <div class="advice-card">
-        <div class="problem-label">Problem 1</div>
-        <div class="problem-text">"I have a fever and a bad cough. My coworkers say it might be contagious."</div>
-        <div class="advice-lines">
-          <div class="advice-label">Your advice:</div>
-          <div class="a-line"></div>
+        <div class="fix-item">
+          <span class="num">6.</span> You <span class="wrong">must</span> get a flu shot every year. (Is this a requirement for everyone, or just a recommendation?)
+          <span class="fix-line"></span>
         </div>
-      </div>
-
-      <div class="advice-card">
-        <div class="problem-label">Problem 2</div>
-        <div class="problem-text">"I haven't been to the doctor in three years. I feel fine, but my wife says I need a checkup."</div>
-        <div class="advice-lines">
-          <div class="advice-label">Your advice:</div>
-          <div class="a-line"></div>
+        <div class="fix-item">
+          <span class="num">7.</span> You <span class="wrong">don't have to</span> finish all of your antibiotics. (Is skipping doses OK, or is it important?)
+          <span class="fix-line"></span>
         </div>
-      </div>
-
-      <div class="advice-card">
-        <div class="problem-label">Problem 3</div>
-        <div class="problem-text">"The doctor gave me a diagnosis and a prescription, but I don't understand what the medicine is for."</div>
-        <div class="advice-lines">
-          <div class="advice-label">Your advice:</div>
-          <div class="a-line"></div>
+        <div class="fix-item">
+          <span class="num">8.</span> You <span class="wrong">should</span> share your prescription medicine with a family member who has the same symptoms. (Is this just a bad idea, or is it actually dangerous/forbidden?)
+          <span class="fix-line"></span>
         </div>
       </div>
     </section>
 
-    <div class="footer">Healthcare Advice Warm-up · Page 2</div>
+
+  </div>
+
+  <!-- ═══════════════ PAGE 3: WEEK 30 PLAN ═══════════════ -->
+  <div class="page-break"></div>
+  <div class="p3">
+
+    <div class="p3-header">
+      <h1>Your Week 30 Plan</h1>
+      <div class="p3-sub">April 28 &ndash; 30, 2026 &bull; Healthcare Modals, <em>Used To / Get Used To / Be Used To</em></div>
+    </div>
+
+    <div class="p3-why">
+      <b>Why this matters for you:</b> This week you&rsquo;ll connect giving healthcare advice with talking about how habits change over time. You&rsquo;ll practice <em>should / must / need to</em> for advice, and <em>used to / be used to / get used to</em> to describe what was true before vs. what is true now.
+    </div>
+
+    <h3 class="p3-section-title">Your Goals This Week</h3>
+    <div class="p3-goals">
+      <div class="p3-goal"><div class="p3-cb"></div> Use modals correctly: <em>should, must, need to, have to</em></div>
+      <div class="p3-goal"><div class="p3-cb"></div> Distinguish <em>used to</em>, <em>be used to</em>, and <em>get used to</em></div>
+      <div class="p3-goal"><div class="p3-cb"></div> Read and discuss health topics with a partner</div>
+      <div class="p3-goal"><div class="p3-cb"></div> Give advice in real-life healthcare scenarios</div>
+      <div class="p3-goal" style="grid-column: 1 / -1;"><div class="p3-cb"></div> Build confidence through games, readings, and partner activities</div>
+    </div>
+
+    <h3 class="p3-section-title">This Week</h3>
+    <div class="p3-days">
+      <div class="p3-day">
+        <div class="p3-day-header">Tuesday, April 29</div>
+        <div class="p3-day-body">
+          <p><b>Warm-up:</b> Healthcare Modals &amp; Health Habits</p>
+          <p><b>Classwork:</b> Health game &middot; Reading &middot; Emotions wheel game</p>
+        </div>
+      </div>
+      <div class="p3-day">
+        <div class="p3-day-header">Thursday, May 1</div>
+        <div class="p3-day-body">
+          <p><b>Classwork:</b> Medical Instructions: Modals, Imperatives &amp; Declaratives</p>
+          <p><b>Grammar:</b> <em>Used to</em>, <em>get used to</em>, <em>be used to</em></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="p3-after">
+      <h3 class="p3-section-title">After Class</h3>
+      <div class="p3-checklist">
+        <div class="p3-check"><div class="p3-cb"></div> Review April 29 &ndash; May 1 Vocabulary Flash Cards</div>
+        <div class="p3-check"><div class="p3-cb"></div> Review the Medical Instructions Grammar Guide</div>
+        <div class="p3-check"><div class="p3-cb"></div> Practice the Emotions Wheel activity</div>
+        <div class="p3-check"><div class="p3-cb"></div> Take Verb Quiz 16</div>
+      </div>
+    </div>
+
+    <div class="p3-quiz-card">
+      <div class="p3-quiz-header">
+        <div class="p3-quiz-badge">Don&rsquo;t Forget</div>
+        <h2>Quizzes &amp; Due Dates</h2>
+      </div>
+      <div class="p3-quiz-item">
+        <div class="p3-cb"></div>
+        <div>
+          <b>Verb Quiz 16</b>
+          <div class="p3-quiz-meta">Due Tuesday, May 5 &bull; Online, 5 verbs, ~5 min</div>
+        </div>
+      </div>
+      <table class="p3-verb-table">
+        <thead>
+          <tr><th>V1</th><th>V1-3rd</th><th>V1-ing</th><th>V2</th><th>V3</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="v1">bring</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">put</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">cut</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">lose</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">begin</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
 
   </div>
 </body>

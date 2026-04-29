@@ -602,40 +602,40 @@
   "Week 31": {
     "due_date": "2026-05-05",
     "verbs": {
-      "book": {
-        "v1": "book",
-        "v1_3rd": "books",
-        "v1_ing": "booking",
-        "v2": "booked",
-        "v3": "booked"
+      "bring": {
+        "v1": "bring",
+        "v1_3rd": "brings",
+        "v1_ing": "bringing",
+        "v2": "brought",
+        "v3": "brought"
       },
-      "cancel": {
-        "v1": "cancel",
-        "v1_3rd": "cancels",
-        "v1_ing": "canceling",
-        "v2": "canceled",
-        "v3": "canceled"
+      "put": {
+        "v1": "put",
+        "v1_3rd": "puts",
+        "v1_ing": "putting",
+        "v2": "put",
+        "v3": "put"
       },
-      "reschedule": {
-        "v1": "reschedule",
-        "v1_3rd": "reschedules",
-        "v1_ing": "rescheduling",
-        "v2": "rescheduled",
-        "v3": "rescheduled"
+      "cut": {
+        "v1": "cut",
+        "v1_3rd": "cuts",
+        "v1_ing": "cutting",
+        "v2": "cut",
+        "v3": "cut"
       },
-      "register": {
-        "v1": "register",
-        "v1_3rd": "registers",
-        "v1_ing": "registering",
-        "v2": "registered",
-        "v3": "registered"
+      "lose": {
+        "v1": "lose",
+        "v1_3rd": "loses",
+        "v1_ing": "losing",
+        "v2": "lost",
+        "v3": "lost"
       },
-      "update": {
-        "v1": "update",
-        "v1_3rd": "updates",
-        "v1_ing": "updating",
-        "v2": "updated",
-        "v3": "updated"
+      "begin": {
+        "v1": "begin",
+        "v1_3rd": "begins",
+        "v1_ing": "beginning",
+        "v2": "began",
+        "v3": "begun"
       }
     }
   },

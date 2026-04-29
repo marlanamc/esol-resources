@@ -1,0 +1,250 @@
+id,term,englishDefinition,words,grade,hardWords,flagged
+1,Name,"the words people use to identify you, including your first name and last name",14,6.7,,yes
+2,City,"a large urban area with its own government, businesses, and neighborhoods",11,9.1,,yes
+3,Country,"a nation, such as the United States or Mexico",9,5,,
+4,Address,the place where you live or receive mail,8,0.8,,
+5,Street,"a named road in a city or town, often with buildings on each side",14,4.2,,yes
+6,Phone number,the set of numbers people use to call you,9,2.3,,
+7,State,"one of the main regions of a country, such as Massachusetts",11,5.9,,
+8,Zip code,the postal code used for mail in an area,9,2.3,,
+9,Job,the work a person does to earn money,8,2.3,,
+10,Age,how many years a person has lived,7,2.3,,
+11,Birthday,"the specific date you were born, celebrated once each year",10,4.8,,
+12,Years old,used to say a person's age in years,8,0.8,,
+13,Single,a person who is not married,6,2.5,,
+14,Married,having a husband or wife,5,2.9,,
+15,Divorced,no longer married after ending a marriage,7,7.4,,yes
+16,Morning,the early part of the day before noon,8,2.3,,
+17,Afternoon,the part of the day after noon and before evening,10,4.8,,
+18,Evening,the part of the day from about 6 p.m. until bedtime,11,0.5,,
+19,Night,the dark part of the day when people usually sleep,10,3.7,,
+20,Man,an adult male person,4,6.6,,yes
+21,Men,more than one adult male person,6,4.5,,
+22,Woman,an adult female person,4,9.6,,yes
+23,Women,more than one adult female person,6,6.4,,yes
+24,I,the word a speaker uses to talk about himself or herself,11,4.8,,yes
+25,You,the word used to talk to another person or people,10,4.8,,
+26,He,used to refer to one male person already mentioned or known,11,6.9,,yes
+27,She,used to refer to one female person already mentioned or known,11,8,,yes
+28,It,"the word used for a thing, animal, or idea",9,3.7,,
+29,We,the word used for the speaker and another person or people,11,5.9,,
+30,They,used to refer to a group of people or things not including the speaker,14,5.9,,yes
+31,I'm,the short form of I am,6,-1.4,,
+32,My,used to show something belongs to me,7,4,,
+33,Your,used to show something belongs to you,7,4,,
+34,His,used to show something belongs to a man or boy,10,3.7,,
+35,Her,used to show something belongs to a woman or girl,10,4.8,,
+36,Our,used to show something belongs to us,7,4,,
+37,Their,used to show something belongs to them,7,4,,
+38,One,the number 1,3,-2.6,,
+39,Two,the number 2,3,-2.6,,
+40,Three,the number 3,3,-2.6,,
+41,Four,the number 4,3,-2.6,,
+42,Five,the number 5,3,-2.6,,
+43,Six,the number 6,3,-2.6,,
+44,Seven,the number 7,3,-2.6,,
+45,Eight,the number 8,3,-2.6,,
+46,Nine,the number 9,3,-2.6,,
+47,Ten,the number 10,3,-2.6,,
+48,Paper,thin sheets you write or print on,7,-1.1,,
+49,Book,"a set of printed or written pages bound together, covering one topic",12,6.8,,yes
+50,Pen,a small tool used to write with ink on paper,10,1.3,,
+51,Notebook,a book of blank or lined pages for writing notes,10,1.3,,
+52,Textbook,a book with lessons and information used for a specific school subject,12,7.8,,yes
+53,Workbook,a practice book with exercises and questions,7,5.7,,
+54,Board,the large surface in a classroom where a teacher writes,10,3.7,,
+55,Food,any solid or liquid people eat to get energy and nutrition,11,8,,yes
+56,Favorite,the one you like best,5,-1.8,,
+57,Old,having existed for a long time; not new or recent,10,3.7,,
+58,Sunday,"The first day of the week, often a day for rest or family time.",14,4.2,,yes
+59,Monday,The second day of the week and the beginning of the traditional work week.,14,6.7,,yes
+60,Tuesday,"the third day of the week, between Monday and Wednesday",10,4.8,,
+61,Wednesday,"the fourth day of the week, between Tuesday and Thursday",10,3.7,,
+62,Thursday,"the fifth day of the week, between Wednesday and Friday",10,4.8,,
+63,Friday,"The sixth day of the week, often the last day of work for many people.",15,4.4,,yes
+64,Saturday,The seventh day of the week and part of the weekend.,11,2.6,,
+65,January,"The first month of the year, starting on New Year's Day.",11,1.6,,
+66,February,"The second month of the year, known for being the shortest month.",12,2.9,,
+67,March,"the third month of the year, between February and April",10,4.8,,
+68,April,"the fourth month of the year, between March and May",10,1.3,,
+69,May,"the fifth month of the year, between April and June",10,2.5,,
+70,June,"The sixth month of the year, when the summer season starts.",11,2.6,,
+71,July,"the seventh month of the year, between June and August",10,3.7,,
+72,August,The eighth month of the year and the last full month of summer.,13,2.2,,yes
+73,September,"The ninth month of the year, when many schools begin.",10,2.5,,
+74,October,"The tenth month of the year, known for fall colors and Halloween.",12,3.8,,
+75,November,"the eleventh month of the year, between October and December",10,8.4,,yes
+76,December,"The twelfth and last month of the year, when winter begins.",11,2.6,,
+77,Week,"A period of seven days, usually from Sunday to Saturday.",10,8.4,,yes
+78,Month,one of the twelve parts of a year,8,-0.7,,
+79,Today,This present day; the day that is happening now.,9,3.7,,
+80,Tomorrow,The day after today.,4,3.7,,
+81,Yesterday,The day before today.,4,3.7,,
+82,Next,immediately following this one in order or time,8,9.7,,yes
+83,Time,"the system of measuring days, hours, and minutes; when something happens",11,8,,yes
+84,Schedule,A plan that shows when activities or work shifts will happen.,11,4.8,,
+85,Calendar,"A chart or book used to track days, weeks, and months of the year.",14,1.7,,yes
+86,Appointment,"A set time to meet someone, such as a doctor, dentist, or office.",13,4.9,,yes
+87,Half,One of two equal parts of something; also 30 minutes of an hour.,13,4.9,,yes
+88,Hour,A unit of time equal to sixty minutes.,8,5.2,,
+89,Minute,A short unit of time; there are sixty minutes in one hour.,12,3.8,,yes
+90,Breakfast,"The first meal of the day, usually eaten in the morning.",11,4.8,,
+91,Lunch,"A meal eaten in the middle of the day, often during a work break.",14,5,,yes
+92,Dinner,"The main meal of the day, usually eaten in the evening.",11,5.9,,
+93,Shower,Standing under a stream of water to clean your whole body.,11,5.9,,
+94,O'clock,Used with numbers from one to twelve to tell the exact hour.,12,2.9,,
+95,Father,A male parent; can also be called dad or papa.,10,4.8,,
+96,Mother,A female parent; can also be called mom or mama.,10,6,,
+97,Sister,A female person who has the same parents as another person.,11,8,,yes
+98,Brother,A male person who has the same parents as another person.,11,6.9,,yes
+99,Son,A male child of a parent.,6,2.5,,
+100,Daughter,A female child of a parent.,6,4.5,,
+101,Cousin,The child of your aunt or uncle.,7,0.6,,
+102,Uncle,"The brother of your mother or father, or the husband of your aunt.",13,4.9,,yes
+103,Aunt,"The sister of your mother or father, or the wife of your uncle.",13,4.9,,yes
+104,Niece,The daughter of your brother or sister.,7,4,,
+105,Nephew,The son of your brother or sister.,7,2.3,,
+106,Grandmother,The mother of your father or mother.,7,4,,
+107,Grandfather,The father of your father or mother.,7,4,,
+108,Husband,A married man; the male partner in a marriage.,9,5,,
+109,Wife,A married woman; the female partner in a marriage.,9,7.6,,yes
+110,Parent,A father or mother of a child.,7,2.3,,
+111,Child,A young human being below the age of adulthood.,9,5,,
+112,Children,More than one child; plural of child.,7,0.6,,
+113,Mother-in-law,The mother of your husband or wife.,7,2.3,,
+114,Father-in-law,The father of your husband or wife.,7,2.3,,
+115,Sister-in-law,"The sister of your husband or wife, or the wife of your brother.",13,4,,yes
+116,Brother-in-law,"The brother of your husband or wife, or the husband of your sister.",13,4.9,,yes
+117,Members,"People who belong to a group, such as a family or club.",12,4.8,,
+118,Relationship,"How two people are connected, such as family, friends, or partners.",11,5.9,,
+119,Paper,"Thin flat sheets used for writing, drawing, or printing.",9,3.7,,
+120,Book,"many pages bound together, used for reading or writing",9,6.3,,yes
+121,Pen,A tool you hold to write using ink.,8,0.8,,
+122,Notebook,A book with blank or ruled pages for writing notes in.,11,1.6,,
+123,Textbook,A book used as a standard work for the study of a particular subject.,14,6.7,,yes
+124,Workbook,A book with lessons and practice exercises for students.,9,6.3,,yes
+125,Pencil sharpener,A small tool that makes a pencil tip sharp for writing.,11,2.6,,
+126,Board,A large flat surface on a classroom wall for writing or drawing.,12,4.8,,
+127,Marker,A thick-tipped pen used to write on whiteboards or paper.,10,4.8,,
+128,Eraser,A rubber tool that removes pencil or marker marks from paper.,11,5.9,,
+129,Desk,A piece of furniture with a flat surface for writing or reading.,12,5.8,,
+130,Chair,"A seat with a back, for one person to sit on.",11,1.6,,
+131,Teacher,A person who provides education for students.,7,9.1,,yes
+132,Student,A person who is studying at a school or college.,10,3.7,,
+133,Classmate,A student who is in the same class as another.,10,3.7,,
+134,Partner,Someone you work with on a task or activity.,9,5,,
+135,Group,Two or more people working together on a task.,9,5,,
+136,Hair,The mass of thin threads that grows on the head of a person.,13,2.2,,yes
+137,Eyes,The two parts of your face you use to see.,10,0.1,,
+138,Short,Measuring a small distance from end to end; not long or tall.,12,3.8,,
+139,Long,Measuring a great distance from end to end; not short.,10,3.7,,
+140,Straight,Not curved or bent; going in one direction without turning.,10,4.8,,
+141,Wavy,Having a series of curves; not straight or curly.,9,3.7,,
+142,Curly,"Having tight, round loops or spirals; not straight or wavy.",10,3.7,,
+143,Bald,Having little or no hair on the head.,8,2.3,,
+144,Brown,The color of earth or wood.,6,0.5,,
+145,Red,The color of blood or tomatoes.,6,4.5,,
+146,Black,The darkest color; the color of coal or night.,9,3.7,,
+147,Blond,"A pale yellow or golden color, especially of hair.",9,8.9,,yes
+148,Gray,A color between black and white; the color of ashes.,10,3.7,,
+149,Tall,Of great or more than average height.,7,2.3,,
+150,Young,Having lived or existed for only a short time; not old.,11,3.7,,
+151,Old,Having lived or existed for a long time; not young.,10,2.5,,
+152,Thin,"Having little, or too little, flesh or fat on the body.",11,4.8,,
+153,Heavy,Weighing a lot; used to describe a person with a large body.,12,4.8,,
+154,Fire Department,The city service that sends firefighters to fight fires and emergencies.,11,9.1,,yes
+155,Public Transportation,"buses and trains people use to travel between home, work, and school",12,3.8,,
+156,Suit,matching formal clothing people wear to work or events,9,6.3,,yes
+157,Car,A vehicle with four wheels that people drive on roads.,10,3.7,,
+158,Receipt,a store paper that shows what you bought,8,0.8,,
+159,Signature,"Your name written by hand, used to approve a document or form.",12,4.8,,
+160,Return,To bring a purchased item back to the store for a refund.,12,3.8,,
+161,Exchange,To give back one item to a store and get a different one.,13,4,,yes
+162,Manager,"The person in charge of a store, office, or workplace.",10,3.7,,
+163,Complaint,A statement that something is wrong or unsatisfactory.,8,12.6,,yes
+164,Rent,money you pay every month to live in a home,10,3.7,,
+165,Fee,"Money charged for a service, such as a late payment or pet fee.",13,4,,yes
+166,Security deposit,money you pay before moving into a home,8,5.2,,
+167,Laundry,clothes in the home that you need to wash,9,-0.3,,
+168,Down payment,a large payment you make first when buying a home or car,12,1.9,,
+169,Gas,natural gas used for heating or cooking in a home,10,4.8,,yes
+170,Water,the home utility that supplies running water; you pay a monthly bill,12,7.8,,yes
+171,Floor,the part of a room that you walk on,9,-0.3,,
+172,Chimney,the part of a house that carries smoke outside,9,2.3,,
+173,Door,the house part you open to go in or out,10,1.3,,
+174,Stairs,house steps that go up or down,7,-1.1,,
+175,Window,a house opening with glass in the wall,8,2.3,,
+176,End table,a small home table next to a sofa or chair,10,2.5,,
+177,Coffee table,a low home table in front of a sofa,9,2.3,,
+178,Plant,a living thing with roots and leaves grown indoors for decoration,11,5.9,,
+179,Lamp,a small electric light that sits on a table or floor,11,3.7,,
+180,Painting,"a picture made with paint, hung on a wall",9,1,,
+181,Bathtub,a large container in the bathroom where you sit and wash your body,13,4.9,,yes
+182,Bed,the bedroom furniture where you sleep,6,4.5,,yes
+183,Bedtable,"a small table beside a bed, used for a lamp or alarm clock",13,4,,yes
+184,Car,a four-wheeled motor vehicle used to travel on roads,9,6.3,,yes
+185,Chair,"a seat with a back, for one person to sit on",11,1.6,,
+186,Refrigerator,a kitchen machine that keeps food cold,7,2.3,,
+187,Microwave,a kitchen machine that heats food quickly,7,4,,
+188,Oven,the kitchen part of a stove where you bake food,10,1.3,,
+189,Sofa,a soft living room seat for several people,8,5.2,,
+190,Armchair,a living room chair with arms for one person,9,2.3,,
+191,TV,"an electronic screen used to watch shows, news, and movies",10,4.8,,
+192,Washer,a laundry machine that washes clothes,6,2.5,,
+193,Dryer,a laundry machine that dries clothes,6,2.5,,
+194,Receptionist,a worker who welcomes people and answers phones,8,5.2,,
+195,Manager,a worker who is in charge of other workers,9,3.7,,
+196,Server,a restaurant worker who brings food to customers,8,6.7,,yes
+197,Dishwasher,"a kitchen worker or machine that washes plates, cups, and utensils",11,5.9,,
+198,Doctor,a medical worker who treats sick people,7,5.7,,
+199,Dentist,"a medical professional who examines, cleans, and repairs teeth",9,10.2,,yes
+200,Salesperson,a store worker who sells things,6,0.5,,
+201,Job,work you do to earn money,6,0.5,,
+202,Schedule,"a plan listing when events, tasks, or shifts happen",9,3.7,,
+203,Back,the body part behind your chest and stomach,8,3.8,,
+204,Toes,the small body parts on your feet,7,0.6,,
+205,Eyes,the body parts you use to see,7,0.6,,
+206,Mouth,the body opening you use to eat and speak,9,3.7,,
+207,Teeth,the hard white parts in your mouth,7,-1.1,,
+208,Throat,the tube inside your neck that carries food and air,10,2.5,,
+209,Dry cough,a cough with no phlegm or liquid; your throat feels scratchy,11,2.6,,
+210,Appointment,a time to meet the doctor or another person,9,5,,
+211,Insurance,"a plan you pay into that covers medical, car, or other costs",12,5.8,,
+212,Weight,how heavy your body is,5,2.9,,
+213,Walnuts,"wrinkled brown nuts with a hard shell, eaten as a snack or in baking",14,3.4,,yes
+214,Peanuts,small tan nuts that grow underground; used in peanut butter,10,4.8,,yes
+215,Almonds,long light-brown nuts people eat,5,2.9,,
+216,Tuna,"a large ocean fish, often sold canned and used in sandwiches or salads",13,4.9,,yes
+217,Tomatoes,"round red fruit with soft flesh, used raw in salads or cooked in sauces",14,2.5,,yes
+218,Carrots,long orange vegetables,3,13.1,,yes
+219,Avocados,soft green fruit often used in salads or guacamole,9,6.3,,yes
+220,Broccoli,a dark green vegetable with a thick stalk and tightly packed flower tops,13,5.8,,yes
+221,Cucumber,a long green vegetable with a lot of water,9,5,,
+222,Corn,a yellow vegetable with many kernels,6,10.4,,yes
+223,Celery,a long green vegetable with crisp sticks,7,4,,
+224,Lettuce,a leafy green vegetable used in salads,7,7.4,,yes
+225,Spinach,small dark green leaves eaten raw in salads or cooked as a side dish,14,3.4,,yes
+226,Salad,"a cold dish of raw vegetables, often with dressing",9,6.3,,yes
+227,Ketchup,"a thick red sauce made from tomatoes, used on burgers and fries",12,3.8,,
+228,Apples,"round fruits with red, green, or yellow skin",8,0.8,,
+229,Oranges,round orange fruits full of juice,6,0.5,,yes
+230,Bananas,long yellow fruits with soft fruit inside,7,2.3,,
+231,Pears,sweet fruits with a narrow top and round bottom,9,2.3,,
+232,Watermelon,a large green fruit with red fruit inside,8,0.8,,
+233,Melon,a large round fruit with sweet soft flesh and a hard green or orange skin,15,2.8,,yes
+234,Strawberry,a small red fruit with seeds on the outside,9,1,,
+235,Pineapple,a large tropical fruit with spiky brown skin and sweet yellow flesh inside,13,5.8,,yes
+236,Blueberry,a small round blue fruit,5,-1.8,,
+237,French Fries,fried potato pieces people eat hot,6,4.5,,
+238,Hamburger,a sandwich with meat inside a bun,7,2.3,,
+239,Pasta,"an Italian food made from flour and water, shaped into noodles or tubes",13,5.8,,yes
+240,Sandwich,"food with meat, cheese, or other food between bread",9,2.3,,
+241,Crackers,"thin, flat, crispy baked snacks made from flour",8,0.8,,
+242,Bottled water,water sold in a bottle,5,2.9,,
+243,Juice,a drink made from fruit,5,-1.8,,
+244,Soda,a sweet cold drink with bubbles,6,0.5,,
+245,Can,a metal container for food or drink,7,4,,
+246,Jar,a glass food container with a lid,7,2.3,,
+247,Bag,a soft container for food or other things,8,3.8,,
+248,Box,a stiff rectangular container made from cardboard or wood,9,7.6,,yes
+249,Package,"a sealed bag, box, or wrapper containing a product for sale",11,5.9,,
