@@ -607,35 +607,40 @@
         "v1_3rd": "brings",
         "v1_ing": "bringing",
         "v2": "brought",
-        "v3": "brought"
+        "v3": "brought",
+        "definition": "to carry or take something or someone to a place"
       },
       "put": {
         "v1": "put",
         "v1_3rd": "puts",
         "v1_ing": "putting",
         "v2": "put",
-        "v3": "put"
+        "v3": "put",
+        "definition": "to place something in a position or location"
       },
       "cut": {
         "v1": "cut",
         "v1_3rd": "cuts",
         "v1_ing": "cutting",
         "v2": "cut",
-        "v3": "cut"
+        "v3": "cut",
+        "definition": "to divide or open something with a knife, scissors, or sharp tool"
       },
       "lose": {
         "v1": "lose",
         "v1_3rd": "loses",
         "v1_ing": "losing",
         "v2": "lost",
-        "v3": "lost"
+        "v3": "lost",
+        "definition": "to not be able to find something or to no longer have it"
       },
       "begin": {
         "v1": "begin",
         "v1_3rd": "begins",
         "v1_ing": "beginning",
         "v2": "began",
-        "v3": "begun"
+        "v3": "begun",
+        "definition": "to start doing something or to start happening"
       }
     }
   },
