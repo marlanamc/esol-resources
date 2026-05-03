@@ -647,40 +647,45 @@
   "Week 32": {
     "due_date": "2026-05-12",
     "verbs": {
-      "prepare": {
-        "v1": "prepare",
-        "v1_3rd": "prepares",
-        "v1_ing": "preparing",
-        "v2": "prepared",
-        "v3": "prepared"
+      "catch": {
+        "v1": "catch",
+        "v1_3rd": "catches",
+        "v1_ing": "catching",
+        "v2": "caught",
+        "v3": "caught",
+        "definition": "to get an illness or to stop and hold something moving"
       },
-      "plan": {
-        "v1": "plan",
-        "v1_3rd": "plans",
-        "v1_ing": "planning",
-        "v2": "planned",
-        "v3": "planned"
+      "fall": {
+        "v1": "fall",
+        "v1_3rd": "falls",
+        "v1_ing": "falling",
+        "v2": "fell",
+        "v3": "fallen",
+        "definition": "to move down suddenly or begin a state, such as sleep"
       },
-      "cook": {
-        "v1": "cook",
-        "v1_3rd": "cooks",
-        "v1_ing": "cooking",
-        "v2": "cooked",
-        "v3": "cooked"
+      "shake": {
+        "v1": "shake",
+        "v1_3rd": "shakes",
+        "v1_ing": "shaking",
+        "v2": "shook",
+        "v3": "shaken",
+        "definition": "to move quickly back and forth, often from cold, fear, or stress"
       },
-      "avoid": {
-        "v1": "avoid",
-        "v1_3rd": "avoids",
-        "v1_ing": "avoiding",
-        "v2": "avoided",
-        "v3": "avoided"
+      "forgive": {
+        "v1": "forgive",
+        "v1_3rd": "forgives",
+        "v1_ing": "forgiving",
+        "v2": "forgave",
+        "v3": "forgiven",
+        "definition": "to stop feeling angry at someone for something they did"
       },
-      "consume": {
-        "v1": "consume",
-        "v1_3rd": "consumes",
-        "v1_ing": "consuming",
-        "v2": "consumed",
-        "v3": "consumed"
+      "overcome": {
+        "v1": "overcome",
+        "v1_3rd": "overcomes",
+        "v1_ing": "overcoming",
+        "v2": "overcame",
+        "v3": "overcome",
+        "definition": "to succeed in dealing with a problem, fear, or difficult feeling"
       }
     }
   },
