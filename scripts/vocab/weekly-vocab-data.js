@@ -196,12 +196,12 @@ const weeklyVocabData = {
   "may-5-7": {
     topic: "Holistic Health: Your Body",
     words: [
-      { term: "kidneys", def: "organs that filter waste from your blood", ex: "Drinking water helps your kidneys work well." },
-      { term: "pancreas", def: "the organ that helps control blood sugar", ex: "The pancreas makes insulin to help your body use sugar." },
       { term: "muscles", def: "parts of the body that help you move", ex: "Stretching helps keep your muscles flexible." },
       { term: "bones", def: "hard parts inside your body that give shape and support", ex: "Calcium is important for strong bones." },
       { term: "temperature", def: "how hot or cold your body is", ex: "The nurse took my temperature to check for a fever." },
       { term: "prescribe", def: "to order medicine for a patient", ex: "The doctor will prescribe antibiotics for the infection." },
+      { term: "dose", def: "one measured amount of medicine to take at one time", ex: "Take one dose every six hours as directed." },
+      { term: "drowsy", def: "sleepy or less alert, often after taking medicine", ex: "This allergy medicine can make you feel drowsy." },
       { term: "sign", def: "something that shows you might be sick", ex: "A fever is often a sign of an infection." },
       { term: "caution", def: "being careful to avoid danger", ex: "Use caution when taking new medicine for the first time." },
       { term: "organ", def: "a body part with a specific job, like the heart or lungs", ex: "The heart is a vital organ that pumps blood." },

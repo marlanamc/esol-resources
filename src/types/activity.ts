@@ -62,6 +62,7 @@ export type ExerciseItem =
         label: string;
         words: string[];
         correctAnswer: string;
+        correctAnswers?: string[];
         hint?: string;
     };
 

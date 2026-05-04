@@ -378,6 +378,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
               label: "Doctor to patient — an imperative instruction:",
               words: ["take", "this", "twice", "a", "day"],
               correctAnswer: "Take this twice a day",
+              correctAnswers: ["Take this twice a day."],
               hint: "Start with the verb. No subject.",
             },
             {
@@ -385,6 +386,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
               label: "Patient to doctor — a respectful declarative:",
               words: ["I", "will", "take", "it", "with", "breakfast"],
               correctAnswer: "I will take it with breakfast",
+              correctAnswers: ["I will take it with breakfast."],
               hint: "Start with 'I'.",
             },
           ],
@@ -718,12 +720,12 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "You ___ finish all the antibiotics, even if you feel better. (required)",
-              expectedAnswer: "must",
+              label: "You ___ finish all the antibiotics, even if you feel better. (required/necessary)",
+              expectedAnswers: ["must", "need to", "have to"],
             },
             {
               type: "radio",
-              label: "Warning: 'You ___ drive after taking this medication.' (dangerous)",
+              label: "Warning: 'You ___ drive after taking this medication.' (strong safety rule)",
               options: [
                 { value: "must not", label: "must not" },
                 { value: "don't have to", label: "don't have to" },
@@ -818,7 +820,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Asking your doctor a quick question:",
+              label: "Casual permission question to your doctor:",
               options: [
                 { value: "may", label: "May I ask you a question?" },
                 { value: "must", label: "Must I ask you something?" },
@@ -838,8 +840,8 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "You ___ fast for 12 hours before this blood test. (required)",
-              expectedAnswer: "need to",
+              label: "You ___ fast for 12 hours before this blood test. (required/necessary)",
+              expectedAnswers: ["need to", "have to", "must"],
             },
             {
               type: "text",
@@ -860,13 +862,13 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
             },
             {
               type: "text",
-              label: "Receptionist: \"Yes, you ___ ___ ask for any document in your language.\" (two words — legal right)",
+              label: "Receptionist: \"Yes, you ___ ___ ___ ask for any document in your language.\" (legal right)",
               expectedAnswers: ["are allowed to", "'re allowed to"],
             },
             {
               type: "text",
-              label: "Receptionist: \"You ___ ___ show a photo ID.\" (two words — required)",
-              expectedAnswer: "need to",
+              label: "Receptionist: \"You ___ ___ show a photo ID.\" (everyday necessity, two words)",
+              expectedAnswers: ["need to", "have to"],
             },
           ],
         },
@@ -930,6 +932,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
               label: "Scene A — patient asking about timing:",
               words: ["Can", "I", "take", "it", "at", "night"],
               correctAnswer: "Can I take it at night",
+              correctAnswers: ["Can I take it at night?"],
               hint: "Start with the permission question.",
             },
             {
@@ -937,6 +940,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
               label: "Scene B — patient using a formal request:",
               words: ["May", "I", "take", "it", "with", "my", "blood", "pressure", "pill"],
               correctAnswer: "May I take it with my blood pressure pill",
+              correctAnswers: ["May I take it with my blood pressure pill?"],
               hint: "Formal = 'May I…?'",
             },
             {
@@ -944,6 +948,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
               label: "Nurse — a negative imperative at bedside:",
               words: ["Don't", "get", "up", "by", "yourself", "tonight"],
               correctAnswer: "Don't get up by yourself tonight",
+              correctAnswers: ["Don't get up by yourself tonight."],
               hint: "Negative imperative — start with \"Don't\".",
             },
           ],
@@ -1295,15 +1300,15 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
     },
     {
       id: "quiz-4",
-      question: "Convert to declarative: 'Don't drive after taking this medication.'",
+      question: "Convert this safety warning to a declarative: 'Don't drive after taking this medication.'",
       options: [
-        { value: "a", label: "You must drive after taking this medication." },
-        { value: "b", label: "You shouldn't drive after taking this medication." },
+        { value: "a", label: "You shouldn't drive after taking this medication." },
+        { value: "b", label: "You must not drive after taking this medication." },
         { value: "c", label: "You will drive after taking this medication." },
       ],
       correctAnswer: "b",
       explanation:
-        "A matching declarative uses a subject and modal: 'You shouldn't drive after taking this medication.'",
+        "For a safety warning, use a subject plus 'must not': 'You must not drive after taking this medication.'",
       skillTag: "transformation-imperative-to-declarative",
       difficulty: "medium",
     },
@@ -1337,7 +1342,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
     },
     {
       id: "quiz-7",
-      question: "Which is a safety warning (dangerous/forbidden)?",
+      question: "Which is the strongest safety warning (dangerous/forbidden)?",
       options: [
         { value: "b", label: "You must not drink alcohol while taking this." },
         { value: "a", label: "You should not drink alcohol." },
@@ -1379,7 +1384,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
     },
     {
       id: "quiz-10",
-      question: "Which is the most polite way to ask for permission?",
+      question: "Which is the most formal way to ask for permission?",
       options: [
         { value: "b", label: "May I ask you a question?" },
         { value: "a", label: "Can I ask you a question?" },
@@ -1393,7 +1398,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
     },
     {
       id: "quiz-11",
-      question: "Which sentence talks about a patient right?",
+      question: "Which sentence clearly talks about an official/legal patient right?",
       options: [
         { value: "a", label: "I can see my records." },
         { value: "b", label: "I am allowed to access my medical records." },
@@ -1407,7 +1412,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
     },
     {
       id: "quiz-12",
-      question: "Complete the sentence: 'You ___ fast for 12 hours before this blood test.' (required)",
+      question: "Complete the sentence with the natural clinic conversation form: 'You ___ fast for 12 hours before this blood test.' (everyday necessity)",
       options: [
         { value: "a", label: "should" },
         { value: "b", label: "need to" },

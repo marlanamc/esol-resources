@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Lightbulb, RotateCcw } from "lucide-react";
 import type { ExerciseItem } from "@/types/activity";
+import { normalizeExerciseAnswer } from "@/lib/exercise-answer-normalization";
 
 interface WordScrambleExerciseProps {
     item: Extract<ExerciseItem, { type: "word-scramble" }>;
@@ -25,8 +26,26 @@ export function WordScrambleExercise({
     itemNumber,
 }: WordScrambleExerciseProps) {
     const itemKey = useMemo(
-        () => `${item.label}__${item.correctAnswer}__${item.words.join(" ")}`,
-        [item.label, item.correctAnswer, item.words]
+        () =>
+            [
+                item.label,
+                item.correctAnswer,
+                (item.correctAnswers ?? []).join("|"),
+                item.words.join(" "),
+            ].join("__"),
+        [item.label, item.correctAnswer, item.correctAnswers, item.words]
+    );
+    const expectedAnswers = useMemo(
+        () => {
+            const seen = new Set<string>();
+            return [item.correctAnswer, ...(item.correctAnswers ?? [])].filter((answer) => {
+                const normalized = normalizeExerciseAnswer(answer);
+                if (!normalized || seen.has(normalized)) return false;
+                seen.add(normalized);
+                return true;
+            });
+        },
+        [item.correctAnswer, item.correctAnswers]
     );
 
     const [scrambledIndices, setScrambledIndices] = useState<number[]>([]);
@@ -232,7 +251,10 @@ export function WordScrambleExercise({
                             <span className="font-medium">Not quite right</span>
                         </div>
                         <p className="pl-6">
-                            Expected: <strong className="text-text">{item.correctAnswer}</strong>
+                            Expected:{" "}
+                            <strong className="text-text">
+                                {expectedAnswers.join(" / ")}
+                            </strong>
                         </p>
                     </motion.div>
                 )}

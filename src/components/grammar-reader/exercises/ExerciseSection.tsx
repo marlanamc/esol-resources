@@ -104,8 +104,12 @@ export function ExerciseSection({
             const userAnswer = normalizeExerciseAnswer(answers[index] || "");
 
             if (item.type === "word-scramble") {
-                const correctAnswer = normalizeExerciseAnswer(item.correctAnswer);
-                newResults[index] = userAnswer === correctAnswer;
+                const correctAnswers = [item.correctAnswer, ...(item.correctAnswers ?? [])]
+                    .map((answer) => normalizeExerciseAnswer(answer))
+                    .filter(Boolean);
+                newResults[index] =
+                    correctAnswers.length > 0 &&
+                    correctAnswers.some((correctAnswer) => userAnswer === correctAnswer);
             } else if (item.type === "text" && item.acceptAnyAttempt) {
                 newResults[index] = userAnswer.length > 0;
             } else {
