@@ -311,6 +311,14 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
             )
             .join("")}
         </div>
+
+        <h3>Quick note: supplements are different</h3>
+        <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.6rem; margin: 1.25rem 0">
+          <p style="margin: 0 0 0.55rem 0"><strong>Vitamins, herbs, powders, gummies, and "wellness" products usually have a Supplement Facts label — not a Drug Facts label.</strong></p>
+          <p style="margin: 0 0 0.55rem 0">A supplement can still affect your body. It can interact with medicine, cause side effects, or be unsafe before surgery or during pregnancy.</p>
+          <p style="margin: 0 0 0.55rem 0"><strong>TikTok tip:</strong> popular does not mean safe. "Natural" does not always mean safe. Be careful with products that promise to cure, detox, melt fat, balance hormones, or fix a health problem fast.</p>
+          <p style="margin: 0"><strong>Useful pharmacist question:</strong> "Can I take this supplement with my medicine?"</p>
+        </div>
       `,
       tipBox: {
         title: "💡 Read the Directions section first",
