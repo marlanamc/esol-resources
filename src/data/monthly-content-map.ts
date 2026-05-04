@@ -79,6 +79,7 @@ export const MONTHLY_CONTENT_MAP: Record<number, MonthlyContentConfig> = {
       "modals-health-advice-caution-consent",
       "imperatives-declaratives",
       "medical-instructions-complete",
+      "medicine-labels-insurance",
     ],
     games: [],
   },

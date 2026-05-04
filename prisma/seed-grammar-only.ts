@@ -21,6 +21,7 @@ import { perfectContinuousTensesReviewContent } from '../src/content/grammar/per
 import { cycleOneReviewContent } from '../src/content/grammar/cycle-1-review';
 import { conditionalsZeroFirstContent } from '../src/content/grammar/conditionals-zero-first';
 import { gerundsInfinitivesContent } from '../src/content/grammar/gerunds-infinitives';
+import { medicineLabelsInsuranceContent } from '../src/content/grammar/medicine-labels-insurance';
 
 const prisma = new PrismaClient();
 
@@ -186,6 +187,13 @@ const grammarGuides = [
     description: 'Master the 6 essential patterns for using gerunds (-ing) and infinitives (to + verb). Pattern-based approach makes this complex grammar simple and memorable.',
     level: 'intermediate',
     content: gerundsInfinitivesContent,
+  },
+  {
+    id: 'medicine-labels-insurance',
+    title: 'Medicine Labels & Insurance Cards Guide',
+    description: 'Read medicine labels, warnings, dosage instructions, pharmacy questions, insurance cards, and common U.S. insurance terms with real-world practice.',
+    level: 'intermediate',
+    content: medicineLabelsInsuranceContent,
   },
 ];
 

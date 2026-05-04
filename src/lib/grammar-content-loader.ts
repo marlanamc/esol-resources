@@ -63,6 +63,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/medical-instructions-complete.ts",
         loader: () => import("@/content/grammar/medical-instructions-complete"),
     },
+    "medicine-labels-insurance": {
+        sourceFile: "src/content/grammar/medicine-labels-insurance.ts",
+        loader: () => import("@/content/grammar/medicine-labels-insurance"),
+    },
     "modals-obligation-permission": {
         sourceFile: "src/content/grammar/modals-obligation-permission.ts",
         loader: () => import("@/content/grammar/modals-obligation-permission"),

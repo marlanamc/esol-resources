@@ -332,6 +332,15 @@ export const grammarTopics: GrammarTopic[] = [
         prerequisites: ['parts-of-speech'],
         activityTitles: ['Imperatives vs Declaratives Guide'],
     },
+    {
+        id: 'medicine-labels-insurance',
+        title: 'Medicine Labels & Insurance Cards',
+        week: 11,
+        category: 'modals',
+        prerequisites: ['imperatives-declaratives', 'modals-health-advice-caution-consent'],
+        relatedTopics: ['medical-instructions-complete', 'modals-health-advice-caution-consent'],
+        activityTitles: ['Medicine Labels & Insurance Cards Guide'],
+    },
 
     // Comprehensive Review (Week 22-24)
     {
