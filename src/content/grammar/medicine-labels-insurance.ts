@@ -264,7 +264,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
         <p class="gc-text-muted" style="font-size: 0.88rem; margin-top: -0.5rem">Study each section. The exercises will test you on it.</p>
 
         ${fakeMedicineLabel({
-          drugName: "Children's Ibuprofen",
+          drugName: "PediaCare Children's Pain Reliever",
           genericName: "Ibuprofen",
           activeIngredient: "Ibuprofen 100 mg per 5 mL",
           purpose: "Pain reliever / Fever reducer",
@@ -292,7 +292,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
         <h3>Label section map</h3>
         <div style="display: grid; gap: 0.6rem; margin: 1rem 0">
           ${[
-            ["Drug Name", "The name on the front of the bottle. Example: Children's Ibuprofen.", "terracotta"],
+            ["Drug Name", "The name on the front of the bottle. Example: PediaCare Children's Pain Reliever.", "terracotta"],
             ["Generic Name", "The scientific/chemical name. Ibuprofen is the generic name. Generic medicines often cost less than brand-name medicines.", "sage"],
             ["Active Ingredient", "The chemical that actually treats your symptom. Every medicine has at least one.", "blue"],
             ["Purpose", "What the medicine does: pain reliever, fever reducer, antihistamine, etc.", "green"],
@@ -897,7 +897,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("pharmacyAisle", "You can find OTC medicines on the shelf — no prescription needed", "terracotta")}
 
-        <p>You are at home. Your son Carlos (age 9) has a fever. You pick up the bottle of Children's Ibuprofen from Section 2. Your neighbor Ana is visiting and asks you to explain the label.</p>
+        <p>You are at home. Your son Carlos (age 9) has a fever. You pick up the bottle of PediaCare Children's Pain Reliever from Section 2. Your neighbor Ana is visiting and asks you to explain the label.</p>
 
         ${dialogue([
           { speaker: "Ana", avatar: "👩🏽", text: "What does this medicine do? I can't read all the English.", side: "left", tone: "amber" },
