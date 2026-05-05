@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-27T22:51:47.732Z",
+  "generatedAt": "2026-05-05T13:09:04.577Z",
   "scope": "src/content/grammar/**/*.ts",
   "settings": {
     "tolerance": 0.03,
@@ -8,14 +8,14 @@
     "maxNewFileFirstRate": 0.5
   },
   "global": {
-    "totalBlocks": 1592,
-    "analyzedBlocks": 1446,
-    "skippedNonChoiceBlocks": 146,
-    "first": 581,
-    "second": 513,
-    "thirdPlus": 352,
+    "totalBlocks": 1722,
+    "analyzedBlocks": 1552,
+    "skippedNonChoiceBlocks": 170,
+    "first": 601,
+    "second": 571,
+    "thirdPlus": 380,
     "missingMappings": 0,
-    "firstRate": 0.401798
+    "firstRate": 0.387242
   },
   "files": {
     "src/content/grammar/all-verb-tenses-overview.ts": {
@@ -129,14 +129,14 @@
       "firstRate": 0.678571
     },
     "src/content/grammar/gerunds-infinitives.ts": {
-      "totalBlocks": 69,
-      "analyzedBlocks": 31,
-      "skippedNonChoiceBlocks": 38,
-      "first": 11,
-      "second": 14,
-      "thirdPlus": 6,
+      "totalBlocks": 83,
+      "analyzedBlocks": 23,
+      "skippedNonChoiceBlocks": 60,
+      "first": 2,
+      "second": 18,
+      "thirdPlus": 3,
       "missingMappings": 0,
-      "firstRate": 0.354839
+      "firstRate": 0.086957
     },
     "src/content/grammar/imperatives-declaratives.ts": {
       "totalBlocks": 51,
@@ -159,14 +159,24 @@
       "firstRate": 0.333333
     },
     "src/content/grammar/medical-instructions-complete.ts": {
-      "totalBlocks": 46,
-      "analyzedBlocks": 46,
+      "totalBlocks": 54,
+      "analyzedBlocks": 54,
       "skippedNonChoiceBlocks": 0,
-      "first": 17,
-      "second": 17,
-      "thirdPlus": 12,
+      "first": 21,
+      "second": 19,
+      "thirdPlus": 14,
       "missingMappings": 0,
-      "firstRate": 0.369565
+      "firstRate": 0.388889
+    },
+    "src/content/grammar/medicine-labels-insurance.ts": {
+      "totalBlocks": 87,
+      "analyzedBlocks": 87,
+      "skippedNonChoiceBlocks": 0,
+      "first": 30,
+      "second": 42,
+      "thirdPlus": 15,
+      "missingMappings": 0,
+      "firstRate": 0.344828
     },
     "src/content/grammar/modals-health-advice-caution-consent.ts": {
       "totalBlocks": 33,
@@ -179,14 +189,14 @@
       "firstRate": 0.266667
     },
     "src/content/grammar/modals-obligation-permission.ts": {
-      "totalBlocks": 31,
-      "analyzedBlocks": 29,
+      "totalBlocks": 46,
+      "analyzedBlocks": 44,
       "skippedNonChoiceBlocks": 2,
-      "first": 10,
-      "second": 11,
-      "thirdPlus": 8,
+      "first": 11,
+      "second": 21,
+      "thirdPlus": 12,
       "missingMappings": 0,
-      "firstRate": 0.344828
+      "firstRate": 0.25
     },
     "src/content/grammar/paragraph-format.ts": {
       "totalBlocks": 52,
@@ -319,14 +329,14 @@
       "firstRate": 0.344828
     },
     "src/content/grammar/present-perfect-family.ts": {
-      "totalBlocks": 53,
-      "analyzedBlocks": 49,
+      "totalBlocks": 52,
+      "analyzedBlocks": 48,
       "skippedNonChoiceBlocks": 4,
-      "first": 18,
+      "first": 17,
       "second": 25,
       "thirdPlus": 6,
       "missingMappings": 0,
-      "firstRate": 0.367347
+      "firstRate": 0.354167
     },
     "src/content/grammar/present-perfect.ts": {
       "totalBlocks": 51,
@@ -359,14 +369,14 @@
       "firstRate": 0.52
     },
     "src/content/grammar/reported-speech.ts": {
-      "totalBlocks": 54,
-      "analyzedBlocks": 54,
-      "skippedNonChoiceBlocks": 0,
-      "first": 18,
+      "totalBlocks": 61,
+      "analyzedBlocks": 59,
+      "skippedNonChoiceBlocks": 2,
+      "first": 13,
       "second": 19,
-      "thirdPlus": 17,
+      "thirdPlus": 27,
       "missingMappings": 0,
-      "firstRate": 0.333333
+      "firstRate": 0.220339
     },
     "src/content/grammar/simple-tenses-review.ts": {
       "totalBlocks": 42,
