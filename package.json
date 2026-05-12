@@ -85,6 +85,7 @@
     "import:countable-uncountable": "npx tsx scripts/import/import-countable-uncountable-game.ts",
     "import:gerund-infinitive": "npx tsx scripts/import/import-gerund-infinitive-game.ts",
     "import:parts-of-speech": "npx tsx scripts/import/import-parts-of-speech-game.ts",
+    "import:cafe-catch-up": "npx tsx scripts/import/import-cafe-catch-up.ts",
     "import:verb-quizzes": "npx tsx scripts/import/import-verb-quizzes.ts",
     "import:verb-quiz-sync": "npx tsx scripts/import/update-verb-quiz-from-conjugations.ts",
     "import:time-indicators": "npx tsx scripts/import/import-time-indicators-game.ts",

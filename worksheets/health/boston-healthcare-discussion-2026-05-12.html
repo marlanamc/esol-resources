@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Café Catch-Up — Boston Healthcare (Speaking Game)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #2a1f1a;
+      --ink-soft: #4a3b34;
+      --muted: #6b5a52;
+      --faint: #9a877d;
+      --line: #e8ddd0;
+      --line-soft: #f1e9dc;
+      --paper: #fdfaf3;
+      --paper-warm: #f6ecd9;
+      --card: #ffffff;
+      --primary: #b05740;
+      --primary-dark: #8d4432;
+      --primary-soft: #fbe9e0;
+      --secondary: #6a8d73;
+      --secondary-soft: #e4ede4;
+      --accent: #e9c46a;
+      --accent-soft: #fbecc1;
+      --focus: #2563eb;
+      --radius: 10px;
+      --radius-lg: 14px;
+      --shadow-card: 0 1px 2px rgba(74, 47, 26, 0.04), 0 8px 24px rgba(74, 47, 26, 0.06);
+      --font-display: 'Iowan Old Style', 'Charter', 'Cambria', Georgia, 'Times New Roman', serif;
+      --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-hand: 'Bradley Hand', 'Segoe Script', 'Comic Sans MS', cursive;
+      font-family: var(--font-body);
+    }
+    body {
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 80% -200px, var(--paper-warm), transparent 60%),
+        radial-gradient(900px 500px at -100px 80%, var(--secondary-soft), transparent 60%),
+        var(--paper);
+      background-attachment: fixed;
+      min-height: 100dvh;
+      line-height: 1.55;
+      font-size: 16px;
+    }
+    body.reduced-motion * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .shell {
+      width: min(980px, 96vw);
+      margin: 0 auto;
+      padding: clamp(0.85rem, 2vw, 1.5rem);
+    }
+
+    /* Top bar */
+    .top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .brand {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      flex: 1 1 240px;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--primary), var(--accent));
+    }
+    .brand h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .brand h1 .cup {
+      font-size: 1.1em;
+      filter: saturate(0.9);
+    }
+    .brand .sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    button, .deck-tab {
+      font: inherit;
+      cursor: pointer;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      padding: 0.5rem 0.9rem;
+      font-weight: 600;
+      font-size: 0.82rem;
+      min-height: 42px;
+      transition: background 120ms ease, border-color 120ms ease, transform 120ms ease, box-shadow 120ms ease, color 120ms ease;
+    }
+    button:hover, .deck-tab:hover {
+      background: var(--paper-warm);
+      border-color: var(--accent);
+    }
+    button:active { transform: translateY(1px); }
+    button:focus-visible, .deck-tab:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+    button.primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      padding: 0.65rem 1.25rem;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 14px rgba(176, 87, 64, 0.28);
+    }
+    button.primary:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      box-shadow: 0 6px 18px rgba(176, 87, 64, 0.34);
+    }
+    button.ghost {
+      border-color: var(--line);
+      color: var(--muted);
+      background: transparent;
+    }
+    button.wrap-up {
+      background: var(--secondary);
+      color: #fff;
+      border-color: var(--secondary);
+    }
+    button.wrap-up:hover {
+      background: #56745d;
+      border-color: #56745d;
+    }
+    .deck-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: center;
+      margin-top: 0.65rem;
+    }
+    .deck-row label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--faint);
+      width: 100%;
+    }
+    .deck-tab {
+      padding: 0.35rem 0.75rem;
+      min-height: 36px;
+      font-size: 0.78rem;
+    }
+    .deck-tab[aria-pressed="true"] {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(176, 87, 64, 0.22);
+    }
+
+    /* Main grid */
+    .game-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(0.85rem, 2vw, 1.25rem);
+    }
+    @media (min-width: 920px) {
+      .game-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+        align-items: start;
+      }
+    }
+
+    /* Card stack */
+    .card-stack {
+      position: relative;
+    }
+    .card-stack::before,
+    .card-stack::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      border: 1px solid var(--line);
+      pointer-events: none;
+    }
+    .card-stack::before {
+      transform: translate(6px, 8px) rotate(0.8deg);
+      opacity: 0.65;
+      z-index: 0;
+    }
+    .card-stack::after {
+      transform: translate(3px, 4px) rotate(-0.4deg);
+      opacity: 0.85;
+      z-index: 0;
+    }
+    body.empty-deck .card-stack::before,
+    body.empty-deck .card-stack::after { display: none; }
+
+    /* Prompt card */
+    .prompt-panel {
+      position: relative;
+      z-index: 1;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.25rem, 3vw, 2rem);
+      box-shadow: var(--shadow-card);
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: var(--paper);
+      text-transform: uppercase;
+    }
+    .pill.deck { color: var(--primary-dark); border-color: var(--primary-soft); background: var(--primary-soft); }
+    .pill.round { color: var(--ink-soft); border-color: var(--accent-soft); background: var(--accent-soft); }
+
+    .prompt-focus {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, #fffdf7 0%, #fffaf0 100%);
+      padding: clamp(1.1rem, 2.8vw, 1.75rem);
+      margin-bottom: 0.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .prompt-focus::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: 5px 0 0 5px;
+    }
+    .prompt-kicker {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--primary-dark);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .prompt-kicker::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+    .stem {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4.2vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.32;
+      color: var(--ink);
+      letter-spacing: -0.015em;
+      max-width: 56ch;
+    }
+    .starter-cue {
+      margin-top: 1rem;
+      padding: 0.55rem 0.85rem;
+      background: var(--secondary-soft);
+      border: 1px dashed var(--secondary);
+      border-radius: var(--radius);
+      color: #3f5946;
+      font-size: 0.92rem;
+      font-weight: 500;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      max-width: 56ch;
+    }
+    .starter-cue .who {
+      font-weight: 700;
+      color: var(--secondary);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      padding-top: 0.18rem;
+      white-space: nowrap;
+    }
+    .starter-cue .text { flex: 1; }
+
+    .follow-wrap {
+      margin-top: 1.15rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--line);
+    }
+    .follow-label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+    .follow {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+      line-height: 1.4;
+      color: var(--ink-soft);
+      font-weight: 500;
+      max-width: 56ch;
+    }
+    .empty-hint {
+      font-family: var(--font-body);
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 52ch;
+      letter-spacing: 0;
+    }
+    .empty-hint strong { color: var(--ink); font-weight: 700; }
+
+    /* Card enter animation */
+    @keyframes card-pop {
+      from {
+        opacity: 0;
+        transform: translateY(8px) rotate(-0.4deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+      }
+    }
+    .prompt-panel.pop .prompt-focus {
+      animation: card-pop 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-3px) rotate(-0.3deg); }
+      75% { transform: translateX(3px) rotate(0.3deg); }
+    }
+    .prompt-panel.shake { animation: shake 0.3s ease; }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 1.25rem;
+      align-items: center;
+    }
+    .controls .spacer { flex: 1; }
+    .kbd-hint {
+      font-size: 0.72rem;
+      color: var(--faint);
+      font-weight: 500;
+    }
+    .kbd-hint kbd {
+      background: var(--paper-warm);
+      border: 1px solid var(--line);
+      border-bottom-width: 2px;
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-size: 0.72rem;
+      font-family: var(--font-body);
+      color: var(--ink-soft);
+    }
+
+    /* Side rail */
+    .rail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .rail-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      padding: 0.95rem 1rem 1.05rem;
+      box-shadow: var(--shadow-card);
+    }
+    .rail-card h2 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--primary-dark);
+      font-weight: 800;
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .rail-card h2::before {
+      content: '';
+      width: 14px; height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    .rail-card h3 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--faint);
+      font-weight: 700;
+      margin: 0.85rem 0 0.45rem;
+    }
+    .rail-card h3:first-of-type { margin-top: 0; }
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .chip {
+      font-size: 0.76rem;
+      font-weight: 500;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink-soft);
+    }
+    .phrases-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+    }
+    .phrases-list .phrase {
+      padding: 0.4rem 0.65rem;
+      background: var(--paper);
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+      font-style: italic;
+    }
+    .more-phrases {
+      margin-top: 0.6rem;
+    }
+    .more-phrases summary {
+      cursor: pointer;
+      font-size: 0.78rem;
+      color: var(--primary-dark);
+      font-weight: 600;
+      list-style-position: outside;
+      padding: 0.2rem 0;
+    }
+    .more-phrases summary:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    .more-phrases .phrases-list {
+      margin-top: 0.45rem;
+    }
+
+    .intro-line {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      max-width: 62ch;
+    }
+
+    /* Teacher fallback */
+    .teacher-zone {
+      margin-top: 1.5rem;
+    }
+    .teacher-zone > details summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 0.5rem 0;
+      list-style-position: outside;
+      font-size: 0.88rem;
+    }
+    .teacher-zone > details summary:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    .all-list {
+      display: grid;
+      gap: 0.85rem;
+      padding: 0.85rem 0 1rem;
+    }
+    .all-item {
+      padding: 0.95rem 1.05rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+    .all-item .tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary-dark);
+    }
+    .all-item p { margin-top: 0.4rem; font-size: 0.95rem; line-height: 1.5; }
+    .all-item p .stem-text { font-weight: 700; color: var(--ink); }
+    .all-item p .follow-text { display: block; margin-top: 0.25rem; color: var(--muted); font-style: italic; }
+    .all-item.sip { border-color: var(--secondary); background: var(--secondary-soft); }
+    .all-item.sip .tag { color: #3f5946; }
+
+    footer {
+      text-align: center;
+      font-size: 0.74rem;
+      color: var(--faint);
+      padding: 1.25rem 0.5rem 1.75rem;
+    }
+
+    /* Print */
+    @media print {
+      body {
+        background: #fff;
+        font-size: 11pt;
+        color: #000;
+      }
+      .shell { width: 100%; padding: 0; max-width: none; }
+      .brand .sub,
+      .top-actions,
+      .deck-row,
+      .intro-line,
+      .rail,
+      .meta-row,
+      .controls,
+      .kbd-hint,
+      .starter-cue,
+      .card-stack::before,
+      .card-stack::after {
+        display: none !important;
+      }
+      .game-grid { display: block; }
+      .prompt-panel {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+        box-shadow: none;
+      }
+      .prompt-focus {
+        background: #fff;
+        border-color: #ccc;
+      }
+      .prompt-focus::before { display: none; }
+      .stem { font-size: 16pt !important; }
+      .follow { font-size: 12pt !important; }
+      .all-item { page-break-inside: avoid; }
+      .teacher-zone > details summary { font-size: 11pt; }
+      footer { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <div class="brand">
+        <h1><span class="cup" aria-hidden="true">☕</span> Café Catch-Up: Boston Healthcare</h1>
+        <p class="sub">Speaking game • Week 32 • May 12, 2026 • ~30 min • projector-friendly</p>
+        <div class="deck-row" role="toolbar" aria-label="Topic filter">
+          <label id="deck-label">Pick your topic</label>
+          <button type="button" class="deck-tab" data-filter="mix" aria-pressed="true" aria-labelledby="deck-label">Mix it up</button>
+          <button type="button" class="deck-tab" data-filter="tea" aria-pressed="false" aria-labelledby="deck-label">The Tea</button>
+          <button type="button" class="deck-tab" data-filter="advice" aria-pressed="false" aria-labelledby="deck-label">Friend advice</button>
+          <button type="button" class="deck-tab" data-filter="wellness" aria-pressed="false" aria-labelledby="deck-label">Wellness chat</button>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button type="button" class="ghost" id="fullscreenBtn" aria-pressed="false">Fullscreen</button>
+      </div>
+    </header>
+
+    <p class="intro-line">
+      No wrong answers — share what you think, skip whatever you want. The big text is the question to discuss.
+    </p>
+
+    <div class="game-grid">
+      <div class="card-stack">
+        <div class="prompt-panel" id="promptPanel">
+          <div class="meta-row" id="metaRow" aria-live="polite">
+            <span class="pill round" id="roundPill">Ready</span>
+            <span class="pill deck" id="deckPill">All topics</span>
+            <span class="pill" id="pilePill"></span>
+          </div>
+          <div class="prompt-focus" id="promptFocus">
+            <p class="prompt-kicker" id="promptKicker" hidden>Discussion question</p>
+            <div class="stem empty-hint" id="stemEl" role="status">
+              Tap <strong>Pour a question</strong> to start the conversation.
+            </div>
+            <div class="starter-cue" id="starterCue" hidden>
+              <span class="who">Who goes first?</span>
+              <span class="text" id="starterText"></span>
+            </div>
+            <div class="follow-wrap" id="followWrap" hidden>
+              <span class="follow-label">If the table wants more</span>
+              <p class="follow" id="followEl"></p>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button type="button" class="primary" id="drawBtn">Pour a question</button>
+            <button type="button" id="shuffleBtn">Shuffle deck</button>
+            <button type="button" class="wrap-up" id="lastSipBtn" title="End the conversation with one closing share">Last sip • wrap up</button>
+            <span class="spacer"></span>
+            <span class="kbd-hint"><kbd>Space</kbd> next question · <kbd>L</kbd> last sip</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="rail">
+        <div class="rail-card">
+          <h2>Listener phrases</h2>
+          <p style="font-size: 0.78rem; color: var(--muted); margin-bottom: 0.55rem; line-height: 1.4;">
+            If you're listening, try using one of these so your partner knows you're with them.
+          </p>
+          <div class="phrases-list">
+            <span class="phrase">Wait, really?</span>
+            <span class="phrase">Tell me more.</span>
+            <span class="phrase">That happened to me too.</span>
+            <span class="phrase">What did you do?</span>
+          </div>
+          <details class="more-phrases">
+            <summary>More phrases</summary>
+            <div class="phrases-list">
+              <span class="phrase">I would be confused too.</span>
+              <span class="phrase">If I were you, I would…</span>
+              <span class="phrase">That sounds stressful.</span>
+              <span class="phrase">How did that make you feel?</span>
+              <span class="phrase">Can you say that again?</span>
+            </div>
+          </details>
+        </div>
+
+        <div class="rail-card">
+          <h2>Ways to participate</h2>
+          <div class="chip-row" aria-hidden="true">
+            <span class="chip">Tell a story</span>
+            <span class="chip">React</span>
+            <span class="chip">Ask more</span>
+            <span class="chip">Give advice</span>
+            <span class="chip">Share an opinion</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="teacher-zone">
+      <details class="all-prompt-print">
+        <summary>All questions (for teachers / printing)</summary>
+        <div class="all-list" id="allList" aria-live="polite"></div>
+      </details>
+    </section>
+
+    <footer>Offline • No recording</footer>
+  </div>
+
+  <script>
+    (function () {
+      /** @typedef {{ id: number, deck: 'tea'|'advice'|'wellness'|'sip', sectionLabel: string, stem: string, followUp?: string }} Prompt */
+
+      /** @type {Prompt[]} */
+      const PROMPTS = [
+        {
+          id: 1,
+          deck: 'tea',
+          sectionLabel: 'The Tea: What Happened?',
+          stem: 'Have you ever gone to an ER, urgent care, or a doctor’s office in Boston or the U.S.? What was that experience like?',
+          followUp: 'Was anything surprising or confusing about the visit?',
+        },
+        {
+          id: 2,
+          deck: 'tea',
+          sectionLabel: 'The Tea: What Happened?',
+          stem: 'How is healthcare in the U.S. different from healthcare in your home country? Think about cost, wait time, how you talk to the doctor.',
+          followUp: 'What do you think the U.S. does better? What does your home country do better?',
+        },
+        {
+          id: 3,
+          deck: 'tea',
+          sectionLabel: 'The Tea: What Happened?',
+          stem: 'Have you ever had trouble understanding a doctor, nurse, or pharmacist because of language? What did you do?',
+          followUp: 'Did you know you can ask for a free interpreter at any hospital in Massachusetts?',
+        },
+        {
+          id: 4,
+          deck: 'tea',
+          sectionLabel: 'The Tea: What Happened?',
+          stem: 'Have you ever received an After-Visit Summary like the one we read today? Did you read it? Was any part confusing?',
+          followUp: 'What is the most important part of an AVS to read first?',
+        },
+        {
+          id: 14,
+          deck: 'tea',
+          sectionLabel: 'The Tea: What Happened?',
+          stem: 'Have you ever picked up a prescription at a pharmacy in Boston? Did you understand what the pharmacist said about your medicine? What questions do you wish you had asked?',
+          followUp: 'Pharmacists can answer most medicine questions for free, with no appointment — did you know?',
+        },
+        {
+          id: 15,
+          deck: 'tea',
+          sectionLabel: 'The Tea: What Happened?',
+          stem: 'Tell us about the longest time you have ever waited to see a doctor or specialist — either in the waiting room, or waiting weeks for an appointment. What was that like?',
+          followUp: 'How did the wait make you feel? Did it change how you felt about going back?',
+        },
+        {
+          id: 16,
+          deck: 'tea',
+          sectionLabel: 'The Tea: What Happened?',
+          stem: 'Have you ever been to a dentist in the U.S.? How was the visit? Did anything about the cost or the experience surprise you?',
+          followUp: 'Dental care is often not covered by health insurance in the U.S. Were you ever surprised by a dental bill?',
+        },
+        {
+          id: 17,
+          deck: 'tea',
+          sectionLabel: 'The Tea: What Happened?',
+          stem: 'Do you remember the first time you tried to use health insurance in the U.S.? What was confusing? Who helped you figure it out?',
+          followUp: 'Is there a word from your insurance card — copay, deductible, premium, network — that you still don’t fully understand?',
+        },
+        {
+          id: 18,
+          deck: 'tea',
+          sectionLabel: 'The Tea: What Happened?',
+          stem: 'Have you ever called a doctor’s office in English to make, change, or cancel an appointment? How did the call go? What did you say first?',
+          followUp: 'What is one phrase that always helps you when you are on the phone in English?',
+        },
+        {
+          id: 5,
+          deck: 'advice',
+          sectionLabel: 'Friend Advice',
+          stem: 'What is the hardest part of going to the doctor in Boston? Pick one and explain: finding a doctor, cost, insurance, language, time, or something else.',
+          followUp: 'Has this stopped you or someone you know from going to the doctor?',
+        },
+        {
+          id: 6,
+          deck: 'advice',
+          sectionLabel: 'Friend Advice',
+          stem: 'Many people go to the ER when they could go to urgent care. Why do you think this happens? Is it always the wrong choice?',
+          followUp: 'What is one reason someone might choose the ER even for a small problem?',
+        },
+        {
+          id: 7,
+          deck: 'advice',
+          sectionLabel: 'Friend Advice',
+          stem: 'Imagine you get a bill from the hospital and it is much higher than you expected. What would you do? Who could you call?',
+          followUp: 'Did you know most hospitals have financial assistance programs you can apply for?',
+        },
+        {
+          id: 8,
+          deck: 'advice',
+          sectionLabel: 'Friend Advice',
+          stem: 'A friend just moved to Boston and does not have a doctor yet. She has a bad cough that has lasted two weeks. What advice would you give her — step by step?',
+          followUp: 'Where in Boston could she find a doctor who speaks her language?',
+        },
+        {
+          id: 19,
+          deck: 'advice',
+          sectionLabel: 'Friend Advice',
+          stem: 'Your friend has no health insurance, but is feeling really sick and doesn’t know where to go. What advice would you give? Where are some places in Boston they could try?',
+          followUp: 'Community health centers in Boston see patients with no insurance and lower the cost based on income — did you know?',
+        },
+        {
+          id: 20,
+          deck: 'advice',
+          sectionLabel: 'Friend Advice',
+          stem: 'A friend’s doctor told them they need surgery, but your friend is not sure it’s the right choice. They are scared to ask another doctor. What would you say to encourage them?',
+          followUp: 'How could they politely ask their doctor for a second opinion?',
+        },
+        {
+          id: 21,
+          deck: 'advice',
+          sectionLabel: 'Friend Advice',
+          stem: 'Your mother or father visits you in Boston and gets sick. They don’t speak English and don’t have U.S. insurance. What would you do first?',
+          followUp: 'What is the most important thing to bring with you to the hospital or clinic in this situation?',
+        },
+        {
+          id: 22,
+          deck: 'advice',
+          sectionLabel: 'Friend Advice',
+          stem: 'A friend hasn’t been to a doctor in many years because they are scared. What would you say to help them feel less afraid? What helps you when you feel nervous about a visit?',
+          followUp: 'What is one small first step they could take this month?',
+        },
+        {
+          id: 23,
+          deck: 'advice',
+          sectionLabel: 'Friend Advice',
+          stem: 'Your friend takes blood pressure medicine every day, but the bottle is empty and their doctor is on vacation for two weeks. What advice would you give?',
+          followUp: 'Many pharmacies can give an emergency refill of a few days when the doctor is away — would you have known to ask?',
+        },
+        {
+          id: 9,
+          deck: 'wellness',
+          sectionLabel: 'Real Life Wellness Chat',
+          stem: 'This week’s vocabulary includes regimen, hydration, moderation, nourish, balance, wellness. Which word feels most important to you right now in your own life? Why?',
+          followUp: 'Is there something you want to change about your health this summer?',
+        },
+        {
+          id: 10,
+          deck: 'wellness',
+          sectionLabel: 'Real Life Wellness Chat',
+          stem: 'In your culture, what do people do when they are sick before going to a doctor? Home remedies, rest, herbal tea, something else?',
+          followUp: 'Do you still use any of these? Do you think they work?',
+        },
+        {
+          id: 11,
+          deck: 'wellness',
+          sectionLabel: 'Real Life Wellness Chat',
+          stem: 'Mental health is also part of wellness. Is it common to talk about mental health in your home country? Is it easier or harder to talk about it here in the U.S.?',
+          followUp: 'What is one thing that helps you when you are feeling stressed or overwhelmed?',
+        },
+        {
+          id: 12,
+          deck: 'wellness',
+          sectionLabel: 'Real Life Wellness Chat',
+          stem: 'Think about one health habit you want to start or improve this summer. What is it? What is one small step you can take this week?',
+          followUp: 'Share your goal with your partner. Can you help each other stay accountable?',
+        },
+        {
+          id: 24,
+          deck: 'wellness',
+          sectionLabel: 'Real Life Wellness Chat',
+          stem: 'How much sleep do you usually get? Do you sleep well here in Boston? What helps your sleep, and what makes it harder?',
+          followUp: 'What is one small change that could give you 30 more minutes of sleep this week?',
+        },
+        {
+          id: 25,
+          deck: 'wellness',
+          sectionLabel: 'Real Life Wellness Chat',
+          stem: 'Eating healthy in the U.S. can be hard, especially on a budget. Share one food from your culture that is both healthy and affordable. Where do you buy it in Boston?',
+          followUp: 'What is one place in Boston that has good prices on fresh fruits and vegetables?',
+        },
+        {
+          id: 26,
+          deck: 'wellness',
+          sectionLabel: 'Real Life Wellness Chat',
+          stem: 'How do you stay active in Boston? Is it harder in winter? What is one way you’ve found to move your body that you actually enjoy?',
+          followUp: 'Walking, transit, or driving — which do you do most? How does that affect your health?',
+        },
+        {
+          id: 27,
+          deck: 'wellness',
+          sectionLabel: 'Real Life Wellness Chat',
+          stem: 'Where do you go first when you have a health question — TikTok, family, a doctor, Google, somewhere else? Do you trust the information you find there?',
+          followUp: 'Is there a source you’ve stopped trusting? What changed your mind?',
+        },
+        {
+          id: 28,
+          deck: 'wellness',
+          sectionLabel: 'Real Life Wellness Chat',
+          stem: 'Everyone feels stressed sometimes. What is one thing — big or small — that helps you feel calmer when life gets to be too much?',
+          followUp: 'Have you ever talked to a doctor about stress? Why or why not?',
+        },
+        {
+          id: 13,
+          deck: 'sip',
+          sectionLabel: 'Last Sip',
+          stem: 'What is one story, idea, health word, or piece of advice from your café table that the class should hear? Be ready to share it in one or two sentences.',
+        },
+      ];
+
+      const STARTERS = [
+        'The person with the longest commute today.',
+        'Whoever drank coffee or tea this morning.',
+        'The person sitting on the left of the table.',
+        'Whoever is wearing the most colors right now.',
+        'The person whose name is shortest at the table.',
+        'Whoever has lived in Boston the longest.',
+        'The person who arrived to class first today.',
+        'Whoever speaks the most languages.',
+        'The person who ate breakfast today.',
+        'Whoever traveled out of Boston most recently.',
+        'The person whose birthday is closest to today.',
+        'Whoever cooked the last home meal.',
+        'The person who watched something funny this week.',
+        'Whoever has been to the doctor most recently.',
+        'The person who has the most siblings.',
+      ];
+
+      /** @typedef {'mix'|'tea'|'advice'|'wellness'} FilterKey */
+
+      /** @type {FilterKey} */
+      let deckFilter = 'mix';
+      let drawRound = 0;
+      /** @type {Prompt[]} */
+      let pile = [];
+      let pileIndex = 0;
+      let lastStarterIndex = -1;
+
+      const mo = window.matchMedia('(prefers-reduced-motion: reduce)');
+      function syncMotion() {
+        document.body.classList.toggle('reduced-motion', mo.matches);
+      }
+      mo.addEventListener('change', syncMotion);
+      syncMotion();
+
+      const promptPanel = document.getElementById('promptPanel');
+      const stemEl = document.getElementById('stemEl');
+      const followEl = document.getElementById('followEl');
+      const followWrap = document.getElementById('followWrap');
+      const promptKicker = document.getElementById('promptKicker');
+      const starterCue = document.getElementById('starterCue');
+      const starterText = document.getElementById('starterText');
+      const roundPill = document.getElementById('roundPill');
+      const deckPill = document.getElementById('deckPill');
+      const pilePill = document.getElementById('pilePill');
+      const drawBtn = document.getElementById('drawBtn');
+      const shuffleBtn = document.getElementById('shuffleBtn');
+      const lastSipBtn = document.getElementById('lastSipBtn');
+      const fullscreenBtn = document.getElementById('fullscreenBtn');
+      const allList = document.getElementById('allList');
+
+      function shuffleArray(arr) {
+        const out = arr.slice();
+        for (let i = out.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [out[i], out[j]] = [out[j], out[i]];
+        }
+        return out;
+      }
+
+      // Last Sip is never part of the regular rotation — it's a dedicated wrap-up.
+      function promptsForFilter(f) {
+        if (f === 'mix') return PROMPTS.filter((p) => p.deck !== 'sip');
+        return PROMPTS.filter((p) => p.deck === f);
+      }
+
+      function buildPile(resetIndex) {
+        pile = shuffleArray(promptsForFilter(deckFilter));
+        pileIndex = resetIndex === true ? 0 : Math.min(pileIndex, pile.length);
+        updatePilePill();
+        document.body.classList.toggle('empty-deck', pile.length === 0);
+      }
+
+      function updatePilePill() {
+        if (!pile.length) {
+          pilePill.textContent = 'No cards';
+          return;
+        }
+        const left = pile.length - pileIndex;
+        pilePill.textContent = left === pile.length ? `${left} in deck` : `${left} left`;
+      }
+
+      function pickStarter() {
+        if (STARTERS.length <= 1) return STARTERS[0];
+        let i;
+        do {
+          i = Math.floor(Math.random() * STARTERS.length);
+        } while (i === lastStarterIndex);
+        lastStarterIndex = i;
+        return STARTERS[i];
+      }
+
+      /** @param {FilterKey} f */
+      function shortFilterLabel(f) {
+        if (f === 'mix') return 'All topics';
+        if (f === 'tea') return 'The Tea';
+        if (f === 'advice') return 'Friend advice';
+        return 'Wellness';
+      }
+
+      function labelForDeck(d) {
+        if (d === 'tea') return 'The Tea';
+        if (d === 'advice') return 'Friend advice';
+        if (d === 'wellness') return 'Wellness';
+        return 'Last sip';
+      }
+
+      function showDeckExhausted(animate) {
+        promptKicker.hidden = true;
+        followWrap.hidden = true;
+        starterCue.hidden = true;
+        stemEl.className = 'stem empty-hint';
+        stemEl.innerHTML =
+          '<strong>That was every card in this set.</strong> Tap <strong>Shuffle deck</strong> to play again, or end with <strong>Last sip</strong>.';
+        deckPill.textContent = shortFilterLabel(deckFilter);
+        pilePill.textContent = '0 left';
+        if (animate && !document.body.classList.contains('reduced-motion')) {
+          promptPanel.classList.remove('pop', 'shake');
+          void promptPanel.offsetWidth;
+          promptPanel.classList.add('shake');
+        }
+      }
+
+      /** @param {Prompt} p @param {boolean} animate @param {boolean} isSip */
+      function renderPrompt(p, animate, isSip) {
+        promptKicker.hidden = false;
+        promptKicker.textContent = isSip ? 'Closing question' : 'Discussion question';
+        promptPanel.classList.remove('pop', 'shake');
+
+        stemEl.className = 'stem';
+        stemEl.textContent = p.stem;
+        deckPill.textContent = isSip ? 'Last sip' : (deckFilter === 'mix' ? labelForDeck(p.deck) : shortFilterLabel(deckFilter));
+
+        if (isSip) {
+          roundPill.textContent = 'Wrap up';
+          pilePill.textContent = 'Closing card';
+          starterCue.hidden = true;
+        } else {
+          roundPill.textContent = `Round ${drawRound}`;
+          updatePilePill();
+          starterText.textContent = pickStarter();
+          starterCue.hidden = false;
+        }
+
+        followWrap.hidden = !p.followUp;
+        followEl.textContent = p.followUp ? p.followUp : '';
+
+        if (animate && !document.body.classList.contains('reduced-motion')) {
+          void promptPanel.offsetWidth;
+          promptPanel.classList.add('pop');
+        }
+      }
+
+      /** @returns {Prompt | null} */
+      function nextFromPile() {
+        if (!pile.length) return null;
+        if (pileIndex >= pile.length) return null;
+        const p = pile[pileIndex];
+        pileIndex += 1;
+        return p;
+      }
+
+      function drawNewTea() {
+        if (!pile.length) buildPile(true);
+
+        if (pileIndex >= pile.length && pile.length) {
+          showDeckExhausted(true);
+          return;
+        }
+
+        const p = nextFromPile();
+        if (!p) {
+          showDeckExhausted(true);
+          return;
+        }
+
+        drawRound += 1;
+        renderPrompt(p, true, false);
+      }
+
+      function drawLastSip() {
+        const sipCard = PROMPTS.find((p) => p.deck === 'sip');
+        if (!sipCard) return;
+        renderPrompt(sipCard, true, true);
+      }
+
+      function resetToReady() {
+        drawRound = 0;
+        pileIndex = 0;
+        promptKicker.hidden = true;
+        followWrap.hidden = true;
+        starterCue.hidden = true;
+        roundPill.textContent = 'Ready';
+        deckPill.textContent = shortFilterLabel(deckFilter);
+        stemEl.className = 'stem empty-hint';
+        updatePilePill();
+      }
+
+      deckTabs();
+
+      shuffleBtn.addEventListener('click', function () {
+        buildPile(true);
+        resetToReady();
+        stemEl.innerHTML = 'Deck shuffled. Tap <strong>Pour a question</strong> for the next one.';
+      });
+
+      drawBtn.addEventListener('click', drawNewTea);
+      lastSipBtn.addEventListener('click', drawLastSip);
+
+      fullscreenBtn.addEventListener('click', async function () {
+        const root = document.documentElement;
+        try {
+          if (!document.fullscreenElement) {
+            await root.requestFullscreen();
+            fullscreenBtn.textContent = 'Exit fullscreen';
+            fullscreenBtn.setAttribute('aria-pressed', 'true');
+          } else {
+            await document.exitFullscreen();
+            fullscreenBtn.textContent = 'Fullscreen';
+            fullscreenBtn.setAttribute('aria-pressed', 'false');
+          }
+        } catch {
+          /* ignore */
+        }
+      });
+
+      document.addEventListener('fullscreenchange', function () {
+        if (!document.fullscreenElement) {
+          fullscreenBtn.textContent = 'Fullscreen';
+          fullscreenBtn.setAttribute('aria-pressed', 'false');
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        const t = /** @type {HTMLElement} */ (e.target);
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
+
+        if (e.code === 'Space') {
+          e.preventDefault();
+          drawBtn.click();
+        }
+        if (e.key === 'l' || e.key === 'L') {
+          e.preventDefault();
+          lastSipBtn.click();
+        }
+      });
+
+      function deckTabs() {
+        const tabs = Array.from(document.querySelectorAll('.deck-tab'));
+        tabs.forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            const f = /** @type {FilterKey} */ (tab.dataset.filter || 'mix');
+            deckFilter = f;
+            tabs.forEach(function (t) {
+              t.setAttribute('aria-pressed', t.dataset.filter === f ? 'true' : 'false');
+            });
+            buildPile(true);
+            resetToReady();
+            stemEl.innerHTML =
+              (f === 'mix'
+                ? 'Questions will come from <strong>all topics</strong>. '
+                : `Questions will come from <strong>${shortFilterLabel(f)}</strong> only. `) +
+              'Tap <strong>Pour a question</strong> to start.';
+          });
+        });
+      }
+
+      function fillAllList() {
+        PROMPTS.forEach(function (p) {
+          const div = document.createElement('div');
+          div.className = 'all-item' + (p.deck === 'sip' ? ' sip' : '');
+          const tag = document.createElement('div');
+          tag.className = 'tag';
+          tag.textContent = `${labelForDeck(p.deck)} · Q${String(p.id).padStart(2, '0')}`;
+          const par = document.createElement('p');
+          const stem = document.createElement('span');
+          stem.className = 'stem-text';
+          stem.textContent = p.stem;
+          par.appendChild(stem);
+          if (p.followUp) {
+            const fu = document.createElement('span');
+            fu.className = 'follow-text';
+            fu.textContent = p.followUp;
+            par.appendChild(fu);
+          }
+          div.appendChild(tag);
+          div.appendChild(par);
+          allList.appendChild(div);
+        });
+      }
+
+      buildPile(true);
+      pileIndex = 0;
+      promptKicker.hidden = true;
+      followWrap.hidden = true;
+      starterCue.hidden = true;
+      stemEl.className = 'stem empty-hint';
+      stemEl.innerHTML = 'Tap <strong>Pour a question</strong> to start the conversation.';
+      deckPill.textContent = shortFilterLabel(deckFilter);
+      updatePilePill();
+      fillAllList();
+    })();
+  </script>
+</body>
+</html>

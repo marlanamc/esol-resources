@@ -23,8 +23,8 @@ import dynamic from "next/dynamic";
 import { sanitizeCss, sanitizeHtml } from "@/utils/sanitize";
 import { applyGrammarDarkClasses } from "@/utils/grammarDarkModeClasses";
 import { VerbQuizContent } from "@/types/verb-quiz";
-import { isSpeakingActivityContent } from "@/types/activity";
-import type { SpeakingActivityContent } from "@/types/activity";
+import { isSpeakingActivityContent, isCafeCatchUpContent } from "@/types/activity";
+import type { SpeakingActivityContent, CafeCatchUpContent } from "@/types/activity";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
@@ -51,6 +51,7 @@ const GerundInfinitiveGame = dynamic(() => import("../games/GerundInfinitiveGame
 const PartsOfSpeechGame = dynamic(() => import("../games/PartsOfSpeechGame/PartsOfSpeechGame").then(m => ({ default: m.PartsOfSpeechGame })), { loading: ActivityLoadingFallback });
 const TimelineTensesGame = dynamic(() => import("../games/TimelineTensesGame").then(m => ({ default: m.TimelineTensesGame })), { loading: ActivityLoadingFallback });
 const EmotionSpinWheel = dynamic(() => import("../games/EmotionSpinWheel"), { loading: ActivityLoadingFallback });
+const CafeCatchUpGame = dynamic(() => import("../games/CafeCatchUpGame"), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("../activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("../activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
 const VocabularyRenderer = dynamic(() => import("../activities/VocabularyRenderer"), { loading: ActivityLoadingFallback });
@@ -203,6 +204,17 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <PartsOfSpeechGame activityId={activity.id} gameContent={content as PartsOfSpeechContent | null} />;
                     case "emotion-spin-wheel":
                         return <EmotionSpinWheel activityId={activity.id} contentStr={activity.content} assignmentId={assignmentId} />;
+                    case "cafe-catch-up":
+                        if (isCafeCatchUpContent(content)) {
+                            return (
+                                <CafeCatchUpGame
+                                    activityId={activity.id}
+                                    content={content as CafeCatchUpContent}
+                                    assignmentId={assignmentId}
+                                />
+                            );
+                        }
+                        return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid Café Catch-Up content.</div>;
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }

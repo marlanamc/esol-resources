@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "cafe-catch-up" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -30,6 +30,8 @@ function gameUiFromJsonType(parsed: unknown): GameUi | null {
       return "parts-of-speech";
     case "emotion-spin-wheel":
       return "emotion-spin-wheel";
+    case "cafe-catch-up":
+      return "cafe-catch-up";
     default:
       return null;
   }
@@ -58,6 +60,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "timeline-tenses" || ui === "timeline" || ui === "tenses-timeline") return "timeline-tenses";
     if (ui === "parts-of-speech" || ui === "pos-game") return "parts-of-speech";
     if (ui === "emotion-spin-wheel") return "emotion-spin-wheel";
+    if (ui === "cafe-catch-up" || ui === "cafe-catchup" || ui === "discussion-deck") return "cafe-catch-up";
   }
 
   if (typeof content === "string") {
@@ -109,6 +112,8 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
       case "timeline-tenses":
         return POINTS.TIMELINE_TENSES;
       case "emotion-spin-wheel":
+        return POINTS.SPEAKING_ACTIVITY;
+      case "cafe-catch-up":
         return POINTS.SPEAKING_ACTIVITY;
       default:
         return POINTS.ACTIVITY_COMPLETION;

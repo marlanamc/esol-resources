@@ -512,6 +512,71 @@ export function isEmotionSpinWheelContent(value: unknown): value is EmotionSpinW
     return (value as Record<string, unknown>)["type"] === "emotion-spin-wheel";
 }
 
+// ============================================================================
+// Café Catch-Up Discussion Game
+// ============================================================================
+
+/** A single discussion card in a Café Catch-Up deck. */
+export interface CafeCatchUpPrompt {
+    /** Stable numeric id (unique within a deck). */
+    id: number;
+    /** Topic group id, e.g. 'tea' | 'advice' | 'wellness' | 'sip'.
+     *  The reserved value 'sip' marks the closing wrap-up card and is excluded
+     *  from the regular rotation. */
+    deck: string;
+    /** Optional human-readable section label shown on print/teacher views. */
+    sectionLabel?: string;
+    /** The big discussion question shown to learners. */
+    stem: string;
+    /** Optional gentle follow-up to deepen the conversation. */
+    followUp?: string;
+}
+
+/** A topic shown as a filter chip ("The Tea", "Friend advice", etc.). */
+export interface CafeCatchUpDeck {
+    /** Matches `CafeCatchUpPrompt.deck` (never 'sip' — sip is the closer). */
+    id: string;
+    /** Display label for the chip. */
+    label: string;
+}
+
+/** Optional listener-phrase scaffolding shown in the side rail. */
+export interface CafeCatchUpListenerPhrases {
+    /** Phrases shown by default. */
+    primary: string[];
+    /** Phrases hidden under a "More phrases" toggle. */
+    more?: string[];
+}
+
+/** Full content payload for one themed Café Catch-Up deck. */
+export interface CafeCatchUpContent {
+    type: "cafe-catch-up";
+    /** Activity-level title (used in the catalog). */
+    title: string;
+    /** Optional short description shown in the catalog tile and game header. */
+    description?: string;
+    /** Theme label shown under the title, e.g. "Boston Healthcare". */
+    theme?: string;
+    /** Topic chips, in display order. Order is preserved in the UI. */
+    decks: CafeCatchUpDeck[];
+    /** All prompts including the closing 'sip' card. */
+    prompts: CafeCatchUpPrompt[];
+    /** "Who shares first?" cues; one is shown with each new card draw. */
+    starters?: string[];
+    /** Optional listener-phrase scaffolding. */
+    listenerPhrases?: CafeCatchUpListenerPhrases;
+    /** Standard release flag (omit to default-visible). */
+    released?: boolean;
+    /** Points awarded when the learner completes via Last Sip. Default: 5. */
+    participationPoints?: number;
+}
+
+export function isCafeCatchUpContent(value: unknown): value is CafeCatchUpContent {
+    if (!value || typeof value !== "object") return false;
+    const c = value as Record<string, unknown>;
+    return c["type"] === "cafe-catch-up" && Array.isArray(c["prompts"]) && Array.isArray(c["decks"]);
+}
+
 export type ActivityContent =
     | QuizContent
     | WorksheetContent
@@ -527,6 +592,7 @@ export type ActivityContent =
     | TimelineTensesContent
     | TimedWritingContent
     | EmotionSpinWheelContent
+    | CafeCatchUpContent
     | Record<string, unknown>;
 
 export interface LegacyGuideResponse {

@@ -42,6 +42,10 @@ export type {
     VocabularyContent,
     EdPronunciationContent,
     MinimalPairsContent,
+    CafeCatchUpPrompt,
+    CafeCatchUpDeck,
+    CafeCatchUpListenerPhrases,
+    CafeCatchUpContent,
     ActivityContent,
     LegacyGuideResponse,
 } from './activity';
@@ -54,6 +58,7 @@ export {
     isVocabularyContent,
     isEdPronunciationContent,
     isMinimalPairsContent,
+    isCafeCatchUpContent,
 } from './activity';
 
 // Gerund-Infinitive types
