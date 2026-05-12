@@ -115,13 +115,13 @@ const fakeInsuranceCard = (opts: {
   customerService: string;
   claimsAddress: string;
 }): string => `
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; max-width: 640px">
+  <div class="medicine-info-grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; max-width: 640px">
     <div style="border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.12); box-shadow: 0 2px 8px rgba(0,0,0,0.08); background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 100%); color: #ffffff; padding: 1rem; font-family: 'DM Sans', sans-serif">
       <div style="font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.75; margin-bottom: 0.1rem">Health Insurance</div>
       <div style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem">${opts.planName}</div>
       <div style="font-size: 0.68rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.05em">Member</div>
       <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem">${opts.memberName}</div>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; font-size: 0.72rem">
+      <div class="medicine-info-grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; font-size: 0.72rem">
         <div><div style="opacity:0.75; font-size:0.62rem; text-transform:uppercase">Member ID</div><div style="font-weight:600">${opts.memberId}</div></div>
         <div><div style="opacity:0.75; font-size:0.62rem; text-transform:uppercase">Group #</div><div style="font-weight:600">${opts.groupNumber}</div></div>
         <div><div style="opacity:0.75; font-size:0.62rem; text-transform:uppercase">PCP</div><div style="font-weight:600">${opts.pcpName}</div></div>
@@ -303,8 +303,8 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           ]
             .map(
               ([label, desc, color]) => `
-            <div class="gc-bg-${color}-alpha" style="padding: 0.65rem 0.9rem; border-radius: 0.45rem; display: flex; gap: 0.75rem; align-items: flex-start">
-              <div class="gc-text-${color}" style="font-weight: 700; min-width: 130px; font-size: 0.82rem">${label}</div>
+            <div class="gc-bg-${color}-alpha medicine-info-flex-row" style="padding: 0.65rem 0.9rem; border-radius: 0.45rem; display: flex; gap: 0.75rem; align-items: flex-start">
+              <div class="gc-text-${color} medicine-info-label" style="font-weight: 700; min-width: 130px; font-size: 0.82rem">${label}</div>
               <div style="font-size: 0.82rem; line-height: 1.5">${desc}</div>
             </div>
           `
@@ -425,9 +425,9 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           ]
             .map(
               ([sentence, annotation]) => `
-            <div class="gc-bg-slate" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.6rem 0.875rem; border-radius: 0.4rem; border-left: 3px solid #b05740">
+            <div class="gc-bg-slate medicine-info-flex-row" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.6rem 0.875rem; border-radius: 0.4rem; border-left: 3px solid #b05740">
               <div style="flex: 1; font-family: 'Courier New', monospace; font-size: 0.88rem; font-weight: 600">${sentence}</div>
-              <div class="gc-text-muted" style="font-size: 0.75rem; min-width: 200px; padding-top: 0.1rem">${annotation}</div>
+              <div class="gc-text-muted medicine-info-label" style="font-size: 0.75rem; min-width: 200px; padding-top: 0.1rem">${annotation}</div>
             </div>
           `
             )
@@ -435,7 +435,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
         </div>
 
         <h3>Declarative vs. Imperative — same meaning, different grammar</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0">
+        <div class="medicine-info-grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0">
           <div class="gc-bg-terracotta-alpha" style="padding: 0.875rem; border-radius: 0.5rem">
             <div class="gc-text-terracotta" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.4rem">Imperative (label style)</div>
             <div style="font-family: 'Courier New', monospace; font-size: 0.85rem">Take 2 tablets.</div>
@@ -693,7 +693,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           ]
             .map(
               ([term, meaning]) => `
-            <div class="gc-bg-slate" style="display: grid; grid-template-columns: 200px 1fr; gap: 0.75rem; align-items: flex-start; padding: 0.6rem 0.875rem; border-radius: 0.4rem">
+            <div class="gc-bg-slate medicine-info-row-2" style="display: grid; grid-template-columns: 200px 1fr; gap: 0.75rem; align-items: flex-start; padding: 0.6rem 0.875rem; border-radius: 0.4rem">
               <div class="gc-text-terracotta" style="font-family: 'Courier New', monospace; font-size: 0.82rem; font-weight: 700">${term}</div>
               <div class="gc-text-dark" style="font-size: 0.82rem; line-height: 1.5">${meaning}</div>
             </div>
@@ -819,9 +819,9 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           ]
             .map(
               ([phrase, label]) => `
-            <div class="gc-bg-slate" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.55rem 0.875rem; border-radius: 0.4rem">
+            <div class="gc-bg-slate medicine-info-flex-row" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.55rem 0.875rem; border-radius: 0.4rem">
               <div class="gc-text-dark" style="flex: 1; font-size: 0.85rem; font-style: italic">"${phrase}"</div>
-              <div class="gc-text-muted" style="font-size: 0.72rem; min-width: 180px">${label}</div>
+              <div class="gc-text-muted medicine-info-label" style="font-size: 0.72rem; min-width: 180px">${label}</div>
             </div>
           `
             )
@@ -994,7 +994,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
       explanation: `
         <p>There are two kinds of medicines in the USA. Knowing the difference saves you time and money.</p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0">
+        <div class="medicine-info-grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0">
           <div class="gc-bg-green-alpha" style="padding: 1rem; border-radius: 0.65rem; border: 2px solid #6a8d73">
             <div class="gc-text-green" style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem">✅ OTC — Over-the-Counter</div>
             <div style="font-size: 0.88rem; line-height: 1.6">
@@ -1029,7 +1029,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           ]
             .map(
               ([brand, generic, purpose, notes]) => `
-            <div class="gc-bg-slate" style="display: grid; grid-template-columns: 100px 130px 1fr; gap: 0.6rem; align-items: flex-start; padding: 0.6rem 0.875rem; border-radius: 0.4rem; font-size: 0.8rem">
+            <div class="gc-bg-slate medicine-info-row-3 medicine-otc-row" style="display: grid; grid-template-columns: 100px 130px 1fr; gap: 0.6rem; align-items: flex-start; padding: 0.6rem 0.875rem; border-radius: 0.4rem; font-size: 0.8rem">
               <div style="font-weight: 700; color: #b05740">${brand}</div>
               <div class="gc-text-dark" style="font-family: 'Courier New', monospace">${generic}</div>
               <div><span style="font-weight: 600">${purpose}</span><br/><span class="gc-text-muted" style="font-size: 0.74rem">${notes}</span></div>
@@ -1040,7 +1040,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
         </div>
 
         <h3>Label differences</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0">
+        <div class="medicine-info-grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0">
           <div style="border: 2px solid #6a8d73; border-radius: 0.5rem; overflow: hidden">
             <div style="background: #6a8d73; color: white; padding: 0.4rem 0.75rem; font-size: 0.78rem; font-weight: 700; text-transform: uppercase">OTC Label</div>
             <div class="gc-bg-white gc-text-dark" style="padding: 0.75rem; font-family: 'Courier New', monospace; font-size: 0.78rem; line-height: 1.6">
@@ -1197,7 +1197,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           ]
             .map(
               ([field, example, desc]) => `
-            <div class="gc-bg-slate" style="display: grid; grid-template-columns: 130px 160px 1fr; gap: 0.6rem; align-items: flex-start; padding: 0.55rem 0.875rem; border-radius: 0.4rem; font-size: 0.8rem">
+            <div class="gc-bg-slate medicine-info-row-3 medicine-card-field-row" style="display: grid; grid-template-columns: 130px 160px 1fr; gap: 0.6rem; align-items: flex-start; padding: 0.55rem 0.875rem; border-radius: 0.4rem; font-size: 0.8rem">
               <div style="font-weight: 700; color: #1e3a5f">${field}</div>
               <div class="gc-text-dark" style="font-family: 'Courier New', monospace; font-size: 0.78rem">${example}</div>
               <div class="gc-text-dark" style="line-height: 1.45">${desc}</div>
@@ -1479,7 +1479,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
         </div>
 
         <h3>Copay vs. Deductible — the most confused pair</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0">
+        <div class="medicine-info-grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0">
           <div class="gc-bg-sage-alpha" style="padding: 0.875rem; border-radius: 0.5rem">
             <div class="gc-text-sage" style="font-weight: 700; margin-bottom: 0.4rem">Copay</div>
             <div style="font-size: 0.83rem; line-height: 1.6">A fixed amount for a covered service.<br/>You pay $25 for each covered office visit if that is your plan's office copay.<br/><br/><em>"I pay a $25 copay each time I go."</em></div>
@@ -1629,9 +1629,9 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           ]
             .map(
               ([phrase, label]) => `
-            <div class="gc-bg-slate" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.55rem 0.875rem; border-radius: 0.4rem">
+            <div class="gc-bg-slate medicine-info-flex-row" style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.55rem 0.875rem; border-radius: 0.4rem">
               <div class="gc-text-dark" style="flex: 1; font-size: 0.85rem; font-style: italic">"${phrase}"</div>
-              <div class="gc-text-muted" style="font-size: 0.72rem; min-width: 220px">${label}</div>
+              <div class="gc-text-muted medicine-info-label" style="font-size: 0.72rem; min-width: 220px">${label}</div>
             </div>
           `
             )
@@ -1831,7 +1831,7 @@ export const medicineLabelsInsuranceContent: InteractiveGuideContent = {
           ]
             .map(
               ([name, phone, purpose]) => `
-            <div class="gc-bg-slate" style="display: grid; grid-template-columns: 220px 150px 1fr; gap: 0.75rem; align-items: flex-start; padding: 0.65rem 0.9rem; border-radius: 0.45rem">
+            <div class="gc-bg-slate medicine-info-row-3 medicine-contact-row" style="display: grid; grid-template-columns: 220px 150px 1fr; gap: 0.75rem; align-items: flex-start; padding: 0.65rem 0.9rem; border-radius: 0.45rem">
               <div class="gc-text-blue" style="font-weight: 700; font-size: 0.82rem">${name}</div>
               <div class="gc-text-dark" style="font-family: 'Courier New', monospace; font-size: 0.82rem">${phone}</div>
               <div class="gc-text-muted" style="font-size: 0.78rem; line-height: 1.5">${purpose}</div>
