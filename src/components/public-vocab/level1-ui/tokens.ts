@@ -9,6 +9,7 @@ export const MODE_TOKENS: Record<
   ModeKey,
   {
     label: string;
+    labelEs: string;
     description: string;
     icon: string;
     accent: string; // primary action color
@@ -18,40 +19,44 @@ export const MODE_TOKENS: Record<
   }
 > = {
   learn: {
-    label: "Learn Words",
-    description: "See and hear words",
+    label: "See the Words",
+    labelEs: "Ver las palabras",
+    description: "Look, listen, learn",
     icon: "📖",
-    accent: "#0f9b8e",
-    accentSoft: "rgba(15, 155, 142, 0.10)",
-    accentStrong: "#0a6b62",
-    ring: "ring-emerald-300/60",
+    accent: "#F0A23A",
+    accentSoft: "rgba(240, 162, 58, 0.12)",
+    accentStrong: "#8C5E08",
+    ring: "ring-amber-300/60",
   },
   cards: {
-    label: "Practice Cards",
-    description: "Review with flashcards",
+    label: "Flashcards",
+    labelEs: "Tarjetas",
+    description: "Flip and remember",
     icon: "🎴",
-    accent: "#e07a3b",
-    accentSoft: "rgba(224, 122, 59, 0.10)",
-    accentStrong: "#a04f1a",
-    ring: "ring-orange-300/60",
+    accent: "#E05A78",
+    accentSoft: "rgba(224, 90, 120, 0.10)",
+    accentStrong: "#9E2942",
+    ring: "ring-rose-300/60",
   },
   quiz: {
-    label: "Quiz",
-    description: "Pick the correct word",
-    icon: "✅",
-    accent: "#3b82c4",
-    accentSoft: "rgba(59, 130, 196, 0.10)",
-    accentStrong: "#1f5a8c",
-    ring: "ring-sky-300/60",
+    label: "Fill in the Blank",
+    labelEs: "Completa la frase",
+    description: "Pick the right word",
+    icon: "✏️",
+    accent: "#7C5FD9",
+    accentSoft: "rgba(124, 95, 217, 0.10)",
+    accentStrong: "#4D3697",
+    ring: "ring-violet-300/60",
   },
   game: {
-    label: "Game",
-    description: "Match pictures and words",
-    icon: "🎮",
-    accent: "#a855a8",
-    accentSoft: "rgba(168, 85, 168, 0.10)",
-    accentStrong: "#763473",
-    ring: "ring-fuchsia-300/60",
+    label: "Match Pictures",
+    labelEs: "Une los dibujos",
+    description: "A picture matching game",
+    icon: "🧩",
+    accent: "#36B260",
+    accentSoft: "rgba(54, 178, 96, 0.10)",
+    accentStrong: "#1E6E3A",
+    ring: "ring-green-300/60",
   },
 };
 
