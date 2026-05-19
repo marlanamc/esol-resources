@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ArrowLeft } from "lucide-react";
 import { PAGE_BG } from "./tokens";
+import { Level1AudioSpeedToggle } from "./Level1AudioSpeedToggle";
 
 interface Level1ShellProps {
   children: ReactNode;
@@ -65,7 +66,10 @@ export function Level1Shell({
                 <span className="truncate text-sm font-semibold text-slate-700">{eyebrow}</span>
               ) : null}
             </div>
-            <div className="flex items-center gap-2">{topRight}</div>
+            <div className="flex items-center gap-2">
+              <Level1AudioSpeedToggle />
+              {topRight}
+            </div>
           </div>
         </div>
       </header>

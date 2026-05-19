@@ -6,7 +6,9 @@ import FlashcardCarousel from "@/components/games/FlashcardCarousel";
 import { VocabWordImage } from "@/components/public-vocab/VocabWordImage";
 import { ImageWordMatchingGame, type ImageWordPair } from "@/components/public-vocab/ImageWordMatchingGame";
 import type { PublicLevel1VocabularyUnit } from "@/data/public-level1-vocab";
-import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
+import { Level1AudioSpeedToggle } from "@/components/public-vocab/level1-ui/Level1AudioSpeedToggle";
+import { useLevel1AudioSpeedOptional } from "@/components/public-vocab/level1-ui/Level1AudioSpeedContext";
+import { playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
 
 type PublicVocabMode = "word-list" | "flashcards" | "matching" | "fill-blank";
 type FillBlankSentence = {
@@ -170,7 +172,10 @@ export function PublicVocabularyClient({ unit }: { unit: PublicLevel1VocabularyU
             style={{ background: "radial-gradient(circle, color-mix(in srgb, var(--tone-vocabulary-accent) 35%, transparent), transparent 70%)" }}
           />
           <div className="relative flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-            <div className="space-y-3">
+            <div className="absolute right-0 top-0 sm:relative sm:order-2 sm:shrink-0">
+              <Level1AudioSpeedToggle />
+            </div>
+            <div className="space-y-3 sm:order-1 sm:pr-36">
               <Link
                 href="/vocab/level-1"
                 className="inline-flex items-center rounded-full border border-[var(--tone-vocabulary-border)] bg-[var(--color-surface-contrast)] px-4 py-2 text-sm font-semibold text-[var(--tone-vocabulary-accent-strong)] shadow-sm transition hover:bg-[var(--tone-vocabulary-surface-muted)]"
@@ -491,16 +496,16 @@ function CategoryChip({
   );
 }
 
-function playWordListAudio(term: string) {
-  const audioUrl = getVocabAudioUrl(term);
-  const audio = new Audio(audioUrl);
-  audio.currentTime = 0;
-  void audio.play().catch(() => {
-    // Missing file or autoplay restrictions
-  });
-}
-
 function WordListMode({ unit }: { unit: PublicLevel1VocabularyUnit }) {
+  const level1Audio = useLevel1AudioSpeedOptional();
+
+  const playWordListAudio = (term: string) => {
+    const audio = level1Audio ? level1Audio.playVocabAudio(term) : playLevel1VocabAudio(term, "normal");
+    void audio.play().catch(() => {
+      // Missing file or autoplay restrictions
+    });
+  };
+
   return (
     <div className="space-y-8">
       {unit.categories.map((group) => (

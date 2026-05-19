@@ -5,7 +5,8 @@ import { saveActivityProgress } from "@/lib/activityProgress";
 import { BackButton } from "@/components/ui/BackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 import { VocabWordImage } from "@/components/public-vocab/VocabWordImage";
-import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
+import { useLevel1AudioSpeedOptional } from "@/components/public-vocab/level1-ui/Level1AudioSpeedContext";
+import { playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
 
 /**
  * FlashcardData interface matching the parser output in ActivityRenderer
@@ -56,19 +57,18 @@ export default function FlashcardCarousel({
 
     // Simple audio player for term pronunciation
     const audioRef = useRef<HTMLAudioElement | null>(null);
+    const level1Audio = useLevel1AudioSpeedOptional();
 
     const playTermAudio = useCallback(
         (term: string) => {
-            const audioUrl = getVocabAudioUrl(term);
-
-            // Recreate the element each time so we always pick up latest src
-            audioRef.current = new Audio(audioUrl);
-            audioRef.current.currentTime = 0;
+            audioRef.current = level1Audio
+                ? level1Audio.playVocabAudio(term)
+                : playLevel1VocabAudio(term, "normal");
             void audioRef.current.play().catch(() => {
                 // Silently ignore missing audio or playback errors
             });
         },
-        []
+        [level1Audio]
     );
 
     const getSideContent = (side: "front" | "back") => {

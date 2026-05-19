@@ -2,6 +2,8 @@ export { GlassCard } from "./GlassCard";
 export { Level1Shell } from "./Level1Shell";
 export { BottomModeNav } from "./BottomModeNav";
 export { AudioButton } from "./AudioButton";
+export { Level1AudioSpeedProvider, useLevel1AudioSpeed, useLevel1AudioSpeedOptional } from "./Level1AudioSpeedContext";
+export { Level1AudioSpeedToggle } from "./Level1AudioSpeedToggle";
 export { ProgressBar } from "./ProgressBar";
 export { PrimaryActionButton } from "./PrimaryActionButton";
 export { UnitCard } from "./UnitCard";

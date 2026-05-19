@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { VocabWordImage } from "@/components/public-vocab/VocabWordImage";
-import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
+import { playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
+import { useLevel1AudioSpeedOptional } from "@/components/public-vocab/level1-ui/Level1AudioSpeedContext";
 
 const MATCHING_SOUND_STORAGE_KEY = "level1-vocab-matching-sound-enabled";
 const MATCHING_AUDIO_MATCH_STORAGE_KEY = "level1-vocab-matching-audio-match";
@@ -68,6 +69,7 @@ export function ImageWordMatchingGame({
   const wordAudioRef = useRef<HTMLAudioElement | null>(null);
 
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const level1Audio = useLevel1AudioSpeedOptional();
 
   useEffect(() => {
     // Listen mode is no longer user-toggleable on the public surface.
@@ -90,7 +92,9 @@ export function ImageWordMatchingGame({
         prev.pause();
         wordAudioRef.current = null;
       }
-      const audio = new Audio(getVocabAudioUrl(term));
+      const audio = level1Audio
+        ? level1Audio.playVocabAudio(term)
+        : playLevel1VocabAudio(term, "normal");
       wordAudioRef.current = audio;
       void audio.play().catch(() => {
         wordAudioRef.current = null;
@@ -103,7 +107,7 @@ export function ImageWordMatchingGame({
         { once: true }
       );
     },
-    [soundEnabled, audioMatchMode]
+    [soundEnabled, audioMatchMode, level1Audio]
   );
 
   useEffect(() => {

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { Volume2 } from "lucide-react";
-import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
+import { playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
+import { useLevel1AudioSpeedOptional } from "./Level1AudioSpeedContext";
 
 interface AudioButtonProps {
   term: string;
@@ -22,10 +23,12 @@ const ICON_SIZE = { sm: 18, md: 22, lg: 26 };
 
 export function AudioButton({ term, size = "md", label, showLabel = false, className = "" }: AudioButtonProps) {
   const [playing, setPlaying] = useState(false);
+  const level1Audio = useLevel1AudioSpeedOptional();
 
   const play = () => {
-    const audio = new Audio(getVocabAudioUrl(term));
-    audio.currentTime = 0;
+    const audio = level1Audio
+      ? level1Audio.playVocabAudio(term)
+      : playLevel1VocabAudio(term, "normal");
     setPlaying(true);
     audio.addEventListener("ended", () => setPlaying(false));
     audio.addEventListener("error", () => setPlaying(false));
