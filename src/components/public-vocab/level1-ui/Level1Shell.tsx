@@ -31,7 +31,7 @@ export function Level1Shell({
   wide = false,
 }: Level1ShellProps) {
   return (
-    <div className={`relative min-h-screen ${PAGE_BG} text-slate-900`}>
+    <div className={`relative min-h-screen w-full overflow-x-hidden ${PAGE_BG} text-slate-900`}>
       {/* decorative blobs */}
       <div
         aria-hidden

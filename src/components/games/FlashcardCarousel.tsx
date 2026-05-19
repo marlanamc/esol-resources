@@ -356,7 +356,7 @@ export default function FlashcardCarousel({
 
             {/* Card Container - Takes up remaining space */}
             <div
-                className="flex-1 flex items-center justify-center p-4 perspective-1000 cursor-pointer md:items-start md:pt-8"
+                className="flex-1 flex items-center justify-center p-4 perspective-1000 cursor-pointer touch-pan-y md:items-start md:pt-8"
                 onClick={handleFlip}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
