@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Phone Call Scenarios — Speed Round Cards</title>
+<style>
+  @page { size: letter; margin: 0.5in; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 11pt;
+    color: #000;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 18px;
+    width: 100%;
+    height: 9.5in;
+    padding: 0;
+  }
+
+  .card {
+    border: 2.5px solid #000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  .card-header {
+    background: #fff;
+    color: #000;
+    padding: 10px 14px 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #000;
+  }
+  .card-header .num {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #555;
+  }
+  .card-header .title {
+    font-size: 13pt;
+    font-weight: bold;
+    text-align: center;
+    flex: 1;
+  }
+  .card-header .role-tag {
+    font-size: 8.5pt;
+    font-weight: bold;
+    border: 1.5px solid #000;
+    color: #000;
+    padding: 2px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+  }
+
+  .card-body {
+    padding: 12px 14px;
+    flex: 1;
+  }
+  .card-body .prompt-label {
+    font-size: 8.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  .card-body p {
+    margin: 0 0 10px 0;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+  .card-body ul {
+    margin: 4px 0 10px 18px;
+    padding: 0;
+  }
+  .card-body li {
+    margin-bottom: 4px;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  @media print {
+    body { padding: 0; }
+    .page { height: 9.5in; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: Cards 1–4 -->
+<div class="page">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">1</span>
+      <span class="title">Doctor's Appointment</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>You need to make a doctor's appointment for your father as soon as possible.</p>
+      <div class="prompt-label">Details to share:</div>
+      <ul>
+        <li>He has a bad cough, slight fever, and trouble sleeping</li>
+        <li>You need an appointment <strong>this week</strong>, preferably in the afternoon</li>
+        <li>Ask what documents or insurance card to bring</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">2</span>
+      <span class="title">Restaurant Reservation</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>You need to book a table for a birthday dinner this Saturday at 7:00 PM.</p>
+      <div class="prompt-label">Details to share:</div>
+      <ul>
+        <li>Table for <strong>8 people</strong></li>
+        <li>2 people are vegetarian, 1 person is <strong>allergic to nuts</strong></li>
+        <li>Ask if they can write "Happy Birthday" on a dessert</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">3</span>
+      <span class="title">Lost Credit Card</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>You lost your credit card at the mall yesterday and need help right away.</p>
+      <div class="prompt-label">Details to share:</div>
+      <ul>
+        <li>You need them to <strong>cancel the card immediately</strong></li>
+        <li>Ask how long it takes to get a new card</li>
+        <li>Ask if any charges were made after you lost it</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">4</span>
+      <span class="title">Reschedule Job Interview</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>Your job interview is tomorrow at 10:00 AM, but you have an emergency.</p>
+      <div class="prompt-label">Details to share:</div>
+      <ul>
+        <li>You need to take your child to the doctor — you cannot miss it</li>
+        <li>Ask to reschedule to <strong>later this week</strong>, any time after 1:00 PM</li>
+        <li>Apologize and thank them for understanding</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGE 2: Cards 5–8 -->
+<div class="page">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">5</span>
+      <span class="title">College Course Registration</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>You want to sign up for an English class at the local college.</p>
+      <div class="prompt-label">Ask about:</div>
+      <ul>
+        <li>When classes start and how long they last</li>
+        <li>The cost — and if there is financial help available</li>
+        <li>Whether you need to take a <strong>placement test</strong> first</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">6</span>
+      <span class="title">Broken Toaster Return</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>You bought a new toaster last week and it doesn't work — it burns everything.</p>
+      <div class="prompt-label">Details to share:</div>
+      <ul>
+        <li>It burns the bread even on the <strong>lowest setting</strong></li>
+        <li>You have the <strong>receipt and the box</strong></li>
+        <li>Ask for a refund or replacement — find out which is faster</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">7</span>
+      <span class="title">Airport Taxi Pickup</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>You need a taxi to take you to the airport very early this Friday morning.</p>
+      <div class="prompt-label">Details to share:</div>
+      <ul>
+        <li>You need to arrive at the airport by <strong>5:00 AM</strong></li>
+        <li>You have <strong>2 large suitcases</strong></li>
+        <li>Ask for the price and confirm they can pick you up on time</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">8</span>
+      <span class="title">Wrong Utility Bill</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>Your electric bill this month is $250 — it is usually only about $85.</p>
+      <div class="prompt-label">Details to share:</div>
+      <ul>
+        <li>You did not use more electricity than normal</li>
+        <li>You think there is a <strong>billing error</strong></li>
+        <li>Ask them to review the account and correct the bill</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGE 3: Cards 9–12 -->
+<div class="page">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">9</span>
+      <span class="title">Hotel Booking</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>You want to book a hotel room for next weekend (Friday and Saturday night).</p>
+      <div class="prompt-label">Ask about:</div>
+      <ul>
+        <li>A <strong>quiet room</strong> — not near the elevator or ice machine</li>
+        <li>Whether they include free breakfast, WiFi, and parking</li>
+        <li>Check-in and check-out times</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">10</span>
+      <span class="title">Overdue Library Books</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>You have 3 library books that were due yesterday, but you were sick and couldn't return them.</p>
+      <div class="prompt-label">Details to share:</div>
+      <ul>
+        <li>You are feeling better now and want to return them soon</li>
+        <li>Ask if you can <strong>renew them by phone</strong></li>
+        <li>Ask how much the late fees are</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">11</span>
+      <span class="title">Gym Membership</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>You are thinking about joining a gym and want information before you decide.</p>
+      <div class="prompt-label">Ask about:</div>
+      <ul>
+        <li>Monthly and yearly membership prices</li>
+        <li>What equipment and classes they offer</li>
+        <li>Whether they have a <strong>free trial or guest pass</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">12</span>
+      <span class="title">Leaking Sink — Plumber</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>Your kitchen sink is leaking and you need a plumber as soon as possible.</p>
+      <div class="prompt-label">Details to share:</div>
+      <ul>
+        <li>You can only be home <strong>after 4:00 PM on weekdays</strong></li>
+        <li>Ask how much it will cost and how long the repair takes</li>
+        <li>Ask if there is an extra charge for coming in the evening</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGE 4: Cards 13–14 -->
+<div class="page">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">13</span>
+      <span class="title">Movie Theater Tickets</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>You want to buy tickets for a new movie for a group of 6 people.</p>
+      <div class="prompt-label">Ask about:</div>
+      <ul>
+        <li>Showtimes for today or tomorrow</li>
+        <li>Ticket prices — ask about any group discount</li>
+        <li>Accessible seating — <strong>one person in your group uses a wheelchair</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="num">14</span>
+      <span class="title">Car Insurance Claim</span>
+      <span class="role-tag">CALLER</span>
+    </div>
+    <div class="card-body">
+      <div class="prompt-label">Your situation:</div>
+      <p>Another car hit your car in a parking lot yesterday while you were shopping.</p>
+      <div class="prompt-label">Details to share:</div>
+      <ul>
+        <li>The other driver left a note with their name, phone, and insurance info</li>
+        <li>You want to file a claim and get your car repaired</li>
+        <li>Ask what information they need and <strong>how long the process takes</strong></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

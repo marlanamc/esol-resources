@@ -732,40 +732,45 @@
   "Week 34": {
     "due_date": "2026-05-26",
     "verbs": {
-      "stretch": {
-        "v1": "stretch",
-        "v1_3rd": "stretches",
-        "v1_ing": "stretching",
-        "v2": "stretched",
-        "v3": "stretched"
+      "feed": {
+        "v1": "feed",
+        "v1_3rd": "feeds",
+        "v1_ing": "feeding",
+        "v2": "fed",
+        "v3": "fed",
+        "definition": "to give food to yourself, a child, or an animal"
       },
-      "breathe": {
-        "v1": "breathe",
-        "v1_3rd": "breathes",
-        "v1_ing": "breathing",
-        "v2": "breathed",
-        "v3": "breathed"
+      "bite": {
+        "v1": "bite",
+        "v1_3rd": "bites",
+        "v1_ing": "biting",
+        "v2": "bit",
+        "v3": "bitten",
+        "definition": "to cut into food with your teeth"
       },
-      "exercise": {
-        "v1": "exercise",
-        "v1_3rd": "exercises",
-        "v1_ing": "exercising",
-        "v2": "exercised",
-        "v3": "exercised"
+      "burn": {
+        "v1": "burn",
+        "v1_3rd": "burns",
+        "v1_ing": "burning",
+        "v2": "burned",
+        "v3": "burned",
+        "definition": "to use energy from food or to cook something too long"
       },
-      "practice": {
-        "v1": "practice",
-        "v1_3rd": "practices",
-        "v1_ing": "practicing",
-        "v2": "practiced",
-        "v3": "practiced"
+      "spread": {
+        "v1": "spread",
+        "v1_3rd": "spreads",
+        "v1_ing": "spreading",
+        "v2": "spread",
+        "v3": "spread",
+        "definition": "to cover bread or crackers with butter, jam, or another soft food"
       },
-      "improve": {
-        "v1": "improve",
-        "v1_3rd": "improves",
-        "v1_ing": "improving",
-        "v2": "improved",
-        "v3": "improved"
+      "spoil": {
+        "v1": "spoil",
+        "v1_3rd": "spoils",
+        "v1_ing": "spoiling",
+        "v2": "spoiled",
+        "v3": "spoiled",
+        "definition": "when food goes bad and is no longer safe to eat"
       }
     }
   },
@@ -777,35 +782,40 @@
         "v1_3rd": "teaches",
         "v1_ing": "teaching",
         "v2": "taught",
-        "v3": "taught"
-      },
-      "learn": {
-        "v1": "learn",
-        "v1_3rd": "learns",
-        "v1_ing": "learning",
-        "v2": "learned",
-        "v3": "learned"
+        "v3": "taught",
+        "definition": "to help someone learn"
       },
       "grow": {
         "v1": "grow",
         "v1_3rd": "grows",
         "v1_ing": "growing",
         "v2": "grew",
-        "v3": "grown"
+        "v3": "grown",
+        "definition": "to become larger or develop"
       },
-      "achieve": {
-        "v1": "achieve",
-        "v1_3rd": "achieves",
-        "v1_ing": "achieving",
-        "v2": "achieved",
-        "v3": "achieved"
+      "lead": {
+        "v1": "lead",
+        "v1_3rd": "leads",
+        "v1_ing": "leading",
+        "v2": "led",
+        "v3": "led",
+        "definition": "to guide or be in charge of a group"
       },
-      "succeed": {
-        "v1": "succeed",
-        "v1_3rd": "succeeds",
-        "v1_ing": "succeeding",
-        "v2": "succeeded",
-        "v3": "succeeded"
+      "mean": {
+        "v1": "mean",
+        "v1_3rd": "means",
+        "v1_ing": "meaning",
+        "v2": "meant",
+        "v3": "meant",
+        "definition": "to have a particular meaning or intention"
+      },
+      "deal": {
+        "v1": "deal",
+        "v1_3rd": "deals",
+        "v1_ing": "dealing",
+        "v2": "dealt",
+        "v3": "dealt",
+        "definition": "to handle a situation, often as in deal with"
       }
     }
   }

@@ -30,7 +30,7 @@ describe("public level 1 unit matching", () => {
   });
 
   it("does not require isConcrete for unit matching when a card has an image and allowed category", () => {
-    const unit = getUnit("unit-3");
+    const unit = getUnit("unit-6-7");
     const eligibleCards = getUnitMatchingEligibleCards(unit);
 
     expect(eligibleCards.length).toBeGreaterThanOrEqual(2);

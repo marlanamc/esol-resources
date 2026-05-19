@@ -13,7 +13,8 @@ interface ClassVotePhaseProps {
 export function ClassVotePhase({ sessionId, groupWinners, initialVote, myGroupName }: ClassVotePhaseProps) {
     const [selectedId, setSelectedId] = useState<string | null>(initialVote ?? null);
     const [saving, setSaving] = useState(false);
-    const [voteError, setVoteError] = useState<string | null>(null);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [voteError, setVoteError] = useState<string | null>(null);
 
     const vote = async (submissionId: string) => {
         if (saving) return;

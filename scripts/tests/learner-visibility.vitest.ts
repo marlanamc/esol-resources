@@ -9,20 +9,21 @@ describe("learner visibility legacy release handling", () => {
   it("treats legacy content without a released flag as visible", () => {
     const cache = createLearnerContentMetadataCache();
     const content = JSON.stringify({
-      type: "speaking",
+      type: "quiz",
       prompt: "Describe your neighborhood.",
     });
 
     expect(getLearnerContentMetadata(content, cache)).toEqual({
-      type: "speaking",
+      type: "quiz",
       releasedInContent: true,
+      hasExplicitReleasedField: false,
     });
 
     expect(
       isLearnerVisibleActivity(
         {
-          type: "speaking",
-          category: "speaking",
+          type: "quiz",
+          category: "quizzes",
           content,
         },
         cache

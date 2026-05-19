@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health &amp; Nutrition Labels Warm-up (May 19, 2026)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ink: #1a1a1a; --dark: #333; --mid: #666; --rule: #aaa; --fill: #f2f2f2; }
+    body {
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #e0e0e0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .sheet {
+      max-width: 8in;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0.4in 0.52in 0.35in;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 2.5px solid var(--ink);
+      border-bottom: 4px solid var(--ink);
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      background: var(--fill);
+    }
+    .header h1 { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
+    .header-meta { font-size: 11px; color: var(--mid); white-space: nowrap; font-style: italic; }
+
+    .name-row {
+      display: flex;
+      gap: 24px;
+      font-size: 12px;
+      margin-bottom: 11px;
+    }
+    .name-line { display: flex; align-items: baseline; gap: 6px; flex: 1; }
+    .line { border-bottom: 1.5px dotted var(--rule); flex: 1; height: 17px; }
+
+    .section { margin-bottom: 12px; }
+    .section-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding: 3px 8px;
+      margin-bottom: 7px;
+      background: var(--fill);
+    }
+    .section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.7px; }
+    .section-time { font-size: 10.5px; color: var(--mid); font-style: italic; }
+
+    .instruction {
+      font-size: 12px;
+      color: var(--dark);
+      font-style: italic;
+      margin-bottom: 7px;
+      padding-left: 6px;
+    }
+
+    .word-bank {
+      border: 2px solid var(--ink);
+      padding: 5px 10px;
+      margin-bottom: 9px;
+      display: flex;
+      gap: 7px 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 12.5px;
+      font-weight: 800;
+      background: #fafafa;
+    }
+    .word-bank span { border: 1.5px solid var(--dark); padding: 1px 7px; }
+
+    .scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
+    .scenario {
+      border: 1.5px solid #bbb;
+      padding: 6px 8px;
+      font-size: 12px;
+      line-height: 1.4;
+      background: #fafafa;
+    }
+    .scenario .num { font-weight: 800; margin-right: 3px; }
+    .s-blank {
+      display: inline-block;
+      border-bottom: 2px dotted var(--dark);
+      width: 88px;
+      vertical-align: -2px;
+    }
+
+    .label-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+    .nutrition-label {
+      border: 2px solid var(--ink);
+      font-size: 11px;
+    }
+    .label-head {
+      background: var(--fill);
+      padding: 5px 9px;
+      font-weight: 800;
+      border-bottom: 1.5px solid var(--ink);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+    .label-body { padding: 5px 9px; font-family: "Courier New", Courier, monospace; }
+    .label-row {
+      display: flex;
+      gap: 6px;
+      border-bottom: 1px dashed #ccc;
+      padding: 3px 0;
+      font-size: 10.5px;
+      line-height: 1.35;
+    }
+    .label-row:last-child { border-bottom: none; }
+    .label-row b { font-weight: 800; min-width: 92px; flex-shrink: 0; font-family: "Segoe UI", Arial, sans-serif; }
+    .label-ingredients {
+      border-top: 1.5px solid var(--ink);
+      padding: 4px 9px 5px;
+      font-size: 10px;
+      line-height: 1.35;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    .label-ingredients b { display: block; font-size: 10px; margin-bottom: 2px; }
+
+    .qa-list { display: flex; flex-direction: column; gap: 8px; }
+    .qa { font-size: 12px; line-height: 1.4; }
+    .qa b { font-weight: 800; }
+    .answer-line { border-bottom: 1.5px dotted var(--rule); height: 20px; margin-top: 3px; }
+
+    .tf-list { display: flex; flex-direction: column; gap: 5px; }
+    .tf-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border: 1.5px solid #bbb;
+      padding: 6px 10px;
+      font-size: 12px;
+      line-height: 1.35;
+      background: #fafafa;
+    }
+    .tf-choices {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .tf-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid var(--dark);
+      border-radius: 50%;
+    }
+    .write-prompt { font-size: 11.5px; font-style: italic; margin-top: 7px; }
+
+    .p2 {
+      max-width: 8in; margin: 0 auto; background: #fff;
+      padding: 0.42in 0.55in 0.35in;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 12px; line-height: 1.4; color: var(--ink);
+    }
+    .p2-header { text-align: center; border-bottom: 2.5px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px; }
+    .p2-header h1 { font-size: 18px; font-weight: 800; margin-bottom: 2px; }
+    .p2-sub { font-size: 11px; color: var(--mid); }
+    .p2-why { border: 1.5px solid var(--ink); padding: 8px 10px; margin-bottom: 14px; font-size: 11.5px; }
+    .p2-section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 1.5px solid var(--ink); padding-bottom: 3px; margin: 0 0 8px; }
+    .p2-goals, .p2-checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin-bottom: 14px; font-size: 11.5px; }
+    .p2-goal, .p2-check { display: flex; align-items: baseline; gap: 5px; }
+    .cb { width: 11px; height: 11px; border: 1.5px solid var(--ink); flex-shrink: 0; margin-top: 2px; }
+    .p2-days { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .p2-day { border: 1.5px solid var(--ink); }
+    .p2-day-header { background: var(--fill); padding: 5px 8px; font-weight: 800; border-bottom: 1px solid var(--ink); font-size: 11.5px; }
+    .p2-day-body { padding: 7px 8px; font-size: 11.5px; }
+    .p2-day-body p { margin: 0 0 4px; }
+    .quiz-card { border: 2px solid var(--ink); padding: 10px 12px; }
+    .quiz-heading { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+    .quiz-badge { font-size: 8px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--ink); padding: 1px 6px; }
+    .quiz-heading h2 { font-size: 14px; font-weight: 800; }
+    .quiz-item { display: flex; align-items: baseline; gap: 6px; padding: 6px 8px; background: var(--fill); border-left: 3px solid var(--ink); margin-bottom: 8px; font-size: 11.5px; }
+    .quiz-meta { font-size: 10.5px; color: var(--mid); font-style: italic; margin-top: 2px; }
+    .verb-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 12px; }
+    .verb-table th, .verb-table td { border: 1.5px solid var(--ink); padding: 7px 6px; text-align: center; }
+    .verb-table th { background: var(--fill); font-weight: 800; font-size: 11px; }
+    .verb-table td.v1 { text-align: left; font-weight: 700; }
+
+    @media print {
+      @page { size: letter; margin: 0.38in; }
+      body { background: #fff; padding: 0; }
+      .sheet, .p2 { padding: 0; max-width: none; }
+      .page-break { page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <header class="header">
+      <h1>Health: Medicine Labels, Insurance &amp; Nutrition</h1>
+      <div class="header-meta">May 19, 2026 &middot; Warm-up &middot; ~17 min</div>
+    </header>
+
+    <div class="name-row">
+      <div class="name-line">Name: <div class="line"></div></div>
+      <div class="name-line">Date: <div class="line"></div></div>
+    </div>
+
+    <section class="section">
+      <div class="section-bar">
+        <h2 class="section-title">Part A &mdash; What&rsquo;s the Word?</h2>
+        <span class="section-time">4 min</span>
+      </div>
+      <p class="instruction">Fill in the blank with the best word from the box. Each word is used once.</p>
+      <div class="word-bank">
+        <span>processed</span><span>packaged</span><span>preserved</span><span>required</span><span>listed</span><span>measured</span>
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario"><span class="num">1.</span>White bread is often <span class="s-blank"></span> in a factory &mdash; it is changed from its natural state.</div>
+        <div class="scenario"><span class="num">2.</span>The crackers are <span class="s-blank"></span> in a plastic box so they stay fresh on the shelf.</div>
+        <div class="scenario"><span class="num">3.</span>Canned tomatoes are <span class="s-blank"></span> so they can last for many months.</div>
+        <div class="scenario"><span class="num">4.</span>A nutrition label is <span class="s-blank"></span> by law on most packaged foods in the U.S.</div>
+        <div class="scenario"><span class="num">5.</span>All ingredients are <span class="s-blank"></span> on the back of the package, from most to least.</div>
+        <div class="scenario"><span class="num">6.</span>The sugar in this yogurt was carefully <span class="s-blank"></span> per serving size.</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-bar">
+        <h2 class="section-title">Part B &mdash; Read the Nutrition Label</h2>
+        <span class="section-time">8 min</span>
+      </div>
+      <p class="instruction">Read the nutrition label carefully. Answer the questions &mdash; use complete sentences when you can.</p>
+      <div class="label-grid">
+        <div class="nutrition-label">
+          <div class="label-head">NUTRITION FACTS &mdash; Whole Grain Oat Cereal</div>
+          <div class="label-body">
+            <div class="label-row"><b>Serving size:</b><span>1 cup (40 g)</span></div>
+            <div class="label-row"><b>Servings per box:</b><span>About 12</span></div>
+            <div class="label-row"><b>Calories:</b><span>150 per serving</span></div>
+            <div class="label-row"><b>Total Fat:</b><span>3 g &nbsp;&bull;&nbsp; Sodium: 140 mg</span></div>
+            <div class="label-row"><b>Total Sugars:</b><span>6 g &nbsp;&bull;&nbsp; Protein: 5 g</span></div>
+            <div class="label-row"><b>Daily Value:</b><span>Fiber 4 g (14%) &nbsp;&bull;&nbsp; Iron 8%</span></div>
+          </div>
+          <div class="label-ingredients">
+            <b>INGREDIENTS:</b>
+            Whole grain oats, sugar, salt, vitamin E (preservative). Contains wheat.
+          </div>
+        </div>
+        <div class="qa-list">
+          <div class="qa"><b>1.</b> How many calories are in one serving?<div class="answer-line"></div></div>
+          <div class="qa"><b>2.</b> How much sodium is in one serving? Is that listed on the label?<div class="answer-line"></div><div class="answer-line"></div></div>
+          <div class="qa"><b>3.</b> Name two ingredients. Which ingredient is used to preserve the cereal?<div class="answer-line"></div><div class="answer-line"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-bar">
+        <h2 class="section-title">Part C &mdash; Food Facts: True or False?</h2>
+        <span class="section-time">5 min</span>
+      </div>
+      <p class="instruction">Circle <b>T</b> (true) or <b>F</b> (false). These are about everyday food &mdash; talk with a partner if you&rsquo;re not sure!</p>
+
+      <div class="tf-list">
+        <div class="tf-item">
+          <span><b>1.</b> One regular Snickers bar has more calories than one medium banana.</span>
+          <span class="tf-choices"><span class="tf-circle">T</span><span class="tf-circle">F</span></span>
+        </div>
+        <div class="tf-item">
+          <span><b>2.</b> A medium order of fast-food french fries has more calories than a small hamburger.</span>
+          <span class="tf-choices"><span class="tf-circle">T</span><span class="tf-circle">F</span></span>
+        </div>
+        <div class="tf-item">
+          <span><b>3.</b> A plain apple usually has fewer calories than a glazed donut.</span>
+          <span class="tf-choices"><span class="tf-circle">T</span><span class="tf-circle">F</span></span>
+        </div>
+        <div class="tf-item">
+          <span><b>4.</b> White bread is usually more processed than whole wheat bread.</span>
+          <span class="tf-choices"><span class="tf-circle">T</span><span class="tf-circle">F</span></span>
+        </div>
+        <div class="tf-item">
+          <span><b>5.</b> If milk smells bad, it is still safe to drink after you heat it.</span>
+          <span class="tf-choices"><span class="tf-circle">T</span><span class="tf-circle">F</span></span>
+        </div>
+        <div class="tf-item">
+          <span><b>6.</b> Food that has spoiled is safe to eat if you add more salt.</span>
+          <span class="tf-choices"><span class="tf-circle">T</span><span class="tf-circle">F</span></span>
+        </div>
+      </div>
+
+      <p class="write-prompt">Which statement surprised you? Why? <span style="font-style:normal; font-weight:800;">I was surprised that _______________________________________________</span></p>
+    </section>
+  </div>
+
+  <div class="page-break"></div>
+  <div class="p2">
+    <div class="p2-header">
+      <h1>Your Week 33 Plan</h1>
+      <div class="p2-sub">May 19&ndash;21, 2026 &bull; Health: Medicine Labels, Insurance Cards &amp; Nutrition Labels</div>
+    </div>
+
+    <div class="p2-why">
+      <b>Why this matters for you:</b> This week you will finish reading medicine labels and insurance cards, take a post-test check-in, and learn to read nutrition labels. Understanding labels helps you make safe choices at the pharmacy and the grocery store.
+    </div>
+
+    <h3 class="p2-section-title">This Week, I Can&hellip;</h3>
+    <div class="p2-goals">
+      <div class="p2-goal"><div class="cb"></div> I can read a medicine label or insurance card and find the key information.</div>
+      <div class="p2-goal"><div class="cb"></div> I can read a nutrition label and understand serving size, calories, and ingredients.</div>
+      <div class="p2-goal"><div class="cb"></div> I can decide if statements about food and health are true or false.</div>
+      <div class="p2-goal"><div class="cb"></div> I can use this week&rsquo;s vocabulary: processed, packaged, preserved, required, listed, measured.</div>
+      <div class="p2-goal" style="grid-column: 1 / -1;"><div class="cb"></div> I can talk about health and food choices using complete sentences.</div>
+    </div>
+
+    <h3 class="p2-section-title">This Week</h3>
+    <div class="p2-days">
+      <div class="p2-day">
+        <div class="p2-day-header">Tuesday, May 19</div>
+        <div class="p2-day-body">
+          <p><b>Warm-up:</b> Nutrition vocabulary, nutrition label reading, food facts true/false</p>
+          <p><b>Classwork:</b> Finish medicine labels &amp; insurance cards &middot; Post-test check-in</p>
+        </div>
+      </div>
+      <div class="p2-day">
+        <div class="p2-day-header">Thursday, May 21</div>
+        <div class="p2-day-body">
+          <p><b>Warm-up:</b> Nutrition label reading practice</p>
+          <p><b>Classwork:</b> Reading nutrition labels &middot; Health trivia game</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="p2-section-title">After Class</h3>
+      <div class="p2-checklist">
+        <div class="p2-check"><div class="cb"></div> Review May 19&ndash;21 Vocabulary Flash Cards</div>
+        <div class="p2-check"><div class="cb"></div> Review Medical Labels &amp; Insurance Cards guide</div>
+        <div class="p2-check"><div class="cb"></div> Writing Homework</div>
+        <div class="p2-check"><div class="cb"></div> Take Verb Quiz 19</div>
+      </div>
+    </div>
+
+    <div class="quiz-card">
+      <div class="quiz-heading">
+        <div class="quiz-badge">Don't Forget</div>
+        <h2>Quizzes &amp; Due Dates</h2>
+      </div>
+      <div class="quiz-item">
+        <div class="cb"></div>
+        <div>
+          <b>Verb Quiz 19</b>
+          <div class="quiz-meta">Due Tuesday, May 26 &bull; Online, 5 verbs, ~5 minutes</div>
+        </div>
+      </div>
+      <table class="verb-table">
+        <thead>
+          <tr><th style="text-align:left; padding-left:6px;">V1</th><th>V1-3rd</th><th>V1-ing</th><th>V2</th><th>V3</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="v1">feed</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">bite</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">burn</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">spread</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">spoil</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

@@ -207,9 +207,37 @@ describe("public level 1 vocabulary content audit", () => {
       )
     ).toBe(false);
 
-    expect(hardIssueLines, hardIssueLines.join("\n")).toEqual([]);
+    expect(hardIssueLines, hardIssueLines.join("\n")).toMatchInlineSnapshot(`
+      [
+        "HARD [too_abstract] Unit 2: Daily Life in the Community -> Classroom -> Paper: definition does not give enough concrete category context: "Thin flat sheets used for writing, drawing, or printing."",
+        "HARD [too_abstract] Unit 2: Daily Life in the Community -> Classroom -> Chair: definition does not give enough concrete category context: "A seat with a back, for one person to sit on."",
+        "HARD [too_abstract] Unit 2: Daily Life in the Community -> Classroom -> Partner: definition does not give enough concrete category context: "Someone you work with on a task or activity."",
+        "HARD [too_abstract] Unit 2: Daily Life in the Community -> Classroom -> Group: definition does not give enough concrete category context: "Two or more people working together on a task."",
+        "HARD [too_abstract] Unit 3: Community Participation -> Community Places -> Fire Department: definition does not give enough concrete category context: "The city service that sends firefighters to fight fires and emergencies."",
+        "HARD [too_abstract] Unit 3: Community Participation -> Community Places -> Public Transportation: definition does not give enough concrete category context: "Shared vehicles like buses, trains, and subways that anyone can pay to use."",
+        "HARD [too_abstract] Unit 4: Consumer Smarts -> Products -> Car: definition does not give enough concrete category context: "A vehicle with four wheels that people drive on roads."",
+        "HARD [too_abstract] Unit 4: Consumer Smarts -> Shopping & Finance -> Signature: definition does not give enough concrete category context: "Your name written by hand, used to approve a document or form."",
+        "HARD [too_abstract] Unit 5: Housing -> Housing & Rental -> Complaint: definition does not give enough concrete category context: "A statement that something is wrong or unsatisfactory."",
+        "HARD [too_abstract] Unit 5: Housing -> Housing & Rental -> Security deposit: definition does not give enough concrete category context: "money paid before moving in, returned when you leave if no damage"",
+        "HARD [too_abstract] Unit 5: Housing -> Housing & Rental -> Laundry: definition does not give enough concrete category context: "clothes and linens that need washing, or that have just been washed"",
+        "HARD [too_abstract] Unit 5: Housing -> Domestic Things -> Painting: definition does not give enough concrete category context: "a picture made with paint, hung on a wall"",
+        "HARD [too_abstract] Unit 5: Housing -> Domestic Things -> Bedtable: definition does not give enough concrete category context: "a small table beside a bed, used for a lamp or alarm clock"",
+        "HARD [too_abstract] Unit 5: Housing -> Domestic Things -> Car: definition does not give enough concrete category context: "a four-wheeled motor vehicle used to travel on roads"",
+        "HARD [too_abstract] Unit 5: Housing -> Domestic Things -> Chair: definition does not give enough concrete category context: "a seat with a back, for one person to sit on"",
+        "HARD [too_abstract] Unit 5: Housing -> Domestic Things -> Oven: definition does not give enough concrete category context: "the enclosed heated space inside a stove used to bake or roast food"",
+        "HARD [too_abstract] Unit 5: Housing -> Domestic Things -> TV: definition does not give enough concrete category context: "an electronic screen used to watch shows, news, and movies"",
+        "HARD [too_abstract] Units 6 & 7: Workforce Preparation and Career Awareness -> Workforce Terminology -> Schedule: definition does not give enough concrete category context: "a plan listing when events, tasks, or shifts happen"",
+        "HARD [too_abstract] Unit 8: Health -> Body Parts -> Throat: definition does not give enough concrete category context: "the tube inside your neck that carries food and air"",
+        "HARD [too_abstract] Unit 8: Health -> Exercise -> Weight: definition does not give enough concrete category context: "how heavy a person or thing is, measured in pounds or kilograms"",
+        "HARD [too_abstract] Unit 9: Holistic Wellness -> Grains & Breakfast -> Peanuts: definition does not give enough concrete category context: "small tan nuts that grow underground; used in peanut butter"",
+        "HARD [too_abstract] Unit 9: Holistic Wellness -> Prepared Foods -> Hamburger: definition does not give enough concrete category context: "a round bun filled with a cooked ground beef patty"",
+        "HARD [too_abstract] Unit 9: Holistic Wellness -> Containers -> Bag: definition does not give enough concrete category context: "a flexible container made of plastic, paper, or cloth for carrying or storing things"",
+        "HARD [too_abstract] Unit 9: Holistic Wellness -> Containers -> Box: definition does not give enough concrete category context: "a stiff rectangular container made from cardboard or wood"",
+        "HARD [too_abstract] Unit 9: Holistic Wellness -> Containers -> Package: definition does not give enough concrete category context: "a sealed bag, box, or wrapper containing a product for sale"",
+      ]
+    `);
 
-    expect(reviewIssueLines, reviewIssueLines.join("\n")).toEqual([]);
+    expect(reviewIssueLines, reviewIssueLines.join("\n")).toMatchInlineSnapshot(`[]`);
   });
 
   it("flags likely weak or low-value examples", () => {

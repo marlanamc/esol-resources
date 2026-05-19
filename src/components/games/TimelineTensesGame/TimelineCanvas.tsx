@@ -412,6 +412,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
           const hasDurationPeer = zonePeers.some(
             (e) => e.type === 'solid-line' || e.type === 'dashed-line'
           );
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const hasRepeatedPeer = zonePeers.some((e) => e.type === 'multiple-dots');
 
           // When a repeated habit and a duration share the same zone, keep the duration on the

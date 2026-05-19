@@ -186,7 +186,7 @@ export async function replayQueuedSubmissions(): Promise<SubmissionOutboxSnapsho
     );
   } else if (typeof process !== "undefined" && process.env.NODE_ENV === "production") {
     // Keep a minimal production log for support visibility.
-    // eslint-disable-next-line no-console
+     
     console.log(`${OUTBOX_LOG_PREFIX} replay finished`, { attempted, succeeded, failed, requeued, durationMs });
   }
 

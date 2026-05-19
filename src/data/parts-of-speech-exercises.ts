@@ -865,6 +865,7 @@ function makeWordFamilyBuilder(
   group: POSGroup,
   pattern: POSPattern,
   showPattern: boolean,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _tracker?: ExampleTracker,
 ): POSExercise | null {
   const family = getPatternWordFamily(pattern);
@@ -988,6 +989,7 @@ function makeWordTransform(
   group: POSGroup,
   pattern: POSPattern,
   showPattern: boolean,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _tracker?: ExampleTracker,
 ): POSExercise | null {
   const family = getPatternWordFamily(pattern);
@@ -1491,6 +1493,7 @@ type ExerciseFactory = (
   tracker?: ExampleTracker,
 ) => POSExercise | null;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FACTORY_MAP: Record<POSExerciseType, ExerciseFactory | null> = {
   'pattern-choice': makePatternChoice,
   'sentence-completion': makeSentenceCompletion,

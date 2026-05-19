@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Phone Call Boot Camp — Student Handout</title>
+<style>
+  @page { size: letter; margin: 0.55in; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 11.5pt;
+    line-height: 1.5;
+    color: #000;
+    max-width: 7.4in;
+    margin: 0 auto;
+    padding: 0.2in 0;
+  }
+
+  h1 {
+    font-size: 22pt;
+    margin: 0 0 2px 0;
+    text-align: center;
+    letter-spacing: -0.5px;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 11pt;
+    color: #333;
+    margin: 0 0 16px 0;
+  }
+
+  h2 {
+    font-size: 13pt;
+    font-weight: bold;
+    border-bottom: 2.5px solid #000;
+    padding-bottom: 3px;
+    margin: 18px 0 10px 0;
+    page-break-after: avoid;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  h3 {
+    font-size: 11.5pt;
+    margin: 10px 0 6px 0;
+    page-break-after: avoid;
+  }
+
+  /* Skeleton */
+  .skeleton {
+    border: 2.5px solid #000;
+    background: #f2f2f2;
+    padding: 12px 16px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .skeleton .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 7px 0;
+  }
+  .skeleton .num {
+    background: #000;
+    color: #fff;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 11pt;
+    flex-shrink: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .skeleton .step-content { flex: 1; padding-top: 1px; }
+  .skeleton .label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 1px;
+  }
+  .skeleton .phrase {
+    font-style: italic;
+    color: #222;
+  }
+
+  /* Two-column layout */
+  .two-col {
+    display: flex;
+    gap: 14px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+  .two-col > div { flex: 1; }
+
+  /* Phrase banks */
+  .phrase-bank {
+    border: 2px solid #000;
+    padding: 10px 13px;
+    page-break-inside: avoid;
+  }
+  .phrase-bank h3 {
+    margin: 0 0 6px 0;
+    font-size: 11pt;
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 4px;
+  }
+  .phrase-bank ul {
+    margin: 4px 0 0 16px;
+    padding: 0;
+  }
+  .phrase-bank li {
+    margin-bottom: 4px;
+    font-style: italic;
+    font-size: 10.5pt;
+  }
+
+  /* Roles */
+  .roles {
+    display: flex;
+    gap: 14px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+  .role-card {
+    flex: 1;
+    border: 2px solid #000;
+    padding: 10px 13px;
+  }
+  .role-card h3 {
+    margin: 0 0 6px 0;
+    font-size: 11.5pt;
+    border-bottom: 1.5px solid #000;
+    padding-bottom: 4px;
+  }
+  .role-card ul { margin: 4px 0 0 16px; padding: 0; }
+  .role-card li { margin-bottom: 4px; font-size: 10.5pt; }
+
+  /* Checklist */
+  .checklist {
+    border: 2px dashed #555;
+    background: #f2f2f2;
+    padding: 10px 14px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .checklist ul { margin: 4px 0 0 6px; padding: 0; list-style: none; }
+  .checklist li { margin-bottom: 5px; font-size: 11pt; }
+  .checklist li::before { content: "☐  "; font-size: 12pt; }
+
+  /* Example */
+  .example {
+    background: #f2f2f2;
+    border-left: 4px solid #000;
+    padding: 10px 14px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .example .line { margin: 5px 0; font-size: 10.5pt; }
+  .example .who {
+    font-weight: bold;
+    display: inline-block;
+    min-width: 155px;
+  }
+  .example .them { font-style: italic; }
+
+  /* Speed round instructions */
+  .speed-round {
+    border: 2.5px solid #000;
+    padding: 10px 14px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+  .speed-round ol { margin: 6px 0 0 18px; padding: 0; }
+  .speed-round li { margin-bottom: 5px; font-size: 11pt; }
+
+  /* Reflection table */
+  .reflection-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+  .reflection-table th {
+    border: 1.5px solid #000;
+    background: #f2f2f2;
+    padding: 6px 10px;
+    font-size: 10pt;
+    text-align: center;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .reflection-table td {
+    border: 1.5px solid #000;
+    padding: 4px 8px;
+    font-size: 10pt;
+    height: 28px;
+    vertical-align: top;
+  }
+  .reflection-table td.round-num {
+    text-align: center;
+    font-weight: bold;
+    width: 50px;
+    background: #f2f2f2;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @media print {
+    body { padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Phone Call Boot Camp</h1>
+<p class="subtitle">You will make real phone calls in English today. Use this sheet the whole time.</p>
+
+<h2>The Phone Call Skeleton — Use Every Time</h2>
+
+<div class="skeleton">
+  <div class="step">
+    <div class="num">1</div>
+    <div class="step-content">
+      <span class="label">Say hello and your name</span>
+      <span class="phrase">"Hello, my name is ___."</span>
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <div class="step-content">
+      <span class="label">Say why you are calling</span>
+      <span class="phrase">"I'm calling because ___." &nbsp;/&nbsp; "I need help with ___."</span>
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">3</div>
+    <div class="step-content">
+      <span class="label">Give details / ask your questions</span>
+      <span class="phrase">Use the information on your scenario card.</span>
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">4</div>
+    <div class="step-content">
+      <span class="label">Confirm and repeat back</span>
+      <span class="phrase">"So just to confirm, ___. Is that correct?"</span>
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">5</div>
+    <div class="step-content">
+      <span class="label">Thank them and say goodbye</span>
+      <span class="phrase">"Thank you for your help. Goodbye!"</span>
+    </div>
+  </div>
+</div>
+
+<h2>Before You Call — Get Ready</h2>
+
+<div class="checklist">
+  <ul>
+    <li>Read your scenario card all the way through</li>
+    <li>Know the name of the place you are calling (doctor's office, bank, hotel…)</li>
+    <li>Have your key details ready: dates, times, names, amounts</li>
+    <li>Have something to write with — you may need to take notes</li>
+    <li>Sit back-to-back with your partner. No looking at faces!</li>
+  </ul>
+</div>
+
+<h2>Phrase Banks</h2>
+
+<div class="two-col">
+  <div class="phrase-bank">
+    <h3>When you don't understand</h3>
+    <ul>
+      <li>"Could you repeat that, please?"</li>
+      <li>"Could you speak more slowly?"</li>
+      <li>"I'm sorry, I didn't understand."</li>
+      <li>"Could you spell that, please?"</li>
+      <li>"One moment — let me write that down."</li>
+    </ul>
+  </div>
+  <div class="phrase-bank">
+    <h3>For problems &amp; complaints</h3>
+    <ul>
+      <li>"I think there may be an error."</li>
+      <li>"This is not what I expected."</li>
+      <li>"I would like to report a problem."</li>
+      <li>"I was told that ___."</li>
+      <li>"What can we do to fix this?"</li>
+    </ul>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="phrase-bank">
+    <h3>For appointments &amp; reservations</h3>
+    <ul>
+      <li>"I'd like to make an appointment."</li>
+      <li>"Do you have anything available on ___?"</li>
+      <li>"I need to reschedule."</li>
+      <li>"What time works best?"</li>
+      <li>"Can I get a confirmation number?"</li>
+    </ul>
+  </div>
+  <div class="phrase-bank">
+    <h3>For asking questions</h3>
+    <ul>
+      <li>"Could you tell me ___?"</li>
+      <li>"I'd like to know ___."</li>
+      <li>"How much does that cost?"</li>
+      <li>"How long will that take?"</li>
+      <li>"Is there anything else I need to bring?"</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Your Two Roles</h2>
+
+<div class="roles">
+  <div class="role-card">
+    <h3>CALLER — You have the scenario card</h3>
+    <ul>
+      <li>Start the call: "Hello, my name is ___."</li>
+      <li>Say why you are calling right away</li>
+      <li>Cover all the bullet points on your card</li>
+      <li>Confirm important details before you hang up</li>
+      <li>Thank them and say goodbye</li>
+    </ul>
+  </div>
+  <div class="role-card">
+    <h3>RECEPTIONIST — You know your workplace</h3>
+    <ul>
+      <li>Answer: "Hello, [place name]. How can I help you?"</li>
+      <li>Listen carefully — don't interrupt</li>
+      <li>Ask for details if you need them</li>
+      <li>Make up reasonable answers — be helpful!</li>
+      <li>Close the call politely</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Example Call — Disputing a Bill</h2>
+
+<div class="example">
+  <div class="line"><span class="who them">RECEPTIONIST:</span> Hello, City Electric. How can I help you?</div>
+  <div class="line"><span class="who">YOU:</span> Hello, my name is Rosa. I'm calling because I have a problem with my bill.</div>
+  <div class="line"><span class="who them">RECEPTIONIST:</span> I'm sorry to hear that. Can I get your account number?</div>
+  <div class="line"><span class="who">YOU:</span> One moment — let me write that down. Could you repeat that?</div>
+  <div class="line"><span class="who them">RECEPTIONIST:</span> Sure. I need your account number, or the address on the account.</div>
+  <div class="line"><span class="who">YOU:</span> It's 42 Oak Street. My bill is usually $85, but this month it says $250. I think there is an error.</div>
+  <div class="line"><span class="who them">RECEPTIONIST:</span> I understand. Let me look into that for you.</div>
+  <div class="line"><span class="who">YOU:</span> Thank you. So just to confirm — you will review my bill and call me back. Is that correct?</div>
+  <div class="line"><span class="who them">RECEPTIONIST:</span> That's correct. We'll call within 2 business days.</div>
+  <div class="line"><span class="who">YOU:</span> Perfect. Thank you for your help. Goodbye!</div>
+</div>
+
+<h2>Speed Round — How It Works</h2>
+
+<div class="speed-round">
+  <ol>
+    <li>You will get a scenario card. Read it <strong>before</strong> the round starts.</li>
+    <li>Sit back-to-back. The CALLER starts when the teacher says go.</li>
+    <li>Finish the call: hello → reason → details → confirm → goodbye.</li>
+    <li>When the round ends, switch roles or rotate to a new partner.</li>
+    <li>Fill in one row of the tracking table below after each round.</li>
+  </ol>
+</div>
+
+<h2>Round Tracker</h2>
+
+<table class="reflection-table">
+  <thead>
+    <tr>
+      <th>Round</th>
+      <th>My role</th>
+      <th>Scenario (what was the call about?)</th>
+      <th>One phrase I used</th>
+      <th>What was hard?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="round-num">1</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="round-num">2</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="round-num">3</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="round-num">4</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="round-num">5</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

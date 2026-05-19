@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health &amp; Wellness Warm-up (May 12, 2026)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ink: #1a1a1a; --dark: #333; --mid: #666; --rule: #aaa; --fill: #f2f2f2; }
+    body {
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #e0e0e0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .sheet {
+      max-width: 8in;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0.4in 0.52in 0.35in;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 2.5px solid var(--ink);
+      border-bottom: 4px solid var(--ink);
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      background: var(--fill);
+    }
+    .header h1 { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
+    .header-meta { font-size: 11px; color: var(--mid); white-space: nowrap; font-style: italic; }
+
+    /* ── Name row ── */
+    .name-row {
+      display: flex;
+      gap: 24px;
+      font-size: 12px;
+      margin-bottom: 11px;
+    }
+    .name-line { display: flex; align-items: baseline; gap: 6px; flex: 1; }
+    .line { border-bottom: 1.5px dotted var(--rule); flex: 1; height: 17px; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 12px; }
+    .section-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      padding: 3px 8px;
+      margin-bottom: 7px;
+      background: var(--fill);
+    }
+    .section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.7px; }
+    .section-time { font-size: 10.5px; color: var(--mid); font-style: italic; }
+
+    .instruction {
+      font-size: 12px;
+      color: var(--dark);
+      font-style: italic;
+      margin-bottom: 7px;
+      padding-left: 6px;
+    }
+
+    /* ── Word bank ── */
+    .word-bank {
+      border: 2px solid var(--ink);
+      padding: 5px 10px;
+      margin-bottom: 9px;
+      display: flex;
+      gap: 7px 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 12.5px;
+      font-weight: 800;
+      background: #fafafa;
+    }
+    .word-bank span { border: 1.5px solid var(--dark); padding: 1px 7px; }
+
+    /* ── Part A scenarios ── */
+    .scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
+    .scenario {
+      border: 1.5px solid #bbb;
+      padding: 6px 8px;
+      font-size: 12px;
+      line-height: 1.4;
+      background: #fafafa;
+    }
+    .scenario .num { font-weight: 800; margin-right: 3px; }
+    .s-blank {
+      display: inline-block;
+      border-bottom: 2px dotted var(--dark);
+      width: 100px;
+      vertical-align: -2px;
+    }
+
+    /* ── Part B label ── */
+    .label-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+    .medicine-label {
+      border: 2px solid var(--ink);
+      font-size: 11.5px;
+    }
+    .label-head {
+      background: var(--fill);
+      padding: 5px 9px;
+      font-weight: 800;
+      border-bottom: 1.5px solid var(--ink);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+    .label-body { padding: 5px 9px; font-family: "Courier New", Courier, monospace; }
+    .label-row {
+      display: flex;
+      gap: 6px;
+      border-bottom: 1px dashed #ccc;
+      padding: 3px 0;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+    .label-row:last-child { border-bottom: none; }
+    .label-row b { font-weight: 800; min-width: 80px; flex-shrink: 0; font-family: "Segoe UI", Arial, sans-serif; }
+    .label-warn {
+      border-top: 1.5px solid var(--ink);
+      padding: 4px 9px;
+      font-size: 10.5px;
+      font-weight: 800;
+      background: #eee;
+      font-family: "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    .qa-list { display: flex; flex-direction: column; gap: 8px; }
+    .qa { font-size: 12px; line-height: 1.4; }
+    .qa b { font-weight: 800; }
+    .answer-line { border-bottom: 1.5px dotted var(--rule); height: 20px; margin-top: 3px; }
+
+    /* ── Part C match ── */
+    .match-wrap {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 5px 10px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .match-left, .match-right {
+      border: 1.5px solid #bbb;
+      border-radius: 4px;
+      padding: 5px 10px;
+      font-size: 11.5px;
+      background: #fafafa;
+      line-height: 1.35;
+    }
+    .match-left { text-align: right; }
+    .match-right { text-align: left; }
+    .match-num {
+      font-size: 11px; font-weight: 800; color: var(--mid);
+      text-align: center; width: 18px;
+    }
+    .match-example .match-left { background: var(--fill); border-color: var(--ink); font-style: italic; }
+    .match-example .match-right { background: var(--fill); border-color: var(--ink); font-style: italic; }
+    .match-divider { border: none; border-top: 1.5px dashed #ccc; margin: 4px 0 6px; }
+    .blank-row { border-bottom: 1.5px dotted var(--rule); height: 21px; margin-bottom: 4px; }
+    .write-prompt { font-size: 11.5px; font-style: italic; margin-top: 3px; }
+
+    /* ── Page 2 ── */
+    .p2 {
+      max-width: 8in; margin: 0 auto; background: #fff;
+      padding: 0.42in 0.55in 0.35in;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 12px; line-height: 1.4; color: var(--ink);
+    }
+    .p2-header { text-align: center; border-bottom: 2.5px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px; }
+    .p2-header h1 { font-size: 18px; font-weight: 800; margin-bottom: 2px; }
+    .p2-sub { font-size: 11px; color: var(--mid); }
+    .p2-why { border: 1.5px solid var(--ink); padding: 8px 10px; margin-bottom: 14px; font-size: 11.5px; }
+    .p2-section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 1.5px solid var(--ink); padding-bottom: 3px; margin: 0 0 8px; }
+    .p2-goals, .p2-checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin-bottom: 14px; font-size: 11.5px; }
+    .p2-goal, .p2-check { display: flex; align-items: baseline; gap: 5px; }
+    .cb { width: 11px; height: 11px; border: 1.5px solid var(--ink); flex-shrink: 0; margin-top: 2px; }
+    .p2-days { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .p2-day { border: 1.5px solid var(--ink); }
+    .p2-day-header { background: var(--fill); padding: 5px 8px; font-weight: 800; border-bottom: 1px solid var(--ink); font-size: 11.5px; }
+    .p2-day-body { padding: 7px 8px; font-size: 11.5px; }
+    .p2-day-body p { margin: 0 0 4px; }
+    .quiz-card { border: 2px solid var(--ink); padding: 10px 12px; }
+    .quiz-heading { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+    .quiz-badge { font-size: 8px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--ink); padding: 1px 6px; }
+    .quiz-heading h2 { font-size: 14px; font-weight: 800; }
+    .quiz-item { display: flex; align-items: baseline; gap: 6px; padding: 6px 8px; background: var(--fill); border-left: 3px solid var(--ink); margin-bottom: 8px; font-size: 11.5px; }
+    .quiz-meta { font-size: 10.5px; color: var(--mid); font-style: italic; margin-top: 2px; }
+    .verb-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 12px; }
+    .verb-table th, .verb-table td { border: 1.5px solid var(--ink); padding: 7px 6px; text-align: center; }
+    .verb-table th { background: var(--fill); font-weight: 800; font-size: 11px; }
+    .verb-table td.v1 { text-align: left; font-weight: 700; }
+
+    @media print {
+      @page { size: letter; margin: 0.38in; }
+      body { background: #fff; padding: 0; }
+      .sheet, .p2 { padding: 0; max-width: none; }
+      .page-break { page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <header class="header">
+      <h1>Health &amp; Wellness: Habits and Self-Care</h1>
+      <div class="header-meta">May 12, 2026 &middot; Warm-up &middot; ~17 min</div>
+    </header>
+
+    <div class="name-row">
+      <div class="name-line">Name: <div class="line"></div></div>
+      <div class="name-line">Date: <div class="line"></div></div>
+    </div>
+
+    <section class="section">
+      <div class="section-bar">
+        <h2 class="section-title">Part A &mdash; What&rsquo;s the Word?</h2>
+        <span class="section-time">4 min</span>
+      </div>
+      <p class="instruction">Fill in the blank with the best word from the box. Each word is used once.</p>
+      <div class="word-bank">
+        <span>regimen</span><span>hydration</span><span>moderation</span><span>nourish</span><span>balance</span><span>wellness</span>
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario"><span class="num">1.</span>The nurse said, &ldquo;Good <span class="s-blank"></span> is important &mdash; try to drink at least eight glasses of water a day.&rdquo;</div>
+        <div class="scenario"><span class="num">2.</span>Dr. Patel told Ana, &ldquo;You need to find a <span class="s-blank"></span> between work and rest to stay healthy.&rdquo;</div>
+        <div class="scenario"><span class="num">3.</span>The label says, &ldquo;Take this supplement as part of a daily <span class="s-blank"></span> &mdash; same time every morning.&rdquo;</div>
+        <div class="scenario"><span class="num">4.</span>The clinic offers a free <span class="s-blank"></span> program that includes nutrition classes and mental health support.</div>
+        <div class="scenario"><span class="num">5.</span>It is okay to eat sweets in <span class="s-blank"></span> &mdash; just not every day.</div>
+        <div class="scenario"><span class="num">6.</span>Eating fresh vegetables helps <span class="s-blank"></span> your body and gives you energy.</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-bar">
+        <h2 class="section-title">Part B &mdash; Read the Insurance Card</h2>
+        <span class="section-time">8 min</span>
+      </div>
+      <p class="instruction">Read the insurance card carefully. Answer the questions &mdash; use complete sentences when you can.</p>
+      <div class="label-grid">
+        <div class="medicine-label">
+          <div class="label-head">HEALTHFIRST INSURANCE &mdash; Member ID Card</div>
+          <div class="label-body">
+            <div class="label-row"><b>Member:</b><span>Carlos Rivera</span></div>
+            <div class="label-row"><b>Member ID:</b><span>HF-4471829</span></div>
+            <div class="label-row"><b>Group #:</b><span>GRP-00234</span></div>
+            <div class="label-row"><b>Plan:</b><span>Silver PPO &nbsp;&bull;&nbsp; Effective: Jan 1, 2026</span></div>
+            <div class="label-row"><b>Copay:</b><span>Primary Care: $25 &nbsp;&bull;&nbsp; Specialist: $50</span></div>
+            <div class="label-row"><b>Rx Copay:</b><span>Generic: $10 &nbsp;&bull;&nbsp; Brand: $40</span></div>
+          </div>
+          <div class="label-warn">! Always carry this card &bull; For emergencies call 911 &bull; Member Services: (800) 555-4100</div>
+        </div>
+        <div class="qa-list">
+          <div class="qa"><b>1.</b> How much does Carlos pay to see his regular doctor?<div class="answer-line"></div></div>
+          <div class="qa"><b>2.</b> Carlos needs to see a skin doctor (dermatologist). Is that a specialist? How much is the copay?<div class="answer-line"></div><div class="answer-line"></div></div>
+          <div class="qa"><b>3.</b> The doctor prescribes a generic medicine. How much will Carlos pay at the pharmacy?<div class="answer-line"></div><div class="answer-line"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-bar">
+        <h2 class="section-title">Part C &mdash; Match the Meaning</h2>
+        <span class="section-time">5 min</span>
+      </div>
+      <p class="instruction">Each sentence on the left means the same thing as a sentence on the right. Draw a line to match them.</p>
+
+      <div class="match-wrap match-example">
+        <div class="match-left"><i>It&rsquo;s essential she follows a regimen.</i></div>
+        <div class="match-num"></div>
+        <div class="match-right"><i>She has to follow a regimen.</i> &larr;</div>
+      </div>
+      <hr class="match-divider">
+
+      <div class="match-wrap">
+        <div class="match-left"><b>1.</b> Drinking enough water is essential.</div>
+        <div class="match-num"></div>
+        <div class="match-right">You mustn&rsquo;t mix this medicine with alcohol.</div>
+      </div>
+      <div class="match-wrap">
+        <div class="match-left"><b>2.</b> Mixing this medicine with alcohol isn&rsquo;t allowed.</div>
+        <div class="match-num"></div>
+        <div class="match-right">I don&rsquo;t have to take this supplement every day.</div>
+      </div>
+      <div class="match-wrap">
+        <div class="match-left"><b>3.</b> Resting for two days isn&rsquo;t allowed to be skipped.</div>
+        <div class="match-num"></div>
+        <div class="match-right">You must drink enough water.</div>
+      </div>
+      <div class="match-wrap">
+        <div class="match-left"><b>4.</b> Taking this supplement every day isn&rsquo;t essential.</div>
+        <div class="match-num"></div>
+        <div class="match-right">She has to apply the cream twice a day.</div>
+      </div>
+      <div class="match-wrap">
+        <div class="match-left"><b>5.</b> It&rsquo;s essential she applies the cream twice a day.</div>
+        <div class="match-num"></div>
+        <div class="match-right">You must rest for two days.</div>
+      </div>
+
+      <p class="write-prompt" style="margin-top:7px;">Rewrite this sentence so it means the same thing: &ldquo;Eating in moderation is essential.&rdquo; &rarr; <span style="font-style:normal; font-weight:800;">You _______________________________________________</span></p>
+    </section>
+  </div>
+
+  <div class="page-break"></div>
+  <div class="p2">
+    <div class="p2-header">
+      <h1>Your Week 32 Plan</h1>
+      <div class="p2-sub">May 12&ndash;14, 2026 &bull; Health &amp; Wellness: Medical Labels, Insurance Cards &amp; Grammar in Context</div>
+    </div>
+
+    <div class="p2-why">
+      <b>Why this matters for you:</b> This week you will continue practicing real-world health skills. You will read medical labels and insurance cards, practice gerunds and infinitives, review timelines and verb tenses, and talk about healthy habits and holistic wellness.
+    </div>
+
+    <h3 class="p2-section-title">This Week, I Can&hellip;</h3>
+    <div class="p2-goals">
+      <div class="p2-goal"><div class="cb"></div> I can read a medical label or insurance card and understand the key information.</div>
+      <div class="p2-goal"><div class="cb"></div> I can use gerunds and infinitives correctly in a sentence.</div>
+      <div class="p2-goal"><div class="cb"></div> I can identify past, present perfect, and future tenses on a timeline.</div>
+      <div class="p2-goal"><div class="cb"></div> I can talk about healthy habits and self-care using this week&rsquo;s vocabulary.</div>
+      <div class="p2-goal" style="grid-column: 1 / -1;"><div class="cb"></div> I can ask and answer questions about health using complete sentences.</div>
+    </div>
+
+    <h3 class="p2-section-title">This Week</h3>
+    <div class="p2-days">
+      <div class="p2-day">
+        <div class="p2-day-header">Tuesday, May 12</div>
+        <div class="p2-day-body">
+          <p><b>Warm-up:</b> Health vocabulary, insurance card reading, gerunds &amp; infinitives sort</p>
+          <p><b>Classwork:</b> Stations &mdash; Medical labels, insurance cards, gerunds/infinitives, and timeline practice</p>
+        </div>
+      </div>
+      <div class="p2-day">
+        <div class="p2-day-header">Thursday, May 14</div>
+        <div class="p2-day-body">
+          <p><b>Warm-up:</b> Wellness habits and self-care conversation</p>
+          <p><b>Classwork:</b> Finish medical labels &amp; insurance cards &middot; Gerunds, infinitives &amp; timelines &middot; Holistic health discussion</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="p2-section-title">After Class</h3>
+      <div class="p2-checklist">
+        <div class="p2-check"><div class="cb"></div> Review May 12&ndash;14 Vocabulary Flash Cards</div>
+        <div class="p2-check"><div class="cb"></div> Timeline Tenses game</div>
+        <div class="p2-check"><div class="cb"></div> Gerunds &amp; Infinitives Pattern game</div>
+        <div class="p2-check"><div class="cb"></div> Review Medical Labels &amp; Insurance Cards guide</div>
+        <div class="p2-check"><div class="cb"></div> Take Verb Quiz 18</div>
+      </div>
+    </div>
+
+    <div class="quiz-card">
+      <div class="quiz-heading">
+        <div class="quiz-badge">Don't Forget</div>
+        <h2>Quizzes &amp; Due Dates</h2>
+      </div>
+      <div class="quiz-item">
+        <div class="cb"></div>
+        <div>
+          <b>Verb Quiz 18</b>
+          <div class="quiz-meta">Due Tuesday, May 19 &bull; Online, 5 verbs, ~5 minutes</div>
+        </div>
+      </div>
+      <table class="verb-table">
+        <thead>
+          <tr><th style="text-align:left; padding-left:6px;">Verb</th><th>V1 (Base)</th><th>V1-3rd</th><th>V1-ing</th><th>V2</th><th>V3</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="v1">To Mix</td><td>mix</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">To Heat</td><td>heat</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">To Rest</td><td>rest</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">To Apply</td><td>apply</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="v1">To Try</td><td>try</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

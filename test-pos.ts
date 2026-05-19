@@ -18,7 +18,7 @@ for (const group of ALL_POS_GROUPS) {
     if (round2.length === 0) {
       console.error(`ERROR: Round 2 for ${group.id} generated 0 exercises!`);
     }
-  } catch (err: any) {
-    console.error(`Error generating exercises for ${group.id}:`, err.message);
+  } catch (err: unknown) {
+    console.error(`Error generating exercises for ${group.id}:`, err instanceof Error ? err.message : String(err));
   }
 }

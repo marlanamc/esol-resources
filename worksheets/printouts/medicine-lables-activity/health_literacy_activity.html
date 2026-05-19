@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Health Literacy — Medicine Labels &amp; Insurance Cards</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink: #1a1a1a; --gray: #444; --light: #666; --line: #333; }
+  body { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); background: #f5f5f5; padding: 20px; line-height: 1.45; font-size: 14px; }
+  .sheet { max-width: 8in; margin: 0 auto; background: #fff; padding: 0.45in 0.55in; }
+
+  /* Header */
+  .header { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 16px; }
+  .header h1 { text-align: center; font-size: 20px; font-weight: bold; margin-bottom: 8px; }
+  .header-fields { display: flex; gap: 32px; justify-content: center; font-size: 13px; }
+  .field { display: flex; align-items: baseline; gap: 5px; }
+  .field label { font-weight: bold; }
+  .field-line { border-bottom: 1px solid var(--ink); width: 160px; height: 16px; }
+
+  /* Level badge */
+  .level-badge { font-size: 12px; font-style: italic; color: var(--light); text-align: center; display: block; margin-bottom: 14px; }
+
+  /* Section */
+  .section { margin-bottom: 18px; }
+  .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
+  .section-title { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+  .section-time { font-size: 12px; color: var(--light); font-style: italic; }
+
+  p.instruction { font-size: 12px; color: var(--light); font-style: italic; margin-bottom: 10px; }
+
+  /* Images — force color in print */
+  .image-center { text-align: center; margin: 10px 0; page-break-inside: avoid; }
+  .image-center img {
+    max-width: 100%; max-height: 3in; height: auto;
+    border: 1px solid #bbb;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .image-caption { font-size: 11px; font-style: italic; color: var(--light); margin: 4px 0 0 0; }
+
+  .image-grid { display: flex; gap: 12px; margin: 10px 0; page-break-inside: avoid; }
+  .image-box { flex: 1; text-align: center; }
+  .image-box img {
+    max-width: 100%; max-height: 2.8in; height: auto;
+    border: 1px solid #bbb;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .img-label { font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+
+  /* Activity box */
+  .activity-box { border: 1.5px solid var(--ink); padding: 10px 13px; margin: 10px 0; page-break-inside: avoid; }
+  .activity-box h3 { font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 8px; }
+
+  /* Scenario card */
+  .scenario-card { border: 1.5px dashed #888; padding: 10px 13px; margin: 10px 0; page-break-inside: avoid; background: #fafafa; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .scenario-card h3 { font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 8px; }
+  .scenario-card > p { font-size: 13px; margin-bottom: 8px; }
+
+  /* Question / task lists */
+  .question-list { list-style: none; margin: 4px 0 0 0; padding: 0; }
+  .question-list li { margin-bottom: 10px; font-size: 13px; line-height: 1.4; }
+
+  .task-list { list-style: decimal; margin: 4px 0 0 18px; padding: 0; }
+  .task-list li { margin-bottom: 10px; font-size: 13px; line-height: 1.4; }
+
+  .answer-line { display: block; border-bottom: 1px solid var(--line); height: 20px; margin-top: 5px; }
+
+  /* Critical thinking */
+  .critical-thinking { border-left: 3px solid var(--ink); padding: 8px 12px; margin: 10px 0; font-style: italic; font-size: 13px; page-break-inside: avoid; }
+
+  /* Vocab table */
+  .vocab-table { width: 100%; border-collapse: collapse; margin: 8px 0; page-break-inside: avoid; }
+  .vocab-table th { border: 1.5px solid var(--ink); padding: 5px 8px; font-size: 13px; text-align: left; }
+  .vocab-table td { border: 1px solid #bbb; padding: 5px 8px; font-size: 13px; vertical-align: top; }
+
+  /* Vocab grid */
+  .vocab-grid { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; page-break-inside: avoid; }
+  .vocab-item { flex: 1 1 calc(50% - 8px); border: 1px solid #bbb; padding: 7px 10px; font-size: 13px; }
+
+  .page-break { page-break-before: always; }
+
+  @media print {
+    @page { size: letter; margin: 0.45in; }
+    body { background: #fff; padding: 0; }
+    .sheet { padding: 0; max-width: none; }
+    .no-print { display: none; }
+    .image-grid { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <header class="header">
+    <h1>Station 3: Health Literacy</h1>
+  </header>
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">1. The Medicine Label</h2>
+    </div>
+    <p class="instruction">Work with your group. Look at the label. Use simple English. Ask your teacher if a word is new.</p>
+
+    <div class="image-center">
+      <img src="medicine_label.png" alt="Pharmacy medicine label for Maria Garcia">
+      <p class="image-caption">Example: A typical label from a Boston pharmacy.</p>
+    </div>
+
+    <div class="activity-box">
+      <h3>Read and Talk</h3>
+      <ul class="question-list">
+        <li>1. Look at the label. What is the medicine name? What is one question Maria could ask the pharmacist?
+          <span class="answer-line"></span>
+        </li>
+        <li>2. The label says "Take 1 capsule 3 times daily." Maria takes the first dose at 8:00 AM. What are two more good times to take the medicine? Explain your answer.
+          <span class="answer-line"></span>
+        </li>
+        <li>3. Maria feels better after 4 days. The bottle still has pills left. What should she do, and why?
+          <span class="answer-line"></span>
+        </li>
+        <li>4. Maria finds this bottle next year. What date should she check before taking the medicine? What should she do if the date has passed?
+          <span class="answer-line"></span>
+        </li>
+        <li>5. The label says "May cause drowsiness" (sleepy). Maria drives a school bus. What is the safest plan before she drives?
+          <span class="answer-line"></span>
+        </li>
+        <li>6. <strong>Real Life:</strong> Maria is confused about the directions. Write one sentence she can say at the pharmacy.
+          <span class="answer-line"></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section page-break">
+    <div class="section-header">
+      <h2 class="section-title">2 — The Insurance Card (Simple)</h2>
+
+    </div>
+    <p class="instruction">Look at the card. You do NOT need to know all words. Focus on: member ID, phone number, co-pay, ER, urgent care.</p>
+
+    <div class="image-center">
+      <img src="insurance_card.png" alt="Health insurance card for Maria Garcia">
+      <p class="image-caption">Example insurance card.</p>
+    </div>
+
+    <table class="vocab-table">
+      <thead>
+        <tr><th>Word on Card</th><th>Simple Meaning</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>HMO</strong></td><td>A health plan type. Usually you choose one main doctor first.</td></tr>
+        <tr><td><strong>PPO</strong></td><td>A health plan type. Usually you have more doctor choices, but it can cost more.</td></tr>
+        <tr><td><strong>Co-pay</strong></td><td>The amount you pay at the visit.</td></tr>
+        <tr><td><strong>Member ID</strong></td><td>Your insurance number.</td></tr>
+        <tr><td><strong>Urgent Care</strong></td><td>For problems that are important, but not life-threatening.</td></tr>
+        <tr><td><strong>ER</strong></td><td>Emergency room. For chest pain, trouble breathing, heavy bleeding, and other emergencies.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="activity-box">
+      <h3>Read and Talk</h3>
+      <ul class="question-list">
+        <li>1. Maria is at a doctor's office. What information on the card will the office probably ask for first?
+          <span class="answer-line"></span>
+        </li>
+        <li>2. Maria is sick on Saturday, but it is not an emergency. Based on the card, which place may cost less: urgent care or the ER? How do you know?
+          <span class="answer-line"></span>
+        </li>
+        <li>3. Maria paid a co-pay at the office, but later she got another bill in the mail. What is one possible reason?
+          <span class="answer-line"></span>
+        </li>
+        <li>4. Maria does not understand HMO/PPO. What is the best first step: guess, ask a friend, or call the number on the card? Explain.
+          <span class="answer-line"></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section page-break">
+    <div class="section-header">
+      <h2 class="section-title">3 — Comparison Questions</h2>
+
+    </div>
+    <p class="instruction">Compare the front and back of the insurance card. Write short answers in simple English.</p>
+
+    <div class="image-grid">
+      <div class="image-box">
+        <div class="img-label">Insurance Card Front</div>
+        <img src="insurance_card.png" alt="Insurance card front">
+      </div>
+      <div class="image-box">
+        <div class="img-label">Insurance Card Back</div>
+        <img src="insurance_card_back.png" alt="Insurance card back">
+      </div>
+    </div>
+
+    <div class="scenario-card">
+      <h3>Compare the Front and Back of the Card</h3>
+      <ol class="task-list">
+        <li>Maria is making a doctor's appointment. Which side of the card should she look at first? What information does she need?
+          <span class="answer-line"></span>
+        </li>
+        <li>Where do you see information about costs like co-pay, ER, or urgent care? Why is this important before you decide where to go?
+          <span class="answer-line"></span>
+        </li>
+      </ol>
+    </div>
+    <div class="activity-box">
+      <h3>Quick Match</h3>
+      <p style="font-size:13px; margin-bottom:8px;">Write <strong>Front</strong> or <strong>Back</strong>.</p>
+
+      <ul class="question-list">
+        <li>1. Member ID number → __________
+          <span class="answer-line"></span>
+        </li>
+        <li>2. Phone number to call for help → __________
+          <span class="answer-line"></span>
+        </li>
+        <li>3. Information about co-pay or ER costs → __________
+          <span class="answer-line"></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<p class="no-print" style="text-align:center; margin-top: 20px;">
+  <button onclick="window.print()">Print Activity</button>
+</p>
+
+</body>
+</html>

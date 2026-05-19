@@ -97,9 +97,9 @@ export function ActivityCategoryPicker({
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const activityContentMetadataCache = useMemo(() => createLearnerContentMetadataCache(), []);
-    const isReleasedActivityContent = (content: string | undefined) => {
+    const isReleasedActivityContent = React.useCallback((content: string | undefined) => {
         return getLearnerContentMetadata(content, activityContentMetadataCache).releasedInContent;
-    };
+    }, [activityContentMetadataCache]);
 
     // Determine which categories actually have activities so we can hide empty ones
     const categoryHasActivities = useMemo(() => {
@@ -150,7 +150,7 @@ export function ActivityCategoryPicker({
         );
 
         return map;
-    }, [activities, activityContentMetadataCache]);
+    }, [activities, isReleasedActivityContent]);
 
     const visibleCards = CATEGORY_CARDS.filter((c) => categoryHasActivities[c.key]);
     const validInitialCategory =

@@ -3,7 +3,7 @@
 import { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { POS_LABELS } from '@/types/parts-of-speech';
-import type { POSExercise, PartOfSpeech } from '@/types/parts-of-speech';
+import type { POSExercise } from '@/types/parts-of-speech';
 
 interface Props {
   exercise: POSExercise;

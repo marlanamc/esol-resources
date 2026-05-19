@@ -153,7 +153,7 @@ const RAW_LEVEL1_UNITS: RawUnit[] = [
       ] },
       { label: "Classroom", terms: [
         { term: "Paper", englishDefinition: "thin sheets you write or print on", spanishDefinition: "papel; material delgado que se usa para escribir o imprimir", example: "Write your answer on the paper.", fillBlankSentence: "Please give me a piece of _____.", isConcrete: true },
-        { term: "Book", englishDefinition: "a set of printed or written pages bound together, covering one topic", spanishDefinition: "un libro; algo con páginas que lees", example: "Open your book to page three.", fillBlankSentence: "I borrowed a _____ from the library to read at home.", isConcrete: true },
+        { term: "Book", englishDefinition: "many pages bound together, used for reading or writing", spanishDefinition: "un libro; algo con páginas que lees", example: "Open your book to page three.", fillBlankSentence: "I borrowed a _____ from the library to read at home.", isConcrete: true },
         { term: "Pen", englishDefinition: "a small tool used to write with ink on paper", spanishDefinition: "bolígrafo o pluma; un objeto para escribir con tinta", example: "Please use a pen.", fillBlankSentence: "I write with a _____.", isConcrete: true },
         { term: "Notebook", englishDefinition: "a book of blank or lined pages for writing notes", spanishDefinition: "cuaderno; libro con páginas para escribir apuntes", example: "My notebook is in my bag.", fillBlankSentence: "I bought a blank _____ to take notes in class.", isConcrete: true },
         { term: "Textbook", englishDefinition: "a book with lessons and information used for a specific school subject", spanishDefinition: "un libro de texto; un libro escolar que se usa en clase", example: "The textbook is on the desk.", fillBlankSentence: "The _____ has fifteen chapters.", isConcrete: true },
@@ -1231,9 +1231,7 @@ function buildSpanishDefinition(term: string, category: string): string {
   return `${categoryHintSpanish(category)}`;
 }
 
-function buildExample(term: string, unitTitle: string): string {
-  return `We practice the word "${term}" in ${unitTitle}.`;
-}
+
 
 function buildContextualExample(term: string, category: string, unitTitle: string): string {
   const label = category.toLowerCase();
@@ -2556,12 +2554,7 @@ const CURATED_FILL_BLANK_SENTENCES: Record<string, string> = {
   "Habits": "Eating breakfast every day is one of her healthy _____.",
 };
 
-function buildFillBlankSentence(term: string, example: string, unitTitle: string): string {
-  const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const pattern = new RegExp(escaped, "i");
-  if (pattern.test(example)) return example.replace(pattern, "_____");
-  return `We practice the word "_____" in ${unitTitle}.`;
-}
+
 
 function buildContextualFillBlank(term: string, category: string, example: string): string {
   // Check curated sentences first — these are unambiguous and pedagogically sound
@@ -2569,7 +2562,7 @@ function buildContextualFillBlank(term: string, category: string, example: strin
     return CURATED_FILL_BLANK_SENTENCES[term];
   }
 
-  const termLower = term.toLowerCase();
+
 
   // First try to replace term in the contextual example
   const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

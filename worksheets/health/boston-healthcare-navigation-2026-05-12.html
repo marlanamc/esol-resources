@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navigating Boston Healthcare (May 2026)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1a1a1a;
+      --dark: #333;
+      --mid: #666;
+      --rule: #aaa;
+      --fill: #f2f2f2;
+      --blue: #1a3a5c;
+      --blue-light: #e8f0f8;
+      --green: #1a5c3a;
+      --green-light: #e8f5ee;
+      --red: #5c1a1a;
+      --red-light: #f8eaea;
+      --orange: #7a3a00;
+      --orange-light: #fdf3e3;
+      --purple: #4a2767;
+      --purple-light: #f0e8f7;
+    }
+    body {
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #e0e0e0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .sheet {
+      max-width: 10.5in;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0.35in 0.45in 0.3in;
+    }
+
+    /* ── Header ── */
+    .header {
+      border: 2.5px solid var(--blue);
+      border-bottom: 5px solid var(--blue);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      background: var(--blue-light);
+    }
+    .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .header h1 { font-size: 18px; font-weight: 800; color: var(--blue); letter-spacing: -0.01em; }
+    .header-sub { font-size: 11.5px; color: var(--mid); margin-top: 3px; }
+    .header-badge {
+      font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+      border: 1.5px solid var(--blue); color: var(--blue); padding: 2px 8px; white-space: nowrap;
+    }
+
+    /* ── Name row ── */
+    .name-row { display: flex; gap: 24px; font-size: 12px; margin-bottom: 14px; }
+    .name-line { display: flex; align-items: baseline; gap: 6px; flex: 1; }
+    .line { border-bottom: 1.5px dotted var(--rule); flex: 1; height: 17px; }
+
+    /* ── Section bar ── */
+    .section { margin-bottom: 16px; }
+    .section-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      border-left: 5px solid var(--blue);
+      border-bottom: 1.5px solid var(--blue);
+      padding: 4px 10px; margin-bottom: 9px;
+      background: var(--blue-light);
+    }
+    .section-title { font-size: 12.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.7px; color: var(--blue); }
+    .section-time { font-size: 10.5px; color: var(--mid); font-style: italic; }
+    .instruction { font-size: 12px; color: var(--dark); font-style: italic; margin-bottom: 9px; padding-left: 4px; }
+
+    /* ── Part A: Triage chart ── */
+    .triage-table { width: 100%; border-collapse: collapse; font-size: 11.5px; margin-bottom: 10px; }
+    .triage-table th { padding: 7px 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; border: 2px solid var(--ink); text-align: center; }
+    .triage-table td { padding: 6px 8px; border: 1.5px solid #bbb; vertical-align: top; line-height: 1.4; }
+    .th-pc { background: var(--green-light); color: var(--green); }
+    .th-uc { background: var(--orange-light); color: var(--orange); }
+    .th-er { background: var(--red-light); color: var(--red); }
+    .th-sp { background: var(--purple-light); color: var(--purple); }
+    .th-label { background: var(--fill); font-weight: 800; font-size: 11px; color: var(--dark); width: 13%; }
+    .triage-table tr td.th-label { border-right: 2px solid var(--ink); }
+    .chip {
+      display: inline-block; border-radius: 3px; padding: 1px 6px;
+      font-size: 10px; font-weight: 800; margin-bottom: 2px; line-height: 1.6;
+    }
+    .chip-pc { background: var(--green-light); color: var(--green); border: 1px solid #9ecdb5; }
+    .chip-uc { background: var(--orange-light); color: var(--orange); border: 1px solid #e0bc87; }
+    .chip-er { background: var(--red-light); color: var(--red); border: 1px solid #d9a0a0; }
+    .chip-sp { background: var(--purple-light); color: var(--purple); border: 1px solid #c8b3d8; }
+
+    /* ── Scenario cards ── */
+    .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px 9px; margin-bottom: 8px; }
+    .scenario-card {
+      border: 1.5px solid #bbb; border-radius: 3px;
+      padding: 7px 9px; font-size: 11.5px; background: #fafafa; line-height: 1.4;
+    }
+    .scenario-card .snum { font-weight: 800; margin-right: 3px; color: var(--blue); }
+    .scenario-card .where-row {
+      display: flex; align-items: center; gap: 6px; margin-top: 6px;
+      font-size: 11px; color: var(--dark);
+      flex-wrap: wrap;
+    }
+    .where-box {
+      border: 1.5px solid #bbb; border-radius: 3px;
+      font-size: 10px; padding: 2px 6px; background: #fff;
+      font-weight: 800; color: var(--mid);
+    }
+    .where-options { display: flex; gap: 4px; flex-wrap: wrap; }
+    .discuss-bubble {
+      font-size: 11px; font-style: italic; color: var(--mid);
+      margin-top: 4px; padding-left: 2px;
+    }
+
+    /* ── Part B: AVS ── */
+    .avs-wrap {
+      display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; align-items: start;
+    }
+    .avs {
+      border: 2px solid var(--blue); font-size: 10.5px;
+    }
+    .avs-logo {
+      background: var(--blue); color: #fff;
+      padding: 7px 12px; font-size: 12.5px; font-weight: 800; letter-spacing: 0.02em;
+    }
+    .avs-logo span { font-size: 9px; font-weight: 400; display: block; opacity: 0.85; margin-top: 1px; }
+    .avs-title {
+      text-align: center; padding: 6px; font-size: 13px; font-weight: 800;
+      color: var(--blue); border-bottom: 1.5px solid #c5d8ee; background: var(--blue-light);
+    }
+    .avs-meta { padding: 7px 11px; border-bottom: 1.5px solid #c5d8ee; font-size: 10.5px; }
+    .avs-meta-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px 16px;
+    }
+    .avs-meta-row { display: flex; gap: 5px; padding: 1px 0; }
+    .avs-meta-row b { font-weight: 800; color: var(--blue); white-space: nowrap; }
+    /* Sections below the header flow in 2 columns so the AVS stays short. */
+    .avs-cols {
+      column-count: 2; column-gap: 0; column-rule: 1.5px solid #c5d8ee;
+    }
+    .avs-cols > .avs-section { break-inside: avoid; }
+    .avs-section { border-bottom: 1.5px solid #c5d8ee; }
+    .avs-cols > .avs-section:last-child { border-bottom: none; }
+    .avs-section-head {
+      background: var(--blue-light); padding: 5px 10px;
+      font-weight: 800; font-size: 10.5px; color: var(--blue);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .avs-num {
+      background: var(--blue); color: #fff; border-radius: 50%;
+      width: 16px; height: 16px; font-size: 9px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .avs-body { padding: 6px 11px 7px; font-size: 10.5px; line-height: 1.45; color: var(--dark); }
+    .avs-body p { margin-bottom: 3px; }
+    .avs-alert {
+      margin: 0; padding: 5px 10px;
+      background: var(--red-light); border-top: 1px solid #d9a0a0;
+      font-size: 9.5px; font-weight: 800; color: var(--red); line-height: 1.35;
+    }
+    .avs-vitals {
+      display: flex; flex-wrap: wrap; gap: 4px 5px;
+      padding: 6px 10px 7px;
+      font-size: 10.5px;
+    }
+    .vital {
+      display: inline-flex; gap: 4px; align-items: baseline;
+      border: 1px solid #c5d8ee; background: #fff;
+      padding: 1px 6px; border-radius: 3px;
+    }
+    .vital b { color: var(--blue); font-weight: 800; }
+    .avs-referral {
+      background: var(--purple-light);
+      padding: 6px 11px 7px;
+      font-size: 10.5px; line-height: 1.45;
+    }
+    .avs-referral p { margin-bottom: 3px; }
+    .avs-referral b { color: var(--purple); }
+    .avs-redflag {
+      background: var(--red-light);
+      border-top: 1.5px solid #d9a0a0;
+      padding: 7px 11px;
+      font-size: 10.5px; color: var(--red); line-height: 1.4;
+    }
+    .avs-redflag b { font-weight: 800; display: block; margin-bottom: 2px; font-size: 11px; }
+    .avs-portal {
+      background: var(--blue-light);
+      border-top: 1.5px solid #c5d8ee;
+      padding: 6px 11px;
+      font-size: 10px; color: var(--dark); line-height: 1.4;
+    }
+    .avs-portal b { color: var(--blue); }
+    .avs-footer {
+      background: var(--fill); padding: 4px 10px;
+      font-size: 9.5px; color: var(--mid); text-align: center;
+      border-top: 1.5px solid #bbb;
+    }
+    .qa-list { display: flex; flex-direction: column; gap: 10px; }
+    .qa { font-size: 11.5px; line-height: 1.45; }
+    .qa b { font-weight: 800; }
+    .answer-line { border-bottom: 1.5px dotted var(--rule); height: 20px; margin-top: 4px; }
+    .qa-discuss {
+      font-size: 10.5px; font-style: italic; color: var(--mid); margin-top: 3px;
+    }
+
+    /* ── Part C: Talk it over ── */
+    .talk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .talk-card {
+      border: 1.5px solid var(--blue); border-radius: 3px;
+      padding: 8px 10px; background: var(--blue-light); font-size: 11.5px; line-height: 1.4;
+    }
+    .talk-card .tnum { font-weight: 800; color: var(--blue); margin-right: 3px; }
+    .talk-card .answer-line { margin-top: 5px; }
+
+    /* ── Part C: Specialists & Referrals ── */
+    .section-bar-purple {
+      border-left-color: var(--purple);
+      border-bottom-color: var(--purple);
+      background: var(--purple-light);
+    }
+    .section-title-purple { color: var(--purple); }
+
+    .pathway {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+      gap: 5px;
+      align-items: stretch;
+      margin-bottom: 11px;
+    }
+    .pathway-step {
+      border: 1.5px solid var(--purple);
+      border-top: 4px solid var(--purple);
+      background: #fff;
+      padding: 6px 8px 7px;
+      display: flex; flex-direction: column; gap: 1px;
+    }
+    .pathway-num {
+      background: var(--purple); color: #fff;
+      border-radius: 50%; width: 17px; height: 17px;
+      font-size: 9.5px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 2px;
+    }
+    .pathway-title { font-weight: 800; color: var(--purple); font-size: 11px; line-height: 1.25; }
+    .pathway-sub { font-size: 10px; color: var(--mid); line-height: 1.3; }
+    .pathway-arrow {
+      font-size: 18px; font-weight: 800; color: var(--purple);
+      align-self: center; padding: 0 1px;
+    }
+
+    .spec-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .spec-card { border: 1.5px solid #bbb; }
+    .spec-card-head {
+      background: var(--purple-light); color: var(--purple);
+      border-bottom: 1.5px solid var(--purple);
+      padding: 5px 9px;
+      font-size: 10.5px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .spec-table, .ref-table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
+    .spec-table td, .ref-table td {
+      padding: 4px 9px; border-bottom: 1px solid #ddd; vertical-align: top; line-height: 1.4;
+    }
+    .spec-table tr:last-child td, .ref-table tr:last-child td { border-bottom: none; }
+    .spec-table .spec-name { font-weight: 800; color: var(--purple); white-space: nowrap; }
+    .ref-name { font-weight: 800; color: var(--purple); font-size: 11px; }
+    .ref-eg { font-size: 9.5px; color: var(--mid); margin-top: 1px; }
+    .ref-cell { width: 60px; text-align: center; }
+    .ref-yes { color: var(--red); font-weight: 800; font-size: 11px; letter-spacing: 0.04em; }
+    .ref-no { color: var(--green); font-weight: 800; font-size: 11px; letter-spacing: 0.04em; }
+    .ref-maybe { color: var(--orange); font-weight: 800; font-size: 11px; letter-spacing: 0.04em; }
+    .ref-note {
+      background: var(--fill); font-size: 10px;
+      padding: 5px 9px !important; line-height: 1.4;
+    }
+    .ref-note i { color: var(--dark); }
+
+    .phrases-card {
+      border: 1.5px dashed var(--purple);
+      background: var(--purple-light);
+      padding: 7px 11px 8px;
+      margin-bottom: 9px;
+    }
+    .phrases-head {
+      font-weight: 800; color: var(--purple);
+      font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .phrases-list {
+      list-style: none; padding: 0; margin: 0;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px 16px;
+      font-size: 11px;
+    }
+    .phrases-list li {
+      padding-left: 13px; position: relative;
+      font-style: italic; color: var(--dark); line-height: 1.45;
+    }
+    .phrases-list li::before {
+      content: "\201C";
+      position: absolute; left: 0; top: 1px;
+      color: var(--purple); font-weight: 800; font-style: normal;
+      font-size: 13px;
+    }
+
+    .section-c { page-break-before: auto; }
+
+    @media print {
+      @page { size: letter landscape; margin: 0.45in; }
+      body { background: #fff; }
+      .sheet { padding: 0; max-width: none; }
+      .page-break { page-break-before: always; }
+      .triage-table thead { display: table-header-group; }
+      .scenario-card,
+      .qa,
+      .talk-card,
+      .pathway-step,
+      .spec-card,
+      .phrases-card { break-inside: avoid; page-break-inside: avoid; }
+      /* Light Part A tightening so the chart + 6 scenarios share page 1 */
+      .part-a .triage-table { font-size: 10.5px; margin-bottom: 7px; }
+      .part-a .triage-table th { padding: 5px 6px; font-size: 10px; }
+      .part-a .triage-table td { padding: 5px 6px; }
+      .part-a .chip { font-size: 9.5px; }
+      .part-a .scenario-card { padding: 6px 8px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <h1>Navigating Boston Healthcare</h1>
+      </div>
+      <div class="header-badge">Real-World Skills</div>
+    </div>
+  </div>
+
+  <!-- ══ PART A: TRIAGE ══ -->
+  <section class="section part-a">
+    <div class="section-bar">
+      <h2 class="section-title">Part A &mdash; Where Should I Go?</h2>
+      <span class="section-time">10 min</span>
+    </div>
+    <p class="instruction">Use the chart below to help you decide. Then circle the best answer for each scenario and discuss with your partner.</p>
+
+    <table class="triage-table">
+      <thead>
+        <tr>
+          <th class="th-label"></th>
+          <th class="th-pc">Primary Care<br><span style="font-weight:400;font-size:10px;">Your Regular Doctor</span></th>
+          <th class="th-uc">Urgent Care<br><span style="font-weight:400;font-size:10px;">Walk-In Clinic</span></th>
+          <th class="th-er">Emergency Room (ER)<br><span style="font-weight:400;font-size:10px;">Hospital Emergency</span></th>
+          <th class="th-sp">Specialist<br><span style="font-weight:400;font-size:10px;">By Referral</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="th-label">When to go</td>
+          <td>Routine check-ups, ongoing conditions, non-urgent concerns</td>
+          <td>Sick but not life-threatening; can&rsquo;t wait for an appointment</td>
+          <td>Life-threatening or very serious — go immediately</td>
+          <td>One body system needs expert care — usually after your PCP can&rsquo;t solve it</td>
+        </tr>
+        <tr>
+          <td class="th-label">Examples</td>
+          <td>
+            <span class="chip chip-pc">annual physical</span><br>
+            <span class="chip chip-pc">diabetes check</span><br>
+            <span class="chip chip-pc">prescription refill</span><br>
+            <span class="chip chip-pc">mild depression</span>
+          </td>
+          <td>
+            <span class="chip chip-uc">fever &lt; 103&deg;F</span><br>
+            <span class="chip chip-uc">minor cut / sprain</span><br>
+            <span class="chip chip-uc">ear infection</span><br>
+            <span class="chip chip-uc">UTI</span>
+          </td>
+          <td>
+            <span class="chip chip-er">chest pain</span><br>
+            <span class="chip chip-er">trouble breathing</span><br>
+            <span class="chip chip-er">stroke symptoms</span><br>
+            <span class="chip chip-er">severe bleeding</span>
+          </td>
+          <td>
+            <span class="chip chip-sp">skin / mole check</span><br>
+            <span class="chip chip-sp">ongoing back pain</span><br>
+            <span class="chip chip-sp">heart follow-up</span><br>
+            <span class="chip chip-sp">prenatal care</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="th-label">How to get there</td>
+          <td>Call your PCP to schedule</td>
+          <td>Walk in, or use the app</td>
+          <td>Call 911 or go right away</td>
+          <td><b>Referral from your PCP first</b> (most plans)</td>
+        </tr>
+        <tr>
+          <td class="th-label">Wait time</td>
+          <td>Days to weeks for appointment</td>
+          <td>Minutes to a few hours</td>
+          <td>Depends on severity — emergencies seen first</td>
+          <td>2 to 8 weeks (sometimes longer)</td>
+        </tr>
+        <tr>
+          <td class="th-label">Cost (with insurance)</td>
+          <td>Lowest copay (~$25)</td>
+          <td>Medium copay (~$50–75)</td>
+          <td>Highest — hundreds to thousands</td>
+          <td>Specialist copay (~$50–100)</td>
+        </tr>
+        <tr>
+          <td class="th-label">Boston options</td>
+          <td style="font-size:10.5px;">Your assigned PCP at MGH, BMC, or a community health center</td>
+          <td style="font-size:10.5px;">MGH Urgent Care, CareWell Urgent Care, MinuteClinic (CVS)</td>
+          <td style="font-size:10.5px;">MGH Emergency, Boston Medical Center ER, Brigham &amp; Women&rsquo;s ER</td>
+          <td style="font-size:10.5px;">MGB specialty clinics, BMC specialty care, Cambridge Health Alliance</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <span class="snum">1.</span> Rosa&rsquo;s daughter has an ear infection and a fever of 101&deg;F. It is Saturday and the regular doctor is closed.
+        <div class="where-row">
+          Where should she go?
+          <div class="where-options">
+            <div class="where-box">Primary</div>
+            <div class="where-box">Urgent</div>
+            <div class="where-box">ER</div>
+            <div class="where-box">Specialist</div>
+          </div>
+        </div>
+        <div class="discuss-bubble">Talk: Why not the ER?</div>
+      </div>
+
+      <div class="scenario-card">
+        <span class="snum">2.</span> Miguel woke up with chest pain and his left arm feels numb. He is sweating and feels very scared.
+        <div class="where-row">
+          Where should he go?
+          <div class="where-options">
+            <div class="where-box">Primary</div>
+            <div class="where-box">Urgent</div>
+            <div class="where-box">ER</div>
+            <div class="where-box">Specialist</div>
+          </div>
+        </div>
+        <div class="discuss-bubble">Talk: Call 911 or drive himself?</div>
+      </div>
+
+      <div class="scenario-card">
+        <span class="snum">3.</span> Ana has had high blood pressure for two years. She wants to check her numbers and get her prescription refilled.
+        <div class="where-row">
+          Where should she go?
+          <div class="where-options">
+            <div class="where-box">Primary</div>
+            <div class="where-box">Urgent</div>
+            <div class="where-box">ER</div>
+            <div class="where-box">Specialist</div>
+          </div>
+        </div>
+        <div class="discuss-bubble">Talk: How far in advance should she call?</div>
+      </div>
+
+      <div class="scenario-card">
+        <span class="snum">4.</span> Carlos cut his hand while cooking. The cut is deep and is not stopping bleeding after 10 minutes of pressure.
+        <div class="where-row">
+          Where should he go?
+          <div class="where-options">
+            <div class="where-box">Primary</div>
+            <div class="where-box">Urgent</div>
+            <div class="where-box">ER</div>
+            <div class="where-box">Specialist</div>
+          </div>
+        </div>
+        <div class="discuss-bubble">Talk: Could this be either one? Why?</div>
+      </div>
+
+      <div class="scenario-card">
+        <span class="snum">5.</span> Lin has had a strange mole on her arm for six months. It is getting bigger and changing color. Nothing else hurts.
+        <div class="where-row">
+          Where should she go?
+          <div class="where-options">
+            <div class="where-box">Primary</div>
+            <div class="where-box">Urgent</div>
+            <div class="where-box">ER</div>
+            <div class="where-box">Specialist</div>
+          </div>
+        </div>
+        <div class="discuss-bubble">Talk: Who writes the referral?</div>
+      </div>
+
+      <div class="scenario-card">
+        <span class="snum">6.</span> David has had back pain for two months. His PCP gave him medicine and stretches, but it did not help. He still cannot sleep at night.
+        <div class="where-row">
+          Where should he go now?
+          <div class="where-options">
+            <div class="where-box">Primary</div>
+            <div class="where-box">Urgent</div>
+            <div class="where-box">ER</div>
+            <div class="where-box">Specialist</div>
+          </div>
+        </div>
+        <div class="discuss-bubble">Talk: What kind of specialist?</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PART B: AVS ══ -->
+  <section class="section page-break">
+    <div class="section-bar">
+      <h2 class="section-title">Part B &mdash; Read the After-Visit Summary</h2>
+      <span class="section-time">12 min</span>
+    </div>
+    <p class="instruction">After every doctor visit you get a paper like this. Read it with your partner and answer the questions.</p>
+
+    <div class="avs-wrap">
+      <!-- AVS document -->
+      <div class="avs">
+        <div class="avs-logo">
+          Mass General Brigham
+          <span>Massachusetts General Hospital &bull; 55 Fruit St, Boston MA 02114 &bull; 617-726-2000</span>
+        </div>
+        <div class="avs-title">After-Visit Summary</div>
+        <div class="avs-meta">
+          <div class="avs-meta-grid">
+            <div class="avs-meta-row"><b>Patient:</b> Maria Garcia</div>
+            <div class="avs-meta-row"><b>MRN:</b> 4827193</div>
+            <div class="avs-meta-row"><b>DOB:</b> 03/14/1978 (age 48)</div>
+            <div class="avs-meta-row"><b>Visit Date:</b> May 10, 2026</div>
+            <div class="avs-meta-row"><b>Provider:</b> Dr. Sarah Chen, MD</div>
+            <div class="avs-meta-row"><b>Allergies:</b> Penicillin (rash)</div>
+            <div class="avs-meta-row" style="grid-column: 1 / -1;"><b>Reason for Visit:</b> Persistent Cough and Fever</div>
+          </div>
+        </div>
+
+        <div class="avs-cols">
+          <div class="avs-section">
+            <div class="avs-section-head"><div class="avs-num">1</div> Vitals at Today&rsquo;s Visit</div>
+            <div class="avs-vitals">
+              <span class="vital"><b>BP</b> 128/82</span>
+              <span class="vital"><b>HR</b> 92</span>
+              <span class="vital"><b>Temp</b> 101.4&deg;F</span>
+              <span class="vital"><b>O&#8322; Sat</b> 96%</span>
+              <span class="vital"><b>Weight</b> 158 lb</span>
+            </div>
+          </div>
+
+          <div class="avs-section">
+            <div class="avs-section-head"><div class="avs-num">2</div> Your Diagnosis</div>
+            <div class="avs-body"><p>Acute Bronchitis</p></div>
+          </div>
+
+          <div class="avs-section">
+            <div class="avs-section-head"><div class="avs-num">3</div> Next Steps</div>
+            <div class="avs-body">
+              <p>Rest, drink fluids, take medicine as directed.</p>
+              <p><b>Return to work:</b> May 13, 2026 (note attached)</p>
+            </div>
+          </div>
+
+          <div class="avs-section">
+            <div class="avs-section-head"><div class="avs-num">4</div> Your Medications</div>
+            <div class="avs-body">
+              <p><b>NEW &mdash; Benzonatate 100mg</b> (Cough Medicine)</p>
+              <p>Take 1 capsule by mouth up to 3&times; daily as needed for cough.</p>
+              <p style="margin-top:3px;color:var(--mid);font-size:9px;"><b>Continue:</b> Lisinopril 10mg daily &bull; Metformin 500mg twice daily</p>
+            </div>
+            <div class="avs-alert">&#9888; Do NOT crush or chew &bull; Keep away from children &bull; May cause drowsiness</div>
+          </div>
+
+          <div class="avs-section">
+            <div class="avs-section-head"><div class="avs-num">5</div> Referral</div>
+            <div class="avs-referral">
+              <p><b>Pulmonology</b> &mdash; MGH Lung Center</p>
+              <p>Cough lasting more than 3 weeks &mdash; rule out asthma.</p>
+              <p><b>Next step:</b> The office will call you in 2&ndash;3 business days. If not, call <b>617-726-5197</b>.</p>
+            </div>
+          </div>
+
+          <div class="avs-section">
+            <div class="avs-section-head"><div class="avs-num">6</div> Follow-Up</div>
+            <div class="avs-body"><p>Call your Primary Care Doctor if not better in <b>5 days</b>.</p></div>
+          </div>
+        </div>
+
+        <div class="avs-redflag">
+          <b>&#9888; Call 911 or go to the ER right away if you have:</b>
+          trouble breathing &bull; chest pain &bull; coughing up blood &bull; fever above 103&deg;F that will not come down &bull; lips or fingers turning blue
+        </div>
+
+        <div class="avs-portal">
+          <b>Patient Gateway:</b> See test results, message Dr. Chen, and refill prescriptions at <b>patientgateway.massgeneralbrigham.org</b> &bull; <b>MGH Urgent Care: 617-726-7575</b>
+        </div>
+        <div class="avs-footer">Thank you for choosing Mass General Brigham for your care.</div>
+      </div>
+
+      <!-- Questions -->
+      <div class="qa-list">
+        <div class="qa">
+          <b>1.</b> What is Maria&rsquo;s diagnosis? What does that word mean in your own words?
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+        <div class="qa">
+          <b>2.</b> How many times a day can Maria take the cough medicine? When should she take it?
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+        <div class="qa">
+          <b>3.</b> The warning says &ldquo;Do NOT crush or chew.&rdquo; What does this mean? Why do you think this warning is there?
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+        <div class="qa">
+          <b>4.</b> Maria still feels sick on May 16th. What should she do? Who should she call?
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+        <div class="qa">
+          <b>5.</b> Maria&rsquo;s fever goes up to 104&deg;F that night and she has trouble breathing. Should she call Urgent Care or go to the ER? Why?
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+          <div class="qa-discuss">Discuss with your partner before you write.</div>
+        </div>
+        <div class="qa">
+          <b>6.</b> Dr. Chen gave Maria a <b>referral</b>. Who is she being sent to, and why? What should Maria do if the office doesn&rsquo;t call her in 3 days?
+          <div class="answer-line"></div>
+          <div class="answer-line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PART C: SPECIALISTS & REFERRALS ══ -->
+  <section class="section page-break">
+    <div class="section-bar section-bar-purple">
+      <h2 class="section-title section-title-purple">Part C &mdash; Specialists &amp; Referrals</h2>
+      <span class="section-time">10 min</span>
+    </div>
+    <p class="instruction">A <b>specialist</b> is a doctor who is an expert in one part of the body. Most of the time you need a <b>referral</b> &mdash; a note from your PCP &mdash; before you can see one. The rules depend on your insurance.</p>
+
+    <!-- Referral pathway -->
+    <div class="pathway">
+      <div class="pathway-step">
+        <div class="pathway-num">1</div>
+        <div class="pathway-title">You have a problem</div>
+        <div class="pathway-sub">that does not go away or that your PCP cannot fix</div>
+      </div>
+      <div class="pathway-arrow">&rarr;</div>
+      <div class="pathway-step">
+        <div class="pathway-num">2</div>
+        <div class="pathway-title">See your PCP</div>
+        <div class="pathway-sub">explain the problem; ask, &ldquo;Do I need a specialist?&rdquo;</div>
+      </div>
+      <div class="pathway-arrow">&rarr;</div>
+      <div class="pathway-step">
+        <div class="pathway-num">3</div>
+        <div class="pathway-title">PCP sends a referral</div>
+        <div class="pathway-sub">to the specialist&rsquo;s office and to your insurance</div>
+      </div>
+      <div class="pathway-arrow">&rarr;</div>
+      <div class="pathway-step">
+        <div class="pathway-num">4</div>
+        <div class="pathway-title">Call the specialist</div>
+        <div class="pathway-sub">to make your appointment &mdash; bring your insurance card</div>
+      </div>
+    </div>
+
+    <!-- Specialists table + insurance referral chart -->
+    <div class="spec-grid">
+      <div class="spec-card">
+        <div class="spec-card-head">Common Specialists in Boston</div>
+        <table class="spec-table">
+          <tr><td class="spec-name">Cardiologist</td><td>heart, blood pressure, chest pain</td></tr>
+          <tr><td class="spec-name">Dermatologist</td><td>skin, rashes, moles, acne</td></tr>
+          <tr><td class="spec-name">Endocrinologist</td><td>diabetes, thyroid, hormones</td></tr>
+          <tr><td class="spec-name">Gastroenterologist (GI)</td><td>stomach, digestion, acid reflux</td></tr>
+          <tr><td class="spec-name">OB/GYN</td><td>women&rsquo;s health, pregnancy</td></tr>
+          <tr><td class="spec-name">Orthopedist</td><td>bones, joints, back pain, injuries</td></tr>
+          <tr><td class="spec-name">Ophthalmologist</td><td>eye disease, surgery, vision loss</td></tr>
+          <tr><td class="spec-name">Psychiatrist</td><td>mental health, medication for anxiety/depression</td></tr>
+        </table>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-card-head">Do I Need a Referral?</div>
+        <table class="ref-table">
+          <tr>
+            <td>
+              <div class="ref-name">HMO Plan</div>
+              <div class="ref-eg">MassHealth, Tufts Together, BMC HealthNet</div>
+            </td>
+            <td class="ref-cell"><span class="ref-yes">YES</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="ref-name">PPO Plan</div>
+              <div class="ref-eg">BCBS PPO, Harvard Pilgrim PPO</div>
+            </td>
+            <td class="ref-cell"><span class="ref-no">NO</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="ref-name">Medicare</div>
+              <div class="ref-eg">Original = no, Advantage = usually yes</div>
+            </td>
+            <td class="ref-cell"><span class="ref-maybe">MAYBE</span></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="ref-note">
+              <b>Not sure?</b> Call the number on the back of your insurance card and ask:
+              <i>&ldquo;Do I need a referral to see a __________ doctor?&rdquo;</i>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Useful phrases -->
+    <div class="phrases-card">
+      <div class="phrases-head">Useful Phrases &mdash; Practice with your partner</div>
+      <ul class="phrases-list">
+        <li>I&rsquo;d like to ask about a referral to a __________.</li>
+        <li>Does my insurance need a referral first?</li>
+        <li>Is Dr. __________ in my insurance network?</li>
+        <li>How long until I can get an appointment?</li>
+        <li>Could you fax the referral to the specialist?</li>
+        <li>What should I bring to my first visit?</li>
+      </ul>
+    </div>
+
+    <!-- Specialist scenarios -->
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <span class="snum">7.</span> Hanan has had stomach pain for three weeks. Her PCP gave her medicine but it didn&rsquo;t help. Her insurance is <b>MassHealth (HMO)</b>.
+        <div class="where-row">
+          What specialist?
+          <div class="where-options">
+            <div class="where-box">Cardiologist</div>
+            <div class="where-box">GI</div>
+            <div class="where-box">Dermatologist</div>
+          </div>
+        </div>
+        <div class="discuss-bubble">Talk: Who does she call first &mdash; the GI doctor or her PCP? Why?</div>
+      </div>
+
+      <div class="scenario-card">
+        <span class="snum">8.</span> Pablo has bad back pain. He found a Boston orthopedist online and wants to call directly. He has a <b>BCBS PPO</b> plan.
+        <div class="where-row">
+          Can he?
+          <div class="where-options">
+            <div class="where-box">Yes</div>
+            <div class="where-box">No</div>
+            <div class="where-box">Maybe</div>
+          </div>
+        </div>
+        <div class="discuss-bubble">Talk: What should he check before he calls?</div>
+      </div>
+
+      <div class="scenario-card">
+        <span class="snum">9.</span> Carmen&rsquo;s PCP says she needs to see a cardiologist soon. Carmen is worried &mdash; she has never seen a specialist before.
+        <div class="where-row">What should she ask the office when she calls?</div>
+        <div class="answer-line"></div>
+        <div class="answer-line"></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

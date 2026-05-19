@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ESOL Level 3 – Post Test Review</title>
+<style>
+  @page { margin: 0.45in 0.5in; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    color: #000;
+    background: #fff;
+    line-height: 1.3;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    border: 2px solid #000;
+    border-radius: 4px;
+    padding: 4px 8px 5px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-title {
+    font-size: 12pt;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+  }
+  .header-sub {
+    font-size: 8.5pt;
+    color: #333;
+    margin-top: 1px;
+  }
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: flex-end;
+  }
+  .info-line {
+    font-size: 9.5pt;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .info-line span { font-weight: bold; }
+  .info-underline {
+    display: inline-block;
+    width: 120px;
+    border-bottom: 1px solid #000;
+    height: 13px;
+  }
+  .info-underline.short { width: 70px; }
+
+  /* ── PART HEADING ── */
+  .part-heading {
+    font-size: 9.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1.5px solid #000;
+    padding-bottom: 1px;
+    margin: 5px 0 3px;
+  }
+
+  /* ── INSTRUCTION ── */
+  .instruction {
+    font-style: italic;
+    font-size: 9pt;
+    margin-bottom: 3px;
+    color: #222;
+  }
+
+  /* ── WORD BANK ── */
+  .word-bank {
+    border: 1px dashed #555;
+    border-radius: 3px;
+    padding: 3px 7px;
+    margin-bottom: 3px;
+    font-size: 9pt;
+  }
+  .word-bank strong { margin-right: 4px; }
+
+  /* vocab section — a little extra breathing room */
+  .vocab-section .instruction {
+    margin-bottom: 5px;
+  }
+  .vocab-section .word-bank {
+    padding: 6px 10px;
+    margin: 4px 0 8px;
+  }
+  .vocab-section .q {
+    margin-bottom: 5px;
+  }
+  .vocab-section .checkin {
+    margin-top: 6px;
+  }
+
+  /* ── QUESTIONS ── */
+  .q {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 3px;
+    font-size: 10pt;
+  }
+  .q-num {
+    font-weight: bold;
+    min-width: 18px;
+    flex-shrink: 0;
+  }
+  .blank {
+    display: inline-block;
+    min-width: 130px;
+    border-bottom: 1px solid #000;
+    height: 13px;
+    vertical-align: bottom;
+    flex-shrink: 0;
+  }
+  .blank.sm { min-width: 160px; }
+
+  /* present-perfect fill-ins — compact, print-safe */
+  .pp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+    row-gap: 3px;
+    margin-bottom: 2px;
+  }
+  .pp-grid.single-col { grid-template-columns: 1fr; }
+  .pp-item {
+    font-size: 10pt;
+    line-height: 1.35;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .pp-item .q-num {
+    font-weight: bold;
+    margin-right: 2px;
+  }
+  .blank.pp {
+    display: inline-block;
+    width: 62px;
+    min-width: 62px;
+    max-width: 62px;
+    border-bottom: 1px solid #000;
+    height: 12px;
+    vertical-align: bottom;
+    margin: 0 1px;
+  }
+  .blank.pp-xs {
+    width: 48px;
+    min-width: 48px;
+    max-width: 48px;
+  }
+
+  /* ── MULTIPLE CHOICE ── */
+  .mc-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 2px;
+    font-size: 10pt;
+    flex-wrap: wrap;
+  }
+  .mc-row .q-num { min-width: 18px; }
+  .mc-stem { flex: 0 0 auto; max-width: 62%; }
+  .choices {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-left: 23px;
+    margin-bottom: 2px;
+    font-size: 9.5pt;
+  }
+  .choice { display: flex; align-items: center; gap: 4px; }
+  .circle {
+    display: inline-block;
+    width: 11px; height: 11px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* two-column layout for grammar MC */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 16px;
+  }
+  .two-col .q-block { margin-bottom: 3px; }
+
+  /* ── ANSWER LINES ── */
+  .answer-block { margin-bottom: 3px; }
+  .answer-line {
+    border-bottom: 1px solid #000;
+    height: 14px;
+    margin-bottom: 1px;
+    width: 100%;
+  }
+  .scramble-item .answer-line,
+  .write-item .answer-line {
+    height: 20px;
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+  .write-item .answer-line + .answer-line {
+    margin-top: 14px;
+  }
+
+  /* ── SENTENCE SCRAMBLE ── */
+  .scramble-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+    row-gap: 14px;
+  }
+  .scramble-item { margin-bottom: 2px; }
+  .scramble-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    margin: 2px 0 4px 0;
+  }
+  .tile {
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 9pt;
+    background: #fff;
+  }
+
+  /* writing prompts — two columns on page 2 */
+  .write-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+    row-gap: 12px;
+  }
+  .write-item { margin-bottom: 4px; }
+  .write-item .q { margin-bottom: 4px; font-size: 9.5pt; }
+  .write-item.span-2 { grid-column: 1 / -1; }
+
+  /* page-2 block */
+  .page-2 {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .tense-group-title {
+    font-size: 9pt;
+    font-weight: bold;
+    margin: 5px 0 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── CHECK-IN ── */
+  .checkin {
+    border: 1px solid #000;
+    border-radius: 3px;
+    padding: 3px 6px;
+    margin-top: 4px;
+    background: #f5f5f5;
+  }
+  .checkin.compact { margin-top: 3px; }
+  .checkin-title {
+    font-weight: bold;
+    font-size: 9pt;
+    margin-bottom: 2px;
+  }
+  .checkin-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 2px;
+    flex-wrap: wrap;
+  }
+  .checkin-box {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 9pt;
+  }
+  .sq {
+    display: inline-block;
+    width: 12px; height: 12px;
+    border: 1px solid #000;
+    flex-shrink: 0;
+  }
+  .checkin-write {
+    font-size: 9pt;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .write-line {
+    flex: 1;
+    min-width: 180px;
+    border-bottom: 1px solid #000;
+    height: 13px;
+  }
+
+  /* ── FINAL REFLECTION ── */
+  .final-box {
+    border: 2px solid #000;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-top: 4px;
+  }
+  .final-title {
+    font-weight: bold;
+    font-size: 9.5pt;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .final-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 16px;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    text-align: center;
+    font-size: 8pt;
+    color: #555;
+    margin-top: 4px;
+    border-top: 1px solid #ccc;
+    padding-top: 2px;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #fff; }
+    .checkin { background: #f5f5f5 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pp-item, .checkin, .part-heading, .final-box {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .page-2 { break-before: page; page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div>
+    <div class="header-title">⚓ ESOL Level 3 – Post Test Review</div>
+    <div class="header-sub">Work with your group · Discuss each question · Check your understanding</div>
+  </div>
+  <div class="header-right">
+    <div class="info-line"><span>Name:</span> <span class="info-underline"></span></div>
+    <div class="info-line"><span>Date:</span> <span class="info-underline short"></span> &nbsp;<span>Group:</span> <span class="info-underline short"></span></div>
+  </div>
+</div>
+
+
+<!-- ════════ PART A: VOCABULARY ════════ -->
+<div class="part-heading">Part A · Vocabulary (7 points)</div>
+<div class="vocab-section">
+<p class="instruction">➤ Complete each sentence. Write the correct word from the word bank. Use each word only once.</p>
+
+<div class="word-bank">
+  <strong>Word Bank:</strong>
+  vocational &nbsp;|&nbsp; transition &nbsp;|&nbsp; beneficial &nbsp;|&nbsp; navigate &nbsp;|&nbsp; maintenance &nbsp;|&nbsp; detail-oriented &nbsp;|&nbsp; set up
+</div>
+
+<div class="q"><span class="q-num">1.</span> Daily exercise is <span class="blank"></span> for your health.</div>
+<div class="q"><span class="q-num">2.</span> Accountants must be <span class="blank"></span> to avoid mistakes with numbers.</div>
+<div class="q"><span class="q-num">3.</span> She is taking a <span class="blank"></span> class to learn how to repair cars.</div>
+<div class="q"><span class="q-num">4.</span> He used a map to <span class="blank"></span> through the new neighborhood.</div>
+<div class="q"><span class="q-num">5.</span> Moving to a new city was a big <span class="blank"></span> for my family.</div>
+<div class="q"><span class="q-num">6.</span> The apartment building needs regular <span class="blank"></span>, like fixing lights.</div>
+<div class="q"><span class="q-num">7.</span> My assistant needs to <span class="blank"></span> more interviews for this week.</div>
+
+<div class="checkin compact">
+  <div class="checkin-title">✏️ Group Check-In – Vocabulary</div>
+  <div class="checkin-row">
+    <div class="checkin-box"><span class="sq"></span> 😊 We got it!</div>
+    <div class="checkin-box"><span class="sq"></span> 🤔 A little unsure</div>
+    <div class="checkin-box"><span class="sq"></span> 😕 We need help</div>
+  </div>
+  <div class="checkin-write">Hardest word(s): <span class="write-line"></span></div>
+</div>
+</div>
+
+
+<!-- ════════ PART B: GRAMMAR ════════ -->
+<div class="part-heading">Part B · Grammar – Multiple Choice (10 points)</div>
+<p class="instruction">➤ Circle the correct answer. Discuss with your group first!</p>
+
+<!-- two-column MC -->
+<div class="two-col">
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">8.</span> I forgot to drink water all day, _______ I felt very thirsty.</div>
+    <div class="choices">
+      <div class="choice"><span class="circle"></span> because</div>
+      <div class="choice"><span class="circle"></span> so</div>
+      <div class="choice"><span class="circle"></span> as soon as</div>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">9.</span> If she takes classes, she _______ a better job.</div>
+    <div class="choices">
+      <div class="choice"><span class="circle"></span> will get</div>
+      <div class="choice"><span class="circle"></span> got</div>
+      <div class="choice"><span class="circle"></span> has gotten</div>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">10.</span> He is _______ student in the class; he always finishes first.</div>
+    <div class="choices">
+      <div class="choice"><span class="circle"></span> the fastest</div>
+      <div class="choice"><span class="circle"></span> fast</div>
+      <div class="choice"><span class="circle"></span> faster</div>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">11.</span> I _______ go to bed late when I was in college.</div>
+    <div class="choices">
+      <div class="choice"><span class="circle"></span> used to</div>
+      <div class="choice"><span class="circle"></span> am used to</div>
+      <div class="choice"><span class="circle"></span> got used to</div>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">12.</span> I decided _______ early in the morning.</div>
+    <div class="choices">
+      <div class="choice"><span class="circle"></span> jogging</div>
+      <div class="choice"><span class="circle"></span> jog</div>
+      <div class="choice"><span class="circle"></span> to jog</div>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">13.</span> He <u>finished</u> the project <u>quickly</u>.</div>
+    <div style="font-size:9.5pt; margin-left:23px; margin-bottom:2px;">What part of speech is <em>finished</em>?</div>
+    <div class="choices">
+      <div class="choice"><span class="circle"></span> Noun</div>
+      <div class="choice"><span class="circle"></span> Verb</div>
+      <div class="choice"><span class="circle"></span> Adjective</div>
+      <div class="choice"><span class="circle"></span> Adverb</div>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">14.</span> He finished the project <u>quickly</u>.</div>
+    <div style="font-size:9.5pt; margin-left:23px; margin-bottom:2px;">What part of speech is <em>quickly</em>?</div>
+    <div class="choices">
+      <div class="choice"><span class="circle"></span> Noun</div>
+      <div class="choice"><span class="circle"></span> Verb</div>
+      <div class="choice"><span class="circle"></span> Adjective</div>
+      <div class="choice"><span class="circle"></span> Adverb</div>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">15.</span> She was thirsty, _______ she drank water.</div>
+    <div class="choices">
+      <div class="choice"><span class="circle"></span> because</div>
+      <div class="choice"><span class="circle"></span> so</div>
+      <div class="choice"><span class="circle"></span> although</div>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">16.</span> The manager _______ the new employee last week.</div>
+    <div class="choices">
+      <div class="choice"><span class="circle"></span> trained</div>
+      <div class="choice"><span class="circle"></span> trains</div>
+      <div class="choice"><span class="circle"></span> has trained</div>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">17.</span> She has been studying English _______ she moved to Boston.</div>
+    <div class="choices">
+      <div class="choice"><span class="circle"></span> for</div>
+      <div class="choice"><span class="circle"></span> since</div>
+      <div class="choice"><span class="circle"></span> during</div>
+    </div>
+  </div>
+</div>
+
+<div class="part-heading">Grammar – Choose the Best Sentence (4 points)</div>
+<p class="instruction">➤ Two sentences are similar. Circle the one that is <strong>grammatically correct</strong>.</p>
+
+<div class="two-col">
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">18.</span></div>
+    <div class="choices" style="margin-left:0;">
+      <div class="choice"><span class="circle"></span> He has went to the career center twice.</div>
+      <div class="choice"><span class="circle"></span> He has gone to the career center twice.</div>
+    </div>
+  </div>
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">19.</span></div>
+    <div class="choices" style="margin-left:0;">
+      <div class="choice"><span class="circle"></span> I have lived here since three years.</div>
+      <div class="choice"><span class="circle"></span> I have lived here for three years.</div>
+    </div>
+  </div>
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">20.</span></div>
+    <div class="choices" style="margin-left:0;">
+      <div class="choice"><span class="circle"></span> He don't have enough experience yet.</div>
+      <div class="choice"><span class="circle"></span> He doesn't have enough experience yet.</div>
+    </div>
+  </div>
+  <div class="q-block">
+    <div class="mc-row"><span class="q-num">21.</span></div>
+    <div class="choices" style="margin-left:0;">
+      <div class="choice"><span class="circle"></span> If I will get the job, I will celebrate.</div>
+      <div class="choice"><span class="circle"></span> If I get the job, I will celebrate.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-2">
+
+<div class="part-heading">Grammar – Present Perfect &amp; Present Perfect Continuous (11 points)</div>
+
+<div class="tense-group-title">A · Present Perfect</div>
+<p class="instruction">➤ Fill in the blank with the correct verb form.</p>
+
+<div class="pp-grid">
+  <div class="pp-item"><span class="q-num">22.</span> She <span class="blank pp"></span> (eat) sushi before.</div>
+  <div class="pp-item"><span class="q-num">23.</span> Derek <span class="blank pp"></span> (forget) his password many times.</div>
+  <div class="pp-item"><span class="q-num">24.</span> I <span class="blank pp"></span> (not write) the report yet.</div>
+  <div class="pp-item"><span class="q-num">25.</span> They <span class="blank pp"></span> (see) that movie three times.</div>
+  <div class="pp-item"><span class="q-num">26.</span> We <span class="blank pp"></span> (be) to New York twice.</div>
+  <div class="pp-item"><span class="q-num">27.</span> He <span class="blank pp"></span> (take) the career workshop twice.</div>
+  <div class="pp-item"><span class="q-num">28.</span> She <span class="blank pp-xs"></span> already <span class="blank pp-xs"></span> (send) her résumé.</div>
+  <div class="pp-item"><span class="q-num">29.</span> I <span class="blank pp-xs"></span> never <span class="blank pp-xs"></span> (go) to a vocational school.</div>
+</div>
+
+<div class="tense-group-title">B · Present Perfect Continuous</div>
+<p class="instruction">➤ Fill in the blank with the correct verb form.</p>
+
+<div class="pp-grid">
+  <div class="pp-item"><span class="q-num">30.</span> How long <span class="blank pp-xs"></span> you <span class="blank pp"></span> (speak) English?</div>
+  <div class="pp-item"><span class="q-num">31.</span> She <span class="blank pp"></span> (drive) to the clinic since January.</div>
+  <div class="pp-item"><span class="q-num">32.</span> They <span class="blank pp"></span> (run) a small business for five years.</div>
+</div>
+
+<div class="checkin compact">
+  <div class="checkin-title">✏️ Group Check-In – Grammar</div>
+  <div class="checkin-row">
+    <div class="checkin-box"><span class="sq"></span> 😊 We got it!</div>
+    <div class="checkin-box"><span class="sq"></span> 🤔 A little unsure</div>
+    <div class="checkin-box"><span class="sq"></span> 😕 We need help</div>
+  </div>
+  <div class="checkin-write">Hardest topic: <span class="write-line"></span></div>
+</div>
+
+
+<!-- ════════ PART C: SENTENCE SCRAMBLE ════════ -->
+<div class="part-heading">Part C · Unscramble the Sentence (4 points)</div>
+<p class="instruction">➤ Put the words in the correct order. Write the complete sentence on the line.</p>
+
+<div class="scramble-grid">
+  <div class="scramble-item">
+    <div class="q"><span class="q-num">33.</span></div>
+    <div class="scramble-tiles">
+      <span class="tile">used</span><span class="tile">I</span><span class="tile">to</span><span class="tile">drive</span><span class="tile">to</span><span class="tile">work</span>
+    </div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="scramble-item">
+    <div class="q"><span class="q-num">34.</span></div>
+    <div class="scramble-tiles">
+      <span class="tile">never</span><span class="tile">she</span><span class="tile">has</span><span class="tile">gone</span><span class="tile">to</span><span class="tile">vocational</span><span class="tile">school</span>
+    </div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="scramble-item">
+    <div class="q"><span class="q-num">35.</span></div>
+    <div class="scramble-tiles">
+      <span class="tile">If</span><span class="tile">I</span><span class="tile">get</span><span class="tile">the</span><span class="tile">job</span><span class="tile">I</span><span class="tile">will</span><span class="tile">celebrate</span>
+    </div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="scramble-item">
+    <div class="q"><span class="q-num">36.</span></div>
+    <div class="scramble-tiles">
+      <span class="tile">has</span><span class="tile">already</span><span class="tile">taken</span><span class="tile">He</span><span class="tile">the</span><span class="tile">test</span><span class="tile">twice</span>
+    </div>
+    <div class="answer-line"></div>
+  </div>
+</div>
+
+
+<!-- ════════ PART D: WRITING ════════ -->
+<div class="part-heading">Part D · Write Complete Sentences (5 points)</div>
+<p class="instruction">➤ Write a complete sentence for each prompt. Work together, then each person writes their own answer.</p>
+
+<div class="write-grid">
+  <div class="write-item">
+    <div class="q"><span class="q-num">37.</span> <strong>If + present, will + verb</strong> — career or education</div>
+    <div class="answer-line"></div>
+  </div>
+  <div class="write-item">
+    <div class="q"><span class="q-num">38.</span> <strong>Present Perfect</strong> + irregular participle + <strong>for/since</strong></div>
+    <div class="answer-line"></div>
+  </div>
+  <div class="write-item">
+    <div class="q"><span class="q-num">39.</span> <strong>Superlative</strong> — compare two people or things</div>
+    <div class="answer-line"></div>
+  </div>
+  <div class="write-item span-2">
+    <div class="q"><span class="q-num">40.</span> Two sentences: one with <strong>used to</strong> (past habit) + one in the <strong>present</strong></div>
+    <div class="answer-line"></div>
+    <div class="answer-line"></div>
+  </div>
+  <div class="write-item">
+    <div class="q"><span class="q-num">41.</span> Use <strong>two words</strong> from the Part A word bank</div>
+    <div class="answer-line"></div>
+  </div>
+</div>
+
+
+<!-- ════════ FINAL REFLECTION ════════ -->
+<div class="final-box">
+  <div class="final-title">⭐ Overall Reflection</div>
+  <div class="checkin-row" style="margin-bottom:3px;">
+    <div class="checkin-box"><span class="sq"></span> 💪 Confident!</div>
+    <div class="checkin-box"><span class="sq"></span> 📚 Mostly good</div>
+    <div class="checkin-box"><span class="sq"></span> 🙋 Still need practice</div>
+  </div>
+  <div class="final-grid">
+    <div>
+      <div style="font-size:9pt; font-weight:bold; margin-bottom:2px;">Topic to review:</div>
+      <div class="answer-line"></div>
+    </div>
+    <div>
+      <div style="font-size:9pt; font-weight:bold; margin-bottom:2px;">Question for the teacher:</div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">ESOL Level 3 &nbsp;·&nbsp; Post Test Review &nbsp;·&nbsp; ⚓</div>
+
+</div><!-- /.page-2 -->
+
+</body>
+</html>

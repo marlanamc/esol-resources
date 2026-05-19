@@ -1,4 +1,4 @@
-/* eslint-disable max-len -- curated example sentences */
+ 
 export const LEVEL1_VOCAB_CUSTOM_EXAMPLES: Record<string, string> = {
   "unit-2::Sunday": "Many families go to church on Sunday.",
   "unit-2::Monday": "Monday is the first day of the work week.",

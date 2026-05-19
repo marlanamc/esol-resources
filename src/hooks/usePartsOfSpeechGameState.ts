@@ -402,6 +402,7 @@ export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSp
         saveError: 'This level could not start. Please reload and try again.',
       }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.selectedGroup, state.selectedRoundMode, state.categoryData, state.recentlyUsedSentences]);
 
   const submitAnswer = useCallback((correct: boolean, exercise: POSExercise) => {
@@ -492,6 +493,7 @@ export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSp
       phase: 'exercise',
       error: null,
     }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.selectedGroup, state.selectedRoundMode, state.recentlyUsedSentences]);
 
   const returnToGroupIntro = useCallback(() => {
@@ -570,6 +572,7 @@ export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSp
       exerciseResults: [],
       error: null,
     }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.selectedGroup, state.roundResults, state.categoryData, state.recentlyUsedSentences]);
 
   const quitGame = useCallback(() => {
