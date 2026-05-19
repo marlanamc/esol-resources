@@ -15,7 +15,7 @@ export const LEVEL1_VOCAB_CUSTOM_EXAMPLES: Record<string, string> = {
   "unit-2::June": "Summer vacation often begins in June.",
   "unit-2::July": "The Fourth of July is in July.",
   "unit-2::August": "August is usually very hot.",
-  "unit-2::September": "School starts again in September.",
+  "unit-2::September": "School starts again in September in Boston.",
   "unit-2::October": "Halloween is in October.",
   "unit-2::November": "Thanksgiving is in November.",
   "unit-2::December": "Many people travel in December.",

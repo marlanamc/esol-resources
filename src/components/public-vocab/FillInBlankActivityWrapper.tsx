@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Check, X, RotateCcw } from "lucide-react";
 import { useVocabProgress } from "@/hooks/useVocabProgress";
 import type { VocabTheme } from "@/data/public-level1-vocab";
+import { buildLevel1FillBlankQuestionOptions } from "@/lib/level1-fill-blank-options";
 import {
   AudioButton,
   GlassCard,
@@ -42,20 +43,18 @@ export function FillInBlankActivityWrapper({
 
   const questions: Question[] = useMemo(
     () =>
-      theme.cards
-        .filter((card) => card.fillBlankSentence)
-        .map((card, index) => ({
-          id: index,
-          term: card.term,
-          sentence: card.fillBlankSentence!,
-          correctAnswer: card.term,
-          options: generateOptions(
-            card,
-            theme.cards,
-            card.fillBlankSentence!,
-            `${unitSlug}:${theme.id}:${index}:${card.term}`
-          ),
-        })),
+      buildLevel1FillBlankQuestionOptions(
+        theme.cards,
+        unitSlug,
+        theme.id,
+        (card) => card.fillBlankSentence
+      ).map((item, index) => ({
+        id: index,
+        term: item.term,
+        sentence: item.sentence,
+        correctAnswer: item.term,
+        options: item.options,
+      })),
     [theme.cards, theme.id, unitSlug]
   );
 
@@ -321,67 +320,6 @@ const PROPER_NOUN_OPTIONS = new Set([
 
 function formatOptionLabel(option: string): string {
   return PROPER_NOUN_OPTIONS.has(option) ? option : option.toLowerCase();
-}
-
-function hashStringToSeed(s: string): number {
-  let h = 2166136261;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return h >>> 0;
-}
-
-function mulberry32(seed: number) {
-  return function next() {
-    let t = (seed += 0x6d2b79f5);
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-function shuffleDeterministic<T>(arr: T[], seedStr: string): T[] {
-  const rand = mulberry32(hashStringToSeed(seedStr));
-  const out = [...arr];
-  for (let i = out.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));
-    [out[i], out[j]] = [out[j], out[i]];
-  }
-  return out;
-}
-
-/**
- * Build 4 options: the correct answer plus 3 distractors.
- *
- * Distractor selection prefers cards from a *different* category than the
- * answer, so semantically swappable words (Man/Woman, Morning/Afternoon)
- * don't end up as alternate "correct" choices in the same frame sentence.
- * Falls back to same-category cards only if cross-category candidates run
- * out — better a slightly confusable option than fewer than 4 buttons.
- */
-function generateOptions(
-  answer: { term: string; category: string },
-  allCards: { term: string; category: string }[],
-  sentence: string,
-  seedKey: string
-): string[] {
-  const sentenceWords = sentence.toLowerCase().split(/\s+/);
-
-  const candidates = allCards.filter(
-    (c) => c.term !== answer.term && !sentenceWords.includes(c.term.toLowerCase())
-  );
-
-  const crossCategory = candidates.filter((c) => c.category !== answer.category);
-  const sameCategory = candidates.filter((c) => c.category === answer.category);
-
-  const ordered = [
-    ...shuffleDeterministic(crossCategory, `${seedKey}:cross`),
-    ...shuffleDeterministic(sameCategory, `${seedKey}:same`),
-  ].map((c) => c.term);
-
-  const options = [answer.term, ...ordered.slice(0, 3)];
-  return shuffleDeterministic(options, `${seedKey}:options`);
 }
 
 export default FillInBlankActivityWrapper;

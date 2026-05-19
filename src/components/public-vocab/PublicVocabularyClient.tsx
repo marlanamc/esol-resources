@@ -9,6 +9,7 @@ import type { PublicLevel1VocabularyUnit } from "@/data/public-level1-vocab";
 import { Level1AudioSpeedToggle } from "@/components/public-vocab/level1-ui/Level1AudioSpeedToggle";
 import { useLevel1AudioSpeedOptional } from "@/components/public-vocab/level1-ui/Level1AudioSpeedContext";
 import { applyLevel1VocabPlaybackRate, playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
+import { generateLevel1FillBlankOptions } from "@/lib/level1-fill-blank-options";
 
 type PublicVocabMode = "word-list" | "flashcards" | "matching" | "fill-blank";
 type FillBlankSentence = {
@@ -130,17 +131,34 @@ export function PublicVocabularyClient({ unit }: { unit: PublicLevel1VocabularyU
     : unit;
 
   const categoryFillBlankSentences: FillBlankSentence[] = selectedCategoryGroup
-    ? selectedCategoryGroup.cards.map((card, index, cards) => {
-        const answerDisplay = extractMatchedTermVariant(card.example, card.term) ?? card.term;
-        const options = buildFillBlankOptions(cards, card.term, answerDisplay, Math.min(4, cards.length));
-        return {
-          id: `${slugifyLabel(selectedCategoryGroup.label)}-blank-${index + 1}`,
-          text: replaceTermWithBlank(card.example, card.term),
-          correctAnswers: [answerDisplay],
-          options,
-          explanation: `${card.englishDefinition} / ${card.spanishDefinition}`,
-        };
-      })
+    ? (() => {
+        const distractorUseCount = new Map<string, number>();
+        const cardsWithCategory = selectedCategoryGroup.cards.map((card) => ({
+          term: card.term,
+          category: selectedCategoryGroup.label,
+        }));
+        return selectedCategoryGroup.cards.map((card, index) => {
+          const answerDisplay = extractMatchedTermVariant(card.example, card.term) ?? card.term;
+          const blankedExample = replaceTermWithBlank(card.example, card.term);
+          const rawOptions = generateLevel1FillBlankOptions(
+            { term: card.term, category: selectedCategoryGroup.label },
+            cardsWithCategory,
+            blankedExample,
+            `${unit.slug}:${selectedCategoryGroup.label}:${index}:${card.term}`,
+            distractorUseCount
+          );
+          const options = rawOptions.map((option) =>
+            option === card.term ? answerDisplay : applyTermCaseTemplate(option, answerDisplay)
+          );
+          return {
+            id: `${slugifyLabel(selectedCategoryGroup.label)}-blank-${index + 1}`,
+            text: blankedExample,
+            correctAnswers: [answerDisplay],
+            options,
+            explanation: `${card.englishDefinition} / ${card.spanishDefinition}`,
+          };
+        });
+      })()
     : [];
 
   const isStudyMode = mode === "word-list" || mode === "flashcards";
@@ -295,16 +313,6 @@ function slugifyLabel(value: string): string {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 }
 
-function normalizeComparableTerm(value: string): string {
-  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().replace(/\s+/g, " ");
-}
-
-function areConfusableTerms(left: string, right: string): boolean {
-  const a = normalizeComparableTerm(left);
-  const b = normalizeComparableTerm(right);
-  return a === b || a.includes(b) || b.includes(a);
-}
-
 function extractMatchedTermVariant(example: string, term: string): string | null {
   const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const pattern = new RegExp(escaped, "i");
@@ -316,31 +324,6 @@ function applyTermCaseTemplate(candidate: string, template: string): string {
   if (template === template.toLowerCase()) return candidate.toLowerCase();
   if (template === template.toUpperCase()) return candidate.toUpperCase();
   return candidate;
-}
-
-function buildFillBlankOptions(
-  cards: Array<{ term: string }>,
-  answerTerm: string,
-  answerDisplay: string,
-  maxOptions: number
-): string[] {
-  const options = [answerDisplay];
-  const answerNormalized = normalizeComparableTerm(answerTerm);
-  let cursor = 1;
-
-  while (options.length < maxOptions && cursor <= cards.length * 2) {
-    const candidate = cards[cursor % cards.length]?.term;
-    cursor += 1;
-
-    if (!candidate) continue;
-    if (normalizeComparableTerm(candidate) === answerNormalized) continue;
-    if (areConfusableTerms(answerTerm, candidate)) continue;
-
-    const displayCandidate = applyTermCaseTemplate(candidate, answerDisplay);
-    if (!options.includes(displayCandidate)) options.push(displayCandidate);
-  }
-
-  return options;
 }
 
 function replaceTermWithBlank(example: string, term: string): string {
