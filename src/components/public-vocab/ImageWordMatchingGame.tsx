@@ -7,6 +7,7 @@ import { useLevel1AudioSpeedOptional } from "@/components/public-vocab/level1-ui
 
 const MATCHING_SOUND_STORAGE_KEY = "level1-vocab-matching-sound-enabled";
 const MATCHING_AUDIO_MATCH_STORAGE_KEY = "level1-vocab-matching-audio-match";
+const MATCHING_SHOW_HINTS_STORAGE_KEY = "level1-vocab-matching-show-hints";
 
 export type ImageWordPair = {
   id: number;
@@ -69,6 +70,7 @@ export function ImageWordMatchingGame({
   const wordAudioRef = useRef<HTMLAudioElement | null>(null);
 
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [showHints, setShowHints] = useState(false);
   const level1Audio = useLevel1AudioSpeedOptional();
 
   useEffect(() => {
@@ -79,10 +81,22 @@ export function ImageWordMatchingGame({
       localStorage.removeItem(MATCHING_AUDIO_MATCH_STORAGE_KEY);
       const stored = localStorage.getItem(MATCHING_SOUND_STORAGE_KEY);
       if (stored === "0") setSoundEnabled(false);
+      const storedHints = localStorage.getItem(MATCHING_SHOW_HINTS_STORAGE_KEY);
+      if (storedHints === "1") setShowHints(true);
     } catch {
       /* ignore */
     }
   }, []);
+
+  const handleToggleHints = () => {
+    const nextVal = !showHints;
+    setShowHints(nextVal);
+    try {
+      localStorage.setItem(MATCHING_SHOW_HINTS_STORAGE_KEY, nextVal ? "1" : "0");
+    } catch {
+      /* ignore */
+    }
+  };
 
   const playWordAudio = useCallback(
     (term: string) => {
@@ -267,9 +281,23 @@ export function ImageWordMatchingGame({
           <span className="text-xs font-semibold uppercase tracking-wider text-text-muted">
             Round {currentRound + 1} of {rounds.length}
           </span>
-          <span className="text-xs font-bold tabular-nums text-text-muted">
-            {totalMatched}/{pairs.length}
-          </span>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={handleToggleHints}
+              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold border transition-all duration-200 cursor-pointer shadow-sm hover:scale-105 active:scale-95 ${
+                showHints
+                  ? "bg-amber-100 border-amber-300 text-amber-800 hover:bg-amber-200"
+                  : "bg-white/80 border-slate-200 text-slate-600 hover:bg-white hover:border-slate-300"
+              }`}
+            >
+              <span className="text-xs">💡</span>
+              <span>{showHints ? "Hints On" : "Show Hints"}</span>
+            </button>
+            <span className="text-xs font-bold tabular-nums text-text-muted">
+              {totalMatched}/{pairs.length}
+            </span>
+          </div>
         </div>
         <div className="relative h-2 rounded-full bg-[var(--color-border-subtle)]/40 overflow-hidden">
           <div
@@ -318,6 +346,9 @@ export function ImageWordMatchingGame({
                       if (isMatched || isCorrectFlashing || isWrongFlashing) return;
                       const nextValue = selectedImageId === pair.id ? null : pair.id;
                       setSelectedImageId(nextValue);
+                      if (nextValue && !audioMatchMode) {
+                        playWordAudio(pair.term);
+                      }
                       checkMatch(nextValue, selectedWordId);
                     }}
                     className={[
@@ -353,6 +384,11 @@ export function ImageWordMatchingGame({
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
+                      </div>
+                    )}
+                    {showHints && !isMatched && !isCorrectFlashing && (
+                      <div className="absolute bottom-2 inset-x-2 bg-slate-900/80 backdrop-blur-[2px] text-white py-1.5 px-2 rounded-xl text-center text-xs font-bold tracking-tight shadow-md transition-all duration-200 select-none pointer-events-none truncate z-[1]">
+                        {pair.term}
                       </div>
                     )}
                   </button>
