@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { VocabWordImage } from "@/components/public-vocab/VocabWordImage";
-import { playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
+import { applyLevel1VocabPlaybackRate, playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
 import { useLevel1AudioSpeedOptional } from "@/components/public-vocab/level1-ui/Level1AudioSpeedContext";
 
 const MATCHING_SOUND_STORAGE_KEY = "level1-vocab-matching-sound-enabled";
@@ -92,13 +92,21 @@ export function ImageWordMatchingGame({
         prev.pause();
         wordAudioRef.current = null;
       }
-      const audio = level1Audio
-        ? level1Audio.playVocabAudio(term)
-        : playLevel1VocabAudio(term, "normal");
+      const speed = level1Audio?.speed ?? "normal";
+      const audio = playLevel1VocabAudio(term, speed);
       wordAudioRef.current = audio;
-      void audio.play().catch(() => {
-        wordAudioRef.current = null;
-      });
+      const startPlayback = () => {
+        applyLevel1VocabPlaybackRate(audio, speed);
+        void audio.play().catch(() => {
+          wordAudioRef.current = null;
+        });
+      };
+      if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) {
+        startPlayback();
+      } else {
+        audio.addEventListener("loadedmetadata", startPlayback, { once: true });
+        audio.load();
+      }
       audio.addEventListener(
         "ended",
         () => {

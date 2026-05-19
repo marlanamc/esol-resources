@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Volume2 } from "lucide-react";
-import { playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
+import { applyLevel1VocabPlaybackRate, playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
 import { useLevel1AudioSpeedOptional } from "./Level1AudioSpeedContext";
 
 interface AudioButtonProps {
@@ -24,15 +24,23 @@ const ICON_SIZE = { sm: 18, md: 22, lg: 26 };
 export function AudioButton({ term, size = "md", label, showLabel = false, className = "" }: AudioButtonProps) {
   const [playing, setPlaying] = useState(false);
   const level1Audio = useLevel1AudioSpeedOptional();
+  const speed = level1Audio?.speed ?? "normal";
 
   const play = () => {
-    const audio = level1Audio
-      ? level1Audio.playVocabAudio(term)
-      : playLevel1VocabAudio(term, "normal");
+    const audio = playLevel1VocabAudio(term, speed);
     setPlaying(true);
-    audio.addEventListener("ended", () => setPlaying(false));
-    audio.addEventListener("error", () => setPlaying(false));
-    void audio.play().catch(() => setPlaying(false));
+    const startPlayback = () => {
+      applyLevel1VocabPlaybackRate(audio, speed);
+      void audio.play().catch(() => setPlaying(false));
+    };
+    if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) {
+      startPlayback();
+    } else {
+      audio.addEventListener("loadedmetadata", startPlayback, { once: true });
+      audio.load();
+    }
+    audio.addEventListener("ended", () => setPlaying(false), { once: true });
+    audio.addEventListener("error", () => setPlaying(false), { once: true });
   };
 
   if (showLabel) {

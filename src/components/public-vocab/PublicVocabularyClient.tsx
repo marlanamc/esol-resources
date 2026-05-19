@@ -8,7 +8,7 @@ import { ImageWordMatchingGame, type ImageWordPair } from "@/components/public-v
 import type { PublicLevel1VocabularyUnit } from "@/data/public-level1-vocab";
 import { Level1AudioSpeedToggle } from "@/components/public-vocab/level1-ui/Level1AudioSpeedToggle";
 import { useLevel1AudioSpeedOptional } from "@/components/public-vocab/level1-ui/Level1AudioSpeedContext";
-import { playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
+import { applyLevel1VocabPlaybackRate, playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
 
 type PublicVocabMode = "word-list" | "flashcards" | "matching" | "fill-blank";
 type FillBlankSentence = {
@@ -500,10 +500,20 @@ function WordListMode({ unit }: { unit: PublicLevel1VocabularyUnit }) {
   const level1Audio = useLevel1AudioSpeedOptional();
 
   const playWordListAudio = (term: string) => {
-    const audio = level1Audio ? level1Audio.playVocabAudio(term) : playLevel1VocabAudio(term, "normal");
-    void audio.play().catch(() => {
-      // Missing file or autoplay restrictions
-    });
+    const speed = level1Audio?.speed ?? "normal";
+    const audio = playLevel1VocabAudio(term, speed);
+    const startPlayback = () => {
+      applyLevel1VocabPlaybackRate(audio, speed);
+      void audio.play().catch(() => {
+        // Missing file or autoplay restrictions
+      });
+    };
+    if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) {
+      startPlayback();
+    } else {
+      audio.addEventListener("loadedmetadata", startPlayback, { once: true });
+      audio.load();
+    }
   };
 
   return (

@@ -13,8 +13,8 @@ describe("level1 vocab audio", () => {
     expect(parseLevel1VocabAudioSpeed("fast")).toBe("normal");
   });
 
-  it("maps slow speed to a reduced playback rate", () => {
-    expect(LEVEL1_VOCAB_SLOW_PLAYBACK_RATE).toBeLessThan(1);
+  it("maps slow speed to a clearly reduced playback rate", () => {
+    expect(LEVEL1_VOCAB_SLOW_PLAYBACK_RATE).toBeLessThanOrEqual(0.75);
     expect(LEVEL1_VOCAB_PLAYBACK_RATES.slow).toBe(LEVEL1_VOCAB_SLOW_PLAYBACK_RATE);
     expect(LEVEL1_VOCAB_PLAYBACK_RATES.normal).toBe(1);
   });

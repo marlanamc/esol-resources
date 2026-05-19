@@ -6,7 +6,7 @@ import { BackButton } from "@/components/ui/BackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 import { VocabWordImage } from "@/components/public-vocab/VocabWordImage";
 import { useLevel1AudioSpeedOptional } from "@/components/public-vocab/level1-ui/Level1AudioSpeedContext";
-import { playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
+import { applyLevel1VocabPlaybackRate, playLevel1VocabAudio } from "@/lib/level1-vocab-audio";
 
 /**
  * FlashcardData interface matching the parser output in ActivityRenderer
@@ -61,12 +61,21 @@ export default function FlashcardCarousel({
 
     const playTermAudio = useCallback(
         (term: string) => {
-            audioRef.current = level1Audio
-                ? level1Audio.playVocabAudio(term)
-                : playLevel1VocabAudio(term, "normal");
-            void audioRef.current.play().catch(() => {
-                // Silently ignore missing audio or playback errors
-            });
+            const speed = level1Audio?.speed ?? "normal";
+            const audio = playLevel1VocabAudio(term, speed);
+            audioRef.current = audio;
+            const startPlayback = () => {
+                applyLevel1VocabPlaybackRate(audio, speed);
+                void audio.play().catch(() => {
+                    // Silently ignore missing audio or playback errors
+                });
+            };
+            if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) {
+                startPlayback();
+            } else {
+                audio.addEventListener("loadedmetadata", startPlayback, { once: true });
+                audio.load();
+            }
         },
         [level1Audio]
     );
