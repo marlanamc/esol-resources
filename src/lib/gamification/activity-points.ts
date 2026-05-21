@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "cafe-catch-up" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "cafe-catch-up" | "trivia-game" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -32,6 +32,8 @@ function gameUiFromJsonType(parsed: unknown): GameUi | null {
       return "emotion-spin-wheel";
     case "cafe-catch-up":
       return "cafe-catch-up";
+    case "trivia-game":
+      return "trivia-game";
     default:
       return null;
   }
@@ -61,6 +63,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "parts-of-speech" || ui === "pos-game") return "parts-of-speech";
     if (ui === "emotion-spin-wheel") return "emotion-spin-wheel";
     if (ui === "cafe-catch-up" || ui === "cafe-catchup" || ui === "discussion-deck") return "cafe-catch-up";
+    if (ui === "trivia-game" || ui === "trivia" || ui === "group-trivia") return "trivia-game";
   }
 
   if (typeof content === "string") {
@@ -114,6 +117,8 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
       case "emotion-spin-wheel":
         return POINTS.SPEAKING_ACTIVITY;
       case "cafe-catch-up":
+        return POINTS.SPEAKING_ACTIVITY;
+      case "trivia-game":
         return POINTS.SPEAKING_ACTIVITY;
       default:
         return POINTS.ACTIVITY_COMPLETION;

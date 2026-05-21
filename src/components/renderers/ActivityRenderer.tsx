@@ -23,8 +23,8 @@ import dynamic from "next/dynamic";
 import { sanitizeCss, sanitizeHtml } from "@/utils/sanitize";
 import { applyGrammarDarkClasses } from "@/utils/grammarDarkModeClasses";
 import { VerbQuizContent } from "@/types/verb-quiz";
-import { isSpeakingActivityContent, isCafeCatchUpContent } from "@/types/activity";
-import type { SpeakingActivityContent, CafeCatchUpContent } from "@/types/activity";
+import { isSpeakingActivityContent, isCafeCatchUpContent, isTriviaGameContent } from "@/types/activity";
+import type { SpeakingActivityContent, CafeCatchUpContent, TriviaGameContent } from "@/types/activity";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
@@ -52,6 +52,7 @@ const PartsOfSpeechGame = dynamic(() => import("../games/PartsOfSpeechGame/Parts
 const TimelineTensesGame = dynamic(() => import("../games/TimelineTensesGame").then(m => ({ default: m.TimelineTensesGame })), { loading: ActivityLoadingFallback });
 const EmotionSpinWheel = dynamic(() => import("../games/EmotionSpinWheel"), { loading: ActivityLoadingFallback });
 const CafeCatchUpGame = dynamic(() => import("../games/CafeCatchUpGame"), { loading: ActivityLoadingFallback });
+const TriviaGame = dynamic(() => import("../games/TriviaGame"), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("../activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("../activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
 const VocabularyRenderer = dynamic(() => import("../activities/VocabularyRenderer"), { loading: ActivityLoadingFallback });
@@ -215,6 +216,17 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                             );
                         }
                         return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid Café Catch-Up content.</div>;
+                    case "trivia-game":
+                        if (isTriviaGameContent(content)) {
+                            return (
+                                <TriviaGame
+                                    activityId={activity.id}
+                                    content={content as TriviaGameContent}
+                                    assignmentId={assignmentId}
+                                />
+                            );
+                        }
+                        return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid trivia game content.</div>;
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }

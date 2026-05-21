@@ -577,6 +577,67 @@ export function isCafeCatchUpContent(value: unknown): value is CafeCatchUpConten
     return c["type"] === "cafe-catch-up" && Array.isArray(c["prompts"]) && Array.isArray(c["decks"]);
 }
 
+// ============================================================================
+// Group Trivia Game (teacher-led, round-based)
+// ============================================================================
+
+export type TriviaQuestionKind =
+    | "write-in"
+    | "multiple-choice"
+    | "error-correction"
+    | "unscramble";
+
+export interface TriviaQuestion {
+    /** Stable id, e.g. "r1-q1". */
+    id: string;
+    /** Sentence / stem shown to the group. */
+    prompt: string;
+    kind: TriviaQuestionKind;
+    /** Optional per-question instruction label (overrides the default for the kind). */
+    label?: string;
+    /** Lettered options for multiple-choice. */
+    choices?: string[];
+    /** For unscramble — the words to display as draggable/visible tiles. */
+    tiles?: string[];
+    /** Canonical answer string shown on reveal. */
+    answer: string;
+    /** Optional alternate accepted phrasings, shown to teacher as a reference. */
+    acceptable?: string[];
+    /** Optional teacher-facing explanation shown on reveal. */
+    note?: string;
+}
+
+export interface TriviaRound {
+    /** Stable id, e.g. "r1". */
+    id: string;
+    /** Round title shown in the header, e.g. "Round 1 — Parts of Speech Detective". */
+    title: string;
+    /** Optional 1-line tip shown above the questions. */
+    blurb?: string;
+    /** Optional reference list shown as prominent chips (e.g. connectors, word box). */
+    wordBank?: string[];
+    questions: TriviaQuestion[];
+}
+
+export interface TriviaGameContent {
+    type: "trivia-game";
+    title: string;
+    description?: string;
+    /** Standard release flag (omit to default-visible). */
+    released?: boolean;
+    /** Points awarded to logged-in students who open the activity. Default: 5. */
+    participationPoints?: number;
+    /** Seconds per round before the timer reaches 0. Default: 300 (5 min). */
+    roundSeconds?: number;
+    rounds: TriviaRound[];
+}
+
+export function isTriviaGameContent(value: unknown): value is TriviaGameContent {
+    if (!value || typeof value !== "object") return false;
+    const c = value as Record<string, unknown>;
+    return c["type"] === "trivia-game" && Array.isArray(c["rounds"]);
+}
+
 export type ActivityContent =
     | QuizContent
     | WorksheetContent
@@ -593,6 +654,7 @@ export type ActivityContent =
     | TimedWritingContent
     | EmotionSpinWheelContent
     | CafeCatchUpContent
+    | TriviaGameContent
     | Record<string, unknown>;
 
 export interface LegacyGuideResponse {
