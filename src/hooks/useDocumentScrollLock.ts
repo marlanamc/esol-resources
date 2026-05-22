@@ -7,6 +7,24 @@ let activeLockCount = 0;
 let originalHtmlOverflow = "";
 let originalBodyOverflow = "";
 
+function clearInlineScrollLockStyles() {
+    if (typeof document === "undefined") return;
+    document.documentElement.style.overflow = originalHtmlOverflow;
+    document.body.style.overflow = originalBodyOverflow;
+}
+
+function ensureScrollLockRecoveryListener() {
+    if (typeof window === "undefined") return;
+    if ((ensureScrollLockRecoveryListener as { initialized?: boolean }).initialized) return;
+    (ensureScrollLockRecoveryListener as { initialized?: boolean }).initialized = true;
+
+    window.addEventListener("pagehide", () => {
+        if (activeLockCount === 0) return;
+        clearInlineScrollLockStyles();
+        activeLockCount = 0;
+    });
+}
+
 function lockDocumentScroll() {
     if (typeof document === "undefined") return;
 
@@ -39,6 +57,8 @@ export function useDocumentScrollLock(locked: boolean) {
     const hasLockRef = useRef(false);
 
     useEffect(() => {
+        ensureScrollLockRecoveryListener();
+
         if (!locked) {
             if (hasLockRef.current) {
                 unlockDocumentScroll();
