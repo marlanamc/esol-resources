@@ -43,7 +43,7 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 **Content Review**
 - [ ] Review Tuesday's grammar - what did students struggle with?
 - [ ] Plan error correction examples from Tuesday's work
-- [ ] Check phonics focus for the week (see teaching schedule)
+- [ ] Check phonics focus for the week — see [Monthly Pronunciation Focus](Summer-research/school-year-at-a-glance.md#monthly-pronunciation-focus-minimal-pair-lab) (Minimal Pair Lab contrast + `-ed` chart)
 - [ ] Plan 2-3 minute vocabulary retrieval routine
 
 **Student Work**
@@ -101,7 +101,7 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 | Teaching schedule | `class_uploads/ESOL 3 Teaching Schedule (Jan–Jun 2026).md` |
 | Resources tracker | `class-resources-tracker.md` |
 | Grammar guides | Class Companion app |
-| Pronunciation guide | `class_uploads/Weekly-Pronunciation-Focus-Jan-Jun-2026.md` |
+| Pronunciation focus | [School Year At A Glance — Monthly Pronunciation Focus](Summer-research/school-year-at-a-glance.md#monthly-pronunciation-focus-minimal-pair-lab) + app **Minimal Pair Lab** |
 
 ---
 

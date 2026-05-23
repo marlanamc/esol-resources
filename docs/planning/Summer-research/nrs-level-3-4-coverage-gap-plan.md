@@ -187,7 +187,7 @@ These NRS 3–4 expectations apply across topics:
 | Authentic forms (change of address, library card, etc.) | Job apps yes; broader forms thin | Add 2–3 form-reading tasks per year |
 | Relative clauses (who/which/that) | No dedicated module | Add micro-module at NRS 3 level |
 | Perfect modals (should have, could have) | Only inside conditionals | Add workplace/health regret/advice patterns |
-| Pronunciation as assigned path step | Content exists; low completion | Integrate `-ed` and phone clarity into required path |
+| Pronunciation as assigned path step | Content exists; low completion | **Monthly Minimal Pair Lab** contrast + weekly `-ed` in required path |
 
 ## Unit Mapping: Where To Plug Gaps
 
@@ -245,7 +245,7 @@ If time is limited, address gaps in this order:
 - [ ] Add **pay stub reading** to workforce unit path.
 - [ ] Add **phone simulation** speaking task type to weekly path template.
 - [ ] Include one **chart/number/data** task per unit in Phase 4 conversion (see App Roadmap).
-- [ ] Assign pronunciation/`-ed` as a **required path step**, not optional browse.
+- [ ] Assign **monthly Minimal Pair Lab** contrast + weekly `-ed` as **required path steps**, not optional browse.
 
 ### Assessment
 

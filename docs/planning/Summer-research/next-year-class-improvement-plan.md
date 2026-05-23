@@ -678,6 +678,33 @@ Try building the routine around sound groups, listening, and repetition:
 - [ ] Add `-ed` practice to Tuesday stations and Thursday review.
 - [ ] Create teacher correction language for quick, low-pressure pronunciation feedback.
 
+## 12b. Monthly Minimal Pair Focus (App Lab)
+
+Use the **Minimal Pair Lab** and **Sentence Listening** activities in the app — one contrast per month, aligned with [School Year At A Glance](school-year-at-a-glance.md#monthly-pronunciation-focus-minimal-pair-lab).
+
+**Priority contrasts for this class:** **B vs V** (October, spiral in December + May) and **Short i vs Long e** (November, spiral in December) — both show up often and match Spanish interference patterns.
+
+| Month | Contrast | App ID |
+|---|---|---|
+| September | Vowel names + `-ed` | `-ed` game |
+| October | B vs V | `b-v` |
+| November | Short i vs Long e | `short-i-long-e` |
+| December | Spiral B vs V + short i/long e | `b-v`, `short-i-long-e` |
+| January | R vs L | `r-l` |
+| February | V vs W | `v-w` |
+| March | S vs Th | `s-th` |
+| April | Sh vs Ch | `sh-ch` |
+| May | P vs B + B vs V refresh | `p-b`, `b-v` |
+| June | Mixed review | top contrasts + `-ed` |
+
+**Class routine:** Tuesday name the sound → Thursday 10–15 min drill → required app lab round due Thursday. Keep `-ed` on the warm-up back every week regardless of month.
+
+### Summer Work
+
+- [ ] Add monthly contrast to weekly path template (required step, not browse-only).
+- [ ] Print warm-up back headers with month + contrast label.
+- [ ] Tag Minimal Pair Lab assignments by contrast ID for teacher filtering.
+
 ## 13. Rethink Gamification Around Individual Progress
 
 Gamification should focus more on individual motivation and regular usage, not only competition against the class.

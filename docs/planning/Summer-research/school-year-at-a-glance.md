@@ -22,18 +22,18 @@ Everything else below assumes a normal **4 teaching weeks** per month (~8 class 
 
 ## The Year In One Table
 
-| Month | Unit | Topic | Weeks | Grammar (light) | Notes |
-|---|---:|---|---:|---|---|
-| September | 1 | Getting to Know You | 4 | Boot camp → verb forms → PP intro (light) + **-ed / vowel names** | Full [September split](september-app-onboarding-plan.md#september-unit-1-revised-split) |
-| October | 2 | Daily Life in the Community | 4 | Questions, imperatives, present perfect spiral | Layer 2 digital literacy starts |
-| November | 3 | Community Participation | 4 | Gerunds, suggestions, conditionals (light) | Civic + case study week |
-| December | 4 | Consumer Smarts | **2** | Comparatives, superlatives, quantifiers | **Numbers through trillions** + unit math (short month) |
-| January | 5 | Housing | 4 | Parts of speech, superlatives, info questions | Phone + landlord follow-up |
-| February | 6 | Workforce Preparation | 3 + off | Conditionals, past perfect, modals | **Vacation week** mid-month |
-| March | 7 | Career Awareness | 4 | **Present perfect + PPC (paired)**, gerunds/infinitives | Pay stubs, advocacy — see PP sequence below |
-| April | 8 | Health | 3 + off | Advice modals, passive voice, reported speech | **Vacation week** mid-month |
-| May | 9 | Holistic Wellness | 4 | Used to, future conditional, verbs + gerunds | Charts, nutrition, stress |
-| June | 10 | Future Academic Goals | **2** | Light review only | **Post-test** + end-of-year **party** |
+| Month | Unit | Topic | Weeks | Grammar (light) | **Pronunciation focus** | Notes |
+|---|---:|---|---:|---|---|---|
+| September | 1 | Getting to Know You | 4 | Boot camp → verb forms → PP intro (light) | **Vowel names (A/E/I)** + **-ed intro** | Full [September split](september-app-onboarding-plan.md#september-unit-1-revised-split) |
+| October | 2 | Daily Life in the Community | 4 | Questions, imperatives, present perfect spiral | **B vs V** (`b-v`) | Layer 2 digital literacy starts |
+| November | 3 | Community Participation | 4 | Gerunds, suggestions, conditionals (light) | **Short i vs Long e** (`short-i-long-e`) | Civic + case study week |
+| December | 4 | Consumer Smarts | **2** | Comparatives, superlatives, quantifiers | **Spiral: B vs V + short i/long e** | **Numbers through trillions** + unit math (short month) |
+| January | 5 | Housing | 4 | Parts of speech, superlatives, info questions | **R vs L** (`r-l`) | Phone + landlord follow-up |
+| February | 6 | Workforce Preparation | 3 + off | Conditionals, past perfect, modals | **V vs W** (`v-w`) | **Vacation week** mid-month |
+| March | 7 | Career Awareness | 4 | **Present perfect + PPC (paired)**, gerunds/infinitives | **S vs Th** (`s-th`) | Pay stubs, advocacy — see PP sequence below |
+| April | 8 | Health | 3 + off | Advice modals, passive voice, reported speech | **Sh vs Ch** (`sh-ch`) | **Vacation week** mid-month |
+| May | 9 | Holistic Wellness | 4 | Used to, future conditional, verbs + gerunds | **P vs B** (`p-b`) + **B vs V refresh** | Charts, nutrition, stress |
+| June | 10 | Future Academic Goals | **2** | Light review only | **Mixed review** (top contrasts + `-ed`) | **Post-test** + end-of-year **party** |
 
 Unit topics match the [App Learning Path Roadmap](app-learning-path-summer-roadmap.md#monthly-unit-backbone).
 
@@ -179,6 +179,46 @@ September is not the time for PPC or PP vs past simple in depth. When the year f
 
 ---
 
+## Monthly Pronunciation Focus (Minimal Pair Lab)
+
+Each month has **one main contrast** from the app **Minimal Pair Lab** (plus **Sentence Listening** sets for the same sound). Thursday phonics (10–15 min) + a **required app path step** — not optional browse.
+
+**All year:** weekly **-ed** spiral on the warm-up back (September Week 3 on).
+
+| Month | App contrast | Lab ID | In-class hook | Why this month |
+|---|---|---|---|---|
+| **September** | Vowel names + **-ed** (-t, -d, -id) | `-ed` game when ready | Spell names aloud; sort 3 verbs | Letter-name habits (I/E/A); past-tense foundation |
+| **October** | **B vs V** | `b-v` | ban/van, bus, bank, very | High-value for Spanish speakers; community/transport vocab |
+| **November** | **Short i vs Long e** | `short-i-long-e` | sit/seat, bit/beat in civic words | Common confusion — Spanish *i* ≈ English long *e* |
+| **December** *(short)* | **Spiral: B vs V + short i/long e** | `b-v` + `short-i-long-e` | Consumer words + numbers aloud | Reinforce top two contrasts in 2 weeks |
+| **January** | **R vs L** | `r-l` | room, floor, repair, landlord | Housing + phone clarity |
+| **February** | **V vs W** | `v-w` | very, work, interview, went | Workforce speech after vacation week |
+| **March** | **S vs Th** | `s-th` | think, thank, month, math | Career/advocacy — professional clarity |
+| **April** | **Sh vs Ch** | `sh-ch` | check, chest, choose, pharmacy | Health unit vocabulary |
+| **May** | **P vs B** + **B vs V refresh** | `p-b` (+ quick `b-v`) | cap/cab, pay/bay; revisit van/very | Complete the lab set; spiral priority contrast |
+| **June** *(short)* | **Mixed review** | top contrasts + `-ed` | Party games — listen & point | Post-test week; celebrate progress |
+
+### Weekly rhythm (same every month)
+
+| When | What |
+|---|---|
+| **Tuesday** | Mention the month's sound in warm-up ("Today we're listening for **B** vs **V**") |
+| **Thursday** | 10–15 min phonics block: listen → repeat → minimal pair drill → 2–3 pairs in sentences |
+| **App path** | Assign **Minimal Pair Lab** round for this month's contrast (required, due Thursday) |
+| **Optional** | **Sentence Listening** set for the same contrast when students need sentence context |
+| **Every week** | **-ed** chart: add 3 verbs of the week; one quiz question when relevant |
+
+### Teacher prep (once per month)
+
+- [ ] Note this month's contrast on the warm-up back header
+- [ ] Assign the matching **Minimal Pair Lab** activity in This Week's Path
+- [ ] Pick 4–6 pairs from the lab for in-class choral drill (easy → medium)
+- [ ] Use the lab's **Spanish tip** line when students ask why the sounds differ
+
+App contrasts live in `src/lib/minimal-pairs-data.ts` — seven sets: `short-i-long-e`, `b-v`, `r-l`, `sh-ch`, `s-th`, `v-w`, `p-b`.
+
+---
+
 ## What Stays The Same All Year
 
 - **This Week's Path** in the app (required vs optional labeled)
@@ -186,6 +226,7 @@ September is not the time for PPC or PP vs past simple in depth. When the year f
 - **Make-up deadline:** Monday 6:00 PM
 - **6 vocabulary words + 3 verbs** per week (verb quizzes use **v1 / v1-3rd / v1-ing / v2 / v3** from September Week 3 on)
 - **-ed endings (-t, -d, -id)** on the warm-up back from September Week 3 on — brief daily/weekly spiral
+- **Monthly pronunciation focus** — one Minimal Pair Lab contrast per month (see table above); Thursday phonics + required app step
 - **Tuesday introduce / Thursday review** grammar pattern
 - **Phone English** woven into every unit (not its own month)
 

@@ -207,7 +207,9 @@ Introduce the **three -ed ending sounds** so weekly verb practice and Thursday p
 
 **Do not:** lead with voiced/unvoiced terminology. Use listening, syllable clap, and the three labels **-t, -d, -id**.
 
-**After September:** every week includes a short **-ed** spiral (Thursday phonics + quiz when relevant). See [Class Improvement Plan](next-year-class-improvement-plan.md) Section 12.
+**After September:** every week includes a short **-ed** spiral (Thursday phonics + quiz when relevant). See [Class Improvement Plan](next-year-class-improvement-plan.md) Section 12 and [School Year At A Glance — Monthly Pronunciation Focus](school-year-at-a-glance.md#monthly-pronunciation-focus-minimal-pair-lab).
+
+**October onward:** one **Minimal Pair Lab** contrast per month (B vs V, short i vs long e, etc.) — assign in the app as a required path step every week that month.
 
 ## Present Perfect Intro (Week 4 — Light Touch)
 

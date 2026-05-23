@@ -134,5 +134,5 @@ export function getAssignmentDueDisplay(
 }
 
 export function isAssignmentRequired(isRequired: boolean | undefined | null): boolean {
-    return isRequired !== false;
+    return isRequired === true;
 }

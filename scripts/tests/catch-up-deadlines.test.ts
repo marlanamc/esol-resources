@@ -4,6 +4,7 @@ import {
   getAssignmentDueDisplay,
   getCurrentMakeUpDeadline,
   getMakeUpDeadlineForDueDate,
+  isAssignmentRequired,
   isWithinMakeUpWindow,
 } from "@/lib/catch-up-deadlines";
 
@@ -57,4 +58,11 @@ test("getAssignmentDueDisplay shows overdue after the make-up window closes", ()
 
   assert.ok(display);
   assert.equal(display.tone, "overdue");
+});
+
+test("isAssignmentRequired is opt-in only", () => {
+  assert.equal(isAssignmentRequired(true), true);
+  assert.equal(isAssignmentRequired(false), false);
+  assert.equal(isAssignmentRequired(undefined), false);
+  assert.equal(isAssignmentRequired(null), false);
 });

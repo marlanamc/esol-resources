@@ -1049,7 +1049,9 @@ export default async function DashboardPage() {
 
                             <ClassAnnouncement announcements={classAnnouncements} />
 
-                            <MissedClassCatchUpCard />
+                            {featuredAssignments.some((assignment) => assignment.isRequired === true) ? (
+                                <MissedClassCatchUpCard />
+                            ) : null}
 
                             <section aria-label="This Week's Path">
                                 <TodaysAssignments

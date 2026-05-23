@@ -126,25 +126,20 @@ function getFriendlyDueMeta(dueDate?: string | Date | null): DueMeta | null {
 }
 
 function RequirementBadge({ isRequired }: { isRequired?: boolean }) {
-    const required = isAssignmentRequired(isRequired);
+    if (!isAssignmentRequired(isRequired)) {
+        return null;
+    }
+
     return (
         <span
             className="inline-flex items-center rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide"
-            style={
-                required
-                    ? {
-                          backgroundColor: 'color-mix(in srgb, var(--secondary) 14%, transparent)',
-                          borderColor: 'color-mix(in srgb, var(--secondary) 28%, transparent)',
-                          color: 'var(--secondary)',
-                      }
-                    : {
-                          backgroundColor: 'var(--surface-subtle)',
-                          borderColor: 'var(--border-subtle)',
-                          color: 'var(--text-color-muted)',
-                      }
-            }
+            style={{
+                backgroundColor: 'color-mix(in srgb, var(--secondary) 14%, transparent)',
+                borderColor: 'color-mix(in srgb, var(--secondary) 28%, transparent)',
+                color: 'var(--secondary)',
+            }}
         >
-            {required ? 'Required' : 'Optional'}
+            Required
         </span>
     );
 }
@@ -673,7 +668,9 @@ function ChecklistAssignments({
     const nextUpRow =
         sortedRows.find(
             (row) => !row.isCompleted && !row.isGameRow && isAssignmentRequired(row.assignment.isRequired)
-        ) ?? null;
+        ) ??
+        sortedRows.find((row) => !row.isCompleted && !row.isGameRow) ??
+        null;
 
     const checklistRows = rows.filter((row) => !row.isGameRow);
     const completedCount = checklistRows.filter((row) => row.isCompleted).length;
