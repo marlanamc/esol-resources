@@ -37,7 +37,18 @@ const docs = [
   },
 ];
 
-const navItems = docs
+const customPages = [
+  {
+    slug: "summer-work-map",
+    label: "Summer Work Map",
+    description:
+      "A visual diagram for the weekend Advisor Bulletin Board sprint and the rest of the summer roadmap phases.",
+  },
+];
+
+const wikiPages = [...customPages, ...docs];
+
+const navItems = wikiPages
   .map(
     (doc) =>
       `<a href="${doc.slug}.html" data-slug="${doc.slug}">${escapeHtml(doc.label)}</a>`,
@@ -298,8 +309,145 @@ function pageShell({ title, description, body, toc = "", activeSlug }) {
 </html>`;
 }
 
+function summerWorkMapPage() {
+  const toc = [
+    '<a class="toc-level-2" href="#weekend-sprint">Weekend Sprint</a>',
+    '<a class="toc-level-2" href="#summer-phases">Summer Phases</a>',
+    '<a class="toc-level-2" href="#weekly-rhythm">Weekly Rhythm</a>',
+    '<a class="toc-level-2" href="#decision-rules">Decision Rules</a>',
+  ].join("\n");
+
+  const body = `<section class="roadmap-hero">
+    <div>
+      <span class="roadmap-kicker">Start here</span>
+      <h2 id="weekend-sprint">Weekend Sprint: Advisor Bulletin Board</h2>
+      <p>First priority: finish the Advisor Bulletin Board/resource website by <strong>Monday, May 25, 2026</strong>. This is the cleanest short-term win because it directly supports the community-school mission before the bigger app restructuring begins.</p>
+    </div>
+    <a class="roadmap-button" href="school-resource-website-plan.html">Open Resource Plan</a>
+  </section>
+
+  <section class="sprint-board" aria-label="Advisor Bulletin Board sprint tasks">
+    <div class="sprint-card priority">
+      <span>May 23-25</span>
+      <h3>Populate Core Resources</h3>
+      <p>Jobs, housing, health, food, immigration, legal aid, ESOL, money, childcare, and school/community supports.</p>
+    </div>
+    <div class="sprint-card">
+      <span>Quality Check</span>
+      <h3>Make It Trustworthy</h3>
+      <p>Check links, phone numbers, location, eligibility, language access, and whether each resource is actually useful.</p>
+    </div>
+    <div class="sprint-card">
+      <span>Usability</span>
+      <h3>Make It Easy To Scan</h3>
+      <p>Use plain labels, simple categories, clear action language, and mobile-friendly organization.</p>
+    </div>
+  </section>
+
+  <h2 id="summer-phases">Summer Phases</h2>
+  <p>After the bulletin board sprint, use the phases below as the summer work map. The goal is to finish the major app, LMS, and content structure by the end of July, then use August for pilot polish, testing, and September readiness.</p>
+
+  <section class="phase-flow" aria-label="Summer roadmap phases">
+    <article class="phase-card phase-one">
+      <div class="phase-number">1</div>
+      <div>
+        <span class="phase-date">By May 25</span>
+        <h3>Advisor Bulletin Board</h3>
+        <p>Populate the resource website so students and families can find practical community supports.</p>
+        <a href="school-resource-website-plan.html">Resource plan</a>
+      </div>
+    </article>
+    <article class="phase-card phase-two">
+      <div class="phase-number">2</div>
+      <div>
+        <span class="phase-date">May 26-31</span>
+        <h3>Inventory And Data Audit</h3>
+        <p>Review what students actually used, then mark activities as keep, shorten, split, convert, or retire.</p>
+        <a href="app-learning-path-roadmap.html#phase-1-planning-inventory">Phase 1</a>
+      </div>
+    </article>
+    <article class="phase-card phase-three">
+      <div class="phase-number">3</div>
+      <div>
+        <span class="phase-date">June 1-14</span>
+        <h3>Dashboard And Weekly Path</h3>
+        <p>Design the class dashboard around Next Up, This Week's Path, due dates, and teacher-curated order.</p>
+        <a href="app-learning-path-roadmap.html#phase-2-class-dashboard-redesign">Phase 2</a>
+      </div>
+    </article>
+    <article class="phase-card phase-four">
+      <div class="phase-number">4</div>
+      <div>
+        <span class="phase-date">June 15-30</span>
+        <h3>Content Conversion</h3>
+        <p>Turn guides, games, vocab, quizzes, writing, case studies, video, and speaking tasks into microlearning paths.</p>
+        <a href="app-learning-path-roadmap.html#phase-4-content-conversion">Phase 4</a>
+      </div>
+    </article>
+    <article class="phase-card phase-five">
+      <div class="phase-number">5</div>
+      <div>
+        <span class="phase-date">July 1-12</span>
+        <h3>LMS Structure And Learner Types</h3>
+        <p>Clarify enrolled students, independent learners, public/free users, supporters, former students, teachers, and possible partner programs.</p>
+        <a href="app-learning-path-roadmap.html#phase-7-lms-organization-and-learner-types">Phase 7</a>
+      </div>
+    </article>
+    <article class="phase-card phase-six">
+      <div class="phase-number">6</div>
+      <div>
+        <span class="phase-date">July 13-26</span>
+        <h3>Independent And Public Model</h3>
+        <p>Define the public app path, free vs paid boundaries, low-cost supporter model, privacy, access, and beta users.</p>
+        <a href="app-learning-path-roadmap.html#phase-6-independent-and-public-learner-model">Phase 6</a>
+      </div>
+    </article>
+    <article class="phase-card phase-seven">
+      <div class="phase-number">7</div>
+      <div>
+        <span class="phase-date">By July 31</span>
+        <h3>Pilot Weeks And September Readiness</h3>
+        <p>Build 2-3 pilot weeks and confirm the core September system is ready before August begins.</p>
+        <a href="app-learning-path-roadmap.html#phase-5-pilot-and-refine">Phase 5</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="august-buffer">
+    <span>August buffer</span>
+    <h3>Polish, test, and prepare for school start</h3>
+    <p>August should not carry the core build. Use it for QA, fixing confusing flows, finishing teacher prep, entering final content, and making sure September feels calm instead of rushed.</p>
+  </section>
+
+  <h2 id="weekly-rhythm">Weekly Rhythm</h2>
+  <section class="rhythm-grid" aria-label="Suggested weekly summer work rhythm">
+    <div><strong>Monday</strong><span>Choose one deliverable for the week.</span></div>
+    <div><strong>Tuesday</strong><span>Build or convert the smallest useful version.</span></div>
+    <div><strong>Wednesday</strong><span>Test it as teacher and student/public user.</span></div>
+    <div><strong>Thursday</strong><span>Revise for clarity, purpose, and mobile usability.</span></div>
+    <div><strong>Friday</strong><span>Document decisions in the wiki and pick next week's focus.</span></div>
+  </section>
+
+  <h2 id="decision-rules">Decision Rules</h2>
+  <section class="decision-strip">
+    <div>Community usefulness comes first.</div>
+    <div>Class students stay the priority.</div>
+    <div>One clear next action beats a big menu.</div>
+    <div>Public access needs structure before scale.</div>
+  </section>`;
+
+  return pageShell({
+    title: "Summer Work Map",
+    description:
+      "A visual plan for finishing the Advisor Bulletin Board first, then moving through the summer app and LMS roadmap phases.",
+    body,
+    toc,
+    activeSlug: "summer-work-map",
+  });
+}
+
 function indexPage() {
-  const cards = docs
+  const cards = wikiPages
     .map(
       (doc) => `<a class="doc-card" href="${doc.slug}.html">
         <span>${escapeHtml(doc.label)}</span>
@@ -697,6 +845,203 @@ tr:nth-child(even) td {
   margin: 0.75rem 0 0;
 }
 
+.roadmap-hero {
+  align-items: center;
+  background: linear-gradient(135deg, #fff0a8, #d9f7f3 58%, #ffe4ee);
+  border: 1px solid rgba(176, 104, 43, 0.2);
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding: 1.35rem;
+}
+
+.roadmap-hero h2 {
+  border-top: 0;
+  margin: 0.2rem 0 0.5rem;
+  padding-top: 0;
+}
+
+.roadmap-hero p {
+  margin: 0;
+}
+
+.roadmap-kicker,
+.phase-date,
+.sprint-card span,
+.august-buffer span {
+  color: var(--accent-2);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.roadmap-button,
+.phase-card a {
+  align-items: center;
+  background: #24313f;
+  color: white;
+  display: inline-flex;
+  font-weight: 800;
+  justify-content: center;
+  padding: 0.7rem 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sprint-board {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1.5rem 0 2rem;
+}
+
+.sprint-card {
+  background: #fffaf0;
+  border: 1px solid rgba(176, 104, 43, 0.18);
+  padding: 1rem;
+}
+
+.sprint-card.priority {
+  background: linear-gradient(145deg, #ffe3bd, #fff3b0);
+}
+
+.sprint-card h3,
+.phase-card h3,
+.august-buffer h3 {
+  color: var(--ink);
+  margin: 0.35rem 0 0.4rem;
+}
+
+.sprint-card p,
+.phase-card p,
+.august-buffer p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.phase-flow {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+  position: relative;
+}
+
+.phase-card {
+  align-items: start;
+  border: 1px solid rgba(176, 104, 43, 0.18);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: 1.1rem;
+}
+
+.phase-number {
+  align-items: center;
+  background: white;
+  border: 3px solid currentColor;
+  border-radius: 999px;
+  display: flex;
+  font-size: 1.15rem;
+  font-weight: 900;
+  height: 2.6rem;
+  justify-content: center;
+  width: 2.6rem;
+}
+
+.phase-one {
+  background: #fff3b0;
+  color: #b66a00;
+}
+
+.phase-two {
+  background: #d9f7f3;
+  color: #007f8f;
+}
+
+.phase-three {
+  background: #dff6cf;
+  color: #39833a;
+}
+
+.phase-four {
+  background: #ffe4ee;
+  color: #c24176;
+}
+
+.phase-five {
+  background: #e7e1ff;
+  color: #6d58c6;
+}
+
+.phase-six {
+  background: #ffe3bd;
+  color: #b85f21;
+}
+
+.phase-seven {
+  background: linear-gradient(135deg, #d9f7f3, #fff3b0);
+  color: #007f8f;
+}
+
+.phase-card a {
+  background: rgba(36, 49, 63, 0.9);
+  margin-top: 0.85rem;
+  width: fit-content;
+}
+
+.august-buffer {
+  background: #24313f;
+  color: white;
+  margin: 1.5rem 0 2rem;
+  padding: 1.35rem;
+}
+
+.august-buffer span,
+.august-buffer h3,
+.august-buffer p {
+  color: white;
+}
+
+.rhythm-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 1.25rem 0 2rem;
+}
+
+.rhythm-grid div {
+  background: #fffaf0;
+  border: 1px solid rgba(176, 104, 43, 0.18);
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.9rem;
+}
+
+.rhythm-grid strong {
+  color: var(--accent);
+}
+
+.rhythm-grid span {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.decision-strip {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.decision-strip div {
+  background: linear-gradient(135deg, #fff3b0, #d9f7f3);
+  border: 1px solid rgba(176, 104, 43, 0.18);
+  font-weight: 900;
+  padding: 1rem;
+}
+
 @media (max-width: 980px) {
   .layout {
     display: block;
@@ -714,6 +1059,18 @@ tr:nth-child(even) td {
   .sidebar-toc {
     max-height: 15rem;
     overflow: auto;
+  }
+
+  .roadmap-hero,
+  .sprint-board,
+  .rhythm-grid,
+  .decision-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .roadmap-hero {
+    align-items: stretch;
+    display: grid;
   }
 }
 
@@ -774,6 +1131,7 @@ await writeFile(path.join(outputDir, "styles.css"), styles);
 await writeFile(path.join(outputDir, "wiki.js"), script);
 await writeFile(path.join(outputDir, "favicon.svg"), favicon);
 await writeFile(path.join(outputDir, "index.html"), indexPage());
+await writeFile(path.join(outputDir, "summer-work-map.html"), summerWorkMapPage());
 
 for (const doc of docs) {
   const markdown = await readFile(path.join(sourceDir, doc.file), "utf8");
@@ -793,5 +1151,5 @@ for (const doc of docs) {
 await mkdir(publicOutputDir, { recursive: true });
 await cp(outputDir, publicOutputDir, { recursive: true, force: true });
 
-console.log(`Built ${docs.length + 1} pages in ${path.relative(root, outputDir)}`);
+console.log(`Built ${docs.length + customPages.length + 1} pages in ${path.relative(root, outputDir)}`);
 console.log(`Copied wiki to ${path.relative(root, publicOutputDir)}`);
