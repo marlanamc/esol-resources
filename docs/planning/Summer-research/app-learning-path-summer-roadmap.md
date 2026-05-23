@@ -210,7 +210,8 @@ Full audit, unit mapping, and checklist: **[NRS Level 3–4 Coverage Gap Plan](n
 
 | Gap | App deliverable |
 |---|---|
-| Digital literacy | Micro-module: login, password, scam red flags |
+| Digital literacy Layer 1 | September boot camp: login, navigation, scavenger hunt |
+| Digital literacy Layer 2 | October+ micro-module: scams, forms, portals |
 | Phone English | Reusable speaking task in weekly path (health, housing, work, school) |
 | Pay stubs / wage math | Workforce micro-module + chart task |
 | Consumer smarts | December path: compare prices, read bill, question offer |
@@ -225,8 +226,8 @@ Full audit, unit mapping, and checklist: **[NRS Level 3–4 Coverage Gap Plan](n
 
 | Month | Unit | Add to weekly path |
 |---|---|---|
-| September | Getting to Know You | School notices, parent messages, simple forms |
-| October | Daily Life in the Community | Transportation, digital literacy, directions/maps |
+| September | Getting to Know You | **App login + scavenger hunt**, school notices, parent messages |
+| October | Daily Life in the Community | Transportation, **digital literacy Layer 2**, directions/maps |
 | November | Community Participation | Civic/voting literacy, evaluate a public claim |
 | December | Consumer Smarts | Prices, fees, returns, scam awareness, unit math |
 | January | Housing | Phone + written landlord follow-up (reinforce existing) |
@@ -827,6 +828,45 @@ Summer direction:
 - Consider lifetime class/app milestones.
 - Keep leaderboard/class competition secondary.
 
+## September Readiness: App Boot Camp
+
+Students are expected to use the app **weekly — often daily**. Chromebooks are available (rentable). September Unit 1 must teach login and navigation before other content assumes app fluency.
+
+Full plan: **[September App And Chromebook Onboarding Plan](september-app-onboarding-plan.md)**
+
+### What September Must Work
+
+| Student skill | App support needed |
+|---|---|
+| Open myesolclass.com | Bookmark/QR; stable URL |
+| Log in | Username login; clear error messages |
+| Reset password | Email on file + forgot-password **or** teacher temp password + must-change |
+| Find today's work | **Next Up** / **This Week's Path** visible above browse menu |
+| Learn the app | **Scavenger hunt** activity (quiz/checklist), Week 1–2 |
+
+### Summer App Work: Password Reset
+
+Current gap: students log in with **username** but self-service reset requires **email** — likely why resets are manual today.
+
+- [ ] Collect and verify student emails at enrollment
+- [ ] Login page: plain-language password help + "ask your teacher" path
+- [ ] Teacher: one-click temp password + `mustChangePassword` on next login
+- [ ] Optional: username-based forgot-password (lookup email on file)
+- [ ] End-to-end test: forgot password → email → reset → login
+
+### Summer App Work: Scavenger Hunt
+
+- [ ] Create **App Scavenger Hunt — September** activity (8–10 find-and-prove missions)
+- [ ] Auto-assign Week 1 to all enrolled students
+- [ ] Teacher completion view for who still needs help
+- [ ] Printable partner backup for in-class Week 1
+
+### Summer App Work: Daily Navigation
+
+- [ ] **Next Up** card is the first thing enrolled students see
+- [ ] No category browsing required in September
+- [ ] Class announcement mirrors the same weekly topic as the path
+
 ## Implementation Roadmap
 
 ## Phase 1: Planning Inventory
@@ -1057,6 +1097,19 @@ See [NRS Level 3–4 Coverage Gap Plan](nrs-level-3-4-coverage-gap-plan.md) for 
 - [ ] Add purpose text.
 - [ ] Add make-up expectations.
 - [ ] Make homework visible on the dashboard.
+
+### Absent Student Catch-Up (App Support)
+
+See [Absent Student Catch-Up Plan](absent-student-catch-up-plan.md).
+
+The weekly path is the catch-up path. An absent student should never need a separate custom assignment.
+
+- [ ] Label weekly path items **Required** vs **Optional** (required = catch-up minimum).
+- [ ] Pin **Missed class? Start here** on the student dashboard (same entry every week).
+- [ ] Set quiz/path make-up deadline (default: Monday 6pm) on assignments.
+- [ ] Show This Week's Path above category browsing so absent students are not lost in menus.
+- [ ] Optional: surface catch-up reminder when teacher marks absence (future feature).
+- [ ] Do not require make-up of in-class-only activities (stations, partner role-plays, board games).
 
 ## Phase 5: Pilot And Refine
 

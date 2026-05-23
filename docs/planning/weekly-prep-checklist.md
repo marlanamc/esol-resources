@@ -25,7 +25,8 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 - [ ] Check which students completed last week's grammar guide
 - [ ] Review verb quiz results (due Tuesday 6pm) - common errors?
 - [ ] Update attendance from last class
-- [ ] Post any announcements to class
+- [ ] Post weekly catch-up announcement (same template every week — see Absent Student Catch-Up Plan)
+- [ ] Confirm app weekly path is live with due dates and Required items marked
 
 ---
 

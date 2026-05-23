@@ -28,15 +28,27 @@ The gaps below are not failures. They are **underdeveloped strands** that NRS tr
 
 **NRS expectation:** Level 3 includes following instructions to log into a computer system; Level 4 expects gathering information from print and **digital sources**.
 
-**Current status:** MyChart and insurance portal content exist, but there is no dedicated strand on passwords, email, online applications, job/school portals, or phishing/scams.
+**Split into two layers:**
 
-**Target outcomes:**
-- Log into a school, job, or health portal
-- Reset a password safely
+| Layer | When | Content |
+|---|---|---|
+| **Layer 1: App survival** | **September (Unit 1)** | Chromebook, Chrome, myesolclass.com, login, password reset, find Next Up / This Week's Path, app scavenger hunt |
+| **Layer 2: Adult digital life** | October+ | Scams, forms, email safety, health/job portals, online applications |
+
+**Current status:** MyChart and insurance portal content exist for Layer 2, but Layer 1 is not yet a taught September boot camp. Password reset often requires teacher manual help (login uses username; forgot-password uses email).
+
+**Layer 1 target outcomes (September):**
+- Open Chromebook → Chrome → myesolclass.com
+- Log in with username and password
+- Reset password (self-service or teacher temp password)
+- Find **what we are working on today** in the app
+
+**Layer 2 target outcomes (October+):**
 - Spot a suspicious email or text
 - Complete a simple online form
+- Log into a health or job portal
 
-**Where it fits:** October (Daily Life in the Community) or a cross-unit micro-task
+**Where it fits:** Layer 1 → **[September App Onboarding Plan](september-app-onboarding-plan.md)**. Layer 2 → October (Daily Life in the Community) or cross-unit micro-tasks.
 
 ### 2. Phone English (systematic)
 
@@ -181,8 +193,8 @@ These NRS 3–4 expectations apply across topics:
 
 | Month | Unit | Gap priorities to add |
 |---|---|---|
-| September | Getting to Know You | School messages, parent communication, forms |
-| October | Daily Life in the Community | Transportation, digital literacy basics, maps/directions |
+| September | Getting to Know You | **Chromebook + app login + scavenger hunt**, school messages, parent communication |
+| October | Daily Life in the Community | Transportation, **Layer 2 digital literacy** (scams, forms), maps/directions |
 | November | Community Participation | Civic/voting depth, public meetings, evaluating claims |
 | December | Consumer Smarts | Price comparison, bills/fees, scams, returns, unit math |
 | January | Housing | (Mostly covered — reinforce phone + written notes to landlord) |
@@ -196,9 +208,10 @@ These NRS 3–4 expectations apply across topics:
 
 If time is limited, address gaps in this order:
 
-1. **Work and money** — pay stub, hours, deductions (February/March)
-2. **Phone-call routines** — reusable template across health/housing/work (all year)
-3. **Digital life mini-path** — passwords, portals, scams (October)
+1. **September app boot camp** — Chromebook, myesolclass.com, login, password, scavenger hunt, find today's work
+2. **Work and money** — pay stub, hours, deductions (February/March)
+3. **Phone-call routines** — reusable template across health/housing/work (all year)
+4. **Digital life Layer 2** — scams, forms, portals (**October**, after boot camp)
 4. **School and family week** — notices, absences, parent meetings (September/October)
 5. **Consumer smarts app tasks** — compare prices, read a bill (December)
 6. **Case-study / research template** — read → claim → reason → discuss (November+)
@@ -226,7 +239,8 @@ If time is limited, address gaps in this order:
 
 ### App path
 
-- [ ] Add one **digital literacy** micro-module (login, password, scam red flags).
+- [ ] Build September app onboarding per [September App Onboarding Plan](september-app-onboarding-plan.md) (scavenger hunt, password flow, Chromebook poster).
+- [ ] Add one **digital literacy** micro-module for **October+** (scams, forms — not login basics).
 - [ ] Convert at least one **case study** to app format with claim/reason check.
 - [ ] Add **pay stub reading** to workforce unit path.
 - [ ] Add **phone simulation** speaking task type to weekly path template.

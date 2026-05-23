@@ -527,7 +527,77 @@ The message to students should be:
 - [ ] Add clear due dates to required assignments.
 - [ ] Build a simple teacher view for completion tracking if needed.
 - [ ] Create language for explaining homework accountability respectfully to adult students.
-- [ ] Decide how make-up work and late work should function.
+- [ ] Implement the [Absent Student Catch-Up Plan](absent-student-catch-up-plan.md) (make-up deadlines, warm-up back block, weekly announcement template).
+
+## 15. Absent Student Catch-Up (Same Path Every Week)
+
+Busy adults with jobs and children will miss class. That is expected, not a failure. The problem to solve is not perfect attendance — it is **confusion after an absence**.
+
+Full plan: **[Absent Student Catch-Up Plan](absent-student-catch-up-plan.md)**
+
+### The Rule
+
+Every absent student follows the **same catch-up shape every week**:
+
+1. Open the app → **This Week's Path**
+2. Finish **required** items (not every in-class station)
+3. Learn the **6 words** and **3 verbs**
+4. Complete the **quiz** by the make-up deadline
+
+Target time: **30–45 minutes** before the next class.
+
+### Required vs In-Class Only
+
+| Must do at home | Do not require at home |
+|---|---|
+| 6 vocab words | Partner role-plays |
+| 3 verbs | Station rotations |
+| Grammar micro-module | Dice/board games |
+| Weekly quiz (make-up OK) | Full class discussion |
+
+### Make-Up Deadline (Suggested)
+
+- Regular quiz/path deadline: Thursday
+- **Make-up deadline: Monday 6pm** — automatic, no explanation required, no penalty
+
+### Student Message
+
+> Missing class is okay. Coming back confused is what we want to prevent.
+
+### Summer Work
+
+- [ ] Add **IF YOU MISSED CLASS** block to Tuesday warm-up back template.
+- [ ] Save weekly catch-up announcement template for class announcements.
+- [ ] Teach the catch-up routine in Week 1.
+- [ ] Mark app path items as **Required** vs **Optional**.
+- [ ] Pin **Missed class? Start here** on the student dashboard.
+
+## 16. September App And Chromebook Boot Camp
+
+Students will use Class Companion **weekly — often daily**. Everyone can rent a Chromebook. Super-beginner digital literacy belongs in **September**, not scattered through the year.
+
+Full plan: **[September App And Chromebook Onboarding Plan](september-app-onboarding-plan.md)**
+
+### September Teaches (Before Heavy Grammar)
+
+1. Chromebook → Chrome → **myesolclass.com**
+2. Log in (username + password)
+3. Reset password (self-service or teacher — summer app work needed)
+4. Find **Next Up** / **This Week's Path** — what we are working on today
+5. **App scavenger hunt** (Week 1–2) — learn by doing, not lecture
+
+### Password Reset (Summer App Work)
+
+Login uses **username**; forgot-password uses **email** — that gap is why you reset manually today.
+
+- [ ] Collect student emails at enrollment
+- [ ] Clearer login-page help + teacher temp-password flow
+- [ ] Test forgot-password email end-to-end
+- [ ] Week 1 password station in class
+
+### After September
+
+Catch-up, homework, quizzes, and absence recovery all assume students can open the app. Layer 2 digital literacy (scams, forms, portals) starts in **October**.
 
 ## 12. Practice -ed Endings Every Day
 
@@ -710,6 +780,8 @@ This is a draft structure to test next year.
 ## Summer Planning Checklist
 
 - [ ] Read the [NRS Level 3–4 Coverage Gap Plan](nrs-level-3-4-coverage-gap-plan.md) and schedule priority gap topics on the year calendar.
+- [ ] Implement the [Absent Student Catch-Up Plan](absent-student-catch-up-plan.md) (warm-up back, announcements, app required/optional labels).
+- [ ] Implement [September App Onboarding Plan](september-app-onboarding-plan.md) (boot camp, scavenger hunt, password reset UX).
 - [ ] Build a yearlong list of adult-life weekly topics.
 - [ ] Match each topic with grammar, vocabulary, and a practical task.
 - [ ] Build Tuesday station routines centered on speaking.

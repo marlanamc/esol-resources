@@ -15,6 +15,20 @@ const docs = [
       "Audit of NRS Level 3–4 topics and skills missing from the current class and app, with unit mapping and a summer build checklist.",
   },
   {
+    file: "absent-student-catch-up-plan.md",
+    slug: "absent-student-catch-up-plan",
+    label: "Absent Student Catch-Up Plan",
+    description:
+      "One repeatable catch-up path for busy adult learners: required app tasks, make-up deadlines, and warm-up/announcement templates.",
+  },
+  {
+    file: "september-app-onboarding-plan.md",
+    slug: "september-app-onboarding-plan",
+    label: "September App Onboarding Plan",
+    description:
+      "Chromebook boot camp, myesolclass.com login, password reset summer work, and an app scavenger hunt for Week 1–2.",
+  },
+  {
     file: "next-year-class-improvement-plan.md",
     slug: "class-improvement-plan",
     label: "Class Improvement Plan",
