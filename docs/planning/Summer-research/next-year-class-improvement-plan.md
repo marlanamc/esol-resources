@@ -628,6 +628,8 @@ This may be one of the biggest struggles in teaching English. Students need to h
 
 Make `-ed` endings a daily pronunciation habit, not an occasional phonics lesson.
 
+**September Week 3:** brief intro to the three sounds (**-t, -d, -id**) on a reusable warm-up chart. After that, spiral every week with the 3 verbs of the week — not a separate phonics unit each month.
+
 The routine can stay very small. It does not need to take over class. The key is repetition over time.
 
 The usual "voiced vs. unvoiced" explanation may not be the best teaching method for this class. It is linguistically accurate, but it can be too abstract and confusing. Summer planning should focus on finding a more teachable approach that students can hear, feel, and use without needing technical vocabulary.

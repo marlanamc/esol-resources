@@ -226,10 +226,10 @@ Full audit, unit mapping, and checklist: **[NRS Level 3–4 Coverage Gap Plan](n
 
 | Month | Unit | Add to weekly path |
 |---|---|---|
-| September | Getting to Know You | **App login + scavenger hunt**, **verb forms chart (Week 3)**, **present perfect intro (Week 4)**, school notices, parent messages |
+| September | Getting to Know You | **App login + scavenger hunt**, **verb forms chart (Week 3)**, **vowel names (Week 2)**, **-ed intro (Week 3)**, **present perfect intro (Week 4)**, school notices, parent messages |
 | October | Daily Life in the Community | Transportation, **digital literacy Layer 2**, directions/maps |
 | November | Community Participation | Civic/voting literacy, evaluate a public claim |
-| December | Consumer Smarts | Prices, fees, returns, scam awareness, unit math |
+| December | Consumer Smarts | Prices, fees, returns, scam awareness, **numbers through trillions**, unit math |
 | January | Housing | Phone + written landlord follow-up (reinforce existing) |
 | February | Workforce Preparation | Pay stub, schedule, call employer |
 | March | Career Awareness | Agency navigation, wage data, broader advocacy |

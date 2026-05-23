@@ -145,8 +145,8 @@ Full-year context: **[School Year At A Glance](school-year-at-a-glance.md)**
 | Week | Focus | Grammar (light) |
 |---|---|---|
 | Week 1 | Chromebook + login + scavenger hunt + class routines + **pre-test window** | None or parts of speech preview only |
-| Week 2 | App habit + password confidence + first weekly path + first quiz (practice) | Parts of speech (short) |
-| Week 3 | Getting to know you + stations + **verb forms overview** | Present simple review + verb form chart |
+| Week 2 | App habit + password confidence + first weekly path + **English vowel names class** | Parts of speech (short) |
+| Week 3 | Getting to know you + stations + **verb forms overview** + **-ed endings intro** | Present simple review + verb / -ed charts |
 | Week 4 | Personal daily life + full weekly path rhythm + **present perfect intro** | Present perfect (short intro — life experience frames) |
 
 **First real weekly quiz:** Week 2 or 3 — **practice quiz**, low stakes, to teach the routine.
@@ -171,6 +171,43 @@ Introduce the five forms students will see on **weekly verb quizzes** — overvi
 - Week 3–4: teach the chart; Week 4 present perfect intro shows **why v3 matters**
 
 **Do not:** assign a long verb conjugation packet or test every form every week in September.
+
+## English Vowel Names (Week 2 — One Class)
+
+Many Spanish-speaking students know English **sounds** but forget English **letter names** — especially **I, E, and A** (Spanish *i* sounds like English *e*, Spanish *e* sounds like English *a*, etc.).
+
+**Goal:** one focused class so spelling aloud, login help, email, and app navigation make sense.
+
+**Teach:**
+- A / E / I / O / U letter names (say and hear — not long vowel phonics rules)
+- Side-by-side contrast: English **I** (*eye*) vs Spanish *i* (*ee*); English **E** (*ee*) vs Spanish *e* (*eh*); English **A** (*ay*) vs Spanish *a* (*ah*)
+- Quick uses: spelling a name, reading a username, "What letter is this?"
+
+**Do not:** turn this into a full phonics unit or vowel-team spelling rules. One class + occasional warm-up reminders.
+
+**Reuse:** spell one vocab word or name aloud every Tuesday/Thursday after Week 2.
+
+## -ed Endings Intro (Week 3 — Brief)
+
+Introduce the **three -ed ending sounds** so weekly verb practice and Thursday phonics have a shared chart from the start of the year.
+
+| Label | Sound | Examples |
+|---|---|---|
+| **-t** | /t/ | worked, helped, asked |
+| **-d** | /d/ | called, played, cleaned |
+| **-id** | /ɪd/ (extra syllable) | wanted, needed, decided |
+
+**One-class routine (15–20 min max):**
+1. Listen: worked vs wanted — "one beat or two beats?"
+2. Sort 6 verbs into **-t / -d / -id** columns (color-coded chart)
+3. Add the week's **3 verbs** in past tense to the chart
+4. Choral repeat: "I worked," "I wanted," "I called"
+
+**Post on warm-up back** every week after Week 3 — same chart, new verbs.
+
+**Do not:** lead with voiced/unvoiced terminology. Use listening, syllable clap, and the three labels **-t, -d, -id**.
+
+**After September:** every week includes a short **-ed** spiral (Thursday phonics + quiz when relevant). See [Class Improvement Plan](next-year-class-improvement-plan.md) Section 12.
 
 ## Present Perfect Intro (Week 4 — Light Touch)
 
@@ -214,6 +251,8 @@ Update the [NRS Coverage Gap Plan](nrs-level-3-4-coverage-gap-plan.md): move sup
 - [ ] Room poster: Chromebook steps + QR to myesolclass.com
 - [ ] Password Help half-sheet printed
 - [ ] Chromebook rental info ready for students who need home access
+- [ ] Print **-ed endings chart** (-t / -d / -id) for warm-up backs starting Week 3
+- [ ] Prepare **vowel names** mini-lesson slide or handout (I / E / A contrast for Spanish speakers)
 
 ### Every September class
 

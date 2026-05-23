@@ -196,7 +196,7 @@ These NRS 3–4 expectations apply across topics:
 | September | Getting to Know You | **Chromebook + app login + scavenger hunt**, school messages, parent communication |
 | October | Daily Life in the Community | Transportation, **Layer 2 digital literacy** (scams, forms), maps/directions |
 | November | Community Participation | Civic/voting depth, public meetings, evaluating claims |
-| December | Consumer Smarts | Price comparison, bills/fees, scams, returns, unit math |
+| December | Consumer Smarts | Price comparison, bills/fees, scams, returns, **numbers through trillions**, unit math |
 | January | Housing | (Mostly covered — reinforce phone + written notes to landlord) |
 | February | Workforce Preparation | Pay stubs, schedules, phone call to employer |
 | March | Career Awareness | Legal/agency navigation, wage data, broader advocacy |

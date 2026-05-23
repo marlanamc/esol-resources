@@ -24,10 +24,10 @@ Everything else below assumes a normal **4 teaching weeks** per month (~8 class 
 
 | Month | Unit | Topic | Weeks | Grammar (light) | Notes |
 |---|---:|---|---:|---|---|
-| September | 1 | Getting to Know You | 4 | Boot camp → verb forms overview → present perfect intro (light) | Full [September split](september-app-onboarding-plan.md#september-unit-1-revised-split) |
+| September | 1 | Getting to Know You | 4 | Boot camp → verb forms → PP intro (light) + **-ed / vowel names** | Full [September split](september-app-onboarding-plan.md#september-unit-1-revised-split) |
 | October | 2 | Daily Life in the Community | 4 | Questions, imperatives, present perfect spiral | Layer 2 digital literacy starts |
 | November | 3 | Community Participation | 4 | Gerunds, suggestions, conditionals (light) | Civic + case study week |
-| December | 4 | Consumer Smarts | **2** | Comparatives, superlatives, quantifiers | **Short month** — close with weekly app quiz |
+| December | 4 | Consumer Smarts | **2** | Comparatives, superlatives, quantifiers | **Numbers through trillions** + unit math (short month) |
 | January | 5 | Housing | 4 | Parts of speech, superlatives, info questions | Phone + landlord follow-up |
 | February | 6 | Workforce Preparation | 3 + off | Conditionals, past perfect, modals | **Vacation week** mid-month |
 | March | 7 | Career Awareness | 4 | **Present perfect + PPC (paired)**, gerunds/infinitives | Pay stubs, advocacy — see PP sequence below |
@@ -46,9 +46,9 @@ Unit topics match the [App Learning Path Roadmap](app-learning-path-summer-roadm
 | Week | Focus | Grammar (light) |
 |---|---|---|
 | Week 1 | Chromebook + login + scavenger hunt + class routines + **pre-test window** | None or parts of speech preview only |
-| Week 2 | App habit + password confidence + first weekly path + practice quiz | Parts of speech (short) |
-| Week 3 | Getting to know you + **verb forms overview** (v1, v1-3rd, v1-ing, v2, v3) | Present simple review + verb form chart |
-| Week 4 | Personal daily life + **present perfect intro** (life experience frames) | Present perfect (short intro — not full unit) |
+| Week 2 | App habit + first weekly path + **English vowel names** (A, E, I focus) | Parts of speech (short) |
+| Week 3 | Getting to know you + **verb forms overview** + **-ed endings intro** (-t, -d, -id) | Present simple review + verb / -ed charts on warm-up back |
+| Week 4 | Personal daily life + **present perfect intro** + weekly **-ed** practice with 3 verbs | Present perfect (short intro — life experience frames) |
 
 Detail: [September App Onboarding Plan](september-app-onboarding-plan.md)
 
@@ -74,10 +74,10 @@ Detail: [September App Onboarding Plan](september-app-onboarding-plan.md)
 
 | Week | Focus | Grammar (light) |
 |---|---|---|
-| Week 1 | Smart spending + compare prices + unit math | Comparatives + superlatives |
-| Week 2 | Bills, fees, returns, scams | Quantifiers + review |
+| Week 1 | Smart spending + compare prices + **numbers (through trillions)** | Comparatives + superlatives |
+| Week 2 | Bills, fees, returns, scams — read big numbers in context | Quantifiers + review |
 
-Skip a full 4-week spread — open with the highest-value consumer tasks and close with the quiz.
+Use December's short month for **consumer math language**: million, billion, trillion on price tags, bills, news headlines, and loan/fee examples. Skip a full 4-week spread — highest-value consumer tasks first.
 
 ### January — Unit 5: Housing
 
@@ -167,12 +167,25 @@ September is not the time for PPC or PP vs past simple in depth. When the year f
 
 ---
 
+## Pronunciation Foundations (September → All Year)
+
+| Topic | When | What students learn |
+|---|---|---|
+| **English vowel names** | September Week 2 (one class) | Letter names **A, E, I, O, U** — extra focus on **I / E / A** (Spanish letter-name habits differ) |
+| **-ed endings (-t, -d, -id)** | September Week 3 (brief intro) | Three ending sounds; sort the week's verbs; chart stays on warm-up back |
+| **Daily spiral** | Every week after September | Thursday phonics + 3 verbs of the week on the **-ed** chart; one quiz question when relevant |
+
+**September goal:** students know *what* the three -ed endings are and *where* to look on the chart — not a full phonics unit. Depth builds all year through repetition.
+
+---
+
 ## What Stays The Same All Year
 
 - **This Week's Path** in the app (required vs optional labeled)
 - **Missed class?** same catch-up steps every week
 - **Make-up deadline:** Monday 6:00 PM
 - **6 vocabulary words + 3 verbs** per week (verb quizzes use **v1 / v1-3rd / v1-ing / v2 / v3** from September Week 3 on)
+- **-ed endings (-t, -d, -id)** on the warm-up back from September Week 3 on — brief daily/weekly spiral
 - **Tuesday introduce / Thursday review** grammar pattern
 - **Phone English** woven into every unit (not its own month)
 
