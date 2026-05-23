@@ -200,6 +200,42 @@ Every weekly path should answer:
 
 This path should be flexible, but the default shape gives students and teachers a predictable rhythm.
 
+## NRS Level 3–4 Coverage Integration
+
+A May 2026 audit compared current class, worksheet, and app coverage against **NRS ESL Level 3 (High Beginning)** and **Level 4 (Low Intermediate)**. Housing, workforce, and health are strong. The app and weekly path should deliberately fill thinner NRS strands next year.
+
+Full audit, unit mapping, and checklist: **[NRS Level 3–4 Coverage Gap Plan](nrs-level-3-4-coverage-gap-plan.md)**
+
+### App-Relevant Gaps To Build
+
+| Gap | App deliverable |
+|---|---|
+| Digital literacy | Micro-module: login, password, scam red flags |
+| Phone English | Reusable speaking task in weekly path (health, housing, work, school) |
+| Pay stubs / wage math | Workforce micro-module + chart task |
+| Consumer smarts | December path: compare prices, read bill, question offer |
+| School / family | September–October opener + form-reading task |
+| Civic depth | November case study + claim/reason check |
+| Transportation | October schedule/map task |
+| Research / data literacy | Case-study app template; one chart task per unit |
+| Relative clauses | 15–20 minute grammar micro-module |
+| Pronunciation | Required `-ed`/phone-clarity step in path (not optional browse) |
+
+### Gap Topics By Monthly Unit
+
+| Month | Unit | Add to weekly path |
+|---|---|---|
+| September | Getting to Know You | School notices, parent messages, simple forms |
+| October | Daily Life in the Community | Transportation, digital literacy, directions/maps |
+| November | Community Participation | Civic/voting literacy, evaluate a public claim |
+| December | Consumer Smarts | Prices, fees, returns, scam awareness, unit math |
+| January | Housing | Phone + written landlord follow-up (reinforce existing) |
+| February | Workforce Preparation | Pay stub, schedule, call employer |
+| March | Career Awareness | Agency navigation, wage data, broader advocacy |
+| April | Health | Insurance phone call, dosage/chart literacy |
+| May | Holistic Wellness | Nutrition/sleep data, public health claims |
+| June | Future Academic Goals | Short research mini-project, formal writing |
+
 ### Student-Facing Framing
 
 Each item should answer:
@@ -966,6 +1002,23 @@ Goal: rework the content library so it fits the new class model.
 - [ ] Build short activities for prices, percentages, charts, schedules, bills, dosage, wages, and public claims.
 - [ ] Pair current-events case studies with chart/data questions when possible.
 - [ ] Add data skepticism prompts to monthly surveys or reflections when relevant.
+
+### NRS Level 3–4 Gap Content Conversion
+
+See [NRS Level 3–4 Coverage Gap Plan](nrs-level-3-4-coverage-gap-plan.md) for full audit and unit mapping.
+
+- [ ] Build digital literacy micro-module (login, password, scam red flags).
+- [ ] Build pay stub reading micro-module for workforce unit.
+- [ ] Create reusable phone-call speaking task format for weekly path.
+- [ ] Convert at least one print case study to app format with claim/reason check.
+- [ ] Add school/family form-reading task (September or October).
+- [ ] Add transportation schedule/map task (October).
+- [ ] Deepen November civic content in app path (registration, ballot language, public notices).
+- [ ] Add consumer comparison tasks to December path (prices, fees, returns).
+- [ ] Create relative clauses micro-module (housing or workplace context).
+- [ ] Add perfect modals patterns (should have / could have) in health/work frames.
+- [ ] Make pronunciation/`-ed` a required weekly path step with due date.
+- [ ] Map each new module to a monthly unit essential question before building.
 
 ### Game Conversion
 

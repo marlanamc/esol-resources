@@ -634,6 +634,50 @@ This could be more motivating than only seeing where they rank compared with oth
 - [ ] Add weekly quiz completion and app usage milestones.
 - [ ] Decide how much class competition should remain visible.
 
+## 14. Close NRS Level 3–4 Coverage Gaps
+
+A May 2026 audit compared the current class, worksheets, and app against **NRS ESL Level 3 (High Beginning)** and **Level 4 (Low Intermediate)** expectations. Housing, workforce, and health are strong. The main gaps are thinner life-skill strands and cross-cutting modalities NRS treats as core.
+
+Full detail, unit mapping, and summer checklist: **[NRS Level 3–4 Coverage Gap Plan](nrs-level-3-4-coverage-gap-plan.md)**
+
+### Strongest Current Alignment
+
+- Housing, workforce/career, health, community routines, and grammar depth (often above NRS 3–4 minimum)
+
+### Priority Gaps To Address Next Year
+
+| Gap | Why NRS cares | Where it fits |
+|---|---|---|
+| Digital literacy | Log into portals; use digital sources | October |
+| Phone English (systematic) | Calls for health, work, housing, school | Every unit |
+| Pay stubs and wage math | Workplace functional skills | February / March |
+| Consumer smarts (skills, not just vocab) | Shopping, bills, fees, scams | December |
+| School, parent, and childcare communication | Registration, notices, conferences | September / October |
+| Civic participation depth | Claims, reasons, public information | November |
+| Legal literacy beyond workplace | Agency navigation, complaints | March + resource site |
+| Transportation strand | Schedules, fares, directions | October |
+| STEM / data literacy | Charts, claims, health/science texts | April / May / case studies |
+| Math embedded in ESOL | Prices, percentages, schedules | One task per unit where natural |
+
+### Skill Gaps To Build Into Class And App
+
+- Short research and case-study format (print → app)
+- Claim + reasons + conclusion in writing
+- Formal vs. informal register
+- Authentic forms beyond job applications
+- Relative clauses micro-module (NRS 3 grammar gap)
+- Perfect modals beyond conditionals (should have / could have)
+- Pronunciation and `-ed` as required path steps, not optional browse
+
+### Summer Work
+
+- [ ] Read the full [NRS Level 3–4 Coverage Gap Plan](nrs-level-3-4-coverage-gap-plan.md).
+- [ ] Add missing gap topics to the yearlong adult-life topic list below.
+- [ ] Decide which gaps become full weeks vs. Thursday literacy tasks vs. app micro-modules.
+- [ ] Schedule pay stub, transportation, school/family, and civic weeks on the year calendar.
+- [ ] Build reusable phone-call role-play cards for health, housing, work, and school.
+- [ ] Cross-link legal, immigration, and childcare class topics to the Resource Website Plan.
+
 ## Possible Weekly Class Structure
 
 This is a draft structure to test next year.
@@ -665,6 +709,7 @@ This is a draft structure to test next year.
 
 ## Summer Planning Checklist
 
+- [ ] Read the [NRS Level 3–4 Coverage Gap Plan](nrs-level-3-4-coverage-gap-plan.md) and schedule priority gap topics on the year calendar.
 - [ ] Build a yearlong list of adult-life weekly topics.
 - [ ] Match each topic with grammar, vocabulary, and a practical task.
 - [ ] Build Tuesday station routines centered on speaking.

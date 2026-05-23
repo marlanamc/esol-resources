@@ -8,6 +8,13 @@ const publicOutputDir = path.join(root, "public/summer-planning-wiki");
 
 const docs = [
   {
+    file: "nrs-level-3-4-coverage-gap-plan.md",
+    slug: "nrs-coverage-gap-plan",
+    label: "NRS 3–4 Coverage Gap Plan",
+    description:
+      "Audit of NRS Level 3–4 topics and skills missing from the current class and app, with unit mapping and a summer build checklist.",
+  },
+  {
     file: "next-year-class-improvement-plan.md",
     slug: "class-improvement-plan",
     label: "Class Improvement Plan",
@@ -380,8 +387,9 @@ function summerWorkMapPage() {
       <div>
         <span class="phase-date">June 15-30</span>
         <h3>Content Conversion</h3>
-        <p>Turn guides, games, vocab, quizzes, writing, case studies, video, and speaking tasks into microlearning paths.</p>
+        <p>Turn guides, games, vocab, quizzes, writing, case studies, video, and speaking tasks into microlearning paths. Include NRS 3–4 gap builds (digital literacy, pay stubs, phone English, civic depth, transportation).</p>
         <a href="app-learning-path-roadmap.html#phase-4-content-conversion">Phase 4</a>
+        <a href="nrs-coverage-gap-plan.html">NRS gap plan</a>
       </div>
     </article>
     <article class="phase-card phase-five">
