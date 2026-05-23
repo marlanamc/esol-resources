@@ -1060,6 +1060,106 @@ Possible independent paths:
 - [ ] Enrolled class students are not accidentally blocked by public-user limits.
 - [ ] Public users only see polished/released content.
 
+## Phase 7: LMS Organization And Learner Types
+
+Goal: clean up the LMS structure before the app grows beyond one class.
+
+This app has mostly been shaped by one real class plus a few interested outside users. That made sense for the first year because the urgent problem was getting students to actually use it. Now that the app is working, the structure needs to catch up.
+
+Before opening the app to more public users, independent learners, other classes, or partner programs, the system needs clearer answers for:
+
+- who the learner is
+- why they are using the app
+- what content they should see
+- who controls their assignments
+- what progress matters
+- what data the teacher/admin should see
+- what access should be free, enrolled, public, paid, or partner-based
+
+### Learner Types To Define
+
+Possible learner types:
+
+- **Enrolled class student**: connected to a real class, teacher-curated weekly path, assignments, due dates, class announcements, teacher visibility.
+- **Independent learner**: not connected to a class, guided by app-selected paths, personal milestones, optional goals, no teacher due dates.
+- **Public/free learner**: limited but useful access, polished activities only, clear path into account creation or supporter plan.
+- **Paid/supporter learner**: low-cost access to more paths, games, tracking, or review features.
+- **Former student**: may keep access after class ends, possibly with alumni review paths.
+- **Teacher/admin**: can manage classes, content, assignments, reports, rosters, and planning tools.
+- **Partner/program learner**: future possibility for community programs, legal aid orgs, libraries, or adult education partners.
+
+### Organization Questions
+
+- Does the app need an organization model, or are classes enough for now?
+- Should a school/program own classes, teachers, students, and reports?
+- Can a user belong to more than one class or program?
+- What happens when a class ends?
+- Can former students keep their progress?
+- Can teachers invite independent users into a class later?
+- Should public users have a different dashboard than enrolled students?
+- Should learner mode be a stable account setting, or should it be based on current enrollment?
+- What content should be global, class-specific, teacher-created, or public-only?
+- What reports should exist for teachers versus admin versus public users?
+
+### Content Access Model
+
+The app needs a clearer content-access model before public launch.
+
+Possible access levels:
+
+- **Draft**: teacher/admin only.
+- **Class released**: visible only when assigned or released to enrolled students.
+- **Public preview**: visible without payment, possibly with limited progress tracking.
+- **Public full**: visible to signed-in public learners.
+- **Paid/supporter**: visible to users with an active plan, if the paid model is adopted.
+- **Archived**: kept for records but not shown in normal browsing.
+
+### Dashboard Model
+
+Each learner type may need a different dashboard priority.
+
+| Learner Type | Dashboard Priority |
+|---|---|
+| Enrolled class student | Next Up, This Week's Path, due dates, class announcements, teacher assignments |
+| Independent learner | Recommended path, personal weekly goal, continue learning, weak-area review |
+| Public/free learner | Start here, sample path, account benefits, useful free practice |
+| Paid/supporter learner | Full path access, milestones, saved progress, review routines |
+| Former student | Keep practicing, review old class topics, maintain confidence |
+| Teacher/admin | classes, students, assignments, reports, planning wiki, content tools |
+
+### Summer Tasks
+
+- [ ] Audit the current user roles, learner modes, class enrollment logic, and dashboard routing.
+- [ ] Map what currently happens for enrolled students, independent learners, teachers, and admin users.
+- [ ] Decide the minimum learner-type model needed before public launch.
+- [ ] Decide whether the app needs `organization`, `program`, or `school` concepts now or later.
+- [ ] Decide how former students should retain access after the year ends.
+- [ ] Define content visibility states clearly.
+- [ ] Define which dashboard each learner type should see.
+- [ ] Identify which reports are class-only and which could apply to independent/public users.
+- [ ] Make sure public access does not accidentally expose class-only assignments, student data, or draft content.
+- [ ] Write a simple account/access policy before adding payment.
+
+### Technical Questions
+
+- Does the current `role` field do too much?
+- Should `learnerMode` remain separate from `role`?
+- Should payment/supporter status be separate from learner type?
+- Should content visibility live on activities, assignments, paths, or all three?
+- Should weekly paths be class-owned, public-owned, or reusable templates?
+- How should progress transfer if a public learner later joins a real class?
+- How should admin screens separate class management from public-user management?
+
+### Test Plan
+
+- [ ] Enrolled student sees class assignments and does not see public/paywall noise.
+- [ ] Independent learner sees a clear guided path without requiring class enrollment.
+- [ ] Public/free learner can try useful content without seeing private class data.
+- [ ] Teacher can manage class students without public users cluttering reports.
+- [ ] Former student access works intentionally, not accidentally.
+- [ ] Admin can distinguish enrolled, independent, public, and paid/supporter users.
+- [ ] Content visibility rules prevent draft or class-only content from leaking into public browsing.
+
 ## Possible First Pilot Weeks
 
 ### Option 1: Health Insurance And Medicine Prices
