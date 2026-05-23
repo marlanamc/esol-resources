@@ -111,7 +111,8 @@ export default async function ActivityPage({ params, searchParams }: Props) {
             gameUi === "pronunciation-listening" ||
             gameUi === "parts-of-speech" ||
             gameUi === "emotion-spin-wheel" ||
-            gameUi === "cafe-catch-up"
+            gameUi === "cafe-catch-up" ||
+            gameUi === "grammar-hospital"
         )
     ) {
         return renderImmersiveActivity(
@@ -291,7 +292,8 @@ function renderImmersiveActivity(
         immersiveGameUi !== "gerund-infinitive" &&
         immersiveGameUi !== "parts-of-speech" &&
         immersiveGameUi !== "timeline-tenses" &&
-        immersiveGameUi !== "emotion-spin-wheel";
+        immersiveGameUi !== "emotion-spin-wheel" &&
+        immersiveGameUi !== "grammar-hospital";
     return (
         <div className="min-h-screen bg-bg flex flex-col">
             {overlays}

@@ -6,6 +6,7 @@
 
 import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
+import { Prisma } from '@prisma/client';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
@@ -47,12 +48,33 @@ export async function GET() {
       weeklyActivityGoal: preferences.weeklyActivityGoal,
       weeklyGoalStartDay: preferences.weeklyGoalStartDay,
       skillFocus: preferences.skillFocus,
+      gameSettings: preferences.gameSettings ?? {},
     });
   } catch (error) {
     return handleApiError(error, {
       defaultMessage: 'Failed to fetch preferences',
     });
   }
+}
+
+// Each game's settings entry must be a plain object. We don't validate the
+// inner shape here — that's the calling component's contract — but we refuse
+// arrays, primitives, and nested non-objects so the JSON column stays sane.
+function isPlainObject(v: unknown): v is Record<string, unknown> {
+  return !!v && typeof v === 'object' && !Array.isArray(v);
+}
+
+function validateGameSettings(value: unknown): { ok: true; value: Record<string, Record<string, unknown>> } | { ok: false; error: string } {
+  if (!isPlainObject(value)) return { ok: false, error: 'gameSettings must be an object keyed by game id' };
+  for (const [gameId, entry] of Object.entries(value)) {
+    if (typeof gameId !== 'string' || gameId.length === 0 || gameId.length > 64) {
+      return { ok: false, error: `gameSettings key "${gameId}" is invalid` };
+    }
+    if (!isPlainObject(entry)) {
+      return { ok: false, error: `gameSettings["${gameId}"] must be an object` };
+    }
+  }
+  return { ok: true, value: value as Record<string, Record<string, unknown>> };
 }
 
 /**
@@ -82,12 +104,14 @@ export async function POST(request: Request) {
       weeklyActivityGoal,
       weeklyGoalStartDay,
       skillFocus,
+      gameSettings,
     } = body as {
       hideVerbExplanations?: boolean;
       learnerMode?: string;
       weeklyActivityGoal?: number;
       weeklyGoalStartDay?: number;
       skillFocus?: string[];
+      gameSettings?: unknown;
     };
 
     if (hideVerbExplanations !== undefined && typeof hideVerbExplanations !== 'boolean') {
@@ -117,12 +141,20 @@ export async function POST(request: Request) {
       }
     }
 
+    let validatedGameSettings: Record<string, Record<string, unknown>> | undefined;
+    if (gameSettings !== undefined) {
+      const result = validateGameSettings(gameSettings);
+      if (!result.ok) return apiError(result.error, 400);
+      validatedGameSettings = result.value;
+    }
+
     const updateData: {
       hideVerbExplanations?: boolean;
       learnerMode?: 'classroom' | 'independent';
       weeklyActivityGoal?: number;
       weeklyGoalStartDay?: number;
       skillFocus?: string[];
+      gameSettings?: Prisma.InputJsonValue;
     } = {};
 
     if (hideVerbExplanations !== undefined) {
@@ -141,6 +173,16 @@ export async function POST(request: Request) {
       updateData.skillFocus = skillFocus;
     }
 
+    if (validatedGameSettings !== undefined) {
+      // Merge per-game so a save for game A doesn't wipe game B's settings.
+      const existing = await prisma.userPreferences.findUnique({
+        where: { userId },
+        select: { gameSettings: true },
+      });
+      const prior = isPlainObject(existing?.gameSettings) ? (existing!.gameSettings as Record<string, Record<string, unknown>>) : {};
+      updateData.gameSettings = { ...prior, ...validatedGameSettings } as Prisma.InputJsonValue;
+    }
+
     // Upsert preferences (create if doesn't exist, update if it does)
     const preferences = await prisma.userPreferences.upsert({
       where: { userId },
@@ -152,6 +194,7 @@ export async function POST(request: Request) {
         weeklyActivityGoal: weeklyActivityGoal ?? 3,
         weeklyGoalStartDay: weeklyGoalStartDay ?? 1,
         skillFocus: skillFocus ?? [],
+        gameSettings: (validatedGameSettings ?? {}) as Prisma.InputJsonValue,
       }
     });
 
@@ -162,6 +205,7 @@ export async function POST(request: Request) {
       weeklyActivityGoal: preferences.weeklyActivityGoal,
       weeklyGoalStartDay: preferences.weeklyGoalStartDay,
       skillFocus: preferences.skillFocus,
+      gameSettings: preferences.gameSettings ?? {},
     });
   } catch (error) {
     return handleApiError(error, {

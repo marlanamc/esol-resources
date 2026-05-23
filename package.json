@@ -61,6 +61,7 @@
     "db:seed:minimal-pairs": "npx tsx prisma/seed-minimal-pairs.ts",
     "db:seed:emotion-spin-wheel": "npx tsx prisma/seed-emotion-spin-wheel.ts",
     "db:seed:trivia": "npx tsx prisma/seed-trivia-game.ts",
+    "db:seed:grammar-hospital": "npx tsx prisma/seed-grammar-hospital.ts",
     "db:seed:pronunciation": "npx tsx prisma/seed-pronunciation-expansion.ts",
     "db:seed:users": "npx tsx prisma/seed-users-only.ts",
     "db:seed:vocab": "node scripts/migrations/update-all-vocab.js && node scripts/content/create-vocab-games.js && npm run db:sync:vocab-review",

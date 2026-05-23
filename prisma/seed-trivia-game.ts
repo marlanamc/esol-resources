@@ -307,7 +307,7 @@ const content: TriviaGameContent = {
           kind: 'write-in',
           label: 'Label EVERY noun, verb, adjective & adverb',
           prompt:
-            '"Yesterday my older brother quietly cooked a delicious dinner for our hungry family."\n\nWrite out the sentence and label every NOUN, VERB, ADJECTIVE, and ADVERB. (Ignore articles, pronouns, and prepositions.)',
+            '"Yesterday my older brother quietly cooked a delicious dinner for our hungry family."\n\nWrite out the sentence and label every word.',
           answer:
             'Yesterday (adverb) · older (adjective) · brother (noun) · quietly (adverb) · cooked (verb) · delicious (adjective) · dinner (noun) · hungry (adjective) · family (noun)',
           note: '9 content words to label — 2 adverbs, 3 adjectives, 3 nouns, 1 verb. Award 1 point per correct label.',

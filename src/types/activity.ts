@@ -638,6 +638,109 @@ export function isTriviaGameContent(value: unknown): value is TriviaGameContent 
     return c["type"] === "trivia-game" && Array.isArray(c["rounds"]);
 }
 
+// =====================================================================
+// Grammar Hospital — diagnose / choose helper / repair drill.
+// Targets adult ESOL learners who default to BE as a universal helper.
+// =====================================================================
+
+export type GrammarHospitalErrorTag =
+    | "wrong-helper"
+    | "verb-form"
+    | "extra-word"
+    | "missing-word"
+    | "word-order";
+
+export type GrammarHospitalPattern = "action" | "state";
+
+export type GrammarHospitalHelper =
+    | "do"
+    | "does"
+    | "be"
+    | "am"
+    | "is"
+    | "are"
+    | "did"
+    | "was"
+    | "were"
+    | "have"
+    | "has"
+    | "had"
+    | "can"
+    | "could"
+    | "should"
+    | "would"
+    | "will";
+
+export type GrammarHospitalTier = "beginner" | "intermediate" | "advanced";
+
+export type GrammarHospitalFocus =
+    | "do-does"
+    | "be-vs-do"
+    | "past-simple"
+    | "present-perfect"
+    | "subject-verb-agreement"
+    | "modals"
+    | "embedded-question"
+    | "question-tag"
+    | "past-perfect"
+    | "future-simple"
+    | "future-perfect"
+    | "present-perfect-continuous"
+    | "past-perfect-continuous"
+    | "mixed-helper";
+
+export interface GrammarHospitalCase {
+    id: string;
+    sentenceType: "question" | "negative" | "statement" | "short-answer";
+    /** action → do/does helper; state → be helper. */
+    pattern: GrammarHospitalPattern;
+    /** The "sick" sentence the learner sees first. */
+    unhealthy: string;
+    /** Optional [start, end) char range to mark in terracotta on the unhealthy sentence. */
+    highlightSpan?: [number, number];
+    /** Primary error(s) — used to score the diagnose step (multi-select). */
+    errorTags: GrammarHospitalErrorTag[];
+    /** Correct helper for this sentence. */
+    correctHelper: GrammarHospitalHelper;
+    /** The healed sentence (canonical correct answer). */
+    healthy: string;
+    /** Optional alternate accepted spellings/contractions for the repair step. */
+    acceptable?: string[];
+    /** Optional tap-to-build tiles. When present, repair uses build mode. */
+    wordBank?: string[];
+    /** Subject phrase ("they", "she") — used in hint copy. */
+    subject?: string;
+    /** Base verb ("work") — used in hint copy. */
+    baseVerb?: string;
+    /** Short, learner-facing explanation shown on feedback. */
+    explanation: string;
+    /** Optional scaffolded hint shown on "Need a hint?" tap. */
+    hint?: string;
+    /** Difficulty tier — defaults to "beginner" when absent. */
+    tier?: GrammarHospitalTier;
+    /** Within-tier complexity 1 (easiest) … 5 (hardest). Defaults to 3. */
+    complexity?: number;
+    /** Primary grammar focus tag — used by the settings filter. */
+    grammarFocus?: GrammarHospitalFocus;
+}
+
+export interface GrammarHospitalContent {
+    type: "grammar-hospital";
+    title: string;
+    description?: string;
+    level?: "beginner" | "intermediate" | "advanced";
+    cases: GrammarHospitalCase[];
+    /** Default 5 — awarded once on full completion. */
+    participationPoints?: number;
+    released?: boolean;
+}
+
+export function isGrammarHospitalContent(value: unknown): value is GrammarHospitalContent {
+    if (!value || typeof value !== "object") return false;
+    const c = value as Record<string, unknown>;
+    return c["type"] === "grammar-hospital" && Array.isArray(c["cases"]);
+}
+
 export type ActivityContent =
     | QuizContent
     | WorksheetContent
@@ -655,6 +758,7 @@ export type ActivityContent =
     | EmotionSpinWheelContent
     | CafeCatchUpContent
     | TriviaGameContent
+    | GrammarHospitalContent
     | Record<string, unknown>;
 
 export interface LegacyGuideResponse {

@@ -454,6 +454,12 @@ export default async function DashboardPage() {
                         icon: UsersIcon,
                     },
                     {
+                        href: "/summer-planning-wiki/index.html",
+                        title: "Summer Planning Wiki",
+                        subtitle: "Read the roadmap, research notes, and class improvement plans.",
+                        icon: BookOpenIcon,
+                    },
+                    {
                         href: "/dashboard/calendar/new",
                         title: "Add Event",
                         subtitle: "Post class dates, due dates, or reminders.",
@@ -622,6 +628,40 @@ export default async function DashboardPage() {
                                         <BarChartIcon className="w-6 h-6 text-secondary mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Reports</span>
                                     </Link>
+                                    <Link
+                                        href="/summer-planning-wiki/index.html"
+                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-amber-200/60 dark:border-amber-800/40 hover:border-amber-300/80"
+                                    >
+                                        <BookOpenIcon className="w-6 h-6 text-amber-700 dark:text-amber-300 mb-2" />
+                                        <span className="text-sm font-semibold text-text text-center">Planning Wiki</span>
+                                    </Link>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div className="dashboard-panel dashboard-panel-hover paper-texture rounded-2xl p-6 group relative overflow-hidden border-amber-200/60 dark:border-amber-800/40">
+                                    <div className="absolute -top-16 -right-10 h-44 w-44 rounded-full bg-gradient-to-br from-amber-200/65 via-teal-200/45 to-fuchsia-200/45 blur-3xl opacity-70 transition-opacity duration-500 group-hover:opacity-95"></div>
+
+                                    <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                        <div className="min-w-0">
+                                            <p className="text-xs font-bold uppercase tracking-widest text-amber-700 dark:text-amber-300">
+                                                Summer Planning
+                                            </p>
+                                            <h2 className="mt-2 text-2xl font-bold font-display text-text">
+                                                Class Improvement Wiki
+                                            </h2>
+                                            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text/70">
+                                                Read the community-class roadmap, app learning path plan, research notes, and resource website plan in one browsable place.
+                                            </p>
+                                        </div>
+                                        <Link
+                                            href="/summer-planning-wiki/index.html"
+                                            className="btn-polish dashboard-soft-button inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-amber-400/70 bg-gradient-to-b from-amber-300 to-orange-300 px-5 py-2.5 text-sm font-semibold text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/50 focus-visible:ring-offset-2"
+                                        >
+                                            Open Wiki
+                                            <span className="arrow-animate">→</span>
+                                        </Link>
+                                    </div>
                                 </div>
                             </section>
 
