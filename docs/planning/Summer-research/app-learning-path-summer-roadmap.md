@@ -534,6 +534,7 @@ Summer direction:
 - Use real student-like errors without shaming anyone.
 - Focus on one small pattern at a time.
 - Pair correction with speaking or writing reuse.
+- Start with **guided pattern discovery** before correction drills — students notice the pattern first, then fix it.
 
 Examples:
 
@@ -543,6 +544,25 @@ Examples:
 - notice missing `-ed`
 - choose the more polite request
 - correct word order in a question
+- discover verb + infinitive: `I plan to move` / `We decided to call` / `She wants to ask` → then fix `I plan moving`
+
+### Pattern Discovery Task Template
+
+Use this reusable format for class warm-ups and app micro tasks:
+
+1. **Show** — 6–8 real sentences from one adult-life topic (work, housing, health, school).
+2. **Ask** — What is the same after these verbs? What word comes next?
+3. **Name** — one-line rule (e.g., "Verbs like plan, decide, want, and need take **to + verb**.").
+4. **Try** — 3–5 "which sounds better?" or fill-in choices.
+5. **Say** — one speaking prompt that requires the pattern ("What do you plan to do about…?").
+
+**First pattern bank:** verb + infinitive (`plan`, `decide`, `want`, `need`, `hope`, `try`).
+
+**Later patterns:** `-ed` endings, question word order, tense choice on a timeline, articles after count/non-count nouns, polite requests.
+
+**App flow:** learn phrase → notice pattern → try → say it → check.
+
+**Class flow:** Tuesday notice activity → grammar station practice → Thursday speaking retrieval.
 
 ### 7. Reflection And Confidence Tracking
 
@@ -713,7 +733,52 @@ Summer direction:
 - Allow make-up work without shame.
 - Treat accountability as adult respect, not punishment.
 
-### 14. Gamification
+### 14. Print And Warm-Up System
+
+Current issue: the class should not drift back into worksheet-heavy teaching.
+
+Summer direction:
+
+- Make the weekly warm-ups the only regular printed worksheet.
+- Keep station cards, quiz prep, game materials, and special printouts as needed, but avoid printing full worksheet packets.
+- Use the app for the guided path, homework, quizzes, review, writing submissions, and completion tracking.
+- Use print for the weekly anchor students physically receive in class.
+
+#### Tuesday Warm-Up
+
+Purpose: introduce the week and make expectations visible.
+
+Front:
+
+- 6 new vocabulary words
+- short grammar practice
+- possible verb or `-ed` noticing
+
+Back:
+
+- weekly class plan
+- student objectives
+- homework of the week
+- quiz topics of the week
+- due dates when relevant
+
+#### Thursday Warm-Up
+
+Purpose: retrieve, review, and transfer the week's learning into real-world literacy and writing.
+
+Possible two-page structure:
+
+- Tuesday vocab retrieval
+- 3 verbs of the week
+- `-ed` endings when relevant
+- grammar review
+- timeline tense practice
+- chart, insurance card, medicine label, newspaper article, bill, public notice, or data-claim evaluation
+- short practical writing task
+
+The warm-up should connect directly to the app path. If the warm-up says the homework, quiz topics, and objectives, the app should show the same week in a guided "do this next" format.
+
+### 15. Gamification
 
 Current issue: gamification should be less about competing against the class and more about personal progress.
 
@@ -855,6 +920,16 @@ Goal: rework the content library so it fits the new class model.
 - [ ] Add dialogue practice to speaking stations.
 - [ ] Add short texts/messages to app homework and writing practice.
 
+### Weekly Warm-Up Conversion
+
+- [ ] Audit the current warm-ups in the worksheet folder.
+- [ ] Create a Tuesday warm-up template with front practice and back weekly plan.
+- [ ] Create a Thursday two-page warm-up template for retrieval, verbs, grammar, real-world literacy, and writing.
+- [ ] Align warm-up sections with the app's weekly path items.
+- [ ] Make sure the warm-up tells students the homework, due dates, and quiz topics.
+- [ ] Decide which station materials still need printing and which can live in the app.
+- [ ] Avoid creating full worksheet packets unless there is a specific reason.
+
 ### Writing Activity Completion
 
 - [ ] Finish the app Writing activity so it can be used regularly in class.
@@ -867,8 +942,10 @@ Goal: rework the content library so it fits the new class model.
 ### Error Correction And Reflection Conversion
 
 - [ ] Create a weekly error-correction micro task format.
+- [ ] Create a reusable pattern-discovery template (show → ask → name → try → say).
+- [ ] Build the first verb + infinitive discovery set (`plan to`, `decided to`, `want to`, `need to`).
 - [ ] Build a small bank of Level 3 "notice the difference" examples.
-- [ ] Add `-ed`, question word order, tense choice, articles, prepositions, and polite requests as recurring correction targets.
+- [ ] Add verb + infinitive, `-ed`, question word order, tense choice, articles, prepositions, and polite requests as recurring correction targets.
 - [ ] Add short confidence/reflection check-ins after weekly paths.
 - [ ] Decide whether reflection belongs in the Writing activity, quiz, or dashboard.
 - [ ] Create a monthly student survey template.

@@ -160,7 +160,48 @@ The grammar can still be present, but it should live inside speaking and interac
 
 Use very few worksheets.
 
-Worksheets should only be used when they clearly support the speaking task, give students a record to keep, or help prepare for a quiz. They should not become the main class activity.
+The regular printed worksheet should be the weekly warm-up from the worksheet folder. Aside from small station materials, quiz prep, cards, or special printouts, the warm-up should be the main thing that needs to be printed for class.
+
+Worksheets should only be used when they clearly support the speaking task, give students a record to keep, help prepare for a quiz, or organize the weekly plan. They should not become the main class activity.
+
+### Weekly Warm-Up System
+
+The warm-up becomes the printed anchor for the week. It is not just filler at the beginning of class. It should carry the vocabulary, grammar, objectives, homework, and quiz accountability in one predictable format.
+
+#### Tuesday Warm-Up
+
+The Tuesday warm-up should introduce the week.
+
+Front:
+
+- 6 new vocabulary words in context
+- short grammar practice connected to the week's real-world topic
+- possibly a quick `-ed` or verb noticing task
+
+Back:
+
+- weekly class plan
+- student objectives for the week
+- homework for the week with due dates
+- quiz topics for the week
+
+The back matters because students should know exactly what the week is about and what they are responsible for. This supports adult accountability without infantilizing them.
+
+#### Thursday Warm-Up
+
+The Thursday warm-up can be two pages because it is doing heavier review and transfer work.
+
+It should include:
+
+- review and retrieval of Tuesday's 6 vocabulary words
+- 3 verbs of the week
+- `-ed` ending practice when relevant
+- review of the grammar topic
+- timeline tense practice when relevant
+- one real-world literacy task, such as evaluating a chart, insurance card, medicine label, bill, newspaper article, public notice, or data claim
+- one short practical writing task
+
+Thursday should feel like students are pulling the week together before the quiz or checkpoint.
 
 ### Summer Work
 
@@ -218,7 +259,75 @@ When planning tense instruction, ask:
 - [ ] Keep short rule explanations, but pair every rule with speaking practice.
 - [ ] Look for ways to teach present simple, past simple, continuous, future, and present perfect together through real topics.
 
-## 5. Start Present Perfect Earlier
+## 5. Use Guided Pattern Discovery
+
+Level 3 students often know rules but hesitate to speak. They need to notice patterns in real language before long explanations or long drills. Guided discovery gives them a reason for the rule and reduces overthinking.
+
+This is not isolated drilling. Discovery comes first. Short practice and speaking come after.
+
+### Example
+
+Show students real sentences like:
+
+- I plan to move closer to work.
+- We plan to call the clinic tomorrow.
+- They decided to change jobs.
+- She wants to ask about the rent.
+- He needs to bring his insurance card.
+
+Then ask: What comes after verbs like `plan`, `decide`, `want`, and `need`?
+
+Students discover: **there is `to` before the next verb.**
+
+Name it lightly: these verbs take **to + verb** (an infinitive). One clear line — not a long lecture.
+
+### The Sequence
+
+1. **Notice** — show 6–8 real sentences about a topic (job change, housing, health, school).
+2. **Discover** — ask what is the same after certain verbs or in certain structures.
+3. **Name lightly** — one clear rule line, not a long lecture.
+4. **Try** — a few low-stakes choices (`I plan to move` vs `I plan moving`).
+5. **Use** — a speaking task that requires the pattern immediately.
+
+Chunk it like: learn → notice → try → say → check.
+
+### Good Drilling vs Weak Drilling
+
+| Good drilling | Weak drilling |
+|---|---|
+| 5–10 items, one pattern, after discovery | 30 blanks before students know why |
+| tied to a real topic | random verb lists with no context |
+| mixed with speaking reuse | worksheets only, no conversation |
+| "Which sounds better?" comparisons | same mistake corrected with no explanation |
+
+### First Pattern To Build: Verb + Infinitive
+
+Start narrow and high-frequency before the full gerund vs infinitive unit:
+
+- **verbs:** plan, decide, want, need, hope, try
+- **frame:** subject + verb + to + verb
+- **topics:** summer plans, job decisions, housing choices, calling a clinic, school meetings
+
+**Sample discovery text:** someone talking about moving, changing jobs, or calling the doctor. Highlight `I plan to…`, `We decided to…`, `She wants to…`, `He needs to…`.
+
+**Optional contrast seed:** `I enjoy working` vs `I plan to work` — plants gerunds later without opening the whole -ing vs to system at once.
+
+### Where It Lives In Class And App
+
+- **Tuesday:** short notice activity before the grammar station
+- **Thursday:** retrieval through speaking ("What do you plan to do this summer?")
+- **App:** weekly "notice the pattern" micro task before full guide content
+- **Spiral review:** revisit in workplace, housing, and advocacy units — not one isolated grammar month
+
+### Summer Work
+
+- [ ] Create a reusable "notice the pattern" classroom routine (5–10 minutes).
+- [ ] Build the first verb + infinitive discovery set for early-year plans and decisions.
+- [ ] Add 3–5 speaking prompts that require `plan to`, `decided to`, `want to`, and `need to`.
+- [ ] Create app-ready "which sounds better?" pairs for verb + infinitive errors.
+- [ ] Map pattern-discovery moments to the year plan before heavy gerund vs infinitive work.
+
+## 6. Start Present Perfect Earlier
 
 Present perfect should start near the beginning of the year instead of waiting until later. Students need repeated exposure over time because it connects to so many adult-life situations.
 
@@ -243,7 +352,7 @@ Introduce present perfect early in a practical way. Do not wait until students a
 - [ ] Add present perfect review questions to later units.
 - [ ] Connect present perfect to timeline tense visuals from the beginning.
 
-## 6. Perfect The Parts Of Speech Guide
+## 7. Perfect The Parts Of Speech Guide
 
 The parts of speech guide needs to become a serious early-year foundation. By May, students should not still be unsure what a noun is.
 
@@ -271,7 +380,7 @@ The guide should be practical, visual, and repeated often. It should help studen
 - [ ] Add parts-of-speech questions to weekly quizzes.
 - [ ] Build a simple diagnostic for the first weeks of class.
 
-## 7. Integrate Timeline Tenses Into Weekly Practice
+## 8. Integrate Timeline Tenses Into Weekly Practice
 
 The timeline tenses work has been one of the biggest supports. Visualizing sentences changes how students understand tense.
 
@@ -295,7 +404,7 @@ Students should regularly answer:
 - [ ] Add present perfect timeline practice early.
 - [ ] Use timelines in quizzes, not only in lessons.
 
-## 8. Reduce Weekly Vocabulary To 6 Words
+## 9. Reduce Weekly Vocabulary To 6 Words
 
 The vocabulary load may have been too heavy this year. Next year, try 6 words per week.
 
@@ -325,7 +434,7 @@ The goal is deeper ownership, not more exposure. Six useful words that students 
 - [ ] Create vocabulary retrieval routines for Thursday.
 - [ ] Decide how to track which words students should retain long-term.
 
-## 9. Start Weekly Learning Quizzes In September
+## 10. Start Weekly Learning Quizzes In September
 
 Weekly quizzes should start in September so the routine is normal from the beginning of the year. Instead of waiting until later or treating quizzes as a special event, students should understand that every week ends with a short check of the language and real-world topic.
 
@@ -366,7 +475,7 @@ The quiz should help answer:
 - [ ] Include parts-of-speech review.
 - [ ] Keep quizzes short enough to grade and review consistently.
 
-## 10. Make Homework Clear And Accountable
+## 11. Make Homework Clear And Accountable
 
 Homework should be clearer next year, and the app can support that.
 
@@ -420,7 +529,7 @@ The message to students should be:
 - [ ] Create language for explaining homework accountability respectfully to adult students.
 - [ ] Decide how make-up work and late work should function.
 
-## 11. Practice -ed Endings Every Day
+## 12. Practice -ed Endings Every Day
 
 Every class day should include practice with `-ed` endings. Yes, every day.
 
@@ -478,7 +587,7 @@ Try building the routine around sound groups, listening, and repetition:
 - [ ] Add `-ed` practice to Tuesday stations and Thursday review.
 - [ ] Create teacher correction language for quick, low-pressure pronunciation feedback.
 
-## 12. Rethink Gamification Around Individual Progress
+## 13. Rethink Gamification Around Individual Progress
 
 Gamification should focus more on individual motivation and regular usage, not only competition against the class.
 
@@ -532,9 +641,11 @@ This is a draft structure to test next year.
 ### Tuesday
 
 - introduce the real-world topic of the week
+- use the Tuesday warm-up as the printed weekly anchor
 - introduce 6 vocabulary words in context
 - introduce or review 3 verbs of the week
 - practice `-ed` endings briefly
+- run a short pattern-discovery notice activity when introducing grammar (5–10 minutes)
 - run station rotations as the main class structure
 - include speaking games, role-plays, partner conversations, and grammar stations
 - connect grammar to timeline visuals when relevant
@@ -542,6 +653,7 @@ This is a draft structure to test next year.
 
 ### Thursday
 
+- use the Thursday warm-up for retrieval, review, real-world literacy, and short writing
 - retrieve and reuse the 6 vocabulary words
 - retrieve and reuse the 3 verbs of the week
 - practice `-ed` endings briefly
@@ -558,6 +670,8 @@ This is a draft structure to test next year.
 - [ ] Build Tuesday station routines centered on speaking.
 - [ ] Reduce worksheet-heavy lessons and replace them with conversation tasks.
 - [ ] Rework tense instruction so it is more spiral, practical, and connected to real topics.
+- [ ] Build guided pattern-discovery routines (notice → name → try → speak).
+- [ ] Create the first verb + infinitive discovery set for plans and decisions.
 - [ ] Move present perfect earlier in the year plan.
 - [ ] Rewrite the parts of speech guide as an early-year foundation.
 - [ ] Identify grammar guides that should become more like the medical guides.
