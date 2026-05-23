@@ -185,6 +185,7 @@ model Assignment {
   instructions        String?
   dueDate             DateTime?
   isFeatured          Boolean              @default(false)
+  isRequired          Boolean              @default(true)
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
   activityProgress    ActivityProgress[]

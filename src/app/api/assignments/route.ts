@@ -109,7 +109,11 @@ export async function PATCH(request: NextRequest) {
         const body = await request.json();
         const validated = parseApiBody(AssignmentPatchBodySchema, body);
         if (!validated.ok) return validated.response;
-        const { assignmentId, isFeatured, syncToSectionGroup } = validated.data;
+        const { assignmentId, isFeatured, isRequired, syncToSectionGroup } = validated.data;
+
+        const updateData: { isFeatured?: boolean; isRequired?: boolean } = {};
+        if (isFeatured !== undefined) updateData.isFeatured = isFeatured;
+        if (isRequired !== undefined) updateData.isRequired = isRequired;
 
         // Verify teacher owns the class that the assignment belongs to
         const assignment = await prisma.assignment.findUnique({
@@ -137,7 +141,7 @@ export async function PATCH(request: NextRequest) {
                 });
                 const sectionIds = sections.map((section) => section.id);
 
-                if (isFeatured) {
+                if (isFeatured === true) {
                     const existingAssignments = await tx.assignment.findMany({
                         where: {
                             classId: { in: sectionIds },
@@ -157,6 +161,7 @@ export async function PATCH(request: NextRequest) {
                                 instructions: assignment.instructions,
                                 dueDate: assignment.dueDate,
                                 isFeatured: true,
+                                isRequired: assignment.isRequired,
                             })),
                         });
                     }
@@ -167,7 +172,7 @@ export async function PATCH(request: NextRequest) {
                         classId: { in: sectionIds },
                         activityId: assignment.activityId,
                     },
-                    data: { isFeatured },
+                    data: updateData,
                 });
                 updatedCount = syncResult.count;
 
@@ -178,7 +183,7 @@ export async function PATCH(request: NextRequest) {
 
             return tx.assignment.update({
                 where: { id: assignmentId },
-                data: { isFeatured },
+                data: updateData,
             });
         });
 

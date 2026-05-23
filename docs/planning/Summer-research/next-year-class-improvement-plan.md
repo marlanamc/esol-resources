@@ -329,7 +329,9 @@ Start narrow and high-frequency before the full gerund vs infinitive unit:
 
 ## 6. Start Present Perfect Earlier
 
-Present perfect should start near the beginning of the year instead of waiting until later. Students need repeated exposure over time because it connects to so many adult-life situations.
+**Decision (2026):** Present perfect intro moves to **September Unit 1, Week 4**. Verb forms overview (v1, v1-3rd, v1-ing, v2, v3) starts **Week 3** so weekly verb quizzes have a shared language from the beginning of the year.
+
+Present perfect should start near the beginning of the year instead of waiting until later. Students need repeated exposure over time because it connects to so many adult-life situations. Level 2 teachers report students requesting present perfect by end of year — September intro meets them where they are ready.
 
 ### Why
 
@@ -345,12 +347,29 @@ Present perfect shows up in:
 
 Introduce present perfect early in a practical way. Do not wait until students are "ready" for the whole grammar explanation. Start with useful sentence frames and build from there.
 
+September Week 4 = short intro only. October+ = spiral in community contexts. **March Unit 7, Weeks 2–3** = in-depth block where **present perfect and present perfect continuous are taught together** (career stories, work experience).
+
+### Present Perfect + Present Perfect Continuous (Paired — March)
+
+When present perfect gets real class time, teach **perfect and perfect continuous together** — not PPC alone weeks later.
+
+| Form | Example frame | Career context |
+|---|---|---|
+| Present perfect | "I have worked at three restaurants." | Completed experience, life history |
+| Present perfect continuous | "I have been working there for two years." | Duration, ongoing situation |
+
+This pairing worked well in practice: students see both forms in the same topic (work history) instead of learning PPC in isolation.
+
 ### Summer Work
 
-- [ ] Decide where present perfect should first appear in the year plan.
-- [ ] Create simple early-year present perfect routines.
-- [ ] Add present perfect review questions to later units.
-- [ ] Connect present perfect to timeline tense visuals from the beginning.
+- [x] Decide where present perfect should first appear in the year plan → **September Unit 1, Week 4**
+- [x] Decide where present perfect goes in depth → **March Unit 7, Weeks 2–3 (PP + PPC paired)**
+- [ ] Create simple early-year present perfect routines (life experience frames on warm-up)
+- [ ] Add verb form chart (v1 / v1-3rd / v1-ing / v2 / v3) to Week 3 warm-up backs
+- [ ] Update weekly verb quizzes to use form codes from September Week 3 on
+- [ ] Build March career-unit materials with PP + PPC side by side (not PPC-only weeks)
+- [ ] Add present perfect review questions to later units
+- [ ] Connect present perfect to timeline tense visuals from the beginning
 
 ## 7. Perfect The Parts Of Speech Guide
 
@@ -789,7 +808,7 @@ This is a draft structure to test next year.
 - [ ] Rework tense instruction so it is more spiral, practical, and connected to real topics.
 - [ ] Build guided pattern-discovery routines (notice → name → try → speak).
 - [ ] Create the first verb + infinitive discovery set for plans and decisions.
-- [ ] Move present perfect earlier in the year plan.
+- [x] Move present perfect earlier in the year plan → September Week 4.
 - [ ] Rewrite the parts of speech guide as an early-year foundation.
 - [ ] Identify grammar guides that should become more like the medical guides.
 - [ ] Explore microlearning modules and learning paths instead of long grammar guides.
@@ -811,7 +830,7 @@ This is a draft structure to test next year.
 - How short should a microlearning module be for students to actually finish it?
 - Which tense topics deserve full lessons, and which should become spiral review?
 - How can tense rules build confidence without taking over class?
-- How early should present perfect begin?
+- ~~How early should present perfect begin?~~ → **September Unit 1, Week 4** (verb forms chart Week 3).
 - How often should parts of speech be reviewed?
 - How can `-ed` endings be practiced every class day without making it feel repetitive in a bad way?
 - What station routines can be reused every Tuesday with minimal prep?

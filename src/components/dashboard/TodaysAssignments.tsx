@@ -20,6 +20,7 @@ import { ActivityLink } from '@/components/navigation/ActivityLink';
 import { StudentQuickStats } from '@/components/dashboard/StudentQuickStats';
 import type { DailyChecklistHabit } from '@/lib/daily-habits';
 import { getLearnerCategoryTone } from '@/lib/learner-theme';
+import { getAssignmentDueDisplay, isAssignmentRequired, type DueDisplayMeta } from '@/lib/catch-up-deadlines';
 import {
     useFeaturedAssignments,
     AssignmentCard,
@@ -50,6 +51,8 @@ interface Props {
     showStudentStats?: boolean;
     /** Hide the overall progress bar (useful when progress is shown elsewhere, e.g. independent dashboard) */
     hideProgressBar?: boolean;
+    /** Optional anchor id for in-page links (e.g. catch-up card) */
+    sectionId?: string;
 }
 
 interface VocabProgressInfo {
@@ -59,10 +62,7 @@ interface VocabProgressInfo {
     categoryData: VocabCategoryData;
 }
 
-interface DueMeta {
-    label: string;
-    tone: 'overdue' | 'today' | 'tomorrow' | 'upcoming';
-}
+interface DueMeta extends DueDisplayMeta {}
 
 interface NormalizedChecklistRow {
     assignment: FeaturedAssignment;
@@ -121,32 +121,32 @@ function formatWeekRangeLabel(referenceDate: Date): string {
     return `Week of ${startMonth} ${startDay}-${endMonth} ${endDay}`;
 }
 
-function formatDueDate(dueDate?: string | Date | null) {
-    if (!dueDate) return null;
-    const date = dueDate instanceof Date ? dueDate : new Date(dueDate);
-    if (Number.isNaN(date.getTime())) return null;
-    return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+function getFriendlyDueMeta(dueDate?: string | Date | null): DueMeta | null {
+    return getAssignmentDueDisplay(dueDate);
 }
 
-function getFriendlyDueMeta(dueDate?: string | Date | null): DueMeta | null {
-    if (!dueDate) return null;
-
-    const date = dueDate instanceof Date ? new Date(dueDate) : new Date(dueDate);
-    if (Number.isNaN(date.getTime())) return null;
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    date.setHours(0, 0, 0, 0);
-
-    const diffDays = Math.round((date.getTime() - today.getTime()) / 86_400_000);
-    const formatted = formatDueDate(date);
-    if (!formatted) return null;
-
-    if (diffDays < 0) return { label: formatted, tone: 'overdue' };
-    if (diffDays === 0) return { label: 'Due today', tone: 'today' };
-    if (diffDays === 1) return { label: 'Due tomorrow', tone: 'tomorrow' };
-
-    return { label: formatted, tone: 'upcoming' };
+function RequirementBadge({ isRequired }: { isRequired?: boolean }) {
+    const required = isAssignmentRequired(isRequired);
+    return (
+        <span
+            className="inline-flex items-center rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide"
+            style={
+                required
+                    ? {
+                          backgroundColor: 'color-mix(in srgb, var(--secondary) 14%, transparent)',
+                          borderColor: 'color-mix(in srgb, var(--secondary) 28%, transparent)',
+                          color: 'var(--secondary)',
+                      }
+                    : {
+                          backgroundColor: 'var(--surface-subtle)',
+                          borderColor: 'var(--border-subtle)',
+                          color: 'var(--text-color-muted)',
+                      }
+            }
+        >
+            {required ? 'Required' : 'Optional'}
+        </span>
+    );
 }
 
 function isNewlyFeatured(assignment: FeaturedAssignment) {
@@ -258,6 +258,12 @@ function DueBadge({ dueMeta }: { dueMeta: DueMeta }) {
             backgroundColor: 'rgba(240, 160, 128, 0.14)',
             borderColor: 'rgba(240, 160, 128, 0.28)',
             color: 'var(--tone-quizzes-chip-text)',
+        };
+    } else if (dueMeta.tone === 'makeup') {
+        style = {
+            backgroundColor: 'color-mix(in srgb, var(--secondary) 14%, transparent)',
+            borderColor: 'color-mix(in srgb, var(--secondary) 28%, transparent)',
+            color: 'var(--secondary)',
         };
     } else if (dueMeta.tone === 'upcoming') {
         style = {
@@ -570,6 +576,7 @@ function ChecklistAssignments({
     weeklyRangeLabel,
     showStudentStats = false,
     hideProgressBar = false,
+    sectionId,
 }: {
     assignments: FeaturedAssignment[];
     pinnedHabit?: DailyChecklistHabit | null;
@@ -582,6 +589,7 @@ function ChecklistAssignments({
     weeklyRangeLabel: string | null;
     showStudentStats?: boolean;
     hideProgressBar?: boolean;
+    sectionId?: string;
 }) {
     const [activeFilter, setActiveFilter] = useState<string>('all');
 
@@ -661,6 +669,11 @@ function ChecklistAssignments({
 
         return a.index - b.index;
     });
+
+    const nextUpRow =
+        sortedRows.find(
+            (row) => !row.isCompleted && !row.isGameRow && isAssignmentRequired(row.assignment.isRequired)
+        ) ?? null;
 
     const checklistRows = rows.filter((row) => !row.isGameRow);
     const completedCount = checklistRows.filter((row) => row.isCompleted).length;
@@ -788,6 +801,7 @@ function ChecklistAssignments({
                                 {showCategoryChip.label}
                             </span>
                         )}
+                        <RequirementBadge isRequired={row.assignment.isRequired} />
                         {(() => {
                             const vocabType = getVocabActivityType(row.assignment.activityId);
                             if (!vocabType) return null;
@@ -914,6 +928,7 @@ function ChecklistAssignments({
                                     New
                                 </span>
                             )}
+                            <RequirementBadge isRequired={row.assignment.isRequired} />
                             {!row.isCompleted && row.dueMeta ? <DueBadge dueMeta={row.dueMeta} /> : null}
                             {showProgressSummary ? (
                                 <span className="text-[10px] font-medium text-text-muted">{row.progressSummary}</span>
@@ -1030,7 +1045,7 @@ function ChecklistAssignments({
     );
 
     return (
-        <div className="mb-8">
+        <div className="mb-8" id={sectionId}>
             <div
                 className={`overflow-hidden rounded-2xl border surface-card-shadow ${isFullyComplete ? 'ring-2 ring-[var(--tone-speaking-border)] celebrate-complete' : ''}`}
                 style={{
@@ -1127,6 +1142,42 @@ function ChecklistAssignments({
                         </div>
                     )}
                 </div>
+
+                {nextUpRow && !isFullyComplete ? (
+                    <div
+                        className="mx-3 mb-1 mt-1 rounded-xl border px-3.5 py-3 sm:mx-4 sm:px-4"
+                        style={{
+                            borderColor: 'color-mix(in srgb, var(--primary) 28%, var(--dashboard-border))',
+                            background: 'linear-gradient(135deg, color-mix(in srgb, var(--primary) 6%, var(--dashboard-surface-start)) 0%, var(--dashboard-surface-end) 100%)',
+                        }}
+                    >
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                            <div className="min-w-0">
+                                <p className="text-[10px] font-bold uppercase tracking-widest text-primary">Next up</p>
+                                <p className="mt-0.5 truncate text-sm font-semibold text-text">{nextUpRow.displayTitle}</p>
+                                {!nextUpRow.isCompleted && nextUpRow.dueMeta ? (
+                                    <div className="mt-1.5">
+                                        <DueBadge dueMeta={nextUpRow.dueMeta} />
+                                    </div>
+                                ) : null}
+                            </div>
+                            <ActivityLink
+                                activityId={nextUpRow.assignment.activityId}
+                                assignmentId={nextUpRow.assignment.assignmentId ?? nextUpRow.assignment.id}
+                                href={nextUpRow.assignment.href}
+                                className="dashboard-accent-button inline-flex shrink-0 items-center justify-center gap-1.5 self-start rounded-full px-4 py-2 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+                                style={{
+                                    '--dashboard-button-accent': nextUpRow.categoryStyle.accent,
+                                    '--dashboard-button-text': nextUpRow.categoryStyle.accent,
+                                } as React.CSSProperties}
+                                aria-label={`${nextUpRow.actionLabel} ${nextUpRow.displayTitle}`}
+                            >
+                                <span>{nextUpRow.actionLabel}</span>
+                                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                            </ActivityLink>
+                        </div>
+                    </div>
+                ) : null}
 
                 <div className="lg:hidden border-b" style={{ backgroundColor: 'var(--surface-subtle)', borderColor: 'var(--dashboard-divider)' }}>
                     <div className="flex items-center gap-2 px-3 py-2.5 overflow-x-auto no-scrollbar mask-edges">
@@ -1325,6 +1376,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     refreshOnMount = false,
     showStudentStats = false,
     hideProgressBar = false,
+    sectionId,
 }) => {
     const { assignments, loading } = useFeaturedAssignments({
         initialAssignments,
@@ -1446,6 +1498,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                 weeklyRangeLabel={weeklyRangeLabel}
                 showStudentStats={showStudentStats}
                 hideProgressBar={hideProgressBar}
+                sectionId={sectionId}
             />
         );
     }

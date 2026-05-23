@@ -24,7 +24,7 @@
     "test:sanitize": "node --import tsx --test scripts/tests/sanitize-security.test.ts",
     "test:validators-env": "node --import tsx --test scripts/tests/validators-env-boundary.test.ts",
     "test:db-guard": "node --import tsx --test scripts/tests/require-safe-db-target.test.ts",
-    "test:vocab-review": "node --import tsx --test scripts/tests/vocab-review.test.ts",
+    "test:catch-up-deadlines": "node --import tsx --test scripts/tests/catch-up-deadlines.test.ts",
     "test:critical": "npm run test:gamification && npm run test:activity-submit && npm run test:exercise-answer-normalization && npm run test:activity-submit:contract && npm run test:activity-progress:merge && npm run test:activity-progress:points && npm run test:assignments-featured && npm run test:classes-join && npm run test:submission-points-claim && npm run test:sanitize && npm run test:validators-env && npm run test:db-guard && npm run test:vocab-review",
     "test:vitest": "vitest run",
     "test:coverage": "vitest run --coverage",

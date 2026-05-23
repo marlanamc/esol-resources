@@ -27,7 +27,8 @@ import {
     TodaysAssignments,
     ClearFeaturedButton,
     ClassAnnouncement,
-    InviteFriendsCard
+    InviteFriendsCard,
+    MissedClassCatchUpCard,
 } from "@/components/dashboard";
 import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
 import { isTeacherAdmin } from "@/lib/roles";
@@ -1048,13 +1049,15 @@ export default async function DashboardPage() {
 
                             <ClassAnnouncement announcements={classAnnouncements} />
 
-                            {/* This Week's Activities */}
-                            <section>
+                            <MissedClassCatchUpCard />
+
+                            <section aria-label="This Week's Path">
                                 <TodaysAssignments
                                     initialAssignments={featuredAssignments}
-                                    title="Weekly Checklist"
+                                    title="This Week's Path"
                                     ctaLabel="Start"
                                     variant="checklist"
+                                    sectionId="weekly-path"
                                     pinnedHabit={dailyVocabHabit}
                                     mobileTasksLinkHref="/dashboard/activities"
                                     mobileTasksLinkLabel="All Activities"

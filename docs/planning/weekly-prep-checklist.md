@@ -1,7 +1,9 @@
 # Weekly Prep Checklist
-## ESOL Level 3 - Spring 2026
+## ESOL Level 3
 
 Use this checklist each week to ensure you're ready for Tuesday and Thursday classes.
+
+**Assessment note:** Weekly **app quizzes** on Thursdays — no separate unit quizzes. **Pre-test** in September, **post-test** in June (before end-of-year party).
 
 ---
 
@@ -36,7 +38,7 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 - [ ] Print Thursday warm-up worksheet
 - [ ] Prepare phonics/pronunciation materials
 - [ ] Prepare vocabulary retrieval activity (matching cards, etc.)
-- [ ] Print unit quiz if scheduled this week
+- [ ] Confirm weekly app quiz is published and due (Thursday)
 
 **Content Review**
 - [ ] Review Tuesday's grammar - what did students struggle with?
@@ -62,7 +64,7 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 **Looking Ahead**
 - [ ] Next week's grammar topic: _______________________
 - [ ] Any materials to create/find: _______________________
-- [ ] Unit quiz coming up? Date: _______________________
+- [ ] Pre-test or post-test window this month? Date: _______________________
 
 ---
 
@@ -135,7 +137,7 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 ### Week 21 (Feb 10-12): Past Perfect
 - [ ] Tuesday prep complete
 - [ ] Thursday prep complete
-- [ ] Unit 5 Quiz (Thursday)
+- [ ] Weekly app quiz published (Thursday)
 - [ ] End of week wrap-up
 
 ### Feb 17-19: VACATION WEEK
@@ -154,7 +156,7 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 ### Week 24 (Mar 10-12): Present Perfect Continuous
 - [ ] Tuesday prep complete
 - [ ] Thursday prep complete
-- [ ] Unit 6 Quiz (Thursday)
+- [ ] Weekly app quiz published (Thursday)
 - [ ] End of week wrap-up
 
 ### Week 25 (Mar 17-19): Present Perfect Continuous (continued)
@@ -180,7 +182,7 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 ### Week 29 (Apr 14-16): Advice Modals & Imperatives
 - [ ] Tuesday prep complete
 - [ ] Thursday prep complete
-- [ ] Unit 7 Quiz (Thursday)
+- [ ] Weekly app quiz published (Thursday)
 - [ ] End of week wrap-up
 
 ### Apr 21-23: VACATION WEEK
@@ -199,7 +201,7 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 ### Week 32 (May 12-14): Used To Structures
 - [ ] Tuesday prep complete
 - [ ] Thursday prep complete
-- [ ] Unit 8 Quiz (Thursday)
+- [ ] Weekly app quiz published (Thursday)
 - [ ] End of week wrap-up
 
 ### Week 33 (May 19-21): Future Conditional
@@ -220,11 +222,10 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 ### Week 36 (Jun 9-11): Perfect Tenses Review
 - [ ] Tuesday prep complete
 - [ ] Thursday prep complete
-- [ ] Unit 9 Quiz (Thursday)
 - [ ] End of week wrap-up
 
-### Week 37 (Jun 16-18): Finals Week
-- [ ] Tuesday prep complete (presentations)
-- [ ] Thursday prep complete (exit interviews)
-- [ ] Course evaluations ready
+### Week 37 (Jun 16-18): End of Year
+- [ ] **Post-test** scheduled (June Week 1 if not done yet)
+- [ ] End-of-year **party** prep (last class — no presentations)
+- [ ] Course evaluations ready if required
 - [ ] Celebrate finishing the year!

@@ -22,6 +22,7 @@
         <a href="summer-work-map.html" data-slug="summer-work-map">Summer Work Map</a>
 <a href="nrs-coverage-gap-plan.html" data-slug="nrs-coverage-gap-plan">NRS 3–4 Coverage Gap Plan</a>
 <a href="absent-student-catch-up-plan.html" data-slug="absent-student-catch-up-plan">Absent Student Catch-Up Plan</a>
+<a href="school-year-at-a-glance.html" data-slug="school-year-at-a-glance">School Year At A Glance</a>
 <a href="september-app-onboarding-plan.html" data-slug="september-app-onboarding-plan">September App Onboarding Plan</a>
 <a href="class-improvement-plan.html" data-slug="class-improvement-plan">Class Improvement Plan</a>
 <a href="app-learning-path-roadmap.html" data-slug="app-learning-path-roadmap">App Learning Path Roadmap</a>
@@ -75,7 +76,7 @@
 <p>Adult ESOL students miss class for real reasons: work shifts, childcare, illness, appointments, and transportation. Absence should not become confusion, shame, or a reason to stop coming.</p>
 <p>Next year's goal: <strong>every absent student opens the app and finishes the required weekly path</strong> — short enough to complete before the next class.</p>
 <p>Students are <strong>expected to use Class Companion weekly (often daily)</strong> and can rent a Chromebook. Catch-up is not a separate system — it is the same <strong>This Week's Path</strong> with a make-up deadline. Students who missed class do not need a different set of instructions after September Week 2.</p>
-<p>September onboarding (login, navigation, scavenger hunt): <strong><a href="september-app-onboarding-plan.md">September App And Chromebook Onboarding Plan</a></strong></p>
+<p>September onboarding (login, navigation, scavenger hunt): <strong><a href="september-app-onboarding-plan.html">September App And Chromebook Onboarding Plan</a></strong></p>
 <ul>
 <li>Tuesday warm-up <strong>back</strong> = weekly plan on paper</li>
 <li>App <strong>weekly path</strong> = ordered tasks with due dates</li>
@@ -95,9 +96,9 @@
 <p>&gt;</p>
 <blockquote>1. Go to <strong>myesolclass.com</strong> and log in</blockquote>
 <blockquote>2. Open <strong>This Week's Path</strong></blockquote>
-<blockquote>2. Complete the <strong>Required</strong> items you missed</blockquote>
-<blockquote>3. Know this week's <strong>6 vocabulary words</strong> and <strong>3 verbs</strong></blockquote>
-<blockquote>4. Be ready for the <strong>quiz</strong> (or complete the make-up quiz by the extended deadline)</blockquote>
+<blockquote>3. Complete the <strong>Required</strong> items you missed</blockquote>
+<blockquote>4. Know this week's <strong>6 vocabulary words</strong> and <strong>3 verbs</strong></blockquote>
+<blockquote>5. Be ready for the <strong>quiz</strong> (or complete the make-up quiz by the extended deadline)</blockquote>
 <p>&gt;</p>
 <blockquote>You do not need to redo partner speaking stations at home. You do need the language from the week so you can join class prepared.</blockquote>
 <p>&gt;</p>
@@ -194,12 +195,13 @@ Questions? Ask me at the start of class.</code></pre>
 Partner stations are in-class only. App + vocab + quiz = your catch-up.</code></pre>
 <p>Students who were present also benefit — they see the same expectations.</p>
 <h2 id="app-integration-summer-build">App Integration (Summer Build)</h2>
-<p>The catch-up plan works on paper now. These app changes make it automatic:</p>
+<p>Implemented in the app (May 2026):</p>
 <ul>
-<li>[ ] Pin a <strong>Missed class? Start here</strong> link on the student dashboard (same URL/section every week)</li>
-<li>[ ] Label path items <strong>Required</strong> vs <strong>Optional</strong> clearly</li>
-<li>[ ] Show <strong>This Week's Path</strong> above the category browse menu</li>
-<li>[ ] Allow quiz submission after class with make-up deadline (or teacher-extended due date on assignment)</li>
+<li>[x] Pin a <strong>Missed class? Start here</strong> card on the student dashboard (links to <code>#weekly-path</code>)</li>
+<li>[x] Label path items <strong>Required</strong> vs <strong>Optional</strong> (<code>Assignment.isRequired</code> + teacher toggle)</li>
+<li>[x] Show <strong>This Week's Path</strong> as the checklist title above browse menu</li>
+<li>[x] Make-up deadline labels on path items (Monday 6pm policy via <code>catch-up-deadlines.ts</code>)</li>
+<li>[x] <strong>Next up</strong> banner highlights the first incomplete required task</li>
 <li>[ ] Optional future: dashboard note when student was marked absent — &quot;You missed Tuesday. Here is your catch-up path.&quot;</li>
 </ul>
 <h2 id="connection-to-gamification">Connection To Gamification</h2>
@@ -224,24 +226,24 @@ Partner stations are in-class only. App + vocab + quiz = your catch-up.</code></
 <ul>
 <li>[ ] Adopt make-up deadline policy (Monday 6pm default)</li>
 <li>[ ] Add catch-up block to Tuesday warm-up back template</li>
-<li>[ ] Save weekly announcement template in teacher prep folder</li>
+<li>[ ] Save weekly announcement template in teacher prep folder — see <code>docs/planning/catch-up-templates/</code></li>
 <li>[ ] Add student-facing catch-up language to syllabus / first-week slides</li>
 </ul>
 <h3 id="class-materials">Class materials</h3>
 <ul>
 <li>[ ] Update weekly prep checklist with &quot;post catch-up announcement&quot;</li>
-<li>[ ] Create one-page <strong>Missed Class?</strong> handout for September (English + Spanish summary)</li>
+<li>[x] Create one-page <strong>Missed Class?</strong> handout for September (English + Spanish summary) — <code>docs/planning/catch-up-templates/missed-class-handout.html</code></li>
 <li>[ ] Teach the catch-up routine in Week 1 so it is normal by Week 2</li>
 </ul>
 <h3 id="app">App</h3>
 <ul>
-<li>[ ] Required vs optional flags on weekly path items</li>
-<li>[ ] Pinned catch-up entry point on dashboard</li>
-<li>[ ] Quiz make-up due dates on assignments</li>
+<li>[x] Required vs optional flags on weekly path items</li>
+<li>[x] Pinned catch-up entry point on dashboard</li>
+<li>[x] Quiz make-up due dates on assignments (display labels)</li>
 <li>[ ] Teacher view: who completed path vs who was absent (for outreach, not punishment)</li>
 </ul>
 <h2 id="connection-to-other-summer-plans">Connection To Other Summer Plans</h2>
-<div class="table-wrap"><table><thead><tr><th>Document</th><th>Connection</th></tr></thead><tbody><tr><td><a href="next-year-class-improvement-plan.md">Class Improvement Plan</a></td><td>Section 15 summarizes this plan; warm-up system Section 3</td></tr><tr><td><a href="app-learning-path-summer-roadmap.md">App Learning Path Roadmap</a></td><td>Weekly path, homework, and dashboard work enable catch-up</td></tr><tr><td><a href="../weekly-prep-checklist.md">Weekly Prep Checklist</a></td><td>Teacher posting routine</td></tr><tr><td><a href="nrs-level-3-4-coverage-gap-plan.md">NRS Coverage Gap Plan</a></td><td>Phone/school communication helps absent students message teacher</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Document</th><th>Connection</th></tr></thead><tbody><tr><td><a href="class-improvement-plan.html">Class Improvement Plan</a></td><td>Section 15 summarizes this plan; warm-up system Section 3</td></tr><tr><td><a href="app-learning-path-roadmap.html">App Learning Path Roadmap</a></td><td>Weekly path, homework, and dashboard work enable catch-up</td></tr><tr><td><a href="../weekly-prep-checklist.html">Weekly Prep Checklist</a></td><td>Teacher posting routine</td></tr><tr><td><a href="nrs-coverage-gap-plan.html">NRS Coverage Gap Plan</a></td><td>Phone/school communication helps absent students message teacher</td></tr></tbody></table></div>
 <h2 id="working-thesis">Working Thesis</h2>
 <p>Busy adults do not need more guilt about attendance. They need <strong>one repeatable way back in</strong> — short, dignified, and tied to the same weekly path everyone else uses.</p>
 <p>If catch-up is always the same shape, students spend their limited time <strong>doing the work</strong>, not figuring out what the work is.</p>

@@ -22,6 +22,13 @@ const docs = [
       "One repeatable catch-up path for busy adult learners: required app tasks, make-up deadlines, and warm-up/announcement templates.",
   },
   {
+    file: "school-year-at-a-glance.md",
+    slug: "school-year-at-a-glance",
+    label: "School Year At A Glance",
+    description:
+      "Basic month-by-month map of all ten units, with short December/June and February/April vacation weeks noted.",
+  },
+  {
     file: "september-app-onboarding-plan.md",
     slug: "september-app-onboarding-plan",
     label: "September App Onboarding Plan",
@@ -69,6 +76,38 @@ const customPages = [
 
 const wikiPages = [...customPages, ...docs];
 
+const wikiHrefBySourceFile = new Map(
+  docs.map((doc) => [doc.file, `${doc.slug}.html`]),
+);
+
+function resolveWikiHref(href) {
+  if (
+    !href ||
+    href.startsWith("http://") ||
+    href.startsWith("https://") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("#")
+  ) {
+    return href;
+  }
+
+  const hashIndex = href.indexOf("#");
+  const pathPart = hashIndex === -1 ? href : href.slice(0, hashIndex);
+  const hash = hashIndex === -1 ? "" : href.slice(hashIndex);
+
+  if (!pathPart.endsWith(".md")) {
+    return href;
+  }
+
+  const fileName = path.basename(pathPart);
+  const htmlPath = wikiHrefBySourceFile.get(fileName);
+  if (htmlPath) {
+    return `${htmlPath}${hash}`;
+  }
+
+  return href.replace(/\.md(?=#|$)/, ".html");
+}
+
 const navItems = wikiPages
   .map(
     (doc) =>
@@ -97,7 +136,7 @@ function inlineMarkdown(value) {
   html = html.replace(
     /\[([^\]]+)\]\(([^)]+)\)/g,
     (_, text, href) =>
-      `<a href="${escapeHtml(href)}">${inlineMarkdown(text)}</a>`,
+      `<a href="${escapeHtml(resolveWikiHref(href))}">${inlineMarkdown(text)}</a>`,
   );
   html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
   html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");

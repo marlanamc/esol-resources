@@ -194,7 +194,7 @@ Every weekly path should answer:
 | 2 | Micro grammar module | Teach one useful grammar move in context |
 | 3 | Game or practice round | Make the grammar active and repeatable |
 | 4 | Vocabulary task | Practice 6 required weekly words |
-| 5 | Verb and pronunciation task | Practice 3 verbs plus `-ed` endings when relevant |
+| 5 | Verb and pronunciation task | Practice 3 verbs in **v1 / v1-3rd / v1-ing / v2 / v3** (from September Week 3) plus `-ed` endings when relevant |
 | 6 | Speaking or homework task | Prepare students to use the language in class or real life |
 | 7 | Weekly quiz/checkpoint | Check the language and topic understanding |
 
@@ -226,7 +226,7 @@ Full audit, unit mapping, and checklist: **[NRS Level 3–4 Coverage Gap Plan](n
 
 | Month | Unit | Add to weekly path |
 |---|---|---|
-| September | Getting to Know You | **App login + scavenger hunt**, school notices, parent messages |
+| September | Getting to Know You | **App login + scavenger hunt**, **verb forms chart (Week 3)**, **present perfect intro (Week 4)**, school notices, parent messages |
 | October | Daily Life in the Community | Transportation, **digital literacy Layer 2**, directions/maps |
 | November | Community Participation | Civic/voting literacy, evaluate a public claim |
 | December | Consumer Smarts | Prices, fees, returns, scam awareness, unit math |

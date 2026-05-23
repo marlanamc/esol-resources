@@ -44,11 +44,16 @@ export const JoinClassBodySchema = z.object({
   code: z.string().min(1, "Class code is required"),
 });
 
-export const AssignmentPatchBodySchema = z.object({
-  assignmentId: z.string().min(1, "Assignment ID is required"),
-  isFeatured: z.boolean(),
-  syncToSectionGroup: z.boolean().default(true),
-});
+export const AssignmentPatchBodySchema = z
+  .object({
+    assignmentId: z.string().min(1, "Assignment ID is required"),
+    isFeatured: z.boolean().optional(),
+    isRequired: z.boolean().optional(),
+    syncToSectionGroup: z.boolean().default(true),
+  })
+  .refine((data) => data.isFeatured !== undefined || data.isRequired !== undefined, {
+    message: "At least one of isFeatured or isRequired must be provided",
+  });
 
 export const FeedbackPostBodySchema = z.object({
   activityId: z.string().min(1).optional().nullable(),

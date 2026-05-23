@@ -140,14 +140,54 @@ Week 1 can use missions 1–7 only. Add 8–10 in Week 2.
 
 ## September Unit 1 Revised Split
 
+Full-year context: **[School Year At A Glance](school-year-at-a-glance.md)**
+
 | Week | Focus | Grammar (light) |
 |---|---|---|
-| Week 1 | Chromebook + login + scavenger hunt + class routines | None or parts of speech preview only |
+| Week 1 | Chromebook + login + scavenger hunt + class routines + **pre-test window** | None or parts of speech preview only |
 | Week 2 | App habit + password confidence + first weekly path + first quiz (practice) | Parts of speech (short) |
-| Week 3 | Getting to know you topic + stations | Present simple review |
-| Week 4 | Personal daily life + first full weekly path rhythm | Present simple / continuous review |
+| Week 3 | Getting to know you + stations + **verb forms overview** | Present simple review + verb form chart |
+| Week 4 | Personal daily life + full weekly path rhythm + **present perfect intro** | Present perfect (short intro — life experience frames) |
 
 **First real weekly quiz:** Week 2 or 3 — **practice quiz**, low stakes, to teach the routine.
+
+**Why present perfect in September:** Level 2 teachers report students asking for it by end of year. A light September intro (not a full grammar unit) gives students useful frames early and connects naturally to **v3** on the verb chart. Spiral review all year — March career stories become much easier.
+
+## Weekly Verb Forms Overview (Start Week 3)
+
+Introduce the five forms students will see on **weekly verb quizzes** — overview only, not a deep grammar lecture.
+
+| Code | Name | Example (*work*) | When quizzes use it |
+|---|---|---|---|
+| **v1** | base form | work | "What is the base form?" |
+| **v1-3rd** | third person | works | "She ___ every day." |
+| **v1-ing** | -ing form | working | continuous tenses, gerunds later |
+| **v2** | past simple | worked | "Yesterday I ___." |
+| **v3** | past participle | worked | present perfect: "I have ___ here for 3 years." |
+
+**Class routine:**
+- Tuesday warm-up **back** shows the week's 3 verbs in all five forms (small chart)
+- App verb task + weekly quiz ask **one or two form questions** per week — not all five every time
+- Week 3–4: teach the chart; Week 4 present perfect intro shows **why v3 matters**
+
+**Do not:** assign a long verb conjugation packet or test every form every week in September.
+
+## Present Perfect Intro (Week 4 — Light Touch)
+
+**Goal:** useful life-experience language, not a full present perfect unit.
+
+**Frames to teach:**
+- "I have lived in ___ for ___ years."
+- "Have you ever ___?"
+- "I have never ___."
+- "She has worked at ___ since ___."
+
+**Connect to:**
+- Getting to know you / personal daily life topic
+- Verb chart **v3** column
+- Timeline visual (past experience → now)
+
+**Do not:** teach present perfect vs past simple in depth yet, or present perfect continuous. October spirals September frames; **March Unit 7 (Weeks 2–3)** teaches present perfect + present perfect continuous **together** in depth (career stories).
 
 ## Connection To Digital Literacy Later In The Year
 
@@ -166,6 +206,7 @@ Update the [NRS Coverage Gap Plan](nrs-level-3-4-coverage-gap-plan.md): move sup
 
 ### Before first class
 
+- [ ] Schedule **pre-test** administration (Week 1–2 window alongside boot camp)
 - [ ] All students have usernames; emails collected where possible
 - [ ] Temp passwords set where needed; `mustChangePassword` tested
 - [ ] Week 1 app path published (scavenger hunt + one small task)

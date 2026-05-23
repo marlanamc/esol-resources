@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Missed Class? Start Here</title>
+  <style>
+    :root {
+      --primary: #b05740;
+      --secondary: #6a8d73;
+      --text: #1a202c;
+      --muted: #5a6478;
+      --bg: #fdf9f0;
+      --border: #e8e0d4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.45;
+    }
+    .page {
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.55in;
+    }
+    h1 {
+      font-size: 1.55rem;
+      margin: 0 0 0.35rem;
+      color: var(--primary);
+    }
+    h2 {
+      font-size: 1rem;
+      margin: 1.1rem 0 0.35rem;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    p, li { font-size: 0.95rem; }
+    .subtitle { color: var(--muted); margin-bottom: 1rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .box {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      background: #fff;
+    }
+    ol { padding-left: 1.2rem; margin: 0.4rem 0 0; }
+    .deadline {
+      display: inline-block;
+      margin-top: 0.6rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: #f4ebe0;
+      border: 1px solid #d7c09a;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .footer {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    @media print {
+      body { background: #fff; }
+      .page { padding: 0.45in; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Missed Class? Start Here</h1>
+    <p class="subtitle">Same steps every week — about 30–45 minutes at home.</p>
+
+    <div class="grid">
+      <section class="box" lang="en">
+        <h2>English</h2>
+        <ol>
+          <li>Go to <strong>myesolclass.com</strong> and log in.</li>
+          <li>Open <strong>This Week's Path</strong> on your dashboard.</li>
+          <li>Complete items marked <strong>Required</strong>.</li>
+          <li>Learn the <strong>6 vocabulary words</strong> and <strong>3 verbs</strong>.</li>
+          <li>Finish the weekly <strong>quiz</strong> before the make-up deadline.</li>
+        </ol>
+        <p class="deadline">Make-up deadline: Monday 6:00 PM</p>
+        <p>You do <em>not</em> need to make up partner speaking stations at home.</p>
+        <p class="footer">Missing class is okay. Coming back confused is what we want to prevent.</p>
+      </section>
+
+      <section class="box" lang="es">
+        <h2>Español</h2>
+        <ol>
+          <li>Entra a <strong>myesolclass.com</strong> e inicia sesión.</li>
+          <li>Abre <strong>This Week's Path</strong> (Ruta de la semana) en tu panel.</li>
+          <li>Completa las tareas marcadas como <strong>Required</strong> (Obligatorio).</li>
+          <li>Aprende las <strong>6 palabras</strong> y los <strong>3 verbos</strong> de la semana.</li>
+          <li>Termina el <strong>quiz</strong> antes del plazo de recuperación.</li>
+        </ol>
+        <p class="deadline">Plazo de recuperación: lunes 6:00 PM</p>
+        <p>No necesitas repetir en casa las actividades con compañeros de clase.</p>
+        <p class="footer">Faltar a clase está bien. Lo que queremos evitar es volver confundido/a.</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { LogoutButton } from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
-import { FeatureToggleButton } from "@/components/dashboard";
+import { FeatureToggleButton, AssignmentRequirementToggle } from "@/components/dashboard";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
 import { isTeacherAdmin } from "@/lib/roles";
 
@@ -235,6 +235,7 @@ export default async function ClassDetailPage({ params }: Props) {
                                         type: string;
                                     };
                                     isFeatured: boolean;
+                                    isRequired: boolean;
                                     dueDate: Date | null;
                                 }) => (
                                     <div key={assignment.id} className="bg-white shadow rounded-lg p-6">
@@ -274,6 +275,10 @@ export default async function ClassDetailPage({ params }: Props) {
                                                         <FeatureToggleButton
                                                             assignmentId={assignment.id}
                                                             initialIsFeatured={assignment.isFeatured}
+                                                        />
+                                                        <AssignmentRequirementToggle
+                                                            assignmentId={assignment.id}
+                                                            initialIsRequired={assignment.isRequired}
                                                         />
                                                         <Link
                                                             href={`/dashboard/classes/${id}/assignments/${assignment.id}/submissions`}

@@ -7,6 +7,8 @@ export * from './TodaysAssignments';
 export * from './ActivityCategories';
 export * from './TeacherActivityCategories';
 export * from './FeatureToggleButton';
+export * from './AssignmentRequirementToggle';
+export * from './MissedClassCatchUpCard';
 export { CreateCalendarEventForm } from './CreateCalendarEventForm';
 export { default as UpcomingEventsList } from './UpcomingEventsList';
 export { default as ClearFeaturedButton } from './ClearFeaturedButton';

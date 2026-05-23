@@ -29,9 +29,9 @@ September onboarding (login, navigation, scavenger hunt): **[September App And C
 >
 > 1. Go to **myesolclass.com** and log in
 > 2. Open **This Week's Path**
-> 2. Complete the **Required** items you missed
-> 3. Know this week's **6 vocabulary words** and **3 verbs**
-> 4. Be ready for the **quiz** (or complete the make-up quiz by the extended deadline)
+> 3. Complete the **Required** items you missed
+> 4. Know this week's **6 vocabulary words** and **3 verbs**
+> 5. Be ready for the **quiz** (or complete the make-up quiz by the extended deadline)
 >
 > You do not need to redo partner speaking stations at home. You do need the language from the week so you can join class prepared.
 >
@@ -184,12 +184,13 @@ Students who were present also benefit — they see the same expectations.
 
 ## App Integration (Summer Build)
 
-The catch-up plan works on paper now. These app changes make it automatic:
+Implemented in the app (May 2026):
 
-- [ ] Pin a **Missed class? Start here** link on the student dashboard (same URL/section every week)
-- [ ] Label path items **Required** vs **Optional** clearly
-- [ ] Show **This Week's Path** above the category browse menu
-- [ ] Allow quiz submission after class with make-up deadline (or teacher-extended due date on assignment)
+- [x] Pin a **Missed class? Start here** card on the student dashboard (links to `#weekly-path`)
+- [x] Label path items **Required** vs **Optional** (`Assignment.isRequired` + teacher toggle)
+- [x] Show **This Week's Path** as the checklist title above browse menu
+- [x] Make-up deadline labels on path items (Monday 6pm policy via `catch-up-deadlines.ts`)
+- [x] **Next up** banner highlights the first incomplete required task
 - [ ] Optional future: dashboard note when student was marked absent — "You missed Tuesday. Here is your catch-up path."
 
 ## Connection To Gamification
@@ -219,20 +220,20 @@ For extended absence (2+ weeks), use a simplified re-entry: current week's path 
 
 - [ ] Adopt make-up deadline policy (Monday 6pm default)
 - [ ] Add catch-up block to Tuesday warm-up back template
-- [ ] Save weekly announcement template in teacher prep folder
+- [ ] Save weekly announcement template in teacher prep folder — see `docs/planning/catch-up-templates/`
 - [ ] Add student-facing catch-up language to syllabus / first-week slides
 
 ### Class materials
 
 - [ ] Update weekly prep checklist with "post catch-up announcement"
-- [ ] Create one-page **Missed Class?** handout for September (English + Spanish summary)
+- [x] Create one-page **Missed Class?** handout for September (English + Spanish summary) — `docs/planning/catch-up-templates/missed-class-handout.html`
 - [ ] Teach the catch-up routine in Week 1 so it is normal by Week 2
 
 ### App
 
-- [ ] Required vs optional flags on weekly path items
-- [ ] Pinned catch-up entry point on dashboard
-- [ ] Quiz make-up due dates on assignments
+- [x] Required vs optional flags on weekly path items
+- [x] Pinned catch-up entry point on dashboard
+- [x] Quiz make-up due dates on assignments (display labels)
 - [ ] Teacher view: who completed path vs who was absent (for outreach, not punishment)
 
 ## Connection To Other Summer Plans

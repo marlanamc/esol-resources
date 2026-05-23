@@ -1,6 +1,8 @@
 # ESOL Level 3 Class Resources Tracker
 ## January - June 2026
 
+> **Going forward:** Assessment = **pre-test** (September) + **weekly app quizzes** (Thursdays) + **post-test** (June). No unit quizzes, no final presentations — last class is an end-of-year party. The Unit Quiz Schedule below is **legacy** from Spring 2026 planning only.
+
 | Class Date | Warm-Up Worksheet | Class Objective | Grammar Guide | Verb Quiz # |
 |------------|-------------------|-----------------|---------------|-------------|
 | 2026-01-06 (Tue) | worksheets/other/classroom-basics-warmup.html | week16-jan6-2026-SIMPLIFIED.html | Parts of Speech (new) | |
@@ -85,9 +87,11 @@
 | 19 | May 26-28 | Verbs + Gerunds | 9 |
 | 20 | Jun 2-4 | Tense Review | 9 |
 | 21 | Jun 9-11 | Perfect Tenses Review | 9 |
-| 22 | Jun 16-18 | Final Review & Presentations | Finals |
+| 22 | Jun 16-18 | End-of-Year Party | Party |
 
-## Unit Quiz Schedule
+## Unit Quiz Schedule *(legacy — not used)*
+
+*Replaced by weekly app quizzes. Kept for Spring 2026 reference only.*
 
 | Date | Quiz |
 |------|------|
