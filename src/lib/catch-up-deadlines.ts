@@ -136,3 +136,6 @@ export function getAssignmentDueDisplay(
 export function isAssignmentRequired(isRequired: boolean | undefined | null): boolean {
     return isRequired === true;
 }
+
+/** Student dashboard catch-up card — enable in September via NEXT_PUBLIC_ENABLE_CATCH_UP_CARD=true */
+export const isCatchUpCardEnabled = process.env.NEXT_PUBLIC_ENABLE_CATCH_UP_CARD === 'true';
