@@ -341,6 +341,7 @@ function pageShell({ title, description, body, toc = "", activeSlug }) {
         <span class="eyebrow">ESOL Level 3</span>
         <a class="site-title" href="index.html">Summer Planning Wiki</a>
       </div>
+      <a class="sidebar-dashboard-link" href="/dashboard">← Back to Dashboard</a>
       <nav aria-label="Planning documents">
         ${navItems}
       </nav>
@@ -647,6 +648,30 @@ a {
   height: 4px;
   margin-top: 0.7rem;
   width: 5.25rem;
+}
+
+.sidebar-dashboard-link {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 127, 143, 0.22);
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0, 127, 143, 0.08);
+  color: var(--accent);
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 800;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  padding: 0.55rem 0.85rem;
+  text-decoration: none;
+  transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  width: 100%;
+}
+
+.sidebar-dashboard-link:hover {
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(0, 127, 143, 0.14);
+  transform: translateY(-1px);
 }
 
 nav {
