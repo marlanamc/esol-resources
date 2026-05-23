@@ -128,6 +128,25 @@ a {
   transform: translateY(-1px);
 }
 
+.sidebar-nav-heading {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  text-transform: uppercase;
+}
+
+nav a[data-slug="nrs-coverage-gap-plan"],
+nav a[data-slug="absent-student-catch-up-plan"],
+nav a[data-slug="school-year-at-a-glance"],
+nav a[data-slug="september-app-onboarding-plan"] {
+  color: var(--muted);
+  font-weight: 700;
+}
+
 nav {
   display: grid;
   gap: 0.35rem;
@@ -344,6 +363,30 @@ tr:nth-child(even) td {
   gap: 1rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: 2rem 0;
+}
+
+.home-other-docs {
+  margin-top: 0.5rem;
+}
+
+.home-other-docs h2 {
+  color: var(--ink);
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.home-other-docs > p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0.35rem 0 0;
+}
+
+.doc-grid-other {
+  margin-top: 0.85rem;
+}
+
+.doc-grid-other .doc-card {
+  opacity: 0.92;
 }
 
 .doc-card {

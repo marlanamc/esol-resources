@@ -6,35 +6,7 @@ const sourceDir = path.join(root, "docs/planning/Summer-research");
 const outputDir = path.join(sourceDir, "wiki");
 const publicOutputDir = path.join(root, "public/summer-planning-wiki");
 
-const docs = [
-  {
-    file: "nrs-level-3-4-coverage-gap-plan.md",
-    slug: "nrs-coverage-gap-plan",
-    label: "NRS 3–4 Coverage Gap Plan",
-    description:
-      "Audit of NRS Level 3–4 topics and skills missing from the current class and app, with unit mapping and a summer build checklist.",
-  },
-  {
-    file: "absent-student-catch-up-plan.md",
-    slug: "absent-student-catch-up-plan",
-    label: "Absent Student Catch-Up Plan",
-    description:
-      "One repeatable catch-up path for busy adult learners: required app tasks, make-up deadlines, and warm-up/announcement templates.",
-  },
-  {
-    file: "school-year-at-a-glance.md",
-    slug: "school-year-at-a-glance",
-    label: "School Year At A Glance",
-    description:
-      "Basic month-by-month map of all ten units, with short December/June and February/April vacation weeks noted.",
-  },
-  {
-    file: "september-app-onboarding-plan.md",
-    slug: "september-app-onboarding-plan",
-    label: "September App Onboarding Plan",
-    description:
-      "Chromebook boot camp, myesolclass.com login, password reset summer work, and an app scavenger hunt for Week 1–2.",
-  },
+const primaryDocs = [
   {
     file: "next-year-class-improvement-plan.md",
     slug: "class-improvement-plan",
@@ -65,6 +37,39 @@ const docs = [
   },
 ];
 
+const otherDocs = [
+  {
+    file: "nrs-level-3-4-coverage-gap-plan.md",
+    slug: "nrs-coverage-gap-plan",
+    label: "NRS 3–4 Coverage Gap Plan",
+    description:
+      "Audit of NRS Level 3–4 topics and skills missing from the current class and app, with unit mapping and a summer build checklist.",
+  },
+  {
+    file: "absent-student-catch-up-plan.md",
+    slug: "absent-student-catch-up-plan",
+    label: "Absent Student Catch-Up Plan",
+    description:
+      "One repeatable catch-up path for busy adult learners: required app tasks, make-up deadlines, and warm-up/announcement templates.",
+  },
+  {
+    file: "school-year-at-a-glance.md",
+    slug: "school-year-at-a-glance",
+    label: "School Year At A Glance",
+    description:
+      "Basic month-by-month map of all ten units, with short December/June and February/April vacation weeks noted.",
+  },
+  {
+    file: "september-app-onboarding-plan.md",
+    slug: "september-app-onboarding-plan",
+    label: "September App Onboarding Plan",
+    description:
+      "Chromebook boot camp, myesolclass.com login, password reset summer work, and an app scavenger hunt for Week 1–2.",
+  },
+];
+
+const docs = [...primaryDocs, ...otherDocs];
+
 const customPages = [
   {
     slug: "summer-work-map",
@@ -74,11 +79,22 @@ const customPages = [
   },
 ];
 
-const wikiPages = [...customPages, ...docs];
-
 const wikiHrefBySourceFile = new Map(
   docs.map((doc) => [doc.file, `${doc.slug}.html`]),
 );
+
+function renderNavLinks(pages) {
+  return pages
+    .map(
+      (doc) =>
+        `<a href="${doc.slug}.html" data-slug="${doc.slug}">${escapeHtml(doc.label)}</a>`,
+    )
+    .join("\n");
+}
+
+const navItems = `${renderNavLinks([...customPages, ...primaryDocs])}
+        <div class="sidebar-nav-heading">Other documents</div>
+        ${renderNavLinks(otherDocs)}`;
 
 function resolveWikiHref(href) {
   if (
@@ -108,12 +124,16 @@ function resolveWikiHref(href) {
   return href.replace(/\.md(?=#|$)/, ".html");
 }
 
-const navItems = wikiPages
-  .map(
-    (doc) =>
-      `<a href="${doc.slug}.html" data-slug="${doc.slug}">${escapeHtml(doc.label)}</a>`,
-  )
-  .join("\n");
+function renderDocCards(pages) {
+  return pages
+    .map(
+      (doc) => `<a class="doc-card" href="${doc.slug}.html">
+        <span>${escapeHtml(doc.label)}</span>
+        <p>${escapeHtml(doc.description)}</p>
+      </a>`,
+    )
+    .join("\n");
+}
 
 function escapeHtml(value) {
   return value
@@ -509,21 +529,19 @@ function summerWorkMapPage() {
 }
 
 function indexPage() {
-  const cards = wikiPages
-    .map(
-      (doc) => `<a class="doc-card" href="${doc.slug}.html">
-        <span>${escapeHtml(doc.label)}</span>
-        <p>${escapeHtml(doc.description)}</p>
-      </a>`,
-    )
-    .join("\n");
-
   const body = `<section class="home-intro">
     <h2>Start Here</h2>
     <p>This wiki gathers the summer planning documents into one readable place. The center of the work is a community-centered ESOL class where every activity helps students handle real life in English.</p>
   </section>
   <section class="doc-grid" aria-label="Planning documents">
-    ${cards}
+    ${renderDocCards([...customPages, ...primaryDocs])}
+  </section>
+  <section class="home-other-docs">
+    <h2>Other documents</h2>
+    <p>Detailed plans saved for later — no need to focus on these yet.</p>
+    <div class="doc-grid doc-grid-other">
+      ${renderDocCards(otherDocs)}
+    </div>
   </section>
   <section class="home-principles">
     <h2>Decision Filter</h2>
@@ -672,6 +690,25 @@ a {
   background: #fff;
   box-shadow: 0 10px 24px rgba(0, 127, 143, 0.14);
   transform: translateY(-1px);
+}
+
+.sidebar-nav-heading {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  text-transform: uppercase;
+}
+
+nav a[data-slug="nrs-coverage-gap-plan"],
+nav a[data-slug="absent-student-catch-up-plan"],
+nav a[data-slug="school-year-at-a-glance"],
+nav a[data-slug="september-app-onboarding-plan"] {
+  color: var(--muted);
+  font-weight: 700;
 }
 
 nav {
@@ -890,6 +927,30 @@ tr:nth-child(even) td {
   gap: 1rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: 2rem 0;
+}
+
+.home-other-docs {
+  margin-top: 0.5rem;
+}
+
+.home-other-docs h2 {
+  color: var(--ink);
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.home-other-docs > p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0.35rem 0 0;
+}
+
+.doc-grid-other {
+  margin-top: 0.85rem;
+}
+
+.doc-grid-other .doc-card {
+  opacity: 0.92;
 }
 
 .doc-card {
