@@ -9,6 +9,7 @@ import { BackButton } from "@/components/ui/BackButton";
 import { FeatureToggleButton, AssignmentRequirementToggle } from "@/components/dashboard";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
 import { isTeacherAdmin } from "@/lib/roles";
+import { isCatchUpPathEnabled } from "@/lib/catch-up-deadlines";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -276,10 +277,12 @@ export default async function ClassDetailPage({ params }: Props) {
                                                             assignmentId={assignment.id}
                                                             initialIsFeatured={assignment.isFeatured}
                                                         />
-                                                        <AssignmentRequirementToggle
-                                                            assignmentId={assignment.id}
-                                                            initialIsRequired={assignment.isRequired}
-                                                        />
+                                                        {isCatchUpPathEnabled ? (
+                                                            <AssignmentRequirementToggle
+                                                                assignmentId={assignment.id}
+                                                                initialIsRequired={assignment.isRequired}
+                                                            />
+                                                        ) : null}
                                                         <Link
                                                             href={`/dashboard/classes/${id}/assignments/${assignment.id}/submissions`}
                                                             className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50"

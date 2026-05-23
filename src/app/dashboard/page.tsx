@@ -40,7 +40,7 @@ import {
 } from "@/lib/learner-visibility";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
 import { resolveLearnerMode } from "@/lib/learner-mode";
-import { isCatchUpCardEnabled } from "@/lib/catch-up-deadlines";
+import { isCatchUpPathEnabled } from "@/lib/catch-up-deadlines";
 
 type TeacherAssignment = {
     id: string;
@@ -1050,7 +1050,7 @@ export default async function DashboardPage() {
 
                             <ClassAnnouncement announcements={classAnnouncements} />
 
-                            {isCatchUpCardEnabled &&
+                            {isCatchUpPathEnabled &&
                             featuredAssignments.some((assignment) => assignment.isRequired === true) ? (
                                 <MissedClassCatchUpCard />
                             ) : null}

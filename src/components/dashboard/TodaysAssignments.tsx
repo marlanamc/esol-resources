@@ -20,7 +20,7 @@ import { ActivityLink } from '@/components/navigation/ActivityLink';
 import { StudentQuickStats } from '@/components/dashboard/StudentQuickStats';
 import type { DailyChecklistHabit } from '@/lib/daily-habits';
 import { getLearnerCategoryTone } from '@/lib/learner-theme';
-import { getAssignmentDueDisplay, isAssignmentRequired, type DueDisplayMeta } from '@/lib/catch-up-deadlines';
+import { getAssignmentDueDisplay, isAssignmentRequired, isCatchUpPathEnabled, type DueDisplayMeta } from '@/lib/catch-up-deadlines';
 import {
     useFeaturedAssignments,
     AssignmentCard,
@@ -126,7 +126,7 @@ function getFriendlyDueMeta(dueDate?: string | Date | null): DueMeta | null {
 }
 
 function RequirementBadge({ isRequired }: { isRequired?: boolean }) {
-    if (!isAssignmentRequired(isRequired)) {
+    if (!isCatchUpPathEnabled || !isAssignmentRequired(isRequired)) {
         return null;
     }
 
@@ -665,12 +665,13 @@ function ChecklistAssignments({
         return a.index - b.index;
     });
 
-    const nextUpRow =
-        sortedRows.find(
-            (row) => !row.isCompleted && !row.isGameRow && isAssignmentRequired(row.assignment.isRequired)
-        ) ??
-        sortedRows.find((row) => !row.isCompleted && !row.isGameRow) ??
-        null;
+    const nextUpRow = isCatchUpPathEnabled
+        ? sortedRows.find(
+              (row) => !row.isCompleted && !row.isGameRow && isAssignmentRequired(row.assignment.isRequired)
+          ) ??
+          sortedRows.find((row) => !row.isCompleted && !row.isGameRow) ??
+          null
+        : sortedRows.find((row) => !row.isCompleted && !row.isGameRow) ?? null;
 
     const checklistRows = rows.filter((row) => !row.isGameRow);
     const completedCount = checklistRows.filter((row) => row.isCompleted).length;
