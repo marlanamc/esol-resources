@@ -23,6 +23,13 @@ const primaryDocs = [
       "The product roadmap for turning the app into a guided weekly path with meaningful tasks and less decision fatigue.",
   },
   {
+    file: "skill-chains-practice-paths-plan.md",
+    slug: "skill-chains-practice-paths-plan",
+    label: "Skill Chains / Practice Paths",
+    description:
+      "Technical and instructional plan for connecting micro lessons, preset games, pronunciation labs, and use-it tasks into guided chains.",
+  },
+  {
     file: "summer-research-reading-list.md",
     slug: "summer-research-reading-list",
     label: "Summer Research Reading List",
@@ -459,8 +466,9 @@ function summerWorkMapPage() {
       <div>
         <span class="phase-date">June 1-14</span>
         <h3>Dashboard And Weekly Path</h3>
-        <p>Design the class dashboard around Next Up, This Week's Path, due dates, and teacher-curated order.</p>
+        <p>Design the class dashboard around Next Up, This Week's Path, due dates, teacher order, and Skill Chain cards.</p>
         <a href="app-learning-path-roadmap.html#phase-2-class-dashboard-redesign">Phase 2</a>
+        <a href="skill-chains-practice-paths-plan.html">Skill Chains</a>
       </div>
     </article>
     <article class="phase-card phase-four">
@@ -468,7 +476,7 @@ function summerWorkMapPage() {
       <div>
         <span class="phase-date">June 15-30</span>
         <h3>Content Conversion</h3>
-        <p>Turn guides, games, vocab, quizzes, writing, case studies, video, and speaking tasks into microlearning paths. Include NRS 3–4 gap builds (digital literacy, pay stubs, phone English, civic depth, transportation).</p>
+        <p>Turn guides, games, vocab, quizzes, writing, case studies, video, and speaking tasks into microlearning paths and first Skill Chain prototypes.</p>
         <a href="app-learning-path-roadmap.html#phase-4-content-conversion">Phase 4</a>
         <a href="nrs-coverage-gap-plan.html">NRS gap plan</a>
       </div>

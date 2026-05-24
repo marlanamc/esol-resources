@@ -181,6 +181,20 @@ When a student opens the app, they should see:
 
 Browsing should still exist, but it should be secondary.
 
+### Skill Chains / Practice Paths
+
+Use Skill Chains to make related activities feel like one purposeful path:
+
+```txt
+Micro Lesson -> Preset Game -> Pronunciation Lab -> Use It
+```
+
+This should launch existing games and labs in assigned/preset mode so students do not need to choose settings. The dashboard should show the chain as one card with the next incomplete step.
+
+Full technical plan:
+
+- [Skill Chains / Practice Paths Plan](skill-chains-practice-paths-plan.md)
+
 ## Target Weekly Path Model
 
 Each week should become a small guided path connected to the real-world topic of the week.
