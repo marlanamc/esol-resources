@@ -10,9 +10,7 @@ The class should also become much more speaking-centered. Students need more con
 
 ## Core Principle
 
-This is a community school first and foremost.
-
-English matters, but the class should also help students handle real adult situations:
+This is a community school first. English matters because it helps students handle adult life:
 
 - calling health insurance to check a prescription price
 - filing a complaint with the Department of Labor
@@ -21,6 +19,17 @@ English matters, but the class should also help students handle real adult situa
 - reading a lease, bill, letter, form, or school message
 - explaining a problem clearly and respectfully
 - knowing what agency, office, or person to contact
+
+Adult-skill topics to build into lessons, app references, warm-ups, or stations:
+
+- Tylenol vs. Advil
+- medicine names + pharmacist questions
+- healthy cooking oils
+- fiber + carbohydrates + blood sugar
+- medicine labels, insurance cards, dosage charts, nutrition labels
+- health claims online: what evidence is missing?
+
+Boundary: the teacher does not need to be the expert in every topic. The class teaches students how to ask better questions, compare information, read labels, and make safer decisions.
 
 The best weeks should feel like: "I learned English, and I learned how to do something useful."
 

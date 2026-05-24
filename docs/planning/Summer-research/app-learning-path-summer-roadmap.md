@@ -85,11 +85,9 @@ The class app should become a guided weekly learning path.
 
 ### Community Class First
 
-This class is first and foremost a community class.
+This is a community class first. English is the tool; real-life confidence is the goal.
 
-Students should leave every class feeling more equipped to live in the United States, not just more familiar with an English rule. English is the tool, but the deeper goal is practical power: confidence, literacy, self-advocacy, and the ability to make informed decisions.
-
-The app should support that identity. Weekly app work should help students become stronger:
+Students should build power as:
 
 - consumers who can compare prices, read bills, understand fees, question offers, and avoid scams
 - patients and caregivers who can read medicine labels, understand insurance cards, check drug prices, prepare questions, and advocate in health situations
@@ -97,11 +95,38 @@ The app should support that identity. Weekly app work should help students becom
 - community members who can use public services, understand local information, participate in community life, and possibly become more confident voters
 - readers and thinkers who can interpret charts, notices, forms, data, videos, social media claims, and persuasive arguments
 
+Adult-skill lesson ideas:
+
+- Tylenol vs. Advil
+- healthy cooking oils
+- fiber + carbohydrates + blood sugar
+- medicine labels, insurance cards, dosage charts, nutrition labels
+- health claims, product claims, and social media advice
+
+Boundary: the app should not replace doctors, pharmacists, dietitians, lawyers, or financial advisors. It should help students understand information and ask better questions.
+
 The promise should be simple:
 
 > You will leave class more equipped to handle real life in English.
 
 That means grammar, vocabulary, quizzes, games, writing, speaking, and homework should all connect back to real situations. A task is worth assigning when it helps students do something meaningful outside the classroom.
+
+### App As Reference Library
+
+Students already go back to the app to look things up. Treat this as a feature, not an accident.
+
+Reference content to build:
+
+- medicine name charts
+- insurance card diagrams
+- phone-call scripts
+- complaint letter/email templates
+- workplace rights vocabulary
+- housing repair phrases
+- healthy shopping or nutrition label examples
+- "questions to ask" checklists for pharmacists, doctors, landlords, employers, schools, and agencies
+
+Design rule: if students saw it in class, they should be able to find it again quickly.
 
 ### Product Positioning
 
@@ -1140,162 +1165,118 @@ Goal: test the model before rebuilding the whole app/content library.
 
 ## Phase 6: Independent And Public Learner Model
 
-Goal: decide how the app should work for people who are not enrolled in the class, including a simple public version that could eventually support a small paid plan.
+Goal: define how the app works for people outside the enrolled class.
 
-This should be a separate summer workstream from the enrolled-class dashboard. Class students need a teacher-curated weekly path. Independent learners need a guided path too, but they do not have the same classroom context, due dates, speaking stations, or teacher accountability.
+### Scan Summary
 
-### Product Question
+| Decision | Direction |
+|---|---|
+| Core UX | Still **Do this next** |
+| First screen | placement/goal question + recommended path |
+| Public version | useful free preview, polished content only |
+| Paid idea | very low-cost supporter/annual plan, possibly around `$5/year` |
+| School students | always free for class work |
+| Main risk | public users cluttering class tools or seeing draft/class-only content |
 
-What should an independent learner do when they open the app?
+### Independent Learner Inputs
 
-The answer should still be:
-
-> Do this next.
-
-But for independent learners, the app may need to choose the path based on:
-
-- level or self-placement
-- learning goal
-- available time
-- recent activity
+- level/self-placement
+- goal
+- time available
 - weak areas
-- interest area, such as work, health, housing, money, community, or school
-- whether they want a structured course or casual practice
+- recent activity
+- interest: work, health, housing, money, community, school
 
-### Public Offering Direction
+### Possible Public Paths
 
-The public version should be useful, simple, and respectful of the fact that the app has been built almost entirely for free so far. A very low-cost model could make sense if it helps cover hosting, tools, development time, and future content creation.
+| Path | Focus |
+|---|---|
+| Life In The U.S. | community, money, housing, health, work, school |
+| Workplace English | interviews, schedules, rights, pay, communication |
+| Health Confidence | labels, appointments, insurance, symptoms, questions |
+| Grammar Confidence | parts of speech, timelines, questions, sentence building |
+| Speaking Confidence | dialogues, role-plays, pronunciation, conversation games |
 
-Possible pricing ideas to explore:
+### Launch Questions
 
-- free preview with a small number of lessons/games
-- very low annual plan, such as around `$5/year`
-- optional supporter plan for people who want to contribute more
-- free access codes for enrolled school students
-- free or discounted access for partner community programs
+- first audience?
+- free vs account vs paid?
+- enough content to charge?
+- support burden?
+- privacy/payment requirements?
+- teacher/program plan later?
 
-The tone should stay community-centered. The goal is not to make the app feel corporate or extractive. The goal is sustainability: the project should be able to keep growing without requiring unpaid labor forever.
+### Guardrails
 
-### Independent Learner Experience
-
-Independent learners should not land in a giant activity library first.
-
-They should see:
-
-1. A short placement or goal question.
-2. A recommended learning path.
-3. One next task.
-4. A small weekly goal.
-5. Personal milestones.
-6. Browse/search as a secondary option.
-
-Possible independent paths:
-
-- **Life In The U.S. Path**: community, money, housing, health, work, school.
-- **Workplace English Path**: interviews, schedules, rights, pay, communication.
-- **Health Confidence Path**: medicine labels, appointments, insurance, symptoms, questions.
-- **Grammar Confidence Path**: parts of speech, timeline tenses, questions, sentence building.
-- **Speaking Confidence Path**: dialogues, role-plays, pronunciation, conversation games.
-
-### Public Launch Questions
-
-- Who is the first public audience: former students, local adult learners, other ESOL teachers' students, or anyone online?
-- What should be free forever?
-- What should require an account?
-- What should require payment, if anything?
-- How much content needs to exist before asking anyone to pay?
-- How will students know the app is for plateauing adult learners, not total beginners?
-- What support burden comes with public users?
-- What privacy, terms, and payment requirements need to be handled before launch?
-- Should public users have access to all games, or only polished/released activities?
-- Should teachers or programs eventually get a separate plan?
-
-### Monetization Guardrails
-
-- Keep enrolled school students free.
-- Do not put essential class homework behind payment.
-- Keep pricing simple and low-friction.
-- Avoid manipulative streaks, shame, or artificial scarcity.
-- Do not sell student data.
-- Make the public version valuable enough that charging a small amount feels fair.
-- Make it clear what the money supports: hosting, content, maintenance, and new features.
+- enrolled students free
+- no paywall for class homework
+- no selling student data
+- no manipulative streaks/shame
+- explain what money supports: hosting, maintenance, content
 
 ### Summer Tasks
 
-- [ ] Audit the current independent dashboard and `LearningPathRoadmap`.
-- [ ] Decide whether independent learners should use the same monthly unit structure or a separate evergreen path.
-- [ ] Create 2-3 public learner personas.
-- [ ] Define the first public path.
-- [ ] Decide the free vs paid boundary.
-- [ ] Decide whether `$5/year` is viable after checking payment processing fees and hosting costs.
-- [ ] Identify what account, privacy, and payment pages are needed before launch.
-- [ ] Make a public landing/home experience that explains who the app is for.
-- [ ] Keep public browsing secondary to a recommended next task.
-- [ ] Consider a small beta with former students or trusted users before fully opening it.
+- [ ] Audit independent dashboard and `LearningPathRoadmap`.
+- [ ] Define first public path.
+- [ ] Decide free vs paid boundary.
+- [ ] Check whether `$5/year` survives payment fees.
+- [ ] Draft privacy/payment/account needs.
+- [ ] Build public landing/start experience.
+- [ ] Beta with former students or trusted users.
 
-### Public Beta Test Plan
+### Beta Test
 
-- [ ] New public user can understand what the app is for within 30 seconds.
-- [ ] New public user gets a recommended first task without needing teacher instructions.
-- [ ] Independent dashboard shows one clear next action.
-- [ ] Free user experience is useful enough to build trust.
-- [ ] Paid/supporter flow is honest, simple, and optional until the model is proven.
-- [ ] Enrolled class students are not accidentally blocked by public-user limits.
-- [ ] Public users only see polished/released content.
+- [ ] User understands purpose in 30 seconds.
+- [ ] User gets one recommended next task.
+- [ ] Free experience builds trust.
+- [ ] Paid/supporter flow is honest and optional.
+- [ ] Class students are not blocked by public limits.
+- [ ] Public users see only polished/released content.
 
 ## Phase 7: LMS Organization And Learner Types
 
-Goal: clean up the LMS structure before the app grows beyond one class.
+Goal: clean up roles, learner types, access, and org structure before growth.
 
-This app has mostly been shaped by one real class plus a few interested outside users. That made sense for the first year because the urgent problem was getting students to actually use it. Now that the app is working, the structure needs to catch up.
+### Core Questions
 
-Before opening the app to more public users, independent learners, other classes, or partner programs, the system needs clearer answers for:
-
-- who the learner is
-- why they are using the app
-- what content they should see
-- who controls their assignments
-- what progress matters
-- what data the teacher/admin should see
-- what access should be free, enrolled, public, paid, or partner-based
+- Who is the learner?
+- What dashboard do they see?
+- What content can they access?
+- Who controls assignments?
+- What progress matters?
+- Who can see reports/data?
 
 ### Learner Types To Define
 
-Possible learner types:
-
-- **Enrolled class student**: connected to a real class, teacher-curated weekly path, assignments, due dates, class announcements, teacher visibility.
-- **Independent learner**: not connected to a class, guided by app-selected paths, personal milestones, optional goals, no teacher due dates.
-- **Public/free learner**: limited but useful access, polished activities only, clear path into account creation or supporter plan.
-- **Paid/supporter learner**: low-cost access to more paths, games, tracking, or review features.
-- **Former student**: may keep access after class ends, possibly with alumni review paths.
-- **Teacher/admin**: can manage classes, content, assignments, reports, rosters, and planning tools.
-- **Partner/program learner**: future possibility for community programs, legal aid orgs, libraries, or adult education partners.
+| Type | Needs |
+|---|---|
+| Enrolled class student | teacher path, assignments, due dates, announcements |
+| Independent learner | app-guided path, goals, milestones |
+| Public/free learner | useful preview, polished content |
+| Paid/supporter learner | fuller access, saved progress, review |
+| Former student | continued review/alumni path |
+| Teacher/admin | classes, content, reports, rosters |
+| Partner/program learner | future org/program access |
 
 ### Organization Questions
 
 - Does the app need an organization model, or are classes enough for now?
 - Should a school/program own classes, teachers, students, and reports?
-- Can a user belong to more than one class or program?
 - What happens when a class ends?
 - Can former students keep their progress?
-- Can teachers invite independent users into a class later?
 - Should public users have a different dashboard than enrolled students?
-- Should learner mode be a stable account setting, or should it be based on current enrollment?
-- What content should be global, class-specific, teacher-created, or public-only?
 - What reports should exist for teachers versus admin versus public users?
 
 ### Content Access Model
 
-The app needs a clearer content-access model before public launch.
-
-Possible access levels:
-
-- **Draft**: teacher/admin only.
-- **Class released**: visible only when assigned or released to enrolled students.
-- **Public preview**: visible without payment, possibly with limited progress tracking.
-- **Public full**: visible to signed-in public learners.
-- **Paid/supporter**: visible to users with an active plan, if the paid model is adopted.
-- **Archived**: kept for records but not shown in normal browsing.
+| Status | Who sees it |
+|---|---|
+| Draft | teacher/admin only |
+| Class released | enrolled students |
+| Public preview | free/public users |
+| Public full | signed-in public users |
+| Paid/supporter | active supporter plan |
+| Archived | records only |
 
 ### Dashboard Model
 
@@ -1312,26 +1293,25 @@ Each learner type may need a different dashboard priority.
 
 ### Summer Tasks
 
-- [ ] Audit the current user roles, learner modes, class enrollment logic, and dashboard routing.
-- [ ] Map what currently happens for enrolled students, independent learners, teachers, and admin users.
+- [ ] Audit roles, learner modes, enrollments, and dashboard routing.
+- [ ] Map current behavior by user type.
 - [ ] Decide the minimum learner-type model needed before public launch.
-- [ ] Decide whether the app needs `organization`, `program`, or `school` concepts now or later.
-- [ ] Decide how former students should retain access after the year ends.
-- [ ] Define content visibility states clearly.
-- [ ] Define which dashboard each learner type should see.
-- [ ] Identify which reports are class-only and which could apply to independent/public users.
-- [ ] Make sure public access does not accidentally expose class-only assignments, student data, or draft content.
-- [ ] Write a simple account/access policy before adding payment.
+- [ ] Decide whether org/program/school concepts are needed now.
+- [ ] Define former-student access.
+- [ ] Define content visibility states.
+- [ ] Define dashboards by learner type.
+- [ ] Protect class-only assignments, student data, and drafts.
+- [ ] Write account/access policy before payment.
 
 ### Technical Questions
 
 - Does the current `role` field do too much?
 - Should `learnerMode` remain separate from `role`?
 - Should payment/supporter status be separate from learner type?
-- Should content visibility live on activities, assignments, paths, or all three?
-- Should weekly paths be class-owned, public-owned, or reusable templates?
-- How should progress transfer if a public learner later joins a real class?
-- How should admin screens separate class management from public-user management?
+- Where does content visibility live: activities, assignments, paths?
+- Are weekly paths class-owned, public-owned, or templates?
+- Does progress transfer if a public learner joins class?
+- How do admin screens separate class vs public users?
 
 ### Test Plan
 
