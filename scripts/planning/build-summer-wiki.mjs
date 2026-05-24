@@ -5,6 +5,7 @@ const root = process.cwd();
 const sourceDir = path.join(root, "docs/planning/Summer-research");
 const outputDir = path.join(sourceDir, "wiki");
 const publicOutputDir = path.join(root, "public/summer-planning-wiki");
+const mockupsDir = path.join(sourceDir, "image-mockups");
 
 const primaryDocs = [
   {
@@ -76,6 +77,12 @@ const customPages = [
     label: "Summer Work Map",
     description:
       "A visual diagram for the weekend Advisor Bulletin Board sprint and the rest of the summer roadmap phases.",
+  },
+  {
+    slug: "image-mockups",
+    label: "Image Mockups",
+    description:
+      "Visual mockup ideas for the public homepage and map-style guided learning path.",
   },
 ];
 
@@ -525,6 +532,60 @@ function summerWorkMapPage() {
     body,
     toc,
     activeSlug: "summer-work-map",
+  });
+}
+
+function imageMockupsPage() {
+  const toc = [
+    '<a class="toc-level-2" href="#homepage">Homepage</a>',
+    '<a class="toc-level-2" href="#map-idea">Map Idea</a>',
+    '<a class="toc-level-2" href="#design-notes">Design Notes</a>',
+  ].join("\n");
+
+  const body = `<section class="mockup-intro">
+    <h2>Mockup Gallery</h2>
+    <p>These are early visual ideas for where the app could go this summer. Use them as reference points while designing the public/independent learner experience and the guided path model.</p>
+  </section>
+
+  <section class="mockup-gallery" aria-label="App mockup ideas">
+    <figure class="mockup-card" id="homepage">
+      <a href="image-mockups/homepage.png">
+        <img src="image-mockups/homepage.png" alt="Homepage mockup idea">
+      </a>
+      <figcaption>
+        <strong>Homepage</strong>
+        <span>Public-facing first impression and entry point.</span>
+      </figcaption>
+    </figure>
+
+    <figure class="mockup-card" id="map-idea">
+      <a href="image-mockups/map-idea.png">
+        <img src="image-mockups/map-idea.png" alt="Map-style guided learning path mockup idea">
+      </a>
+      <figcaption>
+        <strong>Map Idea</strong>
+        <span>Possible visual model for a guided path: finish a micro lesson, then move to the next practice/game step.</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="mockup-notes" id="design-notes">
+    <h2>Design Notes</h2>
+    <ul>
+      <li>Use these to think about independent users and public launch, not only enrolled class students.</li>
+      <li>The map idea should reduce decision fatigue: students see the next step without interpreting a category menu.</li>
+      <li>The homepage should communicate that this app is for adult ESOL learners building real-life confidence.</li>
+      <li>Before implementation, check mobile readability, dashboard fit, and whether each screen still says "do this next."</li>
+    </ul>
+  </section>`;
+
+  return pageShell({
+    title: "Image Mockups",
+    description:
+      "Visual mockup ideas for the public homepage and map-style guided learning path.",
+    body,
+    toc,
+    activeSlug: "image-mockups",
   });
 }
 
@@ -992,6 +1053,64 @@ tr:nth-child(even) td {
   margin: 0.75rem 0 0;
 }
 
+.mockup-intro {
+  max-width: 48rem;
+}
+
+.mockup-intro h2 {
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.mockup-gallery {
+  display: grid;
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.mockup-card {
+  background: linear-gradient(145deg, #fffaf0, #e9fbf7);
+  border: 1px solid rgba(176, 104, 43, 0.18);
+  margin: 0;
+  padding: 1rem;
+}
+
+.mockup-card a {
+  display: block;
+}
+
+.mockup-card img {
+  background: white;
+  border: 1px solid rgba(36, 49, 63, 0.12);
+  box-shadow: 0 14px 35px rgba(36, 49, 63, 0.12);
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.mockup-card figcaption {
+  display: grid;
+  gap: 0.2rem;
+  padding-top: 0.85rem;
+}
+
+.mockup-card figcaption strong {
+  color: var(--accent);
+  font-size: 1.05rem;
+}
+
+.mockup-card figcaption span,
+.mockup-notes li {
+  color: var(--muted);
+}
+
+.mockup-notes {
+  background: #fffaf0;
+  border: 1px solid rgba(176, 104, 43, 0.18);
+  padding: 1rem 1.25rem;
+}
+
 .roadmap-hero {
   align-items: center;
   background: linear-gradient(135deg, #fff0a8, #d9f7f3 58%, #ffe4ee);
@@ -1210,6 +1329,7 @@ tr:nth-child(even) td {
 
   .roadmap-hero,
   .sprint-board,
+  .mockup-gallery,
   .rhythm-grid,
   .decision-strip {
     grid-template-columns: 1fr;
@@ -1279,6 +1399,8 @@ await writeFile(path.join(outputDir, "wiki.js"), script);
 await writeFile(path.join(outputDir, "favicon.svg"), favicon);
 await writeFile(path.join(outputDir, "index.html"), indexPage());
 await writeFile(path.join(outputDir, "summer-work-map.html"), summerWorkMapPage());
+await writeFile(path.join(outputDir, "image-mockups.html"), imageMockupsPage());
+await cp(mockupsDir, path.join(outputDir, "image-mockups"), { recursive: true, force: true });
 
 for (const doc of docs) {
   const markdown = await readFile(path.join(sourceDir, doc.file), "utf8");
