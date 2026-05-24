@@ -665,14 +665,6 @@ function ChecklistAssignments({
         return a.index - b.index;
     });
 
-    const nextUpRow = isCatchUpPathEnabled
-        ? sortedRows.find(
-              (row) => !row.isCompleted && !row.isGameRow && isAssignmentRequired(row.assignment.isRequired)
-          ) ??
-          sortedRows.find((row) => !row.isCompleted && !row.isGameRow) ??
-          null
-        : sortedRows.find((row) => !row.isCompleted && !row.isGameRow) ?? null;
-
     const checklistRows = rows.filter((row) => !row.isGameRow);
     const completedCount = checklistRows.filter((row) => row.isCompleted).length;
     const percent = checklistRows.length ? Math.round((completedCount / checklistRows.length) * 100) : 0;
@@ -1140,42 +1132,6 @@ function ChecklistAssignments({
                         </div>
                     )}
                 </div>
-
-                {nextUpRow && !isFullyComplete ? (
-                    <div
-                        className="mx-3 mb-1 mt-1 rounded-xl border px-3.5 py-3 sm:mx-4 sm:px-4"
-                        style={{
-                            borderColor: 'color-mix(in srgb, var(--primary) 28%, var(--dashboard-border))',
-                            background: 'linear-gradient(135deg, color-mix(in srgb, var(--primary) 6%, var(--dashboard-surface-start)) 0%, var(--dashboard-surface-end) 100%)',
-                        }}
-                    >
-                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                            <div className="min-w-0">
-                                <p className="text-[10px] font-bold uppercase tracking-widest text-primary">Next up</p>
-                                <p className="mt-0.5 truncate text-sm font-semibold text-text">{nextUpRow.displayTitle}</p>
-                                {!nextUpRow.isCompleted && nextUpRow.dueMeta ? (
-                                    <div className="mt-1.5">
-                                        <DueBadge dueMeta={nextUpRow.dueMeta} />
-                                    </div>
-                                ) : null}
-                            </div>
-                            <ActivityLink
-                                activityId={nextUpRow.assignment.activityId}
-                                assignmentId={nextUpRow.assignment.assignmentId ?? nextUpRow.assignment.id}
-                                href={nextUpRow.assignment.href}
-                                className="dashboard-accent-button inline-flex shrink-0 items-center justify-center gap-1.5 self-start rounded-full px-4 py-2 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
-                                style={{
-                                    '--dashboard-button-accent': nextUpRow.categoryStyle.accent,
-                                    '--dashboard-button-text': nextUpRow.categoryStyle.accent,
-                                } as React.CSSProperties}
-                                aria-label={`${nextUpRow.actionLabel} ${nextUpRow.displayTitle}`}
-                            >
-                                <span>{nextUpRow.actionLabel}</span>
-                                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-                            </ActivityLink>
-                        </div>
-                    </div>
-                ) : null}
 
                 <div className="lg:hidden border-b" style={{ backgroundColor: 'var(--surface-subtle)', borderColor: 'var(--dashboard-divider)' }}>
                     <div className="flex items-center gap-2 px-3 py-2.5 overflow-x-auto no-scrollbar mask-edges">
