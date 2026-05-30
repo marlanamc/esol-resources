@@ -919,7 +919,7 @@ function ChecklistAssignments({
                                 </span>
                             )}
                             <RequirementBadge isRequired={row.assignment.isRequired} />
-                            {!row.isCompleted && row.dueMeta ? <DueBadge dueMeta={row.dueMeta} /> : null}
+                            {!row.isCompleted && row.dueMeta && row.dueMeta.tone !== 'makeup' ? <DueBadge dueMeta={row.dueMeta} /> : null}
                             {showProgressSummary ? (
                                 <span className="text-[10px] font-medium text-text-muted">{row.progressSummary}</span>
                             ) : null}
@@ -990,7 +990,7 @@ function ChecklistAssignments({
                                 New
                             </span>
                         )}
-                        {!row.isCompleted && row.dueMeta ? <DueBadge dueMeta={row.dueMeta} /> : null}
+                        {!row.isCompleted && row.dueMeta && row.dueMeta.tone !== 'makeup' ? <DueBadge dueMeta={row.dueMeta} /> : null}
                     </div>
 
                     {row.vocabProgress && row.vocabProgress.completed < row.vocabProgress.total ? (
