@@ -27,8 +27,9 @@ import {
     TodaysAssignments,
     ClearFeaturedButton,
     ClassAnnouncement,
-    InviteFriendsCard,
     MissedClassCatchUpCard,
+    MomentumCard,
+    ExploreCategoriesCarousel,
 } from "@/components/dashboard";
 import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
 import { isTeacherAdmin } from "@/lib/roles";
@@ -512,9 +513,9 @@ export default async function DashboardPage() {
         return (
             <div className="min-h-screen bg-bg">
                 <main id="main-content" className="container mx-auto pt-4 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
-                    <div className="dashboard-shell grid grid-cols-1 gap-6 p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
+                    <div className="dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
                         {/* Main Content Area - Left Side */}
-                        <div className="md:col-span-8 lg:col-span-9 space-y-6 sm:space-y-8">
+                        <div className="md:col-span-8 lg:col-span-9 min-w-0 space-y-6 sm:space-y-8">
                             {/* Welcome Header */}
                             <div>
                                 {/* Desktop: Welcome + Stats horizontal */}
@@ -1023,7 +1024,35 @@ export default async function DashboardPage() {
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
         const firstClassId = enrollments[0]?.classId;
-        const studentLeaderboard = firstClassId ? await getTimeframedLeaderboard("week", 20, firstClassId) : [];
+        const studentSevenDaysAgo = new Date();
+        studentSevenDaysAgo.setDate(studentSevenDaysAgo.getDate() - 7);
+        const [studentLeaderboard, studentUserStats, studentLedgerEntries] = await Promise.all([
+            firstClassId ? getTimeframedLeaderboard("week", 20, firstClassId) : Promise.resolve([]),
+            withPrismaReadRetry(() =>
+                prisma.user.findUnique({
+                    where: { id: userId },
+                    select: { currentStreak: true, longestStreak: true, points: true },
+                })
+            ),
+            withPrismaReadRetry(() =>
+                prisma.pointsLedger.findMany({
+                    where: { userId, createdAt: { gte: studentSevenDaysAgo }, points: { gt: 0 } },
+                    select: { createdAt: true },
+                })
+            ),
+        ]);
+        const studentNow = new Date();
+        const studentActiveDates = new Set(
+            studentLedgerEntries.map((e: { createdAt: Date }) => {
+                const d = new Date(e.createdAt);
+                return `${d.getUTCFullYear()}-${d.getUTCMonth()}-${d.getUTCDate()}`;
+            })
+        );
+        const studentSevenDayActivity: boolean[] = Array.from({ length: 7 }, (_, i) => {
+            const d = new Date(studentNow);
+            d.setDate(d.getDate() - (6 - i));
+            return studentActiveDates.has(`${d.getUTCFullYear()}-${d.getUTCMonth()}-${d.getUTCDate()}`);
+        });
         const studentEntry = studentLeaderboard.find((e) => e.id === userId);
         const studentLeaderboardRank = studentEntry && studentEntry.rank <= 3 ? studentEntry.rank : null;
         const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
@@ -1033,9 +1062,9 @@ export default async function DashboardPage() {
         return (
             <div className="min-h-screen bg-bg">
                 <main id="main-content" className="container mx-auto pt-2 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
-                    <div className="dashboard-shell grid grid-cols-1 gap-6 p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
+                    <div className="dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
                         {/* Main Content Area - Left Side */}
-                        <div className="md:col-span-8 lg:col-span-9 space-y-6 sm:space-y-8">
+                        <div className="md:col-span-8 lg:col-span-9 min-w-0 space-y-6 sm:space-y-8">
                             {/* Welcome Header */}
                             <div className="hidden lg:flex items-center gap-6">
                                 <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight" style={{ textWrap: 'balance' }}>
@@ -1049,6 +1078,16 @@ export default async function DashboardPage() {
                             </div>
 
                             <ClassAnnouncement announcements={classAnnouncements} />
+
+                            {/* Momentum Card — visible on mobile only (desktop shows in sidebar) */}
+                            <div className="md:hidden">
+                                <MomentumCard
+                                    initialStreak={studentUserStats?.currentStreak ?? 0}
+                                    initialLongestStreak={studentUserStats?.longestStreak ?? 0}
+                                    initialSevenDayActivity={studentSevenDayActivity}
+                                    initialTotalPoints={studentUserStats?.points ?? 0}
+                                />
+                            </div>
 
                             {isCatchUpPathEnabled &&
                             featuredAssignments.some((assignment) => assignment.isRequired === true) ? (
@@ -1065,12 +1104,11 @@ export default async function DashboardPage() {
                                     pinnedHabit={dailyVocabHabit}
                                     mobileTasksLinkHref="/dashboard/activities"
                                     mobileTasksLinkLabel="All Activities"
-                                    showStudentStats
+                                    hideProgressBar
                                 />
                             </section>
 
-                            {/* Invite Friends Card (mobile) */}
-                            <InviteFriendsCard />
+                            <ExploreCategoriesCarousel />
 
                             {/* Browse All Activities CTA */}
                             <section className="hidden md:block">
@@ -1135,6 +1173,14 @@ export default async function DashboardPage() {
                         {/* Calendar Sidebar - Right Side (hidden on mobile) */}
                         <aside className="hidden md:block md:col-span-4 md:-mt-2 lg:col-span-3 lg:-mt-3">
                             <div className="dashboard-panel paper-texture sticky top-2 space-y-8 p-6 md:top-4">
+                                {/* Momentum Card — streak, 7-day dots, XP level */}
+                                <MomentumCard
+                                    initialStreak={studentUserStats?.currentStreak ?? 0}
+                                    initialLongestStreak={studentUserStats?.longestStreak ?? 0}
+                                    initialSevenDayActivity={studentSevenDayActivity}
+                                    initialTotalPoints={studentUserStats?.points ?? 0}
+                                />
+
                                 <MiniCalendar events={calendarEvents} />
 
                                 <UpcomingEventsList

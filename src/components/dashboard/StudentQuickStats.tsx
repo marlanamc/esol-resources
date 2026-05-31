@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { FlameIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
 import { useStudentSummary } from "@/hooks/useStudentSummary";
 
@@ -12,9 +12,18 @@ interface StudentQuickStatsProps {
     compact?: boolean;
     /** Tighter spacing for inline use (e.g. checklist header) */
     tight?: boolean;
+    /** When false, render chips as static elements (e.g. inside a parent link) */
+    linked?: boolean;
 }
 
-export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, compact = false, tight = false }: StudentQuickStatsProps) {
+export function StudentQuickStats({
+    mobile = false,
+    maxVisible = 3,
+    chipKeys,
+    compact = false,
+    tight = false,
+    linked = true,
+}: StudentQuickStatsProps) {
     const summary = useStudentSummary();
 
     if (!summary) {
@@ -32,6 +41,26 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
     const isHotStreak = summary.effectiveCurrentStreak >= 7;
     const shellClass = "dashboard-pill stats-badge-polish";
 
+    const renderChipShell = (
+        key: string,
+        className: string,
+        style: CSSProperties,
+        children: ReactNode,
+    ) => {
+        if (linked) {
+            return (
+                <Link key={key} href="/dashboard/profile" className={className} style={style}>
+                    {children}
+                </Link>
+            );
+        }
+        return (
+            <div key={key} className={className} style={style}>
+                {children}
+            </div>
+        );
+    };
+
     const pad = tight ? "px-2.5 py-1 gap-1" : compact ? "px-3 py-1.5 gap-1.5" : mobile ? "pl-2 pr-3 py-1.5 gap-2" : "pl-2.5 pr-4 py-2 gap-2";
     const iconBox = tight ? "w-4 h-4" : compact ? "w-5 h-5" : mobile ? "w-7 h-7" : "w-8 h-8";
     const iconSz = tight ? 10 : compact ? 12 : mobile ? 14 : 16;
@@ -39,11 +68,10 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
 
     if (summary.effectiveCurrentStreak > 0) {
         chips.push(
-            <Link
-                key="streak"
-                href="/dashboard/profile"
-                className={`flex items-center ${pad} ${shellClass} rounded-full transition-shadow duration-300`}
-                style={{
+            renderChipShell(
+                "streak",
+                `flex items-center ${pad} ${shellClass} rounded-full transition-shadow duration-300`,
+                {
                     background: (compact || tight)
                         ? 'linear-gradient(135deg, color-mix(in srgb, var(--tone-quizzes-surface) 18%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-quizzes-surface) 10%, var(--dashboard-surface-end)) 100%)'
                         : isHotStreak
@@ -54,8 +82,8 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
                         : isHotStreak
                             ? 'var(--tone-speaking-border)'
                             : 'var(--dashboard-border)',
-                }}
-            >
+                },
+                <>
                 <div className={`${iconBox} rounded-full flex items-center justify-center`}
                 style={{
                     background: (compact || tight)
@@ -78,23 +106,23 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
                     </div>
                 </div>
                 )}
-            </Link>
+                </>,
+            ),
         );
     }
 
     if (summary.actualWeeklyPoints > 0) {
         chips.push(
-            <Link
-                key="weekly"
-                href="/dashboard/profile"
-                className={`flex items-center ${pad} ${shellClass} rounded-full`}
-                style={{
+            renderChipShell(
+                "weekly",
+                `flex items-center ${pad} ${shellClass} rounded-full`,
+                {
                     background: compact
                         ? 'linear-gradient(135deg, color-mix(in srgb, var(--tone-speaking-surface) 16%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-speaking-surface-muted) 18%, var(--dashboard-surface-end)) 100%)'
                         : 'linear-gradient(90deg, color-mix(in srgb, var(--tone-speaking-surface) 14%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-speaking-surface-muted) 20%, var(--dashboard-surface-end)) 100%)',
                     borderColor: 'color-mix(in srgb, var(--tone-speaking-border) 84%, var(--dashboard-border))',
-                }}
-            >
+                },
+                <>
                 <div
                     className={`${iconBox} rounded-full flex items-center justify-center`}
                     style={{ background: 'linear-gradient(135deg, var(--tone-speaking-chip-bg) 0%, var(--tone-speaking-surface) 100%)' }}
@@ -111,21 +139,21 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
                     </div>
                 </div>
                 )}
-            </Link>
+                </>,
+            ),
         );
     }
 
     if (summary.totalPoints > 0) {
         chips.push(
-            <Link
-                key="total"
-                href="/dashboard/profile"
-                className={`flex items-center gap-2 ${mobile ? "pl-2 pr-3 py-1.5" : "pl-2.5 pr-4 py-2"} ${shellClass}`}
-                style={{
+            renderChipShell(
+                "total",
+                `flex items-center gap-2 ${mobile ? "pl-2 pr-3 py-1.5" : "pl-2.5 pr-4 py-2"} ${shellClass}`,
+                {
                     background: 'linear-gradient(135deg, color-mix(in srgb, var(--tone-grammar-surface) 14%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-grammar-surface) 8%, var(--dashboard-surface-end)) 100%)',
                     borderColor: 'color-mix(in srgb, var(--tone-grammar-border) 84%, var(--dashboard-border))',
-                }}
-            >
+                },
+                <>
                 <div
                     className={`${mobile ? "w-7 h-7" : "w-8 h-8"} rounded-full flex items-center justify-center`}
                     style={{ backgroundColor: 'color-mix(in srgb, var(--tone-grammar-chip-bg) 50%, var(--dashboard-surface-start))' }}
@@ -138,7 +166,8 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
                         {summary.totalPoints} <span className={`${mobile ? "text-[10px]" : "text-xs"} font-medium text-text-muted`}>pts</span>
                     </div>
                 </div>
-            </Link>
+                </>,
+            ),
         );
     }
 

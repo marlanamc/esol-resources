@@ -27,6 +27,8 @@ model User {
   avatarColor            String?
   isSystemAccount        Boolean                @default(false)
   excludeFromLeaderboard Boolean                @default(false)
+  // "class" | "independent"
+  learnerMode            String                 @default("class")
   passwordResetToken     String?                @unique
   passwordResetExpires   DateTime?
   activityProgress       ActivityProgress[]
@@ -81,16 +83,22 @@ model Class {
 }
 
 model ClassEnrollment {
-  id        String   @id @default(cuid())
-  classId   String
-  studentId String
-  joinedAt  DateTime @default(now())
-  class     Class    @relation(fields: [classId], references: [id])
-  student   User     @relation(fields: [studentId], references: [id])
+  id              String    @id @default(cuid())
+  classId         String
+  studentId       String
+  joinedAt        DateTime  @default(now())
+  // "active" | "exited" | "graduated"
+  status          String    @default("active")
+  statusChangedAt DateTime?
+  statusNote      String?
+  isReturning     Boolean   @default(false)
+  class           Class     @relation(fields: [classId], references: [id])
+  student         User      @relation(fields: [studentId], references: [id])
 
   @@unique([classId, studentId])
   @@index([classId])
   @@index([studentId])
+  @@index([classId, status])
 }
 
 model Activity {

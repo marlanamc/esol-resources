@@ -9,6 +9,8 @@ export type StudentSummaryResponse = {
     totalPoints: number;
     effectiveCurrentStreak: number;
     actualWeeklyPoints: number;
+    // 7 booleans, index 0 = 6 days ago, index 6 = today
+    sevenDayActivity: boolean[];
 };
 
 type StudentSummaryCache = {
@@ -45,7 +47,11 @@ export async function loadStudentSummary(): Promise<StudentSummaryResponse | nul
             const res = await fetch("/api/dashboard/student-summary", { cache: "no-store" });
             if (!res.ok) return null;
 
-            const data = (await res.json()) as StudentSummaryResponse;
+            const raw = (await res.json()) as Partial<StudentSummaryResponse> & Omit<StudentSummaryResponse, "sevenDayActivity">;
+            const data: StudentSummaryResponse = {
+                ...raw,
+                sevenDayActivity: raw.sevenDayActivity ?? [false, false, false, false, false, false, false],
+            };
             studentSummaryCache = { data, cachedAt: Date.now() };
             return data;
         } catch {

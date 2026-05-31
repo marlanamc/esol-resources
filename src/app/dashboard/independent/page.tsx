@@ -28,7 +28,7 @@ import {
     StreakDisplay,
     RecommendedReviewCard,
 } from "@/components/dashboard/independent";
-import { InviteFriendsCard } from "@/components/dashboard";
+import { ExploreCategoriesCarousel, MomentumCard } from "@/components/dashboard";
 import { IndependentDashboardClient } from "./IndependentDashboardClient";
 
 export default async function IndependentDashboardPage() {
@@ -48,8 +48,11 @@ export default async function IndependentDashboardPage() {
         logger.warn("Failed to track login for independent dashboard streak", { userId, error: String(err) });
     });
 
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
     // Fetch user preferences including new goal settings, enrollment count, and user stats
-    const [preferencesResult, enrollmentCount, userStats] = await Promise.all([
+    const [preferencesResult, enrollmentCount, userStats, recentLedgerEntries] = await Promise.all([
         withPrismaReadRetry(() =>
             prisma.userPreferences.findUnique({
                 where: { userId },
@@ -71,10 +74,30 @@ export default async function IndependentDashboardPage() {
                 select: {
                     currentStreak: true,
                     longestStreak: true,
+                    points: true,
                 },
             })
         ),
+        withPrismaReadRetry(() =>
+            prisma.pointsLedger.findMany({
+                where: { userId, createdAt: { gte: sevenDaysAgo }, points: { gt: 0 } },
+                select: { createdAt: true },
+            })
+        ),
     ]);
+
+    const now = new Date();
+    const activeDates = new Set(
+        recentLedgerEntries.map((e: { createdAt: Date }) => {
+            const d = new Date(e.createdAt);
+            return `${d.getUTCFullYear()}-${d.getUTCMonth()}-${d.getUTCDate()}`;
+        })
+    );
+    const initialSevenDayActivity: boolean[] = Array.from({ length: 7 }, (_, i) => {
+        const d = new Date(now);
+        d.setDate(d.getDate() - (6 - i));
+        return activeDates.has(`${d.getUTCFullYear()}-${d.getUTCMonth()}-${d.getUTCDate()}`);
+    });
 
     // Use defaults if preferences don't exist
     const preferences = preferencesResult ?? {
@@ -266,8 +289,8 @@ export default async function IndependentDashboardPage() {
     return (
         <div className="min-h-screen bg-bg">
             <main id="main-content" className="container mx-auto pt-2 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1800px]">
-                <div className="dashboard-shell grid grid-cols-1 gap-6 p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
-                    <div className="md:col-span-8 lg:col-span-9 space-y-6 sm:space-y-8">
+                <div className="dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
+                    <div className="md:col-span-8 lg:col-span-9 min-w-0 space-y-6 sm:space-y-8">
                         {/* Desktop Welcome Header */}
                         <div className="hidden lg:flex items-center gap-6">
                             <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight" style={{ textWrap: "balance" }}>
@@ -284,6 +307,16 @@ export default async function IndependentDashboardPage() {
                             </h1>
                         </div>
 
+                        {/* Momentum Card — mobile only (desktop shows in sidebar) */}
+                        <div className="md:hidden">
+                            <MomentumCard
+                                initialStreak={userStats?.currentStreak ?? 0}
+                                initialLongestStreak={userStats?.longestStreak ?? 0}
+                                initialSevenDayActivity={initialSevenDayActivity}
+                                initialTotalPoints={userStats?.points ?? 0}
+                            />
+                        </div>
+
                         {/* Recommended Activities */}
                         <section>
                             <TodaysAssignments
@@ -295,12 +328,11 @@ export default async function IndependentDashboardPage() {
                                 variant="checklist"
                                 mobileTasksLinkHref="/dashboard/activities"
                                 mobileTasksLinkLabel="All Activities"
-                                showStudentStats
+                                hideProgressBar
                             />
                         </section>
 
-                        {/* Invite Friends Card (mobile) */}
-                        <InviteFriendsCard />
+                        <ExploreCategoriesCarousel />
 
                         {/* Review Suggestions (subtle, below recommendations) */}
                         {weakAreas.length > 0 && (
@@ -368,10 +400,12 @@ export default async function IndependentDashboardPage() {
                     {/* Sidebar */}
                     <aside className="hidden md:block md:col-span-4 lg:col-span-3">
                         <div className="dashboard-panel paper-texture sticky top-4 space-y-5 p-5">
-                            {/* Streak Display */}
-                            <StreakDisplay
-                                currentStreak={userStats?.currentStreak ?? 0}
-                                longestStreak={userStats?.longestStreak ?? 0}
+                            {/* Momentum Card — streak, 7-day dots, XP level */}
+                            <MomentumCard
+                                initialStreak={userStats?.currentStreak ?? 0}
+                                initialLongestStreak={userStats?.longestStreak ?? 0}
+                                initialSevenDayActivity={initialSevenDayActivity}
+                                initialTotalPoints={userStats?.points ?? 0}
                             />
 
                             {/* Weekly Goal Tracker */}

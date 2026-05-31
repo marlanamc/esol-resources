@@ -144,12 +144,35 @@ They should keep:
 - past progress
 - points
 - streaks
+- achievements
 - access to the independent leaderboard
 
 They should lose:
 - teacher-driven checklist pressure
 - class announcements
 - class-specific dashboard assumptions
+
+### How the transition works (schema level)
+
+The `ClassEnrollment.status` field tracks where a student is in their journey:
+
+| Status | Meaning |
+| --- | --- |
+| `active` | Currently enrolled and attending |
+| `exited` | Dropped or stopped attending — record kept for history |
+| `graduated` | Completed the class, transitioned to independent mode |
+
+When a student is marked `graduated`:
+1. `ClassEnrollment.status` → `"graduated"`, `statusChangedAt` = now
+2. `User.learnerMode` → `"independent"` (flips their dashboard)
+3. Points, streak, and achievements are untouched
+
+When a returning student re-enrolls in a future class:
+1. New `ClassEnrollment` row created with `isReturning = true`
+2. `User.learnerMode` → `"class"` automatically on join
+3. All prior history and points carry over — nothing resets
+
+See [data-structure-summer-2026.md](data-structure-summer-2026.md) for the full schema reference.
 
 ## Suggested Next Expansion
 
