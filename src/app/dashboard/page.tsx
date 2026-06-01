@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
 import { trackLogin, getTimeframedLeaderboard } from "@/lib/gamification";
+import { buildCalendarWeekActivity, getCalendarWeekStart } from "@/lib/gamification/calendar-week";
 import { logger } from "@/lib/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
@@ -1024,8 +1025,7 @@ export default async function DashboardPage() {
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
         const firstClassId = enrollments[0]?.classId;
-        const studentSevenDaysAgo = new Date();
-        studentSevenDaysAgo.setDate(studentSevenDaysAgo.getDate() - 7);
+        const calendarWeekStart = getCalendarWeekStart();
         const [studentLeaderboard, studentUserStats, studentLedgerEntries] = await Promise.all([
             firstClassId ? getTimeframedLeaderboard("week", 20, firstClassId) : Promise.resolve([]),
             withPrismaReadRetry(() =>
@@ -1036,23 +1036,12 @@ export default async function DashboardPage() {
             ),
             withPrismaReadRetry(() =>
                 prisma.pointsLedger.findMany({
-                    where: { userId, createdAt: { gte: studentSevenDaysAgo }, points: { gt: 0 } },
+                    where: { userId, createdAt: { gte: calendarWeekStart } },
                     select: { createdAt: true },
                 })
             ),
         ]);
-        const studentNow = new Date();
-        const studentActiveDates = new Set(
-            studentLedgerEntries.map((e: { createdAt: Date }) => {
-                const d = new Date(e.createdAt);
-                return `${d.getUTCFullYear()}-${d.getUTCMonth()}-${d.getUTCDate()}`;
-            })
-        );
-        const studentSevenDayActivity: boolean[] = Array.from({ length: 7 }, (_, i) => {
-            const d = new Date(studentNow);
-            d.setDate(d.getDate() - (6 - i));
-            return studentActiveDates.has(`${d.getUTCFullYear()}-${d.getUTCMonth()}-${d.getUTCDate()}`);
-        });
+        const studentSevenDayActivity = buildCalendarWeekActivity(studentLedgerEntries);
         const studentEntry = studentLeaderboard.find((e) => e.id === userId);
         const studentLeaderboardRank = studentEntry && studentEntry.rank <= 3 ? studentEntry.rank : null;
         const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;

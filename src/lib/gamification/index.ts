@@ -35,6 +35,16 @@ export {
   getNextStreakState,
 } from "./streak-utils";
 
+// Calendar week (Monday–Sunday)
+export {
+  CALENDAR_WEEK_DAY_LABELS,
+  getCalendarWeekStart,
+  getCalendarWeekTodayIndex,
+  getCalendarWeekDayLabel,
+  buildCalendarWeekActivity,
+  getLearnerDayKey,
+} from "./calendar-week";
+
 // Activity points
 export {
   getActivityPoints as getActivityPointsValue,

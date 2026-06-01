@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
 import { trackLogin, getTimeframedLeaderboard } from "@/lib/gamification";
+import { buildCalendarWeekActivity, getCalendarWeekStart } from "@/lib/gamification/calendar-week";
 import { logger } from "@/lib/logger";
 import { resolveLearnerMode } from "@/lib/learner-mode";
 import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
@@ -48,8 +49,7 @@ export default async function IndependentDashboardPage() {
         logger.warn("Failed to track login for independent dashboard streak", { userId, error: String(err) });
     });
 
-    const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    const calendarWeekStart = getCalendarWeekStart();
 
     // Fetch user preferences including new goal settings, enrollment count, and user stats
     const [preferencesResult, enrollmentCount, userStats, recentLedgerEntries] = await Promise.all([
@@ -80,24 +80,13 @@ export default async function IndependentDashboardPage() {
         ),
         withPrismaReadRetry(() =>
             prisma.pointsLedger.findMany({
-                where: { userId, createdAt: { gte: sevenDaysAgo }, points: { gt: 0 } },
+                where: { userId, createdAt: { gte: calendarWeekStart } },
                 select: { createdAt: true },
             })
         ),
     ]);
 
-    const now = new Date();
-    const activeDates = new Set(
-        recentLedgerEntries.map((e: { createdAt: Date }) => {
-            const d = new Date(e.createdAt);
-            return `${d.getUTCFullYear()}-${d.getUTCMonth()}-${d.getUTCDate()}`;
-        })
-    );
-    const initialSevenDayActivity: boolean[] = Array.from({ length: 7 }, (_, i) => {
-        const d = new Date(now);
-        d.setDate(d.getDate() - (6 - i));
-        return activeDates.has(`${d.getUTCFullYear()}-${d.getUTCMonth()}-${d.getUTCDate()}`);
-    });
+    const initialSevenDayActivity = buildCalendarWeekActivity(recentLedgerEntries);
 
     // Use defaults if preferences don't exist
     const preferences = preferencesResult ?? {

@@ -1044,13 +1044,13 @@ function ChecklistAssignments({
                 }}
             >
                 <div
-                    className="relative z-10 border-b px-4 py-4 sm:px-6 sm:py-5"
+                    className="relative z-10 border-b px-3 py-2.5 sm:px-4 sm:py-3"
                     style={{
                         borderColor: 'var(--dashboard-divider)',
                         background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, color-mix(in srgb, var(--dashboard-surface-end) 92%, var(--dashboard-shell-bg)) 100%)',
                     }}
                 >
-                    <div className="mb-3.5 flex items-center justify-between gap-3">
+                    <div className={`flex items-center justify-between gap-3 ${hideProgressBar ? '' : 'mb-3'}`}>
                         <div className="flex items-center gap-2.5">
                             <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-lg transition-all duration-300 ${isFullyComplete ? 'border shadow-[0_2px_8px_rgba(181,110,26,0.15)]' : 'bg-primary/10 text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]'}`} style={isFullyComplete ? { backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)' } : undefined}>
                                 {isFullyComplete ? '🏆' : '📋'}

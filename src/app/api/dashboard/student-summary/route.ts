@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
+import { buildCalendarWeekActivity, getCalendarWeekStart } from "@/lib/gamification/calendar-week";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import { ApiErrors, handleApiError } from "@/lib/api-response";
 
@@ -38,8 +39,7 @@ export async function GET() {
         );
 
         const now = new Date();
-        const oneWeekAgo = new Date(now);
-        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        const calendarWeekStart = getCalendarWeekStart(now);
 
         const [weeklyPointsData, recentLedgerEntries] = await Promise.all([
             timedQuery(
@@ -54,7 +54,7 @@ export async function GET() {
                         prisma.pointsLedger.aggregate({
                             where: {
                                 userId: session.user.id,
-                                createdAt: { gte: oneWeekAgo },
+                                createdAt: { gte: calendarWeekStart },
                             },
                             _sum: { points: true },
                         })
@@ -72,8 +72,7 @@ export async function GET() {
                         prisma.pointsLedger.findMany({
                             where: {
                                 userId: session.user.id,
-                                createdAt: { gte: oneWeekAgo },
-                                points: { gt: 0 },
+                                createdAt: { gte: calendarWeekStart },
                             },
                             select: { createdAt: true },
                         })
@@ -81,18 +80,7 @@ export async function GET() {
             ),
         ]);
 
-        // Build a 7-element boolean array for the rolling week ending today (index 0 = 6 days ago, index 6 = today)
-        const activeDates = new Set(
-            recentLedgerEntries.map((e: { createdAt: Date }) => {
-                const d = new Date(e.createdAt);
-                return `${d.getUTCFullYear()}-${d.getUTCMonth()}-${d.getUTCDate()}`;
-            })
-        );
-        const sevenDayActivity: boolean[] = Array.from({ length: 7 }, (_, i) => {
-            const d = new Date(now);
-            d.setDate(d.getDate() - (6 - i));
-            return activeDates.has(`${d.getUTCFullYear()}-${d.getUTCMonth()}-${d.getUTCDate()}`);
-        });
+        const sevenDayActivity = buildCalendarWeekActivity(recentLedgerEntries, now);
 
         return NextResponse.json({
             totalPoints: user?.points ?? 0,

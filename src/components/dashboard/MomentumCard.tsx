@@ -4,8 +4,10 @@ import Link from "next/link";
 import { FlameIcon, CheckCircleIcon } from "@/components/icons/Icons";
 import { StudentQuickStats } from "@/components/dashboard/StudentQuickStats";
 import { useStudentSummary } from "@/hooks/useStudentSummary";
-
-const DAY_LABELS = ["M", "T", "W", "T", "F", "S", "S"];
+import {
+    CALENDAR_WEEK_DAY_LABELS,
+    getCalendarWeekTodayIndex,
+} from "@/lib/gamification/calendar-week";
 
 function getMessage(streak: number, longestStreak: number): string {
     if (streak === 0) return "Complete an activity today to start your streak!";
@@ -38,12 +40,13 @@ export function MomentumCard({
     const totalPoints = summary?.totalPoints ?? initialTotalPoints;
     const sevenDayActivity = summary?.sevenDayActivity ?? initialSevenDayActivity;
 
-    // today is always index 6 (rolling 7-day window ending today)
-    const todayIndex = 6;
+    const todayIndex = getCalendarWeekTodayIndex();
     const isHotStreak = streak >= 7;
     const isNewRecord = streak > 0 && streak >= longestStreak;
 
-    const activeDaysThisWeek = sevenDayActivity.filter(Boolean).length;
+    const activeDaysThisWeek = sevenDayActivity
+        .slice(0, todayIndex + 1)
+        .filter(Boolean).length;
     const weekActivityPct = Math.round((activeDaysThisWeek / 7) * 100);
 
     return (
@@ -115,6 +118,7 @@ export function MomentumCard({
             <div className="mt-3 flex justify-between items-end">
                 {sevenDayActivity.map((active, i) => {
                     const isToday = i === todayIndex;
+                    const isFuture = i > todayIndex;
                     return (
                         <div key={i} className="flex flex-col items-center gap-1">
                             <div
@@ -124,12 +128,17 @@ export function MomentumCard({
                                         ? "var(--primary)"
                                         : isToday
                                             ? "var(--tone-quizzes-surface)"
-                                            : "var(--tone-quizzes-chip-bg)",
+                                            : isFuture
+                                                ? "transparent"
+                                                : "var(--tone-quizzes-chip-bg)",
                                     border: active
                                         ? "2px solid var(--primary)"
                                         : isToday
                                             ? "2px solid var(--tone-quizzes-border)"
-                                            : "2px solid var(--border-subtle)",
+                                            : isFuture
+                                                ? "2px dashed var(--border-subtle)"
+                                                : "2px solid var(--border-subtle)",
+                                    opacity: isFuture ? 0.45 : 1,
                                 }}
                             >
                                 {active ? (
@@ -140,9 +149,15 @@ export function MomentumCard({
                             </div>
                             <span
                                 className="text-[10px] font-semibold leading-none"
-                                style={{ color: isToday ? "var(--primary)" : "var(--text-muted, var(--tone-quizzes-accent))" }}
+                                style={{
+                                    color: isToday
+                                        ? "var(--primary)"
+                                        : isFuture
+                                            ? "var(--text-soft, var(--tone-quizzes-accent))"
+                                            : "var(--text-muted, var(--tone-quizzes-accent))",
+                                }}
                             >
-                                {DAY_LABELS[i]}
+                                {CALENDAR_WEEK_DAY_LABELS[i]}
                             </span>
                         </div>
                     );

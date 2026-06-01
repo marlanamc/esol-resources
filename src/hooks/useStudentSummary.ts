@@ -9,7 +9,7 @@ export type StudentSummaryResponse = {
     totalPoints: number;
     effectiveCurrentStreak: number;
     actualWeeklyPoints: number;
-    // 7 booleans, index 0 = 6 days ago, index 6 = today
+    // 7 booleans for Mon–Sun calendar week (index 0 = Monday, index 6 = Sunday)
     sevenDayActivity: boolean[];
 };
 
