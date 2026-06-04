@@ -418,8 +418,8 @@ function PrimaryButton({
             type="button"
             onClick={onClick}
             disabled={disabled}
-            className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-5 py-3 text-base font-black text-white shadow-[0_4px_0_rgba(0,0,0,0.25)] transition active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:opacity-55 ${className}`}
-            style={{ backgroundColor: color }}
+            className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-5 py-3 text-base font-black shadow-[0_4px_0_rgba(0,0,0,0.25)] transition active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:opacity-55 ${className}`}
+            style={{ backgroundColor: color, color: "#ffffff" }}
         >
             {children}
         </button>

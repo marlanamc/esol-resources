@@ -579,6 +579,10 @@
   background-color: #fffdfa;
 }
 
+.dark .game-light-mode :where(.text-white) {
+  color: #ffffff;
+}
+
 /* ========== Theme Transition Suppression ========== */
 /* Suppress all transitions during initial hydration to prevent flash */
 html.theme-hydrating,
