@@ -67,7 +67,8 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const hasSkippedInitialProgressSaveRef = useRef(false);
     const grammarActivitiesHref = "/dashboard/activities?category=grammar";
     const returnHref = useResolvedLearnerReturnHref({ fallbackHref: grammarActivitiesHref });
-    const sourceLabel = returnHref.startsWith("/grammar-map") ? "Grammar Map" : "Activities";
+    const isFromMap = returnHref.startsWith("/dashboard/map");
+    const sourceLabel = returnHref.startsWith("/grammar-map") ? "Grammar Map" : isFromMap ? "Course Map" : "Activities";
     const sectionKeys = useMemo(
         () => content.sections.map((section, index) => section.id || `section-${index}`),
         [content.sections]
@@ -564,26 +565,34 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                     <LearnerMenu mode="quiet" className="h-9 w-9" />
                                 </div>
                                 <nav className="flex items-center gap-1.5 text-xs overflow-x-auto flex-1 min-w-0">
-                                    <Link
-                                        href="/dashboard"
-                                        className="text-primary hover:underline flex-shrink-0"
-                                    >
-                                        Home
-                                    </Link>
-                                    <span className="text-text-muted flex-shrink-0">/</span>
+                                    {!isFromMap && (
+                                        <>
+                                            <Link
+                                                href="/dashboard"
+                                                className="text-primary hover:underline flex-shrink-0"
+                                            >
+                                                Home
+                                            </Link>
+                                            <span className="text-text-muted flex-shrink-0">/</span>
+                                        </>
+                                    )}
                                     <Link
                                         href={returnHref}
                                         className="text-primary hover:underline flex-shrink-0"
                                     >
                                         {sourceLabel}
                                     </Link>
-                                    <span className="text-text-muted flex-shrink-0">/</span>
-                                    <Link
-                                        href={grammarActivitiesHref}
-                                        className="text-primary hover:underline flex-shrink-0"
-                                    >
-                                        Grammar
-                                    </Link>
+                                    {!isFromMap && (
+                                        <>
+                                            <span className="text-text-muted flex-shrink-0">/</span>
+                                            <Link
+                                                href={grammarActivitiesHref}
+                                                className="text-primary hover:underline flex-shrink-0"
+                                            >
+                                                Grammar
+                                            </Link>
+                                        </>
+                                    )}
                                     <span className="text-text-muted flex-shrink-0">/</span>
                                     <span className="text-text font-medium flex-shrink-0">{guideTitle}</span>
                                 </nav>
