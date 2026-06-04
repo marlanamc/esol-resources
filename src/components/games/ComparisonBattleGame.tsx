@@ -288,8 +288,16 @@ const WRITING_PROMPTS = [
     },
 ];
 
-type Screen = "welcome" | "lesson" | "short" | "long" | "irregular" | "practice" | "errors" | "speed" | "writing" | "final";
+type Screen = "welcome" | "lesson" | "short" | "long" | "irregular" | "gameStart" | "practice" | "errors" | "speed" | "writing" | "checkpoint" | "final";
 type WritingResult = { correct: boolean; feedback: string; correction?: string; rule?: string };
+type Checkpoint = {
+    title: string;
+    subtitle: string;
+    nextScreen: Screen;
+    total: number;
+    emoji: string;
+    startScore: number;
+};
 
 const SCORABLE_COUNT =
     PRACTICE_QUESTIONS.length + ERROR_QUESTIONS.length + SPEED_QUESTIONS.length + WRITING_PROMPTS.length;
@@ -440,14 +448,69 @@ function ProgressDots({ current, total }: { current: number; total: number }) {
     );
 }
 
+function PhaseBadge({ children, color = COLORS.blue, bg = COLORS.blueBg }: { children: React.ReactNode; color?: string; bg?: string }) {
+    return (
+        <div className="inline-flex rounded-full px-3 py-1 text-xs font-black uppercase tracking-widest" style={{ backgroundColor: bg, color }}>
+            {children}
+        </div>
+    );
+}
+
+function CheckpointScreen({
+    checkpoint,
+    score,
+    onContinue,
+}: {
+    checkpoint: Checkpoint;
+    score: number;
+    onContinue: () => void;
+}) {
+    const roundScore = Math.max(0, score - checkpoint.startScore);
+    const roundAccuracy = checkpoint.total > 0 ? Math.round((roundScore / checkpoint.total) * 100) : 0;
+
+    return (
+        <section className="space-y-5 py-3 text-center sm:py-6">
+            <div className="text-6xl">{checkpoint.emoji}</div>
+            <div>
+                <h2 className="text-3xl font-black leading-tight text-slate-900">{checkpoint.title}</h2>
+                <p className="mt-2 text-base font-bold text-slate-600">{checkpoint.subtitle}</p>
+            </div>
+            <Card color={COLORS.blue} bg={COLORS.blueBg}>
+                <div className="text-sm font-black uppercase tracking-widest" style={{ color: COLORS.blue }}>
+                    This Round
+                </div>
+                <div className="mt-2 text-5xl font-black" style={{ color: COLORS.blue }}>
+                    {roundScore}/{checkpoint.total}
+                </div>
+                <p className="mt-1 font-bold text-slate-600">{roundAccuracy}% correct</p>
+            </Card>
+            <Card color={COLORS.yellow} bg={COLORS.yellowBg}>
+                <div className="text-sm font-black uppercase tracking-widest" style={{ color: COLORS.yellow }}>
+                    Total So Far
+                </div>
+                <div className="mt-1 text-3xl font-black" style={{ color: COLORS.yellow }}>
+                    ⭐ {score}
+                </div>
+            </Card>
+            <PrimaryButton onClick={onContinue} className="w-full">
+                Continue <ArrowRight size={18} />
+            </PrimaryButton>
+        </section>
+    );
+}
+
 function AdjectiveList({
     title,
     intro,
+    step,
+    totalSteps,
     words,
     onNext,
 }: {
     title: string;
     intro: string;
+    step: number;
+    totalSteps: number;
     words: Array<{ adj: string; comp: string; sup: string; emojis: string[] }>;
     onNext: () => void;
 }) {
@@ -455,6 +518,9 @@ function AdjectiveList({
     return (
         <section className="space-y-4">
             <div className="text-center">
+                <PhaseBadge>
+                    Learning Intro {step}/{totalSteps}
+                </PhaseBadge>
                 <h2 className="text-2xl font-black text-slate-900">{title}</h2>
                 <p className="mt-1 text-sm font-semibold text-slate-600">{intro}</p>
             </div>
@@ -528,6 +594,8 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
     const [writingIndex, setWritingIndex] = useState(0);
     const [writingInput, setWritingInput] = useState("");
     const [writingResult, setWritingResult] = useState<WritingResult | null>(null);
+    const [roundStartScore, setRoundStartScore] = useState(0);
+    const [checkpoint, setCheckpoint] = useState<Checkpoint | null>(null);
     const [pointsAwarded, setPointsAwarded] = useState<number | null>(null);
     const [showToast, setShowToast] = useState(false);
     const completedRef = useRef(false);
@@ -603,6 +671,19 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    const showCheckpoint = (nextCheckpoint: Omit<Checkpoint, "startScore">) => {
+        setCheckpoint({ ...nextCheckpoint, startScore: roundStartScore });
+        goTo("checkpoint");
+    };
+
+    const continueFromCheckpoint = () => {
+        if (!checkpoint) return;
+        const nextScreen = checkpoint.nextScreen;
+        setCheckpoint(null);
+        setRoundStartScore(score);
+        goTo(nextScreen);
+    };
+
     const restart = () => {
         mapReturn.cancel();
         completedRef.current = false;
@@ -622,6 +703,8 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
         setWritingIndex(0);
         setWritingInput("");
         setWritingResult(null);
+        setRoundStartScore(0);
+        setCheckpoint(null);
         setPointsAwarded(null);
         setShowToast(false);
     };
@@ -641,7 +724,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                         <div className="mt-4 rounded-2xl border-2 border-yellow-300 bg-yellow-50 px-4 py-3 shadow-sm sm:mt-5 sm:px-6 sm:py-4">
                             <p className="text-xs font-black uppercase tracking-widest text-yellow-600">✨ Game Designers ✨</p>
                             <p className="mt-1 text-base font-black text-slate-800 sm:text-lg">
-                                Edwar · Karina · Evelyn · Hazel
+                                Edwar · Karina · Evelyn · Hazel · Susan
                             </p>
                         </div>
                         <div className="my-6 flex flex-wrap justify-center gap-3 sm:my-8 sm:gap-4">
@@ -657,7 +740,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                             ))}
                         </div>
                         <PrimaryButton onClick={() => goTo("lesson")} className="w-full max-w-sm text-lg sm:text-xl">
-                            <Sparkles size={20} /> Start Playing
+                            <Sparkles size={20} /> Start Learning Intro
                         </PrimaryButton>
                     </section>
                 ) : null}
@@ -665,7 +748,11 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                 {screen === "lesson" ? (
                     <section className="space-y-4">
                         <div className="text-center">
-                            <h2 className="text-2xl font-black">Let&apos;s Learn</h2>
+                            <PhaseBadge>
+                                Learning Intro {lessonStep + 1}/5
+                            </PhaseBadge>
+                            <h2 className="mt-2 text-2xl font-black">Let&apos;s Learn First</h2>
+                            <p className="mt-1 text-sm font-semibold text-slate-600">No score yet. The game starts after the intro.</p>
                             <div className="mt-3">
                                 <ProgressDots current={lessonStep + 1} total={LESSON_STEPS.length} />
                             </div>
@@ -697,7 +784,10 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                         <PrimaryButton
                             onClick={() => {
                                 if (lessonStep < LESSON_STEPS.length - 1) setLessonStep((value) => value + 1);
-                                else goTo("short");
+                                else {
+                                    setRoundStartScore(score);
+                                    goTo("short");
+                                }
                             }}
                             color={lessonStep === 0 ? COLORS.blue : COLORS.green}
                             className="w-full"
@@ -708,13 +798,34 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                     </section>
                 ) : null}
 
-                {screen === "short" ? <AdjectiveList title="Short Adjectives" intro="Short adjectives get -er and -est." words={SHORT_ADJECTIVES} onNext={() => goTo("long")} /> : null}
-                {screen === "long" ? <AdjectiveList title="Long Adjectives" intro="Long adjectives use more and most." words={LONG_ADJECTIVES} onNext={() => goTo("irregular")} /> : null}
+                {screen === "short" ? (
+                    <AdjectiveList
+                        title="Short Adjectives"
+                        intro="Short adjectives get -er and -est."
+                        step={3}
+                        totalSteps={5}
+                        words={SHORT_ADJECTIVES}
+                        onNext={() => goTo("long")}
+                    />
+                ) : null}
+                {screen === "long" ? (
+                    <AdjectiveList
+                        title="Long Adjectives"
+                        intro="Long adjectives use more and most."
+                        step={4}
+                        totalSteps={5}
+                        words={LONG_ADJECTIVES}
+                        onNext={() => goTo("irregular")}
+                    />
+                ) : null}
 
                 {screen === "irregular" ? (
                     <section className="space-y-4">
                         <div className="text-center">
-                            <h2 className="text-2xl font-black">Irregular Adjectives</h2>
+                            <PhaseBadge>
+                                Learning Intro 5/5
+                            </PhaseBadge>
+                            <h2 className="mt-2 text-2xl font-black">Irregular Adjectives</h2>
                             <p className="mt-1 text-sm font-semibold text-slate-600">These words are special. Learn them by heart.</p>
                         </div>
                         {IRREGULAR_ADJECTIVES.map((word) => (
@@ -742,8 +853,39 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                                 </div>
                             </Card>
                         ))}
-                        <PrimaryButton onClick={() => goTo("practice")} className="w-full">
-                            Practice Time <ArrowRight size={18} />
+                        <PrimaryButton onClick={() => goTo("gameStart")} className="w-full">
+                            Finish Intro <ArrowRight size={18} />
+                        </PrimaryButton>
+                    </section>
+                ) : null}
+
+                {screen === "gameStart" ? (
+                    <section className="space-y-5 py-3 text-center sm:py-6">
+                        <div className="text-7xl">🎯</div>
+                        <div>
+                            <PhaseBadge color={COLORS.green} bg={COLORS.greenBg}>
+                                Intro Complete
+                            </PhaseBadge>
+                            <h2 className="mt-3 text-3xl font-black leading-tight text-slate-900">The Game Starts Now</h2>
+                            <p className="mt-2 text-base font-bold text-slate-600">
+                                From here, your answers count toward your score. You will stop after short rounds to see how you did.
+                            </p>
+                        </div>
+                        <Card color={COLORS.yellow} bg={COLORS.yellowBg}>
+                            <div className="text-sm font-black uppercase tracking-widest" style={{ color: COLORS.yellow }}>
+                                First Scored Round
+                            </div>
+                            <p className="mt-2 text-lg font-black text-slate-800">3 choice questions, then a score stop.</p>
+                        </Card>
+                        <PrimaryButton
+                            onClick={() => {
+                                setRoundStartScore(score);
+                                goTo("practice");
+                            }}
+                            color={COLORS.green}
+                            className="w-full"
+                        >
+                            Start Round 1 <ArrowRight size={18} />
                         </PrimaryButton>
                     </section>
                 ) : null}
@@ -762,8 +904,23 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                             if (practiceIndex < PRACTICE_QUESTIONS.length - 1) {
                                 setPracticeIndex((value) => value + 1);
                                 setPracticeChoice(null);
+                                if ((practiceIndex + 1) % 3 === 0) {
+                                    showCheckpoint({
+                                        title: `Choice Round ${Math.floor(practiceIndex / 3) + 1} Complete`,
+                                        subtitle: "Take a breath. Then keep going when you are ready.",
+                                        nextScreen: "practice",
+                                        total: 3,
+                                        emoji: "🎯",
+                                    });
+                                }
                             } else {
-                                goTo("errors");
+                                showCheckpoint({
+                                    title: "Choice Questions Complete",
+                                    subtitle: "Next, you will fix comparison mistakes.",
+                                    nextScreen: "errors",
+                                    total: 3,
+                                    emoji: "🎯",
+                                });
                             }
                         }}
                     />
@@ -791,8 +948,23 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                                 setErrorIndex((value) => value + 1);
                                 setErrorInput("");
                                 setErrorSubmitted(false);
+                                if ((errorIndex + 1) % 2 === 0) {
+                                    showCheckpoint({
+                                        title: `Repair Round ${Math.floor(errorIndex / 2) + 1} Complete`,
+                                        subtitle: "Short stop. Check your score, then continue.",
+                                        nextScreen: "errors",
+                                        total: 2,
+                                        emoji: "🔧",
+                                    });
+                                }
                             } else {
-                                goTo("speed");
+                                showCheckpoint({
+                                    title: "Repair Questions Complete",
+                                    subtitle: "Next is a short speed round.",
+                                    nextScreen: "speed",
+                                    total: 2,
+                                    emoji: "🔧",
+                                });
                             }
                         }}
                     />
@@ -816,11 +988,28 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                                 setSpeedIndex((value) => value + 1);
                                 setSpeedChoice(null);
                                 setSpeedTime(12);
+                                if ((speedIndex + 1) % 2 === 0) {
+                                    showCheckpoint({
+                                        title: `Speed Round ${Math.floor(speedIndex / 2) + 1} Complete`,
+                                        subtitle: "Pause here before the timer starts again.",
+                                        nextScreen: "speed",
+                                        total: 2,
+                                        emoji: "⚡",
+                                    });
+                                }
                             } else {
                                 setSpeedDone(true);
                             }
                         }}
-                        onContinue={() => goTo("writing")}
+                        onContinue={() =>
+                            showCheckpoint({
+                                title: "Speed Questions Complete",
+                                subtitle: "Next, write your own comparison sentences.",
+                                nextScreen: "writing",
+                                total: 1,
+                                emoji: "⚡",
+                            })
+                        }
                     />
                 ) : null}
 
@@ -846,11 +1035,30 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                                 setWritingIndex((value) => value + 1);
                                 setWritingInput("");
                                 setWritingResult(null);
+                                if ((writingIndex + 1) % 2 === 0) {
+                                    showCheckpoint({
+                                        title: `Writing Round ${Math.floor(writingIndex / 2) + 1} Complete`,
+                                        subtitle: "Review your round score before the next prompts.",
+                                        nextScreen: "writing",
+                                        total: 2,
+                                        emoji: "✍️",
+                                    });
+                                }
                             } else {
-                                goTo("final");
+                                showCheckpoint({
+                                    title: "Writing Complete",
+                                    subtitle: "You finished the last short round. See your final score next.",
+                                    nextScreen: "final",
+                                    total: 1,
+                                    emoji: "✍️",
+                                });
                             }
                         }}
                     />
+                ) : null}
+
+                {screen === "checkpoint" && checkpoint ? (
+                    <CheckpointScreen checkpoint={checkpoint} score={score} onContinue={continueFromCheckpoint} />
                 ) : null}
 
                 {screen === "final" ? (
