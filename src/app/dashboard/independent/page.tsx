@@ -29,7 +29,7 @@ import {
     StreakDisplay,
     RecommendedReviewCard,
 } from "@/components/dashboard/independent";
-import { ExploreCategoriesCarousel, MomentumCard } from "@/components/dashboard";
+import { DashboardWelcomeHero, ExploreCategoriesCarousel, MomentumCard } from "@/components/dashboard";
 import { IndependentDashboardClient } from "./IndependentDashboardClient";
 
 export default async function IndependentDashboardPage() {
@@ -280,23 +280,39 @@ export default async function IndependentDashboardPage() {
             <main id="main-content" className="container mx-auto pt-2 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1800px]">
                 <div className="dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
                     <div className="md:col-span-8 lg:col-span-9 min-w-0 space-y-6 sm:space-y-8">
-                        {/* Desktop Welcome Header */}
-                        <div className="hidden lg:flex items-center gap-6">
-                            <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight" style={{ textWrap: "balance" }}>
-                                Welcome, <span className="font-display tracking-tight text-primary/90 relative inline-block">
-                                    {session.user?.name}
-                                    <span className="absolute -bottom-1 left-0 right-0 h-2 bg-[#88A392]/45 -z-10 rounded-sm transform -rotate-1"></span>
-                                </span>
-                                {studentLeaderboardMedal && (
-                                    <span className="ml-1.5 inline-block text-3xl leading-none" aria-label={`Rank ${studentLeaderboardRank}`}>
-                                        {studentLeaderboardMedal}
-                                    </span>
-                                )}
-                                !
-                            </h1>
+                        <div className="hidden lg:block dashboard-panel paper-texture rounded-2xl overflow-hidden">
+                            <DashboardWelcomeHero
+                                weekHub
+                                userName={session.user?.name ?? ""}
+                                nameEmoji={
+                                    studentLeaderboardMedal ? (
+                                        <span className="inline-block leading-none" aria-label={`Rank ${studentLeaderboardRank}`}>
+                                            {studentLeaderboardMedal}
+                                        </span>
+                                    ) : undefined
+                                }
+                                momentum={{
+                                    initialStreak: userStats?.currentStreak ?? 0,
+                                    initialLongestStreak: userStats?.longestStreak ?? 0,
+                                    initialSevenDayActivity: initialSevenDayActivity,
+                                    initialTotalPoints: userStats?.points ?? 0,
+                                }}
+                            />
+                            <TodaysAssignments
+                                weekHub
+                                initialAssignments={recommendedAssignments}
+                                pinnedHabit={dailyVocabHabit}
+                                title="Recommended Activities"
+                                subtitle={null}
+                                ctaLabel="Start"
+                                variant="checklist"
+                                mobileTasksLinkHref="/dashboard/activities"
+                                mobileTasksLinkLabel="All Activities"
+                                hideProgressBar
+                            />
                         </div>
 
-                        {/* Momentum Card — mobile only (desktop shows in sidebar) */}
+                        {/* Momentum — mobile only (< md) */}
                         <div className="md:hidden">
                             <MomentumCard
                                 initialStreak={userStats?.currentStreak ?? 0}
@@ -306,8 +322,7 @@ export default async function IndependentDashboardPage() {
                             />
                         </div>
 
-                        {/* Recommended Activities */}
-                        <section>
+                        <section className="lg:hidden" aria-label="Recommended Activities">
                             <TodaysAssignments
                                 initialAssignments={recommendedAssignments}
                                 pinnedHabit={dailyVocabHabit}
@@ -388,14 +403,17 @@ export default async function IndependentDashboardPage() {
 
                     {/* Sidebar */}
                     <aside className="hidden md:block md:col-span-4 lg:col-span-3">
-                        <div className="dashboard-panel paper-texture sticky top-4 space-y-5 p-5">
-                            {/* Momentum Card — streak, 7-day dots, XP level */}
-                            <MomentumCard
-                                initialStreak={userStats?.currentStreak ?? 0}
-                                initialLongestStreak={userStats?.longestStreak ?? 0}
-                                initialSevenDayActivity={initialSevenDayActivity}
-                                initialTotalPoints={userStats?.points ?? 0}
-                            />
+                        <div className="dashboard-panel paper-texture sticky top-4 space-y-5 p-4 md:p-5">
+                            {/* Momentum — md sidebar only (lg+ lives in welcome header) */}
+                            <div className="lg:hidden">
+                                <MomentumCard
+                                    variant="sidebar"
+                                    initialStreak={userStats?.currentStreak ?? 0}
+                                    initialLongestStreak={userStats?.longestStreak ?? 0}
+                                    initialSevenDayActivity={initialSevenDayActivity}
+                                    initialTotalPoints={userStats?.points ?? 0}
+                                />
+                            </div>
 
                             {/* Weekly Goal Tracker */}
                             <IndependentDashboardClient

@@ -16,12 +16,17 @@ const { weeklyVocabData } = require("./weekly-vocab-data.js");
 const prisma = new PrismaClient();
 
 function getUnitNumber(slug) {
+  if (slug.startsWith("sep-")) return 1;
+  if (slug.startsWith("oct-")) return 2;
+  if (slug.startsWith("nov-")) return 3;
+  if (slug.startsWith("dec-")) return 4;
+  if (slug.startsWith("jan-")) return 5;
   if (slug.startsWith("feb-")) return 6;
   if (slug.startsWith("mar-")) return 7;
   if (slug.startsWith("apr-")) return 8;
   if (slug.startsWith("may-")) return 9;
   if (slug.startsWith("jun-")) return 10;
-  return 6;
+  return 1;
 }
 
 function generatePacketContent(slug, data) {
@@ -126,6 +131,11 @@ function generateFillBlankContent(slug, data) {
 }
 
 const monthNames = {
+  'sep': 'September',
+  'oct': 'October',
+  'nov': 'November',
+  'dec': 'December',
+  'jan': 'January',
   'feb': 'February',
   'mar': 'March',
   'apr': 'April',
@@ -136,6 +146,10 @@ const monthNames = {
 function formatWeek(slug) {
   const parts = slug.split('-');
   const m1 = monthNames[parts[0]];
+  if (parts[1] && parts[1].startsWith('w')) {
+    const weekNum = parts[1].substring(1);
+    return `${m1} Week ${weekNum}`;
+  }
   if (parts.length === 3) {
     return `${m1} ${parts[1]}–${parts[2]}`;
   } else if (parts.length === 4) {

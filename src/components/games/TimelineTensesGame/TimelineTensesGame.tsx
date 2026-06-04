@@ -17,7 +17,7 @@ import { PointsToast } from '@/components/ui/PointsToast';
 import { saveActivityProgress } from '@/lib/activityProgress';
 import { GameErrorBoundary } from '@/components/system/ErrorBoundary';
 import { useRouter } from 'next/navigation';
-import { useTimelineTensesState } from './hooks/useTimelineTensesState';
+import { useTimelineTensesState, type TimelineTensesPreset } from './hooks/useTimelineTensesState';
 import { TenseFilterBar } from './TenseFilterBar';
 import { SentenceFormFilter } from './SentenceFormFilter';
 import { TimeFrameFilter } from './TimeFrameFilter';
@@ -49,6 +49,7 @@ import {
 interface TimelineTensesGameProps {
   activityId: string;
   assignmentId?: string | null;
+  preset?: TimelineTensesPreset;
 }
 
 function StepLabel({ step, label }: { step: number; label: string }) {
@@ -62,7 +63,7 @@ function StepLabel({ step, label }: { step: number; label: string }) {
   );
 }
 
-export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesGameProps) {
+export function TimelineTensesGame({ activityId, assignmentId, preset }: TimelineTensesGameProps) {
   const router = useRouter();
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const lastProcessedResultsKeyRef = useRef<string | null>(null);
@@ -98,7 +99,7 @@ export function TimelineTensesGame({ activityId, assignmentId }: TimelineTensesG
     retryRound,
     dismissError,
     resetProgress,
-  } = useTimelineTensesState(activityId, assignmentId);
+  } = useTimelineTensesState(activityId, assignmentId, preset);
 
   const handleSaveProgress = useCallback(async () => {
     const result = await saveProgress();

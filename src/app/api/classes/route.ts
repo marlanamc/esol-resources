@@ -168,8 +168,10 @@ export async function POST(request: NextRequest) {
                         instructions: true,
                         dueDate: true,
                         isFeatured: true,
+                        sequenceNumber: true,
+                        unitLabel: true,
                     },
-                    orderBy: { createdAt: "asc" },
+                    orderBy: [{ sequenceNumber: "asc" }, { createdAt: "asc" }],
                 },
             },
         });
@@ -213,6 +215,8 @@ export async function POST(request: NextRequest) {
                         instructions: assignment.instructions,
                         dueDate: assignment.dueDate,
                         isFeatured: assignment.isFeatured,
+                        sequenceNumber: assignment.sequenceNumber,
+                        unitLabel: assignment.unitLabel,
                     })),
                 });
                 copiedAssignments = sourceClass.assignments.length;

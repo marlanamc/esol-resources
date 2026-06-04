@@ -98,12 +98,9 @@ export const ZapIcon: React.FC<IconProps> = ({ className = '', size = 24, ...pro
 
 export const MapIcon: React.FC<IconProps> = ({ className = '', size = 24, ...props }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
-    <circle cx="12" cy="12" r="10"></circle>
-    <circle cx="12" cy="12" r="6"></circle>
-    <circle cx="12" cy="12" r="2"></circle>
-    <line x1="12" y1="12" x2="18" y2="6"></line>
-    <line x1="12" y1="12" x2="6" y2="6"></line>
-    <line x1="12" y1="12" x2="6" y2="18"></line>
+    <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+    <line x1="9" y1="3" x2="9" y2="18"></line>
+    <line x1="15" y1="6" x2="15" y2="21"></line>
   </svg>
 );
 

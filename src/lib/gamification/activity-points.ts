@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "cafe-catch-up" | "trivia-game" | "grammar-hospital" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "cafe-catch-up" | "trivia-game" | "grammar-hospital" | "comparison-battle" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -36,6 +36,8 @@ function gameUiFromJsonType(parsed: unknown): GameUi | null {
       return "trivia-game";
     case "grammar-hospital":
       return "grammar-hospital";
+    case "comparison-battle":
+      return "comparison-battle";
     default:
       return null;
   }
@@ -67,6 +69,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "cafe-catch-up" || ui === "cafe-catchup" || ui === "discussion-deck") return "cafe-catch-up";
     if (ui === "trivia-game" || ui === "trivia" || ui === "group-trivia") return "trivia-game";
     if (ui === "grammar-hospital" || ui === "grammar-doctor" || ui === "fix-the-sentence") return "grammar-hospital";
+    if (ui === "comparison-battle" || ui === "comparatives-superlatives" || ui === "comparative-superlative") return "comparison-battle";
   }
 
   if (typeof content === "string") {
@@ -125,6 +128,8 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
         return POINTS.SPEAKING_ACTIVITY;
       case "grammar-hospital":
         return POINTS.GRAMMAR_HOSPITAL;
+      case "comparison-battle":
+        return POINTS.ACTIVITY_COMPLETION;
       default:
         return POINTS.ACTIVITY_COMPLETION;
     }

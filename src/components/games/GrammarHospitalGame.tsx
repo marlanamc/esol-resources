@@ -23,6 +23,7 @@ import type {
 } from "@/types/activity";
 import { fetchActivityProgress, saveActivityProgress } from "@/lib/activityProgress";
 import { fetchGameSettings, saveGameSettings } from "@/lib/gameSettings";
+import { CourseMapReturnButton } from "@/components/navigation/CourseMapReturnButton";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 import {
@@ -125,6 +126,11 @@ function renderUnhealthy(c: GrammarHospitalCase): React.ReactNode {
 export default function GrammarHospitalGame({ activityId, content }: Props) {
     const allCases = useMemo(() => content.cases ?? [], [content.cases]);
     const participationPoints = content.participationPoints ?? 5;
+    const isCourseMapPreset = content.courseMapPreset === true;
+    const presetSettings = useMemo(
+        () => normalizeGHSettings(content.defaultSettings),
+        [content.defaultSettings]
+    );
 
     // Settings — defaults until preferences load. Filtering uses these.
     const [settings, setSettings] = useState<GrammarHospitalSettings>(DEFAULT_GH_SETTINGS);
@@ -188,6 +194,11 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
     // Load user settings on mount, mirror to server when changed.
     useEffect(() => {
         let cancelled = false;
+        if (isCourseMapPreset) {
+            setSettings(presetSettings);
+            setSettingsLoaded(true);
+            return;
+        }
         void fetchGameSettings(GAME_ID).then((stored) => {
             if (cancelled) return;
             if (stored) setSettings(normalizeGHSettings(stored));
@@ -196,13 +207,13 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         return () => {
             cancelled = true;
         };
-    }, []);
+    }, [isCourseMapPreset, presetSettings]);
 
     // Persist whenever settings change (after the initial load).
     useEffect(() => {
-        if (!settingsLoaded) return;
+        if (!settingsLoaded || isCourseMapPreset) return;
         saveGameSettings(GAME_ID, settings as unknown as Record<string, unknown>);
-    }, [settings, settingsLoaded]);
+    }, [settings, settingsLoaded, isCourseMapPreset]);
 
     // Reset to the first case in the filtered deck whenever the filter changes.
     // If the player was mid-case or on the review screen, bounce them into the
@@ -403,7 +414,10 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                             <SummaryRow icon={<Trophy size={16} className="text-accent" />} label="Best streak" value={`${bestStreak} in a row`} />
                         </ul>
 
-                        <div className="mt-7 flex flex-wrap gap-2.5 justify-center">
+                        <div className="mt-7 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:justify-center">
+                            {isCourseMapPreset && (
+                                <CourseMapReturnButton className="w-full sm:w-auto" />
+                            )}
                             <button
                                 type="button"
                                 onClick={() => {
@@ -413,7 +427,11 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                                     setCaseIdx(0);
                                     setPhase("diagnose");
                                 }}
-                                className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-5 py-2.5 shadow-[0_4px_14px_rgba(176,87,64,0.28)] transition-all"
+                                className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold transition-all ${
+                                    isCourseMapPreset
+                                        ? "border border-gray-200 bg-white text-gray-800 hover:border-primary/40 dark:border-white/10 dark:bg-[#2a1f1a] dark:text-gray-100"
+                                        : "bg-primary text-white shadow-[0_4px_14px_rgba(176,87,64,0.28)] hover:bg-[#984734]"
+                                }`}
                             >
                                 <RotateCcw size={16} /> Keep practicing
                             </button>
@@ -446,7 +464,21 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                         <ContextualBackButton aria-label="Back to activities" />
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
+                    {isCourseMapPreset && (
+                        <div className="mb-6 rounded-2xl border border-primary/20 bg-primary/5 px-4 py-3">
+                            <p className="text-[0.65rem] uppercase tracking-[0.18em] font-bold text-primary-dark dark:text-primary-light">
+                                Guided Course Map Step
+                            </p>
+                            <h2 className="mt-1 font-display text-xl font-bold text-gray-900 dark:text-gray-50">
+                                {content.courseMapTitle ?? "Grammar Hospital: Helper Verb Repair"}
+                            </h2>
+                            <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                                {content.courseMapDirections ?? "This version is already set up for you."}
+                            </p>
+                        </div>
+                    )}
+
+                    <div className={`grid grid-cols-1 gap-8 items-start ${isCourseMapPreset ? "" : "lg:grid-cols-[1.1fr_0.9fr]"}`}>
                         <div>
                             <div className="inline-flex items-center gap-2 mb-4">
                                 <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-primary/12 text-primary">
@@ -481,6 +513,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                         </div>
 
                         {/* Difficulty picker — same controls as the in-game gear, shown up front */}
+                        {!isCourseMapPreset && (
                         <div className="rounded-2xl bg-white dark:bg-[#2a1f1a] border border-gray-200 dark:border-white/10 shadow-[0_8px_30px_rgba(74,47,26,0.08)] p-6 sm:p-7">
                             <div className="flex items-center justify-between mb-4">
                                 <div>
@@ -506,6 +539,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                                 You can change difficulty anytime from the gear icon while playing.
                             </p>
                         </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -571,14 +605,14 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                 {/* HERO: the patient sentence is the star */}
                 <PatientHero
                     caseItem={current}
-                    topRightSlot={
+                    topRightSlot={!isCourseMapPreset ? (
                         <SettingsButton
                             value={settings}
                             onChange={setSettings}
                             tierCounts={tierCounts}
                             focusCounts={focusCounts}
                         />
-                    }
+                    ) : null}
                 />
 
                 {/* Active step — centered, comfortable reading width */}

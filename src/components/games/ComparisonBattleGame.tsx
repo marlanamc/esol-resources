@@ -1,0 +1,1248 @@
+"use client";
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, Check, RotateCcw, Sparkles, Trophy, X } from "lucide-react";
+import { fetchActivityProgress, saveActivityProgress } from "@/lib/activityProgress";
+import { PointsToast } from "@/components/ui/PointsToast";
+
+const COLORS = {
+    blue: "#1a6fcd",
+    blueBg: "#deeeff",
+    green: "#2e9e4f",
+    greenBg: "#d8f5e3",
+    red: "#d63030",
+    redBg: "#fde8e8",
+    yellow: "#c97b00",
+    yellowBg: "#fff5cc",
+};
+
+const LESSON_STEPS = [
+    {
+        title: "Comparative",
+        color: COLORS.blue,
+        bg: COLORS.blueBg,
+        icon: "🔵",
+        visual: ["🐘", "🐕"],
+        rule: "Comparative compares two things.",
+        example: "The elephant is bigger than the dog.",
+        remember: "Use -er than for short adjectives or more ... than for long adjectives.",
+    },
+    {
+        title: "Superlative",
+        color: COLORS.green,
+        bg: COLORS.greenBg,
+        icon: "🟢",
+        visual: ["🐭", "🐕", "🐘"],
+        rule: "Superlative compares one thing in a group.",
+        example: "The elephant is the biggest.",
+        remember: "Use the -est for short adjectives or the most for long adjectives.",
+    },
+];
+
+const SHORT_ADJECTIVES = [
+    { adj: "big", comp: "bigger than", sup: "the biggest", emojis: ["🟡", "🟠", "🔴"] },
+    { adj: "small", comp: "smaller than", sup: "the smallest", emojis: ["🏘️", "🏠", "🧸"] },
+    { adj: "fast", comp: "faster than", sup: "the fastest", emojis: ["🐢", "🐇", "🚀"] },
+];
+
+const LONG_ADJECTIVES = [
+    { adj: "expensive", comp: "more expensive than", sup: "the most expensive", emojis: ["📱", "💻", "🏠"] },
+    { adj: "difficult", comp: "more difficult than", sup: "the most difficult", emojis: ["📐", "📚", "🧮"] },
+    { adj: "beautiful", comp: "more beautiful than", sup: "the most beautiful", emojis: ["🌸", "🌺", "🌹"] },
+];
+
+const IRREGULAR_ADJECTIVES = [
+    { adj: "good", comp: "better", sup: "best", emojis: ["😐", "😊", "🤩"] },
+    { adj: "bad", comp: "worse", sup: "worst", emojis: ["😐", "😟", "😭"] },
+    { adj: "far", comp: "farther", sup: "farthest", emojis: ["📍", "📍", "📍"] },
+];
+
+const PRACTICE_QUESTIONS = [
+    {
+        title: "Round 1: Two Things",
+        emojis: ["🐘", "🐕"],
+        labels: ["elephant", "dog"],
+        question: "Which sentence is correct?",
+        options: ["The elephant is bigger than the dog.", "The elephant is the biggest."],
+        correct: 0,
+        why: "We compare two things, so use comparative: bigger than.",
+    },
+    {
+        title: "Round 1: Two Things",
+        emojis: ["🏎️", "🚲"],
+        labels: ["car", "bike"],
+        question: "Look at the car and bike. Which is correct?",
+        options: ["The car is the fastest.", "The car is faster than the bike."],
+        correct: 1,
+        why: "We compare two things, so use comparative: faster than.",
+    },
+    {
+        title: "Round 1: Two Things",
+        emojis: ["📱", "💻"],
+        labels: ["phone", "laptop"],
+        question: "Phones cost $500. Laptops cost $1000. Which is correct?",
+        options: ["The laptop is more expensive than the phone.", "The laptop is the most expensive."],
+        correct: 0,
+        why: "We compare two items. Long adjectives use more ... than.",
+    },
+    {
+        title: "Round 2: Groups",
+        emojis: ["🐭", "🐕", "🐘"],
+        labels: ["mouse", "dog", "elephant"],
+        question: "Look at all three animals. Which sentence is correct?",
+        options: ["The elephant is bigger than the dog.", "The elephant is the biggest."],
+        correct: 1,
+        why: "We compare one animal with the whole group, so use superlative: the biggest.",
+    },
+    {
+        title: "Round 2: Groups",
+        emojis: ["🥉", "🥈", "🥇"],
+        labels: ["third", "second", "first"],
+        question: "Three runners finished a race. Which sentence is correct?",
+        options: ["The gold runner is the fastest.", "The gold runner is faster than silver."],
+        correct: 0,
+        why: "We choose one runner from the whole group, so use the fastest.",
+    },
+    {
+        title: "Round 2: Groups",
+        emojis: ["🍕", "🍔", "🌮"],
+        labels: ["pizza", "burger", "taco"],
+        question: "Three foods. Which sentence is correct?",
+        options: ["Pizza is more delicious than burger.", "Pizza is the most delicious."],
+        correct: 1,
+        why: "We compare one food with a group of three, so use the most delicious.",
+    },
+    {
+        title: "Round 3: Tricky Forms",
+        emojis: ["📚", "🎮"],
+        labels: ["homework", "game"],
+        question: "Homework feels difficult. The game feels easy. Which is correct?",
+        options: ["Homework is difficulter than the game.", "Homework is more difficult than the game."],
+        correct: 1,
+        why: "Difficult is a long adjective, so use more difficult than.",
+    },
+    {
+        title: "Round 3: Tricky Forms",
+        emojis: ["😊", "🤩", "😐"],
+        labels: ["good", "best", "okay"],
+        question: "Which irregular sentence is correct?",
+        options: ["This is the best answer.", "This is the most good answer."],
+        correct: 0,
+        why: "Good is irregular: good, better, best.",
+    },
+    {
+        title: "Round 3: Tricky Forms",
+        emojis: ["🏙️", "🌆", "🌃"],
+        labels: ["city A", "city B", "city C"],
+        question: "City A has 9 million people. B has 2 million. C has 1 million.",
+        options: ["City A is bigger than City B.", "City A is the biggest of the three cities."],
+        correct: 1,
+        why: "The sentence talks about all three cities, so use the biggest.",
+    },
+];
+
+const ERROR_QUESTIONS = [
+    {
+        round: "Round 1: Short adjective repairs",
+        emoji: "🐘🐕",
+        wrong: "The elephant is more taller than the dog.",
+        error: "more taller",
+        answer: "taller",
+        correct: "The elephant is taller than the dog.",
+        rule: "Do not use more with a short adjective that already has -er.",
+    },
+    {
+        round: "Round 1: Short adjective repairs",
+        emoji: "🏔️",
+        wrong: "Everest is the most tallest mountain in the world.",
+        error: "most tallest",
+        answer: "tallest",
+        correct: "Everest is the tallest mountain in the world.",
+        rule: "Do not use most with a short adjective that already has -est.",
+    },
+    {
+        round: "Round 2: Long adjective repairs",
+        emoji: "🌹",
+        wrong: "This flower is beautifulest in the garden.",
+        error: "beautifulest",
+        answer: "the most beautiful",
+        correct: "This flower is the most beautiful in the garden.",
+        rule: "Long adjectives use the most, not -est.",
+    },
+    {
+        round: "Round 2: Long adjective repairs",
+        emoji: "📱💻",
+        wrong: "The laptop is expensive than the phone.",
+        error: "expensive than",
+        answer: "more expensive than",
+        correct: "The laptop is more expensive than the phone.",
+        rule: "Long adjectives need more before them in comparisons.",
+    },
+    {
+        round: "Round 3: Irregular repairs",
+        emoji: "⚽",
+        wrong: "Messi plays more better than the others.",
+        error: "more better",
+        answer: "better",
+        correct: "Messi plays better than the others.",
+        rule: "Better is already comparative. Do not add more.",
+    },
+    {
+        round: "Round 3: Irregular repairs",
+        emoji: "🧪",
+        wrong: "This experiment is the baddest result today.",
+        error: "baddest",
+        answer: "worst",
+        correct: "This experiment is the worst result today.",
+        rule: "Bad is irregular: bad, worse, worst.",
+    },
+];
+
+const SPEED_QUESTIONS = [
+    {
+        round: "Round 1",
+        q: "The cheetah is ___ animal.",
+        a: "the fastest",
+        options: ["faster than", "the fastest", "more fast"],
+        why: "We compare the cheetah with all animals.",
+    },
+    {
+        round: "Round 1",
+        q: "A car is ___ a bicycle.",
+        a: "faster than",
+        options: ["faster than", "the fastest", "most fast"],
+        why: "We compare two things: car and bicycle.",
+    },
+    {
+        round: "Round 2",
+        q: "Gold is ___ silver.",
+        a: "more expensive than",
+        options: ["the most expensive", "more expensive than", "expensiver than"],
+        why: "Expensive is a long adjective, so use more expensive than.",
+    },
+    {
+        round: "Round 2",
+        q: "That was ___ test in the class.",
+        a: "the most difficult",
+        options: ["more difficult than", "the most difficult", "difficulter"],
+        why: "We compare one test with the whole class, so use the most difficult.",
+    },
+    {
+        round: "Round 3",
+        q: "This pizza is ___ in the city.",
+        a: "the best",
+        options: ["better than", "the best", "more good"],
+        why: "Good is irregular: good, better, best.",
+    },
+    {
+        round: "Round 3",
+        q: "The bus stop is ___ the school than the train station.",
+        a: "farther from",
+        options: ["the farthest", "farther from", "more far from"],
+        why: "We compare two distances, so use farther from.",
+    },
+];
+
+const WRITING_PROMPTS = [
+    {
+        round: "Round 1",
+        emoji: "👥",
+        prompt: "Who is taller? Write a sentence comparing two people.",
+        hint: "Use: ___ is taller than ___.",
+        type: "comparative" as const,
+        example: "Maria is taller than Carlos.",
+    },
+    {
+        round: "Round 1",
+        emoji: "💪",
+        prompt: "Compare two animals. Which one is stronger?",
+        hint: "Use: ___ is stronger than ___.",
+        type: "comparative" as const,
+        example: "A lion is stronger than a cat.",
+    },
+    {
+        round: "Round 2",
+        emoji: "🏃",
+        prompt: "Who is the fastest in your family or class?",
+        hint: "Use: ___ is the fastest.",
+        type: "superlative" as const,
+        example: "My brother is the fastest in the family.",
+    },
+    {
+        round: "Round 2",
+        emoji: "🏫",
+        prompt: "Which subject is the most difficult for you?",
+        hint: "Use: ___ is the most difficult subject.",
+        type: "superlative" as const,
+        example: "Math is the most difficult subject for me.",
+    },
+    {
+        round: "Round 3",
+        emoji: "🌍",
+        prompt: "Compare three cities or places. Which one is the biggest, best, or most beautiful?",
+        hint: "Use a superlative: ___ is the biggest / best / most beautiful.",
+        type: "superlative" as const,
+        example: "São Paulo is the biggest city in Brazil.",
+    },
+];
+
+type Screen = "welcome" | "lesson" | "short" | "long" | "irregular" | "practice" | "errors" | "speed" | "writing" | "final";
+type WritingResult = { correct: boolean; feedback: string; correction?: string; rule?: string };
+
+interface Props {
+    activityId?: string;
+    assignmentId?: string | null;
+    variant?: "standalone" | "embedded";
+}
+
+function normalizeAnswer(value: string) {
+    return value.toLowerCase().replace(/[.,!?;:"]/g, "").replace(/\s+/g, " ").trim();
+}
+
+function hasAny(text: string, terms: string[]) {
+    return terms.some((term) => text.includes(term));
+}
+
+function checkWritingAnswer(value: string, prompt: (typeof WRITING_PROMPTS)[number]): WritingResult {
+    const answer = normalizeAnswer(value);
+    if (!answer) {
+        return {
+            correct: false,
+            feedback: "Write one full sentence.",
+            correction: prompt.example,
+        };
+    }
+
+    if (prompt.type === "comparative") {
+        const comparativeMarkers = [" than ", "taller than", "stronger than", "bigger than", "smaller than", "faster than", "more "];
+        const correct = hasAny(` ${answer} `, comparativeMarkers) && !answer.includes("the most") && !answer.includes("the tallest");
+        return correct
+            ? { correct: true, feedback: "Good comparative sentence. You compared two things." }
+            : {
+                  correct: false,
+                  feedback: "This needs a comparative form for two things.",
+                  correction: prompt.example,
+                  rule: "Comparative uses -er than or more ... than.",
+              };
+    }
+
+    const superlativeMarkers = ["the most", "the tallest", "the fastest", "the biggest", "the strongest", "the best", "the worst", "the easiest"];
+    const correct = hasAny(answer, superlativeMarkers);
+    return correct
+        ? { correct: true, feedback: "Good superlative sentence. You chose one thing in a group." }
+        : {
+              correct: false,
+              feedback: "This needs a superlative form for a group.",
+              correction: prompt.example,
+              rule: "Superlative uses the -est or the most.",
+          };
+}
+
+function useGameSound() {
+    const audioRef = useRef<AudioContext | null>(null);
+
+    return useCallback((type: "correct" | "wrong" | "complete" | "tick") => {
+        try {
+            const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+            if (!audioRef.current) audioRef.current = new AudioContextCtor();
+            const audio = audioRef.current;
+            const notes =
+                type === "correct" ? [523, 659, 784] : type === "complete" ? [523, 659, 784, 1047] : type === "tick" ? [880] : [300, 240];
+            notes.forEach((frequency, index) => {
+                const osc = audio.createOscillator();
+                const gain = audio.createGain();
+                osc.connect(gain);
+                gain.connect(audio.destination);
+                osc.frequency.value = frequency;
+                const start = audio.currentTime + index * 0.12;
+                gain.gain.setValueAtTime(type === "tick" ? 0.08 : 0.16, start);
+                gain.gain.exponentialRampToValueAtTime(0.001, start + 0.28);
+                osc.start(start);
+                osc.stop(start + 0.3);
+            });
+        } catch {
+            // Sound is optional.
+        }
+    }, []);
+}
+
+function Card({
+    children,
+    color = "#ddd",
+    bg = "#fff",
+    className = "",
+}: {
+    children: React.ReactNode;
+    color?: string;
+    bg?: string;
+    className?: string;
+}) {
+    return (
+        <div className={`rounded-2xl border-2 p-4 shadow-sm ${className}`} style={{ borderColor: color, backgroundColor: bg }}>
+            {children}
+        </div>
+    );
+}
+
+function PrimaryButton({
+    children,
+    onClick,
+    color = COLORS.blue,
+    disabled,
+    className = "",
+}: {
+    children: React.ReactNode;
+    onClick: () => void;
+    color?: string;
+    disabled?: boolean;
+    className?: string;
+}) {
+    return (
+        <button
+            type="button"
+            onClick={onClick}
+            disabled={disabled}
+            className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-5 py-3 text-base font-black text-white shadow-[0_4px_0_rgba(0,0,0,0.25)] transition active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:opacity-55 ${className}`}
+            style={{ backgroundColor: color }}
+        >
+            {children}
+        </button>
+    );
+}
+
+function ProgressDots({ current, total }: { current: number; total: number }) {
+    return (
+        <div className="flex justify-center gap-1.5" aria-label={`Step ${current} of ${total}`}>
+            {Array.from({ length: total }, (_, i) => (
+                <span
+                    key={i}
+                    className="h-2 w-8 rounded-full transition"
+                    style={{ backgroundColor: i < current ? COLORS.blue : "#d7dee8" }}
+                />
+            ))}
+        </div>
+    );
+}
+
+function AdjectiveList({
+    title,
+    intro,
+    words,
+    onNext,
+}: {
+    title: string;
+    intro: string;
+    words: Array<{ adj: string; comp: string; sup: string; emojis: string[] }>;
+    onNext: () => void;
+}) {
+    const [open, setOpen] = useState(0);
+    return (
+        <section className="space-y-4">
+            <div className="text-center">
+                <h2 className="text-2xl font-black text-slate-900">{title}</h2>
+                <p className="mt-1 text-sm font-semibold text-slate-600">{intro}</p>
+            </div>
+            {words.map((word, index) => (
+                <button
+                    key={word.adj}
+                    type="button"
+                    onClick={() => setOpen(open === index ? -1 : index)}
+                    className="block w-full rounded-2xl border-2 bg-white p-4 text-left transition"
+                    style={{ borderColor: open === index ? COLORS.blue : "#d7dee8", backgroundColor: open === index ? COLORS.blueBg : "#fff" }}
+                >
+                    <div className="flex items-center justify-between gap-3">
+                        <span className="text-xl font-black text-slate-900">{word.adj}</span>
+                        <span className="text-sm font-bold text-slate-500">{open === index ? "close" : "open"}</span>
+                    </div>
+                    {open === index ? (
+                        <div className="mt-4 space-y-3">
+                            <div className="flex items-end justify-center gap-4">
+                                {word.emojis.map((emoji, emojiIndex) => (
+                                    <span key={`${word.adj}-${emoji}`} className="leading-none" style={{ fontSize: `${30 + emojiIndex * 10}px` }}>
+                                        {emoji}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className="grid gap-2 sm:grid-cols-3">
+                                <div className="rounded-xl bg-white/80 p-3 text-center">
+                                    <div className="text-xs font-bold uppercase text-slate-500">adjective</div>
+                                    <div className="font-black text-slate-900">{word.adj}</div>
+                                </div>
+                                <div className="rounded-xl p-3 text-center" style={{ backgroundColor: COLORS.blueBg }}>
+                                    <div className="text-xs font-bold uppercase" style={{ color: COLORS.blue }}>
+                                        comparative
+                                    </div>
+                                    <div className="font-black" style={{ color: COLORS.blue }}>
+                                        {word.comp}
+                                    </div>
+                                </div>
+                                <div className="rounded-xl p-3 text-center" style={{ backgroundColor: COLORS.greenBg }}>
+                                    <div className="text-xs font-bold uppercase" style={{ color: COLORS.green }}>
+                                        superlative
+                                    </div>
+                                    <div className="font-black" style={{ color: COLORS.green }}>
+                                        {word.sup}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ) : null}
+                </button>
+            ))}
+            <PrimaryButton onClick={onNext} className="w-full">
+                Next <ArrowRight size={18} />
+            </PrimaryButton>
+        </section>
+    );
+}
+
+export default function ComparisonBattleGame({ activityId = "comparison-battle", assignmentId, variant = "standalone" }: Props) {
+    const [screen, setScreen] = useState<Screen>("welcome");
+    const [score, setScore] = useState(0);
+    const [lessonStep, setLessonStep] = useState(0);
+    const [practiceIndex, setPracticeIndex] = useState(0);
+    const [practiceChoice, setPracticeChoice] = useState<number | null>(null);
+    const [errorIndex, setErrorIndex] = useState(0);
+    const [errorInput, setErrorInput] = useState("");
+    const [errorSubmitted, setErrorSubmitted] = useState(false);
+    const [speedIndex, setSpeedIndex] = useState(0);
+    const [speedChoice, setSpeedChoice] = useState<string | null>(null);
+    const [speedTime, setSpeedTime] = useState(12);
+    const [speedDone, setSpeedDone] = useState(false);
+    const [writingIndex, setWritingIndex] = useState(0);
+    const [writingInput, setWritingInput] = useState("");
+    const [writingResult, setWritingResult] = useState<WritingResult | null>(null);
+    const [pointsAwarded, setPointsAwarded] = useState<number | null>(null);
+    const [showToast, setShowToast] = useState(false);
+    const completedRef = useRef(false);
+    const playSound = useGameSound();
+    const isStandalone = variant === "standalone";
+
+    const screens: Screen[] = useMemo(() => ["lesson", "short", "long", "irregular", "practice", "errors", "speed", "writing"], []);
+    const screenIndex = screens.indexOf(screen);
+
+    const awardPoint = useCallback(
+        (correct: boolean) => {
+            playSound(correct ? "correct" : "wrong");
+            if (correct) setScore((value) => value + 1);
+        },
+        [playSound]
+    );
+
+    useEffect(() => {
+        if (screen !== "speed" || speedChoice || speedDone) return;
+        if (speedTime <= 0) {
+            setSpeedChoice("__timeout__");
+            playSound("wrong");
+            return;
+        }
+        const timer = window.setTimeout(() => {
+            setSpeedTime((value) => value - 1);
+            if (speedTime <= 4) playSound("tick");
+        }, 1000);
+        return () => window.clearTimeout(timer);
+    }, [screen, speedChoice, speedDone, speedTime, playSound]);
+
+    useEffect(() => {
+        if (screen !== "final" || completedRef.current) return;
+        completedRef.current = true;
+        playSound("complete");
+        void (async () => {
+            const existing = await fetchActivityProgress(activityId, assignmentId);
+            if (existing && (existing.status === "completed" || existing.progress >= 100)) return;
+            const result = await saveActivityProgress(activityId, 100, "completed", undefined, undefined, assignmentId);
+            if (result?.ok) {
+                const awarded = result.pointsAwarded ?? 0;
+                if (awarded > 0) {
+                    setPointsAwarded(awarded);
+                    setShowToast(true);
+                }
+            }
+        })();
+    }, [activityId, assignmentId, playSound, screen]);
+
+    const goTo = (next: Screen) => {
+        setScreen(next);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    const restart = () => {
+        completedRef.current = false;
+        setScreen("welcome");
+        setScore(0);
+        setLessonStep(0);
+        setPracticeIndex(0);
+        setPracticeChoice(null);
+        setErrorIndex(0);
+        setErrorInput("");
+        setErrorSubmitted(false);
+        setSpeedIndex(0);
+        setSpeedChoice(null);
+        setSpeedTime(12);
+        setSpeedDone(false);
+        setWritingIndex(0);
+        setWritingInput("");
+        setWritingResult(null);
+    };
+
+    const topBar =
+        screen === "welcome" ? null : (
+            <div className={`${isStandalone ? "sticky top-0 z-20 border-b-2" : "border-y sm:rounded-2xl sm:border-2"} border-slate-200 bg-white px-4 py-3`}>
+                <div className="mx-auto flex max-w-2xl items-center justify-between gap-3">
+                    <div className="font-black" style={{ color: COLORS.blue }}>
+                        {isStandalone ? "⚔️ Comparison Battle" : "Game progress"}
+                    </div>
+                    <div className="rounded-full px-3 py-1 text-sm font-black" style={{ backgroundColor: COLORS.yellowBg, color: COLORS.yellow }}>
+                        ⭐ {score} pts
+                    </div>
+                </div>
+            </div>
+        );
+
+    return (
+        <div className={`${isStandalone ? "min-h-screen" : "min-h-[calc(100svh-8.5rem)] sm:min-h-[640px] sm:rounded-3xl sm:border sm:border-slate-200"} bg-[#f3f8ff] text-slate-900`}>
+            <div className={isStandalone ? "" : "mx-auto max-w-3xl p-0 sm:p-5"}>
+                {topBar}
+            </div>
+            <main className={`mx-auto max-w-2xl ${isStandalone ? "px-4 py-5 pb-24" : "px-3 pb-24 pt-4 sm:px-5 sm:pt-0"}`}>
+                {screen === "welcome" ? (
+                    <section className={`flex flex-col items-center justify-center text-center ${isStandalone ? "min-h-[calc(100vh-3rem)]" : "min-h-[560px] py-8"}`}>
+                        <div className="text-7xl">⚔️</div>
+                        <h1 className="mt-3 text-5xl font-black leading-tight" style={{ color: COLORS.blue }}>
+                            Comparison Battle
+                        </h1>
+                        <p className="mt-2 text-xl font-black" style={{ color: COLORS.green }}>
+                            Comparative vs. Superlative
+                        </p>
+                        <div className="my-8 flex flex-wrap justify-center gap-4">
+                            {[
+                                ["🐘", "bigger"],
+                                ["🐕", "smaller"],
+                                ["🐭", "smallest"],
+                            ].map(([emoji, label]) => (
+                                <div key={label} className="rounded-2xl border-2 bg-white px-5 py-4 shadow-sm" style={{ borderColor: label === "smaller" ? "#94a3b8" : COLORS.blue }}>
+                                    <div className="text-5xl">{emoji}</div>
+                                    <div className="mt-2 text-sm font-black text-slate-600">{label}</div>
+                                </div>
+                            ))}
+                        </div>
+                        <PrimaryButton onClick={() => goTo("lesson")} className="w-full max-w-sm text-xl">
+                            <Sparkles size={20} /> Start Playing
+                        </PrimaryButton>
+                    </section>
+                ) : null}
+
+                {screen === "lesson" ? (
+                    <section className="space-y-4">
+                        <div className="text-center">
+                            <h2 className="text-2xl font-black">Let&apos;s Learn</h2>
+                            <div className="mt-3">
+                                <ProgressDots current={lessonStep + 1} total={LESSON_STEPS.length} />
+                            </div>
+                        </div>
+                        {(() => {
+                            const lesson = LESSON_STEPS[lessonStep];
+                            return (
+                                <Card color={lesson.color} bg={lesson.bg}>
+                                    <div className="text-2xl font-black" style={{ color: lesson.color }}>
+                                        {lesson.icon} {lesson.title}
+                                    </div>
+                                    <p className="mt-2 text-lg font-bold">{lesson.rule}</p>
+                                    <div className="my-5 flex items-end justify-center gap-5">
+                                        {lesson.visual.map((emoji, index) => (
+                                            <span key={`${lesson.title}-${emoji}`} className="leading-none" style={{ fontSize: `${38 + index * 9}px` }}>
+                                                {emoji}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <div className="rounded-xl border-2 bg-white p-3 text-center text-lg font-black" style={{ borderColor: lesson.color }}>
+                                        “{lesson.example}”
+                                    </div>
+                                    <p className="mt-3 rounded-xl p-3 text-sm font-bold" style={{ backgroundColor: COLORS.yellowBg, color: COLORS.yellow }}>
+                                        {lesson.remember}
+                                    </p>
+                                </Card>
+                            );
+                        })()}
+                        <PrimaryButton
+                            onClick={() => {
+                                if (lessonStep < LESSON_STEPS.length - 1) setLessonStep((value) => value + 1);
+                                else goTo("short");
+                            }}
+                            color={lessonStep === 0 ? COLORS.blue : COLORS.green}
+                            className="w-full"
+                        >
+                            {lessonStep === 0 ? "Next: Superlative" : "Got it"}
+                            <ArrowRight size={18} />
+                        </PrimaryButton>
+                    </section>
+                ) : null}
+
+                {screen === "short" ? <AdjectiveList title="Short Adjectives" intro="Short adjectives get -er and -est." words={SHORT_ADJECTIVES} onNext={() => goTo("long")} /> : null}
+                {screen === "long" ? <AdjectiveList title="Long Adjectives" intro="Long adjectives use more and most." words={LONG_ADJECTIVES} onNext={() => goTo("irregular")} /> : null}
+
+                {screen === "irregular" ? (
+                    <section className="space-y-4">
+                        <div className="text-center">
+                            <h2 className="text-2xl font-black">Irregular Adjectives</h2>
+                            <p className="mt-1 text-sm font-semibold text-slate-600">These words are special. Learn them by heart.</p>
+                        </div>
+                        {IRREGULAR_ADJECTIVES.map((word) => (
+                            <Card key={word.adj}>
+                                <div className="mb-3 flex items-end justify-center gap-5">
+                                    {word.emojis.map((emoji, index) => (
+                                        <span key={`${word.adj}-${index}`} style={{ fontSize: `${30 + index * 8}px` }}>
+                                            {emoji}
+                                        </span>
+                                    ))}
+                                </div>
+                                <div className="grid grid-cols-3 gap-2 text-center">
+                                    <div className="rounded-xl bg-slate-100 p-3">
+                                        <div className="text-xs font-bold uppercase text-slate-500">adjective</div>
+                                        <div className="font-black">{word.adj}</div>
+                                    </div>
+                                    <div className="rounded-xl p-3" style={{ backgroundColor: COLORS.blueBg, color: COLORS.blue }}>
+                                        <div className="text-xs font-bold uppercase">comparative</div>
+                                        <div className="font-black">{word.comp}</div>
+                                    </div>
+                                    <div className="rounded-xl p-3" style={{ backgroundColor: COLORS.greenBg, color: COLORS.green }}>
+                                        <div className="text-xs font-bold uppercase">superlative</div>
+                                        <div className="font-black">{word.sup}</div>
+                                    </div>
+                                </div>
+                            </Card>
+                        ))}
+                        <PrimaryButton onClick={() => goTo("practice")} className="w-full">
+                            Practice Time <ArrowRight size={18} />
+                        </PrimaryButton>
+                    </section>
+                ) : null}
+
+                {screen === "practice" ? (
+                    <QuestionScreen
+                        question={PRACTICE_QUESTIONS[practiceIndex]}
+                        index={practiceIndex}
+                        total={PRACTICE_QUESTIONS.length}
+                        choice={practiceChoice}
+                        onChoose={(choice) => {
+                            setPracticeChoice(choice);
+                            awardPoint(choice === PRACTICE_QUESTIONS[practiceIndex].correct);
+                        }}
+                        onNext={() => {
+                            if (practiceIndex < PRACTICE_QUESTIONS.length - 1) {
+                                setPracticeIndex((value) => value + 1);
+                                setPracticeChoice(null);
+                            } else {
+                                goTo("errors");
+                            }
+                        }}
+                    />
+                ) : null}
+
+                {screen === "errors" ? (
+                    <ErrorFixScreen
+                        item={ERROR_QUESTIONS[errorIndex]}
+                        index={errorIndex}
+                        total={ERROR_QUESTIONS.length}
+                        input={errorInput}
+                        submitted={errorSubmitted}
+                        setInput={setErrorInput}
+                        onSubmit={() => {
+                            if (!errorInput.trim()) return;
+                            setErrorSubmitted(true);
+                            awardPoint(normalizeAnswer(errorInput) === normalizeAnswer(ERROR_QUESTIONS[errorIndex].answer));
+                        }}
+                        onRetry={() => {
+                            setErrorInput("");
+                            setErrorSubmitted(false);
+                        }}
+                        onNext={() => {
+                            if (errorIndex < ERROR_QUESTIONS.length - 1) {
+                                setErrorIndex((value) => value + 1);
+                                setErrorInput("");
+                                setErrorSubmitted(false);
+                            } else {
+                                goTo("speed");
+                            }
+                        }}
+                    />
+                ) : null}
+
+                {screen === "speed" ? (
+                    <SpeedScreen
+                        question={SPEED_QUESTIONS[speedIndex]}
+                        index={speedIndex}
+                        total={SPEED_QUESTIONS.length}
+                        choice={speedChoice}
+                        time={speedTime}
+                        done={speedDone}
+                        score={SPEED_QUESTIONS.slice(0, speedIndex).filter(Boolean).length}
+                        onChoose={(choice) => {
+                            setSpeedChoice(choice);
+                            awardPoint(choice === SPEED_QUESTIONS[speedIndex].a);
+                        }}
+                        onNext={() => {
+                            if (speedIndex < SPEED_QUESTIONS.length - 1) {
+                                setSpeedIndex((value) => value + 1);
+                                setSpeedChoice(null);
+                                setSpeedTime(12);
+                            } else {
+                                setSpeedDone(true);
+                            }
+                        }}
+                        onContinue={() => goTo("writing")}
+                    />
+                ) : null}
+
+                {screen === "writing" ? (
+                    <WritingScreen
+                        prompt={WRITING_PROMPTS[writingIndex]}
+                        index={writingIndex}
+                        total={WRITING_PROMPTS.length}
+                        value={writingInput}
+                        result={writingResult}
+                        setValue={setWritingInput}
+                        onCheck={() => {
+                            const result = checkWritingAnswer(writingInput, WRITING_PROMPTS[writingIndex]);
+                            setWritingResult(result);
+                            awardPoint(result.correct);
+                        }}
+                        onRetry={() => {
+                            setWritingInput("");
+                            setWritingResult(null);
+                        }}
+                        onNext={() => {
+                            if (writingIndex < WRITING_PROMPTS.length - 1) {
+                                setWritingIndex((value) => value + 1);
+                                setWritingInput("");
+                                setWritingResult(null);
+                            } else {
+                                goTo("final");
+                            }
+                        }}
+                    />
+                ) : null}
+
+                {screen === "final" ? (
+                    <section className="space-y-5 text-center">
+                        <div className="text-7xl">🏆</div>
+                        <h2 className="text-4xl font-black" style={{ color: COLORS.blue }}>
+                            Amazing Job!
+                        </h2>
+                        <p className="text-lg font-black" style={{ color: COLORS.green }}>
+                            You practiced comparatives and superlatives.
+                        </p>
+                        <Card>
+                            <div className="text-5xl font-black" style={{ color: COLORS.blue }}>
+                                {score}
+                            </div>
+                            <p className="font-bold text-slate-500">game points</p>
+                        </Card>
+                        <div className="grid gap-3 sm:grid-cols-2">
+                            <Card color={COLORS.blue} bg={COLORS.blueBg}>
+                                <div className="text-3xl">🔵</div>
+                                <div className="font-black" style={{ color: COLORS.blue }}>
+                                    Comparative
+                                </div>
+                                <p className="text-sm font-semibold text-slate-700">two things: -er than, more ... than</p>
+                            </Card>
+                            <Card color={COLORS.green} bg={COLORS.greenBg}>
+                                <div className="text-3xl">🟢</div>
+                                <div className="font-black" style={{ color: COLORS.green }}>
+                                    Superlative
+                                </div>
+                                <p className="text-sm font-semibold text-slate-700">a group: the -est, the most</p>
+                            </Card>
+                        </div>
+                        <PrimaryButton onClick={restart} className="w-full">
+                            <RotateCcw size={18} /> Play Again
+                        </PrimaryButton>
+                    </section>
+                ) : null}
+            </main>
+
+            {screenIndex >= 0 ? (
+                <nav className="fixed bottom-0 left-1/2 z-30 flex w-full max-w-2xl -translate-x-1/2 justify-around border-t-2 border-slate-200 bg-white px-2 py-2">
+                    {screens.map((item, index) => (
+                        <button
+                            key={item}
+                            type="button"
+                            onClick={() => goTo(item)}
+                            className="h-11 min-w-10 rounded-xl px-2 text-lg font-black transition"
+                            style={{ backgroundColor: item === screen ? COLORS.blueBg : "transparent", color: item === screen ? COLORS.blue : "#64748b" }}
+                            aria-label={`Go to step ${index + 1}`}
+                        >
+                            {["📚", "📖", "📖", "⚠️", "🎯", "🔧", "⚡", "🌍"][index]}
+                        </button>
+                    ))}
+                </nav>
+            ) : null}
+
+            {showToast && pointsAwarded ? <PointsToast points={pointsAwarded} onComplete={() => setShowToast(false)} message="Comparison Battle complete" /> : null}
+        </div>
+    );
+}
+
+function QuestionScreen({
+    question,
+    index,
+    total,
+    choice,
+    onChoose,
+    onNext,
+}: {
+    question: (typeof PRACTICE_QUESTIONS)[number];
+    index: number;
+    total: number;
+    choice: number | null;
+    onChoose: (choice: number) => void;
+    onNext: () => void;
+}) {
+    return (
+        <section className="space-y-4">
+            <div className="flex items-center justify-between gap-3">
+                <h2 className="text-xl font-black">{question.title}</h2>
+                <div className="rounded-full px-3 py-1 text-sm font-black" style={{ backgroundColor: COLORS.blueBg, color: COLORS.blue }}>
+                    {index + 1}/{total}
+                </div>
+            </div>
+            <ProgressDots current={index + 1} total={total} />
+            <Card>
+                <div className="mb-4 flex items-end justify-center gap-5">
+                    {question.emojis.map((emoji, emojiIndex) => (
+                        <div key={`${question.question}-${emoji}`} className="text-center">
+                            <div className="leading-none" style={{ fontSize: `${42 + emojiIndex * 7}px` }}>
+                                {emoji}
+                            </div>
+                            <div className="mt-1 text-xs font-bold text-slate-500">{question.labels[emojiIndex]}</div>
+                        </div>
+                    ))}
+                </div>
+                <p className="text-lg font-black">{question.question}</p>
+            </Card>
+            <div className="space-y-3">
+                {question.options.map((option, optionIndex) => {
+                    const selected = choice === optionIndex;
+                    const correct = choice !== null && optionIndex === question.correct;
+                    const wrong = choice !== null && selected && !correct;
+                    return (
+                        <button
+                            key={option}
+                            type="button"
+                            disabled={choice !== null}
+                            onClick={() => onChoose(optionIndex)}
+                            className="flex w-full items-center justify-between gap-3 rounded-2xl border-2 bg-white p-4 text-left text-base font-bold transition"
+                            style={{
+                                borderColor: correct ? COLORS.green : wrong ? COLORS.red : "#cbd5e1",
+                                backgroundColor: correct ? COLORS.greenBg : wrong ? COLORS.redBg : "#fff",
+                                color: correct ? COLORS.green : wrong ? COLORS.red : "#1e293b",
+                            }}
+                        >
+                            <span>
+                                <strong>{String.fromCharCode(65 + optionIndex)})</strong> {option}
+                            </span>
+                            {correct ? <Check size={20} /> : wrong ? <X size={20} /> : null}
+                        </button>
+                    );
+                })}
+            </div>
+            {choice !== null ? (
+                <>
+                    <Card color={choice === question.correct ? COLORS.green : COLORS.red} bg={choice === question.correct ? COLORS.greenBg : COLORS.redBg}>
+                        <div className="font-black" style={{ color: choice === question.correct ? COLORS.green : COLORS.red }}>
+                            {choice === question.correct ? "Great job!" : "Not quite."}
+                        </div>
+                        <p className="mt-1 text-sm font-semibold text-slate-700">{question.why}</p>
+                    </Card>
+                    <PrimaryButton onClick={onNext} className="w-full">
+                        {index < total - 1 ? "Next Question" : "Continue"} <ArrowRight size={18} />
+                    </PrimaryButton>
+                </>
+            ) : null}
+        </section>
+    );
+}
+
+function ErrorFixScreen({
+    item,
+    index,
+    total,
+    input,
+    submitted,
+    setInput,
+    onSubmit,
+    onRetry,
+    onNext,
+}: {
+    item: (typeof ERROR_QUESTIONS)[number];
+    index: number;
+    total: number;
+    input: string;
+    submitted: boolean;
+    setInput: (value: string) => void;
+    onSubmit: () => void;
+    onRetry: () => void;
+    onNext: () => void;
+}) {
+    const correct = submitted && normalizeAnswer(input) === normalizeAnswer(item.answer);
+    const parts = item.wrong.split(item.error);
+    return (
+        <section className="space-y-4">
+            <div className="text-center">
+                <h2 className="text-2xl font-black">Fix the Mistake</h2>
+                <p className="text-sm font-black" style={{ color: COLORS.blue }}>
+                    {item.round}
+                </p>
+                <p className="text-sm font-semibold text-slate-600">Type the correct word or words.</p>
+            </div>
+            <ProgressDots current={index + 1} total={total} />
+            <div className="text-center text-5xl">{item.emoji}</div>
+            <Card color={COLORS.red} bg={COLORS.redBg}>
+                <p className="text-center text-lg font-black leading-relaxed">
+                    {parts[0]}
+                    <span className="rounded-md px-2 py-1 text-white" style={{ backgroundColor: COLORS.red }}>
+                        {item.error}
+                    </span>
+                    {parts[1]}
+                </p>
+            </Card>
+            <input
+                value={input}
+                disabled={submitted}
+                onChange={(event) => setInput(event.target.value)}
+                onKeyDown={(event) => {
+                    if (event.key === "Enter" && !submitted) onSubmit();
+                }}
+                className="min-h-12 w-full rounded-2xl border-2 bg-white px-4 py-3 text-lg font-bold outline-none"
+                style={{ borderColor: submitted ? (correct ? COLORS.green : COLORS.red) : COLORS.blue }}
+                placeholder={`Replace "${item.error}"`}
+            />
+            {!submitted ? (
+                <PrimaryButton onClick={onSubmit} className="w-full" disabled={!input.trim()}>
+                    <Check size={18} /> Check My Answer
+                </PrimaryButton>
+            ) : (
+                <>
+                    <Card color={correct ? COLORS.green : COLORS.red} bg={correct ? COLORS.greenBg : COLORS.redBg}>
+                        <div className="font-black" style={{ color: correct ? COLORS.green : COLORS.red }}>
+                            {correct ? "Perfect." : "Not quite."}
+                        </div>
+                        {!correct ? (
+                            <p className="mt-1 font-bold">
+                                Correct answer: <span style={{ color: COLORS.green }}>{item.answer}</span>
+                            </p>
+                        ) : null}
+                        <p className="mt-2 rounded-xl bg-white p-3 font-bold" style={{ color: COLORS.green }}>
+                            {item.correct}
+                        </p>
+                    </Card>
+                    <Card color={COLORS.yellow} bg={COLORS.yellowBg}>
+                        <p className="text-sm font-bold" style={{ color: COLORS.yellow }}>
+                            {item.rule}
+                        </p>
+                    </Card>
+                    <div className="flex gap-2">
+                        {!correct ? (
+                            <PrimaryButton onClick={onRetry} color="#64748b" className="flex-1">
+                                Try Again
+                            </PrimaryButton>
+                        ) : null}
+                        <PrimaryButton onClick={onNext} className="flex-[2]">
+                            {index < total - 1 ? "Next Error" : "Continue"} <ArrowRight size={18} />
+                        </PrimaryButton>
+                    </div>
+                </>
+            )}
+        </section>
+    );
+}
+
+function SpeedScreen({
+    question,
+    index,
+    total,
+    choice,
+    time,
+    done,
+    onChoose,
+    onNext,
+    onContinue,
+}: {
+    question: (typeof SPEED_QUESTIONS)[number];
+    index: number;
+    total: number;
+    choice: string | null;
+    time: number;
+    done: boolean;
+    score: number;
+    onChoose: (choice: string) => void;
+    onNext: () => void;
+    onContinue: () => void;
+}) {
+    if (done) {
+        return (
+            <section className="space-y-5 text-center">
+                <div className="text-7xl">⚡</div>
+                <h2 className="text-3xl font-black" style={{ color: COLORS.blue }}>
+                    Speed Round Complete
+                </h2>
+                <PrimaryButton onClick={onContinue} className="w-full">
+                    Continue <ArrowRight size={18} />
+                </PrimaryButton>
+            </section>
+        );
+    }
+
+    const answered = choice !== null;
+    const timedOut = choice === "__timeout__";
+    const barColor = time > 6 ? COLORS.green : time > 3 ? COLORS.yellow : COLORS.red;
+
+    return (
+        <section className="space-y-4">
+            <div className="flex items-center justify-between gap-3">
+                <div>
+                    <h2 className="text-xl font-black">Speed Round</h2>
+                    <p className="text-sm font-black" style={{ color: COLORS.blue }}>
+                        {question.round}
+                    </p>
+                </div>
+                <div className="rounded-full px-3 py-1 text-sm font-black" style={{ backgroundColor: COLORS.blueBg, color: COLORS.blue }}>
+                    {index + 1}/{total}
+                </div>
+            </div>
+            <div className="h-3 overflow-hidden rounded-full bg-slate-200">
+                <div className="h-full transition-all duration-1000" style={{ width: `${Math.max(0, (time / 12) * 100)}%`, backgroundColor: barColor }} />
+            </div>
+            <div className="text-center text-4xl font-black" style={{ color: barColor }}>
+                {timedOut ? "Time!" : `${time}s`}
+            </div>
+            <Card>
+                <p className="text-xl font-black leading-relaxed">{question.q}</p>
+            </Card>
+            <div className="space-y-3">
+                {question.options.map((option) => {
+                    const correct = answered && option === question.a;
+                    const wrong = answered && option === choice && option !== question.a;
+                    return (
+                        <button
+                            key={option}
+                            type="button"
+                            disabled={answered}
+                            onClick={() => onChoose(option)}
+                            className="flex w-full items-center justify-between gap-3 rounded-2xl border-2 bg-white p-4 text-left text-lg font-bold"
+                            style={{
+                                borderColor: correct ? COLORS.green : wrong ? COLORS.red : "#cbd5e1",
+                                backgroundColor: correct ? COLORS.greenBg : wrong ? COLORS.redBg : "#fff",
+                                color: correct ? COLORS.green : wrong ? COLORS.red : "#1e293b",
+                            }}
+                        >
+                            {option}
+                            {correct ? <Check size={20} /> : wrong ? <X size={20} /> : null}
+                        </button>
+                    );
+                })}
+            </div>
+            {answered ? (
+                <>
+                    <Card color={choice === question.a ? COLORS.green : COLORS.red} bg={choice === question.a ? COLORS.greenBg : COLORS.redBg}>
+                        <div className="font-black" style={{ color: choice === question.a ? COLORS.green : COLORS.red }}>
+                            {choice === question.a ? "Correct!" : timedOut ? "Time is up." : "Not quite."}
+                        </div>
+                        <p className="mt-1 text-sm font-semibold text-slate-700">{question.why}</p>
+                    </Card>
+                    <PrimaryButton onClick={onNext} className="w-full">
+                        {index < total - 1 ? "Next Question" : "See Results"} <ArrowRight size={18} />
+                    </PrimaryButton>
+                </>
+            ) : null}
+        </section>
+    );
+}
+
+function WritingScreen({
+    prompt,
+    index,
+    total,
+    value,
+    result,
+    setValue,
+    onCheck,
+    onRetry,
+    onNext,
+}: {
+    prompt: (typeof WRITING_PROMPTS)[number];
+    index: number;
+    total: number;
+    value: string;
+    result: WritingResult | null;
+    setValue: (value: string) => void;
+    onCheck: () => void;
+    onRetry: () => void;
+    onNext: () => void;
+}) {
+    return (
+        <section className="space-y-4">
+            <div className="text-center">
+                <h2 className="text-2xl font-black">Real Life Practice</h2>
+                <p className="text-sm font-black" style={{ color: COLORS.blue }}>
+                    {prompt.round}
+                </p>
+                <p className="text-sm font-semibold text-slate-600">Write your own sentence.</p>
+            </div>
+            <ProgressDots current={index + 1} total={total} />
+            <Card color={COLORS.blue}>
+                <div className="text-center text-5xl">{prompt.emoji}</div>
+                <p className="mt-3 text-center text-lg font-black">{prompt.prompt}</p>
+                <p className="mt-2 text-center text-sm font-bold" style={{ color: COLORS.blue }}>
+                    {prompt.hint}
+                </p>
+            </Card>
+            <textarea
+                value={value}
+                disabled={!!result}
+                onChange={(event) => setValue(event.target.value)}
+                className="min-h-28 w-full resize-y rounded-2xl border-2 bg-white p-4 text-lg font-semibold outline-none"
+                style={{ borderColor: result ? (result.correct ? COLORS.green : COLORS.red) : COLORS.blue }}
+                placeholder="Write your sentence here..."
+            />
+            {!result ? (
+                <PrimaryButton onClick={onCheck} color={COLORS.green} disabled={!value.trim()} className="w-full">
+                    <Check size={18} /> Check My Answer
+                </PrimaryButton>
+            ) : (
+                <>
+                    <Card color={result.correct ? COLORS.green : COLORS.red} bg={result.correct ? COLORS.greenBg : COLORS.redBg}>
+                        <div className="font-black" style={{ color: result.correct ? COLORS.green : COLORS.red }}>
+                            {result.correct ? "Correct!" : "Not quite."}
+                        </div>
+                        <p className="mt-1 font-semibold text-slate-700">{result.feedback}</p>
+                        {result.correction ? <p className="mt-3 rounded-xl bg-white p-3 font-bold text-slate-800">{result.correction}</p> : null}
+                    </Card>
+                    {result.rule ? (
+                        <Card color={COLORS.yellow} bg={COLORS.yellowBg}>
+                            <p className="text-sm font-bold" style={{ color: COLORS.yellow }}>
+                                {result.rule}
+                            </p>
+                        </Card>
+                    ) : null}
+                    <div className="flex gap-2">
+                        {!result.correct ? (
+                            <PrimaryButton onClick={onRetry} color="#64748b" className="flex-1">
+                                <ArrowLeft size={18} /> Retry
+                            </PrimaryButton>
+                        ) : null}
+                        <PrimaryButton onClick={onNext} className="flex-[2]">
+                            {index < total - 1 ? "Next" : "Final Results"} <Trophy size={18} />
+                        </PrimaryButton>
+                    </div>
+                </>
+            )}
+        </section>
+    );
+}
+
+declare global {
+    interface Window {
+        webkitAudioContext?: typeof AudioContext;
+    }
+}

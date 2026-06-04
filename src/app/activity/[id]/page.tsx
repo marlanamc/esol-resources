@@ -60,12 +60,24 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         parsedContent && (isInteractiveGuideContent(parsedContent) || isLegacyGuideContent(parsedContent));
     const shouldShowHeaderProgressBadge = activity.type !== "vocabulary";
     const activityForRender = { ...activity, ui: ui || activity.ui };
+    const gameUi = activity.type === "game"
+        ? resolveActivityGameUi(activityForRender)
+        : null;
+    const isComparisonBattleGame = gameUi === "comparison-battle";
     const standardPageClassName = "min-h-screen bg-bg";
     const standardHeaderClassName = "bg-white dark:bg-[#162b3d] shadow-sm border-b border-gray-200 dark:border-white/10";
     const standardTitleClassName = "text-gray-900 dark:text-white";
     const standardContentCardClassName = isVerbQuiz
         ? "p-0 bg-transparent shadow-none border-0"
+        : isComparisonBattleGame
+            ? "bg-transparent p-0 shadow-none border-0 sm:bg-white sm:dark:bg-[#162b3d] sm:shadow sm:rounded-lg sm:p-6 sm:dark:border sm:dark:border-white/10"
         : "bg-white dark:bg-[#162b3d] shadow sm:rounded-lg p-6 dark:border dark:border-white/10";
+    const standardMainClassName = isComparisonBattleGame
+        ? "max-w-7xl mx-auto py-0 sm:py-6 sm:px-6 lg:px-8"
+        : "max-w-7xl mx-auto py-6 sm:px-6 lg:px-8";
+    const standardInnerClassName = isComparisonBattleGame
+        ? "px-0 py-0 sm:px-0 sm:py-6 space-y-6"
+        : "px-4 py-6 sm:px-0 space-y-6";
 
     // Grammar interactive guides should use the dedicated GrammarReader (newer UI + correct HTML rendering).
     if (activity.category === "grammar" && parsedContent && isInteractiveGuideContent(parsedContent)) {
@@ -96,9 +108,6 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     }
 
     // Immersive games should render in the full-screen themed shell instead of the standard light activity page.
-    const gameUi = activity.type === "game"
-        ? resolveActivityGameUi({ ...activity, ui: ui || activity.ui })
-        : null;
     if (
         !isVerbQuiz &&
         (
@@ -230,8 +239,8 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     </div>
                 </div>
             </header>
-                <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-                    <div className="px-4 py-6 sm:px-0 space-y-6">
+                <main className={standardMainClassName}>
+                    <div className={standardInnerClassName}>
 
                     {/* Activity Content */}
                     <div className={standardContentCardClassName}>

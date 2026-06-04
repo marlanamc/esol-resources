@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowLeft, BookOpen, CheckCircle2, ChevronRight, Ear, Headphones, Mic, RotateCcw, Volume2, XCircle } from 'lucide-react';
 import { saveActivityProgress } from '@/lib/activityProgress';
@@ -112,6 +112,7 @@ export default function PronunciationSentenceListeningGame({ contentStr, activit
     [activityId, contentStr]
   );
   const [isAudioSupported, setIsAudioSupported] = useState(true);
+  const autoStartedRef = useRef(false);
   const [state, setState] = useState<PracticeState>({
     phase: 'menu',
     questions: [],
@@ -190,6 +191,16 @@ export default function PronunciationSentenceListeningGame({ contentStr, activit
   const startPractice = useCallback(() => {
     setState((prev) => ({ ...prev, phase: 'practice' }));
   }, []);
+
+  // Auto-start when the activity has a single fixed track (no setKeys chooser).
+  useEffect(() => {
+    if (autoStartedRef.current || state.phase !== 'menu' || !content) return;
+    const hasMultipleTracks = content.setKeys && content.setKeys.length > 1;
+    if (!hasMultipleTracks) {
+      autoStartedRef.current = true;
+      startTrack();
+    }
+  }, [content, state.phase, startTrack]);
 
   const resetToMenu = useCallback(() => {
     setState((prev) => ({

@@ -109,11 +109,13 @@ export async function PATCH(request: NextRequest) {
         const body = await request.json();
         const validated = parseApiBody(AssignmentPatchBodySchema, body);
         if (!validated.ok) return validated.response;
-        const { assignmentId, isFeatured, isRequired, syncToSectionGroup } = validated.data;
+        const { assignmentId, isFeatured, isRequired, sequenceNumber, unitLabel, syncToSectionGroup } = validated.data;
 
-        const updateData: { isFeatured?: boolean; isRequired?: boolean } = {};
+        const updateData: { isFeatured?: boolean; isRequired?: boolean; sequenceNumber?: number | null; unitLabel?: string | null } = {};
         if (isFeatured !== undefined) updateData.isFeatured = isFeatured;
         if (isRequired !== undefined) updateData.isRequired = isRequired;
+        if (sequenceNumber !== undefined) updateData.sequenceNumber = sequenceNumber;
+        if (unitLabel !== undefined) updateData.unitLabel = unitLabel;
 
         // Verify teacher owns the class that the assignment belongs to
         const assignment = await prisma.assignment.findUnique({

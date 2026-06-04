@@ -1,5 +1,6 @@
 import type { CafeCatchUpContent } from "./types";
 import { bostonHealthcare } from "./boston-healthcare";
+import { bigQuestions } from "./big-questions";
 
 /**
  * One Café Catch-Up deck = one Activity row in the LMS catalog.
@@ -24,7 +25,12 @@ export const CAFE_CATCH_UP_DECKS: CafeCatchUpDeckManifestEntry[] = [
         level: "intermediate",
         content: bostonHealthcare,
     },
+    {
+        id: "cafe-catch-up-big-questions",
+        level: "intermediate",
+        content: bigQuestions,
+    },
 ];
 
-export { bostonHealthcare };
+export { bigQuestions, bostonHealthcare };
 export type { CafeCatchUpContent, CafeCatchUpDeck, CafeCatchUpListenerPhrases, CafeCatchUpPrompt } from "./types";

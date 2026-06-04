@@ -1,0 +1,1211 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teach the Class Review Game | Level 3 Post-Test Prep</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #e8e6e0;
+      color: #111;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10pt;
+      line-height: 1.3;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 8.5in;
+      height: 11in;
+      max-height: 11in;
+      margin: 0.2in auto;
+      padding: 0.38in 0.42in 0.48in;
+      background: #fff;
+      border: 1px solid #bbb;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.1;
+    }
+
+    h1 {
+      font-size: 18pt;
+      margin-bottom: 4px;
+    }
+
+    h2 {
+      font-size: 11.5pt;
+      margin-bottom: 6px;
+    }
+
+    h3 {
+      font-size: 10pt;
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin: 0 0 5px;
+    }
+
+    ul, ol {
+      margin: 4px 0 0 16px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 3px;
+    }
+
+    .eyebrow {
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 8pt;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      font-size: 10pt;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .teacher-note {
+      border: 1.5px solid #111;
+      border-radius: 3px;
+      padding: 8px 10px;
+      margin: 8px 0 10px;
+      background: #f7f7f7;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .card {
+      border: 1px solid #222;
+      border-radius: 3px;
+      padding: 7px 9px;
+      background: #fff;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .card.soft {
+      background: #f5f5f5;
+    }
+
+    .section {
+      margin-top: 9px;
+    }
+
+    .section.tight {
+      margin-top: 7px;
+    }
+
+    /* Planning page — spread content to use the full sheet */
+    .page.overview {
+      padding: 0.45in 0.45in 0.5in;
+    }
+
+    .page.overview h1 {
+      font-size: 20pt;
+      margin-bottom: 6px;
+    }
+
+    .page.overview .subtitle {
+      font-size: 10.5pt;
+      margin-bottom: 14px;
+      line-height: 1.35;
+    }
+
+    .page.overview .teacher-note {
+      padding: 11px 13px;
+      margin: 12px 0 16px;
+    }
+
+    .page.overview .teacher-note p {
+      line-height: 1.38;
+    }
+
+    .page.overview .section {
+      margin-top: 14px;
+    }
+
+    .page.overview .section.tight {
+      margin-top: 13px;
+    }
+
+    .page.overview .grid-2 {
+      gap: 12px;
+    }
+
+    .page.overview .grid-3 {
+      gap: 10px;
+    }
+
+    .page.overview .card {
+      padding: 10px 11px;
+    }
+
+    .page.overview .student-task {
+      padding: 8px 9px;
+      font-size: 9.5pt;
+      line-height: 1.32;
+    }
+
+    .page.overview .mini-title {
+      font-size: 9.5pt;
+      margin-bottom: 3px;
+    }
+
+    .page.overview li {
+      margin-bottom: 5px;
+    }
+
+    .page.overview h2 {
+      font-size: 12pt;
+      margin-bottom: 8px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: 3px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 6px;
+      border: 1px solid #666;
+      font-weight: 700;
+      font-size: 8.5pt;
+      background: #fff;
+    }
+
+    .group-header {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 7px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #111;
+    }
+
+    .badge {
+      width: 40px;
+      height: 40px;
+      border: 2px solid #111;
+      border-radius: 3px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 14pt;
+      background: #f0f0f0;
+    }
+
+    .mission {
+      border: 1px solid #111;
+      padding: 7px 9px;
+      margin-bottom: 7px;
+      background: #f7f7f7;
+      font-size: 9.5pt;
+      line-height: 1.32;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 5px;
+      font-size: 8.5pt;
+      line-height: 1.22;
+    }
+
+    th, td {
+      border: 1px solid #222;
+      padding: 3px 5px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #e8e8e8;
+      font-weight: 800;
+    }
+
+    .mistake {
+      padding: 5px 0;
+      border-bottom: 1px solid #ccc;
+      font-size: 9pt;
+    }
+
+    .mistake:last-child {
+      border-bottom: 0;
+    }
+
+    .wrong {
+      font-weight: 700;
+    }
+
+    .right {
+      font-weight: 700;
+    }
+
+    .why {
+      color: #444;
+      font-size: 8pt;
+      font-style: italic;
+      margin-top: 1px;
+    }
+
+    .planning-box {
+      border: 1.5px dashed #444;
+      border-radius: 3px;
+      padding: 7px 9px;
+      margin-top: 7px;
+      background: #fafafa;
+    }
+
+    .planning-box h3 {
+      margin-bottom: 6px;
+    }
+
+    .line {
+      border-bottom: 1px solid #111;
+      min-height: 16px;
+      margin: 3px 0 6px;
+    }
+
+    .small-lines p {
+      margin-bottom: 2px;
+      font-size: 9pt;
+    }
+
+    .small-lines .line {
+      min-height: 15px;
+      margin-bottom: 5px;
+    }
+
+    .checklist {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .checklist li {
+      margin-bottom: 3px;
+    }
+
+    .checklist li::before {
+      content: "□ ";
+      font-weight: 900;
+    }
+
+    .student-task {
+      border: 1px solid #222;
+      border-radius: 3px;
+      padding: 6px 7px;
+      font-size: 9pt;
+      line-height: 1.28;
+    }
+
+    .student-task p {
+      margin: 0;
+    }
+
+    .mini-title {
+      font-weight: 800;
+      margin-bottom: 1px;
+      font-size: 8.5pt;
+    }
+
+    .game-grid .student-task {
+      min-height: 0;
+    }
+
+    .footer {
+      position: absolute;
+      left: 0.4in;
+      right: 0.4in;
+      bottom: 0.22in;
+      color: #444;
+      font-size: 7.5pt;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #999;
+      padding-top: 3px;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .page {
+        margin: 0;
+        border: none;
+        box-shadow: none;
+      }
+    }
+
+    @media screen {
+      .page {
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="page overview">
+    <div class="eyebrow">Level 3 Post-Test Prep</div>
+    <h1>Teach the Class Review Game</h1>
+    <p class="subtitle">Create a short review game that helps classmates practice one post-test grammar skill.</p>
+
+    <div class="teacher-note">
+      <h2>Big Goal</h2>
+      <p><strong>Make a game, not a long lesson.</strong> Classmates should practice, talk, guess, fix mistakes, and explain why. Keep grammar clear, useful, and a little fun.</p>
+    </div>
+
+    <div class="grid-2 section">
+      <div class="card">
+        <h3>Your Game Should Include</h3>
+        <ul class="checklist">
+          <li>A game title</li>
+          <li>Simple directions</li>
+          <li>At least 8 questions, cards, or challenges</li>
+          <li>An answer key</li>
+          <li>A way to check answers or give points</li>
+          <li>A job for every person in your group</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Your Game Should Help Students</h3>
+        <ul>
+          <li>Notice clues in sentences</li>
+          <li>Choose the correct verb form or adjective form</li>
+          <li>Fix common mistakes</li>
+          <li>Explain why an answer is correct</li>
+          <li>Feel more ready for the post-test</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section tight">
+      <h2>Game Ideas You Can Choose From</h2>
+      <div class="grid-3 game-grid">
+        <div class="student-task">
+          <div class="mini-title">Card Sort</div>
+          <p>Students sort words, sentences, or mistakes into groups.</p>
+        </div>
+        <div class="student-task">
+          <div class="mini-title">Fix the Mistake</div>
+          <p>Students find the error, correct it, and explain the rule.</p>
+        </div>
+        <div class="student-task">
+          <div class="mini-title">Sentence Race</div>
+          <p>Teams write correct sentences using the grammar target.</p>
+        </div>
+        <div class="student-task">
+          <div class="mini-title">Who Am I?</div>
+          <p>Students guess the tense, adjective form, connector, or helping verb from clues.</p>
+        </div>
+        <div class="student-task">
+          <div class="mini-title">Timeline Challenge</div>
+          <p>Students place events in order and choose the correct tense.</p>
+        </div>
+        <div class="student-task">
+          <div class="mini-title">Mini Quiz Show</div>
+          <p>Students answer questions in teams and explain their answers.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section tight">
+      <h2>Before You Start</h2>
+      <div class="grid-2">
+        <div class="card soft">
+          <h3>Do This</h3>
+          <ul>
+            <li>Use examples from real life.</li>
+            <li>Make the directions easy.</li>
+            <li>Practice saying the directions before you teach.</li>
+            <li>Make sure everyone in your group speaks.</li>
+          </ul>
+        </div>
+        <div class="card soft">
+          <h3>Do Not Do This</h3>
+          <ul>
+            <li>Do not copy a long grammar chart and read it.</li>
+            <li>Do not make only one person teach.</li>
+            <li>Do not make the game too complicated.</li>
+            <li>Do not forget the answer key.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Teach the Class Review Game</span>
+      <span>Planning Page</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="group-header">
+      <div class="badge">1</div>
+      <div>
+        <div class="eyebrow">Group 1</div>
+        <h1>Time Clue Detectives</h1>
+      </div>
+    </div>
+
+    <div class="mission">
+      <p><strong>Mission:</strong> Help classmates use time words to choose the correct verb tense. Time words are clues for when something happened and which verb form fits.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>What You Need to Teach Through Your Game</h3>
+        <ul>
+          <li>Past, present, and future time clues</li>
+          <li>Which tense usually goes with each clue</li>
+          <li>How to notice clue words in a sentence</li>
+          <li>Common mistakes with time words</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Helpful Time Clues</h3>
+        <div class="pill-row">
+          <span class="pill">yesterday</span>
+          <span class="pill">last week</span>
+          <span class="pill">every day</span>
+          <span class="pill">right now</span>
+          <span class="pill">since</span>
+          <span class="pill">for</span>
+          <span class="pill">tomorrow</span>
+          <span class="pill">by 8:00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Quick Grammar Guide</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Time Clue</th>
+            <th>Usually Use</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>yesterday, last year, in 2010, when I was a child</td>
+            <td>Past simple</td>
+            <td>I moved to Boston in 2010.</td>
+          </tr>
+          <tr>
+            <td>every day, always, usually, sometimes</td>
+            <td>Present simple</td>
+            <td>She takes the bus every day.</td>
+          </tr>
+          <tr>
+            <td>right now, currently, at the moment</td>
+            <td>Present continuous</td>
+            <td>They are studying right now.</td>
+          </tr>
+          <tr>
+            <td>since, for, already, yet, ever, never</td>
+            <td>Present perfect or present perfect continuous</td>
+            <td>He has lived here for five years.</td>
+          </tr>
+          <tr>
+            <td>tomorrow, next week, soon, later</td>
+            <td>Future with will or be going to</td>
+            <td>We are going to meet tomorrow.</td>
+          </tr>
+          <tr>
+            <td>by 8:00, by the time, before a future moment</td>
+            <td>Future perfect</td>
+            <td>She will have finished by 8:00.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section grid-2">
+      <div class="card">
+        <h3>Common Mistakes to Practice</h3>
+        <div class="mistake">
+          <div class="wrong">✗ I have seen her yesterday.</div>
+          <div class="right">✓ I saw her yesterday.</div>
+          <div class="why">Yesterday = finished past time, so use past simple.</div>
+        </div>
+        <div class="mistake">
+          <div class="wrong">✗ I am go to school every day.</div>
+          <div class="right">✓ I go to school every day.</div>
+          <div class="why">Every day = habit, so use present simple.</div>
+        </div>
+        <div class="mistake">
+          <div class="wrong">✗ She will finishes by 5:00.</div>
+          <div class="right">✓ She will have finished by 5:00.</div>
+          <div class="why">By 5:00 focuses on completion before a future time.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Game Ideas for This Group</h3>
+        <ul>
+          <li><strong>Signal Word Sort:</strong> Sort time clues into past, present, and future.</li>
+          <li><strong>Tense Clue Challenge:</strong> Pick a clue word and make a correct sentence.</li>
+          <li><strong>Timeline Race:</strong> Put events on a timeline and choose the tense.</li>
+          <li><strong>Who Am I?</strong> Read a sentence. Classmates guess the tense and clue.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="planning-box">
+      <h3>Plan Your Game</h3>
+      <div class="grid-2 small-lines">
+        <div>
+          <p><strong>Game title:</strong></p><div class="line"></div>
+          <p><strong>Materials:</strong></p><div class="line"></div>
+          <p><strong>How students win or check answers:</strong></p><div class="line"></div>
+        </div>
+        <div>
+          <p><strong>Group jobs:</strong></p><div class="line"></div>
+          <p><strong>Directions students will hear:</strong></p><div class="line"></div>
+          <p><strong>One example question/card:</strong></p><div class="line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Post-Test Skill: Time clues and tense choice</span>
+      <span>Group 1</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="group-header">
+      <div class="badge">2</div>
+      <div>
+        <div class="eyebrow">Group 2</div>
+        <h1>Perfect Tense Pros</h1>
+      </div>
+    </div>
+
+    <div class="mission">
+      <p><strong>Mission:</strong> Help classmates understand perfect tenses. Perfect tenses connect two times: before now, before another past action, or before a future time.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>What You Need to Teach Through Your Game</h3>
+        <ul>
+          <li>Perfect tenses use <strong>have, has, had, or will have</strong></li>
+          <li>The main verb usually uses <strong>V3</strong>, the past participle</li>
+          <li>Perfect continuous uses <strong>been + -ing</strong></li>
+          <li>Perfect tenses often show completion, experience, or duration</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Key Pattern</h3>
+        <table>
+          <tr><th>Tense</th><th>Pattern</th></tr>
+          <tr><td>Present perfect</td><td>have / has + V3</td></tr>
+          <tr><td>Past perfect</td><td>had + V3</td></tr>
+          <tr><td>Future perfect</td><td>will have + V3</td></tr>
+          <tr><td>Perfect continuous</td><td>have / had / will have + been + -ing</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Quick Grammar Guide</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tense</th>
+            <th>Example</th>
+            <th>Key Idea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Present perfect</td>
+            <td>I have eaten.</td>
+            <td>Experience or action before now</td>
+          </tr>
+          <tr>
+            <td>Past perfect</td>
+            <td>I had eaten before she arrived.</td>
+            <td>One past action happened before another past action</td>
+          </tr>
+          <tr>
+            <td>Future perfect</td>
+            <td>I will have eaten by 8:00.</td>
+            <td>Action will be finished before a future time</td>
+          </tr>
+          <tr>
+            <td>Present perfect continuous</td>
+            <td>I have been studying for two hours.</td>
+            <td>Started before now and is still happening or still important</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section grid-2">
+      <div class="card">
+        <h3>Common Mistakes to Practice</h3>
+        <div class="mistake">
+          <div class="wrong">✗ I have went to the store.</div>
+          <div class="right">✓ I have gone to the store.</div>
+          <div class="why">Perfect tense needs V3, not simple past.</div>
+        </div>
+        <div class="mistake">
+          <div class="wrong">✗ I was living here since 2020.</div>
+          <div class="right">✓ I have been living here since 2020.</div>
+          <div class="why">Since often needs present perfect continuous for duration.</div>
+        </div>
+        <div class="mistake">
+          <div class="wrong">✗ I have been eat dinner.</div>
+          <div class="right">✓ I have been eating dinner.</div>
+          <div class="why">After have been, use the -ing form.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Game Ideas for This Group</h3>
+        <ul>
+          <li><strong>V3 Match:</strong> Match base verbs with past participles.</li>
+          <li><strong>Before What?</strong> Students decide which action happened first.</li>
+          <li><strong>Perfect or Simple?</strong> Choose between “I ate” and “I have eaten.”</li>
+          <li><strong>Fix the Timeline:</strong> Put two events in order and write the sentence.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="planning-box">
+      <h3>Plan Your Game</h3>
+      <div class="grid-2 small-lines">
+        <div>
+          <p><strong>Game title:</strong></p><div class="line"></div>
+          <p><strong>Materials:</strong></p><div class="line"></div>
+          <p><strong>How students win or check answers:</strong></p><div class="line"></div>
+        </div>
+        <div>
+          <p><strong>Group jobs:</strong></p><div class="line"></div>
+          <p><strong>Directions students will hear:</strong></p><div class="line"></div>
+          <p><strong>One example question/card:</strong></p><div class="line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Post-Test Skill: Perfect tenses and V3</span>
+      <span>Group 2</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="group-header">
+      <div class="badge">3</div>
+      <div>
+        <div class="eyebrow">Group 3</div>
+        <h1>Helping Verb Heroes</h1>
+      </div>
+    </div>
+
+    <div class="mission">
+      <p><strong>Mission:</strong> Help classmates remember auxiliary verbs (be, have, do, will) in questions, negatives, continuous, perfect, and future sentences.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>What You Need to Teach Through Your Game</h3>
+        <ul>
+          <li>When to use <strong>be</strong>, <strong>have</strong>, <strong>do</strong>, and <strong>will</strong></li>
+          <li>How helping verbs change in questions and negatives</li>
+          <li>Why “do/does/did” appears in simple tense questions</li>
+          <li>How to fix common auxiliary verb mistakes</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Auxiliary Verb Cheat Sheet</h3>
+        <table>
+          <tr><th>Auxiliary</th><th>Used For</th></tr>
+          <tr><td>be</td><td>continuous tenses</td></tr>
+          <tr><td>have</td><td>perfect tenses</td></tr>
+          <tr><td>do</td><td>simple tense questions and negatives</td></tr>
+          <tr><td>will</td><td>future</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Quick Grammar Guide</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Auxiliary</th>
+            <th>Example</th>
+            <th>Important Reminder</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>be: am, is, are, was, were</td>
+            <td>She is working.</td>
+            <td>Use with -ing for continuous tenses.</td>
+          </tr>
+          <tr>
+            <td>have: have, has, had</td>
+            <td>They have finished.</td>
+            <td>Use with V3 for perfect tenses.</td>
+          </tr>
+          <tr>
+            <td>do: do, does, did</td>
+            <td>Did you go?</td>
+            <td>After did, use base verb.</td>
+          </tr>
+          <tr>
+            <td>will</td>
+            <td>I will call you.</td>
+            <td>After will, use base verb. No “to.”</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section grid-2">
+      <div class="card">
+        <h3>Common Mistakes to Practice</h3>
+        <div class="mistake">
+          <div class="wrong">✗ He not working now.</div>
+          <div class="right">✓ He is not working now.</div>
+          <div class="why">Continuous tense needs be + -ing.</div>
+        </div>
+        <div class="mistake">
+          <div class="wrong">✗ Did you went to the party?</div>
+          <div class="right">✓ Did you go to the party?</div>
+          <div class="why">After did, use the base form.</div>
+        </div>
+        <div class="mistake">
+          <div class="wrong">✗ I will to go tomorrow.</div>
+          <div class="right">✓ I will go tomorrow.</div>
+          <div class="why">After will, use the base form without “to.”</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Game Ideas for This Group</h3>
+        <ul>
+          <li><strong>Missing Helper:</strong> Students add the missing auxiliary verb.</li>
+          <li><strong>Question Machine:</strong> Turn statements into questions.</li>
+          <li><strong>Auxiliary Sort:</strong> Sort sentences by be, have, do, or will.</li>
+          <li><strong>Fix the Helper:</strong> Correct sentences with wrong helping verbs.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="planning-box">
+      <h3>Plan Your Game</h3>
+      <div class="grid-2 small-lines">
+        <div>
+          <p><strong>Game title:</strong></p><div class="line"></div>
+          <p><strong>Materials:</strong></p><div class="line"></div>
+          <p><strong>How students win or check answers:</strong></p><div class="line"></div>
+        </div>
+        <div>
+          <p><strong>Group jobs:</strong></p><div class="line"></div>
+          <p><strong>Directions students will hear:</strong></p><div class="line"></div>
+          <p><strong>One example question/card:</strong></p><div class="line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Post-Test Skill: Auxiliary verbs</span>
+      <span>Group 3</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="group-header">
+      <div class="badge">4</div>
+      <div>
+        <div class="eyebrow">Group 4</div>
+        <h1>Comparison Captains</h1>
+      </div>
+    </div>
+
+    <div class="mission">
+      <p><strong>Mission:</strong> Help classmates compare correctly. Teach when to use comparatives (<strong>bigger than</strong>) and superlatives (<strong>the biggest</strong>).</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>What You Need to Teach Through Your Game</h3>
+        <ul>
+          <li>Comparatives compare two things</li>
+          <li>Superlatives compare one thing to a whole group</li>
+          <li>Short adjectives usually use <strong>-er</strong> and <strong>-est</strong></li>
+          <li>Long adjectives usually use <strong>more</strong> and <strong>the most</strong></li>
+          <li>Some adjectives are irregular, like <strong>good, better, best</strong></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Helpful Comparison Words</h3>
+        <div class="pill-row">
+          <span class="pill">bigger than</span>
+          <span class="pill">smaller than</span>
+          <span class="pill">more expensive than</span>
+          <span class="pill">less crowded than</span>
+          <span class="pill">the biggest</span>
+          <span class="pill">the most important</span>
+          <span class="pill">better than</span>
+          <span class="pill">the best</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Quick Grammar Guide</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Meaning</th>
+            <th>Form</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Compare two things</td>
+            <td>adjective + -er + than</td>
+            <td>Boston is colder than Atlanta.</td>
+          </tr>
+          <tr>
+            <td>Compare two things with a long adjective</td>
+            <td>more + adjective + than</td>
+            <td>English is more difficult than math.</td>
+          </tr>
+          <tr>
+            <td>Compare one thing in a group</td>
+            <td>the + adjective + -est</td>
+            <td>This is the coldest day of the year.</td>
+          </tr>
+          <tr>
+            <td>Compare one thing in a group with a long adjective</td>
+            <td>the most + adjective</td>
+            <td>This is the most expensive apartment.</td>
+          </tr>
+          <tr>
+            <td>Irregular adjectives</td>
+            <td>good → better → best</td>
+            <td>This restaurant is better than that one.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section grid-2">
+      <div class="card">
+        <h3>Common Mistakes to Practice</h3>
+        <div class="mistake">
+          <div class="wrong">✗ She is more taller than me.</div>
+          <div class="right">✓ She is taller than me.</div>
+          <div class="why">Do not use more + -er together.</div>
+        </div>
+        <div class="mistake">
+          <div class="wrong">✗ This is best restaurant.</div>
+          <div class="right">✓ This is the best restaurant.</div>
+          <div class="why">Superlatives usually need the.</div>
+        </div>
+        <div class="mistake">
+          <div class="wrong">✗ My phone is expensive than yours.</div>
+          <div class="right">✓ My phone is more expensive than yours.</div>
+          <div class="why">Long adjectives usually use more.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Game Ideas for This Group</h3>
+        <ul>
+          <li><strong>Compare the Room:</strong> Compare real objects, people, or places.</li>
+          <li><strong>Two or Group?</strong> Comparative or superlative?</li>
+          <li><strong>Fix the Comparison:</strong> Correct “more bigger” and similar errors.</li>
+          <li><strong>Ranking Game:</strong> Rank items and make superlative sentences.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="planning-box">
+      <h3>Plan Your Game</h3>
+      <div class="grid-2 small-lines">
+        <div>
+          <p><strong>Game title:</strong></p><div class="line"></div>
+          <p><strong>Materials:</strong></p><div class="line"></div>
+          <p><strong>How students win or check answers:</strong></p><div class="line"></div>
+        </div>
+        <div>
+          <p><strong>Group jobs:</strong></p><div class="line"></div>
+          <p><strong>Directions students will hear:</strong></p><div class="line"></div>
+          <p><strong>One example question/card:</strong></p><div class="line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Post-Test Skill: Comparatives and superlatives</span>
+      <span>Group 4</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="group-header">
+      <div class="badge">5</div>
+      <div>
+        <div class="eyebrow">Optional Group 5</div>
+        <h1>Sentence Connector Coaches</h1>
+      </div>
+    </div>
+
+    <div class="mission">
+      <p><strong>Mission:</strong> Help classmates connect ideas clearly. Connectors show the relationship between two ideas, like reason, result, contrast, time, or condition.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>What You Need to Teach Through Your Game</h3>
+        <ul>
+          <li>How connectors change the meaning of a sentence</li>
+          <li>Which connectors show reason, result, contrast, time, or condition</li>
+          <li>How to combine two short sentences</li>
+          <li>How punctuation changes with some connectors</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Connector Types</h3>
+        <div class="pill-row">
+          <span class="pill">because</span>
+          <span class="pill">so</span>
+          <span class="pill">but</span>
+          <span class="pill">although</span>
+          <span class="pill">when</span>
+          <span class="pill">before</span>
+          <span class="pill">after</span>
+          <span class="pill">if</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Quick Grammar Guide</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Relationship</th>
+            <th>Connectors</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Reason</td>
+            <td>because</td>
+            <td>I stayed home because I was sick.</td>
+          </tr>
+          <tr>
+            <td>Result</td>
+            <td>so</td>
+            <td>I was sick, so I stayed home.</td>
+          </tr>
+          <tr>
+            <td>Contrast</td>
+            <td>but, although</td>
+            <td>Although I was tired, I went to class.</td>
+          </tr>
+          <tr>
+            <td>Time</td>
+            <td>when, before, after</td>
+            <td>I ate dinner after I finished work.</td>
+          </tr>
+          <tr>
+            <td>Condition</td>
+            <td>if</td>
+            <td>If it rains, I will take the bus.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section grid-2">
+      <div class="card">
+        <h3>Common Mistakes to Practice</h3>
+        <div class="mistake">
+          <div class="wrong">✗ I was sick, because I stayed home.</div>
+          <div class="right">✓ I stayed home because I was sick.</div>
+          <div class="why">Because gives the reason.</div>
+        </div>
+        <div class="mistake">
+          <div class="wrong">✗ Although I was tired, but I went to class.</div>
+          <div class="right">✓ Although I was tired, I went to class.</div>
+          <div class="why">Do not use although and but together in the same clause.</div>
+        </div>
+        <div class="mistake">
+          <div class="wrong">✗ If it will rain, I will stay home.</div>
+          <div class="right">✓ If it rains, I will stay home.</div>
+          <div class="why">In real future conditions, use present simple after if.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Game Ideas for This Group</h3>
+        <ul>
+          <li><strong>Connector Match:</strong> Match two ideas with the best connector.</li>
+          <li><strong>Reason or Result?</strong> Decide if the sentence needs because or so.</li>
+          <li><strong>Sentence Surgery:</strong> Fix connector and punctuation mistakes.</li>
+          <li><strong>Build a Story:</strong> Use connectors to join events in order.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="planning-box">
+      <h3>Plan Your Game</h3>
+      <div class="grid-2 small-lines">
+        <div>
+          <p><strong>Game title:</strong></p><div class="line"></div>
+          <p><strong>Materials:</strong></p><div class="line"></div>
+          <p><strong>How students win or check answers:</strong></p><div class="line"></div>
+        </div>
+        <div>
+          <p><strong>Group jobs:</strong></p><div class="line"></div>
+          <p><strong>Directions students will hear:</strong></p><div class="line"></div>
+          <p><strong>One example question/card:</strong></p><div class="line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Post-Test Skill: Connectors and sentence relationships</span>
+      <span>Optional Group 5</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="eyebrow">Teacher Copy or Extra Student Page</div>
+    <h1>Game Question Builder</h1>
+    <p class="subtitle">Extra support for groups that need more question or card ideas.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Fix-the-Mistake Cards</h3>
+        <ol>
+          <li>I have seen him yesterday.</li>
+          <li>She go to class every day.</li>
+          <li>Did you went to work?</li>
+          <li>He not working right now.</li>
+          <li>I will to call you later.</li>
+          <li>I have been live here since 2020.</li>
+          <li>She is more taller than me.</li>
+          <li>This is best restaurant.</li>
+          <li>Although I was tired, but I studied.</li>
+          <li>If it will rain, I will stay home.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Choose-the-Best-Answer Cards</h3>
+        <ol>
+          <li>Yesterday, I ____ to the store. <br />go / went / have gone</li>
+          <li>She ____ English every day. <br />studies / is studying / studied</li>
+          <li>Right now, they ____ lunch. <br />eat / ate / are eating</li>
+          <li>I ____ here since 2021. <br />live / lived / have lived</li>
+          <li>By 8:00, we ____ dinner. <br />will finish / will have finished / finished</li>
+          <li>____ you like coffee? <br />Do / Are / Have</li>
+          <li>He did not ____ yesterday. <br />worked / work / working</li>
+          <li>My apartment is ____ than my old apartment. <br />big / bigger / biggest</li>
+          <li>This is ____ expensive restaurant in the neighborhood. <br />more / most / the most</li>
+          <li>I was tired, ____ I went to bed. <br />because / so / although</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="section grid-2">
+      <div class="card">
+        <h3>Explain-Your-Answer Prompts</h3>
+        <ul>
+          <li>What clue word helped you?</li>
+          <li>What tense do we need?</li>
+          <li>What is the helping verb?</li>
+          <li>Are we comparing two things or one thing in a group?</li>
+          <li>Do we need -er, more, -est, or the most?</li>
+          <li>Is this a habit, happening now, finished past time, or duration?</li>
+          <li>Which action happened first?</li>
+          <li>What relationship does the connector show?</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Easy Scoring Options</h3>
+        <ul>
+          <li>1 point for the correct answer</li>
+          <li>1 bonus point for explaining why</li>
+          <li>Team gets 30 seconds to discuss</li>
+          <li>Another team can steal if the answer is incorrect</li>
+          <li>No points, just move forward on a board game path</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section tight">
+      <div class="card soft">
+        <h3>Student Reminder</h3>
+        <p><strong>A good review game does not need to be fancy.</strong> Students should practice the skill, check answers, and explain why an answer is correct.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Question Builder</span>
+      <span>Extra Support Page</span>
+    </div>
+  </section>
+</body>
+</html>

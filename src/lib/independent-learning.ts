@@ -10,9 +10,9 @@ export const INDEPENDENT_RECOMMENDATION_SEQUENCE: readonly IndependentRecommenda
         displayTitle: "Daily Vocab Review",
     },
     {
-        activityId: "vocab-september",
+        activityId: "vocab-sep-w1",
         stage: 1,
-        displayTitle: "Unit 1 Vocabulary: Getting to Know You",
+        displayTitle: "Unit 1 Vocabulary: Digital Habits",
         unitNumber: 1,
         theme: "Getting to Know You",
     },
@@ -24,7 +24,7 @@ export const INDEPENDENT_RECOMMENDATION_SEQUENCE: readonly IndependentRecommenda
     { activityId: "verb-forms-challenge", stage: 1, displayTitle: "Verb Forms Practice" },
     { activityId: "present-continuous-guide", stage: 2 },
     {
-        activityId: "vocab-october-flashcards",
+        activityId: "vocab-oct-w1",
         stage: 2,
         displayTitle: "Unit 2 Vocabulary: Daily Life in the Community",
         unitNumber: 2,
@@ -33,7 +33,7 @@ export const INDEPENDENT_RECOMMENDATION_SEQUENCE: readonly IndependentRecommenda
     { activityId: "countable-uncountable-nouns", stage: 2, displayTitle: "Countable vs Uncountable Practice" },
     { activityId: "past-simple-guide", stage: 3 },
     {
-        activityId: "vocab-november-flashcards",
+        activityId: "vocab-nov-w1",
         stage: 3,
         displayTitle: "Unit 3 Vocabulary: Community Participation",
         unitNumber: 3,

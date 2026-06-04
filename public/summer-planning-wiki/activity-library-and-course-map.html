@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Activity Library & Course Map | Summer Planning Wiki</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-active="activity-library-and-course-map">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="eyebrow">ESOL Level 3</span>
+        <a class="site-title" href="index.html">Summer Planning Wiki</a>
+      </div>
+      <a class="sidebar-dashboard-link" href="/dashboard">← Back to Dashboard</a>
+      <nav aria-label="Planning documents">
+        <a href="summer-work-map.html" data-slug="summer-work-map">Summer Work Map</a>
+<a href="image-mockups.html" data-slug="image-mockups">Image Mockups</a>
+<a href="class-improvement-plan.html" data-slug="class-improvement-plan">Class Improvement Plan</a>
+<a href="app-learning-path-roadmap.html" data-slug="app-learning-path-roadmap">App Learning Path Roadmap</a>
+<a href="skill-chains-practice-paths-plan.html" data-slug="skill-chains-practice-paths-plan">Skill Chains / Practice Paths</a>
+<a href="summer-research-reading-list.html" data-slug="summer-research-reading-list">Summer Research Reading List</a>
+<a href="school-resource-website-plan.html" data-slug="school-resource-website-plan">Resource Website Plan</a>
+<a href="activity-library-and-course-map.html" data-slug="activity-library-and-course-map">Activity Library & Course Map</a>
+        <div class="sidebar-nav-heading">Other documents</div>
+        <a href="nrs-coverage-gap-plan.html" data-slug="nrs-coverage-gap-plan">NRS 3–4 Coverage Gap Plan</a>
+<a href="absent-student-catch-up-plan.html" data-slug="absent-student-catch-up-plan">Absent Student Catch-Up Plan</a>
+<a href="school-year-at-a-glance.html" data-slug="school-year-at-a-glance">School Year At A Glance</a>
+<a href="september-app-onboarding-plan.html" data-slug="september-app-onboarding-plan">September App Onboarding Plan</a>
+      </nav>
+      <div class="sidebar-toc" aria-label="On this page">
+        <strong>On This Page</strong>
+        <a class="toc-level-2" href="#activity-types">Activity Types</a>
+        <a class="toc-level-3" href="#grammar-guides">Grammar Guides</a>
+        <a class="toc-level-3" href="#games">Games</a>
+        <a class="toc-level-3" href="#quizzes">Quizzes</a>
+        <a class="toc-level-3" href="#vocabulary">Vocabulary</a>
+        <a class="toc-level-3" href="#pronunciation">Pronunciation</a>
+        <a class="toc-level-3" href="#writing">Writing</a>
+        <a class="toc-level-3" href="#speaking">Speaking</a>
+        <a class="toc-level-2" href="#course-map">Course Map Structure</a>
+        <a class="toc-level-3" href="#how-levels-work">How Levels Work</a>
+        <a class="toc-level-3" href="#level-breakdown">Level Breakdown</a>
+        <a class="toc-level-2" href="#database-fields">Database Fields</a>
+        <a class="toc-level-2" href="#next-steps">Next Steps</a>
+      </div>
+      <div class="sidebar-note">
+        <strong>Purpose</strong>
+        <span>Community class first. App second. English as the tool for real life.</span>
+      </div>
+    </aside>
+    <main id="content" class="content">
+      <header class="page-header">
+        <span class="eyebrow">Summer 2026 Planning</span>
+        <h1>Activity Library &amp; Course Map</h1>
+        <p>A reference for what kinds of activities exist in the app, how they work, and how they are currently organized into the student course map.</p>
+      </header>
+      <article class="article">
+
+        <h2 id="activity-types">Activity Types</h2>
+        <p>Every activity in the app has a <code>type</code> field that controls how it renders and how points are awarded. Here is a plain-language description of each type currently in the codebase.</p>
+
+        <h3 id="grammar-guides">Grammar Guides</h3>
+        <p><strong>Type:</strong> <code>guide</code> &nbsp;·&nbsp; <strong>Category:</strong> <code>grammar</code></p>
+        <p>Long-form grammar reference pages with explanations, examples, and embedded mini-quizzes. Students read through a guide at their own pace. Progress is tracked section by section. A guide is marked complete when the student finishes the last section.</p>
+        <p>Currently these can be long — sometimes the equivalent of a 10–15 page packet. The summer plan calls for splitting them into shorter microlearning modules (5–10 minutes each). Existing guides include topics like present perfect, gerunds &amp; infinitives, modals, passive voice, conditionals, reported speech, and parts of speech.</p>
+        <p>There are also a few beginner-level guides (Present Simple, Past Simple, Present Continuous) that were added mid-year to support lower-level students in the class.</p>
+
+        <h3 id="games">Games</h3>
+        <p><strong>Type:</strong> <code>game</code> &nbsp;·&nbsp; <strong>Category:</strong> <code>games</code>, <code>pronunciation</code></p>
+        <p>Interactive practice activities. Most are short — 5 to 15 minutes. Games award points on completion and can be replayed. Several distinct game formats exist in the codebase:</p>
+        <ul>
+          <li><strong>Timeline Tenses</strong> — students place verbs or sentences on a past/present/future timeline. Multiple difficulty presets (simple tenses, continuous, perfect, challenge mix). This is the most-used game format.</li>
+          <li><strong>Parts of Speech Discovery</strong> — students identify nouns, verbs, adjectives, and other parts of speech in context.</li>
+          <li><strong>Pronunciation games</strong> — minimal pair listening drills. Each game focuses on one sound contrast: -ed endings, B vs V, R vs L, S vs Th, Sh vs Ch, P vs B, V vs W, Short i vs Long e. Students listen and select the word they hear.</li>
+          <li><strong>Café Catch-Up</strong> — conversation-card discussion decks. Students see a prompt and respond. Used for real-life discussion practice around unit topics.</li>
+          <li><strong>Numbers: Thousands to Trillions</strong> — reading and matching large numbers in English.</li>
+          <li><strong>Countable vs Uncountable Nouns</strong> — sorting and identification game.</li>
+          <li><strong>Verb Forms Challenge</strong> — students choose the correct verb form.</li>
+          <li><strong>Irregular Verbs Pattern Game</strong> — pattern recognition for irregular verb forms.</li>
+          <li><strong>Time Indicators</strong> — students match time expressions to the correct tense.</li>
+          <li><strong>Gerunds &amp; Infinitives Patterns</strong> — choose the correct form after common verbs.</li>
+          <li><strong>Grammar Hospital / Helper Verb Repair</strong> — error correction: students fix broken sentences.</li>
+          <li><strong>Pick the Word That Sounds Right</strong> — phonics and word recognition listening game.</li>
+          <li><strong>How Are You Feeling?</strong> — health vocabulary, feeling and symptom identification.</li>
+          <li><strong>Level 3 Group Trivia</strong> — teacher-led whole-class review game with grammar, vocabulary, and topic questions.</li>
+          <li><strong>Comparison Battle</strong> — students compare two options using comparative structures (newer game, still being added).</li>
+        </ul>
+
+        <h3 id="quizzes">Quizzes</h3>
+        <p><strong>Type:</strong> <code>quiz</code></p>
+        <p>Multiple-choice assessments. Currently the primary assigned homework activity — usage data shows quizzes have the highest and most consistent completion rate of any activity type. Points scale with score: perfect (15 pts), high (10 pts), good (5 pts), passing (2 pts).</p>
+        <p>The current quiz library is the Verb Quiz series — 20 quizzes total (Verb Quiz 1–20) that spiral through all verb tenses across the school year. Each quiz is 10–15 questions. Students can retake quizzes.</p>
+        <p>The summer plan calls for adding weekly quizzes that also include vocabulary, parts of speech, timeline tenses, and topic comprehension — not just verb forms.</p>
+
+        <h3 id="vocabulary">Vocabulary</h3>
+        <p><strong>Type:</strong> <code>vocabulary</code></p>
+        <p>Flashcard-style vocabulary sets tied to the monthly unit topic. Students swipe through cards and mark whether they know each word. Progress is tracked by completion. There is also a separate daily vocab review habit (spaced repetition) that students can use independently.</p>
+        <p>Current vocabulary sets are organized by month and unit (e.g. Unit 1: September, Unit 2: October). Later in the year the sets become more topic-focused flash card decks. There are also more granular weekly vocab sets (e.g. "Unit 6: February 3–5") that were added mid-year and do not yet have sequence numbers on the course map — these are kept out of the main path for now per teacher preference.</p>
+
+        <h3 id="pronunciation">Pronunciation</h3>
+        <p><strong>Type:</strong> <code>game</code> &nbsp;·&nbsp; <strong>Category:</strong> <code>pronunciation</code></p>
+        <p>Pronunciation activities are a subtype of games. Three distinct formats exist:</p>
+        <ul>
+          <li><strong>Minimal Pairs</strong> — listen and identify which of two similar words you heard (B vs V, R vs L, etc.)</li>
+          <li><strong>-ed Endings</strong> — listen and identify which of three sounds the -ed ending makes (/t/, /d/, or /ɪd/)</li>
+          <li><strong>Sentence Listening</strong> — listen to full sentences and identify pronunciation features in context</li>
+        </ul>
+        <p>Pronunciation is currently a required part of the course map, assigned once per unit. The summer plan calls for making it a weekly required path step with a due date rather than an optional browse item.</p>
+
+        <h3 id="writing">Writing</h3>
+        <p><strong>Type:</strong> <code>writing</code></p>
+        <p>Open-response writing tasks where students type a short response. Currently the writing activity is being built out — one activity exists ("Write About Your Experience") and is placed in the Health unit. The summer plan calls for making writing a regular weekly component: text messages, emails, complaint summaries, reflection prompts, and short practical tasks.</p>
+
+        <h3 id="speaking">Speaking</h3>
+        <p><strong>Type:</strong> <code>speaking</code></p>
+        <p>Speaking activities have their own release flow. The teacher releases a speaking activity to the class, students respond, and the teacher can review submissions. Not currently part of the main course map sequence — these are typically used in class or as optional extensions.</p>
+
+        <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--line);">
+
+        <h2 id="course-map">Course Map Structure</h2>
+        <p>The Course Map (<code>/dashboard/map</code>) is the student-facing view of the full year path. It shows all assigned activities in sequence, grouped into labeled levels. Students can see what they have completed, what is next, and how far through the path they are.</p>
+
+        <h3 id="how-levels-work">How Levels Work</h3>
+        <p>Each assignment has two fields that control its place on the map:</p>
+        <ul>
+          <li><strong><code>sequenceNumber</code></strong> — a number that determines the order activities appear within a level. Lower numbers come first.</li>
+          <li><strong><code>unitLabel</code></strong> — the group label shown on the map. Currently set to <strong>Level 1 through Level 36</strong>, where each level represents roughly one week of class content.</li>
+        </ul>
+        <p>Activities without a <code>sequenceNumber</code> appear in a separate "More Activities" section at the bottom of the map — not in the main path. Activities without a <code>unitLabel</code> are placed in a default group.</p>
+        <p>Vocabulary-type assignments are currently kept in "More Activities" and not part of the main numbered path, per the teacher's preference to avoid overwhelming students with the list.</p>
+
+        <blockquote>36 levels total = 36 weeks of school. Levels 1–29 are active. Levels 30–36 are open for next year's content.</blockquote>
+
+        <h3 id="level-breakdown">Level Breakdown (Current)</h3>
+        <p>This reflects what is in the database as of June 2026. Both classes (Marlie's and Daniel's) share the same structure.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Levels</th>
+                <th>Monthly Unit</th>
+                <th>What's in it</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1–2</strong></td>
+                <td>September — Getting to Know You</td>
+                <td>Verb Tenses Overview, Parts of Speech Discovery, Present Simple, Past Simple, Present Continuous guides, Grammar Hospital, Timeline Tenses (simple), Verb Quizzes 1–2</td>
+              </tr>
+              <tr>
+                <td><strong>3–4</strong></td>
+                <td>September — Getting to Know You</td>
+                <td>Vocab (Unit 1), Café Catch-Up: Big Questions, Parts of Speech: Adjectives, Pronunciation: -ed Endings, -ed Sounds Game</td>
+              </tr>
+              <tr>
+                <td><strong>5–6</strong></td>
+                <td>October — Daily Life in the Community</td>
+                <td>Information Questions guide, Timeline Tenses (simple &amp; continuous), Pronunciation: B vs V, Café Catch-Up: Boston Healthcare, Vocab (Unit 2), Verb Quizzes 3–4</td>
+              </tr>
+              <tr>
+                <td><strong>7–8</strong></td>
+                <td>November — Community Participation</td>
+                <td>Gerunds &amp; Infinitives guide &amp; game, Zero &amp; First Conditionals, Timeline Tenses (continuous), Pronunciation: Short i vs Long e, Vocab (Unit 3), Verb Quizzes 5–6</td>
+              </tr>
+              <tr>
+                <td><strong>9–10</strong></td>
+                <td>December — Consumer Smarts</td>
+                <td>Superlatives &amp; Quantifiers, Numbers: Thousands to Trillions, Countable vs Uncountable Nouns, Pronunciation Spiral: B vs V, Vocab (Unit 4), Verb Quizzes 7–8</td>
+              </tr>
+              <tr>
+                <td><strong>11–12</strong></td>
+                <td>January — Housing</td>
+                <td>Parts of Speech guide, Information Questions: Tenant &amp; Landlord, Timeline Tenses (past simple vs past continuous), Pronunciation: R vs L, Vocab (Unit 5), Verb Quizzes 9–10</td>
+              </tr>
+              <tr>
+                <td><strong>13–16</strong></td>
+                <td>February — Workforce Preparation</td>
+                <td>Conditionals: Work Scenarios, Cycle 1 Review, Verb Forms Challenge, Modals for Obligation &amp; Permission, Workplace Phrasal Verbs, Timeline Tenses (continuous), Pronunciation: V vs W, Irregular Verbs Pattern Game, Pick the Word That Sounds Right, Vocab (Unit 6), Verb Quizzes 11–12</td>
+              </tr>
+              <tr>
+                <td><strong>17–20</strong></td>
+                <td>March — Career Awareness</td>
+                <td>Present Perfect guide &amp; family guide, Present Perfect Continuous, Timeline Tenses (present perfect, perfect &amp; continuous, fix the perfect challenge), Time Indicators game, Gerunds &amp; Infinitives: Career Language, Past Perfect Family guide, Pronunciation: S vs Th, Vocab (Unit 7), Verb Quizzes 13–14</td>
+              </tr>
+              <tr>
+                <td><strong>21–24</strong></td>
+                <td>April — Health</td>
+                <td>Modals for Health, Medical Instructions guide, How Are You Feeling?, Passive Voice, Reported Speech, Medicine Labels &amp; Insurance Cards, Write About Your Experience, Timeline Tenses (tenses in context challenge), Pronunciation: Sh vs Ch, Vocab (Unit 8), Verb Quizzes 15–16</td>
+              </tr>
+              <tr>
+                <td><strong>25–27</strong></td>
+                <td>May — Holistic Wellness</td>
+                <td>Used To &amp; Would Rather, Future &amp; Conditional: Wellness Goals, Timeline Tenses (used to &amp; would, spot the difference challenge), Pronunciation: P vs B, Vocab (Unit 9), Verb Quizzes 17–18</td>
+              </tr>
+              <tr>
+                <td><strong>28–29</strong></td>
+                <td>June — Future Academic Goals</td>
+                <td>Timeline Tenses: Full Year Challenge, Level 3 Group Trivia, Pronunciation: Mixed Review, Vocab (Unit 10), Verb Quizzes 19–20</td>
+              </tr>
+              <tr>
+                <td><strong>30–36</strong></td>
+                <td><em>Open</em></td>
+                <td>Reserved for next year's content</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--line);">
+
+        <h2 id="database-fields">Database Fields That Control the Map</h2>
+        <p>These are the key fields on the <code>Assignment</code> model in Prisma:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>What it does</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>sequenceNumber</code></td>
+                <td>Integer. Controls sort order within and across levels. Lower = earlier on the map. Activities with no sequence number appear in "More Activities."</td>
+              </tr>
+              <tr>
+                <td><code>unitLabel</code></td>
+                <td>String. The group header shown on the map. Currently <code>"Level 1"</code> through <code>"Level 36"</code>. Previously these were named by unit (e.g. "Unit 1: Getting to Know You") — changed to numbered levels in June 2026.</td>
+              </tr>
+              <tr>
+                <td><code>isFeatured</code></td>
+                <td>Boolean. Whether the assignment appears in the teacher's "Today's Assignments" featured list on the student dashboard. Separate from the course map.</td>
+              </tr>
+              <tr>
+                <td><code>isRequired</code></td>
+                <td>Boolean. Used by the catch-up path system to distinguish required vs optional work.</td>
+              </tr>
+              <tr>
+                <td><code>dueDate</code></td>
+                <td>Optional date. Shown to students on the map and dashboard when set.</td>
+              </tr>
+              <tr>
+                <td><code>title</code></td>
+                <td>Optional override. If set, this title shows instead of the activity's own title on the map.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>The <code>Activity</code> model also has a <code>level</code> field (e.g. <code>"beginner"</code>, <code>"intermediate"</code>) but this is not currently used to filter or group the course map — it is metadata on the activity itself. The map grouping is entirely controlled by <code>unitLabel</code> on the assignment.</p>
+
+        <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--line);">
+
+        <h2 id="next-steps">Next Steps for Summer</h2>
+        <ul>
+          <li>Decide whether levels 30–36 should be built out for next year or kept as overflow.</li>
+          <li>Add due dates to level groups so students see when each week's work is expected.</li>
+          <li>Consider splitting some levels that have too many items (Level 17 has 5 items; Level 23 has 4 including two quizzes back-to-back).</li>
+          <li>Clean up true duplicate assignments — several activities (Modals for Obligation &amp; Permission, Countable vs Uncountable Nouns, Verb Forms Challenge) appear twice in the same class's assignment list. Only one copy is in the path; the other is floating in "More Activities." These can be deleted from the teacher's assignment manager.</li>
+          <li>Decide if weekly vocab sets (Unit 6: February 3–5, etc.) should be added to the path or left as optional extras.</li>
+          <li>Build the teacher UI for reordering levels and moving activities between levels without needing a database script.</li>
+        </ul>
+
+      </article>
+    </main>
+  </div>
+  <script src="wiki.js"></script>
+</body>
+</html>

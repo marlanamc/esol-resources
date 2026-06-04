@@ -1,7 +1,7 @@
 /**
- * Weekly vocabulary units (Feb–Jun) replacing the former monthly Units 6–9.
- * Unit number is the same for the whole month: Feb = 6, Mar = 7, Apr = 8, May = 9, Jun = 10.
- * Each unit has 4 activities: word list (packet), flashcards, matching, fill-in-the-blank.
+ * Weekly vocabulary units covering the full academic year.
+ * Cycle 1 (Sep–Jan) = Units 1–5; Cycle 2 (Feb–Jun) = Units 6–10.
+ * Each unit has activities: word list (packet), flashcards, matching, fill-in-the-blank.
  */
 
 export interface WeeklyVocabUnit {
@@ -9,7 +9,30 @@ export interface WeeklyVocabUnit {
   label: string;
 }
 
-export const VOCAB_WEEKLY_UNITS: WeeklyVocabUnit[] = [
+/** Cycle 1: September – January (Units 1–5) */
+export const VOCAB_WEEKLY_UNITS_CYCLE1: WeeklyVocabUnit[] = [
+  { id: "sep-w1", label: "September Week 1" },
+  { id: "sep-w2", label: "September Week 2" },
+  { id: "sep-w3", label: "September Week 3" },
+  { id: "sep-w4", label: "September Week 4" },
+  { id: "oct-w1", label: "October Week 1" },
+  { id: "oct-w2", label: "October Week 2" },
+  { id: "oct-w3", label: "October Week 3" },
+  { id: "oct-w4", label: "October Week 4" },
+  { id: "nov-w1", label: "November Week 1" },
+  { id: "nov-w2", label: "November Week 2" },
+  { id: "nov-w3", label: "November Week 3" },
+  { id: "nov-w4", label: "November Week 4" },
+  { id: "dec-w1", label: "December Week 1" },
+  { id: "dec-w2", label: "December Week 2" },
+  { id: "jan-w1", label: "January Week 1" },
+  { id: "jan-w2", label: "January Week 2" },
+  { id: "jan-w3", label: "January Week 3" },
+  { id: "jan-w4", label: "January Week 4" },
+];
+
+/** Cycle 2: February – June (Units 6–10) */
+export const VOCAB_WEEKLY_UNITS_CYCLE2: WeeklyVocabUnit[] = [
   { id: "feb-3-5", label: "February 3–5" },
   { id: "feb-10-12", label: "February 10–12" },
   { id: "feb-24-26", label: "February 24–26" },
@@ -28,10 +51,26 @@ export const VOCAB_WEEKLY_UNITS: WeeklyVocabUnit[] = [
   { id: "jun-2-4", label: "June 2–4" },
 ];
 
-/** Map slug id -> unit number (6 = Feb, 7 = Mar, 8 = Apr, 9 = May, 10 = Jun) */
+/** All weekly vocab units in calendar order */
+export const VOCAB_WEEKLY_UNITS: WeeklyVocabUnit[] = [
+  ...VOCAB_WEEKLY_UNITS_CYCLE1,
+  ...VOCAB_WEEKLY_UNITS_CYCLE2,
+];
+
+/** Map slug id -> unit number (1–10) */
 export const VOCAB_WEEKLY_UNIT_NUMBER: Record<string, number> = Object.fromEntries(
   VOCAB_WEEKLY_UNITS.map((u) => {
-    const unitNum = u.id.startsWith("feb-") ? 6 : u.id.startsWith("mar-") ? 7 : u.id.startsWith("apr-") ? 8 : u.id.startsWith("may-") ? 9 : 10;
+    let unitNum: number;
+    if (u.id.startsWith("sep-")) unitNum = 1;
+    else if (u.id.startsWith("oct-")) unitNum = 2;
+    else if (u.id.startsWith("nov-")) unitNum = 3;
+    else if (u.id.startsWith("dec-")) unitNum = 4;
+    else if (u.id.startsWith("jan-")) unitNum = 5;
+    else if (u.id.startsWith("feb-")) unitNum = 6;
+    else if (u.id.startsWith("mar-")) unitNum = 7;
+    else if (u.id.startsWith("apr-")) unitNum = 8;
+    else if (u.id.startsWith("may-")) unitNum = 9;
+    else unitNum = 10; // jun
     return [u.id, unitNum];
   })
 );

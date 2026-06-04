@@ -276,6 +276,7 @@ export function LearnerMenu({
                       <div className="flex-1 overflow-y-auto px-4 py-6 scrollbar-hide" style={{ overscrollBehavior: "contain" }}>
                           <nav className="flex flex-col gap-1.5" aria-label="Main navigation">
                               <MenuLink href="/dashboard" label="Home" icon={<HomeIcon className="w-5 h-5 text-secondary" />} onNavigate={closeMenu} />
+                              <MenuLink href="/dashboard/map" label="Course Map" icon={<Map className="w-5 h-5 text-[#b05740]" />} onNavigate={closeMenu} />
                               <MenuLink href="/dashboard/activities" label="All Activities" icon={<BookOpenIcon className="w-5 h-5 text-[#b86a56]" />} onNavigate={closeMenu} />
                               {showSearch ? (
                                   <MenuLink

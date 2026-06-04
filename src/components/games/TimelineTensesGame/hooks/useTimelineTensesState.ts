@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type {
   TimelineTensesQuestion,
   TenseCategory,
@@ -162,7 +162,12 @@ function getCategoryQuestionCount(
   return questions.filter((question) => question.tenseCategory === category).length;
 }
 
-export function useTimelineTensesState(activityId: string, assignmentId?: string | null) {
+export interface TimelineTensesPreset {
+  tenseCategories: TenseCategory[];
+  practiceMode?: TimelinePracticeMode;
+}
+
+export function useTimelineTensesState(activityId: string, assignmentId?: string | null, preset?: TimelineTensesPreset) {
   const [recentQuestionIdsByFilter, setRecentQuestionIdsByFilter] = useState<Record<string, string[]>>(() => {
     if (typeof window === 'undefined') {
       return {};
@@ -248,7 +253,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       roundQuestions: [],
       currentQuestionIndex: 0,
       roundSize: getRoundSizeForPracticeMode(DEFAULT_TIMELINE_PRACTICE_MODE),
-      selectedCategories: [],
+      selectedCategories: preset?.tenseCategories ?? [],
       selectedSentenceForm: 'all',
       selectedTimeFrame: 'all',
       selectedPracticeMode: DEFAULT_TIMELINE_PRACTICE_MODE,
@@ -262,6 +267,9 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       phaseBeforeTenseTools: null,
     };
   });
+
+  // Auto-start ref: fires startRound once after data loads when a preset is provided.
+  const autoStartedRef = useRef(false);
 
   // Load initial data
   useEffect(() => {
@@ -322,6 +330,49 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
 
     loadData();
   }, [activityId, assignmentId]);
+
+  // When a preset is provided, auto-start the round as soon as the question bank loads.
+  useEffect(() => {
+    if (!preset || autoStartedRef.current || state.loading || state.questionBank.length === 0) return;
+    autoStartedRef.current = true;
+    setState((prev) => {
+      const categories = preset.tenseCategories;
+      const effectiveCategoryKey = categoriesToProgressKey(categories);
+      const practiceMode = preset.practiceMode ?? prev.selectedPracticeMode;
+      const roundSize = getRoundSizeForPracticeMode(practiceMode);
+      const isCompleted = typeof window !== 'undefined' && (
+        window.localStorage.getItem(TUTORIAL_COMPLETED_KEY) === '1' ||
+        window.localStorage.getItem(`${CATEGORY_TUTORIAL_KEY_PREFIX}${effectiveCategoryKey}`) === '1'
+      );
+      if (practiceMode === 'build-the-timeline' && !isCompleted) {
+        return { ...prev, selectedCategories: categories, selectedPracticeMode: practiceMode, roundSize, phase: 'tutorial-intro', tutorialCompleted: false };
+      }
+      const roundQuestions = buildTimelineRoundQuestions(
+        prev.questionBank,
+        categories,
+        practiceMode,
+        roundSize,
+        prev.selectedSentenceForm,
+        prev.selectedTimeFrame,
+        prev.categoryProgress[effectiveCategoryKey]?.level || 1,
+        [],
+      );
+      return {
+        ...prev,
+        selectedCategories: categories,
+        selectedPracticeMode: practiceMode,
+        roundSize,
+        phase: 'exercise',
+        roundQuestions,
+        currentQuestionIndex: 0,
+        questionResults: [],
+        showFeedback: false,
+        lastAnswerCorrect: null,
+        roundResults: null,
+        error: null,
+      };
+    });
+  }, [preset, state.loading, state.questionBank.length]);
 
   /**
    * Toggle a tense category in/out of the selection.

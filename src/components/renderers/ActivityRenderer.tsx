@@ -54,6 +54,7 @@ const EmotionSpinWheel = dynamic(() => import("../games/EmotionSpinWheel"), { lo
 const CafeCatchUpGame = dynamic(() => import("../games/CafeCatchUpGame"), { loading: ActivityLoadingFallback });
 const TriviaGame = dynamic(() => import("../games/TriviaGame"), { loading: ActivityLoadingFallback });
 const GrammarHospitalGame = dynamic(() => import("../games/GrammarHospitalGame"), { loading: ActivityLoadingFallback });
+const ComparisonBattleGame = dynamic(() => import("../games/ComparisonBattleGame"), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("../activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("../activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
 const VocabularyRenderer = dynamic(() => import("../activities/VocabularyRenderer"), { loading: ActivityLoadingFallback });
@@ -200,8 +201,15 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <IrregularVerbsGame activityId={activity.id} />;
                     case "gerund-infinitive":
                         return <GerundInfinitiveGame activityId={activity.id} />;
-                    case "timeline-tenses":
-                        return <TimelineTensesGame activityId={activity.id} assignmentId={assignmentId} />;
+                    case "timeline-tenses": {
+                        const rawContent = content as Record<string, unknown> | null;
+                        const presetCategories = Array.isArray(rawContent?.tenseCategories) ? rawContent.tenseCategories as import("@/types/activity").TenseCategory[] : undefined;
+                        const presetPracticeMode = typeof rawContent?.practiceMode === 'string' ? rawContent.practiceMode as import("@/components/games/TimelineTensesGame/timelineTensesUtils").TimelinePracticeMode : undefined;
+                        // A preset exists if tenseCategories is defined (even empty = all tenses) OR a practiceMode is set.
+                        const hasPreset = presetCategories !== undefined || presetPracticeMode !== undefined;
+                        const timelinePreset = hasPreset ? { tenseCategories: presetCategories ?? [], practiceMode: presetPracticeMode } : undefined;
+                        return <TimelineTensesGame activityId={activity.id} assignmentId={assignmentId} preset={timelinePreset} />;
+                    }
                     case "parts-of-speech":
                         return <PartsOfSpeechGame activityId={activity.id} gameContent={content as PartsOfSpeechContent | null} />;
                     case "emotion-spin-wheel":
@@ -239,6 +247,8 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                             );
                         }
                         return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid Grammar Hospital content.</div>;
+                    case "comparison-battle":
+                        return <ComparisonBattleGame activityId={activity.id} assignmentId={assignmentId} variant="embedded" />;
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }

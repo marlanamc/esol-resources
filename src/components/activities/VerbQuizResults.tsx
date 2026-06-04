@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { VerbQuizContent, VerbQuizSubmission } from '@/types/verb-quiz';
 import { CheckCircle2, XCircle, Trophy, RotateCcw, Star } from 'lucide-react';
 import { getVerbDefinition } from '@/lib/verb-definitions';
+import { CourseMapReturnButton } from '@/components/navigation/CourseMapReturnButton';
 
 interface VerbQuizResultsProps {
   content: VerbQuizContent;
@@ -265,22 +266,23 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
       </motion.div>
 
       {/* Action Buttons */}
-      {onRetake && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="flex justify-center gap-4"
-        >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="flex flex-col items-center justify-center gap-3 sm:flex-row"
+      >
+        <CourseMapReturnButton className="w-full sm:w-auto" />
+        {onRetake && (
           <button
             onClick={onRetake}
-            className="px-6 py-3 rounded-xl font-semibold text-white bg-terracotta hover:bg-terracotta/90 transition-[background-color,transform,box-shadow] duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+            className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-border bg-white px-6 py-3 font-semibold text-[var(--color-text)] shadow-sm transition-[background-color,transform,box-shadow] duration-300 hover:border-terracotta/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 sm:w-auto dark:bg-[#162b3d]"
           >
             <RotateCcw className="w-5 h-5" />
             Try Again
           </button>
-        </motion.div>
-      )}
+        )}
+      </motion.div>
 
       {/* Study Tips */}
       {!isPerfect && (

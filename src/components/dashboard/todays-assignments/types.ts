@@ -19,6 +19,8 @@ export interface FeaturedAssignment {
     sectionCount?: number;
     dueDate?: string | Date | null;
     isRequired?: boolean;
+    sequenceNumber?: number | null;
+    unitLabel?: string | null;
     featuredAt?: string | Date | null;
     updatedAt?: string | Date | null;
     createdAt?: string | Date | null;

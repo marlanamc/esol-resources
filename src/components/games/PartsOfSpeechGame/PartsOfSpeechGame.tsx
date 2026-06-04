@@ -25,6 +25,10 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
   const router = useRouter();
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
+  const isCourseMapPreset = gameContent?.courseMapPreset === true;
+  const courseMapTitle = gameContent?.courseMapTitle ?? 'Course Map Activity';
+  const courseMapDirections =
+    gameContent?.courseMapDirections ?? 'Follow this guided step. You do not need to choose settings.';
 
   const {
     state,
@@ -128,8 +132,18 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
             : 'max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
         }`}
       >
+        {isCourseMapPreset && (
+          <div className="mb-4 rounded-2xl border border-[var(--tone-vocab-accent,#6a8d73)]/25 bg-[var(--tone-vocab-surface,rgba(106,141,115,0.08))] px-4 py-3">
+            <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
+              Guided Course Map Step
+            </p>
+            <h1 className="mt-1 text-lg font-display font-bold text-text">{courseMapTitle}</h1>
+            <p className="mt-1 text-sm leading-snug text-text-muted">{courseMapDirections}</p>
+          </div>
+        )}
+
         {/* Back button — selection */}
-        {state.phase === 'selection' && (
+        {state.phase === 'selection' && !isCourseMapPreset && (
           <div className="px-3 sm:px-0 pb-2">
             <button
               onClick={() => router.back()}
@@ -142,7 +156,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
         )}
 
         {/* Back button — intro (desktop only) */}
-        {state.phase === 'intro' && (
+        {state.phase === 'intro' && !isCourseMapPreset && (
           <div className="hidden sm:block px-3 sm:px-0 pb-2">
             <button
               onClick={quitGame}
@@ -185,14 +199,14 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                   group={state.selectedGroup}
                   roundMode={state.selectedRoundMode}
                   onStartChallenge={startGroupChallenge}
-                  onBack={quitGame}
+                  onBack={isCourseMapPreset ? () => router.back() : quitGame}
                 />
               ) : (
                 <PatternIntroScreen
                   group={state.selectedGroup}
                   roundMode={state.selectedRoundMode}
                   onStartChallenge={startGroupChallenge}
-                  onBack={quitGame}
+                  onBack={isCourseMapPreset ? () => router.back() : quitGame}
                 />
               )}
             </motion.div>
@@ -231,8 +245,9 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                 results={state.roundResults}
                 nextGroup={getNextGroupForResults()}
                 onRetry={retryGroup}
-                onContinue={continueToNext}
-                onReturnToSelection={quitGame}
+                onContinue={isCourseMapPreset ? () => router.back() : continueToNext}
+                onReturnToSelection={isCourseMapPreset ? () => router.back() : quitGame}
+                courseMapPreset={isCourseMapPreset}
               />
             </motion.div>
           )}

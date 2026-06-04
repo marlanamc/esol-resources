@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verb Speed Round — Quizzes 1–20 (V2 &amp; V3)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ink: #1a1a1a; --line: #333; --muted: #555; }
+    @page { size: letter landscape; margin: 0.4in; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--ink);
+      background: #fff;
+      font-size: 10pt;
+      line-height: 1.25;
+    }
+    .sheet {
+      max-width: 11in;
+      min-height: 8.5in;
+      margin: 0 auto;
+      padding: 0.38in 0.45in 0.35in;
+      page-break-after: always;
+      break-after: page;
+    }
+    .sheet:last-of-type {
+      page-break-after: auto;
+      break-after: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+    .header--continued { padding-bottom: 10px; margin-bottom: 12px; }
+    .header h1 {
+      text-align: center;
+      font-size: 15pt;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .page-tag { font-size: 11pt; font-weight: normal; color: var(--muted); }
+    .header-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 20px;
+      font-size: 9.5pt;
+      padding: 0 0.1in;
+    }
+    .header-meta--compact { justify-content: center; }
+    .field { display: flex; align-items: baseline; gap: 8px; }
+    .field label { font-weight: bold; }
+    .field-line { border-bottom: 1px solid var(--ink); width: 1.75in; height: 16px; }
+    .instruction {
+      font-size: 9pt;
+      color: var(--muted);
+      margin-bottom: 14px;
+      padding: 0 0.25in;
+      text-align: center;
+      line-height: 1.45;
+    }
+    .instruction strong { color: var(--ink); }
+    .col-headers {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.36in;
+      margin-bottom: 12px;
+      padding: 0 0.08in;
+      font-size: 9pt;
+      font-weight: bold;
+    }
+    .col-headers span {
+      display: grid;
+      grid-template-columns: 1.05in 1fr 1fr;
+      gap: 0.16in;
+    }
+    .col-headers .h-v1,
+    .col-headers .h-v2,
+    .col-headers .h-v3 { text-align: left; padding-left: 6px; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.36in;
+      padding: 0.06in 0.08in 0;
+      flex: 1;
+    }
+    .verb-row {
+      display: grid;
+      grid-template-columns: 1.05in 1fr 1fr;
+      gap: 0.16in;
+      align-items: end;
+      margin-bottom: 0.13in;
+      padding: 4px 0 5px;
+      page-break-inside: avoid;
+    }
+    .v1 {
+      font-weight: bold;
+      font-size: 10pt;
+      padding: 0 6px 5px 6px;
+      white-space: nowrap;
+    }
+    .blank {
+      border-bottom: 1.5px solid var(--line);
+      height: 21px;
+      width: 100%;
+      min-width: 0;
+      margin-bottom: 2px;
+    }
+    @media print {
+      body { background: #fff; }
+      .sheet { padding: 0; max-width: none; min-height: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet sheet--front">
+    <header class="header">
+      <h1>Verb Speed Round — Quizzes 1–20</h1>
+      <div class="header-meta">
+        <div class="field"><label>Name</label><div class="field-line"></div></div>
+        <div class="field"><label>Date</label><div class="field-line" style="width:1.1in"></div></div>
+        <div class="field"><label>Score</label><div class="field-line" style="width:0.7in"></div></div>
+      </div>
+    </header>
+    <p class="instruction"><strong>Speed round:</strong> Teacher calls V1 — you write <strong>V2</strong> (past) and <strong>V3</strong> (past participle). If V2 and V3 are the <strong>same</strong>, write the form in V2 only; in V3 write <strong>S</strong> or draw <strong>=</strong>. 99 verbs · most frequent first · <strong>front &amp; back</strong>.</p>
+    <div class="col-headers">
+      <span><span class="h-v1">V1</span><span class="h-v2">V2</span><span class="h-v3">V3</span></span>
+      <span><span class="h-v1">V1</span><span class="h-v2">V2</span><span class="h-v3">V3</span></span>
+      <span><span class="h-v1">V1</span><span class="h-v2">V2</span><span class="h-v3">V3</span></span>
+    </div>
+    <div class="grid">
+      <div class="col">
+        <div class="verb-row"><span class="v1">be</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">say</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">get</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">see</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">give</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">tell</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">feel</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">leave</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">put</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">hear</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">stand</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">meet</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">speak</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">hold</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">eat</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">wake</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">ride</span><span class="blank"></span><span class="blank"></span></div>
+      </div>
+      <div class="col">
+        <div class="verb-row"><span class="v1">have</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">make</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">know</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">come</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">use</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">ask</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">try</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">call</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">mean</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">write</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">lose</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">read</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">buy</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">build</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">drink</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">run</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">fly</span><span class="blank"></span><span class="blank"></span></div>
+      </div>
+      <div class="col">
+        <div class="verb-row"><span class="v1">do</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">go</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">think</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">take</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">find</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">work</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">need</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">keep</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">begin</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">sit</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">pay</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">understand</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">send</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">break</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">sleep</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">drive</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">wear</span><span class="blank"></span><span class="blank"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet sheet--back">
+    <header class="header header--continued">
+      <h1>Verb Speed Round — Quizzes 1–20 <span class="page-tag">(back)</span></h1>
+      <div class="header-meta header-meta--compact">
+        <div class="field"><label>Name</label><div class="field-line"></div></div>
+      </div>
+    </header>
+    <div class="col-headers">
+      <span><span class="h-v1">V1</span><span class="h-v2">V2</span><span class="h-v3">V3</span></span>
+      <span><span class="h-v1">V1</span><span class="h-v2">V2</span><span class="h-v3">V3</span></span>
+      <span><span class="h-v1">V1</span><span class="h-v2">V2</span><span class="h-v3">V3</span></span>
+    </div>
+    <div class="grid">
+      <div class="col">
+        <div class="verb-row"><span class="v1">hurt</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">fall</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">cost</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">apply</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">confirm</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">forward</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">contact</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">mention</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">freeze</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">fix</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">store</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">shake</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">mix</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">feed</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">spread</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">grow</span><span class="blank"></span><span class="blank"></span></div>
+      </div>
+      <div class="col">
+        <div class="verb-row"><span class="v1">bring</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">choose</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">lend</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">submit</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">respond</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">report</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">chat</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">talk</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">burst</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">prescribe</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">refill</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">forgive</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">heat</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">bite</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">spoil</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">lead</span><span class="blank"></span><span class="blank"></span></div>
+      </div>
+      <div class="col">
+        <div class="verb-row"><span class="v1">cut</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">sell</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">spend</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">schedule</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">reply</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">document</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">discuss</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">comply</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">leak</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">examine</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">catch</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">overcome</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">rest</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">burn</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">teach</span><span class="blank"></span><span class="blank"></span></div>
+        <div class="verb-row"><span class="v1">deal</span><span class="blank"></span><span class="blank"></span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

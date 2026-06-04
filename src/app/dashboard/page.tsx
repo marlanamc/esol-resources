@@ -6,6 +6,7 @@ import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
 import { trackLogin, getTimeframedLeaderboard } from "@/lib/gamification";
 import { buildCalendarWeekActivity, getCalendarWeekStart } from "@/lib/gamification/calendar-week";
+import { formatDashboardWeekRangeLabel } from "@/lib/dashboard/week-range-label";
 import { logger } from "@/lib/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
@@ -95,8 +96,11 @@ type StudentEnrollment = {
                 title: string;
                 description: string | null;
                 type: string;
+                category?: string | null;
             };
             isFeatured: boolean;
+            sequenceNumber: number | null;
+            unitLabel: string | null;
             dueDate: Date | null;
             createdAt: Date;
             updatedAt: Date;
@@ -795,6 +799,8 @@ export default async function DashboardPage() {
                                             activityId: true,
                                             classId: true,
                                             isFeatured: true,
+                                            sequenceNumber: true,
+                                            unitLabel: true,
                                             dueDate: true,
                                             createdAt: true,
                                             updatedAt: true,
@@ -810,7 +816,7 @@ export default async function DashboardPage() {
                                                 },
                                             },
                                         },
-                                        orderBy: { createdAt: "desc" },
+                                        orderBy: [{ sequenceNumber: "asc" }, { createdAt: "asc" }],
                                     },
                                     calendarEvents: {
                                         select: {
@@ -901,7 +907,7 @@ export default async function DashboardPage() {
                                 },
                             },
                         },
-                        orderBy: { createdAt: "desc" },
+                        orderBy: [{ sequenceNumber: "asc" }, { createdAt: "asc" }],
                     })
                 ),
             (result) => result.length
@@ -1051,24 +1057,10 @@ export default async function DashboardPage() {
         return (
             <div className="min-h-screen bg-bg">
                 <main id="main-content" className="container mx-auto pt-2 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
-                    <div className="dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
-                        {/* Main Content Area - Left Side */}
-                        <div className="md:col-span-8 lg:col-span-9 min-w-0 space-y-6 sm:space-y-8">
-                            {/* Welcome Header */}
-                            <div className="hidden lg:flex items-center gap-6">
-                                <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight" style={{ textWrap: 'balance' }}>
-                                    Welcome, <span className="font-display tracking-tight text-primary/90 relative inline-block">
-                                        {session.user?.name}
-                                        <span className="absolute -bottom-1 left-0 right-0 h-2 bg-[#88A392]/45 -z-10 rounded-sm transform -rotate-1"></span>
-                                    </span>
-                                    {desktopNameEmoji && <span className="ml-1.5 inline-block text-3xl leading-none" {...(isMarlie ? { "aria-hidden": true } : { "aria-label": `Rank ${studentLeaderboardRank}` })}>{desktopNameEmoji}</span>}
-                                    !
-                                </h1>
-                            </div>
-
+                    {/* ── MOBILE + TABLET layout (< lg) ── */}
+                    <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 md:items-start">
+                        <div className="md:col-span-8 min-w-0 space-y-5">
                             <ClassAnnouncement announcements={classAnnouncements} />
-
-                            {/* Momentum Card — visible on mobile only (desktop shows in sidebar) */}
                             <div className="md:hidden">
                                 <MomentumCard
                                     initialStreak={studentUserStats?.currentStreak ?? 0}
@@ -1077,12 +1069,7 @@ export default async function DashboardPage() {
                                     initialTotalPoints={studentUserStats?.points ?? 0}
                                 />
                             </div>
-
-                            {isCatchUpPathEnabled &&
-                            featuredAssignments.some((assignment) => assignment.isRequired === true) ? (
-                                <MissedClassCatchUpCard />
-                            ) : null}
-
+                            {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
                             <section aria-label="This Week's Path">
                                 <TodaysAssignments
                                     initialAssignments={featuredAssignments}
@@ -1096,114 +1083,199 @@ export default async function DashboardPage() {
                                     hideProgressBar
                                 />
                             </section>
-
                             <ExploreCategoriesCarousel />
+                        </div>
+                        <aside className="hidden md:block md:col-span-4">
+                            <div className="dashboard-panel paper-texture sticky top-4 p-5 space-y-5">
+                                <MomentumCard variant="sidebar" initialStreak={studentUserStats?.currentStreak ?? 0} initialLongestStreak={studentUserStats?.longestStreak ?? 0} initialSevenDayActivity={studentSevenDayActivity} initialTotalPoints={studentUserStats?.points ?? 0} />
+                                <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
+                                    <MiniCalendar compact flat events={calendarEvents} />
+                                </div>
+                                <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
+                                    <UpcomingEventsList events={calendarEvents.filter(event => { const today = new Date(); today.setHours(0,0,0,0); const end = event.endDate ? new Date(event.endDate) : new Date(event.date); end.setHours(0,0,0,0); return end >= today; })} allowDelete={false} showSyncedLabel={false} />
+                                </div>
+                                <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary/10 text-secondary shrink-0"><UsersIcon className="h-4 w-4" /></div>
+                                        <div className="min-w-0"><h3 className="text-sm font-bold text-text">Invite Friends</h3><p className="text-xs text-text-muted leading-snug">Share your invite link so others can join your learning circle.</p></div>
+                                    </div>
+                                    <Link href="/dashboard/invite" className="dashboard-soft-button mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-secondary/25 bg-[var(--dashboard-surface-start)] px-4 py-2.5 text-sm font-semibold text-secondary"><UsersIcon className="h-4 w-4" />Open Invite Link</Link>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
 
-                            {/* Browse All Activities CTA */}
-                            <section className="hidden md:block">
-                                <div className="dashboard-panel dashboard-panel-hover paper-texture p-6 group relative overflow-hidden">
-                                    {/* Decorative gradient blob */}
-                                    <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-primary/12 via-accent/18 to-secondary/12 rounded-full blur-3xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+                    {/* ── DESKTOP layout (lg+) — Option 2: Card-Based & Focused ── */}
+                    <div className="hidden lg:block">
+                        <ClassAnnouncement announcements={classAnnouncements} />
+                        {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
 
-                                    <div className="flex items-start justify-between gap-4 relative z-10">
-                                        <div className="min-w-0 pr-2">
-                                            <p className="text-xs font-bold text-text-muted tracking-widest uppercase flex items-center gap-2">
-                                                <span className="w-8 h-[2px] rounded-full bg-gradient-to-r from-primary/60 to-secondary/40"></span>
-                                                Explore
-                                            </p>
-                                            <h2 className="text-2xl font-bold font-display text-text mt-2">All Activities</h2>
-                                            <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed">
-                                                Keep building your skills — browse by category and track your progress.
-                                            </p>
-                                            {/* Category quick-jump chips */}
-                                            <div className="flex flex-wrap gap-2 mt-4">
-                                                {[
-                                                    { label: 'Grammar', href: '/dashboard/activities?category=grammar', tone: getLearnerCategoryTone('grammar') },
-                                                    { label: 'Vocabulary', href: '/dashboard/activities?category=vocabulary', tone: getLearnerCategoryTone('vocabulary') },
-                                                    { label: 'Quizzes', href: '/dashboard/activities?category=quizzes', tone: getLearnerCategoryTone('quizzes') },
-                                                    { label: 'Games', href: '/dashboard/activities?category=games', tone: getLearnerCategoryTone('games') },
-                                                    { label: 'Pronunciation', href: '/dashboard/activities?category=pronunciation', tone: getLearnerCategoryTone('pronunciation') },
-                                                ].map(chip => (
-                                                    <Link
-                                                        key={chip.label}
-                                                        href={chip.href}
-                                                        className="dashboard-soft-button inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border active:scale-95 transition-all duration-200"
-                                                        style={{
-                                                            color: chip.tone.chipText,
-                                                            backgroundColor: chip.tone.chipBg,
-                                                            borderColor: chip.tone.border,
-                                                            '--dashboard-button-shadow-override': 'inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.05), 0 6px 14px rgba(40,31,23,0.05)',
-                                                            '--dashboard-button-shadow-hover-override': 'inset 0 1px 0 rgba(255,255,255,0.45), 0 2px 4px rgba(0,0,0,0.06), 0 10px 18px rgba(40,31,23,0.08)',
-                                                        } as React.CSSProperties}
-                                                    >
-                                                        {chip.label}
-                                                        <span className="text-[10px] opacity-60">→</span>
-                                                    </Link>
-                                                ))}
-                                            </div>
+                        {/* Two-column grid: main left, sidebar right */}
+                        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_348px] gap-5 items-start">
+
+                            {/* ── Left / Main column ── */}
+                            <div className="min-w-0 space-y-5">
+
+                                {/* Welcome header — compact, above the cards */}
+                                <div className="pt-2 pb-1">
+                                    <h1
+                                        className="font-display font-bold text-text leading-tight tracking-tight flex items-baseline gap-x-2.5 gap-y-1 flex-wrap"
+                                        style={{ textWrap: "balance" } as React.CSSProperties}
+                                    >
+                                        <span className="text-xl text-text-muted font-medium">Welcome back,</span>
+                                        <span className="text-[2rem] text-primary relative inline-block leading-none">
+                                            {session.user?.name?.trim() || "there"}
+                                            <span className="absolute -bottom-0.5 left-0 right-0 h-2 bg-[#88A392]/40 -z-10 rounded-sm -rotate-1" />
+                                        </span>
+                                        {desktopNameEmoji ? (
+                                            <span
+                                                className="inline-flex text-2xl leading-none"
+                                                {...(isMarlie ? { "aria-hidden": true } : { "aria-label": `Rank ${studentLeaderboardRank}` })}
+                                            >
+                                                {desktopNameEmoji}
+                                            </span>
+                                        ) : null}
+                                    </h1>
+                                    <p className="mt-1 text-sm text-text-muted/90">
+                                        {formatDashboardWeekRangeLabel(new Date())} · You&apos;re doing great!
+                                    </p>
+                                </div>
+
+                                {/* This Week's Path — primary focus card */}
+                                <div className="dashboard-panel rounded-2xl overflow-hidden">
+                                    <div className="px-6 pt-5 pb-3 border-b flex items-center justify-between" style={{ borderColor: "var(--dashboard-border)" }}>
+                                        <div>
+                                            <h2 className="text-lg font-bold font-display text-text leading-tight">This Week&apos;s Path</h2>
+                                            <p className="text-xs text-text-muted mt-0.5">Focus on your goals</p>
                                         </div>
                                         <Link
-                                            href="/dashboard/activities"
-                                            className="btn-polish dashboard-soft-button shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-b from-primary to-[color-mix(in_srgb,var(--primary-color)_88%,#000)] text-[color:var(--text-on-accent)] border border-primary/80 font-semibold text-sm flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
-                                            style={{
-                                                '--dashboard-button-shadow-override': '0 1px 2px rgba(0,0,0,0.1), 0 4px 12px rgba(176,87,64,0.25), inset 0 1px 0 rgba(255,255,255,0.2)',
-                                                '--dashboard-button-shadow-hover-override': '0 2px 4px rgba(0,0,0,0.12), 0 8px 18px rgba(176,87,64,0.32), inset 0 1px 0 rgba(255,255,255,0.24)',
-                                            } as React.CSSProperties}
+                                            href="/dashboard/map"
+                                            className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-lg px-3 py-1.5 transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                                            style={{ color: "var(--primary)" }}
                                         >
-                                            Browse
-                                            <span className="arrow-animate">→</span>
+                                            Full map →
                                         </Link>
                                     </div>
+                                    <TodaysAssignments
+                                        weekHub
+                                        initialAssignments={featuredAssignments}
+                                        title={undefined}
+                                        ctaLabel="Start"
+                                        variant="checklist"
+                                        sectionId="weekly-path"
+                                        pinnedHabit={dailyVocabHabit}
+                                        hideProgressBar
+                                    />
                                 </div>
-                            </section>
 
-                        </div>
+                                {/* Explore Activities — secondary card */}
+                                <div className="dashboard-panel rounded-2xl p-5">
+                                    <div className="flex items-center justify-between mb-4">
+                                        <h2 className="text-base font-bold font-display text-text">Explore Activities</h2>
+                                        <Link
+                                            href="/dashboard/activities"
+                                            className="text-xs font-semibold rounded-lg px-2.5 py-1.5 transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                                            style={{ color: "var(--primary)" }}
+                                        >
+                                            Browse all →
+                                        </Link>
+                                    </div>
+                                    <div className="grid grid-cols-6 gap-2.5">
+                                        {[
+                                            { label: 'Grammar', href: '/dashboard/activities?category=grammar', tone: getLearnerCategoryTone('grammar'), emoji: '📖' },
+                                            { label: 'Vocabulary', href: '/dashboard/activities?category=vocabulary', tone: getLearnerCategoryTone('vocabulary'), emoji: '🗂️' },
+                                            { label: 'Quizzes', href: '/dashboard/activities?category=quizzes', tone: getLearnerCategoryTone('quizzes'), emoji: '✏️' },
+                                            { label: 'Games', href: '/dashboard/activities?category=games', tone: getLearnerCategoryTone('games'), emoji: '🎮' },
+                                            { label: 'Pronunciation', href: '/dashboard/activities?category=pronunciation', tone: getLearnerCategoryTone('pronunciation'), emoji: '🔊' },
+                                            { label: 'Speaking', href: '/dashboard/activities?category=speaking', tone: getLearnerCategoryTone('speaking'), emoji: '🎤' },
+                                        ].map(chip => (
+                                            <Link
+                                                key={chip.label}
+                                                href={chip.href}
+                                                className="flex flex-col items-center gap-2 rounded-2xl border px-2 py-3.5 text-center transition-all duration-200 active:scale-95 hover:scale-[1.02] hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                                                style={{
+                                                    backgroundColor: chip.tone.chipBg,
+                                                    borderColor: chip.tone.border,
+                                                }}
+                                            >
+                                                <span
+                                                    className="flex h-10 w-10 items-center justify-center rounded-full text-xl leading-none"
+                                                    style={{
+                                                        background: `color-mix(in srgb, ${chip.tone.accent} 14%, var(--dashboard-surface-start))`,
+                                                        boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${chip.tone.border} 60%, transparent)`,
+                                                    }}
+                                                >
+                                                    {chip.emoji}
+                                                </span>
+                                                <span className="text-[11px] font-bold leading-tight" style={{ color: chip.tone.chipText }}>{chip.label}</span>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
 
-                        {/* Calendar Sidebar - Right Side (hidden on mobile) */}
-                        <aside className="hidden md:block md:col-span-4 md:-mt-2 lg:col-span-3 lg:-mt-3">
-                            <div className="dashboard-panel paper-texture sticky top-2 space-y-8 p-6 md:top-4">
-                                {/* Momentum Card — streak, 7-day dots, XP level */}
+                            {/* ── Right sidebar ── */}
+                            <aside className="space-y-4 sticky top-4">
+
+                                {/* Streak / Momentum card — top of sidebar */}
                                 <MomentumCard
+                                    variant="sidebar"
                                     initialStreak={studentUserStats?.currentStreak ?? 0}
                                     initialLongestStreak={studentUserStats?.longestStreak ?? 0}
                                     initialSevenDayActivity={studentSevenDayActivity}
                                     initialTotalPoints={studentUserStats?.points ?? 0}
                                 />
 
-                                <MiniCalendar events={calendarEvents} />
-
-                                <UpcomingEventsList
-                                    events={calendarEvents.filter(event => {
-                                        const today = new Date();
-                                        today.setHours(0, 0, 0, 0);
-                                        const eventEndDate = event.endDate ? new Date(event.endDate) : new Date(event.date);
-                                        eventEndDate.setHours(0, 0, 0, 0);
-                                        return eventEndDate >= today;
-                                    })}
-                                    allowDelete={false}
-                                    showSyncedLabel={false}
-                                />
-
-                                <section className="rounded-2xl border p-4" style={{ borderColor: "var(--dashboard-divider)", backgroundColor: "var(--dashboard-surface-start)" }}>
-                                    <div className="flex items-center gap-3">
-                                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/10 text-secondary">
-                                            <UsersIcon className="h-5 w-5" />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-sm font-bold text-text">Invite Friends</h3>
-                                            <p className="text-xs text-text-muted">Share your invite link so others can join your learning circle.</p>
-                                        </div>
+                                {/* Calendar card */}
+                                <div className="dashboard-panel paper-texture rounded-2xl p-5">
+                                    <MiniCalendar compact flat events={calendarEvents} />
+                                    <div className="border-t mt-4 pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
+                                        <UpcomingEventsList
+                                            events={calendarEvents.filter(event => {
+                                                const today = new Date(); today.setHours(0,0,0,0);
+                                                const end = event.endDate ? new Date(event.endDate) : new Date(event.date); end.setHours(0,0,0,0);
+                                                return end >= today;
+                                            })}
+                                            allowDelete={false}
+                                            showSyncedLabel={false}
+                                        />
                                     </div>
+                                </div>
+
+                                {/* Small utility cards row — Course Map + Invite Friends */}
+                                <div className="grid grid-cols-2 gap-3">
+                                    <Link
+                                        href="/dashboard/map"
+                                        className="group dashboard-panel dashboard-panel-hover rounded-2xl p-4 flex flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                                        style={{
+                                            background: "linear-gradient(135deg, color-mix(in srgb, var(--tone-grammar-chip-bg) 55%, var(--dashboard-surface-start)) 0%, var(--dashboard-surface-end) 100%)",
+                                            borderColor: "color-mix(in srgb, var(--primary) 18%, var(--border-subtle))",
+                                        }}
+                                    >
+                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl text-lg shadow-sm" style={{ background: "var(--tone-grammar-chip-bg)", border: "1px solid color-mix(in srgb, var(--primary) 14%, transparent)" }}>
+                                            🗺️
+                                        </div>
+                                        <div className="min-w-0">
+                                            <p className="text-xs font-bold text-text leading-tight">Course Map</p>
+                                            <p className="text-[11px] font-semibold mt-1 transition-transform duration-200 group-hover:translate-x-0.5" style={{ color: "var(--primary)" }}>Open map →</p>
+                                        </div>
+                                    </Link>
+
                                     <Link
                                         href="/dashboard/invite"
-                                        className="dashboard-soft-button mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-secondary/25 bg-[var(--dashboard-surface-start)] px-4 py-2.5 text-sm font-semibold text-secondary"
+                                        className="group dashboard-panel dashboard-panel-hover rounded-2xl p-4 flex flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/40"
                                     >
-                                        <UsersIcon className="h-4 w-4" />
-                                        Open Invite Link
+                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary/10 text-secondary shrink-0">
+                                            <UsersIcon className="h-4 w-4" />
+                                        </div>
+                                        <div className="min-w-0">
+                                            <p className="text-xs font-bold text-text leading-tight">Invite Friends</p>
+                                            <p className="text-[11px] font-semibold mt-1 text-secondary transition-transform duration-200 group-hover:translate-x-0.5">Open Invite Link</p>
+                                        </div>
                                     </Link>
-                                </section>
-                            </div>
-                        </aside>
+                                </div>
+                            </aside>
+                        </div>
                     </div>
 
                 </main>

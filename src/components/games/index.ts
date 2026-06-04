@@ -6,6 +6,7 @@ export { default as FillInBlankGame } from './FillInBlankGame';
 export { default as VerbFormsGame } from './VerbFormsGame';
 export { default as MinimalPairsGame } from './MinimalPairsGame';
 export { default as EdPronunciationGame } from './EdPronunciationGame';
+export { default as ComparisonBattleGame } from './ComparisonBattleGame';
 
 // Game folders
 export { IrregularVerbsGame } from './IrregularVerbsGame';

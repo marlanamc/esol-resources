@@ -1,0 +1,142 @@
+/* =========================================================
+   Self-Directed ESOL — Theme System
+   3 distinct directions × light/dark
+   Hearth (warm, refined) · Bloom (bold, playful) · Quiet (calm, minimal)
+   ========================================================= */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+button { background: transparent; border: none; font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --stage-bg: #1a1a1f;
+}
+
+/* ---------- Base tokens shared across styles ---------- */
+.app {
+  --r-pill: 999px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background .45s var(--ease), color .45s var(--ease);
+}
+.app * { transition: background-color .4s var(--ease), border-color .4s var(--ease), color .4s var(--ease), box-shadow .4s var(--ease); }
+
+/* =========================================================
+   HEARTH — warm educational modernism, refined
+   ========================================================= */
+.app[data-style="hearth"] {
+  --font-display: "Lora", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --r-tile: 16px; --r-card: 20px; --r-btn: 13px;
+  --display-weight: 600; --display-tracking: -0.02em;
+  --texture: 1;
+}
+.app[data-style="hearth"][data-mode="light"] {
+  /* warm cream — matches the real myesolclass palette exactly */
+  --bg: #fdf9f0; --bg-grad: linear-gradient(180deg,#fdf9f0,#fdfbf7);
+  /* frosted-glass surfaces (translucent so the warm bg + paper texture read through) */
+  --elev: rgba(255,255,255,.72); --elev-2: rgba(255,255,255,.9); --sunken: #f2ead3;
+  --glass-blur: 14px;
+  --ink: #2a2018; --ink-muted: #6f6356; --ink-soft: #9c9182;
+  --border: rgba(120,95,70,.16); --border-strong: rgba(120,95,70,.28);
+  --primary: #b05740; --primary-ink: #fffaf4; --primary-soft: rgba(176,87,64,.12);
+  --accent: #6a8d73; --accent-soft: rgba(106,141,115,.14);
+  --gold: #e9c46a; --gold-soft: rgba(233,196,106,.2);
+  /* tactile layered shadows: inset highlight + soft ambient + grounded cast */
+  --shadow-card: inset 0 1px 0 rgba(255,255,255,.72), 0 1px 3px rgba(60,40,25,.06), 0 8px 22px rgba(40,31,23,.10);
+  --shadow-pop: inset 0 1px 0 rgba(255,255,255,.72), 0 2px 6px rgba(40,31,23,.10), 0 18px 42px rgba(40,31,23,.16);
+  --cat-grammar:#4f8a55; --cat-vocab:#268a82; --cat-quiz:#c4622e; --cat-games:#7d57a6; --cat-pron:#c44a7a; --cat-speak:#b07a26; --cat-write:#4f8a55; --cat-read:#268a82;
+}
+.app[data-style="hearth"][data-mode="dark"] {
+  /* GLACIAL BLUE — the real myesolclass night palette: cool, sophisticated, fresh */
+  --bg: #0d1620; --bg-grad: linear-gradient(180deg,#0d1620,#091218);
+  /* navy frosted glass */
+  --elev: rgba(22,43,61,.74); --elev-2: rgba(30,58,77,.86); --sunken: rgba(13,22,32,.72);
+  --glass-blur: 16px;
+  --ink: #e8f1f8; --ink-muted: #a0afc0; --ink-soft: #6b8199;
+  --border: rgba(127,179,213,.16); --border-strong: rgba(127,179,213,.3);
+  --primary: #7fb3d5; --primary-ink: #0a1822; --primary-soft: rgba(127,179,213,.16);
+  --accent: #6fbf9f; --accent-soft: rgba(111,191,159,.16);
+  --gold: #f5d98a; --gold-soft: rgba(245,217,138,.2);
+  --shadow-card: inset 0 1px 0 rgba(255,255,255,.05), 0 1px 2px rgba(0,0,0,.3), 0 10px 26px rgba(6,12,18,.42);
+  --shadow-pop: inset 0 1px 0 rgba(255,255,255,.06), 0 2px 8px rgba(0,0,0,.4), 0 22px 48px rgba(6,12,18,.55);
+  --cat-grammar:#6fbf9f; --cat-vocab:#7fb3d5; --cat-quiz:#f0a080; --cat-games:#a594c4; --cat-pron:#e58bb0; --cat-speak:#f5d98a; --cat-write:#6fbf9f; --cat-read:#7fb3d5;
+}
+
+/* =========================================================
+   BLOOM — bold, playful, game-forward
+   ========================================================= */
+.app[data-style="bloom"] {
+  --font-display: "Fredoka", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, sans-serif;
+  --r-tile: 22px; --r-card: 28px; --r-btn: 18px;
+  --display-weight: 600; --display-tracking: 0em;
+  --texture: 0;
+}
+.app[data-style="bloom"][data-mode="light"] {
+  --bg: #fff5ef; --bg-grad: linear-gradient(180deg,#fff6f0,#ffeee6);
+  --elev: #ffffff; --elev-2:#fffaf6; --sunken: #ffe9dd;
+  --ink: #2a2030; --ink-muted: #6f6478; --ink-soft: #a59cae;
+  --border: rgba(60,40,70,.08); --border-strong: rgba(60,40,70,.16);
+  --primary: #f4624e; --primary-ink: #fff; --primary-soft: rgba(244,98,78,.14);
+  --accent: #12b2a6; --accent-soft: rgba(18,178,166,.14);
+  --gold: #ffb020; --gold-soft: rgba(255,176,32,.18);
+  --shadow-card: 0 2px 4px rgba(120,60,40,.06), 0 12px 28px rgba(120,60,40,.12);
+  --shadow-pop: 0 4px 10px rgba(120,60,40,.1), 0 22px 48px rgba(120,60,40,.2);
+  --cat-grammar:#2fa86a; --cat-vocab:#12b2a6; --cat-quiz:#f4624e; --cat-games:#7c5cff; --cat-pron:#ff4d97; --cat-speak:#ff9f1c; --cat-write:#2fa86a; --cat-read:#12b2a6;
+}
+.app[data-style="bloom"][data-mode="dark"] {
+  --bg: #16121f; --bg-grad: linear-gradient(180deg,#1a1526,#100d18);
+  --elev: #221d31; --elev-2:#28223a; --sunken: #15111e;
+  --ink: #f6f0ff; --ink-muted: #b9aece; --ink-soft: #847a98;
+  --border: rgba(180,150,230,.12); --border-strong: rgba(180,150,230,.24);
+  --primary: #ff6f63; --primary-ink: #2a0f0b; --primary-soft: rgba(255,111,99,.16);
+  --accent: #2ad2c4; --accent-soft: rgba(42,210,196,.16);
+  --gold: #ffc24d; --gold-soft: rgba(255,194,77,.18);
+  --shadow-card: 0 2px 4px rgba(0,0,0,.35), 0 14px 30px rgba(0,0,0,.45);
+  --shadow-pop: 0 4px 12px rgba(0,0,0,.45), 0 24px 54px rgba(0,0,0,.6);
+  --cat-grammar:#46d089; --cat-vocab:#2ad2c4; --cat-quiz:#ff7d6e; --cat-games:#9b82ff; --cat-pron:#ff70ad; --cat-speak:#ffb84d; --cat-write:#46d089; --cat-read:#2ad2c4;
+}
+
+/* =========================================================
+   QUIET — calm, minimal, spacious
+   ========================================================= */
+.app[data-style="quiet"] {
+  --font-display: "Spectral", Georgia, serif;
+  --font-body: "Work Sans", system-ui, sans-serif;
+  --r-tile: 12px; --r-card: 16px; --r-btn: 11px;
+  --display-weight: 500; --display-tracking: -0.01em;
+  --texture: 0;
+}
+.app[data-style="quiet"][data-mode="light"] {
+  --bg: #f5f3ed; --bg-grad: linear-gradient(180deg,#f7f5ef,#f1efe7);
+  --elev: #fffefa; --elev-2:#faf8f2; --sunken: #ece9e0;
+  --ink: #232620; --ink-muted: #6b6f64; --ink-soft: #9a9d90;
+  --border: rgba(40,45,32,.10); --border-strong: rgba(40,45,32,.20);
+  --primary: #5b7a63; --primary-ink: #fbfdf8; --primary-soft: rgba(91,122,99,.12);
+  --accent: #9a7d5b; --accent-soft: rgba(154,125,91,.14);
+  --gold: #ab8a4e; --gold-soft: rgba(171,138,78,.14);
+  --shadow-card: 0 1px 2px rgba(40,45,30,.04), 0 6px 16px rgba(40,45,30,.06);
+  --shadow-pop: 0 2px 6px rgba(40,45,30,.06), 0 14px 34px rgba(40,45,30,.10);
+  --cat-grammar:#5b7a63; --cat-vocab:#4a8079; --cat-quiz:#a06a4a; --cat-games:#6f5f8a; --cat-pron:#a05f78; --cat-speak:#8a7340; --cat-write:#5b7a63; --cat-read:#4a8079;
+}
+.app[data-style="quiet"][data-mode="dark"] {
+  --bg: #14160f; --bg-grad: linear-gradient(180deg,#16190f,#10120b);
+  --elev: #1d2016; --elev-2:#23271b; --sunken: #14160e;
+  --ink: #e9ebdf; --ink-muted: #9aa08c; --ink-soft: #6f7563;
+  --border: rgba(200,210,170,.10); --border-strong: rgba(200,210,170,.20);
+  --primary: #8fae93; --primary-ink: #131811; --primary-soft: rgba(143,174,147,.14);
+  --accent: #c2a884; --accent-soft: rgba(194,168,132,.14);
+  --gold: #cdb076; --gold-soft: rgba(205,176,118,.16);
+  --shadow-card: 0 1px 2px rgba(0,0,0,.3), 0 8px 20px rgba(0,0,0,.4);
+  --shadow-pop: 0 2px 8px rgba(0,0,0,.4), 0 18px 40px rgba(0,0,0,.5);
+  --cat-grammar:#9bc0a0; --cat-vocab:#7fb8b0; --cat-quiz:#c89878; --cat-games:#a594c4; --cat-pron:#c890a8; --cat-speak:#c4ac72; --cat-write:#9bc0a0; --cat-read:#7fb8b0;
+}
+
+/* ---------- Helpers ---------- */
+.display { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); }
+.cat-tint { background: color-mix(in srgb, var(--cat) 14%, var(--elev)); }

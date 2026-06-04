@@ -49,11 +49,18 @@ export const AssignmentPatchBodySchema = z
     assignmentId: z.string().min(1, "Assignment ID is required"),
     isFeatured: z.boolean().optional(),
     isRequired: z.boolean().optional(),
+    sequenceNumber: z.number().int().min(1).nullable().optional(),
+    unitLabel: z.string().nullable().optional(),
     syncToSectionGroup: z.boolean().default(true),
   })
-  .refine((data) => data.isFeatured !== undefined || data.isRequired !== undefined, {
-    message: "At least one of isFeatured or isRequired must be provided",
-  });
+  .refine(
+    (data) =>
+      data.isFeatured !== undefined ||
+      data.isRequired !== undefined ||
+      data.sequenceNumber !== undefined ||
+      data.unitLabel !== undefined,
+    { message: "At least one field to update must be provided" }
+  );
 
 export const FeedbackPostBodySchema = z.object({
   activityId: z.string().min(1).optional().nullable(),

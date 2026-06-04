@@ -8,50 +8,49 @@ datasource db {
 }
 
 model User {
-  id                     String                 @id @default(cuid())
-  username               String                 @unique
-  email                  String?                @unique
+  id                     String                  @id @default(cuid())
+  username               String                  @unique
   name                   String?
   password               String
-  role                   String                 @default("student")
-  mustChangePassword     Boolean                @default(true)
-  createdAt              DateTime               @default(now())
-  updatedAt              DateTime               @updatedAt
-  points                 Int                    @default(0)
-  currentStreak          Int                    @default(0)
-  longestStreak          Int                    @default(0)
+  role                   String                  @default("student")
+  mustChangePassword     Boolean                 @default(true)
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  points                 Int                     @default(0)
+  currentStreak          Int                     @default(0)
+  longestStreak          Int                     @default(0)
   lastActivityDate       DateTime?
-  weeklyPoints           Int                    @default(0)
+  weeklyPoints           Int                     @default(0)
   lastWeekRank           Int?
   avatar                 String?
   avatarColor            String?
-  isSystemAccount        Boolean                @default(false)
-  excludeFromLeaderboard Boolean                @default(false)
-  // "class" | "independent"
-  learnerMode            String                 @default("class")
-  passwordResetToken     String?                @unique
+  isSystemAccount        Boolean                 @default(false)
+  excludeFromLeaderboard Boolean                 @default(false)
+  email                  String?                 @unique
+  passwordResetToken     String?                 @unique
   passwordResetExpires   DateTime?
+  learnerMode            String                  @default("class")
   activityProgress       ActivityProgress[]
   calendarEventsCreated  CalendarEvent[]
-  createdClasses         Class[]                @relation("ClassTeacher")
+  createdClasses         Class[]                 @relation("ClassTeacher")
   classes                ClassEnrollment[]
-  createdInvites         InviteLink[]           @relation("CreatedInvites")
+  dailyHabitCompletions  DailyHabitCompletion[]
   feedbackEntries        Feedback[]
+  createdInvites         InviteLink[]            @relation("CreatedInvites")
   pointsLedger           PointsLedger[]
+  pushSubscription       PushSubscription?
   quizResponses          QuizResponse[]
   speakingSubmissions    SpeakingSubmission[]
   submissions            Submission[]
   achievements           UserAchievement[]
   preferences            UserPreferences?
   vocabReviewStates      UserVocabReviewState[]
-  dailyHabitCompletions  DailyHabitCompletion[]
-  pushSubscription       PushSubscription?
-  teacherSessions        WritingSession[]       @relation("TeacherSessions")
-  groupMemberships       WritingGroupMember[]   @relation("StudentGroupMembers")
-  writingSubmissions     WritingSubmission[]    @relation("StudentWritingSubmissions")
-  writingGroupVotes      WritingGroupVote[]     @relation("StudentGroupVotes")
-  writingClassVotes      WritingClassVote[]     @relation("StudentClassVotes")
+  writingClassVotes      WritingClassVote[]      @relation("StudentClassVotes")
+  groupMemberships       WritingGroupMember[]    @relation("StudentGroupMembers")
+  writingGroupVotes      WritingGroupVote[]      @relation("StudentGroupVotes")
+  teacherSessions        WritingSession[]        @relation("TeacherSessions")
   writingCheckIns        WritingSessionCheckIn[] @relation("StudentCheckIns")
+  writingSubmissions     WritingSubmission[]     @relation("StudentWritingSubmissions")
 
   @@index([role])
   @@index([isSystemAccount])
@@ -61,15 +60,15 @@ model User {
 }
 
 model Class {
-  id             String            @id @default(cuid())
-  name           String
-  description    String?
-  code           String            @unique
-  teacherId      String
-  createdAt      DateTime          @default(now())
-  updatedAt      DateTime          @updatedAt
-  announcement   String?
-  sectionGroupId String?
+  id              String            @id @default(cuid())
+  name            String
+  description     String?
+  code            String            @unique
+  teacherId       String
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  announcement    String?
+  sectionGroupId  String?
   assignments     Assignment[]
   calendarEvents  CalendarEvent[]
   teacher         User              @relation("ClassTeacher", fields: [teacherId], references: [id])
@@ -87,7 +86,6 @@ model ClassEnrollment {
   classId         String
   studentId       String
   joinedAt        DateTime  @default(now())
-  // "active" | "exited" | "graduated"
   status          String    @default("active")
   statusChangedAt DateTime?
   statusNote      String?
@@ -114,8 +112,8 @@ model Activity {
   updatedAt           DateTime             @updatedAt
   ui                  String?
   isReleased          Boolean              @default(false)
-  isReleasedInContent Boolean?
   deletedAt           DateTime?
+  isReleasedInContent Boolean?
   progress            ActivityProgress[]
   assignments         Assignment[]
   quizResponses       QuizResponse[]
@@ -193,9 +191,11 @@ model Assignment {
   instructions        String?
   dueDate             DateTime?
   isFeatured          Boolean              @default(false)
-  isRequired          Boolean              @default(false)
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
+  isRequired          Boolean              @default(false)
+  sequenceNumber      Int?
+  unitLabel           String?
   activityProgress    ActivityProgress[]
   activity            Activity             @relation(fields: [activityId], references: [id])
   class               Class                @relation(fields: [classId], references: [id], onDelete: Cascade)
@@ -209,6 +209,7 @@ model Assignment {
   @@index([classId, createdAt])
   @@index([classId, isFeatured, createdAt])
   @@index([classId, isFeatured, updatedAt])
+  @@index([classId, sequenceNumber])
 }
 
 model Submission {
@@ -322,13 +323,13 @@ model UserPreferences {
   id                   String   @id @default(cuid())
   userId               String   @unique
   hideVerbExplanations Boolean  @default(false)
-  learnerMode          String   @default("classroom")
-  weeklyActivityGoal   Int      @default(3)
-  weeklyGoalStartDay   Int      @default(1) // 0=Sunday, 1=Monday
-  skillFocus           String[] @default([])
-  gameSettings         Json     @default("{}")
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
+  learnerMode          String   @default("classroom")
+  weeklyActivityGoal   Int      @default(3)
+  weeklyGoalStartDay   Int      @default(1)
+  skillFocus           String[] @default([])
+  gameSettings         Json     @default("{}")
   user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@index([userId])
@@ -366,11 +367,11 @@ model UserVocabReviewState {
   lapses             Int       @default(0)
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
-  difficulty         Float     @default(0.0)
   easeFactor         Float     @default(2.5)
-  lastInterval       Int       @default(0)
-  performanceHistory Float[]  @default([])
+  difficulty         Float     @default(0.0)
   stability          Float     @default(0.0)
+  lastInterval       Int       @default(0)
+  performanceHistory Float[]   @default([])
   user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   vocabCard          VocabCard @relation(fields: [vocabCardId], references: [id], onDelete: Cascade)
 
@@ -397,14 +398,13 @@ model DailyHabitCompletion {
 
 model PushSubscription {
   id        String   @id @default(cuid())
-  userId    String
+  userId    String   @unique
   endpoint  String
-  p256dh    String   // Public key for encryption
-  auth      String   // Auth secret
+  p256dh    String
+  auth      String
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([userId])
   @@index([userId])
 }
 
@@ -422,45 +422,41 @@ model InviteLink {
   id          String    @id @default(cuid())
   code        String    @unique
   createdById String
-  createdBy   User      @relation("CreatedInvites", fields: [createdById], references: [id])
   expiresAt   DateTime?
   isActive    Boolean   @default(true)
   createdAt   DateTime  @default(now())
+  createdBy   User      @relation("CreatedInvites", fields: [createdById], references: [id])
 
   @@index([code])
   @@index([createdById])
 }
 
-// ── Live Writing Session Models ──────────────────────────────────────────────
-
 model WritingSession {
-  id           String    @id @default(cuid())
+  id           String                  @id @default(cuid())
   activityId   String
   classId      String
   teacherId    String
-  status       String    @default("waiting")
-  currentRound Int       @default(0)
+  status       String                  @default("waiting")
+  currentRound Int                     @default(0)
   timerEndsAt  DateTime?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-
-  activity  Activity                @relation(fields: [activityId], references: [id])
-  class     Class                   @relation(fields: [classId], references: [id])
-  teacher   User                    @relation("TeacherSessions", fields: [teacherId], references: [id])
-  groups    WritingGroup[]
-  rounds    WritingRound[]
-  checkIns  WritingSessionCheckIn[]
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @updatedAt
+  groups       WritingGroup[]
+  rounds       WritingRound[]
+  activity     Activity                @relation(fields: [activityId], references: [id])
+  class        Class                   @relation(fields: [classId], references: [id])
+  teacher      User                    @relation("TeacherSessions", fields: [teacherId], references: [id])
+  checkIns     WritingSessionCheckIn[]
 
   @@index([activityId, classId, status])
   @@index([teacherId])
 }
 
 model WritingGroup {
-  id         String @id @default(cuid())
-  sessionId  String
-  animalName String
-  colorHex   String
-
+  id          String               @id @default(cuid())
+  sessionId   String
+  animalName  String
+  colorHex    String
   session     WritingSession       @relation(fields: [sessionId], references: [id], onDelete: Cascade)
   members     WritingGroupMember[]
   submissions WritingSubmission[]
@@ -469,86 +465,80 @@ model WritingGroup {
 }
 
 model WritingGroupMember {
-  id        String @id @default(cuid())
+  id        String       @id @default(cuid())
   groupId   String
   studentId String
-
-  group   WritingGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
-  student User         @relation("StudentGroupMembers", fields: [studentId], references: [id])
+  group     WritingGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  student   User         @relation("StudentGroupMembers", fields: [studentId], references: [id])
 
   @@unique([groupId, studentId])
   @@index([studentId])
 }
 
 model WritingRound {
-  id             String  @id @default(cuid())
+  id             String              @id @default(cuid())
   sessionId      String
   roundIndex     Int
   promptText     String
   promptImageUrl String?
-
-  session     WritingSession      @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  submissions WritingSubmission[]
-  groupVotes  WritingGroupVote[]
-  classVotes  WritingClassVote[]
+  classVotes     WritingClassVote[]
+  groupVotes     WritingGroupVote[]
+  session        WritingSession      @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  submissions    WritingSubmission[]
 
   @@unique([sessionId, roundIndex])
 }
 
 model WritingSubmission {
-  id            String   @id @default(cuid())
+  id            String             @id @default(cuid())
   roundId       String
   groupId       String
   studentId     String
   text          String
   wordCount     Int
-  isGroupWinner Boolean  @default(false)
-  submittedAt   DateTime @default(now())
-
-  round      WritingRound       @relation(fields: [roundId], references: [id], onDelete: Cascade)
-  group      WritingGroup       @relation(fields: [groupId], references: [id])
-  student    User               @relation("StudentWritingSubmissions", fields: [studentId], references: [id])
-  groupVotes WritingGroupVote[]
-  classVotes WritingClassVote[]
+  isGroupWinner Boolean            @default(false)
+  submittedAt   DateTime           @default(now())
+  classVotes    WritingClassVote[]
+  groupVotes    WritingGroupVote[]
+  group         WritingGroup       @relation(fields: [groupId], references: [id])
+  round         WritingRound       @relation(fields: [roundId], references: [id], onDelete: Cascade)
+  student       User               @relation("StudentWritingSubmissions", fields: [studentId], references: [id])
 
   @@unique([roundId, studentId])
   @@index([roundId, groupId])
 }
 
 model WritingGroupVote {
-  id           String @id @default(cuid())
+  id           String            @id @default(cuid())
   roundId      String
   voterId      String
   submissionId String
-
-  round      WritingRound      @relation(fields: [roundId], references: [id], onDelete: Cascade)
-  voter      User              @relation("StudentGroupVotes", fields: [voterId], references: [id])
-  submission WritingSubmission @relation(fields: [submissionId], references: [id])
+  round        WritingRound      @relation(fields: [roundId], references: [id], onDelete: Cascade)
+  submission   WritingSubmission @relation(fields: [submissionId], references: [id])
+  voter        User              @relation("StudentGroupVotes", fields: [voterId], references: [id])
 
   @@unique([roundId, voterId])
 }
 
 model WritingClassVote {
-  id           String @id @default(cuid())
+  id           String            @id @default(cuid())
   roundId      String
   voterId      String
   submissionId String
-
-  round      WritingRound      @relation(fields: [roundId], references: [id], onDelete: Cascade)
-  voter      User              @relation("StudentClassVotes", fields: [voterId], references: [id])
-  submission WritingSubmission @relation(fields: [submissionId], references: [id])
+  round        WritingRound      @relation(fields: [roundId], references: [id], onDelete: Cascade)
+  submission   WritingSubmission @relation(fields: [submissionId], references: [id])
+  voter        User              @relation("StudentClassVotes", fields: [voterId], references: [id])
 
   @@unique([roundId, voterId])
 }
 
 model WritingSessionCheckIn {
-  id        String   @id @default(cuid())
+  id        String         @id @default(cuid())
   sessionId String
   studentId String
-  joinedAt  DateTime @default(now())
-
-  session WritingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  student User           @relation("StudentCheckIns", fields: [studentId], references: [id])
+  joinedAt  DateTime       @default(now())
+  session   WritingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  student   User           @relation("StudentCheckIns", fields: [studentId], references: [id])
 
   @@unique([sessionId, studentId])
   @@index([sessionId])

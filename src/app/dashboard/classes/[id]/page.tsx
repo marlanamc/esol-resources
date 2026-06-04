@@ -54,7 +54,7 @@ export default async function ClassDetailPage({ params }: Props) {
                             },
                         },
                 },
-                orderBy: { createdAt: "desc" },
+                orderBy: [{ sequenceNumber: "asc" }, { createdAt: "asc" }],
             },
         },
     });

@@ -18,4 +18,5 @@ export * from './ClassAnnouncement';
 export * from './LearnerTypeFilter';
 export * from './InviteFriendsCard';
 export * from './MomentumCard';
+export * from './DashboardWelcomeHero';
 export * from './ExploreCategoriesCarousel';

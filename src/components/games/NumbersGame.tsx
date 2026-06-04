@@ -3,12 +3,16 @@
 import { useState, useEffect, useRef } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { RotateCcw } from "lucide-react";
+import { CourseMapReturnButton } from "@/components/navigation/CourseMapReturnButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 
 interface NumbersGameContent {
     type: "numbers-game";
     category?: string;
+    courseMapPreset?: boolean;
+    courseMapTitle?: string;
+    courseMapDirections?: string;
 }
 
 interface Props {
@@ -199,6 +203,7 @@ function formatAnswerForDisplay(answer: string): string {
 
 export default function NumbersGame({ contentStr, activityId }: Props) {
     const content = parseContent(contentStr);
+    const isCourseMapPreset = content.courseMapPreset === true;
     const [gameState, setGameState] = useState<GameState>({
         score: 0,
         streak: 0,
@@ -214,7 +219,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
     const [userAnswer, setUserAnswer] = useState('');
     const [feedback, setFeedback] = useState('');
     const [showFeedback, setShowFeedback] = useState(false);
-    const [gameStarted, setGameStarted] = useState(false);
+    const [gameStarted, setGameStarted] = useState(isCourseMapPreset);
     const [showInstructions, setShowInstructions] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [settings, setSettings] = useState({
@@ -334,6 +339,12 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
         setGameStarted(true);
         generateNumber();
     };
+
+    useEffect(() => {
+        if (!gameStarted || gameState.currentNumber !== null) return;
+        generateNumber();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [gameStarted, gameState.currentNumber]);
 
     const checkAnswer = () => {
         if (!userAnswer.trim()) {
@@ -542,14 +553,29 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                             Round {gameState.roundNumber} • Question {gameState.questionsInRound + (gameState.currentNumber !== null ? 1 : 0)}/{QUESTIONS_PER_ROUND}
                         </div>
                     </div>
-                    <button
-                        onClick={() => setShowSettings(!showSettings)}
-                        className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors"
-                        aria-label="Settings"
-                    >
-                        <SettingsIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
-                    </button>
+                    {!isCourseMapPreset && (
+                        <button
+                            onClick={() => setShowSettings(!showSettings)}
+                            className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors"
+                            aria-label="Settings"
+                        >
+                            <SettingsIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
+                        </button>
+                    )}
                 </div>
+                {isCourseMapPreset && (
+                    <div className="mb-4 rounded-xl border border-[var(--tone-vocab-accent,#6a8d73)]/25 bg-[var(--tone-vocab-surface,rgba(106,141,115,0.08))] px-3 py-2">
+                        <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
+                            Guided Course Map Step
+                        </p>
+                        <p className="mt-0.5 text-sm font-semibold text-[var(--color-text)]">
+                            {content.courseMapTitle ?? "Numbers Through Trillions"}
+                        </p>
+                        <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">
+                            {content.courseMapDirections ?? "This version is already set up for you."}
+                        </p>
+                    </div>
+                )}
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
@@ -583,7 +609,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
             </div>
 
             {/* Settings Panel - Collapsible */}
-            {showSettings && (
+            {showSettings && !isCourseMapPreset && (
                 <div className="flex-shrink-0 bg-[var(--color-bg-light)] border-b-2 border-[var(--color-border)] px-4 py-4 flex flex-col gap-3">
                     <div>
                         <label className="block text-sm font-semibold text-[var(--color-text)] mb-2">
@@ -726,6 +752,8 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                             >
                                 Check Answer
                             </button>
+                        ) : isRoundComplete && isCourseMapPreset ? (
+                            <CourseMapReturnButton className="w-full sm:w-auto" />
                         ) : (
                             <button
                                 onClick={nextQuestion}

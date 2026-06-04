@@ -1,11 +1,220 @@
 /**
- * Weekly vocabulary words for Cycle 2 (Feb–Jun). Each week has 12 words.
+ * Weekly vocabulary words for Cycle 1 (Sep–Jan, 6 verbs each) and Cycle 2 (Feb–Jun, 12 words each).
  * Used by seed-weekly-vocab.js to create word list, flashcards, matching, and fill-in-the-blank activities.
  */
 
-
-
 const weeklyVocabData = {
+  // ── CYCLE 1: Units 1–5 (Sep–Jan) ─ 6 verbs per level ─────────────────────
+
+  /** Unit 1 – Getting to Know You (September) */
+  "sep-w1": {
+    topic: "Start the Class: Digital Habits",
+    words: [
+      { term: "log in",    def: "to enter your username and password to access a website or app",       ex: "Please log in to the app every day to practice English." },
+      { term: "navigate",  def: "to move around a website or app",                                      ex: "Use the menu at the top to navigate the website." },
+      { term: "submit",   def: "to send your work or information officially",                          ex: "Submit your answers before the timer runs out." },
+      { term: "access",   def: "to open or enter a file, website, or building",                       ex: "You can access your lessons from any device." },
+      { term: "complete", def: "to finish all parts of a task",                                       ex: "Try to complete at least one activity each day." },
+      { term: "review",   def: "to look at something again to check or learn it better",              ex: "Review the words before the quiz on Friday." },
+    ],
+  },
+  "sep-w2": {
+    topic: "Parts of Speech: Key Verbs",
+    words: [
+      { term: "identify",   def: "to recognize and name something",                                   ex: "Can you identify the noun in this sentence?" },
+      { term: "categorize", def: "to put things into groups",                                         ex: "Categorize these words as nouns, verbs, or adjectives." },
+      { term: "pronounce",  def: "to say a word out loud correctly",                                  ex: "Practice how to pronounce each new word." },
+      { term: "spell",      def: "to write or say the letters of a word in order",                   ex: "Can you spell your last name for me, please?" },
+      { term: "translate",  def: "to change words from one language to another",                      ex: "I used my phone to translate that word into English." },
+      { term: "practice",   def: "to do something many times to improve",                             ex: "Practice speaking English every day to get better." },
+    ],
+  },
+  "sep-w3": {
+    topic: "Verb Forms: Action Words",
+    words: [
+      { term: "explain",  def: "to make something clear by giving details",                          ex: "Can you explain how to use this form?" },
+      { term: "describe", def: "to say what something or someone is like",                           ex: "Describe your neighborhood to the class." },
+      { term: "discuss",  def: "to talk about something with others",                                ex: "We will discuss the homework in class." },
+      { term: "listen",   def: "to pay attention to sounds or someone speaking",                     ex: "Listen carefully and repeat the words you hear." },
+      { term: "record",   def: "to save or write down information; to make an audio or video",       ex: "Record yourself reading the sentence aloud." },
+      { term: "repeat",   def: "to do or say something again",                                       ex: "Please repeat the word after me." },
+    ],
+  },
+  "sep-w4": {
+    topic: "Life Experience: Personal Journey Verbs",
+    words: [
+      { term: "relocate",  def: "to move to a new city or country",                                  ex: "My family decided to relocate to the United States." },
+      { term: "introduce", def: "to present yourself or another person for the first time",           ex: "Please introduce yourself to the class." },
+      { term: "motivate",  def: "to give someone a reason to do something",                          ex: "My children motivate me to learn English every day." },
+      { term: "achieve",   def: "to reach a goal through hard work",                                 ex: "With practice, you can achieve your language goals." },
+      { term: "overcome",  def: "to successfully deal with a challenge",                             ex: "She worked hard to overcome the language barrier." },
+      { term: "immigrate", def: "to come to a new country to live there permanently",                ex: "He immigrated to the U.S. five years ago." },
+    ],
+  },
+
+  /** Unit 2 – Daily Life in the Community (October) */
+  "oct-w1": {
+    topic: "Community + Daily Routines: Schedule Verbs",
+    words: [
+      { term: "schedule", def: "to plan a time for something to happen",                             ex: "I need to schedule a doctor's appointment for next week." },
+      { term: "commute",  def: "to travel regularly between home and work or school",                ex: "She commutes by bus every morning." },
+      { term: "prepare",  def: "to get ready for something",                                         ex: "Prepare your bag the night before class." },
+      { term: "attend",   def: "to go to an event, class, or meeting",                               ex: "All students are expected to attend class on time." },
+      { term: "balance",  def: "to manage two or more things at the same time fairly",               ex: "It is hard to balance work, school, and family." },
+      { term: "exercise", def: "to do physical activity to stay healthy",                            ex: "Try to exercise for at least 30 minutes a day." },
+    ],
+  },
+  "oct-w2": {
+    topic: "Transportation + Directions: Movement Verbs",
+    words: [
+      { term: "depart",   def: "to leave a place",                                                   ex: "The bus departs from Main Street at 7:00 AM." },
+      { term: "arrive",   def: "to reach a place",                                                   ex: "What time does the train arrive at the station?" },
+      { term: "transfer", def: "to change from one bus, train, or route to another",                 ex: "Transfer to the Red Line at Downtown Station." },
+      { term: "locate",   def: "to find the position of something",                                  ex: "Can you locate the nearest pharmacy on the map?" },
+      { term: "follow",   def: "to go in the same direction; to use directions step by step",        ex: "Follow the signs to the emergency exit." },
+      { term: "cross",    def: "to go from one side to the other",                                   ex: "Cross the street at the crosswalk when the light is green." },
+    ],
+  },
+  "oct-w3": {
+    topic: "Digital Safety + Forms: Protect Yourself Verbs",
+    words: [
+      { term: "register",  def: "to sign up officially for a service or program",                    ex: "You need to register online before your first appointment." },
+      { term: "protect",   def: "to keep something safe from harm",                                  ex: "Use a strong password to protect your account." },
+      { term: "verify",    def: "to check that something is correct or true",                        ex: "The website will send a code to verify your identity." },
+      { term: "avoid",     def: "to stay away from something dangerous or unwanted",                 ex: "Avoid clicking on unknown links in your email." },
+      { term: "sign",      def: "to write your name on a document to show agreement",                ex: "Read the form carefully before you sign it." },
+      { term: "update",    def: "to add new information or change to the newest version",            ex: "Update your password every few months for security." },
+    ],
+  },
+  "oct-w4": {
+    topic: "Phone English + Family Connection: Communication Verbs",
+    words: [
+      { term: "contact",   def: "to reach someone by phone, email, or message",                     ex: "Contact the school if your child will be absent." },
+      { term: "respond",   def: "to answer or react to a message or question",                       ex: "Please respond to the email within 24 hours." },
+      { term: "confirm",   def: "to say that something is definitely true or agreed upon",           ex: "Call to confirm your appointment the day before." },
+      { term: "decline",   def: "to politely say no to an offer or invitation",                      ex: "She had to decline the meeting because she was sick." },
+      { term: "postpone",  def: "to move something to a later time",                                 ex: "We need to postpone the meeting until next week." },
+      { term: "connect",   def: "to join or link with someone or something",                         ex: "I couldn't connect to the Wi-Fi at the library." },
+    ],
+  },
+
+  /** Unit 3 – Community Participation (November) */
+  "nov-w1": {
+    topic: "Helping + Volunteering: Action Verbs",
+    words: [
+      { term: "volunteer",  def: "to offer to do something without being paid",                      ex: "She volunteers at the food bank every Saturday." },
+      { term: "assist",     def: "to help someone with a task",                                      ex: "Can you assist me with this form?" },
+      { term: "support",    def: "to help or encourage someone or a cause",                          ex: "Our community supports local families in need." },
+      { term: "contribute",def: "to give time, money, or effort to help something",                  ex: "Everyone can contribute in a small way to make things better." },
+      { term: "donate",     def: "to give something (money, food, clothing) to help others",         ex: "We donate clothing to the shelter twice a year." },
+      { term: "join",       def: "to become a member of a group or start participating",             ex: "Would you like to join our community garden project?" },
+    ],
+  },
+  "nov-w2": {
+    topic: "Public Meetings + Suggestions: Discussion Verbs",
+    words: [
+      { term: "participate", def: "to take part in an activity or event",                           ex: "Everyone is welcome to participate in the town meeting." },
+      { term: "suggest",     def: "to offer an idea for others to consider",                         ex: "I'd like to suggest adding more bus routes to our area." },
+      { term: "propose",     def: "to formally put forward an idea or plan",                         ex: "The committee will propose a new community garden." },
+      { term: "recommend",   def: "to advise that something is a good choice",                      ex: "The teacher recommended that we study for at least one hour." },
+      { term: "agree",       def: "to have the same opinion or say yes to something",                ex: "Most people at the meeting agreed with the new plan." },
+      { term: "listen",      def: "to pay attention to what someone is saying",                     ex: "Good leaders listen to the concerns of their community." },
+    ],
+  },
+  "nov-w3": {
+    topic: "Voting + Contacting Officials: Civic Verbs",
+    words: [
+      { term: "vote",      def: "to officially choose a person or option in an election",           ex: "Register and vote in your local elections." },
+      { term: "elect",     def: "to choose a person for a position by voting",                      ex: "Citizens elect leaders to represent them in government." },
+      { term: "advocate",  def: "to publicly support a cause or group of people",                   ex: "She advocates for better schools in her neighborhood." },
+      { term: "petition",  def: "to formally ask for change by collecting signatures",               ex: "We started a petition to fix the broken street lights." },
+      { term: "represent", def: "to speak or act on behalf of others",                              ex: "Your city council member represents your neighborhood." },
+      { term: "campaign",  def: "to work to get support for a cause or candidate",                  ex: "Many volunteers campaign for better housing in our city." },
+    ],
+  },
+  "nov-w4": {
+    topic: "Community Issues: Problem-Solving Verbs",
+    words: [
+      { term: "analyze",     def: "to study something carefully to understand it",                  ex: "Let's analyze the problem before we decide what to do." },
+      { term: "resolve",     def: "to find a solution to a problem",                                ex: "We worked together to resolve the conflict peacefully." },
+      { term: "improve",     def: "to make something better",                                       ex: "The city wants to improve public transportation." },
+      { term: "collaborate",def: "to work together with others to achieve a goal",                  ex: "We collaborated with local businesses to start the event." },
+      { term: "report",      def: "to tell someone in authority about a problem",                   ex: "Report broken streetlights to the city using the hotline." },
+      { term: "prevent",     def: "to stop something bad from happening",                           ex: "We can prevent crime by working together as a community." },
+    ],
+  },
+
+  /** Unit 4 – Consumer Smarts (December) */
+  "dec-w1": {
+    topic: "Smart Spending + Big Numbers: Money Verbs",
+    words: [
+      { term: "purchase",  def: "to buy something",                                                 ex: "Think carefully before you purchase anything online." },
+      { term: "compare",   def: "to look at two or more things to find differences",                ex: "Always compare prices before you buy." },
+      { term: "budget",    def: "to plan how much money to spend",                                   ex: "Budget your money so you can pay all your bills." },
+      { term: "save",      def: "to keep money so you can use it later",                             ex: "Try to save at least 10% of your income each month." },
+      { term: "spend",     def: "to use money to pay for things",                                   ex: "Don't spend more than you earn." },
+      { term: "calculate",def: "to use math to find an answer",                                     ex: "Calculate the total cost before you decide to buy." },
+    ],
+  },
+  "dec-w2": {
+    topic: "Bills, Returns + Scams: Financial Action Verbs",
+    words: [
+      { term: "exchange",  def: "to return one item and get a different one",                        ex: "I want to exchange this shirt for a larger size." },
+      { term: "refund",    def: "to get your money back after returning something",                  ex: "The store gave me a full refund for the broken item." },
+      { term: "withdraw",  def: "to take money out of a bank account",                              ex: "I need to withdraw cash from the ATM." },
+      { term: "deposit",   def: "to put money into a bank account",                                 ex: "Deposit your check before the end of the business day." },
+      { term: "charge",    def: "to ask for payment; to add to a credit card bill",                 ex: "The store will charge your card when the item ships." },
+      { term: "dispute",   def: "to say that something is wrong and ask for a correction",          ex: "If there is an error on your bill, call to dispute it." },
+    ],
+  },
+
+  /** Unit 5 – Housing (January) */
+  "jan-w1": {
+    topic: "Housing Basics: Renter Verbs",
+    words: [
+      { term: "rent",     def: "to pay money to use something (an apartment, a car) that belongs to someone else", ex: "We rent our apartment for $1,200 a month." },
+      { term: "lease",    def: "to sign an agreement to use property for a set time",               ex: "We signed a 12-month lease for the apartment." },
+      { term: "occupy",   def: "to live in or use a space",                                         ex: "How many people will occupy this apartment?" },
+      { term: "move",     def: "to go to live in a different place",                                 ex: "We plan to move to a bigger apartment next month." },
+      { term: "qualify",  def: "to meet the requirements needed for something",                     ex: "Do I qualify for the low-income housing program?" },
+      { term: "apply",    def: "to formally request something (a job, an apartment, a program)",   ex: "You need to apply online for that apartment." },
+    ],
+  },
+  "jan-w2": {
+    topic: "Comparing Housing Options: Decision Verbs",
+    words: [
+      { term: "compare",   def: "to look at two or more things to find differences",                ex: "Compare the rent and size of each apartment." },
+      { term: "afford",    def: "to have enough money to pay for something",                        ex: "I can't afford an apartment in that area." },
+      { term: "evaluate",  def: "to study all parts of something to judge its quality or value",   ex: "Evaluate the location, price, and size before deciding." },
+      { term: "select",    def: "to choose something from a group of options",                      ex: "We will select an apartment by the end of the week." },
+      { term: "negotiate", def: "to talk with someone to reach an agreement",                       ex: "You can negotiate the rent with the landlord." },
+      { term: "own",       def: "to have something as your legal property",                         ex: "Someday I hope to own my own home." },
+    ],
+  },
+  "jan-w3": {
+    topic: "Landlord Calls + Repair Requests: Maintenance Verbs",
+    words: [
+      { term: "request",  def: "to politely ask for something officially",                          ex: "I need to request a repair for the broken heater." },
+      { term: "report",   def: "to tell someone in authority about a problem",                      ex: "Report any leaks or damage to your landlord right away." },
+      { term: "inspect",  def: "to look at something carefully to check its condition",             ex: "The landlord will inspect the apartment next Monday." },
+      { term: "repair",   def: "to fix something that is broken or damaged",                        ex: "The landlord must repair the broken window within 24 hours." },
+      { term: "leak",     def: "(of liquid) to drip or flow through a crack or hole",               ex: "The ceiling is leaking after the heavy rain." },
+      { term: "clog",     def: "to block a pipe so water cannot flow",                              ex: "The kitchen sink is clogged and the water won't drain." },
+    ],
+  },
+  "jan-w4": {
+    topic: "Housing Problems + Solutions: Resolution Verbs",
+    words: [
+      { term: "resolve",     def: "to find a solution and fix a problem",                           ex: "The landlord promised to resolve the heating issue today." },
+      { term: "maintain",    def: "to keep something in good condition",                             ex: "Tenants must maintain a clean and safe apartment." },
+      { term: "notify",      def: "to officially tell someone about something",                      ex: "Notify your landlord in writing if you plan to move out." },
+      { term: "document",    def: "to write down or photograph something as a record",              ex: "Document the damage with photos before the landlord visits." },
+      { term: "prevent",     def: "to stop something bad from happening",                           ex: "Regular cleaning can prevent mold in the bathroom." },
+      { term: "reimburse",   def: "to pay someone back for money they spent",                       ex: "The landlord agreed to reimburse us for the plumber's cost." },
+    ],
+  },
+
+  // ── CYCLE 2: Units 6–10 (Feb–Jun) ─ 12 words per week ────────────────────
   "feb-3-5": {
     topic: "Jobs: Foundations",
     words: [

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowLeft,
@@ -84,6 +84,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
   });
 
   const [isAudioSupported, setIsAudioSupported] = useState(true);
+  const autoStartedRef = useRef(false);
 
   useEffect(() => {
     setIsAudioSupported('speechSynthesis' in window);
@@ -169,6 +170,20 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
       audioPlayed: false,
     }));
   }, [state.contrast, state.difficulty, state.roundSize]);
+
+  // Auto-start when a specific contrastId is baked into the activity content.
+  useEffect(() => {
+    if (autoStartedRef.current || state.phase !== 'menu') return;
+    try {
+      const parsed = JSON.parse(contentStr) as ContentConfig;
+      if (parsed?.contrastId && parsed.contrastId !== 'mixed') {
+        autoStartedRef.current = true;
+        startGame();
+      }
+    } catch {
+      // ignore
+    }
+  }, [contentStr, state.phase, startGame]);
 
   const resetToMenu = useCallback(() => {
     setState((prev) => ({

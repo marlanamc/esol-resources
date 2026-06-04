@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Volume2,
@@ -90,6 +90,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
   });
 
   const [isAudioSupported, setIsAudioSupported] = useState(true);
+  const autoStartedRef = useRef(false);
   const isDark = resolvedTheme === 'dark';
 
   const quickViewColors = {
@@ -202,6 +203,13 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
       audioPlayed: false,
     }));
   }, [state.difficulty]);
+
+  // Auto-start into sorting mode — the menu is informational but not needed in the course path.
+  useEffect(() => {
+    if (autoStartedRef.current || state.phase !== 'menu') return;
+    autoStartedRef.current = true;
+    startGame(state.mode);
+  }, [state.phase, state.mode, startGame]);
 
   const handleSortingAnswer = useCallback((answer: EdSound) => {
     if (state.showFeedback) return;

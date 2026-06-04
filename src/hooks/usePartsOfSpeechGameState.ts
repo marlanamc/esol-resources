@@ -322,6 +322,8 @@ export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSp
     phaseOverrides: config?.gameContent?.roundOverrides,
     exerciseTypes: config?.gameContent?.exerciseTypes,
   };
+  const presetGroupId = config?.gameContent?.courseMapPreset ? config.gameContent.groupId : undefined;
+  const presetRoundMode = config?.gameContent?.roundMode;
 
   // Load progress on mount
   useEffect(() => {
@@ -336,14 +338,28 @@ export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSp
             ? JSON.parse(data.categoryData)
             : data.categoryData)
           : initializeProgressData();
-        setState(prev => ({ ...prev, categoryData, loading: false }));
+        const presetGroup = presetGroupId
+          ? ALL_POS_GROUPS.find(group => group.id === presetGroupId) ?? null
+          : null;
+        setState(prev => ({
+          ...prev,
+          categoryData,
+          loading: false,
+          ...(presetGroup
+            ? {
+              selectedGroup: presetGroup,
+              selectedRoundMode: presetRoundMode ?? getDefaultRoundMode(presetGroup, categoryData),
+              phase: 'intro' as const,
+            }
+            : {}),
+        }));
       } catch (err) {
         const msg = err instanceof Error ? err.message : 'Failed to initialize game';
         setState(prev => ({ ...prev, error: msg, loading: false, categoryData: initializeProgressData() }));
       }
     };
     init();
-  }, [activityId]);
+  }, [activityId, presetGroupId, presetRoundMode]);
 
   const selectGroup = useCallback((group: POSGroup) => {
     const roundMode = getDefaultRoundMode(group, state.categoryData);

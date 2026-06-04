@@ -21,6 +21,7 @@ import { StudentQuickStats } from '@/components/dashboard/StudentQuickStats';
 import type { DailyChecklistHabit } from '@/lib/daily-habits';
 import { getLearnerCategoryTone } from '@/lib/learner-theme';
 import { getAssignmentDueDisplay, isAssignmentRequired, isCatchUpPathEnabled, type DueDisplayMeta } from '@/lib/catch-up-deadlines';
+import { formatDashboardWeekRangeLabel } from '@/lib/dashboard/week-range-label';
 import {
     useFeaturedAssignments,
     AssignmentCard,
@@ -53,6 +54,8 @@ interface Props {
     hideProgressBar?: boolean;
     /** Optional anchor id for in-page links (e.g. catch-up card) */
     sectionId?: string;
+    /** Merged under DashboardWelcomeHero — no duplicate outer card */
+    weekHub?: boolean;
 }
 
 interface VocabProgressInfo {
@@ -93,33 +96,6 @@ const CHECKLIST_GROUPS: Array<{
     { key: 'quizzes', label: 'Quizzes', renderIcon: (className = 'w-5 h-5') => <ClipboardList className={className} /> },
     { key: 'activity', label: 'Games', renderIcon: (className = 'w-5 h-5') => <Gamepad2 className={className} /> },
 ];
-
-function formatWeekRangeLabel(referenceDate: Date): string {
-    const weekStart = new Date(referenceDate);
-    const day = weekStart.getDay();
-    // Week runs Tuesday–Monday (not Monday–Sunday)
-    const offsetToTuesday = day <= 1 ? -5 - day : 2 - day;
-    weekStart.setDate(weekStart.getDate() + offsetToTuesday);
-    weekStart.setHours(0, 0, 0, 0);
-
-    const weekEnd = new Date(weekStart);
-    weekEnd.setDate(weekStart.getDate() + 6);
-
-    const startMonth = weekStart.toLocaleDateString('en-US', { month: 'short' });
-    const endMonth = weekEnd.toLocaleDateString('en-US', { month: 'short' });
-    const startDay = weekStart.getDate();
-    const endDay = weekEnd.getDate();
-
-    if (weekStart.getFullYear() !== weekEnd.getFullYear()) {
-        return `Week of ${startMonth} ${startDay}, ${weekStart.getFullYear()}-${endMonth} ${endDay}, ${weekEnd.getFullYear()}`;
-    }
-
-    if (startMonth === endMonth) {
-        return `Week of ${startMonth} ${startDay}-${endDay}`;
-    }
-
-    return `Week of ${startMonth} ${startDay}-${endMonth} ${endDay}`;
-}
 
 function getFriendlyDueMeta(dueDate?: string | Date | null): DueMeta | null {
     return getAssignmentDueDisplay(dueDate);
@@ -572,6 +548,7 @@ function ChecklistAssignments({
     showStudentStats = false,
     hideProgressBar = false,
     sectionId,
+    weekHub = false,
 }: {
     assignments: FeaturedAssignment[];
     pinnedHabit?: DailyChecklistHabit | null;
@@ -585,6 +562,7 @@ function ChecklistAssignments({
     showStudentStats?: boolean;
     hideProgressBar?: boolean;
     sectionId?: string;
+    weekHub?: boolean;
 }) {
     const [activeFilter, setActiveFilter] = useState<string>('all');
 
@@ -1035,12 +1013,22 @@ function ChecklistAssignments({
     );
 
     return (
-        <div className="mb-8" id={sectionId}>
+        <div className={weekHub ? "mb-0" : "mb-8"} id={sectionId}>
             <div
-                className={`overflow-hidden rounded-2xl border surface-card-shadow ${isFullyComplete ? 'ring-2 ring-[var(--tone-speaking-border)] celebrate-complete' : ''}`}
+                className={
+                    weekHub
+                        ? `overflow-hidden border-t ${isFullyComplete ? "ring-2 ring-inset ring-[var(--tone-speaking-border)] celebrate-complete" : ""}`
+                        : `overflow-hidden rounded-2xl border surface-card-shadow ${isFullyComplete ? "ring-2 ring-[var(--tone-speaking-border)] celebrate-complete" : ""}`
+                }
                 style={{
-                    borderColor: isFullyComplete ? 'var(--tone-speaking-border)' : 'var(--dashboard-border)',
-                    background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)',
+                    borderColor: weekHub
+                        ? "var(--dashboard-divider)"
+                        : isFullyComplete
+                            ? "var(--tone-speaking-border)"
+                            : "var(--dashboard-border)",
+                    background: weekHub
+                        ? "transparent"
+                        : "linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)",
                 }}
             >
                 <div
@@ -1060,7 +1048,7 @@ function ChecklistAssignments({
                                     <h2 className="text-base sm:text-lg font-display font-bold text-text leading-tight">
                                         {resolvedTitle}
                                     </h2>
-                                    {weeklyRangeLabel ? (
+                                    {weeklyRangeLabel && !weekHub ? (
                                         <p className="text-[11px] sm:text-xs font-medium text-text-muted">
                                             {weeklyRangeLabel}
                                         </p>
@@ -1244,11 +1232,21 @@ function ChecklistAssignments({
                             return (
                                 <div
                                     key={group.key}
-                                    className={`relative flex flex-col overflow-hidden rounded-2xl border surface-card-shadow category-card-polish paper-texture stagger-in group/card category-glow-${group.key}`}
+                                    className={
+                                        weekHub
+                                            ? `relative flex flex-col overflow-hidden rounded-xl stagger-in group/card category-glow-${group.key}`
+                                            : `relative flex flex-col overflow-hidden rounded-2xl border surface-card-shadow category-card-polish paper-texture stagger-in group/card category-glow-${group.key}`
+                                    }
                                     style={{
-                                        background: `linear-gradient(to bottom, color-mix(in srgb, ${groupStyle.accent} 4%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, ${groupStyle.accent} 1.5%, var(--dashboard-surface-end)) 100%)`,
-                                        borderColor: `color-mix(in srgb, ${groupStyle.accent} 14%, var(--dashboard-border))`,
-                                        '--card-glow-color': `color-mix(in srgb, ${groupStyle.accent} 12%, transparent)`,
+                                        background: weekHub
+                                            ? `linear-gradient(to bottom, color-mix(in srgb, ${groupStyle.accent} 5%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, ${groupStyle.accent} 2%, var(--dashboard-surface-end)) 100%)`
+                                            : `linear-gradient(to bottom, color-mix(in srgb, ${groupStyle.accent} 4%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, ${groupStyle.accent} 1.5%, var(--dashboard-surface-end)) 100%)`,
+                                        borderColor: weekHub
+                                            ? "transparent"
+                                            : `color-mix(in srgb, ${groupStyle.accent} 14%, var(--dashboard-border))`,
+                                        ...(weekHub
+                                            ? {}
+                                            : { "--card-glow-color": `color-mix(in srgb, ${groupStyle.accent} 12%, transparent)` }),
                                     } as React.CSSProperties}
                                 >
                                     {/* Decorative accent blob */}
@@ -1331,6 +1329,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     showStudentStats = false,
     hideProgressBar = false,
     sectionId,
+    weekHub = false,
 }) => {
     const { assignments, loading } = useFeaturedAssignments({
         initialAssignments,
@@ -1350,7 +1349,7 @@ export const TodaysAssignments: React.FC<Props> = ({
             return null;
         }
         if (subtitle === undefined) {
-            return formatWeekRangeLabel(new Date());
+            return formatDashboardWeekRangeLabel(new Date());
         }
         if (subtitle === null || subtitle.trim() === '') {
             return null;
@@ -1453,6 +1452,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                 showStudentStats={showStudentStats}
                 hideProgressBar={hideProgressBar}
                 sectionId={sectionId}
+                weekHub={weekHub}
             />
         );
     }

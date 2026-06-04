@@ -458,6 +458,10 @@ export type POSPhaseRoundOverridesMap = Partial<Record<POSPhase, POSPhaseRoundOv
 export interface PartsOfSpeechContent {
   type: 'parts-of-speech';
   groupId?: string;
+  roundMode?: POSRoundModeOverride;
+  courseMapPreset?: boolean;
+  courseMapTitle?: string;
+  courseMapDirections?: string;
   exerciseTypes?: POSExerciseType[];
   roundSize?: number;
   roundOverrides?: POSPhaseRoundOverridesMap;

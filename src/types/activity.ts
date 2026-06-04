@@ -729,6 +729,14 @@ export interface GrammarHospitalContent {
     title: string;
     description?: string;
     level?: "beginner" | "intermediate" | "advanced";
+    courseMapPreset?: boolean;
+    courseMapTitle?: string;
+    courseMapDirections?: string;
+    defaultSettings?: {
+        tier?: GrammarHospitalTier;
+        complexity?: number;
+        focuses?: GrammarHospitalFocus[];
+    };
     cases: GrammarHospitalCase[];
     /** Default 5 — awarded once on full completion. */
     participationPoints?: number;

@@ -7,15 +7,16 @@
   <!-- System fonts only — external font requests can break Xerox print jobs -->
   <style>
     :root {
-      --primary: #b05740;
-      --primary-dark: #8f4533;
-      --secondary: #6a8d73;
-      --secondary-dark: #55735f;
+      /* Slightly darker than brand defaults — reads better on office copiers */
+      --primary: #8f4533;
+      --primary-dark: #6b3426;
+      --secondary: #4a6352;
+      --secondary-dark: #2d4a38;
       --accent: #e9c46a;
       --cream: #fdf9f0;
-      --paper: #fffdf8;
-      --ink: #1a202c;
-      --muted: #5c6470;
+      --paper: #ffffff;
+      --ink: #000000;
+      --muted: #1a202c;
       --whatsapp: #25d366;
     }
 
@@ -56,12 +57,12 @@
       border-radius: 8px;
       overflow: hidden;
       background: var(--paper);
-      border: 2px solid var(--primary);
+      border: 3px solid var(--primary-dark);
       page-break-inside: avoid;
     }
 
     .card-header {
-      background: var(--primary);
+      background: var(--primary-dark);
       color: #fff;
       text-align: center;
       padding: 0.055in 0.1in 0.05in;
@@ -69,11 +70,10 @@
     }
 
     .card-header .eyebrow {
-      font-size: 6pt;
-      font-weight: 600;
+      font-size: 6.5pt;
+      font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      opacity: 0.88;
       margin-bottom: 1px;
     }
 
@@ -98,8 +98,8 @@
     }
 
     .scan-label {
-      font-size: 6pt;
-      font-weight: 600;
+      font-size: 7pt;
+      font-weight: 700;
       color: var(--secondary-dark);
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -109,7 +109,7 @@
       background: #fff;
       border-radius: 8px;
       padding: 0.03in;
-      border: 2px solid var(--secondary);
+      border: 3px solid var(--secondary-dark);
       line-height: 0;
       flex-shrink: 0;
     }
@@ -126,26 +126,27 @@
 
     .url-block .site {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 9.5pt;
+      font-size: 9pt;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--primary-dark);
     }
 
     .url-block .path {
-      font-size: 7pt;
-      font-weight: 600;
-      color: var(--muted);
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: var(--ink);
     }
 
     .cta {
-      font-size: 6pt;
+      font-size: 7pt;
+      font-weight: 700;
       color: var(--ink);
-      line-height: 1.2;
+      line-height: 1.25;
       max-width: 2.4in;
     }
 
     .card-footer {
-      background: var(--secondary);
+      background: var(--secondary-dark);
       color: #fff;
       padding: 0.045in 0.1in 0.05in;
       flex-shrink: 0;
@@ -153,12 +154,11 @@
     }
 
     .footer-title {
-      font-size: 6pt;
-      font-weight: 600;
+      font-size: 6.5pt;
+      font-weight: 700;
       letter-spacing: 0.03em;
       text-transform: uppercase;
       margin-bottom: 2px;
-      opacity: 0.92;
     }
 
     .contact-row {
@@ -176,21 +176,21 @@
     }
 
     .contact-phone {
-      font-size: 8pt;
+      font-size: 8.5pt;
       font-weight: 700;
-      background: rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: transparent;
+      border: 2px solid #fff;
       border-radius: 999px;
       padding: 1px 8px;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.02em;
       white-space: nowrap;
     }
 
     .footer-note {
-      font-size: 5.5pt;
-      line-height: 1.2;
+      font-size: 6pt;
+      font-weight: 600;
+      line-height: 1.25;
       margin-top: 2px;
-      opacity: 0.9;
     }
 
     .screen-note {
@@ -206,8 +206,20 @@
     }
 
     @media print {
+      html,
+      body,
+      .sheet,
+      .card,
+      .card-header,
+      .card-footer,
+      .qr-wrap {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
       body {
         background: #fff;
+        color: #000;
       }
 
       .screen-note {
@@ -219,13 +231,43 @@
         height: 9.8in;
         margin: 0;
       }
+
+      .card {
+        border-color: #000;
+        background: #fff;
+      }
+
+      .card-header {
+        background: #4a2a1e !important;
+      }
+
+      .card-footer {
+        background: #1f3328 !important;
+      }
+
+      .qr-wrap {
+        border-color: #000;
+      }
+
+      .scan-label,
+      .url-block .site {
+        color: #000;
+      }
+
+      .url-block .site {
+        font-size: 8.5pt;
+      }
+
+      .contact-phone {
+        border-color: #fff;
+      }
     }
   </style>
 </head>
 <body>
 
   <p class="screen-note">
-    Print on letter paper (portrait). Turn on “Background graphics” in the print dialog if colors are missing. Cut along the gaps between cards. 6 identical cards per sheet.
+    Print on letter paper (portrait). Turn on <strong>Background graphics</strong> (required for colored headers). If the copy looks faint, raise <strong>Darkness</strong> or print quality to Best / 600 dpi. Cut along the gaps between cards. 6 identical cards per sheet.
   </p>
 
   <div class="sheet">
@@ -239,10 +281,10 @@
       <div class="card-body">
         <div class="scan-label">Scan with your phone</div>
         <div class="qr-wrap">
-          <img src="qrcode_myesolclass.com.png" width="96" height="96" alt="QR code for myesolclass.com" />
+          <img src="qrcode_myesolclass_vocab_level-1.png" width="96" height="96" alt="QR code for https://myesolclass.com/vocab/level-1" />
         </div>
         <div class="url-block">
-          <div class="site">myesolclass.com</div>
+          <div class="site">https://myesolclass.com</div>
           <div class="path">/vocab/level-1</div>
         </div>
         <p class="cta">Flashcards, word lists &amp; games.</p>
@@ -266,10 +308,10 @@
       <div class="card-body">
         <div class="scan-label">Scan with your phone</div>
         <div class="qr-wrap">
-          <img src="qrcode_myesolclass.com.png" width="96" height="96" alt="QR code for myesolclass.com" />
+          <img src="qrcode_myesolclass_vocab_level-1.png" width="96" height="96" alt="QR code for https://myesolclass.com/vocab/level-1" />
         </div>
         <div class="url-block">
-          <div class="site">myesolclass.com</div>
+          <div class="site">https://myesolclass.com</div>
           <div class="path">/vocab/level-1</div>
         </div>
         <p class="cta">Flashcards, word lists &amp; games.</p>
@@ -292,10 +334,10 @@
       <div class="card-body">
         <div class="scan-label">Scan with your phone</div>
         <div class="qr-wrap">
-          <img src="qrcode_myesolclass.com.png" width="96" height="96" alt="QR code for myesolclass.com" />
+          <img src="qrcode_myesolclass_vocab_level-1.png" width="96" height="96" alt="QR code for https://myesolclass.com/vocab/level-1" />
         </div>
         <div class="url-block">
-          <div class="site">myesolclass.com</div>
+          <div class="site">https://myesolclass.com</div>
           <div class="path">/vocab/level-1</div>
         </div>
         <p class="cta">Flashcards, word lists &amp; games.</p>
@@ -318,10 +360,10 @@
       <div class="card-body">
         <div class="scan-label">Scan with your phone</div>
         <div class="qr-wrap">
-          <img src="qrcode_myesolclass.com.png" width="96" height="96" alt="QR code for myesolclass.com" />
+          <img src="qrcode_myesolclass_vocab_level-1.png" width="96" height="96" alt="QR code for https://myesolclass.com/vocab/level-1" />
         </div>
         <div class="url-block">
-          <div class="site">myesolclass.com</div>
+          <div class="site">https://myesolclass.com</div>
           <div class="path">/vocab/level-1</div>
         </div>
         <p class="cta">Flashcards, word lists &amp; games.</p>
@@ -344,10 +386,10 @@
       <div class="card-body">
         <div class="scan-label">Scan with your phone</div>
         <div class="qr-wrap">
-          <img src="qrcode_myesolclass.com.png" width="96" height="96" alt="QR code for myesolclass.com" />
+          <img src="qrcode_myesolclass_vocab_level-1.png" width="96" height="96" alt="QR code for https://myesolclass.com/vocab/level-1" />
         </div>
         <div class="url-block">
-          <div class="site">myesolclass.com</div>
+          <div class="site">https://myesolclass.com</div>
           <div class="path">/vocab/level-1</div>
         </div>
         <p class="cta">Flashcards, word lists &amp; games.</p>
@@ -370,10 +412,10 @@
       <div class="card-body">
         <div class="scan-label">Scan with your phone</div>
         <div class="qr-wrap">
-          <img src="qrcode_myesolclass.com.png" width="96" height="96" alt="QR code for myesolclass.com" />
+          <img src="qrcode_myesolclass_vocab_level-1.png" width="96" height="96" alt="QR code for https://myesolclass.com/vocab/level-1" />
         </div>
         <div class="url-block">
-          <div class="site">myesolclass.com</div>
+          <div class="site">https://myesolclass.com</div>
           <div class="path">/vocab/level-1</div>
         </div>
         <p class="cta">Flashcards, word lists &amp; games.</p>

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Repeat, CheckCircle, ChevronRight, BookOpen, Star } from 'lucide-react';
 import Image from 'next/image';
 import { CelebrationAnimation } from '@/components/ui/CelebrationAnimation';
+import { CourseMapReturnButton } from '@/components/navigation/CourseMapReturnButton';
 import type { POSGroup, POSRoundResults } from '@/types/parts-of-speech';
 import { POS_UNLOCK_THRESHOLD, POS_MASTERY_THRESHOLD, POS_ROUND_LABELS, POS_COLORS, POS_LABELS } from '@/types/parts-of-speech';
 import { SpeakButton } from './SpeakButton';
@@ -16,9 +17,10 @@ interface ResultsScreenProps {
   onRetry: () => void;
   onContinue: () => void;
   onReturnToSelection: () => void;
+  courseMapPreset?: boolean;
 }
 
-export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, onReturnToSelection }: ResultsScreenProps) {
+export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, onReturnToSelection, courseMapPreset = false }: ResultsScreenProps) {
   const { accuracy, correctAnswers, exercisesCompleted, completed, pointsAwarded, streak, missedPatternIds } = results;
   const passed = completed;
 
@@ -186,7 +188,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
       </motion.div>
 
       {/* Round transition */}
-      {nextRoundLabel && (
+      {nextRoundLabel && !courseMapPreset && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -285,7 +287,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
         transition={{ delay: 0.45 }}
         className="space-y-3 pt-4 border-t border-border"
       >
-        {passed && nextGroup && !nextRoundLabel && (
+        {passed && nextGroup && !nextRoundLabel && !courseMapPreset && (
           <p className="text-center text-primary font-semibold">You&apos;re on a roll! One more?</p>
         )}
 
@@ -299,29 +301,35 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
             <Repeat size={18} />
             {passed ? 'Play Again' : 'Try Again'}
           </motion.button>
-          <motion.button
-            onClick={onContinue}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-primary-dark shadow-lg shadow-primary/20 transition-all"
-          >
-            {continueLabel}
-            <ChevronRight size={20} />
-          </motion.button>
+          {courseMapPreset ? (
+            <CourseMapReturnButton className="flex-1" />
+          ) : (
+            <motion.button
+              onClick={onContinue}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-primary-dark shadow-lg shadow-primary/20 transition-all"
+            >
+              {continueLabel}
+              <ChevronRight size={20} />
+            </motion.button>
+          )}
         </div>
 
-        <motion.button
-          onClick={onReturnToSelection}
-          whileHover={{ scale: 1.01 }}
-          whileTap={{ scale: 0.98 }}
-          className="w-full flex flex-col items-center justify-center gap-0.5 px-6 py-3 rounded-2xl border-2 border-dashed border-text-muted/20 text-text-muted hover:text-text hover:border-text-muted/40 transition-all font-medium"
-        >
-          <span className="flex items-center gap-2">
-            <BookOpen size={18} />
-            Return to Game
-          </span>
-          <span className="text-xs opacity-70">Back to group selection</span>
-        </motion.button>
+        {!courseMapPreset && (
+          <motion.button
+            onClick={onReturnToSelection}
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full flex flex-col items-center justify-center gap-0.5 px-6 py-3 rounded-2xl border-2 border-dashed border-text-muted/20 text-text-muted hover:text-text hover:border-text-muted/40 transition-all font-medium"
+          >
+            <span className="flex items-center gap-2">
+              <BookOpen size={18} />
+              Return to Game
+            </span>
+            <span className="text-xs opacity-70">Back to group selection</span>
+          </motion.button>
+        )}
       </motion.div>
     </div>
   );
