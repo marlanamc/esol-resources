@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { AlertCircle, ArrowLeft } from 'lucide-react';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { useRouter } from 'next/navigation';
+import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
 import { VERB_GROUPS } from '@/data/irregular-verbs-groups';
 import {
   ALL_PATTERNS_GROUP,
@@ -23,6 +24,7 @@ interface IrregularVerbsGameProps {
 
 export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
   const router = useRouter();
+  const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/dashboard' });
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
   const { preferences } = useVerbPreferences();
@@ -138,7 +140,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
         {state.phase === 'selection' && (
           <div className="px-3 sm:px-0 pb-2">
             <button
-              onClick={() => router.back()}
+              onClick={() => router.push(returnHref)}
               aria-label="Go back"
               className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text hover:border-border-dark dark:hover:border-white/20 transition-colors"
             >

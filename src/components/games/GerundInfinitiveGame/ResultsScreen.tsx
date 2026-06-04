@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Trophy, Repeat, CheckCircle, ChevronRight, Award, BookOpen } from 'lucide-react';
+import { Trophy, Repeat, CheckCircle, ChevronRight, Award, BookOpen, ArrowLeft } from 'lucide-react';
+import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import { CelebrationAnimation } from '@/components/ui/CelebrationAnimation';
 import { GI_FINAL_GROUP_ID, GI_REVIEW_GROUP_ID } from '@/data/gerund-infinitive-groups';
 import { REVIEW_UNLOCK_COUNT } from '@/lib/gerund-infinitive-progress';
@@ -16,6 +17,7 @@ interface ResultsScreenProps {
   completedGroupsCount?: number;
   onRetry: () => void;
   onContinue: () => void;
+  onReturnToSelection: () => void;
 }
 
 const ACHIEVEMENT_LABELS: Record<string, { emoji: string; label: string }> = {
@@ -26,12 +28,12 @@ const ACHIEVEMENT_LABELS: Record<string, { emoji: string; label: string }> = {
   'grammar-guru': { emoji: '🎓', label: 'Grammar Guru' },
 };
 
-export function ResultsScreen({ group, results, nextGroup, completedGroupsCount = 0, onRetry, onContinue }: ResultsScreenProps) {
+export function ResultsScreen({ group, results, nextGroup, completedGroupsCount = 0, onRetry, onContinue, onReturnToSelection }: ResultsScreenProps) {
   const { accuracy, correctAnswers, exercisesCompleted, completed, pointsAwarded, streak, newAchievements, missedPatternIds } = results;
   const passed = completed;
   const isFinal = group.id === GI_FINAL_GROUP_ID;
-  const returnHref = '/activity/gerund-infinitive-game';
   const isReview = group.id === GI_REVIEW_GROUP_ID;
+  const countdown = useMapReturnCountdown({ active: true });
   const mastered = results.masteryAchieved;
 
   const accuracyColor = accuracy >= 90 ? 'text-secondary' : accuracy >= GI_UNLOCK_THRESHOLD ? 'text-primary' : 'text-error';
@@ -258,13 +260,23 @@ export function ResultsScreen({ group, results, nextGroup, completedGroupsCount 
             You&apos;re on a roll! One more?
           </motion.p>
         )}
+        {countdown.isActive && (
+          <button
+            onClick={countdown.goNow}
+            className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-[var(--tone-vocab-chip-bg,#eef3ee)] border border-[var(--tone-vocab-accent,#6a8d73)]/30 text-[var(--tone-vocab-accent,#6a8d73)] font-semibold hover:bg-[var(--tone-vocab-accent,#6a8d73)]/15 transition-all"
+          >
+            <ArrowLeft size={18} />
+            Back to Course Map
+          </button>
+        )}
+
         {/* Primary action row */}
         <div className="flex flex-col gap-3">
           {/* Failure: Try Again + Continue */}
           {!passed && (
             <div className="flex flex-col sm:flex-row gap-3">
               <motion.button
-                onClick={onRetry}
+                onClick={() => { countdown.cancel(); onRetry(); }}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl border-2 border-border bg-white dark:bg-[#162b3d] text-text font-semibold hover:border-primary/40 hover:shadow-md transition-all"
@@ -273,7 +285,7 @@ export function ResultsScreen({ group, results, nextGroup, completedGroupsCount 
                 Try Again
               </motion.button>
               <motion.button
-                onClick={onContinue}
+                onClick={() => { countdown.cancel(); onContinue(); }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-primary-dark shadow-lg shadow-primary/20 transition-all"
@@ -288,7 +300,7 @@ export function ResultsScreen({ group, results, nextGroup, completedGroupsCount 
           {passed && (
             <div className="flex flex-col sm:flex-row gap-3">
               <motion.button
-                onClick={onRetry}
+                onClick={() => { countdown.cancel(); onRetry(); }}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl border-2 border-border bg-white dark:bg-[#162b3d] text-text font-semibold hover:border-primary/40 hover:shadow-md transition-all"
@@ -297,7 +309,7 @@ export function ResultsScreen({ group, results, nextGroup, completedGroupsCount 
                 Play Again
               </motion.button>
               <motion.button
-                onClick={onContinue}
+                onClick={() => { countdown.cancel(); onContinue(); }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-primary-dark shadow-lg shadow-primary/20 transition-all"
@@ -309,9 +321,23 @@ export function ResultsScreen({ group, results, nextGroup, completedGroupsCount 
           )}
         </div>
 
+        {countdown.isActive && (
+          <div>
+            <div className="mb-1.5 text-center text-xs text-text-muted">
+              Returning to course map in {countdown.secondsLeft}s…
+            </div>
+            <div className="h-1 w-full overflow-hidden rounded-full bg-border/30">
+              <div
+                className="h-full rounded-full bg-[var(--tone-vocab-accent,#6a8d73)] transition-all duration-1000 ease-linear"
+                style={{ width: `${(countdown.secondsLeft / 5) * 100}%` }}
+              />
+            </div>
+          </div>
+        )}
+
         {/* Secondary action - Return to game homepage (group selection) */}
         <motion.button
-          onClick={() => window.location.href = returnHref}
+          onClick={() => { countdown.cancel(); onReturnToSelection(); }}
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
           className="w-full flex flex-col items-center justify-center gap-0.5 px-6 py-3 rounded-2xl border-2 border-dashed border-text-muted/20 text-text-muted hover:text-text hover:border-text-muted/40 transition-all font-medium"

@@ -198,6 +198,49 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         );
     }
 
+    // Full-screen layout for comparison battle game
+    if (isComparisonBattleGame) {
+        return (
+            <div className="fixed inset-0 bg-bg flex flex-col overflow-hidden">
+                {studentReliabilityOverlays}
+                <header className={standardHeaderClassName}>
+                    <div className="relative py-4 px-4 sm:px-6 lg:px-8">
+                        <div className="flex flex-col gap-2 sm:hidden">
+                            <div className="flex items-center justify-between gap-2">
+                                <div className="flex items-center gap-2">
+                                    <LearnerMenu mode="quiet" />
+                                    <ContextualBackButton className="flex-shrink-0" aria-label="Return to previous page" />
+                                </div>
+                                {shouldShowHeaderProgressBadge && (
+                                    <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                                )}
+                            </div>
+                            <h1 className={`text-base font-bold line-clamp-2 leading-snug ${standardTitleClassName}`}>{activity.title}</h1>
+                        </div>
+                        <div className="hidden sm:flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <LearnerMenu mode="quiet" />
+                                <ContextualBackButton aria-label="Return to previous page" />
+                            </div>
+                            <h1 className={`absolute left-1/2 -translate-x-1/2 text-2xl font-bold ${standardTitleClassName}`}>{activity.title}</h1>
+                            {shouldShowHeaderProgressBadge && (
+                                <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                            )}
+                        </div>
+                    </div>
+                </header>
+                <div className="flex-1 overflow-y-auto">
+                    <ActivityRenderer
+                        activity={activityForRender}
+                        assignmentId={assignmentId}
+                        existingSubmission={submission}
+                        userRole={userRole}
+                    />
+                </div>
+            </div>
+        );
+    }
+
     // Standard layout for other activities
     return (
         <div className={standardPageClassName}>

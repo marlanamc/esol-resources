@@ -13,10 +13,12 @@ import {
   Zap,
   Target,
   Coins,
-  Loader2
+  Loader2,
+  ArrowLeft
 } from 'lucide-react';
 import { saveActivityProgress } from '@/lib/activityProgress';
 import { PointsToast } from '@/components/ui/PointsToast';
+import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import { logger } from '@/lib/logger';
 
 interface VerbData {
@@ -82,6 +84,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
     selectedForms: [],
     round: 1
   });
+  const countdown = useMapReturnCountdown({ active: state.phase === 'results' });
 
   const startGame = useCallback(async () => {
     setState(prev => ({ ...prev, phase: 'loading' }));
@@ -553,25 +556,44 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
               </div>
             </div>
 
+            {countdown.isActive && (
+              <button
+                onClick={countdown.goNow}
+                className="mb-3 w-full rounded-2xl bg-[var(--tone-vocab-chip-bg,#eef3ee)] border border-[var(--tone-vocab-accent,#6a8d73)]/30 py-3.5 font-bold text-[var(--tone-vocab-accent,#6a8d73)] transition-all hover:bg-[var(--tone-vocab-accent,#6a8d73)]/15 flex items-center justify-center gap-2"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Course Map
+              </button>
+            )}
             <div className="flex flex-col sm:flex-row gap-4">
-              <button 
-                onClick={() => setState(prev => ({ ...prev, phase: 'settings', round: 1 }))}
+              <button
+                onClick={() => { countdown.cancel(); setState(prev => ({ ...prev, phase: 'settings', round: 1 })); }}
                 className="flex-1 border-2 border-sage/20 text-neutral-600 py-4 rounded-2xl font-bold hover:bg-sage/5 transition-all flex items-center justify-center gap-2"
               >
                 <Settings2 className="w-5 h-5" />
                 Change Settings
               </button>
-              <button 
-                onClick={() => {
-                  setState(prev => ({ ...prev, round: prev.round + 1 }));
-                  startGame();
-                }}
+              <button
+                onClick={() => { countdown.cancel(); setState(prev => ({ ...prev, round: prev.round + 1 })); startGame(); }}
                 className="flex-1 bg-terracotta text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
               >
                 <RotateCcw className="w-5 h-5" />
                 Start Round {state.round + 1}
               </button>
             </div>
+            {countdown.isActive && (
+              <div className="mt-4">
+                <div className="mb-1.5 text-center text-xs text-text-muted">
+                  Returning to course map in {countdown.secondsLeft}s…
+                </div>
+                <div className="h-1 w-full overflow-hidden rounded-full bg-border/30">
+                  <div
+                    className="h-full rounded-full bg-[var(--tone-vocab-accent,#6a8d73)] transition-all duration-1000 ease-linear"
+                    style={{ width: `${(countdown.secondsLeft / 5) * 100}%` }}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>

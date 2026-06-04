@@ -57,11 +57,20 @@ function parseArgs(): { force: boolean; onlyTerm?: string; dryRun: boolean } {
   return { force, onlyTerm, dryRun };
 }
 
+// Words where the bare term is ambiguous — use a short phrase to guide TTS pronunciation.
+const PRONUNCIATION_OVERRIDES: Record<string, string> = {
+  record: "to record something",
+};
+
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 function sanitizeFilename(term: string): string {
   return term.trim().replace(/[/\\:?*"<>|]/g, "-");
+}
+
+function ttsText(term: string): string {
+  return PRONUNCIATION_OVERRIDES[term.toLowerCase()] ?? term;
 }
 
 function sleep(ms: number): Promise<void> {
@@ -205,7 +214,7 @@ async function main() {
       continue;
     }
 
-    const ok = await generateAudio(term, outputPath, voiceId);
+    const ok = await generateAudio(ttsText(term), outputPath, voiceId);
     if (ok) {
       console.log(`     ✅  Saved: ${filename}.mp3`);
       generated++;

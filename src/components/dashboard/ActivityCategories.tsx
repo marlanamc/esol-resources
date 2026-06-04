@@ -65,6 +65,22 @@ function isReleasedActivityContent(content?: string): boolean {
     return getLearnerContentMetadata(content).releasedInContent;
 }
 
+function isCourseMapPresetGame(activity: Activity): boolean {
+    if (activity.type !== 'game' || !activity.content) return false;
+
+    try {
+        const parsed = JSON.parse(activity.content) as unknown;
+        return (
+            !!parsed &&
+            typeof parsed === 'object' &&
+            !Array.isArray(parsed) &&
+            (parsed as { courseMapPreset?: unknown }).courseMapPreset === true
+        );
+    } catch {
+        return false;
+    }
+}
+
 const extractVocabTermsFromPlainTextContent = (content: string): string[] => {
     const lines = content.split(/\r?\n/);
     const terms: string[] = [];
@@ -1805,6 +1821,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 
             if (
                 activity.type === 'game' &&
+                !isCourseMapPresetGame(activity) &&
                 !isVocab &&
                 (
                     activity.id === 'numbers-game' ||

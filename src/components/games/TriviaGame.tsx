@@ -24,6 +24,7 @@ import type {
 } from "@/types/activity";
 import { fetchActivityProgress, saveActivityProgress } from "@/lib/activityProgress";
 import { PointsToast } from "@/components/ui/PointsToast";
+import { useMapReturnCountdown } from "@/hooks/useMapReturnCountdown";
 
 /**
  * Group Trivia — a teacher-led, round-based presenter.
@@ -81,6 +82,7 @@ export default function TriviaGame({ activityId, content }: Props) {
     const [revealedCount, setRevealedCount] = useState(0);
     const [phase, setPhase] = useState<"idle" | "running" | "paused" | "done">("idle");
     const [secondsLeft, setSecondsLeft] = useState(roundSeconds);
+    const mapCountdown = useMapReturnCountdown({ active: phase === "done" });
     const [printMode, setPrintMode] = useState(false);
     const [showRecap, setShowRecap] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
@@ -415,16 +417,28 @@ export default function TriviaGame({ activityId, content }: Props) {
                             </button>
                         )}
                         {phase === "done" && (
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    resetRound();
-                                    startRound();
-                                }}
-                                className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 dark:border-white/15 bg-white dark:bg-[#2a1f1a] hover:bg-amber-50 dark:hover:bg-[#3a2820] text-gray-800 dark:text-gray-100 font-semibold px-3.5 py-2 text-sm transition-all"
-                            >
-                                <Play size={14} /> Restart
-                            </button>
+                            <>
+                                {mapCountdown.isActive && (
+                                    <button
+                                        type="button"
+                                        onClick={mapCountdown.goNow}
+                                        className="inline-flex items-center gap-1.5 rounded-full bg-[var(--tone-vocab-chip-bg,#eef3ee)] border border-[var(--tone-vocab-accent,#6a8d73)]/30 text-[var(--tone-vocab-accent,#6a8d73)] font-semibold px-3.5 py-2 text-sm transition-all hover:bg-[var(--tone-vocab-accent,#6a8d73)]/15"
+                                    >
+                                        <ChevronLeft size={14} /> Course Map
+                                    </button>
+                                )}
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        mapCountdown.cancel();
+                                        resetRound();
+                                        startRound();
+                                    }}
+                                    className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 dark:border-white/15 bg-white dark:bg-[#2a1f1a] hover:bg-amber-50 dark:hover:bg-[#3a2820] text-gray-800 dark:text-gray-100 font-semibold px-3.5 py-2 text-sm transition-all"
+                                >
+                                    <Play size={14} /> Restart
+                                </button>
+                            </>
                         )}
 
                         <button

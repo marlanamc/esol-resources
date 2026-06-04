@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, RotateCcw, Sparkles, Trophy, X } from "lucide-react";
 import { fetchActivityProgress, saveActivityProgress } from "@/lib/activityProgress";
+import { CourseMapReturnButton } from "@/components/navigation/CourseMapReturnButton";
 import { PointsToast } from "@/components/ui/PointsToast";
+import { useMapReturnCountdown } from "@/hooks/useMapReturnCountdown";
 
 const COLORS = {
     blue: "#1a6fcd",
@@ -289,6 +291,20 @@ const WRITING_PROMPTS = [
 type Screen = "welcome" | "lesson" | "short" | "long" | "irregular" | "practice" | "errors" | "speed" | "writing" | "final";
 type WritingResult = { correct: boolean; feedback: string; correction?: string; rule?: string };
 
+const SCORABLE_COUNT =
+    PRACTICE_QUESTIONS.length + ERROR_QUESTIONS.length + SPEED_QUESTIONS.length + WRITING_PROMPTS.length;
+
+const SCREEN_PROGRESS: Partial<Record<Screen, number>> = {
+    lesson: 12,
+    short: 25,
+    long: 38,
+    irregular: 50,
+    practice: 62,
+    errors: 75,
+    speed: 88,
+    writing: 95,
+};
+
 interface Props {
     activityId?: string;
     assignmentId?: string | null;
@@ -515,11 +531,13 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
     const [pointsAwarded, setPointsAwarded] = useState<number | null>(null);
     const [showToast, setShowToast] = useState(false);
     const completedRef = useRef(false);
+    const progressSaveRef = useRef<string | null>(null);
     const playSound = useGameSound();
-    const isStandalone = variant === "standalone";
+    const mapReturn = useMapReturnCountdown({ active: screen === "final" });
 
     const screens: Screen[] = useMemo(() => ["lesson", "short", "long", "irregular", "practice", "errors", "speed", "writing"], []);
     const screenIndex = screens.indexOf(screen);
+    const accuracy = SCORABLE_COUNT > 0 ? Math.round((score / SCORABLE_COUNT) * 100) : 0;
 
     const awardPoint = useCallback(
         (correct: boolean) => {
@@ -544,13 +562,32 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
     }, [screen, speedChoice, speedDone, speedTime, playSound]);
 
     useEffect(() => {
+        if (screen === "welcome" || screen === "final") return;
+        const progress = SCREEN_PROGRESS[screen];
+        if (progress === undefined) return;
+
+        const saveKey = `${screen}:${progress}`;
+        if (progressSaveRef.current === saveKey) return;
+        progressSaveRef.current = saveKey;
+
+        void saveActivityProgress(activityId, progress, "in_progress", undefined, undefined, assignmentId);
+    }, [activityId, assignmentId, screen]);
+
+    useEffect(() => {
         if (screen !== "final" || completedRef.current) return;
         completedRef.current = true;
         playSound("complete");
         void (async () => {
             const existing = await fetchActivityProgress(activityId, assignmentId);
             if (existing && (existing.status === "completed" || existing.progress >= 100)) return;
-            const result = await saveActivityProgress(activityId, 100, "completed", undefined, undefined, assignmentId);
+            const result = await saveActivityProgress(
+                activityId,
+                100,
+                "completed",
+                accuracy,
+                undefined,
+                assignmentId
+            );
             if (result?.ok) {
                 const awarded = result.pointsAwarded ?? 0;
                 if (awarded > 0) {
@@ -559,7 +596,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                 }
             }
         })();
-    }, [activityId, assignmentId, playSound, screen]);
+    }, [accuracy, activityId, assignmentId, playSound, screen]);
 
     const goTo = (next: Screen) => {
         setScreen(next);
@@ -567,7 +604,9 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
     };
 
     const restart = () => {
+        mapReturn.cancel();
         completedRef.current = false;
+        progressSaveRef.current = null;
         setScreen("welcome");
         setScore(0);
         setLessonStep(0);
@@ -583,50 +622,41 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
         setWritingIndex(0);
         setWritingInput("");
         setWritingResult(null);
+        setPointsAwarded(null);
+        setShowToast(false);
     };
 
-    const topBar =
-        screen === "welcome" ? null : (
-            <div className={`${isStandalone ? "sticky top-0 z-20 border-b-2" : "border-y sm:rounded-2xl sm:border-2"} border-slate-200 bg-white px-4 py-3`}>
-                <div className="mx-auto flex max-w-2xl items-center justify-between gap-3">
-                    <div className="font-black" style={{ color: COLORS.blue }}>
-                        {isStandalone ? "⚔️ Comparison Battle" : "Game progress"}
-                    </div>
-                    <div className="rounded-full px-3 py-1 text-sm font-black" style={{ backgroundColor: COLORS.yellowBg, color: COLORS.yellow }}>
-                        ⭐ {score} pts
-                    </div>
-                </div>
-            </div>
-        );
-
     return (
-        <div className={`${isStandalone ? "min-h-screen" : "min-h-[calc(100svh-8.5rem)] sm:min-h-[640px] sm:rounded-3xl sm:border sm:border-slate-200"} bg-[#f3f8ff] text-slate-900`}>
-            <div className={isStandalone ? "" : "mx-auto max-w-3xl p-0 sm:p-5"}>
-                {topBar}
-            </div>
-            <main className={`mx-auto max-w-2xl ${isStandalone ? "px-4 py-5 pb-24" : "px-3 pb-24 pt-4 sm:px-5 sm:pt-0"}`}>
+        <div className="game-light-mode min-h-full bg-[#f3f8ff]">
+            <main className="mx-auto max-w-2xl px-4 py-4 pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] sm:px-5 sm:py-5 sm:pb-24">
                 {screen === "welcome" ? (
-                    <section className={`flex flex-col items-center justify-center text-center ${isStandalone ? "min-h-[calc(100vh-3rem)]" : "min-h-[560px] py-8"}`}>
-                        <div className="text-7xl">⚔️</div>
-                        <h1 className="mt-3 text-5xl font-black leading-tight" style={{ color: COLORS.blue }}>
+                    <section className="flex flex-col items-center justify-center py-4 text-center sm:min-h-[calc(100svh-6rem)] sm:py-8">
+                        <div className="text-6xl sm:text-7xl">⚔️</div>
+                        <h1 className="mt-3 text-3xl font-black leading-tight sm:text-5xl" style={{ color: COLORS.blue }}>
                             Comparison Battle
                         </h1>
-                        <p className="mt-2 text-xl font-black" style={{ color: COLORS.green }}>
+                        <p className="mt-2 text-lg font-black sm:text-xl" style={{ color: COLORS.green }}>
                             Comparative vs. Superlative
                         </p>
-                        <div className="my-8 flex flex-wrap justify-center gap-4">
+                        <div className="mt-4 rounded-2xl border-2 border-yellow-300 bg-yellow-50 px-4 py-3 shadow-sm sm:mt-5 sm:px-6 sm:py-4">
+                            <p className="text-xs font-black uppercase tracking-widest text-yellow-600">✨ Game Designers ✨</p>
+                            <p className="mt-1 text-base font-black text-slate-800 sm:text-lg">
+                                Edwar · Karina · Evelyn · Hazel
+                            </p>
+                        </div>
+                        <div className="my-6 flex flex-wrap justify-center gap-3 sm:my-8 sm:gap-4">
                             {[
                                 ["🐘", "bigger"],
                                 ["🐕", "smaller"],
                                 ["🐭", "smallest"],
                             ].map(([emoji, label]) => (
-                                <div key={label} className="rounded-2xl border-2 bg-white px-5 py-4 shadow-sm" style={{ borderColor: label === "smaller" ? "#94a3b8" : COLORS.blue }}>
-                                    <div className="text-5xl">{emoji}</div>
-                                    <div className="mt-2 text-sm font-black text-slate-600">{label}</div>
+                                <div key={label} className="rounded-2xl border-2 bg-white px-4 py-3 shadow-sm sm:px-5 sm:py-4" style={{ borderColor: label === "smaller" ? "#94a3b8" : COLORS.blue }}>
+                                    <div className="text-4xl sm:text-5xl">{emoji}</div>
+                                    <div className="mt-1.5 text-sm font-black text-slate-600 sm:mt-2">{label}</div>
                                 </div>
                             ))}
                         </div>
-                        <PrimaryButton onClick={() => goTo("lesson")} className="w-full max-w-sm text-xl">
+                        <PrimaryButton onClick={() => goTo("lesson")} className="w-full max-w-sm text-lg sm:text-xl">
                             <Sparkles size={20} /> Start Playing
                         </PrimaryButton>
                     </section>
@@ -696,7 +726,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                                         </span>
                                     ))}
                                 </div>
-                                <div className="grid grid-cols-3 gap-2 text-center">
+                                <div className="grid grid-cols-1 gap-2 text-center min-[420px]:grid-cols-3">
                                     <div className="rounded-xl bg-slate-100 p-3">
                                         <div className="text-xs font-bold uppercase text-slate-500">adjective</div>
                                         <div className="font-black">{word.adj}</div>
@@ -834,9 +864,17 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                         </p>
                         <Card>
                             <div className="text-5xl font-black" style={{ color: COLORS.blue }}>
-                                {score}
+                                {score}/{SCORABLE_COUNT}
                             </div>
-                            <p className="font-bold text-slate-500">game points</p>
+                            <p className="font-bold text-slate-500">correct answers</p>
+                            <p className="mt-2 text-sm font-black" style={{ color: accuracy >= 70 ? COLORS.green : COLORS.yellow }}>
+                                {accuracy}% accuracy
+                            </p>
+                            {pointsAwarded && pointsAwarded > 0 ? (
+                                <p className="mt-3 rounded-xl px-3 py-2 text-sm font-bold" style={{ backgroundColor: COLORS.yellowBg, color: COLORS.yellow }}>
+                                    +{pointsAwarded} Class Companion points
+                                </p>
+                            ) : null}
                         </Card>
                         <div className="grid gap-3 sm:grid-cols-2">
                             <Card color={COLORS.blue} bg={COLORS.blueBg}>
@@ -854,27 +892,55 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                                 <p className="text-sm font-semibold text-slate-700">a group: the -est, the most</p>
                             </Card>
                         </div>
-                        <PrimaryButton onClick={restart} className="w-full">
-                            <RotateCcw size={18} /> Play Again
-                        </PrimaryButton>
+                        {mapReturn.isActive ? (
+                            <p className="text-sm font-semibold text-slate-600">
+                                Returning to course map in {mapReturn.secondsLeft}s…{" "}
+                                <button type="button" onClick={mapReturn.goNow} className="font-black underline" style={{ color: COLORS.blue }}>
+                                    Go now
+                                </button>
+                            </p>
+                        ) : null}
+                        <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
+                            {mapReturn.isActive ? <CourseMapReturnButton className="w-full sm:w-auto" /> : null}
+                            <PrimaryButton onClick={restart} className="w-full sm:w-auto">
+                                <RotateCcw size={18} /> Play Again
+                            </PrimaryButton>
+                        </div>
                     </section>
                 ) : null}
             </main>
 
             {screenIndex >= 0 ? (
-                <nav className="fixed bottom-0 left-1/2 z-30 flex w-full max-w-2xl -translate-x-1/2 justify-around border-t-2 border-slate-200 bg-white px-2 py-2">
-                    {screens.map((item, index) => (
-                        <button
-                            key={item}
-                            type="button"
-                            onClick={() => goTo(item)}
-                            className="h-11 min-w-10 rounded-xl px-2 text-lg font-black transition"
-                            style={{ backgroundColor: item === screen ? COLORS.blueBg : "transparent", color: item === screen ? COLORS.blue : "#64748b" }}
-                            aria-label={`Go to step ${index + 1}`}
-                        >
-                            {["📚", "📖", "📖", "⚠️", "🎯", "🔧", "⚡", "🌍"][index]}
-                        </button>
-                    ))}
+                <nav
+                    className="fixed inset-x-0 bottom-0 z-30 border-t-2 border-slate-200 bg-white px-1 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] sm:left-1/2 sm:max-w-2xl sm:-translate-x-1/2 sm:px-2"
+                    aria-label="Game sections"
+                >
+                    <div className="mx-auto flex max-w-2xl items-center gap-1">
+                        <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto [scrollbar-width:none] sm:justify-around sm:overflow-visible [&::-webkit-scrollbar]:hidden">
+                            {screens.map((item, index) => (
+                                <button
+                                    key={item}
+                                    type="button"
+                                    onClick={() => goTo(item)}
+                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-base font-black transition sm:h-11 sm:min-w-10 sm:px-2 sm:text-lg"
+                                    style={{ backgroundColor: item === screen ? COLORS.blueBg : "transparent", color: item === screen ? COLORS.blue : "#64748b" }}
+                                    aria-label={`Go to step ${index + 1}`}
+                                    aria-current={item === screen ? "step" : undefined}
+                                >
+                                    {["📚", "📖", "📖", "⚠️", "🎯", "🔧", "⚡", "🌍"][index]}
+                                </button>
+                            ))}
+                        </div>
+                        {score > 0 ? (
+                            <div
+                                className="shrink-0 rounded-full px-2 py-1 text-[11px] font-black sm:px-2.5 sm:text-xs"
+                                style={{ backgroundColor: COLORS.yellowBg, color: COLORS.yellow }}
+                                aria-label={`${score} correct answers so far`}
+                            >
+                                ⭐ {score}
+                            </div>
+                        ) : null}
+                    </div>
                 </nav>
             ) : null}
 
@@ -900,9 +966,9 @@ function QuestionScreen({
 }) {
     return (
         <section className="space-y-4">
-            <div className="flex items-center justify-between gap-3">
-                <h2 className="text-xl font-black">{question.title}</h2>
-                <div className="rounded-full px-3 py-1 text-sm font-black" style={{ backgroundColor: COLORS.blueBg, color: COLORS.blue }}>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <h2 className="text-base font-black sm:text-xl">{question.title}</h2>
+                <div className="self-start rounded-full px-3 py-1 text-sm font-black sm:self-auto" style={{ backgroundColor: COLORS.blueBg, color: COLORS.blue }}>
                     {index + 1}/{total}
                 </div>
             </div>
@@ -918,7 +984,7 @@ function QuestionScreen({
                         </div>
                     ))}
                 </div>
-                <p className="text-lg font-black">{question.question}</p>
+                <p className="text-base font-black sm:text-lg">{question.question}</p>
             </Card>
             <div className="space-y-3">
                 {question.options.map((option, optionIndex) => {
@@ -931,7 +997,7 @@ function QuestionScreen({
                             type="button"
                             disabled={choice !== null}
                             onClick={() => onChoose(optionIndex)}
-                            className="flex w-full items-center justify-between gap-3 rounded-2xl border-2 bg-white p-4 text-left text-base font-bold transition"
+                            className="flex w-full items-center justify-between gap-3 rounded-2xl border-2 bg-white p-3.5 text-left text-sm font-bold leading-snug transition sm:p-4 sm:text-base"
                             style={{
                                 borderColor: correct ? COLORS.green : wrong ? COLORS.red : "#cbd5e1",
                                 backgroundColor: correct ? COLORS.greenBg : wrong ? COLORS.redBg : "#fff",
@@ -1099,14 +1165,14 @@ function SpeedScreen({
 
     return (
         <section className="space-y-4">
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                    <h2 className="text-xl font-black">Speed Round</h2>
-                    <p className="text-sm font-black" style={{ color: COLORS.blue }}>
+                    <h2 className="text-base font-black sm:text-xl">Speed Round</h2>
+                    <p className="text-sm font-black sm:text-base" style={{ color: COLORS.blue }}>
                         {question.round}
                     </p>
                 </div>
-                <div className="rounded-full px-3 py-1 text-sm font-black" style={{ backgroundColor: COLORS.blueBg, color: COLORS.blue }}>
+                <div className="self-start rounded-full px-3 py-1 text-sm font-black sm:self-auto" style={{ backgroundColor: COLORS.blueBg, color: COLORS.blue }}>
                     {index + 1}/{total}
                 </div>
             </div>
@@ -1117,7 +1183,7 @@ function SpeedScreen({
                 {timedOut ? "Time!" : `${time}s`}
             </div>
             <Card>
-                <p className="text-xl font-black leading-relaxed">{question.q}</p>
+                <p className="text-lg font-black leading-relaxed sm:text-xl">{question.q}</p>
             </Card>
             <div className="space-y-3">
                 {question.options.map((option) => {
@@ -1129,7 +1195,7 @@ function SpeedScreen({
                             type="button"
                             disabled={answered}
                             onClick={() => onChoose(option)}
-                            className="flex w-full items-center justify-between gap-3 rounded-2xl border-2 bg-white p-4 text-left text-lg font-bold"
+                            className="flex w-full items-center justify-between gap-3 rounded-2xl border-2 bg-white p-3.5 text-left text-sm font-bold leading-snug sm:p-4 sm:text-lg"
                             style={{
                                 borderColor: correct ? COLORS.green : wrong ? COLORS.red : "#cbd5e1",
                                 backgroundColor: correct ? COLORS.greenBg : wrong ? COLORS.redBg : "#fff",

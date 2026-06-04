@@ -6,6 +6,7 @@ import { AlertCircle, ArrowLeft } from 'lucide-react';
 import { ErrorToast } from '@/components/ui/ErrorToast';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { useRouter } from 'next/navigation';
+import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
 import {
   GI_GROUPS,
 } from '@/data/gerund-infinitive-groups';
@@ -27,6 +28,7 @@ interface GerundInfinitiveGameProps {
 
 export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) {
   const router = useRouter();
+  const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/dashboard' });
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
   const {
@@ -156,7 +158,7 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
         {state.phase === 'selection' && (
           <div className="px-3 sm:px-0 pb-2">
             <button
-              onClick={() => router.back()}
+              onClick={() => router.push(returnHref)}
               aria-label="Go back"
               className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text transition-colors"
             >
@@ -274,6 +276,7 @@ export function GerundInfinitiveGame({ activityId }: GerundInfinitiveGameProps) 
                   : 0}
                 onRetry={retryGroup}
                 onContinue={continueToNext}
+                onReturnToSelection={quitGame}
               />
             </motion.div>
           )}

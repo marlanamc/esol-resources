@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { saveActivityProgress, fetchActivityProgress, type FetchedActivityProgress } from '@/lib/activityProgress';
 import { PointsToast } from '@/components/ui/PointsToast';
+import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import {
   type MinimalPairContrastId,
   type MinimalPairDifficulty,
@@ -85,6 +86,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
 
   const [isAudioSupported, setIsAudioSupported] = useState(true);
   const autoStartedRef = useRef(false);
+  const countdown = useMapReturnCountdown({ active: state.phase === 'results' });
 
   useEffect(() => {
     setIsAudioSupported('speechSynthesis' in window);
@@ -443,21 +445,43 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
               </div>
             </div>
 
+            {countdown.isActive && (
+              <button
+                onClick={countdown.goNow}
+                className="mb-3 w-full rounded-2xl bg-[var(--tone-vocab-chip-bg,#eef3ee)] border border-[var(--tone-vocab-accent,#6a8d73)]/30 py-3.5 font-bold text-[var(--tone-vocab-accent,#6a8d73)] transition-all hover:bg-[var(--tone-vocab-accent,#6a8d73)]/15 flex items-center justify-center gap-2"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Course Map
+              </button>
+            )}
             <div className="flex flex-col sm:flex-row gap-4">
               <button
-                onClick={resetToMenu}
+                onClick={() => { countdown.cancel(); resetToMenu(); }}
                 className="flex-1 rounded-2xl border-2 border-border/40 py-4 font-bold text-text transition-all hover:bg-white/5"
               >
                 Change Settings
               </button>
               <button
-                onClick={startGame}
+                onClick={() => { countdown.cancel(); startGame(); }}
                 className="flex-1 bg-gradient-to-r from-cyan-600 to-blue-600 text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
               >
                 <RotateCcw className="w-5 h-5" />
                 Play Again
               </button>
             </div>
+            {countdown.isActive && (
+              <div className="mt-4">
+                <div className="mb-1.5 text-center text-xs text-text-muted">
+                  Returning to course map in {countdown.secondsLeft}s…
+                </div>
+                <div className="h-1 w-full overflow-hidden rounded-full bg-border/30">
+                  <div
+                    className="h-full rounded-full bg-[var(--tone-vocab-accent,#6a8d73)] transition-all duration-1000 ease-linear"
+                    style={{ width: `${(countdown.secondsLeft / 5) * 100}%` }}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>

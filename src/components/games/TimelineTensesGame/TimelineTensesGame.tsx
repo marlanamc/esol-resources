@@ -17,6 +17,7 @@ import { PointsToast } from '@/components/ui/PointsToast';
 import { saveActivityProgress } from '@/lib/activityProgress';
 import { GameErrorBoundary } from '@/components/system/ErrorBoundary';
 import { useRouter } from 'next/navigation';
+import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
 import { useTimelineTensesState, type TimelineTensesPreset } from './hooks/useTimelineTensesState';
 import { TenseFilterBar } from './TenseFilterBar';
 import { SentenceFormFilter } from './SentenceFormFilter';
@@ -65,6 +66,7 @@ function StepLabel({ step, label }: { step: number; label: string }) {
 
 export function TimelineTensesGame({ activityId, assignmentId, preset }: TimelineTensesGameProps) {
   const router = useRouter();
+  const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/dashboard' });
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const lastProcessedResultsKeyRef = useRef<string | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number; message?: string } | null>(null);
@@ -313,7 +315,7 @@ export function TimelineTensesGame({ activityId, assignmentId, preset }: Timelin
         {state.phase === 'selection' && (
           <div className="px-3 sm:px-0 pb-2 flex items-center justify-between">
             <button
-              onClick={() => router.back()}
+              onClick={() => router.push(returnHref)}
               aria-label="Go back"
               className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text transition-colors"
             >

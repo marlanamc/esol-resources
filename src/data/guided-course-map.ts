@@ -122,7 +122,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelGoal: "Learn the basic building blocks of English and start the weekly app routine.",
         requiredActivities: [
           game("vocab-sep-w2", "Vocab: Key Verbs", "vocab-sep-w2", "available"),
-          guide("parts-of-speech-mini-guide", "Parts of Speech Mini Guide", "/grammar-reader/parts-of-speech", "available"),
+          guide("parts-of-speech-mini-guide", "Parts of Speech Guide", "/grammar-reader/parts-of-speech", "available"),
           game("parts-of-speech-discovery", "Parts of Speech Discovery Game", "parts-of-speech-discovery-guided", "available"),
           planned("vowel-names-a-e-i", "Vowel Names Practice: A / E / I", "pronunciation"),
           quiz(1),
@@ -135,7 +135,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelGoal: "Learn the 5 verb forms and start noticing past tense endings.",
         requiredActivities: [
           game("vocab-sep-w3", "Vocab: Action Words", "vocab-sep-w3", "available"),
-          guide("verb-forms-mini-guide", "Verb Forms Mini Guide", "/grammar-reader/simple-tenses-review", "available"),
+          guide("verb-forms-mini-guide", "Verb Forms Guide", "/grammar-reader/simple-tenses-review", "available"),
           game("timeline-verb-forms-review", "Timeline Tenses: Verb Forms Review", "timeline-tenses-simple", "available"),
           pronunciation("ed-endings-intro", "-ed Endings Intro: /t/ /d/ /id/", "cmlkjcabs00000ezpkp32c6lz", "available"),
           quiz(2),
@@ -151,14 +151,14 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelGoal: "Use simple present and present perfect frames to talk about life.",
         requiredActivities: [
           game("vocab-sep-w4", "Vocab: Personal Journey Verbs", "vocab-sep-w4", "available"),
-          guide("present-perfect-life-experience", "Present Perfect Intro: life experience only", "/grammar-reader/present-perfect", "available"),
+          guide("present-perfect-life-experience", "Present Perfect Guide", "/grammar-reader/present-perfect", "available"),
           planned("have-you-ever-speaking", "Have You Ever...? Speaking Practice", "speaking"),
           quiz(3),
           planned("lived-worked-writing", "Short Writing: \"I have lived...\" / \"I have worked...\"", "writing"),
         ],
         extraPractice: [
           guide("present-simple-guide-extra", "Present Simple Guide", "/grammar-reader/present-simple", "available"),
-          guide("present-perfect-light-extra", "Present Perfect Guide, light version only", "/grammar-reader/present-perfect", "available"),
+          guide("present-perfect-light-extra", "Present Perfect Guide", "/grammar-reader/present-perfect", "available"),
         ],
       },
     ],
@@ -173,7 +173,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Community Places + Daily Routines",
         requiredActivities: [
           game("vocab-oct-w1", "Vocab: Schedule Verbs", "vocab-oct-w1", "available"),
-          guide("info-questions-mini", "Information Questions Mini Guide", "/grammar-reader/information-questions", "available"),
+          guide("info-questions-mini", "Information Questions Guide", "/grammar-reader/information-questions", "available"),
           game("question-word-practice", "Question Word Practice Game", undefined, "available"),
           quiz(4),
         ],
@@ -183,8 +183,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Transportation + Directions",
         requiredActivities: [
           game("vocab-oct-w2", "Vocab: Movement Verbs", "vocab-oct-w2", "available"),
-          planned("directions-language-guide", "Directions Language Guide", "guide"),
-          guide("imperatives-mini-guide", "Imperatives Mini Guide", "/grammar-reader/imperatives-declaratives", "available"),
+          guide("imperatives-mini-guide", "Imperatives Guide", "/grammar-reader/imperatives-declaratives", "available"),
           game("map-directions-practice", "Map / Directions Practice Game"),
           quiz(5),
         ],
@@ -194,8 +193,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Digital Safety + Forms",
         requiredActivities: [
           game("vocab-oct-w3", "Vocab: Protect Yourself Verbs", "vocab-oct-w3", "available"),
-          planned("digital-literacy-safety-guide", "Digital Literacy Safety Guide", "guide"),
-          guide("can-should-must-mini", "Can / Should / Must Mini Guide", "/grammar-reader/modals-obligation-permission", "available"),
+          guide("can-should-must-mini", "Can / Should / Must Guide", "/grammar-reader/modals-obligation-permission", "available"),
           game("scam-or-safe-practice", "Scam or Safe? Practice"),
           quiz(6),
         ],
@@ -205,7 +203,6 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Phone English + Family Connection",
         requiredActivities: [
           game("vocab-oct-w4", "Vocab: Communication Verbs", "vocab-oct-w4", "available"),
-          planned("phone-english-mini-guide", "Phone English Mini Guide", "guide"),
           guide("present-perfect-spiral", "Present Perfect Spiral Practice", "/grammar-reader/present-perfect", "available"),
           pronunciation("b-v-minimal-pair", "B vs V Minimal Pair Lab", "pron-b-v-listening", "available"),
           quiz(7),
@@ -223,7 +220,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Helping + Volunteering",
         requiredActivities: [
           game("vocab-nov-w1", "Vocab: Action Verbs", "vocab-nov-w1", "available"),
-          guide("gerunds-prepositions-light", "Gerunds After Prepositions, light", "/grammar-reader/gerunds-infinitives", "available"),
+          guide("gerunds-prepositions-light", "Gerunds After Prepositions", "/grammar-reader/gerunds-infinitives", "available"),
           planned("volunteering-scenario-practice", "Volunteering Scenario Practice", "speaking"),
           quiz(8),
         ],
@@ -233,7 +230,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Public Meetings + Suggestions",
         requiredActivities: [
           game("vocab-nov-w2", "Vocab: Discussion Verbs", "vocab-nov-w2", "available"),
-          guide("suggestions-mini", "Suggestions Mini Guide: should / could / let's", "/grammar-reader/modals-obligation-permission", "available"),
+          guide("suggestions-mini", "Suggestions Guide: should / could / let's", "/grammar-reader/modals-obligation-permission", "available"),
           planned("public-meeting-language", "Public Meeting Language Practice", "speaking"),
           pronunciation("short-i-long-e-lab", "Short i vs Long e Minimal Pair Lab", "pron-short-i-long-e-listening", "available"),
           quiz(9),
@@ -244,7 +241,6 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Voting + Contacting Officials",
         requiredActivities: [
           game("vocab-nov-w3", "Vocab: Civic Verbs", "vocab-nov-w3", "available"),
-          planned("claims-reasons-reading", "Claims and Reasons Reading Guide", "guide"),
           planned("contact-official-practice", "Contact an Official Practice", "writing"),
           quiz(10),
         ],
@@ -254,7 +250,6 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Community Issue Case Study",
         requiredActivities: [
           game("vocab-nov-w4", "Vocab: Problem-Solving Verbs", "vocab-nov-w4", "available"),
-          guide("zero-first-conditional-mini", "Zero / First Conditional Mini Guide", "/grammar-reader/conditionals-zero-first", "available"),
           game("community-problem-scenario", "Community Problem Scenario Game"),
           quiz(11),
           planned("if-we-writing", "Short Writing: \"If we..., we will...\"", "writing"),
@@ -273,7 +268,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         requiredActivities: [
           game("vocab-dec-w1", "Vocab: Money Verbs", "vocab-dec-w1", "available"),
           game("numbers-through-trillions", "Numbers Through Trillions", "numbers-through-trillions-guided", "available"),
-          guide("comparatives-superlatives-mini", "Comparatives + Superlatives Mini Guide", "/grammar-reader/superlatives-quantifiers", "available"),
+          guide("comparatives-superlatives-mini", "Comparatives + Superlatives Guide", "/grammar-reader/superlatives-quantifiers", "available"),
           planned("compare-prices-practice", "Compare Prices Practice", "game"),
           quiz(12),
         ],
@@ -283,8 +278,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Bills, Fees, Returns + Scams",
         requiredActivities: [
           game("vocab-dec-w2", "Vocab: Financial Action Verbs", "vocab-dec-w2", "available"),
-          guide("quantifiers-mini", "Quantifiers Mini Guide", "/grammar-reader/superlatives-quantifiers", "available"),
-          planned("bills-fees-reading", "Bills and Fees Reading Practice", "guide"),
+          guide("quantifiers-mini", "Quantifiers Guide", "/grammar-reader/superlatives-quantifiers", "available"),
           pronunciation("bv-shorti-longe-review", "B vs V / Short i Long e Review", "pron-mixed-review", "available"),
           quiz(13),
         ],
@@ -351,7 +345,6 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Resume + Workplace Basics",
         requiredActivities: [
           game("vocab-feb-3-5", "Vocab: Jobs Foundations", "vocab-feb-3-5", "available"),
-          guide("zero-first-work-review", "Zero / First Conditional Review", "/grammar-reader/conditionals-zero-first", "available"),
           planned("resume-language-practice", "Resume Language Practice", "writing"),
           quiz(18),
         ],
@@ -361,7 +354,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Work Stories + Schedules",
         requiredActivities: [
           game("vocab-feb-10-12", "Vocab: Workplace Phrasal Verbs", "vocab-feb-10-12", "available"),
-          guide("past-perfect-mini", "Past Perfect Mini Guide, very light", "/grammar-reader/past-perfect", "available"),
+          guide("past-perfect-mini", "Past Perfect Guide", "/grammar-reader/past-perfect", "available"),
           planned("work-schedule-practice", "Work Schedule Practice", "game"),
           pronunciation("v-w-lab", "V vs W Minimal Pair Lab", "pron-v-w-listening", "available"),
           quiz(19),
@@ -433,9 +426,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Pay Stubs + Wage Math",
         requiredActivities: [
           game("vocab-mar-31-apr-2", "Vocab: Small Talk & Social Conversation", "vocab-mar-31-apr-2", "available"),
-          planned("pay-stub-vocabulary", "Pay Stub Vocabulary", "guide"),
           guide("infinitives-vs-gerunds", "Infinitives vs Gerunds", "/grammar-reader/gerunds-infinitives", "available"),
-          planned("wage-math-reading", "Wage Math Reading Practice", "guide"),
           quiz(24),
         ],
       },
@@ -461,7 +452,6 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Symptoms + Clinic Visits",
         requiredActivities: [
           game("vocab-apr-14-16", "Vocab: Symptoms & Care", "vocab-apr-14-16", "available"),
-          planned("describe-symptoms-guide", "Describe Symptoms Guide", "guide"),
           planned("doctor-conversation-practice", "Doctor Conversation Practice", "speaking"),
           guide("advice-modals-review", "Advice Modals Review", "/grammar-reader/modals-health-advice-caution-consent", "available"),
           quiz(26),
@@ -481,7 +471,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Pharmacy + Notices",
         requiredActivities: [
           game("vocab-apr-28-30", "Vocab: Health Advice & Habits", "vocab-apr-28-30", "available"),
-          guide("passive-voice-mini", "Passive Voice Mini Guide", "/grammar-reader/passive-voice", "available"),
+          guide("passive-voice-mini", "Passive Voice Guide", "/grammar-reader/passive-voice", "available"),
           guide("medicine-labels-pharmacy", "Medicine Labels / Pharmacy Notices", "/grammar-reader/medicine-labels-insurance", "available"),
           planned("mychart-message-practice", "MyChart Message Practice", "writing"),
           quiz(27),
@@ -499,7 +489,7 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Wellness Routines + Follow-Up",
         requiredActivities: [
           game("vocab-may-5-7", "Vocab: Your Body & Wellness", "vocab-may-5-7", "available"),
-          guide("reported-speech-mini", "Reported Speech Mini Guide, if not done in April", "/grammar-reader/reported-speech", "available"),
+          guide("reported-speech-mini", "Reported Speech Guide", "/grammar-reader/reported-speech", "available"),
           planned("mychart-follow-up", "MyChart Follow-Up Practice", "writing"),
           pronunciation("p-b-lab", "P vs B Minimal Pair Lab", "pron-p-b-listening", "available"),
           quiz(28),
@@ -511,7 +501,6 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         requiredActivities: [
           game("vocab-may-12-14", "Vocab: Daily Care & Nutrition", "vocab-may-12-14", "available"),
           guide("used-to-be-used-to", "Used To / Be Used To / Get Used To", "/grammar-reader/used-to-would-rather", "available"),
-          planned("read-nutrition-chart", "Read a Nutrition Chart", "guide"),
           quiz(29),
         ],
       },
@@ -520,7 +509,6 @@ export const GUIDED_COURSE_MAP_UNITS: CourseMapUnit[] = [
         levelTitle: "Stress, Sleep + Healthy Habits",
         requiredActivities: [
           game("vocab-may-19-21", "Vocab: Life Skills & Habits", "vocab-may-19-21", "available"),
-          planned("future-conditional-mini", "Future Conditional Mini Guide", "guide"),
           game("healthy-habits-scenario", "Healthy Habits Scenario Game"),
           planned("sleep-better-writing", "Short Writing: \"If I sleep better, I will...\"", "writing"),
           quiz(30),

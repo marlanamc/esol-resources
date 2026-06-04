@@ -6,6 +6,7 @@ import { AlertCircle, ArrowLeft } from 'lucide-react';
 import { ErrorToast } from '@/components/ui/ErrorToast';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { useRouter } from 'next/navigation';
+import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
 import { ALL_POS_GROUPS } from '@/data/parts-of-speech-groups';
 import { usePartsOfSpeechGameState } from '@/hooks/usePartsOfSpeechGameState';
 import { GroupSelectionScreen } from './GroupSelectionScreen';
@@ -23,6 +24,7 @@ interface PartsOfSpeechGameProps {
 
 export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGameProps) {
   const router = useRouter();
+  const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/dashboard' });
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
   const isCourseMapPreset = gameContent?.courseMapPreset === true;
@@ -146,7 +148,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
         {state.phase === 'selection' && !isCourseMapPreset && (
           <div className="px-3 sm:px-0 pb-2">
             <button
-              onClick={() => router.back()}
+              onClick={() => router.push(returnHref)}
               aria-label="Go back"
               className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text transition-colors"
             >
@@ -199,14 +201,14 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                   group={state.selectedGroup}
                   roundMode={state.selectedRoundMode}
                   onStartChallenge={startGroupChallenge}
-                  onBack={isCourseMapPreset ? () => router.back() : quitGame}
+                  onBack={isCourseMapPreset ? () => router.push(returnHref) : quitGame}
                 />
               ) : (
                 <PatternIntroScreen
                   group={state.selectedGroup}
                   roundMode={state.selectedRoundMode}
                   onStartChallenge={startGroupChallenge}
-                  onBack={isCourseMapPreset ? () => router.back() : quitGame}
+                  onBack={isCourseMapPreset ? () => router.push(returnHref) : quitGame}
                 />
               )}
             </motion.div>
@@ -245,8 +247,8 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                 results={state.roundResults}
                 nextGroup={getNextGroupForResults()}
                 onRetry={retryGroup}
-                onContinue={isCourseMapPreset ? () => router.back() : continueToNext}
-                onReturnToSelection={isCourseMapPreset ? () => router.back() : quitGame}
+                onContinue={isCourseMapPreset ? () => router.push(returnHref) : continueToNext}
+                onReturnToSelection={isCourseMapPreset ? () => router.push(returnHref) : quitGame}
                 courseMapPreset={isCourseMapPreset}
               />
             </motion.div>

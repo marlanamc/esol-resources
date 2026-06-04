@@ -6,6 +6,7 @@ import { Trophy, Repeat, CheckCircle, ChevronRight, BookOpen, Star } from 'lucid
 import Image from 'next/image';
 import { CelebrationAnimation } from '@/components/ui/CelebrationAnimation';
 import { CourseMapReturnButton } from '@/components/navigation/CourseMapReturnButton';
+import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import type { POSGroup, POSRoundResults } from '@/types/parts-of-speech';
 import { POS_UNLOCK_THRESHOLD, POS_MASTERY_THRESHOLD, POS_ROUND_LABELS, POS_COLORS, POS_LABELS } from '@/types/parts-of-speech';
 import { SpeakButton } from './SpeakButton';
@@ -23,6 +24,7 @@ interface ResultsScreenProps {
 export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, onReturnToSelection, courseMapPreset = false }: ResultsScreenProps) {
   const { accuracy, correctAnswers, exercisesCompleted, completed, pointsAwarded, streak, missedPatternIds } = results;
   const passed = completed;
+  const countdown = useMapReturnCountdown({ active: courseMapPreset });
 
   // Show memory card when a Foundation group's Round 1 is passed for the first time
   const isMemoryCardMoment =
@@ -293,7 +295,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
 
         <div className="flex flex-col sm:flex-row gap-3">
           <motion.button
-            onClick={onRetry}
+            onClick={() => { countdown.cancel(); onRetry(); }}
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
             className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-2xl border-2 border-border bg-white dark:bg-[#162b3d] text-text font-semibold hover:border-primary/40 transition-all"
@@ -315,6 +317,19 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
             </motion.button>
           )}
         </div>
+        {countdown.isActive && (
+          <div className="mt-1">
+            <div className="mb-1.5 text-center text-xs text-text-muted">
+              Returning to course map in {countdown.secondsLeft}s…
+            </div>
+            <div className="h-1 w-full overflow-hidden rounded-full bg-border/30">
+              <div
+                className="h-full rounded-full bg-[var(--tone-vocab-accent,#6a8d73)] transition-all duration-1000 ease-linear"
+                style={{ width: `${(countdown.secondsLeft / 5) * 100}%` }}
+              />
+            </div>
+          </div>
+        )}
 
         {!courseMapPreset && (
           <motion.button

@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Target, Zap, Unlock, RotateCcw, ChevronRight, Sparkles, BookOpen } from 'lucide-react';
+import { Trophy, Target, Zap, Unlock, RotateCcw, ChevronRight, Sparkles, BookOpen, ArrowLeft } from 'lucide-react';
+import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import { UNLOCK_THRESHOLD } from '@/lib/irregular-verbs-progress';
 import type { VerbGroup, VerbGameRoundResults, VerbRoundMode } from '@/types/irregular-verbs';
 
@@ -27,6 +28,7 @@ export function ResultsScreen({
 }: ResultsScreenProps) {
   const [showConfetti, setShowConfetti] = useState(false);
   const isFinalQuiz = group.id === 'all-patterns-quiz';
+  const countdown = useMapReturnCountdown({ active: true });
   const unlocked = !!results.unlocked && !!nextGroup;
   const isPassing = results.accuracy >= UNLOCK_THRESHOLD;
   const isPerfect = results.accuracy === 100;
@@ -315,42 +317,66 @@ export function ResultsScreen({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.1 }}
-        className="flex flex-col sm:flex-row gap-3"
+        className="flex flex-col gap-3"
       >
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={onRetry}
-          className="flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl border-2 border-border dark:border-white/10 bg-white dark:bg-[#162b3d] text-text font-semibold hover:border-primary hover:text-primary transition-all"
-        >
-          <RotateCcw size={18} />
-          <span>{isFinalQuiz ? 'Keep Practicing' : 'Practice Again'}</span>
-        </motion.button>
+        {countdown.isActive && (
+          <button
+            onClick={countdown.goNow}
+            className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-[var(--tone-vocab-chip-bg,#eef3ee)] border border-[var(--tone-vocab-accent,#6a8d73)]/30 text-[var(--tone-vocab-accent,#6a8d73)] font-semibold hover:bg-[var(--tone-vocab-accent,#6a8d73)]/15 transition-all"
+          >
+            <ArrowLeft size={18} />
+            Back to Course Map
+          </button>
+        )}
+        <div className="flex flex-col sm:flex-row gap-3">
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => { countdown.cancel(); onRetry(); }}
+            className="flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl border-2 border-border dark:border-white/10 bg-white dark:bg-[#162b3d] text-text font-semibold hover:border-primary hover:text-primary transition-all"
+          >
+            <RotateCcw size={18} />
+            <span>{isFinalQuiz ? 'Keep Practicing' : 'Practice Again'}</span>
+          </motion.button>
 
-        <motion.button
-          whileHover={canContinue ? { scale: 1.02 } : undefined}
-          whileTap={canContinue ? { scale: 0.98 } : undefined}
-          onClick={onContinue}
-          disabled={!canContinue}
-          className={`flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl font-semibold transition-all ${
-            canContinue
-              ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg hover:shadow-xl'
-              : 'bg-bg-gray text-text-muted cursor-not-allowed'
-          }`}
-        >
-          <span>
-            {canContinue
-              ? isFinalQuiz
-                ? 'Back to Chapters'
-                : roundMode === 'round1'
-                  ? 'Start Lock It In'
-                  : isReview
-                    ? 'Back to Chapters'
-                    : 'Continue Journey'
-              : `Need ${UNLOCK_THRESHOLD}% (${results.accuracy}%)`}
-          </span>
-          {canContinue && <ChevronRight size={18} />}
-        </motion.button>
+          <motion.button
+            whileHover={canContinue ? { scale: 1.02 } : undefined}
+            whileTap={canContinue ? { scale: 0.98 } : undefined}
+            onClick={() => { countdown.cancel(); onContinue(); }}
+            disabled={!canContinue}
+            className={`flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl font-semibold transition-all ${
+              canContinue
+                ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg hover:shadow-xl'
+                : 'bg-bg-gray text-text-muted cursor-not-allowed'
+            }`}
+          >
+            <span>
+              {canContinue
+                ? isFinalQuiz
+                  ? 'Back to Chapters'
+                  : roundMode === 'round1'
+                    ? 'Start Lock It In'
+                    : isReview
+                      ? 'Back to Chapters'
+                      : 'Continue Journey'
+                : `Need ${UNLOCK_THRESHOLD}% (${results.accuracy}%)`}
+            </span>
+            {canContinue && <ChevronRight size={18} />}
+          </motion.button>
+        </div>
+        {countdown.isActive && (
+          <div>
+            <div className="mb-1.5 text-center text-xs text-text-muted">
+              Returning to course map in {countdown.secondsLeft}s…
+            </div>
+            <div className="h-1 w-full overflow-hidden rounded-full bg-border/30">
+              <div
+                className="h-full rounded-full bg-[var(--tone-vocab-accent,#6a8d73)] transition-all duration-1000 ease-linear"
+                style={{ width: `${(countdown.secondsLeft / 5) * 100}%` }}
+              />
+            </div>
+          </div>
+        )}
       </motion.div>
 
       {/* Tips */}

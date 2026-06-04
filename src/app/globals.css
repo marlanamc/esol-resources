@@ -534,6 +534,51 @@
   color-scheme: dark;
 }
 
+/* ========== Game Light Mode Lock ========== */
+/* Forces light-mode CSS variables inside games whose student designers chose specific colors.
+   Apply .game-light-mode to the game root to prevent dark-mode variable overrides. */
+.dark .game-light-mode,
+.game-light-mode {
+  /* Tailwind bg-white maps to --color-white, which dark mode redefines as a navy surface. */
+  --tw-bg-opacity: 1;
+  --primary-color: #b05740;
+  --primary-color-dark: #8e4432;
+  --primary-color-light: #d08b78;
+  --primary: var(--primary-color);
+  --secondary-color: #6a8d73;
+  --secondary-color-dark: #4d6b53;
+  --secondary-color-light: #8da693;
+  --accent-color: #e9c46a;
+  --accent-color-dark: #cba342;
+  --accent-color-light: #f4e4a8;
+  --accent: var(--accent-color);
+  --text-color: #1a202c;
+  --text-color-muted: #5e6b7d;
+  --text-color-light: #94a3b8;
+  --bg-color: #fdf9f0;
+  --bg-color-light: #f7f2e8;
+  --bg-color-gray: #f2ead3;
+  --white-color: #fffdfa;
+  --color-white: #fffdfa;
+  --color-text: #1a202c;
+  --color-text-muted: #5e6b7d;
+  --color-text-light: #94a3b8;
+  --color-bg: #fdf9f0;
+  --color-bg-light: #f7f2e8;
+  --color-bg-gray: #f2ead3;
+  --color-bg-gradient-start: #fdf9f0;
+  --color-bg-gradient-end: #fdfbf7;
+  --surface-base: #fffdfa;
+  --surface-elevated: #ffffff;
+  color-scheme: light !important;
+  color: #1a202c;
+}
+
+/* Fallback: Tailwind v4 theme tokens may not inherit --white-color on all descendants. */
+.dark .game-light-mode :where(.bg-white) {
+  background-color: #fffdfa;
+}
+
 /* ========== Theme Transition Suppression ========== */
 /* Suppress all transitions during initial hydration to prevent flash */
 html.theme-hydrating,

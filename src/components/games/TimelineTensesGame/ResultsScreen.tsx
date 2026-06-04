@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Target, RotateCcw, ArrowLeft, Star, TrendingUp, ChevronDown, Check, X } from 'lucide-react';
+import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import { CelebrationAnimation } from '@/components/ui/CelebrationAnimation';
 import type { RoundResults } from './hooks/useTimelineTensesState';
 import type { TimelineTensesQuestion } from '@/types/activity';
@@ -19,6 +20,7 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
   const { accuracy, correctAnswers, totalQuestions, questionResults } = results;
   const isPerfect = accuracy === 100;
   const isPassing = accuracy >= 70;
+  const countdown = useMapReturnCountdown({ active: true });
 
   // Determine feedback message and icon
   const getFeedback = () => {
@@ -357,22 +359,46 @@ export function ResultsScreen({ results, questions, onRetry, onBack }: ResultsSc
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="grid sm:grid-cols-2 gap-4"
+        className="flex flex-col gap-4"
       >
-        <button
-          onClick={onRetry}
-          className="w-full py-6 px-10 bg-primary text-white rounded-[1.5rem] font-black text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:shadow-[0_20px_32px_-12px_rgba(var(--primary-color-rgb),0.6)] hover:bg-primary-dark transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3"
-        >
-          <RotateCcw size={24} />
-          {isPassing ? 'Play Again' : 'Try Again'}
-        </button>
-        <button
-          onClick={onBack}
-          className="w-full py-6 px-10 bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl border border-white/30 text-text rounded-[1.5rem] font-black text-xl shadow-xl hover:bg-white/60 dark:hover:bg-[#162b3d]/60 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3"
-        >
-          <ArrowLeft size={24} />
-          Back
-        </button>
+        {countdown.isActive && (
+          <button
+            onClick={countdown.goNow}
+            className="w-full py-4 px-10 bg-[var(--tone-vocab-chip-bg,#eef3ee)] border border-[var(--tone-vocab-accent,#6a8d73)]/30 text-[var(--tone-vocab-accent,#6a8d73)] rounded-[1.5rem] font-black text-lg transition-all hover:bg-[var(--tone-vocab-accent,#6a8d73)]/15 flex items-center justify-center gap-3"
+          >
+            <ArrowLeft size={20} />
+            Back to Course Map
+          </button>
+        )}
+        <div className="grid sm:grid-cols-2 gap-4">
+          <button
+            onClick={() => { countdown.cancel(); onRetry(); }}
+            className="w-full py-6 px-10 bg-primary text-white rounded-[1.5rem] font-black text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:shadow-[0_20px_32px_-12px_rgba(var(--primary-color-rgb),0.6)] hover:bg-primary-dark transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3"
+          >
+            <RotateCcw size={24} />
+            {isPassing ? 'Play Again' : 'Try Again'}
+          </button>
+          <button
+            onClick={() => { countdown.cancel(); onBack(); }}
+            className="w-full py-6 px-10 bg-white/40 dark:bg-[#162b3d]/40 backdrop-blur-xl border border-white/30 text-text rounded-[1.5rem] font-black text-xl shadow-xl hover:bg-white/60 dark:hover:bg-[#162b3d]/60 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3"
+          >
+            <ArrowLeft size={24} />
+            Back
+          </button>
+        </div>
+        {countdown.isActive && (
+          <div>
+            <div className="mb-1.5 text-center text-xs text-text-muted">
+              Returning to course map in {countdown.secondsLeft}s…
+            </div>
+            <div className="h-1 w-full overflow-hidden rounded-full bg-border/30">
+              <div
+                className="h-full rounded-full bg-[var(--tone-vocab-accent,#6a8d73)] transition-all duration-1000 ease-linear"
+                style={{ width: `${(countdown.secondsLeft / 5) * 100}%` }}
+              />
+            </div>
+          </div>
+        )}
       </motion.div>
     </div>
   );
