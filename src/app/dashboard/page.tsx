@@ -19,7 +19,6 @@ import {
     ClipboardIcon,
     BarChartIcon,
     CalendarIcon,
-    StarIcon,
     MapIcon
 } from "@/components/icons/Icons";
 import {
@@ -32,6 +31,7 @@ import {
     MissedClassCatchUpCard,
     MomentumCard,
     ExploreCategoriesCarousel,
+    DashboardWelcomeHero,
 } from "@/components/dashboard";
 import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
 import { isTeacherAdmin } from "@/lib/roles";
@@ -521,86 +521,59 @@ export default async function DashboardPage() {
                     <div className="dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
                         {/* Main Content Area - Left Side */}
                         <div className="md:col-span-8 lg:col-span-9 min-w-0 space-y-6 sm:space-y-8">
-                            {/* Welcome Header */}
-                            <div>
-                                {/* Desktop: Welcome + Stats horizontal */}
-                                <div className="hidden lg:flex items-center gap-6">
-                                    <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight">
-                                        Welcome, <span className="font-display tracking-tight text-primary/90 relative inline-block">
-                                            {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}
-                                            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-[#88A392]/45 -z-10 rounded-sm transform -rotate-1"></span>
-                                        </span>!
-                                    </h1>
+                            <div className="hidden lg:block dashboard-panel paper-texture rounded-2xl overflow-hidden">
+                                <DashboardWelcomeHero
+                                    weekHub
+                                    userName={session.user?.name === "Teacher User" ? "Teacher" : session.user?.name ?? ""}
+                                    teacherStats={{
+                                        activeStudents: totalStudents,
+                                        totalClasses,
+                                        pendingReviews,
+                                        showBackendLink: isTeacherUser,
+                                    }}
+                                    helperText="Here's your teaching week at a glance."
+                                />
+                                <TodaysAssignments
+                                    weekHub
+                                    title="Weekly Teaching Checklist"
+                                    ctaLabel="Open"
+                                    initialAssignments={featuredAssignmentsForDisplay}
+                                    variant="checklist"
+                                    actions={<ClearFeaturedButton />}
+                                />
+                            </div>
 
-                                    <div className="flex items-center gap-3">
-                                        {/* Total Students */}
-                                        <div className="dashboard-pill flex items-center gap-2.5 border-emerald-200/50 dark:border-emerald-800/50 pl-2.5 pr-4 py-2">
-                                            <div className="w-8 h-8 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
-                                                <UsersIcon className="text-secondary" size={16} />
-                                            </div>
-                                            <div>
-                                                <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Students</div>
-                                                <div className="text-lg font-bold text-text leading-tight tabular-nums">{totalStudents} <span className="text-xs font-semibold text-text-muted">active</span></div>
-                                            </div>
+                            {/* Mobile Welcome */}
+                            <div className="lg:hidden">
+                                <h1 className="text-3xl sm:text-4xl font-display font-bold text-text mb-4 leading-[1.15] tracking-tight">
+                                    Welcome, <span className="font-display tracking-tight text-primary/90 relative inline-block">
+                                        {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}
+                                        <span className="absolute -bottom-0.5 left-0 right-0 h-1.5 sm:h-2 bg-[#88A392]/45 -z-10 rounded-sm transform -rotate-1"></span>
+                                    </span>!
+                                </h1>
+
+                                <div className="flex items-center gap-3">
+                                    <div className="dashboard-pill flex items-center gap-2 border-emerald-200/50 dark:border-emerald-800/50 pl-2 pr-3 py-1.5">
+                                        <div className="w-7 h-7 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
+                                            <UsersIcon className="text-secondary" size={14} />
                                         </div>
-
-                                        {/* Total Classes */}
-                                        <div className="dashboard-pill flex items-center gap-2.5 border-blue-200/50 dark:border-blue-800/50 pl-2.5 pr-4 py-2">
-                                            <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-blue-50 rounded-full flex items-center justify-center">
-                                                <StarIcon className="text-info" size={16} />
-                                            </div>
-                                            <div>
-                                                <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Classes</div>
-                                                <div className="text-lg font-bold text-text leading-tight tabular-nums">{totalClasses} <span className="text-xs font-semibold text-text-muted">total</span></div>
-                                            </div>
+                                        <div className="flex items-baseline gap-1">
+                                            <span className="text-base font-bold text-text tabular-nums">{totalStudents}</span>
+                                            <span className="text-[10px] font-semibold text-text-muted uppercase">students</span>
                                         </div>
-
-                                        <TeacherPendingReviewsStat pendingReviews={pendingReviews} />
-
-                                        {isTeacherUser && (
-                                            <Link
-                                                href="/dashboard/backend"
-                                                className="dashboard-soft-button inline-flex items-center gap-2 rounded-full border border-primary/30 bg-[var(--dashboard-surface-start)] px-4 py-2 text-sm font-semibold text-primary hover:border-primary/50 dark:border-primary/50 dark:bg-[var(--surface-elevated)]"
-                                            >
-                                                <UsersIcon size={14} />
-                                                Backend Users
-                                            </Link>
-                                        )}
                                     </div>
-                                </div>
 
-                                {/* Mobile: Welcome */}
-                                <div className="lg:hidden">
-                                    <h1 className="text-3xl sm:text-4xl font-display font-bold text-text mb-4 leading-[1.15] tracking-tight">
-                                        Welcome, <span className="font-display tracking-tight text-primary/90 relative inline-block">
-                                            {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}
-                                            <span className="absolute -bottom-0.5 left-0 right-0 h-1.5 sm:h-2 bg-[#88A392]/45 -z-10 rounded-sm transform -rotate-1"></span>
-                                        </span>!
-                                    </h1>
+                                    <TeacherPendingReviewsStat pendingReviews={pendingReviews} mobile />
 
-                                    <div className="flex items-center gap-3">
-                                        <div className="dashboard-pill flex items-center gap-2 border-emerald-200/50 dark:border-emerald-800/50 pl-2 pr-3 py-1.5">
-                                            <div className="w-7 h-7 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
-                                                <UsersIcon className="text-secondary" size={14} />
-                                            </div>
-                                            <div className="flex items-baseline gap-1">
-                                                <span className="text-base font-bold text-text tabular-nums">{totalStudents}</span>
-                                                <span className="text-[10px] font-semibold text-text-muted uppercase">students</span>
-                                            </div>
-                                        </div>
-
-                                        <TeacherPendingReviewsStat pendingReviews={pendingReviews} mobile />
-
-                                        {isTeacherUser && (
-                                            <Link
-                                                href="/dashboard/backend"
-                                                className="dashboard-soft-button inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-[var(--dashboard-surface-start)] px-3 py-1.5 text-xs font-semibold text-primary dark:border-primary/50 dark:bg-[var(--surface-elevated)]"
-                                            >
-                                                <UsersIcon size={12} />
-                                                Backend Users
-                                            </Link>
-                                        )}
-                                    </div>
+                                    {isTeacherUser && (
+                                        <Link
+                                            href="/dashboard/backend"
+                                            className="dashboard-soft-button inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-[var(--dashboard-surface-start)] px-3 py-1.5 text-xs font-semibold text-primary dark:border-primary/50 dark:bg-[var(--surface-elevated)]"
+                                        >
+                                            <UsersIcon size={12} />
+                                            Backend Users
+                                        </Link>
+                                    )}
                                 </div>
                             </div>
 
@@ -646,37 +619,10 @@ export default async function DashboardPage() {
                                 </div>
                             </section>
 
-                            <section>
-                                <div className="dashboard-panel dashboard-panel-hover paper-texture rounded-2xl p-6 group relative overflow-hidden border-amber-200/60 dark:border-amber-800/40">
-                                    <div className="absolute -top-16 -right-10 h-44 w-44 rounded-full bg-gradient-to-br from-amber-200/65 via-teal-200/45 to-fuchsia-200/45 blur-3xl opacity-70 transition-opacity duration-500 group-hover:opacity-95"></div>
-
-                                    <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                                        <div className="min-w-0">
-                                            <p className="text-xs font-bold uppercase tracking-widest text-amber-700 dark:text-amber-300">
-                                                Summer Planning
-                                            </p>
-                                            <h2 className="mt-2 text-2xl font-bold font-display text-text">
-                                                Class Improvement Wiki
-                                            </h2>
-                                            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text/70">
-                                                Read the community-class roadmap, app learning path plan, research notes, and resource website plan in one browsable place.
-                                            </p>
-                                        </div>
-                                        <Link
-                                            href="/summer-planning-wiki/index.html"
-                                            className="btn-polish dashboard-soft-button inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-amber-400/70 bg-gradient-to-b from-amber-300 to-orange-300 px-5 py-2.5 text-sm font-semibold text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/50 focus-visible:ring-offset-2"
-                                        >
-                                            Open Wiki
-                                            <span className="arrow-animate">→</span>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </section>
-
                             {/* Featured Assignments (styled like student view) */}
-                            <section>
+                            <section className="lg:hidden">
                                 <TodaysAssignments
-                                    title="Weekly Checklist"
+                                    title="Weekly Teaching Checklist"
                                     ctaLabel="Open"
                                     initialAssignments={featuredAssignmentsForDisplay}
                                     variant="checklist"
@@ -684,26 +630,49 @@ export default async function DashboardPage() {
                                 />
                             </section>
 
-                            {/* Browse All Activities CTA */}
-                            <section>
-                                <div className="dashboard-panel dashboard-panel-hover paper-texture rounded-2xl p-6 group relative overflow-hidden">
-                                    {/* Decorative gradient blob */}
-                                    <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-primary/14 via-accent/18 to-secondary/14 rounded-full blur-3xl opacity-55 group-hover:opacity-75 transition-opacity duration-500"></div>
+                            <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+                                <section className="min-w-0">
+                                    <div className="dashboard-panel dashboard-panel-hover paper-texture flex h-full flex-col justify-between rounded-2xl p-5 group relative overflow-hidden border-amber-200/60 dark:border-amber-800/40">
+                                        <div className="absolute -top-16 -right-10 h-44 w-44 rounded-full bg-gradient-to-br from-amber-200/65 via-teal-200/45 to-fuchsia-200/45 blur-3xl opacity-70 transition-opacity duration-500 group-hover:opacity-95"></div>
 
-                                    <div className="flex items-start justify-between gap-4 relative z-10">
-                                        <div className="min-w-0 pr-2">
+                                        <div className="relative z-10 min-w-0">
+                                            <p className="text-xs font-bold uppercase tracking-widest text-amber-700 dark:text-amber-300">
+                                                Summer Planning
+                                            </p>
+                                            <h2 className="mt-2 text-xl font-bold font-display text-text">
+                                                Class Improvement Wiki
+                                            </h2>
+                                            <p className="mt-2 text-sm leading-relaxed text-text/70">
+                                                Roadmap, research notes, and class improvement plans in one place.
+                                            </p>
+                                        </div>
+                                        <Link
+                                            href="/summer-planning-wiki/index.html"
+                                            className="btn-polish dashboard-soft-button relative z-10 mt-5 inline-flex w-fit shrink-0 items-center justify-center gap-2 rounded-xl border border-amber-400/70 bg-gradient-to-b from-amber-300 to-orange-300 px-5 py-2.5 text-sm font-semibold text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/50 focus-visible:ring-offset-2"
+                                        >
+                                            Open Wiki
+                                            <span className="arrow-animate">→</span>
+                                        </Link>
+                                    </div>
+                                </section>
+
+                                <section className="min-w-0">
+                                    <div className="dashboard-panel dashboard-panel-hover paper-texture flex h-full flex-col justify-between rounded-2xl p-5 group relative overflow-hidden">
+                                        <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-primary/14 via-accent/18 to-secondary/14 rounded-full blur-3xl opacity-55 group-hover:opacity-75 transition-opacity duration-500"></div>
+
+                                        <div className="relative z-10 min-w-0">
                                             <p className="text-xs font-bold text-text-muted tracking-widest uppercase flex items-center gap-2">
                                                 <span className="w-8 h-[2px] rounded-full bg-gradient-to-r from-primary/60 to-secondary/40"></span>
-                                                Explore
+                                                Content
                                             </p>
-                                            <h2 className="text-2xl font-bold font-display text-text mt-2">All Activities</h2>
-                                            <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed">
-                                                Browse all activities organized by category. Feature assignments for your classes and create new content.
+                                            <h2 className="text-xl font-bold font-display text-text mt-2">All Activities</h2>
+                                            <p className="text-sm text-text/70 mt-2 leading-relaxed">
+                                                Browse, feature, and create teaching activities by category.
                                             </p>
                                         </div>
                                         <Link
                                             href="/dashboard/activities"
-                                            className="btn-polish dashboard-soft-button shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-b from-primary to-[color-mix(in_srgb,var(--primary-color)_88%,#000)] text-[color:var(--text-on-accent)] border border-primary/80 font-semibold text-sm flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+                                            className="btn-polish dashboard-soft-button relative z-10 mt-5 inline-flex w-fit shrink-0 items-center gap-2 rounded-xl bg-gradient-to-b from-primary to-[color-mix(in_srgb,var(--primary-color)_88%,#000)] px-5 py-2.5 text-sm font-semibold text-[color:var(--text-on-accent)] border border-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
                                             style={{
                                                 '--dashboard-button-shadow-override': '0 1px 2px rgba(0,0,0,0.1), 0 4px 12px rgba(176,87,64,0.25), inset 0 1px 0 rgba(255,255,255,0.2)',
                                                 '--dashboard-button-shadow-hover-override': '0 2px 4px rgba(0,0,0,0.12), 0 8px 18px rgba(176,87,64,0.32), inset 0 1px 0 rgba(255,255,255,0.24)',
@@ -713,8 +682,8 @@ export default async function DashboardPage() {
                                             <span className="arrow-animate">→</span>
                                         </Link>
                                     </div>
-                                </div>
-                            </section>
+                                </section>
+                            </div>
                         </div>
 
                         {/* Calendar & Important Pages Sidebar (hidden on mobile) */}

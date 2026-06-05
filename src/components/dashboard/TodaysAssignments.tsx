@@ -1012,6 +1012,10 @@ function ChecklistAssignments({
         </div>
     );
 
+    const desktopGridClassName = desktopGroups.length <= 1
+        ? "grid grid-cols-1 gap-x-7 gap-y-7 lg:auto-rows-fr"
+        : "grid grid-cols-1 gap-x-7 gap-y-7 lg:auto-rows-fr lg:grid-cols-2";
+
     return (
         <div className={weekHub ? "mb-0" : "mb-8"} id={sectionId}>
             <div
@@ -1224,7 +1228,7 @@ function ChecklistAssignments({
                     className="hidden lg:block px-6 pb-6 pt-7"
                     style={{ background: 'linear-gradient(180deg, color-mix(in srgb, var(--dashboard-surface-start) 94%, var(--dashboard-shell-bg)) 0%, var(--dashboard-surface-end) 100%)' }}
                 >
-                    <div className="grid grid-cols-1 gap-x-7 gap-y-7 lg:auto-rows-fr lg:grid-cols-2">
+                    <div className={desktopGridClassName}>
                         {desktopGroups.map((group) => {
                             const groupStyle = getCategoryStyle(group.key);
                             const showPinnedHabitAtTop = group.key === 'vocabulary' && pinnedHabitNeedsAttention && pinnedHabit;
