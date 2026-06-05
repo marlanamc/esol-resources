@@ -8,7 +8,7 @@ import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
 import { GradebookClient } from "./GradebookClient";
 import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_PAGE_SIZE = 25;
@@ -34,9 +34,9 @@ export default async function GradebookPage({
 
     const userRole = session.user?.role || "student";
     const userId = session.user?.id;
-    const admin = isTeacherAdmin(session.user);
+    const admin = isAdmin(session.user);
 
-    if (userRole !== "teacher") {
+    if (!canUseTeacherTools(session.user)) {
         redirect("/dashboard");
     }
 

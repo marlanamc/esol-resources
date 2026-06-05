@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
+import { canUseTeacherTools } from "@/lib/roles";
 
 const ALLOWED_TYPES: Record<string, string> = {
     "image/jpeg": "jpg",
@@ -18,7 +19,7 @@ export async function POST(req: NextRequest) {
     if (!session?.user) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    if ((session.user as { role?: string }).role !== "teacher") {
+    if (!canUseTeacherTools(session.user)) {
         return NextResponse.json({ error: "Teachers only" }, { status: 403 });
     }
 

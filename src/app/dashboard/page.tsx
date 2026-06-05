@@ -32,17 +32,15 @@ import {
     MomentumCard,
     ExploreCategoriesCarousel,
     DashboardWelcomeHero,
+    type AdminDashboardMode,
 } from "@/components/dashboard";
 import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
-import {
-    createLearnerContentMetadataCache,
-    isLearnerVisibleActivity,
-} from "@/lib/learner-visibility";
+import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
-import { resolveLearnerMode } from "@/lib/learner-mode";
+import { getLearnerState } from "@/lib/learner-mode";
 import { isCatchUpPathEnabled } from "@/lib/catch-up-deadlines";
 
 type TeacherAssignment = {
@@ -130,6 +128,22 @@ function getTeacherDashboardWindow(referenceDate: Date) {
     return { start, end };
 }
 
+function resolveAdminDashboardMode(gameSettings: unknown): AdminDashboardMode {
+    if (!gameSettings || typeof gameSettings !== "object" || Array.isArray(gameSettings)) {
+        return "teaching";
+    }
+
+    const dashboardSettings = (gameSettings as Record<string, unknown>).dashboard;
+    if (!dashboardSettings || typeof dashboardSettings !== "object" || Array.isArray(dashboardSettings)) {
+        return "teaching";
+    }
+
+    const mode = (dashboardSettings as Record<string, unknown>).mode;
+    if (mode === "admin") return "admin";
+    if (mode === "student") return "student";
+    return "teaching";
+}
+
 export default async function DashboardPage() {
     const session = await getServerSession(authOptions);
 
@@ -139,7 +153,7 @@ export default async function DashboardPage() {
 
     const userRole = session.user.role;
     const userId = session.user.id;
-    const admin = isTeacherAdmin(session.user);
+    const admin = isAdmin(session.user);
 
 
     void trackLogin(userId).catch((err) => {
@@ -147,38 +161,36 @@ export default async function DashboardPage() {
     });
 
     if (userRole === "student") {
-        const [studentPreferences, enrollmentCount] = await Promise.all([
-            withPrismaReadRetry(() =>
-                prisma.userPreferences.findUnique({
-                    where: { userId },
-                    select: { learnerMode: true },
-                })
-            ),
-            withPrismaReadRetry(() =>
-                prisma.classEnrollment.count({
-                    where: { studentId: userId },
-                })
-            ),
-        ]);
-
-        const learnerMode = resolveLearnerMode({
-            storedMode: studentPreferences?.learnerMode,
-            enrollmentCount,
-        });
+        const learnerState = await withPrismaReadRetry(() => getLearnerState(prisma, userId));
+        const learnerMode = learnerState.mode;
 
         if (learnerMode === "independent") {
             redirect("/dashboard/independent");
         }
     }
 
-    if (userRole === "teacher") {
+    const adminPreferences = admin
+        ? await withPrismaReadRetry(() =>
+            prisma.userPreferences.findUnique({
+                where: { userId },
+                select: { gameSettings: true },
+            })
+        )
+        : null;
+    const adminDashboardMode = admin
+        ? resolveAdminDashboardMode(adminPreferences?.gameSettings)
+        : "teaching";
+
+    if (canUseTeacherTools(session.user) && adminDashboardMode !== "student") {
+        const showGlobalAdminData = admin && adminDashboardMode === "admin";
         const { start: dashboardWindowStart, end: dashboardWindowEnd } = getTeacherDashboardWindow(new Date());
-        const teacherClassWhere = admin ? {} : { teacherId: userId };
-        const teacherEnrollmentWhere = admin
+        const teacherClassWhere = showGlobalAdminData ? {} : { teacherId: userId };
+        const teacherEnrollmentWhere = showGlobalAdminData
             ? {
                 student: {
                     isSystemAccount: false,
                 },
+                status: "active",
             }
             : {
                 student: {
@@ -187,10 +199,11 @@ export default async function DashboardPage() {
                 class: {
                     teacherId: userId,
                 },
+                status: "active",
             };
-        const teacherAssignmentWhere = admin ? {} : { class: { teacherId: userId } };
-        const teacherCalendarWhere = admin ? {} : { class: { teacherId: userId } };
-        const pendingReviewsWhere = admin
+        const teacherAssignmentWhere = showGlobalAdminData ? {} : { class: { teacherId: userId } };
+        const teacherCalendarWhere = showGlobalAdminData ? {} : { class: { teacherId: userId } };
+        const pendingReviewsWhere = showGlobalAdminData
             ? {
                 status: "pending",
                 user: {
@@ -422,6 +435,9 @@ export default async function DashboardPage() {
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
         const isTeacherUser = admin;
+        const teacherHelperText = showGlobalAdminData
+            ? "Overall app activity and account health."
+            : "Here's your teaching week at a glance.";
         const importantPageSections = [
             {
                 heading: "Student Insights",
@@ -531,7 +547,7 @@ export default async function DashboardPage() {
                                         pendingReviews,
                                         showBackendLink: isTeacherUser,
                                     }}
-                                    helperText="Here's your teaching week at a glance."
+                                    helperText={teacherHelperText}
                                 />
                                 <TodaysAssignments
                                     weekHub
@@ -757,7 +773,7 @@ export default async function DashboardPage() {
             () =>
                 withPrismaReadRetry(() =>
                     prisma.classEnrollment.findMany({
-                        where: { studentId: userId },
+                        where: { studentId: userId, status: "active" },
                         include: {
                             class: {
                                 include: {
@@ -810,14 +826,11 @@ export default async function DashboardPage() {
                 type: string;
                 category?: string | null;
                 isReleased?: boolean;
-                isReleasedInContent?: boolean | null;
-                content?: string | null;
             };
         };
 
-        const learnerVisibilityCache = createLearnerContentMetadataCache();
         const filterReleasedActivities = (assignment: ReleasableAssignment) => {
-            return isLearnerVisibleActivity(assignment.activity, learnerVisibilityCache);
+            return isLearnerVisibleActivity(assignment.activity);
         };
 
         const allAssignments = enrollments.flatMap((enrollment: StudentEnrollment) =>

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { logger } from '@/lib/logger';
-import { createLearnerContentMetadataCache, getLearnerContentMetadata } from '@/lib/learner-visibility';
 import { parseActivityContent } from '@/types/activity';
 
 interface Activity {
@@ -794,23 +793,13 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
         ];
     }, [activities, buildGrammarSubCategories, buildGameSubCategories]);
 
-    const activityContentMetadataCache = useMemo(() => createLearnerContentMetadataCache(), []);
-
     const renderActivityCard = useCallback((activity: Activity) => {
-        let isQuiz = false;
-        let isSpeaking = false;
-        let isGrammarGuide = false;
-        let isReleased = false;
-
-        if (activity.type === 'guide' && activity.category === 'grammar') {
-            isGrammarGuide = true;
-            isReleased = grammarReleases[activity.id] ?? activity.isReleased ?? false;
-        } else {
-            const contentMetadata = getLearnerContentMetadata(activity.content, activityContentMetadataCache);
-            isQuiz = contentMetadata.type === 'verb-quiz';
-            isSpeaking = contentMetadata.type === 'speaking';
-            isReleased = contentMetadata.releasedInContent;
-        }
+        const isGrammarGuide = activity.type === 'guide' && activity.category === 'grammar';
+        const isSpeaking = activity.type === 'speaking';
+        const isQuiz = !isGrammarGuide && !isSpeaking && (activity.type === 'quiz' || (activity.category ?? '').toLowerCase() === 'quizzes');
+        const isReleased = isGrammarGuide
+            ? (grammarReleases[activity.id] ?? activity.isReleased ?? false)
+            : (activity.isReleased ?? false);
 
         return (
             <ActivityCard
@@ -832,7 +821,6 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
     }, [
         grammarReleases,
         featuredIds,
-        activityContentMetadataCache,
         handleReleaseLocal,
         handleAssignLocal,
         handleUnassignLocal,

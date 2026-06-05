@@ -1,6 +1,6 @@
 import { DefaultSession } from "next-auth";
 
-export type UserRole = "student" | "teacher";
+export type UserRole = "student" | "teacher" | "admin";
 
 declare module "next-auth" {
   interface Session {
@@ -8,7 +8,6 @@ declare module "next-auth" {
       id: string;
       role: UserRole;
       username: string;
-      isTeacherAdmin: boolean;
       mustChangePassword: boolean;
     };
   }
@@ -17,7 +16,6 @@ declare module "next-auth" {
     id: string;
     role: UserRole;
     username: string;
-    isTeacherAdmin?: boolean;
     mustChangePassword: boolean;
     isMobile?: boolean;
   }
@@ -28,7 +26,6 @@ declare module "next-auth/jwt" {
     id?: string;
     role?: UserRole;
     username?: string;
-    isTeacherAdmin?: boolean;
     mustChangePassword?: boolean;
     isMobile?: boolean;
   }

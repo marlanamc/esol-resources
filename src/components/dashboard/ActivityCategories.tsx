@@ -21,7 +21,6 @@ import { GameActivityVisual, getGameCardCopy } from './GameActivityVisual';
 import { PronunciationActivityVisual, getPronunciationCardCopy } from './PronunciationActivityVisual';
 import { comparePronunciationActivities, getPronunciationActivityDescriptor } from '@/lib/pronunciation-activity';
 import { getSubcategorySubtitle } from '@/lib/subcategory-labels';
-import { getLearnerContentMetadata } from '@/lib/learner-visibility';
 
 interface Activity {
     id: string;
@@ -32,6 +31,7 @@ interface Activity {
     level: string | null;
     ui: string | null;
     content?: string;
+    isReleased?: boolean;
 }
 
 interface SubSubCategory {
@@ -61,9 +61,6 @@ interface ActivityCategoriesProps {
     filterCategory?: string;
 }
 
-function isReleasedActivityContent(content?: string): boolean {
-    return getLearnerContentMetadata(content).releasedInContent;
-}
 
 function isCourseMapPresetGame(activity: Activity): boolean {
     if (activity.type !== 'game' || !activity.content) return false;
@@ -1846,11 +1843,11 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 pronunciation.push(activity);
             }
 
-            if (category === 'speaking' && isReleasedActivityContent(activity.content)) {
+            if (category === 'speaking' && activity.isReleased !== false) {
                 speaking.push(activity);
             }
 
-            if (category === 'quizzes' && isReleasedActivityContent(activity.content)) {
+            if (category === 'quizzes' && activity.isReleased !== false) {
                 quizzes.push(activity);
             }
         }

@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 import TeacherReportCard from "@/components/dashboard/TeacherReportCard";
 
@@ -18,11 +18,10 @@ export default async function ReportsPage() {
     redirect("/auth/signin");
   }
 
-  const userRole = session.user.role;
   const userId = session.user.id;
-  const admin = isTeacherAdmin(session.user);
+  const admin = isAdmin(session.user);
 
-  if (userRole !== "teacher") {
+  if (!canUseTeacherTools(session.user)) {
     redirect("/dashboard");
   }
 
@@ -36,6 +35,7 @@ export default async function ReportsPage() {
             select: {
               enrollments: {
                 where: {
+                  status: "active",
                   student: {
                     isSystemAccount: false,
                   },
@@ -55,6 +55,7 @@ export default async function ReportsPage() {
             select: {
               enrollments: {
                 where: {
+                  status: "active",
                   student: {
                     isSystemAccount: false,
                   },

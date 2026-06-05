@@ -26,7 +26,6 @@ type SearchActivitySource = {
     ui: string | null;
     content: string | null;
     isReleased: boolean;
-    isReleasedInContent?: boolean | null;
     deletedAt: Date | null;
     createdBy: string | null;
 };
@@ -149,8 +148,8 @@ function uniqueStrings(values: Array<string | null | undefined>): string[] {
     );
 }
 
-function quizTermsFromContent(content: string | null | undefined): string[] {
-    if (!content) {
+function quizTermsFromContent(content: string | null | undefined, isReleased: boolean): string[] {
+    if (!isReleased || !content) {
         return [];
     }
 
@@ -161,10 +160,6 @@ function quizTermsFromContent(content: string | null | undefined): string[] {
 
     const terms = new Set<string>();
     const typed = parsed as Record<string, unknown>;
-
-    if (typed.released !== true) {
-        return [];
-    }
 
     if (typed.type === "verb-quiz" && typed.verbs && typeof typed.verbs === "object" && !Array.isArray(typed.verbs)) {
         const verbs = typed.verbs as Record<string, unknown>;
@@ -257,7 +252,7 @@ function categoryKeywords(activity: SearchActivitySource): string[] {
     if (type === "quiz" || category === "quizzes") {
         keywords.add("quiz");
         keywords.add("practice");
-        for (const term of quizTermsFromContent(activity.content)) {
+        for (const term of quizTermsFromContent(activity.content, activity.isReleased)) {
             keywords.add(term);
         }
     }

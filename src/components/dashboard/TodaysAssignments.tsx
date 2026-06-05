@@ -65,7 +65,7 @@ interface VocabProgressInfo {
     categoryData: VocabCategoryData;
 }
 
-interface DueMeta extends DueDisplayMeta {}
+type DueMeta = DueDisplayMeta;
 
 interface NormalizedChecklistRow {
     assignment: FeaturedAssignment;

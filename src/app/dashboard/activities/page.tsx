@@ -5,10 +5,11 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { TeacherActivityCategories } from "@/components/dashboard";
 import { ActivityCategoryPicker } from "@/components/dashboard/ActivityCategoryPicker";
-import { createLearnerContentMetadataCache, filterLearnerVisibleActivities } from "@/lib/learner-visibility";
+import { filterLearnerVisibleActivities } from "@/lib/learner-visibility";
 
 type Props = { searchParams: Promise<{ category?: string }> };
 const VOCAB_TYPES = ["word-list", "flashcards", "matching", "fill-blank"] as const;
@@ -186,7 +187,9 @@ export default async function ActivitiesPage({ searchParams }: Props) {
 
     const userId = session.user?.id;
     const userRole = session.user?.role;
-    const admin = isTeacherAdmin(session.user);
+    const admin = isAdmin(session.user);
+    const studentMode = await isAdminInStudentMode(session.user);
+    const showTeacherView = canUseTeacherTools(session.user) && !studentMode;
 
     const activitiesRaw = await timedQuery(
         {
@@ -197,11 +200,11 @@ export default async function ActivitiesPage({ searchParams }: Props) {
         () =>
             withPrismaReadRetry(() =>
                 prisma.activity.findMany({
-                    where: admin
+                    where: !studentMode && admin
                             ? { deletedAt: null }
-                            : userRole === "teacher"
+                            : !studentMode && canUseTeacherTools(session.user)
                                 ? { deletedAt: null, createdBy: userId }
-                                : { deletedAt: null },
+                                : { deletedAt: null, isReleased: true },
                     select: {
                         id: true,
                         title: true,
@@ -219,15 +222,12 @@ export default async function ActivitiesPage({ searchParams }: Props) {
         (result) => result.length
     );
     const visibleActivities = collapseEdPronunciationActivities(
-        userRole === "student"
-            ? filterLearnerVisibleActivities(
-                activitiesRaw,
-                createLearnerContentMetadataCache()
-            )
+        userRole === "student" || studentMode
+            ? filterLearnerVisibleActivities(activitiesRaw)
             : activitiesRaw
     );
 
-    if (userRole === "teacher") {
+    if (showTeacherView) {
         // Teacher View - Get featured assignments and class info
         const classes = await timedQuery(
             {

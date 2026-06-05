@@ -10,7 +10,7 @@ import type {
     CourseMapActivity,
     CourseMapActivityType,
     CourseMapUnit,
-} from "@/data/guided-course-map";
+} from "@/lib/course-map";
 
 interface PathActivity {
     id: string;

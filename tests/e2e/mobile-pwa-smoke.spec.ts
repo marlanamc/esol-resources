@@ -17,6 +17,28 @@ async function expectDocumentUnlocked(page: Page) {
     });
 }
 
+async function openLearnerMenu(page: Page) {
+  await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });
+  await page.waitForLoadState("domcontentloaded");
+
+  const menuButton = page.getByRole("button", { name: /open navigation menu/i }).first();
+  const menuDialog = page.locator('div[role="dialog"][aria-label="Navigation Menu"]');
+  await expect(menuButton).toBeVisible({ timeout: 15000 });
+
+  let lastError: unknown;
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    await menuButton.click();
+    try {
+      await expect(menuDialog).toBeVisible({ timeout: 5000 });
+      return { menuButton, menuDialog };
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError;
+}
+
 test.describe("Mobile PWA smoke", () => {
   test("login page renders mobile-safe controls", async ({ page }) => {
     await page.goto("/login");
@@ -63,14 +85,12 @@ test.describe("Mobile PWA smoke", () => {
       waitForNetworkIdle: true,
     });
 
-    const menuButton = page.getByRole("button", { name: /open navigation menu/i }).first();
-    await menuButton.click();
+    const { menuButton, menuDialog } = await openLearnerMenu(page);
 
-    const menuDialog = page.locator('div[role="dialog"][aria-label="Navigation Menu"]');
-    await expect(menuDialog).toBeVisible();
-
-    await page.getByRole("link", { name: /grammar map/i }).click();
-    await expect(page).toHaveURL(/\/grammar-map/, { timeout: 15000 });
+    await Promise.all([
+      page.waitForURL(/\/grammar-map/, { timeout: 15000 }),
+      menuDialog.locator('a[href="/grammar-map"]').click(),
+    ]);
     await expect(page.getByRole("heading", { name: /level 3 grammar map/i })).toBeVisible();
 
     await expect(menuButton).toBeVisible();
@@ -90,11 +110,7 @@ test.describe("Mobile PWA smoke", () => {
       waitForNetworkIdle: true,
     });
 
-    const menuButton = page.getByRole("button", { name: /open navigation menu/i }).first();
-    await menuButton.click();
-
-    const menuDialog = page.locator('div[role="dialog"][aria-label="Navigation Menu"]');
-    await expect(menuDialog).toBeVisible();
+    const { menuDialog } = await openLearnerMenu(page);
 
     await page.evaluate(() => {
       window.dispatchEvent(new Event("pagehide"));

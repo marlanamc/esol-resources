@@ -5,9 +5,9 @@
 
 import { NextResponse } from "next/server";
 import type { Session } from "next-auth";
-import { isTeacherAdmin } from "./roles";
+import { canUseTeacherTools, isAdmin } from "./roles";
 
-export type SessionUser = Session["user"] & { id: string; role?: string; isTeacherAdmin?: boolean };
+export type SessionUser = Session["user"] & { id: string; role?: string };
 
 /**
  * Returns 401 JSON response if no session. Otherwise returns null (caller proceeds).
@@ -20,7 +20,7 @@ export function requireAuth(session: Session | null): NextResponse | null {
 }
 
 /**
- * Returns 401 if no session, 403 if not a teacher. Otherwise returns { session, admin }.
+ * Returns 401 if no session, 403 if not teacher/admin. Otherwise returns { session, admin }.
  */
 export function requireTeacher(session: Session | null):
   | { ok: true; session: Session; user: SessionUser; admin: boolean }
@@ -29,7 +29,7 @@ export function requireTeacher(session: Session | null):
   if (authErr) return { ok: false, response: authErr };
 
   const user = session!.user as SessionUser;
-  if (user.role !== "teacher") {
+  if (!canUseTeacherTools(user)) {
     return {
       ok: false,
       response: NextResponse.json({ error: "Forbidden" }, { status: 403 }),
@@ -40,7 +40,7 @@ export function requireTeacher(session: Session | null):
     ok: true,
     session: session!,
     user,
-    admin: isTeacherAdmin(user),
+    admin: isAdmin(user),
   };
 }
 

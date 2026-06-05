@@ -4,7 +4,6 @@ import React, { useState, useMemo } from 'react';
 import { PenLine, Gamepad2, BookOpen, ClipboardList, Mic, PenTool, Volume2 } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { getLearnerCategoryTone } from '@/lib/learner-theme';
-import { createLearnerContentMetadataCache, getLearnerContentMetadata } from '@/lib/learner-visibility';
 
 // Re-use the Activity type shape from ActivityCategories
 interface Activity {
@@ -16,6 +15,7 @@ interface Activity {
     level: string | null;
     ui: string | null;
     content?: string;
+    isReleased?: boolean;
 }
 
 interface CategoryCardDef {
@@ -96,10 +96,6 @@ export function ActivityCategoryPicker({
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const activityContentMetadataCache = useMemo(() => createLearnerContentMetadataCache(), []);
-    const isReleasedActivityContent = React.useCallback((content: string | undefined) => {
-        return getLearnerContentMetadata(content, activityContentMetadataCache).releasedInContent;
-    }, [activityContentMetadataCache]);
 
     // Determine which categories actually have activities so we can hide empty ones
     const categoryHasActivities = useMemo(() => {
@@ -128,16 +124,10 @@ export function ActivityCategoryPicker({
         });
 
         // Quizzes
-        map['quizzes'] = activities.some((a) => {
-            if (a.category !== 'quizzes') return false;
-            return isReleasedActivityContent(a.content);
-        });
+        map['quizzes'] = activities.some((a) => a.category === 'quizzes' && a.isReleased !== false);
 
         // Speaking
-        map['speaking'] = activities.some((a) => {
-            if (a.category !== 'speaking') return false;
-            return isReleasedActivityContent(a.content);
-        });
+        map['speaking'] = activities.some((a) => a.category === 'speaking' && a.isReleased !== false);
 
         // Writing
         map['writing'] = activities.some(
@@ -150,7 +140,7 @@ export function ActivityCategoryPicker({
         );
 
         return map;
-    }, [activities, isReleasedActivityContent]);
+    }, [activities]);
 
     const visibleCards = CATEGORY_CARDS.filter((c) => categoryHasActivities[c.key]);
     const validInitialCategory =

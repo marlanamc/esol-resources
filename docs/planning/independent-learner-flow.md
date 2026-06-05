@@ -164,12 +164,12 @@ The `ClassEnrollment.status` field tracks where a student is in their journey:
 
 When a student is marked `graduated`:
 1. `ClassEnrollment.status` → `"graduated"`, `statusChangedAt` = now
-2. `User.learnerMode` → `"independent"` (flips their dashboard)
+2. No active enrollment remains, so the dashboard resolves as independent
 3. Points, streak, and achievements are untouched
 
 When a returning student re-enrolls in a future class:
 1. New `ClassEnrollment` row created with `isReturning = true`
-2. `User.learnerMode` → `"class"` automatically on join
+2. The active enrollment resolves the dashboard as classroom
 3. All prior history and points carry over — nothing resets
 
 See [data-structure-summer-2026.md](data-structure-summer-2026.md) for the full schema reference.

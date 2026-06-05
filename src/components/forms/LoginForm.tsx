@@ -59,7 +59,7 @@ export default function LoginForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 w-full">
+        <form onSubmit={handleSubmit} method="post" action="/login" className="space-y-6 w-full">
             <div className="border rounded-2xl p-5 sm:p-6 space-y-5 sm:space-y-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md">
                 <div>
                     <label htmlFor="username" className="block text-sm font-semibold mb-2 text-[var(--color-text)]">

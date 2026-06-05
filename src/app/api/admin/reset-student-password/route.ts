@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWORD_BLOCKED_MESSAGE, isDisallowedPassword } from "@/lib/auth-config";
 import { createAuditLogger } from "@/lib/audit-log";
-import { isTeacherAdmin } from "@/lib/roles";
+import { isAdmin } from "@/lib/roles";
 import { checkRateLimit, authRateLimitKey } from "@/lib/rate-limit";
 import { ApiErrors, apiSuccess, apiError } from "@/lib/api-response";
 import { requireTeacher } from "@/lib/api-auth";
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     }
 
     const { userId, newPassword } = await request.json();
-    const admin = isTeacherAdmin(teacherCheck.user);
+    const admin = isAdmin(teacherCheck.user);
 
     if (!userId || typeof userId !== "string") {
         return apiError("userId is required", 400);
@@ -76,6 +76,7 @@ export async function POST(request: Request) {
         : await prisma.classEnrollment.findFirst({
             where: {
                 studentId: userId,
+                status: "active",
                 class: { teacherId: teacherCheck.user.id },
                 student: {
                     isSystemAccount: false,

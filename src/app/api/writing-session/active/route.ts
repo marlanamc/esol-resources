@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { ANIMAL_GROUPS } from "@/lib/writing-session";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 
 export async function GET(request: NextRequest) {
     const session = await getServerSession(authOptions);
@@ -18,11 +19,11 @@ export async function GET(request: NextRequest) {
 
     // Find which classes this user is associated with
     let classIds: string[] = [];
-    if ((session.user as { role: string }).role === "teacher") {
-        const classes = await prisma.class.findMany({ where: { teacherId: userId }, select: { id: true } });
+    if (canUseTeacherTools(session.user)) {
+        const classes = await prisma.class.findMany({ where: isAdmin(session.user) ? {} : { teacherId: userId }, select: { id: true } });
         classIds = classes.map((c) => c.id);
     } else {
-        const enrollments = await prisma.classEnrollment.findMany({ where: { studentId: userId }, select: { classId: true } });
+        const enrollments = await prisma.classEnrollment.findMany({ where: { studentId: userId, status: "active" }, select: { classId: true } });
         classIds = enrollments.map((e) => e.classId);
     }
 

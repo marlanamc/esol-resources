@@ -6,6 +6,7 @@ import { DiagnosticReport } from "@/components/dashboard/DiagnosticReport";
 import { TabNavTelemetryCard } from "@/components/dashboard/TabNavTelemetryCard";
 import { BackButton } from "@/components/ui/BackButton";
 import { BarChart3 } from "lucide-react";
+import { canUseTeacherTools } from "@/lib/roles";
 
 export default async function DiagnosticsPage({
     searchParams,
@@ -15,7 +16,7 @@ export default async function DiagnosticsPage({
     const session = await getServerSession(authOptions);
     const user = session?.user as { id: string; role: string } | undefined;
 
-    if (!user || user.role !== "teacher") {
+    if (!user || !canUseTeacherTools(user)) {
         redirect("/login");
     }
 
@@ -40,6 +41,7 @@ export default async function DiagnosticsPage({
             prisma.classEnrollment.count({
                 where: {
                     classId,
+                    status: "active",
                     student: {
                         isSystemAccount: false,
                     },

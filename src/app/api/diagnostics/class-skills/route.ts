@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { ApiErrors, apiError } from "@/lib/api-response";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 
 type MiniQuizQuestionMeta = {
     question: string;
@@ -48,7 +49,7 @@ export async function GET(request: Request) {
     }
 
     const user = session.user;
-    if (user.role !== "teacher") {
+    if (!canUseTeacherTools(user)) {
         return ApiErrors.forbidden();
     }
 
@@ -65,7 +66,7 @@ export async function GET(request: Request) {
     const classData = await prisma.class.findFirst({
         where: {
             id: classId,
-            teacherId: user.id,
+            ...(isAdmin(user) ? {} : { teacherId: user.id }),
         },
     });
 
@@ -77,6 +78,7 @@ export async function GET(request: Request) {
     const enrollments = await prisma.classEnrollment.findMany({
         where: {
             classId,
+            status: "active",
             student: {
                 isSystemAccount: false,
             },

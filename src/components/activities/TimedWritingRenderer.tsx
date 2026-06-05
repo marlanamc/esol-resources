@@ -534,9 +534,9 @@ export default function TimedWritingRenderer({ content, activityId, assignmentId
             .then((data: { session: ActiveSessionInfo | null }) => {
                 if (data.session) {
                     setActiveSession(data.session);
-                    setSessionMode(userRole === "teacher" ? "session-host" : "session-participant");
+                    setSessionMode(userRole === "teacher" || userRole === "admin" ? "session-host" : "session-participant");
                 } else {
-                    setSessionMode(userRole === "teacher" ? "start-session" : "solo");
+                    setSessionMode(userRole === "teacher" || userRole === "admin" ? "start-session" : "solo");
                 }
             })
             .catch(() => setSessionMode("solo"));

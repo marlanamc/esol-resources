@@ -2,11 +2,9 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import { ApiErrors, apiError } from "@/lib/api-response";
 import { logger } from "@/lib/logger";
-import { getLearnerContentMetadata } from "@/lib/learner-visibility";
-import { probeActivityIsReleasedInContentColumn } from "@/lib/prisma-field-support";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -15,14 +13,13 @@ export async function POST(request: Request) {
         return ApiErrors.unauthorized();
     }
 
-    const userRole = session.user?.role;
-    if (userRole !== 'teacher') {
+    if (!canUseTeacherTools(session.user)) {
         return ApiErrors.forbidden("Only teachers can release quizzes");
     }
 
     const { activityId, released } = await request.json();
     const userId = session.user.id;
-    const admin = isTeacherAdmin(session.user);
+    const admin = isAdmin(session.user);
 
     if (!activityId || typeof activityId !== "string") {
         return apiError("activityId is required", 400);
@@ -46,22 +43,14 @@ export async function POST(request: Request) {
         return ApiErrors.forbidden("You can only release quizzes you created");
     }
 
-    const content = JSON.parse(activity.content);
-    content.released = released;
-
-    const hasReleasedColumn = await probeActivityIsReleasedInContentColumn();
     await prisma.activity.update({
         where: { id: activityId },
-        data: {
-            content: JSON.stringify(content),
-            ...(hasReleasedColumn
-                ? { isReleasedInContent: getLearnerContentMetadata(content).releasedInContent }
-                : {}),
-        },
+        data: { isReleased: released },
         select: { id: true },
     });
 
     // If this is a verb quiz being released, create calendar events for all classes
+    const content = JSON.parse(activity.content);
     if (released && content.type === 'verb-quiz' && content.due_date) {
         try {
             // Get all classes for this teacher

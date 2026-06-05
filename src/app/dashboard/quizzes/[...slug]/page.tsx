@@ -4,6 +4,7 @@ import { LogoutButton } from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { canUseTeacherTools } from "@/lib/roles";
 
 interface SubmissionRow {
     id: string;
@@ -22,7 +23,7 @@ export default async function VerbQuizResultsPage({
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
 
-    if (session.user?.role !== "teacher") {
+    if (!canUseTeacherTools(session.user)) {
         redirect("/dashboard");
     }
 

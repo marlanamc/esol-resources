@@ -5,14 +5,9 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import Link from "next/link";
 import { ClassCoursePath } from "@/components/dashboard/ClassCoursePath";
-import {
-    createLearnerContentMetadataCache,
-    isLearnerVisibleActivity,
-} from "@/lib/learner-visibility";
-import {
-    GUIDED_COURSE_MAP_UNITS,
-    getGuidedCourseMapActivityIds,
-} from "@/data/guided-course-map";
+import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import { getVisibleMap, getCourseMapActivityIds } from "@/lib/course-map";
+import { isAdminInStudentMode } from "@/lib/admin-student-view";
 
 export const metadata = {
     title: "Course Map | Class Companion",
@@ -22,52 +17,53 @@ export const metadata = {
 export default async function MapPage() {
     const session = await getServerSession(authOptions);
     if (!session?.user) redirect("/login");
-    if (session.user.role !== "student") redirect("/dashboard");
+    const adminStudentMode = await isAdminInStudentMode(session.user);
+    if (session.user.role !== "student" && !adminStudentMode) redirect("/dashboard");
 
     const userId = session.user.id;
 
-    const enrollments = await withPrismaReadRetry(() =>
-        prisma.classEnrollment.findMany({
-            where: { studentId: userId },
-            include: {
-                class: {
-                    include: {
-                        assignments: {
-                            select: {
-                                id: true,
-                                title: true,
-                                activityId: true,
-                                classId: true,
-                                isFeatured: true,
-                                sequenceNumber: true,
-                                unitLabel: true,
-                                activity: {
-                                    select: {
-                                        id: true,
-                                        title: true,
-                                        type: true,
-                                        category: true,
-                                        isReleased: true,
-                                        content: true,
+    const [{ units: courseMapUnits }, enrollments] = await Promise.all([
+        getVisibleMap({ id: userId, role: session.user.role }),
+        withPrismaReadRetry(() =>
+            prisma.classEnrollment.findMany({
+                where: { studentId: userId, status: "active" },
+                include: {
+                    class: {
+                        include: {
+                            assignments: {
+                                select: {
+                                    id: true,
+                                    title: true,
+                                    activityId: true,
+                                    classId: true,
+                                    isFeatured: true,
+                                    sequenceNumber: true,
+                                    unitLabel: true,
+                                    activity: {
+                                        select: {
+                                            id: true,
+                                            title: true,
+                                            type: true,
+                                            category: true,
+                                            isReleased: true,
+                                            content: true,
+                                        },
                                     },
                                 },
+                                orderBy: [{ sequenceNumber: "asc" }, { createdAt: "asc" }],
                             },
-                            orderBy: [{ sequenceNumber: "asc" }, { createdAt: "asc" }],
                         },
                     },
                 },
-            },
-        })
-    );
+            })
+        ),
+    ]);
 
-    const cache = createLearnerContentMetadataCache();
     const allAssignments = enrollments.flatMap((e) =>
-        e.class.assignments.filter((a) =>
-            isLearnerVisibleActivity(a.activity, cache)
-        )
+        e.class.assignments.filter((a) => isLearnerVisibleActivity(a.activity))
     );
 
-    const guidedActivityIds = getGuidedCourseMapActivityIds();
+    const guidedActivityIds = getCourseMapActivityIds(courseMapUnits);
     const pathActivityIds = [...new Set([
         ...guidedActivityIds,
         ...allAssignments
@@ -109,6 +105,7 @@ export default async function MapPage() {
             },
         };
     });
+
     const guidedAssignments = Object.fromEntries(
         guidedActivityIds
             .map((activityId) => {
@@ -127,19 +124,20 @@ export default async function MapPage() {
             })
             .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry))
     );
+
     const guidedProgress = Object.fromEntries(
         guidedActivityIds.map((activityId) => [activityId, progressMap.get(activityId) ?? null])
     );
 
-    // Compute overall progress for the header pill
-    const allRequiredActivities = GUIDED_COURSE_MAP_UNITS.flatMap((unit) =>
-        unit.levels.flatMap((level) => level.requiredActivities)
-    );
-    const totalLevels = GUIDED_COURSE_MAP_UNITS.flatMap((u) => u.levels).length;
-    const completedLevels = GUIDED_COURSE_MAP_UNITS.flatMap((u) => u.levels).filter((level) => {
-        const levelRequired = level.requiredActivities;
-        if (levelRequired.length === 0) return false;
-        return levelRequired.every((a) => a.activityId && progressMap.get(a.activityId) === "completed");
+    // Compute overall progress stats
+    const allLevels = courseMapUnits.flatMap((u) => u.levels);
+    const allRequiredActivities = allLevels.flatMap((l) => l.requiredActivities);
+    const totalLevels = allLevels.length;
+    const completedLevels = allLevels.filter((level) => {
+        if (level.requiredActivities.length === 0) return false;
+        return level.requiredActivities.every(
+            (a) => a.activityId && progressMap.get(a.activityId) === "completed"
+        );
     }).length;
     const totalRequired = allRequiredActivities.length;
     const completedRequired = allRequiredActivities.filter(
@@ -147,7 +145,7 @@ export default async function MapPage() {
     ).length;
     const overallPct = totalRequired > 0 ? Math.round((completedRequired / totalRequired) * 100) : 0;
 
-    const hasPath = GUIDED_COURSE_MAP_UNITS.length > 0 || coursePathAssignments.some((a) => a.sequenceNumber != null);
+    const hasPath = courseMapUnits.length > 0 || coursePathAssignments.some((a) => a.sequenceNumber != null);
 
     return (
         <div className="min-h-screen bg-bg">
@@ -267,10 +265,10 @@ export default async function MapPage() {
                         )}
 
                         {/* Unit index */}
-                        {GUIDED_COURSE_MAP_UNITS.length > 0 && (
+                        {courseMapUnits.length > 0 && (
                             <div className="dashboard-panel rounded-2xl p-4 space-y-1">
                                 <p className="text-[11px] font-bold uppercase tracking-wide text-text-muted mb-2 px-1">Units</p>
-                                {GUIDED_COURSE_MAP_UNITS.map((unit) => {
+                                {courseMapUnits.map((unit) => {
                                     const unitRequired = unit.levels.flatMap((l) => l.requiredActivities);
                                     const unitDone = unitRequired.filter((a) => a.activityId && guidedProgress[a.activityId] === "completed").length;
                                     const isUnitDone = unitDone === unitRequired.length && unitRequired.length > 0;
@@ -315,7 +313,7 @@ export default async function MapPage() {
                         {hasPath ? (
                             <ClassCoursePath
                                 assignments={coursePathAssignments}
-                                guidedUnits={GUIDED_COURSE_MAP_UNITS}
+                                guidedUnits={courseMapUnits}
                                 guidedAssignments={guidedAssignments}
                                 guidedProgress={guidedProgress}
                                 desktopLayout
@@ -335,7 +333,7 @@ export default async function MapPage() {
                     {hasPath ? (
                         <ClassCoursePath
                             assignments={coursePathAssignments}
-                            guidedUnits={GUIDED_COURSE_MAP_UNITS}
+                            guidedUnits={courseMapUnits}
                             guidedAssignments={guidedAssignments}
                             guidedProgress={guidedProgress}
                         />

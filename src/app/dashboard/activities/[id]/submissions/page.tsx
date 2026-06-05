@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { BackButton } from "@/components/ui/BackButton";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -31,7 +32,7 @@ export default async function WritingSubmissionsPage({ params }: Props) {
     const { id } = await params;
 
     if (!session) redirect("/login");
-    if (session.user?.role !== "teacher") redirect("/dashboard");
+    if (!canUseTeacherTools(session.user)) redirect("/dashboard");
 
     const activity = await prisma.activity.findFirst({
         where: { id, deletedAt: null },
@@ -42,14 +43,14 @@ export default async function WritingSubmissionsPage({ params }: Props) {
 
     // Get all classes this teacher owns, then find submissions for this activity in those classes
     const teacherClasses = await prisma.class.findMany({
-        where: { teacherId: session.user.id },
+        where: isAdmin(session.user) ? {} : { teacherId: session.user.id },
         select: { id: true },
     });
     const classIds = teacherClasses.map((c) => c.id);
 
     // Find all students enrolled in teacher's classes
     const enrollments = await prisma.classEnrollment.findMany({
-        where: { classId: { in: classIds } },
+        where: { classId: { in: classIds }, status: "active" },
         select: { studentId: true },
     });
     const studentIds = [...new Set(enrollments.map((e) => e.studentId))];

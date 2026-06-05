@@ -9,24 +9,26 @@ Class Companion has the following roles:
 | Role | Database Value | Description |
 |------|---------------|-------------|
 | **Teacher** | `teacher` | Creates classes, assigns activities, views student progress and reports |
-| **Teacher Admin** | `teacher_admin` | Full access to all classes and students, including independent learners |
+| **Admin** | `admin` | One account with teacher tools plus full access to all classes, students, and independent learners |
 | **Student** | `student` | Completes activities, earns points, appears on leaderboards |
 
-### Teacher Admin Capabilities
+### Admin Capabilities
 
-Users with the `teacher_admin` role have elevated access:
+Users with the `admin` role have elevated access:
 
 - **Stats page** (`/dashboard/stats`) - Toggle between "Classroom", "Independent", and "All Students" views
 - **Reports page** (`/dashboard/reports`) - Filter activity reports by learner type
 - **Leaderboard** (`/dashboard/leaderboard`) - Toggle between "Classroom" and "Independent" leaderboards
 - **All classes** - Access to all classes, not just their own
+- **Dashboard view toggle** - Switch between "Teaching" and "Admin" views from one login
 
-To check if a user is an admin:
+To check if a user can use teacher tools or admin tools:
 
 ```typescript
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 
-const admin = isTeacherAdmin(session.user);
+const teacherTools = canUseTeacherTools(session.user);
+const admin = isAdmin(session.user);
 ```
 
 ## Student Learning Modes
@@ -52,41 +54,30 @@ Students can operate in one of two learning modes:
 The learning mode is resolved using the following logic:
 
 ```
-1. Check UserPreferences.learnerMode for the student
-2. If preference exists and is valid ("classroom" or "independent"), use it
-3. If no preference exists, default to "classroom"
+1. Check active ClassEnrollment rows for the student
+2. If at least one enrollment has status = "active", use "classroom"
+3. If no active enrollments exist, use "independent"
 ```
 
 **Key points:**
-- The default is always `"classroom"` for safety
-- Students must explicitly opt into `"independent"` mode
-- Class enrollment count does NOT automatically change the mode
-- An unenrolled student without a preference will still be in `"classroom"` mode
+- ClassEnrollment.status is the source of truth
+- Students do not manually toggle learner mode
+- Graduated and exited enrollments remain history but do not make a learner classroom
+- A never-enrolled student is independent by definition
 
 ## Database Schema
-
-### UserPreferences
-
-```prisma
-model UserPreferences {
-  id                   String   @id @default(cuid())
-  userId               String   @unique
-  learnerMode          String   @default("classroom")  // "classroom" | "independent"
-  weeklyActivityGoal   Int      @default(3)
-  weeklyGoalStartDay   Int      @default(1)            // 0=Sunday, 1=Monday
-  skillFocus           String[] @default([])
-  // ... other fields
-}
-```
 
 ### ClassEnrollment
 
 ```prisma
 model ClassEnrollment {
-  id        String   @id @default(cuid())
-  classId   String
-  studentId String
-  joinedAt  DateTime @default(now())
+  id              String   @id @default(cuid())
+  classId         String
+  studentId       String
+  joinedAt        DateTime @default(now())
+  status          String   @default("active") // active | exited | graduated
+  statusChangedAt DateTime?
+  statusNote      String?
 
   @@unique([classId, studentId])
 }
@@ -103,58 +94,18 @@ Transition a student from classroom to independent mode when:
 
 ### Transition Process
 
-#### Step 1: Remove Class Enrollments
-
-Remove the student from all class enrollments:
-
-```sql
--- Using SQL
-DELETE FROM "ClassEnrollment" WHERE "studentId" = '<user_id>';
-```
-
-Or using Prisma:
+Mark the active class enrollment as graduated:
 
 ```typescript
-await prisma.classEnrollment.deleteMany({
-  where: { studentId: userId }
+await graduateStudentFromClass({
+  prisma,
+  studentId: userId,
+  classId,
+  note: "Completed Spring 2026"
 });
 ```
 
-#### Step 2: Update Learning Mode Preference
-
-Set the student's learning mode to independent:
-
-```sql
--- Using SQL (upsert)
-INSERT INTO "UserPreferences" (id, "userId", "learnerMode", "createdAt", "updatedAt")
-VALUES (gen_random_uuid(), '<user_id>', 'independent', NOW(), NOW())
-ON CONFLICT ("userId")
-DO UPDATE SET "learnerMode" = 'independent', "updatedAt" = NOW();
-```
-
-Or using Prisma:
-
-```typescript
-await prisma.userPreferences.upsert({
-  where: { userId },
-  update: { learnerMode: "independent" },
-  create: {
-    userId,
-    learnerMode: "independent",
-  }
-});
-```
-
-Or via the API (as the logged-in student):
-
-```typescript
-// POST /api/user/preferences
-fetch('/api/user/preferences', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ learnerMode: 'independent' })
-});
-```
+No separate learner-mode preference is written. The student becomes independent because they no longer have an active enrollment.
 
 ### What Happens After Transition
 
@@ -169,22 +120,13 @@ Once transitioned, the student will:
 
 To move a student back to classroom mode:
 
-1. Enroll them in a class
-2. Update their preference to `"classroom"` (or delete the preference to use default)
+1. Enroll or reactivate them in a class with `status = "active"`
 
 ```typescript
-// Re-enroll in a class
-await prisma.classEnrollment.create({
-  data: {
-    classId: classId,
-    studentId: userId,
-  }
-});
-
-// Update preference
-await prisma.userPreferences.update({
-  where: { userId },
-  data: { learnerMode: "classroom" }
+await enrollStudentInClass({
+  prisma,
+  studentId: userId,
+  classId,
 });
 ```
 
@@ -194,9 +136,9 @@ Classroom and independent leaderboards are completely separate:
 
 | Leaderboard Type | Who Appears |
 |-----------------|-------------|
-| **Class Leaderboard** | Only students enrolled in that specific class |
-| **All Classes Leaderboard** | Students enrolled in any of the viewer's classes |
-| **Independent Leaderboard** | Only students with `learnerMode: "independent"` OR no class enrollments |
+| **Class Leaderboard** | Only students with active enrollment in that class |
+| **All Classes Leaderboard** | Students with active enrollment in any of the viewer's classes |
+| **Independent Leaderboard** | Students with no active class enrollments |
 
 This ensures:
 - Classroom students compete with their classmates
@@ -214,7 +156,6 @@ GET /api/user/preferences
 Response:
 ```json
 {
-  "learnerMode": "classroom",
   "weeklyActivityGoal": 3,
   "weeklyGoalStartDay": 1,
   "skillFocus": []
@@ -228,7 +169,7 @@ POST /api/user/preferences
 Content-Type: application/json
 
 {
-  "learnerMode": "independent"
+  "weeklyActivityGoal": 4
 }
 ```
 
@@ -236,8 +177,7 @@ Response:
 ```json
 {
   "ok": true,
-  "learnerMode": "independent",
-  "weeklyActivityGoal": 3,
+  "weeklyActivityGoal": 4,
   "weeklyGoalStartDay": 1,
   "skillFocus": []
 }

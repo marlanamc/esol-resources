@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { JoinClassForm } from "@/components/JoinClassForm";
+import { canUseTeacherTools } from "@/lib/roles";
 
 export default async function JoinClassPage() {
     const session = await getServerSession(authOptions);
@@ -10,8 +11,7 @@ export default async function JoinClassPage() {
         redirect("/login");
     }
 
-    const userRole = session.user?.role;
-    if (userRole === "teacher") {
+    if (canUseTeacherTools(session.user)) {
         redirect("/dashboard");
     }
 
@@ -30,7 +30,6 @@ export default async function JoinClassPage() {
         </div>
     );
 }
-
 
 
 

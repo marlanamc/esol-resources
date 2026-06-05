@@ -5,7 +5,7 @@ import { BackButton } from "@/components/ui/BackButton";
 import { ExcludeLeaderboardToggle } from "@/components/admin/ExcludeLeaderboardToggle";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { isTeacherAdmin } from "@/lib/roles";
+import { isAdmin } from "@/lib/roles";
 import { isLeaderboardExcludedUser } from "@/lib/gamification/leaderboard-filter";
 
 type UserRow = {
@@ -34,7 +34,7 @@ type UserRow = {
 };
 
 function roleBadgeClasses(role: string) {
-    if (role === "teacher_admin") return "bg-purple-100 text-purple-800 border-purple-200";
+    if (role === "admin") return "bg-purple-100 text-purple-800 border-purple-200";
     if (role === "teacher") return "bg-blue-100 text-blue-800 border-blue-200";
     return "bg-emerald-100 text-emerald-800 border-emerald-200";
 }
@@ -45,7 +45,7 @@ export default async function BackendUsersPage() {
         redirect("/login");
     }
 
-    const canAccess = session.user.role === "teacher" && isTeacherAdmin(session.user);
+    const canAccess = isAdmin(session.user);
     if (!canAccess) {
         redirect("/dashboard");
     }
@@ -120,7 +120,7 @@ export default async function BackendUsersPage() {
                 <div className="border rounded-2xl bg-white p-4 sm:p-6 shadow-sm">
                     <div className="flex items-center justify-between gap-3 flex-wrap mb-4">
                         <h2 className="text-xl font-bold text-text">Accounts ({users.length})</h2>
-                        <p className="text-sm text-text-muted">Access: `teacher_admin` only</p>
+                        <p className="text-sm text-text-muted">Access: admin only</p>
                     </div>
 
                     <div className="overflow-x-auto">
@@ -144,7 +144,7 @@ export default async function BackendUsersPage() {
                                         ? user.classes.map((entry) => entry.class.name)
                                         : user.createdClasses.map((entry) => entry.name);
                                     const permissions = [
-                                        user.role === "teacher_admin" ? "Global teacher access" : null,
+                                        user.role === "admin" ? "Global admin access" : null,
                                         user.role === "teacher" ? "Teacher tools" : "Student tools",
                                         user.mustChangePassword ? "Must change password" : "Password current",
                                         user.isSystemAccount ? "System account" : "Regular account",

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import { ApiErrors } from "@/lib/api-response";
 import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 
@@ -58,13 +58,12 @@ export async function GET(request: Request) {
     return ApiErrors.unauthorized();
   }
 
-  const userRole = session.user.role;
-  if (userRole !== "teacher") {
+  if (!canUseTeacherTools(session.user)) {
     return ApiErrors.forbidden("Only teachers can access reports");
   }
 
   const teacherId = session.user.id;
-  const admin = isTeacherAdmin(session.user);
+  const admin = isAdmin(session.user);
 
   // Parse query params
   const { searchParams } = new URL(request.url);
@@ -117,8 +116,10 @@ export async function GET(request: Request) {
         select: {
           enrollments: {
             where: {
+              status: "active",
               student: {
                 isSystemAccount: false,
+                excludeFromLeaderboard: false,
               },
             },
             select: {
@@ -158,6 +159,7 @@ export async function GET(request: Request) {
               username: true,
               name: true,
               isSystemAccount: true,
+              excludeFromLeaderboard: true,
             },
           },
         },
@@ -198,6 +200,7 @@ export async function GET(request: Request) {
               username: true,
               name: true,
               isSystemAccount: true,
+              excludeFromLeaderboard: true,
             },
           },
         },
@@ -206,7 +209,7 @@ export async function GET(request: Request) {
 
     // Filter out system accounts from results
     const filteredPointsData = pointsData.filter(
-      (p) => !p.user.isSystemAccount
+      (p) => !p.user.isSystemAccount && !p.user.excludeFromLeaderboard
     );
 
     // Process popular activities
@@ -299,6 +302,7 @@ export async function GET(request: Request) {
       where: {
         id: { in: activeStudentIds },
         isSystemAccount: false,
+        excludeFromLeaderboard: false,
       },
       select: {
         id: true,
@@ -312,7 +316,7 @@ export async function GET(request: Request) {
 
     // recentActivityData is already sorted by createdAt desc, so first entry per user is most recent
     recentActivityData
-      .filter((entry) => !entry.user.isSystemAccount)
+      .filter((entry) => !entry.user.isSystemAccount && !entry.user.excludeFromLeaderboard)
       .forEach((entry) => {
         if (!lastActivityByStudent.has(entry.userId)) {
           lastActivityByStudent.set(entry.userId, {
@@ -354,7 +358,7 @@ export async function GET(request: Request) {
 
     // Build recent activity feed
     const recentActivity: RecentActivityEntry[] = recentActivityData
-      .filter((entry) => !entry.user.isSystemAccount)
+      .filter((entry) => !entry.user.isSystemAccount && !entry.user.excludeFromLeaderboard)
       .map((entry) => {
         // Try to get a friendly activity name and type
         let activityName = entry.reason || "Activity";

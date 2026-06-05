@@ -243,8 +243,8 @@ export async function getTimeframedLeaderboard(
   const since = getRangeStart(range);
 
   const classFilter = classIds && classIds.length > 0
-    ? { classes: { some: { classId: { in: classIds } } } }
-    : (classId ? { classes: { some: { classId } } } : undefined);
+    ? { classes: { some: { classId: { in: classIds }, status: 'active' } } }
+    : (classId ? { classes: { some: { classId, status: 'active' } } } : undefined);
 
   // First, get all students (excluding test accounts and admin accounts)
   const studentWhere = options?.independentOnly

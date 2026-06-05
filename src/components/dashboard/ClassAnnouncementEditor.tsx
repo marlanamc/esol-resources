@@ -82,56 +82,44 @@ export function ClassAnnouncementEditor({
     };
 
     return (
-        <div className="bg-white dark:bg-[var(--surface-elevated)] shadow rounded-lg p-6">
-            <div className="flex items-start justify-between gap-3 mb-3">
-                <div>
-                    <h2 className="text-xl font-semibold text-text">Class Announcement</h2>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                        This appears on the student dashboard above the weekly checklist.
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        Markdown supported: <code>**bold**</code>, <code>*italic*</code>, <code>`code`</code>, and bullet lines starting with <code>- </code>.
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        Links: <code>[Quiz Review](https://example.com)</code>
-                    </p>
-                </div>
-            </div>
+        <div>
+            <p className="text-xs text-text-muted mb-2">
+                Shown on the student dashboard above their weekly checklist. Supports <strong>**bold**</strong>, <em>*italic*</em>, and <code className="text-xs bg-[var(--surface-subtle)] px-1 rounded">- bullet</code> lists.
+            </p>
 
             <textarea
                 value={announcement}
                 onChange={(event) => setAnnouncement(event.target.value)}
                 rows={4}
                 maxLength={MAX_ANNOUNCEMENT_LENGTH}
-                placeholder="Example: Quiz on Friday. Complete all speaking activities by Thursday."
-                className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                placeholder="e.g. Quiz on Friday. Complete all speaking activities by Thursday."
+                className="w-full rounded-xl border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                style={{ borderColor: "var(--border-subtle)" }}
             />
 
-            <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                {remaining} characters left
+            <div className="mt-1 text-xs text-text-muted text-right">
+                {remaining} / {MAX_ANNOUNCEMENT_LENGTH}
             </div>
 
-            {error && (
-                <p className="mt-3 text-sm text-red-700 dark:text-red-300">{error}</p>
-            )}
-            {isSaved && !error && (
-                <p className="mt-3 text-sm text-green-700 dark:text-green-300">Announcement saved.</p>
-            )}
+            {error && <p className="mt-2 text-xs text-red-600">{error}</p>}
+            {isSaved && !error && <p className="mt-2 text-xs text-secondary font-semibold">Saved.</p>}
 
-            <div className="mt-4 flex items-center gap-2">
+            <div className="mt-3 flex items-center gap-2">
                 <button
                     type="button"
                     onClick={saveAnnouncement}
                     disabled={isSaving}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60"
+                    className="flex-1 inline-flex justify-center items-center px-4 py-2 rounded-lg text-sm font-semibold text-white disabled:opacity-60 transition-opacity"
+                    style={{ background: "var(--primary)" }}
                 >
-                    {isSaving ? "Saving..." : "Save Announcement"}
+                    {isSaving ? "Saving…" : "Save"}
                 </button>
                 <button
                     type="button"
                     onClick={clearAnnouncement}
                     disabled={isSaving || announcement.trim().length === 0}
-                    className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-white/20 text-sm font-medium rounded-md shadow-sm text-gray-700 dark:text-gray-200 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20 disabled:opacity-60"
+                    className="px-4 py-2 rounded-lg text-sm font-semibold border disabled:opacity-40 transition-colors hover:bg-[var(--surface-subtle)]"
+                    style={{ borderColor: "var(--border-subtle)", color: "var(--text-muted)" }}
                 >
                     Clear
                 </button>

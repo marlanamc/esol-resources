@@ -10,7 +10,6 @@ import { Prisma } from '@prisma/client';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
-import { normalizeLearnerMode } from '@/lib/learner-mode';
 
 /**
  * GET /api/user/preferences
@@ -37,14 +36,12 @@ export async function GET() {
         data: {
           userId,
           hideVerbExplanations: false,
-          learnerMode: 'classroom',
         }
       });
     }
 
     return NextResponse.json({
       hideVerbExplanations: preferences.hideVerbExplanations,
-      learnerMode: preferences.learnerMode,
       weeklyActivityGoal: preferences.weeklyActivityGoal,
       weeklyGoalStartDay: preferences.weeklyGoalStartDay,
       skillFocus: preferences.skillFocus,
@@ -82,7 +79,6 @@ function validateGameSettings(value: unknown): { ok: true; value: Record<string,
  * Update user preferences
  * Body: {
  *   hideVerbExplanations?: boolean,
- *   learnerMode?: "classroom" | "independent",
  *   weeklyActivityGoal?: number (1-10),
  *   weeklyGoalStartDay?: number (0-6, 0=Sunday),
  *   skillFocus?: string[]
@@ -100,14 +96,12 @@ export async function POST(request: Request) {
     const body = await request.json();
     const {
       hideVerbExplanations,
-      learnerMode,
       weeklyActivityGoal,
       weeklyGoalStartDay,
       skillFocus,
       gameSettings,
     } = body as {
       hideVerbExplanations?: boolean;
-      learnerMode?: string;
       weeklyActivityGoal?: number;
       weeklyGoalStartDay?: number;
       skillFocus?: string[];
@@ -116,11 +110,6 @@ export async function POST(request: Request) {
 
     if (hideVerbExplanations !== undefined && typeof hideVerbExplanations !== 'boolean') {
       return apiError('hideVerbExplanations must be a boolean', 400);
-    }
-
-    const normalizedLearnerMode = learnerMode === undefined ? undefined : normalizeLearnerMode(learnerMode);
-    if (learnerMode !== undefined && !normalizedLearnerMode) {
-      return apiError('learnerMode must be classroom or independent', 400);
     }
 
     if (weeklyActivityGoal !== undefined) {
@@ -150,7 +139,6 @@ export async function POST(request: Request) {
 
     const updateData: {
       hideVerbExplanations?: boolean;
-      learnerMode?: 'classroom' | 'independent';
       weeklyActivityGoal?: number;
       weeklyGoalStartDay?: number;
       skillFocus?: string[];
@@ -159,9 +147,6 @@ export async function POST(request: Request) {
 
     if (hideVerbExplanations !== undefined) {
       updateData.hideVerbExplanations = hideVerbExplanations;
-    }
-    if (normalizedLearnerMode) {
-      updateData.learnerMode = normalizedLearnerMode;
     }
     if (weeklyActivityGoal !== undefined) {
       updateData.weeklyActivityGoal = weeklyActivityGoal;
@@ -190,7 +175,6 @@ export async function POST(request: Request) {
       create: {
         userId,
         hideVerbExplanations: hideVerbExplanations ?? false,
-        learnerMode: normalizedLearnerMode ?? 'classroom',
         weeklyActivityGoal: weeklyActivityGoal ?? 3,
         weeklyGoalStartDay: weeklyGoalStartDay ?? 1,
         skillFocus: skillFocus ?? [],
@@ -201,7 +185,6 @@ export async function POST(request: Request) {
     return NextResponse.json({
       ok: true,
       hideVerbExplanations: preferences.hideVerbExplanations,
-      learnerMode: preferences.learnerMode,
       weeklyActivityGoal: preferences.weeklyActivityGoal,
       weeklyGoalStartDay: preferences.weeklyGoalStartDay,
       skillFocus: preferences.skillFocus,

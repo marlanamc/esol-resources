@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import { EditClassForm } from "@/components/EditClassForm";
 import { BackButton } from "@/components/ui/BackButton";
 
@@ -18,11 +18,11 @@ export default async function EditClassPage({ params }: Props) {
         redirect("/login");
     }
 
-    if (session.user.role !== "teacher") {
+    if (!canUseTeacherTools(session.user)) {
         redirect("/dashboard");
     }
 
-    const admin = isTeacherAdmin(session.user);
+    const admin = isAdmin(session.user);
     const userId = session.user.id;
 
     const classItem = await prisma.class.findUnique({
@@ -82,4 +82,3 @@ export default async function EditClassPage({ params }: Props) {
         </div>
     );
 }
-

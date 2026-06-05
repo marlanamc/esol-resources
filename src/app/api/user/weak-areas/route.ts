@@ -9,7 +9,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { ApiErrors, handleApiError } from "@/lib/api-response";
 import { analyzeWeakAreas } from "@/lib/independent-progress";
-import { createLearnerContentMetadataCache, filterLearnerVisibleActivities } from "@/lib/learner-visibility";
+import { filterLearnerVisibleActivities } from "@/lib/learner-visibility";
 
 /**
  * GET /api/user/weak-areas
@@ -60,10 +60,7 @@ export async function GET(request: Request) {
                         content: true,
             },
         });
-        const activities = filterLearnerVisibleActivities(
-            activitiesRaw,
-            createLearnerContentMetadataCache()
-        ).map((activity) => ({
+        const activities = filterLearnerVisibleActivities(activitiesRaw).map((activity) => ({
             id: activity.id,
             title: activity.title,
             type: activity.type,

@@ -14,10 +14,17 @@ export {
   type SessionUser,
 } from "./api-auth";
 export {
+  canUseTeacherTools,
+  isAdmin,
   isTeacher,
   ensureTeacher,
   canManageClass,
   canManageActivity,
   classOwnershipWhere,
 } from "./policies";
-export { isTeacherAdmin } from "./roles";
+export {
+  isStudent,
+  isTeacherAdmin,
+  normalizeUserRole,
+  type UserRole,
+} from "./roles";

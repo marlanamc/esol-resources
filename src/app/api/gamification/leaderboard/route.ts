@@ -5,7 +5,7 @@ import { getTimeframedLeaderboard, LeaderboardRange } from '@/lib/gamification';
 import { prisma } from '@/lib/prisma';
 import { classOwnershipWhere, ensureTeacher } from '@/lib/policies';
 import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
-import { resolveLearnerMode } from '@/lib/learner-mode';
+import { getLearnerState } from '@/lib/learner-mode';
 
 /**
  * GET /api/gamification/leaderboard
@@ -68,21 +68,15 @@ export async function GET(req: NextRequest) {
 
     if (user.role === "student") {
       const enrollments = await prisma.classEnrollment.findMany({
-        where: { studentId: user.id },
+        where: { studentId: user.id, status: "active" },
         orderBy: { joinedAt: "desc" },
         select: {
           classId: true,
         },
       });
 
-      const preferences = await prisma.userPreferences.findUnique({
-        where: { userId: user.id },
-        select: { learnerMode: true },
-      });
-      const learnerMode = resolveLearnerMode({
-        storedMode: preferences?.learnerMode,
-        enrollmentCount: enrollments.length,
-      });
+      const learnerState = await getLearnerState(prisma, user.id);
+      const learnerMode = learnerState.mode;
 
       if (scope === "independent" || learnerMode === "independent") {
         leaderboardOptions = { independentOnly: true };

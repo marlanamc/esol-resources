@@ -4,7 +4,7 @@ import Link from "next/link";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { Card } from "@/components/ui";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 
 export default async function ClassesIndexPage() {
     const session = await getServerSession(authOptions);
@@ -12,12 +12,11 @@ export default async function ClassesIndexPage() {
         redirect("/login");
     }
 
-    const userRole = session.user?.role || "student";
     const userId = session.user?.id;
-    const admin = isTeacherAdmin(session.user);
+    const admin = isAdmin(session.user);
 
     // Only teachers should view their class list here
-    if (userRole !== "teacher") {
+    if (!canUseTeacherTools(session.user)) {
         redirect("/dashboard");
     }
 
@@ -26,6 +25,7 @@ export default async function ClassesIndexPage() {
         include: {
             enrollments: {
                 where: {
+                    status: "active",
                     student: {
                         isSystemAccount: false,
                     },

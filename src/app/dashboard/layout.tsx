@@ -3,37 +3,29 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getTimeframedLeaderboard } from "@/lib/gamification";
-import { resolveLearnerMode, type LearnerMode } from "@/lib/learner-mode";
+import { getLearnerState, type LearnerMode } from "@/lib/learner-mode";
 import { BottomNav } from "@/components/ui";
 import { DashboardHeader } from "@/components/dashboard";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 import { NetworkStatusBanner } from "@/components/NetworkStatusBanner";
 import { SubmissionOutboxManager } from "@/components/SubmissionOutboxManager";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 
 async function getStudentDashboardContext(userId: string): Promise<{
     learnerMode: LearnerMode;
     leaderboardRank: number | null;
 }> {
-    const [preferences, latestEnrollment, enrollmentCount] = await Promise.all([
-        prisma.userPreferences.findUnique({
-            where: { userId },
-            select: { learnerMode: true },
-        }),
+    const [learnerState, latestEnrollment] = await Promise.all([
+        getLearnerState(prisma, userId),
         prisma.classEnrollment.findFirst({
-            where: { studentId: userId },
+            where: { studentId: userId, status: "active" },
             orderBy: { joinedAt: "desc" },
             select: { classId: true },
         }),
-        prisma.classEnrollment.count({
-            where: { studentId: userId },
-        }),
     ]);
 
-    const learnerMode = resolveLearnerMode({
-        storedMode: preferences?.learnerMode,
-        enrollmentCount,
-    });
+    const learnerMode = learnerState.mode;
 
     if (learnerMode === "independent") {
         const leaderboard = await getTimeframedLeaderboard("week", 20, undefined, undefined, { independentOnly: true });
@@ -82,9 +74,11 @@ export default async function DashboardLayout({ children }: { children: ReactNod
             {session && (
                 <DashboardHeader
                     userName={session.user?.name || ""}
-                    enableSearch={session.user?.role === "student" || session.user?.role === "teacher"}
+                    enableSearch={session.user?.role === "student" || canUseTeacherTools(session.user)}
                     leaderboardRank={leaderboardRank}
                     showMarlieEmoji={session.user?.username?.toLowerCase() === "marlie"}
+                    showViewModeToggle={canUseTeacherTools(session.user)}
+                    isAdmin={isAdmin(session.user)}
                 />
             )}
             {children}

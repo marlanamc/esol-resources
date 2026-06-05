@@ -4,11 +4,10 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import { ensureTeacher } from "@/lib/policies";
-import { createLearnerContentMetadataCache, filterLearnerVisibleActivities, getLearnerContentMetadata } from "@/lib/learner-visibility";
+import { filterLearnerVisibleActivities } from "@/lib/learner-visibility";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 import { logger } from "@/lib/logger";
 import { timedQuery } from "@/lib/perf-log";
-import { probeActivityIsReleasedInContentColumn } from "@/lib/prisma-field-support";
 
 export async function POST(request: NextRequest) {
     try {
@@ -28,7 +27,6 @@ export async function POST(request: NextRequest) {
             return apiError("Title, type, and content are required", 400);
         }
 
-        const hasReleasedColumn = await probeActivityIsReleasedInContentColumn();
         const activity = await prisma.activity.create({
             data: {
                 title,
@@ -37,9 +35,6 @@ export async function POST(request: NextRequest) {
                 category: category || null,
                 level: level || null,
                 content,
-                ...(hasReleasedColumn
-                    ? { isReleasedInContent: getLearnerContentMetadata(content).releasedInContent }
-                    : {}),
                 createdBy: session.user.id,
             },
             select: {
@@ -76,7 +71,6 @@ export async function GET() {
             const userRole = session.user?.role;
 
         if (userRole === "student") {
-            const visibilityCache = createLearnerContentMetadataCache();
             const studentActivities = await timedQuery(
                 {
                     route: "/api/activities",
@@ -105,7 +99,7 @@ export async function GET() {
             );
 
             const visibleActivities = collapseEdPronunciationActivities(
-                filterLearnerVisibleActivities(studentActivities, visibilityCache)
+                filterLearnerVisibleActivities(studentActivities)
             )
                 .map((activity) => ({
                     id: activity.id,

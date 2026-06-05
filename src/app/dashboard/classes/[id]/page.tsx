@@ -8,7 +8,8 @@ import { LogoutButton } from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { FeatureToggleButton, AssignmentRequirementToggle } from "@/components/dashboard";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { isCatchUpPathEnabled } from "@/lib/catch-up-deadlines";
 
 interface Props {
@@ -25,7 +26,7 @@ export default async function ClassDetailPage({ params }: Props) {
 
     const userId = session.user?.id;
     const userRole = session.user?.role;
-    const admin = isTeacherAdmin(session.user);
+    const admin = isAdmin(session.user);
 
     const classItem = await prisma.class.findUnique({
         where: { id },
@@ -33,6 +34,7 @@ export default async function ClassDetailPage({ params }: Props) {
             teacher: true,
             enrollments: {
                 where: {
+                    status: "active",
                     student: {
                         isSystemAccount: false,
                     },
@@ -64,20 +66,22 @@ export default async function ClassDetailPage({ params }: Props) {
     }
 
     // Check if user has access (teacher or enrolled student)
-    const isTeacher = userRole === "teacher" && (admin || classItem.teacherId === userId);
-    const isEnrolled = userRole === "student" && userId
-        ? !!(await prisma.classEnrollment.findUnique({
+    const studentMode = await isAdminInStudentMode(session.user);
+    const isTeacher = !studentMode && canUseTeacherTools(session.user) && (admin || classItem.teacherId === userId);
+    const enrollment = (userRole === "student" || studentMode) && userId
+        ? await prisma.classEnrollment.findUnique({
             where: {
                 classId_studentId: {
                     classId: classItem.id,
                     studentId: userId,
                 },
             },
-            select: { id: true },
-        }))
-        : false;
+            select: { status: true },
+        })
+        : null;
+    const hasActiveEnrollment = enrollment?.status === "active";
 
-    if (!isTeacher && !isEnrolled) {
+    if (!isTeacher && !hasActiveEnrollment) {
         redirect("/dashboard");
     }
 

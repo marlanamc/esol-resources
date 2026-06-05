@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, type UserRole } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import { resolveSeedAccountPassword } from '../src/lib/account-passwords.js';
 
@@ -24,7 +24,6 @@ const studentNames = [
   'Esmeralda',
   'Susan',
   'Will',
-  'Marlie',
   'Tolesa',
   'Yonatan',
   'Hazel',
@@ -33,7 +32,7 @@ const studentNames = [
 
 const toUsername = (name: string) => name.trim().toLowerCase().replace(/\s+/g, '');
 
-async function upsertUser(username: string, name: string, role = 'student', mustChangePassword = true) {
+async function upsertUser(username: string, name: string, role: UserRole = 'student', mustChangePassword = true) {
   const passwordHash = await bcrypt.hash(resolveSeedAccountPassword(), BCRYPT_ROUNDS);
   return prisma.user.upsert({
     where: { username },
@@ -55,9 +54,9 @@ async function upsertUser(username: string, name: string, role = 'student', must
 async function main() {
   console.log('👥 Upserting users (does NOT affect student progress)...\n');
 
-  // Create teacher
-  const teacher = await upsertUser('teacher', 'Teacher User', 'teacher', true);
-  console.log('  ✅ Teacher:', teacher.name);
+  // Create the single teacher/admin account.
+  const teacher = await upsertUser('marlie', 'Marlie', 'admin', true);
+  console.log('  ✅ Admin/Teacher:', teacher.name);
 
   // Create all students
   const students = [];
@@ -99,7 +98,7 @@ async function main() {
   }
 
   console.log(`\n✨ Users seeded successfully!`);
-  console.log(`   Teacher: 1 | Students: ${students.length} | Enrollments: ${students.length}`);
+  console.log(`   Admin/Teacher: 1 | Students: ${students.length} | Enrollments: ${students.length}`);
   console.log('\n💡 Student progress (ActivityProgress, Submissions) was preserved.');
 }
 

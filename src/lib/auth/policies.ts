@@ -1,10 +1,16 @@
 import type { Session } from "next-auth";
-import { isTeacherAdmin } from "./roles";
+import { canUseTeacherTools, isAdmin, isTeacher as hasLiteralTeacherRole } from "./roles";
 
 type SessionUser = Session["user"];
 
 export function isTeacher(user: SessionUser | null | undefined): boolean {
-    return user?.role === "teacher";
+    return isTeacherRole(user);
+}
+
+export { isAdmin, canUseTeacherTools };
+
+function isTeacherRole(user: SessionUser | null | undefined): boolean {
+    return hasLiteralTeacherRole(user);
 }
 
 export function ensureTeacher(user: SessionUser | null | undefined): {
@@ -19,11 +25,11 @@ export function ensureTeacher(user: SessionUser | null | undefined): {
         return { ok: false, status: 401, error: "Unauthorized" };
     }
 
-    if (!isTeacher(user)) {
+    if (!canUseTeacherTools(user)) {
         return { ok: false, status: 403, error: "Forbidden" };
     }
 
-    return { ok: true, admin: isTeacherAdmin(user) };
+    return { ok: true, admin: isAdmin(user) };
 }
 
 export function classOwnershipWhere(user: SessionUser, admin: boolean): Record<string, never> | { teacherId: string } {
@@ -41,4 +47,3 @@ export function canManageActivity(
 ): boolean {
     return admin || createdBy === user.id;
 }
-

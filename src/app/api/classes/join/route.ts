@@ -5,6 +5,8 @@ import { prisma } from "@/lib/prisma";
 import { requireStudent } from "@/lib/api-auth";
 import { ApiErrors, apiError } from "@/lib/api-response";
 import { JoinClassBodySchema, parseApiBody } from "@/lib/api-schemas";
+import { canUseTeacherTools } from "@/lib/roles";
+import { enrollStudentInClass } from "@/lib/learner-transitions";
 
 export function validateJoinSession(session: { user?: { role?: string | null } } | null): {
     allowed: boolean;
@@ -15,7 +17,7 @@ export function validateJoinSession(session: { user?: { role?: string | null } }
         return { allowed: false, status: 401, error: "Unauthorized" };
     }
 
-    if (session.user?.role === "teacher") {
+    if (canUseTeacherTools(session.user)) {
         return { allowed: false, status: 403, error: "Teachers cannot join classes" };
     }
 
@@ -75,7 +77,6 @@ export async function POST(request: NextRequest) {
             return ApiErrors.notFound("Class");
         }
 
-        // Check if already enrolled
         const existingEnrollment = await prisma.classEnrollment.findUnique({
             where: {
                 classId_studentId: {
@@ -83,19 +84,18 @@ export async function POST(request: NextRequest) {
                     studentId: userId,
                 },
             },
+            select: { status: true },
         });
 
-        if (existingEnrollment) {
+        if (existingEnrollment?.status === "active") {
             const alreadyEnrolled = buildAlreadyEnrolledResponse(classItem.id);
             return NextResponse.json(alreadyEnrolled.body, { status: alreadyEnrolled.status });
         }
 
-        // Create enrollment
-        await prisma.classEnrollment.create({
-            data: {
-                classId: classItem.id,
-                studentId: userId,
-            },
+        await enrollStudentInClass({
+            prisma,
+            classId: classItem.id,
+            studentId: userId,
         });
 
         return NextResponse.json({ classId: classItem.id, message: "Successfully joined class" });
@@ -103,7 +103,4 @@ export async function POST(request: NextRequest) {
         return ApiErrors.internal("Failed to join class. Please try again.");
     }
 }
-
-
-
 

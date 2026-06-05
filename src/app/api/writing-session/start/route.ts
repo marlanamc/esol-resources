@@ -2,14 +2,14 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 
 export async function POST(request: NextRequest) {
     const session = await getServerSession(authOptions);
     if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const userId = (session.user as { id: string }).id;
-    const role = (session.user as { role: string }).role;
-    if (role !== "teacher") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    if (!canUseTeacherTools(session.user)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
     const body = await request.json() as { activityId?: string; classId?: string };
     const { activityId, classId } = body;
@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify teacher owns this class
-    const cls = await prisma.class.findFirst({ where: { id: classId, teacherId: userId } });
+    const cls = await prisma.class.findFirst({ where: isAdmin(session.user) ? { id: classId } : { id: classId, teacherId: userId } });
     if (!cls) return NextResponse.json({ error: "Class not found" }, { status: 404 });
 
     const activity = await prisma.activity.findFirst({

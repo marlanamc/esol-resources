@@ -3,8 +3,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { ApiErrors, apiError } from "@/lib/api-response";
-import { getLearnerContentMetadata } from "@/lib/learner-visibility";
-import { probeActivityIsReleasedInContentColumn } from "@/lib/prisma-field-support";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -37,18 +35,9 @@ export async function POST(request: Request) {
         return ApiErrors.notFound("Activity", activityId);
     }
 
-    const content = JSON.parse(activity.content);
-    content.released = released;
-
-    const hasReleasedColumn = await probeActivityIsReleasedInContentColumn();
     await prisma.activity.update({
         where: { id: activityId },
-        data: {
-            content: JSON.stringify(content),
-            ...(hasReleasedColumn
-                ? { isReleasedInContent: getLearnerContentMetadata(content).releasedInContent }
-                : {}),
-        },
+        data: { isReleased: released },
         select: { id: true },
     });
 

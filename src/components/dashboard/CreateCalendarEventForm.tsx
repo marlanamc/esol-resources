@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 interface ClassOption {
     id: string;
     name: string;
-    sectionGroupId: string | null;
 }
 
 interface Props {
@@ -16,7 +15,6 @@ interface Props {
 export function CreateCalendarEventForm({ classes }: Props) {
     const router = useRouter();
     const [classId, setClassId] = useState(classes[0]?.id || "");
-    const [syncToSectionGroup, setSyncToSectionGroup] = useState(false);
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
     const [type, setType] = useState<"holiday" | "event" | "due" | "quiz">("holiday");
@@ -25,8 +23,6 @@ export function CreateCalendarEventForm({ classes }: Props) {
     const [error, setError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [success, setSuccess] = useState("");
-    const selectedClass = classes.find((cls) => cls.id === classId);
-    const supportsSectionSync = Boolean(selectedClass?.sectionGroupId);
 
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -50,7 +46,6 @@ export function CreateCalendarEventForm({ classes }: Props) {
                     endDate: endDate || undefined,
                     type,
                     description: description || undefined,
-                    syncToSectionGroup: supportsSectionSync ? syncToSectionGroup : false,
                 }),
             });
 
@@ -59,12 +54,7 @@ export function CreateCalendarEventForm({ classes }: Props) {
                 throw new Error(data.error || "Unable to add calendar item");
             }
 
-            const data = await res.json();
-            if (typeof data.createdCount === "number" && data.createdCount > 1) {
-                setSuccess(`Saved across ${data.createdCount} sections.`);
-            } else {
-                setSuccess("Saved and shared with students.");
-            }
+            setSuccess("Saved and shared with students.");
             setTitle("");
             setDate("");
             setDescription("");
@@ -77,126 +67,80 @@ export function CreateCalendarEventForm({ classes }: Props) {
         }
     };
 
+    const fieldClass = "w-full rounded-xl border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30";
+    const fieldStyle = { borderColor: "var(--border-subtle)" };
+    const labelClass = "text-xs font-semibold text-text-muted uppercase tracking-wide";
+
     return (
-        <div className="bg-white dark:bg-[var(--surface-elevated)] border border-border/50 dark:border-white/10 rounded-xl shadow-sm p-4">
-            <h3 className="text-sm font-bold text-text mb-3">Add to Calendar</h3>
+        <form className="space-y-3" onSubmit={onSubmit}>
             {classes.length === 0 && (
-                <p className="text-xs text-text-muted mb-3">Create a class first to share dates.</p>
+                <p className="text-xs text-text-muted">Create a class first to share dates.</p>
             )}
-            <form className="space-y-3" onSubmit={onSubmit}>
+
+            {classes.length > 1 && (
                 <div className="space-y-1">
-                    <label className="text-xs font-semibold text-text-muted uppercase tracking-wide">Class</label>
+                    <label className={labelClass}>Class</label>
                     <select
                         value={classId}
-                        onChange={(e) => {
-                            const nextClassId = e.target.value;
-                            const nextClass = classes.find((cls) => cls.id === nextClassId);
-                            setClassId(nextClassId);
-                            if (!nextClass?.sectionGroupId) {
-                                setSyncToSectionGroup(false);
-                            }
-                        }}
-                        className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:bg-bg-gray/40"
+                        onChange={(e) => setClassId(e.target.value)}
+                        className={fieldClass}
+                        style={fieldStyle}
                         disabled={classes.length === 0}
                     >
-                        {classes.length === 0 ? (
-                            <option value="">No classes yet</option>
-                        ) : (
-                            classes.map((cls) => (
-                                <option key={cls.id} value={cls.id}>{cls.name}</option>
-                            ))
-                        )}
+                        {classes.map((cls) => (
+                            <option key={cls.id} value={cls.id}>{cls.name}</option>
+                        ))}
                     </select>
                 </div>
+            )}
 
-                {supportsSectionSync && (
-                    <div className="rounded-md bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700/60 p-3">
-                        <label className="flex items-start gap-2 text-sm text-blue-900 dark:text-blue-200">
-                            <input
-                                type="checkbox"
-                                className="mt-0.5"
-                                checked={syncToSectionGroup}
-                                onChange={(e) => setSyncToSectionGroup(e.target.checked)}
-                            />
-                            Add this event to all sections in this section group.
-                        </label>
-                    </div>
-                )}
+            <div className="space-y-1">
+                <label className={labelClass}>Title</label>
+                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}
+                    placeholder="e.g. Spring Break" className={fieldClass} style={fieldStyle} />
+            </div>
 
+            <div className="grid grid-cols-2 gap-2">
                 <div className="space-y-1">
-                    <label className="text-xs font-semibold text-text-muted uppercase tracking-wide">Title</label>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        placeholder="e.g., Spring Break"
-                        className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                    />
+                    <label className={labelClass}>Start date</label>
+                    <input type="date" value={date} onChange={(e) => setDate(e.target.value)}
+                        className={fieldClass} style={fieldStyle} />
                 </div>
-
-                    <div className="grid grid-cols-2 gap-2">
-                    <div className="space-y-1">
-                            <label className="text-xs font-semibold text-text-muted uppercase tracking-wide">Start Date</label>
-                        <input
-                            type="date"
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
-                            className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                        />
-                    </div>
-                        <div className="space-y-1">
-                            <label className="text-xs font-semibold text-text-muted uppercase tracking-wide">End Date (Optional)</label>
-                            <input
-                                type="date"
-                                value={endDate}
-                                onChange={(e) => setEndDate(e.target.value)}
-                                className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                                placeholder="For multi-day breaks"
-                            />
-                            <p className="text-[11px] text-text-muted">Use for holiday breaks; leave blank for single-day events.</p>
-                        </div>
-                    <div className="space-y-1">
-                        <label className="text-xs font-semibold text-text-muted uppercase tracking-wide">Type</label>
-                        <select
-                            value={type}
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                if (value === "holiday" || value === "event" || value === "due" || value === "quiz") {
-                                    setType(value);
-                                }
-                            }}
-                            className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                        >
-                            <option value="holiday">Holiday</option>
-                            <option value="event">Event</option>
-                            <option value="due">Reminder</option>
-                            <option value="quiz">Quiz/Test</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div className="space-y-1">
-                    <label className="text-xs font-semibold text-text-muted uppercase tracking-wide">Description</label>
-                    <textarea
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        rows={2}
-                        placeholder="Optional notes for students"
-                        className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-                    />
+                    <label className={labelClass}>End date <span className="normal-case font-normal">(optional)</span></label>
+                    <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)}
+                        className={fieldClass} style={fieldStyle} />
                 </div>
+            </div>
 
-                {error && <p className="text-xs text-red-600">{error}</p>}
-                {success && <p className="text-xs text-green-600">{success}</p>}
+            <div className="space-y-1">
+                <label className={labelClass}>Type</label>
+                <select value={type} onChange={(e) => {
+                    const v = e.target.value;
+                    if (v === "holiday" || v === "event" || v === "due" || v === "quiz") setType(v);
+                }} className={fieldClass} style={fieldStyle}>
+                    <option value="holiday">Holiday / No school</option>
+                    <option value="event">School event</option>
+                    <option value="due">Reminder / due date</option>
+                    <option value="quiz">Quiz / Test</option>
+                </select>
+            </div>
 
-                <button
-                        type="submit"
-                        disabled={isSubmitting || classes.length === 0}
-                        className="w-full inline-flex justify-center items-center px-4 py-2 text-sm font-semibold text-white bg-primary rounded-lg hover:brightness-110 disabled:opacity-60"
-                >
-                    {isSubmitting ? "Saving…" : "Save"}
-                </button>
-            </form>
-        </div>
+            <div className="space-y-1">
+                <label className={labelClass}>Notes <span className="normal-case font-normal">(optional)</span></label>
+                <textarea value={description} onChange={(e) => setDescription(e.target.value)}
+                    rows={2} placeholder="Optional notes for students"
+                    className={fieldClass} style={fieldStyle} />
+            </div>
+
+            {error && <p className="text-xs text-red-600">{error}</p>}
+            {success && <p className="text-xs font-semibold text-secondary">{success}</p>}
+
+            <button type="submit" disabled={isSubmitting || classes.length === 0}
+                className="w-full inline-flex justify-center items-center px-4 py-2 text-sm font-semibold text-white rounded-lg disabled:opacity-60 transition-opacity"
+                style={{ background: "var(--secondary)" }}>
+                {isSubmitting ? "Saving…" : "Add to calendar"}
+            </button>
+        </form>
     );
 }

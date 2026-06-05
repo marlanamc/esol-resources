@@ -7,6 +7,7 @@ import { TrophyIcon } from "@/components/icons/Icons";
 import { UserProfileDropdown } from "@/components/UserProfileDropdown";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { LearnerSearchTrigger } from "@/components/search/LearnerSearchTrigger";
+import { ViewModeSwitcher } from "@/components/teach/ViewModeSwitcher";
 
 interface DashboardHeaderProps {
     userName?: string;
@@ -16,6 +17,10 @@ interface DashboardHeaderProps {
     leaderboardRank?: number | null;
     /** Show 🙋🏻‍♀️ next to name (Marlie test account) to indicate medal placement */
     showMarlieEmoji?: boolean;
+    /** Show the view-mode switcher (Teaching / Student / Admin) in the header. For teachers/admins browsing in student mode. */
+    showViewModeToggle?: boolean;
+    /** Whether to show the Admin option in the switcher */
+    isAdmin?: boolean;
 }
 
 export function DashboardHeader({
@@ -24,6 +29,8 @@ export function DashboardHeader({
     enableSearch = false,
     leaderboardRank = null,
     showMarlieEmoji = false,
+    showViewModeToggle = false,
+    isAdmin = false,
 }: DashboardHeaderProps) {
     const handleCalendarOpen = () => {
         if (typeof window !== "undefined") {
@@ -49,7 +56,10 @@ export function DashboardHeader({
                 <div className="flex-1">
                     <LearnerMenu mode="brand" userName={userName} showSearch={enableSearch} leaderboardRank={leaderboardRank} showMarlieEmoji={showMarlieEmoji} />
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
+                    {showViewModeToggle && (
+                        <ViewModeSwitcher showAdmin={isAdmin} size="sm" />
+                    )}
                     {enableSearch ? <LearnerSearchTrigger /> : null}
                     {variant === "dashboardv2" ? (
                         <button

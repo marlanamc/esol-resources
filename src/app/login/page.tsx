@@ -20,6 +20,11 @@ export default function LoginPage() {
                         Sign in to continue
                     </h2>
                 </div>
+                <div role="alert" className="rounded-2xl border-2 border-[#b05740] bg-[#fdf3ef] dark:bg-[#3a1a10] px-4 py-3 text-sm text-[#7a3020] dark:text-[#f5b8a0]">
+                    <p className="font-bold mb-1">⚠️ Password Reset Required</p>
+                    <p>Your password has been reset. Please sign in with the temporary password <strong>ebhcs123</strong>, then create a new password.</p>
+                    <p className="mt-1 text-xs opacity-80">Español: Tu clave fue reiniciada. Entra con la clave temporal <strong>ebhcs123</strong>, luego crea una nueva.</p>
+                </div>
                 <Suspense fallback={<div className="text-center text-sm text-[var(--color-text-muted)]">Loading login form...</div>}>
                     <LoginForm />
                 </Suspense>

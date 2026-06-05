@@ -4,8 +4,6 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { canManageActivity, ensureTeacher } from "@/lib/policies";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
-import { getLearnerContentMetadata } from "@/lib/learner-visibility";
-import { probeActivityIsReleasedInContentColumn } from "@/lib/prisma-field-support";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -48,7 +46,6 @@ export async function PUT(request: NextRequest, { params }: Props) {
             return ApiErrors.forbidden();
         }
 
-        const hasReleasedColumn = await probeActivityIsReleasedInContentColumn();
         const activity = await prisma.activity.update({
             where: { id },
             data: {
@@ -58,9 +55,6 @@ export async function PUT(request: NextRequest, { params }: Props) {
                 category: category || null,
                 level: level || null,
                 content,
-                ...(hasReleasedColumn
-                    ? { isReleasedInContent: getLearnerContentMetadata(content).releasedInContent }
-                    : {}),
             },
             select: {
                 id: true,

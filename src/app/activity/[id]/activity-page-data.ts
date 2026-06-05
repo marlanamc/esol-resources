@@ -7,7 +7,7 @@ import { logger } from "@/lib/logger";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { grammarTopics } from "@/data/grammar-map";
 import { RETURN_TO_QUERY_PARAM, sanitizeInternalHref } from "@/lib/learner-navigation";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import { type ActivityContent, parseActivityContent } from "@/types/activity";
 import { assertLearnerCanAccessActivity } from "@/lib/learner-visibility";
 
@@ -82,7 +82,7 @@ export async function loadActivityPageData(args: {
     viewer: {
       userId: user.id,
       userRole: user.role,
-      admin: isTeacherAdmin(user),
+      admin: isAdmin(user),
     },
   };
 }
@@ -212,15 +212,16 @@ async function loadAuthorizedAssignment(args: {
             studentId: args.user.id,
           },
         },
+        select: { status: true },
       });
 
-      if (!enrollment) {
+      if (enrollment?.status !== "active") {
         redirect("/dashboard");
       }
     }
 
-    if (args.user.role === "teacher") {
-      const admin = isTeacherAdmin(args.user);
+    if (canUseTeacherTools(args.user)) {
+      const admin = isAdmin(args.user);
       if (!admin && assignment.class.teacherId !== args.user.id) {
         redirect("/dashboard");
       }

@@ -5,7 +5,7 @@ import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { StudentStatsView } from "@/components/dashboard/StudentStatsView";
-import { createLearnerContentMetadataCache, filterLearnerVisibleActivities } from "@/lib/learner-visibility";
+import { filterLearnerVisibleActivities } from "@/lib/learner-visibility";
 
 export default async function StudentStatsPage() {
     const session = await getServerSession(authOptions);
@@ -33,10 +33,7 @@ export default async function StudentStatsPage() {
                 content: true,
         },
     });
-    const activities = filterLearnerVisibleActivities(
-        activitiesRaw,
-        createLearnerContentMetadataCache()
-    );
+    const activities = filterLearnerVisibleActivities(activitiesRaw);
 
     const progressEntries = await prisma.activityProgress.findMany({
         where: { userId },

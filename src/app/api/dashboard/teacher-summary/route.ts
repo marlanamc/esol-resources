@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import { ApiErrors, handleApiError } from "@/lib/api-response";
 
 export async function GET() {
@@ -14,10 +14,10 @@ export async function GET() {
         if (!session?.user?.id) {
             return ApiErrors.unauthorized();
         }
-        if (session.user.role !== "teacher") {
+        if (!canUseTeacherTools(session.user)) {
             return ApiErrors.forbidden();
         }
-        const admin = isTeacherAdmin(session.user);
+        const admin = isAdmin(session.user);
 
         const pendingReviews = await timedQuery(
             {

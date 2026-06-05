@@ -30,6 +30,7 @@ const eslintConfig = defineConfig([
     "prisma/migrations/**",
     "public/assets/**",
     "_legacy/**",
+    "docs/**",
   ]),
 ]);
 

@@ -8,7 +8,8 @@ import { timedQuery } from "@/lib/perf-log";
 import { trackLogin, getTimeframedLeaderboard } from "@/lib/gamification";
 import { buildCalendarWeekActivity, getCalendarWeekStart } from "@/lib/gamification/calendar-week";
 import { logger } from "@/lib/logger";
-import { resolveLearnerMode } from "@/lib/learner-mode";
+import { getLearnerState } from "@/lib/learner-mode";
+import { canUseTeacherTools } from "@/lib/roles";
 import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 import {
     getCurrentIndependentRecommendation,
@@ -26,7 +27,6 @@ import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import { TrophyIcon, SparklesIcon, UsersIcon } from "@/components/icons/Icons";
 import {
     LearningPathRoadmap,
-    StreakDisplay,
     RecommendedReviewCard,
 } from "@/components/dashboard/independent";
 import { DashboardWelcomeHero, ExploreCategoriesCarousel, MomentumCard } from "@/components/dashboard";
@@ -39,7 +39,7 @@ export default async function IndependentDashboardPage() {
         redirect("/login");
     }
 
-    if (session.user.role === "teacher") {
+    if (canUseTeacherTools(session.user)) {
         redirect("/dashboard");
     }
 
@@ -51,23 +51,18 @@ export default async function IndependentDashboardPage() {
 
     const calendarWeekStart = getCalendarWeekStart();
 
-    // Fetch user preferences including new goal settings, enrollment count, and user stats
-    const [preferencesResult, enrollmentCount, userStats, recentLedgerEntries] = await Promise.all([
+    // Fetch user preferences, learner state, and user stats
+    const [preferencesResult, learnerState, userStats, recentLedgerEntries] = await Promise.all([
         withPrismaReadRetry(() =>
             prisma.userPreferences.findUnique({
                 where: { userId },
                 select: {
-                    learnerMode: true,
                     weeklyActivityGoal: true,
                     weeklyGoalStartDay: true,
                 },
             })
         ),
-        withPrismaReadRetry(() =>
-            prisma.classEnrollment.count({
-                where: { studentId: userId },
-            })
-        ),
+        withPrismaReadRetry(() => getLearnerState(prisma, userId)),
         withPrismaReadRetry(() =>
             prisma.user.findUnique({
                 where: { id: userId },
@@ -90,15 +85,11 @@ export default async function IndependentDashboardPage() {
 
     // Use defaults if preferences don't exist
     const preferences = preferencesResult ?? {
-        learnerMode: "independent",
         weeklyActivityGoal: 3,
         weeklyGoalStartDay: 1,
     };
 
-    const learnerMode = resolveLearnerMode({
-        storedMode: preferences.learnerMode,
-        enrollmentCount,
-    });
+    const learnerMode = learnerState.mode;
 
     if (learnerMode !== "independent") {
         redirect("/dashboard");

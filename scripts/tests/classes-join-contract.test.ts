@@ -15,6 +15,10 @@ test("validateJoinSession enforces unauthorized and teacher restrictions", () =>
   assert.equal(teacherBlocked.allowed, false);
   assert.equal(teacherBlocked.status, 403);
 
+  const adminBlocked = validateJoinSession({ user: { role: "admin" } });
+  assert.equal(adminBlocked.allowed, false);
+  assert.equal(adminBlocked.status, 403);
+
   const studentAllowed = validateJoinSession({ user: { role: "student" } });
   assert.equal(studentAllowed.allowed, true);
 });
@@ -41,4 +45,3 @@ test("buildAlreadyEnrolledResponse includes classId in error payload", () => {
     classId: "class_123",
   });
 });
-

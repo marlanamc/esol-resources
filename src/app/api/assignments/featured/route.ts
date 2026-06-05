@@ -3,12 +3,12 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { parseCategoryData } from "@/lib/categoryData";
-import { isTeacherAdmin } from "@/lib/roles";
+import { isAdmin } from "@/lib/roles";
 import { ApiErrors } from "@/lib/api-response";
 import { requireTeacher } from "@/lib/api-auth";
 import { logger } from "@/lib/logger";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
-import { createLearnerContentMetadataCache, isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 import {
     buildActivitySubmissionMap,
     buildFeaturedAssignmentsWhere,
@@ -34,7 +34,7 @@ export async function GET() {
     
         // Get student's enrolled classes
         const enrollments: { classId: string }[] = await prisma.classEnrollment.findMany({
-            where: { studentId: userId },
+            where: { studentId: userId, status: "active" },
             select: { classId: true }
         });
 
@@ -71,9 +71,8 @@ export async function GET() {
                 createdAt: 'desc'
             }
         });
-        const visibilityCache = createLearnerContentMetadataCache();
         const visibleFeaturedAssignments = featuredAssignments.filter((assignment) =>
-            isLearnerVisibleActivity(assignment.activity, visibilityCache)
+            isLearnerVisibleActivity(assignment.activity)
         );
 
         const activityIds = Array.from(new Set(visibleFeaturedAssignments.map((a) => a.activityId)));
@@ -191,7 +190,7 @@ export async function DELETE() {
         if (!teacherCheck.ok) return teacherCheck.response;
 
         const userId = teacherCheck.user.id;
-        const admin = isTeacherAdmin(teacherCheck.user);
+        const admin = isAdmin(teacherCheck.user);
 
         // Get all classes owned by the teacher (or all classes for admin).
         const teacherClasses = await prisma.class.findMany({

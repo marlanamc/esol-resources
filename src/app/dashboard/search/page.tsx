@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { parseLearnerSearchFilter, searchLearnerContent } from "@/lib/learner-search";
 import { LearnerSearchSurface } from "@/components/search/LearnerSearchSurface";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 
 type Props = {
     searchParams: Promise<{
@@ -17,7 +17,7 @@ export default async function LearnerSearchPage({ searchParams }: Props) {
     if (!session?.user) {
         redirect("/login");
     }
-    if (session.user.role !== "student" && session.user.role !== "teacher") {
+    if (session.user.role !== "student" && !canUseTeacherTools(session.user)) {
         redirect("/dashboard");
     }
 
@@ -28,11 +28,11 @@ export default async function LearnerSearchPage({ searchParams }: Props) {
         query,
         filter,
         limit: 24,
-        viewer: session.user.role === "teacher"
+        viewer: canUseTeacherTools(session.user)
             ? {
                 role: "teacher",
                 userId: session.user.id,
-                admin: isTeacherAdmin(session.user),
+                admin: isAdmin(session.user),
             }
             : { role: "student" },
     });

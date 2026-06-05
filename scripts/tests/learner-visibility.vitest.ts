@@ -1,65 +1,36 @@
 import { describe, expect, it } from "vitest";
-import {
-  createLearnerContentMetadataCache,
-  getLearnerContentMetadata,
-  isLearnerVisibleActivity,
-} from "@/lib/learner/visibility";
+import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 
-describe("learner visibility legacy release handling", () => {
-  it("treats legacy content without a released flag as visible", () => {
-    const cache = createLearnerContentMetadataCache();
-    const content = JSON.stringify({
-      type: "quiz",
-      prompt: "Describe your neighborhood.",
-    });
-
-    expect(getLearnerContentMetadata(content, cache)).toEqual({
-      type: "quiz",
-      releasedInContent: true,
-      hasExplicitReleasedField: false,
-    });
-
-    expect(
-      isLearnerVisibleActivity(
-        {
-          type: "quiz",
-          category: "quizzes",
-          content,
-        },
-        cache
-      )
-    ).toBe(true);
+describe("learner visibility — isReleased gate", () => {
+  it("shows a released quiz", () => {
+    expect(isLearnerVisibleActivity({ type: "quiz", category: "quizzes", isReleased: true })).toBe(true);
   });
 
-  it("keeps explicitly unreleased content hidden", () => {
-    const content = JSON.stringify({
-      type: "quiz",
-      released: false,
-      questions: [],
-    });
-
-    expect(
-      isLearnerVisibleActivity({
-        type: "quiz",
-        category: "quizzes",
-        content,
-      })
-    ).toBe(false);
+  it("hides an unreleased quiz", () => {
+    expect(isLearnerVisibleActivity({ type: "quiz", category: "quizzes", isReleased: false })).toBe(false);
   });
 
-  it("uses cached isReleasedInContent when available", () => {
-    const content = JSON.stringify({
-      type: "speaking",
-      prompt: "Introduce yourself.",
-    });
+  it("hides a quiz with no isReleased field", () => {
+    expect(isLearnerVisibleActivity({ type: "quiz", category: "quizzes" })).toBe(false);
+  });
 
-    expect(
-      isLearnerVisibleActivity({
-        type: "speaking",
-        category: "speaking",
-        content,
-        isReleasedInContent: false,
-      })
-    ).toBe(false);
+  it("shows a released grammar guide", () => {
+    expect(isLearnerVisibleActivity({ type: "guide", category: "grammar", isReleased: true })).toBe(true);
+  });
+
+  it("hides an unreleased grammar guide", () => {
+    expect(isLearnerVisibleActivity({ type: "guide", category: "grammar", isReleased: false })).toBe(false);
+  });
+
+  it("always hides speaking activities from student browse", () => {
+    expect(isLearnerVisibleActivity({ type: "speaking", category: "speaking", isReleased: true })).toBe(false);
+  });
+
+  it("hides deleted activities", () => {
+    expect(isLearnerVisibleActivity({ type: "game", category: "games", deletedAt: new Date() })).toBe(false);
+  });
+
+  it("shows non-gated practice activities without isReleased", () => {
+    expect(isLearnerVisibleActivity({ type: "game", category: "games" })).toBe(true);
   });
 });

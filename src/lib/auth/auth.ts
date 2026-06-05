@@ -7,6 +7,7 @@ import { logger } from "@/lib/logger";
 import { headers } from "next/headers";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { SESSION } from "@/lib/constants";
+import { normalizeUserRole } from "./roles";
 
 function isMobileUserAgent(userAgent: string | null): boolean {
     if (!userAgent) return false;
@@ -81,8 +82,7 @@ export const authOptions: NextAuthOptions = {
                         });
                     });
 
-                    const isTeacherAdmin = user.role === "teacher_admin";
-                    const role = user.role === "student" ? "student" : "teacher";
+                    const role = normalizeUserRole(user.role);
 
                     // Detect if login is from mobile device
                     const userAgent = reqHeaders.get('user-agent');
@@ -94,7 +94,6 @@ export const authOptions: NextAuthOptions = {
                         name: user.name ?? user.username,
                         username: user.username,
                         role,
-                        isTeacherAdmin,
                         mustChangePassword: user.mustChangePassword,
                         isMobile,
                     };
@@ -121,7 +120,6 @@ export const authOptions: NextAuthOptions = {
                 token.id = user.id;
                 token.role = user.role;
                 token.username = user.username;
-                token.isTeacherAdmin = user.isTeacherAdmin;
                 token.mustChangePassword = user.mustChangePassword;
                 token.isMobile = user.isMobile;
 
@@ -139,7 +137,6 @@ export const authOptions: NextAuthOptions = {
                 session.user.id = token.id ?? session.user.id;
                 session.user.role = token.role ?? session.user.role;
                 session.user.username = token.username ?? session.user.username;
-                session.user.isTeacherAdmin = token.isTeacherAdmin ?? false;
                 session.user.mustChangePassword =
                     token.mustChangePassword ?? session.user.mustChangePassword;
             }

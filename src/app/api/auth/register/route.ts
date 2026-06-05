@@ -204,11 +204,10 @@ export async function POST(request: Request) {
         },
       });
 
-      // Create preferences with independent learner mode
+      // Create default preferences. Independent status is derived from no active enrollment.
       await tx.userPreferences.create({
         data: {
           userId: newUser.id,
-          learnerMode: 'independent',
         },
       });
 

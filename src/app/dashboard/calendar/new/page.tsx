@@ -5,7 +5,7 @@ import { BackButton } from "@/components/ui/BackButton";
 import { CreateCalendarEventForm } from "@/components/dashboard/CreateCalendarEventForm";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 
 export default async function CalendarAddPage() {
     const session = await getServerSession(authOptions);
@@ -14,11 +14,10 @@ export default async function CalendarAddPage() {
         redirect("/login");
     }
 
-    const userRole = session.user?.role || "student";
     const userId = session.user?.id;
-    const admin = isTeacherAdmin(session.user);
+    const admin = isAdmin(session.user);
 
-    if (userRole !== "teacher") {
+    if (!canUseTeacherTools(session.user)) {
         redirect("/dashboard");
     }
 
@@ -27,7 +26,6 @@ export default async function CalendarAddPage() {
         select: {
             id: true,
             name: true,
-            sectionGroupId: true,
         },
         orderBy: { createdAt: "desc" },
     });
@@ -60,7 +58,6 @@ export default async function CalendarAddPage() {
                         classes={classes.map((c) => ({
                             id: c.id,
                             name: c.name,
-                            sectionGroupId: c.sectionGroupId,
                         }))}
                     />
                 </div>
@@ -68,4 +65,3 @@ export default async function CalendarAddPage() {
         </div>
     );
 }
-

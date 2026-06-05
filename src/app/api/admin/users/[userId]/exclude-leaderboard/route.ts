@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { isTeacherAdmin } from "@/lib/roles";
+import { isAdmin } from "@/lib/roles";
 
 /**
  * PATCH /api/admin/users/[userId]/exclude-leaderboard
  * Toggle a user's excludeFromLeaderboard flag
- * Requires teacher_admin role
+ * Requires admin role
  */
 export async function PATCH(
   req: NextRequest,
@@ -18,7 +18,7 @@ export async function PATCH(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const canAccess = session.user.role === "teacher" && isTeacherAdmin(session.user);
+  const canAccess = isAdmin(session.user);
   if (!canAccess) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }

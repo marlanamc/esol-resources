@@ -22,7 +22,6 @@ const studentNames = [
     'Esmeralda',
     'Susan',
     'Will',
-    'Marlie',
     'Tolesa',
     'Yonatan',
     'Hazel',
@@ -54,8 +53,8 @@ async function upsertUser(username, name, role = 'student', mustChangePassword =
 }
 
 async function main() {
-    // Create teacher (with mustChangePassword = true)
-    const teacher = await upsertUser('teacher', 'Teacher User', 'teacher', true);
+    // Create the single teacher/admin account.
+    const teacher = await upsertUser('marlie', 'Marlie', 'admin', true);
 
     // Create all students
     const students = [];

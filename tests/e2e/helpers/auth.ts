@@ -42,6 +42,13 @@ export async function login(page: Page, username: string, options: LoginOptions 
     }
 
     const signInButton = page.getByRole("button", { name: /sign in/i });
+    const credentialsResponse = page.waitForResponse(
+      (response) =>
+        response.url().includes("/api/auth/callback/credentials") &&
+        response.request().method() === "POST",
+      { timeout }
+    );
+
     if (submitMethod === "tap") {
       await signInButton.tap({ position: { x: 50, y: 25 } });
     } else {
@@ -49,6 +56,10 @@ export async function login(page: Page, username: string, options: LoginOptions 
     }
 
     try {
+      const response = await credentialsResponse;
+      if (!response.ok()) {
+        throw new Error(`Credentials callback failed with status ${response.status()}`);
+      }
       await expect(page).toHaveURL(expectedUrlPattern, { timeout });
       return;
     } catch (error) {

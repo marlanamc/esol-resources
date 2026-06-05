@@ -25,20 +25,14 @@ This document is the living reference for schema decisions made during the summe
 
 ---
 
-### `User` — new fields
+### Learner type source of truth
 
-| Field | Type | Default | Purpose |
-| --- | --- | --- | --- |
-| `learnerMode` | `String` | `"class"` | Controls which dashboard the student sees |
+Learner type is derived from `ClassEnrollment.status`.
 
-**`learnerMode` values:**
-
-| Value | Meaning |
+| Derived mode | Rule |
 | --- | --- |
-| `class` | Teacher-driven dashboard — assignments, class path, class leaderboard |
-| `independent` | Self-directed dashboard — guided track, browse, personal progress |
-
-**Migration:** `20260531120000_add_enrollment_status_and_learner_mode`
+| `classroom` | Student has at least one enrollment with `status = "active"` |
+| `independent` | Student has no active enrollments |
 
 ---
 
@@ -47,21 +41,18 @@ This document is the living reference for schema decisions made during the summe
 ### Graduating a student (end of year)
 
 1. Set `ClassEnrollment.status` → `"graduated"`, `statusChangedAt` → now, optional `statusNote`
-2. Set `User.learnerMode` → `"independent"`
-3. Points, streak, and achievements carry over untouched
+2. Points, streak, and achievements carry over untouched
 
 ### Marking a student as exited (dropout)
 
 1. Set `ClassEnrollment.status` → `"exited"`, `statusChangedAt` → now, optional `statusNote`
-2. `User.learnerMode` stays `"class"` — they may re-enroll later
-3. Enrollment record is kept for history, student disappears from active roster
+2. Enrollment record is kept for history, student disappears from active roster
 
 ### Re-enrolling a returning student
 
 1. Create new `ClassEnrollment` row with `isReturning = true`
-2. Set `User.learnerMode` → `"class"` automatically on join
-3. All prior points, streak, and achievements carry over — nothing resets
-4. Old enrollment rows stay intact — full history is always visible
+2. All prior points, streak, and achievements carry over — nothing resets
+3. Old enrollment rows stay intact — full history is always visible
 
 ---
 
@@ -71,7 +62,7 @@ These 16 students are the active cohort as of the end of Spring 2026. Everyone e
 
 Andrea, Carolina, Tolesa, Ingrid, Elena, Ever, Karina, Carlos M, Edwar, Sonia, Erica, Carlos O, Julian, Hazel, Evelyn, Susan
 
-When class ends, these students should be transitioned to `graduated` + `learnerMode = "independent"`.
+When class ends, these students should be transitioned to `graduated`; they become independent because they no longer have active enrollments.
 
 ---
 

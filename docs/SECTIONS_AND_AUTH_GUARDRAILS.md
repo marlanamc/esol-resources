@@ -19,7 +19,7 @@ Use this before adding or modifying class, assignment, leaderboard, or teacher/a
 - Database role values:
   - `student`
   - `teacher`
-  - `teacher_admin`
+  - `admin`
 - Session role values:
   - `student`
   - `teacher`
@@ -60,7 +60,7 @@ Use this before adding or modifying class, assignment, leaderboard, or teacher/a
 ### Access checks
 - Student can request only classes they are enrolled in.
 - Teacher can request only owned classes.
-- `teacher_admin` can request all classes.
+- `admin` can request all classes.
 
 ### UI notes
 - Leaderboard subtitle hosts a subtle class selector for multi-class users.
@@ -114,4 +114,3 @@ Before merging class/section/auth changes:
 - After pulling schema changes:
   - `npx prisma migrate dev`
   - `npx prisma generate`
-

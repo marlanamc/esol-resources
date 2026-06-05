@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
+import { canUseTeacherTools } from "@/lib/roles";
 import { DeleteAccountSection } from "@/components/profile/DeleteAccountSection";
 import AccountSettingsClient from "@/components/profile/StudentAccountSettingsClient";
 
@@ -14,7 +15,7 @@ export default async function AccountPage() {
         redirect("/login");
     }
 
-    const role = session.user.role === "teacher" ? "teacher" : "student";
+    const role = canUseTeacherTools(session.user) ? "teacher" : "student";
 
     if (role === "teacher") {
         return (

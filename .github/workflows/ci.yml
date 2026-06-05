@@ -148,5 +148,8 @@ jobs:
       - name: Seed E2E accounts
         run: npx tsx scripts/e2e-seed.ts
 
+      - name: Build application for E2E
+        run: npm run build
+
       - name: Run E2E tests
         run: npm run test:e2e:smoke

@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { classOwnershipWhere, ensureTeacher } from "@/lib/policies";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
-import { resolveLearnerMode } from "@/lib/learner-mode";
+import { getLearnerState } from "@/lib/learner-mode";
 
 export async function GET() {
     try {
@@ -16,9 +16,9 @@ export async function GET() {
         const user = session.user;
 
         if (user.role === "student") {
-            const [enrollments, preferences] = await Promise.all([
+            const [enrollments, learnerState] = await Promise.all([
                 prisma.classEnrollment.findMany({
-                    where: { studentId: user.id },
+                    where: { studentId: user.id, status: "active" },
                     select: {
                         class: {
                             select: {
@@ -30,17 +30,11 @@ export async function GET() {
                     },
                     orderBy: { joinedAt: "desc" },
                 }),
-                prisma.userPreferences.findUnique({
-                    where: { userId: user.id },
-                    select: { learnerMode: true },
-                }),
+                getLearnerState(prisma, user.id),
             ]);
 
             const classes = enrollments.map((entry) => entry.class);
-            const learnerMode = resolveLearnerMode({
-                storedMode: preferences?.learnerMode,
-                enrollmentCount: enrollments.length,
-            });
+            const learnerMode = learnerState.mode;
             return NextResponse.json({
                 viewerRole: user.role,
                 learnerMode,

@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import {
   buildTeacherStudentCategorySummaries,
   filterVisibleTeacherAnalyticsAssignments,
@@ -21,14 +21,14 @@ export async function GET(
   }
 
   const teacherId = session.user.id;
-  const userRole = session.user.role;
-  const admin = isTeacherAdmin(session.user);
+  const admin = isAdmin(session.user);
   const { id: studentId } = await params;
 
-  if (userRole === "teacher" && !admin) {
+  if (canUseTeacherTools(session.user) && !admin) {
     const enrollment = await prisma.classEnrollment.findFirst({
       where: {
         studentId,
+        status: "active",
         class: {
           teacherId,
         },
@@ -62,10 +62,11 @@ export async function GET(
     prisma.classEnrollment.findMany({
       where: {
         studentId,
+        status: "active",
         student: {
           isSystemAccount: false,
         },
-        ...(userRole === "teacher" && !admin ? { class: { teacherId } } : {}),
+        ...(canUseTeacherTools(session.user) && !admin ? { class: { teacherId } } : {}),
       },
       select: {
         classId: true,

@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { CreateActivityForm } from "@/components/CreateActivityForm";
 import { BackButton } from "@/components/ui/BackButton";
+import { canUseTeacherTools } from "@/lib/roles";
 
 export default async function NewActivityPage() {
     const session = await getServerSession(authOptions);
@@ -11,8 +12,7 @@ export default async function NewActivityPage() {
         redirect("/login");
     }
 
-    const userRole = session.user?.role;
-    if (userRole !== "teacher") {
+    if (!canUseTeacherTools(session.user)) {
         redirect("/dashboard");
     }
 
@@ -32,7 +32,6 @@ export default async function NewActivityPage() {
         </div>
     );
 }
-
 
 
 

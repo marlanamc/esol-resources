@@ -67,6 +67,7 @@
     "db:seed:timeline-presets": "npx tsx prisma/seed-timeline-tenses-presets.ts",
     "db:seed:level1-path": "npx tsx prisma/seed-level1-course-path.ts",
     "db:seed:pronunciation": "npx tsx prisma/seed-pronunciation-expansion.ts",
+    "db:seed:course-map": "npx tsx prisma/seed-course-map.ts",
     "db:seed:users": "npx tsx prisma/seed-users-only.ts",
     "db:seed:vocab": "node scripts/migrations/update-all-vocab.js && node scripts/content/create-vocab-games.js && npm run db:sync:vocab-review",
     "audio:vocab": "npx tsx scripts/content/generate-vocab-audio.ts",

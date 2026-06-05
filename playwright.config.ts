@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const PORT = Number(process.env.PLAYWRIGHT_PORT || 3000);
+const PORT = Number(process.env.PLAYWRIGHT_PORT || 3099);
 const baseURL = process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${PORT}`;
 
 export default defineConfig({
@@ -19,10 +19,12 @@ export default defineConfig({
   webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
     : {
-        command: `npm run dev -- --hostname 127.0.0.1 --port ${PORT}`,
+        // Production server: Next dev + Turbopack HMR does not reliably hydrate
+        // LoginForm under Playwright, which causes native GET submits and failed logins.
+        command: `npm run start -- --hostname 127.0.0.1 --port ${PORT}`,
         port: PORT,
         timeout: 120 * 1000,
-        reuseExistingServer: !process.env.CI,
+        reuseExistingServer: false,
         env: {
           NEXT_PUBLIC_ENABLE_SUBMISSION_OUTBOX: "false",
         },

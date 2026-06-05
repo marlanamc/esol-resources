@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { logger } from "@/lib/logger";
 import { ApiErrors, apiError } from "@/lib/api-response";
+import { canUseTeacherTools } from "@/lib/roles";
 
 type TelemetryPayload = {
     type: "query" | "zero_results" | "click_result" | "select_filter";
@@ -29,7 +30,7 @@ export async function POST(request: Request) {
     if (!session?.user) {
         return ApiErrors.unauthorized();
     }
-    if (session.user.role !== "student" && session.user.role !== "teacher") {
+    if (session.user.role !== "student" && !canUseTeacherTools(session.user)) {
         return ApiErrors.forbidden();
     }
 

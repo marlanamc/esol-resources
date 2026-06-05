@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { logger } from "@/lib/logger";
 import { clampLearnerSearchLimit, normalizeLearnerSearchText, parseLearnerSearchFilter, searchLearnerContent } from "@/lib/learner-search";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import type { LearnerSearchContext } from "@/lib/learner-search/types";
 import { ApiErrors } from "@/lib/api-response";
 
@@ -16,7 +16,7 @@ export async function GET(request: Request) {
     if (!session?.user) {
         return ApiErrors.unauthorized();
     }
-    if (session.user.role !== "student" && session.user.role !== "teacher") {
+    if (session.user.role !== "student" && !canUseTeacherTools(session.user)) {
         return ApiErrors.forbidden();
     }
 
@@ -31,11 +31,11 @@ export async function GET(request: Request) {
         query,
         filter,
         limit,
-        viewer: session.user.role === "teacher"
+        viewer: canUseTeacherTools(session.user)
             ? {
                 role: "teacher",
                 userId: session.user.id,
-                admin: isTeacherAdmin(session.user),
+                admin: isAdmin(session.user),
             }
             : { role: "student" },
     });

@@ -64,7 +64,7 @@ export async function GET(_request: NextRequest, { params }: Params) {
     const currentRound = ws.rounds.find((r) => r.roundIndex === ws.currentRound) ?? null;
 
     // ── Teacher view ──────────────────────────────────────────────────────────
-    if (role === "teacher" && ws.teacherId === userId) {
+    if ((role === "teacher" || role === "admin") && ws.teacherId === userId) {
         const submittedCount = currentRound
             ? await prisma.writingSubmission.count({ where: { roundId: currentRound.id } })
             : 0;

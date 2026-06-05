@@ -12,7 +12,7 @@ import { StatCard } from "@/components/ui";
 import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon } from "@/components/icons/Icons";
 import { StudentEngagementTable } from "@/components/dashboard/StudentEngagementTable";
 import { VerbQuizWeekSelector } from "@/components/dashboard/VerbQuizWeekSelector";
-import { isTeacherAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 import { LearnerTypeFilter } from "@/components/dashboard/LearnerTypeFilter";
 
@@ -36,9 +36,9 @@ export default async function StatsPage({
 
     const userRole = session.user?.role || "student";
     const userId = session.user?.id;
-    const admin = isTeacherAdmin(session.user);
+    const admin = isAdmin(session.user);
 
-    if (userRole !== "teacher") {
+    if (!canUseTeacherTools(session.user)) {
         redirect("/dashboard");
     }
 
@@ -61,6 +61,7 @@ export default async function StatsPage({
                         name: true,
                         enrollments: {
                             where: {
+                                status: "active",
                                 student: {
                                     isSystemAccount: false,
                                 },
@@ -133,7 +134,7 @@ export default async function StatsPage({
     let studentWhere: NonNullable<Parameters<typeof prisma.user.findMany>[0]>["where"];
 
     if (effectiveLearnerType === "independent") {
-        // Only independent learners (explicit preference OR no class enrollments)
+        // Only independent learners: no active class enrollment
         studentWhere = {
             role: "student",
             isSystemAccount: false,
