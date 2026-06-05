@@ -606,6 +606,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
     const screens: Screen[] = useMemo(() => ["lesson", "short", "long", "irregular", "practice", "errors", "speed", "writing"], []);
     const screenIndex = screens.indexOf(screen);
     const accuracy = SCORABLE_COUNT > 0 ? Math.round((score / SCORABLE_COUNT) * 100) : 0;
+    const reachedCompletionPoint = screen === "final" || (screen === "checkpoint" && checkpoint?.nextScreen === "final");
 
     const awardPoint = useCallback(
         (correct: boolean) => {
@@ -642,7 +643,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
     }, [activityId, assignmentId, screen]);
 
     useEffect(() => {
-        if (screen !== "final" || completedRef.current) return;
+        if (!reachedCompletionPoint || completedRef.current) return;
         completedRef.current = true;
         playSound("complete");
         void (async () => {
@@ -664,7 +665,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                 }
             }
         })();
-    }, [accuracy, activityId, assignmentId, playSound, screen]);
+    }, [accuracy, activityId, assignmentId, playSound, reachedCompletionPoint]);
 
     const goTo = (next: Screen) => {
         setScreen(next);
