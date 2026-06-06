@@ -18,7 +18,7 @@ export default async function PastPerfectPage() {
     if (!session) redirect("/login");
 
     const activityId = await getActivityIdSafely(
-        "Past Perfect Guide",
+        "Past Perfect: What Had Already Happened",
         "guide",
         "grammar"
     );

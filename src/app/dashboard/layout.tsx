@@ -11,6 +11,8 @@ import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 import { NetworkStatusBanner } from "@/components/NetworkStatusBanner";
 import { SubmissionOutboxManager } from "@/components/SubmissionOutboxManager";
 import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { isAdminInStudentMode } from "@/lib/admin-student-view";
+import { getEffectiveLearnerMode } from "@/lib/learner-preview";
 
 async function getStudentDashboardContext(userId: string): Promise<{
     learnerMode: LearnerMode;
@@ -56,11 +58,18 @@ export default async function DashboardLayout({ children }: { children: ReactNod
 
     let leaderboardRank: number | null = null;
     let learnerMode: LearnerMode = "classroom";
-    
-    if (session?.user?.role === "student" && session.user?.id) {
-        const studentDashboardContext = await getStudentDashboardContext(session.user.id);
-        leaderboardRank = studentDashboardContext.leaderboardRank;
-        learnerMode = studentDashboardContext.learnerMode;
+
+    if (session?.user?.id) {
+        if (session.user.role === "student") {
+            const studentDashboardContext = await getStudentDashboardContext(session.user.id);
+            leaderboardRank = studentDashboardContext.leaderboardRank;
+            learnerMode = studentDashboardContext.learnerMode;
+        } else if (
+            canUseTeacherTools(session.user) &&
+            (await isAdminInStudentMode(session.user))
+        ) {
+            learnerMode = await getEffectiveLearnerMode(session.user.id, session.user);
+        }
     }
 
     return (

@@ -21,6 +21,8 @@ export interface CertificateShowcaseProps {
     /** Optional learner continuation target */
     continueHref?: string;
     continueLabel?: string;
+    /** Hide built-in action links when an external actions block is rendered. */
+    hideDefaultActions?: boolean;
 }
 
 interface Sparkle {
@@ -78,6 +80,7 @@ export function CertificateShowcase({
     className = "",
     continueHref = "/dashboard",
     continueLabel = "Continue Learning",
+    hideDefaultActions = false,
 }: CertificateShowcaseProps) {
     const tier = getMedalTier(certificate.score);
     const tierLabel = getMedalTierLabel(tier);
@@ -217,6 +220,7 @@ export function CertificateShowcase({
             </div>
 
             {/* Actions */}
+            {!hideDefaultActions ? (
             <div className="flex flex-col sm:flex-row gap-3 mt-8 animate-fade-in-up delay-500">
                 <Link
                     href="/dashboard/profile#mini-quiz-certificates"
@@ -231,6 +235,7 @@ export function CertificateShowcase({
                     {continueLabel}
                 </Link>
             </div>
+            ) : null}
         </div>
     );
 }

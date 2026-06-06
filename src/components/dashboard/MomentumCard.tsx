@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FlameIcon, CheckCircleIcon, StarIcon } from "@/components/icons/Icons";
+import { FlameIcon, CheckCircleIcon } from "@/components/icons/Icons";
 import { StudentQuickStats } from "@/components/dashboard/StudentQuickStats";
 import { useStudentSummary } from "@/hooks/useStudentSummary";
 import {
@@ -9,20 +9,86 @@ import {
     getCalendarWeekTodayIndex,
 } from "@/lib/gamification/calendar-week";
 
+const MOMENTUM_SAGE = "#bd4a2b";
+const MOMENTUM_SAGE_DARK = "#a33f25";
+
+function StreakProgressRing({
+    streak,
+    pct,
+    size = 52,
+}: {
+    streak: number;
+    pct: number;
+    size?: number;
+}) {
+    const stroke = size >= 70 ? 7 : 4;
+    const r = (size - stroke) / 2;
+    const circ = 2 * Math.PI * r;
+    const dash = circ * (Math.min(100, Math.max(0, pct)) / 100);
+    const innerSize = size - stroke * 2 - 2;
+
+    return (
+        <div className="relative shrink-0" style={{ width: size, height: size }}>
+            <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden className="absolute inset-0">
+                <circle
+                    cx={size / 2}
+                    cy={size / 2}
+                    r={r}
+                    fill="none"
+                    stroke="color-mix(in srgb, var(--dashboard-border) 70%, transparent)"
+                    strokeWidth={stroke}
+                />
+                <circle
+                    cx={size / 2}
+                    cy={size / 2}
+                    r={r}
+                    fill="none"
+                    stroke={MOMENTUM_SAGE}
+                    strokeWidth={stroke}
+                    strokeDasharray={`${dash} ${circ}`}
+                    strokeLinecap="round"
+                    transform={`rotate(-90 ${size / 2} ${size / 2})`}
+                    style={{ transition: "stroke-dasharray 0.8s ease-out" }}
+                />
+            </svg>
+            <div
+                className="absolute rounded-full flex flex-col items-center justify-center leading-none"
+                style={{
+                    width: innerSize,
+                    height: innerSize,
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    background: "var(--dashboard-surface-start)",
+                }}
+            >
+                <FlameIcon size={size >= 70 ? 14 : 10} style={{ color: MOMENTUM_SAGE }} />
+                <span className={`${size >= 70 ? "text-[25px]" : "text-sm"} mt-px font-extrabold tabular-nums text-text leading-none`}>{streak}</span>
+            </div>
+        </div>
+    );
+}
+
+function CheckIcon({ size = 10 }: { size?: number }) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 12 12" fill="none" aria-hidden>
+            <path
+                d="M2.5 6.2 5 8.7 9.5 3.8"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    );
+}
+
 function getMessage(streak: number, longestStreak: number): string {
     if (streak === 0) return "Complete an activity today to start your streak!";
     if (streak === 1) return "Great start — come back tomorrow to keep it going.";
     if (streak < 7) return `${7 - streak} more day${7 - streak === 1 ? "" : "s"} to reach a hot streak!`;
     if (streak >= longestStreak && streak > 0) return "New personal best — keep the momentum!";
     return "You're on fire — keep it going!";
-}
-
-function getSidebarMessage(streak: number, longestStreak: number): string {
-    if (streak === 0) return "Start your streak today";
-    if (streak === 1) return "Come back tomorrow";
-    if (streak < 7) return `${7 - streak} day${7 - streak === 1 ? "" : "s"} to hot streak`;
-    if (streak >= longestStreak && streak > 0) return "Personal best!";
-    return "Hot streak — keep going";
 }
 
 const EMPTY_WEEK: boolean[] = [false, false, false, false, false, false, false];
@@ -57,7 +123,6 @@ export function MomentumCard({
     const streak = summary?.effectiveCurrentStreak ?? initialStreak;
     const longestStreak = initialLongestStreak;
     const totalPoints = summary?.totalPoints ?? initialTotalPoints;
-    const weeklyPoints = summary?.actualWeeklyPoints ?? 0;
     const sevenDayActivity = summary?.sevenDayActivity ?? initialSevenDayActivity;
 
     const todayIndex = getCalendarWeekTodayIndex();
@@ -72,28 +137,44 @@ export function MomentumCard({
     const isHeader = variant === "header";
     const isRail = isSidebar || isHeader;
 
-    const cardGradient = isHotStreak
-        ? "linear-gradient(135deg, color-mix(in srgb, var(--tone-speaking-surface) 28%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-quizzes-surface) 18%, var(--dashboard-surface-end)) 100%)"
-        : "linear-gradient(135deg, color-mix(in srgb, var(--tone-quizzes-surface) 16%, var(--dashboard-surface-start)) 0%, var(--dashboard-surface-end) 100%)";
-    const cardBorder = isHotStreak ? "var(--tone-speaking-border)" : "var(--tone-quizzes-border)";
-    const flameIconSize = isRail ? 20 : 24;
-    const flameShellSize = isRail ? "w-10 h-10" : "w-12 h-12";
-    const dotSize = isRail ? "w-6 h-6" : "w-7 h-7";
-    const dotIconActive = isRail ? 12 : 15;
-    const dotIconToday = isRail ? 10 : 13;
-    const compactMessage = (streak: number, longest: number) =>
-        isRail ? getSidebarMessage(streak, longest) : getMessage(streak, longest);
+    const cardGradient = isRail
+        ? "linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)"
+        : isHotStreak
+            ? "linear-gradient(135deg, color-mix(in srgb, var(--tone-speaking-surface) 28%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-quizzes-surface) 18%, var(--dashboard-surface-end)) 100%)"
+            : "linear-gradient(135deg, color-mix(in srgb, var(--tone-quizzes-surface) 16%, var(--dashboard-surface-start)) 0%, var(--dashboard-surface-end) 100%)";
+    const cardBorder = isRail
+        ? "color-mix(in srgb, #bd4a2b 14%, var(--dashboard-border))"
+        : isHotStreak
+            ? "var(--tone-speaking-border)"
+            : "var(--tone-quizzes-border)";
+    const flameIconSize = 24;
+    const flameShellSize = "w-12 h-12";
+    const dotSize = "w-7 h-7";
+    const dotIconActive = 15;
+    const dotIconToday = 13;
+
+    const streakAccent = isRail ? MOMENTUM_SAGE : isHotStreak ? "var(--tone-speaking-accent)" : "var(--primary)";
+    const streakRingPct = isRail ? Math.min(100, streak * 10) : Math.round((activeDaysThisWeek / 7) * 100);
+    const daysToPerfectWeek = Math.max(0, 7 - activeDaysThisWeek);
 
     const pointsBadge = (
         <span
-            className={`inline-flex items-center font-bold leading-none tabular-nums rounded-full dashboard-pill stats-badge-polish ${
-                isRail ? "text-[10px] px-2 py-0.5" : "text-[11px] px-2.5 py-1"
+            className={`inline-flex items-center gap-1 font-bold leading-none tabular-nums rounded-full dashboard-pill stats-badge-polish ${
+                isRail ? "text-xs px-3 py-1" : "text-[11px] px-2.5 py-1"
             }`}
-            style={{
-                background: "color-mix(in srgb, var(--primary) 14%, var(--dashboard-surface-start))",
-                color: "var(--primary)",
-                border: "1px solid color-mix(in srgb, var(--primary) 30%, transparent)",
-            }}
+            style={
+                isRail
+                    ? {
+                        background: "color-mix(in srgb, #bd4a2b 10%, var(--dashboard-surface-start))",
+                        color: MOMENTUM_SAGE_DARK,
+                        border: "1px solid color-mix(in srgb, #bd4a2b 18%, transparent)",
+                    }
+                    : {
+                        background: "color-mix(in srgb, var(--primary) 14%, var(--dashboard-surface-start))",
+                        color: "var(--primary)",
+                        border: "1px solid color-mix(in srgb, var(--primary) 30%, transparent)",
+                    }
+            }
         >
             {totalPoints.toLocaleString()} pts
         </span>
@@ -122,21 +203,12 @@ export function MomentumCard({
     );
 
     const weekDots = (
-        <div
-            className={
-                isRail
-                    ? `grid w-full grid-cols-7 ${isHeader ? "gap-1" : "gap-0.5"}`
-                    : "mt-3 flex items-end justify-between"
-            }
-        >
+        <div className="mt-3 flex items-end justify-between">
             {sevenDayActivity.map((active, i) => {
                 const isToday = i === todayIndex;
                 const isFuture = i > todayIndex;
                 return (
-                    <div
-                        key={i}
-                        className={`flex flex-col items-center min-w-0 ${isRail ? "gap-0.5" : "gap-1"}`}
-                    >
+                    <div key={i} className="flex flex-col items-center min-w-0 gap-1">
                         <div
                             className={`${dotSize} rounded-full flex items-center justify-center transition-all duration-300`}
                             style={{
@@ -164,7 +236,7 @@ export function MomentumCard({
                             ) : null}
                         </div>
                         <span
-                            className={`font-semibold leading-none ${isRail ? "text-[9px]" : "text-[10px]"}`}
+                            className="font-semibold leading-none text-[10px]"
                             style={{
                                 color: isToday
                                     ? "var(--primary)"
@@ -213,54 +285,7 @@ export function MomentumCard({
         </div>
     );
 
-    const sidebarActivityBar = (
-        <div
-            className={`relative w-full overflow-hidden rounded-full border h-2.5 ${
-                weekActivityPct >= 100
-                    ? "border-[#d7c09a]/50 dark:border-[rgba(245,217,138,0.24)]"
-                    : "border-[#e8e0d4]/50 dark:border-[rgba(226,232,240,0.24)]"
-            }`}
-            style={{
-                background: weekActivityPct >= 100
-                    ? "var(--checklist-track-bg-complete)"
-                    : "var(--checklist-track-bg)",
-            }}
-        >
-            <div
-                className="absolute inset-y-0 left-0 rounded-[999px] transition-[width] duration-700 ease-out"
-                style={{
-                    width: `${weekActivityPct}%`,
-                    background: weekActivityPct >= 100
-                        ? "linear-gradient(90deg, #b8442a 0%, #d96838 35%, #e8933a 70%, #f5c842 100%)"
-                        : "linear-gradient(90deg, #c8552e 0%, #dd6b36 40%, #e8882e 75%, #f0a832 100%)",
-                }}
-            />
-        </div>
-    );
-
-    const railWeeklyFooter = (
-        <div className={`${isHeader ? "mt-1" : "mt-3"} space-y-1 min-w-0`}>
-            <div className="flex items-center justify-between gap-2 text-[10px] leading-none">
-                {weeklyPoints > 0 ? (
-                    <span className="inline-flex items-center gap-1 font-semibold text-text tabular-nums">
-                        <StarIcon className="text-[var(--tone-speaking-accent)] shrink-0" size={11} />
-                        {weeklyPoints}
-                        <span className="font-medium text-text-muted">this week</span>
-                    </span>
-                ) : (
-                    <span className="font-medium text-text-muted">No points yet this week</span>
-                )}
-                <span className="font-medium text-text-muted tabular-nums shrink-0">
-                    {activeDaysThisWeek}<span className="text-text-soft">/7 active</span>
-                </span>
-            </div>
-            {sidebarActivityBar}
-        </div>
-    );
-
-    const weeklyFooter = isRail ? (
-        railWeeklyFooter
-    ) : (
+    const weeklyFooter = (
         <div className="mt-3 flex items-center gap-2.5 min-w-0">
             <div className="shrink-0">
                 <StudentQuickStats
@@ -280,32 +305,106 @@ export function MomentumCard({
     );
 
     const railCardClass =
-        "group block w-full min-w-0 rounded-2xl border transition-[box-shadow,transform] duration-200 hover:shadow-md hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35";
-    const weekDotsTrack = (
-        <div
-            className={`rounded-xl border px-1 py-1.5 ${isHeader ? "px-1.5" : ""}`}
-            style={{
-                background: "color-mix(in srgb, var(--dashboard-surface-start) 72%, transparent)",
-                borderColor: "color-mix(in srgb, var(--dashboard-border) 55%, transparent)",
-            }}
-        >
-            {weekDots}
+        "group block w-full min-w-0 rounded-[26px] border transition-[box-shadow,transform] duration-200 hover:shadow-md hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#bd4a2b]/25";
+    const refinedWeekDots = (
+        <div className="grid w-full grid-cols-7 gap-1.5">
+            {sevenDayActivity.map((active, i) => {
+                const isToday = i === todayIndex;
+                const isFuture = i > todayIndex;
+                const isMissed = !active && !isToday && !isFuture;
+
+                return (
+                    <div key={i} className="flex min-w-0 flex-col items-center gap-1.5">
+                        <div
+                            className="flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300"
+                            style={{
+                                background: active
+                                    ? streakAccent
+                                    : isMissed
+                                        ? "color-mix(in srgb, var(--dashboard-border) 38%, var(--dashboard-surface-start))"
+                                        : "transparent",
+                                border: active
+                                    ? `2px solid ${streakAccent}`
+                                    : isToday
+                                        ? "2px solid color-mix(in srgb, var(--dashboard-border) 42%, transparent)"
+                                        : isFuture
+                                            ? `2px solid ${streakAccent}`
+                                            : "2px solid color-mix(in srgb, var(--dashboard-border) 70%, transparent)",
+                                opacity: isFuture ? 0.9 : 1,
+                            }}
+                        >
+                            {active ? (
+                                <span className="text-white">
+                                    <CheckIcon size={16} />
+                                </span>
+                            ) : null}
+                        </div>
+                        <span
+                            className="text-xs font-bold leading-none"
+                            style={{
+                                color: isToday
+                                    ? streakAccent
+                                    : isFuture
+                                        ? "var(--text-soft, var(--text-muted))"
+                                        : "var(--text-muted)",
+                            }}
+                        >
+                            {CALENDAR_WEEK_DAY_LABELS[i]}
+                        </span>
+                    </div>
+                );
+            })}
         </div>
     );
 
-    const flameOrb = (
-        <div
-            className={`${flameShellSize} rounded-full flex items-center justify-center shrink-0 shadow-sm ${isHotStreak ? "animate-pulse" : ""}`}
-            style={{
-                background: isHotStreak
-                    ? "linear-gradient(135deg, var(--tone-speaking-chip-bg) 0%, var(--tone-speaking-surface) 100%)"
-                    : "linear-gradient(135deg, var(--tone-quizzes-chip-bg) 0%, var(--tone-quizzes-surface) 100%)",
-            }}
-        >
-            <FlameIcon
-                className={isHotStreak ? "text-[var(--tone-speaking-accent)]" : "text-[var(--tone-quizzes-accent)]"}
-                size={flameIconSize}
-            />
+    const refinedRailFooter = (
+        <div className="mt-3.5">
+            <div className="mb-2.5 flex items-center justify-between gap-3 text-[13px] font-semibold text-text-muted">
+                <p>
+                    <span className="text-text tabular-nums">{activeDaysThisWeek} / 7</span>
+                    <span className="ml-2">this week</span>
+                </p>
+                <p className="tabular-nums">
+                    {daysToPerfectWeek === 0
+                        ? "Perfect week"
+                        : `${daysToPerfectWeek} day${daysToPerfectWeek === 1 ? "" : "s"} to perfect week`}
+                </p>
+            </div>
+            <div
+                className="h-2 w-full overflow-hidden rounded-full"
+                style={{ background: "color-mix(in srgb, var(--dashboard-border) 38%, var(--dashboard-surface-start))" }}
+            >
+                <div
+                    className="h-full rounded-full transition-[width] duration-700 ease-out"
+                    style={{
+                        width: `${weekActivityPct}%`,
+                        background: `linear-gradient(90deg, ${MOMENTUM_SAGE} 0%, color-mix(in srgb, ${MOMENTUM_SAGE} 82%, #d87449) 100%)`,
+                    }}
+                />
+            </div>
+        </div>
+    );
+
+    const refinedRailBody = (
+        <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-[72px_minmax(0,1fr)] items-center gap-3.5">
+                <StreakProgressRing streak={streak} pct={streakRingPct} size={72} />
+                <div className="min-w-0">
+                    <div className="flex items-start justify-between gap-3">
+                        <div>
+                            <p className="text-base font-extrabold leading-tight text-text">
+                                Hot streak
+                            </p>
+                            <p className="mt-1 text-[13px] font-semibold leading-tight text-text-muted">
+                                {streak > 0 ? "Keep going!" : "Start today"}
+                            </p>
+                        </div>
+                        {pointsBadge}
+                    </div>
+                </div>
+            </div>
+            {refinedWeekDots}
+            {refinedRailFooter}
         </div>
     );
 
@@ -316,7 +415,7 @@ export function MomentumCard({
                 isHeader && embedded
                     ? "group block w-full min-w-0 rounded-xl p-0 transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
                     : isRail
-                        ? `${railCardClass} ${isHeader ? "max-w-[420px] shrink-0 p-3" : "p-3.5"}`
+                        ? `${railCardClass} ${isHeader ? "max-w-[420px] shrink-0 p-5" : "p-5"}`
                         : "dashboard-panel rounded-2xl p-4 block transition-shadow hover:shadow-lg"
             }
             style={
@@ -325,97 +424,23 @@ export function MomentumCard({
                     : { background: cardGradient, borderColor: cardBorder }
             }
         >
-            {isHeader ? (
+            {isRail ? (
                 <div
                     className={
-                        embedded
+                        isHeader && embedded
                             ? borderless
                                 ? "w-full min-w-0 py-0.5"
-                                : "w-full min-w-0 rounded-xl border p-3.5 sm:p-4"
+                                : "w-full min-w-0 rounded-[22px] border p-5"
                             : undefined
                     }
                     style={
-                        embedded && !borderless
+                        isHeader && embedded && !borderless
                             ? { background: cardGradient, borderColor: cardBorder }
                             : undefined
                     }
                 >
-                    {embedded ? (
-                        <div className="flex flex-col gap-2 min-w-0">
-                            <div className="flex items-start justify-between gap-4">
-                                <div className="flex items-start gap-3 min-w-0">
-                                    {flameOrb}
-                                    <div className="min-w-0">
-                                        {streakHeading}
-                                        <p className="text-[11px] text-text-muted mt-1 leading-snug">
-                                            {compactMessage(streak, longestStreak)}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="shrink-0 pt-0.5">{pointsBadge}</div>
-                            </div>
-                            {weekDotsTrack}
-                            {railWeeklyFooter}
-                        </div>
-                    ) : (
-                        <div className="flex items-start gap-3 min-w-0">
-                            <div className="flex items-start gap-2.5 shrink-0">
-                                {flameOrb}
-                                <div className="min-w-0">
-                                    {streakHeading}
-                                    <p className="text-[11px] text-text-muted mt-0.5 leading-snug">
-                                        {compactMessage(streak, longestStreak)}
-                                    </p>
-                                    <div className="mt-1.5">{pointsBadge}</div>
-                                </div>
-                            </div>
-                            <div className="flex-1 min-w-0 flex flex-col gap-2">
-                                {weekDotsTrack}
-                                {railWeeklyFooter}
-                            </div>
-                        </div>
-                    )}
+                    {refinedRailBody}
                 </div>
-            ) : isSidebar ? (
-                <>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-text-muted mb-2.5">
-                        Your momentum
-                    </p>
-                    <div className="flex items-start gap-2.5 min-w-0">
-                        {flameOrb}
-                        <div className="flex-1 min-w-0">
-                            <div className="flex items-start justify-between gap-2">
-                                <div className="min-w-0">
-                                    <div className="flex flex-wrap items-baseline gap-1">
-                                        <span className="text-2xl font-display font-bold text-text leading-none tabular-nums">
-                                            {streak}
-                                        </span>
-                                        <span className="text-xs font-medium text-text-muted">
-                                            day{streak !== 1 ? "s" : ""}
-                                        </span>
-                                        {isNewRecord && streak > 0 && (
-                                            <span
-                                                className="px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide"
-                                                style={{
-                                                    background: "var(--tone-speaking-surface)",
-                                                    color: "var(--tone-speaking-chip-text)",
-                                                }}
-                                            >
-                                                Best
-                                            </span>
-                                        )}
-                                    </div>
-                                    <p className="text-[11px] text-text-muted mt-0.5 leading-snug">
-                                        {getSidebarMessage(streak, longestStreak)}
-                                    </p>
-                                </div>
-                                {pointsBadge}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mt-3">{weekDotsTrack}</div>
-                    {weeklyFooter}
-                </>
             ) : (
                 <>
                     <div className="flex items-start gap-3">

@@ -15,10 +15,13 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { Lightbulb, ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react";
 import { BackButton } from "@/components/ui/BackButton";
+import { CourseMapReturnButton } from "@/components/navigation/CourseMapReturnButton";
+import { useResolvedLearnerReturnHref } from "@/hooks/useResolvedLearnerReturnHref";
 
 // WARMUP MODE COMPONENT
 function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
   const router = useRouter();
+  const returnHref = useResolvedLearnerReturnHref({ fallbackHref: "/dashboard" });
   const [isCompleting, setIsCompleting] = useState(false);
   const [completionError, setCompletionError] = useState<string | null>(null);
   const [isCompleted, setIsCompleted] = useState(false);
@@ -92,7 +95,7 @@ function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
       {/* Header */}
       <header className="sticky lg:relative top-0 flex-none px-4 sm:px-6 py-4 sm:py-5 border-b border-border/60 bg-white/90 backdrop-blur-md z-10">
         <div className="flex items-start gap-3 sm:gap-4">
-          <BackButton onClick={() => router.back()} className="flex-shrink-0 mt-1 sm:mt-1.5" />
+          <BackButton onClick={() => router.push(returnHref)} className="flex-shrink-0 mt-1 sm:mt-1.5" />
           <div className="flex-1 min-w-0">
             <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1.5 sm:mb-2 font-display leading-tight">
               {content.title}
@@ -223,9 +226,12 @@ function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
                     {isCompleting ? 'Completing…' : 'Mark as Complete'}
                   </button>
                 ) : (
-                  <div className="flex items-center gap-2 text-green-700 font-semibold">
-                    <CheckCircle2 className="w-5 h-5" />
-                    Completed!
+                  <div className="flex flex-col items-end gap-3">
+                    <div className="flex items-center gap-2 text-green-700 font-semibold">
+                      <CheckCircle2 className="w-5 h-5" />
+                      Completed!
+                    </div>
+                    <CourseMapReturnButton className="w-full sm:w-auto" layout="inline" />
                   </div>
                 )}
                 <div className="text-sm text-green-700">
@@ -272,6 +278,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
 
 function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: Props) {
   const router = useRouter();
+  const returnHref = useResolvedLearnerReturnHref({ fallbackHref: "/dashboard" });
 
   // LEGACY MODE: Complex two-phase submission system
   const soloMode = content.soloMode;
@@ -571,7 +578,7 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
       )}
       <header className="sticky lg:relative top-0 flex-none px-4 sm:px-6 py-4 sm:py-5 border-b border-border/60 bg-white/90 backdrop-blur-md z-10">
         <div className="flex items-start gap-3 sm:gap-4">
-          <BackButton onClick={() => router.back()} className="flex-shrink-0 mt-1 sm:mt-1.5" />
+          <BackButton onClick={() => router.push(returnHref)} className="flex-shrink-0 mt-1 sm:mt-1.5" />
           <div className="flex-1 min-w-0">
             <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1.5 sm:mb-2 font-display leading-tight">
               {content.title}
@@ -1231,6 +1238,11 @@ function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: P
                 : "Submit Warm-Up"}
             </button>
           </div>
+          {submissionStatus === "submitted" ? (
+            <div className="mt-6 flex justify-center">
+              <CourseMapReturnButton className="w-full max-w-md" layout="stacked" />
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

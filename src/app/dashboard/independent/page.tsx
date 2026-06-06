@@ -10,27 +10,21 @@ import { buildCalendarWeekActivity, getCalendarWeekStart } from "@/lib/gamificat
 import { logger } from "@/lib/logger";
 import { getLearnerState } from "@/lib/learner-mode";
 import { canUseTeacherTools } from "@/lib/roles";
-import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
+import { isAdminInStudentMode } from "@/lib/admin-student-view";
+import { persistLearnerPreview } from "@/lib/learner-preview";
+import { AdminViewSwitcher } from "@/components/dashboard/AdminViewSwitcher";
+import { ArrowRight, BookOpen } from "lucide-react";
 import {
-    getCurrentIndependentRecommendation,
     filterIndependentVisibleActivities,
     getIndependentRecommendationActivityIds,
     getIndependentRecommendationActivityTitles,
+    getIndependentNewActivityCards,
+    INDEPENDENT_NEW_RELEASE_WINDOW_MS,
 } from "@/lib/independent-learning";
 import {
     getIndependentProgressStats,
-    getWeeklyGoalProgress,
-    analyzeWeakAreas,
 } from "@/lib/independent-progress";
-import { TodaysAssignments } from "@/components/dashboard";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
-import { TrophyIcon, SparklesIcon, UsersIcon } from "@/components/icons/Icons";
-import {
-    LearningPathRoadmap,
-    RecommendedReviewCard,
-} from "@/components/dashboard/independent";
-import { DashboardWelcomeHero, ExploreCategoriesCarousel, MomentumCard } from "@/components/dashboard";
-import { IndependentDashboardClient } from "./IndependentDashboardClient";
+import { DashboardResumeHero, ExploreCategoriesCarousel, MomentumCard, NewThisWeekSection } from "@/components/dashboard";
 
 export default async function IndependentDashboardPage() {
     const session = await getServerSession(authOptions);
@@ -39,7 +33,11 @@ export default async function IndependentDashboardPage() {
         redirect("/login");
     }
 
-    if (canUseTeacherTools(session.user)) {
+    const isAdminPreview = canUseTeacherTools(session.user)
+        ? await isAdminInStudentMode(session.user)
+        : false;
+
+    if (canUseTeacherTools(session.user) && !isAdminPreview) {
         redirect("/dashboard");
     }
 
@@ -51,17 +49,8 @@ export default async function IndependentDashboardPage() {
 
     const calendarWeekStart = getCalendarWeekStart();
 
-    // Fetch user preferences, learner state, and user stats
-    const [preferencesResult, learnerState, userStats, recentLedgerEntries] = await Promise.all([
-        withPrismaReadRetry(() =>
-            prisma.userPreferences.findUnique({
-                where: { userId },
-                select: {
-                    weeklyActivityGoal: true,
-                    weeklyGoalStartDay: true,
-                },
-            })
-        ),
+    // Fetch learner state and user stats
+    const [learnerState, userStats, recentLedgerEntries] = await Promise.all([
         withPrismaReadRetry(() => getLearnerState(prisma, userId)),
         withPrismaReadRetry(() =>
             prisma.user.findUnique({
@@ -83,22 +72,22 @@ export default async function IndependentDashboardPage() {
 
     const initialSevenDayActivity = buildCalendarWeekActivity(recentLedgerEntries);
 
-    // Use defaults if preferences don't exist
-    const preferences = preferencesResult ?? {
-        weeklyActivityGoal: 3,
-        weeklyGoalStartDay: 1,
-    };
-
     const learnerMode = learnerState.mode;
 
-    if (learnerMode !== "independent") {
+    if (!isAdminPreview && learnerMode !== "independent") {
         redirect("/dashboard");
     }
+
+    await persistLearnerPreview(userId, "independent");
 
     const sequenceActivityIds = getIndependentRecommendationActivityIds();
     const sequenceActivityTitles = getIndependentRecommendationActivityTitles();
 
-    const sequenceActivitiesRaw = await timedQuery(
+    const recentReleaseCutoff = new Date();
+    recentReleaseCutoff.setTime(recentReleaseCutoff.getTime() - INDEPENDENT_NEW_RELEASE_WINDOW_MS);
+
+    const [sequenceActivitiesRaw, recentActivitiesRaw] = await Promise.all([
+        timedQuery(
         {
             route: "/dashboard/independent",
             queryLabel: "activity.findMany.independentSequence",
@@ -128,10 +117,43 @@ export default async function IndependentDashboardPage() {
                 })
         ),
         (result) => result.length
-    );
+        ),
+        timedQuery(
+            {
+                route: "/dashboard/independent",
+                queryLabel: "activity.findMany.independentRecentReleases",
+                userRole: session.user.role,
+            },
+            () =>
+                withPrismaReadRetry(() =>
+                    prisma.activity.findMany({
+                        where: {
+                            deletedAt: null,
+                            OR: [
+                                { updatedAt: { gte: recentReleaseCutoff } },
+                                { createdAt: { gte: recentReleaseCutoff } },
+                            ],
+                        },
+                        select: {
+                            id: true,
+                            title: true,
+                            description: true,
+                            type: true,
+                            category: true,
+                            isReleased: true,
+                            content: true,
+                            createdAt: true,
+                            updatedAt: true,
+                        },
+                    })
+                ),
+            (result) => result.length
+        ),
+    ]);
     const sequenceActivities = filterIndependentVisibleActivities(sequenceActivitiesRaw);
+    const recentActivities = filterIndependentVisibleActivities(recentActivitiesRaw);
 
-    const [progressRows, submissions, independentLeaderboard, dailyVocabHabit] = await Promise.all([
+    const [progressRows, submissions, independentLeaderboard] = await Promise.all([
         sequenceActivityIds.length === 0
             ? []
             : timedQuery(
@@ -185,13 +207,6 @@ export default async function IndependentDashboardPage() {
                 (result) => result.length
                 ),
         getTimeframedLeaderboard("week", 20, undefined, undefined, { independentOnly: true }),
-        getDailyVocabHabitForUser(prisma, userId).catch((error) => {
-            logger.warn("Failed to load daily vocab habit for independent dashboard", {
-                userId,
-                error: String(error),
-            });
-            return null;
-        }),
     ]);
 
     // Deduplicate progress rows by activityId - keep the best record (highest progress or completed)
@@ -232,76 +247,49 @@ export default async function IndependentDashboardPage() {
         })),
     });
 
-    // Calculate weekly goal progress
-    const weeklyGoalProgress = getWeeklyGoalProgress({
-        weeklyGoal: preferences.weeklyActivityGoal ?? 3,
-        startDay: preferences.weeklyGoalStartDay ?? 1,
-        submissions: submissions.map(s => ({ completedAt: s.completedAt })),
-        progressRows: progressRowsDeduped.map(p => ({ status: p.status, updatedAt: p.updatedAt })),
-    });
-
-    // Analyze weak areas for review suggestions
-    const weakAreas = analyzeWeakAreas({
-        activities: sequenceActivities.map(a => ({
-            id: a.id,
-            title: a.title,
-            type: a.type,
-            category: a.category,
-        })),
-        submissions: submissions.map(s => ({
-            activityId: s.activityId,
-            score: s.score,
-            completedAt: s.completedAt,
-        })),
-        limit: 2,
-    });
-
-    const recommendedAssignments = getCurrentIndependentRecommendation({
-        activities: sequenceActivities,
+    const newThisWeekItems = getIndependentNewActivityCards({
+        activities: recentActivities,
         progressRows: progressRowsDeduped,
         submissions,
-    }).filter((assignment) => assignment.activityId !== "vocab-daily-review");
+        limit: 6,
+    });
 
     const studentEntry = independentLeaderboard.find((entry) => entry.id === userId);
     const studentLeaderboardRank = studentEntry && studentEntry.rank <= 3 ? studentEntry.rank : null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
+    const currentStage = progressStats.stageProgress.find((stage) => stage.stage === progressStats.currentStage);
+    const currentStageLabel = currentStage?.label ?? "Current Unit";
 
     return (
         <div className="min-h-screen bg-bg">
             <main id="main-content" className="container mx-auto pt-2 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1800px]">
-                <div className="dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
+                <AdminViewSwitcher user={{ id: userId, role: session.user.role }} currentView="independent" />
+                <div className="dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
                     <div className="md:col-span-8 lg:col-span-9 min-w-0 space-y-6 sm:space-y-8">
-                        <div className="hidden lg:block dashboard-panel paper-texture rounded-2xl overflow-hidden">
-                            <DashboardWelcomeHero
-                                weekHub
-                                userName={session.user?.name ?? ""}
-                                nameEmoji={
-                                    studentLeaderboardMedal ? (
-                                        <span className="inline-block leading-none" aria-label={`Rank ${studentLeaderboardRank}`}>
+                        <div className="hidden lg:block">
+                            <div className="pt-2 pb-1">
+                                <h1
+                                    className="font-display font-bold text-text leading-tight tracking-tight flex items-baseline gap-x-2.5 gap-y-1 flex-wrap"
+                                    style={{ textWrap: "balance" } as React.CSSProperties}
+                                >
+                                    <span className="text-xl text-text-muted font-medium">Welcome back,</span>
+                                    <span className="text-[2rem] text-primary relative inline-block leading-none">
+                                        {session.user?.name?.trim() || "there"}
+                                        <span className="absolute -bottom-0.5 left-0 right-0 h-2 bg-[#88A392]/40 -z-10 rounded-sm -rotate-1" />
+                                    </span>
+                                    {studentLeaderboardMedal ? (
+                                        <span className="inline-flex text-2xl leading-none" aria-label={`Rank ${studentLeaderboardRank}`}>
                                             {studentLeaderboardMedal}
                                         </span>
-                                    ) : undefined
-                                }
-                                momentum={{
-                                    initialStreak: userStats?.currentStreak ?? 0,
-                                    initialLongestStreak: userStats?.longestStreak ?? 0,
-                                    initialSevenDayActivity: initialSevenDayActivity,
-                                    initialTotalPoints: userStats?.points ?? 0,
-                                }}
-                            />
-                            <TodaysAssignments
-                                weekHub
-                                initialAssignments={recommendedAssignments}
-                                pinnedHabit={dailyVocabHabit}
-                                title="Recommended Activities"
-                                subtitle={null}
-                                ctaLabel="Start"
-                                variant="checklist"
-                                mobileTasksLinkHref="/dashboard/activities"
-                                mobileTasksLinkLabel="All Activities"
-                                hideProgressBar
-                            />
+                                    ) : null}
+                                </h1>
+                                <p className="mt-1 text-sm font-medium text-text-muted/90">
+                                    You&apos;re making great progress.
+                                </p>
+                            </div>
                         </div>
+
+                        <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
 
                         {/* Momentum — mobile only (< md) */}
                         <div className="md:hidden">
@@ -313,165 +301,87 @@ export default async function IndependentDashboardPage() {
                             />
                         </div>
 
-                        <section className="lg:hidden" aria-label="Recommended Activities">
-                            <TodaysAssignments
-                                initialAssignments={recommendedAssignments}
-                                pinnedHabit={dailyVocabHabit}
-                                title="Recommended Activities"
-                                subtitle={null}
-                                ctaLabel="Start"
-                                variant="checklist"
-                                mobileTasksLinkHref="/dashboard/activities"
-                                mobileTasksLinkLabel="All Activities"
-                                hideProgressBar
-                            />
-                        </section>
+                        <NewThisWeekSection
+                            items={newThisWeekItems}
+                            subtitle={null}
+                        />
 
                         <ExploreCategoriesCarousel />
-
-                        {/* Review Suggestions (subtle, below recommendations) */}
-                        {weakAreas.length > 0 && (
-                            <RecommendedReviewCard recommendations={weakAreas} />
-                        )}
-
-                        {/* Explore Section (Desktop) */}
-                        <section className="hidden md:block">
-                            <div className="dashboard-panel dashboard-panel-hover paper-texture p-6 group relative overflow-hidden">
-                                <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-primary/12 via-accent/18 to-secondary/12 rounded-full blur-3xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
-
-                                <div className="flex items-start justify-between gap-4 relative z-10">
-                                    <div className="min-w-0 pr-2">
-                                        <p className="text-xs font-bold text-text-muted tracking-widest uppercase flex items-center gap-2">
-                                            <span className="w-8 h-[2px] rounded-full bg-gradient-to-r from-primary/60 to-secondary/40"></span>
-                                            Explore
-                                        </p>
-                                        <h2 className="text-2xl font-bold font-display text-text mt-2">All Activities</h2>
-                                        <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed">
-                                            Keep building your skills at your own pace. Browse by category and follow the recommended path when you want a clear next step.
-                                        </p>
-                                        <div className="flex flex-wrap gap-2 mt-4">
-                                            {[
-                                                { label: "Grammar", href: "/dashboard/activities?category=grammar", tone: getLearnerCategoryTone("grammar") },
-                                                { label: "Vocabulary", href: "/dashboard/activities?category=vocabulary", tone: getLearnerCategoryTone("vocabulary") },
-                                                { label: "Quizzes", href: "/dashboard/activities?category=quizzes", tone: getLearnerCategoryTone("quizzes") },
-                                                { label: "Games", href: "/dashboard/activities?category=games", tone: getLearnerCategoryTone("games") },
-                                                { label: "Pronunciation", href: "/dashboard/activities?category=pronunciation", tone: getLearnerCategoryTone("pronunciation") },
-                                            ].map((chip) => (
-                                                <Link
-                                                    key={chip.label}
-                                                    href={chip.href}
-                                                    className="dashboard-soft-button inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border active:scale-95 transition-all duration-200"
-                                                    style={{
-                                                        color: chip.tone.chipText,
-                                                        backgroundColor: chip.tone.chipBg,
-                                                        borderColor: chip.tone.border,
-                                                        "--dashboard-button-shadow-override": "inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.05), 0 6px 14px rgba(40,31,23,0.05)",
-                                                        "--dashboard-button-shadow-hover-override": "inset 0 1px 0 rgba(255,255,255,0.45), 0 2px 4px rgba(0,0,0,0.06), 0 10px 18px rgba(40,31,23,0.08)",
-                                                    } as React.CSSProperties}
-                                                >
-                                                    {chip.label}
-                                                    <span className="text-[10px] opacity-60">→</span>
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <Link
-                                        href="/dashboard/activities"
-                                        className="btn-polish dashboard-soft-button shrink-0 px-5 py-2.5 rounded-xl bg-gradient-to-b from-primary to-[color-mix(in_srgb,var(--primary-color)_88%,#000)] text-[color:var(--text-on-accent)] border border-primary/80 font-semibold text-sm flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
-                                        style={{
-                                            "--dashboard-button-shadow-override": "0 1px 2px rgba(0,0,0,0.1), 0 4px 12px rgba(176,87,64,0.25), inset 0 1px 0 rgba(255,255,255,0.2)",
-                                            "--dashboard-button-shadow-hover-override": "0 2px 4px rgba(0,0,0,0.12), 0 8px 18px rgba(176,87,64,0.32), inset 0 1px 0 rgba(255,255,255,0.24)",
-                                        } as React.CSSProperties}
-                                    >
-                                        Browse
-                                        <span className="arrow-animate">→</span>
-                                    </Link>
-                                </div>
-                            </div>
-                        </section>
 
                     </div>
 
                     {/* Sidebar */}
                     <aside className="hidden md:block md:col-span-4 lg:col-span-3">
-                        <div className="dashboard-panel paper-texture sticky top-4 space-y-5 p-4 md:p-5">
-                            {/* Momentum — md sidebar only (lg+ lives in welcome header) */}
-                            <div className="lg:hidden">
-                                <MomentumCard
-                                    variant="sidebar"
-                                    initialStreak={userStats?.currentStreak ?? 0}
-                                    initialLongestStreak={userStats?.longestStreak ?? 0}
-                                    initialSevenDayActivity={initialSevenDayActivity}
-                                    initialTotalPoints={userStats?.points ?? 0}
-                                />
-                            </div>
-
-                            {/* Weekly Goal Tracker */}
-                            <IndependentDashboardClient
-                                initialGoal={preferences.weeklyActivityGoal ?? 3}
-                                weeklyGoalProgress={weeklyGoalProgress}
+                        <div className="sticky top-4 space-y-4">
+                            <MomentumCard
+                                variant="sidebar"
+                                initialStreak={userStats?.currentStreak ?? 0}
+                                initialLongestStreak={userStats?.longestStreak ?? 0}
+                                initialSevenDayActivity={initialSevenDayActivity}
+                                initialTotalPoints={userStats?.points ?? 0}
                             />
 
-                            {/* Learning Path Roadmap */}
-                            <LearningPathRoadmap
-                                stages={progressStats.stageProgress}
-                                totalProgress={{
-                                    completed: progressStats.completedActivities,
-                                    total: progressStats.totalActivities,
-                                    percent: progressStats.percentComplete,
-                                }}
-                            />
-
-                            {/* Self-paced Leaderboard Link */}
-                            <section className="rounded-2xl border p-4" style={{ borderColor: "var(--dashboard-divider)", backgroundColor: "var(--dashboard-surface-start)" }}>
-                                <div className="flex items-center gap-3">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                                        <TrophyIcon className="h-5 w-5" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-sm font-bold text-text">Self-paced Leaderboard</h3>
-                                        <p className="text-xs text-text-muted">Points and streaks still count here.</p>
-                                    </div>
+                            <section className="dashboard-panel rounded-2xl p-5" aria-label="Continue your journey">
+                                <div className="mb-4 flex items-center gap-3">
+                                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                                        <BookOpen size={19} aria-hidden />
+                                    </span>
+                                    <h2 className="font-display text-lg font-bold text-text">
+                                        Continue Your Journey
+                                    </h2>
                                 </div>
-                                <Link
-                                    href="/dashboard/leaderboard"
-                                    className="dashboard-soft-button mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-primary/25 bg-[var(--dashboard-surface-start)] px-4 py-2.5 text-sm font-semibold text-primary"
-                                >
-                                    <TrophyIcon className="h-4 w-4" />
-                                    Open Leaderboard
-                                </Link>
-                            </section>
 
-                            {/* New Releases Info */}
-                            <section className="rounded-2xl border p-4" style={{ borderColor: "var(--dashboard-divider)", backgroundColor: "var(--dashboard-surface-start)" }}>
-                                <div className="flex items-center gap-3">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                                        <SparklesIcon className="h-5 w-5" />
-                                    </div>
+                                <div className="space-y-4">
                                     <div>
-                                        <h3 className="text-sm font-bold text-text">New releases</h3>
-                                        <p className="text-xs text-text-muted">New activities stay optional and do not replace your next recommendation.</p>
+                                        <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-text-muted">
+                                            Current Unit
+                                        </p>
+                                        <p className="mt-1 text-xl font-bold leading-tight text-text">
+                                            {currentStageLabel}
+                                        </p>
                                     </div>
-                                </div>
-                            </section>
 
-                            <section className="rounded-2xl border p-4" style={{ borderColor: "var(--dashboard-divider)", backgroundColor: "var(--dashboard-surface-start)" }}>
-                                <div className="flex items-center gap-3">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/10 text-secondary">
-                                        <UsersIcon className="h-5 w-5" />
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div className="rounded-2xl border px-3 py-3" style={{ borderColor: "var(--dashboard-border)" }}>
+                                            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-text-muted">
+                                                Level
+                                            </p>
+                                            <p className="mt-1 text-lg font-extrabold text-text">
+                                                {progressStats.currentStage} of {progressStats.stageProgress.length}
+                                            </p>
+                                        </div>
+                                        <div className="rounded-2xl border px-3 py-3" style={{ borderColor: "var(--dashboard-border)" }}>
+                                            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-text-muted">
+                                                Progress
+                                            </p>
+                                            <p className="mt-1 text-lg font-extrabold text-text">
+                                                {progressStats.percentComplete}%
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h3 className="text-sm font-bold text-text">Invite Friends</h3>
-                                        <p className="text-xs text-text-muted">Share your invite link so others can join you.</p>
+
+                                    <div
+                                        className="h-2 overflow-hidden rounded-full"
+                                        style={{ background: "var(--checklist-track-bg)" }}
+                                    >
+                                        <div
+                                            className="h-full rounded-full bg-primary transition-all duration-500"
+                                            style={{ width: `${progressStats.percentComplete}%` }}
+                                        />
                                     </div>
+
+                                    <p className="text-xs font-semibold text-text-muted">
+                                        {progressStats.completedActivities} of {progressStats.totalActivities} activities
+                                    </p>
+
+                                    <Link
+                                        href="/dashboard/map"
+                                        className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-bold text-[color:var(--text-on-accent)] transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
+                                    >
+                                        Continue Journey
+                                        <ArrowRight size={17} aria-hidden />
+                                    </Link>
                                 </div>
-                                <Link
-                                    href="/dashboard/invite"
-                                    className="dashboard-soft-button mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-secondary/25 bg-[var(--dashboard-surface-start)] px-4 py-2.5 text-sm font-semibold text-secondary"
-                                >
-                                    <UsersIcon className="h-4 w-4" />
-                                    Open Invite Link
-                                </Link>
                             </section>
                         </div>
                     </aside>

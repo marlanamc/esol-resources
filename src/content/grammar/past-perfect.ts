@@ -1,1389 +1,744 @@
 import type { InteractiveGuideContent } from "@/types/activity";
+import { pastPerfectImages as img } from "@/data/past-perfect-images.generated";
+
+// ---------------------------------------------------------------------------
+// Visual helpers (copied from welcome-back-tenses-review.ts)
+// ---------------------------------------------------------------------------
+
+const sceneCard = (
+  sceneId: keyof typeof img,
+  caption: string,
+  accent: "terracotta" | "sage" | "blue" | "amber" = "terracotta"
+): string => {
+  const scene = img[sceneId];
+  if (!scene) return "";
+  return `
+    <div class="gc-bg-white" style="margin: 0 0 1.5rem 0; padding: 0; border-radius: 0.75rem; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 10px rgba(0,0,0,0.06)">
+      <img src="${scene.url}" alt="${scene.alt}" loading="lazy" style="display: block; width: 100%; height: auto; max-height: 260px; object-fit: cover" />
+      <div style="padding: 0.55rem 0.9rem; font-size: 0.82rem; background: rgba(0,0,0,0.03); display: flex; justify-content: space-between; gap: 0.5rem; align-items: center; flex-wrap: wrap">
+        <span><span class="gc-text-${accent}" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.72rem">Scene</span> &nbsp;${caption}</span>
+        <span style="font-size: 0.68rem; opacity: 0.7">Photo: <a href="${scene.credit.url}" rel="noopener" target="_blank">${scene.credit.name}</a> / Unsplash</span>
+      </div>
+    </div>
+  `;
+};
+
+type Turn = {
+  speaker: string;
+  avatar: string;
+  text: string;
+  side: "left" | "right";
+  tone: "terracotta" | "sage" | "blue" | "amber";
+};
+
+const dialogue = (turns: Turn[]): string => {
+  const bubbles = turns
+    .map((t) => {
+      const bgClass = `gc-bg-${t.tone}-alpha`;
+      const radius =
+        t.side === "left"
+          ? "0.875rem 0.875rem 0.875rem 0.25rem"
+          : "0.875rem 0.875rem 0.25rem 0.875rem";
+      const rowStyle =
+        t.side === "left"
+          ? "display: flex; gap: 0.625rem; align-items: flex-start"
+          : "display: flex; gap: 0.625rem; align-items: flex-start; flex-direction: row-reverse";
+      return `
+        <div style="${rowStyle}">
+          <div style="font-size: 1.65rem; line-height: 1; flex-shrink: 0; padding-top: 0.25rem">${t.avatar}</div>
+          <div class="${bgClass}" style="padding: 0.65rem 0.9rem; border-radius: ${radius}; max-width: 82%">
+            <div class="gc-text-${t.tone}" style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 0.15rem">${t.speaker}</div>
+            <div style="line-height: 1.5">${t.text}</div>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  return `
+    <div style="display: flex; flex-direction: column; gap: 0.625rem; margin: 1.25rem 0; padding: 1rem; border-radius: 0.75rem; background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.06)">
+      ${bubbles}
+    </div>
+  `;
+};
+
+const labelPill = (text: string, color: "terracotta" | "sage" | "blue" | "amber"): string =>
+  `<span class="gc-bg-${color}-alpha gc-text-${color}" style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">${text}</span>`;
+
+// ---------------------------------------------------------------------------
+// Guide content
+// ---------------------------------------------------------------------------
 
 export const pastPerfectContent: InteractiveGuideContent = {
-    type: "interactive-guide",
-    tableOfContents: true,
-    sections: [
-        // Introduction Section
+  type: "interactive-guide",
+  tableOfContents: true,
+  sections: [
+    // =========================================================================
+    // SECTION 1 — She Had Already Done the Work
+    // =========================================================================
+    {
+      id: "she-had-already-done-it",
+      title: "She Had Already Done the Work",
+      tenseDiagram: {
+        title: "Where Past Perfect lives on the timeline",
+        elements: [
+          { id: "pp-first", type: "single-dot", zone: "past-earlier", position: 30, verbLabel: "Past Perfect (1st)" },
+          { id: "ps-second", type: "single-dot", zone: "past", position: 70, verbLabel: "Past Simple (2nd)" },
+        ],
+      },
+      explanation: `
+        ${sceneCard("sceneWarehouse", "East Boston. A warehouse off Chelsea Street. Wednesday morning.", "amber")}
+
+        ${dialogue([
+          { speaker: "Gloria", avatar: "👩🏽", text: "I'm nervous. I've never applied to a warehouse before.", side: "right", tone: "terracotta" },
+          { speaker: "Receptionist", avatar: "🧑🏻", text: "Don't worry. The manager said you already have good experience.", side: "left", tone: "sage" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "By the time I walked in, I <strong>had already worked</strong> two years in housekeeping. And I <strong>had saved</strong> enough for the bus pass.", side: "right", tone: "terracotta" },
+        ])}
+
+        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
+          <p style="margin: 0; font-size: 1.05rem"><strong>Past Perfect</strong> = something that finished <em>before</em> another past moment. Use it to show which action happened first when telling a story about the past.</p>
+        </div>
+
+        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("1st action", "amber")}
+            <span><em>She <strong>had worked</strong> in housekeeping for two years.</em></span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("2nd action", "sage")}
+            <span><em>She <strong>applied</strong> for the warehouse job.</em></span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("together", "terracotta")}
+            <span><em>By the time she <strong>applied</strong>, she <strong>had already worked</strong> two years in housekeeping.</em></span>
+          </div>
+        </div>
+
+        <p style="margin-top: 1rem">The first action (working in housekeeping) uses <strong>had + past participle</strong>. The second action (applied) uses Past Simple. You almost always need <em>both</em> verbs to make the sequence clear.</p>
+      `,
+      exercises: [
         {
-            id: "introduction",
-            title: "Past Perfect: When Time Goes Backward",
-            icon: "📚",
-            explanation: `
-                <div class="gc-grad-amber" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem">
-                    <h3 class="gc-text-amber" style="margin-top: 0; font-size: 1.25rem">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0">Past Perfect is your <strong class="gc-text-amber">time machine for TWO past actions</strong>: it shows which one happened FIRST when you're telling a story about the past.</p>
-                </div>
-
-                <h3>Why This Matters</h3>
-                <p>Imagine you're explaining why you missed the bus. You can't just say "The bus left"—you need to explain the sequence: <span class="gc-text-amber" style="font-weight: 600">"The bus had already left"</span> (FIRST) when <span style="color: #14b8a6; font-weight: 600">"I arrived"</span> (SECOND).</p>
-
-                <h3>The Golden Rule</h3>
-                <ul style="list-style: none; padding-left: 0; margin: 0">
-                    <li class="gc-bg-amber gc-callout-left gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Almost ALWAYS uses TWO verbs</strong></li>
-                    <li class="gc-bg-cyan gc-callout-left" style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #14b8a6; border-radius: 0.25rem">✓ <strong>Shows which action happened FIRST</strong></li>
-                    <li class="gc-bg-amber gc-callout-left gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">✓ <strong>Formula: had + past participle</strong></li>
-                </ul>
-
-	                <div class="gc-bg-amber gc-box-amber-500 gc-bg-white" style="9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
-	                    <p class="gc-text-dark" style="margin: 0; font-weight: 600">📝 Quick Preview:<br/><span class="gc-text-amber">had + past participle</span> (FIRST action) → <span class="gc-text-cyan">past simple</span> (SECOND action)</p>
-	                </div>
-	            `,
-            exercises: [
-                {
-                    id: "past-perfect-intro-1",
-                    title: "Quick Check: Which Happened First?",
-                    instructions: "Choose the sentence that correctly shows the FIRST action.",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "I arrived at the bus stop. The bus was already gone.",
-                            options: [
-                                { value: "b", label: "The bus left when I had arrived." },
-                                { value: "a", label: "The bus had already left when I arrived." },
-                                { value: "c", label: "The bus has left when I arrived." },
-                            ],
-                            expectedAnswer: "a",
-                        },
-                    ],
-                },
-            ],
-        },
-
-        // The TWO-VERB RULE Section (CRITICAL)
-        {
-            id: "two-verb-rule",
-            stepNumber: 1,
-            title: "The TWO-VERB Rule: Most Important Concept!",
-            icon: "🎯",
-            explanation: `
-                <h3 class="gc-text-amber">This is THE Most Important Part!</h3>
-                <p>Past Perfect is <strong>almost never used alone</strong>. It needs a partner—another past action—to make sense.</p>
-
-                <div style="margin: 1.5rem 0">
-                    <h4 style="color: #1e293b; margin-bottom: 1rem">📌 How to Identify Which Verb Comes First:</h4>
-
-                    <div class="gc-callout-amber" style="padding-left: 1rem; margin-bottom: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1rem">
-                        <h4 class="gc-text-amber" style="margin-top: 0">Past Perfect = FIRST Action (Earlier)</h4>
-                        <p>When I <span style="background: rgba(20, 184, 166, 0.2); color: #14b8a6; font-weight: 600; padding: 2px 6px; border-radius: 3px">arrived</span>, she <span class="gc-text-amber" style="background: rgba(245, 158, 11, 0.2); ; font-weight: 600; padding: 2px 6px; border-radius: 3px">had already left</span>.</p>
-                        <p class="gc-text-muted" style="font-size: 0.875rem; ">💡 "had left" = FIRST action (she left before I arrived)</p>
-                    </div>
-
-                    <div style="border-left: 4px solid #14b8a6; padding-left: 1rem; background: rgba(20, 184, 166, 0.05); padding: 1rem">
-                        <h4 style="color: #14b8a6; margin-top: 0">Past Simple = SECOND Action (Later)</h4>
-                        <p>When I <span style="background: rgba(20, 184, 166, 0.2); color: #14b8a6; font-weight: 600; padding: 2px 6px; border-radius: 3px">arrived</span>, she had already left.</p>
-                        <p class="gc-text-muted" style="font-size: 0.875rem; ">💡 "arrived" = SECOND action (I arrived after she left)</p>
-                    </div>
-                </div>
-            `,
-            usageMeanings: [
-                {
-                    title: "📝 Pattern 1: When + Past Simple, Past Perfect",
-                    description: "The 'when' action happened SECOND",
-                    examples: [
-                        {
-                            sentence: "When I <span style='color: #14b8a6; font-weight: 600;'>got</span> home, my sister <span style='color: #f59e0b; font-weight: 600;'>had already cooked</span> dinner.",
-                            explanation: "FIRST: cooked dinner. SECOND: got home.",
-                        },
-                        {
-                            sentence: "When we <span style='color: #14b8a6; font-weight: 600;'>arrived</span>, the movie <span style='color: #f59e0b; font-weight: 600;'>had already started</span>.",
-                            explanation: "FIRST: movie started. SECOND: we arrived.",
-                        },
-                        {
-                            sentence: "When the teacher <span style='color: #14b8a6; font-weight: 600;'>came</span> in, the students <span style='color: #f59e0b; font-weight: 600;'>had finished</span> the test.",
-                            explanation: "FIRST: students finished. SECOND: teacher came.",
-                        },
-                    ],
-                },
-                {
-                    title: "📝 Pattern 2: Past Perfect + before + Past Simple",
-                    description: "'Before' shows the sequence clearly",
-                    examples: [
-                        {
-                            sentence: "She <span style='color: #f59e0b; font-weight: 600;'>had finished</span> her homework before she <span style='color: #14b8a6; font-weight: 600;'>went</span> to bed.",
-                            explanation: "FIRST: finished homework. SECOND: went to bed.",
-                        },
-                        {
-                            sentence: "They <span style='color: #f59e0b; font-weight: 600;'>had eaten</span> breakfast before they <span style='color: #14b8a6; font-weight: 600;'>left</span> the house.",
-                            explanation: "FIRST: ate breakfast. SECOND: left house.",
-                        },
-                    ],
-                },
-                {
-                    title: "📝 Pattern 3: After + Past Perfect, Past Simple",
-                    description: "'After' signals the first action completed",
-                    examples: [
-                        {
-                            sentence: "After he <span style='color: #f59e0b; font-weight: 600;'>had studied</span> for hours, he <span style='color: #14b8a6; font-weight: 600;'>took</span> a break.",
-                            explanation: "FIRST: studied. SECOND: took a break.",
-                        },
-                        {
-                            sentence: "After we <span style='color: #f59e0b; font-weight: 600;'>had saved</span> enough money, we <span style='color: #14b8a6; font-weight: 600;'>bought</span> a car.",
-                            explanation: "FIRST: saved money. SECOND: bought car.",
-                        },
-                    ],
-                },
-                {
-                    title: "📝 Pattern 4: By the time + Past Simple, Past Perfect",
-                    description: "'By the time' shows the second action was too late",
-                    examples: [
-                        {
-                            sentence: "By the time we <span style='color: #14b8a6; font-weight: 600;'>arrived</span>, the train <span style='color: #f59e0b; font-weight: 600;'>had already left</span>.",
-                            explanation: "FIRST: train left. SECOND: we arrived (too late!).",
-                        },
-                        {
-                            sentence: "By the time the fire department <span style='color: #14b8a6; font-weight: 600;'>came</span>, the fire <span style='color: #f59e0b; font-weight: 600;'>had destroyed</span> the building.",
-                            explanation: "FIRST: fire destroyed building. SECOND: fire dept came.",
-                        },
-                    ],
-                },
-            ],
-            tipBox: {
-                title: "💡 Quick Test",
-                content: "Ask yourself: 'Which action happened FIRST?' The FIRST action → Past Perfect (had + past participle). The SECOND action → Past Simple (regular past tense).",
+          id: "pp-s1-ex1",
+          title: "Which happened first?",
+          instructions: "Read each sentence. Which action happened first?",
+          items: [
+            {
+              type: "radio",
+              label: "By the time Gloria walked in, she had already saved enough for the bus pass.",
+              options: [
+                { value: "a", label: "She walked into the warehouse" },
+                { value: "b", label: "She saved enough for the bus pass" },
+              ],
+              expectedAnswer: "b",
             },
-            exercises: [
-                {
-                    id: "ex-two-verb-1",
-                    title: "Practice: Identify the First Action",
-                    instructions: "In each sentence, which action happened FIRST?",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "When I arrived at the party, everyone had left.",
-                            options: [
-                                { value: "arrived", label: "I arrived" },
-                                { value: "left", label: "Everyone left" },
-                            ],
-                            expectedAnswer: "left",
-                        },
-                        {
-                            type: "radio",
-                            label: "She had finished her work before she went home.",
-                            options: [
-                                { value: "finished", label: "She finished her work" },
-                                { value: "went", label: "She went home" },
-                            ],
-                            expectedAnswer: "finished",
-                        },
-                        {
-                            type: "radio",
-                            label: "After they had eaten dinner, they watched a movie.",
-                            options: [
-                                { value: "watched", label: "They watched a movie" },
-                                { value: "eaten", label: "They ate dinner" },
-                            ],
-                            expectedAnswer: "eaten",
-                        },
-                        {
-                            type: "radio",
-                            label: "By the time the ambulance arrived, the patient had died.",
-                            options: [
-                                { value: "died", label: "The patient died" },
-                                { value: "arrived", label: "The ambulance arrived" },
-                            ],
-                            expectedAnswer: "died",
-                        },
-                        {
-                            type: "radio",
-                            label: "When the bell rang, the students had already finished the exam.",
-                            options: [
-                                { value: "rang", label: "The bell rang" },
-                                { value: "finished", label: "The students finished" },
-                            ],
-                            expectedAnswer: "finished",
-                        },
-                        {
-                            type: "radio",
-                            label: "He had locked the door before he left the house.",
-                            options: [
-                                { value: "locked", label: "He locked the door" },
-                                { value: "left", label: "He left the house" },
-                            ],
-                            expectedAnswer: "locked",
-                        },
-                        {
-                            type: "radio",
-                            label: "After I had brushed my teeth, I went to bed.",
-                            options: [
-                                { value: "went", label: "I went to bed" },
-                                { value: "brushed", label: "I brushed my teeth" },
-                            ],
-                            expectedAnswer: "brushed",
-                        },
-                        {
-                            type: "radio",
-                            label: "When we got to the cinema, the film had started.",
-                            options: [
-                                { value: "started", label: "The film started" },
-                                { value: "got", label: "We got to the cinema" },
-                            ],
-                            expectedAnswer: "started",
-                        },
-                        {
-                            type: "radio",
-                            label: "By the time she called me back, I had already found the answer.",
-                            options: [
-                                { value: "called", label: "She called me back" },
-                                { value: "found", label: "I found the answer" },
-                            ],
-                            expectedAnswer: "found",
-                        },
-                        {
-                            type: "radio",
-                            label: "The concert had ended when we arrived at the venue.",
-                            options: [
-                                { value: "ended", label: "The concert ended" },
-                                { value: "arrived", label: "We arrived" },
-                            ],
-                            expectedAnswer: "ended",
-                        },
-                    ],
-                },
-                {
-                    id: "ex-two-verb-2",
-                    title: "Practice: Identify the Pattern",
-                    instructions: "Which sentence pattern is used in each example?",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "When I woke up, it had stopped raining.",
-                            options: [
-                                { value: "pattern1", label: "Pattern 1: When + Past Simple, Past Perfect" },
-                                { value: "pattern2", label: "Pattern 2: Past Perfect + before + Past Simple" },
-                                { value: "pattern3", label: "Pattern 3: After + Past Perfect, Past Simple" },
-                                { value: "pattern4", label: "Pattern 4: By the time + Past Simple, Past Perfect" },
-                            ],
-                            expectedAnswer: "pattern1",
-                        },
-                        {
-                            type: "radio",
-                            label: "She had saved money before she bought the laptop.",
-                            options: [
-                                { value: "pattern1", label: "Pattern 1: When + Past Simple, Past Perfect" },
-                                { value: "pattern2", label: "Pattern 2: Past Perfect + before + Past Simple" },
-                                { value: "pattern3", label: "Pattern 3: After + Past Perfect, Past Simple" },
-                                { value: "pattern4", label: "Pattern 4: By the time + Past Simple, Past Perfect" },
-                            ],
-                            expectedAnswer: "pattern2",
-                        },
-                        {
-                            type: "radio",
-                            label: "After I had read the book, I watched the movie.",
-                            options: [
-                                { value: "pattern1", label: "Pattern 1: When + Past Simple, Past Perfect" },
-                                { value: "pattern2", label: "Pattern 2: Past Perfect + before + Past Simple" },
-                                { value: "pattern3", label: "Pattern 3: After + Past Perfect, Past Simple" },
-                                { value: "pattern4", label: "Pattern 4: By the time + Past Simple, Past Perfect" },
-                            ],
-                            expectedAnswer: "pattern3",
-                        },
-                        {
-                            type: "radio",
-                            label: "By the time I got there, everyone had gone home.",
-                            options: [
-                                { value: "pattern1", label: "Pattern 1: When + Past Simple, Past Perfect" },
-                                { value: "pattern2", label: "Pattern 2: Past Perfect + before + Past Simple" },
-                                { value: "pattern3", label: "Pattern 3: After + Past Perfect, Past Simple" },
-                                { value: "pattern4", label: "Pattern 4: By the time + Past Simple, Past Perfect" },
-                            ],
-                            expectedAnswer: "pattern4",
-                        },
-                        {
-                            type: "radio",
-                            label: "When the guests arrived, we had prepared everything.",
-                            options: [
-                                { value: "pattern1", label: "Pattern 1: When + Past Simple, Past Perfect" },
-                                { value: "pattern2", label: "Pattern 2: Past Perfect + before + Past Simple" },
-                                { value: "pattern3", label: "Pattern 3: After + Past Perfect, Past Simple" },
-                                { value: "pattern4", label: "Pattern 4: By the time + Past Simple, Past Perfect" },
-                            ],
-                            expectedAnswer: "pattern1",
-                        },
-                        {
-                            type: "radio",
-                            label: "After she had finished cooking, she called everyone for dinner.",
-                            options: [
-                                { value: "pattern1", label: "Pattern 1: When + Past Simple, Past Perfect" },
-                                { value: "pattern3", label: "Pattern 3: After + Past Perfect, Past Simple" },
-                                { value: "pattern2", label: "Pattern 2: Past Perfect + before + Past Simple" },
-                                { value: "pattern4", label: "Pattern 4: By the time + Past Simple, Past Perfect" },
-                            ],
-                            expectedAnswer: "pattern3",
-                        },
-                    ],
-                },
-            ],
-        },
-
-        // Timeline Visualization Section
-        {
-            id: "timeline",
-            stepNumber: 2,
-            title: "Seeing Time: Visual Timeline",
-            icon: "⏰",
-            explanation: `
-                <h3>Understanding the Sequence Visually</h3>
-                <p>Past Perfect is all about sequence. Let's see it on a timeline:</p>
-
-                <div class="gc-bg-white" style="border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0">
-                    <h4 style="text-align: center; margin-top: 0">Timeline: Two Past Actions</h4>
-
-                    <div style="display: flex; align-items: center; justify-content: space-around; position: relative; margin: 2rem 0">
-                        <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 4px; background: linear-gradient(to right, #f59e0b, #14b8a6, #cbd5e1); transform: translateY(-50%); z-index: 0"></div>
-
-                        <div style="position: relative; z-index: 1; text-align: center">
-                            <div style="width: 80px; height: 80px; border-radius: 50%; background: #f59e0b; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); margin: 0 auto">
-                                1st
-                            </div>
-                            <div class="gc-text-amber" style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; ">Earlier</div>
-                            <div class="gc-text-muted" style="font-size: 0.75rem; ">Past Perfect</div>
-                        </div>
-
-                        <div style="position: relative; z-index: 1; text-align: center">
-                            <div style="width: 80px; height: 80px; border-radius: 50%; background: #14b8a6; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3); margin: 0 auto">
-                                2nd
-                            </div>
-                            <div style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #14b8a6">Later</div>
-                            <div class="gc-text-muted" style="font-size: 0.75rem; ">Past Simple</div>
-                        </div>
-
-                        <div style="position: relative; z-index: 1; text-align: center">
-                            <div style="width: 60px; height: 60px; border-radius: 50%; background: #cbd5e1; color: #1e293b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; border: 4px solid white; margin: 0 auto">
-                                NOW
-                            </div>
-                            <div class="gc-text-muted" style="margin-top: 0.5rem; font-size: 0.75rem; ">Present</div>
-                        </div>
-                    </div>
-
-                    <div class="gc-bg-amber" style="padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem">
-                        <p style="margin: 0; text-align: center"><strong>Example:</strong> She <span class="gc-text-amber" style="font-weight: 600">had finished</span> homework (1st) before she <span style="color: #14b8a6; font-weight: 600">went</span> to bed (2nd).</p>
-                    </div>
-                </div>
-
-                <h3>More Visual Examples</h3>
-                <div style="margin: 1rem 0">
-                    <div class="gc-bg-slate" style="padding: 1rem; border-radius: 0.5rem; margin-bottom: 0.75rem">
-                        <p style="margin: 0"><strong>Example 1:</strong> When I <span style="color: #14b8a6; font-weight: 600">arrived</span> at the station, the train <span class="gc-text-amber" style="font-weight: 600">had left</span>.</p>
-                        <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.875rem; "> Timeline: Train left (1st) ← I arrived (2nd) ← NOW</p>
-                    </div>
-                    <div class="gc-bg-slate" style="padding: 1rem; border-radius: 0.5rem">
-                        <p style="margin: 0"><strong>Example 2:</strong> After he <span class="gc-text-amber" style="font-weight: 600">had eaten</span> dinner, he <span style="color: #14b8a6; font-weight: 600">watched</span> TV.</p>
-                        <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.875rem; ">Timeline: Ate dinner (1st) ← Watched TV (2nd) ← NOW</p>
-                    </div>
-                </div>
-            `,
-            tipBox: {
-                title: "💡 Remember",
-                content: "The timeline always flows from left (earliest) to right (most recent). Past Perfect = further left. Past Simple = closer to NOW.",
+            {
+              type: "radio",
+              label: "When the manager called her, she had already sent her application.",
+              options: [
+                { value: "a", label: "She sent her application" },
+                { value: "b", label: "The manager called her" },
+              ],
+              expectedAnswer: "a",
             },
-            exercises: [
-                {
-                    id: "ex-timeline-1",
-                    title: "Practice: Understanding Timeline Order",
-                    instructions: "Based on each sentence, which event happened first on the timeline?",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "When I got home, my roommate had cooked dinner.",
-                            options: [
-                                { value: "got", label: "I got home (2nd on timeline)" },
-                                { value: "cooked", label: "My roommate cooked dinner (1st on timeline)" },
-                            ],
-                            expectedAnswer: "cooked",
-                        },
-                        {
-                            type: "radio",
-                            label: "After the show had ended, we left the theater.",
-                            options: [
-                                { value: "ended", label: "The show ended (1st on timeline)" },
-                                { value: "left", label: "We left the theater (2nd on timeline)" },
-                            ],
-                            expectedAnswer: "ended",
-                        },
-                        {
-                            type: "radio",
-                            label: "By the time I woke up, my family had eaten breakfast.",
-                            options: [
-                                { value: "woke", label: "I woke up (2nd on timeline)" },
-                                { value: "eaten", label: "My family ate breakfast (1st on timeline)" },
-                            ],
-                            expectedAnswer: "eaten",
-                        },
-                        {
-                            type: "radio",
-                            label: "She had already left when I called her.",
-                            options: [
-                                { value: "left", label: "She left (1st on timeline)" },
-                                { value: "called", label: "I called her (2nd on timeline)" },
-                            ],
-                            expectedAnswer: "left",
-                        },
-                        {
-                            type: "radio",
-                            label: "The game had started before we arrived at the stadium.",
-                            options: [
-                                { value: "arrived", label: "We arrived (2nd on timeline)" },
-                                { value: "started", label: "The game started (1st on timeline)" },
-                            ],
-                            expectedAnswer: "started",
-                        },
-                        {
-                            type: "radio",
-                            label: "When the police arrived, the thief had escaped.",
-                            options: [
-                                { value: "escaped", label: "The thief escaped (1st on timeline)" },
-                                { value: "arrived", label: "The police arrived (2nd on timeline)" },
-                            ],
-                            expectedAnswer: "escaped",
-                        },
-                    ],
-                },
-            ],
+          ],
         },
-
-        // Positive Form Section
         {
-            id: "positive-form",
-            stepNumber: 3,
-            title: "How to Form Past Perfect (Positive)",
-            icon: "✓",
-            explanation: `
-                <h3>The Formula</h3>
-                <p>Past Perfect is simple to form: <strong>had + past participle</strong></p>
-                <p>Remember: EVERYONE uses 'had' (I had, you had, he had, she had, we had, they had)</p>
-
-                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3)">
-                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">Subject</span>
-                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
-                    <span class="gc-bg-amber" style="color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">had</span>
-                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
-                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">past participle</span>
-                </div>
-
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
-                        <span style="font-size: 1.5rem">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem">
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            When I <span style="color: #14b8a6; font-weight: 600">arrived</span>, they <span class="gc-text-amber" style="font-weight: 600">had finished</span> dinner.
-                        </div>
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            She <span class="gc-text-amber" style="font-weight: 600">had left</span> before the meeting <span style="color: #14b8a6; font-weight: 600">started</span>.
-                        </div>
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            By 2020, we <span class="gc-text-amber" style="font-weight: 600">had lived</span> in Boston for 10 years.
-                        </div>
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            The students <span class="gc-text-amber" style="font-weight: 600">had studied</span> hard before they <span style="color: #14b8a6; font-weight: 600">took</span> the exam.
-                        </div>
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            He <span class="gc-text-amber" style="font-weight: 600">had never seen</span> snow before he <span style="color: #14b8a6; font-weight: 600">moved</span> to Canada.
-                        </div>
-                    </div>
-                </div>
-            `,
-            formula: [
-                { text: "Subject", type: "subject" },
-                { text: "+", type: "other" },
-                { text: "had", type: "verb" },
-                { text: "+", type: "other" },
-                { text: "past participle", type: "verb" },
-            ],
-            tipBox: {
-                title: "💡 Remember",
-                content:
-                    "Everyone uses 'had'—no need to change it for he/she/it like with 'has' in Present Perfect! And don't forget: almost always TWO verbs in context.",
+          id: "pp-s1-ex2",
+          title: "Complete the sentence",
+          instructions: "Fill in the blank with the correct Past Perfect form (had + past participle).",
+          items: [
+            {
+              type: "text",
+              label: "By the time she got the interview, she ___ (work) at the hotel for three years.",
+              expectedAnswers: ["had worked"],
             },
-            exercises: [
-                {
-                    id: "ex-positive-1",
-                    title: "Exercise: Complete with Past Perfect",
-                    instructions:
-                        "Complete each sentence with the correct Past Perfect form (had + past participle). Remember: these sentences show TWO actions!",
-                    items: [
-                        {
-                            type: "text",
-                            label: "When I got to the party, everyone ___ (leave) already.",
-                            expectedAnswer: "had left",
-                        },
-                        {
-                            type: "text",
-                            label: "She was tired because she ___ (work) all day.",
-                            expectedAnswer: "had worked",
-                        },
-                        {
-                            type: "text",
-                            label: "Before they moved here, they ___ (live) in Tokyo.",
-                            expectedAnswer: "had lived",
-                        },
-                        {
-                            type: "text",
-                            label: "By the time the ambulance arrived, the patient ___ (die).",
-                            expectedAnswer: "had died",
-                        },
-                        {
-                            type: "text",
-                            label: "I wasn't hungry because I ___ (eat) lunch earlier.",
-                            expectedAnswer: "had eaten",
-                        },
-                        {
-                            type: "text",
-                            label: "When we got to the cinema, the movie ___ (start).",
-                            expectedAnswer: "had started",
-                        },
-                        {
-                            type: "text",
-                            label: "She knew the city well because she ___ (visit) it many times before.",
-                            expectedAnswer: "had visited",
-                        },
-                        {
-                            type: "text",
-                            label: "After they ___ (finish) their homework, they played video games.",
-                            expectedAnswer: "had finished",
-                        },
-                        {
-                            type: "text",
-                            label: "He couldn't get in because he ___ (lose) his keys.",
-                            expectedAnswer: "had lost",
-                        },
-                        {
-                            type: "text",
-                            label: "By the time I woke up, my family ___ (go) to church.",
-                            expectedAnswer: "had gone",
-                        },
-                    ],
-                },
-            ],
-        },
-
-        // Negative Form Section
-        {
-            id: "negative-form",
-            stepNumber: 4,
-            title: "Negative Form",
-            icon: "✗",
-            explanation: `
-                <h3>Making Negatives</h3>
-                <p>Add <strong>'not'</strong> after 'had': <strong>had not = hadn't</strong></p>
-
-                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3)">
-                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">Subject</span>
-                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
-                    <span class="gc-bg-amber" style="color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">had not / hadn't</span>
-                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
-                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">past participle</span>
-                </div>
-
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
-                        <span style="font-size: 1.5rem">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem">
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            When I <span style="color: #14b8a6; font-weight: 600">called</span>, they <span class="gc-text-amber" style="font-weight: 600">hadn't finished</span> dinner yet.
-                        </div>
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            She <span class="gc-text-amber" style="font-weight: 600">hadn't seen</span> him before that day.
-                        </div>
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            I <span class="gc-text-amber" style="font-weight: 600">hadn't studied</span> enough before the test <span style="color: #14b8a6; font-weight: 600">started</span>.
-                        </div>
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            We <span class="gc-text-amber" style="font-weight: 600">hadn't met</span> before the conference.
-                        </div>
-                    </div>
-                </div>
-            `,
-            formula: [
-                { text: "Subject", type: "subject" },
-                { text: "+", type: "other" },
-                { text: "had not / hadn't", type: "verb" },
-                { text: "+", type: "other" },
-                { text: "past participle", type: "verb" },
-            ],
-            tipBox: {
-                title: "💡 Short Form",
-                content:
-                    "We usually use the contraction: hadn't = had not. It sounds more natural in conversation!",
+            {
+              type: "text",
+              label: "When the shift started, Gloria ___ (already arrive) at the loading dock.",
+              expectedAnswers: ["had already arrived"],
             },
-            exercises: [
-                {
-                    id: "ex-negative-1",
-                    title: "Exercise: Make Negative Sentences",
-                    instructions: "Complete these sentences with the negative form (hadn't + past participle).",
-                    items: [
-                        {
-                            type: "text",
-                            label: "When I arrived, they ___ (not finish) eating.",
-                            expectedAnswer: "hadn't finished",
-                        },
-                        {
-                            type: "text",
-                            label: "She was nervous because she ___ (not fly) before.",
-                            expectedAnswer: "hadn't flown",
-                        },
-                        {
-                            type: "text",
-                            label: "I ___ (not see) him before we met at the party.",
-                            expectedAnswer: "hadn't seen",
-                        },
-                        {
-                            type: "text",
-                            label: "They failed the test because they ___ (not study).",
-                            expectedAnswer: "hadn't studied",
-                        },
-                        {
-                            type: "text",
-                            label: "We were surprised because we ___ (not hear) the news.",
-                            expectedAnswer: "hadn't heard",
-                        },
-                        {
-                            type: "text",
-                            label: "He couldn't play because he ___ (not practice).",
-                            expectedAnswer: "hadn't practiced",
-                        },
-                        {
-                            type: "text",
-                            label: "By 2020, I ___ (not visit) Europe yet.",
-                            expectedAnswer: "hadn't visited",
-                        },
-                        {
-                            type: "text",
-                            label: "When the rain started, we ___ (not bring) umbrellas.",
-                            expectedAnswer: "hadn't brought",
-                        },
-                    ],
-                },
-            ],
+          ],
         },
+      ],
+    },
 
-        // Question Form Section
+    // =========================================================================
+    // SECTION 2 — had + V3: Putting It in Order
+    // =========================================================================
+    {
+      id: "had-plus-v3-form",
+      title: "had + V3: Putting It in Order",
+      explanation: `
+        ${sceneCard("sceneBreakRoom", "Break room, 10 AM. Gloria meets James, a forklift operator.", "sage")}
+
+        ${dialogue([
+          { speaker: "James", avatar: "👨🏿", text: "So what did you put on your application?", side: "left", tone: "sage" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "I wrote that before this I <strong>had cleaned</strong> offices and <strong>had handled</strong> supply orders. Never drove a forklift, though.", side: "right", tone: "terracotta" },
+          { speaker: "James", avatar: "👨🏿", text: "Same. I <strong>hadn't driven</strong> one either before they trained me here.", side: "left", tone: "sage" },
+        ])}
+
+        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
+          <p style="margin: 0; font-size: 1.05rem">
+            <strong>Positive:</strong> subject + <strong>had</strong> + past participle<br>
+            <strong>Negative:</strong> subject + <strong>hadn't</strong> + past participle<br>
+            Every person uses <em>had</em>. There is no "hads" or "has had."
+          </p>
+        </div>
+
+        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("positive", "sage")}
+            <span><em>She <strong>had cleaned</strong> offices for two years before she switched jobs.</em></span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("negative", "terracotta")}
+            <span><em>He <strong>hadn't driven</strong> a forklift before the training.</em></span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("negative", "terracotta")}
+            <span><em>They <strong>hadn't finished</strong> loading the truck when the manager arrived.</em></span>
+          </div>
+        </div>
+
+        <div style="margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 0.4rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06)">
+          <strong>Common irregular past participles to know:</strong>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem">
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">go → gone</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">see → seen</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">do → done</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">take → taken</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">have → had</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">leave → left</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">work → worked</span>
+            <span style="background: rgba(106,141,115,0.12); padding: 0.2rem 0.5rem; border-radius: 0.3rem; font-size: 0.9rem">save → saved</span>
+          </div>
+        </div>
+      `,
+      exercises: [
         {
-            id: "question-form",
-            stepNumber: 5,
-            title: "Question Form",
-            icon: "❓",
-            explanation: `
-                <h3>Making Questions</h3>
-                <p>Put <strong>'Had'</strong> before the subject:</p>
-
-                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3)">
-                    <span class="gc-bg-amber" style="color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">Had</span>
-                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
-                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">subject</span>
-                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">+</span>
-                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem">past participle</span>
-                    <span class="gc-text-muted" style="font-size: 1.5rem; ; font-weight: 600">?</span>
-                </div>
-
-                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3)">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem">
-                        <span style="font-size: 1.5rem">📋</span>
-                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600">Examples</h4>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 1rem">
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            <span class="gc-text-amber" style="font-weight: 600">Had</span> you <span class="gc-text-amber" style="font-weight: 600">finished</span> your homework before dinner?
-                        </div>
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            <span class="gc-text-amber" style="font-weight: 600">Had</span> she <span class="gc-text-amber" style="font-weight: 600">left</span> when you <span style="color: #14b8a6; font-weight: 600">arrived</span>?
-                        </div>
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            <span class="gc-text-amber" style="font-weight: 600">Had</span> they <span class="gc-text-amber" style="font-weight: 600">eaten</span> lunch before the meeting?
-                        </div>
-                        <div class="gc-bg-white" style="padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1)">
-                            <span class="gc-text-amber" style="font-weight: 600">Had</span> he <span class="gc-text-amber" style="font-weight: 600">seen</span> the movie before?
-                        </div>
-                    </div>
-                </div>
-            `,
-            formula: [
-                { text: "Had", type: "verb" },
-                { text: "+", type: "other" },
-                { text: "subject", type: "subject" },
-                { text: "+", type: "other" },
-                { text: "past participle", type: "verb" },
-                { text: "?", type: "other" },
-            ],
-            tipBox: {
-                title: "💡 Answering Yes/No Questions",
-                content:
-                    "Yes, I had. / No, I hadn't. Keep it simple and natural!",
+          id: "pp-s2-ex1",
+          title: "Correct or not correct?",
+          instructions: "Is the Past Perfect form correct?",
+          items: [
+            {
+              type: "radio",
+              label: "\"Before the shift, she had ate her lunch.\"",
+              options: [
+                { value: "correct", label: "Correct" },
+                { value: "incorrect", label: "Not correct. Should be: had eaten" },
+              ],
+              expectedAnswer: "incorrect",
             },
-            exercises: [
-                {
-                    id: "ex-questions-1",
-                    title: "Exercise: Form Questions",
-                    instructions:
-                        "Write questions in Past Perfect. Start with 'Had' and use the past participle.",
-                    items: [
-                        {
-                            type: "text",
-                            label: "___ you (see) that movie before?",
-                            expectedAnswer: "Had you seen",
-                        },
-                        {
-                            type: "text",
-                            label: "___ she (finish) her work before she left?",
-                            expectedAnswer: "Had she finished",
-                        },
-                        {
-                            type: "text",
-                            label: "___ they (meet) before the wedding?",
-                            expectedAnswer: "Had they met",
-                        },
-                        {
-                            type: "text",
-                            label: "___ he (study) English before moving to the US?",
-                            expectedAnswer: "Had he studied",
-                        },
-                        {
-                            type: "text",
-                            label: "___ we (visit) this restaurant before?",
-                            expectedAnswer: "Had we visited",
-                        },
-                        {
-                            type: "text",
-                            label: "___ the train (leave) when you got to the station?",
-                            expectedAnswer: "Had the train left",
-                        },
-                        {
-                            type: "text",
-                            label: "___ it (stop) raining before you went outside?",
-                            expectedAnswer: "Had it stopped",
-                        },
-                        {
-                            type: "text",
-                            label: "___ you ever (eat) sushi before you moved to Japan?",
-                            expectedAnswer: "Had you ever eaten",
-                        },
-                    ],
-                },
-            ],
-        },
-
-        // Past Perfect vs Past Simple Comparison
-        {
-            id: "comparison",
-            stepNumber: 6,
-            title: "Past Perfect vs. Past Simple",
-            icon: "⚖️",
-            explanation: `
-                <h3>What's the Difference?</h3>
-                <p>Both are past tenses, but they have different jobs!</p>
-            `,
-            comparison: {
-                title: "Side-by-Side Comparison",
-                leftLabel: "Past Perfect",
-                rightLabel: "Past Simple",
-                rows: [
-                    {
-                        label: "Purpose",
-                        left: "Shows which of TWO past actions happened FIRST",
-                        right: "Describes a completed past action (can be alone or second in sequence)",
-                    },
-                    {
-                        label: "Formula",
-                        left: "had + past participle",
-                        right: "verb + -ed (regular) or irregular past",
-                    },
-                    {
-                        label: "Context",
-                        left: "Almost ALWAYS used with another past action",
-                        right: "Can stand alone or be the second action",
-                    },
-                    {
-                        label: "Time Words",
-                        left: "before, after, when, by the time, already",
-                        right: "yesterday, last week, ago, in 2020",
-                    },
-                    {
-                        label: "Example",
-                        left: "When I arrived, she had already left. (She left FIRST)",
-                        right: "I arrived at 3pm. (Single action, no sequence needed)",
-                    },
-                    {
-                        label: "Example",
-                        left: "After he had eaten, he went to bed. (Ate first, then bed)",
-                        right: "He ate dinner at 7pm. (Single action)",
-                    },
-                    {
-                        label: "Common Mistake",
-                        left: "❌ Using Past Perfect with only ONE action: 'I had eaten lunch yesterday.'",
-                        right: "❌ Using Past Simple when sequence matters: 'When I arrived, she left.' (confusing!)",
-                    },
-                ],
+            {
+              type: "radio",
+              label: "\"He hadn't worked in a warehouse before this job.\"",
+              options: [
+                { value: "correct", label: "Correct" },
+                { value: "incorrect", label: "Not correct" },
+              ],
+              expectedAnswer: "correct",
             },
-            tipBox: {
-                title: "⚠️ Common Mistake Alert",
-                content: `Don't use Past Perfect with only ONE past action!
-                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem">
-                    <div>❌ "I had eaten lunch yesterday." <span class="gc-text-terracotta" style="font-weight: 600">→</span> Only one action!</div>
-                    <div>✅ "I ate lunch yesterday." <span style="font-size: 0.875rem; color: #4b5563">(one action = Past Simple)</span></div>
-                    <div>✅ "I had eaten lunch before the meeting started." <span style="font-size: 0.875rem; color: #4b5563">(two actions = Past Perfect + Past Simple)</span></div>
-                </div>`,
+          ],
+        },
+        {
+          id: "pp-s2-ex2",
+          title: "Build the sentence",
+          instructions: "Fill in the blank with the correct form: positive (had + V3) or negative (hadn't + V3).",
+          items: [
+            {
+              type: "text",
+              label: "James ___ (never use) a pallet jack before the safety training.",
+              expectedAnswers: ["had never used", "hadn't used"],
             },
-            exercises: [
-                {
-                    id: "ex-comparison-1",
-                    title: "Practice: Choose the Correct Tense",
-                    instructions: "Choose between Past Perfect or Past Simple based on the context.",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "I ___ dinner at 7pm last night.",
-                            options: [
-                                { value: "had-eaten", label: "had eaten (Past Perfect)" },
-                                { value: "ate", label: "ate (Past Simple)" },
-                            ],
-                            expectedAnswer: "ate",
-                        },
-                        {
-                            type: "radio",
-                            label: "When I got home, my sister ___ dinner already.",
-                            options: [
-                                { value: "had-cooked", label: "had cooked (Past Perfect)" },
-                                { value: "cooked", label: "cooked (Past Simple)" },
-                            ],
-                            expectedAnswer: "had-cooked",
-                        },
-                        {
-                            type: "radio",
-                            label: "I ___ to Paris in 2019.",
-                            options: [
-                                { value: "had-been", label: "had been (Past Perfect)" },
-                                { value: "went", label: "went (Past Simple)" },
-                            ],
-                            expectedAnswer: "went",
-                        },
-                        {
-                            type: "radio",
-                            label: "Before I moved to East Boston, I ___ in Chelsea.",
-                            options: [
-                                { value: "had-lived", label: "had lived (Past Perfect)" },
-                                { value: "lived", label: "lived (Past Simple)" },
-                            ],
-                            expectedAnswer: "had-lived",
-                        },
-                        {
-                            type: "radio",
-                            label: "She ___ the movie last night.",
-                            options: [
-                                { value: "had-watched", label: "had watched (Past Perfect)" },
-                                { value: "watched", label: "watched (Past Simple)" },
-                            ],
-                            expectedAnswer: "watched",
-                        },
-                        {
-                            type: "radio",
-                            label: "When the movie started, I ___ the book.",
-                            options: [
-                                { value: "had-read", label: "had already read (Past Perfect)" },
-                                { value: "read", label: "read (Past Simple)" },
-                            ],
-                            expectedAnswer: "had-read",
-                        },
-                        {
-                            type: "radio",
-                            label: "He was tired because he ___ all day.",
-                            options: [
-                                { value: "worked", label: "worked (Past Simple)" },
-                                { value: "had-worked", label: "had worked (Past Perfect)" },
-                            ],
-                            expectedAnswer: "had-worked",
-                        },
-                        {
-                            type: "radio",
-                            label: "They ___ in Los Angeles last year.",
-                            options: [
-                                { value: "lived", label: "lived (Past Simple)" },
-                                { value: "had-lived", label: "had lived (Past Perfect)" },
-                            ],
-                            expectedAnswer: "lived",
-                        },
-                        {
-                            type: "radio",
-                            label: "By the time I arrived, the bus ___.",
-                            options: [
-                                { value: "left", label: "left (Past Simple)" },
-                                { value: "had-left", label: "had left (Past Perfect)" },
-                            ],
-                            expectedAnswer: "had-left",
-                        },
-                        {
-                            type: "radio",
-                            label: "We ___ pizza for dinner yesterday.",
-                            options: [
-                                { value: "ordered", label: "ordered (Past Simple)" },
-                                { value: "had-ordered", label: "had ordered (Past Perfect)" },
-                            ],
-                            expectedAnswer: "ordered",
-                        },
-                        {
-                            type: "radio",
-                            label: "After we ___ our homework, we played video games.",
-                            options: [
-                                { value: "finished", label: "finished (Past Simple)" },
-                                { value: "had-finished", label: "had finished (Past Perfect)" },
-                            ],
-                            expectedAnswer: "had-finished",
-                        },
-                        {
-                            type: "radio",
-                            label: "I ___ my keys this morning.",
-                            options: [
-                                { value: "lost", label: "lost (Past Simple)" },
-                                { value: "had-lost", label: "had lost (Past Perfect)" },
-                            ],
-                            expectedAnswer: "lost",
-                        },
-                    ],
-                },
-            ],
-        },
-
-        // Summary Section
-        {
-            id: "summary",
-            title: "Summary: Key Points to Remember",
-            icon: "✓",
-            explanation: `
-                <h3>What You've Learned</h3>
-                <ul class="list-disc pl-6 space-y-2">
-                    <li><strong>The Golden Rule:</strong> Past Perfect is used with <strong>TWO verbs</strong> to show which action happened FIRST</li>
-                    <li><strong>Formula:</strong> had + past participle (everyone uses 'had')</li>
-                    <li><strong>Purpose:</strong> Show sequence and temporal order in the past</li>
-                    <li><strong>Four Key Patterns:</strong>
-                        <ol class="list-decimal pl-6 mt-2">
-                            <li><strong>When</strong> + Past Simple, Past Perfect</li>
-                            <li>Past Perfect + <strong>before</strong> + Past Simple</li>
-                            <li><strong>After</strong> + Past Perfect, Past Simple</li>
-                            <li><strong>By the time</strong> + Past Simple, Past Perfect</li>
-                        </ol>
-                    </li>
-                    <li><strong>Time Words:</strong> before, after, when, by the time, already</li>
-                    <li><strong>Negative:</strong> hadn't + past participle</li>
-                    <li><strong>Questions:</strong> Had + subject + past participle?</li>
-                    <li><strong>vs Past Simple:</strong> Past Perfect = FIRST action in sequence. Past Simple = standalone action or SECOND action in sequence</li>
-                </ul>
-            `,
-            tipBox: {
-                title: "💡 Final Reminder",
-                content: "Two questions to always ask: (1) Are there TWO past actions? (2) Which one happened FIRST? If you can answer both → you're ready for Past Perfect!",
+            {
+              type: "text",
+              label: "Before she got this job, Gloria ___ (clean) offices at three different hotels.",
+              expectedAnswers: ["had cleaned"],
             },
-            exercises: [
-                {
-                    id: "ex-summary-scramble",
-                    title: "Final Practice: Word Scrambles",
-                    instructions: "Put the words in the correct order to make Past Perfect sentences.",
-                    items: [
-                        {
-                            type: "word-scramble",
-                            label: "Make a sentence:",
-                            words: ["When", "I", "arrived", ",", "they", "had", "left"],
-                            correctAnswer: "When I arrived, they had left",
-                            hint: "Pattern 1: When + Past Simple, Past Perfect",
-                        },
-                        {
-                            type: "word-scramble",
-                            label: "Make a sentence:",
-                            words: ["She", "had", "finished", "her", "work", "before", "she", "went", "home"],
-                            correctAnswer: "She had finished her work before she went home",
-                            hint: "Pattern 2: Past Perfect + before + Past Simple",
-                        },
-                        {
-                            type: "word-scramble",
-                            label: "Make a sentence:",
-                            words: ["After", "he", "had", "eaten", ",", "he", "watched", "TV"],
-                            correctAnswer: "After he had eaten, he watched TV",
-                            hint: "Pattern 3: After + Past Perfect, Past Simple",
-                        },
-                        {
-                            type: "word-scramble",
-                            label: "Make a sentence:",
-                            words: ["By", "the", "time", "we", "got", "there", ",", "the", "movie", "had", "started"],
-                            correctAnswer: "By the time we got there, the movie had started",
-                            hint: "Pattern 4: By the time + Past Simple, Past Perfect",
-                        },
-                    ],
-                },
-            ],
+          ],
         },
+        {
+          id: "pp-s2-ex3",
+          title: "Put the words in order",
+          instructions: "Unscramble the words to make a correct sentence.",
+          items: [
+            {
+              type: "word-scramble",
+              label: "Unscramble:",
+              words: ["She", "had", "saved", "enough", "before", "she", "applied"],
+              correctAnswer: "She had saved enough before she applied",
+            },
+          ],
+        },
+      ],
+    },
 
-        // Housing Context Section
-        {
-            id: "housing-context",
-            stepNumber: 8,
-            title: "🏠 Housing & Home Context",
-            icon: "🏠",
-            explanation: `
-                <h3>Past Perfect in Housing Situations</h3>
-                <p>When talking about apartments, landlords, and moving, Past Perfect helps explain the sequence of events clearly.</p>
+    // =========================================================================
+    // SECTION 3 — When, Before, After, By the Time
+    // =========================================================================
+    {
+      id: "signal-words",
+      title: "When, Before, After, By the Time",
+      explanation: `
+        ${sceneCard("sceneInterview", "HR office. Jennifer, the hiring manager, interviews Gloria.", "blue")}
 
-                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0">
-                    <h4 class="gc-text-amber" style="margin-top: 0; ">🎯 Real Housing Examples</h4>
-                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem">
-                        <div class="gc-bg-white gc-callout-amber" style="padding: 1rem; border-radius: 0.375rem; ">
-                            <strong>Before I signed the lease, I <span class="gc-text-amber">had checked</span> the apartment carefully.</strong>
-                            <br><span class="gc-text-muted" style="font-size: 0.875rem; ">FIRST: checked apartment → SECOND: signed lease</span>
-                        </div>
-                        <div class="gc-bg-white gc-callout-amber" style="padding: 1rem; border-radius: 0.375rem; ">
-                            <strong>When I met the landlord, I <span class="gc-text-amber">had already researched</span> tenant rights.</strong>
-                            <br><span class="gc-text-muted" style="font-size: 0.875rem; ">FIRST: researched rights → SECOND: met landlord</span>
-                        </div>
-                        <div class="gc-bg-white gc-callout-amber" style="padding: 1rem; border-radius: 0.375rem; ">
-                            <strong>The water heater broke because the owner <span class="gc-text-amber">hadn't maintained</span> it properly.</strong>
-                            <br><span class="gc-text-muted" style="font-size: 0.875rem; ">FIRST: didn't maintain → SECOND: broke</span>
-                        </div>
-                        <div class="gc-bg-white gc-callout-amber" style="padding: 1rem; border-radius: 0.375rem; ">
-                            <strong>By the time I called maintenance, the leak <span class="gc-text-amber">had already damaged</span> the floor.</strong>
-                            <br><span class="gc-text-muted" style="font-size: 0.875rem; ">FIRST: damaged floor → SECOND: called maintenance</span>
-                        </div>
-                    </div>
-                </div>
+        ${dialogue([
+          { speaker: "Jennifer", avatar: "👩‍💼", text: "Had you ever done inventory work before you applied here?", side: "left", tone: "sage" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "Yes. After I <strong>had finished</strong> my shift at the hotel, I <strong>helped</strong> count stock.", side: "right", tone: "terracotta" },
+          { speaker: "Jennifer", avatar: "👩‍💼", text: "And by the time you left that job, had you trained anyone?", side: "left", tone: "sage" },
+          { speaker: "Gloria", avatar: "👩🏽", text: "I <strong>had trained</strong> two new cleaners before I left.", side: "right", tone: "terracotta" },
+        ])}
 
-                <h4>Common Housing Scenarios</h4>
-                <ul style="list-style: none; padding-left: 0">
-                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
-                        ✅ <strong>Moving:</strong> "Before I moved in, I <strong>had packed</strong> all my boxes."
-                    </li>
-                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
-                        ✅ <strong>Problems:</strong> "When I discovered the mold, I <strong>had already paid</strong> the security deposit."
-                    </li>
-                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
-                        ✅ <strong>History:</strong> "I <strong>had lived</strong> with roommates for three years before I got my own place."
-                    </li>
-                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
-                        ✅ <strong>Housing History:</strong> "They <strong>had rented</strong> in that neighborhood for ten years before they bought a house."
-                    </li>
-                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
-                        ✅ <strong>Before Moving:</strong> "She <strong>had saved</strong> $2,000 before she started looking for apartments."
-                    </li>
-                    <li class="gc-bg-amber gc-callout-amber" style="padding: 0.5rem; margin: 0.35rem 0; ; ; border-radius: 0.25rem">
-                        ✅ <strong>Relief:</strong> "I felt relieved because I <strong>had taken</strong> photos of the apartment condition."
-                    </li>
-                </ul>
+        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
+          <p style="margin: 0; font-size: 1.05rem">Four words help you show which action came first. Learn them and you can use Past Perfect naturally.</p>
+        </div>
 
-                <div class="gc-bg-white" style="9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem">
-                    <h4 class="gc-text-amber" style="margin-top: 0; ">💬 Speaking Practice</h4>
-                    <p style="margin-bottom: 0.75rem; font-weight: 600">Use these prompts to practice past perfect:</p>
-                    <ul style="margin: 0; padding-left: 1.25rem">
-                        <li style="margin-bottom: 0.5rem">"Tell me about a time you had a problem with your apartment. What had happened before you discovered it?"</li>
-                        <li style="margin-bottom: 0.5rem">"Describe your last move. What had you done before moving day?"</li>
-                        <li style="margin-bottom: 0.5rem">"Talk about finding your current home. What research had you completed?"</li>
-                    </ul>
-                </div>
+        <div style="display: grid; gap: 0.75rem; margin: 1rem 0">
+          <div style="padding: 0.75rem 1rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; border-left: 3px solid #b05740">
+            ${labelPill("when", "terracotta")}
+            <p style="margin: 0.4rem 0 0 0"><em>When she <strong>arrived</strong>, the manager <strong>had already called</strong> her references.</em><br><span style="font-size: 0.85rem; opacity: 0.7">When + Past Simple shows the second action. Past Perfect shows what finished first.</span></p>
+          </div>
+          <div style="padding: 0.75rem 1rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; border-left: 3px solid #b05740">
+            ${labelPill("before", "terracotta")}
+            <p style="margin: 0.4rem 0 0 0"><em>She <strong>had trained</strong> two people before she <strong>left</strong>.</em><br><span style="font-size: 0.85rem; opacity: 0.7">Past Perfect + before + Past Simple.</span></p>
+          </div>
+          <div style="padding: 0.75rem 1rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; border-left: 3px solid #b05740">
+            ${labelPill("after", "terracotta")}
+            <p style="margin: 0.4rem 0 0 0"><em>After she <strong>had finished</strong> her shift, she <strong>helped</strong> count stock.</em><br><span style="font-size: 0.85rem; opacity: 0.7">After + Past Perfect, Past Simple.</span></p>
+          </div>
+          <div style="padding: 0.75rem 1rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; border-left: 3px solid #b05740">
+            ${labelPill("by the time", "amber")}
+            <p style="margin: 0.4rem 0 0 0"><em>By the time she <strong>applied</strong>, she <strong>had worked</strong> there for two years.</em><br><span style="font-size: 0.85rem; opacity: 0.7">By the time + Past Simple, Past Perfect for the earlier action.</span></p>
+          </div>
+        </div>
+      `,
+      exercises: [
+        {
+          id: "pp-s3-ex1",
+          title: "Choose the correct signal word",
+          instructions: "Pick the word that fits the sentence naturally.",
+          items: [
+            {
+              type: "radio",
+              label: "___ the interviewer asked about her references, Gloria had already sent them.",
+              options: [
+                { value: "a", label: "By the time" },
+                { value: "b", label: "After" },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "___ she had finished the paperwork, Jennifer shook her hand.",
+              options: [
+                { value: "a", label: "After" },
+                { value: "b", label: "By the time" },
+              ],
+              expectedAnswer: "a",
+            },
+          ],
+        },
+        {
+          id: "pp-s3-ex2",
+          title: "Complete the sentence",
+          instructions: "Fill in the blank with the correct Past Perfect form.",
+          items: [
+            {
+              type: "text",
+              label: "When Jennifer asked for her references, Gloria ___ (already send) them by email.",
+              expectedAnswers: ["had already sent"],
+            },
+            {
+              type: "text",
+              label: "Before she walked into the interview, she ___ (practice) her answers with a coworker.",
+              expectedAnswers: ["had practiced"],
+            },
+          ],
+        },
+        {
+          id: "pp-s3-ex3",
+          title: "Put the words in order",
+          instructions: "Unscramble to make a correct sentence.",
+          items: [
+            {
+              type: "word-scramble",
+              label: "Unscramble:",
+              words: ["By", "the", "time", "she", "left", "the", "hotel", "she", "had", "trained", "two", "people"],
+              correctAnswer: "By the time she left the hotel she had trained two people",
+            },
+          ],
+        },
+      ],
+    },
 
-                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(20, 184, 166, 0.08) 100%); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #14b8a6; margin-top: 1.5rem">
-                    <h4 style="margin-top: 0; color: #14b8a6">📌 Key Signal Words for Housing Context</h4>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem">
-                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">before</span>
-                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">after</span>
-                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">by the time</span>
-                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">when</span>
-                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">already</span>
-                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">just</span>
-                        <span class="gc-bg-white gc-text-amber" style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; ">never</span>
-                    </div>
-                </div>
+    // =========================================================================
+    // SECTION 4 — Past Perfect vs. Past Simple
+    // =========================================================================
+    {
+      id: "past-perfect-vs-past-simple",
+      title: "Past Perfect vs. Past Simple",
+      tenseDiagram: {
+        title: "One action vs. two actions in the past",
+        elements: [
+          { id: "ps-solo", type: "single-dot", zone: "past", position: 65, verbLabel: "Past Simple (alone)" },
+          { id: "pp-seq", type: "single-dot", zone: "past-earlier", position: 25, verbLabel: "Past Perfect (1st)" },
+          { id: "ps-seq", type: "single-dot", zone: "past", position: 55, verbLabel: "Past Simple (2nd)" },
+        ],
+      },
+      explanation: `
+        ${sceneCard("scenePromotion", "Loading dock. Diego calls his cousin during a break.", "terracotta")}
 
-                <div class="gc-bg-red gc-callout-red gc-callout-red" style="background: #fee2e2; padding: 1rem; border-radius: 0.5rem; ; margin-top: 1.5rem">
-                    <h4 class="gc-text-red" style="margin-top: 0">❌ Common Mistakes to Avoid</h4>
-                    <div style="margin-top: 0.75rem">
-                        <div class="gc-bg-white" style="padding: 0.75rem; border-radius: 0.25rem; margin-bottom: 0.75rem">
-                            <p class="gc-text-red" style="margin: 0; font-weight: 600">❌ "I have checked the apartment before I signed the lease."</p>
-                            <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600">✅ "I <strong>had checked</strong> the apartment before I signed the lease."</p>
-                            <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.875rem; ">Use past perfect (had + past participle) for the earlier action, not present perfect.</p>
-                        </div>
-                        <div class="gc-bg-white" style="padding: 0.75rem; border-radius: 0.25rem">
-                            <p class="gc-text-red" style="margin: 0; ; font-weight: 600">❌ "She didn't signed the lease because she found something better."</p>
-                            <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600">✅ "She didn't sign the lease because she <strong>had found</strong> something better."</p>
-                            <p class="gc-text-muted" style="margin: 0.5rem 0 0 0; font-size: 0.875rem; ">The action of finding came first, so it needs past perfect.</p>
-                        </div>
-                    </div>
-                </div>
-            `,
-            exercises: [
-                {
-                    id: "ex-housing-1",
-                    title: "Practice: Housing Context",
-                    instructions: "Complete these housing-related sentences with Past Perfect.",
-                    items: [
-                        {
-                            type: "text",
-                            label: "Before she signed the lease, she ___ (check) the apartment three times.",
-                            expectedAnswer: "had checked",
-                        },
-                        {
-                            type: "text",
-                            label: "When the inspector arrived, the tenants ___ (already clean) everything.",
-                            expectedAnswer: "had already cleaned",
-                        },
-                        {
-                            type: "text",
-                            label: "He couldn't get his deposit back because he ___ (not follow) the move-out instructions.",
-                            expectedAnswer: "hadn't followed",
-                        },
-                        {
-                            type: "text",
-                            label: "By the time I found a better apartment, I ___ (already sign) a one-year lease.",
-                            expectedAnswer: "had already signed",
-                        },
-                        {
-                            type: "text",
-                            label: "The landlord was surprised because I ___ (research) tenant rights before our meeting.",
-                            expectedAnswer: "had researched",
-                        },
-                    ],
-                },
-            ],
-        },
-    ],
+        ${dialogue([
+          { speaker: "Diego", avatar: "👨🏾", text: "I got the supervisor job! They <strong>called</strong> me this morning.", side: "right", tone: "terracotta" },
+          { speaker: "Cousin (phone)", avatar: "🧑🏽", text: "No way! What did you tell them?", side: "left", tone: "sage" },
+          { speaker: "Diego", avatar: "👨🏾", text: "I told them I <strong>had lifted</strong> heavy loads, <strong>had covered</strong> two shifts alone, and <strong>had never missed</strong> a day.", side: "right", tone: "terracotta" },
+        ])}
 
-    // Mini Quiz for comprehension
-    miniQuiz: [
-        // 1. Sequence meaning
-        {
-            id: "quiz-1",
-            skillTag: "past-perfect-two-past-actions-sequence",
-            difficulty: "easy",
-            question: "Which sentence clearly shows which action happened first?",
-            options: [
-                { value: "a", label: "When I arrived, they had finished dinner." },
-                { value: "b", label: "When I arrived, they finish dinner." },
-                { value: "c", label: "When I had arrived, they finished dinner." },
-            ],
-            correctAnswer: "a",
-            explanation: "Past Perfect ('had finished') shows the first action. They finished dinner before I arrived.",
-        },
-        // 2. First action identification
-        {
-            id: "quiz-2",
-            skillTag: "past-perfect-first-action-identification",
-            difficulty: "easy",
-            question: "In the sentence 'After the bell had rung, the students left the classroom,' which happened first?",
-            options: [
-                { value: "b", label: "The bell rang" },
-                { value: "a", label: "The students left the classroom" },
-            ],
-            correctAnswer: "b",
-            explanation: "The bell rang (Past Perfect) first, then the students left.",
-        },
-        // 3. Cause-effect
-        {
-            id: "quiz-3",
-            skillTag: "past-perfect-cause-effect",
-            difficulty: "medium",
-            question: "Why was Maria tired? She was tired because she had worked all night.",
-            options: [
-                { value: "a", label: "She worked after she was tired." },
-                { value: "b", label: "She worked before she was tired." },
-            ],
-            correctAnswer: "b",
-            explanation: "The Past Perfect ('had worked') shows the cause happened first.",
-        },
-        // 4. Positive form
-        {
-            id: "quiz-4",
-            skillTag: "form-past-perfect-positive",
-            difficulty: "easy",
-            question: "Choose the correct Past Perfect form:",
-            options: [
-                { value: "b", label: "She had eaten breakfast before school." },
-                { value: "a", label: "She had ate breakfast before school." },
-                { value: "c", label: "She have eaten breakfast before school." },
-            ],
-            correctAnswer: "b",
-            explanation: "'Had + past participle' = 'had eaten'.",
-        },
-        // 5. Negative form
-        {
-            id: "quiz-5",
-            skillTag: "form-past-perfect-negative",
-            difficulty: "easy",
-            question: "Complete the sentence: When I arrived, they ___ (not leave) yet.",
-            options: [
-                { value: "b", label: "haven't left" },
-                { value: "a", label: "hadn't left" },
-                { value: "c", label: "didn't left" },
-            ],
-            correctAnswer: "a",
-            explanation: "Negative Past Perfect: hadn't + past participle.",
-        },
-        // 6. Question form
-        {
-            id: "quiz-6",
-            skillTag: "form-past-perfect-question",
-            difficulty: "easy",
-            question: "Which is a correct Past Perfect question?",
-            options: [
-                { value: "b", label: "Did you had finished your homework before dinner?" },
-                { value: "c", label: "Have you finished your homework before dinner?" },
-                { value: "a", label: "Had you finished your homework before dinner?" },
-            ],
-            correctAnswer: "a",
-            explanation: "Question form: Had + subject + past participle.",
-        },
-        // 7. Pattern: when
-        {
-            id: "quiz-7",
-            skillTag: "pattern-when-past-perfect",
-            difficulty: "easy",
-            question: "Which sentence uses 'when' with Past Perfect correctly?",
-            options: [
-                { value: "a", label: "When I had finished, I went home." },
-                { value: "b", label: "When I finished, I had went home." },
-                { value: "c", label: "When I had finish, I go home." },
-            ],
-            correctAnswer: "a",
-            explanation: "Past Perfect: had finished (first), Past Simple: went (second).",
-        },
-        // 8. Pattern: before
-        {
-            id: "quiz-8",
-            skillTag: "pattern-before-past-perfect",
-            difficulty: "easy",
-            question: "Fill in the blank: She ___ (already eat) before she left for work.",
-            options: [
-                { value: "b", label: "already had ate" },
-                { value: "a", label: "had already eaten" },
-                { value: "c", label: "already ate" },
-            ],
-            correctAnswer: "a",
-            explanation: "Past Perfect: had already eaten.",
-        },
-        // 9. Pattern: after
-        {
-            id: "quiz-9",
-            skillTag: "pattern-after-past-perfect",
-            difficulty: "easy",
-            question: "Which sentence correctly shows the earlier action in Past Perfect and the later action in Past Simple?",
-            options: [
-                { value: "b", label: "After they leave, we had locked the door." },
-                { value: "c", label: "After they had leave, we locked the door." },
-                { value: "a", label: "After they had left, we locked the door." },
-            ],
-            correctAnswer: "a",
-            explanation: "After + Past Perfect (had left), then Past Simple (locked).",
-        },
-        // 10. Pattern: by the time
-        {
-            id: "quiz-10",
-            skillTag: "pattern-by-the-time-past-perfect",
-            difficulty: "easy",
-            question: "By the time I got to the station, the train ___ (already/leave).",
-            options: [
-                { value: "b", label: "had already left" },
-                { value: "a", label: "already left" },
-                { value: "c", label: "has already left" },
-            ],
-            correctAnswer: "b",
-            explanation: "By the time + Past Simple, Past Perfect for the earlier action.",
-        },
-        // 11. Error: overuse
-        {
-            id: "quiz-11",
-            skillTag: "error-past-perfect-overuse",
-            difficulty: "medium",
-            question: "Is this sentence correct? 'I had visited New York last year.'",
-            options: [
-                { value: "a", label: "Yes, it's correct" },
-                { value: "b", label: "No, Past Perfect is not needed for one action" },
-            ],
-            correctAnswer: "b",
-            explanation: "Past Perfect is for TWO past actions. Use Past Simple: 'I visited New York last year.'",
-        },
-        // 12. Error: Past Simple instead of Past Perfect
-        {
-            id: "quiz-12",
-            skillTag: "error-past-simple-instead-of-past-perfect",
-            difficulty: "medium",
-            question: "Find the error: 'When I arrived at the airport, the plane left.'",
-            options: [
-                { value: "a", label: "The first action should be Past Perfect: 'the plane had left.'" },
-                { value: "b", label: "No error; the sentence is fine." },
-            ],
-            correctAnswer: "a",
-            explanation: "The plane left before I arrived, so use Past Perfect for the first action.",
-        },
-        // 13. Error: double Past Perfect
-        {
-            id: "quiz-13",
-            skillTag: "error-double-past-perfect",
-            difficulty: "medium",
-            question: "Which sentence uses Past Perfect only where it is needed?",
-            options: [
-                { value: "a", label: "After she had finished her homework, she had gone to bed." },
-                { value: "b", label: "After she had finished her homework, she went to bed." },
-            ],
-            correctAnswer: "b",
-            explanation: "Only the first action uses Past Perfect; the second uses Past Simple.",
-        },
-        // 14. Contrast: Past Perfect vs Past Simple
-        {
-            id: "quiz-14",
-            skillTag: "contrast-past-perfect-vs-past-simple",
-            difficulty: "medium",
-            question: "Choose the best option: 'Before I moved to Boston, I ___ in Chicago.'",
-            options: [
-                { value: "a", label: "had lived" },
-                { value: "b", label: "lived" },
-            ],
-            correctAnswer: "a",
-            explanation: "Past Perfect ('had lived') shows the action happened before the move.",
-        },
-        // 15. Meaning choice (sequence)
-        {
-            id: "quiz-15",
-            skillTag: "past-perfect-two-past-actions-sequence",
-            difficulty: "medium",
-            question: "Which sentence clearly explains the timeline?",
-            options: [
-                { value: "b", label: "He ate dinner before he had watched TV." },
-                { value: "c", label: "He was eating dinner before he watched TV." },
-                { value: "a", label: "He had eaten dinner before he watched TV." },
-            ],
-            correctAnswer: "a",
-            explanation: "The Past Perfect shows he finished eating before watching TV.",
-        },
-    ],
+        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
+          <p style="margin: 0; font-size: 1.05rem">
+            Use <strong>Past Simple</strong> for one finished action in the past.<br>
+            Use <strong>Past Perfect</strong> only when you have two past actions and need to show which one came first.
+          </p>
+        </div>
 
-/*
-TEACHER DIAGNOSTIC NOTES – Past Perfect Mini Quiz
+        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("one action", "sage")}
+            <span><em>They <strong>called</strong> him this morning.</em> (just one past fact)</span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("two actions", "amber")}
+            <span><em>Before he <strong>got</strong> the job, he <strong>had covered</strong> two shifts alone.</em> (1st: covered; 2nd: got the job)</span>
+          </div>
+        </div>
 
-Meaning gaps:
-- past-perfect-two-past-actions-sequence
-- past-perfect-first-action-identification
-- past-perfect-cause-effect
+        <div style="padding: 0.75rem 1rem; border-radius: 0.4rem; background: rgba(239,68,68,0.06); border-left: 3px solid #ef4444; margin-top: 0.75rem">
+          <p style="margin: 0; font-size: 0.95rem"><strong>Common mistake:</strong> Using Past Perfect for a single action.<br>
+          <span style="color: #ef4444">✗</span> "I <strong>had worked</strong> yesterday." (only one action, no sequence)<br>
+          <span style="color: #059669">✓</span> "I <strong>worked</strong> yesterday."</p>
+        </div>
+      `,
+      exercises: [
+        {
+          id: "pp-s4-ex1",
+          title: "One action or two?",
+          instructions: "Choose Past Simple or Past Perfect based on whether there is one action or a sequence.",
+          items: [
+            {
+              type: "radio",
+              label: "Diego ___ the supervisor job last week. (one fact, no sequence)",
+              options: [
+                { value: "a", label: "got (Past Simple)" },
+                { value: "b", label: "had got (Past Perfect)" },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "Before the manager promoted him, Diego ___ every shift on time for six months.",
+              options: [
+                { value: "a", label: "showed up (Past Simple)" },
+                { value: "b", label: "had shown up (Past Perfect)" },
+              ],
+              expectedAnswer: "b",
+            },
+            {
+              type: "radio",
+              label: "When his cousin called, Diego ___ the news already.",
+              options: [
+                { value: "a", label: "heard (Past Simple)" },
+                { value: "b", label: "had already heard (Past Perfect)" },
+              ],
+              expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "pp-s4-ex2",
+          title: "Error check",
+          instructions: "Which sentence has a mistake?",
+          items: [
+            {
+              type: "radio",
+              label: "Which sentence is NOT correct?",
+              options: [
+                { value: "a", label: "He had worked a double shift before he got promoted." },
+                { value: "b", label: "She had finished her break yesterday." },
+                { value: "c", label: "By the time the manager arrived, they had loaded the truck." },
+              ],
+              expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "pp-s4-ex3",
+          title: "Fill in the correct tense",
+          instructions: "Write the correct form of the verb. Use Past Simple or Past Perfect.",
+          items: [
+            {
+              type: "text",
+              label: "Diego ___ (work) at the warehouse for a year before he got the promotion.",
+              expectedAnswers: ["had worked"],
+            },
+            {
+              type: "text",
+              label: "He ___ (call) his cousin right after the manager told him.",
+              expectedAnswers: ["called"],
+            },
+          ],
+        },
+      ],
+    },
 
-Form issues:
-- form-past-perfect-positive
-- form-past-perfect-negative
-- form-past-perfect-question
+    // =========================================================================
+    // SECTION 5 — Your Work Story
+    // =========================================================================
+    {
+      id: "your-work-story",
+      title: "Your Work Story",
+      explanation: `
+        ${sceneCard("sceneWorkStory", "Break room. Amara and her coworker Linh swap work histories.", "sage")}
 
-Pattern confusion:
-- pattern-when-past-perfect
-- pattern-before-past-perfect
-- pattern-after-past-perfect
-- pattern-by-the-time-past-perfect
+        ${dialogue([
+          { speaker: "Amara", avatar: "👩🏿", text: "Before I came here, I <strong>had done</strong> home care for four years. Nights mostly.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>had worked</strong> in a restaurant before this. Twelve-hour shifts. I <strong>hadn't slept</strong> a full night in two years.", side: "left", tone: "sage" },
+          { speaker: "Amara", avatar: "👩🏿", text: "Same. By the time I found this job, I <strong>had already saved</strong> enough to move closer to the bus.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "Exactly. The restaurant <strong>hadn't paid</strong> overtime either, not once.", side: "left", tone: "sage" },
+        ])}
 
-Common errors:
-- error-past-perfect-overuse
-- error-past-simple-instead-of-past-perfect
-- error-double-past-perfect
+        <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
+          <p style="margin: 0; font-size: 1.05rem">Past Perfect is natural in work histories: you talk about what you had done <em>before</em> the current job, and what had already happened before a key moment.</p>
+        </div>
 
-Contrast issues:
-- contrast-past-perfect-vs-past-simple
+        <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("experience", "sage")}
+            <span><em>Before this job, I <strong>had worked</strong> in a hotel for three years.</em></span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("never before", "amber")}
+            <span><em>I <strong>had never driven</strong> a forklift before they trained me here.</em></span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("already done", "terracotta")}
+            <span><em>By the time I applied, I <strong>had already saved</strong> for three months.</em></span>
+          </div>
+        </div>
+      `,
+      tipBox: {
+        title: "February at the warehouse",
+        content: "A break-room poster near Amara's locker shows a timeline of Black workers and labor rights in America. She had never seen one before at a job site.",
+      },
+      exercises: [
+        {
+          id: "pp-s5-ex1",
+          title: "Amara's story",
+          instructions: "Fill in the blanks to complete Amara's work history.",
+          items: [
+            {
+              type: "text",
+              label: "Before she found this job, Amara ___ (do) home care for four years.",
+              expectedAnswers: ["had done"],
+            },
+            {
+              type: "text",
+              label: "By the time she applied, she ___ (already save) enough to move closer to the bus.",
+              expectedAnswers: ["had already saved"],
+            },
+          ],
+        },
+        {
+          id: "pp-s5-ex2",
+          title: "Linh's story",
+          instructions: "Choose the correct form for each blank.",
+          items: [
+            {
+              type: "radio",
+              label: "Before Linh found this job, she ___ in a restaurant for years.",
+              options: [
+                { value: "a", label: "had worked (Past Perfect)" },
+                { value: "b", label: "worked (Past Simple)" },
+              ],
+              expectedAnswer: "a",
+            },
+            {
+              type: "radio",
+              label: "The restaurant ___ overtime in two years.",
+              options: [
+                { value: "a", label: "hadn't paid (Past Perfect, negative)" },
+                { value: "b", label: "didn't pay (Past Simple, negative)" },
+              ],
+              expectedAnswer: "a",
+            },
+          ],
+        },
+        {
+          id: "pp-s5-ex3",
+          title: "Your work history",
+          instructions: "Put the words in the right order.",
+          items: [
+            {
+              type: "word-scramble",
+              label: "Unscramble:",
+              words: ["Before", "I", "came", "here", "I", "had", "never", "worked", "nights"],
+              correctAnswer: "Before I came here I had never worked nights",
+            },
+          ],
+        },
+      ],
+    },
+  ],
 
-Reteaching guidance:
-- If meaning tags are weak → re-teach the TWO-VERB RULE and force students to label FIRST vs SECOND actions.
-- If form tags are weak → drill had + past participle in positive, negative, and question forms.
-- If pattern tags are weak → practice sentence frames with when / before / after / by the time.
-- If overuse errors appear → reset rule: ONE past action = Past Simple.
-- If contrast is weak → timeline drills comparing single past events vs past sequences.
-*/
+  miniQuiz: [
+    {
+      id: "past-perfect-q1",
+      question: "By the time Gloria walked into the warehouse, she ___ two years in housekeeping.",
+      options: [
+        { value: "a", label: "has worked" },
+        { value: "b", label: "had worked" },
+        { value: "c", label: "worked" },
+      ],
+      correctAnswer: "b",
+      explanation: "Past Perfect (had worked) shows the earlier action that finished before she walked in.",
+      topic: "past-perfect",
+      skill: "usage",
+      skillTag: "sequencing-two-past-actions",
+      difficulty: "easy",
+    },
+    {
+      id: "past-perfect-q2",
+      question: "Which sentence is correct?",
+      options: [
+        { value: "a", label: "She had finished her shift yesterday." },
+        { value: "b", label: "She had finished her shift before the manager arrived." },
+        { value: "c", label: "She had finish her shift before the manager arrived." },
+      ],
+      correctAnswer: "b",
+      explanation: "Past Perfect needs a second past action to show the sequence. 'Yesterday' alone is not enough.",
+      topic: "past-perfect",
+      skill: "error-detection",
+      skillTag: "past-perfect-requires-two-actions",
+      difficulty: "medium",
+    },
+    {
+      id: "past-perfect-q3",
+      question: "James hadn't driven a forklift before he ___.",
+      options: [
+        { value: "a", label: "starts at this warehouse" },
+        { value: "b", label: "started at this warehouse" },
+        { value: "c", label: "had started at this warehouse" },
+      ],
+      correctAnswer: "b",
+      explanation: "The second action uses Past Simple. Only the first (earlier) action uses Past Perfect.",
+      topic: "past-perfect",
+      skill: "usage",
+      skillTag: "two-verb-rule-second-action-past-simple",
+      difficulty: "easy",
+    },
+    {
+      id: "past-perfect-q4",
+      question: "Which sentence uses 'by the time' correctly?",
+      options: [
+        { value: "a", label: "By the time she left, she had trained two new workers." },
+        { value: "b", label: "By the time she had left, she trained two new workers." },
+        { value: "c", label: "By the time she left, she trained two new workers." },
+      ],
+      correctAnswer: "a",
+      explanation: "By the time + Past Simple, then Past Perfect for the earlier action.",
+      topic: "past-perfect",
+      skill: "usage",
+      skillTag: "signal-word-by-the-time",
+      difficulty: "easy",
+    },
+    {
+      id: "past-perfect-q5",
+      question: "Diego got promoted last week. Which sentence adds a Past Perfect correctly?",
+      options: [
+        { value: "a", label: "Before he got promoted, he had shown up on time every day." },
+        { value: "b", label: "Before he had got promoted, he showed up on time every day." },
+        { value: "c", label: "He had got promoted last week." },
+      ],
+      correctAnswer: "a",
+      explanation: "The first action (showing up on time) uses Past Perfect. The second (got promoted) uses Past Simple.",
+      topic: "past-perfect",
+      skill: "usage",
+      skillTag: "signal-word-before",
+      difficulty: "medium",
+    },
+    {
+      id: "past-perfect-q6",
+      question: "Which sentence has a mistake?",
+      options: [
+        { value: "a", label: "After she had finished loading, she clocked out." },
+        { value: "b", label: "She had eaten lunch before the break ended." },
+        { value: "c", label: "I had called my cousin last night." },
+      ],
+      correctAnswer: "c",
+      explanation: "Past Perfect needs two past actions. 'Last night' is just one action, so Past Simple (called) is correct.",
+      topic: "past-perfect",
+      skill: "error-detection",
+      skillTag: "past-perfect-overuse",
+      difficulty: "medium",
+    },
+    {
+      id: "past-perfect-q7",
+      question: "Amara tells her coworker about her last job. Which sounds most natural?",
+      options: [
+        { value: "a", label: "Before I came here, I had done home care for four years." },
+        { value: "b", label: "Before I came here, I have done home care for four years." },
+        { value: "c", label: "Before I came here, I done home care for four years." },
+      ],
+      correctAnswer: "a",
+      explanation: "Past Perfect (had done) is the correct form for an action that happened before another past moment.",
+      topic: "past-perfect",
+      skill: "usage",
+      skillTag: "work-history-narrative",
+      difficulty: "easy",
+    },
+    {
+      id: "past-perfect-q8",
+      question: "The restaurant hadn't paid Linh overtime. What does this sentence tell us?",
+      options: [
+        { value: "a", label: "The restaurant is not paying her now." },
+        { value: "b", label: "The restaurant did not pay her overtime before she left that job." },
+        { value: "c", label: "The restaurant will not pay her overtime." },
+      ],
+      correctAnswer: "b",
+      explanation: "Hadn't paid is Past Perfect negative, referring to a pattern before a past moment (when she left).",
+      topic: "past-perfect",
+      skill: "recognition",
+      skillTag: "past-perfect-negative-meaning",
+      difficulty: "medium",
+    },
+    {
+      id: "past-perfect-q9",
+      question: "Choose the correct tense for each blank: When Jennifer ___ for the references, Gloria ___ them already.",
+      options: [
+        { value: "a", label: "asked / had sent" },
+        { value: "b", label: "had asked / sent" },
+        { value: "c", label: "asked / sent" },
+      ],
+      correctAnswer: "a",
+      explanation: "The second action (asking) uses Past Simple. The first action (sending the references) uses Past Perfect.",
+      topic: "past-perfect",
+      skill: "usage",
+      skillTag: "when-clause-sequence",
+      difficulty: "medium",
+    },
+    {
+      id: "past-perfect-q10",
+      question: "Which sentence uses Past Perfect where it is NOT needed?",
+      options: [
+        { value: "a", label: "By the time she applied, she had saved enough money." },
+        { value: "b", label: "She had worked a long shift on Tuesday." },
+        { value: "c", label: "After she had finished the paperwork, Jennifer shook her hand." },
+      ],
+      correctAnswer: "b",
+      explanation: "This has only one action with no second past event. The correct form is: She worked a long shift on Tuesday.",
+      topic: "past-perfect",
+      skill: "error-detection",
+      skillTag: "past-perfect-requires-two-actions",
+      difficulty: "hard",
+    },
+  ],
 };

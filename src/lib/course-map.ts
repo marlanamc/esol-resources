@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { getLearnerState } from "@/lib/learner-mode";
+import { getEffectiveLearnerMode } from "@/lib/learner-preview";
 import { isAdmin } from "@/lib/auth/roles";
 import { MAP } from "@/lib/content-kind";
 
@@ -75,7 +75,7 @@ export async function fetchCourseMapUnits(): Promise<CourseMapUnit[]> {
         id: item.id,
         title: item.title,
         activityType: item.activityType as CourseMapActivityType,
-        status: "available",
+        status: !item.activityId && !item.href ? "planned" : "available",
         ...(item.activityId ? { activityId: item.activityId } : {}),
         ...(item.href ? { href: item.href } : {}),
         ...(item.wrappedGame ? { wrappedGame: true } : {}),
@@ -111,9 +111,10 @@ export interface VisibleMapResult {
  * Units with no visible weeks are omitted from the result.
  */
 export async function getVisibleMap(
-  user: { id: string; role?: string | null }
+  user: { id: string; role?: string | null },
+  options?: { mode?: VisibleMapMode }
 ): Promise<VisibleMapResult> {
-  const [allUnitsRaw, learnerState] = await Promise.all([
+  const [allUnitsRaw, mode] = await Promise.all([
     withPrismaReadRetry(() =>
       prisma.courseUnit.findMany({
         orderBy: { number: "asc" },
@@ -130,11 +131,10 @@ export async function getVisibleMap(
         },
       })
     ),
-    getLearnerState(prisma, user.id),
+    options?.mode
+      ? Promise.resolve(options.mode)
+      : getEffectiveLearnerMode(user.id, user),
   ]);
-
-  const mode: VisibleMapMode =
-    learnerState.mode === "independent" ? "independent" : "classroom";
 
   // Admin always sees all published nodes (useful for student-preview)
   const useAllPublished = isAdmin(user) || mode === "independent";
@@ -179,7 +179,7 @@ export async function getVisibleMap(
       id: item.id,
       title: item.title,
       activityType: item.activityType as CourseMapActivityType,
-      status: "available",
+      status: !item.activityId && !item.href ? "planned" : "available",
       ...(item.activityId && isMapActivity ? { activityId: item.activityId } : {}),
       ...(item.href ? { href: item.href } : {}),
       ...(item.wrappedGame ? { wrappedGame: true } : {}),
@@ -211,14 +211,4 @@ export async function getVisibleMap(
   return { units, mode, revealedWeekIds };
 }
 
-export function getCourseMapActivityIds(units: CourseMapUnit[]): string[] {
-  return Array.from(
-    new Set(
-      units
-        .flatMap((u) => u.levels)
-        .flatMap((l) => [...l.requiredActivities, ...(l.extraPractice ?? [])])
-        .map((a) => a.activityId)
-        .filter((id): id is string => Boolean(id))
-    )
-  );
-}
+export { getCourseMapProgressActivityIds as getCourseMapActivityIds } from "@/lib/course-map-progress";

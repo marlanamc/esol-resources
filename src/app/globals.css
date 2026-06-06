@@ -583,6 +583,22 @@
   color: #ffffff;
 }
 
+/* Course map hero cards keep true light typography on saturated unit gradients. */
+.dark .course-map-hero-card {
+  --color-white: #fffdfa;
+  --white-color: #fffdfa;
+}
+
+.course-map-hero-card :where(h1, h2, h3, h4, h5, h6) {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+}
+
+.course-map-hero-card :where(p) {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+}
+
 /* ========== Theme Transition Suppression ========== */
 /* Suppress all transitions during initial hydration to prevent flash */
 html.theme-hydrating,
@@ -602,7 +618,9 @@ html {
   overscroll-behavior-x: none;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  overflow-x: hidden;
+  /* clip (not hidden) avoids forcing overflow-y:auto, which breaks sticky headers and iOS touch scroll */
+  overflow-x: clip;
+  overflow-y: visible;
   position: relative;
   width: 100%;
   max-width: 100%;
@@ -610,7 +628,8 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
   width: 100%;
   max-width: 100%;
   overscroll-behavior-x: none;
@@ -1923,6 +1942,9 @@ textarea {
   border: 0;
   border-radius: 0;
   box-shadow: none;
+  /* clip horizontal bleed without creating a non-scrollable touch trap (overflow-x: hidden forces overflow-y: auto on iOS) */
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 @media (min-width: 768px) {

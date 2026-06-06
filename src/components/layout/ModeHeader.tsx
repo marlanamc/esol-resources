@@ -97,7 +97,7 @@ export function ModeHeader({
 
     return (
         <header
-            className="mode-header sticky top-0 z-[260] border-b border-[var(--border-subtle)] bg-[var(--surface-overlay)]/95 shadow-sm backdrop-blur-md supports-[backdrop-filter]:bg-[var(--surface-overlay)]/82"
+            className="mode-header sticky top-0 z-[260] touch-pan-y border-b border-[var(--border-subtle)] bg-[var(--surface-overlay)]/95 shadow-sm backdrop-blur-md supports-[backdrop-filter]:bg-[var(--surface-overlay)]/82"
             style={{
                 paddingTop: "env(safe-area-inset-top, 0px)",
             }}

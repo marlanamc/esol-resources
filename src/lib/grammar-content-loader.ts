@@ -27,6 +27,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/continuous-tenses-review.ts",
         loader: () => import("@/content/grammar/continuous-tenses-review"),
     },
+    "enjoy-doing-want-to-do": {
+        sourceFile: "src/content/grammar/enjoy-doing-want-to-do.ts",
+        loader: () => import("@/content/grammar/enjoy-doing-want-to-do"),
+    },
     "future-continuous": {
         sourceFile: "src/content/grammar/future-continuous.ts",
         loader: () => import("@/content/grammar/future-continuous"),
@@ -67,6 +71,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/information-questions.ts",
         loader: () => import("@/content/grammar/information-questions"),
     },
+    "ive-been-working": {
+        sourceFile: "src/content/grammar/ive-been-working.ts",
+        loader: () => import("@/content/grammar/ive-been-working"),
+    },
     "medical-instructions-complete": {
         sourceFile: "src/content/grammar/medical-instructions-complete.ts",
         loader: () => import("@/content/grammar/medical-instructions-complete"),
@@ -95,9 +103,17 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/have-to-dont-have-to-cant.ts",
         loader: () => import("@/content/grammar/have-to-dont-have-to-cant"),
     },
+    "must-have-to-should-at-work": {
+        sourceFile: "src/content/grammar/must-have-to-should-at-work.ts",
+        loader: () => import("@/content/grammar/must-have-to-should-at-work"),
+    },
     "have-you-ever": {
         sourceFile: "src/content/grammar/have-you-ever.ts",
         loader: () => import("@/content/grammar/have-you-ever"),
+    },
+    "it-was-happening-when": {
+        sourceFile: "src/content/grammar/it-was-happening-when.ts",
+        loader: () => import("@/content/grammar/it-was-happening-when"),
     },
     "how-long-for-since": {
         sourceFile: "src/content/grammar/how-long-for-since.ts",
@@ -163,6 +179,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/passive-voice.ts",
         loader: () => import("@/content/grammar/passive-voice"),
     },
+    "passive-voice-what-was-done": {
+        sourceFile: "src/content/grammar/passive-voice-what-was-done.ts",
+        loader: () => import("@/content/grammar/passive-voice-what-was-done"),
+    },
     "past-continuous": {
         sourceFile: "src/content/grammar/past-continuous.ts",
         loader: () => import("@/content/grammar/past-continuous"),
@@ -191,6 +211,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/perfect-tenses-review.ts",
         loader: () => import("@/content/grammar/perfect-tenses-review"),
     },
+    "phrasal-verbs-at-work": {
+        sourceFile: "src/content/grammar/phrasal-verbs-at-work.ts",
+        loader: () => import("@/content/grammar/phrasal-verbs-at-work"),
+    },
     "present-continuous": {
         sourceFile: "src/content/grammar/present-continuous.ts",
         loader: () => import("@/content/grammar/present-continuous"),
@@ -202,6 +226,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
     "present-perfect-family": {
         sourceFile: "src/content/grammar/present-perfect-family.ts",
         loader: () => import("@/content/grammar/present-perfect-family"),
+    },
+    "present-perfect-how-long": {
+        sourceFile: "src/content/grammar/present-perfect-how-long.ts",
+        loader: () => import("@/content/grammar/present-perfect-how-long"),
     },
     "present-perfect": {
         sourceFile: "src/content/grammar/present-perfect.ts",
@@ -219,9 +247,21 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/reported-speech.ts",
         loader: () => import("@/content/grammar/reported-speech"),
     },
+    "second-conditional-what-would-you-do": {
+        sourceFile: "src/content/grammar/second-conditional-what-would-you-do.ts",
+        loader: () => import("@/content/grammar/second-conditional-what-would-you-do"),
+    },
+    "should-shouldnt-health-advice": {
+        sourceFile: "src/content/grammar/should-shouldnt-health-advice.ts",
+        loader: () => import("@/content/grammar/should-shouldnt-health-advice"),
+    },
     "simple-tenses-review": {
         sourceFile: "src/content/grammar/simple-tenses-review.ts",
         loader: () => import("@/content/grammar/simple-tenses-review"),
+    },
+    "stop-taking-or-stop-to-take": {
+        sourceFile: "src/content/grammar/stop-taking-or-stop-to-take.ts",
+        loader: () => import("@/content/grammar/stop-taking-or-stop-to-take"),
     },
     "superlatives-quantifiers": {
         sourceFile: "src/content/grammar/superlatives-quantifiers.ts",

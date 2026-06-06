@@ -123,8 +123,8 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
   const shouldTrackRef = useRef(false);
   const previousPathnameRef = useRef<string | null>(null);
   const renderTheme = hasMounted ? resolvedTheme : 'light';
-  // Auto-detect independent variant from pathname if not explicitly set
-  const isIndependentVariant = variant === 'independent' || (variant === undefined && pathname?.startsWith('/dashboard/independent'));
+  // Layout passes variant for enrolled teachers previewing independent mode
+  const isIndependentVariant = variant === 'independent';
   const navItems = isIndependentVariant ? INDEPENDENT_NAV_ITEMS : CLASSROOM_NAV_ITEMS;
 
   useEffect(() => {

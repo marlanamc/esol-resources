@@ -17,13 +17,31 @@ const DEFAULT_REPORT_PATH = path.join(
 const DEFAULT_FINDINGS_DIR = path.join(ROOT, "tmp/mini-guides-audit");
 const DEFAULT_FINDINGS_PATH = path.join(DEFAULT_FINDINGS_DIR, "findings.json");
 
+function parseWeekFlag(argv: string[], flag: string, fallback: number): number {
+    const index = argv.indexOf(flag);
+    if (index === -1 || index + 1 >= argv.length) {
+        return fallback;
+    }
+    const value = Number.parseInt(argv[index + 1]!, 10);
+    return Number.isFinite(value) && value > 0 ? value : fallback;
+}
+
 async function main() {
-    const args = new Set(process.argv.slice(2));
+    const argv = process.argv.slice(2);
+    const args = new Set(argv.filter((arg) => arg.startsWith("--")));
     const writeReport = args.has("--report");
     const strict = args.has("--strict");
 
-    const result = await runMiniGuidesAudit();
-    console.log(formatConsoleSummary(result));
+    const minWeek = parseWeekFlag(argv, "--min-week", 1);
+    const maxWeek = parseWeekFlag(argv, "--max-week", 18);
+
+    const result = await runMiniGuidesAudit({ minWeek, maxWeek });
+    const weekLabel =
+        minWeek === 1 && maxWeek === 18
+            ? "Weeks 1–18"
+            : `Weeks ${minWeek}–${maxWeek}`;
+
+    console.log(formatConsoleSummary(result, weekLabel));
 
     if (result.errorCount > 0 || result.warningCount > 0) {
         console.log("");
@@ -42,10 +60,17 @@ async function main() {
     console.log(`\nFindings JSON: ${DEFAULT_FINDINGS_PATH}`);
 
     if (writeReport) {
+        const reportPath =
+            minWeek === 1 && maxWeek === 18
+                ? DEFAULT_REPORT_PATH
+                : path.join(
+                      ROOT,
+                      `docs/audits/mini-guides-w${minWeek}-w${maxWeek}-review.md`,
+                  );
         const markdown = formatAuditReport(result);
-        await mkdir(path.dirname(DEFAULT_REPORT_PATH), { recursive: true });
-        await writeFile(DEFAULT_REPORT_PATH, markdown, "utf8");
-        console.log(`Review report: ${DEFAULT_REPORT_PATH}`);
+        await mkdir(path.dirname(reportPath), { recursive: true });
+        await writeFile(reportPath, markdown, "utf8");
+        console.log(`Review report: ${reportPath}`);
     }
 
     const shouldFail =

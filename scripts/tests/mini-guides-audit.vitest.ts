@@ -58,3 +58,49 @@ describe("mini guides audit (weeks 1–18)", () => {
         expect(warnings).toHaveLength(0);
     });
 });
+
+describe("mini guides audit (weeks 19–29)", () => {
+    it("runs without throwing and audits the expected guide count", async () => {
+        const result = await runMiniGuidesAudit({ minWeek: 19, maxWeek: 29 });
+        expect(result.guides.length).toBe(11);
+    });
+
+    it("has no mechanical errors in required W19–W29 guides", async () => {
+        const result = await runMiniGuidesAudit({ minWeek: 19, maxWeek: 29 });
+        const errors = result.findings.filter(
+            (finding) =>
+                finding.severity === "error" && finding.slug !== "_global",
+        );
+
+        if (errors.length > 0) {
+            const preview = errors
+                .slice(0, 20)
+                .map((e) => `${e.slug} [${e.ruleId}]: ${e.message}`)
+                .join("\n");
+            expect.fail(
+                `${errors.length} audit error(s). Run npm run audit:mini-guides -- --min-week 19 --max-week 29 for details.\n${preview}`,
+            );
+        }
+
+        expect(errors).toHaveLength(0);
+    });
+
+    it("has no heuristic warnings in required W19–W29 guides", async () => {
+        const result = await runMiniGuidesAudit({ minWeek: 19, maxWeek: 29 });
+        const warnings = result.findings.filter(
+            (finding) => finding.severity === "warning",
+        );
+
+        if (warnings.length > 0) {
+            const preview = warnings
+                .slice(0, 20)
+                .map((w) => `${w.slug} [${w.ruleId}]: ${w.message}`)
+                .join("\n");
+            expect.fail(
+                `${warnings.length} audit warning(s). Run npm run audit:mini-guides -- --min-week 19 --max-week 29 for details.\n${preview}`,
+            );
+        }
+
+        expect(warnings).toHaveLength(0);
+    });
+});

@@ -12,9 +12,19 @@ import { CourseMapUnitIcon } from "@/components/dashboard/CourseMapUnitIcon";
 interface Props {
     currentWeek: CurrentMapWeekMeta | null;
     variant: "sidebar" | "mobile";
+    showUnitMonths?: boolean;
 }
 
-export function CourseMapJumpToWeek({ currentWeek, variant }: Props) {
+function formatJumpLabel(
+    weekNumber: number,
+    unitMonth: string,
+    showUnitMonths: boolean
+): string {
+    const levelLabel = `Level ${weekNumber}`;
+    return showUnitMonths ? `${levelLabel} · ${unitMonth}` : levelLabel;
+}
+
+export function CourseMapJumpToWeek({ currentWeek, variant, showUnitMonths = true }: Props) {
     if (!currentWeek) return null;
 
     const tone = getCourseMapUnitTone(currentWeek.unitNumber);
@@ -45,10 +55,10 @@ export function CourseMapJumpToWeek({ currentWeek, variant }: Props) {
                 </span>
                 <span className="min-w-0 flex-1">
                     <span className="block text-[10px] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
-                        Jump to my week
+                        Jump to my level
                     </span>
                     <span className="mt-0.5 block text-sm font-bold text-text leading-tight">
-                        Week {currentWeek.weekNumber} · {currentWeek.unitMonth}
+                        {formatJumpLabel(currentWeek.weekNumber, currentWeek.unitMonth, showUnitMonths)}
                     </span>
                 </span>
                 <MapPin size={16} className="shrink-0 text-text-muted" aria-hidden />
@@ -68,10 +78,10 @@ export function CourseMapJumpToWeek({ currentWeek, variant }: Props) {
         >
             <span className="min-w-0">
                 <span className="block text-[10px] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
-                    Your week
+                    Your level
                 </span>
                 <span className="mt-0.5 block text-sm font-bold text-text">
-                    Week {currentWeek.weekNumber} · {currentWeek.unitMonth}
+                    {formatJumpLabel(currentWeek.weekNumber, currentWeek.unitMonth, showUnitMonths)}
                 </span>
             </span>
             <span

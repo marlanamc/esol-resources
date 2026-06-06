@@ -14,6 +14,13 @@ export const TENSE_DIAGRAM_EXEMPT_SLUGS = new Set([
     "asking-right-questions-housing",
     "have-to-dont-have-to-cant",
     "need-to-find-a-place-infinitives",
+    "must-have-to-should-at-work",
+    "second-conditional-what-would-you-do",
+    "phrasal-verbs-at-work",
+    "enjoy-doing-want-to-do",
+    "passive-voice-what-was-done",
+    "should-shouldnt-health-advice",
+    "stop-taking-or-stop-to-take",
 ]);
 
 /** Guides that must include at least one section with tenseDiagram. */
@@ -23,6 +30,10 @@ export const TENSE_DIAGRAM_REQUIRED_SLUGS = new Set([
     "just-already-yet",
     "have-you-ever",
     "how-long-for-since",
+    "it-was-happening-when",
+    "past-perfect",
+    "present-perfect-how-long",
+    "ive-been-working",
 ]);
 
 export const AMERICAN_NAMES = [

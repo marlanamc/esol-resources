@@ -20,4 +20,6 @@ export * from './InviteFriendsCard';
 export * from './MomentumCard';
 export * from './DashboardWelcomeHero';
 export * from './ExploreCategoriesCarousel';
+export * from './NewThisWeekSection';
+export * from './DashboardResumeHero';
 export * from './AdminDashboardModeToggle';

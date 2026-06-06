@@ -320,7 +320,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
         {countdown.isActive && (
           <div className="mt-1">
             <div className="mb-1.5 text-center text-xs text-text-muted">
-              Returning to course map in {countdown.secondsLeft}s…
+              Continuing to {countdown.destinationLabel} in {countdown.secondsLeft}s…
             </div>
             <div className="h-1 w-full overflow-hidden rounded-full bg-border/30">
               <div

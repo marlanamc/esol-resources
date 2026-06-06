@@ -1,4 +1,10 @@
 import type { CourseMapActivity, CourseMapUnit } from "@/lib/course-map";
+import {
+    getMapActivityProgressId,
+    isMapActivityActionable,
+    isMapActivityCompleted,
+} from "@/lib/course-map-progress";
+import { buildActivityHref, withReturnTo } from "@/lib/learner-navigation";
 
 /** Offset for sticky headers when scrolling to map anchors. */
 export const COURSE_MAP_SCROLL_OFFSET_PX = 88;
@@ -71,19 +77,29 @@ export function syncMapUrl(weekNumber: number | null, focusActivity = false): vo
     }
 }
 
-function isActionable(activity: CourseMapActivity): boolean {
-    return (
-        activity.status !== "planned" &&
-        activity.status !== "locked" &&
-        Boolean(activity.activityId || activity.href)
-    );
-}
+export { isMapActivityActionable, isMapActivityCompleted, getMapActivityProgressId };
 
-function isActivityCompleted(
-    activity: CourseMapActivity,
+export function findFirstIncompleteRequired(
+    units: CourseMapUnit[],
     progress: Record<string, string | null>
-): boolean {
-    return Boolean(activity.activityId && progress[activity.activityId] === "completed");
+): { activity: CourseMapActivity; weekNumber: number; unitNumber: number; unitMonth: string } | null {
+    for (const unit of units) {
+        for (const level of unit.levels) {
+            const firstIncomplete = level.requiredActivities.find(
+                (activity) =>
+                    isMapActivityActionable(activity) && !isMapActivityCompleted(activity, progress)
+            );
+            if (firstIncomplete) {
+                return {
+                    activity: firstIncomplete,
+                    weekNumber: level.levelNumber,
+                    unitNumber: unit.unitNumber,
+                    unitMonth: unit.month,
+                };
+            }
+        }
+    }
+    return null;
 }
 
 export interface CurrentMapWeekMeta {
@@ -108,11 +124,11 @@ export function buildMapWeekProgress(
 ): WeekProgressEntry[] {
     return units.flatMap((unit) =>
         unit.levels.map((level) => {
-            const required = level.requiredActivities;
-            const done = required.filter(
-                (activity) => activity.activityId && progress[activity.activityId] === "completed"
+            const actionableRequired = level.requiredActivities.filter(isMapActivityActionable);
+            const done = actionableRequired.filter((activity) =>
+                isMapActivityCompleted(activity, progress)
             ).length;
-            const total = required.length;
+            const total = actionableRequired.length;
             return {
                 weekNumber: level.levelNumber,
                 unitNumber: unit.unitNumber,
@@ -127,6 +143,7 @@ export function buildMapWeekProgress(
 
 function shortMapActivityTitle(title: string): string {
     return title
+        .replace("Welcome Back: Simple & Continuous Review + V3 Preview", "Simple & Continuous Review")
         .replace("Full Parts of Speech Practice Library", "Parts of Speech Practice")
         .replace(/\s+\+\s+V3 Preview$/i, "")
         .trim();
@@ -141,26 +158,48 @@ export function resolveNextMapActivity(
     units: CourseMapUnit[],
     progress: Record<string, string | null>
 ): NextMapActivityMeta | null {
-    const requiredActivities = units.flatMap((unit) =>
-        unit.levels.flatMap((level) => level.requiredActivities)
-    );
-    const firstIncomplete = requiredActivities.find(
-        (activity) => isActionable(activity) && !isActivityCompleted(activity, progress)
-    );
-    if (!firstIncomplete) return null;
+    const match = findFirstIncompleteRequired(units, progress);
+    if (!match) return null;
+    return {
+        title: shortMapActivityTitle(match.activity.title),
+        weekNumber: match.weekNumber,
+    };
+}
 
-    for (const unit of units) {
-        for (const level of unit.levels) {
-            if (level.requiredActivities.some((activity) => activity.id === firstIncomplete.id)) {
-                return {
-                    title: shortMapActivityTitle(firstIncomplete.title),
-                    weekNumber: level.levelNumber,
-                };
-            }
-        }
+export interface NextMapActivityLaunch {
+    href: string;
+    title: string;
+    weekNumber: number;
+    activityId?: string;
+}
+
+export function resolveNextMapActivityLaunch(
+    units: CourseMapUnit[],
+    progress: Record<string, string | null>,
+    assignmentByActivityId?: Record<string, { assignmentId: string }>
+): NextMapActivityLaunch | null {
+    const match = findFirstIncompleteRequired(units, progress);
+    if (!match) return null;
+
+    const { activity, weekNumber } = match;
+    const returnTo = buildMapReturnHref(weekNumber, true);
+
+    let href: string | null = null;
+    if (activity.href) {
+        href = withReturnTo(activity.href, returnTo);
+    } else if (activity.activityId) {
+        const assignmentId = assignmentByActivityId?.[activity.activityId]?.assignmentId;
+        href = withReturnTo(buildActivityHref(activity.activityId, assignmentId), returnTo);
     }
 
-    return null;
+    if (!href) return null;
+
+    return {
+        href,
+        title: shortMapActivityTitle(activity.title),
+        weekNumber,
+        ...(activity.activityId ? { activityId: activity.activityId } : {}),
+    };
 }
 
 export function focusMapWeekHeading(weekNumber: number): void {
@@ -175,21 +214,30 @@ export function resolveCurrentMapWeek(
     units: CourseMapUnit[],
     progress: Record<string, string | null>
 ): CurrentMapWeekMeta | null {
-    const requiredActivities = units.flatMap((unit) =>
-        unit.levels.flatMap((level) => level.requiredActivities)
-    );
-    const firstIncomplete = requiredActivities.find(
-        (activity) => isActionable(activity) && !isActivityCompleted(activity, progress)
-    );
+    const match = findFirstIncompleteRequired(units, progress);
+
+    if (match) {
+        for (const unit of units) {
+            for (const level of unit.levels) {
+                if (level.levelNumber === match.weekNumber) {
+                    return {
+                        weekNumber: level.levelNumber,
+                        unitNumber: unit.unitNumber,
+                        unitMonth: unit.month,
+                        unitTitle: unit.unitTitle,
+                    };
+                }
+            }
+        }
+    }
 
     for (const unit of units) {
         for (const level of unit.levels) {
-            const hasCurrent = firstIncomplete
-                ? level.requiredActivities.some((activity) => activity.id === firstIncomplete.id)
-                : level.requiredActivities.some(
-                      (activity) => isActionable(activity) && !isActivityCompleted(activity, progress)
-                  );
-            if (hasCurrent) {
+            const hasIncomplete = level.requiredActivities.some(
+                (activity) =>
+                    isMapActivityActionable(activity) && !isMapActivityCompleted(activity, progress)
+            );
+            if (hasIncomplete) {
                 return {
                     weekNumber: level.levelNumber,
                     unitNumber: unit.unitNumber,

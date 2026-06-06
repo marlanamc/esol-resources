@@ -97,9 +97,9 @@ export function formatAuditReport(result: AuditResult): string {
     return lines.join("\n");
 }
 
-export function formatConsoleSummary(result: AuditResult): string {
+export function formatConsoleSummary(result: AuditResult, scopeLabel = "Mini guides"): string {
     const lines = [
-        `Mini guides audit: ${result.guides.length} guides, ${result.errorCount} errors, ${result.warningCount} warnings`,
+        `${scopeLabel} audit: ${result.guides.length} guides, ${result.errorCount} errors, ${result.warningCount} warnings`,
         "",
     ];
 

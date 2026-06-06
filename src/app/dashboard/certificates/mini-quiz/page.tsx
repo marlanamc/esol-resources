@@ -6,7 +6,8 @@ import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolu
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { CertificateShowcase } from "@/components/ui/CertificateShowcase";
-import { withReturnTo } from "@/lib/learner-navigation";
+import { CertificateContinueActions } from "@/components/grammar-reader/CertificateContinueActions";
+import { withReturnTo, sanitizeInternalHref } from "@/lib/learner-navigation";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -106,8 +107,12 @@ export default async function MiniQuizCertificatePage({ searchParams }: Certific
               )
             : "/dashboard/activities";
 
+    const sanitizedReturnTo = sanitizeInternalHref(returnTo);
+    const fromCourseMap = sanitizedReturnTo?.startsWith("/dashboard/map") ?? false;
+
     const studentName = session.user.name || session.user.username || "Student";
     const displayScore = certificateScore ?? 0;
+    const passed = displayScore >= 70;
 
     return (
         <div className="min-h-screen pb-24">
@@ -127,7 +132,13 @@ export default async function MiniQuizCertificatePage({ searchParams }: Certific
                 }}
                 showSparkles={displayScore >= 60}
                 continueHref={guideHref}
-                continueLabel={displayScore >= 70 ? "Return to Activity" : "Keep Practicing"}
+                continueLabel={passed ? "Return to Activity" : "Keep Practicing"}
+                hideDefaultActions={fromCourseMap}
+            />
+            <CertificateContinueActions
+                fromCourseMap={fromCourseMap}
+                guideHref={guideHref}
+                passed={passed}
             />
         </div>
     );

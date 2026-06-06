@@ -26,6 +26,7 @@ interface Props {
     weekProgress?: WeekProgressEntry[];
     currentWeekNumber?: number | null;
     variant: "sidebar" | "strip";
+    showUnitMonths?: boolean;
 }
 
 function UnitWeekListbox({
@@ -50,7 +51,7 @@ function UnitWeekListbox({
         <div
             ref={listRef}
             role="listbox"
-            aria-label={`Weeks in ${unitTitle}`}
+            aria-label={`Levels in ${unitTitle}`}
             onKeyDown={handleKeyDown}
             className="ml-3 mb-1 space-y-0.5 border-l pl-2"
             style={{ borderColor: `color-mix(in srgb, ${unitTone.accent} 25%, var(--border-subtle))` }}
@@ -112,6 +113,7 @@ export function CourseMapUnitNav({
     weekProgress = [],
     currentWeekNumber = null,
     variant,
+    showUnitMonths = true,
 }: Props) {
     const { activeUnitNumber, activeWeekNumber } = useCourseMapScrollSpy(units);
     const [expandedUnits, setExpandedUnits] = useState<Set<number>>(() => {
@@ -164,7 +166,7 @@ export function CourseMapUnitNav({
         return (
             <nav
                 className="dashboard-panel rounded-2xl p-4 space-y-1"
-                aria-label="Course map units and weeks"
+                aria-label="Course map units and levels"
             >
                 <p className="text-[11px] font-bold uppercase tracking-wide text-text-muted mb-2 px-1" id="course-map-unit-nav-label">
                     Units
@@ -228,7 +230,7 @@ export function CourseMapUnitNav({
                                         onClick={() => toggleUnitExpanded(unit.unitNumber)}
                                         className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg hover:bg-surface-subtle"
                                         aria-expanded={isExpanded}
-                                        aria-label={`${isExpanded ? "Collapse" : "Expand"} weeks for ${unit.unitTitle}`}
+                                        aria-label={`${isExpanded ? "Collapse" : "Expand"} levels for ${unit.unitTitle}`}
                                     >
                                         <ChevronDown
                                             size={14}
@@ -304,7 +306,7 @@ export function CourseMapUnitNav({
                                     className="block text-[10px] font-bold uppercase tracking-wide leading-none"
                                     style={{ color: unitTone.accent }}
                                 >
-                                    {unit.month}
+                                    {showUnitMonths ? unit.month : `Unit ${unit.unitNumber}`}
                                 </span>
                                 <span className="mt-0.5 block max-w-[9rem] truncate text-xs font-semibold text-text leading-tight">
                                     {unit.unitTitle}

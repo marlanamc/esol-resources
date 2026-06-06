@@ -16,18 +16,28 @@ import { usePathname } from "next/navigation";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { useCurrentAppHref } from "@/hooks/useCurrentAppHref";
 import { withReturnTo } from "@/lib/learner-navigation";
+import { buildActivityHref } from "@/lib/learner/navigation";
+import { ActivityTimeline, type TimelineItem, type TimelineStatus } from "@/components/dashboard/ActivityTimeline";
 import type {
     CourseMapActivity,
     CourseMapActivityType,
     CourseMapUnit,
 } from "@/lib/course-map";
+import { CourseMapNextUpHeroCard } from "@/components/dashboard/CourseMapNextUpHeroCard";
 import { CourseMapUnitIcon } from "@/components/dashboard/CourseMapUnitIcon";
+import {
+    formatNextUpActivityTitle,
+    getCourseMapActivityIconEmoji,
+    getCourseMapEstimatedMinutesForActivity,
+} from "@/lib/course-map-hero";
 import { courseMapUnitToneStyle, getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
 import {
     buildMapReturnHref,
     COURSE_MAP_OPEN_WEEK_EVENT,
     type CourseMapOpenWeekDetail,
     focusMapWeekHeading,
+    isMapActivityActionable,
+    isMapActivityCompleted,
     parseMapWeekFromHash,
     scrollToMapTarget,
     syncMapUrl,
@@ -79,6 +89,20 @@ interface Props {
     desktopLayout?: boolean;
     initialWeek?: number | null;
     focusNextActivity?: boolean;
+    mobileWayfinding?: ReactNode;
+    /** School-year month labels (e.g. September) — classroom only */
+    showUnitMonths?: boolean;
+}
+
+function formatLevelLabel(levelNumber: number): string {
+    return `Level ${levelNumber}`;
+}
+
+function formatUnitProgressLabel(done: number, total: number, showUnitMonths: boolean): string {
+    const noun = showUnitMonths
+        ? (total === 1 ? "week" : "weeks")
+        : (total === 1 ? "level" : "levels");
+    return `${done}/${total} ${noun}`;
 }
 
 function activityTypeIcon(type?: string, category?: string | null): string {
@@ -122,23 +146,11 @@ function guidedActivityIcon(type: CourseMapActivityType): string {
 }
 
 function shortActivityTitle(title: string): string {
-    return title
-        .replace("Welcome Back: Simple & Continuous Review + V3 Preview", "Simple & Continuous Review")
-        .replace("Parts of Speech Discovery Game", "Parts of Speech Game")
-        .replace("Grammar Hospital: Helper Verb Repair", "Helper Verb Repair")
-        .replace("Vowel Names Practice:", "Vowel Names:")
-        .replace("Timeline Tenses:", "Timeline:")
-        .replace("Full Parts of Speech Practice Library", "Parts of Speech Practice")
-        .replace(/\s+\+\s+V3 Preview$/i, "")
-        .trim();
+    return formatNextUpActivityTitle(title);
 }
 
 function nextUpTitle(title: string): string {
-    const shortened = shortActivityTitle(title);
-    if (title.startsWith("Welcome Back:") && !shortened.startsWith("Welcome Back:")) {
-        return `Welcome Back: ${shortened}`;
-    }
-    return shortened;
+    return formatNextUpActivityTitle(title);
 }
 
 const focusOverrides: Record<string, string> = {
@@ -150,13 +162,18 @@ const focusOverrides: Record<string, string> = {
 function UnitSectionHeader({
     unitNumber,
     unitMonth,
+    showUnitMonths = true,
     className = "mb-3",
 }: {
     unitNumber: number;
     unitMonth?: string;
+    showUnitMonths?: boolean;
     className?: string;
 }) {
     const tone = getCourseMapUnitTone(unitNumber);
+    const unitLabel = showUnitMonths
+        ? `${unitMonth || tone.month} · Unit ${unitNumber}`
+        : `Unit ${unitNumber}`;
     return (
         <div
             className={`flex items-center gap-2.5 px-0.5 ${className}`}
@@ -166,7 +183,7 @@ function UnitSectionHeader({
                 <CourseMapUnitIcon unitNumber={unitNumber} size={15} />
             </span>
             <span className="text-xs font-bold uppercase tracking-wide text-[var(--unit-accent)]">
-                {unitMonth || tone.month} · Unit {unitNumber}
+                {unitLabel}
             </span>
         </div>
     );
@@ -186,15 +203,52 @@ function focusText(title: string, goal?: string): string | null {
 }
 
 function estimatedMinutes(activity: CourseMapActivity): number {
-    switch (activity.activityType) {
-        case "game":
-        case "writing":
-        case "speaking":
-        case "assessment":
-            return 10;
-        default:
-            return 5;
-    }
+    return getCourseMapEstimatedMinutesForActivity(activity);
+}
+
+function buildWeekTimelineItems(
+    activities: CourseMapActivity[],
+    guidedProgress: Record<string, string | null>,
+    guidedAssignments: Record<string, GuidedAssignmentInfo>,
+    currentId: string | null,
+    returnHref: string
+): TimelineItem[] {
+    return activities
+        .filter((a) => a.status !== "planned")
+        .map((activity) => {
+            const isCompleted = isMapActivityCompleted(activity, guidedProgress);
+            const isCurrent = activity.id === currentId;
+            const isActionable = isMapActivityActionable(activity);
+
+            const status: TimelineStatus = !isActionable
+                ? "locked"
+                : isCompleted
+                  ? "done"
+                  : isCurrent
+                    ? "current"
+                    : "todo";
+
+            const assignment = activity.activityId ? guidedAssignments[activity.activityId] : undefined;
+            let href = "/dashboard/map";
+
+            if (isActionable) {
+                if (activity.href) {
+                    href = withReturnTo(activity.href, returnHref);
+                } else if (activity.activityId) {
+                    const base = buildActivityHref(activity.activityId, assignment?.assignmentId);
+                    href = withReturnTo(base, returnHref);
+                }
+            }
+
+            return {
+                activityId: activity.id,
+                title: shortActivityTitle(activity.title),
+                type: activity.activityType,
+                estMinutes: estimatedMinutes(activity),
+                status,
+                href,
+            };
+        });
 }
 
 interface UnitGroup {
@@ -212,21 +266,6 @@ function getExtraPracticeActivities(
     extraPractice: CourseMapActivity[] | undefined
 ): CourseMapActivity[] {
     return extraPractice ?? [];
-}
-
-function isActionable(activity: CourseMapActivity): boolean {
-    return (
-        activity.status !== "planned" &&
-        activity.status !== "locked" &&
-        Boolean(activity.activityId || activity.href)
-    );
-}
-
-function isActivityCompleted(
-    activity: CourseMapActivity,
-    guidedProgress: Record<string, string | null>
-): boolean {
-    return Boolean(activity.activityId && guidedProgress[activity.activityId] === "completed");
 }
 
 function ActivityShell({
@@ -364,12 +403,24 @@ function StartActivityButton({
 
 interface WeekSummary {
     unitNumber: number;
+    unitTitle: string;
     unitMonth: string;
     level: CourseMapUnit["levels"][number];
     requiredDone: number;
     requiredTotal: number;
     hasCurrent: boolean;
     isDone: boolean;
+}
+
+interface UnitSummary {
+    unitNumber: number;
+    unitTitle: string;
+    unitMonth: string;
+    weeks: WeekSummary[];
+    doneWeeks: number;
+    totalWeeks: number;
+    hasCurrent: boolean;
+    status: "done" | "current" | "todo";
 }
 
 function MobileNextUpCard({
@@ -384,48 +435,28 @@ function MobileNextUpCard({
     unitNumber: number;
 }) {
     const icon = assignment
-        ? activityTypeIcon(assignment.type, assignment.category)
-        : guidedActivityIcon(activity.activityType);
-    const tone = getCourseMapUnitTone(unitNumber);
+        ? getCourseMapActivityIconEmoji(activity.activityType, assignment.type, assignment.category)
+        : getCourseMapActivityIconEmoji(activity.activityType);
 
     return (
-        <div
-            className="rounded-2xl p-4 text-white shadow-sm"
-            style={{ background: `linear-gradient(135deg, ${tone.accent} 0%, ${tone.button} 100%)` }}
-        >
-            <div className="flex items-start gap-3">
-                <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/88 text-2xl" aria-hidden>
-                    {icon}
-                    <span
-                        className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border border-white/80 bg-white/95 shadow-sm"
-                        style={{ color: tone.accent }}
-                    >
-                        <CourseMapUnitIcon unitNumber={unitNumber} size={11} strokeWidth={2.5} />
-                    </span>
-                </span>
-                <div className="min-w-0 flex-1">
-                    <span className="inline-flex rounded-full bg-white/22 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
-                        {tone.month} · {currentLabel}
-                    </span>
-                    <h3 className="mt-2 text-lg font-bold leading-snug text-white">
-                        {nextUpTitle(activity.title)}
-                    </h3>
-                    <p className="mt-1 flex items-center gap-1.5 text-sm font-medium text-white/88">
-                        <Clock size={14} aria-hidden />
-                        {estimatedMinutes(activity)} min
-                    </p>
-                </div>
-            </div>
-
-            <StartActivityButton
-                activity={activity}
-                assignment={assignment}
-                className="mt-5 flex min-h-12 w-full items-center justify-between rounded-full bg-white px-5 text-sm font-bold text-[#172235] shadow-sm transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-            >
-                <span>Start Lesson</span>
-                <ChevronRight size={20} aria-hidden />
-            </StartActivityButton>
-        </div>
+        <CourseMapNextUpHeroCard
+            href={activity.href ?? "#"}
+            title={nextUpTitle(activity.title)}
+            currentLabel={currentLabel}
+            unitNumber={unitNumber}
+            estimatedMinutes={estimatedMinutes(activity)}
+            icon={icon}
+            cta={
+                <StartActivityButton
+                    activity={activity}
+                    assignment={assignment}
+                    className="mt-5 flex min-h-12 w-full items-center justify-between rounded-full bg-[#fffdfa] px-5 text-sm font-bold text-[#172235] shadow-sm transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffffff]/70"
+                >
+                    <span>Start Lesson</span>
+                    <ChevronRight size={20} aria-hidden />
+                </StartActivityButton>
+            }
+        />
     );
 }
 
@@ -479,6 +510,246 @@ function MobileActivityRow({
     );
 }
 
+function UnitBadge({ n, status, size = 44 }: { n: number; status: "done" | "current" | "todo"; size?: number }) {
+    const tone = getCourseMapUnitTone(n);
+    return (
+        <div style={{
+            width: size, height: size, borderRadius: 14, flexShrink: 0,
+            display: "grid", placeItems: "center", position: "relative",
+            background: `linear-gradient(150deg, color-mix(in srgb, ${tone.accent} 78%, #fff), ${tone.accent})`,
+            color: "#fff",
+            boxShadow: `0 5px 12px color-mix(in srgb, ${tone.accent} 32%, transparent)`,
+        }}>
+            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: size * 0.42 }}>{n}</span>
+            {status === "done" && (
+                <span style={{
+                    position: "absolute", bottom: -3, right: -3,
+                    width: 18, height: 18, borderRadius: "50%",
+                    background: "#4a7c59", color: "#fff",
+                    display: "grid", placeItems: "center",
+                    border: "2px solid var(--surface-base, var(--bg, #fdf9f0))",
+                }}>
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M2 5l2.5 2.5L8 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </span>
+            )}
+        </div>
+    );
+}
+
+function UnitStatusChip({ status }: { status: "done" | "current" | "todo" }) {
+    if (status === "done") return (
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 4, paddingInline: "8px", paddingBlock: "3px", borderRadius: 999, background: "#e9f0ea", color: "#3a6347", fontSize: 10.5, fontWeight: 700 }}>
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5l2.5 2.5L9 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            Completed
+        </span>
+    );
+    if (status === "current") return (
+        <span style={{ display: "inline-flex", alignItems: "center", paddingInline: "8px", paddingBlock: "3px", borderRadius: 999, background: "#fbeae4", color: "var(--primary)", fontSize: 10.5, fontWeight: 700 }}>
+            In progress
+        </span>
+    );
+    return (
+        <span style={{ display: "inline-flex", alignItems: "center", paddingInline: "8px", paddingBlock: "3px", borderRadius: 999, background: "var(--surface-subtle, #f5f0e8)", color: "var(--text-muted)", fontSize: 10.5, fontWeight: 700 }}>
+            Upcoming
+        </span>
+    );
+}
+
+function DesktopUnitSection({
+    unit,
+    isOpen,
+    openWeekNumber,
+    openOptional,
+    currentId,
+    currentLabel,
+    guidedAssignments,
+    guidedProgress,
+    pulseCurrentActivity,
+    showUnitMonths = true,
+    onToggle,
+    onWeekToggle,
+    onOptionalToggle,
+}: {
+    unit: UnitSummary;
+    isOpen: boolean;
+    openWeekNumber: number | null;
+    openOptional: Record<number, boolean>;
+    currentId: string | null;
+    currentLabel: "Start here" | "Next up";
+    guidedAssignments: Record<string, GuidedAssignmentInfo>;
+    guidedProgress: Record<string, string | null>;
+    pulseCurrentActivity?: boolean;
+    showUnitMonths?: boolean;
+    onToggle: () => void;
+    onWeekToggle: (weekNumber: number) => void;
+    onOptionalToggle: (weekNumber: number) => void;
+}) {
+    const tone = getCourseMapUnitTone(unit.unitNumber);
+    return (
+        <div
+            id={`unit-${unit.unitNumber}`}
+            className={`dashboard-panel overflow-hidden ${MAP_SCROLL_MARGIN}`}
+            style={{ borderRadius: 20 }}
+        >
+            <button
+                type="button"
+                onClick={onToggle}
+                aria-expanded={isOpen}
+                className="w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                style={{
+                    display: "flex", alignItems: "center", gap: 14,
+                    padding: "16px 18px",
+                    background: isOpen ? `linear-gradient(135deg, ${tone.surface}, transparent)` : "transparent",
+                    border: "none",
+                }}
+            >
+                <UnitBadge n={unit.unitNumber} status={unit.status} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                        <span style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: ".08em", textTransform: "uppercase", color: tone.accent }}>
+                            {showUnitMonths ? unit.unitMonth : `Unit ${unit.unitNumber}`}
+                        </span>
+                        <UnitStatusChip status={unit.status} />
+                    </div>
+                    <div className="font-display" style={{ fontWeight: 700, fontSize: 17, marginTop: 3, lineHeight: 1.15, color: "var(--text)" }}>
+                        {unit.unitTitle}
+                    </div>
+                    <div style={{ fontSize: 11.5, color: "var(--text-muted)", marginTop: 3 }}>
+                        {formatUnitProgressLabel(unit.doneWeeks, unit.totalWeeks, showUnitMonths)}
+                    </div>
+                </div>
+                <span style={{
+                    color: "var(--text-muted)", flexShrink: 0,
+                    transform: isOpen ? "rotate(90deg)" : "none",
+                    transition: "transform .2s",
+                }}>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 5l5 5-5 5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </span>
+            </button>
+
+            {isOpen && (
+                <div style={{ padding: "4px 18px 18px", display: "grid", gap: 10 }}>
+                    {unit.weeks.map((week) => (
+                        <div key={week.level.levelNumber} id={`week-${week.level.levelNumber}`} className={MAP_SCROLL_MARGIN}>
+                            <DesktopWeekPanel
+                                week={week}
+                                isOpen={openWeekNumber === week.level.levelNumber}
+                                currentId={currentId}
+                                currentLabel={currentLabel}
+                                guidedAssignments={guidedAssignments}
+                                guidedProgress={guidedProgress}
+                                optionalOpen={Boolean(openOptional[week.level.levelNumber])}
+                                pulseCurrent={pulseCurrentActivity}
+                                onToggle={() => onWeekToggle(week.level.levelNumber)}
+                                onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
+                            />
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
+
+function MobileUnitSection({
+    unit,
+    isOpen,
+    openWeekNumber,
+    openOptional,
+    currentId,
+    currentLabel,
+    guidedAssignments,
+    guidedProgress,
+    showUnitMonths = true,
+    onToggle,
+    onWeekToggle,
+    onOptionalToggle,
+}: {
+    unit: UnitSummary;
+    isOpen: boolean;
+    openWeekNumber: number | null;
+    openOptional: Record<number, boolean>;
+    currentId: string | null;
+    currentLabel: "Start here" | "Next up";
+    guidedAssignments: Record<string, GuidedAssignmentInfo>;
+    guidedProgress: Record<string, string | null>;
+    showUnitMonths?: boolean;
+    onToggle: () => void;
+    onWeekToggle: (weekNumber: number) => void;
+    onOptionalToggle: (weekNumber: number) => void;
+}) {
+    const tone = getCourseMapUnitTone(unit.unitNumber);
+    return (
+        <div
+            id={`unit-${unit.unitNumber}`}
+            className={`dashboard-panel overflow-hidden ${MAP_SCROLL_MARGIN}`}
+            style={{ borderRadius: 18 }}
+        >
+            <button
+                type="button"
+                onClick={onToggle}
+                aria-expanded={isOpen}
+                className="w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                style={{
+                    display: "flex", alignItems: "center", gap: 12,
+                    padding: "14px 14px",
+                    background: isOpen ? `linear-gradient(135deg, ${tone.surface}, transparent)` : "transparent",
+                    border: "none",
+                }}
+            >
+                <UnitBadge n={unit.unitNumber} status={unit.status} size={40} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+                        <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: ".08em", textTransform: "uppercase", color: tone.accent }}>
+                            {showUnitMonths ? unit.unitMonth : `Unit ${unit.unitNumber}`}
+                        </span>
+                        <UnitStatusChip status={unit.status} />
+                    </div>
+                    <div className="font-display" style={{ fontWeight: 700, fontSize: 15, marginTop: 3, lineHeight: 1.15, color: "var(--text)" }}>
+                        {unit.unitTitle}
+                    </div>
+                    <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 2 }}>
+                        {formatUnitProgressLabel(unit.doneWeeks, unit.totalWeeks, showUnitMonths)}
+                    </div>
+                </div>
+                <span style={{
+                    color: "var(--text-muted)", flexShrink: 0,
+                    transform: isOpen ? "rotate(90deg)" : "none",
+                    transition: "transform .2s",
+                }}>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M6.5 4.5l5 4.5-5 4.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </span>
+            </button>
+
+            {isOpen && (
+                <div style={{ padding: "4px 14px 16px", display: "grid", gap: 10 }}>
+                    {unit.weeks.map((week) => (
+                        <div key={week.level.levelNumber} id={`week-${week.level.levelNumber}`} className={MAP_SCROLL_MARGIN}>
+                            <MobileWeekCard
+                                week={week}
+                                isOpen={openWeekNumber === week.level.levelNumber}
+                                optionalOpen={Boolean(openOptional[week.level.levelNumber])}
+                                currentId={currentId}
+                                currentLabel={currentLabel}
+                                guidedAssignments={guidedAssignments}
+                                guidedProgress={guidedProgress}
+                                onToggle={() => onWeekToggle(week.level.levelNumber)}
+                                onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
+                            />
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
+
 function MobileWeekCard({
     week,
     isOpen,
@@ -518,7 +789,7 @@ function MobileWeekCard({
                     tabIndex={-1}
                     className="sr-only"
                 >
-                    Week {week.level.levelNumber}: {week.level.levelTitle}
+                    {formatLevelLabel(week.level.levelNumber)}: {week.level.levelTitle}
                 </h2>
             ) : null}
             <button
@@ -532,7 +803,7 @@ function MobileWeekCard({
                         {week.level.levelNumber}
                     </span>
                     <span className="min-w-0 flex-1 text-[11px] font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
-                        Week {week.level.levelNumber}
+                        {formatLevelLabel(week.level.levelNumber)}
                     </span>
                     <span className="shrink-0 rounded-full border px-2.5 py-1 text-xs font-bold tabular-nums text-[var(--unit-accent,#6a8d73)]" style={{ borderColor: "color-mix(in srgb, var(--unit-accent,#6a8d73) 35%, var(--border-subtle))" }}>
                         {week.requiredDone} / {week.requiredTotal}
@@ -555,21 +826,23 @@ function MobileWeekCard({
 
             {isOpen ? (
                 <div className="mt-5 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
-                    <div className="relative ml-[31px]">
-                        <div className="absolute -left-[22px] bottom-4 top-4 w-px rounded-full bg-[var(--border-subtle)]" />
-                        <div className="space-y-1">
-                            {week.level.requiredActivities.map((activity) => (
-                                <MobileActivityRow
-                                    key={activity.id}
-                                    activity={activity}
-                                    assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
-                                    isCompleted={isActivityCompleted(activity, guidedProgress)}
-                                    isCurrent={activity.id === currentId}
-                                    currentLabel={currentLabel}
-                                />
-                            ))}
-                        </div>
-                    </div>
+                    {(() => {
+                        const returnHref = buildMapReturnHref(week.level.levelNumber, true);
+                        const timelineItems = buildWeekTimelineItems(
+                            week.level.requiredActivities,
+                            guidedProgress,
+                            guidedAssignments,
+                            currentId,
+                            returnHref
+                        );
+                        const tone = getCourseMapUnitTone(week.unitNumber);
+                        return (
+                            <ActivityTimeline
+                                items={timelineItems}
+                                accent={{ fg: tone.accent, bg: tone.surface }}
+                            />
+                        );
+                    })()}
 
                     {getExtraPracticeActivities(week.level.extraPractice).length > 0 ? (
                         <div className="mt-5 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
@@ -600,7 +873,7 @@ function MobileWeekCard({
                                                 key={activity.id}
                                                 activity={activity}
                                                 assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
-                                                isCompleted={isActivityCompleted(activity, guidedProgress)}
+                                                isCompleted={isMapActivityCompleted(activity, guidedProgress)}
                                                 isCurrent={false}
                                                 currentLabel={currentLabel}
                                             />
@@ -797,7 +1070,7 @@ function DesktopWeekPanel({
                     </span>
                     <span className="min-w-0 flex-1">
                         <span className="block text-xs font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
-                            Week {week.level.levelNumber} / Level {week.level.levelNumber}
+                            {formatLevelLabel(week.level.levelNumber)}
                         </span>
                         <span className="mt-0.5 block font-display text-xl font-bold leading-tight text-text">
                             {week.level.levelTitle}
@@ -824,18 +1097,18 @@ function DesktopWeekPanel({
                 tabIndex={-1}
                 className="sr-only"
             >
-                Week {week.level.levelNumber}: {week.level.levelTitle}
+                {formatLevelLabel(week.level.levelNumber)}: {week.level.levelTitle}
             </h2>
             <button type="button" onClick={onToggle} aria-expanded={isOpen} className="flex w-full items-start gap-5 text-left">
                 <span className="min-w-0 flex-1">
                     <span className="block text-xs font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
-                        Week {week.level.levelNumber} / Level {week.level.levelNumber}
+                        {formatLevelLabel(week.level.levelNumber)}
                     </span>
                     <span className="mt-2 block font-display text-3xl font-bold leading-tight text-text">
                         {week.level.levelTitle}
                     </span>
                     {focus ? (
-                        <span className="mt-3 block max-w-2xl text-lg leading-relaxed text-text-muted">
+                        <span className="mt-2 block max-w-2xl text-sm leading-snug text-text-muted">
                             Focus: {focus}
                         </span>
                     ) : null}
@@ -846,21 +1119,24 @@ function DesktopWeekPanel({
                 <ChevronDown size={22} className="mt-2 shrink-0 rotate-180 text-text" aria-hidden />
             </button>
 
-            <div className="relative ml-10 mt-8">
-                <div className="absolute -left-[27px] bottom-10 top-8 w-px rounded-full bg-[var(--border-subtle)]" />
-                <div>
-                    {week.level.requiredActivities.map((activity) => (
-                        <DesktopActivityRow
-                            key={activity.id}
-                            activity={activity}
-                            assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
-                            isCompleted={isActivityCompleted(activity, guidedProgress)}
-                            isCurrent={activity.id === currentId}
-                            currentLabel={currentLabel}
-                            pulseCurrent={pulseCurrent}
+            <div className="mt-6">
+                {(() => {
+                    const returnHref = buildMapReturnHref(week.level.levelNumber, true);
+                    const timelineItems = buildWeekTimelineItems(
+                        week.level.requiredActivities,
+                        guidedProgress,
+                        guidedAssignments,
+                        currentId,
+                        returnHref
+                    );
+                    const tone = getCourseMapUnitTone(week.unitNumber);
+                    return (
+                        <ActivityTimeline
+                            items={timelineItems}
+                            accent={{ fg: tone.accent, bg: tone.surface }}
                         />
-                    ))}
-                </div>
+                    );
+                })()}
             </div>
 
             {extraPractice.length > 0 ? (
@@ -894,7 +1170,7 @@ function DesktopWeekPanel({
                                     key={activity.id}
                                     activity={activity}
                                     assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
-                                    isCompleted={isActivityCompleted(activity, guidedProgress)}
+                                    isCompleted={isMapActivityCompleted(activity, guidedProgress)}
                                     isCurrent={false}
                                     currentLabel={currentLabel}
                                 />
@@ -914,6 +1190,8 @@ function GuidedCoursePath({
     desktopLayout = false,
     initialWeek = null,
     focusNextActivity = false,
+    mobileWayfinding,
+    showUnitMonths = true,
 }: {
     guidedUnits: CourseMapUnit[];
     guidedAssignments: Record<string, GuidedAssignmentInfo>;
@@ -921,14 +1199,16 @@ function GuidedCoursePath({
     desktopLayout?: boolean;
     initialWeek?: number | null;
     focusNextActivity?: boolean;
+    mobileWayfinding?: ReactNode;
+    showUnitMonths?: boolean;
 }) {
     const pathname = usePathname();
     const requiredActivities = useMemo(() => flattenRequired(guidedUnits), [guidedUnits]);
     const completedRequired = requiredActivities.filter((activity) =>
-        isActivityCompleted(activity, guidedProgress)
+        isMapActivityCompleted(activity, guidedProgress)
     ).length;
     const firstIncomplete = requiredActivities.find((activity) =>
-        isActionable(activity) && !isActivityCompleted(activity, guidedProgress)
+        isMapActivityActionable(activity) && !isMapActivityCompleted(activity, guidedProgress)
     );
     const hasAnyCompleted = completedRequired > 0;
     const currentLabel = hasAnyCompleted ? "Next up" : "Start here";
@@ -936,12 +1216,14 @@ function GuidedCoursePath({
     const weekSummaries = useMemo<WeekSummary[]>(() => (
         guidedUnits.flatMap((unit) =>
             unit.levels.map((level) => {
-                const requiredDone = level.requiredActivities.filter((activity) =>
-                    isActivityCompleted(activity, guidedProgress)
+                const actionableRequired = level.requiredActivities.filter(isMapActivityActionable);
+                const requiredDone = actionableRequired.filter((activity) =>
+                    isMapActivityCompleted(activity, guidedProgress)
                 ).length;
-                const requiredTotal = level.requiredActivities.length;
+                const requiredTotal = actionableRequired.length;
                 return {
                     unitNumber: unit.unitNumber,
+                    unitTitle: unit.unitTitle,
                     unitMonth: unit.month,
                     level,
                     requiredDone,
@@ -952,7 +1234,40 @@ function GuidedCoursePath({
             })
         )
     ), [guidedUnits, guidedProgress, currentId]);
+
+    const unitSummaries = useMemo<UnitSummary[]>(() => {
+        const map = new Map<number, UnitSummary>();
+        for (const week of weekSummaries) {
+            if (!map.has(week.unitNumber)) {
+                map.set(week.unitNumber, {
+                    unitNumber: week.unitNumber,
+                    unitTitle: week.unitTitle,
+                    unitMonth: week.unitMonth,
+                    weeks: [],
+                    doneWeeks: 0,
+                    totalWeeks: 0,
+                    hasCurrent: false,
+                    status: "todo",
+                });
+            }
+            const u = map.get(week.unitNumber)!;
+            u.weeks.push(week);
+            u.totalWeeks++;
+            if (week.isDone) u.doneWeeks++;
+            if (week.hasCurrent) u.hasCurrent = true;
+        }
+        for (const u of map.values()) {
+            u.status = u.doneWeeks === u.totalWeeks && u.totalWeeks > 0
+                ? "done"
+                : u.hasCurrent
+                    ? "current"
+                    : "todo";
+        }
+        return Array.from(map.values());
+    }, [weekSummaries]);
+
     const currentWeek = weekSummaries.find((week) => week.hasCurrent) ?? weekSummaries.find((week) => !week.isDone) ?? weekSummaries[0];
+    const currentUnit = unitSummaries.find((u) => u.hasCurrent) ?? unitSummaries.find((u) => u.status !== "done") ?? unitSummaries[0];
     const progressWeekNumber = currentWeek?.level.levelNumber ?? null;
     const resolveOpenWeek = () =>
         resolveInitialMapOpenWeek({
@@ -960,6 +1275,7 @@ function GuidedCoursePath({
             hashWeek: typeof window !== "undefined" ? parseMapWeekFromHash(window.location.hash) : null,
             progressWeek: progressWeekNumber,
         });
+    const [openUnitNumber, setOpenUnitNumber] = useState<number | null>(() => currentUnit?.unitNumber ?? null);
     const [mobileOpenWeek, setMobileOpenWeek] = useState<number | null>(resolveOpenWeek);
     const [mobileOptionalOpen, setMobileOptionalOpen] = useState<Record<number, boolean>>({});
     const [desktopSelectedWeek, setDesktopSelectedWeek] = useState<number | null>(resolveOpenWeek);
@@ -977,6 +1293,8 @@ function GuidedCoursePath({
             : null;
 
     const navigateToWeek = useCallback((weekNumber: number, focusActivity = false) => {
+        const parentUnit = weekSummaries.find((w) => w.level.levelNumber === weekNumber);
+        if (parentUnit) setOpenUnitNumber(parentUnit.unitNumber);
         if (desktopLayout) {
             setDesktopSelectedWeek(weekNumber);
         } else {
@@ -991,7 +1309,7 @@ function GuidedCoursePath({
                 focusMapWeekHeading(weekNumber);
             }
         });
-    }, [desktopLayout]);
+    }, [desktopLayout, weekSummaries]);
 
     useEffect(() => {
         if (didInitialScroll.current) return;
@@ -1063,199 +1381,78 @@ function GuidedCoursePath({
     let content: ReactNode;
 
     if (!desktopLayout) {
-        const remainingInCurrentWeek = currentWeek
-            ? currentWeek.level.requiredActivities.filter((activity) =>
-                !isActivityCompleted(activity, guidedProgress)
-            ).length
-            : 0;
-        const currentWeekIndex = currentWeek
-            ? weekSummaries.findIndex((week) => week.level.levelNumber === currentWeek.level.levelNumber)
-            : -1;
-        const showCurrentUnitHeader = currentWeek && (
-            currentWeekIndex === 0 ||
-            weekSummaries[currentWeekIndex - 1]?.unitNumber !== currentWeek.unitNumber
-        );
-
         content = (
-            <div className="space-y-5">
-                <h2 className="font-display text-xl font-bold text-text">Your Path</h2>
-
-                {firstIncomplete ? (
-                    <MobileNextUpCard
-                        activity={firstIncomplete}
-                        assignment={firstIncomplete.activityId ? guidedAssignments[firstIncomplete.activityId] : undefined}
-                        currentLabel={currentLabel}
-                        unitNumber={currentWeek?.unitNumber ?? 1}
-                    />
-                ) : null}
-
-                {currentWeek && showCurrentUnitHeader ? (
-                    <div id={`unit-${currentWeek.unitNumber}`} className={MAP_SCROLL_MARGIN}>
-                        <UnitSectionHeader
-                            unitNumber={currentWeek.unitNumber}
-                            unitMonth={currentWeek.unitMonth}
-                        />
-                    </div>
-                ) : null}
-
-                {currentWeek ? (
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setMobileOpenWeek((prev) =>
-                                prev === currentWeek.level.levelNumber ? null : currentWeek.level.levelNumber
-                            )
-                        }
-                        aria-expanded={mobileOpenWeek === currentWeek.level.levelNumber}
-                        className="dashboard-panel flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-3.5 text-left"
-                        style={{
-                            ...courseMapUnitToneStyle(currentWeek.unitNumber),
-                            borderColor: "color-mix(in srgb, var(--unit-accent) 35%, var(--border-subtle))",
-                        }}
-                    >
-                        <span>
-                            <span className="block text-sm font-bold text-text">
-                                {remainingInCurrentWeek} {remainingInCurrentWeek === 1 ? "activity" : "activities"} remaining
-                            </span>
-                            <span className="mt-0.5 block text-sm text-[var(--unit-accent,#6a8d73)]">
-                                {mobileOpenWeek === currentWeek.level.levelNumber ? "Hide this week" : "View this week"}
-                            </span>
-                        </span>
-                        <ChevronDown
-                            size={18}
-                            className="shrink-0 text-[var(--unit-accent,#6a8d73)] transition-transform"
-                            style={{
-                                transform: mobileOpenWeek === currentWeek.level.levelNumber ? "rotate(180deg)" : undefined,
-                            }}
-                            aria-hidden
-                        />
-                    </button>
-                ) : null}
-
-                {currentWeek && mobileOpenWeek === currentWeek.level.levelNumber ? (
-                    <MobileWeekCard
-                        week={currentWeek}
-                        isOpen
-                        optionalOpen={Boolean(mobileOptionalOpen[currentWeek.level.levelNumber])}
-                        currentId={currentId}
-                        currentLabel={currentLabel}
-                        guidedAssignments={guidedAssignments}
-                        guidedProgress={guidedProgress}
-                        onToggle={() => setMobileOpenWeek(null)}
-                        onToggleOptional={() =>
-                            setMobileOptionalOpen((prev) => ({
-                                ...prev,
-                                [currentWeek.level.levelNumber]: !prev[currentWeek.level.levelNumber],
-                            }))
-                        }
-                    />
-                ) : null}
+            <div className="space-y-3">
+                {mobileWayfinding}
 
                 <div className="space-y-3">
-                    {weekSummaries
-                        .filter((week) => week.level.levelNumber !== currentWeek?.level.levelNumber)
-                        .map((week) => {
-                            const index = weekSummaries.findIndex(
-                                (candidate) => candidate.level.levelNumber === week.level.levelNumber
-                            );
-                            const isFirstUnitWeek = index === 0 || weekSummaries[index - 1]?.unitNumber !== week.unitNumber;
-
-                            return (
-                                <div
-                                    key={week.level.levelNumber}
-                                    id={isFirstUnitWeek ? `unit-${week.unitNumber}` : undefined}
-                                    className={isFirstUnitWeek ? MAP_SCROLL_MARGIN : undefined}
-                                >
-                                    {isFirstUnitWeek ? (
-                                        <UnitSectionHeader
-                                            unitNumber={week.unitNumber}
-                                            unitMonth={week.unitMonth}
-                                        />
-                                    ) : null}
-                                    <MobileWeekCard
-                                        week={week}
-                                        isOpen={mobileOpenWeek === week.level.levelNumber}
-                                        optionalOpen={Boolean(mobileOptionalOpen[week.level.levelNumber])}
-                                        currentId={currentId}
-                                        currentLabel={currentLabel}
-                                        guidedAssignments={guidedAssignments}
-                                        guidedProgress={guidedProgress}
-                                        onToggle={() =>
-                                            setMobileOpenWeek((prev) =>
-                                                prev === week.level.levelNumber ? null : week.level.levelNumber
-                                            )
-                                        }
-                                        onToggleOptional={() =>
-                                            setMobileOptionalOpen((prev) => ({
-                                                ...prev,
-                                                [week.level.levelNumber]: !prev[week.level.levelNumber],
-                                            }))
-                                        }
-                                    />
-                                </div>
-                            );
-                        })}
+                    {unitSummaries.map((unit) => (
+                        <MobileUnitSection
+                            key={unit.unitNumber}
+                            unit={unit}
+                            isOpen={openUnitNumber === unit.unitNumber}
+                            openWeekNumber={mobileOpenWeek}
+                            openOptional={mobileOptionalOpen}
+                            currentId={currentId}
+                            currentLabel={currentLabel}
+                            guidedAssignments={guidedAssignments}
+                            guidedProgress={guidedProgress}
+                            showUnitMonths={showUnitMonths}
+                            onToggle={() =>
+                                setOpenUnitNumber((prev) =>
+                                    prev === unit.unitNumber ? null : unit.unitNumber
+                                )
+                            }
+                            onWeekToggle={(weekNumber) =>
+                                setMobileOpenWeek((prev) =>
+                                    prev === weekNumber ? null : weekNumber
+                                )
+                            }
+                            onOptionalToggle={(weekNumber) =>
+                                setMobileOptionalOpen((prev) => ({
+                                    ...prev,
+                                    [weekNumber]: !prev[weekNumber],
+                                }))
+                            }
+                        />
+                    ))}
                 </div>
             </div>
         );
     } else {
         content = (
-        <div className="space-y-6">
-            {firstIncomplete ? (
-                <DesktopNextUpCard
-                    activity={firstIncomplete}
-                    assignment={firstIncomplete.activityId ? guidedAssignments[firstIncomplete.activityId] : undefined}
+        <div className="space-y-4">
+            {unitSummaries.map((unit) => (
+                <DesktopUnitSection
+                    key={unit.unitNumber}
+                    unit={unit}
+                    isOpen={openUnitNumber === unit.unitNumber}
+                    openWeekNumber={desktopSelectedWeek}
+                    openOptional={desktopOptionalOpen}
+                    currentId={currentId}
                     currentLabel={currentLabel}
-                    progressText={currentWeek ? `${currentWeek.requiredDone} of ${currentWeek.requiredTotal} activities completed` : undefined}
-                    unitNumber={currentWeek?.unitNumber ?? 1}
+                    guidedAssignments={guidedAssignments}
+                    guidedProgress={guidedProgress}
+                    pulseCurrentActivity={pulseCurrentActivity}
+                    showUnitMonths={showUnitMonths}
+                    onToggle={() =>
+                        setOpenUnitNumber((prev) =>
+                            prev === unit.unitNumber ? null : unit.unitNumber
+                        )
+                    }
+                    onWeekToggle={(weekNumber) =>
+                        setDesktopSelectedWeek((prev) =>
+                            prev === weekNumber ? null : weekNumber
+                        )
+                    }
+                    onOptionalToggle={(weekNumber) =>
+                        setDesktopOptionalOpen((prev) => ({
+                            ...prev,
+                            [weekNumber]: !prev[weekNumber],
+                        }))
+                    }
                 />
-            ) : (
-                <section className="dashboard-panel rounded-2xl p-6">
-                    <p className="text-[11px] font-bold uppercase tracking-wide text-text-muted">Path complete</p>
-                    <h2 className="mt-2 font-display text-2xl font-bold text-text">All required lessons are complete.</h2>
-                </section>
-            )}
-
-            <div className="space-y-4">
-                {weekSummaries.map((week, index) => {
-                    const isFirstUnitWeek = index === 0 || weekSummaries[index - 1]?.unitNumber !== week.unitNumber;
-                    return (
-                        <div
-                            key={week.level.levelNumber}
-                            id={isFirstUnitWeek ? `unit-${week.unitNumber}` : undefined}
-                            className={isFirstUnitWeek ? MAP_SCROLL_MARGIN : undefined}
-                        >
-                            {isFirstUnitWeek ? (
-                                <UnitSectionHeader
-                                    unitNumber={week.unitNumber}
-                                    unitMonth={week.unitMonth}
-                                />
-                            ) : null}
-                            <DesktopWeekPanel
-                                week={week}
-                                isOpen={openDesktopWeek === week.level.levelNumber}
-                                currentId={currentId}
-                                currentLabel={currentLabel}
-                                guidedAssignments={guidedAssignments}
-                                guidedProgress={guidedProgress}
-                                optionalOpen={Boolean(desktopOptionalOpen[week.level.levelNumber])}
-                                pulseCurrent={pulseCurrentActivity}
-                                onToggle={() =>
-                                    setDesktopSelectedWeek((prev) =>
-                                        prev === week.level.levelNumber ? null : week.level.levelNumber
-                                    )
-                                }
-                                onToggleOptional={() =>
-                                    setDesktopOptionalOpen((prev) => ({
-                                        ...prev,
-                                        [week.level.levelNumber]: !prev[week.level.levelNumber],
-                                    }))
-                                }
-                            />
-                        </div>
-                    );
-                })}
-            </div>
+            ))}
         </div>
         );
     }
@@ -1451,6 +1648,8 @@ export function ClassCoursePath({
     desktopLayout = false,
     initialWeek = null,
     focusNextActivity = false,
+    mobileWayfinding,
+    showUnitMonths = true,
 }: Props) {
     if (guidedUnits.length > 0) {
         return (
@@ -1461,6 +1660,8 @@ export function ClassCoursePath({
                 desktopLayout={desktopLayout}
                 initialWeek={initialWeek}
                 focusNextActivity={focusNextActivity}
+                mobileWayfinding={mobileWayfinding}
+                showUnitMonths={showUnitMonths}
             />
         );
     }

@@ -5,29 +5,33 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
 import { trackLogin, getTimeframedLeaderboard } from "@/lib/gamification";
-import { buildCalendarWeekActivity, getCalendarWeekStart } from "@/lib/gamification/calendar-week";
-import { formatDashboardWeekRangeLabel } from "@/lib/dashboard/week-range-label";
+import { getStudentMomentumSnapshot } from "@/lib/dashboard/student-momentum";
 import { logger } from "@/lib/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
 import Link from "next/link";
-import { UsersIcon } from "@/components/icons/Icons";
 import {
     MiniCalendar,
     CalendarEvent,
     UpcomingEventsList,
-    TodaysAssignments,
     ClassAnnouncement,
+    NewThisWeekSection,
     MissedClassCatchUpCard,
     MomentumCard,
     ExploreCategoriesCarousel,
 } from "@/components/dashboard";
+import { DashboardResumeHero } from "@/components/dashboard/DashboardResumeHero";
+import { DashboardNextStepFallbackCard } from "@/components/dashboard/DashboardNextStepFallbackCard";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
-import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import { buildActivityHref } from "@/lib/learner-navigation";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
 import { getLearnerState } from "@/lib/learner-mode";
 import { isCatchUpPathEnabled } from "@/lib/catch-up-deadlines";
+import { AdminViewSwitcher } from "@/components/dashboard/AdminViewSwitcher";
+import { isAdminInStudentMode } from "@/lib/admin-student-view";
+import { persistLearnerPreview } from "@/lib/learner-preview";
+import { canUseTeacherTools } from "@/lib/roles";
 
 type StudentEnrollment = {
     classId: string;
@@ -72,6 +76,71 @@ function isWithinNewReleaseWindow(date: Date | null | undefined): boolean {
     return ageMs >= 0 && ageMs <= NEW_RELEASE_WINDOW_MS;
 }
 
+function FeaturedFallbackRow() {
+    const cards = [
+        {
+            title: "Level 3 Group Trivia",
+            meta: "Game · 10 min",
+            href: "/dashboard/activities?category=games",
+        },
+        {
+            title: "Comparison Battle",
+            meta: "Game · 10 min",
+            href: "/dashboard/activities?category=games",
+        },
+    ];
+
+    return (
+        <section aria-label="Featured for you">
+            <div className="mb-3.5 flex items-center justify-between gap-3">
+                <h2 className="font-display text-xl font-bold text-text">Featured for you</h2>
+                <Link
+                    href="/dashboard/activities"
+                    className="text-sm font-bold text-primary transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 rounded"
+                >
+                    View all →
+                </Link>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+                {cards.map((card) => (
+                    <Link
+                        key={card.title}
+                        href={card.href}
+                        className="group rounded-[18px] border px-4 py-3.5 flex items-center gap-3.5 transition-[box-shadow,transform,border-color] duration-200 hover:-translate-y-px hover:shadow-[0_2px_4px_rgba(40,31,23,0.05),0_10px_24px_rgba(40,31,23,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
+                        style={{
+                            background: "var(--surface-elevated, #ffffff)",
+                            borderColor: "color-mix(in srgb, var(--dashboard-border) 72%, transparent)",
+                            boxShadow: "0 1px 2px rgba(40,31,23,0.04), 0 6px 18px rgba(40,31,23,0.05)",
+                        }}
+                    >
+                        <span
+                            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[16px] text-2xl"
+                            style={{
+                                background: "color-mix(in srgb, var(--tone-games-chip-bg) 72%, var(--surface-elevated, #ffffff))",
+                                boxShadow: "inset 0 0 0 1px color-mix(in srgb, var(--tone-games-border) 42%, transparent)",
+                            }}
+                            aria-hidden
+                        >
+                            🎮
+                        </span>
+                        <span className="min-w-0">
+                            <span className="inline-flex rounded-full border px-2 py-[3px] text-[10px] font-semibold leading-none text-[var(--tone-games-chip-text)]">
+                                Featured
+                            </span>
+                            <span className="mt-1.5 block truncate text-[15px] font-bold leading-tight text-text">
+                                {card.title}
+                            </span>
+                            <span className="mt-1 block text-xs text-text-muted/90">
+                                {card.meta}
+                            </span>
+                        </span>
+                    </Link>
+                ))}
+            </div>
+        </section>
+    );
+}
+
 export default async function DashboardPage() {
     const session = await getServerSession(authOptions);
 
@@ -81,6 +150,13 @@ export default async function DashboardPage() {
 
     const userRole = session.user.role;
     const userId = session.user.id;
+
+    if (
+        canUseTeacherTools(session.user) &&
+        (await isAdminInStudentMode(session.user))
+    ) {
+        await persistLearnerPreview(userId, "classroom");
+    }
 
     void trackLogin(userId).catch((err) => {
         logger.warn("Failed to track login for streak", { userId, error: String(err) });
@@ -294,16 +370,6 @@ export default async function DashboardPage() {
         new Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>()
     );
 
-    let dailyVocabHabit = null;
-    try {
-        dailyVocabHabit = await getDailyVocabHabitForUser(prisma, userId);
-    } catch (error) {
-        logger.warn("Failed to load daily vocab habit for student dashboard", {
-            userId,
-            error: String(error),
-        });
-    }
-
     const featuredAssignments = featuredAssignmentsDeduped
         .filter((a) => a.activityId !== "vocab-daily-review")
         .map((a) => {
@@ -325,6 +391,27 @@ export default async function DashboardPage() {
             };
         });
 
+    const newThisWeekItems = featuredAssignments;
+    const nextStepAssignment = featuredAssignments[0] ?? allAssignments[0] ?? null;
+    const nextStepFallback = nextStepAssignment ? (
+        <DashboardNextStepFallbackCard
+            href={buildActivityHref(nextStepAssignment.activityId, nextStepAssignment.id)}
+            title={nextStepAssignment.title || nextStepAssignment.activity.title}
+            type={nextStepAssignment.activity.type}
+            category={nextStepAssignment.activity.category}
+            minutes={nextStepAssignment.activity.type?.toLowerCase() === "guide" ? 5 : 10}
+        />
+    ) : (
+        <DashboardNextStepFallbackCard
+            href="/dashboard/activities?category=games"
+            title="Vocab: Digital Habits"
+            type="game"
+            category="games"
+            minutes={10}
+            icon="🎮"
+        />
+    );
+
     const calendarEvents: CalendarEvent[] = [
         ...allAssignments
             .filter((a) => a.dueDate)
@@ -345,23 +432,10 @@ export default async function DashboardPage() {
     ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     const firstClassId = enrollments[0]?.classId;
-    const calendarWeekStart = getCalendarWeekStart();
-    const [studentLeaderboard, studentUserStats, studentLedgerEntries] = await Promise.all([
+    const [studentLeaderboard, momentumSnapshot] = await Promise.all([
         firstClassId ? getTimeframedLeaderboard("week", 20, firstClassId) : Promise.resolve([]),
-        withPrismaReadRetry(() =>
-            prisma.user.findUnique({
-                where: { id: userId },
-                select: { currentStreak: true, longestStreak: true, points: true },
-            })
-        ),
-        withPrismaReadRetry(() =>
-            prisma.pointsLedger.findMany({
-                where: { userId, createdAt: { gte: calendarWeekStart } },
-                select: { createdAt: true },
-            })
-        ),
+        getStudentMomentumSnapshot(userId),
     ]);
-    const studentSevenDayActivity = buildCalendarWeekActivity(studentLedgerEntries);
     const studentEntry = studentLeaderboard.find((e) => e.id === userId);
     const studentLeaderboardRank = studentEntry && studentEntry.rank <= 3 ? studentEntry.rank : null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
@@ -370,53 +444,24 @@ export default async function DashboardPage() {
 
     return (
         <div className="min-h-screen bg-bg">
-            <main id="main-content" className="container mx-auto pt-2 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
+            <main id="main-content" className="container mx-auto pt-0 md:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px] lg:pt-4">
+                <AdminViewSwitcher user={{ id: userId, role: userRole }} currentView="classroom" />
                 {/* ── MOBILE + TABLET layout (< lg) ── */}
-                <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 md:items-start">
-                    <div className="md:col-span-8 min-w-0 space-y-5">
-                        <ClassAnnouncement announcements={classAnnouncements} />
+                <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-0 p-0 md:p-6">
+                    <div className="min-w-0 space-y-3 md:space-y-5">
                         <div className="md:hidden">
-                            <MomentumCard
-                                initialStreak={studentUserStats?.currentStreak ?? 0}
-                                initialLongestStreak={studentUserStats?.longestStreak ?? 0}
-                                initialSevenDayActivity={studentSevenDayActivity}
-                                initialTotalPoints={studentUserStats?.points ?? 0}
-                            />
+                            <MomentumCard variant="header" embedded borderless {...momentumSnapshot} />
                         </div>
+                        <ClassAnnouncement announcements={classAnnouncements} />
                         {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
-                        <section aria-label="This Week's Path">
-                            <TodaysAssignments
-                                initialAssignments={featuredAssignments}
-                                title="This Week's Path"
-                                ctaLabel="Start"
-                                variant="checklist"
-                                sectionId="weekly-path"
-                                pinnedHabit={dailyVocabHabit}
-                                mobileTasksLinkHref="/dashboard/activities"
-                                mobileTasksLinkLabel="All Activities"
-                                hideProgressBar
-                            />
-                        </section>
+                        <DashboardResumeHero user={{ id: userId, role: userRole }} fallback={nextStepFallback} />
+                        {newThisWeekItems.length > 0 ? (
+                            <NewThisWeekSection items={newThisWeekItems} />
+                        ) : (
+                            <FeaturedFallbackRow />
+                        )}
                         <ExploreCategoriesCarousel />
                     </div>
-                    <aside className="hidden md:block md:col-span-4">
-                        <div className="dashboard-panel paper-texture sticky top-4 p-5 space-y-5">
-                            <MomentumCard variant="sidebar" initialStreak={studentUserStats?.currentStreak ?? 0} initialLongestStreak={studentUserStats?.longestStreak ?? 0} initialSevenDayActivity={studentSevenDayActivity} initialTotalPoints={studentUserStats?.points ?? 0} />
-                            <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
-                                <MiniCalendar compact flat events={calendarEvents} />
-                            </div>
-                            <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
-                                <UpcomingEventsList events={calendarEvents.filter(event => { const today = new Date(); today.setHours(0,0,0,0); const end = event.endDate ? new Date(event.endDate) : new Date(event.date); end.setHours(0,0,0,0); return end >= today; })} allowDelete={false} showSyncedLabel={false} />
-                            </div>
-                            <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
-                                <div className="flex items-center gap-3">
-                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary/10 text-secondary shrink-0"><UsersIcon className="h-4 w-4" /></div>
-                                    <div className="min-w-0"><h3 className="text-sm font-bold text-text">Invite Friends</h3><p className="text-xs text-text-muted leading-snug">Share your invite link so others can join your learning circle.</p></div>
-                                </div>
-                                <Link href="/dashboard/invite" className="dashboard-soft-button mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-secondary/25 bg-[var(--dashboard-surface-start)] px-4 py-2.5 text-sm font-semibold text-secondary"><UsersIcon className="h-4 w-4" />Open Invite Link</Link>
-                            </div>
-                        </div>
-                    </aside>
                 </div>
 
                 {/* ── DESKTOP layout (lg+) — Option 2: Card-Based & Focused ── */}
@@ -450,42 +495,23 @@ export default async function DashboardPage() {
                                         </span>
                                     ) : null}
                                 </h1>
-                                <p className="mt-1 text-sm text-text-muted/90">
-                                    {formatDashboardWeekRangeLabel(new Date())} · You&apos;re doing great!
+                                <p className="mt-1 text-sm font-medium text-text-muted/90">
+                                    You&apos;re making great progress.
                                 </p>
                             </div>
 
-                            {/* This Week's Path — primary focus card */}
-                            <div className="dashboard-panel rounded-2xl overflow-hidden">
-                                <div className="px-6 pt-5 pb-3 border-b flex items-center justify-between" style={{ borderColor: "var(--dashboard-border)" }}>
-                                    <div>
-                                        <h2 className="text-lg font-bold font-display text-text leading-tight">This Week&apos;s Path</h2>
-                                        <p className="text-xs text-text-muted mt-0.5">Focus on your goals</p>
-                                    </div>
-                                    <Link
-                                        href="/dashboard/map"
-                                        className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-lg px-3 py-1.5 transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                                        style={{ color: "var(--primary)" }}
-                                    >
-                                        Full map →
-                                    </Link>
-                                </div>
-                                <TodaysAssignments
-                                    weekHub
-                                    initialAssignments={featuredAssignments}
-                                    title={undefined}
-                                    ctaLabel="Start"
-                                    variant="checklist"
-                                    sectionId="weekly-path"
-                                    pinnedHabit={dailyVocabHabit}
-                                    hideProgressBar
-                                />
-                            </div>
+                            <DashboardResumeHero user={{ id: session.user.id, role: session.user.role }} fallback={nextStepFallback} />
+
+                            {newThisWeekItems.length > 0 ? (
+                                <NewThisWeekSection items={newThisWeekItems} />
+                            ) : (
+                                <FeaturedFallbackRow />
+                            )}
 
                             {/* Explore Activities — secondary card */}
-                            <div className="dashboard-panel rounded-2xl p-5">
+                            <section className="dashboard-panel rounded-2xl p-5" aria-label="Explore activities">
                                 <div className="flex items-center justify-between mb-4">
-                                    <h2 className="text-base font-bold font-display text-text">Explore Activities</h2>
+                                    <h2 className="text-base font-bold font-display text-text">New &amp; trending activities</h2>
                                     <Link
                                         href="/dashboard/activities"
                                         className="text-xs font-semibold rounded-lg px-2.5 py-1.5 transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
@@ -525,22 +551,15 @@ export default async function DashboardPage() {
                                         </Link>
                                     ))}
                                 </div>
-                            </div>
+                            </section>
                         </div>
 
                         {/* ── Right sidebar ── */}
                         <aside className="space-y-4 sticky top-4">
 
                             {/* Streak / Momentum card — top of sidebar */}
-                            <MomentumCard
-                                variant="sidebar"
-                                initialStreak={studentUserStats?.currentStreak ?? 0}
-                                initialLongestStreak={studentUserStats?.longestStreak ?? 0}
-                                initialSevenDayActivity={studentSevenDayActivity}
-                                initialTotalPoints={studentUserStats?.points ?? 0}
-                            />
+                            <MomentumCard variant="sidebar" {...momentumSnapshot} />
 
-                            {/* Calendar card */}
                             <div className="dashboard-panel paper-texture rounded-2xl p-5">
                                 <MiniCalendar compact flat events={calendarEvents} />
                                 <div className="border-t mt-4 pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
@@ -556,38 +575,6 @@ export default async function DashboardPage() {
                                 </div>
                             </div>
 
-                            {/* Small utility cards row — Course Map + Invite Friends */}
-                            <div className="grid grid-cols-2 gap-3">
-                                <Link
-                                    href="/dashboard/map"
-                                    className="group dashboard-panel dashboard-panel-hover rounded-2xl p-4 flex flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                                    style={{
-                                        background: "linear-gradient(135deg, color-mix(in srgb, var(--tone-grammar-chip-bg) 55%, var(--dashboard-surface-start)) 0%, var(--dashboard-surface-end) 100%)",
-                                        borderColor: "color-mix(in srgb, var(--primary) 18%, var(--border-subtle))",
-                                    }}
-                                >
-                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl text-lg shadow-sm" style={{ background: "var(--tone-grammar-chip-bg)", border: "1px solid color-mix(in srgb, var(--primary) 14%, transparent)" }}>
-                                        🗺️
-                                    </div>
-                                    <div className="min-w-0">
-                                        <p className="text-xs font-bold text-text leading-tight">Course Map</p>
-                                        <p className="text-[11px] font-semibold mt-1 transition-transform duration-200 group-hover:translate-x-0.5" style={{ color: "var(--primary)" }}>Open map →</p>
-                                    </div>
-                                </Link>
-
-                                <Link
-                                    href="/dashboard/invite"
-                                    className="group dashboard-panel dashboard-panel-hover rounded-2xl p-4 flex flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/40"
-                                >
-                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary/10 text-secondary shrink-0">
-                                        <UsersIcon className="h-4 w-4" />
-                                    </div>
-                                    <div className="min-w-0">
-                                        <p className="text-xs font-bold text-text leading-tight">Invite Friends</p>
-                                        <p className="text-[11px] font-semibold mt-1 text-secondary transition-transform duration-200 group-hover:translate-x-0.5">Open Invite Link</p>
-                                    </div>
-                                </Link>
-                            </div>
                         </aside>
                     </div>
                 </div>

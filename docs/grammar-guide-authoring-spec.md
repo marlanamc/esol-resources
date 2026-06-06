@@ -114,6 +114,17 @@ After creating those files, add the guide to `src/lib/course-map-data.ts`, regis
 npx tsx prisma/seed-course-map.ts
 ```
 
+**Registering the slug in `src/lib/grammar-content-loader.ts`:** The registry uses a three-property object — not a bare loader function. Add your entry alphabetically by slug:
+
+```ts
+"your-guide-name": {
+    sourceFile: "src/content/grammar/your-guide-name.ts",
+    loader: () => import("@/content/grammar/your-guide-name"),
+},
+```
+
+Find the right alphabetical position by searching for the slug that comes just before and just after yours. Both `sourceFile` and `loader` are required.
+
 ---
 
 ## Content File Template
@@ -159,20 +170,24 @@ export const yourGuideImages: Record<string, {
   credit: { name: string; url: string };
 }> = {
   sceneClinic: {
-    url: "https://images.unsplash.com/photo-XXXXXXX?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1234567890123-abcdefabcdef?w=1200&q=80&auto=format&fit=crop",
     alt: "Descriptive alt text for screen readers.",
-    unsplashId: "XXXXXXX",
+    unsplashId: "photo-1234567890123-abcdefabcdef",
     credit: { name: "Photographer Name", url: "https://unsplash.com/@handle" },
   },
 };
 ```
+
+**`unsplashId` format:** Always use the full `photo-XXXXXXXXX-XXXXXXXXX` format — copy the ID segment directly from the Unsplash photo URL and keep the `photo-` prefix. Do not strip it. Older files in the repo use bare numeric IDs without the prefix; ignore those for comparison purposes. The duplicate audit compares full strings, so a stripped ID will not match and will not protect against duplicates.
+
+**Credit field:** If you don't have the specific photographer's handle, use `{ name: "Unsplash", url: "https://unsplash.com" }` as a fallback. Update to the real photographer name before shipping to production.
 
 Pick Unsplash photos that show real people in real places — not stock-y poses. Clinics, buses, classrooms, apartment hallways, workplaces. Always include the credit.
 
 **No duplicate Unsplash photos across guides:**
 - Each guide gets its own `src/data/your-guide-images.generated.ts` file.
 - **Do not reuse the same `unsplashId` in another grammar guide** unless the repeat is intentional (for example, a deliberate visual callback learners should recognize). If you reuse one, add a short comment on that entry explaining why.
-- Before picking photos for a new guide, search `src/data/*-images.generated.ts` and treat every existing `unsplashId` as reserved.
+- Before picking photos for a new guide, run `grep -r "unsplashId" src/data/*-images.generated.ts -h` and treat every value as reserved. **Only check files that match `*-images.generated.ts` and contain the `unsplashId:` field** — `vocab-images-generated.ts` and other asset files use a different shape and will produce false positives.
 - After adding images, confirm no duplicate `unsplashId` values appear across generated image files unless documented as intentional.
 - Verify CDN URLs return HTTP 200 before committing (`curl -sI` on the `images.unsplash.com` URL).
 
@@ -273,6 +288,13 @@ elements: [
 - When contrasting two tenses side by side (put both elements in the same diagram)
 - In V3/perfect tense previews — include all four known tenses as context
 
+**Conditional and modal grammar:** The timeline zones represent real time, so they don't map cleanly onto hypothetical grammar. Use this convention:
+
+- **Second conditional if-clause** → `zone: "past"` with `verbLabel: "if + past simple (imaginary)"`
+- **Second conditional result clause** → `zone: "future"` with `verbLabel: "would + verb (imaginary result)"`
+- **First vs. second conditional contrast** → put both in the same diagram: first conditional result in `"future"`, second conditional result also in `"future"` but with a distinct label (e.g., `"would (imaginary)"` vs `"will (real)"`)
+- If a section covers only advice patterns or modal meaning (not tense contrast), you may omit `tenseDiagram` — the audit allowlist covers this.
+
 ---
 
 ### 4. `labelPill(text, color)`
@@ -361,6 +383,71 @@ Color classes by tense family:
 | `select` | Dropdown form choice when there are more than 3 options |
 | `checkbox` | Multi-correct answers — use sparingly |
 | `text` | **Only** for gap-fill with a short, predictable answer (one verb form, one word). Must have a small, finite set of `expectedAnswers`. Do NOT use for open-ended sentences. |
+
+### Exercise wrapper structure (required)
+
+The `exercises` field on a section is an array of **`Exercise` objects**, each of which groups one or more related items under a shared title. Individual question objects (the `ExerciseItem` shapes below) go inside the `items` array — they cannot be placed directly in `exercises`.
+
+```ts
+exercises: [
+  {
+    id: "section-slug-ex1",          // unique string, kebab-case
+    title: "Choose the right word",  // shown to the student as the exercise heading
+    instructions: "Pick the modal that fits each situation.",  // optional, shown below the title
+    items: [
+      // ← ExerciseItem objects go here (radio, text, word-scramble, etc.)
+      {
+        type: "radio",
+        label: "...",
+        options: [...],
+        expectedAnswer: "...",
+      },
+      {
+        type: "radio",
+        label: "...",
+        options: [...],
+        expectedAnswer: "...",
+      },
+    ],
+  },
+  {
+    id: "section-slug-ex2",
+    title: "Unscramble",
+    items: [
+      {
+        type: "word-scramble",
+        label: "Unscramble:",
+        words: [...],
+        correctAnswer: "...",
+      },
+    ],
+  },
+  {
+    id: "section-slug-ex3",
+    title: "Fill in the blank",
+    instructions: "Write the missing word.",
+    items: [
+      {
+        type: "text",
+        label: "She ___ wear her uniform.",
+        expectedAnswers: ["has to"],
+      },
+    ],
+  },
+],
+```
+
+**Grouping rules:**
+
+- Group 2–3 thematically related `radio` items into one exercise (e.g., "Choose the right word").
+- Keep `word-scramble` items one per exercise — they're visually large.
+- Keep `text` gap-fills one per exercise, or group 2 if they test the same form.
+- Give every exercise a unique `id` scoped to its section (e.g., `"must-ex1"`, `"have-to-ex2"`).
+- `instructions` is optional but useful when the task type is not obvious from the title.
+
+**Common mistake:** Putting `ExerciseItem` objects directly in `exercises: [...]` instead of inside `items: [...]`. TypeScript will catch this with `"type does not exist in type 'Exercise'"`.
+
+---
 
 ### Good exercise patterns
 
@@ -603,12 +690,16 @@ Add to `src/lib/course-map-data.ts` inside the correct week's `items` array:
   "id": "your-guide-name",
   "href": "/grammar-reader/your-guide-name",
   "slot": "required",
-  "order": 2,
+  "order": 4,
   "wrappedGame": false,
   "activityType": "guide",
   "title": "Your Guide Title"
 }
 ```
+
+Set `"order"` to one higher than the last existing item in that week's `items` array.
+
+If the week's `"title"` is a placeholder (e.g., `"Vacation Catch-Up"`) and you are adding a grammar guide, rename it to reflect the new content — for example, `"Second Conditional + Catch-Up"`. Keep existing items; just add the guide item at the end.
 
 Then seed:
 ```bash
@@ -624,15 +715,16 @@ Required course-map mini guides (weeks 1–18) are checked automatically in CI. 
 ### Commands
 
 ```bash
-npm run audit:mini-guides              # summary + tmp/mini-guides-audit/findings.json
+npm run audit:mini-guides              # summary + tmp/mini-guides-audit/findings.json (weeks 1–18)
+npm run audit:mini-guides -- --min-week 19 --max-week 29   # weeks 19–29 only
 npm run audit:mini-guides -- --report  # also writes docs/audits/mini-guides-w1-w18-review.md
 npm run audit:mini-guides -- --strict  # treat warnings as failures (same as vitest warning test)
 npm run test:vitest -- scripts/tests/mini-guides-audit.vitest.ts
 ```
 
-**CI:** GitHub Actions runs `npm run audit:mini-guides` on every push/PR. Vitest also fails if any required guide has errors or warnings.
+**CI:** GitHub Actions runs `npm run audit:mini-guides` on every push/PR (weeks 1–18). Vitest also fails if any required guide in weeks 1–18 or 19–29 has errors or warnings.
 
-**Scope:** All `slot: "required"` grammar guides in course-map weeks 1–18 (currently 19 guides). Full guides and optional items are not included unless added to the required slot.
+**Scope:** All `slot: "required"` grammar guides in course-map weeks 1–18 (19 guides) and weeks 19–29 (11 guides). Full guides and optional items are not included unless added to the required slot.
 
 ### What it checks
 

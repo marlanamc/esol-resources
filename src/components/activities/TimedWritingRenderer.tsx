@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import type { TimedWritingContent } from "@/types/activity";
 import { submitWithOutbox } from "@/lib/submissionOutbox";
 import { PointsToast } from "@/components/ui/PointsToast";
+import { CourseMapReturnButton } from "@/components/navigation/CourseMapReturnButton";
 import dynamic from "next/dynamic";
 
 const WritingSessionParticipant = dynamic(
@@ -515,6 +516,9 @@ function SoloWritingRenderer({
                         <p className="text-[var(--text)] leading-relaxed whitespace-pre-wrap text-sm">{text}</p>
                     </div>
                 )}
+                <div className="flex justify-center pt-2">
+                    <CourseMapReturnButton className="w-full max-w-md" layout="stacked" />
+                </div>
             </div>
         </>
     );

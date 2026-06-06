@@ -1103,7 +1103,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                         </div>
                         {mapReturn.isActive ? (
                             <p className="text-sm font-semibold text-slate-600">
-                                Returning to course map in {mapReturn.secondsLeft}s…{" "}
+                                Continuing to {mapReturn.destinationLabel} in {mapReturn.secondsLeft}s…{" "}
                                 <button type="button" onClick={mapReturn.goNow} className="font-black underline" style={{ color: COLORS.blue }}>
                                     Go now
                                 </button>
