@@ -215,7 +215,7 @@ export default async function AdminPage() {
         { href: "/admin/content", label: "Content Health", Icon: BookOpen, desc: "Releases, map items, kinds" },
         { href: "/admin/diagnostics", label: "Diagnostics", Icon: Stethoscope, desc: "Grammar skill gaps by class" },
         { href: "/dashboard/backend", label: "Legacy Backend", Icon: BarChart2, desc: "Full user table view" },
-        { href: "/summer-planning-wiki/", label: "Summer Planning Wiki", Icon: ScrollText, desc: "Research, roadmap, course plan", external: true },
+        { href: "/summer-planning-wiki", label: "Summer Planning Wiki", Icon: ScrollText, desc: "Research, roadmap, course plan", external: true },
     ] as const;
 
     return (

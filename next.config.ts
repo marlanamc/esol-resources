@@ -42,6 +42,14 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_BUILD_ID: buildId,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/summer-planning-wiki',
+        destination: '/summer-planning-wiki/index.html',
+      },
+    ];
+  },
   async headers() {
     return [
       {
