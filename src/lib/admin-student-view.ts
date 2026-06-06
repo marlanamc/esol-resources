@@ -1,24 +1,43 @@
 import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { isAdmin } from "@/lib/auth/roles";
+import { canUseTeacherTools } from "@/lib/auth/roles";
 
-export async function isAdminInStudentMode(user: { role?: string | null } | null | undefined): Promise<boolean> {
-    if (!isAdmin(user) || !("id" in (user ?? {}))) return false;
-    const userId = (user as { id: string }).id;
+type DashboardViewMode = "student" | "teaching" | "admin";
+
+function readDashboardViewMode(gameSettings: unknown): DashboardViewMode | null {
+    if (!gameSettings || typeof gameSettings !== "object" || Array.isArray(gameSettings)) {
+        return null;
+    }
+
+    const dashboard = (gameSettings as Record<string, unknown>).dashboard;
+    if (!dashboard || typeof dashboard !== "object" || Array.isArray(dashboard)) {
+        return null;
+    }
+
+    const mode = (dashboard as Record<string, unknown>).mode;
+    if (mode === "student" || mode === "teaching" || mode === "admin") {
+        return mode;
+    }
+
+    return null;
+}
+
+/** True when a teacher/admin is browsing learner dashboard routes in student view. */
+export async function isAdminInStudentMode(
+    user: { role?: string | null; id?: string } | null | undefined
+): Promise<boolean> {
+    if (!user?.id || !canUseTeacherTools(user)) return false;
 
     const prefs = await withPrismaReadRetry(() =>
         prisma.userPreferences.findUnique({
-            where: { userId },
+            where: { userId: user.id },
             select: { gameSettings: true },
         })
     );
 
-    if (!prefs?.gameSettings || typeof prefs.gameSettings !== "object" || Array.isArray(prefs.gameSettings)) {
-        return false;
-    }
+    const mode = readDashboardViewMode(prefs?.gameSettings);
+    if (mode === "teaching" || mode === "admin") return false;
 
-    const dashboard = (prefs.gameSettings as Record<string, unknown>).dashboard;
-    if (!dashboard || typeof dashboard !== "object" || Array.isArray(dashboard)) return false;
-
-    return (dashboard as Record<string, unknown>).mode === "student";
+    // Unset preference defaults to student view on /dashboard routes.
+    return true;
 }
