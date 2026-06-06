@@ -13,6 +13,37 @@ How to build a new grammar guide for Class Companion. Every guide follows this s
 
 ---
 
+## Characters and Cultural Representation
+
+Class Companion serves adult ESOL learners in East Boston — a community that is majority Latino (especially Guatemalan, Salvadoran, and Mexican), with large Haitian Creole, Brazilian Portuguese, Somali, and Vietnamese populations. The characters in every guide should reflect this.
+
+### Name variety
+
+Do not reuse the same name across sections or across guides. Pull from the communities actually represented in East Boston ESOL classrooms:
+
+| Background | Example names |
+| --- | --- |
+| Central American (Guatemalan, Salvadoran, Honduran) | Carlos, Miguel, Lucia, Ana, Diego, Sofia |
+| Mexican | Rosa, Jorge, Elena, Marco, Valentina |
+| Haitian | Jean, Marie, Claudette, Pierre, Nadine, Yves |
+| Brazilian | Fernanda, Bruno, Camila, Rafael, Beatriz |
+| Somali | Amara, Fadumo, Abdi, Hodan, Omar |
+| Vietnamese | Linh, Minh, Thanh, Lan, Tuan, Mai |
+| Cape Verdean | Djamila, Nuno, Filomena, Estevao |
+| Nigerian / West African | Yemi, Chidi, Ngozi, Emeka, Blessing |
+
+Use first names only in dialogue and exercises. No last names needed.
+
+### Rules for characters
+
+- **No single character carries the whole guide.** If a guide has 4 sections, use at least 2–3 different characters across them.
+- **Vary the backgrounds across sections.** Do not put all Latino characters in one guide or all African characters in another.
+- **Language references should reflect East Boston.** When a character mentions their home language, use languages students in the room actually speak: Spanish, Haitian Creole, Somali, Portuguese, Vietnamese, Arabic. Avoid languages with no East Boston presence (e.g. Wolof, Swahili, Mandarin) unless the unit theme specifically calls for it.
+- **The main recurring character is Rosa** (Mexican American, from the Welcome Back guide). She can appear in later guides for continuity, but should not crowd out new characters.
+- **Volunteers, teachers, and community center staff** can be from any background. They do not need to be white or native English speakers.
+
+---
+
 ## File Structure
 
 ```
@@ -393,6 +424,58 @@ tipBox: {
   content: "V3 will appear in small doses before the big lesson arrives.",
 },
 ```
+
+---
+
+## Further Practice Tip Box (required when a full guide exists)
+
+Every mini guide that has a corresponding full guide must end its **last section** with a tip box pointing to it. Use this exact pattern — just change the title and href.
+
+```ts
+tipBox: {
+  title: "Want to go deeper?",
+  content: "This was the quick version. If you want more examples, more exercises, and the full explanation, open the <a href=\"/grammar-reader/past-simple\" style=\"font-weight:700;text-decoration:underline\">Past Simple Full Guide</a>.",
+},
+```
+
+**Rules:**
+- Link text should be the plain guide title — no "click here."
+- Always use the internal `/grammar-reader/your-guide-slug` path, never an external URL.
+- Only add this tip box to the **last section** of the mini guide, not every section.
+- If no full guide exists yet, omit it entirely — do not add a placeholder.
+
+### Full guide inventory (as of summer 2026)
+
+These full guides exist and can be linked from mini guides:
+
+| Topic | Full guide path |
+|---|---|
+| Past Simple | `/grammar-reader/past-simple` |
+| Past Continuous | `/grammar-reader/past-continuous` |
+| Past Simple + Continuous together | `/grammar-reader/past-simple-past-continuous` |
+| Present Simple | `/grammar-reader/present-simple` |
+| Present Continuous | `/grammar-reader/present-continuous` |
+| Present Perfect | `/grammar-reader/present-perfect` |
+| Present Perfect Continuous | `/grammar-reader/present-perfect-continuous` |
+| Past Perfect | `/grammar-reader/past-perfect` |
+| Future Simple | `/grammar-reader/future-simple` |
+| Future Continuous | `/grammar-reader/future-continuous` |
+| Future Perfect | `/grammar-reader/future-perfect` |
+| Information Questions | `/grammar-reader/information-questions` |
+| Imperatives | `/grammar-reader/imperatives-declaratives` |
+| Modals: obligation + permission | `/grammar-reader/modals-obligation-permission` |
+| Modals: health advice | `/grammar-reader/modals-health-advice-caution-consent` |
+| Zero + First Conditionals | `/grammar-reader/conditionals-zero-first` |
+| Second + Third Conditionals | `/grammar-reader/conditionals-second-third` |
+| Gerunds + Infinitives | `/grammar-reader/gerunds-infinitives` |
+| Passive Voice | `/grammar-reader/passive-voice` |
+| Reported Speech | `/grammar-reader/reported-speech` |
+| Used to / Would rather | `/grammar-reader/used-to-would-rather` |
+| Comparatives + Superlatives + Quantifiers | `/grammar-reader/superlatives-quantifiers` |
+| Parts of Speech | `/grammar-reader/parts-of-speech` |
+| Verb Forms Overview | `/grammar-reader/verb-forms-overview` |
+| All Tenses Overview | `/grammar-reader/all-verb-tenses-overview` |
+| Workplace Phrasal Verbs | `/grammar-reader/workplace-phrasal-verbs` |
 
 ---
 

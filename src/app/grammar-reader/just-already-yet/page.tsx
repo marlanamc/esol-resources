@@ -1,5 +1,5 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
-import { verbFormsOverviewContent } from "@/content/grammar/verb-forms-overview";
+import { justAlreadyYetContent } from "@/content/grammar/just-already-yet";
 import type { Metadata } from "next";
 import { getActivityIdSafely } from "@/lib/build-helpers";
 import { getServerSession } from "next-auth";
@@ -8,17 +8,16 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
-    title: "Verb Forms: V1 → V3 - Interactive Guide | Class Companion",
-    description:
-        "Learn the five verb form codes (V1, V1-3rd, V1-ing, V2, V3) used on weekly verb quizzes. Quick intro before your first quiz.",
+    title: "Just, Already, Yet - Interactive Guide | Class Companion",
+    description: "Learn the meaning and placement of just, already, and yet in everyday English — running errands, checking a to-do list, and talking with neighbors in East Boston.",
 };
 
-export default async function VerbFormsOverviewPage() {
+export default async function JustAlreadyYetPage() {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
 
     const activityId = await getActivityIdSafely(
-        "Verb Forms Overview",
+        "Just, Already, Yet",
         "guide",
         "grammar"
     );
@@ -28,17 +27,14 @@ export default async function VerbFormsOverviewPage() {
             where: { id: activityId },
             select: { isReleased: true },
         });
-
-        if (!activity?.isReleased) {
-            redirect("/dashboard");
-        }
+        if (!activity?.isReleased) redirect("/dashboard");
     }
 
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
-                content={verbFormsOverviewContent}
-                completionKey="verb-forms-overview"
+                content={justAlreadyYetContent}
+                completionKey="just-already-yet"
                 activityId={activityId}
             />
         </div>

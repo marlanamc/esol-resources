@@ -1,5 +1,5 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
-import { verbFormsOverviewContent } from "@/content/grammar/verb-forms-overview";
+import { gettingThereDirectionsContent } from "@/content/grammar/getting-there-directions";
 import type { Metadata } from "next";
 import { getActivityIdSafely } from "@/lib/build-helpers";
 import { getServerSession } from "next-auth";
@@ -8,17 +8,17 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
-    title: "Verb Forms: V1 → V3 - Interactive Guide | Class Companion",
+    title: "Getting There: Directions + Imperatives - Interactive Guide | Class Companion",
     description:
-        "Learn the five verb form codes (V1, V1-3rd, V1-ing, V2, V3) used on weekly verb quizzes. Quick intro before your first quiz.",
+        "Learn affirmative and negative imperatives plus prepositions of location to give and follow directions in your neighborhood.",
 };
 
-export default async function VerbFormsOverviewPage() {
+export default async function GettingThereDirectionsPage() {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
 
     const activityId = await getActivityIdSafely(
-        "Verb Forms Overview",
+        "Getting There: Directions + Imperatives",
         "guide",
         "grammar"
     );
@@ -28,17 +28,14 @@ export default async function VerbFormsOverviewPage() {
             where: { id: activityId },
             select: { isReleased: true },
         });
-
-        if (!activity?.isReleased) {
-            redirect("/dashboard");
-        }
+        if (!activity?.isReleased) redirect("/dashboard");
     }
 
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
-                content={verbFormsOverviewContent}
-                completionKey="verb-forms-overview"
+                content={gettingThereDirectionsContent}
+                completionKey="getting-there-directions"
                 activityId={activityId}
             />
         </div>

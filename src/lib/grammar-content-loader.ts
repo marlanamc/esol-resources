@@ -51,6 +51,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/gerunds-infinitives.ts",
         loader: () => import("@/content/grammar/gerunds-infinitives"),
     },
+    "getting-there-directions": {
+        sourceFile: "src/content/grammar/getting-there-directions.ts",
+        loader: () => import("@/content/grammar/getting-there-directions"),
+    },
     "imperatives-declaratives": {
         sourceFile: "src/content/grammar/imperatives-declaratives.ts",
         loader: () => import("@/content/grammar/imperatives-declaratives"),

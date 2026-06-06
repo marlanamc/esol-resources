@@ -23,6 +23,7 @@ import { conditionalsZeroFirstContent } from '../src/content/grammar/conditional
 import { gerundsInfinitivesContent } from '../src/content/grammar/gerunds-infinitives';
 import { medicineLabelsInsuranceContent } from '../src/content/grammar/medicine-labels-insurance';
 import { verbFormsOverviewContent } from '../src/content/grammar/verb-forms-overview';
+import { gettingThereDirectionsContent } from '../src/content/grammar/getting-there-directions';
 
 const prisma = new PrismaClient();
 
@@ -202,6 +203,14 @@ const grammarGuides = [
     description: 'Bite-sized intro to the five verb form codes (V1, V1-3rd, V1-ing, V2, V3) used on weekly verb quizzes.',
     level: 'beginner',
     content: verbFormsOverviewContent,
+    isReleased: true,
+  },
+  {
+    id: 'getting-there-directions-guide',
+    title: 'Getting There: Directions + Imperatives',
+    description: 'Learn affirmative and negative imperatives plus prepositions of location to give and follow directions in your neighborhood.',
+    level: 'beginner',
+    content: gettingThereDirectionsContent,
     isReleased: true,
   },
 ];

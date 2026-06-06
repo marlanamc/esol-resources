@@ -22,23 +22,21 @@ export function TimeExpressionsList({ expressions }: TimeExpressionsListProps) {
                 {expressions.map((expr, index) => (
                     <div
                         key={index}
-                        className="time-expression rounded-lg border border-border bg-[var(--color-surface-elevated)] p-4"
+                        className="time-expression rounded-lg border border-border bg-[var(--color-surface-elevated)] overflow-hidden"
                     >
-                        <div className="flex items-start gap-3">
-                            <div className="flex-shrink-0 w-20">
-                                <span className="inline-block bg-primary text-white px-3 py-1 rounded-full text-xs font-bold">
-                                    {expr.word}
-                                </span>
-                            </div>
-                            <div className="flex-1">
-                                <p className="text-sm text-text font-medium mb-2">{expr.usage}</p>
-                                <div className="space-y-1">
-                                    {expr.examples.map((example, exIdx) => (
-                                        <p key={exIdx} className="text-xs text-text-muted italic">
-                                            • {example}
-                                        </p>
-                                    ))}
-                                </div>
+                        <div className="border-b border-border/60 bg-primary/8 px-4 py-2.5">
+                            <span className="text-xs font-bold uppercase tracking-wide text-primary">
+                                {expr.word}
+                            </span>
+                        </div>
+                        <div className="p-4">
+                            <p className="text-sm text-text font-medium mb-2">{expr.usage}</p>
+                            <div className="space-y-1">
+                                {expr.examples.map((example, exIdx) => (
+                                    <p key={exIdx} className="text-xs text-text-muted italic">
+                                        • {example}
+                                    </p>
+                                ))}
                             </div>
                         </div>
                     </div>

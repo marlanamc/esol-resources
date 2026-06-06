@@ -65,22 +65,22 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Welcome Back: Simple & Continuous Review + V3 Preview"
           },
           {
-            "id": "timeline-tenses-week1-intro",
-            "activityId": "timeline-tenses-simple",
-            "slot": "required",
-            "order": 3,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Timeline Tenses: Simple & Continuous"
-          },
-          {
             "id": "verb-forms-overview",
             "href": "/grammar-reader/verb-forms-overview",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Verb Forms: V1 → V3"
+          },
+          {
+            "id": "timeline-tenses-week1-intro",
+            "activityId": "timeline-tenses-simple",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Timeline Tenses: Simple & Continuous"
           },
           {
             "id": "verb-quiz-1",
@@ -170,15 +170,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Past Simple Guide"
           },
           {
-            "id": "vocab-sep-w3",
-            "activityId": "vocab-sep-w3",
-            "slot": "required",
-            "order": 0,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Vocab: Action Words"
-          },
-          {
             "id": "ed-endings-game-extra",
             "activityId": "cmlkjcabs00000ezpkp32c6lz",
             "slot": "extra",
@@ -188,19 +179,37 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "-ed Endings Game"
           },
           {
-            "id": "verb-forms-mini-guide",
+            "id": "info-questions-guide-extra",
+            "href": "/grammar-reader/information-questions",
+            "slot": "extra",
+            "order": 2,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Information Questions Guide"
+          },
+          {
+            "id": "verb-forms-mini-guide-extra",
             "href": "/grammar-reader/simple-tenses-review",
-            "slot": "required",
-            "order": 1,
+            "slot": "extra",
+            "order": 3,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Verb Forms Guide"
           },
           {
+            "id": "vocab-sep-w3",
+            "activityId": "vocab-sep-w3",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Vocab: Action Words"
+          },
+          {
             "id": "timeline-verb-forms-review",
             "activityId": "timeline-tenses-simple",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Timeline Tenses: Verb Forms Review"
@@ -209,7 +218,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "ed-endings-intro",
             "activityId": "cmlkjcabs00000ezpkp32c6lz",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "-ed Endings Intro: /t/ /d/ /id/"
@@ -222,14 +231,23 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 3: go + come"
+          },
+          {
+            "id": "questions-real-answers",
+            "href": "/grammar-reader/questions-real-answers",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Questions That Get Real Answers"
           }
         ]
       },
       {
         "id": "week-4",
         "number": 4,
-        "title": "Life Experience",
-        "goal": "Use simple present and present perfect frames to talk about life.",
+        "title": "Past Simple + Past Continuous: Telling the Story",
+        "goal": "Use past simple for finished actions and past continuous for what was already in progress.",
         "items": [
           {
             "id": "present-simple-guide-extra",
@@ -241,6 +259,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Present Simple Guide"
           },
           {
+            "id": "present-perfect-life-experience",
+            "href": "/grammar-reader/present-perfect",
+            "slot": "extra",
+            "order": 1,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Present Perfect Guide"
+          },
+          {
             "id": "vocab-sep-w4",
             "activityId": "vocab-sep-w4",
             "slot": "required",
@@ -250,22 +277,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Personal Journey Verbs"
           },
           {
-            "id": "present-perfect-life-experience",
-            "href": "/grammar-reader/present-perfect",
+            "id": "past-simple-past-continuous-guide",
+            "href": "/grammar-reader/past-simple-past-continuous",
             "slot": "required",
             "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Present Perfect Guide"
-          },
-          {
-            "id": "present-perfect-light-extra",
-            "href": "/grammar-reader/present-perfect",
-            "slot": "extra",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Present Perfect Guide"
+            "title": "Past Simple + Past Continuous: Telling the Story"
           },
           {
             "id": "have-you-ever-speaking",
@@ -317,18 +335,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Schedule Verbs"
           },
           {
-            "id": "info-questions-mini",
-            "href": "/grammar-reader/information-questions",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Information Questions Guide"
-          },
-          {
             "id": "question-word-practice",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Question Word Practice Game"
@@ -337,10 +346,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-5",
             "activityId": "verb-quiz-5",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 5: keep + build"
+          },
+          {
+            "id": "just-already-yet",
+            "href": "/grammar-reader/just-already-yet",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Just, Already, Yet"
           }
         ]
       },
@@ -349,6 +367,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "number": 6,
         "title": "Transportation + Directions",
         "items": [
+          {
+            "id": "imperatives-mini-guide-extra",
+            "href": "/grammar-reader/imperatives-declaratives",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Imperatives Guide"
+          },
           {
             "id": "vocab-oct-w2",
             "activityId": "vocab-oct-w2",
@@ -359,18 +386,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Movement Verbs"
           },
           {
-            "id": "imperatives-mini-guide",
-            "href": "/grammar-reader/imperatives-declaratives",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Imperatives Guide"
-          },
-          {
             "id": "map-directions-practice",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Map / Directions Practice Game"
@@ -379,18 +397,36 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-6",
             "activityId": "verb-quiz-6",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 6: pay + hold"
+          },
+          {
+            "id": "your-week-in-english",
+            "href": "/grammar-reader/your-week-in-english",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Your Week in English"
           }
         ]
       },
       {
         "id": "week-7",
         "number": 7,
-        "title": "Digital Safety + Forms",
+        "title": "Getting There: Directions + Community",
         "items": [
+          {
+            "id": "can-should-must-mini-extra",
+            "href": "/grammar-reader/modals-obligation-permission",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Can / Should / Must Guide"
+          },
           {
             "id": "vocab-oct-w3",
             "activityId": "vocab-oct-w3",
@@ -401,18 +437,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Protect Yourself Verbs"
           },
           {
-            "id": "can-should-must-mini",
-            "href": "/grammar-reader/modals-obligation-permission",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Can / Should / Must Guide"
-          },
-          {
             "id": "scam-or-safe-practice",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Scam or Safe? Practice"
@@ -421,10 +448,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-7",
             "activityId": "verb-quiz-7",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 7: break + leave"
+          },
+          {
+            "id": "getting-there-directions",
+            "href": "/grammar-reader/getting-there-directions",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Getting There: Directions + Imperatives"
           }
         ]
       },
@@ -433,6 +469,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "number": 8,
         "title": "Phone English + Family Connection",
         "items": [
+          {
+            "id": "present-perfect-spiral-extra",
+            "href": "/grammar-reader/present-perfect",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Present Perfect Spiral Practice"
+          },
           {
             "id": "vocab-oct-w4",
             "activityId": "vocab-oct-w4",
@@ -443,19 +488,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Communication Verbs"
           },
           {
-            "id": "present-perfect-spiral",
-            "href": "/grammar-reader/present-perfect",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Present Perfect Spiral Practice"
-          },
-          {
             "id": "b-v-minimal-pair",
             "activityId": "pron-b-v-listening",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "B vs V Minimal Pair Lab"
@@ -464,7 +500,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-8",
             "activityId": "verb-quiz-8",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 8: sell + burst"
@@ -485,6 +521,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Helping + Volunteering",
         "items": [
           {
+            "id": "gerunds-prepositions-light-extra",
+            "href": "/grammar-reader/gerunds-infinitives",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Gerunds After Prepositions"
+          },
+          {
             "id": "vocab-nov-w1",
             "activityId": "vocab-nov-w1",
             "slot": "required",
@@ -494,18 +539,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Action Verbs"
           },
           {
-            "id": "gerunds-prepositions-light",
-            "href": "/grammar-reader/gerunds-infinitives",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Gerunds After Prepositions"
-          },
-          {
             "id": "volunteering-scenario-practice",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Volunteering Scenario Practice"
@@ -514,7 +550,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-9",
             "activityId": "verb-quiz-9",
             "slot": "required",
-            "order": 4,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 9: freeze + leak"
@@ -527,6 +563,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Public Meetings + Suggestions",
         "items": [
           {
+            "id": "suggestions-mini-extra",
+            "href": "/grammar-reader/modals-obligation-permission",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Suggestions Guide: should / could / let's"
+          },
+          {
             "id": "vocab-nov-w2",
             "activityId": "vocab-nov-w2",
             "slot": "required",
@@ -536,18 +581,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Discussion Verbs"
           },
           {
-            "id": "suggestions-mini",
-            "href": "/grammar-reader/modals-obligation-permission",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Suggestions Guide: should / could / let's"
-          },
-          {
             "id": "public-meeting-language",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Public Meeting Language Practice"
@@ -630,7 +666,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "if-we-writing",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Short Writing: \"If we..., we will...\""
@@ -639,7 +675,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-12",
             "activityId": "verb-quiz-12",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 12: eat + drink"
@@ -660,6 +696,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Smart Spending + Big Numbers",
         "items": [
           {
+            "id": "comparatives-superlatives-mini-extra",
+            "href": "/grammar-reader/superlatives-quantifiers",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Comparatives + Superlatives Guide"
+          },
+          {
             "id": "vocab-dec-w1",
             "activityId": "vocab-dec-w1",
             "slot": "required",
@@ -678,18 +723,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Numbers Through Trillions"
           },
           {
-            "id": "comparatives-superlatives-mini",
-            "href": "/grammar-reader/superlatives-quantifiers",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Comparatives + Superlatives Guide"
-          },
-          {
             "id": "compare-prices-practice",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "game",
             "title": "Compare Prices Practice"
@@ -711,6 +747,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Bills, Fees, Returns + Scams",
         "items": [
           {
+            "id": "quantifiers-mini-extra",
+            "href": "/grammar-reader/superlatives-quantifiers",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Quantifiers Guide"
+          },
+          {
             "id": "vocab-dec-w2",
             "activityId": "vocab-dec-w2",
             "slot": "required",
@@ -720,19 +765,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Financial Action Verbs"
           },
           {
-            "id": "quantifiers-mini",
-            "href": "/grammar-reader/superlatives-quantifiers",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Quantifiers Guide"
-          },
-          {
             "id": "bv-shorti-longe-review",
             "activityId": "pron-mixed-review",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "B vs V / Short i Long e Review"
@@ -741,7 +777,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-14",
             "activityId": "verb-quiz-14",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 14: cost + lend"
@@ -762,6 +798,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Housing Basics",
         "items": [
           {
+            "id": "parts-of-speech-refresh-extra",
+            "href": "/grammar-reader/parts-of-speech",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Parts of Speech Refresh"
+          },
+          {
             "id": "vocab-jan-w1",
             "activityId": "vocab-jan-w1",
             "slot": "required",
@@ -771,19 +816,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Renter Verbs"
           },
           {
-            "id": "parts-of-speech-refresh",
-            "href": "/grammar-reader/parts-of-speech",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Parts of Speech Refresh"
-          },
-          {
             "id": "r-l-lab",
             "activityId": "pron-r-l-listening",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "R vs L Minimal Pair Lab"
@@ -792,7 +828,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-15",
             "activityId": "verb-quiz-15",
             "slot": "required",
-            "order": 4,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 15: give + send"
@@ -805,6 +841,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Comparing Housing Options",
         "items": [
           {
+            "id": "superlatives-quantifiers-review-extra",
+            "href": "/grammar-reader/superlatives-quantifiers",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Superlatives + Quantifiers Review"
+          },
+          {
             "id": "vocab-jan-w2",
             "activityId": "vocab-jan-w2",
             "slot": "required",
@@ -814,18 +859,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Decision Verbs"
           },
           {
-            "id": "superlatives-quantifiers-review",
-            "href": "/grammar-reader/superlatives-quantifiers",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Superlatives + Quantifiers Review"
-          },
-          {
             "id": "compare-apartments",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "game",
             "title": "Compare Apartments Practice"
@@ -833,7 +869,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "housing-description-writing",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Housing Description Writing"
@@ -842,7 +878,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-16",
             "activityId": "verb-quiz-16",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 16: write + submit"
@@ -855,6 +891,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Landlord Calls + Repair Requests",
         "items": [
           {
+            "id": "housing-info-questions-extra",
+            "href": "/grammar-reader/information-questions",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Information Questions for Housing"
+          },
+          {
             "id": "vocab-jan-w3",
             "activityId": "vocab-jan-w3",
             "slot": "required",
@@ -864,18 +909,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Maintenance Verbs"
           },
           {
-            "id": "housing-info-questions",
-            "href": "/grammar-reader/information-questions",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Information Questions for Housing"
-          },
-          {
             "id": "repair-request-phone",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Phone English: Repair Request"
@@ -884,7 +920,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "helper-verb-repair",
             "activityId": "grammar-hospital-helper-repair-guided",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Grammar Hospital: Helper Verb Repair"
@@ -893,7 +929,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-17",
             "activityId": "verb-quiz-17",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 17: work + apply"
@@ -906,6 +942,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Housing Problems + Solutions",
         "items": [
           {
+            "id": "past-simple-continuous-review-extra",
+            "href": "/grammar-reader/past-continuous",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Past Simple vs Past Continuous Review"
+          },
+          {
             "id": "vocab-jan-w4",
             "activityId": "vocab-jan-w4",
             "slot": "required",
@@ -915,18 +960,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Resolution Verbs"
           },
           {
-            "id": "past-simple-continuous-review",
-            "href": "/grammar-reader/past-continuous",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Past Simple vs Past Continuous Review"
-          },
-          {
             "id": "housing-problem-scenario",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Housing Problem Scenario"
@@ -984,7 +1020,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-19",
             "activityId": "verb-quiz-19",
             "slot": "required",
-            "order": 4,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 19: tell + say"
@@ -997,6 +1033,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Work Stories + Schedules",
         "items": [
           {
+            "id": "past-perfect-mini-extra",
+            "href": "/grammar-reader/past-perfect",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Past Perfect Guide"
+          },
+          {
             "id": "vocab-feb-10-12",
             "activityId": "vocab-feb-10-12",
             "slot": "required",
@@ -1006,18 +1051,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Workplace Phrasal Verbs"
           },
           {
-            "id": "past-perfect-mini",
-            "href": "/grammar-reader/past-perfect",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Past Perfect Guide"
-          },
-          {
             "id": "work-schedule-practice",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "game",
             "title": "Work Schedule Practice"
@@ -1026,7 +1062,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "v-w-lab",
             "activityId": "pron-v-w-listening",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "V vs W Minimal Pair Lab"
@@ -1079,6 +1115,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Workplace Rights + Obligation",
         "items": [
           {
+            "id": "workplace-obligation-modals-extra",
+            "href": "/grammar-reader/modals-obligation-permission",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Modals: Have to / Must / Can / Should"
+          },
+          {
             "id": "vocab-feb-24-26",
             "activityId": "vocab-feb-24-26",
             "slot": "required",
@@ -1088,18 +1133,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Experience & Timelines"
           },
           {
-            "id": "workplace-obligation-modals",
-            "href": "/grammar-reader/modals-obligation-permission",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Modals: Have to / Must / Can / Should"
-          },
-          {
             "id": "workplace-rights-scenario",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Workplace Rights Scenario Game"
@@ -1107,7 +1143,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "at-work-have-to-writing",
             "slot": "required",
-            "order": 4,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Short Writing: \"At work, I have to...\""
@@ -1116,7 +1152,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-21",
             "activityId": "verb-quiz-21",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 21: forward + respond"
@@ -1137,6 +1173,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Job Applications + Interviews",
         "items": [
           {
+            "id": "gerunds-after-prepositions-extra",
+            "href": "/grammar-reader/gerunds-infinitives",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Gerunds After Prepositions"
+          },
+          {
             "id": "vocab-mar-3-5",
             "activityId": "vocab-mar-3-5",
             "slot": "required",
@@ -1146,18 +1191,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Skills & Qualifications"
           },
           {
-            "id": "gerunds-after-prepositions",
-            "href": "/grammar-reader/gerunds-infinitives",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Gerunds After Prepositions"
-          },
-          {
             "id": "interview-language-practice",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Interview Language Practice"
@@ -1166,7 +1202,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "s-th-lab",
             "activityId": "pron-s-th-listening",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "S vs Th Minimal Pair Lab"
@@ -1175,7 +1211,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-22",
             "activityId": "verb-quiz-22",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 22: reply + schedule"
@@ -1188,6 +1224,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Career Stories",
         "items": [
           {
+            "id": "pp-ppc-career-extra",
+            "href": "/grammar-reader/present-perfect-continuous",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Present Perfect + Present Perfect Continuous Guide"
+          },
+          {
             "id": "vocab-mar-10-12",
             "activityId": "vocab-mar-10-12",
             "slot": "required",
@@ -1197,19 +1242,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Rules & Obligation"
           },
           {
-            "id": "pp-ppc-career",
-            "href": "/grammar-reader/present-perfect-continuous",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Present Perfect + Present Perfect Continuous Guide"
-          },
-          {
             "id": "timeline-perfect-continuous",
             "activityId": "timeline-tenses-perfect-continuous",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Timeline Tenses: Perfect + Continuous"
@@ -1217,7 +1253,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "how-long-speaking",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Speaking: \"How long have you been...?\""
@@ -1226,7 +1262,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-23",
             "activityId": "verb-quiz-23",
             "slot": "required",
-            "order": 5,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 23: confirm + stand"
@@ -1269,7 +1305,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-24",
             "activityId": "verb-quiz-24",
             "slot": "required",
-            "order": 2,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 24: choose + report"
@@ -1277,7 +1313,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "workplace-advocacy-scenarios",
             "slot": "required",
-            "order": 3,
+            "order": 4,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Workplace Advocacy Scenarios"
@@ -1285,7 +1321,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "worked-been-working-writing",
             "slot": "required",
-            "order": 4,
+            "order": 5,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Short Writing: \"I have worked...\" / \"I have been working...\""
@@ -1298,6 +1334,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Pay Stubs + Wage Math",
         "items": [
           {
+            "id": "infinitives-vs-gerunds-extra",
+            "href": "/grammar-reader/gerunds-infinitives",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Infinitives vs Gerunds"
+          },
+          {
             "id": "vocab-mar-31-apr-2",
             "activityId": "vocab-mar-31-apr-2",
             "slot": "required",
@@ -1307,19 +1352,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Small Talk & Social Conversation"
           },
           {
-            "id": "infinitives-vs-gerunds",
-            "href": "/grammar-reader/gerunds-infinitives",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Infinitives vs Gerunds"
-          },
-          {
             "id": "verb-quiz-25",
             "activityId": "verb-quiz-25",
             "slot": "required",
-            "order": 3,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 25: document + contact"
@@ -1340,6 +1376,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Healthcare Basics",
         "items": [
           {
+            "id": "advice-modals-imperatives-extra",
+            "href": "/grammar-reader/modals-health-advice-caution-consent",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Advice Modals + Imperatives"
+          },
+          {
             "id": "vocab-apr-7-9",
             "activityId": "vocab-apr-7-9",
             "slot": "required",
@@ -1349,19 +1394,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Symptoms & Expectations"
           },
           {
-            "id": "advice-modals-imperatives",
-            "href": "/grammar-reader/modals-health-advice-caution-consent",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Advice Modals + Imperatives"
-          },
-          {
             "id": "sh-ch-lab",
             "activityId": "pron-sh-ch-listening",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "Sh vs Ch Minimal Pair Lab"
@@ -1370,7 +1406,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-26",
             "activityId": "verb-quiz-26",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 26: chat + discuss"
@@ -1382,6 +1418,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "number": 28,
         "title": "Symptoms + Clinic Visits",
         "items": [
+          {
+            "id": "advice-modals-review-extra",
+            "href": "/grammar-reader/modals-health-advice-caution-consent",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Advice Modals Review"
+          },
           {
             "id": "vocab-apr-14-16",
             "activityId": "vocab-apr-14-16",
@@ -1398,15 +1443,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Doctor Conversation Practice"
-          },
-          {
-            "id": "advice-modals-review",
-            "href": "/grammar-reader/modals-health-advice-caution-consent",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Advice Modals Review"
           }
         ]
       },
@@ -1443,7 +1479,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-27",
             "activityId": "verb-quiz-27",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 27: mention + ask"
@@ -1456,6 +1492,24 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Pharmacy + Notices",
         "items": [
           {
+            "id": "passive-voice-mini-extra",
+            "href": "/grammar-reader/passive-voice",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Passive Voice Guide"
+          },
+          {
+            "id": "medicine-labels-pharmacy-extra",
+            "href": "/grammar-reader/medicine-labels-insurance",
+            "slot": "extra",
+            "order": 1,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Medicine Labels / Pharmacy Notices"
+          },
+          {
             "id": "vocab-apr-28-30",
             "activityId": "vocab-apr-28-30",
             "slot": "required",
@@ -1465,27 +1519,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Health Advice & Habits"
           },
           {
-            "id": "passive-voice-mini",
-            "href": "/grammar-reader/passive-voice",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Passive Voice Guide"
-          },
-          {
-            "id": "medicine-labels-pharmacy",
-            "href": "/grammar-reader/medicine-labels-insurance",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Medicine Labels / Pharmacy Notices"
-          },
-          {
             "id": "mychart-message-practice",
             "slot": "required",
-            "order": 3,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "MyChart Message Practice"
@@ -1494,7 +1530,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-28",
             "activityId": "verb-quiz-28",
             "slot": "required",
-            "order": 4,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 28: talk + comply"
@@ -1515,6 +1551,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Wellness Routines + Follow-Up",
         "items": [
           {
+            "id": "reported-speech-mini-extra",
+            "href": "/grammar-reader/reported-speech",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Reported Speech Guide"
+          },
+          {
             "id": "vocab-may-5-7",
             "activityId": "vocab-may-5-7",
             "slot": "required",
@@ -1524,18 +1569,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Your Body & Wellness"
           },
           {
-            "id": "reported-speech-mini",
-            "href": "/grammar-reader/reported-speech",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Reported Speech Guide"
-          },
-          {
             "id": "mychart-follow-up",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "MyChart Follow-Up Practice"
@@ -1566,6 +1602,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Nutrition + Charts",
         "items": [
           {
+            "id": "used-to-be-used-to-extra",
+            "href": "/grammar-reader/used-to-would-rather",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Used To / Be Used To / Get Used To"
+          },
+          {
             "id": "vocab-may-12-14",
             "activityId": "vocab-may-12-14",
             "slot": "required",
@@ -1575,19 +1620,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Daily Care & Nutrition"
           },
           {
-            "id": "used-to-be-used-to",
-            "href": "/grammar-reader/used-to-would-rather",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Used To / Be Used To / Get Used To"
-          },
-          {
             "id": "verb-quiz-30",
             "activityId": "verb-quiz-30",
             "slot": "required",
-            "order": 3,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 30: read + think"
@@ -1628,7 +1664,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-31",
             "activityId": "verb-quiz-31",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 31: drive + ride"
@@ -1641,6 +1677,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Community Wellness + Speaking Games",
         "items": [
           {
+            "id": "verbs-gerunds-review-extra",
+            "href": "/grammar-reader/gerunds-infinitives",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Verbs + Gerunds Review"
+          },
+          {
             "id": "vocab-may-26-28",
             "activityId": "vocab-may-26-28",
             "slot": "required",
@@ -1650,18 +1695,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Holistic Health Review"
           },
           {
-            "id": "verbs-gerunds-review",
-            "href": "/grammar-reader/gerunds-infinitives",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Verbs + Gerunds Review"
-          },
-          {
             "id": "speaking-game",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Speaking Game"
@@ -1670,7 +1706,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "b-v-refresh",
             "activityId": "pron-b-v-listening",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "B vs V Refresh"
@@ -1691,6 +1727,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "title": "Year in Review + Post-Test",
         "items": [
           {
+            "id": "full-verb-tenses-overview-extra",
+            "href": "/grammar-reader/all-verb-tenses-overview",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Full Verb Tenses Overview Guide"
+          },
+          {
             "id": "vocab-jun-2-4",
             "activityId": "vocab-jun-2-4",
             "slot": "required",
@@ -1700,19 +1745,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Wrap-Up & Next Steps"
           },
           {
-            "id": "full-verb-tenses-overview",
-            "href": "/grammar-reader/all-verb-tenses-overview",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Full Verb Tenses Overview Guide"
-          },
-          {
             "id": "timeline-full-year-challenge",
             "activityId": "timeline-tenses-all-challenge",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Timeline Tenses: Full Year Challenge"
@@ -1721,7 +1757,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "mixed-pronunciation-review",
             "activityId": "pron-mixed-review",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "Mixed Pronunciation Review"
@@ -1729,7 +1765,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "post-test-window",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "assessment",
             "title": "Post-Test Window"

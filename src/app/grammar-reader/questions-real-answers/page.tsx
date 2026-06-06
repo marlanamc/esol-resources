@@ -1,5 +1,5 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
-import { verbFormsOverviewContent } from "@/content/grammar/verb-forms-overview";
+import { questionsRealAnswersContent } from "@/content/grammar/questions-real-answers";
 import type { Metadata } from "next";
 import { getActivityIdSafely } from "@/lib/build-helpers";
 import { getServerSession } from "next-auth";
@@ -8,17 +8,17 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
-    title: "Verb Forms: V1 → V3 - Interactive Guide | Class Companion",
+    title: "Questions That Get Real Answers - Interactive Guide | Class Companion",
     description:
-        "Learn the five verb form codes (V1, V1-3rd, V1-ing, V2, V3) used on weekly verb quizzes. Quick intro before your first quiz.",
+        "Learn how to form information questions with who, what, where, when, why, and how in real East Boston conversations.",
 };
 
-export default async function VerbFormsOverviewPage() {
+export default async function QuestionsRealAnswersPage() {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
 
     const activityId = await getActivityIdSafely(
-        "Verb Forms Overview",
+        "Questions That Get Real Answers",
         "guide",
         "grammar"
     );
@@ -28,17 +28,14 @@ export default async function VerbFormsOverviewPage() {
             where: { id: activityId },
             select: { isReleased: true },
         });
-
-        if (!activity?.isReleased) {
-            redirect("/dashboard");
-        }
+        if (!activity?.isReleased) redirect("/dashboard");
     }
 
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
-                content={verbFormsOverviewContent}
-                completionKey="verb-forms-overview"
+                content={questionsRealAnswersContent}
+                completionKey="questions-real-answers"
                 activityId={activityId}
             />
         </div>

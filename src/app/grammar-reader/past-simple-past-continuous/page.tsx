@@ -1,5 +1,5 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
-import { verbFormsOverviewContent } from "@/content/grammar/verb-forms-overview";
+import { pastSimplePastContinuousContent } from "@/content/grammar/past-simple-past-continuous";
 import type { Metadata } from "next";
 import { getActivityIdSafely } from "@/lib/build-helpers";
 import { getServerSession } from "next-auth";
@@ -8,17 +8,17 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
-    title: "Verb Forms: V1 → V3 - Interactive Guide | Class Companion",
+    title: "Past Simple + Past Continuous: Telling the Story - Interactive Grammar Guide | Class Companion",
     description:
-        "Learn the five verb form codes (V1, V1-3rd, V1-ing, V2, V3) used on weekly verb quizzes. Quick intro before your first quiz.",
+        "Learn past simple for finished actions and past continuous for what was in progress. Practice with when, while, and real East Boston commute stories.",
 };
 
-export default async function VerbFormsOverviewPage() {
+export default async function PastSimplePastContinuousPage() {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
 
     const activityId = await getActivityIdSafely(
-        "Verb Forms Overview",
+        "Past Simple + Past Continuous: Telling the Story",
         "guide",
         "grammar"
     );
@@ -28,17 +28,14 @@ export default async function VerbFormsOverviewPage() {
             where: { id: activityId },
             select: { isReleased: true },
         });
-
-        if (!activity?.isReleased) {
-            redirect("/dashboard");
-        }
+        if (!activity?.isReleased) redirect("/dashboard");
     }
 
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
-                content={verbFormsOverviewContent}
-                completionKey="verb-forms-overview"
+                content={pastSimplePastContinuousContent}
+                completionKey="past-simple-past-continuous"
                 activityId={activityId}
             />
         </div>

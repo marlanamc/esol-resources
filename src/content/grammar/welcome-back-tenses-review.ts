@@ -195,7 +195,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         ${sceneCard("sceneNeighborhood", "East Boston. Tuesday evening after work.", "sage")}
 
         ${dialogue([
-          { speaker: "Classmate", avatar: "🧑", text: "How do you get to class?", side: "left", tone: "sage" },
+          { speaker: "Classmate", avatar: "🧑", text: "How <strong>do</strong> you <strong>get</strong> to class?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩", text: "The 121. I <strong>work</strong> days, so I <strong>come</strong> straight from Meridian Street.", side: "right", tone: "terracotta" },
           { speaker: "Classmate", avatar: "🧑", text: "I <strong>take</strong> the Blue Line from Revere. Class <strong>starts</strong> at six, right?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩", text: "Six on the dot. Tuesdays and Thursdays, <strong>every</strong> week.", side: "right", tone: "terracotta" },
