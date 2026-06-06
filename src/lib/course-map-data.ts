@@ -136,9 +136,18 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Parts of Speech Discovery Game"
           },
           {
-            "id": "vowel-names-a-e-i",
+            "id": "helper-verb-repair",
+            "activityId": "grammar-hospital-helper-repair-guided",
             "slot": "required",
             "order": 3,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Grammar Hospital: Helper Verb Repair"
+          },
+          {
+            "id": "vowel-names-a-e-i",
+            "slot": "required",
+            "order": 4,
             "wrappedGame": false,
             "activityType": "pronunciation",
             "title": "Vowel Names Practice: A / E / I"
@@ -147,7 +156,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-2",
             "activityId": "verb-quiz-2",
             "slot": "required",
-            "order": 4,
+            "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 2: do + make"
@@ -917,19 +926,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Phone English: Repair Request"
           },
           {
-            "id": "helper-verb-repair",
-            "activityId": "grammar-hospital-helper-repair-guided",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Grammar Hospital: Helper Verb Repair"
-          },
-          {
             "id": "verb-quiz-17",
             "activityId": "verb-quiz-17",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 17: work + apply"

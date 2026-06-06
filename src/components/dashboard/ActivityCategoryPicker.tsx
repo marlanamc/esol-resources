@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { PenLine, Gamepad2, BookOpen, ClipboardList, Mic, PenTool, Volume2 } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { getLearnerCategoryTone } from '@/lib/learner-theme';
+import { isGamesLibraryActivity } from '@/lib/games-library';
 
 // Re-use the Activity type shape from ActivityCategories
 interface Activity {
@@ -108,20 +109,7 @@ export function ActivityCategoryPicker({
         map['grammar'] = activities.some((a) => a.category === 'grammar');
 
         // Games
-        map['games'] = activities.some((a) => {
-            if (a.type !== 'game') return false;
-            if (a.id?.startsWith('vocab-')) return false;
-            return (
-                a.id === 'numbers-game' ||
-                a.id === 'countable-uncountable-nouns' ||
-                a.id === 'gerund-infinitive-game' ||
-                a.id === 'irregular-verbs-game' ||
-                a.ui === 'verb-forms' ||
-                a.ui === 'verbforms' ||
-                a.ui === 'gerund-infinitive' ||
-                a.category === 'games'
-            );
-        });
+        map['games'] = activities.some(isGamesLibraryActivity);
 
         // Quizzes
         map['quizzes'] = activities.some((a) => a.category === 'quizzes' && a.isReleased !== false);

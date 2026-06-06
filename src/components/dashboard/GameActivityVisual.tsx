@@ -139,6 +139,24 @@ export function getGameCardCopy(activityId: string, title: string) {
   if (haystack.includes('timeline')) {
     return { friendlyTitle: 'Timeline Game', useThisFor: 'visualize tenses and match verbs to moments on a timeline' };
   }
+  if (haystack.includes('parts of speech')) {
+    return { friendlyTitle: 'Parts of speech discovery', useThisFor: 'learn and sort the eight parts of speech through quick rounds' };
+  }
+  if (haystack.includes('grammar hospital')) {
+    return { friendlyTitle: 'Grammar hospital', useThisFor: 'repair broken sentences and build helper-verb accuracy' };
+  }
+  if (haystack.includes('comparison battle')) {
+    return { friendlyTitle: 'Comparison battle', useThisFor: 'practice comparatives and superlatives in fast rounds' };
+  }
+  if (haystack.includes('cafe catch-up') || haystack.includes('café catch-up')) {
+    return { friendlyTitle: 'Café catch-up', useThisFor: 'practice real conversation prompts with a friend or group' };
+  }
+  if (haystack.includes('feeling') || haystack.includes('emotion')) {
+    return { friendlyTitle: 'Emotion wheel', useThisFor: 'spin, define, and discuss emotion words out loud' };
+  }
+  if (haystack.includes('trivia')) {
+    return { friendlyTitle: 'Group trivia', useThisFor: 'review grammar and vocab together in a team quiz' };
+  }
 
   return { friendlyTitle: 'Language game', useThisFor: 'practice key patterns through quick challenges' };
 }

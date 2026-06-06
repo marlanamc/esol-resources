@@ -21,6 +21,7 @@ import { GameActivityVisual, getGameCardCopy } from './GameActivityVisual';
 import { PronunciationActivityVisual, getPronunciationCardCopy } from './PronunciationActivityVisual';
 import { comparePronunciationActivities, getPronunciationActivityDescriptor } from '@/lib/pronunciation-activity';
 import { getSubcategorySubtitle } from '@/lib/subcategory-labels';
+import { buildGameLibrarySections, isGamesLibraryActivity } from '@/lib/games-library';
 
 interface Activity {
     id: string;
@@ -61,22 +62,6 @@ interface ActivityCategoriesProps {
     filterCategory?: string;
 }
 
-
-function isCourseMapPresetGame(activity: Activity): boolean {
-    if (activity.type !== 'game' || !activity.content) return false;
-
-    try {
-        const parsed = JSON.parse(activity.content) as unknown;
-        return (
-            !!parsed &&
-            typeof parsed === 'object' &&
-            !Array.isArray(parsed) &&
-            (parsed as { courseMapPreset?: unknown }).courseMapPreset === true
-        );
-    } catch {
-        return false;
-    }
-}
 
 const extractVocabTermsFromPlainTextContent = (content: string): string[] => {
     const lines = content.split(/\r?\n/);
@@ -1055,9 +1040,12 @@ const getSectionTexture = (sectionLabel: string, filterCategory?: string): Activ
 
     // Game section textures
     if (filterCategory === 'games') {
-        if (label.includes('verb tense')) return GAME_TEXTURES['verb-forms'];
+        if (label.includes('verb tense') || label.includes('verb forms')) return GAME_TEXTURES['verb-forms'];
         if (label.includes('parts of speech')) return GAME_TEXTURES['countable-sort'];
+        if (label.includes('gerund') || label.includes('infinitive')) return GAME_TEXTURES['matching-game'];
+        if (label.includes('grammar') || label.includes('sentence')) return GAME_TEXTURES['irregular-patterns'];
         if (label.includes('numbers')) return GAME_TEXTURES['numbers'];
+        if (label.includes('conversation') || label.includes('fun')) return GAME_TEXTURES['game-other'];
         return GAME_TEXTURES['game-other'];
     }
 
@@ -1816,18 +1804,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 vocabById.set(activity.id, activity);
             }
 
-            if (
-                activity.type === 'game' &&
-                !isCourseMapPresetGame(activity) &&
-                !isVocab &&
-                (
-                    activity.id === 'numbers-game' ||
-                    activity.id === 'countable-uncountable-nouns' ||
-                    activity.ui === 'verb-forms' ||
-                    activity.ui === 'verbforms' ||
-                    category === 'games'
-                )
-            ) {
+            if (isGamesLibraryActivity(activity)) {
                 games.push(activity);
             }
 
@@ -1876,65 +1853,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
     }, [activities]);
 
     const buildGameSubCategories = useCallback((): SubCategory[] => {
-        const gameActivities = activityIndex.games;
-        const normalizeTitle = (title?: string | null) => displayTitle(title || "").toLowerCase();
-        const remaining = [...gameActivities];
-
-        const take = (predicate: (a: Activity) => boolean) => {
-            const matched: Activity[] = [];
-            for (let i = remaining.length - 1; i >= 0; i--) {
-                const item = remaining[i];
-                if (predicate(item)) {
-                    matched.push(item);
-                    remaining.splice(i, 1);
-                }
-            }
-            return matched.reverse();
-        };
-
-        const sortAlpha = (list: Activity[]) =>
-            list.sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")));
-
-        const verbTenseGames = sortAlpha(
-            take((a: Activity) => {
-                const t = normalizeTitle(a.title);
-                return (
-                    t.includes('verb forms') ||
-                    t.includes('irregular') ||
-                    t.includes('time indicators') ||
-                    t.includes('sounds right') ||
-                    t.includes('timeline tenses')
-                );
-            })
-        );
-
-        const partsOfSpeechGames = sortAlpha(
-            take((a: Activity) => {
-                const t = normalizeTitle(a.title);
-                return t.includes('countable') || t.includes('uncountable');
-            })
-        );
-
-        const gerundInfinitiveGames = sortAlpha(
-            take((a: Activity) => {
-                const t = normalizeTitle(a.title);
-                return t.includes('gerund') || t.includes('infinitive');
-            })
-        );
-
-        const numberGames = sortAlpha(
-            take((a: Activity) => a.id === 'numbers-game' || normalizeTitle(a.title).includes('numbers'))
-        );
-
-        const otherGames = sortAlpha(remaining);
-
-        return [
-            { name: 'Verb Tense Games', activities: verbTenseGames },
-            { name: 'Gerunds and Infinitives', activities: gerundInfinitiveGames },
-            { name: 'Parts of Speech Games', activities: partsOfSpeechGames },
-            { name: 'Numbers', activities: numberGames },
-            { name: 'Other Games', activities: otherGames },
-        ].filter((group) => group.activities.length > 0);
+        return buildGameLibrarySections(activityIndex.games, (title) => displayTitle(title || ""));
     }, [activityIndex.games]);
 
     const categories = useMemo<Category[]>(() => [

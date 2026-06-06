@@ -11,6 +11,7 @@ import { useDocumentScrollLock } from "@/hooks/useDocumentScrollLock";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import { isGamesLibraryActivity } from "@/lib/games-library";
 
 const MEDAL_EMOJI: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 
@@ -45,15 +46,16 @@ function parseSubjects(activities: LearnerMenuActivity[]): Record<string, boolea
     return {
         vocabulary: visibleActivities.some((a) => typeof a.id === "string" && a.id.startsWith("vocab-")),
         grammar: visibleActivities.some((a) => a.category === "grammar"),
-        games: visibleActivities.some((a) => {
-            if (a.type !== "game") return false;
-            if (typeof a.id === "string" && a.id.startsWith("vocab-")) return false;
-            return (
-                ["numbers-game", "countable-uncountable-nouns", "gerund-infinitive-game", "irregular-verbs-game"].includes(a.id as string) ||
-                ["verb-forms", "verbforms", "gerund-infinitive"].includes(a.ui as string) ||
-                a.category === "games"
-            );
-        }),
+        games: visibleActivities.some((a) =>
+            isGamesLibraryActivity({
+                id: typeof a.id === "string" ? a.id : "",
+                title: typeof a.title === "string" ? a.title : "",
+                type: typeof a.type === "string" ? a.type : "",
+                category: a.category ?? null,
+                ui: a.ui ?? null,
+                content: typeof a.content === "string" ? a.content : null,
+            })
+        ),
         quizzes: visibleActivities.some((a) => a.category === "quizzes"),
         speaking: visibleActivities.some((a) => a.category === "speaking"),
         writing: visibleActivities.some((a) => a.category === "writing" || a.category === "writing-reading"),

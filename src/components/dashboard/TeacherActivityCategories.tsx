@@ -6,6 +6,7 @@ import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { logger } from '@/lib/logger';
 import { parseActivityContent } from '@/types/activity';
+import { buildGameLibrarySections, isGamesLibraryActivity } from '@/lib/games-library';
 
 interface Activity {
     id: string;
@@ -627,75 +628,8 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
     }, [activities]);
 
     const buildGameSubCategories = useCallback((): SubCategory[] => {
-        const gameActivities = activities.filter((a: Activity) => {
-            if (a.type !== 'game') return false;
-            return (
-                a.category === 'games' ||
-                a.ui === 'verb-forms' ||
-                a.ui === 'verbforms' ||
-                a.id === 'numbers-game' ||
-                a.id === 'countable-uncountable-nouns'
-            );
-        });
-
-        const normalizeTitle = (title?: string | null) => displayTitle(title || '').toLowerCase();
-        const remaining = [...gameActivities];
-
-        const take = (predicate: (a: Activity) => boolean) => {
-            const matched: Activity[] = [];
-            for (let i = remaining.length - 1; i >= 0; i--) {
-                const item = remaining[i];
-                if (predicate(item)) {
-                    matched.push(item);
-                    remaining.splice(i, 1);
-                }
-            }
-            return matched.reverse();
-        };
-
-        const sortAlpha = (list: Activity[]) =>
-            list.sort((a, b) => displayTitle(a.title || '').localeCompare(displayTitle(b.title || '')));
-
-        const verbTenseGames = sortAlpha(
-            take((a: Activity) => {
-                const t = normalizeTitle(a.title);
-                return (
-                    t.includes('verb forms') ||
-                    t.includes('irregular') ||
-                    t.includes('time indicators') ||
-                    t.includes('sounds right') ||
-                    t.includes('timeline tenses')
-                );
-            })
-        );
-
-        const gerundInfinitiveGames = sortAlpha(
-            take((a: Activity) => {
-                const t = normalizeTitle(a.title);
-                return t.includes('gerund') || t.includes('infinitive');
-            })
-        );
-
-        const partsOfSpeechGames = sortAlpha(
-            take((a: Activity) => {
-                const t = normalizeTitle(a.title);
-                return t.includes('countable') || t.includes('uncountable');
-            })
-        );
-
-        const numberGames = sortAlpha(
-            take((a: Activity) => a.id === 'numbers-game' || normalizeTitle(a.title).includes('numbers'))
-        );
-
-        const otherGames = sortAlpha(remaining);
-
-        return [
-            { name: 'Verb Tense Games', activities: verbTenseGames },
-            { name: 'Gerunds and Infinitives', activities: gerundInfinitiveGames },
-            { name: 'Parts of Speech Games', activities: partsOfSpeechGames },
-            { name: 'Numbers', activities: numberGames },
-            { name: 'Other Games', activities: otherGames },
-        ].filter((group) => group.activities.length > 0);
+        const gameActivities = activities.filter(isGamesLibraryActivity);
+        return buildGameLibrarySections(gameActivities, (title) => displayTitle(title || ''));
     }, [activities]);
 
     // Organize activities by top-level categories with subcategories
