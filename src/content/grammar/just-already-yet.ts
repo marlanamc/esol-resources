@@ -108,17 +108,17 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Already: done before now",
         elements: [
-          { id: "already-dot", type: "single-dot", zone: "past", position: 72, verbLabel: "done (before now)" },
+          { id: "already-arc", type: "arc", zone: "past", position: 72, verbLabel: "done (before now)" },
         ],
       },
       explanation: `
         ${sceneCard("sceneCommunityCenter", "East Boston Community Center, front desk. Tuesday morning.", "sage")}
 
         ${dialogue([
-          { speaker: "Staff", avatar: "🧑‍💼", text: "Hi, are you here to pick up your EBT card?", side: "left", tone: "sage" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "No, I <strong>have already picked</strong> it up. I came in last week.", side: "right", tone: "terracotta" },
-          { speaker: "Staff", avatar: "🧑‍💼", text: "Oh great, you <strong>have already taken</strong> care of that. Is there anything else I can help with?", side: "left", tone: "sage" },
-          { speaker: "Nadine", avatar: "👩🏾", text: "Yes, actually. I <strong>haven't signed</strong> up for the food pantry <strong>yet</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Staff", avatar: "👨", text: "Hi, are you here to pick up your EBT card?", side: "left", tone: "sage" },
+          { speaker: "Nadine", avatar: "👩", text: "No, I <strong>have already picked</strong> it up. I came in last week.", side: "right", tone: "terracotta" },
+          { speaker: "Staff", avatar: "👨", text: "Oh great, you <strong>have already taken</strong> care of that. Is there anything else I can help with?", side: "left", tone: "sage" },
+          { speaker: "Nadine", avatar: "👩", text: "Yes, actually. I <strong>haven't signed</strong> up for the food pantry <strong>yet</strong>.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -240,7 +240,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Just: a moment ago, very close to now",
         elements: [
-          { id: "just-dot", type: "single-dot", zone: "past", position: 90, verbLabel: "just happened" },
+          { id: "just-arc", type: "arc", zone: "past", position: 90, verbLabel: "just happened" },
         ],
       },
       explanation: `
