@@ -404,29 +404,31 @@ function GuidedCoursePath({
                                                         </div>
                                                     </div>
                                                 )}
-                                                <div className="mb-2.5 flex items-start justify-between gap-3 relative z-10">
-                                                    <div className="min-w-0">
-                                                        <p className="text-[11px] font-bold uppercase tracking-wide text-text-muted">
-                                                            Week {level.levelNumber} / Level {level.levelNumber}
-                                                        </p>
-                                                        <h4 className="text-sm font-bold text-text mt-0.5">{level.levelTitle}</h4>
-                                                        {level.levelGoal && (
-                                                            <p className="mt-1 text-xs leading-snug text-text-muted max-w-[90%]">
-                                                                Goal: {level.levelGoal}
+                                                <div className="mb-2.5 relative z-10">
+                                                    <div className="flex items-start justify-between gap-3">
+                                                        <div className="min-w-0">
+                                                            <p className="text-[11px] font-bold uppercase tracking-wide text-text-muted">
+                                                                Week {level.levelNumber} / Level {level.levelNumber}
                                                             </p>
-                                                        )}
+                                                            <h4 className="text-sm font-bold text-text mt-0.5">{level.levelTitle}</h4>
+                                                        </div>
+                                                        <span
+                                                            className={`shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-bold border transition-all duration-300 ${
+                                                                isLevelDone
+                                                                    ? "bg-[var(--tone-grammar-chip-bg,#f5ede8)] text-[var(--tone-grammar-accent,#b05740)] border-[var(--tone-grammar-accent,#b05740)]/20 shadow-sm scale-105 animate-[badge-pop_0.35s_ease-out]"
+                                                                    : levelHasCurrent
+                                                                      ? "bg-[var(--tone-vocab-chip-bg,#eef3ee)] text-[var(--tone-vocab-accent,#6a8d73)] border-[var(--tone-vocab-accent,#6a8d73)]/20 animate-pulse"
+                                                                      : "text-text-muted bg-surface-subtle/50 border-transparent"
+                                                            }`}
+                                                        >
+                                                            {isLevelDone ? "🏆 Level complete" : `${levelRequiredDone}/${level.requiredActivities.length}`}
+                                                        </span>
                                                     </div>
-                                                    <span
-                                                        className={`shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-bold border transition-all duration-300 ${
-                                                            isLevelDone
-                                                                ? "bg-[var(--tone-grammar-chip-bg,#f5ede8)] text-[var(--tone-grammar-accent,#b05740)] border-[var(--tone-grammar-accent,#b05740)]/20 shadow-sm scale-105 animate-[badge-pop_0.35s_ease-out]"
-                                                                : levelHasCurrent
-                                                                  ? "bg-[var(--tone-vocab-chip-bg,#eef3ee)] text-[var(--tone-vocab-accent,#6a8d73)] border-[var(--tone-vocab-accent,#6a8d73)]/20 animate-pulse"
-                                                                  : "text-text-muted bg-surface-subtle/50 border-transparent"
-                                                        }`}
-                                                    >
-                                                        {isLevelDone ? "🏆 Level complete" : `${levelRequiredDone}/${level.requiredActivities.length}`}
-                                                    </span>
+                                                    {level.levelGoal && (
+                                                        <p className="mt-1 text-xs leading-snug text-text-muted">
+                                                            Goal: {level.levelGoal}
+                                                        </p>
+                                                    )}
                                                 </div>
 
                                                 <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-text-muted">
