@@ -23,9 +23,9 @@ export default async function AdminLayout({ children }: { children: ReactNode })
     const userName = session.user.name ?? session.user.username ?? "";
 
     return (
-        <div className="min-h-screen" style={{ background: "#f0f2f7" }}>
+        <div className="min-h-screen" style={{ background: "#efeeeb" }}>
             <AdminHeader userName={userName} />
-            <main id="main-content" className="max-w-[1400px] mx-auto px-4 sm:px-6 py-6 pb-20">
+            <main id="main-content" className="mx-auto max-w-[1540px] px-4 py-8 pb-20 sm:px-6 lg:px-8">
                 {children}
             </main>
         </div>

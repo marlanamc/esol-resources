@@ -2,12 +2,16 @@
 
 import React from "react";
 import Link from "next/link";
-import { Calendar } from "lucide-react";
+import { BookOpen, Calendar, Home, Map } from "lucide-react";
 import { TrophyIcon } from "@/components/icons/Icons";
-import { UserProfileDropdown } from "@/components/UserProfileDropdown";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
-import { LearnerSearchTrigger } from "@/components/search/LearnerSearchTrigger";
-import { ViewModeSwitcher } from "@/components/teach/ViewModeSwitcher";
+import { ModeHeader } from "@/components/layout/ModeHeader";
+
+const STUDENT_NAV_ITEMS = [
+    { href: "/dashboard", label: "Home", Icon: Home, exact: true },
+    { href: "/dashboard/map", label: "Map", Icon: Map, exact: false },
+    { href: "/dashboard/activities", label: "Activities", Icon: BookOpen, exact: false },
+] as const;
 
 interface DashboardHeaderProps {
     userName?: string;
@@ -43,36 +47,39 @@ export function DashboardHeader({
     };
 
     return (
-        <header
-            className="sticky top-0 border-b z-[260]"
-            style={{
-                paddingTop: "env(safe-area-inset-top, 0px)",
-                backgroundColor: "color-mix(in srgb, var(--color-bg) 97%, transparent)",
-                borderColor: "var(--border-subtle)",
-                boxShadow: "0 1px 6px rgba(13,22,32,0.10)",
-            }}
-        >
-            <div className="max-w-[1800px] mx-auto py-4 sm:py-5 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-                <div className="flex-1">
-                    <LearnerMenu mode="brand" userName={userName} showSearch={enableSearch} leaderboardRank={leaderboardRank} showMarlieEmoji={showMarlieEmoji} />
-                </div>
-                <div className="flex items-center gap-2 sm:gap-3">
-                    {showViewModeToggle && (
-                        <ViewModeSwitcher showAdmin={isAdmin} size="sm" />
-                    )}
-                    {enableSearch ? <LearnerSearchTrigger /> : null}
+        <ModeHeader
+            mode="student"
+            homeHref="/dashboard"
+            subtitle="Student · Learning dashboard"
+            userName={userName}
+            tabs={STUDENT_NAV_ITEMS}
+            ariaLabel="Student navigation"
+            brandSlot={
+                <LearnerMenu
+                    mode="brand"
+                    userName={userName}
+                    showSearch={enableSearch}
+                    leaderboardRank={leaderboardRank}
+                    showMarlieEmoji={showMarlieEmoji}
+                />
+            }
+            showViewModeToggle={showViewModeToggle}
+            showAdminMode={isAdmin}
+            enableSearch={enableSearch}
+            profileVariant={variant}
+            actions={
+                <>
                     {variant === "dashboardv2" ? (
                         <button
                             type="button"
                             onClick={handleCalendarOpen}
-                            className="hidden xl:inline-flex h-[38px] shrink-0 appearance-none items-center justify-center gap-2 rounded-lg border px-3 py-0 shadow-md transition-colors text-white hover:bg-[#c46a52] hover:border-[#b75e46] focus:outline-none focus:ring-2 focus:ring-[#d48c76] focus:ring-offset-1"
+                            className="hidden h-11 shrink-0 appearance-none items-center justify-center gap-2 rounded-xl border px-3 py-0 font-bold text-white shadow-[0_2px_8px_rgba(38,31,23,0.08)] transition-colors hover:bg-[#c46a52] hover:border-[#b75e46] focus:outline-none focus:ring-2 focus:ring-[#d48c76] focus:ring-offset-1 xl:inline-flex"
                             style={{
                                 backgroundColor: "#cf7a5f",
                                 borderColor: "#c06d52",
                                 fontSize: "14px",
                                 lineHeight: "20px",
                                 minWidth: "132px",
-                                minHeight: "38px",
                             }}
                             aria-label="Open calendar"
                         >
@@ -82,7 +89,7 @@ export function DashboardHeader({
                     ) : null}
                     <Link
                         href="/dashboard/leaderboard"
-                        className="hidden md:inline-flex shrink-0 items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-full border shadow-[0_2px_8px_rgba(136,163,146,0.12)] transition-all duration-200 text-white hover:shadow-[0_4px_12px_rgba(136,163,146,0.2)] hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 min-w-[132px] justify-center"
+                        className="hidden h-11 min-w-[132px] shrink-0 items-center justify-center gap-2 rounded-xl border px-4 text-sm font-bold text-white shadow-[0_2px_8px_rgba(38,31,23,0.08)] transition-all duration-200 hover:scale-[1.01] hover:shadow-[0_4px_12px_rgba(136,163,146,0.2)] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 md:inline-flex"
                         style={{
                             backgroundColor: "#88A392",
                             borderColor: "#7a9384",
@@ -91,9 +98,8 @@ export function DashboardHeader({
                         <TrophyIcon className="w-4 h-4" />
                         Leaderboard
                     </Link>
-                    <UserProfileDropdown userName={userName} variant={variant} />
-                </div>
-            </div>
-        </header>
+                </>
+            }
+        />
     );
 }

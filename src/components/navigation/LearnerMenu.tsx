@@ -177,9 +177,9 @@ export function LearnerMenu({
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md group-hover:shadow-lg transition-[box-shadow,transform] duration-300 group-hover:scale-105">
                 <BookOpenIcon className="w-5 h-5 text-white" />
             </div>
-            <div className="sm:hidden min-w-0 flex items-center gap-1.5">
+            <div className="min-w-0 flex items-center gap-1.5 sm:hidden">
                 <span
-                    className="block text-base font-semibold text-primary leading-tight truncate max-w-[130px]"
+                    className="block max-w-[4.5rem] truncate text-sm font-semibold leading-tight text-primary"
                     style={{ fontFamily: "Lora, serif" }}
                 >
                     {mobileName}

@@ -11,73 +11,23 @@ import { logger } from "@/lib/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
 import Link from "next/link";
-import { LogoutButton } from "@/components/LogoutButton";
-import {
-    BookOpenIcon,
-    TrophyIcon,
-    UsersIcon,
-    ClipboardIcon,
-    BarChartIcon,
-    CalendarIcon,
-    MapIcon
-} from "@/components/icons/Icons";
+import { UsersIcon } from "@/components/icons/Icons";
 import {
     MiniCalendar,
     CalendarEvent,
     UpcomingEventsList,
     TodaysAssignments,
-    ClearFeaturedButton,
     ClassAnnouncement,
     MissedClassCatchUpCard,
     MomentumCard,
     ExploreCategoriesCarousel,
-    DashboardWelcomeHero,
-    type AdminDashboardMode,
 } from "@/components/dashboard";
-import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
 import { getLearnerState } from "@/lib/learner-mode";
 import { isCatchUpPathEnabled } from "@/lib/catch-up-deadlines";
-
-type TeacherAssignment = {
-    id: string;
-    title: string | null;
-    activityId: string;
-    classId: string;
-    activity: {
-        id: string;
-        title: string;
-        description: string | null;
-        type: string;
-        category?: string | null;
-    };
-    isFeatured: boolean;
-    dueDate: Date | null;
-    createdAt: Date;
-    updatedAt: Date;
-};
-
-type TeacherDueAssignment = {
-    id: string;
-    title: string | null;
-    dueDate: Date | null;
-    activity: {
-        title: string;
-    };
-};
-
-type TeacherCalendarItem = {
-    id: string;
-    title: string;
-    description: string | null;
-    date: Date;
-    endDate: Date | null;
-    type: string;
-};
 
 type StudentEnrollment = {
     classId: string;
@@ -122,28 +72,6 @@ function isWithinNewReleaseWindow(date: Date | null | undefined): boolean {
     return ageMs >= 0 && ageMs <= NEW_RELEASE_WINDOW_MS;
 }
 
-function getTeacherDashboardWindow(referenceDate: Date) {
-    const start = new Date(referenceDate.getFullYear(), referenceDate.getMonth() - 1, 1);
-    const end = new Date(referenceDate.getFullYear(), referenceDate.getMonth() + 3, 0, 23, 59, 59, 999);
-    return { start, end };
-}
-
-function resolveAdminDashboardMode(gameSettings: unknown): AdminDashboardMode {
-    if (!gameSettings || typeof gameSettings !== "object" || Array.isArray(gameSettings)) {
-        return "teaching";
-    }
-
-    const dashboardSettings = (gameSettings as Record<string, unknown>).dashboard;
-    if (!dashboardSettings || typeof dashboardSettings !== "object" || Array.isArray(dashboardSettings)) {
-        return "teaching";
-    }
-
-    const mode = (dashboardSettings as Record<string, unknown>).mode;
-    if (mode === "admin") return "admin";
-    if (mode === "student") return "student";
-    return "teaching";
-}
-
 export default async function DashboardPage() {
     const session = await getServerSession(authOptions);
 
@@ -153,8 +81,6 @@ export default async function DashboardPage() {
 
     const userRole = session.user.role;
     const userId = session.user.id;
-    const admin = isAdmin(session.user);
-
 
     void trackLogin(userId).catch((err) => {
         logger.warn("Failed to track login for streak", { userId, error: String(err) });
@@ -169,1100 +95,505 @@ export default async function DashboardPage() {
         }
     }
 
-    const adminPreferences = admin
-        ? await withPrismaReadRetry(() =>
-            prisma.userPreferences.findUnique({
-                where: { userId },
-                select: { gameSettings: true },
-            })
-        )
-        : null;
-    const adminDashboardMode = admin
-        ? resolveAdminDashboardMode(adminPreferences?.gameSettings)
-        : "teaching";
-
-    if (canUseTeacherTools(session.user) && adminDashboardMode !== "student") {
-        const showGlobalAdminData = admin && adminDashboardMode === "admin";
-        const { start: dashboardWindowStart, end: dashboardWindowEnd } = getTeacherDashboardWindow(new Date());
-        const teacherClassWhere = showGlobalAdminData ? {} : { teacherId: userId };
-        const teacherEnrollmentWhere = showGlobalAdminData
-            ? {
-                student: {
-                    isSystemAccount: false,
-                },
-                status: "active",
-            }
-            : {
-                student: {
-                    isSystemAccount: false,
-                },
-                class: {
-                    teacherId: userId,
-                },
-                status: "active",
-            };
-        const teacherAssignmentWhere = showGlobalAdminData ? {} : { class: { teacherId: userId } };
-        const teacherCalendarWhere = showGlobalAdminData ? {} : { class: { teacherId: userId } };
-        const pendingReviewsWhere = showGlobalAdminData
-            ? {
-                status: "pending",
-                user: {
-                    isSystemAccount: false,
-                },
-            }
-            : {
-                status: "pending",
-                user: {
-                    isSystemAccount: false,
-                },
-                assignment: {
-                    class: {
-                        teacherId: userId,
-                    },
-                },
-            };
-
-        const [
-            totalClasses,
-            totalStudents,
-            featuredAssignments,
-            dueAssignments,
-            teacherCalendarEvents,
-            pendingReviews,
-        ] = await Promise.all([
-            timedQuery(
-                {
-                    route: "/dashboard",
-                    queryLabel: "class.count.teacherDashboard",
-                    userRole,
-                },
-                () => withPrismaReadRetry(() => prisma.class.count({ where: teacherClassWhere }))
-            ),
-            timedQuery(
-                {
-                    route: "/dashboard",
-                    queryLabel: "classEnrollment.count.teacherDashboardStudents",
-                    userRole,
-                },
-                () => withPrismaReadRetry(() => prisma.classEnrollment.count({ where: teacherEnrollmentWhere }))
-            ),
-            timedQuery(
-                {
-                    route: "/dashboard",
-                    queryLabel: "assignment.findMany.teacherDashboardFeatured",
-                    userRole,
-                },
-                () =>
-                    withPrismaReadRetry(() =>
-                        prisma.assignment.findMany({
-                            where: {
-                                ...teacherAssignmentWhere,
-                                isFeatured: true,
-                            },
-                            select: {
-                                id: true,
-                                title: true,
-                                activityId: true,
-                                classId: true,
-                                isFeatured: true,
-                                dueDate: true,
-                                createdAt: true,
-                                updatedAt: true,
-                                activity: {
+        // Student Dashboard
+    const enrollments = await timedQuery(
+        {
+            route: "/dashboard",
+            queryLabel: "classEnrollment.findMany.studentDashboard",
+            userRole,
+        },
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.classEnrollment.findMany({
+                    where: { studentId: userId, status: "active" },
+                    include: {
+                        class: {
+                            include: {
+                                assignments: {
+                                    select: {
+                                        id: true,
+                                        title: true,
+                                        activityId: true,
+                                        classId: true,
+                                        isFeatured: true,
+                                        sequenceNumber: true,
+                                        unitLabel: true,
+                                        dueDate: true,
+                                        createdAt: true,
+                                        updatedAt: true,
+                                        activity: {
+                                            select: {
+                                                id: true,
+                                                title: true,
+                                                description: true,
+                                                type: true,
+                                                category: true,
+                                                isReleased: true,
+                                                content: true,
+                                            },
+                                        },
+                                    },
+                                    orderBy: [{ sequenceNumber: "asc" }, { createdAt: "asc" }],
+                                },
+                                calendarEvents: {
                                     select: {
                                         id: true,
                                         title: true,
                                         description: true,
+                                        date: true,
+                                        endDate: true,
                                         type: true,
-                                        category: true,
                                     },
                                 },
                             },
-                            orderBy: { updatedAt: "desc" },
-                        })
-                    ),
-                (result) => result.length
-            ) as Promise<TeacherAssignment[]>,
-            timedQuery(
-                {
-                    route: "/dashboard",
-                    queryLabel: "assignment.findMany.teacherDashboardDueWindow",
-                    userRole,
-                },
-                () =>
-                    withPrismaReadRetry(() =>
-                        prisma.assignment.findMany({
-                            where: {
-                                ...teacherAssignmentWhere,
-                                dueDate: {
-                                    gte: dashboardWindowStart,
-                                    lte: dashboardWindowEnd,
-                                },
-                            },
-                            select: {
-                                id: true,
-                                title: true,
-                                dueDate: true,
-                                activity: {
-                                    select: {
-                                        title: true,
-                                    },
-                                },
-                            },
-                            orderBy: { dueDate: "asc" },
-                        })
-                    ),
-                (result) => result.length
-            ) as Promise<TeacherDueAssignment[]>,
-            timedQuery(
-                {
-                    route: "/dashboard",
-                    queryLabel: "calendarEvent.findMany.teacherDashboardWindow",
-                    userRole,
-                },
-                () =>
-                    withPrismaReadRetry(() =>
-                        prisma.calendarEvent.findMany({
-                            where: {
-                                ...teacherCalendarWhere,
-                                OR: [
-                                    {
-                                        date: {
-                                            gte: dashboardWindowStart,
-                                            lte: dashboardWindowEnd,
-                                        },
-                                    },
-                                    {
-                                        endDate: {
-                                            gte: dashboardWindowStart,
-                                            lte: dashboardWindowEnd,
-                                        },
-                                    },
-                                    {
-                                        date: {
-                                            lte: dashboardWindowStart,
-                                        },
-                                        endDate: {
-                                            gte: dashboardWindowStart,
-                                        },
-                                    },
-                                ],
-                            },
+                        },
+                    },
+                })
+            ),
+        (result) => result.length
+    ) as StudentEnrollment[];
+
+    type ReleasableAssignment = {
+        activity: {
+            type: string;
+            category?: string | null;
+            isReleased?: boolean;
+        };
+    };
+
+    const filterReleasedActivities = (assignment: ReleasableAssignment) => {
+        return isLearnerVisibleActivity(assignment.activity);
+    };
+
+    const allAssignments = enrollments.flatMap((enrollment: StudentEnrollment) =>
+        enrollment.class.assignments
+            .filter(filterReleasedActivities)
+            .map((assignment) => ({
+                ...assignment,
+                className: enrollment.class.name,
+            }))
+    );
+    const classAnnouncements = enrollments
+        .map((enrollment: StudentEnrollment) => ({
+            className: enrollment.class.name,
+            message: enrollment.class.announcement?.trim() || "",
+            messageHtml: renderAnnouncementMarkdown(enrollment.class.announcement),
+        }))
+        .filter((announcement) => announcement.message.length > 0);
+
+    const classIds = enrollments.map(e => e.classId);
+    const featuredClassIds = await withPrismaReadRetry(() =>
+        expandClassIdsToSectionGroupIds(prisma, classIds)
+    );
+    const featuredAssignmentsRawUnfiltered = featuredClassIds.length === 0 ? [] : await timedQuery(
+        {
+            route: "/dashboard",
+            queryLabel: "assignment.findMany.featuredStudentDashboard",
+            userRole,
+        },
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.assignment.findMany({
+                    where: {
+                        classId: { in: featuredClassIds },
+                        isFeatured: true,
+                        activity: { id: { not: "" } },
+                    },
+                    include: {
+                        activity: {
                             select: {
                                 id: true,
                                 title: true,
                                 description: true,
-                                date: true,
-                                endDate: true,
                                 type: true,
+                                category: true,
+                                isReleased: true,
+                                content: true,
                             },
-                            orderBy: { date: "asc" },
+                        },
+                        submissions: {
+                            where: { userId },
+                            select: {
+                                id: true,
+                                status: true,
+                                completedAt: true,
+                                score: true,
+                            },
+                        },
+                    },
+                    orderBy: [{ sequenceNumber: "asc" }, { createdAt: "asc" }],
+                })
+            ),
+        (result) => result.length
+    );
+
+    const featuredAssignmentsRaw = featuredAssignmentsRawUnfiltered.filter(filterReleasedActivities);
+
+    // Deduplicate by activityId: section-group expansion can return same activity from multiple classes.
+    // Prefer assignments from the student's enrolled classes so activity links work (access check requires enrollment).
+    const enrolledClassIds = new Set(classIds);
+    const featuredAssignmentsDeduped = Array.from(
+        featuredAssignmentsRaw
+            .reduce<
+                Map<
+                    string,
+                    (typeof featuredAssignmentsRaw)[number]
+                >
+            >((map, a) => {
+                const existing = map.get(a.activityId);
+                const aEnrolled = enrolledClassIds.has(a.classId);
+                const existingEnrolled = existing ? enrolledClassIds.has(existing.classId) : false;
+                const aTime = (a.updatedAt ?? a.createdAt).getTime();
+                const existingTime = existing ? (existing.updatedAt ?? existing.createdAt).getTime() : -1;
+                const keepNew = !existing || aEnrolled && !existingEnrolled || (aEnrolled === existingEnrolled && aTime > existingTime);
+                if (keepNew) map.set(a.activityId, a);
+                return map;
+            }, new Map())
+            .values()
+    );
+
+    const featuredActivityIds = Array.from(new Set(featuredAssignmentsDeduped.map((a) => a.activityId)));
+    const featuredProgressRows =
+        featuredActivityIds.length === 0
+            ? []
+            : await timedQuery(
+                {
+                    route: "/dashboard",
+                    queryLabel: "activityProgress.findMany.featuredActivities",
+                    userRole,
+                },
+                () =>
+                    withPrismaReadRetry(() =>
+                        prisma.activityProgress.findMany({
+                  where: { userId, activityId: { in: featuredActivityIds } },
+                  select: { activityId: true, progress: true, status: true, categoryData: true, updatedAt: true },
+                  orderBy: { updatedAt: "desc" },
                         })
                     ),
                 (result) => result.length
-            ) as Promise<TeacherCalendarItem[]>,
-            timedQuery(
-                {
-                    route: "/dashboard",
-                    queryLabel: "submission.count.teacherDashboardPendingReviews",
-                    userRole,
-                },
-                () => withPrismaReadRetry(() => prisma.submission.count({ where: pendingReviewsWhere }))
-            ),
-        ]);
+            );
 
-        // When sections sync assignments, teacher dashboard can receive repeated entries.
-        // Collapse same activity/title into a single checklist row and keep the newest.
-        const dedupedFeaturedAssignments = Array.from(
-            featuredAssignments.reduce<
-                Map<string, { assignment: TeacherAssignment; sectionCount: number }>
-            >((map, assignment) => {
-                const dedupeKey = `${assignment.activityId}::${(assignment.title || assignment.activity.title || "").trim().toLowerCase()}`;
-                const existing = map.get(dedupeKey);
-                const assignmentFeaturedAt = (assignment.updatedAt ?? assignment.createdAt).getTime();
-                const existingFeaturedAt = existing
-                    ? (existing.assignment.updatedAt ?? existing.assignment.createdAt).getTime()
-                    : -1;
-
-                if (!existing) {
-                    map.set(dedupeKey, { assignment, sectionCount: 1 });
-                    return map;
-                }
-
-                const nextAssignment = assignmentFeaturedAt > existingFeaturedAt
-                    ? assignment
-                    : existing.assignment;
-                map.set(dedupeKey, {
-                    assignment: nextAssignment,
-                    sectionCount: existing.sectionCount + 1,
-                });
+    const featuredProgressMap = (featuredProgressRows as Array<{
+        activityId: string;
+        progress: number;
+        status: string;
+        categoryData: string | null;
+    }>).reduce<Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>>(
+        (map, row) => {
+            if (map.has(row.activityId)) {
                 return map;
-            }, new Map<string, { assignment: TeacherAssignment; sectionCount: number }>())
-                .values()
-        );
+            }
 
-        const featuredAssignmentsForDisplay = dedupedFeaturedAssignments.map(({ assignment, sectionCount }) => ({
-            id: assignment.id,
-            title: assignment.title,
-            activityId: assignment.activityId,
-            sectionCount,
-            featuredAt: assignment.updatedAt ?? assignment.createdAt,
-            isNewRelease: isWithinNewReleaseWindow(assignment.updatedAt ?? assignment.createdAt),
-            activity: {
-                title: assignment.activity.title,
-                description: assignment.activity.description,
-                // fall back to type if category missing to keep badge styling
-                category: assignment.activity.category || assignment.activity.type || null,
-            },
-            submissions: [],
-        }));
-        const calendarEvents: CalendarEvent[] = [
-            ...dueAssignments
-                .filter((a) => a.dueDate)
-                .map(a => ({
-                    date: a.dueDate as Date,
-                    type: (a.title || a.activity.title || "").toLowerCase().includes("quiz") ? "quiz" as const : "due" as const,
-                    title: `${a.title || a.activity.title || "Assignment"}`,
-                })),
-            ...teacherCalendarEvents.map((ev) => ({
-                id: ev.id,
+            map.set(row.activityId, {
+                progress: row.progress,
+                status: row.status,
+                categoryData: parseCategoryData(row.categoryData),
+            });
+            return map;
+        },
+        new Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>()
+    );
+
+    let dailyVocabHabit = null;
+    try {
+        dailyVocabHabit = await getDailyVocabHabitForUser(prisma, userId);
+    } catch (error) {
+        logger.warn("Failed to load daily vocab habit for student dashboard", {
+            userId,
+            error: String(error),
+        });
+    }
+
+    const featuredAssignments = featuredAssignmentsDeduped
+        .filter((a) => a.activityId !== "vocab-daily-review")
+        .map((a) => {
+            const p = featuredProgressMap.get(a.activityId);
+            const isGrammarGuide =
+                (a.activity.type || "").toLowerCase() === "guide" &&
+                (a.activity.category || "").toLowerCase() === "grammar";
+            const hasPassedMiniQuiz = isGrammarGuide && a.submissions.some(
+                (s) => !!s.completedAt && typeof s.score === "number" && s.score > 70
+            );
+
+            return {
+                ...a,
+                featuredAt: a.updatedAt ?? a.createdAt,
+                isNewRelease: isWithinNewReleaseWindow(a.updatedAt ?? a.createdAt),
+                progress: hasPassedMiniQuiz ? 100 : (p?.progress ?? 0),
+                progressStatus: hasPassedMiniQuiz ? "completed" : (p?.status ?? "in_progress"),
+                categoryData: p?.categoryData ?? null,
+            };
+        });
+
+    const calendarEvents: CalendarEvent[] = [
+        ...allAssignments
+            .filter((a) => a.dueDate)
+            .map((a) => ({
+                date: a.dueDate as Date,
+                type: (a.title || a.activity.title || "").toLowerCase().includes("quiz") ? "quiz" as const : "due" as const,
+                title: `${a.title || a.activity.title || "Assignment"}`,
+            })),
+        ...enrollments.flatMap((enrollment: StudentEnrollment) =>
+            enrollment.class.calendarEvents.map((ev: { id: string; date: Date; endDate: Date | null; type: string; title: string; description: string | null }) => ({
                 date: ev.date,
                 endDate: ev.endDate || null,
                 type: (ev.type as CalendarEvent["type"]) || "holiday",
                 title: `${ev.title}`,
                 description: ev.description,
-            })),
-        ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+            }))
+        ),
+    ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-        const isTeacherUser = admin;
-        const teacherHelperText = showGlobalAdminData
-            ? "Overall app activity and account health."
-            : "Here's your teaching week at a glance.";
-        const importantPageSections = [
-            {
-                heading: "Student Insights",
-                links: [
-                    {
-                        href: "/dashboard/reports",
-                        title: "Activity Reports",
-                        subtitle: "View daily/weekly engagement and popular activities.",
-                        icon: BarChartIcon,
-                    },
-                    {
-                        href: "/dashboard/leaderboard",
-                        title: "Leaderboard",
-                        subtitle: "See who is leading this week.",
-                        icon: TrophyIcon,
-                    },
-                    {
-                        href: "/dashboard/stats",
-                        title: "Student Stats",
-                        subtitle: "Review progress, points, and engagement.",
-                        icon: BarChartIcon,
-                    },
-                    {
-                        href: "/dashboard/gradebook",
-                        title: "Grammar Gradebook",
-                        subtitle: "Check mini-quiz scores by student.",
-                        icon: ClipboardIcon,
-                    },
-                ],
-            },
-            {
-                heading: "Planning",
-                links: [
-                    {
-                        href: "/dashboard/classes",
-                        title: "Your Classes",
-                        subtitle: "Manage classes, codes, and rosters.",
-                        icon: UsersIcon,
-                    },
-                    {
-                        href: "/summer-planning-wiki/index.html",
-                        title: "Summer Planning Wiki",
-                        subtitle: "Read the roadmap, research notes, and class improvement plans.",
-                        icon: BookOpenIcon,
-                    },
-                    {
-                        href: "/dashboard/calendar/new",
-                        title: "Add Event",
-                        subtitle: "Post class dates, due dates, or reminders.",
-                        icon: CalendarIcon,
-                    },
-                    {
-                        href: "/dashboard/classes",
-                        title: "Create Announcement",
-                        subtitle: "Set a class announcement for students.",
-                        icon: ClipboardIcon,
-                    },
-                ],
-            },
-            {
-                heading: "Content & Setup",
-                links: [
-                    {
-                        href: "/grammar-map",
-                        title: "Grammar Map",
-                        subtitle: "Browse all grammar topics and connections.",
-                        icon: MapIcon,
-                    },
-                    {
-                        href: "/dashboard/activities/new",
-                        title: "Create Activity",
-                        subtitle: "Build a new lesson, quiz, or guide.",
-                        icon: BookOpenIcon,
-                    },
-                    {
-                        href: "/dashboard/passwords",
-                        title: "Reset Passwords",
-                        subtitle: "Help students regain account access.",
-                        icon: ClipboardIcon,
-                    },
-                ],
-            },
-        ];
+    const firstClassId = enrollments[0]?.classId;
+    const calendarWeekStart = getCalendarWeekStart();
+    const [studentLeaderboard, studentUserStats, studentLedgerEntries] = await Promise.all([
+        firstClassId ? getTimeframedLeaderboard("week", 20, firstClassId) : Promise.resolve([]),
+        withPrismaReadRetry(() =>
+            prisma.user.findUnique({
+                where: { id: userId },
+                select: { currentStreak: true, longestStreak: true, points: true },
+            })
+        ),
+        withPrismaReadRetry(() =>
+            prisma.pointsLedger.findMany({
+                where: { userId, createdAt: { gte: calendarWeekStart } },
+                select: { createdAt: true },
+            })
+        ),
+    ]);
+    const studentSevenDayActivity = buildCalendarWeekActivity(studentLedgerEntries);
+    const studentEntry = studentLeaderboard.find((e) => e.id === userId);
+    const studentLeaderboardRank = studentEntry && studentEntry.rank <= 3 ? studentEntry.rank : null;
+    const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
+    const isMarlie = (session.user as { username?: string })?.username?.toLowerCase() === "marlie";
+    const desktopNameEmoji = isMarlie ? "🙋🏻‍♀️" : studentLeaderboardMedal;
 
-        if (isTeacherUser) {
-            importantPageSections[2].links.push({
-                href: "/dashboard/backend",
-                title: "Backend Users",
-                subtitle: "View account roles and permission flags.",
-                icon: UsersIcon,
-            });
-        }
-
-        return (
-            <div className="min-h-screen bg-bg">
-                <main id="main-content" className="container mx-auto pt-4 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
-                    <div className="dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
-                        {/* Main Content Area - Left Side */}
-                        <div className="md:col-span-8 lg:col-span-9 min-w-0 space-y-6 sm:space-y-8">
-                            <div className="hidden lg:block dashboard-panel paper-texture rounded-2xl overflow-hidden">
-                                <DashboardWelcomeHero
-                                    weekHub
-                                    userName={session.user?.name === "Teacher User" ? "Teacher" : session.user?.name ?? ""}
-                                    teacherStats={{
-                                        activeStudents: totalStudents,
-                                        totalClasses,
-                                        pendingReviews,
-                                        showBackendLink: isTeacherUser,
-                                    }}
-                                    helperText={teacherHelperText}
-                                />
-                                <TodaysAssignments
-                                    weekHub
-                                    title="Weekly Teaching Checklist"
-                                    ctaLabel="Open"
-                                    initialAssignments={featuredAssignmentsForDisplay}
-                                    variant="checklist"
-                                    actions={<ClearFeaturedButton />}
-                                />
+    return (
+        <div className="min-h-screen bg-bg">
+            <main id="main-content" className="container mx-auto pt-2 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
+                {/* ── MOBILE + TABLET layout (< lg) ── */}
+                <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 md:items-start">
+                    <div className="md:col-span-8 min-w-0 space-y-5">
+                        <ClassAnnouncement announcements={classAnnouncements} />
+                        <div className="md:hidden">
+                            <MomentumCard
+                                initialStreak={studentUserStats?.currentStreak ?? 0}
+                                initialLongestStreak={studentUserStats?.longestStreak ?? 0}
+                                initialSevenDayActivity={studentSevenDayActivity}
+                                initialTotalPoints={studentUserStats?.points ?? 0}
+                            />
+                        </div>
+                        {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
+                        <section aria-label="This Week's Path">
+                            <TodaysAssignments
+                                initialAssignments={featuredAssignments}
+                                title="This Week's Path"
+                                ctaLabel="Start"
+                                variant="checklist"
+                                sectionId="weekly-path"
+                                pinnedHabit={dailyVocabHabit}
+                                mobileTasksLinkHref="/dashboard/activities"
+                                mobileTasksLinkLabel="All Activities"
+                                hideProgressBar
+                            />
+                        </section>
+                        <ExploreCategoriesCarousel />
+                    </div>
+                    <aside className="hidden md:block md:col-span-4">
+                        <div className="dashboard-panel paper-texture sticky top-4 p-5 space-y-5">
+                            <MomentumCard variant="sidebar" initialStreak={studentUserStats?.currentStreak ?? 0} initialLongestStreak={studentUserStats?.longestStreak ?? 0} initialSevenDayActivity={studentSevenDayActivity} initialTotalPoints={studentUserStats?.points ?? 0} />
+                            <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
+                                <MiniCalendar compact flat events={calendarEvents} />
                             </div>
-
-                            {/* Mobile Welcome */}
-                            <div className="lg:hidden">
-                                <h1 className="text-3xl sm:text-4xl font-display font-bold text-text mb-4 leading-[1.15] tracking-tight">
-                                    Welcome, <span className="font-display tracking-tight text-primary/90 relative inline-block">
-                                        {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}
-                                        <span className="absolute -bottom-0.5 left-0 right-0 h-1.5 sm:h-2 bg-[#88A392]/45 -z-10 rounded-sm transform -rotate-1"></span>
-                                    </span>!
-                                </h1>
-
+                            <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
+                                <UpcomingEventsList events={calendarEvents.filter(event => { const today = new Date(); today.setHours(0,0,0,0); const end = event.endDate ? new Date(event.endDate) : new Date(event.date); end.setHours(0,0,0,0); return end >= today; })} allowDelete={false} showSyncedLabel={false} />
+                            </div>
+                            <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
                                 <div className="flex items-center gap-3">
-                                    <div className="dashboard-pill flex items-center gap-2 border-emerald-200/50 dark:border-emerald-800/50 pl-2 pr-3 py-1.5">
-                                        <div className="w-7 h-7 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
-                                            <UsersIcon className="text-secondary" size={14} />
-                                        </div>
-                                        <div className="flex items-baseline gap-1">
-                                            <span className="text-base font-bold text-text tabular-nums">{totalStudents}</span>
-                                            <span className="text-[10px] font-semibold text-text-muted uppercase">students</span>
-                                        </div>
-                                    </div>
-
-                                    <TeacherPendingReviewsStat pendingReviews={pendingReviews} mobile />
-
-                                    {isTeacherUser && (
-                                        <Link
-                                            href="/dashboard/backend"
-                                            className="dashboard-soft-button inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-[var(--dashboard-surface-start)] px-3 py-1.5 text-xs font-semibold text-primary dark:border-primary/50 dark:bg-[var(--surface-elevated)]"
-                                        >
-                                            <UsersIcon size={12} />
-                                            Backend Users
-                                        </Link>
-                                    )}
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary/10 text-secondary shrink-0"><UsersIcon className="h-4 w-4" /></div>
+                                    <div className="min-w-0"><h3 className="text-sm font-bold text-text">Invite Friends</h3><p className="text-xs text-text-muted leading-snug">Share your invite link so others can join your learning circle.</p></div>
                                 </div>
-                            </div>
-
-                            {/* Mobile Quick Actions - Only visible on mobile */}
-                            <section className="md:hidden">
-                                <h2 className="text-lg font-bold font-display text-text mb-3">Quick Actions</h2>
-                                <div className="grid grid-cols-2 gap-7">
-                                    <Link
-                                        href="/dashboard/classes"
-                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-primary/20 dark:border-primary/40 hover:border-primary/40"
-                                    >
-                                        <UsersIcon className="w-6 h-6 text-primary mb-2" />
-                                        <span className="text-sm font-semibold text-text text-center">Classes</span>
-                                    </Link>
-                                    <Link
-                                        href="/dashboard/activities/new"
-                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-secondary/20 dark:border-secondary/40 hover:border-secondary/40"
-                                    >
-                                        <BookOpenIcon className="w-6 h-6 text-secondary mb-2" />
-                                        <span className="text-sm font-semibold text-text text-center">Create Activity</span>
-                                    </Link>
-                                    <Link
-                                        href="/dashboard/stats"
-                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-accent/20 dark:border-accent/40 hover:border-accent/40"
-                                    >
-                                        <BarChartIcon className="w-6 h-6 text-accent mb-2" />
-                                        <span className="text-sm font-semibold text-text text-center">Student Stats</span>
-                                    </Link>
-                                    <Link
-                                        href="/dashboard/reports"
-                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-secondary/20 dark:border-secondary/40 hover:border-secondary/40"
-                                    >
-                                        <BarChartIcon className="w-6 h-6 text-secondary mb-2" />
-                                        <span className="text-sm font-semibold text-text text-center">Reports</span>
-                                    </Link>
-                                    <Link
-                                        href="/summer-planning-wiki/index.html"
-                                        className="dashboard-panel flex flex-col items-center justify-center p-6 border-amber-200/60 dark:border-amber-800/40 hover:border-amber-300/80"
-                                    >
-                                        <BookOpenIcon className="w-6 h-6 text-amber-700 dark:text-amber-300 mb-2" />
-                                        <span className="text-sm font-semibold text-text text-center">Planning Wiki</span>
-                                    </Link>
-                                </div>
-                            </section>
-
-                            {/* Featured Assignments (styled like student view) */}
-                            <section className="lg:hidden">
-                                <TodaysAssignments
-                                    title="Weekly Teaching Checklist"
-                                    ctaLabel="Open"
-                                    initialAssignments={featuredAssignmentsForDisplay}
-                                    variant="checklist"
-                                    actions={<ClearFeaturedButton />}
-                                />
-                            </section>
-
-                            <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-                                <section className="min-w-0">
-                                    <div className="dashboard-panel dashboard-panel-hover paper-texture flex h-full flex-col justify-between rounded-2xl p-5 group relative overflow-hidden border-amber-200/60 dark:border-amber-800/40">
-                                        <div className="absolute -top-16 -right-10 h-44 w-44 rounded-full bg-gradient-to-br from-amber-200/65 via-teal-200/45 to-fuchsia-200/45 blur-3xl opacity-70 transition-opacity duration-500 group-hover:opacity-95"></div>
-
-                                        <div className="relative z-10 min-w-0">
-                                            <p className="text-xs font-bold uppercase tracking-widest text-amber-700 dark:text-amber-300">
-                                                Summer Planning
-                                            </p>
-                                            <h2 className="mt-2 text-xl font-bold font-display text-text">
-                                                Class Improvement Wiki
-                                            </h2>
-                                            <p className="mt-2 text-sm leading-relaxed text-text/70">
-                                                Roadmap, research notes, and class improvement plans in one place.
-                                            </p>
-                                        </div>
-                                        <Link
-                                            href="/summer-planning-wiki/index.html"
-                                            className="btn-polish dashboard-soft-button relative z-10 mt-5 inline-flex w-fit shrink-0 items-center justify-center gap-2 rounded-xl border border-amber-400/70 bg-gradient-to-b from-amber-300 to-orange-300 px-5 py-2.5 text-sm font-semibold text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/50 focus-visible:ring-offset-2"
-                                        >
-                                            Open Wiki
-                                            <span className="arrow-animate">→</span>
-                                        </Link>
-                                    </div>
-                                </section>
-
-                                <section className="min-w-0">
-                                    <div className="dashboard-panel dashboard-panel-hover paper-texture flex h-full flex-col justify-between rounded-2xl p-5 group relative overflow-hidden">
-                                        <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-primary/14 via-accent/18 to-secondary/14 rounded-full blur-3xl opacity-55 group-hover:opacity-75 transition-opacity duration-500"></div>
-
-                                        <div className="relative z-10 min-w-0">
-                                            <p className="text-xs font-bold text-text-muted tracking-widest uppercase flex items-center gap-2">
-                                                <span className="w-8 h-[2px] rounded-full bg-gradient-to-r from-primary/60 to-secondary/40"></span>
-                                                Content
-                                            </p>
-                                            <h2 className="text-xl font-bold font-display text-text mt-2">All Activities</h2>
-                                            <p className="text-sm text-text/70 mt-2 leading-relaxed">
-                                                Browse, feature, and create teaching activities by category.
-                                            </p>
-                                        </div>
-                                        <Link
-                                            href="/dashboard/activities"
-                                            className="btn-polish dashboard-soft-button relative z-10 mt-5 inline-flex w-fit shrink-0 items-center gap-2 rounded-xl bg-gradient-to-b from-primary to-[color-mix(in_srgb,var(--primary-color)_88%,#000)] px-5 py-2.5 text-sm font-semibold text-[color:var(--text-on-accent)] border border-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
-                                            style={{
-                                                '--dashboard-button-shadow-override': '0 1px 2px rgba(0,0,0,0.1), 0 4px 12px rgba(176,87,64,0.25), inset 0 1px 0 rgba(255,255,255,0.2)',
-                                                '--dashboard-button-shadow-hover-override': '0 2px 4px rgba(0,0,0,0.12), 0 8px 18px rgba(176,87,64,0.32), inset 0 1px 0 rgba(255,255,255,0.24)',
-                                            } as React.CSSProperties}
-                                        >
-                                            Browse
-                                            <span className="arrow-animate">→</span>
-                                        </Link>
-                                    </div>
-                                </section>
+                                <Link href="/dashboard/invite" className="dashboard-soft-button mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-secondary/25 bg-[var(--dashboard-surface-start)] px-4 py-2.5 text-sm font-semibold text-secondary"><UsersIcon className="h-4 w-4" />Open Invite Link</Link>
                             </div>
                         </div>
+                    </aside>
+                </div>
 
-                        {/* Calendar & Important Pages Sidebar (hidden on mobile) */}
-                        <aside className="hidden md:block md:col-span-4 md:-mt-2 lg:col-span-3 lg:-mt-3">
-                            <div className="dashboard-panel paper-texture sticky top-2 space-y-8 p-6 md:top-4">
-                                <MiniCalendar events={calendarEvents} />
+                {/* ── DESKTOP layout (lg+) — Option 2: Card-Based & Focused ── */}
+                <div className="hidden lg:block">
+                    <ClassAnnouncement announcements={classAnnouncements} />
+                    {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
 
-                                <UpcomingEventsList
-                                    events={calendarEvents.filter(event => {
-                                        const today = new Date();
-                                        today.setHours(0, 0, 0, 0);
-                                        const eventEndDate = event.endDate ? new Date(event.endDate) : new Date(event.date);
-                                        eventEndDate.setHours(0, 0, 0, 0);
-                                        return eventEndDate >= today;
-                                    })}
-                                    allowDelete={true}
-                                />
+                    {/* Two-column grid: main left, sidebar right */}
+                    <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_348px] gap-5 items-start">
 
-                                <div className="mt-8 border-t pt-8 space-y-4" style={{ borderColor: 'var(--dashboard-divider)' }}>
-                                    <h3 className="text-sm font-semibold text-text">Important Pages</h3>
-                                    <p className="text-xs text-text-muted">
-                                        Organized by task so you can find tools faster.
-                                    </p>
-                                    {importantPageSections.map((section) => (
-                                        <div key={section.heading} className="space-y-1.5">
-                                            <p className="text-[11px] font-semibold uppercase tracking-wide text-text-muted">
-                                                {section.heading}
-                                            </p>
-                                            <div className="flex flex-col gap-1.5">
-                                                {section.links.map((link) => {
-                                                    const Icon = link.icon;
-                                                    return (
-                                                        <Link
-                                                            key={`${section.heading}-${link.title}`}
-                                                            href={link.href}
-                                                            className="quick-link w-full rounded-2xl border px-4 py-3 text-text flex items-start gap-3"
-                                                            style={{ borderColor: 'var(--dashboard-divider)' }}
-                                                        >
-                                                            <Icon className="w-4 h-4 mt-0.5 shrink-0" />
-                                                            <div className="leading-tight">
-                                                                <p className="text-sm font-semibold text-text">{link.title}</p>
-                                                                <p className="text-xs text-text-muted mt-0.5">{link.subtitle}</p>
-                                                            </div>
-                                                        </Link>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    ))}
+                        {/* ── Left / Main column ── */}
+                        <div className="min-w-0 space-y-5">
+
+                            {/* Welcome header — compact, above the cards */}
+                            <div className="pt-2 pb-1">
+                                <h1
+                                    className="font-display font-bold text-text leading-tight tracking-tight flex items-baseline gap-x-2.5 gap-y-1 flex-wrap"
+                                    style={{ textWrap: "balance" } as React.CSSProperties}
+                                >
+                                    <span className="text-xl text-text-muted font-medium">Welcome back,</span>
+                                    <span className="text-[2rem] text-primary relative inline-block leading-none">
+                                        {session.user?.name?.trim() || "there"}
+                                        <span className="absolute -bottom-0.5 left-0 right-0 h-2 bg-[#88A392]/40 -z-10 rounded-sm -rotate-1" />
+                                    </span>
+                                    {desktopNameEmoji ? (
+                                        <span
+                                            className="inline-flex text-2xl leading-none"
+                                            {...(isMarlie ? { "aria-hidden": true } : { "aria-label": `Rank ${studentLeaderboardRank}` })}
+                                        >
+                                            {desktopNameEmoji}
+                                        </span>
+                                    ) : null}
+                                </h1>
+                                <p className="mt-1 text-sm text-text-muted/90">
+                                    {formatDashboardWeekRangeLabel(new Date())} · You&apos;re doing great!
+                                </p>
+                            </div>
+
+                            {/* This Week's Path — primary focus card */}
+                            <div className="dashboard-panel rounded-2xl overflow-hidden">
+                                <div className="px-6 pt-5 pb-3 border-b flex items-center justify-between" style={{ borderColor: "var(--dashboard-border)" }}>
+                                    <div>
+                                        <h2 className="text-lg font-bold font-display text-text leading-tight">This Week&apos;s Path</h2>
+                                        <p className="text-xs text-text-muted mt-0.5">Focus on your goals</p>
+                                    </div>
+                                    <Link
+                                        href="/dashboard/map"
+                                        className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-lg px-3 py-1.5 transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                                        style={{ color: "var(--primary)" }}
+                                    >
+                                        Full map →
+                                    </Link>
                                 </div>
-                            </div>
-                        </aside>
-                    </div>
-
-                    {/* Logout Button at Bottom */}
-                    <div className="max-w-[1800px] mx-auto mt-12 pb-8 px-4 sm:px-6 lg:px-10 flex justify-center md:justify-end">
-                        <LogoutButton />
-                    </div>
-                </main>
-
-            </div>
-        );
-    } else {
-        // Student Dashboard
-        const enrollments = await timedQuery(
-            {
-                route: "/dashboard",
-                queryLabel: "classEnrollment.findMany.studentDashboard",
-                userRole,
-            },
-            () =>
-                withPrismaReadRetry(() =>
-                    prisma.classEnrollment.findMany({
-                        where: { studentId: userId, status: "active" },
-                        include: {
-                            class: {
-                                include: {
-                                    assignments: {
-                                        select: {
-                                            id: true,
-                                            title: true,
-                                            activityId: true,
-                                            classId: true,
-                                            isFeatured: true,
-                                            sequenceNumber: true,
-                                            unitLabel: true,
-                                            dueDate: true,
-                                            createdAt: true,
-                                            updatedAt: true,
-                                            activity: {
-                                                select: {
-                                                    id: true,
-                                                    title: true,
-                                                    description: true,
-                                                    type: true,
-                                                    category: true,
-                                                    isReleased: true,
-                                                    content: true,
-                                                },
-                                            },
-                                        },
-                                        orderBy: [{ sequenceNumber: "asc" }, { createdAt: "asc" }],
-                                    },
-                                    calendarEvents: {
-                                        select: {
-                                            id: true,
-                                            title: true,
-                                            description: true,
-                                            date: true,
-                                            endDate: true,
-                                            type: true,
-                                        },
-                                    },
-                                },
-                            },
-                        },
-                    })
-                ),
-            (result) => result.length
-        ) as StudentEnrollment[];
-
-        type ReleasableAssignment = {
-            activity: {
-                type: string;
-                category?: string | null;
-                isReleased?: boolean;
-            };
-        };
-
-        const filterReleasedActivities = (assignment: ReleasableAssignment) => {
-            return isLearnerVisibleActivity(assignment.activity);
-        };
-
-        const allAssignments = enrollments.flatMap((enrollment: StudentEnrollment) =>
-            enrollment.class.assignments
-                .filter(filterReleasedActivities)
-                .map((assignment) => ({
-                    ...assignment,
-                    className: enrollment.class.name,
-                }))
-        );
-        const classAnnouncements = enrollments
-            .map((enrollment: StudentEnrollment) => ({
-                className: enrollment.class.name,
-                message: enrollment.class.announcement?.trim() || "",
-                messageHtml: renderAnnouncementMarkdown(enrollment.class.announcement),
-            }))
-            .filter((announcement) => announcement.message.length > 0);
-
-        const classIds = enrollments.map(e => e.classId);
-        const featuredClassIds = await withPrismaReadRetry(() =>
-            expandClassIdsToSectionGroupIds(prisma, classIds)
-        );
-        const featuredAssignmentsRawUnfiltered = featuredClassIds.length === 0 ? [] : await timedQuery(
-            {
-                route: "/dashboard",
-                queryLabel: "assignment.findMany.featuredStudentDashboard",
-                userRole,
-            },
-            () =>
-                withPrismaReadRetry(() =>
-                    prisma.assignment.findMany({
-                        where: {
-                            classId: { in: featuredClassIds },
-                            isFeatured: true,
-                            activity: { id: { not: "" } },
-                        },
-                        include: {
-                            activity: {
-                                select: {
-                                    id: true,
-                                    title: true,
-                                    description: true,
-                                    type: true,
-                                    category: true,
-                                    isReleased: true,
-                                    content: true,
-                                },
-                            },
-                            submissions: {
-                                where: { userId },
-                                select: {
-                                    id: true,
-                                    status: true,
-                                    completedAt: true,
-                                    score: true,
-                                },
-                            },
-                        },
-                        orderBy: [{ sequenceNumber: "asc" }, { createdAt: "asc" }],
-                    })
-                ),
-            (result) => result.length
-        );
-
-        const featuredAssignmentsRaw = featuredAssignmentsRawUnfiltered.filter(filterReleasedActivities);
-
-        // Deduplicate by activityId: section-group expansion can return same activity from multiple classes.
-        // Prefer assignments from the student's enrolled classes so activity links work (access check requires enrollment).
-        const enrolledClassIds = new Set(classIds);
-        const featuredAssignmentsDeduped = Array.from(
-            featuredAssignmentsRaw
-                .reduce<
-                    Map<
-                        string,
-                        (typeof featuredAssignmentsRaw)[number]
-                    >
-                >((map, a) => {
-                    const existing = map.get(a.activityId);
-                    const aEnrolled = enrolledClassIds.has(a.classId);
-                    const existingEnrolled = existing ? enrolledClassIds.has(existing.classId) : false;
-                    const aTime = (a.updatedAt ?? a.createdAt).getTime();
-                    const existingTime = existing ? (existing.updatedAt ?? existing.createdAt).getTime() : -1;
-                    const keepNew = !existing || aEnrolled && !existingEnrolled || (aEnrolled === existingEnrolled && aTime > existingTime);
-                    if (keepNew) map.set(a.activityId, a);
-                    return map;
-                }, new Map())
-                .values()
-        );
-
-        const featuredActivityIds = Array.from(new Set(featuredAssignmentsDeduped.map((a) => a.activityId)));
-        const featuredProgressRows =
-            featuredActivityIds.length === 0
-                ? []
-                : await timedQuery(
-                    {
-                        route: "/dashboard",
-                        queryLabel: "activityProgress.findMany.featuredActivities",
-                        userRole,
-                    },
-                    () =>
-                        withPrismaReadRetry(() =>
-                            prisma.activityProgress.findMany({
-                      where: { userId, activityId: { in: featuredActivityIds } },
-                      select: { activityId: true, progress: true, status: true, categoryData: true, updatedAt: true },
-                      orderBy: { updatedAt: "desc" },
-                            })
-                        ),
-                    (result) => result.length
-                );
-
-        const featuredProgressMap = (featuredProgressRows as Array<{
-            activityId: string;
-            progress: number;
-            status: string;
-            categoryData: string | null;
-        }>).reduce<Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>>(
-            (map, row) => {
-                if (map.has(row.activityId)) {
-                    return map;
-                }
-
-                map.set(row.activityId, {
-                    progress: row.progress,
-                    status: row.status,
-                    categoryData: parseCategoryData(row.categoryData),
-                });
-                return map;
-            },
-            new Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>()
-        );
-
-        let dailyVocabHabit = null;
-        try {
-            dailyVocabHabit = await getDailyVocabHabitForUser(prisma, userId);
-        } catch (error) {
-            logger.warn("Failed to load daily vocab habit for student dashboard", {
-                userId,
-                error: String(error),
-            });
-        }
-
-        const featuredAssignments = featuredAssignmentsDeduped
-            .filter((a) => a.activityId !== "vocab-daily-review")
-            .map((a) => {
-                const p = featuredProgressMap.get(a.activityId);
-                const isGrammarGuide =
-                    (a.activity.type || "").toLowerCase() === "guide" &&
-                    (a.activity.category || "").toLowerCase() === "grammar";
-                const hasPassedMiniQuiz = isGrammarGuide && a.submissions.some(
-                    (s) => !!s.completedAt && typeof s.score === "number" && s.score > 70
-                );
-
-                return {
-                    ...a,
-                    featuredAt: a.updatedAt ?? a.createdAt,
-                    isNewRelease: isWithinNewReleaseWindow(a.updatedAt ?? a.createdAt),
-                    progress: hasPassedMiniQuiz ? 100 : (p?.progress ?? 0),
-                    progressStatus: hasPassedMiniQuiz ? "completed" : (p?.status ?? "in_progress"),
-                    categoryData: p?.categoryData ?? null,
-                };
-            });
-
-        const calendarEvents: CalendarEvent[] = [
-            ...allAssignments
-                .filter((a) => a.dueDate)
-                .map((a) => ({
-                    date: a.dueDate as Date,
-                    type: (a.title || a.activity.title || "").toLowerCase().includes("quiz") ? "quiz" as const : "due" as const,
-                    title: `${a.title || a.activity.title || "Assignment"}`,
-                })),
-            ...enrollments.flatMap((enrollment: StudentEnrollment) =>
-                enrollment.class.calendarEvents.map((ev: { id: string; date: Date; endDate: Date | null; type: string; title: string; description: string | null }) => ({
-                    date: ev.date,
-                    endDate: ev.endDate || null,
-                    type: (ev.type as CalendarEvent["type"]) || "holiday",
-                    title: `${ev.title}`,
-                    description: ev.description,
-                }))
-            ),
-        ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-        const firstClassId = enrollments[0]?.classId;
-        const calendarWeekStart = getCalendarWeekStart();
-        const [studentLeaderboard, studentUserStats, studentLedgerEntries] = await Promise.all([
-            firstClassId ? getTimeframedLeaderboard("week", 20, firstClassId) : Promise.resolve([]),
-            withPrismaReadRetry(() =>
-                prisma.user.findUnique({
-                    where: { id: userId },
-                    select: { currentStreak: true, longestStreak: true, points: true },
-                })
-            ),
-            withPrismaReadRetry(() =>
-                prisma.pointsLedger.findMany({
-                    where: { userId, createdAt: { gte: calendarWeekStart } },
-                    select: { createdAt: true },
-                })
-            ),
-        ]);
-        const studentSevenDayActivity = buildCalendarWeekActivity(studentLedgerEntries);
-        const studentEntry = studentLeaderboard.find((e) => e.id === userId);
-        const studentLeaderboardRank = studentEntry && studentEntry.rank <= 3 ? studentEntry.rank : null;
-        const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
-        const isMarlie = (session.user as { username?: string })?.username?.toLowerCase() === "marlie";
-        const desktopNameEmoji = isMarlie ? "🙋🏻‍♀️" : studentLeaderboardMedal;
-
-        return (
-            <div className="min-h-screen bg-bg">
-                <main id="main-content" className="container mx-auto pt-2 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
-                    {/* ── MOBILE + TABLET layout (< lg) ── */}
-                    <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 overflow-x-hidden p-0 md:grid-cols-12 md:p-6 md:items-start">
-                        <div className="md:col-span-8 min-w-0 space-y-5">
-                            <ClassAnnouncement announcements={classAnnouncements} />
-                            <div className="md:hidden">
-                                <MomentumCard
-                                    initialStreak={studentUserStats?.currentStreak ?? 0}
-                                    initialLongestStreak={studentUserStats?.longestStreak ?? 0}
-                                    initialSevenDayActivity={studentSevenDayActivity}
-                                    initialTotalPoints={studentUserStats?.points ?? 0}
-                                />
-                            </div>
-                            {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
-                            <section aria-label="This Week's Path">
                                 <TodaysAssignments
+                                    weekHub
                                     initialAssignments={featuredAssignments}
-                                    title="This Week's Path"
+                                    title={undefined}
                                     ctaLabel="Start"
                                     variant="checklist"
                                     sectionId="weekly-path"
                                     pinnedHabit={dailyVocabHabit}
-                                    mobileTasksLinkHref="/dashboard/activities"
-                                    mobileTasksLinkLabel="All Activities"
                                     hideProgressBar
                                 />
-                            </section>
-                            <ExploreCategoriesCarousel />
+                            </div>
+
+                            {/* Explore Activities — secondary card */}
+                            <div className="dashboard-panel rounded-2xl p-5">
+                                <div className="flex items-center justify-between mb-4">
+                                    <h2 className="text-base font-bold font-display text-text">Explore Activities</h2>
+                                    <Link
+                                        href="/dashboard/activities"
+                                        className="text-xs font-semibold rounded-lg px-2.5 py-1.5 transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                                        style={{ color: "var(--primary)" }}
+                                    >
+                                        Browse all →
+                                    </Link>
+                                </div>
+                                <div className="grid grid-cols-6 gap-2.5">
+                                    {[
+                                        { label: 'Grammar', href: '/dashboard/activities?category=grammar', tone: getLearnerCategoryTone('grammar'), emoji: '📖' },
+                                        { label: 'Vocabulary', href: '/dashboard/activities?category=vocabulary', tone: getLearnerCategoryTone('vocabulary'), emoji: '🗂️' },
+                                        { label: 'Quizzes', href: '/dashboard/activities?category=quizzes', tone: getLearnerCategoryTone('quizzes'), emoji: '✏️' },
+                                        { label: 'Games', href: '/dashboard/activities?category=games', tone: getLearnerCategoryTone('games'), emoji: '🎮' },
+                                        { label: 'Pronunciation', href: '/dashboard/activities?category=pronunciation', tone: getLearnerCategoryTone('pronunciation'), emoji: '🔊' },
+                                        { label: 'Speaking', href: '/dashboard/activities?category=speaking', tone: getLearnerCategoryTone('speaking'), emoji: '🎤' },
+                                    ].map(chip => (
+                                        <Link
+                                            key={chip.label}
+                                            href={chip.href}
+                                            className="flex flex-col items-center gap-2 rounded-2xl border px-2 py-3.5 text-center transition-all duration-200 active:scale-95 hover:scale-[1.02] hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                                            style={{
+                                                backgroundColor: chip.tone.chipBg,
+                                                borderColor: chip.tone.border,
+                                            }}
+                                        >
+                                            <span
+                                                className="flex h-10 w-10 items-center justify-center rounded-full text-xl leading-none"
+                                                style={{
+                                                    background: `color-mix(in srgb, ${chip.tone.accent} 14%, var(--dashboard-surface-start))`,
+                                                    boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${chip.tone.border} 60%, transparent)`,
+                                                }}
+                                            >
+                                                {chip.emoji}
+                                            </span>
+                                            <span className="text-[11px] font-bold leading-tight" style={{ color: chip.tone.chipText }}>{chip.label}</span>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                        <aside className="hidden md:block md:col-span-4">
-                            <div className="dashboard-panel paper-texture sticky top-4 p-5 space-y-5">
-                                <MomentumCard variant="sidebar" initialStreak={studentUserStats?.currentStreak ?? 0} initialLongestStreak={studentUserStats?.longestStreak ?? 0} initialSevenDayActivity={studentSevenDayActivity} initialTotalPoints={studentUserStats?.points ?? 0} />
-                                <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
-                                    <MiniCalendar compact flat events={calendarEvents} />
+
+                        {/* ── Right sidebar ── */}
+                        <aside className="space-y-4 sticky top-4">
+
+                            {/* Streak / Momentum card — top of sidebar */}
+                            <MomentumCard
+                                variant="sidebar"
+                                initialStreak={studentUserStats?.currentStreak ?? 0}
+                                initialLongestStreak={studentUserStats?.longestStreak ?? 0}
+                                initialSevenDayActivity={studentSevenDayActivity}
+                                initialTotalPoints={studentUserStats?.points ?? 0}
+                            />
+
+                            {/* Calendar card */}
+                            <div className="dashboard-panel paper-texture rounded-2xl p-5">
+                                <MiniCalendar compact flat events={calendarEvents} />
+                                <div className="border-t mt-4 pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
+                                    <UpcomingEventsList
+                                        events={calendarEvents.filter(event => {
+                                            const today = new Date(); today.setHours(0,0,0,0);
+                                            const end = event.endDate ? new Date(event.endDate) : new Date(event.date); end.setHours(0,0,0,0);
+                                            return end >= today;
+                                        })}
+                                        allowDelete={false}
+                                        showSyncedLabel={false}
+                                    />
                                 </div>
-                                <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
-                                    <UpcomingEventsList events={calendarEvents.filter(event => { const today = new Date(); today.setHours(0,0,0,0); const end = event.endDate ? new Date(event.endDate) : new Date(event.date); end.setHours(0,0,0,0); return end >= today; })} allowDelete={false} showSyncedLabel={false} />
-                                </div>
-                                <div className="border-t pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
-                                    <div className="flex items-center gap-3">
-                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary/10 text-secondary shrink-0"><UsersIcon className="h-4 w-4" /></div>
-                                        <div className="min-w-0"><h3 className="text-sm font-bold text-text">Invite Friends</h3><p className="text-xs text-text-muted leading-snug">Share your invite link so others can join your learning circle.</p></div>
+                            </div>
+
+                            {/* Small utility cards row — Course Map + Invite Friends */}
+                            <div className="grid grid-cols-2 gap-3">
+                                <Link
+                                    href="/dashboard/map"
+                                    className="group dashboard-panel dashboard-panel-hover rounded-2xl p-4 flex flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                                    style={{
+                                        background: "linear-gradient(135deg, color-mix(in srgb, var(--tone-grammar-chip-bg) 55%, var(--dashboard-surface-start)) 0%, var(--dashboard-surface-end) 100%)",
+                                        borderColor: "color-mix(in srgb, var(--primary) 18%, var(--border-subtle))",
+                                    }}
+                                >
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl text-lg shadow-sm" style={{ background: "var(--tone-grammar-chip-bg)", border: "1px solid color-mix(in srgb, var(--primary) 14%, transparent)" }}>
+                                        🗺️
                                     </div>
-                                    <Link href="/dashboard/invite" className="dashboard-soft-button mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-secondary/25 bg-[var(--dashboard-surface-start)] px-4 py-2.5 text-sm font-semibold text-secondary"><UsersIcon className="h-4 w-4" />Open Invite Link</Link>
-                                </div>
+                                    <div className="min-w-0">
+                                        <p className="text-xs font-bold text-text leading-tight">Course Map</p>
+                                        <p className="text-[11px] font-semibold mt-1 transition-transform duration-200 group-hover:translate-x-0.5" style={{ color: "var(--primary)" }}>Open map →</p>
+                                    </div>
+                                </Link>
+
+                                <Link
+                                    href="/dashboard/invite"
+                                    className="group dashboard-panel dashboard-panel-hover rounded-2xl p-4 flex flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/40"
+                                >
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary/10 text-secondary shrink-0">
+                                        <UsersIcon className="h-4 w-4" />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <p className="text-xs font-bold text-text leading-tight">Invite Friends</p>
+                                        <p className="text-[11px] font-semibold mt-1 text-secondary transition-transform duration-200 group-hover:translate-x-0.5">Open Invite Link</p>
+                                    </div>
+                                </Link>
                             </div>
                         </aside>
                     </div>
+                </div>
 
-                    {/* ── DESKTOP layout (lg+) — Option 2: Card-Based & Focused ── */}
-                    <div className="hidden lg:block">
-                        <ClassAnnouncement announcements={classAnnouncements} />
-                        {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
+            </main>
 
-                        {/* Two-column grid: main left, sidebar right */}
-                        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_348px] gap-5 items-start">
-
-                            {/* ── Left / Main column ── */}
-                            <div className="min-w-0 space-y-5">
-
-                                {/* Welcome header — compact, above the cards */}
-                                <div className="pt-2 pb-1">
-                                    <h1
-                                        className="font-display font-bold text-text leading-tight tracking-tight flex items-baseline gap-x-2.5 gap-y-1 flex-wrap"
-                                        style={{ textWrap: "balance" } as React.CSSProperties}
-                                    >
-                                        <span className="text-xl text-text-muted font-medium">Welcome back,</span>
-                                        <span className="text-[2rem] text-primary relative inline-block leading-none">
-                                            {session.user?.name?.trim() || "there"}
-                                            <span className="absolute -bottom-0.5 left-0 right-0 h-2 bg-[#88A392]/40 -z-10 rounded-sm -rotate-1" />
-                                        </span>
-                                        {desktopNameEmoji ? (
-                                            <span
-                                                className="inline-flex text-2xl leading-none"
-                                                {...(isMarlie ? { "aria-hidden": true } : { "aria-label": `Rank ${studentLeaderboardRank}` })}
-                                            >
-                                                {desktopNameEmoji}
-                                            </span>
-                                        ) : null}
-                                    </h1>
-                                    <p className="mt-1 text-sm text-text-muted/90">
-                                        {formatDashboardWeekRangeLabel(new Date())} · You&apos;re doing great!
-                                    </p>
-                                </div>
-
-                                {/* This Week's Path — primary focus card */}
-                                <div className="dashboard-panel rounded-2xl overflow-hidden">
-                                    <div className="px-6 pt-5 pb-3 border-b flex items-center justify-between" style={{ borderColor: "var(--dashboard-border)" }}>
-                                        <div>
-                                            <h2 className="text-lg font-bold font-display text-text leading-tight">This Week&apos;s Path</h2>
-                                            <p className="text-xs text-text-muted mt-0.5">Focus on your goals</p>
-                                        </div>
-                                        <Link
-                                            href="/dashboard/map"
-                                            className="inline-flex items-center gap-1.5 text-xs font-semibold rounded-lg px-3 py-1.5 transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                                            style={{ color: "var(--primary)" }}
-                                        >
-                                            Full map →
-                                        </Link>
-                                    </div>
-                                    <TodaysAssignments
-                                        weekHub
-                                        initialAssignments={featuredAssignments}
-                                        title={undefined}
-                                        ctaLabel="Start"
-                                        variant="checklist"
-                                        sectionId="weekly-path"
-                                        pinnedHabit={dailyVocabHabit}
-                                        hideProgressBar
-                                    />
-                                </div>
-
-                                {/* Explore Activities — secondary card */}
-                                <div className="dashboard-panel rounded-2xl p-5">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <h2 className="text-base font-bold font-display text-text">Explore Activities</h2>
-                                        <Link
-                                            href="/dashboard/activities"
-                                            className="text-xs font-semibold rounded-lg px-2.5 py-1.5 transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                                            style={{ color: "var(--primary)" }}
-                                        >
-                                            Browse all →
-                                        </Link>
-                                    </div>
-                                    <div className="grid grid-cols-6 gap-2.5">
-                                        {[
-                                            { label: 'Grammar', href: '/dashboard/activities?category=grammar', tone: getLearnerCategoryTone('grammar'), emoji: '📖' },
-                                            { label: 'Vocabulary', href: '/dashboard/activities?category=vocabulary', tone: getLearnerCategoryTone('vocabulary'), emoji: '🗂️' },
-                                            { label: 'Quizzes', href: '/dashboard/activities?category=quizzes', tone: getLearnerCategoryTone('quizzes'), emoji: '✏️' },
-                                            { label: 'Games', href: '/dashboard/activities?category=games', tone: getLearnerCategoryTone('games'), emoji: '🎮' },
-                                            { label: 'Pronunciation', href: '/dashboard/activities?category=pronunciation', tone: getLearnerCategoryTone('pronunciation'), emoji: '🔊' },
-                                            { label: 'Speaking', href: '/dashboard/activities?category=speaking', tone: getLearnerCategoryTone('speaking'), emoji: '🎤' },
-                                        ].map(chip => (
-                                            <Link
-                                                key={chip.label}
-                                                href={chip.href}
-                                                className="flex flex-col items-center gap-2 rounded-2xl border px-2 py-3.5 text-center transition-all duration-200 active:scale-95 hover:scale-[1.02] hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                                                style={{
-                                                    backgroundColor: chip.tone.chipBg,
-                                                    borderColor: chip.tone.border,
-                                                }}
-                                            >
-                                                <span
-                                                    className="flex h-10 w-10 items-center justify-center rounded-full text-xl leading-none"
-                                                    style={{
-                                                        background: `color-mix(in srgb, ${chip.tone.accent} 14%, var(--dashboard-surface-start))`,
-                                                        boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${chip.tone.border} 60%, transparent)`,
-                                                    }}
-                                                >
-                                                    {chip.emoji}
-                                                </span>
-                                                <span className="text-[11px] font-bold leading-tight" style={{ color: chip.tone.chipText }}>{chip.label}</span>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* ── Right sidebar ── */}
-                            <aside className="space-y-4 sticky top-4">
-
-                                {/* Streak / Momentum card — top of sidebar */}
-                                <MomentumCard
-                                    variant="sidebar"
-                                    initialStreak={studentUserStats?.currentStreak ?? 0}
-                                    initialLongestStreak={studentUserStats?.longestStreak ?? 0}
-                                    initialSevenDayActivity={studentSevenDayActivity}
-                                    initialTotalPoints={studentUserStats?.points ?? 0}
-                                />
-
-                                {/* Calendar card */}
-                                <div className="dashboard-panel paper-texture rounded-2xl p-5">
-                                    <MiniCalendar compact flat events={calendarEvents} />
-                                    <div className="border-t mt-4 pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
-                                        <UpcomingEventsList
-                                            events={calendarEvents.filter(event => {
-                                                const today = new Date(); today.setHours(0,0,0,0);
-                                                const end = event.endDate ? new Date(event.endDate) : new Date(event.date); end.setHours(0,0,0,0);
-                                                return end >= today;
-                                            })}
-                                            allowDelete={false}
-                                            showSyncedLabel={false}
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Small utility cards row — Course Map + Invite Friends */}
-                                <div className="grid grid-cols-2 gap-3">
-                                    <Link
-                                        href="/dashboard/map"
-                                        className="group dashboard-panel dashboard-panel-hover rounded-2xl p-4 flex flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                                        style={{
-                                            background: "linear-gradient(135deg, color-mix(in srgb, var(--tone-grammar-chip-bg) 55%, var(--dashboard-surface-start)) 0%, var(--dashboard-surface-end) 100%)",
-                                            borderColor: "color-mix(in srgb, var(--primary) 18%, var(--border-subtle))",
-                                        }}
-                                    >
-                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl text-lg shadow-sm" style={{ background: "var(--tone-grammar-chip-bg)", border: "1px solid color-mix(in srgb, var(--primary) 14%, transparent)" }}>
-                                            🗺️
-                                        </div>
-                                        <div className="min-w-0">
-                                            <p className="text-xs font-bold text-text leading-tight">Course Map</p>
-                                            <p className="text-[11px] font-semibold mt-1 transition-transform duration-200 group-hover:translate-x-0.5" style={{ color: "var(--primary)" }}>Open map →</p>
-                                        </div>
-                                    </Link>
-
-                                    <Link
-                                        href="/dashboard/invite"
-                                        className="group dashboard-panel dashboard-panel-hover rounded-2xl p-4 flex flex-col gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/40"
-                                    >
-                                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary/10 text-secondary shrink-0">
-                                            <UsersIcon className="h-4 w-4" />
-                                        </div>
-                                        <div className="min-w-0">
-                                            <p className="text-xs font-bold text-text leading-tight">Invite Friends</p>
-                                            <p className="text-[11px] font-semibold mt-1 text-secondary transition-transform duration-200 group-hover:translate-x-0.5">Open Invite Link</p>
-                                        </div>
-                                    </Link>
-                                </div>
-                            </aside>
-                        </div>
-                    </div>
-
-                </main>
-
-            </div>
-        );
-    }
+        </div>
+    );
 }

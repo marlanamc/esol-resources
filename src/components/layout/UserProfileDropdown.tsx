@@ -141,7 +141,7 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
         <div className="relative" ref={dropdownRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-10 h-10 rounded-full border-2 transition-[border-color,background-color] flex items-center justify-center focus:outline-none shadow-md focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 shadow-md transition-[border-color,background-color] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 sm:h-10 sm:w-10"
                 style={{
                     backgroundColor: 'var(--surface-elevated)',
                     borderColor: 'var(--border-strong)',
@@ -150,10 +150,11 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
                 aria-expanded={isOpen}
                 aria-haspopup="true"
             >
-                <SelectedAvatarDisplay 
+                <SelectedAvatarDisplay
                     avatarId={avatarId}
                     colorId={colorId}
-                    size="md" 
+                    size="sm"
+                    className="pointer-events-none scale-110 sm:scale-100"
                 />
             </button>
 

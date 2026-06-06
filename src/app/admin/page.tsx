@@ -4,15 +4,20 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 import Link from "next/link";
 import {
     Users, BookOpen, GraduationCap, Activity,
-    AlertTriangle, CheckCircle, BarChart2, Stethoscope,
-    MapPin, ScrollText,
+    AlertTriangle, BarChart2, Stethoscope,
+    MapPin, ScrollText, Plus, ShieldCheck, ArrowRight, Flame,
 } from "lucide-react";
 
 async function getAdminStats() {
     const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const monthStart = new Date();
+    monthStart.setDate(1);
+    monthStart.setHours(0, 0, 0, 0);
+    const independentLearnerWhere = buildIndependentLearnerWhere();
 
     const [
         totalStudents,
@@ -20,6 +25,10 @@ async function getAdminStats() {
         activitiesByKind,
         studentsNeedingAttention,
         recentlyActive,
+        independentTotal,
+        independentActive,
+        independentNewThisMonth,
+        independentRecent,
     ] = await Promise.all([
         withPrismaReadRetry(() =>
             prisma.user.count({
@@ -75,6 +84,54 @@ async function getAdminStats() {
                 },
             })
         ),
+        withPrismaReadRetry(() =>
+            prisma.user.count({
+                where: {
+                    role: "student",
+                    isSystemAccount: false,
+                    ...independentLearnerWhere,
+                },
+            })
+        ),
+        withPrismaReadRetry(() =>
+            prisma.user.count({
+                where: {
+                    role: "student",
+                    isSystemAccount: false,
+                    lastActivityDate: { gte: sevenDaysAgo },
+                    ...independentLearnerWhere,
+                },
+            })
+        ),
+        withPrismaReadRetry(() =>
+            prisma.user.count({
+                where: {
+                    role: "student",
+                    isSystemAccount: false,
+                    createdAt: { gte: monthStart },
+                    ...independentLearnerWhere,
+                },
+            })
+        ),
+        withPrismaReadRetry(() =>
+            prisma.user.findMany({
+                where: {
+                    role: "student",
+                    isSystemAccount: false,
+                    ...independentLearnerWhere,
+                },
+                orderBy: [{ lastActivityDate: "desc" }, { createdAt: "desc" }],
+                take: 5,
+                select: {
+                    id: true,
+                    username: true,
+                    name: true,
+                    currentStreak: true,
+                    lastActivityDate: true,
+                    weeklyPoints: true,
+                },
+            })
+        ),
     ]);
 
     const countByKind = Object.fromEntries(
@@ -88,6 +145,10 @@ async function getAdminStats() {
         mapActivities: countByKind["map"] ?? 0,
         studentsNeedingAttention,
         recentlyActive,
+        independentTotal,
+        independentActive,
+        independentNewThisMonth,
+        independentRecent,
     };
 }
 
@@ -126,7 +187,7 @@ export default async function AdminPage() {
             label: "Total Students",
             value: stats.totalStudents,
             Icon: GraduationCap,
-            color: "#4a8ca0",
+            color: "#345476",
             href: "/admin/users",
             sub: `${stats.activeStudents} active this week`,
         },
@@ -134,7 +195,7 @@ export default async function AdminPage() {
             label: "Practice Activities",
             value: stats.practiceActivities,
             Icon: BookOpen,
-            color: "#b05740",
+            color: "#b75b3f",
             href: "/admin/content",
             sub: `+ ${stats.mapActivities} map activities`,
         },
@@ -142,7 +203,7 @@ export default async function AdminPage() {
             label: "Needs Attention",
             value: stats.studentsNeedingAttention,
             Icon: AlertTriangle,
-            color: stats.studentsNeedingAttention > 0 ? "#ca5c43" : "#4d6b53",
+            color: stats.studentsNeedingAttention > 0 ? "#c86531" : "#4f8b64",
             href: "/admin/users",
             sub: "active students, 7+ days silent",
             warn: stats.studentsNeedingAttention > 0,
@@ -152,170 +213,214 @@ export default async function AdminPage() {
     const quickLinks = [
         { href: "/admin/users", label: "Manage Users", Icon: Users, desc: "Roles, passwords, leaderboard" },
         { href: "/admin/content", label: "Content Health", Icon: BookOpen, desc: "Releases, map items, kinds" },
+        { href: "/admin/diagnostics", label: "Diagnostics", Icon: Stethoscope, desc: "Grammar skill gaps by class" },
         { href: "/dashboard/backend", label: "Legacy Backend", Icon: BarChart2, desc: "Full user table view" },
-        { href: "/admin/diagnostics", label: "Diagnostics", Icon: Stethoscope, desc: "Class skills, student skills" },
         { href: "/summer-planning-wiki/", label: "Summer Planning Wiki", Icon: ScrollText, desc: "Research, roadmap, course plan", external: true },
     ] as const;
 
     return (
-        <div className="space-y-8">
-            {/* Page header */}
-            <div>
-                <h1 className="font-display font-bold text-2xl sm:text-3xl" style={{ color: "#1e2640" }}>
-                    Control Center
-                </h1>
-                <p className="text-sm mt-1" style={{ color: "#64748b" }}>
-                    Signed in as <strong>{firstName}</strong> · System overview
-                </p>
+        <div className="space-y-6 text-[#2d261f]">
+            <div className="space-y-5">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#dddeda] px-3 py-1.5 text-xs font-bold text-[#345476]">
+                    <ShieldCheck className="h-3.5 w-3.5" />
+                    Admin · System overview
+                </span>
+
+                <div className="space-y-1">
+                    <h1 className="font-display text-2xl font-bold text-[#2d261f] sm:text-3xl">
+                        Control Center
+                    </h1>
+                    <p className="max-w-4xl text-sm font-medium text-[#756b60]">
+                        Signed in as <strong className="font-bold text-[#2d261f]">{firstName}</strong> · Class Companion — every class, student & independent learner.
+                    </p>
+                </div>
             </div>
 
-            {/* Stat grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="grid gap-4 lg:grid-cols-3">
                 {statCards.map(({ label, value, Icon, color, href, sub, warn }) => (
                     <Link
                         key={label}
                         href={href}
-                        className="group flex flex-col gap-3 rounded-2xl border bg-white p-5 transition-shadow hover:shadow-md"
-                        style={{ borderColor: warn ? `${color}40` : "rgba(0,0,0,0.08)" }}
+                        className="group min-h-[130px] rounded-xl border bg-[#fbfbfa] p-5 shadow-[0_8px_24px_rgba(45,38,31,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(45,38,31,0.10)]"
+                        style={{ borderColor: warn ? `${color}66` : "#c9c9c7" }}
                     >
-                        <div className="flex items-start justify-between">
-                            <span
-                                className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-white"
-                                style={{ background: color }}
-                            >
-                                <Icon className="h-4.5 w-4.5 h-[18px] w-[18px]" />
-                            </span>
-                            {warn && <AlertTriangle className="h-4 w-4 text-warning" />}
-                            {!warn && value === 0 && <CheckCircle className="h-4 w-4 text-secondary" />}
-                        </div>
-                        <div>
-                            <p className="text-3xl font-bold tabular-nums" style={{ color: warn ? color : "#1e2640" }}>
-                                {value.toLocaleString()}
-                            </p>
-                            <p className="text-sm font-semibold mt-0.5" style={{ color: "#475569" }}>
-                                {label}
-                            </p>
-                            {sub && (
-                                <p className="text-xs mt-0.5" style={{ color: "#94a3b8" }}>
-                                    {sub}
+                        <div className="flex h-full flex-col justify-between gap-4">
+                            <div className="flex items-start justify-between">
+                                <span
+                                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-[0_6px_14px_rgba(45,38,31,0.12)]"
+                                    style={{ background: color }}
+                                >
+                                    <Icon className="h-4 w-4" />
+                                </span>
+                                {warn ? <AlertTriangle className="h-4 w-4" style={{ color }} /> : null}
+                            </div>
+                            <div>
+                                <p className="text-3xl font-extrabold leading-none tabular-nums" style={{ color: warn ? color : "#2d261f" }}>
+                                    {value.toLocaleString()}
                                 </p>
-                            )}
+                                <p className="mt-1.5 text-sm font-bold text-[#6d6358]">
+                                    {label}
+                                </p>
+                                {sub ? <p className="mt-0.5 text-xs font-medium text-[#9a9186]">{sub}</p> : null}
+                            </div>
                         </div>
                     </Link>
                 ))}
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
-                {/* Quick links */}
-                <section>
-                    <h2 className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: "#64748b" }}>
-                        Admin tools
-                    </h2>
-                    <div className="grid grid-cols-2 gap-3">
-                        {quickLinks.map(({ href, label, Icon, desc, ...rest }) => {
-                            const isExternal = "external" in rest && rest.external;
-                            return (
-                                <Link
-                                    key={href}
-                                    href={href}
-                                    target={isExternal ? "_blank" : undefined}
-                                    rel={isExternal ? "noopener noreferrer" : undefined}
-                                    className="flex items-start gap-3 rounded-xl border bg-white px-4 py-4 transition-shadow hover:shadow-md"
-                                    style={{ borderColor: "rgba(0,0,0,0.08)" }}
-                                >
-                                    <span
-                                        className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-white"
-                                        style={{ background: isExternal ? "#6a8d73" : "#1e2640" }}
+            <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
+                <div className="space-y-6">
+                    <section>
+                        <h2 className="mb-3 font-body text-sm font-semibold uppercase tracking-wider text-[#8f8579]">
+                            Admin tools
+                        </h2>
+                        <div className="grid gap-3 md:grid-cols-2">
+                            {quickLinks.map(({ href, label, Icon, desc, ...rest }) => {
+                                const isExternal = "external" in rest && rest.external;
+                                return (
+                                    <Link
+                                        key={href}
+                                        href={href}
+                                        target={isExternal ? "_blank" : undefined}
+                                        rel={isExternal ? "noopener noreferrer" : undefined}
+                                        className="group flex min-h-[72px] items-center gap-3 rounded-xl border bg-[#fbfbfa] px-4 py-3 shadow-[0_4px_14px_rgba(45,38,31,0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(45,38,31,0.08)]"
+                                        style={{ borderColor: "#c9c9c7" }}
                                     >
-                                        <Icon className="h-4 w-4" />
-                                    </span>
-                                    <div className="min-w-0">
-                                        <p className="font-semibold text-sm" style={{ color: "#1e2640" }}>
-                                            {label}
-                                        </p>
-                                        <p className="text-xs mt-0.5 line-clamp-1" style={{ color: "#64748b" }}>
-                                            {desc}
-                                        </p>
-                                    </div>
-                                </Link>
-                            );
-                        })}
-                    </div>
-                </section>
-
-                {/* Recently active students */}
-                <section>
-                    <h2 className="text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: "#64748b" }}>
-                        Recently active
-                    </h2>
-                    <div
-                        className="rounded-2xl border bg-white overflow-hidden"
-                        style={{ borderColor: "rgba(0,0,0,0.08)" }}
-                    >
-                        {stats.recentlyActive.length === 0 ? (
-                            <p className="text-sm text-text-muted p-5">No recent activity.</p>
-                        ) : (
-                            <ul className="divide-y" style={{ borderColor: "rgba(0,0,0,0.06)" }}>
-                                {stats.recentlyActive.map((student) => (
-                                    <li key={student.id} className="flex items-center gap-3 px-4 py-3">
                                         <span
-                                            className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-                                            style={{ background: "#4a8ca0" }}
+                                            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white"
+                                            style={{ background: isExternal ? "#58916a" : "#345476" }}
                                         >
-                                            {(student.name ?? student.username).charAt(0).toUpperCase()}
+                                            <Icon className="h-4 w-4" />
                                         </span>
+                                        <span className="min-w-0">
+                                            <span className="block truncate text-sm font-bold text-[#2d261f]">{label}</span>
+                                            <span className="mt-0.5 block truncate text-xs font-medium text-[#9a9186]">{desc}</span>
+                                        </span>
+                                    </Link>
+                                );
+                            })}
+                            <div
+                                className="flex min-h-[72px] items-center justify-center gap-2 rounded-xl border border-dashed bg-[#f6f5f2] px-4 py-3 text-sm font-bold text-[#a79d91]"
+                                style={{ borderColor: "#c9c0b5" }}
+                            >
+                                <Plus className="h-4 w-4" />
+                                More settings
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="mb-3 font-body text-sm font-semibold uppercase tracking-wider text-[#8f8579]">
+                            Independent learners
+                        </h2>
+                        <div className="rounded-xl border bg-[#fbfbfa] p-5 shadow-[0_8px_24px_rgba(45,38,31,0.06)]" style={{ borderColor: "#c9c9c7" }}>
+                            <div className="grid gap-4 border-b pb-4 sm:grid-cols-3" style={{ borderColor: "#d5d1cc" }}>
+                                <div>
+                                    <p className="text-2xl font-extrabold tabular-nums">{stats.independentTotal.toLocaleString()}</p>
+                                    <p className="mt-1 text-sm font-bold text-[#6d6358]">Total</p>
+                                </div>
+                                <div className="sm:border-l sm:pl-6" style={{ borderColor: "#d5d1cc" }}>
+                                    <p className="text-2xl font-extrabold tabular-nums">{stats.independentActive.toLocaleString()}</p>
+                                    <p className="mt-1 text-sm font-bold text-[#6d6358]">Active this week</p>
+                                </div>
+                                <div className="sm:border-l sm:pl-6" style={{ borderColor: "#d5d1cc" }}>
+                                    <p className="text-2xl font-extrabold tabular-nums">+{stats.independentNewThisMonth.toLocaleString()}</p>
+                                    <p className="mt-1 text-sm font-bold text-[#6d6358]">New this month</p>
+                                </div>
+                            </div>
+
+                            {stats.independentRecent.length === 0 ? (
+                                <p className="py-6 text-sm font-medium text-[#9a9186]">No independent learner activity yet.</p>
+                            ) : (
+                                <ul className="divide-y" style={{ borderColor: "#d5d1cc" }}>
+                                    {stats.independentRecent.map((student) => (
+                                        <li key={student.id} className="flex items-center gap-3 py-3">
+                                            <AvatarInitial name={student.name ?? student.username} color="#6f9a78" />
+                                            <div className="min-w-0 flex-1">
+                                                <p className="truncate text-sm font-bold text-[#2d261f]">{student.name ?? student.username}</p>
+                                                <p className="text-xs font-medium text-[#9a9186]">
+                                                    <RelativeTime date={student.lastActivityDate} />
+                                                </p>
+                                            </div>
+                                            <span className="inline-flex items-center gap-1 text-sm font-bold text-[#b3832d]">
+                                                <Flame className="h-4 w-4 fill-[#d08721] text-[#d08721]" />
+                                                {student.weeklyPoints.toLocaleString()}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+                    </section>
+                </div>
+
+                <aside className="space-y-6">
+                    <section className="rounded-xl border bg-[#fbfbfa] p-5 shadow-[0_8px_24px_rgba(45,38,31,0.08)]" style={{ borderColor: "#c9c9c7" }}>
+                        <h2 className="mb-3 font-body text-sm font-semibold uppercase tracking-wider text-[#8f8579]">
+                            Recently active
+                        </h2>
+                        {stats.recentlyActive.length === 0 ? (
+                            <p className="text-sm font-medium text-[#9a9186]">No recent activity.</p>
+                        ) : (
+                            <ul className="divide-y" style={{ borderColor: "#d5d1cc" }}>
+                                {stats.recentlyActive.slice(0, 5).map((student) => (
+                                    <li key={student.id} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
+                                        <AvatarInitial name={student.name ?? student.username} color="#345476" />
                                         <div className="min-w-0 flex-1">
-                                            <p className="text-sm font-semibold truncate" style={{ color: "#1e2640" }}>
-                                                {student.name ?? student.username}
-                                            </p>
-                                            <p className="text-xs" style={{ color: "#94a3b8" }}>
-                                                🔥 {student.currentStreak} · {student.weeklyPoints} pts this week
+                                            <p className="truncate text-sm font-bold text-[#2d261f]">{student.name ?? student.username}</p>
+                                            <p className="text-xs font-medium text-[#9a9186]">
+                                                <span className="text-[#d06b32]">🔥</span> {student.currentStreak} · {student.weeklyPoints.toLocaleString()} pts this week
                                             </p>
                                         </div>
-                                        <span className="text-xs shrink-0" style={{ color: "#94a3b8" }}>
+                                        <span className="shrink-0 text-xs font-medium text-[#9a9186]">
                                             <RelativeTime date={student.lastActivityDate} />
                                         </span>
                                     </li>
                                 ))}
                             </ul>
                         )}
-                        <div
-                            className="px-4 py-2.5 border-t"
-                            style={{ borderColor: "rgba(0,0,0,0.06)", background: "#f8f9fc" }}
+                        <Link
+                            href="/admin/users"
+                            className="mt-5 inline-flex w-full items-center justify-center gap-2 border-t pt-4 text-sm font-bold text-[#345476]"
+                            style={{ borderColor: "#d5d1cc" }}
                         >
-                            <Link
-                                href="/admin/users"
-                                className="text-xs font-semibold flex items-center justify-center gap-1"
-                                style={{ color: "#1e2640" }}
-                            >
-                                <Activity className="h-3 w-3" />
-                                View all students
-                            </Link>
-                        </div>
-                    </div>
+                            <Activity className="h-4 w-4" />
+                            View all students
+                        </Link>
+                    </section>
 
-                    {/* Map position */}
-                    <div
-                        className="mt-4 rounded-xl border bg-white px-4 py-3.5 flex items-center gap-3"
-                        style={{ borderColor: "rgba(0,0,0,0.08)" }}
-                    >
-                        <MapPin className="h-4 w-4 shrink-0" style={{ color: "#b05740" }} />
-                        <div className="text-sm">
-                            <p className="font-semibold" style={{ color: "#1e2640" }}>Course Map</p>
-                            <p style={{ color: "#64748b" }}>
-                                {stats.mapActivities} activities across map weeks
+                    <section className="flex items-center gap-3 rounded-xl border bg-[#fbfbfa] p-5 shadow-[0_8px_24px_rgba(45,38,31,0.06)]" style={{ borderColor: "#c9c9c7" }}>
+                        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f4e5df] text-[#c86633]">
+                            <MapPin className="h-5 w-5" />
+                        </span>
+                        <div className="min-w-0 flex-1">
+                            <h2 className="text-sm font-bold text-[#2d261f]">Course Map</h2>
+                            <p className="text-xs font-medium leading-snug text-[#9a9186]">
+                                {stats.mapActivities.toLocaleString()} activities across map weeks
                             </p>
                         </div>
                         <Link
                             href="/dashboard/map"
-                            className="ml-auto text-xs font-semibold"
-                            style={{ color: "#b05740" }}
+                            className="inline-flex shrink-0 items-center gap-1 rounded border px-3 py-2 text-sm font-bold text-[#345476] transition-colors hover:bg-[#f4f2ee]"
+                            style={{ borderColor: "#bdb7af" }}
                         >
-                            View →
+                            View <ArrowRight className="h-4 w-4" />
                         </Link>
-                    </div>
-                </section>
+                    </section>
+                </aside>
             </div>
         </div>
+    );
+}
+
+function AvatarInitial({ name, color }: { name: string; color: string }) {
+    return (
+        <span
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-extrabold text-white"
+            style={{ background: color }}
+            aria-hidden="true"
+        >
+            {name.charAt(0).toUpperCase()}
+        </span>
     );
 }

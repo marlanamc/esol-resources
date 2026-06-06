@@ -4,26 +4,37 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { resolveTeachClassId } from "@/lib/teach/active-class";
 import { CourseMapManager } from "@/components/teach/CourseMapManager";
 import type { MapWeek } from "@/components/teach/CourseMapManager";
 
 export const metadata = { title: "Course Map | Class Companion" };
 
-export default async function TeachMapPage() {
+export default async function TeachMapPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ classId?: string }>;
+}) {
     const session = await getServerSession(authOptions);
     if (!session?.user) redirect("/login");
     if (!canUseTeacherTools(session.user)) redirect("/dashboard");
 
+    const params = await searchParams;
     const userId = session.user.id;
     const admin = isAdmin(session.user);
+    const { classId: resolvedClassId } = await resolveTeachClassId(userId, admin, params.classId);
 
-    const cls = await withPrismaReadRetry(() =>
-        prisma.class.findFirst({
-            where: admin ? {} : { teacherId: userId },
-            orderBy: { createdAt: "desc" },
-            select: { id: true, name: true },
-        })
-    );
+    const cls = resolvedClassId
+        ? await withPrismaReadRetry(() =>
+            prisma.class.findFirst({
+                where: {
+                    id: resolvedClassId,
+                    ...(admin ? {} : { teacherId: userId }),
+                },
+                select: { id: true, name: true },
+            })
+        )
+        : null;
 
     if (!cls) {
         return (
