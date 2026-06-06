@@ -113,6 +113,13 @@ export const yourGuideImages: Record<string, {
 
 Pick Unsplash photos that show real people in real places — not stock-y poses. Clinics, buses, classrooms, apartment hallways, workplaces. Always include the credit.
 
+**No duplicate Unsplash photos across guides:**
+- Each guide gets its own `src/data/your-guide-images.generated.ts` file.
+- **Do not reuse the same `unsplashId` in another grammar guide** unless the repeat is intentional (for example, a deliberate visual callback learners should recognize). If you reuse one, add a short comment on that entry explaining why.
+- Before picking photos for a new guide, search `src/data/*-images.generated.ts` and treat every existing `unsplashId` as reserved.
+- After adding images, confirm no duplicate `unsplashId` values appear across generated image files unless documented as intentional.
+- Verify CDN URLs return HTTP 200 before committing (`curl -sI` on the `images.unsplash.com` URL).
+
 ---
 
 ### 2. `dialogue(turns[])`
