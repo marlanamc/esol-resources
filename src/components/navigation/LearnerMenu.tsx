@@ -23,10 +23,12 @@ let inflight: Promise<Record<string, boolean>> | null = null;
 
 interface LearnerMenuActivity {
     id?: string;
+    title?: string | null;
     type?: string | null;
     category?: string | null;
     isReleased?: boolean;
     ui?: string | null;
+    content?: string | null;
     isVisible?: boolean;
 }
 
