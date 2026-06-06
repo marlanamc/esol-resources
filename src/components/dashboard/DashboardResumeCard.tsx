@@ -3,6 +3,7 @@ import { ArrowRight, Clock } from "lucide-react";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import type { DashboardResumeData } from "@/lib/course-map-week";
+import { DashboardResumeWeekActivities } from "@/components/dashboard/DashboardResumeWeekActivities";
 
 function typeToToneKey(type: string): string {
     switch (type) {
@@ -80,6 +81,7 @@ export function DashboardResumeCard({ data }: DashboardResumeCardProps) {
     const unitMeta = data.showUnitMonths
         ? `${data.unitTitle} · ${data.unitMonth}`
         : `Unit ${data.unitNumber}`;
+    const accent = { fg: tone.accent, bg: tone.surface };
 
     return (
         <div
@@ -178,6 +180,12 @@ export function DashboardResumeCard({ data }: DashboardResumeCardProps) {
                     <ArrowRight size={14} aria-hidden />
                 </Link>
             </div>
+
+            <DashboardResumeWeekActivities
+                items={data.weekItems}
+                accent={accent}
+                toneButton={tone.button}
+            />
         </div>
     );
 }

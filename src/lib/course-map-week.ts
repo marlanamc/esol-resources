@@ -207,6 +207,7 @@ export interface DashboardResumeData {
     continueHref: string;
     continueLabel: "Start here" | "Continue" | "Review map";
     mapHref: string;
+    weekItems: TimelineItem[];
 }
 
 export async function getDashboardResumeData(user: {
@@ -260,5 +261,11 @@ export async function getDashboardResumeData(user: {
         continueHref,
         continueLabel,
         mapHref,
+        weekItems: snapshot.items
+            .filter((item) => item.status !== "locked")
+            .map((item) => ({
+                ...item,
+                title: formatNextUpActivityTitle(item.title),
+            })),
     };
 }
