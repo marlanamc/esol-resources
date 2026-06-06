@@ -8,6 +8,7 @@ import { ClassCoursePath } from "@/components/dashboard/ClassCoursePath";
 import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 import { getVisibleMap, getCourseMapActivityIds } from "@/lib/course-map";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
+import { canUseTeacherTools } from "@/lib/roles";
 
 export const metadata = {
     title: "Course Map | Class Companion",
@@ -18,7 +19,13 @@ export default async function MapPage() {
     const session = await getServerSession(authOptions);
     if (!session?.user) redirect("/login");
     const adminStudentMode = await isAdminInStudentMode(session.user);
-    if (session.user.role !== "student" && !adminStudentMode) redirect("/dashboard");
+    if (
+        session.user.role !== "student" &&
+        !adminStudentMode &&
+        !canUseTeacherTools(session.user)
+    ) {
+        redirect("/dashboard");
+    }
 
     const userId = session.user.id;
 

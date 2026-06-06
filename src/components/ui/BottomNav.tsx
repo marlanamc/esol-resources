@@ -51,8 +51,6 @@ const TAB_NAV_METRIC_ENDPOINT = '/api/diagnostics/tab-nav';
 const TAB_NAV_QUEUE_STORAGE_KEY = 'tab-nav-metrics-queue-v1';
 const TAB_NAV_SAMPLE_RATE = 0.35;
 const TAB_NAV_BATCH_SIZE = 5;
-const MAP_LAST_HREF_STORAGE_KEY = 'dashboard-map-last-href-v1';
-
 function toTrackedTabPath(pathname: string | null | undefined): TrackedTabPath | null {
   if (!pathname) return null;
   if (pathname === '/dashboard') return '/dashboard';
@@ -247,7 +245,7 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
   }, [navItems, router]);
 
   const handleClick = useCallback(
-    (item: NavItemConfig, event: React.MouseEvent<HTMLAnchorElement>) => {
+    (item: NavItemConfig) => {
       const fromPath = toTrackedTabPath(pathname);
       const toPath = toTrackedTabPath(item.href);
       const shouldTrack = Boolean(
@@ -259,15 +257,8 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
       navTapAtRef.current = performance.now();
       navFromPathRef.current = fromPath;
       shouldTrackRef.current = shouldTrack;
-          if (item.href === '/dashboard/map') {
-        const lastMapHref = window.sessionStorage.getItem(MAP_LAST_HREF_STORAGE_KEY);
-        if (lastMapHref && lastMapHref !== '/dashboard/map') {
-          event.preventDefault();
-          router.push(lastMapHref, { scroll: false });
-        }
-      }
     },
-    [pathname, router],
+    [pathname],
   );
 
   const handleTouchStart = useCallback(
@@ -321,7 +312,7 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
                 key={item.href}
                 href={item.href}
                 prefetch
-                onClick={(event) => handleClick(item, event)}
+                onClick={() => handleClick(item)}
                 onTouchStart={() => handleTouchStart(item.href)}
                 aria-label={item.label}
                 className="relative flex h-full w-full items-center justify-center focus-visible:outline-none rounded-xl"
