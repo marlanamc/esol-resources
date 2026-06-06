@@ -5,33 +5,33 @@ export const gerundsInfinitivesFullReviewImages: Record<string, {
   credit: { name: string; url: string };
 }> = {
   sceneBusCommute: {
-    url: "https://images.unsplash.com/photo-1544967080-5acfba0603e0?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1776075508410-913ca2b781ae?w=1200&q=80&auto=format&fit=crop",
     alt: "Commuters waiting at a city bus stop on a dark evening after work.",
-    unsplashId: "photo-1544967080-5acfba0603e0",
-    credit: { name: "Dave Lowe", url: "https://unsplash.com/@davelowe" },
+    unsplashId: "NdbpyKDmVOY",
+    credit: { name: "Chris DUNN", url: "https://unsplash.com/@dunn_chris" },
   },
   sceneKitchenLetter: {
-    url: "https://images.unsplash.com/photo-1486312338219-68db50783479?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1758523419048-eeb546daac05?w=1200&q=80&auto=format&fit=crop",
     alt: "A person at a kitchen table reading a letter and checking their phone late at night.",
-    unsplashId: "photo-1486312338219-68db50783479",
-    credit: { name: "Glenn Carstens-Peters", url: "https://unsplash.com/@glenncarstenspeters" },
+    unsplashId: "Ve4FEk-swHY",
+    credit: { name: "Vitaly Gariev", url: "https://unsplash.com/@silverkblack" },
   },
   sceneWarehouseFloor: {
-    url: "https://images.unsplash.com/photo-1526255298750-27524614d9fa?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1589792923962-537704632910?w=1200&q=80&auto=format&fit=crop",
     alt: "Warehouse workers scanning and moving pallets during a busy shift.",
-    unsplashId: "photo-1526255298750-27524614d9fa",
-    credit: { name: "Possessed Photography", url: "https://unsplash.com/@possessedphotography" },
+    unsplashId: "qqtE2yX7POI",
+    credit: { name: "Remy Gieling", url: "https://unsplash.com/@gieling" },
   },
   scenePharmacyPickup: {
-    url: "https://images.unsplash.com/photo-1574680096145-d05b4748f729?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1777494395822-be72bef7262b?w=1200&q=80&auto=format&fit=crop",
     alt: "A customer at a pharmacy counter picking up a prescription bag.",
-    unsplashId: "photo-1574680096145-d05b4748f729",
-    credit: { name: "National Cancer Institute", url: "https://unsplash.com/@nci" },
+    unsplashId: "4wPk9cbd28A",
+    credit: { name: "Navy Medicine", url: "https://unsplash.com/@navymedicine" },
   },
   sceneEveningClass: {
-    url: "https://images.unsplash.com/photo-1582719204890-b5d849493691?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1776178320152-90f9bc841e7b?w=1200&q=80&auto=format&fit=crop",
     alt: "Adult learners seated at desks in an evening classroom.",
-    unsplashId: "photo-1582719204890-b5d849493691",
-    credit: { name: "Unsplash", url: "https://unsplash.com" },
+    unsplashId: "0lxZ-tG9LoY",
+    credit: { name: "Timur Shakerzianov", url: "https://unsplash.com/@shaker_jpg" },
   },
 };

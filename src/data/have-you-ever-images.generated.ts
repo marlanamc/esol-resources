@@ -8,12 +8,12 @@ export const haveYouEverImages: Record<
   }
 > = {
   scenePhone: {
-    url: "https://images.unsplash.com/photo-1556742046-914427ad264?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1592890288564-76628a30a657?w=1200&q=80&auto=format&fit=crop",
     alt: "Person reading a text message on a phone at home in the evening.",
-    unsplashId: "photo-1556742046-914427ad264",
+    unsplashId: "wK-elt11pF0",
     credit: {
-      name: "Mika Baumeister",
-      url: "https://unsplash.com/@kommumikation",
+      name: "Jonas Leupe",
+      url: "https://unsplash.com/@jonasleupe",
     },
   },
   sceneClassroom: {

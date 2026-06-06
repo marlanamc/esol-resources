@@ -5,33 +5,33 @@ export const allFourConditionalsQuickTourImages: Record<string, {
   credit: { name: string; url: string };
 }> = {
   sceneWarehouseLift: {
-    url: "https://images.unsplash.com/photo-1560173847-f6bfc0d5baee?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1657490016235-8246d81064d2?w=1200&q=80&auto=format&fit=crop",
     alt: "Warehouse worker moving boxes on a loading dock with safety gear.",
-    unsplashId: "photo-1560173847-f6bfc0d5baee",
-    credit: { name: "Adeolu Eletu", url: "https://unsplash.com/@adeolueletu" },
+    unsplashId: "e-u9GQKvDZY",
+    credit: { name: "Etienne Girardet", url: "https://unsplash.com/@etiennegirardet" },
   },
   sceneEarlyMorning: {
-    url: "https://images.unsplash.com/photo-1438107071335-55e6f1220fcb?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1527034010651-8dcf514bd147?w=1200&q=80&auto=format&fit=crop",
     alt: "A person in a kitchen early in the morning checking their phone before leaving for work.",
-    unsplashId: "photo-1438107071335-55e6f1220fcb",
-    credit: { name: "Icons8 Team", url: "https://unsplash.com/@icons8" },
+    unsplashId: "KYIHEnHjwzo",
+    credit: { name: "Aaron Thomas", url: "https://unsplash.com/@aaronphs" },
   },
   sceneBreakRoomNight: {
-    url: "https://images.unsplash.com/photo-1556740758-0b199361bbfc?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1748261500463-d15e624baf8f?w=1200&q=80&auto=format&fit=crop",
     alt: "Two coworkers talking in a break room after a late warehouse shift.",
-    unsplashId: "photo-1556740758-0b199361bbfc",
-    credit: { name: "Christina @ wocintechchat.com", url: "https://unsplash.com/@wocintechchat" },
+    unsplashId: "lUKrTm1WXU4",
+    credit: { name: "TECNIC Bioprocess Solutions", url: "https://unsplash.com/@tecnic" },
   },
   sceneClinicBilling: {
-    url: "https://images.unsplash.com/photo-1509066598308-abb0369faedf?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80&auto=format&fit=crop",
     alt: "A clinic reception desk with paperwork and a patient reviewing a bill.",
-    unsplashId: "photo-1509066598308-abb0369faedf",
-    credit: { name: "National Cancer Institute", url: "https://unsplash.com/@nci" },
+    unsplashId: "nMyM7fxpokE",
+    credit: { name: "Martha Dominguez de Gouveia", url: "https://unsplash.com/@m_dominguez_marketing" },
   },
   sceneEveningClass: {
-    url: "https://images.unsplash.com/photo-1571019614242-c227c37de681?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1561089489-f13d5e730d72?w=1200&q=80&auto=format&fit=crop",
     alt: "Adults seated at desks in an evening classroom sharing their week.",
-    unsplashId: "photo-1571019614242-c227c37de681",
-    credit: { name: "Unsplash", url: "https://unsplash.com" },
+    unsplashId: "Z-fq3wBVfMU",
+    credit: { name: "Shubham Sharan", url: "https://unsplash.com/@shubhamsharan" },
   },
 };

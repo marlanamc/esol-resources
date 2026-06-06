@@ -8,10 +8,10 @@ export const howLongForSinceImages: Record<
   }
 > = {
   sceneHotelLaundry: {
-    url: "https://images.unsplash.com/photo-1628177142628-8663a0e5e1c0?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1604335398980-ededcadcc37d?w=1200&q=80&auto=format&fit=crop",
     alt: "Industrial laundry room with neatly folded linens and rolling carts in a hotel.",
-    unsplashId: "photo-1628177142628-8663a0e5e1c0",
-    credit: { name: "Hazel Mills", url: "https://unsplash.com/@hazelmills" },
+    unsplashId: "f4jsI88K7ds",
+    credit: { name: "Oli Woodman", url: "https://unsplash.com/@braintax" },
   },
   sceneApartmentHallway: {
     url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80&auto=format&fit=crop",

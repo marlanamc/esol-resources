@@ -23,9 +23,9 @@ export const askingRightQuestionsHousingImages: Record<string, {
     credit: { name: "Luca Bravo", url: "https://unsplash.com/@lucabravo" },
   },
   sceneAfterWork: {
-    url: "https://images.unsplash.com/photo-1516321165247-4aa89a48be55?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1626387765635-16d0724b49bf?w=1200&q=80&auto=format&fit=crop",
     alt: "Two women talking outside on a city sidewalk in the evening after their work shift.",
-    unsplashId: "photo-1516321165247-4aa89a48be55",
-    credit: { name: "Hannah Busing", url: "https://unsplash.com/@hannahbusing" },
+    unsplashId: "-84tQTSV_aE",
+    credit: { name: "Jarritos Mexican Soda", url: "https://unsplash.com/@jarritos" },
   },
 };

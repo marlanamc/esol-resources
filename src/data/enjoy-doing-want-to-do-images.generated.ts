@@ -14,10 +14,10 @@ export const enjoyDoingWantToDoImages: Record<
     credit: { name: "Unsplash", url: "https://unsplash.com" },
   },
   sceneBus: {
-    url: "https://images.unsplash.com/photo-1553881403-342e4f4e8d0?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1761339880062-5eaa77d6afff?w=1200&q=80&auto=format&fit=crop",
     alt: "Two people talking on a city bus after work, looking out the window.",
-    unsplashId: "photo-1553881403-342e4f4e8d0",
-    credit: { name: "Unsplash", url: "https://unsplash.com" },
+    unsplashId: "gKxxk0ed8dA",
+    credit: { name: "MIROV", url: "https://unsplash.com/@denmirov" },
   },
   sceneCareerCenter: {
     url: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80&auto=format&fit=crop",
@@ -32,9 +32,9 @@ export const enjoyDoingWantToDoImages: Record<
     credit: { name: "Unsplash", url: "https://unsplash.com" },
   },
   sceneClassroom: {
-    url: "https://images.unsplash.com/photo-1488190217125-5b9699aa9ffc?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1758270704840-0ac001215b55?w=1200&q=80&auto=format&fit=crop",
     alt: "An adult student speaking one-on-one with a teacher after an evening English class.",
-    unsplashId: "photo-1488190217125-5b9699aa9ffc",
-    credit: { name: "Unsplash", url: "https://unsplash.com" },
+    unsplashId: "9faEJgSvmjc",
+    credit: { name: "Vitaly Gariev", url: "https://unsplash.com/@silverkblack" },
   },
 };

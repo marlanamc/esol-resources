@@ -23,10 +23,10 @@ export const zeroFirstConditionalImages: Record<string, {
     credit: { name: "Brooke Cagle", url: "https://unsplash.com/@brookecagle" },
   },
   sceneChristmasEve: {
-    url: "https://images.unsplash.com/photo-1559339352-11d035aa659d?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1200&q=80&auto=format&fit=crop",
     alt: "Restaurant dining room busy during a holiday evening shift.",
-    unsplashId: "photo-1559339352-11d035aa659d",
-    credit: { name: "Ryan S", url: "https://unsplash.com/@rsdesign" },
+    unsplashId: "W3SEyZODn8U",
+    credit: { name: "Priscilla Du Preez 🇨🇦", url: "https://unsplash.com/@priscilladupreez" },
   },
   sceneMixedPractice: {
     url: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80&auto=format&fit=crop",

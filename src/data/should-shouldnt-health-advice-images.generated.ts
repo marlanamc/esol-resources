@@ -11,9 +11,9 @@ export const shouldShouldntHealthAdviceImages: Record<string, {
     credit: { name: "Martha Dominguez de Gouveia", url: "https://unsplash.com/@mdominguezfoto" },
   },
   scenePharmacyCounter: {
-    url: "https://images.unsplash.com/photo-1576602976037-6976c2a8b3c4?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1580281657527-47f249e8f4df?w=1200&q=80&auto=format&fit=crop",
     alt: "A pharmacist behind a counter handing a paper bag to a customer.",
-    unsplashId: "photo-1576602976037-6976c2a8b3c4",
-    credit: { name: "Laurynas Mereckas", url: "https://unsplash.com/@laurynas_mereckas" },
+    unsplashId: "byGTytEGjBo",
+    credit: { name: "National Cancer Institute", url: "https://unsplash.com/@nci" },
   },
 };

@@ -5,10 +5,10 @@ export const passiveVoiceWhatWasDoneImages: Record<string, {
   credit: { name: string; url: string };
 }> = {
   sceneReferral: {
-    url: "https://images.unsplash.com/photo-1662543771949-f7ad1e01e6e4?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1590650265179-7e13941e93f8?w=1200&q=80&auto=format&fit=crop",
     alt: "Two women talking outside a workplace building, one sharing good news with a smile.",
-    unsplashId: "photo-1662543771949-f7ad1e01e6e4",
-    credit: { name: "Unsplash", url: "https://unsplash.com" },
+    unsplashId: "7pZbpEFgVi4",
+    credit: { name: "LinkedIn Sales Solutions", url: "https://unsplash.com/@linkedinsalesnavigator" },
   },
   sceneJobAd: {
     url: "https://images.unsplash.com/photo-1661956601349-f61c959a8fd4?w=1200&q=80&auto=format&fit=crop",
@@ -17,16 +17,16 @@ export const passiveVoiceWhatWasDoneImages: Record<string, {
     credit: { name: "Unsplash", url: "https://unsplash.com" },
   },
   sceneFirstDay: {
-    url: "https://images.unsplash.com/photo-1693556779839-bec7c4c82d11?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1758599668338-4c55a3bd0ce0?w=1200&q=80&auto=format&fit=crop",
     alt: "A new employee receiving orientation paperwork from a staff member at a front desk.",
-    unsplashId: "photo-1693556779839-bec7c4c82d11",
-    credit: { name: "Unsplash", url: "https://unsplash.com" },
+    unsplashId: "9tA7YYd9XuA",
+    credit: { name: "Vitaly Gariev", url: "https://unsplash.com/@silverkblack" },
   },
   sceneScheduleChange: {
-    url: "https://images.unsplash.com/photo-1678091007049-46f6cbc81c0b?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1692133189378-1ec72461bd35?w=1200&q=80&auto=format&fit=crop",
     alt: "A work schedule posted on a break room wall showing shift assignments.",
-    unsplashId: "photo-1678091007049-46f6cbc81c0b",
-    credit: { name: "Unsplash", url: "https://unsplash.com" },
+    unsplashId: "2bcva4zfMks",
+    credit: { name: "Brian Wangenheim", url: "https://unsplash.com/@brianwangenheim" },
   },
   sceneActivePassive: {
     url: "https://images.unsplash.com/photo-1682687982167-d7fb3ed8541d?w=1200&q=80&auto=format&fit=crop",

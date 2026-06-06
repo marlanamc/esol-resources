@@ -11,10 +11,10 @@ export const stopTakingOrStopToTakeImages: Record<string, {
     credit: { name: "Unsplash", url: "https://unsplash.com" },
   },
   sceneLabel: {
-    url: "https://images.unsplash.com/photo-1631549916768-a097c7b4eea0?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1624031000106-79254a8faa19?w=1200&q=80&auto=format&fit=crop",
     alt: "A person reading the label on a prescription medicine bottle carefully.",
-    unsplashId: "photo-1631549916768-a097c7b4eea0",
-    credit: { name: "Unsplash", url: "https://unsplash.com" },
+    unsplashId: "Yw9Vgr6i_-0",
+    credit: { name: "Towfiqu barbhuiya", url: "https://unsplash.com/@towfiqu999999" },
   },
   sceneTryGeneric: {
     url: "https://images.unsplash.com/photo-1550572017-4fcdbb59cc32?w=1200&q=80&auto=format&fit=crop",
@@ -23,10 +23,10 @@ export const stopTakingOrStopToTakeImages: Record<string, {
     credit: { name: "Unsplash", url: "https://unsplash.com" },
   },
   sceneAlarm: {
-    url: "https://images.unsplash.com/photo-1495368863648-ef8d52f226d?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1514464750060-00e6e34c8b8c?w=1200&q=80&auto=format&fit=crop",
     alt: "A phone screen showing a morning alarm reminder to take medication.",
-    unsplashId: "photo-1495368863648-ef8d52f226d",
-    credit: { name: "Unsplash", url: "https://unsplash.com" },
+    unsplashId: "33oxtOMk6Ac",
+    credit: { name: "Jamie Street", url: "https://unsplash.com/@jamie452" },
   },
   sceneNeighbors: {
     url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80&auto=format&fit=crop",

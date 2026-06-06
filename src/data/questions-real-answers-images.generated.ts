@@ -29,9 +29,9 @@ export const questionsRealAnswersImages: Record<string, {
     credit: { name: "Kübra Arslaner", url: "https://unsplash.com/@nediyodukenson" },
   },
   sceneNeighborsMeet: {
-    url: "https://images.unsplash.com/photo-1560437060-6158a558b2ed?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1200&q=80&auto=format&fit=crop",
     alt: "Two people having a friendly conversation on a city sidewalk.",
-    unsplashId: "photo-1560437060-6158a558b2ed",
-    credit: { name: "Benjamin Child", url: "https://unsplash.com/@bchild311" },
+    unsplashId: "eF7HN40WbAQ",
+    credit: { name: "Christina @ wocintechchat.com M", url: "https://unsplash.com/@wocintechchat" },
   },
 };
