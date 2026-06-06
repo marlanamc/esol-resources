@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, Target, Pencil, X } from "lucide-react";
+import { Pencil, Target, X } from "lucide-react";
 
 interface WeeklyGoalTrackerProps {
     completed: number;
@@ -9,7 +9,21 @@ interface WeeklyGoalTrackerProps {
     daysRemaining: number;
     onGoalChange?: (newGoal: number) => void;
     editable?: boolean;
-    compact?: boolean;
+}
+
+function getDaysLeftLabel(daysRemaining: number): string {
+    if (daysRemaining <= 0) return "Last day";
+    if (daysRemaining === 1) return "1 day left";
+    return `${daysRemaining} days left`;
+}
+
+function getFooterMessage(completed: number, goal: number, isGoalMet: boolean): string {
+    if (isGoalMet) return "Goal reached — nice work! 🎯";
+
+    const remaining = Math.max(0, goal - completed);
+    if (remaining === 1) return "One more to hit your goal 🎯";
+    if (remaining > 1) return `${remaining} more to hit your goal 🎯`;
+    return "Keep going this week 🎯";
 }
 
 export function WeeklyGoalTracker({
@@ -18,12 +32,10 @@ export function WeeklyGoalTracker({
     daysRemaining,
     onGoalChange,
     editable = true,
-    compact = false,
 }: WeeklyGoalTrackerProps) {
     const [isEditing, setIsEditing] = useState(false);
     const [pendingGoal, setPendingGoal] = useState(goal);
 
-    const percentComplete = Math.min(100, Math.round((completed / goal) * 100));
     const isGoalMet = completed >= goal;
 
     const handleSave = () => {
@@ -39,62 +51,45 @@ export function WeeklyGoalTracker({
     };
 
     return (
-        <div
-            className={`dashboard-panel rounded-2xl ${compact ? "p-3.5" : "p-4"}`}
-            style={{
-                background: isGoalMet
-                    ? "linear-gradient(135deg, color-mix(in srgb, var(--tone-grammar-surface) 20%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-grammar-surface) 12%, var(--dashboard-surface-end)) 100%)"
-                    : "linear-gradient(135deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)",
-                borderColor: isGoalMet
-                    ? "var(--tone-grammar-border)"
-                    : "var(--dashboard-border)",
-            }}
+        <section
+            className="dashboard-panel rounded-2xl p-[18px]"
+            aria-label="Weekly goal"
         >
-            {/* Header */}
-            <div className={`flex items-center justify-between ${compact ? "mb-2" : "mb-3"}`}>
-                <div className="flex items-center gap-2">
-                    <div
-                        className={`${compact ? "w-7 h-7" : "w-8 h-8"} rounded-full flex items-center justify-center`}
-                        style={{
-                            background: isGoalMet
-                                ? "linear-gradient(135deg, var(--tone-grammar-chip-bg) 0%, var(--tone-grammar-surface) 100%)"
-                                : "color-mix(in srgb, var(--tone-vocab-surface) 24%, var(--dashboard-surface-start))",
-                        }}
-                    >
-                        {isGoalMet ? (
-                            <CheckCircle2
-                                className="text-[var(--tone-grammar-accent)]"
-                                size={compact ? 16 : 18}
-                            />
-                        ) : (
-                            <Target
-                                className="text-[var(--tone-vocab-accent)]"
-                                size={compact ? 16 : 18}
-                            />
-                        )}
-                    </div>
-                    <span className={`${compact ? "text-[13px]" : "text-sm"} font-semibold text-text`}>Weekly Goal</span>
+            <div className="mb-3 flex items-center justify-between gap-3">
+                <div className="flex min-w-0 items-center gap-2">
+                    <Target size={18} className="shrink-0 text-secondary" aria-hidden />
+                    <h2 className="font-display text-sm font-bold text-text">Weekly goal</h2>
                 </div>
-
-                {editable && !isEditing && (
-                    <button
-                        onClick={() => setIsEditing(true)}
-                        className="p-1.5 rounded-lg hover:bg-surface-subtle transition-colors"
-                        aria-label="Edit weekly goal"
+                <div className="flex items-center gap-1.5">
+                    <span
+                        className="rounded-full px-2.5 py-1 text-[11px] font-semibold text-text-muted"
+                        style={{ background: "color-mix(in srgb, var(--dashboard-border) 42%, var(--dashboard-surface-start))" }}
                     >
-                        <Pencil className="text-text-muted" size={14} />
-                    </button>
-                )}
+                        {getDaysLeftLabel(daysRemaining)}
+                    </span>
+                    {editable && !isEditing && onGoalChange ? (
+                        <button
+                            type="button"
+                            onClick={() => setIsEditing(true)}
+                            className="rounded-lg p-1.5 transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
+                            aria-label="Edit weekly goal"
+                        >
+                            <Pencil className="text-text-muted" size={14} />
+                        </button>
+                    ) : null}
+                </div>
             </div>
 
-            {/* Goal Editor */}
             {isEditing ? (
-                <div className="flex items-center gap-3 mb-3">
-                    <label className="text-sm text-text-muted">Activities per week:</label>
+                <div className="flex flex-wrap items-center gap-2">
+                    <label className="text-sm text-text-muted" htmlFor="weekly-goal-select">
+                        Activities per week:
+                    </label>
                     <select
+                        id="weekly-goal-select"
                         value={pendingGoal}
                         onChange={(e) => setPendingGoal(Number(e.target.value))}
-                        className="px-3 py-1.5 rounded-lg border border-border-subtle bg-surface-base text-text text-sm"
+                        className="rounded-lg border border-border-subtle bg-surface-base px-3 py-1.5 text-sm text-text"
                     >
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
                             <option key={n} value={n}>
@@ -103,69 +98,55 @@ export function WeeklyGoalTracker({
                         ))}
                     </select>
                     <button
+                        type="button"
                         onClick={handleSave}
-                        className="px-3 py-1.5 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors"
+                        className="rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-[color:var(--text-on-accent)] transition-colors hover:bg-primary-dark"
                     >
                         Save
                     </button>
                     <button
+                        type="button"
                         onClick={handleCancel}
-                        className="p-1.5 rounded-lg hover:bg-surface-subtle transition-colors"
-                        aria-label="Cancel"
+                        className="rounded-lg p-1.5 transition-colors hover:bg-[var(--surface-subtle)]"
+                        aria-label="Cancel editing weekly goal"
                     >
                         <X className="text-text-muted" size={16} />
                     </button>
                 </div>
             ) : (
                 <>
-                    {/* Progress Display */}
-                    <div className={`flex items-end justify-between gap-3 ${compact ? "mb-2" : "mb-2"}`}>
-                        <div className="flex items-baseline gap-1">
-                            <span className={`${compact ? "text-xl" : "text-2xl"} font-bold text-text`}>{completed}</span>
-                            <span className={`${compact ? "text-base" : "text-lg"} text-text-muted`}>/</span>
-                            <span className={`${compact ? "text-base" : "text-lg"} font-medium text-text-muted`}>{goal}</span>
-                            <span className={`${compact ? "text-xs" : "text-sm"} text-text-muted ml-1`}>activities</span>
-                        </div>
-                        {compact && (
-                            <p className="text-[11px] font-medium text-text-muted text-right">
-                                {isGoalMet ? "Goal reached" : daysRemaining === 0 ? "Last day" : daysRemaining === 1 ? "1 day left" : `${daysRemaining} days left`}
-                            </p>
-                        )}
+                    <div className="mb-2 flex items-baseline gap-1.5">
+                        <span
+                            className="font-display text-[26px] font-bold leading-none tabular-nums"
+                            style={{ color: "var(--secondary-dark)" }}
+                        >
+                            {completed}
+                        </span>
+                        <span className="text-[13px] font-semibold text-text-muted">
+                            of {goal} activities
+                        </span>
                     </div>
 
-                    {/* Progress Bar */}
-                    <div className={`relative ${compact ? "h-2.5" : "h-3"} rounded-full overflow-hidden ${compact ? "mb-0" : "mb-2"}`} style={{
-                        background: "var(--checklist-track-bg)",
-                    }}>
-                        <div
-                            className="absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out"
-                            style={{
-                                width: `${percentComplete}%`,
-                                background: isGoalMet
-                                    ? "linear-gradient(90deg, var(--tone-grammar-accent) 0%, var(--tone-grammar-chip-bg) 100%)"
-                                    : "linear-gradient(90deg, var(--tone-vocab-accent) 0%, var(--tone-vocab-chip-bg) 100%)",
-                            }}
-                        />
+                    <div className="flex gap-1.5" aria-hidden>
+                        {Array.from({ length: goal }).map((_, index) => (
+                            <div
+                                key={index}
+                                className="h-2 flex-1 rounded-[5px]"
+                                style={{
+                                    background:
+                                        index < completed
+                                            ? "var(--secondary)"
+                                            : "color-mix(in srgb, var(--dashboard-border) 45%, var(--dashboard-surface-start))",
+                                }}
+                            />
+                        ))}
                     </div>
 
-                    {/* Footer Message */}
-                    {!compact && (
-                        <p className="text-xs text-text-muted">
-                            {isGoalMet ? (
-                                <span className="text-[var(--tone-grammar-accent)] font-medium">
-                                    Goal reached! Keep going!
-                                </span>
-                            ) : daysRemaining === 0 ? (
-                                "Last day of the week!"
-                            ) : daysRemaining === 1 ? (
-                                "1 day remaining"
-                            ) : (
-                                `${daysRemaining} days remaining`
-                            )}
-                        </p>
-                    )}
+                    <p className="mt-2.5 text-[11.5px] font-medium text-text-muted">
+                        {getFooterMessage(completed, goal, isGoalMet)}
+                    </p>
                 </>
             )}
-        </div>
+        </section>
     );
 }

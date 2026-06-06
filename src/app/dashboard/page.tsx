@@ -19,10 +19,12 @@ import {
     MissedClassCatchUpCard,
     MomentumCard,
     ExploreCategoriesCarousel,
+    AllActivitiesCategoriesPanel,
+    DashboardWelcomeHeader,
 } from "@/components/dashboard";
 import { DashboardResumeHero } from "@/components/dashboard/DashboardResumeHero";
 import { DashboardNextStepFallbackCard } from "@/components/dashboard/DashboardNextStepFallbackCard";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { formatDashboardWeekRangeLabel } from "@/lib/dashboard/week-range-label";
 import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 import { buildActivityHref } from "@/lib/learner-navigation";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
@@ -437,7 +439,7 @@ export default async function DashboardPage() {
         getStudentMomentumSnapshot(userId),
     ]);
     const studentEntry = studentLeaderboard.find((e) => e.id === userId);
-    const studentLeaderboardRank = studentEntry && studentEntry.rank <= 3 ? studentEntry.rank : null;
+    const studentLeaderboardRank = studentEntry?.rank ?? null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
     const isMarlie = (session.user as { username?: string })?.username?.toLowerCase() === "marlie";
     const desktopNameEmoji = isMarlie ? "🙋🏻‍♀️" : studentLeaderboardMedal;
@@ -475,29 +477,15 @@ export default async function DashboardPage() {
                         {/* ── Left / Main column ── */}
                         <div className="min-w-0 space-y-5">
 
-                            {/* Welcome header — compact, above the cards */}
-                            <div className="pt-2 pb-1">
-                                <h1
-                                    className="font-display font-bold text-text leading-tight tracking-tight flex items-baseline gap-x-2.5 gap-y-1 flex-wrap"
-                                    style={{ textWrap: "balance" } as React.CSSProperties}
-                                >
-                                    <span className="text-xl text-text-muted font-medium">Welcome back,</span>
-                                    <span className="text-[2rem] text-primary relative inline-block leading-none">
-                                        {session.user?.name?.trim() || "there"}
-                                        <span className="absolute -bottom-0.5 left-0 right-0 h-2 bg-[#88A392]/40 -z-10 rounded-sm -rotate-1" />
-                                    </span>
-                                    {desktopNameEmoji ? (
-                                        <span
-                                            className="inline-flex text-2xl leading-none"
-                                            {...(isMarlie ? { "aria-hidden": true } : { "aria-label": `Rank ${studentLeaderboardRank}` })}
-                                        >
-                                            {desktopNameEmoji}
-                                        </span>
-                                    ) : null}
-                                </h1>
-                                <p className="mt-1 text-sm font-medium text-text-muted/90">
-                                    You&apos;re making great progress.
-                                </p>
+                            <div className="hidden lg:block">
+                                <DashboardWelcomeHeader
+                                    userName={session.user?.name?.trim() || "there"}
+                                    mode="classroom"
+                                    weekLabel={formatDashboardWeekRangeLabel(new Date())}
+                                    nameEmoji={desktopNameEmoji}
+                                    streak={momentumSnapshot.initialStreak}
+                                    leaderboardRank={studentLeaderboardRank}
+                                />
                             </div>
 
                             <DashboardResumeHero user={{ id: session.user.id, role: session.user.role }} fallback={nextStepFallback} />
@@ -508,50 +496,7 @@ export default async function DashboardPage() {
                                 <FeaturedFallbackRow />
                             )}
 
-                            {/* Explore Activities — secondary card */}
-                            <section className="dashboard-panel rounded-2xl p-5" aria-label="Explore activities">
-                                <div className="flex items-center justify-between mb-4">
-                                    <h2 className="text-base font-bold font-display text-text">New &amp; trending activities</h2>
-                                    <Link
-                                        href="/dashboard/activities"
-                                        className="text-xs font-semibold rounded-lg px-2.5 py-1.5 transition-colors hover:bg-[var(--surface-subtle)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                                        style={{ color: "var(--primary)" }}
-                                    >
-                                        Browse all →
-                                    </Link>
-                                </div>
-                                <div className="grid grid-cols-6 gap-2.5">
-                                    {[
-                                        { label: 'Grammar', href: '/dashboard/activities?category=grammar', tone: getLearnerCategoryTone('grammar'), emoji: '📖' },
-                                        { label: 'Vocabulary', href: '/dashboard/activities?category=vocabulary', tone: getLearnerCategoryTone('vocabulary'), emoji: '🗂️' },
-                                        { label: 'Quizzes', href: '/dashboard/activities?category=quizzes', tone: getLearnerCategoryTone('quizzes'), emoji: '✏️' },
-                                        { label: 'Games', href: '/dashboard/activities?category=games', tone: getLearnerCategoryTone('games'), emoji: '🎮' },
-                                        { label: 'Pronunciation', href: '/dashboard/activities?category=pronunciation', tone: getLearnerCategoryTone('pronunciation'), emoji: '🔊' },
-                                        { label: 'Speaking', href: '/dashboard/activities?category=speaking', tone: getLearnerCategoryTone('speaking'), emoji: '🎤' },
-                                    ].map(chip => (
-                                        <Link
-                                            key={chip.label}
-                                            href={chip.href}
-                                            className="flex flex-col items-center gap-2 rounded-2xl border px-2 py-3.5 text-center transition-all duration-200 active:scale-95 hover:scale-[1.02] hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                                            style={{
-                                                backgroundColor: chip.tone.chipBg,
-                                                borderColor: chip.tone.border,
-                                            }}
-                                        >
-                                            <span
-                                                className="flex h-10 w-10 items-center justify-center rounded-full text-xl leading-none"
-                                                style={{
-                                                    background: `color-mix(in srgb, ${chip.tone.accent} 14%, var(--dashboard-surface-start))`,
-                                                    boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${chip.tone.border} 60%, transparent)`,
-                                                }}
-                                            >
-                                                {chip.emoji}
-                                            </span>
-                                            <span className="text-[11px] font-bold leading-tight" style={{ color: chip.tone.chipText }}>{chip.label}</span>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </section>
+                            <AllActivitiesCategoriesPanel />
                         </div>
 
                         {/* ── Right sidebar ── */}

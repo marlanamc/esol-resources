@@ -100,7 +100,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [], compact
                 <h3
                     className={
                         compact
-                            ? "text-sm font-semibold text-text tracking-tight"
+                            ? "font-display text-sm font-bold text-text tracking-tight"
                             : `text-[1.45rem] font-display font-bold tracking-tight ${
                                   resolvedTheme === "dark" ? "text-white" : "text-[#1f2633]"
                               }`

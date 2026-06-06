@@ -9,8 +9,8 @@ import {
     getCalendarWeekTodayIndex,
 } from "@/lib/gamification/calendar-week";
 
-const MOMENTUM_SAGE = "#bd4a2b";
-const MOMENTUM_SAGE_DARK = "#a33f25";
+const STREAK_ACCENT = "var(--primary)";
+const STREAK_ACCENT_DARK = "var(--primary-dark)";
 
 function StreakProgressRing({
     streak,
@@ -43,7 +43,7 @@ function StreakProgressRing({
                     cy={size / 2}
                     r={r}
                     fill="none"
-                    stroke={MOMENTUM_SAGE}
+                    stroke={STREAK_ACCENT}
                     strokeWidth={stroke}
                     strokeDasharray={`${dash} ${circ}`}
                     strokeLinecap="round"
@@ -62,7 +62,7 @@ function StreakProgressRing({
                     background: "var(--dashboard-surface-start)",
                 }}
             >
-                <FlameIcon size={size >= 70 ? 14 : 10} style={{ color: MOMENTUM_SAGE }} />
+                <FlameIcon size={size >= 70 ? 14 : 10} style={{ color: STREAK_ACCENT }} />
                 <span className={`${size >= 70 ? "text-[25px]" : "text-sm"} mt-px font-extrabold tabular-nums text-text leading-none`}>{streak}</span>
             </div>
         </div>
@@ -143,7 +143,7 @@ export function MomentumCard({
             ? "linear-gradient(135deg, color-mix(in srgb, var(--tone-speaking-surface) 28%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-quizzes-surface) 18%, var(--dashboard-surface-end)) 100%)"
             : "linear-gradient(135deg, color-mix(in srgb, var(--tone-quizzes-surface) 16%, var(--dashboard-surface-start)) 0%, var(--dashboard-surface-end) 100%)";
     const cardBorder = isRail
-        ? "color-mix(in srgb, #bd4a2b 14%, var(--dashboard-border))"
+        ? "color-mix(in srgb, var(--primary) 14%, var(--dashboard-border))"
         : isHotStreak
             ? "var(--tone-speaking-border)"
             : "var(--tone-quizzes-border)";
@@ -153,7 +153,7 @@ export function MomentumCard({
     const dotIconActive = 15;
     const dotIconToday = 13;
 
-    const streakAccent = isRail ? MOMENTUM_SAGE : isHotStreak ? "var(--tone-speaking-accent)" : "var(--primary)";
+    const streakAccent = isHotStreak && !isRail ? "var(--tone-speaking-accent)" : STREAK_ACCENT;
     const streakRingPct = isRail ? Math.min(100, streak * 10) : Math.round((activeDaysThisWeek / 7) * 100);
     const daysToPerfectWeek = Math.max(0, 7 - activeDaysThisWeek);
 
@@ -162,19 +162,11 @@ export function MomentumCard({
             className={`inline-flex items-center gap-1 font-bold leading-none tabular-nums rounded-full dashboard-pill stats-badge-polish ${
                 isRail ? "text-xs px-3 py-1" : "text-[11px] px-2.5 py-1"
             }`}
-            style={
-                isRail
-                    ? {
-                        background: "color-mix(in srgb, #bd4a2b 10%, var(--dashboard-surface-start))",
-                        color: MOMENTUM_SAGE_DARK,
-                        border: "1px solid color-mix(in srgb, #bd4a2b 18%, transparent)",
-                    }
-                    : {
-                        background: "color-mix(in srgb, var(--primary) 14%, var(--dashboard-surface-start))",
-                        color: "var(--primary)",
-                        border: "1px solid color-mix(in srgb, var(--primary) 30%, transparent)",
-                    }
-            }
+            style={{
+                background: "color-mix(in srgb, var(--primary) 14%, var(--dashboard-surface-start))",
+                color: STREAK_ACCENT_DARK,
+                border: "1px solid color-mix(in srgb, var(--primary) 30%, transparent)",
+            }}
         >
             {totalPoints.toLocaleString()} pts
         </span>
@@ -305,7 +297,7 @@ export function MomentumCard({
     );
 
     const railCardClass =
-        "group block w-full min-w-0 rounded-[26px] border transition-[box-shadow,transform] duration-200 hover:shadow-md hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#bd4a2b]/25";
+        "group block w-full min-w-0 rounded-[26px] border transition-[box-shadow,transform] duration-200 hover:shadow-md hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25";
     const refinedWeekDots = (
         <div className="grid w-full grid-cols-7 gap-1.5">
             {sevenDayActivity.map((active, i) => {
@@ -378,7 +370,7 @@ export function MomentumCard({
                     className="h-full rounded-full transition-[width] duration-700 ease-out"
                     style={{
                         width: `${weekActivityPct}%`,
-                        background: `linear-gradient(90deg, ${MOMENTUM_SAGE} 0%, color-mix(in srgb, ${MOMENTUM_SAGE} 82%, #d87449) 100%)`,
+                        background: `linear-gradient(90deg, ${STREAK_ACCENT} 0%, color-mix(in srgb, ${STREAK_ACCENT} 82%, var(--primary-light)) 100%)`,
                     }}
                 />
             </div>
@@ -392,10 +384,10 @@ export function MomentumCard({
                 <div className="min-w-0">
                     <div className="flex items-start justify-between gap-3">
                         <div>
-                            <p className="text-base font-extrabold leading-tight text-text">
+                            <p className="font-display text-base font-bold leading-tight text-text">
                                 Hot streak
                             </p>
-                            <p className="mt-1 text-[13px] font-semibold leading-tight text-text-muted">
+                            <p className="mt-1 text-[13px] font-medium leading-tight text-text-muted">
                                 {streak > 0 ? "Keep going!" : "Start today"}
                             </p>
                         </div>

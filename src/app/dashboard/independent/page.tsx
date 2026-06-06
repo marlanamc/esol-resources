@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
@@ -13,7 +12,9 @@ import { canUseTeacherTools } from "@/lib/roles";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { persistLearnerPreview } from "@/lib/learner-preview";
 import { AdminViewSwitcher } from "@/components/dashboard/AdminViewSwitcher";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { IndependentDashboardClient } from "@/app/dashboard/independent/IndependentDashboardClient";
+import { IndependentLeaderboardCard } from "@/components/dashboard/independent/IndependentLeaderboardCard";
+import { buildIndependentLeaderboardUserWhere } from "@/lib/gamification/leaderboard-filter";
 import {
     filterIndependentVisibleActivities,
     getIndependentRecommendationActivityIds,
@@ -21,10 +22,8 @@ import {
     getIndependentNewActivityCards,
     INDEPENDENT_NEW_RELEASE_WINDOW_MS,
 } from "@/lib/independent-learning";
-import {
-    getIndependentProgressStats,
-} from "@/lib/independent-progress";
-import { DashboardResumeHero, ExploreCategoriesCarousel, MomentumCard, NewThisWeekSection } from "@/components/dashboard";
+import { getWeeklyGoalProgress } from "@/lib/independent-progress";
+import { DashboardResumeHero, ExploreCategoriesCarousel, AllActivitiesCategoriesPanel, MomentumCard, NewThisWeekSection, DashboardWelcomeHeader } from "@/components/dashboard";
 
 export default async function IndependentDashboardPage() {
     const session = await getServerSession(authOptions);
@@ -153,7 +152,7 @@ export default async function IndependentDashboardPage() {
     const sequenceActivities = filterIndependentVisibleActivities(sequenceActivitiesRaw);
     const recentActivities = filterIndependentVisibleActivities(recentActivitiesRaw);
 
-    const [progressRows, submissions, independentLeaderboard] = await Promise.all([
+    const [progressRows, submissions, independentLeaderboard, userPreferences, weeklySubmissions, independentLearnerCount] = await Promise.all([
         sequenceActivityIds.length === 0
             ? []
             : timedQuery(
@@ -207,6 +206,30 @@ export default async function IndependentDashboardPage() {
                 (result) => result.length
                 ),
         getTimeframedLeaderboard("week", 20, undefined, undefined, { independentOnly: true }),
+        withPrismaReadRetry(() =>
+            prisma.userPreferences.findUnique({
+                where: { userId },
+                select: {
+                    weeklyActivityGoal: true,
+                    weeklyGoalStartDay: true,
+                },
+            })
+        ),
+        withPrismaReadRetry(() =>
+            prisma.submission.findMany({
+                where: {
+                    userId,
+                    status: { in: ["submitted", "graded"] },
+                    completedAt: { not: null },
+                },
+                select: { completedAt: true },
+            })
+        ),
+        withPrismaReadRetry(() =>
+            prisma.user.count({
+                where: buildIndependentLeaderboardUserWhere(),
+            })
+        ),
     ]);
 
     // Deduplicate progress rows by activityId - keep the best record (highest progress or completed)
@@ -226,27 +249,6 @@ export default async function IndependentDashboardPage() {
         return Array.from(byActivity.values());
     })();
 
-    // Calculate progress stats for roadmap
-    const progressStats = getIndependentProgressStats({
-        activities: sequenceActivities.map(a => ({
-            id: a.id,
-            title: a.title,
-            type: a.type,
-            category: a.category,
-        })),
-        progressRows: progressRowsDeduped.map(p => ({
-            activityId: p.activityId,
-            progress: p.progress,
-            status: p.status,
-            updatedAt: p.updatedAt,
-        })),
-        submissions: submissions.map(s => ({
-            activityId: s.activityId,
-            score: s.score,
-            completedAt: s.completedAt,
-        })),
-    });
-
     const newThisWeekItems = getIndependentNewActivityCards({
         activities: recentActivities,
         progressRows: progressRowsDeduped,
@@ -254,11 +256,18 @@ export default async function IndependentDashboardPage() {
         limit: 6,
     });
 
+    const weeklyGoal = userPreferences?.weeklyActivityGoal ?? 3;
+    const weeklyGoalStartDay = userPreferences?.weeklyGoalStartDay ?? 1;
+    const weeklyGoalProgress = getWeeklyGoalProgress({
+        weeklyGoal,
+        startDay: weeklyGoalStartDay,
+        submissions: weeklySubmissions,
+        progressRows: [],
+    });
+
     const studentEntry = independentLeaderboard.find((entry) => entry.id === userId);
-    const studentLeaderboardRank = studentEntry && studentEntry.rank <= 3 ? studentEntry.rank : null;
+    const studentLeaderboardRank = studentEntry?.rank ?? null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
-    const currentStage = progressStats.stageProgress.find((stage) => stage.stage === progressStats.currentStage);
-    const currentStageLabel = currentStage?.label ?? "Current Unit";
 
     return (
         <div className="min-h-screen bg-bg">
@@ -267,26 +276,17 @@ export default async function IndependentDashboardPage() {
                 <div className="dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
                     <div className="md:col-span-8 lg:col-span-9 min-w-0 space-y-6 sm:space-y-8">
                         <div className="hidden lg:block">
-                            <div className="pt-2 pb-1">
-                                <h1
-                                    className="font-display font-bold text-text leading-tight tracking-tight flex items-baseline gap-x-2.5 gap-y-1 flex-wrap"
-                                    style={{ textWrap: "balance" } as React.CSSProperties}
-                                >
-                                    <span className="text-xl text-text-muted font-medium">Welcome back,</span>
-                                    <span className="text-[2rem] text-primary relative inline-block leading-none">
-                                        {session.user?.name?.trim() || "there"}
-                                        <span className="absolute -bottom-0.5 left-0 right-0 h-2 bg-[#88A392]/40 -z-10 rounded-sm -rotate-1" />
-                                    </span>
-                                    {studentLeaderboardMedal ? (
-                                        <span className="inline-flex text-2xl leading-none" aria-label={`Rank ${studentLeaderboardRank}`}>
-                                            {studentLeaderboardMedal}
-                                        </span>
-                                    ) : null}
-                                </h1>
-                                <p className="mt-1 text-sm font-medium text-text-muted/90">
-                                    You&apos;re making great progress.
-                                </p>
-                            </div>
+                            <DashboardWelcomeHeader
+                                userName={session.user?.name?.trim() || "there"}
+                                mode="independent"
+                                nameEmoji={studentLeaderboardMedal ? (
+                                    <span aria-label={`Rank ${studentLeaderboardRank}`}>{studentLeaderboardMedal}</span>
+                                ) : undefined}
+                                streak={userStats?.currentStreak ?? 0}
+                                weeklyCompleted={weeklyGoalProgress.completed}
+                                weeklyGoal={weeklyGoalProgress.goal}
+                                leaderboardRank={studentLeaderboardRank}
+                            />
                         </div>
 
                         <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
@@ -308,6 +308,7 @@ export default async function IndependentDashboardPage() {
 
                         <ExploreCategoriesCarousel />
 
+                        <AllActivitiesCategoriesPanel />
                     </div>
 
                     {/* Sidebar */}
@@ -321,68 +322,17 @@ export default async function IndependentDashboardPage() {
                                 initialTotalPoints={userStats?.points ?? 0}
                             />
 
-                            <section className="dashboard-panel rounded-2xl p-5" aria-label="Continue your journey">
-                                <div className="mb-4 flex items-center gap-3">
-                                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                                        <BookOpen size={19} aria-hidden />
-                                    </span>
-                                    <h2 className="font-display text-lg font-bold text-text">
-                                        Continue Your Journey
-                                    </h2>
-                                </div>
+                            <IndependentDashboardClient
+                                initialGoal={weeklyGoal}
+                                weeklyGoalProgress={weeklyGoalProgress}
+                            />
 
-                                <div className="space-y-4">
-                                    <div>
-                                        <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-text-muted">
-                                            Current Unit
-                                        </p>
-                                        <p className="mt-1 text-xl font-bold leading-tight text-text">
-                                            {currentStageLabel}
-                                        </p>
-                                    </div>
-
-                                    <div className="grid grid-cols-2 gap-3">
-                                        <div className="rounded-2xl border px-3 py-3" style={{ borderColor: "var(--dashboard-border)" }}>
-                                            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-text-muted">
-                                                Level
-                                            </p>
-                                            <p className="mt-1 text-lg font-extrabold text-text">
-                                                {progressStats.currentStage} of {progressStats.stageProgress.length}
-                                            </p>
-                                        </div>
-                                        <div className="rounded-2xl border px-3 py-3" style={{ borderColor: "var(--dashboard-border)" }}>
-                                            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-text-muted">
-                                                Progress
-                                            </p>
-                                            <p className="mt-1 text-lg font-extrabold text-text">
-                                                {progressStats.percentComplete}%
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div
-                                        className="h-2 overflow-hidden rounded-full"
-                                        style={{ background: "var(--checklist-track-bg)" }}
-                                    >
-                                        <div
-                                            className="h-full rounded-full bg-primary transition-all duration-500"
-                                            style={{ width: `${progressStats.percentComplete}%` }}
-                                        />
-                                    </div>
-
-                                    <p className="text-xs font-semibold text-text-muted">
-                                        {progressStats.completedActivities} of {progressStats.totalActivities} activities
-                                    </p>
-
-                                    <Link
-                                        href="/dashboard/map"
-                                        className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-bold text-[color:var(--text-on-accent)] transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
-                                    >
-                                        Continue Journey
-                                        <ArrowRight size={17} aria-hidden />
-                                    </Link>
-                                </div>
-                            </section>
+                            {studentLeaderboardRank ? (
+                                <IndependentLeaderboardCard
+                                    rank={studentLeaderboardRank}
+                                    learnerCount={independentLearnerCount}
+                                />
+                            ) : null}
                         </div>
                     </aside>
                 </div>
