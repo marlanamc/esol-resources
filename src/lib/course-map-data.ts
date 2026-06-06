@@ -1476,7 +1476,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-30",
         "number": 30,
-        "title": "Vacation Catch-Up",
+        "title": "The Doctor Said + Catch-Up",
         "items": [
           {
             "id": "catch-up-path-april",
@@ -1510,13 +1510,22 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 27: mention + ask"
+          },
+          {
+            "id": "doctor-said-reported-speech",
+            "href": "/grammar-reader/doctor-said-reported-speech",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "The Doctor Said: Reported Speech"
           }
         ]
       },
       {
         "id": "week-31",
         "number": 31,
-        "title": "Pharmacy + Notices",
+        "title": "Third Conditional + Pharmacy",
         "items": [
           {
             "id": "vocab-apr-28-30",
@@ -1543,6 +1552,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 28: talk + comply"
+          },
+          {
+            "id": "third-conditional-what-would-have-happened",
+            "href": "/grammar-reader/third-conditional-what-would-have-happened",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Third Conditional: What Would Have Happened"
           }
         ]
       }
@@ -1557,7 +1575,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-32",
         "number": 32,
-        "title": "Wellness Routines + Follow-Up",
+        "title": "I Used to + Wellness",
         "items": [
           {
             "id": "vocab-may-5-7",
@@ -1593,13 +1611,22 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "P vs B Minimal Pair Lab"
+          },
+          {
+            "id": "i-used-to-but-now-i",
+            "href": "/grammar-reader/i-used-to-but-now-i",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "I Used to, but Now I..."
           }
         ]
       },
       {
         "id": "week-33",
         "number": 33,
-        "title": "Nutrition + Charts",
+        "title": "Be Used to + Still Adjusting",
         "items": [
           {
             "id": "vocab-may-12-14",
@@ -1618,13 +1645,22 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 30: read + think"
+          },
+          {
+            "id": "be-used-to-get-used-to",
+            "href": "/grammar-reader/be-used-to-get-used-to",
+            "slot": "required",
+            "order": 2,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Be Used to / Get Used to"
           }
         ]
       },
       {
         "id": "week-34",
         "number": 34,
-        "title": "Stress, Sleep + Healthy Habits",
+        "title": "All Four Conditionals + One Bad Week",
         "items": [
           {
             "id": "vocab-may-19-21",
@@ -1659,13 +1695,22 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 31: drive + ride"
+          },
+          {
+            "id": "all-four-conditionals-quick-tour",
+            "href": "/grammar-reader/all-four-conditionals-quick-tour",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "All Four Conditionals: A Quick Tour"
           }
         ]
       },
       {
         "id": "week-35",
         "number": 35,
-        "title": "Community Wellness + Speaking Games",
+        "title": "Gerunds + Infinitives + Packed Week",
         "items": [
           {
             "id": "vocab-may-26-28",
@@ -1692,6 +1737,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "B vs V Refresh"
+          },
+          {
+            "id": "gerunds-infinitives-full-review",
+            "href": "/grammar-reader/gerunds-infinitives-full-review",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Gerunds + Infinitives: Full Review"
           }
         ]
       }
@@ -1706,7 +1760,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-36",
         "number": 36,
-        "title": "Year in Review + Celebrate",
+        "title": "All the Tenses: A Year in Review",
         "items": [
           {
             "id": "vocab-jun-2-4",
@@ -1742,6 +1796,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "assessment",
             "title": "Post-Test Window"
+          },
+          {
+            "id": "all-the-tenses-year-in-review",
+            "href": "/grammar-reader/all-the-tenses-year-in-review",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "All the Tenses: A Year in Review"
           },
           {
             "id": "final-reflection-writing-jun-extra",

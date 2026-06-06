@@ -11,6 +11,14 @@ export interface GrammarContentRegistryEntry {
 }
 
 export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry> = {
+    "all-four-conditionals-quick-tour": {
+        sourceFile: "src/content/grammar/all-four-conditionals-quick-tour.ts",
+        loader: () => import("@/content/grammar/all-four-conditionals-quick-tour"),
+    },
+    "all-the-tenses-year-in-review": {
+        sourceFile: "src/content/grammar/all-the-tenses-year-in-review.ts",
+        loader: () => import("@/content/grammar/all-the-tenses-year-in-review"),
+    },
     "all-verb-tenses-overview": {
         sourceFile: "src/content/grammar/all-verb-tenses-overview.ts",
         loader: () => import("@/content/grammar/all-verb-tenses-overview"),
@@ -26,6 +34,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
     "continuous-tenses-review": {
         sourceFile: "src/content/grammar/continuous-tenses-review.ts",
         loader: () => import("@/content/grammar/continuous-tenses-review"),
+    },
+    "doctor-said-reported-speech": {
+        sourceFile: "src/content/grammar/doctor-said-reported-speech.ts",
+        loader: () => import("@/content/grammar/doctor-said-reported-speech"),
     },
     "enjoy-doing-want-to-do": {
         sourceFile: "src/content/grammar/enjoy-doing-want-to-do.ts",
@@ -54,6 +66,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
     "gerunds-infinitives": {
         sourceFile: "src/content/grammar/gerunds-infinitives.ts",
         loader: () => import("@/content/grammar/gerunds-infinitives"),
+    },
+    "gerunds-infinitives-full-review": {
+        sourceFile: "src/content/grammar/gerunds-infinitives-full-review.ts",
+        loader: () => import("@/content/grammar/gerunds-infinitives-full-review"),
     },
     "getting-there-directions": {
         sourceFile: "src/content/grammar/getting-there-directions.ts",
@@ -95,6 +111,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/asking-right-questions-housing.ts",
         loader: () => import("@/content/grammar/asking-right-questions-housing"),
     },
+    "be-used-to-get-used-to": {
+        sourceFile: "src/content/grammar/be-used-to-get-used-to.ts",
+        loader: () => import("@/content/grammar/be-used-to-get-used-to"),
+    },
     "can-should-must": {
         sourceFile: "src/content/grammar/can-should-must.ts",
         loader: () => import("@/content/grammar/can-should-must"),
@@ -122,6 +142,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
     "how-much-how-many": {
         sourceFile: "src/content/grammar/how-much-how-many.ts",
         loader: () => import("@/content/grammar/how-much-how-many"),
+    },
+    "i-used-to-but-now-i": {
+        sourceFile: "src/content/grammar/i-used-to-but-now-i.ts",
+        loader: () => import("@/content/grammar/i-used-to-but-now-i"),
     },
     "just-already-yet": {
         sourceFile: "src/content/grammar/just-already-yet.ts",
@@ -262,6 +286,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
     "stop-taking-or-stop-to-take": {
         sourceFile: "src/content/grammar/stop-taking-or-stop-to-take.ts",
         loader: () => import("@/content/grammar/stop-taking-or-stop-to-take"),
+    },
+    "third-conditional-what-would-have-happened": {
+        sourceFile: "src/content/grammar/third-conditional-what-would-have-happened.ts",
+        loader: () => import("@/content/grammar/third-conditional-what-would-have-happened"),
     },
     "superlatives-quantifiers": {
         sourceFile: "src/content/grammar/superlatives-quantifiers.ts",
