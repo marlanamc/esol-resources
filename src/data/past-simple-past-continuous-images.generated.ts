@@ -17,10 +17,10 @@ export const pastSimplePastContinuousImages: Record<string, {
     credit: { name: "Jiroe (Matia Rengel)", url: "https://unsplash.com/@iamjiroe" },
   },
   sceneClassroom: {
-    url: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1509061258647-7b2444d7b248?w=1200&q=80&auto=format&fit=crop",
     alt: "Adult learners sitting at desks in a community classroom at night.",
-    unsplashId: "1580582932707-520aed937b7b",
-    credit: { name: "Nathan Dumlao", url: "https://unsplash.com/@nate_dumlao" },
+    unsplashId: "photo-1509061258647-7b2444d7b248",
+    credit: { name: "NeONBRAND", url: "https://unsplash.com/@neonbrand" },
   },
   scenePickup: {
     url: "https://plus.unsplash.com/premium_photo-1690479510860-b5cde6fd96a2?w=1200&q=80&auto=format&fit=crop",

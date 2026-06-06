@@ -110,13 +110,13 @@ export const medicineLabelsImages: Record<string, MedicineLabelSceneImage> = {
     sourceLabel: "Local image",
   },
   doctorReception: {
-    url: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80&auto=format&fit=crop",
+    url: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80&auto=format&fit=crop",
     alt: "A patient checking in at a doctor's office reception desk.",
-    unsplashId: "nMyM7fxpokE",
-    unsplashPage: "https://unsplash.com/photos/white-concrete-counter-stand-nMyM7fxpokE",
+    unsplashId: "photo-1576091160399-112ba8d25d1d",
+    unsplashPage: "https://unsplash.com/photos/person-using-black-stethoscope-1576091160399-112ba8d25d1d",
     credit: {
-      name: "Martha Dominguez de Gouveia",
-      url: "https://unsplash.com/@m_dominguez_marketing",
+      name: "National Cancer Institute",
+      url: "https://unsplash.com/@nci",
     },
   },
   enrollmentPaperwork: {

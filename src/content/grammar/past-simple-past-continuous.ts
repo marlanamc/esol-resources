@@ -74,7 +74,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
   tableOfContents: true,
   sections: [
     // =========================================================================
-    // SECTION 1 — Past Simple: What Happened
+    // SECTION 1. Past Simple: What Happened
     // =========================================================================
     {
       id: "past-simple-what-happened",
@@ -89,10 +89,11 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
       },
       explanation: `
         ${sceneCard("sceneStreet", "Meridian Street, East Boston. Tuesday morning, 7:40 AM.", "terracotta")}
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Fred missed the bus again. His neighbor Michael had the same problem last week.</p>
         ${dialogue([
-          { speaker: "Fred", avatar: "👨", text: "I <strong>missed</strong> the 111 bus this morning. I <strong>walked</strong> to the Blue Line. I <strong>arrived</strong> late.", side: "right", tone: "terracotta" },
-          { speaker: "Amara", avatar: "👩", text: "Oh no! What happened?", side: "left", tone: "sage" },
-          { speaker: "Fred", avatar: "👨", text: "The bus <strong>left</strong> one minute early. I <strong>ran</strong> to the corner but it was already gone.", side: "right", tone: "terracotta" },
+          { speaker: "Fred", avatar: "👨🏽", text: "I <strong>missed</strong> the 111 bus this morning. I <strong>walked</strong> to the Blue Line. I <strong>arrived</strong> late.", side: "right", tone: "terracotta" },
+          { speaker: "Amara", avatar: "👩🏾", text: "Oh no! What happened?", side: "left", tone: "sage" },
+          { speaker: "Fred", avatar: "👨🏽", text: "The bus <strong>left</strong> one minute early. I <strong>ran</strong> to the corner but it was already gone.", side: "right", tone: "terracotta" },
         ])}
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Past Simple</strong> = finished actions, one at a time. Each one happened and ended. We tell them in order.</p>
@@ -159,7 +160,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 2 — Past Continuous: What Was Already in Progress
+    // SECTION 2. Past Continuous: What Was Already in Progress
     // =========================================================================
     {
       id: "past-continuous-in-progress",
@@ -173,10 +174,10 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneTrain", "Blue Line train, East Boston. Tuesday morning.", "blue")}
         ${dialogue([
-          { speaker: "Amara", avatar: "👩", text: "So what were you doing when the bus left?", side: "left", tone: "sage" },
-          { speaker: "Fred", avatar: "👨", text: "I <strong>was listening</strong> to music. I didn't hear it coming.", side: "right", tone: "blue" },
-          { speaker: "Amara", avatar: "👩", text: "And you <strong>were carrying</strong> those groceries too, right?", side: "left", tone: "sage" },
-          { speaker: "Fred", avatar: "👨", text: "Yes! I <strong>was thinking</strong> about class and I <strong>was carrying</strong> two bags. I couldn't run fast.", side: "right", tone: "blue" },
+          { speaker: "Amara", avatar: "👩🏾", text: "So what were you doing when the bus left?", side: "left", tone: "sage" },
+          { speaker: "Fred", avatar: "👨🏽", text: "I <strong>was listening</strong> to music. I didn't hear it coming.", side: "right", tone: "blue" },
+          { speaker: "Amara", avatar: "👩🏾", text: "And you <strong>were carrying</strong> those groceries too, right?", side: "left", tone: "sage" },
+          { speaker: "Fred", avatar: "👨🏽", text: "Yes! I <strong>was thinking</strong> about class and I <strong>was carrying</strong> two bags. I couldn't run fast.", side: "right", tone: "blue" },
         ])}
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem"><strong>Past Continuous</strong> = an action that was already in progress at a moment in the past. It was running in the background. It is not finished yet when we describe it.</p>
@@ -240,7 +241,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 3 — When + While: Putting Them Together
+    // SECTION 3. When + While: Putting Them Together
     // =========================================================================
     {
       id: "when-while-together",
@@ -272,6 +273,10 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(59,130,246,0.06); border-radius: 0.4rem">
             ${labelPill("while", "blue")}
             <span><em><strong>While</strong> Amara <strong>was waiting</strong>, the train <strong>arrived</strong>.</em></span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
+            ${labelPill("when", "terracotta")}
+            <span><em>Diego <strong>was telling</strong> a story about Independence Day back home <strong>when</strong> his neighbor <strong>asked</strong> how long he had lived in Boston.</em></span>
           </div>
         </div>
         <p style="font-size: 0.95rem; color: #555; margin: 0.5rem 0 0">Quick tip: the continuous action (line) is the background. The simple action (dot) is the event that happened inside it or interrupted it.</p>
@@ -326,7 +331,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 4 — Tell the Story
+    // SECTION 4. Tell the Story
     // =========================================================================
     {
       id: "tell-the-story",
@@ -334,9 +339,9 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("scenePickup", "East Boston school entrance. Wednesday, 2:45 PM.", "sage")}
         ${dialogue([
-          { speaker: "Elena", avatar: "👩", text: "Yesterday was crazy. I <strong>was working</strong> a double shift when my son's school <strong>called</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Elena", avatar: "👩🏾", text: "Yesterday was crazy. I <strong>was working</strong> a double shift when my son's school <strong>called</strong>.", side: "right", tone: "terracotta" },
           { speaker: "Claudette", avatar: "👩🏾", text: "What happened? Is he okay?", side: "left", tone: "sage" },
-          { speaker: "Elena", avatar: "👩", text: "Yes, he <strong>fell</strong> at recess. While I <strong>was driving</strong> to school, it <strong>started</strong> to rain. I <strong>got</strong> there in ten minutes.", side: "right", tone: "terracotta" },
+          { speaker: "Elena", avatar: "👩🏾", text: "Yes, he <strong>fell</strong> at recess. While I <strong>was driving</strong> to school, it <strong>started</strong> to rain. I <strong>got</strong> there in ten minutes.", side: "right", tone: "terracotta" },
           { speaker: "Claudette", avatar: "👩🏾", text: "You <strong>were working</strong> AND you <strong>picked</strong> him up that fast? You are a superhero.", side: "left", tone: "sage" },
         ])}
         <p style="font-size: 0.95rem; margin: 1rem 0 0.5rem">Read Elena's story again. Choose past simple or past continuous for each blank.</p>

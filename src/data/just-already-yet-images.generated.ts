@@ -38,7 +38,7 @@ export const justAlreadyYetImages: Record<string, JustAlreadyYetSceneImage> = {
   },
   sceneKitchenTable: {
     url: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80&auto=format&fit=crop",
-    alt: "Kitchen table with a phone, papers, and a cup of coffee — a person organizing their week.",
+    alt: "Kitchen table with a phone, papers, and a cup of coffee. A person organizing their week.",
     unsplashId: "1556909114-f6e7ad7d3136",
     credit: {
       name: "Jason Briscoe",

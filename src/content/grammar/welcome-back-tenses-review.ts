@@ -74,16 +74,16 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
   tableOfContents: true,
   sections: [
     // =========================================================================
-    // INTRO — You already know this
+    // INTRO. You already know this
     // =========================================================================
     {
       id: "you-already-know-this",
       title: "Four tenses, one bus ride",
       icon: "🚌",
       explanation: `
-        ${sceneCard("sceneBusStop", "5:45 PM. Rosa heads to the 121 bus after work.", "terracotta")}
+        ${sceneCard("sceneBusStop", "Tuesday after Labor Day. 5:45 PM. Rosa heads to the 121 bus after work.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">You use these tenses every week at work, on the bus, and in class. This guide is a quick refresh, not new grammar.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">You use these tenses every week at work, on the bus, and in class. Rosa had Monday off for Labor Day. Her classmate David had back-to-school night that evening. This guide is a quick refresh, not new grammar.</p>
 
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">Four sentences from Rosa's evening. Read the <strong>time indicator</strong> first, then the verb.</p>
 
@@ -172,13 +172,18 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "past-continuous",
             },
+            {
+              type: "text",
+              label: "Rosa ___ the bus to work every morning. (take)",
+              expectedAnswers: ["takes"],
+            },
           ],
         },
       ],
     },
 
     // =========================================================================
-    // STEP 1 — Present Simple
+    // STEP 1. Present Simple
     // =========================================================================
     {
       id: "present-simple-review",
@@ -195,10 +200,10 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         ${sceneCard("sceneNeighborhood", "East Boston. Tuesday evening after work.", "sage")}
 
         ${dialogue([
-          { speaker: "Classmate", avatar: "🧑", text: "How <strong>do</strong> you <strong>get</strong> to class?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩", text: "The 121. I <strong>work</strong> days, so I <strong>come</strong> straight from Meridian Street.", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑", text: "I <strong>take</strong> the Blue Line from Revere. Class <strong>starts</strong> at six, right?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩", text: "Six on the dot. Tuesdays and Thursdays, <strong>every</strong> week.", side: "right", tone: "terracotta" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "How <strong>do</strong> you <strong>get</strong> to class?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "The 121. I <strong>work</strong> days, so I <strong>come</strong> straight from Meridian Street.", side: "right", tone: "terracotta" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "I <strong>take</strong> the Blue Line from Revere. Class <strong>starts</strong> at six, right?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Six on the dot. Tuesdays and Thursdays, <strong>every</strong> week.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -265,9 +270,9 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
               type: "radio",
               label: "Rosa <strong>work</strong> at a clinic on Meridian Street.",
               options: [
-                { value: "work", label: "work — correct as is" },
-                { value: "works", label: "works — needs the -s" },
-                { value: "is working", label: "is working — present continuous" },
+                { value: "work", label: "work. correct as is" },
+                { value: "works", label: "works. needs the -s" },
+                { value: "is working", label: "is working. present continuous" },
               ],
               expectedAnswer: "works",
             },
@@ -280,6 +285,11 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
                 { value: "is stopping", label: "Should be 'is stopping'" },
               ],
               expectedAnswer: "correct",
+            },
+            {
+              type: "text",
+              label: "The community center ___ free ESL classes on Tuesday nights. (offer)",
+              expectedAnswers: ["offers"],
             },
           ],
         },
@@ -312,9 +322,9 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"I usually ___ the 121 after work.\" Time indicator: <strong>usually</strong>. (take)",
               options: [
-                { value: "take", label: "take — present simple" },
-                { value: "am taking", label: "am taking — present continuous" },
-                { value: "took", label: "took — past simple" },
+                { value: "take", label: "take. present simple" },
+                { value: "am taking", label: "am taking. present continuous" },
+                { value: "took", label: "took. past simple" },
               ],
               expectedAnswer: "take",
             },
@@ -324,7 +334,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // STEP 2 — Present Continuous
+    // STEP 2. Present Continuous
     // =========================================================================
     {
       id: "present-continuous-review",
@@ -342,9 +352,9 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Rosa's sister", avatar: "👩‍👧", text: "Still on your phone? What <strong>are</strong> you <strong>doing</strong>?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩", text: "I <strong>am studying</strong>. I <strong>am trying</strong> to finish this section before we get to Maverick.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>am studying</strong>. I <strong>am trying</strong> to finish this section before we get to Maverick.", side: "right", tone: "terracotta" },
           { speaker: "Rosa's sister", avatar: "👩‍👧", text: "Rent in Eastie <strong>is going</strong> up again, huh?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩", text: "Yeah. We <strong>are looking</strong> for something cheaper <strong>this month</strong>.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Yeah. We <strong>are looking</strong> for something cheaper <strong>this month</strong>.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -454,6 +464,11 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
               words: ["The", "students", "are", "practicing", "English", "on", "the", "app"],
               correctAnswer: "The students are practicing English on the app",
             },
+            {
+              type: "text",
+              label: "Right now, Rosa ___ for the 121 on Cambridge Street. (wait)",
+              expectedAnswers: ["is waiting"],
+            },
           ],
         },
         {
@@ -465,8 +480,8 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"Carlos ___ the 121 to class.\" Time indicator: <strong>every Tuesday and Thursday</strong>. (take)",
               options: [
-                { value: "takes", label: "takes — present simple" },
-                { value: "is taking", label: "is taking — present continuous" },
+                { value: "takes", label: "takes. present simple" },
+                { value: "is taking", label: "is taking. present continuous" },
               ],
               expectedAnswer: "takes",
             },
@@ -474,8 +489,8 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"Carlos ___ the 121 right now.\" Time indicator: <strong>right now</strong>. (ride)",
               options: [
-                { value: "rides", label: "rides — present simple" },
-                { value: "is riding", label: "is riding — present continuous" },
+                { value: "rides", label: "rides. present simple" },
+                { value: "is riding", label: "is riding. present continuous" },
               ],
               expectedAnswer: "is riding",
             },
@@ -483,8 +498,8 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"The bus is on strike today. Carlos ___ his friend's car.\" Time indicator: <strong>today</strong>. (use)",
               options: [
-                { value: "uses", label: "uses — present simple" },
-                { value: "is using", label: "is using — present continuous" },
+                { value: "uses", label: "uses. present simple" },
+                { value: "is using", label: "is using. present continuous" },
               ],
               expectedAnswer: "is using",
             },
@@ -504,7 +519,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // STEP 3 — Past tenses
+    // STEP 3. Past tenses
     // =========================================================================
     {
       id: "past-tenses-review",
@@ -595,13 +610,18 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "took",
             },
+            {
+              type: "text",
+              label: "Fatima ___ at the front desk when the new students arrived. (work)",
+              expectedAnswers: ["was working"],
+            },
           ],
         },
       ],
     },
 
     // =========================================================================
-    // STEP 4 — V3 preview
+    // STEP 4. V3 preview
     // =========================================================================
     {
       id: "v3-preview",
@@ -609,7 +629,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
       title: "A third form is coming this year",
       icon: "👀",
       tenseDiagram: {
-        title: "Four tenses you know — plus one more coming this year",
+        title: "Four tenses you know. plus one more coming this year",
         elements: [
           { id: "past-cont-prev", type: "solid-line",    zone: "past",    position: 28 },
           { id: "past-simp-prev", type: "single-dot",    zone: "past",    position: 68 },
@@ -687,6 +707,11 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
                 { value: "taken", label: "taken" },
               ],
               expectedAnswer: "taken",
+            },
+            {
+              type: "text",
+              label: "She has ___ at that clinic for five years. (work)",
+              expectedAnswers: ["worked"],
             },
           ],
         },
@@ -766,7 +791,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
       correctAnswer: "c",
       explanation: "Past simple for finished actions at a specific time in the past. \"Last Tuesday\" tells you it is finished.",
       topic: "past-simple",
-      skill: "usage",
+      skill: "error-detection",
       skillTag: "meaning-finished-past",
       difficulty: "easy",
     },
@@ -824,7 +849,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         { value: "c", label: "I live in East Boston." },
       ],
       correctAnswer: "c",
-      explanation: "Present simple for stable facts about your life — your address, your neighborhood, your family.",
+      explanation: "Present simple for stable facts about your life. your address, your neighborhood, your family.",
       topic: "present-simple",
       skill: "usage",
       skillTag: "meaning-stable-fact",

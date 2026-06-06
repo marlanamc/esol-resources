@@ -24,6 +24,7 @@ import { gerundsInfinitivesContent } from '../src/content/grammar/gerunds-infini
 import { medicineLabelsInsuranceContent } from '../src/content/grammar/medicine-labels-insurance';
 import { verbFormsOverviewContent } from '../src/content/grammar/verb-forms-overview';
 import { gettingThereDirectionsContent } from '../src/content/grammar/getting-there-directions';
+import { needToFindAPlaceInfinitivesContent } from '../src/content/grammar/need-to-find-a-place-infinitives';
 
 const prisma = new PrismaClient();
 
@@ -211,6 +212,14 @@ const grammarGuides = [
     description: 'Learn affirmative and negative imperatives plus prepositions of location to give and follow directions in your neighborhood.',
     level: 'beginner',
     content: gettingThereDirectionsContent,
+    isReleased: true,
+  },
+  {
+    id: 'need-to-find-a-place-infinitives-guide',
+    title: 'I Need to Find a Place: Infinitives',
+    description: 'Learn infinitives after want, need, hope, plan, and would like in a real housing search: lease pressure, bus routes, landlord calls, and Three Kings Day crunch time.',
+    level: 'intermediate',
+    content: needToFindAPlaceInfinitivesContent,
     isReleased: true,
   },
 ];

@@ -7,40 +7,96 @@ How to build a new grammar guide for Class Companion. Every guide follows this s
 ## The Four Design Principles
 
 1. **Max 5 sections.** If a topic needs more, split it into Part 1 / Part 2.
-2. **Every guide has a real-world context theme** from its unit (community, workplace, health, housing, etc.). The theme runs through examples AND exercises — not just the intro photo.
+2. **Every guide has a real-world context theme** from its unit (community, workplace, health, housing, etc.). The theme runs through examples AND exercises — not just the intro photo. Scenarios must match how students actually live — see **Real-world tone** below.
 3. **Exercises check accuracy, not recognition.** At least one `text` exercise per section. No "what tense is used for habits?" questions — students use the language, they don't name it.
 4. **Perfect tense is a year-long arc.** Never introduce it abruptly. Use the micro-guide scaffolding in weeks 3, 5, 8, and 12 before the full guide appears.
 
 ---
 
+## Real-world tone
+
+Community centers, volunteering, and neighborhood programs are **real and valuable** — use them when the unit calls for it. But do not make every guide feel like a wholesome postcard. Most Level 3 students are in **survival mode**, not enrichment mode.
+
+**Assume this about your learners:**
+- Many work **two or three jobs** — restaurants, construction, factories, housecleaning, hotel laundry, warehouse, home care.
+- They have **children and family** to care for, childcare to arrange, and almost no free time for themselves.
+- English practice happens **between shifts**, on the bus, at a break, or after kids are asleep — not on a relaxed Saturday morning.
+
+**Prefer these settings and pressures:**
+- Closing a restaurant shift, opening a construction site, covering for a sick coworker
+- Picking up kids late, swapping shifts with a cousin, missing class because of overtime
+- Landlord texts, clinic appointments, EBT or benefits paperwork, paying a bill before cutoff
+- Bus transfers, directions after work, calling out sick, asking a supervisor for Friday off
+
+**Go easy on the cute community-center default:**
+- Avoid making volunteering, bulletin boards, or "sign up for extra activities" the backdrop for every guide unless that week’s unit theme is genuinely about civic participation.
+- Do not write characters who casually have free time to organize, mentor, or attend optional events every week.
+- Skip inspirational filler ("Think of it like leveling up in a language app!") — respect that students are tired and doing hard things.
+
+**When you do use community settings**, ground them in real errands: picking up a form, asking about childcare hours, getting help with a letter from school, finding out when the office closes — not hobby-style participation.
+
+---
+
 ## Characters and Cultural Representation
 
-Class Companion serves adult ESOL learners in East Boston — a community that is majority Latino (especially Guatemalan, Salvadoran, and Mexican), with large Haitian Creole, Brazilian Portuguese, Somali, and Vietnamese populations. The characters in every guide should reflect this.
+Class Companion serves adult ESOL learners in East Boston — a community that is majority Latino (especially Guatemalan, Salvadoran, and Mexican), with large Haitian Creole, Brazilian Portuguese, Somali, and Vietnamese populations. The characters in every guide should reflect this **and** include common American names students will hear at work, school, and appointments.
 
 ### Name variety
 
-Do not reuse the same name across sections or across guides. Pull from the communities actually represented in East Boston ESOL classrooms:
+Do not reuse the same name across sections or across guides. Pull from the communities actually represented in East Boston ESOL classrooms, plus familiar U.S. names:
 
 | Background | Example names |
 | --- | --- |
-| Central American (Guatemalan, Salvadoran, Honduran) | Carlos, Miguel, Lucia, Ana, Diego, Sofia |
-| Mexican | Rosa, Jorge, Elena, Marco, Valentina |
-| Haitian | Jean, Marie, Claudette, Pierre, Nadine, Yves |
-| Brazilian | Fernanda, Bruno, Camila, Rafael, Beatriz |
-| Somali | Amara, Fadumo, Abdi, Hodan, Omar |
-| Vietnamese | Linh, Minh, Thanh, Lan, Tuan, Mai |
-| Cape Verdean | Djamila, Nuno, Filomena, Estevao |
-| Nigerian / West African | Yemi, Chidi, Ngozi, Emeka, Blessing |
+| Central American (Guatemalan, Salvadoran, Honduran) | Carlos, Miguel, Lucia, Ana, Diego, Sofia, Javier, Marta, Raul, Carmen, Gloria, Hector |
+| Mexican | Rosa, Jorge, Elena, Marco, Valentina, Luis, Teresa, Arturo, Guadalupe, Pedro, Isabel |
+| Caribbean Latino (Puerto Rican, Dominican, Colombian) | Javier, Natalia, Ramon, Yolanda, Kevin, Milagros, Andres, Carmen, Luisa, Victor |
+| Haitian | Jean, Marie, Claudette, Pierre, Nadine, Yves, Josue, Esther, Claudine, Marc, Fabienne |
+| Brazilian | Fernanda, Bruno, Camila, Rafael, Beatriz, Lucas, Juliana, Thiago, Patricia, Andre |
+| Somali | Amara, Fadumo, Abdi, Hodan, Omar, Amina, Yusuf, Halima, Ibrahim, Safia |
+| Vietnamese | Linh, Minh, Thanh, Lan, Tuan, Mai, Hoa, Duc, Trang, Binh, Huong |
+| Cape Verdean | Djamila, Nuno, Filomena, Estevao, Carla, Joao, Fatima, Antonio, Neusa |
+| Nigerian / West African | Yemi, Chidi, Ngozi, Emeka, Blessing, Adaeze, Kofi, Ama, Kwame, Zainab |
+| Ethiopian / Eritrean | Hana, Daniel, Selam, Mulu, Dawit, Rahel, Yonas, Bethlehem |
+| Chinese (Cantonese / Toisanese heritage) | Mei, Wei, Lian, Hong, Jenny, Tony, Susan, David |
+| Cambodian | Sophea, Dara, Srey, Vanna, Rith, Chantha, Bopha |
+| Filipino | Liza, Jose, Maria, Angelo, Grace, Rey, Cora, Ben |
+| Arabic-speaking (Moroccan, Lebanese, Egyptian) | Fatima, Hassan, Leila, Samir, Nadia, Karim, Layla, Youssef |
+| South Asian (Bangladeshi, Indian, Pakistani) | Priya, Raj, Anika, Farah, Imran, Deepa, Arjun, Rina, Vikram |
+| American English (common U.S. names) | James, Sarah, Michael, Jennifer, Robert, Jessica, Emily, David, Ashley, Michelle, Brian, Lisa, Mark, Nicole, Kevin, Rachel, Thomas, Angela, Steven, Laura, Ryan, Hannah, Connor, Olivia, Emma, Matthew, Stephanie, Scott, Heather, Justin, Amy |
+| Greater Boston / Irish & Italian heritage | Patrick, Sean, Brendan, Kathleen, Maureen, Danny, Gina, Sal, Vinnie |
+| Teachers, staff, officials (use with title) | Ms. Tran, Mr. Okonkwo, Ms. Patel, Officer Davis, Nurse Kelly, Mr. Brennan, Ms. Rivera |
 
-Use first names only in dialogue and exercises. No last names needed.
+Use first names only in dialogue and exercises. No last names needed (except titles like Ms. Tran or Officer Davis for staff).
+
+**American names in every guide:** At least one character per guide should have a common U.S. first name — a coworker, neighbor, clerk, nurse, manager, or classmate — so learners practice **hearing and saying** names they will meet in daily life. Good roles: "My supervisor, **Jennifer**, said…", "Tell **Mark** at the front desk", "**Sarah** from HR called." Mix American names with community names; do not make every character American, but do not skip them either.
+
+### Dialogue avatars (emoji)
+
+In `dialogue()` turns, the `avatar` field is a single emoji shown beside each speech bubble. **Mix skin tones freely** — use the full range so guides look like a real classroom, not a default-yellow cast.
+
+```ts
+{ speaker: "Amara", avatar: "👩🏿", text: "...", side: "right", tone: "terracotta" },
+{ speaker: "Linh",  avatar: "👩🏻", text: "...", side: "left",  tone: "sage" },
+{ speaker: "Carlos", avatar: "👨🏽", text: "...", side: "right", tone: "terracotta" },
+{ speaker: "Jean",   avatar: "🧑🏾", text: "...", side: "left",  tone: "sage" },
+```
+
+**Avatar rules:**
+- Prefer **person emojis with skin-tone modifiers** (`👩🏿` `👨🏽` `👩🏻` `🧑🏾` `👩🏾` `👨🏿` `👩🏽` `🧑🏻` `👨🏻`) over plain yellow defaults (`👩` `👨` `🧑`) when the speaker is a named character.
+- **Vary skin tones across a guide** — do not give every character the same modifier.
+- Neutral roles (Classmate, Neighbor, Staff) can use `🧑`, `🧑🏽`, or `🧑🏾`; still vary them across sections.
+- Role emojis are fine for non-student speakers: `👩‍🏫` (teacher), `🧑‍💼` (manager), `👩‍⚕️` (nurse). Do not add skin tone to profession emojis unless your platform/font renders them well.
+- The avatar does not have to "match" the name's background perfectly — diversity in the room matters more than one-to-one mapping.
 
 ### Rules for characters
 
 - **No single character carries the whole guide.** If a guide has 4 sections, use at least 2–3 different characters across them.
+- **Include at least one common American name** (see table above) in dialogue or exercises each guide — coworkers, neighbors, receptionists, teachers, caseworkers. Students need practice with names they will say aloud at work and appointments.
 - **Vary the backgrounds across sections.** Do not put all Latino characters in one guide or all African characters in another.
-- **Language references should reflect East Boston.** When a character mentions their home language, use languages students in the room actually speak: Spanish, Haitian Creole, Somali, Portuguese, Vietnamese, Arabic. Avoid languages with no East Boston presence (e.g. Wolof, Swahili, Mandarin) unless the unit theme specifically calls for it.
+- **Language references should reflect East Boston.** When a character mentions their home language, use languages students in the room actually speak: Spanish, Haitian Creole, Somali, Portuguese, Vietnamese, Arabic, Cantonese, Khmer, Tagalog, Bengali. Avoid languages with no East Boston presence (e.g. Wolof, Swahili, Mandarin) unless the unit theme specifically calls for it.
 - **The main recurring character is Rosa** (Mexican American, from the Welcome Back guide). She can appear in later guides for continuity, but should not crowd out new characters.
-- **Volunteers, teachers, and community center staff** can be from any background. They do not need to be white or native English speakers.
+- **Volunteers, teachers, and community center staff** can be from any background. They do not need to be white or native English speakers. Portray community staff as people students **need something from** (hours, forms, translation help) — not as the setting for a feel-good extracurricular story unless the unit requires it.
+- **Work lives matter.** When a character has a job, name a real one students recognize: line cook, dishwasher, cleaner, carpenter, packer, cashier, home health aide — not vague "works at a company."
 
 ---
 
@@ -53,7 +109,7 @@ src/app/grammar-reader/your-guide-name/
 src/data/your-guide-images.generated.ts        ← image data (if using photos)
 ```
 
-After creating those files, add the guide to `src/lib/course-map-data.ts` and run:
+After creating those files, add the guide to `src/lib/course-map-data.ts`, register the slug in `src/lib/grammar-content-loader.ts`, and run:
 ```bash
 npx tsx prisma/seed-course-map.ts
 ```
@@ -128,12 +184,13 @@ A chat-bubble conversation. Use after the scene card to show the grammar in natu
 
 ```ts
 ${dialogue([
-  { speaker: "Rosa",     avatar: "👩",  text: "I <strong>work</strong> days so I <strong>come</strong> straight from work.", side: "right", tone: "terracotta" },
-  { speaker: "Classmate", avatar: "🧑", text: "My shift <strong>starts</strong> at noon — this class <strong>works</strong> for me.", side: "left",  tone: "sage" },
+  { speaker: "Rosa",      avatar: "👩🏽", text: "I <strong>work</strong> days so I <strong>come</strong> straight from work.", side: "right", tone: "terracotta" },
+  { speaker: "Classmate", avatar: "🧑🏾", text: "My shift <strong>starts</strong> at noon — this class <strong>works</strong> for me.", side: "left",  tone: "sage" },
 ])}
 ```
 
 **Rules for dialogue:**
+- Use **varied skin-tone avatars** for named characters (see Dialogue avatars above). Mix `🏽` `🏾` `🏿` `🏻` across speakers in the same guide.
 - Grammar words in bold (`<strong>`). Only the target grammar, not every verb.
 - Write like real people talk. Contractions, short answers, incomplete sentences are fine.
 - No em dashes (`—`). Use commas, periods, or "so / but / because" instead.
@@ -560,12 +617,83 @@ npx tsx prisma/seed-course-map.ts
 
 ---
 
+## Mini Guides Audit (Weeks 1–18)
+
+Required course-map mini guides (weeks 1–18) are checked automatically in CI. Run the audit locally before opening a PR or after editing any W1–W18 content file.
+
+### Commands
+
+```bash
+npm run audit:mini-guides              # summary + tmp/mini-guides-audit/findings.json
+npm run audit:mini-guides -- --report  # also writes docs/audits/mini-guides-w1-w18-review.md
+npm run audit:mini-guides -- --strict  # treat warnings as failures (same as vitest warning test)
+npm run test:vitest -- scripts/tests/mini-guides-audit.vitest.ts
+```
+
+**CI:** GitHub Actions runs `npm run audit:mini-guides` on every push/PR. Vitest also fails if any required guide has errors or warnings.
+
+**Scope:** All `slot: "required"` grammar guides in course-map weeks 1–18 (currently 19 guides). Full guides and optional items are not included unless added to the required slot.
+
+### What it checks
+
+**Errors (must fix — CI fails):**
+
+| Rule | What it means |
+| --- | --- |
+| `content-file-missing` / `page-route-missing` | Content or page file not found |
+| `completion-key-mismatch` | `completionKey` in page.tsx must match the guide slug |
+| `activity-title-mismatch` | `getActivityIdSafely` title must match course-map title |
+| `section-count` | More than 5 sections |
+| `missing-text-exercise` | At least one `text` item required per section |
+| `mini-quiz-count` | Exactly 10 `miniQuiz` questions |
+| `mini-quiz-difficulty-*` | 3–4 easy, 4–5 medium, 1–2 hard |
+| `mini-quiz-error-detection` | At least 2 questions with `skill: "error-detection"` |
+| `mini-quiz-topic/skill/skillTag/explanation` | Required metadata on every quiz question |
+| `em-dash` | No em dashes (`—`) in student-facing text |
+| `word-scramble-expected-answer` | Use `correctAnswer`, not `expectedAnswer` |
+| `text-expected-answer-singular` / `text-missing-expected-answers` | `text` items need `expectedAnswers` array |
+| `tense-diagram-missing` | Tense-focused guides must include `tenseDiagram` (see allowlist in audit config) |
+| `image-module-missing` | Guides using `sceneCard()` need a matching `*-images.generated.ts` import |
+| `duplicate-unsplash-id` | Same `unsplashId` reused across guides (unless commented as intentional) |
+| `image-alt-em-dash` / `image-credit-missing` | Image metadata quality |
+
+**Warnings (must fix for W1–W18 — vitest fails on these too):**
+
+| Rule | What it means |
+| --- | --- |
+| `american-name-missing` | At least one common U.S. name from the spec table (see Characters) |
+| `plain-yellow-avatar` | Named characters should not use plain `👩` `👨` `🧑` — use skin-tone modifiers |
+| `avatar-skin-tone-monotone` | All avatars in a guide use the same skin-tone modifier |
+| `speaker-variety` | Fewer than 2 distinct named speakers in dialogue |
+| `content-loader-missing` | Slug not registered in `src/lib/grammar-content-loader.ts` |
+| `dialogue-too-many-turns` | More than 6 dialogue turns in one section |
+| `dialogue-too-long` | One speaker line over 22 words |
+| `dialogue-no-contraction` | Casual speakers (neighbor, manager, supervisor, cousin, etc.) with 10+ words and no contractions |
+| `workplace-keyword-missing` | No survival-mode workplace/housing keyword in guide text |
+| `wholesome-without-pressure` | Community/volunteer phrasing outside civic weeks without real pressure context |
+| `vague-job-reference` | e.g. "works at a company" |
+| `textbook-phrase` | e.g. "the rule is", "in english, we", "let us learn" |
+| `long-sentence` | Student-facing sentence over 30 words |
+
+### When adding or editing a W1–W18 guide
+
+1. Write content following this spec.
+2. Register the slug in `src/lib/grammar-content-loader.ts` if not already present.
+3. Run `npm run audit:mini-guides -- --report` and fix all errors and warnings.
+4. Confirm `npm run test:vitest -- scripts/tests/mini-guides-audit.vitest.ts` passes.
+
+The markdown report at `docs/audits/mini-guides-w1-w18-review.md` lists scenarios, dialogue, images, mini quiz questions, and flags per guide — useful for editorial review.
+
+---
+
 ## Quality Checklist
 
 Before finishing any guide:
 
 - [ ] Max 5 sections
 - [ ] Every section uses vocabulary or scenarios from the unit theme
+- [ ] Scenarios reflect survival-mode adult life (work shifts, childcare, bills, appointments) — not default cute volunteering unless the unit calls for it
+- [ ] At least one job or workplace pressure feels real (restaurant, construction, factory, cleaning, etc.)
 - [ ] No em dashes (`—`) anywhere in student-facing text
 - [ ] All dialogue is grammatically correct (a student reads this as a model)
 - [ ] At least one `text` exercise per section
@@ -575,4 +703,6 @@ Before finishing any guide:
 - [ ] `text` exercises use `expectedAnswers` (plural array), not `expectedAnswer`
 - [ ] Page route file created with matching `completionKey` and `activityId` title
 - [ ] Added to course map and seed re-run
+- [ ] Slug registered in `src/lib/grammar-content-loader.ts` (required W1–W18 guides)
+- [ ] Mini guides audit passes: `npm run audit:mini-guides` (0 errors, 0 warnings for W1–W18)
 - [ ] Typecheck passes: `npx tsc --noEmit`

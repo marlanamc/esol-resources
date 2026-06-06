@@ -18,7 +18,7 @@ export default async function VerbFormsOverviewPage() {
     if (!session) redirect("/login");
 
     const activityId = await getActivityIdSafely(
-        "Verb Forms Overview",
+        "Verb Forms: V1 → V3",
         "guide",
         "grammar"
     );

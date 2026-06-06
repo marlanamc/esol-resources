@@ -59,6 +59,7 @@ export function DashboardHeader({
                     mode="brand"
                     userName={userName}
                     showSearch={enableSearch}
+                    hideMobileName={showViewModeToggle}
                     leaderboardRank={leaderboardRank}
                     showMarlieEmoji={showMarlieEmoji}
                 />

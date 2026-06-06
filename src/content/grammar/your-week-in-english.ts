@@ -74,7 +74,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
   tableOfContents: true,
   sections: [
     // -----------------------------------------------------------------------
-    // SECTION 1 — Adverbs of Frequency
+    // SECTION 1. Adverbs of Frequency
     // -----------------------------------------------------------------------
     {
       id: "adverbs-of-frequency",
@@ -86,9 +86,9 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Fatima", avatar: "🧕", text: "Rosa, how <strong>often</strong> do you take the bus to class?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩", text: "I <strong>always</strong> take the 111. Every week.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>always</strong> take the 111. Every week.", side: "right", tone: "terracotta" },
           { speaker: "Fatima", avatar: "🧕", text: "Me too. I <strong>usually</strong> leave at 5:30. But I'm <strong>sometimes</strong> late.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩", text: "I <strong>never</strong> miss class. It's too important!", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>never</strong> miss class. It's too important!", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -191,7 +191,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     },
 
     // -----------------------------------------------------------------------
-    // SECTION 2 — Present Simple for Routines
+    // SECTION 2. Present Simple for Routines
     // -----------------------------------------------------------------------
     {
       id: "present-simple-routines",
@@ -203,9 +203,9 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Staff", avatar: "👤", text: "Carlos, what does your weekly schedule look like?", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨", text: "I <strong>work</strong> Monday to Friday, 7 to 3. I <strong>come</strong> to class on Tuesday and Thursday evenings.", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>work</strong> Monday to Friday, 7 to 3. I <strong>come</strong> to class on Tuesday and Thursday evenings.", side: "right", tone: "terracotta" },
           { speaker: "Staff", avatar: "👤", text: "Do you have time for homework?", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨", text: "I <strong>don't</strong> have a lot of time, but I <strong>study</strong> on the bus.", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I <strong>don't</strong> have a lot of time, but I <strong>study</strong> on the bus.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -312,7 +312,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     },
 
     // -----------------------------------------------------------------------
-    // SECTION 3 — Time Expressions for Routines
+    // SECTION 3. Time Expressions for Routines
     // -----------------------------------------------------------------------
     {
       id: "time-expressions",
@@ -323,10 +323,10 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
         ${sceneCard("sceneWeeklySchedule", "Linh checks her phone calendar on the bus, Wednesday morning.", "blue")}
 
         ${dialogue([
-          { speaker: "Classmate", avatar: "🧑", text: "Linh, how do you find time to practice English?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩", text: "I listen to podcasts <strong>every day</strong> on the bus. And I watch videos <strong>twice a week</strong> after work.", side: "right", tone: "blue" },
-          { speaker: "Classmate", avatar: "🧑", text: "What about class?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩", text: "I come here <strong>on Tuesdays and Thursdays</strong>. <strong>In the morning</strong> I review my notes before work.", side: "right", tone: "blue" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "Linh, how do you find time to practice English?", side: "left", tone: "sage" },
+          { speaker: "Linh", avatar: "👩🏾", text: "I listen to podcasts <strong>every day</strong> on the bus. And I watch videos <strong>twice a week</strong> after work.", side: "right", tone: "blue" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "What about class?", side: "left", tone: "sage" },
+          { speaker: "Linh", avatar: "👩🏾", text: "I come here <strong>on Tuesdays and Thursdays</strong>. <strong>In the morning</strong> I review my notes before work.", side: "right", tone: "blue" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -422,7 +422,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     },
 
     // -----------------------------------------------------------------------
-    // SECTION 4 — Present Perfect callback: "I've already..."
+    // SECTION 4. Present Perfect callback: "I've already..."
     // -----------------------------------------------------------------------
     {
       id: "already-this-week",
@@ -434,9 +434,9 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Coworker", avatar: "👷", text: "Jean, are you tired? It's been a long week.", side: "left", tone: "sage" },
-          { speaker: "Jean", avatar: "👨", text: "Yes! This week I <strong>have already worked</strong> three ten-hour shifts.", side: "right", tone: "amber" },
+          { speaker: "Jean", avatar: "👨🏽", text: "Yes! This week I <strong>have already worked</strong> three ten-hour shifts.", side: "right", tone: "amber" },
           { speaker: "Coworker", avatar: "👷", text: "Have you gone to your English class?", side: "left", tone: "sage" },
-          { speaker: "Jean", avatar: "👨", text: "I <strong>have already gone</strong> twice this week. And I <strong>have already done</strong> all my homework.", side: "right", tone: "amber" },
+          { speaker: "Jean", avatar: "👨🏽", text: "I <strong>have already gone</strong> twice this week. And I <strong>have already done</strong> all my homework.", side: "right", tone: "amber" },
           { speaker: "Coworker", avatar: "👷", text: "You work hard!", side: "left", tone: "sage" },
         ])}
 
@@ -495,6 +495,11 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "incorrect",
             },
+            {
+              type: "text",
+              label: "Jean ___ already worked three shifts this week.",
+              expectedAnswers: ["has"],
+            },
           ],
         },
         {
@@ -517,7 +522,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     },
 
     // -----------------------------------------------------------------------
-    // SECTION 5 — Putting it all together
+    // SECTION 5. Putting it all together
     // -----------------------------------------------------------------------
     {
       id: "my-weekly-routine",
@@ -525,15 +530,15 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
       title: "My Weekly Routine",
       icon: "🌟",
       explanation: `
-        ${sceneCard("sceneNeighbors", "Outside an apartment building on Meridian Street, Saturday morning.", "terracotta")}
+        ${sceneCard("sceneNeighbors", "Outside an apartment building on Meridian Street, Saturday before Halloween.", "terracotta")}
 
         ${dialogue([
-          { speaker: "Neighbor", avatar: "🧑", text: "Valentina, you're always so busy. What does your week look like?", side: "left", tone: "sage" },
-          { speaker: "Valentina", avatar: "👩", text: "I <strong>usually</strong> work Monday to Friday at the clinic. I <strong>never</strong> work weekends.", side: "right", tone: "terracotta" },
-          { speaker: "Neighbor", avatar: "🧑", text: "And English class?", side: "left", tone: "sage" },
-          { speaker: "Valentina", avatar: "👩", text: "I go <strong>twice a week</strong>, on Tuesday and Thursday evenings. This week I <strong>have already gone</strong> once. I go again Thursday.", side: "right", tone: "terracotta" },
-          { speaker: "Neighbor", avatar: "🧑", text: "That's a lot. Do you have time for yourself?", side: "left", tone: "sage" },
-          { speaker: "Valentina", avatar: "👩", text: "I <strong>sometimes</strong> walk <strong>in the morning</strong> before work. It helps.", side: "right", tone: "terracotta" },
+          { speaker: "Neighbor", avatar: "🧑🏽", text: "Valentina, you\'re always so busy. My kids go trick-or-treating tonight. Do yours?", side: "left", tone: "sage" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "Yes! I <strong>never</strong> work Halloween night. I\'m always home with them.", side: "right", tone: "terracotta" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "I <strong>usually</strong> work Monday to Friday at the clinic. I <strong>never</strong> work weekends.", side: "right", tone: "terracotta" },
+          { speaker: "Neighbor", avatar: "🧑🏽", text: "And English class?", side: "left", tone: "sage" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "I go <strong>twice a week</strong>, on Tuesday and Thursday evenings. This week I <strong>have already gone</strong> once. I go again Thursday.", side: "right", tone: "terracotta" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "I <strong>sometimes</strong> walk <strong>in the morning</strong> before work. It helps.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -584,6 +589,11 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
                 { value: "c", label: "her homework" },
               ],
               expectedAnswer: "b",
+            },
+            {
+              type: "text",
+              label: "This week Valentina ___ already gone to class once.",
+              expectedAnswers: ["has"],
             },
           ],
         },
@@ -672,7 +682,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
       topic: "adverbs-of-frequency",
       skill: "recognition",
       skillTag: "frequency-meaning",
-      difficulty: "easy",
+      difficulty: "medium",
     },
     {
       id: "your-week-q5",

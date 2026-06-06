@@ -9,13 +9,30 @@ import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 import { getVisibleMap, getCourseMapActivityIds } from "@/lib/course-map";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { canUseTeacherTools } from "@/lib/roles";
+import { CourseMapJumpToWeek } from "@/components/dashboard/CourseMapJumpToWeek";
+import { CourseMapMobileDrawer } from "@/components/dashboard/CourseMapMobileDrawer";
+import { CourseMapPathBreadcrumb } from "@/components/dashboard/CourseMapPathBreadcrumb";
+import { CourseMapUnitNav } from "@/components/dashboard/CourseMapUnitNav";
+import {
+    buildMapWeekProgress,
+    parseMapWeekParam,
+    resolveCurrentMapWeek,
+    resolveNextMapActivity,
+} from "@/lib/course-map-navigation";
 
 export const metadata = {
     title: "Course Map | Class Companion",
     description: "Your guided week-by-week learning path for the school year.",
 };
 
-export default async function MapPage() {
+export default async function MapPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ week?: string; focus?: string }>;
+}) {
+    const params = await searchParams;
+    const initialWeek = parseMapWeekParam(params.week);
+    const focusNextActivity = params.focus === "next";
     const session = await getServerSession(authOptions);
     if (!session?.user) redirect("/login");
     const adminStudentMode = await isAdminInStudentMode(session.user);
@@ -153,10 +170,26 @@ export default async function MapPage() {
     const overallPct = totalRequired > 0 ? Math.round((completedRequired / totalRequired) * 100) : 0;
 
     const hasPath = courseMapUnits.length > 0 || coursePathAssignments.some((a) => a.sequenceNumber != null);
+    const currentWeekMeta = hasPath ? resolveCurrentMapWeek(courseMapUnits, guidedProgress) : null;
+    const unitProgress = courseMapUnits.map((unit) => {
+        const unitRequired = unit.levels.flatMap((level) => level.requiredActivities);
+        const done = unitRequired.filter(
+            (activity) => activity.activityId && guidedProgress[activity.activityId] === "completed"
+        ).length;
+        const total = unitRequired.length;
+        return {
+            unitNumber: unit.unitNumber,
+            done,
+            total,
+            isDone: total > 0 && done === total,
+        };
+    });
+    const weekProgress = buildMapWeekProgress(courseMapUnits, guidedProgress);
+    const nextActivity = hasPath ? resolveNextMapActivity(courseMapUnits, guidedProgress) : null;
 
     return (
         <div className="min-h-screen bg-bg">
-            <main id="main-content" className="container mx-auto pt-4 pb-28 px-4 max-w-lg lg:max-w-5xl xl:max-w-6xl">
+            <main id="main-content" className="container mx-auto scroll-smooth pt-4 pb-28 px-4 max-w-lg lg:max-w-5xl xl:max-w-6xl">
 
                 {/* Back link — mobile only */}
                 <div className="mb-3 lg:hidden">
@@ -176,7 +209,6 @@ export default async function MapPage() {
                     <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                             <h1 className="text-2xl font-display font-bold text-text">Course Map</h1>
-                            <p className="text-sm text-text-muted mt-0.5">Your guided path for the school year</p>
                         </div>
                         {totalLevels > 0 && (
                             <div className="shrink-0 flex flex-col items-end gap-0.5" title={`${completedRequired} of ${totalRequired} required activities completed`}>
@@ -188,13 +220,13 @@ export default async function MapPage() {
                                         borderColor: completedLevels > 0 ? "color-mix(in srgb, var(--tone-grammar-accent, #b05740) 25%, transparent)" : "var(--border-subtle)",
                                     }}
                                 >
-                                    {completedLevels > 0 ? "🏆 " : ""}{completedLevels} / {totalLevels} levels
+                                    {completedLevels > 0 ? "🏆 " : ""}{completedLevels} / {totalLevels} Levels
                                 </span>
-                                {overallPct > 0 && <span className="text-[10px] text-text-muted font-medium">{overallPct}% activities done</span>}
+                                <span className="text-[10px] text-text-muted font-medium">{overallPct}% Complete</span>
                             </div>
                         )}
                     </div>
-                    {totalRequired > 0 && overallPct > 0 && (
+                    {totalRequired > 0 && (
                         <div className="mt-3 relative h-1.5 w-full overflow-hidden rounded-full" style={{ background: "var(--surface-subtle)", border: "1px solid var(--border-subtle)" }}>
                             <div
                                 className="absolute inset-y-0 left-0 rounded-full transition-[width] duration-700 ease-out"
@@ -212,8 +244,8 @@ export default async function MapPage() {
                 {/* Desktop two-column layout */}
                 <div className="hidden lg:grid lg:grid-cols-[280px_1fr] xl:grid-cols-[300px_1fr] lg:gap-8 lg:items-start lg:pt-2">
 
-                    {/* Sticky left sidebar */}
-                    <aside className="sticky top-6 space-y-5">
+                    {/* Sticky left sidebar — full unit list; stays pinned while scrolling the path */}
+                    <aside className="sticky top-[5.5rem] z-10 w-full self-start space-y-5">
                         <div>
                             <Link
                                 href="/dashboard"
@@ -225,10 +257,9 @@ export default async function MapPage() {
                                 Dashboard
                             </Link>
                             <h1 className="text-3xl font-display font-bold text-text leading-tight">Course Map</h1>
-                            <p className="text-sm text-text-muted mt-1">Your guided path for the school year</p>
+                            <p className="text-sm text-text-muted mt-1">Your next lesson and weekly path</p>
                         </div>
 
-                        {/* Progress ring + stats */}
                         {totalLevels > 0 && (
                             <div className="dashboard-panel rounded-2xl p-5 space-y-4">
                                 <div className="flex items-center gap-4">
@@ -252,9 +283,9 @@ export default async function MapPage() {
                                     <div className="min-w-0">
                                         <p className="text-base font-bold text-text leading-tight">
                                             {completedLevels > 0 ? "🏆 " : ""}{completedLevels}{" "}
-                                            <span className="font-normal text-text-muted text-sm">/ {totalLevels} levels</span>
+                                            <span className="font-normal text-text-muted text-sm">/ {totalLevels} Levels</span>
                                         </p>
-                                        <p className="text-xs text-text-muted mt-0.5">{completedRequired} of {totalRequired} activities done</p>
+                                        <p className="text-xs text-text-muted mt-0.5">{overallPct}% Complete</p>
                                     </div>
                                 </div>
                                 <div className="relative h-1.5 w-full overflow-hidden rounded-full" style={{ background: "var(--surface-subtle)", border: "1px solid var(--border-subtle)" }}>
@@ -271,40 +302,20 @@ export default async function MapPage() {
                             </div>
                         )}
 
-                        {/* Unit index */}
-                        {courseMapUnits.length > 0 && (
-                            <div className="dashboard-panel rounded-2xl p-4 space-y-1">
-                                <p className="text-[11px] font-bold uppercase tracking-wide text-text-muted mb-2 px-1">Units</p>
-                                {courseMapUnits.map((unit) => {
-                                    const unitRequired = unit.levels.flatMap((l) => l.requiredActivities);
-                                    const unitDone = unitRequired.filter((a) => a.activityId && guidedProgress[a.activityId] === "completed").length;
-                                    const isUnitDone = unitDone === unitRequired.length && unitRequired.length > 0;
-                                    return (
-                                        <a
-                                            key={unit.unitNumber}
-                                            href={`#unit-${unit.unitNumber}`}
-                                            className="flex items-center gap-2.5 rounded-xl px-2 py-1.5 text-xs text-text-muted hover:text-text hover:bg-surface-subtle transition-colors group"
-                                        >
-                                            <span
-                                                className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-bold transition-colors ${
-                                                    isUnitDone
-                                                        ? "border-[var(--primary,#b05740)] bg-[var(--tone-grammar-chip-bg,#f5ede8)] text-[var(--primary,#b05740)]"
-                                                        : "border-[var(--border-subtle,#ddd6ca)] text-text-muted"
-                                                }`}
-                                            >
-                                                {isUnitDone ? "✓" : unit.unitNumber}
-                                            </span>
-                                            <span className="flex-1 leading-tight font-medium group-hover:text-text truncate">
-                                                {unit.unitTitle}
-                                            </span>
-                                            <span className="text-[10px] tabular-nums shrink-0">{unitDone}/{unitRequired.length}</span>
-                                        </a>
-                                    );
-                                })}
-                            </div>
-                        )}
+                        {hasPath && currentWeekMeta ? (
+                            <CourseMapJumpToWeek currentWeek={currentWeekMeta} variant="sidebar" />
+                        ) : null}
 
-                        {/* Practice library link */}
+                        {courseMapUnits.length > 0 ? (
+                            <CourseMapUnitNav
+                                units={courseMapUnits}
+                                unitProgress={unitProgress}
+                                weekProgress={weekProgress}
+                                currentWeekNumber={currentWeekMeta?.weekNumber ?? null}
+                                variant="sidebar"
+                            />
+                        ) : null}
+
                         <Link
                             href="/dashboard/activities"
                             className="flex items-center justify-between w-full rounded-2xl border px-4 py-3 text-sm font-semibold text-text hover:bg-surface-subtle transition-colors"
@@ -317,6 +328,13 @@ export default async function MapPage() {
 
                     {/* Right column */}
                     <div className="min-w-0">
+                        {hasPath && courseMapUnits.length > 0 ? (
+                            <CourseMapPathBreadcrumb
+                                units={courseMapUnits}
+                                nextActivity={nextActivity}
+                                variant="desktop"
+                            />
+                        ) : null}
                         {hasPath ? (
                             <ClassCoursePath
                                 assignments={coursePathAssignments}
@@ -324,6 +342,8 @@ export default async function MapPage() {
                                 guidedAssignments={guidedAssignments}
                                 guidedProgress={guidedProgress}
                                 desktopLayout
+                                initialWeek={initialWeek}
+                                focusNextActivity={focusNextActivity}
                             />
                         ) : (
                             <div className="dashboard-panel rounded-2xl p-8 text-center">
@@ -337,12 +357,35 @@ export default async function MapPage() {
 
                 {/* Mobile layout */}
                 <div className="lg:hidden">
+                    {hasPath && currentWeekMeta ? (
+                        <CourseMapJumpToWeek currentWeek={currentWeekMeta} variant="mobile" />
+                    ) : null}
+
+                    {hasPath && courseMapUnits.length > 0 ? (
+                        <CourseMapPathBreadcrumb
+                            units={courseMapUnits}
+                            nextActivity={nextActivity}
+                            variant="mobile"
+                        />
+                    ) : null}
+
+                    {hasPath && courseMapUnits.length > 0 ? (
+                        <CourseMapMobileDrawer
+                            units={courseMapUnits}
+                            unitProgress={unitProgress}
+                            weekProgress={weekProgress}
+                            currentWeek={currentWeekMeta}
+                        />
+                    ) : null}
+
                     {hasPath ? (
                         <ClassCoursePath
                             assignments={coursePathAssignments}
                             guidedUnits={courseMapUnits}
                             guidedAssignments={guidedAssignments}
                             guidedProgress={guidedProgress}
+                            initialWeek={initialWeek}
+                            focusNextActivity={focusNextActivity}
                         />
                     ) : (
                         <div className="dashboard-panel rounded-2xl p-6 text-center">
@@ -357,7 +400,7 @@ export default async function MapPage() {
                             className="flex items-center justify-between w-full rounded-2xl border px-4 py-3.5 text-sm font-semibold text-text hover:bg-surface-subtle transition-colors"
                             style={{ borderColor: "var(--border-subtle)" }}
                         >
-                            <span>Practice Library / Extra Practice</span>
+                            <span>Practice Library</span>
                             <span className="text-text-muted">→</span>
                         </Link>
                     </div>

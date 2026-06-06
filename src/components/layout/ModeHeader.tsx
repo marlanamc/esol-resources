@@ -102,26 +102,43 @@ export function ModeHeader({
                 paddingTop: "env(safe-area-inset-top, 0px)",
             }}
         >
-            <div className="mx-auto flex min-h-[60px] max-w-[1800px] items-center justify-between gap-2 px-3 py-2.5 sm:px-6 sm:py-3 md:grid md:min-h-[74px] md:grid-cols-[1fr_auto_1fr] md:gap-3 lg:px-8">
-                <div className="min-w-0 flex-1 md:flex-none md:justify-self-start">
+            <div
+                className={[
+                    "mx-auto max-w-[1800px] items-center gap-2 px-3 py-2.5 sm:px-6 sm:py-3 lg:px-8",
+                    showViewModeToggle
+                        ? "grid min-h-[60px] grid-cols-[minmax(0,auto)_minmax(0,1fr)_auto] md:min-h-[74px] md:grid-cols-[1fr_auto_1fr] md:gap-3"
+                        : "flex min-h-[60px] justify-between md:min-h-[74px] md:grid md:grid-cols-[1fr_auto_1fr] md:gap-3",
+                ].join(" ")}
+            >
+                <div className="min-w-0 overflow-hidden md:justify-self-start">
                     {brandSlot ?? (
                         <DefaultBrand mode={mode} homeHref={homeHref} subtitle={subtitle} ariaLabel={ariaLabel} />
                     )}
                 </div>
 
-                <div className="hidden justify-self-center md:block">
-                    {showViewModeToggle ? <ViewModeSwitcher showAdmin={showAdminMode} /> : null}
+                <div
+                    className={
+                        showViewModeToggle
+                            ? "flex min-w-0 items-center justify-center overflow-hidden px-0.5 md:justify-self-center"
+                            : "hidden md:block"
+                    }
+                >
+                    {showViewModeToggle ? (
+                        <>
+                            <div className="md:hidden">
+                                <ViewModeSwitcher showAdmin={showAdminMode} size="sm" />
+                            </div>
+                            <div className="hidden md:block">
+                                <ViewModeSwitcher showAdmin={showAdminMode} />
+                            </div>
+                        </>
+                    ) : null}
                 </div>
 
                 <div className="flex shrink-0 items-center justify-end gap-1.5 sm:gap-2 md:min-w-0 md:gap-3 md:justify-self-end">
                     <div className="hidden items-center gap-2 sm:flex md:contents">
                         {actions}
                     </div>
-                    {showViewModeToggle ? (
-                        <div className="shrink-0 md:hidden">
-                            <ViewModeSwitcher showAdmin={showAdminMode} size="sm" />
-                        </div>
-                    ) : null}
                     {enableSearch ? (
                         <>
                             <div className="shrink-0 lg:hidden">

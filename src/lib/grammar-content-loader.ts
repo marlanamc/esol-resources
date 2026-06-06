@@ -55,6 +55,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/getting-there-directions.ts",
         loader: () => import("@/content/grammar/getting-there-directions"),
     },
+    "need-to-find-a-place-infinitives": {
+        sourceFile: "src/content/grammar/need-to-find-a-place-infinitives.ts",
+        loader: () => import("@/content/grammar/need-to-find-a-place-infinitives"),
+    },
     "imperatives-declaratives": {
         sourceFile: "src/content/grammar/imperatives-declaratives.ts",
         loader: () => import("@/content/grammar/imperatives-declaratives"),
@@ -78,6 +82,66 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
     "modals-health-advice-caution-consent": {
         sourceFile: "src/content/grammar/modals-health-advice-caution-consent.ts",
         loader: () => import("@/content/grammar/modals-health-advice-caution-consent"),
+    },
+    "asking-right-questions-housing": {
+        sourceFile: "src/content/grammar/asking-right-questions-housing.ts",
+        loader: () => import("@/content/grammar/asking-right-questions-housing"),
+    },
+    "can-should-must": {
+        sourceFile: "src/content/grammar/can-should-must.ts",
+        loader: () => import("@/content/grammar/can-should-must"),
+    },
+    "have-to-dont-have-to-cant": {
+        sourceFile: "src/content/grammar/have-to-dont-have-to-cant.ts",
+        loader: () => import("@/content/grammar/have-to-dont-have-to-cant"),
+    },
+    "have-you-ever": {
+        sourceFile: "src/content/grammar/have-you-ever.ts",
+        loader: () => import("@/content/grammar/have-you-ever"),
+    },
+    "how-long-for-since": {
+        sourceFile: "src/content/grammar/how-long-for-since.ts",
+        loader: () => import("@/content/grammar/how-long-for-since"),
+    },
+    "how-much-how-many": {
+        sourceFile: "src/content/grammar/how-much-how-many.ts",
+        loader: () => import("@/content/grammar/how-much-how-many"),
+    },
+    "just-already-yet": {
+        sourceFile: "src/content/grammar/just-already-yet.ts",
+        loader: () => import("@/content/grammar/just-already-yet"),
+    },
+    "lets-make-a-suggestion": {
+        sourceFile: "src/content/grammar/lets-make-a-suggestion.ts",
+        loader: () => import("@/content/grammar/lets-make-a-suggestion"),
+    },
+    "more-less-the-most": {
+        sourceFile: "src/content/grammar/more-less-the-most.ts",
+        loader: () => import("@/content/grammar/more-less-the-most"),
+    },
+    "past-simple-past-continuous": {
+        sourceFile: "src/content/grammar/past-simple-past-continuous.ts",
+        loader: () => import("@/content/grammar/past-simple-past-continuous"),
+    },
+    "questions-real-answers": {
+        sourceFile: "src/content/grammar/questions-real-answers.ts",
+        loader: () => import("@/content/grammar/questions-real-answers"),
+    },
+    "welcome-back-tenses-review": {
+        sourceFile: "src/content/grammar/welcome-back-tenses-review.ts",
+        loader: () => import("@/content/grammar/welcome-back-tenses-review"),
+    },
+    "what-are-you-good-at": {
+        sourceFile: "src/content/grammar/what-are-you-good-at.ts",
+        loader: () => import("@/content/grammar/what-are-you-good-at"),
+    },
+    "your-week-in-english": {
+        sourceFile: "src/content/grammar/your-week-in-english.ts",
+        loader: () => import("@/content/grammar/your-week-in-english"),
+    },
+    "zero-first-conditional": {
+        sourceFile: "src/content/grammar/zero-first-conditional.ts",
+        loader: () => import("@/content/grammar/zero-first-conditional"),
     },
     "articles-community-resources": {
         sourceFile: "src/content/grammar/articles-community-resources.ts",

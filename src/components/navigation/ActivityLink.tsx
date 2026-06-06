@@ -9,6 +9,7 @@ interface ActivityLinkProps extends Omit<ComponentPropsWithoutRef<typeof Link>, 
     activityId: string;
     assignmentId?: string | null;
     href?: string;
+    returnTo?: string | null;
     children: ReactNode;
 }
 
@@ -16,6 +17,7 @@ export function ActivityLink({
     activityId,
     assignmentId,
     href,
+    returnTo,
     children,
     ...props
 }: ActivityLinkProps) {
@@ -27,7 +29,7 @@ export function ActivityLink({
         defaultHref = '/dashboard/vocab-review';
     }
     
-    const resolvedHref = withReturnTo(href ?? defaultHref, currentHref);
+    const resolvedHref = withReturnTo(href ?? defaultHref, returnTo ?? currentHref);
 
     return (
         <Link href={resolvedHref} {...props}>

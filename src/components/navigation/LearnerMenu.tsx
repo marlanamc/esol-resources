@@ -95,6 +95,8 @@ interface LearnerMenuProps {
     userName?: string;
     className?: string;
     showSearch?: boolean;
+    /** Hide first-name label on mobile (e.g. when header view-mode toggle needs space). */
+    hideMobileName?: boolean;
     /** Student's weekly leaderboard rank (1–3) to show medal next to name */
     leaderboardRank?: number | null;
     /** Show 🙋🏻‍♀️ next to name (Marlie test account) to indicate medal placement */
@@ -106,6 +108,7 @@ export function LearnerMenu({
     userName = "",
     className = "",
     showSearch = false,
+    hideMobileName = false,
     leaderboardRank = null,
     showMarlieEmoji = false,
 }: LearnerMenuProps) {
@@ -173,7 +176,7 @@ export function LearnerMenu({
         <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className={`flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-lg ${className}`}
+            className={`flex min-w-0 items-center gap-2.5 overflow-hidden group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-lg ${className}`}
             aria-label="Open navigation menu"
             aria-expanded={isOpen}
             aria-haspopup="dialog"
@@ -181,7 +184,7 @@ export function LearnerMenu({
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md group-hover:shadow-lg transition-[box-shadow,transform] duration-300 group-hover:scale-105">
                 <BookOpenIcon className="w-5 h-5 text-white" />
             </div>
-            <div className="min-w-0 flex items-center gap-1.5 sm:hidden">
+            <div className={["min-w-0 flex items-center gap-1.5 sm:hidden", hideMobileName ? "hidden" : ""].join(" ")}>
                 <span
                     className="block max-w-[4.5rem] truncate text-sm font-semibold leading-tight text-primary"
                     style={{ fontFamily: "Lora, serif" }}

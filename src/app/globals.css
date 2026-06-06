@@ -1938,6 +1938,21 @@ textarea {
   }
 }
 
+@keyframes map-activity-focus-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--unit-accent, #6a8d73) 0%, transparent);
+  }
+
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--unit-accent, #6a8d73) 38%, transparent);
+  }
+}
+
+.map-activity-focus-pulse {
+  animation: map-activity-focus-pulse 1.1s ease-in-out 2;
+}
+
 .dashboard-panel {
   background: linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%);
   border: 1px solid var(--dashboard-border);

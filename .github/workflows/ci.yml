@@ -52,6 +52,9 @@ jobs:
       - name: Generated content check
         run: npm run check:generated
 
+      - name: Mini guides audit (W1–W18)
+        run: npm run audit:mini-guides
+
       - name: Dependency audit
         run: npm audit --omit=dev --audit-level=critical
 

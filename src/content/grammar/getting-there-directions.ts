@@ -74,7 +74,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
   tableOfContents: true,
   sections: [
     // =========================================================================
-    // SECTION 1 — Where Are You Going?
+    // SECTION 1. Where Are You Going?
     // =========================================================================
     {
       id: "where-are-you-going",
@@ -84,6 +84,8 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneMaverick", "Maverick Blue Line Station, East Boston. Tuesday, 7 PM.", "terracotta")}
 
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara just got off the train. Hannah from the community center told her to walk up Meridian Street.</p>
+
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏿", text: "Jean, I just got off the train at Maverick. How do I get to the community center?", side: "right", tone: "terracotta" },
           { speaker: "Jean", avatar: "🧑🏾", text: "<strong>Walk</strong> straight on Maverick Square. <strong>Turn</strong> left on Meridian Street.", side: "left", tone: "sage" },
@@ -92,7 +94,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem"><strong>Imperatives</strong> = commands and instructions. Use the base form of the verb. There is no subject — you are talking directly to the person.</p>
+          <p style="margin: 0; font-size: 1.05rem"><strong>Imperatives</strong> = commands and instructions. Use the base form of the verb. There is no subject. you are talking directly to the person.</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
@@ -159,11 +161,23 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
             },
           ],
         },
+        {
+          id: "gtd-s1-3",
+          title: "Write the direction",
+          instructions: "Type the imperative verb Jean would use.",
+          items: [
+            {
+              type: "text",
+              label: "Jean says: \"___ left on Meridian Street.\"",
+              expectedAnswers: ["Turn", "turn"],
+            },
+          ],
+        },
       ],
     },
 
     // =========================================================================
-    // SECTION 2 — How to Say "Don't"
+    // SECTION 2. How to Say "Don't"
     // =========================================================================
     {
       id: "how-to-say-dont",
@@ -179,7 +193,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.9rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em">Notice from Claudette, Volunteer Coordinator</p>
           <ul style="margin: 0.5rem 0; padding-left: 1.25rem; line-height: 1.9">
             <li><strong>Walk</strong> to the end of the hallway and <strong>turn</strong> right for Room 4.</li>
-            <li><strong>Don't turn</strong> right at the front door — that leads to the storage room.</li>
+            <li><strong>Don't turn</strong> right at the front door. that leads to the storage room.</li>
             <li><strong>Don't use</strong> the side entrance after 8 PM. It locks automatically.</li>
             <li><strong>Please ask</strong> at the front desk if you need help.</li>
             <li><strong>Please sign in</strong> before class. Thank you!</li>
@@ -249,11 +263,23 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
             },
           ],
         },
+        {
+          id: "gtd-s2-3",
+          title: "Write the warning",
+          instructions: "Type the words Claudette would write on the bulletin board.",
+          items: [
+            {
+              type: "text",
+              label: "___ use the side entrance after 8 PM.",
+              expectedAnswers: ["Don't", "Don't use", "Do not", "Do not use"],
+            },
+          ],
+        },
       ],
     },
 
     // =========================================================================
-    // SECTION 3 — Where Is It?
+    // SECTION 3. Where Is It?
     // =========================================================================
     {
       id: "where-is-it",
@@ -345,7 +371,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 4 — Step by Step
+    // SECTION 4. Step by Step
     // =========================================================================
     {
       id: "step-by-step",
@@ -366,6 +392,8 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
             <li><strong>Finally,</strong> <strong>cross</strong> at the crosswalk and <strong>walk</strong> <strong>in front of</strong> the big blue doors.</li>
           </ol>
         </div>
+
+        <p style="margin: 0.75rem 0 0; font-size: 0.95rem; line-height: 1.6">That same week, Elena texted Miguel directions to the mercado on Chelsea Street for marigolds and candles before <strong>Día de los Muertos</strong>: <em><strong>Turn</strong> right after the bus stop. <strong>Walk</strong> past the bakery. The flowers are <strong>next to</strong> the entrance.</em></p>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">Use <strong>First, Then, Next, Finally</strong> to put directions in order. Each step starts with an imperative + preposition to say what to do AND where.</p>
@@ -421,6 +449,18 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
                 { value: "c", label: "Soon" },
               ],
               expectedAnswer: "b",
+            },
+          ],
+        },
+        {
+          id: "gtd-s4-2",
+          title: "Write the step",
+          instructions: "Type the word Elena uses in her directions.",
+          items: [
+            {
+              type: "text",
+              label: "Elena's second step: Then, ___ left on Bremen Street.",
+              expectedAnswers: ["turn", "Turn"],
             },
           ],
         },
@@ -491,7 +531,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       topic: "prepositions-location",
       skill: "usage",
       skillTag: "between",
-      difficulty: "easy",
+      difficulty: "medium",
     },
     {
       id: "getting-there-directions-q5",
@@ -572,9 +612,9 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
       id: "getting-there-directions-q10",
       question: "Jean wants to give Amara one direction and one warning. Which pair is correct?",
       options: [
-        { value: "a", label: "\"Go straight on Maverick Square. Don't turn right — that goes to the parking lot.\"" },
-        { value: "b", label: "\"Going straight on Maverick Square. Not turn right — that goes to the parking lot.\"" },
-        { value: "c", label: "\"You go straight on Maverick Square. You don't turn right — that goes to the parking lot.\"" },
+        { value: "a", label: "\"Go straight on Maverick Square. Don't turn right. that goes to the parking lot.\"" },
+        { value: "b", label: "\"Going straight on Maverick Square. Not turn right. that goes to the parking lot.\"" },
+        { value: "c", label: "\"You go straight on Maverick Square. You don't turn right. that goes to the parking lot.\"" },
       ],
       correctAnswer: "a",
       explanation: "Imperatives use the base verb ('Go') and negative imperatives use 'Don't' + base verb ('Don't turn'). No subject is needed.",

@@ -1,8 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { Check, ChevronDown, ChevronRight, Clock, Lock } from "lucide-react";
-import { useMemo, useState } from "react";
+import { Check, ChevronDown, ChevronRight, Clock, Plus } from "lucide-react";
+import {
+    createContext,
+    useCallback,
+    useContext,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+    type ReactNode,
+} from "react";
+import { usePathname } from "next/navigation";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { useCurrentAppHref } from "@/hooks/useCurrentAppHref";
 import { withReturnTo } from "@/lib/learner-navigation";
@@ -11,6 +21,32 @@ import type {
     CourseMapActivityType,
     CourseMapUnit,
 } from "@/lib/course-map";
+import { CourseMapUnitIcon } from "@/components/dashboard/CourseMapUnitIcon";
+import { courseMapUnitToneStyle, getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
+import {
+    buildMapReturnHref,
+    COURSE_MAP_OPEN_WEEK_EVENT,
+    type CourseMapOpenWeekDetail,
+    focusMapWeekHeading,
+    parseMapWeekFromHash,
+    scrollToMapTarget,
+    syncMapUrl,
+} from "@/lib/course-map-navigation";
+import {
+    readCourseMapSessionState,
+    resolveInitialMapOpenWeek,
+    writeCourseMapSessionState,
+} from "@/lib/course-map-session-state";
+
+const MAP_SCROLL_MARGIN = "scroll-mt-[5.5rem]";
+
+const CoursePathReturnHrefContext = createContext<string | null>(null);
+
+function useCoursePathReturnHref(): string {
+    const contextHref = useContext(CoursePathReturnHrefContext);
+    const currentHref = useCurrentAppHref();
+    return contextHref ?? currentHref;
+}
 
 interface PathActivity {
     id: string;
@@ -41,6 +77,8 @@ interface Props {
     guidedAssignments?: Record<string, GuidedAssignmentInfo>;
     guidedProgress?: Record<string, string | null>;
     desktopLayout?: boolean;
+    initialWeek?: number | null;
+    focusNextActivity?: boolean;
 }
 
 function activityTypeIcon(type?: string, category?: string | null): string {
@@ -83,6 +121,82 @@ function guidedActivityIcon(type: CourseMapActivityType): string {
     }
 }
 
+function shortActivityTitle(title: string): string {
+    return title
+        .replace("Welcome Back: Simple & Continuous Review + V3 Preview", "Simple & Continuous Review")
+        .replace("Parts of Speech Discovery Game", "Parts of Speech Game")
+        .replace("Grammar Hospital: Helper Verb Repair", "Helper Verb Repair")
+        .replace("Vowel Names Practice:", "Vowel Names:")
+        .replace("Timeline Tenses:", "Timeline:")
+        .replace("Full Parts of Speech Practice Library", "Parts of Speech Practice")
+        .replace(/\s+\+\s+V3 Preview$/i, "")
+        .trim();
+}
+
+function nextUpTitle(title: string): string {
+    const shortened = shortActivityTitle(title);
+    if (title.startsWith("Welcome Back:") && !shortened.startsWith("Welcome Back:")) {
+        return `Welcome Back: ${shortened}`;
+    }
+    return shortened;
+}
+
+const focusOverrides: Record<string, string> = {
+    "Parts of Speech + App Habit": "Build English sentence basics",
+    "Verb Forms + Past -ed Sounds": "Use verb forms in context",
+    "Tenses in Action": "Talk about now, past, and future",
+};
+
+function UnitSectionHeader({
+    unitNumber,
+    unitMonth,
+    className = "mb-3",
+}: {
+    unitNumber: number;
+    unitMonth?: string;
+    className?: string;
+}) {
+    const tone = getCourseMapUnitTone(unitNumber);
+    return (
+        <div
+            className={`flex items-center gap-2.5 px-0.5 ${className}`}
+            style={courseMapUnitToneStyle(unitNumber)}
+        >
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--unit-chip-bg)] text-[var(--unit-accent)]">
+                <CourseMapUnitIcon unitNumber={unitNumber} size={15} />
+            </span>
+            <span className="text-xs font-bold uppercase tracking-wide text-[var(--unit-accent)]">
+                {unitMonth || tone.month} · Unit {unitNumber}
+            </span>
+        </div>
+    );
+}
+
+function focusText(title: string, goal?: string): string | null {
+    if (focusOverrides[title]) return focusOverrides[title];
+    if (!goal) return null;
+
+    const firstSentence = goal.split(/[.!?]/)[0] ?? goal;
+    return firstSentence
+        .replace(/^Learn the basic building blocks of English and\s+/i, "Build ")
+        .replace(/^Get comfortable in the app,\s*/i, "Start the app routine, ")
+        .replace(/^Practice\s+/i, "Use ")
+        .replace(/^Learn\s+/i, "Build ")
+        .trim();
+}
+
+function estimatedMinutes(activity: CourseMapActivity): number {
+    switch (activity.activityType) {
+        case "game":
+        case "writing":
+        case "speaking":
+        case "assessment":
+            return 10;
+        default:
+            return 5;
+    }
+}
+
 interface UnitGroup {
     label: string;
     activities: PathActivity[];
@@ -92,6 +206,12 @@ function flattenRequired(units: CourseMapUnit[]): CourseMapActivity[] {
     return units.flatMap((unit) =>
         unit.levels.flatMap((level) => level.requiredActivities)
     );
+}
+
+function getExtraPracticeActivities(
+    extraPractice: CourseMapActivity[] | undefined
+): CourseMapActivity[] {
+    return extraPractice ?? [];
 }
 
 function isActionable(activity: CourseMapActivity): boolean {
@@ -127,12 +247,12 @@ function ActivityShell({
     const isPlanned = activity.status === "planned";
     const isLocked = activity.status === "locked";
     const isInactive = isPlanned || isLocked;
-    const currentHref = useCurrentAppHref();
+    const currentHref = useCoursePathReturnHref();
     const baseClass = `group flex flex-1 items-start gap-2 rounded-xl px-2.5 py-2 text-left text-sm transition-all duration-150 ${
         isCompleted
             ? "text-text-muted opacity-75 hover:opacity-95"
             : isCurrent
-              ? "font-semibold text-text bg-[var(--tone-vocab-surface,rgba(106,141,115,0.08))] ring-1 ring-[var(--tone-vocab-accent,#6a8d73)]/25 hover:bg-[var(--tone-vocab-surface,rgba(106,141,115,0.12))]"
+              ? "font-semibold text-text bg-[var(--unit-surface,rgba(106,141,115,0.08))] ring-1 ring-[var(--unit-accent,#6a8d73)]/25 hover:bg-[var(--unit-surface,rgba(106,141,115,0.14))]"
               : isPlanned
                 ? "text-text-muted bg-surface-subtle/40 opacity-60"
                 : isLocked
@@ -146,11 +266,12 @@ function ActivityShell({
                 activityId={activity.activityId}
                 assignmentId={assignment?.assignmentId}
                 href={activity.href}
+                returnTo={currentHref}
                 className={baseClass}
             >
                 {children}
                 {isCurrent && (
-                    <span className="shrink-0 rounded-full bg-[var(--tone-vocab-chip-bg,#eef3ee)] px-2 py-0.5 text-[10px] font-bold text-[var(--tone-vocab-accent,#6a8d73)]">
+                    <span className="shrink-0 rounded-full bg-[var(--unit-chip-bg,#eef3ee)] px-2 py-0.5 text-[10px] font-bold text-[var(--unit-accent,#6a8d73)]">
                         {currentLabel}
                     </span>
                 )}
@@ -163,7 +284,7 @@ function ActivityShell({
             <Link href={withReturnTo(activity.href, currentHref)} className={baseClass}>
                 {children}
                 {isCurrent && (
-                    <span className="shrink-0 rounded-full bg-[var(--tone-vocab-chip-bg,#eef3ee)] px-2 py-0.5 text-[10px] font-bold text-[var(--tone-vocab-accent,#6a8d73)]">
+                    <span className="shrink-0 rounded-full bg-[var(--unit-chip-bg,#eef3ee)] px-2 py-0.5 text-[10px] font-bold text-[var(--unit-accent,#6a8d73)]">
                         {currentLabel}
                     </span>
                 )}
@@ -183,7 +304,7 @@ function ActivityShell({
                     Locked
                 </span>
             ) : isCurrent ? (
-                <span className="shrink-0 rounded-full bg-[var(--tone-vocab-chip-bg,#eef3ee)] px-2 py-0.5 text-[10px] font-bold text-[var(--tone-vocab-accent,#6a8d73)]">
+                <span className="shrink-0 rounded-full bg-[var(--unit-chip-bg,#eef3ee)] px-2 py-0.5 text-[10px] font-bold text-[var(--unit-accent,#6a8d73)]">
                     {currentLabel}
                 </span>
             ) : null}
@@ -191,7 +312,124 @@ function ActivityShell({
     );
 }
 
-function GuidedActivityRow({
+function StartActivityButton({
+    activity,
+    assignment,
+    className,
+    children,
+}: {
+    activity: CourseMapActivity;
+    assignment?: GuidedAssignmentInfo;
+    className: string;
+    children: React.ReactNode;
+}) {
+    const currentHref = useCoursePathReturnHref();
+
+    if (activity.status === "planned" || activity.status === "locked") {
+        return (
+            <div className={className} aria-disabled="true">
+                {children}
+            </div>
+        );
+    }
+
+    if (activity.activityId) {
+        return (
+            <ActivityLink
+                activityId={activity.activityId}
+                assignmentId={assignment?.assignmentId}
+                href={activity.href}
+                returnTo={currentHref}
+                className={className}
+            >
+                {children}
+            </ActivityLink>
+        );
+    }
+
+    if (activity.href) {
+        return (
+            <Link href={withReturnTo(activity.href, currentHref)} className={className}>
+                {children}
+            </Link>
+        );
+    }
+
+    return (
+        <div className={className} aria-disabled="true">
+            {children}
+        </div>
+    );
+}
+
+interface WeekSummary {
+    unitNumber: number;
+    unitMonth: string;
+    level: CourseMapUnit["levels"][number];
+    requiredDone: number;
+    requiredTotal: number;
+    hasCurrent: boolean;
+    isDone: boolean;
+}
+
+function MobileNextUpCard({
+    activity,
+    assignment,
+    currentLabel,
+    unitNumber,
+}: {
+    activity: CourseMapActivity;
+    assignment?: GuidedAssignmentInfo;
+    currentLabel: "Start here" | "Next up";
+    unitNumber: number;
+}) {
+    const icon = assignment
+        ? activityTypeIcon(assignment.type, assignment.category)
+        : guidedActivityIcon(activity.activityType);
+    const tone = getCourseMapUnitTone(unitNumber);
+
+    return (
+        <div
+            className="rounded-2xl p-4 text-white shadow-sm"
+            style={{ background: `linear-gradient(135deg, ${tone.accent} 0%, ${tone.button} 100%)` }}
+        >
+            <div className="flex items-start gap-3">
+                <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/88 text-2xl" aria-hidden>
+                    {icon}
+                    <span
+                        className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border border-white/80 bg-white/95 shadow-sm"
+                        style={{ color: tone.accent }}
+                    >
+                        <CourseMapUnitIcon unitNumber={unitNumber} size={11} strokeWidth={2.5} />
+                    </span>
+                </span>
+                <div className="min-w-0 flex-1">
+                    <span className="inline-flex rounded-full bg-white/22 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+                        {tone.month} · {currentLabel}
+                    </span>
+                    <h3 className="mt-2 text-lg font-bold leading-snug text-white">
+                        {nextUpTitle(activity.title)}
+                    </h3>
+                    <p className="mt-1 flex items-center gap-1.5 text-sm font-medium text-white/88">
+                        <Clock size={14} aria-hidden />
+                        {estimatedMinutes(activity)} min
+                    </p>
+                </div>
+            </div>
+
+            <StartActivityButton
+                activity={activity}
+                assignment={assignment}
+                className="mt-5 flex min-h-12 w-full items-center justify-between rounded-full bg-white px-5 text-sm font-bold text-[#172235] shadow-sm transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+            >
+                <span>Start Lesson</span>
+                <ChevronRight size={20} aria-hidden />
+            </StartActivityButton>
+        </div>
+    );
+}
+
+function MobileActivityRow({
     activity,
     assignment,
     isCompleted,
@@ -204,41 +442,18 @@ function GuidedActivityRow({
     isCurrent: boolean;
     currentLabel: "Start here" | "Next up";
 }) {
-    const isPlanned = activity.status === "planned";
-    const isLocked = activity.status === "locked";
-    const isInactive = isPlanned || isLocked;
     const icon = assignment
         ? activityTypeIcon(assignment.type, assignment.category)
         : guidedActivityIcon(activity.activityType);
 
     return (
-        <div className="relative flex items-center gap-2.5">
-            <div
-                className={`absolute -left-5 flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border transition-colors ${
-                    isCompleted
-                        ? "border-[var(--tone-grammar-accent,#b05740)] bg-[var(--tone-grammar-chip-bg,#f5ede8)]"
-                        : isCurrent
-                          ? "border-[var(--tone-vocab-accent,#6a8d73)] bg-[var(--tone-vocab-chip-bg,#eef3ee)]"
-                          : isPlanned
-                            ? "border-dashed border-[var(--border-subtle,#ddd6ca)] bg-bg"
-                            : isLocked
-                              ? "border-[var(--border-subtle,#ddd6ca)] bg-bg"
-                              : "border-[var(--tone-vocab-accent,#6a8d73)]/40 bg-white dark:bg-[#162b3d]"
-                }`}
-            >
-                {isCompleted ? (
-                    <Check size={9} className="text-[var(--tone-grammar-accent,#b05740)]" />
-                ) : isCurrent ? (
-                    <span className="block h-2 w-2 rounded-full bg-[var(--tone-vocab-accent,#6a8d73)]" />
-                ) : isPlanned ? (
-                    <Clock size={8} className="text-text-muted opacity-60" />
-                ) : isLocked ? (
-                    <Lock size={9} className="text-text-muted" />
-                ) : (
-                    <span className="block h-1.5 w-1.5 rounded-full bg-[var(--tone-vocab-accent,#6a8d73)]/55" />
-                )}
+        <div className="relative flex items-center gap-3 py-2">
+            <div className="absolute -left-[31px] top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full border bg-white" style={{ borderColor: isCompleted ? "var(--unit-accent,#b05740)" : "var(--border-subtle)" }}>
+                {isCompleted ? <Check size={11} className="text-[var(--unit-accent,#b05740)]" /> : isCurrent ? <span className="h-2 w-2 rounded-full bg-[var(--unit-accent,#6a8d73)]" /> : null}
             </div>
-
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--unit-chip-bg,#eef3ee)] text-xl" aria-hidden>
+                {icon}
+            </span>
             <ActivityShell
                 activity={activity}
                 isCompleted={isCompleted}
@@ -246,23 +461,449 @@ function GuidedActivityRow({
                 currentLabel={currentLabel}
                 assignment={assignment}
             >
-                <span className="shrink-0 text-base leading-none" aria-hidden>
-                    {icon}
-                </span>
                 <span className="min-w-0 flex-1">
                     <span className={`block leading-snug ${isCompleted ? "line-through" : ""}`}>
-                        {activity.title}
+                        {shortActivityTitle(activity.title)}
                     </span>
-                    {activity.wrappedGame && !isInactive && (
-                        <span className={`mt-0.5 block text-[10px] font-semibold uppercase tracking-wide ${
-                            isCompleted ? "text-text-muted" : "text-[var(--tone-vocab-accent,#6a8d73)]"
-                        }`}>
-                            Preset practice
+                    {activity.wrappedGame && (
+                        <span className="mt-1 inline-flex rounded-full bg-[var(--unit-chip-bg,#eef3ee)] px-2 py-0.5 text-[11px] font-semibold text-[var(--unit-accent,#6a8d73)]">
+                            Practice
                         </span>
                     )}
                 </span>
+                <span className="shrink-0 text-xs font-medium text-text-muted">
+                    {estimatedMinutes(activity)} min
+                </span>
             </ActivityShell>
         </div>
+    );
+}
+
+function MobileWeekCard({
+    week,
+    isOpen,
+    optionalOpen,
+    currentId,
+    currentLabel,
+    guidedAssignments,
+    guidedProgress,
+    onToggle,
+    onToggleOptional,
+}: {
+    week: WeekSummary;
+    isOpen: boolean;
+    optionalOpen: boolean;
+    currentId: string | null;
+    currentLabel: "Start here" | "Next up";
+    guidedAssignments: Record<string, GuidedAssignmentInfo>;
+    guidedProgress: Record<string, string | null>;
+    onToggle: () => void;
+    onToggleOptional: () => void;
+}) {
+    const focus = focusText(week.level.levelTitle, week.level.levelGoal);
+
+    return (
+        <section
+            id={`week-${week.level.levelNumber}`}
+            className={`dashboard-panel rounded-2xl transition-colors ${MAP_SCROLL_MARGIN} ${isOpen ? "px-4 pb-4 pt-3" : "px-4 py-3.5"}`}
+            style={{
+                ...courseMapUnitToneStyle(week.unitNumber),
+                borderColor: week.hasCurrent ? "color-mix(in srgb, var(--unit-accent,#6a8d73) 45%, var(--border-subtle))" : undefined,
+            }}
+            aria-labelledby={isOpen ? `week-${week.level.levelNumber}-heading` : undefined}
+        >
+            {isOpen ? (
+                <h2
+                    id={`week-${week.level.levelNumber}-heading`}
+                    tabIndex={-1}
+                    className="sr-only"
+                >
+                    Week {week.level.levelNumber}: {week.level.levelTitle}
+                </h2>
+            ) : null}
+            <button
+                type="button"
+                onClick={onToggle}
+                aria-expanded={isOpen}
+                className="block w-full text-left"
+            >
+                <span className="flex items-center gap-3">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm font-bold text-[var(--unit-accent,#6a8d73)]" style={{ borderColor: "color-mix(in srgb, var(--unit-accent,#6a8d73) 55%, var(--border-subtle))" }}>
+                        {week.level.levelNumber}
+                    </span>
+                    <span className="min-w-0 flex-1 text-[11px] font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
+                        Week {week.level.levelNumber}
+                    </span>
+                    <span className="shrink-0 rounded-full border px-2.5 py-1 text-xs font-bold tabular-nums text-[var(--unit-accent,#6a8d73)]" style={{ borderColor: "color-mix(in srgb, var(--unit-accent,#6a8d73) 35%, var(--border-subtle))" }}>
+                        {week.requiredDone} / {week.requiredTotal}
+                    </span>
+                    {isOpen ? (
+                        <ChevronDown size={18} className="shrink-0 text-text-muted" aria-hidden />
+                    ) : (
+                        <ChevronRight size={18} className="shrink-0 text-text-muted" aria-hidden />
+                    )}
+                </span>
+                <span className="mt-2 block text-base font-bold leading-tight text-text">
+                    {week.level.levelTitle}
+                </span>
+                {focus ? (
+                    <span className="mt-1 block text-sm leading-snug text-text-muted">
+                        Focus: {focus}
+                    </span>
+                ) : null}
+            </button>
+
+            {isOpen ? (
+                <div className="mt-5 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
+                    <div className="relative ml-[31px]">
+                        <div className="absolute -left-[22px] bottom-4 top-4 w-px rounded-full bg-[var(--border-subtle)]" />
+                        <div className="space-y-1">
+                            {week.level.requiredActivities.map((activity) => (
+                                <MobileActivityRow
+                                    key={activity.id}
+                                    activity={activity}
+                                    assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
+                                    isCompleted={isActivityCompleted(activity, guidedProgress)}
+                                    isCurrent={activity.id === currentId}
+                                    currentLabel={currentLabel}
+                                />
+                            ))}
+                        </div>
+                    </div>
+
+                    {getExtraPracticeActivities(week.level.extraPractice).length > 0 ? (
+                        <div className="mt-5 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
+                            <button
+                                type="button"
+                                onClick={onToggleOptional}
+                                aria-expanded={optionalOpen}
+                                className="flex w-full items-center gap-3 text-left"
+                            >
+                                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--unit-chip-bg,#eef3ee)] text-[var(--unit-accent,#6a8d73)]">
+                                    {optionalOpen ? <ChevronDown size={20} aria-hidden /> : <Plus size={21} aria-hidden />}
+                                </span>
+                                <span className="min-w-0 flex-1">
+                                    <span className="block text-base font-semibold text-text">Optional practice</span>
+                                    <span className="block text-sm text-text-muted">
+                                        {optionalOpen ? "Hide extra games and activities" : "More games and activities"}
+                                    </span>
+                                </span>
+                                <ChevronRight size={18} className={`shrink-0 text-text-muted transition-transform ${optionalOpen ? "rotate-90" : ""}`} aria-hidden />
+                            </button>
+
+                            {optionalOpen ? (
+                                <div className="relative ml-[31px] mt-3">
+                                    <div className="absolute -left-[22px] bottom-4 top-4 w-px rounded-full bg-[var(--border-subtle)]" />
+                                    <div className="space-y-1">
+                                        {getExtraPracticeActivities(week.level.extraPractice).map((activity) => (
+                                            <MobileActivityRow
+                                                key={activity.id}
+                                                activity={activity}
+                                                assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
+                                                isCompleted={isActivityCompleted(activity, guidedProgress)}
+                                                isCurrent={false}
+                                                currentLabel={currentLabel}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : null}
+                        </div>
+                    ) : null}
+                </div>
+            ) : null}
+        </section>
+    );
+}
+
+function DesktopActivityRow({
+    activity,
+    assignment,
+    isCompleted,
+    isCurrent,
+    currentLabel,
+    pulseCurrent,
+}: {
+    activity: CourseMapActivity;
+    assignment?: GuidedAssignmentInfo;
+    isCompleted: boolean;
+    isCurrent: boolean;
+    currentLabel: "Start here" | "Next up";
+    pulseCurrent?: boolean;
+}) {
+    const icon = assignment
+        ? activityTypeIcon(assignment.type, assignment.category)
+        : guidedActivityIcon(activity.activityType);
+
+    return (
+        <div className="relative" id={isCurrent ? "map-activity-current" : undefined}>
+            <div
+                className={`absolute -left-[40px] top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full border-2 bg-white ${
+                    isCompleted
+                        ? "border-[var(--unit-accent,#6a8d73)] bg-[var(--unit-accent,#6a8d73)]"
+                        : isCurrent
+                          ? "border-[var(--unit-accent,#6a8d73)]"
+                          : "border-[var(--border-subtle)]"
+                }`}
+            >
+                {isCompleted ? (
+                    <Check size={15} className="text-white" />
+                ) : isCurrent ? (
+                    <span className="h-4 w-4 rounded-full border-4 border-[var(--unit-accent,#6a8d73)] bg-white" />
+                ) : null}
+            </div>
+            <StartActivityButton
+                activity={activity}
+                assignment={assignment}
+                className={`group flex min-h-[72px] w-full items-center gap-5 border-b px-4 text-left transition-colors ${
+                    isCurrent
+                        ? `rounded-xl border bg-bg shadow-sm ring-1 ring-[var(--border-subtle)] ${pulseCurrent ? "map-activity-focus-pulse" : ""}`
+                        : "border-[var(--border-subtle)] hover:bg-surface-subtle/50"
+                }`}
+            >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--unit-chip-bg,#eef3ee)] text-xl" aria-hidden>
+                    {icon}
+                </span>
+                <span className="min-w-0 flex-1 text-base font-semibold text-text">
+                    <span className={`${isCompleted ? "line-through text-text-muted" : ""}`}>
+                        {shortActivityTitle(activity.title)}
+                    </span>
+                    {activity.wrappedGame ? (
+                        <span className="ml-3 inline-flex rounded-full bg-[var(--unit-chip-bg,#eef3ee)] px-2.5 py-1 text-xs font-semibold text-[var(--unit-accent,#6a8d73)]">
+                            Practice
+                        </span>
+                    ) : null}
+                    {isCurrent ? (
+                        <span className="ml-3 inline-flex rounded-full bg-[var(--unit-chip-bg,#eef3ee)] px-2.5 py-1 text-xs font-bold text-[var(--unit-accent,#6a8d73)]">
+                            {currentLabel}
+                        </span>
+                    ) : null}
+                </span>
+                <span className="shrink-0 text-sm font-medium text-text-muted">
+                    {estimatedMinutes(activity)} min
+                </span>
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-text-muted">
+                    {isCompleted ? (
+                        <Check size={18} className="text-[var(--unit-accent,#6a8d73)]" />
+                    ) : isCurrent ? (
+                        <ChevronRight size={22} className="text-text" />
+                    ) : null}
+                </span>
+            </StartActivityButton>
+        </div>
+    );
+}
+
+function DesktopNextUpCard({
+    activity,
+    assignment,
+    currentLabel,
+    progressText,
+    unitNumber,
+}: {
+    activity: CourseMapActivity;
+    assignment?: GuidedAssignmentInfo;
+    currentLabel: "Start here" | "Next up";
+    progressText?: string;
+    unitNumber: number;
+}) {
+    const icon = assignment
+        ? activityTypeIcon(assignment.type, assignment.category)
+        : guidedActivityIcon(activity.activityType);
+
+    return (
+        <section
+            className="dashboard-panel rounded-2xl px-6 py-5"
+            style={{
+                ...courseMapUnitToneStyle(unitNumber),
+                borderColor: "color-mix(in srgb, var(--unit-accent,#6a8d73) 32%, var(--border-subtle))",
+                boxShadow: "var(--dashboard-shadow-hover)",
+            }}
+        >
+            <div className="flex items-center gap-7">
+                <span className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-[var(--unit-chip-bg,#eef3ee)] text-4xl" aria-hidden>
+                    {icon}
+                </span>
+                <div className="min-w-0 flex-1">
+                    <span className="inline-flex rounded-lg bg-[var(--unit-chip-bg,#eef3ee)] px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
+                        {currentLabel}
+                    </span>
+                    <h2 className="mt-3 font-display text-3xl font-bold leading-tight text-text">
+                        {nextUpTitle(activity.title)}
+                    </h2>
+                    <p className="mt-3 flex items-center gap-3 text-base font-medium text-text-muted">
+                        <span className="inline-flex items-center gap-1.5">
+                            <Clock size={17} aria-hidden />
+                            {estimatedMinutes(activity)} min
+                        </span>
+                        {progressText ? (
+                            <>
+                                <span aria-hidden>•</span>
+                                <span>{progressText}</span>
+                            </>
+                        ) : null}
+                    </p>
+                </div>
+
+                <StartActivityButton
+                    activity={activity}
+                    assignment={assignment}
+                    className="flex min-h-14 w-[170px] shrink-0 items-center justify-center gap-3 rounded-lg bg-[var(--unit-button,#2f7d4b)] px-5 text-base font-bold text-white shadow-sm transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--unit-button,#2f7d4b)]/40"
+                >
+                    <span>Continue</span>
+                    <ChevronRight size={24} aria-hidden />
+                </StartActivityButton>
+            </div>
+        </section>
+    );
+}
+
+function DesktopWeekPanel({
+    week,
+    isOpen,
+    currentId,
+    currentLabel,
+    guidedAssignments,
+    guidedProgress,
+    optionalOpen,
+    pulseCurrent,
+    onToggle,
+    onToggleOptional,
+}: {
+    week: WeekSummary;
+    isOpen: boolean;
+    currentId: string | null;
+    currentLabel: "Start here" | "Next up";
+    guidedAssignments: Record<string, GuidedAssignmentInfo>;
+    guidedProgress: Record<string, string | null>;
+    optionalOpen: boolean;
+    pulseCurrent?: boolean;
+    onToggle: () => void;
+    onToggleOptional: () => void;
+}) {
+    const focus = focusText(week.level.levelTitle, week.level.levelGoal);
+    const extraPractice = getExtraPracticeActivities(week.level.extraPractice);
+
+    if (!isOpen) {
+        return (
+            <section
+                id={`week-${week.level.levelNumber}`}
+                className={`dashboard-panel rounded-2xl px-6 py-4 ${MAP_SCROLL_MARGIN}`}
+                style={courseMapUnitToneStyle(week.unitNumber)}
+            >
+                <button type="button" onClick={onToggle} className="flex w-full items-center gap-5 text-left">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border text-base font-bold text-[var(--unit-accent,#6a8d73)]" style={{ borderColor: "color-mix(in srgb, var(--unit-accent,#6a8d73) 55%, var(--border-subtle))" }}>
+                        {week.level.levelNumber}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                        <span className="block text-xs font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
+                            Week {week.level.levelNumber} / Level {week.level.levelNumber}
+                        </span>
+                        <span className="mt-0.5 block font-display text-xl font-bold leading-tight text-text">
+                            {week.level.levelTitle}
+                        </span>
+                    </span>
+                    <span className="shrink-0 text-sm font-semibold tabular-nums text-text-muted">
+                        {week.requiredDone} / {week.requiredTotal}
+                    </span>
+                    <ChevronDown size={20} className="shrink-0 text-text-muted" aria-hidden />
+                </button>
+            </section>
+        );
+    }
+
+    return (
+        <section
+            id={`week-${week.level.levelNumber}`}
+            className={`dashboard-panel rounded-2xl p-6 ${MAP_SCROLL_MARGIN}`}
+            style={courseMapUnitToneStyle(week.unitNumber)}
+            aria-labelledby={`week-${week.level.levelNumber}-heading`}
+        >
+            <h2
+                id={`week-${week.level.levelNumber}-heading`}
+                tabIndex={-1}
+                className="sr-only"
+            >
+                Week {week.level.levelNumber}: {week.level.levelTitle}
+            </h2>
+            <button type="button" onClick={onToggle} aria-expanded={isOpen} className="flex w-full items-start gap-5 text-left">
+                <span className="min-w-0 flex-1">
+                    <span className="block text-xs font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
+                        Week {week.level.levelNumber} / Level {week.level.levelNumber}
+                    </span>
+                    <span className="mt-2 block font-display text-3xl font-bold leading-tight text-text">
+                        {week.level.levelTitle}
+                    </span>
+                    {focus ? (
+                        <span className="mt-3 block max-w-2xl text-lg leading-relaxed text-text-muted">
+                            Focus: {focus}
+                        </span>
+                    ) : null}
+                </span>
+                <span className="shrink-0 rounded-full border px-5 py-2 text-base font-bold tabular-nums text-[var(--unit-accent,#6a8d73)]" style={{ borderColor: "color-mix(in srgb, var(--unit-accent,#6a8d73) 35%, var(--border-subtle))" }}>
+                    {week.requiredDone} / {week.requiredTotal}
+                </span>
+                <ChevronDown size={22} className="mt-2 shrink-0 rotate-180 text-text" aria-hidden />
+            </button>
+
+            <div className="relative ml-10 mt-8">
+                <div className="absolute -left-[27px] bottom-10 top-8 w-px rounded-full bg-[var(--border-subtle)]" />
+                <div>
+                    {week.level.requiredActivities.map((activity) => (
+                        <DesktopActivityRow
+                            key={activity.id}
+                            activity={activity}
+                            assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
+                            isCompleted={isActivityCompleted(activity, guidedProgress)}
+                            isCurrent={activity.id === currentId}
+                            currentLabel={currentLabel}
+                            pulseCurrent={pulseCurrent}
+                        />
+                    ))}
+                </div>
+            </div>
+
+            {extraPractice.length > 0 ? (
+                <div className="mt-5 border-t pt-5" style={{ borderColor: "var(--border-subtle)" }}>
+                    <button
+                        type="button"
+                        onClick={onToggleOptional}
+                        aria-expanded={optionalOpen}
+                        className="flex w-full items-center gap-3 text-left"
+                    >
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--unit-chip-bg,#eef3ee)] text-[var(--unit-accent,#6a8d73)]">
+                            {optionalOpen ? <ChevronDown size={20} aria-hidden /> : <Plus size={21} aria-hidden />}
+                        </span>
+                        <span className="min-w-0 flex-1">
+                            <span className="block text-base font-semibold text-text">Optional practice</span>
+                            <span className="block text-sm text-text-muted">
+                                {optionalOpen ? "Hide extra games and activities" : "More games and activities"}
+                            </span>
+                        </span>
+                        <ChevronDown
+                            size={18}
+                            className={`shrink-0 text-text-muted transition-transform ${optionalOpen ? "rotate-180" : ""}`}
+                            aria-hidden
+                        />
+                    </button>
+                    {optionalOpen ? (
+                        <div className="relative ml-10 mt-4">
+                            <div className="absolute -left-[27px] bottom-10 top-8 w-px rounded-full bg-[var(--border-subtle)]" />
+                            {extraPractice.map((activity) => (
+                                <DesktopActivityRow
+                                    key={activity.id}
+                                    activity={activity}
+                                    assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
+                                    isCompleted={isActivityCompleted(activity, guidedProgress)}
+                                    isCurrent={false}
+                                    currentLabel={currentLabel}
+                                />
+                            ))}
+                        </div>
+                    ) : null}
+                </div>
+            ) : null}
+        </section>
     );
 }
 
@@ -271,12 +912,17 @@ function GuidedCoursePath({
     guidedAssignments,
     guidedProgress,
     desktopLayout = false,
+    initialWeek = null,
+    focusNextActivity = false,
 }: {
     guidedUnits: CourseMapUnit[];
     guidedAssignments: Record<string, GuidedAssignmentInfo>;
     guidedProgress: Record<string, string | null>;
     desktopLayout?: boolean;
+    initialWeek?: number | null;
+    focusNextActivity?: boolean;
 }) {
+    const pathname = usePathname();
     const requiredActivities = useMemo(() => flattenRequired(guidedUnits), [guidedUnits]);
     const completedRequired = requiredActivities.filter((activity) =>
         isActivityCompleted(activity, guidedProgress)
@@ -284,210 +930,340 @@ function GuidedCoursePath({
     const firstIncomplete = requiredActivities.find((activity) =>
         isActionable(activity) && !isActivityCompleted(activity, guidedProgress)
     );
-    const currentLevelNumber = guidedUnits
-        .flatMap((unit) => unit.levels)
-        .find((level) =>
-            level.requiredActivities.some((activity) => activity.id === firstIncomplete?.id)
-        )?.levelNumber;
     const hasAnyCompleted = completedRequired > 0;
     const currentLabel = hasAnyCompleted ? "Next up" : "Start here";
     const currentId = firstIncomplete?.id ?? null;
+    const weekSummaries = useMemo<WeekSummary[]>(() => (
+        guidedUnits.flatMap((unit) =>
+            unit.levels.map((level) => {
+                const requiredDone = level.requiredActivities.filter((activity) =>
+                    isActivityCompleted(activity, guidedProgress)
+                ).length;
+                const requiredTotal = level.requiredActivities.length;
+                return {
+                    unitNumber: unit.unitNumber,
+                    unitMonth: unit.month,
+                    level,
+                    requiredDone,
+                    requiredTotal,
+                    hasCurrent: level.requiredActivities.some((activity) => activity.id === currentId),
+                    isDone: requiredTotal > 0 && requiredDone === requiredTotal,
+                };
+            })
+        )
+    ), [guidedUnits, guidedProgress, currentId]);
+    const currentWeek = weekSummaries.find((week) => week.hasCurrent) ?? weekSummaries.find((week) => !week.isDone) ?? weekSummaries[0];
+    const progressWeekNumber = currentWeek?.level.levelNumber ?? null;
+    const resolveOpenWeek = () =>
+        resolveInitialMapOpenWeek({
+            initialWeek,
+            hashWeek: typeof window !== "undefined" ? parseMapWeekFromHash(window.location.hash) : null,
+            progressWeek: progressWeekNumber,
+        });
+    const [mobileOpenWeek, setMobileOpenWeek] = useState<number | null>(resolveOpenWeek);
+    const [mobileOptionalOpen, setMobileOptionalOpen] = useState<Record<number, boolean>>({});
+    const [desktopSelectedWeek, setDesktopSelectedWeek] = useState<number | null>(resolveOpenWeek);
+    const [desktopOptionalOpen, setDesktopOptionalOpen] = useState<Record<number, boolean>>({});
+    const [pulseCurrentActivity, setPulseCurrentActivity] = useState(focusNextActivity);
+    const didInitialScroll = useRef(false);
 
-    const [collapsed, setCollapsed] = useState<Record<number, boolean>>(() => {
-        const currentUnitNumber = guidedUnits.find((unit) =>
-            unit.levels.some((level) =>
-                level.requiredActivities.some((activity) => activity.id === currentId)
-            )
-        )?.unitNumber;
+    const openDesktopWeek = desktopSelectedWeek;
+    const activeWeekNumber = desktopLayout
+        ? (openDesktopWeek ?? currentWeek?.level.levelNumber ?? null)
+        : (mobileOpenWeek ?? currentWeek?.level.levelNumber ?? null);
+    const mapReturnHref =
+        pathname === "/dashboard/map" && activeWeekNumber != null
+            ? buildMapReturnHref(activeWeekNumber, true)
+            : null;
 
-        return Object.fromEntries(
-            guidedUnits.map((unit) => [unit.unitNumber, currentUnitNumber ? unit.unitNumber !== currentUnitNumber : false])
+    const navigateToWeek = useCallback((weekNumber: number, focusActivity = false) => {
+        if (desktopLayout) {
+            setDesktopSelectedWeek(weekNumber);
+        } else {
+            setMobileOpenWeek(weekNumber);
+        }
+        window.requestAnimationFrame(() => {
+            scrollToMapTarget(`week-${weekNumber}`);
+            if (focusActivity) {
+                setPulseCurrentActivity(true);
+                window.requestAnimationFrame(() => scrollToMapTarget("map-activity-current"));
+            } else {
+                focusMapWeekHeading(weekNumber);
+            }
+        });
+    }, [desktopLayout]);
+
+    useEffect(() => {
+        if (didInitialScroll.current) return;
+        const hashWeek = parseMapWeekFromHash(window.location.hash);
+        const explicitWeek = initialWeek ?? hashWeek;
+
+        if (explicitWeek || focusNextActivity) {
+            const targetWeek = explicitWeek ?? progressWeekNumber;
+            if (targetWeek == null) return;
+            didInitialScroll.current = true;
+            navigateToWeek(targetWeek, focusNextActivity);
+            return;
+        }
+
+        const session = readCourseMapSessionState();
+        if (session?.week) {
+            didInitialScroll.current = true;
+            navigateToWeek(session.week, false);
+            if (session.scrollY > 0) {
+                window.requestAnimationFrame(() => {
+                    window.requestAnimationFrame(() => {
+                        window.scrollTo({ top: session.scrollY, behavior: "auto" });
+                    });
+                });
+            }
+        }
+    }, [focusNextActivity, initialWeek, navigateToWeek, progressWeekNumber]);
+
+    useEffect(() => {
+        if (pathname !== "/dashboard/map") return;
+        if (activeWeekNumber == null) return;
+        writeCourseMapSessionState(activeWeekNumber, window.scrollY);
+
+        let timeout: number;
+        const onScroll = () => {
+            window.clearTimeout(timeout);
+            timeout = window.setTimeout(() => {
+                writeCourseMapSessionState(activeWeekNumber, window.scrollY);
+            }, 150);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.clearTimeout(timeout);
+        };
+    }, [activeWeekNumber, pathname]);
+
+    useEffect(() => {
+        if (!pulseCurrentActivity) return;
+        const timeout = window.setTimeout(() => setPulseCurrentActivity(false), 2400);
+        return () => window.clearTimeout(timeout);
+    }, [pulseCurrentActivity]);
+
+    useEffect(() => {
+        if (pathname !== "/dashboard/map") return;
+        syncMapUrl(activeWeekNumber, Boolean(pulseCurrentActivity));
+    }, [activeWeekNumber, pathname, pulseCurrentActivity]);
+
+    useEffect(() => {
+        const handler = (event: Event) => {
+            const detail = (event as CustomEvent<CourseMapOpenWeekDetail>).detail;
+            if (!detail?.week) return;
+            navigateToWeek(detail.week, detail.focusActivity);
+        };
+        window.addEventListener(COURSE_MAP_OPEN_WEEK_EVENT, handler);
+        return () => window.removeEventListener(COURSE_MAP_OPEN_WEEK_EVENT, handler);
+    }, [navigateToWeek]);
+
+    let content: ReactNode;
+
+    if (!desktopLayout) {
+        const remainingInCurrentWeek = currentWeek
+            ? currentWeek.level.requiredActivities.filter((activity) =>
+                !isActivityCompleted(activity, guidedProgress)
+            ).length
+            : 0;
+        const currentWeekIndex = currentWeek
+            ? weekSummaries.findIndex((week) => week.level.levelNumber === currentWeek.level.levelNumber)
+            : -1;
+        const showCurrentUnitHeader = currentWeek && (
+            currentWeekIndex === 0 ||
+            weekSummaries[currentWeekIndex - 1]?.unitNumber !== currentWeek.unitNumber
         );
-    });
 
-    const toggle = (unitNumber: number) =>
-        setCollapsed((prev) => ({ ...prev, [unitNumber]: !prev[unitNumber] }));
+        content = (
+            <div className="space-y-5">
+                <h2 className="font-display text-xl font-bold text-text">Your Path</h2>
 
-    return (
-        <div className={desktopLayout ? "space-y-0" : "dashboard-panel rounded-2xl p-4 sm:p-5"}>
-            {!desktopLayout && (
-                <div className="mb-4 flex items-start justify-between gap-3">
-                    <div>
-                        <h3 className="text-sm font-semibold text-text">Your Course Path</h3>
-                        <p className="mt-0.5 text-xs text-text-muted">
-                            Week by week. Do the required work first, then choose extra practice.
-                        </p>
+                {firstIncomplete ? (
+                    <MobileNextUpCard
+                        activity={firstIncomplete}
+                        assignment={firstIncomplete.activityId ? guidedAssignments[firstIncomplete.activityId] : undefined}
+                        currentLabel={currentLabel}
+                        unitNumber={currentWeek?.unitNumber ?? 1}
+                    />
+                ) : null}
+
+                {currentWeek && showCurrentUnitHeader ? (
+                    <div id={`unit-${currentWeek.unitNumber}`} className={MAP_SCROLL_MARGIN}>
+                        <UnitSectionHeader
+                            unitNumber={currentWeek.unitNumber}
+                            unitMonth={currentWeek.unitMonth}
+                        />
                     </div>
-                    <span className="shrink-0 rounded-full bg-surface-subtle px-2.5 py-1 text-xs font-medium text-text-muted">
-                        Level {currentLevelNumber ?? 36}
-                    </span>
+                ) : null}
+
+                {currentWeek ? (
+                    <button
+                        type="button"
+                        onClick={() =>
+                            setMobileOpenWeek((prev) =>
+                                prev === currentWeek.level.levelNumber ? null : currentWeek.level.levelNumber
+                            )
+                        }
+                        aria-expanded={mobileOpenWeek === currentWeek.level.levelNumber}
+                        className="dashboard-panel flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-3.5 text-left"
+                        style={{
+                            ...courseMapUnitToneStyle(currentWeek.unitNumber),
+                            borderColor: "color-mix(in srgb, var(--unit-accent) 35%, var(--border-subtle))",
+                        }}
+                    >
+                        <span>
+                            <span className="block text-sm font-bold text-text">
+                                {remainingInCurrentWeek} {remainingInCurrentWeek === 1 ? "activity" : "activities"} remaining
+                            </span>
+                            <span className="mt-0.5 block text-sm text-[var(--unit-accent,#6a8d73)]">
+                                {mobileOpenWeek === currentWeek.level.levelNumber ? "Hide this week" : "View this week"}
+                            </span>
+                        </span>
+                        <ChevronDown
+                            size={18}
+                            className="shrink-0 text-[var(--unit-accent,#6a8d73)] transition-transform"
+                            style={{
+                                transform: mobileOpenWeek === currentWeek.level.levelNumber ? "rotate(180deg)" : undefined,
+                            }}
+                            aria-hidden
+                        />
+                    </button>
+                ) : null}
+
+                {currentWeek && mobileOpenWeek === currentWeek.level.levelNumber ? (
+                    <MobileWeekCard
+                        week={currentWeek}
+                        isOpen
+                        optionalOpen={Boolean(mobileOptionalOpen[currentWeek.level.levelNumber])}
+                        currentId={currentId}
+                        currentLabel={currentLabel}
+                        guidedAssignments={guidedAssignments}
+                        guidedProgress={guidedProgress}
+                        onToggle={() => setMobileOpenWeek(null)}
+                        onToggleOptional={() =>
+                            setMobileOptionalOpen((prev) => ({
+                                ...prev,
+                                [currentWeek.level.levelNumber]: !prev[currentWeek.level.levelNumber],
+                            }))
+                        }
+                    />
+                ) : null}
+
+                <div className="space-y-3">
+                    {weekSummaries
+                        .filter((week) => week.level.levelNumber !== currentWeek?.level.levelNumber)
+                        .map((week) => {
+                            const index = weekSummaries.findIndex(
+                                (candidate) => candidate.level.levelNumber === week.level.levelNumber
+                            );
+                            const isFirstUnitWeek = index === 0 || weekSummaries[index - 1]?.unitNumber !== week.unitNumber;
+
+                            return (
+                                <div
+                                    key={week.level.levelNumber}
+                                    id={isFirstUnitWeek ? `unit-${week.unitNumber}` : undefined}
+                                    className={isFirstUnitWeek ? MAP_SCROLL_MARGIN : undefined}
+                                >
+                                    {isFirstUnitWeek ? (
+                                        <UnitSectionHeader
+                                            unitNumber={week.unitNumber}
+                                            unitMonth={week.unitMonth}
+                                        />
+                                    ) : null}
+                                    <MobileWeekCard
+                                        week={week}
+                                        isOpen={mobileOpenWeek === week.level.levelNumber}
+                                        optionalOpen={Boolean(mobileOptionalOpen[week.level.levelNumber])}
+                                        currentId={currentId}
+                                        currentLabel={currentLabel}
+                                        guidedAssignments={guidedAssignments}
+                                        guidedProgress={guidedProgress}
+                                        onToggle={() =>
+                                            setMobileOpenWeek((prev) =>
+                                                prev === week.level.levelNumber ? null : week.level.levelNumber
+                                            )
+                                        }
+                                        onToggleOptional={() =>
+                                            setMobileOptionalOpen((prev) => ({
+                                                ...prev,
+                                                [week.level.levelNumber]: !prev[week.level.levelNumber],
+                                            }))
+                                        }
+                                    />
+                                </div>
+                            );
+                        })}
                 </div>
+            </div>
+        );
+    } else {
+        content = (
+        <div className="space-y-6">
+            {firstIncomplete ? (
+                <DesktopNextUpCard
+                    activity={firstIncomplete}
+                    assignment={firstIncomplete.activityId ? guidedAssignments[firstIncomplete.activityId] : undefined}
+                    currentLabel={currentLabel}
+                    progressText={currentWeek ? `${currentWeek.requiredDone} of ${currentWeek.requiredTotal} activities completed` : undefined}
+                    unitNumber={currentWeek?.unitNumber ?? 1}
+                />
+            ) : (
+                <section className="dashboard-panel rounded-2xl p-6">
+                    <p className="text-[11px] font-bold uppercase tracking-wide text-text-muted">Path complete</p>
+                    <h2 className="mt-2 font-display text-2xl font-bold text-text">All required lessons are complete.</h2>
+                </section>
             )}
 
-            <div className={desktopLayout ? "space-y-6" : "space-y-4"}>
-                {guidedUnits.map((unit) => {
-                    const unitRequired = unit.levels.flatMap((level) => level.requiredActivities);
-                    const unitDone = unitRequired.filter((activity) =>
-                        isActivityCompleted(activity, guidedProgress)
-                    ).length;
-                    const isUnitDone = unitDone === unitRequired.length && unitRequired.length > 0;
-                    const hasCurrent = unitRequired.some((activity) => activity.id === currentId);
-                    const isOpen = !collapsed[unit.unitNumber];
-
+            <div className="space-y-4">
+                {weekSummaries.map((week, index) => {
+                    const isFirstUnitWeek = index === 0 || weekSummaries[index - 1]?.unitNumber !== week.unitNumber;
                     return (
-                        <section key={unit.unitNumber} id={`unit-${unit.unitNumber}`} className={desktopLayout ? "dashboard-panel rounded-2xl overflow-hidden" : ""}>
-                            <button
-                                onClick={() => toggle(unit.unitNumber)}
-                                className={`w-full flex items-center gap-2 text-left group ${desktopLayout ? "px-5 py-4 hover:bg-surface-subtle/50 transition-colors" : ""}`}
-                                aria-expanded={isOpen}
-                            >
-                                <span
-                                    className={`flex shrink-0 items-center justify-center rounded-full border font-bold transition-colors ${
-                                        desktopLayout ? "h-8 w-8 text-xs" : "h-6 w-6 text-[10px]"
-                                    } ${
-                                        isUnitDone
-                                            ? "border-[var(--tone-grammar-accent,#b05740)] bg-[var(--tone-grammar-chip-bg,#f5ede8)] text-[var(--tone-grammar-accent,#b05740)]"
-                                            : hasCurrent
-                                              ? "border-[var(--tone-vocab-accent,#6a8d73)] bg-[var(--tone-vocab-chip-bg,#eef3ee)] text-[var(--tone-vocab-accent,#6a8d73)]"
-                                              : "border-[var(--border-subtle,#ddd6ca)] bg-[var(--surface-subtle,#f8f4ef)] text-text-muted"
-                                    }`}
-                                >
-                                    {isUnitDone ? <Check size={desktopLayout ? 13 : 11} /> : unit.unitNumber}
-                                </span>
-                                <span className="min-w-0 flex-1">
-                                    <span className={`block font-semibold tracking-wide uppercase text-text ${desktopLayout ? "text-sm" : "text-xs"}`}>
-                                        Unit {unit.unitNumber}: {unit.unitTitle}
-                                    </span>
-                                    <span className={`block text-text-muted ${desktopLayout ? "text-xs" : "text-[11px]"}`}>{unit.month}</span>
-                                </span>
-                                {desktopLayout && (
-                                    <span className="text-xs text-text-muted tabular-nums shrink-0 mr-1">
-                                        {unitDone}/{unitRequired.length}
-                                    </span>
-                                )}
-                                {isOpen ? (
-                                    <ChevronDown size={desktopLayout ? 16 : 14} className="text-text-muted shrink-0" />
-                                ) : (
-                                    <ChevronRight size={desktopLayout ? 16 : 14} className="text-text-muted shrink-0" />
-                                )}
-                            </button>
-
-                            {isOpen && (
-                                <div className={desktopLayout
-                                    ? "border-t border-[var(--border-subtle)] px-5 pb-5 pt-4 grid grid-cols-1 lg:grid-cols-2 gap-4"
-                                    : "mt-3 space-y-4 pl-2"
-                                }>
-                                    {unit.levels.map((level) => {
-                                        const levelRequiredDone = level.requiredActivities.filter((activity) =>
-                                            isActivityCompleted(activity, guidedProgress)
-                                        ).length;
-                                        const levelHasCurrent = level.requiredActivities.some((activity) => activity.id === currentId);
-                                        const isLevelDone =
-                                            level.requiredActivities.length > 0 &&
-                                            levelRequiredDone === level.requiredActivities.length;
-
-                                        return (
-                                            <div
-                                                key={level.levelNumber}
-                                                className={`rounded-xl border ${desktopLayout ? "p-4" : "p-3.5"} transition-all duration-300 relative overflow-hidden ${
-                                                    isLevelDone
-                                                        ? "bg-gradient-to-r from-[rgba(176,87,64,0.06)] to-[rgba(232,160,144,0.03)] dark:from-[rgba(176,87,64,0.12)] dark:to-[rgba(232,160,144,0.05)] border-[var(--tone-grammar-accent,#b05740)]/40 hover:border-[var(--tone-grammar-accent,#b05740)]/60 shadow-sm"
-                                                        : levelHasCurrent
-                                                          ? "bg-[var(--tone-vocab-surface,rgba(106,141,115,0.05))] border-[var(--tone-vocab-accent,#6a8d73)]/60 hover:border-[var(--tone-vocab-accent,#6a8d73)] shadow-md ring-2 ring-[var(--tone-vocab-accent,#6a8d73)]/15"
-                                                          : "bg-bg/50 border-[var(--border-subtle,#ddd6ca)] hover:bg-surface-subtle/40"
-                                                }`}
-                                            >
-                                                {isLevelDone && (
-                                                    <div className="absolute right-0 top-0 h-16 w-16 overflow-hidden pointer-events-none">
-                                                        <div className="absolute top-[-8px] right-[-24px] rotate-45 bg-[var(--tone-grammar-accent,#b05740)]/10 dark:bg-[var(--tone-grammar-accent,#b05740)]/20 py-1 text-center w-20 text-[9px] font-bold text-[var(--tone-grammar-accent,#b05740)]">
-                                                            🏆
-                                                        </div>
-                                                    </div>
-                                                )}
-                                                <div className="mb-2.5 relative z-10">
-                                                    <div className="flex items-start justify-between gap-3">
-                                                        <div className="min-w-0">
-                                                            <p className="text-[11px] font-bold uppercase tracking-wide text-text-muted">
-                                                                Week {level.levelNumber} / Level {level.levelNumber}
-                                                            </p>
-                                                            <h4 className="text-sm font-bold text-text mt-0.5">{level.levelTitle}</h4>
-                                                        </div>
-                                                        <span
-                                                            className={`shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-bold border transition-all duration-300 ${
-                                                                isLevelDone
-                                                                    ? "bg-[var(--tone-grammar-chip-bg,#f5ede8)] text-[var(--tone-grammar-accent,#b05740)] border-[var(--tone-grammar-accent,#b05740)]/20 shadow-sm scale-105 animate-[badge-pop_0.35s_ease-out]"
-                                                                    : levelHasCurrent
-                                                                      ? "bg-[var(--tone-vocab-chip-bg,#eef3ee)] text-[var(--tone-vocab-accent,#6a8d73)] border-[var(--tone-vocab-accent,#6a8d73)]/20 animate-pulse"
-                                                                      : "text-text-muted bg-surface-subtle/50 border-transparent"
-                                                            }`}
-                                                        >
-                                                            {isLevelDone ? "🏆 Level complete" : `${levelRequiredDone}/${level.requiredActivities.length}`}
-                                                        </span>
-                                                    </div>
-                                                    {level.levelGoal && (
-                                                        <p className="mt-1 text-xs leading-snug text-text-muted">
-                                                            Goal: {level.levelGoal}
-                                                        </p>
-                                                    )}
-                                                </div>
-
-                                                <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-text-muted">
-                                                    Required
-                                                </p>
-                                                <div className="relative pl-5">
-                                                    <div
-                                                        className="absolute left-[9px] top-1 bottom-1 w-px rounded-full"
-                                                        style={{ background: "var(--border-subtle, #ddd6ca)" }}
-                                                    />
-                                                    <div className="space-y-1.5">
-                                                        {level.requiredActivities.map((activity) => (
-                                                            <GuidedActivityRow
-                                                                key={activity.id}
-                                                                activity={activity}
-                                                                assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
-                                                                isCompleted={isActivityCompleted(activity, guidedProgress)}
-                                                                isCurrent={activity.id === currentId}
-                                                                currentLabel={currentLabel}
-                                                            />
-                                                        ))}
-                                                    </div>
-                                                </div>
-
-                                                {level.extraPractice && level.extraPractice.length > 0 && (
-                                                    <div className="mt-3 border-t pt-3" style={{ borderColor: "var(--border-subtle)" }}>
-                                                        <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-text-muted">
-                                                            Extra Practice
-                                                        </p>
-                                                        <div className="relative pl-5">
-                                                            <div
-                                                                className="absolute left-[9px] top-1 bottom-1 w-px rounded-full"
-                                                                style={{ background: "var(--border-subtle, #ddd6ca)" }}
-                                                            />
-                                                            <div className="space-y-1.5">
-                                                                {level.extraPractice.map((activity) => (
-                                                                    <GuidedActivityRow
-                                                                        key={activity.id}
-                                                                        activity={activity}
-                                                                        assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
-                                                                        isCompleted={isActivityCompleted(activity, guidedProgress)}
-                                                                        isCurrent={false}
-                                                                        currentLabel={currentLabel}
-                                                                    />
-                                                                ))}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            )}
-                        </section>
+                        <div
+                            key={week.level.levelNumber}
+                            id={isFirstUnitWeek ? `unit-${week.unitNumber}` : undefined}
+                            className={isFirstUnitWeek ? MAP_SCROLL_MARGIN : undefined}
+                        >
+                            {isFirstUnitWeek ? (
+                                <UnitSectionHeader
+                                    unitNumber={week.unitNumber}
+                                    unitMonth={week.unitMonth}
+                                />
+                            ) : null}
+                            <DesktopWeekPanel
+                                week={week}
+                                isOpen={openDesktopWeek === week.level.levelNumber}
+                                currentId={currentId}
+                                currentLabel={currentLabel}
+                                guidedAssignments={guidedAssignments}
+                                guidedProgress={guidedProgress}
+                                optionalOpen={Boolean(desktopOptionalOpen[week.level.levelNumber])}
+                                pulseCurrent={pulseCurrentActivity}
+                                onToggle={() =>
+                                    setDesktopSelectedWeek((prev) =>
+                                        prev === week.level.levelNumber ? null : week.level.levelNumber
+                                    )
+                                }
+                                onToggleOptional={() =>
+                                    setDesktopOptionalOpen((prev) => ({
+                                        ...prev,
+                                        [week.level.levelNumber]: !prev[week.level.levelNumber],
+                                    }))
+                                }
+                            />
+                        </div>
                     );
                 })}
             </div>
         </div>
+        );
+    }
+
+    return (
+        <CoursePathReturnHrefContext.Provider value={mapReturnHref}>
+            {content}
+        </CoursePathReturnHrefContext.Provider>
     );
 }
 
@@ -673,6 +1449,8 @@ export function ClassCoursePath({
     guidedAssignments = {},
     guidedProgress = {},
     desktopLayout = false,
+    initialWeek = null,
+    focusNextActivity = false,
 }: Props) {
     if (guidedUnits.length > 0) {
         return (
@@ -681,6 +1459,8 @@ export function ClassCoursePath({
                 guidedAssignments={guidedAssignments}
                 guidedProgress={guidedProgress}
                 desktopLayout={desktopLayout}
+                initialWeek={initialWeek}
+                focusNextActivity={focusNextActivity}
             />
         );
     }

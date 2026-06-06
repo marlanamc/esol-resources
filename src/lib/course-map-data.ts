@@ -488,10 +488,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Present Perfect Spiral Practice"
           },
           {
+            "id": "can-should-must",
+            "href": "/grammar-reader/can-should-must",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Can, Should, Must"
+          },
+          {
             "id": "vocab-oct-w4",
             "activityId": "vocab-oct-w4",
             "slot": "required",
-            "order": 0,
+            "order": 1,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Vocab: Communication Verbs"
@@ -563,6 +572,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 9: freeze + leak"
+          },
+          {
+            "id": "have-you-ever",
+            "href": "/grammar-reader/have-you-ever",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Have You Ever...?"
           }
         ]
       },
@@ -607,10 +625,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Verb Quiz 10: call + fix"
           },
           {
+            "id": "what-are-you-good-at",
+            "href": "/grammar-reader/what-are-you-good-at",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "What Are You Good At?"
+          },
+          {
             "id": "short-i-long-e-lab",
             "activityId": "pron-short-i-long-e-listening",
             "slot": "required",
-            "order": 3,
+            "order": 4,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "Short i vs Long e Minimal Pair Lab"
@@ -647,6 +674,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 11: sleep + wake"
+          },
+          {
+            "id": "lets-make-a-suggestion",
+            "href": "/grammar-reader/lets-make-a-suggestion",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Let's Make a Suggestion"
           }
         ]
       },
@@ -688,6 +724,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 12: eat + drink"
+          },
+          {
+            "id": "zero-first-conditional",
+            "href": "/grammar-reader/zero-first-conditional",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Zero + First Conditional: If This, Then That"
           }
         ]
       }
@@ -702,16 +747,16 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-13",
         "number": 13,
-        "title": "Smart Spending + Big Numbers",
+        "title": "How Long + For and Since",
         "items": [
           {
-            "id": "comparatives-superlatives-mini-extra",
-            "href": "/grammar-reader/superlatives-quantifiers",
-            "slot": "extra",
+            "id": "how-long-for-since-guide",
+            "href": "/grammar-reader/how-long-for-since",
+            "slot": "required",
             "order": 0,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Comparatives + Superlatives Guide"
+            "title": "How Long + For and Since"
           },
           {
             "id": "vocab-dec-w1",
@@ -748,21 +793,22 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Verb Quiz 13: sit + spend"
           }
-        ]
+        ],
+        "goal": "Talk about how long you have lived, worked, and kept the same phone plan while hunting for something cheaper."
       },
       {
         "id": "week-14",
         "number": 14,
-        "title": "Bills, Fees, Returns + Scams",
+        "title": "More, Less, the Most: Comparatives + Superlatives",
         "items": [
           {
-            "id": "quantifiers-mini-extra",
-            "href": "/grammar-reader/superlatives-quantifiers",
-            "slot": "extra",
+            "id": "more-less-the-most",
+            "href": "/grammar-reader/more-less-the-most",
+            "slot": "required",
             "order": 0,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Quantifiers Guide"
+            "title": "More, Less, the Most: Comparatives + Superlatives"
           },
           {
             "id": "vocab-dec-w2",
@@ -791,6 +837,59 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "quiz",
             "title": "Verb Quiz 14: cost + lend"
           }
+        ],
+        "goal": "Compare prices, phone plans, and apartment listings when stretching a paycheck."
+      },
+      {
+        "id": "week-15",
+        "number": 15,
+        "title": "How Much / How Many: Countable + Uncountable",
+        "goal": "Use much, many, a lot of, a few, and a little when feeding a family on a budget.",
+        "items": [
+          {
+            "id": "quantifiers-countable-extra",
+            "href": "/grammar-reader/superlatives-quantifiers",
+            "slot": "extra",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Quantifiers: Much, Many, A Few, A Little"
+          },
+          {
+            "id": "countable-uncountable-game",
+            "activityId": "countable-uncountable-nouns",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Countable vs Uncountable Practice"
+          },
+          {
+            "id": "grocery-budget-practice",
+            "slot": "required",
+            "order": 1,
+            "wrappedGame": false,
+            "activityType": "game",
+            "title": "Grocery Budget Practice"
+          },
+          {
+            "id": "verb-quiz-15-dec",
+            "activityId": "verb-quiz-15",
+            "slot": "required",
+            "order": 2,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 15: give + send"
+          },
+          {
+            "id": "how-much-how-many",
+            "href": "/grammar-reader/how-much-how-many",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "How Much / How Many: Countable + Uncountable"
+          }
         ]
       }
     ]
@@ -802,8 +901,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "month": "January",
     "weeks": [
       {
-        "id": "week-15",
-        "number": 15,
+        "id": "week-16",
+        "number": 16,
         "title": "Housing Basics",
         "items": [
           {
@@ -834,21 +933,30 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "R vs L Minimal Pair Lab"
           },
           {
-            "id": "verb-quiz-15",
-            "activityId": "verb-quiz-15",
+            "id": "asking-right-questions-housing",
+            "href": "/grammar-reader/asking-right-questions-housing",
             "slot": "required",
             "order": 2,
             "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 15: give + send"
+            "activityType": "guide",
+            "title": "Asking the Right Questions About Housing"
           }
         ]
       },
       {
-        "id": "week-16",
-        "number": 16,
+        "id": "week-17",
+        "number": 17,
         "title": "Comparing Housing Options",
         "items": [
+          {
+            "id": "have-to-dont-have-to-cant",
+            "href": "/grammar-reader/have-to-dont-have-to-cant",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Have to, Don't Have to, Can't"
+          },
           {
             "id": "superlatives-quantifiers-review-extra",
             "href": "/grammar-reader/superlatives-quantifiers",
@@ -895,8 +1003,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-17",
-        "number": 17,
+        "id": "week-18",
+        "number": 18,
         "title": "Landlord Calls + Repair Requests",
         "items": [
           {
@@ -933,12 +1041,21 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 17: work + apply"
+          },
+          {
+            "id": "need-to-find-a-place-infinitives",
+            "href": "/grammar-reader/need-to-find-a-place-infinitives",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "I Need to Find a Place: Infinitives"
           }
         ]
       },
       {
-        "id": "week-18",
-        "number": 18,
+        "id": "week-19",
+        "number": 19,
         "title": "Housing Problems + Solutions",
         "items": [
           {
@@ -995,8 +1112,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "month": "February",
     "weeks": [
       {
-        "id": "week-19",
-        "number": 19,
+        "id": "week-20",
+        "number": 20,
         "title": "Resume + Workplace Basics",
         "items": [
           {
@@ -1028,8 +1145,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-20",
-        "number": 20,
+        "id": "week-21",
+        "number": 21,
         "title": "Work Stories + Schedules",
         "items": [
           {
@@ -1070,8 +1187,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-21",
-        "number": 21,
+        "id": "week-22",
+        "number": 22,
         "title": "Vacation Catch-Up",
         "items": [
           {
@@ -1110,8 +1227,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-22",
-        "number": 22,
+        "id": "week-23",
+        "number": 23,
         "title": "Workplace Rights + Obligation",
         "items": [
           {
@@ -1168,8 +1285,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "month": "March",
     "weeks": [
       {
-        "id": "week-23",
-        "number": 23,
+        "id": "week-24",
+        "number": 24,
         "title": "Job Applications + Interviews",
         "items": [
           {
@@ -1219,8 +1336,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-24",
-        "number": 24,
+        "id": "week-25",
+        "number": 25,
         "title": "Career Stories",
         "items": [
           {
@@ -1270,8 +1387,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-25",
-        "number": 25,
+        "id": "week-26",
+        "number": 26,
         "title": "Work Experience + Advocacy",
         "items": [
           {
@@ -1329,8 +1446,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-26",
-        "number": 26,
+        "id": "week-27",
+        "number": 27,
         "title": "Pay Stubs + Wage Math",
         "items": [
           {
@@ -1371,8 +1488,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "month": "April",
     "weeks": [
       {
-        "id": "week-27",
-        "number": 27,
+        "id": "week-28",
+        "number": 28,
         "title": "Healthcare Basics",
         "items": [
           {
@@ -1414,8 +1531,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-28",
-        "number": 28,
+        "id": "week-29",
+        "number": 29,
         "title": "Symptoms + Clinic Visits",
         "items": [
           {
@@ -1447,8 +1564,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-29",
-        "number": 29,
+        "id": "week-30",
+        "number": 30,
         "title": "Vacation Catch-Up",
         "items": [
           {
@@ -1487,8 +1604,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-30",
-        "number": 30,
+        "id": "week-31",
+        "number": 31,
         "title": "Pharmacy + Notices",
         "items": [
           {
@@ -1546,8 +1663,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "month": "May",
     "weeks": [
       {
-        "id": "week-31",
-        "number": 31,
+        "id": "week-32",
+        "number": 32,
         "title": "Wellness Routines + Follow-Up",
         "items": [
           {
@@ -1597,8 +1714,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-32",
-        "number": 32,
+        "id": "week-33",
+        "number": 33,
         "title": "Nutrition + Charts",
         "items": [
           {
@@ -1631,8 +1748,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-33",
-        "number": 33,
+        "id": "week-34",
+        "number": 34,
         "title": "Stress, Sleep + Healthy Habits",
         "items": [
           {
@@ -1672,8 +1789,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         ]
       },
       {
-        "id": "week-34",
-        "number": 34,
+        "id": "week-35",
+        "number": 35,
         "title": "Community Wellness + Speaking Games",
         "items": [
           {
@@ -1722,9 +1839,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "month": "June",
     "weeks": [
       {
-        "id": "week-35",
-        "number": 35,
-        "title": "Year in Review + Post-Test",
+        "id": "week-36",
+        "number": 36,
+        "title": "Year in Review + Celebrate",
         "items": [
           {
             "id": "full-verb-tenses-overview-extra",
@@ -1769,41 +1886,34 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "assessment",
             "title": "Post-Test Window"
-          }
-        ]
-      },
-      {
-        "id": "week-36",
-        "number": 36,
-        "title": "Celebrate + Keep Learning",
-        "items": [
+          },
           {
-            "id": "final-reflection-writing",
-            "slot": "required",
+            "id": "final-reflection-writing-jun-extra",
+            "slot": "extra",
             "order": 0,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Final Reflection: \"I have learned...\""
           },
           {
-            "id": "future-goals-writing",
-            "slot": "required",
+            "id": "future-goals-writing-jun-extra",
+            "slot": "extra",
             "order": 1,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Future Goals Writing"
           },
           {
-            "id": "practice-library-tour",
-            "slot": "required",
+            "id": "practice-library-tour-jun-extra",
+            "slot": "extra",
             "order": 2,
             "wrappedGame": false,
             "activityType": "review",
             "title": "Practice Library Tour"
           },
           {
-            "id": "end-of-year-party",
-            "slot": "required",
+            "id": "end-of-year-party-jun-extra",
+            "slot": "extra",
             "order": 3,
             "wrappedGame": false,
             "activityType": "speaking",

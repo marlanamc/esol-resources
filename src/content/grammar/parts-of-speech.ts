@@ -2,7 +2,7 @@ import type { InteractiveGuideContent } from "@/types/activity";
 import { partsOfSpeechImages as img } from "@/data/parts-of-speech-images.generated";
 
 // ---------------------------------------------------------------------------
-// Visual helpers (standard toolkit — copy from welcome-back-tenses-review.ts)
+// Visual helpers (standard toolkit. copy from welcome-back-tenses-review.ts)
 // ---------------------------------------------------------------------------
 
 const sceneCard = (
@@ -74,7 +74,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
   tableOfContents: true,
   sections: [
     // =========================================================================
-    // SECTION 1 — Nouns
+    // SECTION 1. Nouns
     // =========================================================================
     {
       id: "nouns",
@@ -83,7 +83,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneFrontDesk", "East Boston Community Center. Tuesday, 5:30 PM.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara walks in to sign up for a free English class. She looks around. Every sign, every room, every person — all of them have a <strong>name</strong>. Those names are nouns.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara walks in to sign up for a free English class. James at the front desk greets her. A poster says <strong>Hispanic Heritage Month</strong> starts September 15. Her daughter saw the same sign at school. Every sign, every room, every person has a <strong>name</strong>. Those names are nouns.</p>
 
         ${dialogue([
           { speaker: "Volunteer", avatar: "🙋", text: "Welcome! This is the <strong>registration desk</strong>. Can I get your <strong>name</strong> and <strong>address</strong>?", side: "left", tone: "sage" },
@@ -240,7 +240,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 2 — Verbs
+    // SECTION 2. Verbs
     // =========================================================================
     {
       id: "verbs",
@@ -260,7 +260,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
-          <p style="margin: 0; font-size: 1.05rem">There are two types of verbs. <strong>Action verbs</strong> describe things you do. <strong>State verbs</strong> describe things that are true about you — what you feel, know, have, or think.</p>
+          <p style="margin: 0; font-size: 1.05rem">There are two types of verbs. <strong>Action verbs</strong> describe things you do. <strong>State verbs</strong> describe things that are true about you. what you feel, know, have, or think.</p>
         </div>
 
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">Action verbs: things you do</p>
@@ -314,8 +314,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Carlos <strong>helps</strong> new students every Tuesday.",
               options: [
-                { value: "action", label: "Action verb — you can watch someone do it" },
-                { value: "state", label: "State verb — describes a feeling, fact, or mental state" },
+                { value: "action", label: "Action verb. you can watch someone do it" },
+                { value: "state", label: "State verb. describes a feeling, fact, or mental state" },
               ],
               expectedAnswer: "action",
             },
@@ -323,8 +323,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Amara <strong>knows</strong> Carlos from the neighborhood.",
               options: [
-                { value: "action", label: "Action verb — you can watch someone do it" },
-                { value: "state", label: "State verb — describes a feeling, fact, or mental state" },
+                { value: "action", label: "Action verb. you can watch someone do it" },
+                { value: "state", label: "State verb. describes a feeling, fact, or mental state" },
               ],
               expectedAnswer: "state",
             },
@@ -332,8 +332,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "She <strong>fills out</strong> the form at the registration desk.",
               options: [
-                { value: "action", label: "Action verb — you can watch someone do it" },
-                { value: "state", label: "State verb — describes a feeling, fact, or mental state" },
+                { value: "action", label: "Action verb. you can watch someone do it" },
+                { value: "state", label: "State verb. describes a feeling, fact, or mental state" },
               ],
               expectedAnswer: "action",
             },
@@ -341,8 +341,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Carlos <strong>wants</strong> to practice his Haitian Creole.",
               options: [
-                { value: "action", label: "Action verb — you can watch someone do it" },
-                { value: "state", label: "State verb — describes a feeling, fact, or mental state" },
+                { value: "action", label: "Action verb. you can watch someone do it" },
+                { value: "state", label: "State verb. describes a feeling, fact, or mental state" },
               ],
               expectedAnswer: "state",
             },
@@ -422,7 +422,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 2 — Adjectives
+    // SECTION 2. Adjectives
     // =========================================================================
     {
       id: "adjectives",
@@ -496,6 +496,11 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "small",
             },
+            {
+              type: "text",
+              label: "Amara has a ___ job at a busy hospital. (full-time)",
+              expectedAnswers: ["full-time", "fulltime"],
+            },
           ],
         },
         {
@@ -555,7 +560,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 3 — Adverbs
+    // SECTION 3. Adverbs
     // =========================================================================
     {
       id: "adverbs",
@@ -685,7 +690,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 4 — All Four Together
+    // SECTION 4. All Four Together
     // =========================================================================
     {
       id: "all-four-together",
@@ -783,6 +788,11 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "adverb",
             },
+            {
+              type: "text",
+              label: "They need a ___ notebook. (small)",
+              expectedAnswers: ["small"],
+            },
           ],
         },
         {
@@ -794,8 +804,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"Yemi reads the announcement <strong>careful</strong>.\"",
               options: [
-                { value: "careful", label: "careful (adjective) — correct as is" },
-                { value: "carefully", label: "carefully (adverb) — reads how?" },
+                { value: "careful", label: "careful (adjective). correct as is" },
+                { value: "carefully", label: "carefully (adverb). reads how?" },
               ],
               expectedAnswer: "carefully",
             },
@@ -803,8 +813,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"The room is <strong>largely</strong> and comfortable.\"",
               options: [
-                { value: "largely", label: "largely (adverb) — correct as is" },
-                { value: "large", label: "large (adjective) — describes the room" },
+                { value: "largely", label: "largely (adverb). correct as is" },
+                { value: "large", label: "large (adjective). describes the room" },
               ],
               expectedAnswer: "large",
             },

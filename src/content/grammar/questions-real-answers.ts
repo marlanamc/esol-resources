@@ -2,7 +2,7 @@ import type { InteractiveGuideContent } from "@/types/activity";
 import { questionsRealAnswersImages as img } from "@/data/questions-real-answers-images.generated";
 
 // ---------------------------------------------------------------------------
-// Visual helpers (standard toolkit — copied from welcome-back-tenses-review.ts)
+// Visual helpers (standard toolkit. copied from welcome-back-tenses-review.ts)
 // ---------------------------------------------------------------------------
 
 const sceneCard = (
@@ -81,17 +81,17 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneFirstDay", "East Boston Adult Education Center. First night of class.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">The first week of class is full of questions. Questions help you learn names, find out where people are from, and start a real conversation.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">The first week of class is full of questions. Sarah asks about teachers on the first night. Questions help you learn names, find out where people are from, and start a real conversation.</p>
 
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">Six question words. Each one asks for a different kind of information.</p>
 
         ${dialogue([
-          { speaker: "Rosa", avatar: "👩", text: "<strong>Who</strong> is your teacher this semester?", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑", text: "Ms. Tran. <strong>What</strong> class are you in?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩", text: "Level 3. <strong>Where</strong> are you from originally?", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑", text: "Honduras. <strong>When</strong> did you start here?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩", text: "Last September. <strong>Why</strong> did you choose this program?", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑", text: "For work. <strong>How</strong> do you come to class?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "<strong>Who</strong> is your teacher this semester?", side: "right", tone: "terracotta" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "Ms. Tran. <strong>What</strong> class are you in?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Level 3. <strong>Where</strong> are you from originally?", side: "right", tone: "terracotta" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "Honduras. <strong>When</strong> did you start here?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Last September. <strong>Why</strong> did you choose this program?", side: "right", tone: "terracotta" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "For work. <strong>How</strong> do you come to class?", side: "left", tone: "sage" },
         ])}
 
         <div style="display: grid; gap: 0.45rem; margin: 1.25rem 0">
@@ -156,12 +156,17 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "why",
             },
+            {
+              type: "text",
+              label: "\"___ is your teacher?\" (You want to know the person's name.)",
+              expectedAnswers: ["Who", "who"],
+            },
           ],
         },
       ],
     },
 
-    // SECTION 1 — Who, What, Where
+    // SECTION 1. Who, What, Where
     {
       id: "who-what-where",
       stepNumber: 1,
@@ -172,9 +177,9 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Amara", avatar: "👩🏿", text: "<strong>Who</strong> is your landlord? Mine never answers the phone.", side: "left", tone: "sage" },
-          { speaker: "Neighbor", avatar: "🧑", text: "Mr. Costa. He lives on the second floor. <strong>What</strong> is your apartment number?", side: "right", tone: "blue" },
+          { speaker: "Neighbor", avatar: "🧑🏽", text: "Mr. Costa. He\'s on the second floor. <strong>What</strong> is your apartment number?", side: "right", tone: "blue" },
           { speaker: "Amara", avatar: "👩🏿", text: "3B. <strong>Where</strong> do you work?", side: "left", tone: "sage" },
-          { speaker: "Neighbor", avatar: "🧑", text: "At the fish market on Meridian. <strong>What</strong> do you do?", side: "right", tone: "blue" },
+          { speaker: "Neighbor", avatar: "🧑🏽", text: "I\'m at the fish market on Meridian. <strong>What</strong> do you do?", side: "right", tone: "blue" },
           { speaker: "Amara", avatar: "👩🏿", text: "I work at the school cafeteria. <strong>Where</strong> are your kids in school?", side: "left", tone: "sage" },
         ])}
 
@@ -242,6 +247,11 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "a",
             },
+            {
+              type: "text",
+              label: "\"Where ___ you work?\" (Fill in the missing helper verb.)",
+              expectedAnswers: ["do"],
+            },
           ],
         },
         {
@@ -266,7 +276,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       ],
     },
 
-    // SECTION 2 — When and How
+    // SECTION 2. When and How
     {
       id: "when-and-how",
       stepNumber: 2,
@@ -370,7 +380,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       },
     },
 
-    // SECTION 3 — Why
+    // SECTION 3. Why
     {
       id: "why-giving-reasons",
       stepNumber: 3,
@@ -380,11 +390,11 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
         ${sceneCard("sceneWhyClassroom", "ESL classroom, Level 3. Before class starts.", "amber")}
 
         ${dialogue([
-          { speaker: "Linh", avatar: "👩", text: "<strong>Why</strong> did you sign up for this class?", side: "left", tone: "amber" },
-          { speaker: "Classmate", avatar: "🧑", text: "<strong>Because</strong> I need better English for my job. My boss speaks only English. <strong>Why</strong> did you?", side: "right", tone: "sage" },
-          { speaker: "Linh", avatar: "👩", text: "<strong>Because</strong> I want to help my kids with homework. And I want to understand the school letters.", side: "left", tone: "amber" },
-          { speaker: "Classmate", avatar: "🧑", text: "Me too. <strong>Why</strong> is English spelling so hard?", side: "right", tone: "sage" },
-          { speaker: "Linh", avatar: "👩", text: "That's the big question!", side: "left", tone: "amber" },
+          { speaker: "Linh", avatar: "👩🏾", text: "<strong>Why</strong> did you sign up for this class?", side: "left", tone: "amber" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "<strong>Because</strong> I need better English for my job. My boss speaks only English. <strong>Why</strong> did you?", side: "right", tone: "sage" },
+          { speaker: "Linh", avatar: "👩🏾", text: "<strong>Because</strong> I want to help my kids with homework. And I want to understand the school letters.", side: "left", tone: "amber" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "Me too. <strong>Why</strong> is English spelling so hard?", side: "right", tone: "sage" },
+          { speaker: "Linh", avatar: "👩🏾", text: "That's the big question!", side: "left", tone: "amber" },
         ])}
 
         <div class="gc-bg-amber-alpha gc-callout-amber" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
@@ -462,29 +472,34 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
               words: ["Why", "did", "she", "choose", "this", "program"],
               correctAnswer: "Why did she choose this program",
             },
+            {
+              type: "text",
+              label: "\"Why do you study English?\" A good answer usually starts with ___.",
+              expectedAnswers: ["because", "Because"],
+            },
           ],
         },
       ],
     },
 
-    // SECTION 4 — All six together
+    // SECTION 4. All six together
     {
       id: "all-six-together",
       stepNumber: 4,
       title: "All six in a real conversation",
       icon: "🤝",
       explanation: `
-        ${sceneCard("sceneNeighborsMeet", "Meridian Street, East Boston. Sunday afternoon.", "terracotta")}
+        ${sceneCard("sceneNeighborsMeet", "Meridian Street, East Boston. Mid-September, Sunday afternoon.", "terracotta")}
+
+        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.6">Many families on this block celebrate <strong>Central American Independence Day</strong> on September 15. so <strong>when</strong> questions come up a lot this time of year.</p>
 
         ${dialogue([
-          { speaker: "Diego", avatar: "🧑", text: "Hey, are you new to the building? <strong>What</strong> is your name?", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏽", text: "Fernanda. And you?", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "🧑", text: "Diego. <strong>Where</strong> are you from?", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "Hey, are you new to the building? <strong>What</strong> is your name?", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "Diego. <strong>Where</strong> are you from?", side: "right", tone: "terracotta" },
           { speaker: "Fernanda", avatar: "👩🏽", text: "Brazil. Sao Paulo. <strong>Who</strong> is the super for this building?", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "🧑", text: "Mr. Alves. He is on the first floor. <strong>When</strong> did you move in?", side: "right", tone: "terracotta" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "Mr. Alves. He is on the first floor. <strong>When</strong> did you move in?", side: "right", tone: "terracotta" },
           { speaker: "Fernanda", avatar: "👩🏽", text: "Last week. <strong>Why</strong> did you choose East Boston?", side: "left", tone: "blue" },
-          { speaker: "Diego", avatar: "🧑", text: "It is close to work. <strong>How</strong> do you get around? Do you have a car?", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩🏽", text: "No car. I take the Blue Line. It is easy.", side: "left", tone: "blue" },
+          { speaker: "Diego", avatar: "🧑🏽", text: "It is close to work. <strong>How</strong> do you get around? Do you have a car?", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
@@ -531,6 +546,11 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
                 { value: "c", label: "How she gets to work?" },
               ],
               expectedAnswer: "c",
+            },
+            {
+              type: "text",
+              label: "\"___ did Diego choose East Boston?\" (You want to know the reason.)",
+              expectedAnswers: ["Why", "why"],
             },
           ],
         },
@@ -642,7 +662,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       topic: "why",
       skill: "usage",
       skillTag: "meaning-why-reason",
-      difficulty: "easy",
+      difficulty: "medium",
     },
     {
       id: "qra-q6",

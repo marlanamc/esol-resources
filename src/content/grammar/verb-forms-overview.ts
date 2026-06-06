@@ -96,9 +96,9 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "On the quiz you will see five codes: <strong>V1, V1-3rd, V1-ing, V2,</strong> and <strong>V3</strong>. Same codes every week.", side: "left", tone: "sage" },
-          { speaker: "Carlos", avatar: "👨", text: "So I do not have to learn new labels each time?", side: "right", tone: "terracotta" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "So I do not have to learn new labels each time?", side: "right", tone: "terracotta" },
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Exactly. Two verbs per quiz. V1 is often filled in for you. You type the other four.", side: "left", tone: "sage" },
-          { speaker: "Fernanda", avatar: "👩", text: "Like leveling up in a game. One small step at a time.", side: "right", tone: "blue" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "Like leveling up in a game. One small step at a time.", side: "right", tone: "blue" },
         ])}
 
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">The five codes with the verb <em>work</em>:</p>
@@ -141,6 +141,11 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "v1",
             },
+            {
+              type: "text",
+              label: "For the verb <em>work</em>, the V1 (base) form is ___.",
+              expectedAnswers: ["work"],
+            },
           ],
         },
       ],
@@ -155,9 +160,9 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         ${sceneCard("sceneWorkShift", "Meridian Street café. Tuesday afternoon shift.", "sage")}
 
         ${dialogue([
-          { speaker: "Minh", avatar: "👨", text: "I <strong>work</strong> here three days a week. My sister <strong>works</strong> mornings only.", side: "right", tone: "terracotta" },
-          { speaker: "Manager", avatar: "🧑‍💼", text: "Right now she <strong>is working</strong> the register. Can you cover the back?", side: "left", tone: "sage" },
-          { speaker: "Minh", avatar: "👨", text: "Sure. I am <strong>having</strong> a break, but I can start in five minutes.", side: "right", tone: "terracotta" },
+          { speaker: "Minh", avatar: "👨🏽", text: "I <strong>work</strong> here three days a week. My sister <strong>works</strong> mornings only.", side: "right", tone: "terracotta" },
+          { speaker: "Manager", avatar: "🧑‍💼", text: "Right now she\'s <strong>working</strong> the register. Can you cover the back?", side: "left", tone: "sage" },
+          { speaker: "Minh", avatar: "👨🏽", text: "Sure. I am <strong>having</strong> a break, but I can start in five minutes.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -217,6 +222,11 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "working",
             },
+            {
+              type: "text",
+              label: "My brother ___ at Logan Airport. (work)",
+              expectedAnswers: ["works"],
+            },
           ],
         },
         {
@@ -245,7 +255,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Nadine", avatar: "👩🏾", text: "Yesterday I <strong>worked</strong> until 6. I was so tired.", side: "right", tone: "terracotta" },
-          { speaker: "Neighbor", avatar: "🧑", text: "Me too. I <strong>had</strong> a long shift at the hospital.", side: "left", tone: "sage" },
+          { speaker: "Neighbor", avatar: "🧑🏽", text: "Me too. I\'ve <strong>had</strong> a long shift at the hospital.", side: "left", tone: "sage" },
           { speaker: "Nadine", avatar: "👩🏾", text: "I <strong>have worked</strong> at the school cafeteria for three years now.", side: "right", tone: "terracotta" },
         ])}
 
@@ -255,12 +265,12 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
           <div style="padding: 0.65rem 1rem; border-radius: 0.5rem; border-left: 3px solid #b56e1a; background: rgba(181,110,26,0.07)">
-            <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #b56e1a; margin-bottom: 0.3rem">V2 — past simple</div>
+            <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #b56e1a; margin-bottom: 0.3rem">V2. past simple</div>
             <p style="margin: 0"><em>work</em> → <strong>worked</strong> &nbsp;·&nbsp; <em>have</em> → <strong>had</strong></p>
             <p style="margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--color-text-muted)">Yesterday I <strong>worked</strong> until 6.</p>
           </div>
           <div style="padding: 0.65rem 1rem; border-radius: 0.5rem; border-left: 3px solid #6a8d73; background: rgba(106,141,115,0.07)">
-            <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #6a8d73; margin-bottom: 0.3rem">V3 — past participle</div>
+            <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #6a8d73; margin-bottom: 0.3rem">V3. past participle</div>
             <p style="margin: 0"><em>work</em> → <strong>worked</strong> &nbsp;·&nbsp; <em>have</em> → <strong>had</strong></p>
             <p style="margin: 0.3rem 0 0; font-size: 0.9rem; color: var(--color-text-muted)">I <strong>have worked</strong> here for three years.</p>
           </div>
@@ -305,6 +315,11 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
                 { value: "having", label: "having" },
               ],
               expectedAnswer: "had",
+            },
+            {
+              type: "text",
+              label: "Last night I ___ until 10 pm. (work)",
+              expectedAnswers: ["worked"],
             },
           ],
         },
@@ -385,6 +400,11 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "has",
             },
+            {
+              type: "text",
+              label: "Last year she ___ a nurse at the clinic. (be)",
+              expectedAnswers: ["was"],
+            },
           ],
         },
       ],
@@ -399,8 +419,8 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         ${sceneCard("sceneAppQuiz", "After class. Carlos opens the app on his Chromebook.", "sage")}
 
         ${dialogue([
-          { speaker: "Carlos", avatar: "👨", text: "Okay, Verb Quiz 1. <strong>be</strong> and <strong>have</strong>. I know what V1 through V3 mean now.", side: "right", tone: "terracotta" },
-          { speaker: "Fernanda", avatar: "👩", text: "Same codes every week. Two verbs at a time. That helps.", side: "left", tone: "blue" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "Okay, Verb Quiz 1. <strong>be</strong> and <strong>have</strong>. I know what V1 through V3 mean now.", side: "right", tone: "terracotta" },
+          { speaker: "Fernanda", avatar: "👩🏾", text: "Same codes every week. Two verbs at a time. That helps.", side: "left", tone: "blue" },
         ])}
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">You do not need to memorize everything today. This guide gives you the map. The quiz helps you practice two verbs at a time.</p>
@@ -446,6 +466,11 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
                 { value: "v3", label: "V3" },
               ],
               expectedAnswer: "v3",
+            },
+            {
+              type: "text",
+              label: "Verb Quiz 1 practices the verbs ___ and ___.",
+              expectedAnswers: ["be and have", "be, have", "have and be"],
             },
           ],
         },
@@ -517,7 +542,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
       topic: "v1-ing",
       skill: "usage",
       skillTag: "progress-now",
-      difficulty: "easy",
+      difficulty: "medium",
     },
     {
       id: "vfo-q5",
