@@ -122,10 +122,10 @@ async function main() {
     ...grammarHospitalContent,
     courseMapPreset: true,
     courseMapTitle: "Grammar Hospital: Helper Verb Repair",
-    courseMapDirections: "Fix beginner helper-verb sentences. The level is already chosen for you.",
+    courseMapDirections: "Fix helper-verb sentences.",
     defaultSettings: {
       tier: "beginner",
-      complexity: 3,
+      complexity: 2,
       focuses: ["do-does", "be-vs-do"],
     },
   };

@@ -12,7 +12,7 @@ export interface GrammarHospitalSettings {
 
 export const DEFAULT_GH_SETTINGS: GrammarHospitalSettings = {
     tier: "beginner",
-    complexity: 3,
+    complexity: 2,
     focuses: [],
 };
 
@@ -23,7 +23,7 @@ export function normalizeGHSettings(raw: unknown): GrammarHospitalSettings {
         r.tier === "intermediate" || r.tier === "advanced" ? r.tier : "beginner";
     const complexity = typeof r.complexity === "number" && r.complexity >= 1 && r.complexity <= 5
         ? Math.round(r.complexity)
-        : 3;
+        : 2;
     const focuses = Array.isArray(r.focuses)
         ? (r.focuses.filter((f) => typeof f === "string") as GrammarHospitalFocus[])
         : [];

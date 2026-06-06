@@ -4,13 +4,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
     Activity,
     CheckCircle2,
-    ChevronLeft,
     Clipboard,
     HeartPulse,
     Lightbulb,
     RotateCcw,
     Sparkles,
-    Stethoscope,
     Trophy,
 } from "lucide-react";
 import type {
@@ -33,6 +31,18 @@ import {
     SettingsForm,
     type GrammarHospitalSettings,
 } from "@/components/games/grammar-hospital/SettingsPanel";
+import {
+    getCaseStepInfo,
+    getDiagnoseConfig,
+    getInitialCasePhase,
+    sortCasesProgressively,
+} from "@/lib/grammar-hospital/progression";
+import {
+    BEGINNER_HELPER_OPTIONS,
+    formatHelperOptionLabel,
+    helperAtSentenceStart,
+    resolveCorrectHelper,
+} from "@/lib/grammar-hospital/helpers";
 
 const GAME_ID = "grammar-hospital";
 
@@ -65,16 +75,6 @@ const ERROR_LABELS: Record<GrammarHospitalErrorTag, string> = {
     "missing-word": "Missing word",
     "word-order": "Word order problem",
 };
-
-const ERROR_ICONS: Record<GrammarHospitalErrorTag, string> = {
-    "wrong-helper": "👻",
-    "verb-form": "✎",
-    "extra-word": "✕",
-    "missing-word": "○",
-    "word-order": "↔",
-};
-
-const HELPER_OPTIONS: GrammarHospitalHelper[] = ["do", "does", "be"];
 
 function normalizeAnswer(s: string): string {
     return s
@@ -159,9 +159,12 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         const inTier = allCases.filter((c) => (c.tier ?? "beginner") === settings.tier);
         const inComplexity = inTier.filter((c) => (c.complexity ?? 3) <= settings.complexity);
         const base = inComplexity.length > 0 ? inComplexity : inTier;
-        if (settings.focuses.length === 0) return base;
-        const filtered = base.filter((c) => settings.focuses.includes(c.grammarFocus ?? "do-does"));
-        return filtered.length > 0 ? filtered : base;
+        let filtered = base;
+        if (settings.focuses.length > 0) {
+            const narrowed = base.filter((c) => settings.focuses.includes(c.grammarFocus ?? "do-does"));
+            filtered = narrowed.length > 0 ? narrowed : base;
+        }
+        return sortCasesProgressively(filtered);
     }, [allCases, settings]);
 
     const totalCases = cases.length;
@@ -190,6 +193,10 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
 
     const current: GrammarHospitalCase | undefined = cases[caseIdx];
     const isBuildMode = !!current?.wordBank && current.wordBank.length > 0;
+    const diagnoseConfig = useMemo(
+        () => (current ? getDiagnoseConfig(current) : { tags: [] as GrammarHospitalErrorTag[], multiSelect: false }),
+        [current]
+    );
 
     // Load user settings on mount, mirror to server when changed.
     useEffect(() => {
@@ -224,8 +231,11 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         setCaseIdx(0);
         setResults([]);
         setStreak(0);
-        setPhase((p) => (p === "intro" ? p : "diagnose"));
-    }, [settingsKey]);
+        setPhase((p) => {
+            if (p === "intro") return p;
+            return getInitialCasePhase(cases[0]);
+        });
+    }, [settingsKey, cases]);
 
     // Pre-existing completion → jump to review.
     useEffect(() => {
@@ -286,14 +296,18 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
             setPhase("review");
             void grantCompletion();
         } else {
-            setCaseIdx((i) => i + 1);
-            setPhase("diagnose");
+            const nextIdx = caseIdx + 1;
+            setCaseIdx(nextIdx);
+            setPhase(getInitialCasePhase(cases[nextIdx]));
         }
-    }, [caseIdx, totalCases, grantCompletion]);
+    }, [caseIdx, totalCases, grantCompletion, cases]);
 
     // ---- Step handlers ----
     const toggleErrorTag = (tag: GrammarHospitalErrorTag) => {
         setDiagnoseSel((prev) => {
+            if (!diagnoseConfig.multiSelect) {
+                return prev.has(tag) ? new Set() : new Set([tag]);
+            }
             const next = new Set(prev);
             if (next.has(tag)) next.delete(tag);
             else next.add(tag);
@@ -425,7 +439,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                                     setStreak(0);
                                     setBestStreak(0);
                                     setCaseIdx(0);
-                                    setPhase("diagnose");
+                                    setPhase(getInitialCasePhase(cases[0]));
                                 }}
                                 className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold transition-all ${
                                     isCourseMapPreset
@@ -459,88 +473,64 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         return (
             <div className="min-h-full bg-[#fdf9f0] dark:bg-[#1a1410]">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
-                    {/* Back to activities */}
-                    <div className="mb-6">
+                    <div className="mb-8">
                         <ContextualBackButton aria-label="Back to activities" />
                     </div>
 
-                    {isCourseMapPreset && (
-                        <div className="mb-6 rounded-2xl border border-primary/20 bg-primary/5 px-4 py-3">
-                            <p className="text-[0.65rem] uppercase tracking-[0.18em] font-bold text-primary-dark dark:text-primary-light">
-                                Guided Course Map Step
-                            </p>
-                            <h2 className="mt-1 font-display text-xl font-bold text-gray-900 dark:text-gray-50">
-                                {content.courseMapTitle ?? "Grammar Hospital: Helper Verb Repair"}
-                            </h2>
-                            <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
-                                {content.courseMapDirections ?? "This version is already set up for you."}
-                            </p>
-                        </div>
-                    )}
-
-                    <div className={`grid grid-cols-1 gap-8 items-start ${isCourseMapPreset ? "" : "lg:grid-cols-[1.1fr_0.9fr]"}`}>
-                        <div>
-                            <div className="inline-flex items-center gap-2 mb-4">
-                                <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-primary/12 text-primary">
-                                    <HeartPulse size={18} />
-                                </span>
-                                <span className="text-[0.7rem] uppercase tracking-[0.18em] font-bold text-primary-dark dark:text-primary-light">
-                                    Grammar Hospital
-                                </span>
+                    {isCourseMapPreset ? (
+                        <div className="max-w-md mx-auto text-center pt-4 sm:pt-16">
+                            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/12 text-primary mb-5">
+                                <HeartPulse size={22} />
                             </div>
-                            <h1 className="font-display text-5xl sm:text-6xl font-bold text-gray-900 dark:text-gray-50 leading-[1.05] tracking-[-0.02em] mb-3">
+                            <h1 className="font-display text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-50 leading-tight tracking-[-0.02em]">
                                 Fix the Sentence
                             </h1>
-                            <p className="font-display text-2xl text-primary italic mb-5">You&apos;re the doctor.</p>
-                            <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-[52ch] mb-6">
-                                Some sentences are not feeling well. Your job is to diagnose the problem and help them get healthy again.
-                            </p>
-                            <ol className="space-y-2.5 mb-7 max-w-[42ch]">
-                                <IntroStep n={1} label="Diagnose the problem" />
-                                <IntroStep n={2} label="Choose the correct helper" />
-                                <IntroStep n={3} label="Repair the sentence" />
-                            </ol>
                             <button
                                 type="button"
-                                onClick={() => setPhase("diagnose")}
-                                className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-6 py-3 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
+                                onClick={() => setPhase(getInitialCasePhase(cases[0]))}
+                                className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-8 py-3.5 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
                             >
-                                <Stethoscope size={17} /> Start Diagnosis
+                                Start
                             </button>
-                            <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-                                {totalCases} {totalCases === 1 ? "patient" : "patients"} ready at this level.
+                            <p className="mt-4 text-sm text-gray-400 dark:text-gray-500">
+                                {totalCases} {totalCases === 1 ? "sentence" : "sentences"}
                             </p>
                         </div>
-
-                        {/* Difficulty picker — same controls as the in-game gear, shown up front */}
-                        {!isCourseMapPreset && (
-                        <div className="rounded-2xl bg-white dark:bg-[#2a1f1a] border border-gray-200 dark:border-white/10 shadow-[0_8px_30px_rgba(74,47,26,0.08)] p-6 sm:p-7">
-                            <div className="flex items-center justify-between mb-4">
-                                <div>
-                                    <p className="text-[0.6rem] uppercase tracking-[0.16em] font-bold text-primary-dark dark:text-primary-light leading-none">
-                                        Choose your difficulty
-                                    </p>
-                                    <h2 className="font-display text-xl font-bold text-gray-900 dark:text-gray-50 mt-1">
-                                        Pick a level
-                                    </h2>
+                    ) : (
+                        <div className="grid grid-cols-1 gap-8 items-start lg:grid-cols-[1.1fr_0.9fr]">
+                            <div className="max-w-md">
+                                <div className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-primary/12 text-primary mb-4">
+                                    <HeartPulse size={20} />
                                 </div>
-                                <span className="inline-flex items-center justify-center w-10 h-10 rounded-md bg-primary/10 text-primary shrink-0">
-                                    <Clipboard size={18} />
-                                </span>
+                                <h1 className="font-display text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-50 leading-tight tracking-[-0.02em]">
+                                    Grammar Hospital
+                                </h1>
+                                <button
+                                    type="button"
+                                    onClick={() => setPhase(getInitialCasePhase(cases[0]))}
+                                    className="mt-7 inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-7 py-3 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
+                                >
+                                    Start
+                                </button>
+                                <p className="mt-3 text-sm text-gray-400 dark:text-gray-500">
+                                    {totalCases} {totalCases === 1 ? "sentence" : "sentences"} at this level
+                                </p>
                             </div>
-                            <SettingsForm
-                                value={settings}
-                                onChange={setSettings}
-                                tierCounts={tierCounts}
-                                focusCounts={focusCounts}
-                                tierTileSize="spacious"
-                            />
-                            <p className="mt-4 text-[0.7rem] italic text-gray-400 dark:text-gray-500 leading-relaxed">
-                                You can change difficulty anytime from the gear icon while playing.
-                            </p>
+
+                            <div className="rounded-2xl bg-white dark:bg-[#2a1f1a] border border-gray-200 dark:border-white/10 shadow-[0_8px_30px_rgba(74,47,26,0.08)] p-6 sm:p-7">
+                                <h2 className="font-display text-lg font-bold text-gray-900 dark:text-gray-50 mb-4">
+                                    Level
+                                </h2>
+                                <SettingsForm
+                                    value={settings}
+                                    onChange={setSettings}
+                                    tierCounts={tierCounts}
+                                    focusCounts={focusCounts}
+                                    tierTileSize="spacious"
+                                />
+                            </div>
                         </div>
-                        )}
-                    </div>
+                    )}
                 </div>
             </div>
         );
@@ -549,76 +539,84 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
     // ============================================================
     // CASE WORKING SCREENS (diagnose / helper / repair / feedback)
     // ============================================================
-    const stepNumber = phase === "diagnose" ? 1 : phase === "helper" ? 2 : phase === "repair" ? 3 : 3;
+    const stepInfo = getCaseStepInfo(
+        current,
+        phase === "feedback" ? "repair" : phase
+    );
 
     return (
         <div className="min-h-full bg-[#fdf9f0] dark:bg-[#1a1410]">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
-                {/* Top bar — back button + patient counter (replaces the page chrome) */}
-                <div className="flex items-center justify-between gap-3 mb-5">
+            <div className="max-w-2xl mx-auto px-4 sm:px-6 py-5 sm:py-8">
+                <div className="flex items-center justify-between gap-3 mb-4">
                     <div className="flex items-center gap-3 min-w-0">
                         <ContextualBackButton aria-label="Back to activities" />
-                        <div className="hidden sm:flex items-center gap-2 min-w-0">
-                            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/12 text-primary shrink-0">
-                                <HeartPulse size={15} />
-                            </span>
-                            <div className="min-w-0">
-                                <p className="text-[0.6rem] uppercase tracking-[0.16em] font-bold text-primary-dark dark:text-primary-light leading-none">
-                                    Grammar Hospital
-                                </p>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mt-0.5">
-                                    Patient {caseIdx + 1} of {totalCases}
-                                </p>
-                            </div>
-                        </div>
-                        <p className="sm:hidden text-xs text-gray-500 dark:text-gray-400 font-medium">
-                            Patient {caseIdx + 1} of {totalCases}
-                        </p>
+                        <span className="text-sm text-gray-500 dark:text-gray-400 tabular-nums">
+                            {caseIdx + 1} / {totalCases}
+                        </span>
                     </div>
-                    <div className="flex items-center gap-2">
-                        {streak >= 2 && (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-accent/25 text-amber-900 dark:text-amber-100 text-[0.7rem] font-bold uppercase tracking-wide border border-accent/40">
-                                <Sparkles size={11} /> {streak} streak
-                            </span>
-                        )}
-                        {isCompleted && (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary/15 text-secondary-dark dark:bg-secondary/25 dark:text-secondary-light text-[0.7rem] font-bold uppercase tracking-wide border border-secondary/30">
-                                <Trophy size={11} /> Completed
-                            </span>
-                        )}
-                    </div>
+                    {streak >= 2 && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/25 text-amber-900 dark:text-amber-100 text-xs font-semibold border border-accent/40">
+                            <Sparkles size={11} /> {streak}
+                        </span>
+                    )}
                 </div>
 
-                {/* Step indicator */}
-                <div className="mb-6">
-                    <p className="text-[0.65rem] uppercase tracking-[0.18em] font-bold text-gray-500 dark:text-gray-400 mb-1.5">
-                        Step {Math.min(stepNumber, 3)} of 3
-                    </p>
-                    <div className="h-1.5 w-full rounded-full bg-gray-200 dark:bg-white/10 overflow-hidden">
-                        <div
-                            className="h-full bg-primary rounded-full transition-[width] duration-500"
-                            style={{ width: `${(Math.min(stepNumber, 3) / 3) * 100}%` }}
-                        />
-                    </div>
+                <div className="h-1 w-full rounded-full bg-gray-200 dark:bg-white/10 overflow-hidden mb-5">
+                    <div
+                        className="h-full bg-primary rounded-full transition-[width] duration-500"
+                        style={{
+                            width: `${((caseIdx + (stepInfo.stepNumber / stepInfo.totalSteps)) / totalCases) * 100}%`,
+                        }}
+                    />
                 </div>
 
-                {/* HERO: the patient sentence is the star */}
-                <PatientHero
-                    caseItem={current}
-                    topRightSlot={!isCourseMapPreset ? (
-                        <SettingsButton
-                            value={settings}
-                            onChange={setSettings}
-                            tierCounts={tierCounts}
-                            focusCounts={focusCounts}
-                        />
-                    ) : null}
-                />
+                <div
+                    className={`rounded-2xl border bg-white dark:bg-[#2a1f1a] shadow-[0_1px_2px_rgba(74,47,26,0.04),0_8px_24px_rgba(74,47,26,0.06)] p-5 sm:p-7 transition-colors duration-500 ${
+                        phase === "feedback" && lastCorrect
+                            ? "border-secondary/40 bg-gradient-to-b from-secondary/8 to-white dark:from-secondary/10 dark:to-[#2a1f1a]"
+                            : "border-gray-200 dark:border-white/10"
+                    }`}
+                >
+                    <div
+                        className={
+                            phase === "feedback" && lastCorrect
+                                ? "mb-6 text-center"
+                                : "flex items-start justify-between gap-3 mb-6"
+                        }
+                    >
+                        {phase === "feedback" && lastCorrect ? (
+                            <>
+                                <p className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-secondary-dark dark:text-secondary-light mb-2">
+                                    <Sparkles size={13} /> Fixed
+                                </p>
+                                <p className="font-display font-bold text-secondary-dark dark:text-secondary-light tracking-[-0.02em] leading-[1.15] text-[1.75rem] sm:text-[2.25rem]">
+                                    {current.healthy}
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                <p className="font-display font-bold text-gray-900 dark:text-gray-50 tracking-[-0.02em] leading-[1.15] text-[1.75rem] sm:text-[2.25rem] flex-1 min-w-0">
+                                    {renderUnhealthy(current)}
+                                </p>
+                                <div className="flex items-center gap-1.5 shrink-0 pt-1">
+                                    {!isCourseMapPreset && (
+                                        <SettingsButton
+                                            value={settings}
+                                            onChange={setSettings}
+                                            tierCounts={tierCounts}
+                                            focusCounts={focusCounts}
+                                        />
+                                    )}
+                                    <ReminderInfo />
+                                </div>
+                            </>
+                        )}
+                    </div>
 
-                {/* Active step — centered, comfortable reading width */}
-                <div className="max-w-3xl mx-auto mt-6 lg:mt-8 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1f1a] shadow-[0_1px_2px_rgba(74,47,26,0.04),0_8px_24px_rgba(74,47,26,0.06)] p-5 sm:p-7 lg:p-8">
                     {phase === "diagnose" && (
                         <DiagnoseStep
+                            options={diagnoseConfig.tags}
+                            multiSelect={diagnoseConfig.multiSelect}
                             selected={diagnoseSel}
                             onToggle={toggleErrorTag}
                             onContinue={() => setPhase("helper")}
@@ -628,7 +626,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                         <HelperStep
                             pick={helperPick}
                             onPick={setHelperPick}
-                            correctHelper={current.correctHelper}
+                            caseItem={current}
                             onContinue={() => setPhase("repair")}
                         />
                     )}
@@ -676,82 +674,6 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
 // Sub-components
 // ============================================================================
 
-function IntroStep({ n, label }: { n: number; label: string }) {
-    return (
-        <li className="flex items-center gap-3 text-gray-800 dark:text-gray-200">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-primary/10 text-primary font-bold text-sm">
-                {n}
-            </span>
-            <span className="font-medium">{label}</span>
-        </li>
-    );
-}
-
-function PatientHero({
-    caseItem,
-    topRightSlot,
-}: {
-    caseItem: GrammarHospitalCase;
-    topRightSlot?: React.ReactNode;
-}) {
-    return (
-        <div className="relative rounded-2xl border border-amber-200/70 dark:border-amber-900/40 bg-gradient-to-b from-[#fffdf7] to-[#fffaf0] dark:from-[#3a2820] dark:to-[#352017] shadow-[0_1px_2px_rgba(74,47,26,0.04),0_12px_36px_rgba(74,47,26,0.08)] overflow-visible">
-            {/* Top accent rail */}
-            <span
-                aria-hidden="true"
-                className="absolute left-0 right-0 top-0 h-[5px] bg-gradient-to-r from-primary via-accent to-primary rounded-t-2xl"
-            />
-
-            {/* Top-right action cluster: settings + reminder info */}
-            <div className="absolute top-3.5 right-3.5 z-10 flex items-center gap-2">
-                {topRightSlot}
-                <ReminderInfo />
-            </div>
-
-            <div className="px-6 sm:px-10 lg:px-14 py-8 sm:py-10 lg:py-14">
-                {/* Header row */}
-                <div className="flex items-center justify-between gap-4 mb-5 sm:mb-7 pr-12">
-                    <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center justify-center w-8 h-8 rounded-md bg-primary/10 text-primary">
-                            <Clipboard size={16} />
-                        </span>
-                        <span className="text-[0.65rem] uppercase tracking-[0.16em] font-bold text-primary-dark dark:text-primary-light">
-                            Today&apos;s Patient
-                        </span>
-                    </div>
-                    <div className="hidden sm:flex items-center gap-1.5 flex-wrap">
-                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/70 dark:bg-[#2a1f1a]/70 border border-gray-200 dark:border-white/10 text-[0.6rem] uppercase tracking-wide font-bold text-gray-600 dark:text-gray-300">
-                            {caseItem.sentenceType}
-                        </span>
-                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/70 dark:bg-[#2a1f1a]/70 border border-gray-200 dark:border-white/10 text-[0.6rem] uppercase tracking-wide font-bold text-gray-600 dark:text-gray-300">
-                            {caseItem.pattern === "action" ? "Action pattern" : "State pattern"}
-                        </span>
-                    </div>
-                </div>
-
-                {/* The sentence — the star */}
-                <p className="font-display font-bold text-gray-900 dark:text-gray-50 tracking-[-0.02em] leading-[1.1] text-[2rem] sm:text-[2.75rem] lg:text-[4rem] xl:text-[4.5rem] max-w-[22ch]">
-                    {renderUnhealthy(caseItem)}
-                </p>
-
-                <p className="mt-5 sm:mt-7 text-sm sm:text-base italic text-gray-500 dark:text-gray-400">
-                    This sentence is not feeling well.
-                </p>
-
-                {/* Mobile-only meta chips (desktop shows them in the header row) */}
-                <div className="mt-4 flex sm:hidden items-center gap-1.5 flex-wrap">
-                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/70 dark:bg-[#2a1f1a]/70 border border-gray-200 dark:border-white/10 text-[0.6rem] uppercase tracking-wide font-bold text-gray-600 dark:text-gray-300">
-                        {caseItem.sentenceType}
-                    </span>
-                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/70 dark:bg-[#2a1f1a]/70 border border-gray-200 dark:border-white/10 text-[0.6rem] uppercase tracking-wide font-bold text-gray-600 dark:text-gray-300">
-                        {caseItem.pattern === "action" ? "Action pattern" : "State pattern"}
-                    </span>
-                </div>
-            </div>
-        </div>
-    );
-}
-
 function ReminderInfo() {
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement | null>(null);
@@ -788,34 +710,10 @@ function ReminderInfo() {
                 <div
                     role="dialog"
                     aria-label="Helper verb reminder"
-                    className="absolute right-0 mt-2 w-72 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1f1a] shadow-[0_8px_30px_rgba(74,47,26,0.12)] p-4 z-20"
+                    className="absolute right-0 mt-2 w-64 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1f1a] shadow-lg p-3.5 z-20 text-sm text-gray-600 dark:text-gray-300"
                 >
-                    <p className="flex items-center gap-2 text-[0.6rem] uppercase tracking-[0.14em] font-bold text-primary-dark dark:text-primary-light mb-2.5">
-                        <span aria-hidden="true" className="block w-3 h-0.5 rounded bg-primary" />
-                        Quick reminder
-                    </p>
-                    <ul className="space-y-2.5 text-sm">
-                        <li className="flex items-start gap-2.5">
-                            <span aria-hidden="true" className="text-base leading-none mt-0.5">🏃</span>
-                            <span>
-                                <span className="font-bold text-gray-900 dark:text-gray-50">Actions</span>
-                                <span className="text-gray-600 dark:text-gray-300"> → do / does</span>
-                                <span className="block text-xs italic text-gray-500 dark:text-gray-400 mt-0.5">
-                                    work, go, eat, play, drive, like…
-                                </span>
-                            </span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                            <span aria-hidden="true" className="text-base leading-none mt-0.5">☁️</span>
-                            <span>
-                                <span className="font-bold text-gray-900 dark:text-gray-50">States</span>
-                                <span className="text-gray-600 dark:text-gray-300"> → be (am / is / are)</span>
-                                <span className="block text-xs italic text-gray-500 dark:text-gray-400 mt-0.5">
-                                    tired, happy, hungry, a nurse…
-                                </span>
-                            </span>
-                        </li>
-                    </ul>
+                    <p><span className="font-semibold text-gray-900 dark:text-gray-50">Actions</span> → do / does</p>
+                    <p className="mt-1.5"><span className="font-semibold text-gray-900 dark:text-gray-50">States</span> → am / is / are</p>
                 </div>
             )}
         </div>
@@ -823,24 +721,26 @@ function ReminderInfo() {
 }
 
 function DiagnoseStep({
+    options,
+    multiSelect,
     selected,
     onToggle,
     onContinue,
 }: {
+    options: GrammarHospitalErrorTag[];
+    multiSelect: boolean;
     selected: Set<GrammarHospitalErrorTag>;
     onToggle: (tag: GrammarHospitalErrorTag) => void;
     onContinue: () => void;
 }) {
-    const tags: GrammarHospitalErrorTag[] = ["wrong-helper", "verb-form", "word-order", "missing-word", "extra-word"];
     return (
         <div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-50 mb-1">
-                What&apos;s the problem?
-            </h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-5">Choose all that apply.</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                {multiSelect ? "What's wrong? Pick all that apply." : "What's wrong?"}
+            </p>
 
-            <ul className="space-y-2.5">
-                {tags.map((tag) => {
+            <ul className="space-y-2">
+                {options.map((tag) => {
                     const active = selected.has(tag);
                     return (
                         <li key={tag}>
@@ -850,31 +750,21 @@ function DiagnoseStep({
                                 aria-pressed={active}
                                 className={
                                     active
-                                        ? "w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 border-primary bg-primary/8 text-gray-900 dark:text-gray-50 font-semibold text-base transition-all min-h-[56px]"
-                                        : "w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#332419] text-gray-800 dark:text-gray-100 font-medium text-base hover:border-primary/40 hover:bg-amber-50/40 dark:hover:bg-[#3a2820] transition-all min-h-[56px]"
+                                        ? "w-full flex items-center gap-3 px-4 py-3 rounded-xl border-2 border-primary bg-primary/8 text-gray-900 dark:text-gray-50 font-medium text-base transition-all"
+                                        : "w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#332419] text-gray-800 dark:text-gray-100 font-medium text-base hover:border-primary/40 transition-all"
                                 }
                             >
-                                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#fbf5ec] dark:bg-[#3a2820] border border-gray-200 dark:border-white/10 text-base">
-                                    {ERROR_ICONS[tag]}
-                                </span>
                                 <span className="flex-1 text-left">{ERROR_LABELS[tag]}</span>
-                                <span
-                                    aria-hidden="true"
-                                    className={
-                                        active
-                                            ? "inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary text-white"
-                                            : "inline-flex items-center justify-center w-5 h-5 rounded-full border border-gray-300 dark:border-white/20"
-                                    }
-                                >
-                                    {active ? <CheckCircle2 size={14} /> : null}
-                                </span>
+                                {active && (
+                                    <CheckCircle2 size={16} className="text-primary shrink-0" />
+                                )}
                             </button>
                         </li>
                     );
                 })}
             </ul>
 
-            <div className="mt-6 flex items-center justify-end">
+            <div className="mt-5 flex justify-end">
                 <button
                     type="button"
                     onClick={onContinue}
@@ -891,64 +781,64 @@ function DiagnoseStep({
 function HelperStep({
     pick,
     onPick,
-    correctHelper,
+    caseItem,
     onContinue,
 }: {
     pick: GrammarHospitalHelper | null;
     onPick: (h: GrammarHospitalHelper) => void;
-    correctHelper: GrammarHospitalHelper;
+    caseItem: GrammarHospitalCase;
     onContinue: () => void;
 }) {
-    // Always show the three primary teaching helpers — the BE form is generalized
-    // so we don't reveal the answer (am/is/are) prematurely.
-    const correctCategory: GrammarHospitalHelper =
-        correctHelper === "am" || correctHelper === "is" || correctHelper === "are" ? "be" : correctHelper;
+    const atSentenceStart = helperAtSentenceStart(caseItem);
+    const correctHelper = resolveCorrectHelper(caseItem.correctHelper);
+
+    const optionButtonClass = (state: "correct" | "wrong" | "active" | "default") => {
+        const base =
+            "w-full px-3 py-3.5 rounded-xl font-display text-xl sm:text-2xl font-bold tracking-tight transition-all flex items-center justify-center gap-2 min-h-[56px]";
+        if (state === "correct") {
+            return `${base} border-2 border-secondary bg-secondary/10 text-secondary-dark dark:text-secondary-light`;
+        }
+        if (state === "wrong") {
+            return `${base} border-2 border-primary bg-primary/8 text-primary`;
+        }
+        if (state === "active") {
+            return `${base} border-2 border-primary bg-primary/8 text-gray-900 dark:text-gray-50`;
+        }
+        return `${base} border border-gray-200 dark:border-white/10 bg-white dark:bg-[#332419] text-gray-900 dark:text-gray-50 hover:border-primary/40`;
+    };
+
     return (
         <div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-50 mb-1">
-                Which helper belongs here?
-            </h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-5">
-                Action = <span className="font-semibold text-gray-700 dark:text-gray-200">do / does</span> · State ={" "}
-                <span className="font-semibold text-gray-700 dark:text-gray-200">be</span>
-            </p>
-
-            <div className="space-y-3">
-                {HELPER_OPTIONS.map((opt) => {
+            <div className="grid grid-cols-2 gap-2">
+                {BEGINNER_HELPER_OPTIONS.map((opt) => {
                     const active = pick === opt;
-                    const isWrongPick = pick && pick !== correctCategory && pick === opt;
-                    const isCorrectPick = pick && active && pick === correctCategory;
+                    const isWrongPick = pick && pick !== correctHelper && pick === opt;
+                    const isCorrectPick = pick && active && pick === correctHelper;
+                    const state = isCorrectPick
+                        ? "correct"
+                        : isWrongPick
+                          ? "wrong"
+                          : active
+                            ? "active"
+                            : "default";
                     return (
                         <button
                             key={opt}
                             type="button"
                             onClick={() => onPick(opt)}
                             aria-pressed={active}
-                            className={
-                                isCorrectPick
-                                    ? "w-full px-5 py-5 rounded-xl border-2 border-secondary bg-secondary/10 text-secondary-dark dark:text-secondary-light font-display text-3xl font-bold tracking-tight transition-all min-h-[72px] flex items-center justify-between"
-                                    : isWrongPick
-                                      ? "w-full px-5 py-5 rounded-xl border-2 border-primary bg-primary/8 text-primary font-display text-3xl font-bold tracking-tight transition-all min-h-[72px] flex items-center justify-between"
-                                      : active
-                                        ? "w-full px-5 py-5 rounded-xl border-2 border-primary bg-primary/8 text-gray-900 dark:text-gray-50 font-display text-3xl font-bold tracking-tight transition-all min-h-[72px] flex items-center justify-between"
-                                        : "w-full px-5 py-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#332419] text-gray-900 dark:text-gray-50 font-display text-3xl font-bold tracking-tight hover:border-primary/40 hover:bg-amber-50/40 dark:hover:bg-[#3a2820] transition-all min-h-[72px] flex items-center justify-between"
-                            }
+                            className={optionButtonClass(state)}
                         >
-                            <span>{opt}</span>
+                            <span>{formatHelperOptionLabel(opt, atSentenceStart)}</span>
                             {isCorrectPick && (
-                                <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-secondary text-white">
-                                    <CheckCircle2 size={16} />
-                                </span>
+                                <CheckCircle2 size={16} className="text-secondary-dark dark:text-secondary-light shrink-0" />
                             )}
                         </button>
                     );
                 })}
             </div>
 
-            <div className="mt-6 flex items-center justify-between gap-3">
-                <p className="text-xs italic text-gray-500 dark:text-gray-400">
-                    Tip: do/does for actions, be for states or descriptions.
-                </p>
+            <div className="mt-5 flex justify-end">
                 <button
                     type="button"
                     onClick={onContinue}
@@ -990,18 +880,11 @@ function RepairStep({
     const canCheck = buildMode ? repairTiles.length > 0 && bankTiles.length === 0 : input.trim().length > 0;
     return (
         <div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-50 mb-1">
-                Let&apos;s make it healthy!
-            </h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-5">
-                {buildMode ? "Tap the words in the correct order." : "Write the correct sentence."}
-            </p>
-
             {buildMode ? (
                 <div className="space-y-4">
-                    <div className="min-h-[88px] rounded-xl border-2 border-dashed border-primary/40 bg-amber-50/40 dark:bg-[#3a2820]/40 p-3 flex flex-wrap gap-2 items-start">
+                    <div className="min-h-[72px] rounded-xl border-2 border-dashed border-primary/40 bg-amber-50/40 dark:bg-[#3a2820]/40 p-3 flex flex-wrap gap-2 items-start">
                         {repairTiles.length === 0 ? (
-                            <p className="text-sm italic text-gray-400 self-center mx-auto">Tap words below to build your sentence…</p>
+                            <p className="text-sm text-gray-400 self-center mx-auto">Tap words below</p>
                         ) : (
                             repairTiles.map((t, i) => (
                                 <button
@@ -1015,12 +898,8 @@ function RepairStep({
                             ))
                         )}
                     </div>
-                    <div>
-                        <p className="text-[0.65rem] uppercase tracking-[0.14em] font-bold text-gray-500 dark:text-gray-400 mb-2">
-                            Word bank
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                            {bankTiles.map((t, i) => (
+                    <div className="flex flex-wrap gap-2">
+                        {bankTiles.map((t, i) => (
                                 <button
                                     key={`${t}-${i}`}
                                     type="button"
@@ -1030,10 +909,9 @@ function RepairStep({
                                     {t}
                                 </button>
                             ))}
-                            {bankTiles.length === 0 && (
-                                <p className="text-xs italic text-gray-400">All used — tap a word above to put it back.</p>
-                            )}
-                        </div>
+                        {bankTiles.length === 0 && (
+                            <p className="text-xs text-gray-400">Tap a word above to change it.</p>
+                        )}
                     </div>
                 </div>
             ) : (
@@ -1045,20 +923,20 @@ function RepairStep({
                         if (e.key === "Enter" && canCheck) onCheck();
                     }}
                     autoFocus
-                    placeholder="Write the healthy sentence…"
-                    className="w-full rounded-xl border border-gray-300 dark:border-white/15 bg-white dark:bg-[#332419] px-4 py-4 text-lg font-display text-gray-900 dark:text-gray-50 placeholder:text-gray-400 placeholder:font-body placeholder:text-base focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
+                    placeholder="Write the correct sentence"
+                    className="w-full rounded-xl border border-gray-300 dark:border-white/15 bg-white dark:bg-[#332419] px-4 py-3.5 text-lg font-display text-gray-900 dark:text-gray-50 placeholder:text-gray-400 placeholder:font-body placeholder:text-base focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
                 />
             )}
 
-            <div className="mt-5 flex items-center justify-between gap-3 flex-wrap">
+            <div className="mt-4 flex items-center justify-between gap-3">
                 {hint ? (
                     <button
                         type="button"
                         onClick={onToggleHint}
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light transition-colors"
+                        className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-primary transition-colors"
                     >
                         <Lightbulb size={14} />
-                        {hintOpen ? "Hide hint" : "Need a hint?"}
+                        Hint
                     </button>
                 ) : (
                     <span />
@@ -1069,16 +947,13 @@ function RepairStep({
                     disabled={!canCheck}
                     className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold px-6 py-2.5 shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
                 >
-                    Check answer
+                    Check
                 </button>
             </div>
 
             {hintOpen && hint && (
-                <div className="mt-4 rounded-xl border border-dashed border-secondary/50 bg-secondary/8 px-4 py-3">
-                    <p className="text-[0.65rem] uppercase tracking-[0.14em] font-bold text-secondary-dark dark:text-secondary-light mb-1">
-                        Remember
-                    </p>
-                    <p className="text-sm text-[#3f5946] dark:text-secondary-light leading-relaxed">{hint}</p>
+                <div className="mt-3 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#332419] px-4 py-3">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{hint}</p>
                 </div>
             )}
         </div>
@@ -1105,31 +980,21 @@ function FeedbackStep({
     if (correct) {
         return (
             <div className="text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-secondary/15 text-secondary-dark dark:bg-secondary/25 dark:text-secondary-light mb-3">
-                    <CheckCircle2 size={28} />
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/15 text-secondary-dark dark:bg-secondary/25 dark:text-secondary-light mb-4 motion-safe:animate-bounce">
+                    <CheckCircle2 size={34} strokeWidth={2.5} />
                 </div>
-                <h2 className="font-display text-3xl font-bold text-gray-900 dark:text-gray-50 mb-1">All better!</h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-5">Great job, Doctor.</p>
-
-                <div className="mx-auto max-w-md rounded-xl border border-secondary/30 bg-secondary/8 px-5 py-4 mb-5">
-                    <p className="text-[0.65rem] uppercase tracking-[0.14em] font-bold text-secondary-dark dark:text-secondary-light mb-1">
-                        Healthy sentence
-                    </p>
-                    <p className="font-display text-xl text-gray-900 dark:text-gray-50 leading-snug">
-                        {caseItem.healthy}
-                    </p>
-                </div>
-
-                <p className="text-xs text-gray-500 dark:text-gray-400 italic mb-5 max-w-md mx-auto">
+                <p className="font-display text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-50 mb-3">
+                    Nice work!
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-7 max-w-sm mx-auto leading-relaxed">
                     {caseItem.explanation}
                 </p>
-
                 <button
                     type="button"
                     onClick={onNext}
-                    className="inline-flex items-center gap-2 rounded-full bg-[#1a2533] hover:bg-[#0f1822] text-white font-bold px-6 py-3 transition-all"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-7 py-3 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
                 >
-                    {isLast ? "See report" : "Next patient"} <Activity size={15} />
+                    {isLast ? "See results" : "Next sentence"} <Activity size={16} />
                 </button>
             </div>
         );
@@ -1137,43 +1002,30 @@ function FeedbackStep({
 
     return (
         <div>
-            <div className="text-center mb-5">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/15 text-primary mb-3">
-                    <HeartPulse size={26} />
-                </div>
-                <h2 className="font-display text-3xl font-bold text-gray-900 dark:text-gray-50 mb-1">
-                    Not quite right.
-                </h2>
-                <p className="text-gray-600 dark:text-gray-300">Let&apos;s try again.</p>
-            </div>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-5 leading-relaxed">
+                {caseItem.explanation}
+            </p>
 
-            <div className="rounded-xl border border-primary/25 bg-primary/5 px-5 py-4 mb-5">
-                <p className="text-[0.65rem] uppercase tracking-[0.14em] font-bold text-primary-dark dark:text-primary-light mb-1">
-                    Why?
-                </p>
-                <p className="text-sm text-gray-800 dark:text-gray-100 leading-relaxed">{caseItem.explanation}</p>
-            </div>
-
-            <div className="flex items-center justify-between gap-3 flex-wrap">
+            <div className="flex items-center justify-between gap-3">
                 <button
                     type="button"
                     onClick={onAcceptAndMove}
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
+                    className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
                 >
-                    <ChevronLeft size={14} /> Skip — next patient
+                    Skip
                 </button>
                 <button
                     type="button"
                     onClick={onTryAgain}
-                    className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-6 py-2.5 shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-6 py-2.5 transition-all"
                 >
                     <RotateCcw size={15} /> Try again
                 </button>
             </div>
 
             {attempts >= 2 && (
-                <p className="mt-4 text-xs text-gray-500 dark:text-gray-400 italic text-center">
-                    Need a peek? The healthy sentence is: <span className="font-semibold text-gray-700 dark:text-gray-200">{caseItem.healthy}</span>
+                <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 text-center">
+                    Answer: <span className="font-medium text-gray-700 dark:text-gray-200">{caseItem.healthy}</span>
                 </p>
             )}
         </div>
