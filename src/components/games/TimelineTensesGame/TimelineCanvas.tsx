@@ -53,6 +53,8 @@ interface TimelineCanvasProps {
   onElementDrop?: (element: TimelineElement, zone: TimelineZone, position: number) => void;
   highlightZone?: TimelineZone | null;
   showLabels?: boolean;
+  /** Tense names on timeline elements; defaults to showLabels when omitted. */
+  showVerbLabels?: boolean;
   className?: string;
   /** When set, controls past band layout; otherwise inferred from element zones. */
   pastTimelineLayout?: PastTimelineLayout;
@@ -65,11 +67,13 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
       interactive = false,
       highlightZone,
       showLabels = true,
+      showVerbLabels: showVerbLabelsProp,
       className = '',
       pastTimelineLayout: pastLayoutProp,
     },
     ref
   ) {
+    const showVerbLabels = showVerbLabelsProp ?? showLabels;
     const DURATION_LINE_HALF_LENGTH = 30;
     const SINGLE_DOT_RADIUS = 8;
 
@@ -83,8 +87,9 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
     const getElementX = (element: TimelineElement) =>
       getTimelineElementX(element, pastLayout);
 
-    const renderedElementXMap = useMemo(() => {
+    const { renderedElementXMap, verbLabelSlotMap } = useMemo(() => {
       const map = new Map<string, number>();
+      const labelSlots = new Map<string, number>();
       const baseXMap = new Map<string, number>();
 
       for (const element of elements) {
@@ -146,8 +151,7 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
         }
       }
 
-      if (showLabels) {
-        const overlapGroups = new Map<string, TimelineElement[]>();
+      if (showVerbLabels) {
         const stackableTypes = new Set([
           'multiple-dots',
           'single-dot',
@@ -155,44 +159,87 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
           'dashed-line',
         ]);
 
-        for (const element of elements) {
-          if (!element.verbLabel || !stackableTypes.has(element.type)) {
-            continue;
-          }
+        const labeledElements = elements.filter(
+          (element) => element.verbLabel && stackableTypes.has(element.type)
+        );
 
-          const currentX = map.get(element.id) ?? baseXMap.get(element.id);
-          if (currentX === undefined) {
-            continue;
-          }
-
-          const groupKey = `${element.type}:${element.zone}:${Math.round(currentX)}`;
-          const existingGroup = overlapGroups.get(groupKey) ?? [];
-          existingGroup.push(element);
-          overlapGroups.set(groupKey, existingGroup);
+        const elementsByZone = new Map<TimelineZone, TimelineElement[]>();
+        for (const element of labeledElements) {
+          const zoneGroup = elementsByZone.get(element.zone) ?? [];
+          zoneGroup.push(element);
+          elementsByZone.set(element.zone, zoneGroup);
         }
 
-        for (const group of overlapGroups.values()) {
-          if (group.length <= 1) {
-            continue;
+        for (const zoneGroup of elementsByZone.values()) {
+          const sorted = [...zoneGroup].sort((a, b) => {
+            const ax = map.get(a.id) ?? baseXMap.get(a.id) ?? 0;
+            const bx = map.get(b.id) ?? baseXMap.get(b.id) ?? 0;
+            return ax - bx || a.id.localeCompare(b.id);
+          });
+
+          const clusters: TimelineElement[][] = [];
+          for (const element of sorted) {
+            const elementX = map.get(element.id) ?? baseXMap.get(element.id) ?? 0;
+            const labelWidth = (element.verbLabel?.length ?? 0) * 5.5;
+            const lastCluster = clusters[clusters.length - 1];
+
+            if (!lastCluster) {
+              clusters.push([element]);
+              continue;
+            }
+
+            const lastInCluster = lastCluster[lastCluster.length - 1];
+            const lastX = map.get(lastInCluster.id) ?? baseXMap.get(lastInCluster.id) ?? 0;
+            const lastLabelWidth = (lastInCluster.verbLabel?.length ?? 0) * 5.5;
+            const minSeparation = Math.max(44, (labelWidth + lastLabelWidth) / 2 + 8);
+
+            if (elementX - lastX < minSeparation) {
+              lastCluster.push(element);
+            } else {
+              clusters.push([element]);
+            }
           }
 
-          const orderedGroup = [...group].sort((a, b) => a.id.localeCompare(b.id));
-          const centerX =
-            orderedGroup.reduce(
-              (sum, element) => sum + (map.get(element.id) ?? baseXMap.get(element.id) ?? 0),
-              0
-            ) / orderedGroup.length;
-          const gap = orderedGroup[0]?.type === 'multiple-dots' ? 30 : 20;
-          const centerIndex = (orderedGroup.length - 1) / 2;
+          for (const cluster of clusters) {
+            if (cluster.length <= 1) {
+              continue;
+            }
 
-          orderedGroup.forEach((element, index) => {
-            map.set(element.id, centerX + (index - centerIndex) * gap);
-          });
+            const orderedGroup = [...cluster].sort((a, b) => a.id.localeCompare(b.id));
+            const zone = orderedGroup[0]?.zone;
+
+            if (zone === 'present') {
+              const centerX =
+                orderedGroup.reduce(
+                  (sum, element) => sum + (map.get(element.id) ?? baseXMap.get(element.id) ?? 0),
+                  0
+                ) / orderedGroup.length;
+              const hasMultipleDots = orderedGroup.some((e) => e.type === 'multiple-dots');
+              const longestLabel = Math.max(
+                ...orderedGroup.map((e) => e.verbLabel?.length ?? 0)
+              );
+              const gap = Math.max(
+                hasMultipleDots ? 36 : 28,
+                orderedGroup.length * 30,
+                longestLabel * 5.5
+              );
+              const centerIndex = (orderedGroup.length - 1) / 2;
+
+              orderedGroup.forEach((element, index) => {
+                map.set(element.id, centerX + (index - centerIndex) * gap);
+                labelSlots.set(element.id, index);
+              });
+            } else {
+              orderedGroup.forEach((element, index) => {
+                labelSlots.set(element.id, index);
+              });
+            }
+          }
         }
       }
 
-      return map;
-    }, [elements, pastLayout, showLabels]);
+      return { renderedElementXMap: map, verbLabelSlotMap: labelSlots };
+    }, [elements, pastLayout, showVerbLabels]);
 
     const highlightGeom = useMemo(() => {
       if (!highlightZone) {
@@ -445,7 +492,8 @@ export const TimelineCanvas = forwardRef<SVGSVGElement, TimelineCanvasProps>(
               x={renderedElementXMap.get(element.id) ?? getElementX(element)}
               y={AXIS_Y + yOffset}
               colors={colorsForElement(element.zone)}
-              showLabel={showLabels}
+              showLabel={showVerbLabels}
+              labelSlotIndex={verbLabelSlotMap.get(element.id) ?? 0}
               arcTargetX={arcTargetX}
             />
           );

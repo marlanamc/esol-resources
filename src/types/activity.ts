@@ -135,6 +135,10 @@ export interface InteractiveGuideSection {
             tenseLabel: string;
         }>;
     };
+    tenseDiagram?: {
+        title?: string;
+        elements: TimelineElement[];
+    };
     futureChoiceFlow?: {
         title?: string;
         description?: string;

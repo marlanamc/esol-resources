@@ -62,7 +62,7 @@ export const GUIDED_VERB_QUIZ_PLAN: GuidedVerbQuizPlanItem[] = QUIZ_VERB_PAIRS.m
       quizNumber,
       activityId: `verb-quiz-${quizNumber}`,
       verbs,
-      levelNumber: quizNumber + 1,
+      levelNumber: quizNumber,
       dueDate: formatDate(addDays(firstQuizDueDate, index * 7)),
     };
   }

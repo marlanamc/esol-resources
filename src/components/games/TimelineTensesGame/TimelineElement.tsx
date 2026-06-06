@@ -17,17 +17,23 @@ interface TimelineElementComponentProps {
   y: number;
   colors: ElementColors;
   showLabel?: boolean;
+  /** Stagger index when multiple verb labels share a zone (e.g. two present tenses at NOW). */
+  labelSlotIndex?: number;
   /** Target X coordinate for arc elements to connect to (instead of NOW) */
   arcTargetX?: number;
 }
 
 // Render different element types as SVG
+const PRESENT_VERB_LABEL_Y = 61;
+const ABOVE_ELEMENT_LABEL_OFFSET = 18;
+
 export function TimelineElementComponent({
   element,
   x,
   y,
   colors,
   showLabel = false,
+  labelSlotIndex = 0,
   arcTargetX,
 }: TimelineElementComponentProps) {
   const renderElement = () => {
@@ -203,7 +209,11 @@ export function TimelineElementComponent({
       {showLabel && element.verbLabel && (
         <text
           x={x}
-          y={y - 20}
+          y={
+            element.zone === 'present'
+              ? PRESENT_VERB_LABEL_Y + labelSlotIndex * 9
+              : y - ABOVE_ELEMENT_LABEL_OFFSET - labelSlotIndex * 11
+          }
           textAnchor="middle"
           className={`${colors.fillClass} text-xs font-semibold`}
           style={{ fontSize: '11px', fontWeight: 600 }}

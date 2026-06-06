@@ -22,6 +22,7 @@ import { cycleOneReviewContent } from '../src/content/grammar/cycle-1-review';
 import { conditionalsZeroFirstContent } from '../src/content/grammar/conditionals-zero-first';
 import { gerundsInfinitivesContent } from '../src/content/grammar/gerunds-infinitives';
 import { medicineLabelsInsuranceContent } from '../src/content/grammar/medicine-labels-insurance';
+import { verbFormsOverviewContent } from '../src/content/grammar/verb-forms-overview';
 
 const prisma = new PrismaClient();
 
@@ -195,6 +196,14 @@ const grammarGuides = [
     level: 'intermediate',
     content: medicineLabelsInsuranceContent,
   },
+  {
+    id: 'verb-forms-overview-guide',
+    title: 'Verb Forms Overview',
+    description: 'Bite-sized intro to the five verb form codes (V1, V1-3rd, V1-ing, V2, V3) used on weekly verb quizzes.',
+    level: 'beginner',
+    content: verbFormsOverviewContent,
+    isReleased: true,
+  },
 ];
 
 async function main() {
@@ -206,6 +215,11 @@ async function main() {
   for (const guide of grammarGuides) {
     const existing = await prisma.activity.findUnique({ where: { id: guide.id } });
     
+    const releaseFields =
+      'isReleased' in guide && guide.isReleased !== undefined
+        ? { isReleased: guide.isReleased }
+        : {};
+
     await prisma.activity.upsert({
       where: { id: guide.id },
       update: {
@@ -215,6 +229,7 @@ async function main() {
         category: 'grammar',
         level: guide.level,
         content: JSON.stringify(guide.content),
+        ...releaseFields,
       },
       create: {
         id: guide.id,
@@ -224,6 +239,7 @@ async function main() {
         category: 'grammar',
         level: guide.level,
         content: JSON.stringify(guide.content),
+        ...releaseFields,
       },
     });
 

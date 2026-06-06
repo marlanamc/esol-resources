@@ -12,6 +12,7 @@ import { VerbTableDisplay } from "./VerbTableDisplay";
 import { TipBox } from "./TipBox";
 import { TimelineVisual } from "./TimelineVisual";
 import { FutureChoiceFlow } from "./FutureChoiceFlow";
+import { TimelineCanvas } from "@/components/games/TimelineTensesGame/TimelineCanvas";
 import { LockKeyhole, CheckCircle2 } from "lucide-react";
 
 interface ExplanationPanelProps {
@@ -113,8 +114,26 @@ export const ExplanationPanel = React.memo(function ExplanationPanel({
                 {/* Verb Table */}
                 {section.verbTable && <VerbTableDisplay table={section.verbTable} />}
 
-                {/* Timeline Visual */}
+                {/* Timeline Visual (legacy numbered) */}
                 {section.timeline && <TimelineVisual timeline={section.timeline} />}
+
+                {/* Tense Diagram — renders the real Timeline Tenses game canvas */}
+                {section.tenseDiagram && (
+                    <div className="my-4">
+                        {section.tenseDiagram.title && (
+                            <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-2">
+                                {section.tenseDiagram.title}
+                            </p>
+                        )}
+                        <TimelineCanvas
+                            elements={section.tenseDiagram.elements}
+                            interactive={false}
+                            showLabels
+                            showVerbLabels={false}
+                            className="rounded-xl overflow-hidden"
+                        />
+                    </div>
+                )}
 
                 {/* Tip Box */}
                 {section.tipBox && <TipBox tip={section.tipBox} />}

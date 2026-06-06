@@ -65,10 +65,10 @@ function DefaultBrand({ mode, homeHref, subtitle, ariaLabel }: Pick<ModeHeaderPr
                 <Sparkles className="h-5 w-5" />
             </span>
             <span className="hidden min-w-0 sm:block">
-                <span className="block truncate font-display text-lg font-bold leading-tight text-[#2d261f]">
+                <span className="block truncate font-display text-lg font-bold leading-tight text-text">
                     Class Companion
                 </span>
-                <span className="block truncate text-sm font-semibold text-[#8b8174]">
+                <span className="block truncate text-sm font-semibold text-text-muted">
                     {subtitle}
                 </span>
             </span>
@@ -97,14 +97,9 @@ export function ModeHeader({
 
     return (
         <header
-            className="sticky top-0 z-[260] border-b"
+            className="mode-header sticky top-0 z-[260] border-b border-[var(--border-subtle)] bg-[var(--surface-overlay)]/95 shadow-sm backdrop-blur-md supports-[backdrop-filter]:bg-[var(--surface-overlay)]/82"
             style={{
                 paddingTop: "env(safe-area-inset-top, 0px)",
-                background: "rgba(247, 246, 243, 0.96)",
-                borderColor: "#2f4a66",
-                boxShadow: "0 1px 0 rgba(47,74,102,0.22), 0 12px 30px rgba(38,31,23,0.08)",
-                backdropFilter: "blur(14px)",
-                WebkitBackdropFilter: "blur(14px)",
             }}
         >
             <div className="mx-auto flex min-h-[60px] max-w-[1800px] items-center justify-between gap-2 px-3 py-2.5 sm:px-6 sm:py-3 md:grid md:min-h-[74px] md:grid-cols-[1fr_auto_1fr] md:gap-3 lg:px-8">
@@ -131,13 +126,13 @@ export function ModeHeader({
                         <>
                             <div className="shrink-0 lg:hidden">
                                 <LearnerSearchTrigger
-                                    className="h-9 w-9 min-h-0 justify-center rounded-full border-0 bg-[#ded7ca] p-0 text-[#2d261f] shadow-none hover:bg-[#d8d0c2] sm:h-10 sm:w-10"
+                                    className="h-9 w-9 min-h-0 justify-center rounded-full p-0 sm:h-10 sm:w-10"
                                 />
                             </div>
                             <div className="hidden lg:block">
                                 <LearnerSearchTrigger
                                     label={searchLabel}
-                                    className="min-w-[220px] justify-start border-0 bg-[#ded7ca] px-5 text-[#2d261f] shadow-none hover:bg-[#d8d0c2]"
+                                    className="min-w-[220px] justify-start px-5"
                                 />
                             </div>
                         </>
@@ -163,8 +158,8 @@ export function ModeHeader({
                             className={[
                                 "inline-flex min-h-12 items-center gap-2 border-b-2 px-4 text-sm font-bold whitespace-nowrap transition-colors sm:text-base",
                                 active
-                                    ? "text-[#2d261f]"
-                                    : "border-transparent text-[#8f8579] hover:border-[#b9afa1] hover:text-[#2d261f]",
+                                    ? "text-text"
+                                    : "border-transparent text-text-muted hover:border-[var(--border-strong)] hover:text-text",
                             ].join(" ")}
                             style={active ? { borderColor: accent } : undefined}
                             aria-current={active ? "page" : undefined}

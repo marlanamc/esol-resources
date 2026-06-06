@@ -22,7 +22,9 @@ const parseLocalDate = (dateStr: string): Date => {
 
 export default function VerbQuiz({ content, activityId, activityTitle, onComplete, isSubmitting = false }: VerbQuizProps) {
   void activityId;
-  const headerTitle = activityTitle ?? `${content.week} - Irregular Verb Quiz`;
+  const headerTitle =
+    activityTitle ??
+    (content.week ? `${content.week} - Irregular Verb Quiz` : "Irregular Verb Quiz");
   const [answers, setAnswers] = useState<VerbQuizAnswers>(() => {
     const initial: VerbQuizAnswers = {};
     Object.keys(content.verbs).forEach(verb => {
@@ -84,14 +86,16 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
         <p className="text-[var(--color-text)]">
           Complete the verb forms for each irregular verb. The base form (V1) is provided.
         </p>
-        <p className="text-sm text-[var(--color-text-muted)] mt-2">
-          Due: {parseLocalDate(content.due_date).toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          })}
-        </p>
+        {content.due_date && (
+          <p className="text-sm text-[var(--color-text-muted)] mt-2">
+            Due: {parseLocalDate(content.due_date).toLocaleDateString('en-US', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </p>
+        )}
       </motion.div>
 
       {/* Quiz Table - Desktop */}

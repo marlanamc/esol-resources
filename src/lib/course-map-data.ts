@@ -36,7 +36,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "id": "week-1",
         "number": 1,
         "title": "Start the Class",
-        "goal": "Log in, learn the app, and get comfortable.",
+        "goal": "Get comfortable in the app, learn the five verb form codes, and take Verb Quiz 1.",
         "items": [
           {
             "id": "welcome-how-to-use-app",
@@ -56,28 +56,40 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Digital Habits"
           },
           {
-            "id": "chromebook-scavenger-hunt",
+            "id": "welcome-back-tenses-review",
+            "href": "/grammar-reader/welcome-back-tenses-review",
             "slot": "required",
             "order": 2,
             "wrappedGame": false,
-            "activityType": "game",
-            "title": "Chromebook Scavenger Hunt"
+            "activityType": "guide",
+            "title": "Welcome Back: Simple & Continuous Review + V3 Preview"
           },
           {
-            "id": "app-login-practice",
+            "id": "timeline-tenses-week1-intro",
+            "activityId": "timeline-tenses-simple",
             "slot": "required",
             "order": 3,
-            "wrappedGame": false,
-            "activityType": "assessment",
-            "title": "App Login Practice"
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Timeline Tenses: Simple & Continuous"
           },
           {
-            "id": "pre-test-window",
+            "id": "verb-forms-overview",
+            "href": "/grammar-reader/verb-forms-overview",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
-            "activityType": "assessment",
-            "title": "Pre-Test Window"
+            "activityType": "guide",
+            "title": "Verb Forms: V1 → V3"
+          },
+          {
+            "id": "verb-quiz-1",
+            "activityId": "verb-quiz-1",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 1: be + have"
           }
         ]
       },
@@ -132,13 +144,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vowel Names Practice: A / E / I"
           },
           {
-            "id": "verb-quiz-1",
-            "activityId": "verb-quiz-1",
+            "id": "verb-quiz-2",
+            "activityId": "verb-quiz-2",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 1: be + have"
+            "title": "Verb Quiz 2: do + make"
           }
         ]
       },
@@ -146,7 +158,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "id": "week-3",
         "number": 3,
         "title": "Verb Forms + Past -ed Sounds",
-        "goal": "Learn the 5 verb forms and start noticing past tense endings.",
+        "goal": "Practice verb forms in context and learn the three -ed ending sounds.",
         "items": [
           {
             "id": "past-simple-guide-extra",
@@ -167,15 +179,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Action Words"
           },
           {
-            "id": "verb-forms-mini-guide",
-            "href": "/grammar-reader/simple-tenses-review",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Verb Forms Guide"
-          },
-          {
             "id": "ed-endings-game-extra",
             "activityId": "cmlkjcabs00000ezpkp32c6lz",
             "slot": "extra",
@@ -183,6 +186,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "-ed Endings Game"
+          },
+          {
+            "id": "verb-forms-mini-guide",
+            "href": "/grammar-reader/simple-tenses-review",
+            "slot": "required",
+            "order": 1,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Verb Forms Guide"
           },
           {
             "id": "timeline-verb-forms-review",
@@ -203,13 +215,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "-ed Endings Intro: /t/ /d/ /id/"
           },
           {
-            "id": "verb-quiz-2",
-            "activityId": "verb-quiz-2",
+            "id": "verb-quiz-3",
+            "activityId": "verb-quiz-3",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 2: do + make"
+            "title": "Verb Quiz 3: go + come"
           }
         ]
       },
@@ -220,15 +232,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "goal": "Use simple present and present perfect frames to talk about life.",
         "items": [
           {
-            "id": "vocab-sep-w4",
-            "activityId": "vocab-sep-w4",
-            "slot": "required",
-            "order": 0,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Vocab: Personal Journey Verbs"
-          },
-          {
             "id": "present-simple-guide-extra",
             "href": "/grammar-reader/present-simple",
             "slot": "extra",
@@ -236,6 +239,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Present Simple Guide"
+          },
+          {
+            "id": "vocab-sep-w4",
+            "activityId": "vocab-sep-w4",
+            "slot": "required",
+            "order": 0,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Vocab: Personal Journey Verbs"
           },
           {
             "id": "present-perfect-life-experience",
@@ -264,13 +276,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Have You Ever...? Speaking Practice"
           },
           {
-            "id": "verb-quiz-3",
-            "activityId": "verb-quiz-3",
+            "id": "verb-quiz-4",
+            "activityId": "verb-quiz-4",
             "slot": "required",
             "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 3: go + come"
+            "title": "Verb Quiz 4: find + buy"
           },
           {
             "id": "lived-worked-writing",
@@ -322,13 +334,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Question Word Practice Game"
           },
           {
-            "id": "verb-quiz-4",
-            "activityId": "verb-quiz-4",
+            "id": "verb-quiz-5",
+            "activityId": "verb-quiz-5",
             "slot": "required",
             "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 4: find + buy"
+            "title": "Verb Quiz 5: keep + build"
           }
         ]
       },
@@ -364,13 +376,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Map / Directions Practice Game"
           },
           {
-            "id": "verb-quiz-5",
-            "activityId": "verb-quiz-5",
+            "id": "verb-quiz-6",
+            "activityId": "verb-quiz-6",
             "slot": "required",
             "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 5: keep + build"
+            "title": "Verb Quiz 6: pay + hold"
           }
         ]
       },
@@ -406,13 +418,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Scam or Safe? Practice"
           },
           {
-            "id": "verb-quiz-6",
-            "activityId": "verb-quiz-6",
+            "id": "verb-quiz-7",
+            "activityId": "verb-quiz-7",
             "slot": "required",
             "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 6: pay + hold"
+            "title": "Verb Quiz 7: break + leave"
           }
         ]
       },
@@ -449,13 +461,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "B vs V Minimal Pair Lab"
           },
           {
-            "id": "verb-quiz-7",
-            "activityId": "verb-quiz-7",
+            "id": "verb-quiz-8",
+            "activityId": "verb-quiz-8",
             "slot": "required",
             "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 7: break + leave"
+            "title": "Verb Quiz 8: sell + burst"
           }
         ]
       }
@@ -499,13 +511,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Volunteering Scenario Practice"
           },
           {
-            "id": "verb-quiz-8",
-            "activityId": "verb-quiz-8",
+            "id": "verb-quiz-9",
+            "activityId": "verb-quiz-9",
             "slot": "required",
-            "order": 3,
+            "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 8: sell + burst"
+            "title": "Verb Quiz 9: freeze + leak"
           }
         ]
       },
@@ -541,6 +553,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Public Meeting Language Practice"
           },
           {
+            "id": "verb-quiz-10",
+            "activityId": "verb-quiz-10",
+            "slot": "required",
+            "order": 2,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 10: call + fix"
+          },
+          {
             "id": "short-i-long-e-lab",
             "activityId": "pron-short-i-long-e-listening",
             "slot": "required",
@@ -548,15 +569,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "Short i vs Long e Minimal Pair Lab"
-          },
-          {
-            "id": "verb-quiz-9",
-            "activityId": "verb-quiz-9",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 9: freeze + leak"
           }
         ]
       },
@@ -583,13 +595,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Contact an Official Practice"
           },
           {
-            "id": "verb-quiz-10",
-            "activityId": "verb-quiz-10",
+            "id": "verb-quiz-11",
+            "activityId": "verb-quiz-11",
             "slot": "required",
             "order": 2,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 10: call + fix"
+            "title": "Verb Quiz 11: sleep + wake"
           }
         ]
       },
@@ -616,21 +628,21 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Community Problem Scenario Game"
           },
           {
-            "id": "verb-quiz-11",
-            "activityId": "verb-quiz-11",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 11: sleep + wake"
-          },
-          {
             "id": "if-we-writing",
             "slot": "required",
             "order": 3,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Short Writing: \"If we..., we will...\""
+          },
+          {
+            "id": "verb-quiz-12",
+            "activityId": "verb-quiz-12",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 12: eat + drink"
           }
         ]
       }
@@ -683,13 +695,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Compare Prices Practice"
           },
           {
-            "id": "verb-quiz-12",
-            "activityId": "verb-quiz-12",
+            "id": "verb-quiz-13",
+            "activityId": "verb-quiz-13",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 12: eat + drink"
+            "title": "Verb Quiz 13: sit + spend"
           }
         ]
       },
@@ -726,13 +738,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "B vs V / Short i Long e Review"
           },
           {
-            "id": "verb-quiz-13",
-            "activityId": "verb-quiz-13",
+            "id": "verb-quiz-14",
+            "activityId": "verb-quiz-14",
             "slot": "required",
             "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 13: sit + spend"
+            "title": "Verb Quiz 14: cost + lend"
           }
         ]
       }
@@ -777,13 +789,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "R vs L Minimal Pair Lab"
           },
           {
-            "id": "verb-quiz-14",
-            "activityId": "verb-quiz-14",
+            "id": "verb-quiz-15",
+            "activityId": "verb-quiz-15",
             "slot": "required",
-            "order": 3,
+            "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 14: cost + lend"
+            "title": "Verb Quiz 15: give + send"
           }
         ]
       },
@@ -827,13 +839,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Housing Description Writing"
           },
           {
-            "id": "verb-quiz-15",
-            "activityId": "verb-quiz-15",
+            "id": "verb-quiz-16",
+            "activityId": "verb-quiz-16",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 15: give + send"
+            "title": "Verb Quiz 16: write + submit"
           }
         ]
       },
@@ -878,13 +890,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Grammar Hospital: Helper Verb Repair"
           },
           {
-            "id": "verb-quiz-16",
-            "activityId": "verb-quiz-16",
+            "id": "verb-quiz-17",
+            "activityId": "verb-quiz-17",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 16: write + submit"
+            "title": "Verb Quiz 17: work + apply"
           }
         ]
       },
@@ -920,21 +932,21 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Housing Problem Scenario"
           },
           {
+            "id": "verb-quiz-18",
+            "activityId": "verb-quiz-18",
+            "slot": "required",
+            "order": 2,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 18: meet + speak"
+          },
+          {
             "id": "what-happened-writing",
             "slot": "required",
             "order": 3,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Short Writing: \"What happened?\""
-          },
-          {
-            "id": "verb-quiz-17",
-            "activityId": "verb-quiz-17",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 17: work + apply"
           }
         ]
       }
@@ -969,13 +981,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Resume Language Practice"
           },
           {
-            "id": "verb-quiz-18",
-            "activityId": "verb-quiz-18",
+            "id": "verb-quiz-19",
+            "activityId": "verb-quiz-19",
             "slot": "required",
-            "order": 2,
+            "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 18: meet + speak"
+            "title": "Verb Quiz 19: tell + say"
           }
         ]
       },
@@ -1018,15 +1030,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "V vs W Minimal Pair Lab"
-          },
-          {
-            "id": "verb-quiz-19",
-            "activityId": "verb-quiz-19",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 19: tell + say"
           }
         ]
       },
@@ -1058,6 +1061,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "review",
             "title": "Optional Review Games"
+          },
+          {
+            "id": "verb-quiz-20",
+            "activityId": "verb-quiz-20",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 20: hear + understand"
           }
         ]
       },
@@ -1093,21 +1105,21 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Workplace Rights Scenario Game"
           },
           {
-            "id": "verb-quiz-20",
-            "activityId": "verb-quiz-20",
-            "slot": "required",
-            "order": 3,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 20: hear + understand"
-          },
-          {
             "id": "at-work-have-to-writing",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Short Writing: \"At work, I have to...\""
+          },
+          {
+            "id": "verb-quiz-21",
+            "activityId": "verb-quiz-21",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 21: forward + respond"
           }
         ]
       }
@@ -1160,13 +1172,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "S vs Th Minimal Pair Lab"
           },
           {
-            "id": "verb-quiz-21",
-            "activityId": "verb-quiz-21",
+            "id": "verb-quiz-22",
+            "activityId": "verb-quiz-22",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 21: forward + respond"
+            "title": "Verb Quiz 22: reply + schedule"
           }
         ]
       },
@@ -1211,13 +1223,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Speaking: \"How long have you been...?\""
           },
           {
-            "id": "verb-quiz-22",
-            "activityId": "verb-quiz-22",
+            "id": "verb-quiz-23",
+            "activityId": "verb-quiz-23",
             "slot": "required",
-            "order": 4,
+            "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 22: reply + schedule"
+            "title": "Verb Quiz 23: confirm + stand"
           }
         ]
       },
@@ -1254,6 +1266,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Present Perfect / PPC Spiral"
           },
           {
+            "id": "verb-quiz-24",
+            "activityId": "verb-quiz-24",
+            "slot": "required",
+            "order": 2,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 24: choose + report"
+          },
+          {
             "id": "workplace-advocacy-scenarios",
             "slot": "required",
             "order": 3,
@@ -1268,15 +1289,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Short Writing: \"I have worked...\" / \"I have been working...\""
-          },
-          {
-            "id": "verb-quiz-23",
-            "activityId": "verb-quiz-23",
-            "slot": "required",
-            "order": 5,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 23: confirm + stand"
           }
         ]
       },
@@ -1304,13 +1316,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Infinitives vs Gerunds"
           },
           {
-            "id": "verb-quiz-24",
-            "activityId": "verb-quiz-24",
+            "id": "verb-quiz-25",
+            "activityId": "verb-quiz-25",
             "slot": "required",
-            "order": 2,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 24: choose + report"
+            "title": "Verb Quiz 25: document + contact"
           }
         ]
       }
@@ -1355,13 +1367,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Sh vs Ch Minimal Pair Lab"
           },
           {
-            "id": "verb-quiz-25",
-            "activityId": "verb-quiz-25",
+            "id": "verb-quiz-26",
+            "activityId": "verb-quiz-26",
             "slot": "required",
             "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 25: document + contact"
+            "title": "Verb Quiz 26: chat + discuss"
           }
         ]
       },
@@ -1395,15 +1407,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Advice Modals Review"
-          },
-          {
-            "id": "verb-quiz-26",
-            "activityId": "verb-quiz-26",
-            "slot": "required",
-            "order": 3,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 26: chat + discuss"
           }
         ]
       },
@@ -1435,6 +1438,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "review",
             "title": "Optional Review Games"
+          },
+          {
+            "id": "verb-quiz-27",
+            "activityId": "verb-quiz-27",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 27: mention + ask"
           }
         ]
       },
@@ -1479,13 +1491,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "MyChart Message Practice"
           },
           {
-            "id": "verb-quiz-27",
-            "activityId": "verb-quiz-27",
+            "id": "verb-quiz-28",
+            "activityId": "verb-quiz-28",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 27: mention + ask"
+            "title": "Verb Quiz 28: talk + comply"
           }
         ]
       }
@@ -1529,6 +1541,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "MyChart Follow-Up Practice"
           },
           {
+            "id": "verb-quiz-29",
+            "activityId": "verb-quiz-29",
+            "slot": "required",
+            "order": 2,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 29: get + know"
+          },
+          {
             "id": "p-b-lab",
             "activityId": "pron-p-b-listening",
             "slot": "required",
@@ -1536,15 +1557,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "P vs B Minimal Pair Lab"
-          },
-          {
-            "id": "verb-quiz-28",
-            "activityId": "verb-quiz-28",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 28: talk + comply"
           }
         ]
       },
@@ -1572,13 +1584,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Used To / Be Used To / Get Used To"
           },
           {
-            "id": "verb-quiz-29",
-            "activityId": "verb-quiz-29",
+            "id": "verb-quiz-30",
+            "activityId": "verb-quiz-30",
             "slot": "required",
-            "order": 2,
+            "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 29: get + know"
+            "title": "Verb Quiz 30: read + think"
           }
         ]
       },
@@ -1613,13 +1625,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Short Writing: \"If I sleep better, I will...\""
           },
           {
-            "id": "verb-quiz-30",
-            "activityId": "verb-quiz-30",
+            "id": "verb-quiz-31",
+            "activityId": "verb-quiz-31",
             "slot": "required",
-            "order": 3,
+            "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 30: read + think"
+            "title": "Verb Quiz 31: drive + ride"
           }
         ]
       },
@@ -1662,15 +1674,6 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "B vs V Refresh"
-          },
-          {
-            "id": "verb-quiz-31",
-            "activityId": "verb-quiz-31",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 31: drive + ride"
           }
         ]
       }

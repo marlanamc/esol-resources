@@ -163,6 +163,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/used-to-would-rather.ts",
         loader: () => import("@/content/grammar/used-to-would-rather"),
     },
+    "verb-forms-overview": {
+        sourceFile: "src/content/grammar/verb-forms-overview.ts",
+        loader: () => import("@/content/grammar/verb-forms-overview"),
+    },
     "workplace-phrasal-verbs": {
         sourceFile: "src/content/grammar/workplace-phrasal-verbs.ts",
         loader: () => import("@/content/grammar/workplace-phrasal-verbs"),

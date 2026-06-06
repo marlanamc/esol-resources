@@ -61,6 +61,16 @@ async function main() {
     }
   }
 
+  const activeItemIds = COURSE_MAP_UNITS.flatMap((unit) =>
+    unit.weeks.flatMap((week) => week.items.map((item) => item.id))
+  );
+  const pruned = await prisma.courseMapItem.deleteMany({
+    where: { id: { notIn: activeItemIds } },
+  });
+  if (pruned.count > 0) {
+    console.log(`  🧹 Removed ${pruned.count} stale course map item(s)`);
+  }
+
   console.log(`  ✅ ${unitCount} units`);
   console.log(`  ✅ ${weekCount} weeks`);
   console.log(`  ✅ ${itemCount} items`);

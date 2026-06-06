@@ -9,8 +9,10 @@ export interface VerbData {
 
 export interface VerbQuizContent {
   type: 'verb-quiz';
-  week: string;
-  due_date: string;
+  /** Legacy week label; omitted for path-sequenced guided quizzes. */
+  week?: string;
+  /** Legacy due date; omitted for path-sequenced guided quizzes. */
+  due_date?: string;
   verbs: Record<string, VerbData>;
 }
 
