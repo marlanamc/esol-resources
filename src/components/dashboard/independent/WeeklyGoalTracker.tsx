@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Pencil, Target, X } from "lucide-react";
 
 interface WeeklyGoalTrackerProps {
@@ -24,6 +24,21 @@ function getFooterMessage(completed: number, goal: number, isGoalMet: boolean): 
     if (remaining === 1) return "One more to hit your goal 🎯";
     if (remaining > 1) return `${remaining} more to hit your goal 🎯`;
     return "Keep going this week 🎯";
+}
+
+const BRAND_PROGRESS_GRADIENT =
+    "linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 52%, var(--accent-color) 100%)";
+
+function getCompletedSegmentStyle(index: number, total: number): CSSProperties {
+    if (total <= 1) {
+        return { background: BRAND_PROGRESS_GRADIENT };
+    }
+
+    return {
+        background: BRAND_PROGRESS_GRADIENT,
+        backgroundSize: `${total * 100}% 100%`,
+        backgroundPosition: `${(index / (total - 1)) * 100}% 0`,
+    };
 }
 
 export function WeeklyGoalTracker({
@@ -118,7 +133,12 @@ export function WeeklyGoalTracker({
                     <div className="mb-2 flex items-baseline gap-1.5">
                         <span
                             className="font-display text-[26px] font-bold leading-none tabular-nums"
-                            style={{ color: "var(--secondary-dark)" }}
+                            style={{
+                                background: BRAND_PROGRESS_GRADIENT,
+                                WebkitBackgroundClip: "text",
+                                backgroundClip: "text",
+                                color: "transparent",
+                            }}
                         >
                             {completed}
                         </span>
@@ -127,19 +147,25 @@ export function WeeklyGoalTracker({
                         </span>
                     </div>
 
-                    <div className="flex gap-1.5" aria-hidden>
-                        {Array.from({ length: goal }).map((_, index) => (
-                            <div
-                                key={index}
-                                className="h-2 flex-1 rounded-[5px]"
-                                style={{
-                                    background:
-                                        index < completed
-                                            ? "var(--secondary)"
-                                            : "color-mix(in srgb, var(--dashboard-border) 45%, var(--dashboard-surface-start))",
-                                }}
-                            />
-                        ))}
+                    <div
+                        className="flex gap-1.5"
+                        role="img"
+                        aria-label={`${completed} of ${goal} activities completed`}
+                    >
+                        {Array.from({ length: goal }).map((_, index) => {
+                            const isDone = index < completed;
+                            return (
+                                <div
+                                    key={index}
+                                    className={`h-3 flex-1 rounded-[6px] transition-colors ${
+                                        isDone
+                                            ? "shadow-[inset_0_1px_0_rgba(255,255,255,0.32)]"
+                                            : "border border-primary/12 bg-[color-mix(in_srgb,var(--primary-color)_6%,var(--dashboard-surface-start))]"
+                                    }`}
+                                    style={isDone ? getCompletedSegmentStyle(index, goal) : undefined}
+                                />
+                            );
+                        })}
                     </div>
 
                     <p className="mt-2.5 text-[11.5px] font-medium text-text-muted">

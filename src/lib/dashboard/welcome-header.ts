@@ -47,12 +47,7 @@ export function getWelcomeMessage(params: {
     const weeklyMet =
         weeklyGoal != null && weeklyCompleted != null && weeklyCompleted >= weeklyGoal;
 
-    if (streak >= 7) {
-        return {
-            highlight: "streak",
-            subline: `${streak}-day hot streak — you're on fire.`,
-        };
-    }
+    // Streak messaging lives in the sidebar MomentumCard — skip here to avoid duplication.
 
     if (weeklyRemaining === 1) {
         return {
@@ -72,13 +67,6 @@ export function getWelcomeMessage(params: {
         return {
             highlight: "rank",
             subline: `#${leaderboardRank} on the leaderboard this week.`,
-        };
-    }
-
-    if (streak >= 2) {
-        return {
-            highlight: "streak",
-            subline: `${streak}-day streak — nice momentum.`,
         };
     }
 

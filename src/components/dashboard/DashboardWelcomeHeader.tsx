@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import {
     getTimeOfDayGreeting,
     getWelcomeEyebrow,
-    getWelcomeMessage,
     type DashboardWelcomeMode,
 } from "@/lib/dashboard/welcome-header";
 
@@ -11,10 +10,6 @@ interface DashboardWelcomeHeaderProps {
     mode: DashboardWelcomeMode;
     nameEmoji?: ReactNode;
     weekLabel?: string;
-    streak?: number;
-    weeklyCompleted?: number;
-    weeklyGoal?: number;
-    leaderboardRank?: number | null;
     className?: string;
 }
 
@@ -23,23 +18,11 @@ export function DashboardWelcomeHeader({
     mode,
     nameEmoji,
     weekLabel,
-    streak = 0,
-    weeklyCompleted,
-    weeklyGoal,
-    leaderboardRank,
     className = "",
 }: DashboardWelcomeHeaderProps) {
     const displayName = userName.trim() || "there";
     const eyebrow = getWelcomeEyebrow(mode, weekLabel);
     const greeting = getTimeOfDayGreeting();
-    const { subline } = getWelcomeMessage({
-        mode,
-        streak,
-        weeklyCompleted,
-        weeklyGoal,
-        leaderboardRank,
-        weekLabel,
-    });
 
     return (
         <div className={`relative pt-1 pb-0 ${className}`.trim()}>
@@ -83,11 +66,6 @@ export function DashboardWelcomeHeader({
                         ) : null}
                     </span>
                 </h1>
-
-                {/* One-line subline only — streak/rank chips removed; they live in the sidebar MomentumCard */}
-                <p className="mt-2 max-w-2xl text-sm font-medium leading-relaxed text-text-muted/95 sm:text-[15px]">
-                    {subline}
-                </p>
             </div>
         </div>
     );

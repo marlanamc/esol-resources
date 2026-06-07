@@ -498,8 +498,6 @@ export default async function DashboardPage() {
                                     mode="classroom"
                                     weekLabel={formatDashboardWeekRangeLabel(new Date())}
                                     nameEmoji={desktopNameEmoji}
-                                    streak={momentumSnapshot.initialStreak}
-                                    leaderboardRank={studentLeaderboardRank}
                                 />
                             </div>
 

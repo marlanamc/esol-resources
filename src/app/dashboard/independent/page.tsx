@@ -313,10 +313,6 @@ export default async function IndependentDashboardPage() {
                                 nameEmoji={studentLeaderboardMedal ? (
                                     <span aria-label={`Rank ${studentLeaderboardRank}`}>{studentLeaderboardMedal}</span>
                                 ) : undefined}
-                                streak={userStats?.currentStreak ?? 0}
-                                weeklyCompleted={weeklyGoalProgress.completed}
-                                weeklyGoal={weeklyGoalProgress.goal}
-                                leaderboardRank={studentLeaderboardRank}
                             />
 
                             <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
