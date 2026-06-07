@@ -528,7 +528,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
     {
       id: "vfo-qws1",
       type: "word-scramble" as const,
-      question: "Build the sentence by tapping the words in order.",
+      question: "Rosa's coworker has worked at the clinic for three years. Put the words in order.",
       words: ["She", "has", "worked", "here", "for", "three", "years"],
       correctAnswer: "She has worked here for three years",
       hint: "have/has + V3",

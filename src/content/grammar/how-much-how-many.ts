@@ -627,7 +627,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
     {
       id: "how-much-how-many-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Rosa checks the fridge before grocery shopping. Put the words in order.",
       words: ["How", "many", "eggs", "do", "we", "have"],
       correctAnswer: "How many eggs do we have",
       hint: "How many + plural countable noun",

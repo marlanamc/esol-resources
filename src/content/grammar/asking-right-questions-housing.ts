@@ -688,7 +688,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
     {
       id: "arqh-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order to make a direct question.",
+      question: "Rosa calls about an apartment listing. Put the words in order to ask about the rent.",
       words: ["How", "much", "is", "the", "rent"],
       correctAnswer: "How much is the rent",
       hint: "question word + verb + subject",

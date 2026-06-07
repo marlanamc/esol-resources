@@ -686,7 +686,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
     {
       id: "mlm-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Carlos compares phone plans at the store. Put the words in order.",
       words: ["Plan", "C", "is", "the", "cheapest"],
       correctAnswer: "Plan C is the cheapest",
       hint: "superlatives need 'the'",

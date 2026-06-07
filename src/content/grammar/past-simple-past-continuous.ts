@@ -455,7 +455,7 @@ export const pastSimplePastContinuousContent: InteractiveGuideContent = {
     {
       id: "pspc-qws1",
       type: "word-scramble" as const,
-      question: "Build the sentence by tapping the words in order.",
+      question: "Rosa was at work when the doctor called. Put the words in order to tell what happened.",
       words: ["Rosa", "was", "working", "when", "the", "doctor", "called"],
       correctAnswer: "Rosa was working when the doctor called",
       hint: "Past continuous + when + past simple",

@@ -651,7 +651,7 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
     {
       id: "gifr-ws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Marisol pauses in the pharmacy aisle to check a medicine label. Put the words in order.",
       words: ["I", "stopped", "to", "read", "the", "label"],
       correctAnswer: "I stopped to read the label",
       hint: "stop + to + verb = pause in order to do something",

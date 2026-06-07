@@ -736,7 +736,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
     {
       id: "sti-ws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Kelly's doctor changed her prescription. Put the words in order.",
       words: ["She", "stopped", "taking", "the", "old", "pills"],
       correctAnswer: "She stopped taking the old pills",
       hint: "stop + gerund = end the habit",

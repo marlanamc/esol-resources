@@ -602,7 +602,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
     {
       id: "sc-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order to make a second conditional sentence.",
+      question: "Yemi imagines what she would do if she had more free time. Put the words in order.",
       words: ["She", "would", "say", "yes", "if", "she", "could"],
       correctAnswer: "She would say yes if she could",
       hint: "would + base verb … if + past simple",

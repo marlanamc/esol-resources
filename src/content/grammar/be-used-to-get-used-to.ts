@@ -643,7 +643,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
     {
       id: "but-ws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Rafael describes his double-shift routine at the hotel. Put the words in order.",
       words: ["She", "is", "used", "to", "working", "two", "jobs"],
       correctAnswer: "She is used to working two jobs",
       hint: "be used to + gerund",

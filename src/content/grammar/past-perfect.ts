@@ -649,7 +649,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
     {
       id: "past-perfect-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Teresa finished her tasks before the manager arrived. Put the words in order.",
       words: ["She", "had", "finished", "before", "the", "manager", "arrived"],
       correctAnswer: "She had finished before the manager arrived",
       hint: "had + past participle for the earlier action",

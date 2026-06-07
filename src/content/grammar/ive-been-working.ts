@@ -541,7 +541,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
     {
       id: "ive-been-working-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order to make a PPC question.",
+      question: "Jennifer asks Amara how long she has been working at the warehouse. Put the words in order.",
       words: ["How", "long", "have", "you", "been", "working", "here"],
       correctAnswer: "How long have you been working here",
       hint: "How long + have/has + subject + been + verb-ing",

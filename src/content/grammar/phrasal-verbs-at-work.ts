@@ -587,7 +587,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
     {
       id: "phrasal-verbs-at-work-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order. (The pronoun must go in the middle.)",
+      question: "Claudette filled out a form at the front desk. Put the words in order. (The pronoun must go in the middle.)",
       words: ["She", "filled", "it", "out", "at", "the", "desk"],
       correctAnswer: "She filled it out at the desk",
       hint: "pronoun goes between the verb and particle",

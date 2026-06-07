@@ -546,7 +546,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "ut-q1",
-      question: "What does \"used to\" describe?",
+      question: "Linh used to walk to work, but now she takes two buses. What does \"used to\" describe in sentences like this?",
       options: [
         { value: "a", label: "A habit that is still true now" },
         { value: "b", label: "A past habit or state that is NOT true now" },
@@ -603,7 +603,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
     {
       id: "ut-ws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Linh talks about how her neighborhood changed. Put the words in order.",
       words: ["I", "used", "to", "have", "family", "nearby"],
       correctAnswer: "I used to have family nearby",
       hint: "used to + base verb for past habits",

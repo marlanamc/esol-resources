@@ -535,7 +535,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
     {
       id: "iwh-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Lucia was cleaning the kitchen when the pipe burst. Put the words in order.",
       words: ["She", "was", "mopping", "when", "it", "burst"],
       correctAnswer: "She was mopping when it burst",
       hint: "past continuous (background) + when + past simple (interruption)",

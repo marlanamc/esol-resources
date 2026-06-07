@@ -528,7 +528,7 @@ export const canShouldMustContent: InteractiveGuideContent = {
     {
       id: "csm-qws1",
       type: "word-scramble" as const,
-      question: "Build the sentence by tapping the words in order.",
+      question: "The library staff warns students about account safety. Put the words in order.",
       words: ["You", "must", "not", "share", "your", "password"],
       correctAnswer: "You must not share your password",
       hint: "must not + base verb",

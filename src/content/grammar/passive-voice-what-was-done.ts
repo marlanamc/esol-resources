@@ -677,7 +677,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
     {
       id: "pvwwd-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order to make a passive sentence.",
+      question: "Gloria reads the schedule that was posted at work. Put the words in order.",
       words: ["The", "schedule", "was", "posted", "by", "the", "manager"],
       correctAnswer: "The schedule was posted by the manager",
       hint: "receiver + was/were + past participle + by + doer",

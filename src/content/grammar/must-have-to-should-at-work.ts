@@ -632,7 +632,7 @@ export const mustHaveToShouldAtWorkContent: InteractiveGuideContent = {
     {
       id: "must-have-to-should-at-work-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "The safety sign at the warehouse is non-negotiable. Put the words in order.",
       words: ["You", "must", "wear", "a", "hard", "hat"],
       correctAnswer: "You must wear a hard hat",
       hint: "must + base verb (no 'to')",

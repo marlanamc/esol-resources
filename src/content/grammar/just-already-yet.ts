@@ -894,7 +894,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
     {
       id: "jay-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Nadine registered for the ESL program before today's class. Put the words in order.",
       words: ["She", "has", "already", "registered", "for", "the", "program"],
       correctAnswer: "She has already registered for the program",
       hint: "ALREADY goes between have/has and the past participle",

@@ -656,7 +656,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
     {
       id: "pperf-how-long-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Amara tells her neighbor how long she has lived in the building. Put the words in order.",
       words: ["I", "have", "lived", "here", "for", "six", "months"],
       correctAnswer: "I have lived here for six months",
       hint: "have/has + past participle + for + length of time",

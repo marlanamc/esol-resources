@@ -622,7 +622,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
     {
       id: "atyr-ws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Rosa plans to finish Level 3 by August. Put the words in order.",
       words: ["She", "will", "have", "finished", "Level", "3", "by", "August"],
       correctAnswer: "She will have finished Level 3 by August",
       hint: "future perfect with 'by' = done before that future date",

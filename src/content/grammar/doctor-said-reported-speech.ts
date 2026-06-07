@@ -610,7 +610,7 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
     {
       id: "doctor-said-ws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Marco reports what the doctor said about Amina's inhaler. Put the words in order.",
       words: ["The", "doctor", "told", "me", "to", "keep", "the", "inhaler", "warm"],
       correctAnswer: "The doctor told me to keep the inhaler warm",
       hint: "reported command: told + person + to + verb",

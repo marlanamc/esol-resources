@@ -888,7 +888,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     {
       id: "pos-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Amara tells the class about her work schedule. Put the words in order.",
       words: ["Amara", "has", "a", "full-time", "job"],
       correctAnswer: "Amara has a full-time job",
       hint: "Adjectives go before the noun",

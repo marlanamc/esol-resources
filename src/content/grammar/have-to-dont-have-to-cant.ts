@@ -534,8 +534,9 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
       id: "have-to-dont-have-to-cant-q6",
       question: "\"You don't have to pay that fee\" means the same as \"You can't pay that fee.\"",
       options: [
-        { value: "a", label: "True." },
+        { value: "a", label: "True. Both mean you are not allowed to pay the fee." },
         { value: "b", label: "False. Don't have to = not required. Can't = not allowed. They are different." },
+        { value: "c", label: "True. Don't have to and can't both mean the fee is optional." },
       ],
       correctAnswer: "b",
       explanation: "Don't have to means it is optional. Can't means it is prohibited. These are opposite ideas.",
@@ -558,7 +559,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
     {
       id: "have-to-dont-have-to-cant-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "The lease explains what the landlord must do before entering. Put the words in order.",
       words: ["The", "landlord", "has", "to", "give", "notice"],
       correctAnswer: "The landlord has to give notice",
       hint: "has to = required",

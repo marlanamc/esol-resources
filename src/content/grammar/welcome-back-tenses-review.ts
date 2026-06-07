@@ -768,7 +768,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
     {
       id: "wbtr-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Right now Yemi ___ the vocabulary app on his phone.\" (is/are/am + use)",
+      question: "Fill in the blank: \"Right now, Yemi ___ the vocabulary app on his phone.\" (is/are/am + use)",
       correctAnswer: "is using",
       acceptedAnswers: ["Is using"],
       explanation: "Present continuous = am/is/are + verb-ing for actions happening right now.",
@@ -795,7 +795,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
     {
       id: "wbtr-qws1",
       type: "word-scramble" as const,
-      question: "Build the sentence by tapping the words in order.",
+      question: "Rosa was cooking when her phone rang. Put the words in order to tell what happened.",
       words: ["Rosa", "was", "cooking", "when", "her", "phone", "rang"],
       correctAnswer: "Rosa was cooking when her phone rang",
       hint: "Past continuous + when + past simple",

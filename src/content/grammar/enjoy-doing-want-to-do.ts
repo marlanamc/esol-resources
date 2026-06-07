@@ -700,7 +700,7 @@ export const enjoyDoingWantToDoContent: InteractiveGuideContent = {
     {
       id: "edw-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order. (One verb needs a gerund, one needs an infinitive.)",
+      question: "Marisol talks about her restaurant job and her goals. Put the words in order. (One verb needs a gerund, one needs an infinitive.)",
       words: ["She", "enjoys", "working", "and", "wants", "to", "learn"],
       correctAnswer: "She enjoys working and wants to learn",
       hint: "enjoy + -ing / want + to",

@@ -636,7 +636,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
     {
       id: "infinitives-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order to make a polite request.",
+      question: "Carlos calls about an apartment on Bremen Street. Put the words in order.",
       words: ["I", "would", "like", "to", "see", "the", "apartment"],
       correctAnswer: "I would like to see the apartment",
       hint: "would like to + base verb",

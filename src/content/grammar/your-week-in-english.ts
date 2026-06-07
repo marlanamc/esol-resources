@@ -667,7 +667,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     {
       id: "your-week-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Rosa describes her morning commute. Put the words in order.",
       words: ["She", "usually", "takes", "the", "bus", "to", "work"],
       correctAnswer: "She usually takes the bus to work",
       hint: "Adverbs of frequency go before the main verb",

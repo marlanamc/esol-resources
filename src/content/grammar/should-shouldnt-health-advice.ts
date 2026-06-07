@@ -619,7 +619,7 @@ export const shouldShouldntHealthAdviceContent: InteractiveGuideContent = {
     {
       id: "mq-ws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "The doctor gives Yolanda a strong warning about her back. Put the words in order.",
       words: ["You", "had", "better", "rest", "today"],
       correctAnswer: "You had better rest today",
       hint: "had better + base verb (no 'to')",

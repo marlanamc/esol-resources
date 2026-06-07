@@ -608,7 +608,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
     {
       id: "tc-ws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Rosa regrets waiting to call the landlord about the rent. Put the words in order.",
       words: ["If", "I", "had", "gone", "sooner", "I", "would", "have", "paid", "less"],
       correctAnswer: "If I had gone sooner I would have paid less",
       hint: "if + had + past participle, would have + past participle",

@@ -768,7 +768,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
     },
     {
       id: "hlfs-q3",
-      question: "Choose the correct sentence.",
+      question: "Rosa's friend asks about her apartment. Choose the correct for/since sentence.",
       options: [
         { value: "a", label: "She has lived here since four years." },
         { value: "b", label: "She has lived here for 2020." },
@@ -795,7 +795,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
     {
       id: "hlfs-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order to ask about duration.",
+      question: "Your neighbor asks how long you have lived in East Boston. Put the words in order.",
       words: ["How", "long", "have", "you", "lived", "here"],
       correctAnswer: "How long have you lived here",
       hint: "How long + have/has + subject + past participle",

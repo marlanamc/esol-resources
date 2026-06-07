@@ -175,6 +175,7 @@ function renderCard(row: SceneRow): string {
 
     return `
     <article class="card${row.flagged ? " is-flagged" : ""}" data-flagged="${row.flagged}" data-key="${escapeHtml(key)}">
+      <button type="button" class="approve" data-key="${escapeHtml(key)}" title="Approve photo">✓</button>
       <label class="pick"><input type="checkbox" class="swap" data-key="${escapeHtml(key)}"> swap</label>
       <div class="thumb">${thumb}</div>
       <div class="body">
@@ -238,10 +239,21 @@ function renderHtml(rows: SceneRow[]): string {
   .dialogue { margin-top: 0.45rem; font-size: 0.78rem; color: #555; font-style: italic;
               border-left: 3px solid #e4ddcf; padding-left: 0.5rem; }
   .muted { color: #999; }
+  .approve { position: absolute; top: 0.5rem; left: 0.5rem; z-index: 2; background: rgba(255,255,255,0.92);
+             border: 1px solid #6a8d73; border-radius: 0.4rem; width: 1.75rem; height: 1.75rem;
+             font-size: 0.9rem; font-weight: 700; line-height: 1; color: #6a8d73; cursor: pointer;
+             display: flex; align-items: center; justify-content: center; padding: 0; }
+  .approve:hover { background: #eef5f0; }
+  .card.is-approved .approve { background: #6a8d73; color: #fff; border-color: #6a8d73; }
   .pick { position: absolute; top: 0.5rem; right: 0.5rem; z-index: 2; background: rgba(255,255,255,0.92);
           border-radius: 0.4rem; padding: 0.15rem 0.4rem; font-size: 0.72rem; font-weight: 700;
           display: flex; align-items: center; gap: 0.25rem; cursor: pointer; }
   .card.picked { outline: 3px solid #6a8d73; }
+  .card.is-approved { border-color: #6a8d73; box-shadow: 0 0 0 2px rgba(106,141,115,0.2); }
+  .section-head { padding: 1rem 1.2rem 0.25rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+  .section-head h2 { font-size: 0.95rem; margin: 0; color: #6a8d73; }
+  #approved-wrap { border-top: 2px solid #6a8d73; background: #f7faf8; }
+  #approved-wrap.hidden { display: none; }
   code { background: #f0ece1; padding: 0 0.25rem; border-radius: 0.25rem; }
   .hidden { display: none !important; }
 </style>
@@ -250,24 +262,66 @@ function renderHtml(rows: SceneRow[]): string {
 <header>
   <h1>Scene-photo review</h1>
   <span class="stat"><b>${rows.length}</b> photos · <b>${flaggedCount}</b> pre-flagged</span>
-  <button id="f-all" class="active">All</button>
-  <button id="f-flagged">Flagged only</button>
-  <button id="f-picked">Picked only</button>
+  <button id="f-all" class="filter active">All</button>
+  <button id="f-flagged" class="filter">Flagged only</button>
+  <button id="f-picked" class="filter">Picked only</button>
   <span class="stat"><b id="pickCount">0</b> picked</span>
   <button id="copy">Copy picked list</button>
+  <span class="stat"><b id="approvedCount">0</b> approved</span>
+  <button id="goto-approved">Go to approved</button>
+  <button id="copy-approved">Copy approved list</button>
 </header>
 <div class="grid" id="grid">
 ${cards}
 </div>
+<div id="approved-wrap" class="hidden">
+  <div class="section-head">
+    <h2>Approved photos</h2>
+    <span class="stat muted">Click ↩ on a card to move it back to review.</span>
+  </div>
+  <div class="grid" id="approved-grid"></div>
+</div>
 <script>
   const KEY = "mini-guide-image-swaps";
+  const APPROVE_KEY = "mini-guide-image-approved";
   const picked = new Set(JSON.parse(localStorage.getItem(KEY) || "[]"));
+  const approved = new Set(JSON.parse(localStorage.getItem(APPROVE_KEY) || "[]"));
   const grid = document.getElementById("grid");
+  const approvedGrid = document.getElementById("approved-grid");
+  const approvedWrap = document.getElementById("approved-wrap");
   const pickCountEl = document.getElementById("pickCount");
+  const approvedCountEl = document.getElementById("approvedCount");
 
   function persist() {
     localStorage.setItem(KEY, JSON.stringify([...picked]));
     pickCountEl.textContent = String(picked.size);
+  }
+  function persistApproved() {
+    localStorage.setItem(APPROVE_KEY, JSON.stringify([...approved]));
+    approvedCountEl.textContent = String(approved.size);
+    approvedWrap.classList.toggle("hidden", approved.size === 0);
+  }
+  function setApproveButton(card, isApproved) {
+    const btn = card.querySelector(".approve");
+    if (!btn) return;
+    btn.textContent = isApproved ? "↩" : "✓";
+    btn.title = isApproved ? "Move back to review" : "Approve photo";
+  }
+  function moveToApproved(card) {
+    approved.add(card.dataset.key);
+    card.classList.add("is-approved");
+    setApproveButton(card, true);
+    approvedGrid.appendChild(card);
+    persistApproved();
+    applyFilter();
+  }
+  function moveToReview(card) {
+    approved.delete(card.dataset.key);
+    card.classList.remove("is-approved");
+    setApproveButton(card, false);
+    grid.appendChild(card);
+    persistApproved();
+    applyFilter();
   }
   function applyPicked() {
     document.querySelectorAll(".card").forEach((card) => {
@@ -285,10 +339,18 @@ ${cards}
     box.closest(".card").classList.toggle("picked", box.checked);
     persist();
   });
+  document.body.addEventListener("click", (e) => {
+    const btn = e.target.closest(".approve");
+    if (!btn) return;
+    const card = btn.closest(".card");
+    if (!card) return;
+    if (approved.has(card.dataset.key)) moveToReview(card);
+    else moveToApproved(card);
+  });
 
   let mode = "all";
   function applyFilter() {
-    document.querySelectorAll(".card").forEach((card) => {
+    grid.querySelectorAll(".card").forEach((card) => {
       const flagged = card.dataset.flagged === "true";
       const isPicked = picked.has(card.dataset.key);
       const show = mode === "all" || (mode === "flagged" && flagged) || (mode === "picked" && isPicked);
@@ -297,7 +359,7 @@ ${cards}
   }
   function setMode(next, btn) {
     mode = next;
-    document.querySelectorAll("header button").forEach((b) => b.classList.remove("active"));
+    document.querySelectorAll("header .filter").forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
     applyFilter();
   }
@@ -309,8 +371,42 @@ ${cards}
     try { await navigator.clipboard.writeText(list); alert("Copied " + picked.size + " picked scene(s):\\n\\n" + list); }
     catch { prompt("Copy these scene ids:", list); }
   };
+  document.getElementById("goto-approved").onclick = () => {
+    if (approved.size === 0) { alert("No approved photos yet."); return; }
+    approvedWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  document.getElementById("copy-approved").onclick = async () => {
+    const list = [...approved].sort().join("\\n");
+    if (!list) { alert("No approved photos yet."); return; }
+    try { await navigator.clipboard.writeText(list); alert("Copied " + approved.size + " approved scene(s):\\n\\n" + list); }
+    catch { prompt("Copy these scene ids:", list); }
+  };
 
+  function ensureApproveButtons() {
+    document.querySelectorAll(".card").forEach((card) => {
+      if (card.querySelector(".approve")) return;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "approve";
+      btn.dataset.key = card.dataset.key;
+      btn.textContent = "✓";
+      btn.title = "Approve photo";
+      card.insertBefore(btn, card.firstChild);
+    });
+  }
+  function restoreApproved() {
+    grid.querySelectorAll(".card").forEach((card) => {
+      if (!approved.has(card.dataset.key)) return;
+      card.classList.add("is-approved");
+      setApproveButton(card, true);
+      approvedGrid.appendChild(card);
+    });
+    persistApproved();
+  }
+
+  ensureApproveButtons();
   applyPicked();
+  restoreApproved();
   applyFilter();
 </script>
 </body>

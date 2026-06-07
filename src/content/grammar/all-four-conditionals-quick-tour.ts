@@ -641,7 +641,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
     {
       id: "afc-ws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Yemi wishes she had day shifts instead of nights. Put the words in order.",
       words: ["If", "I", "had", "day", "shifts", "I", "would", "sleep", "more"],
       correctAnswer: "If I had day shifts I would sleep more",
       hint: "second conditional: if + past simple, would + base verb",

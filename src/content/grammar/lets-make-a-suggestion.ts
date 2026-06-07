@@ -530,7 +530,7 @@ export const letsMakeASuggestionContent: InteractiveGuideContent = {
     {
       id: "lets-make-a-suggestion-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Rosa and her neighbor agree on a plan for the building issue. Put the words in order.",
       words: ["Let's", "send", "the", "complaint", "tonight"],
       correctAnswer: "Let's send the complaint tonight",
       hint: "Let's + base verb",

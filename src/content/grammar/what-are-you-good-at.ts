@@ -570,7 +570,7 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
     {
       id: "good-at-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order.",
+      question: "Diego talks about his skills at the restaurant. Put the words in order.",
       words: ["I", "am", "good", "at", "cooking", "fast"],
       correctAnswer: "I am good at cooking fast",
       hint: "good at + -ing",

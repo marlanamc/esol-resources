@@ -646,7 +646,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
     {
       id: "zero-first-conditional-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order to make a First Conditional sentence.",
+      question: "Jennifer plans her rent around her work schedule. Put the words in order.",
       words: ["I", "will", "pay", "rent", "if", "I", "work"],
       correctAnswer: "I will pay rent if I work",
       hint: "will + base verb in the result part; present simple in the if-part",

@@ -618,7 +618,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
     },
     {
       id: "qra-q6",
-      question: "Which question is correct?",
+      question: "Linh is at the community center intake desk. Which question is correctly formed?",
       options: [
         { value: "a", label: "Where you work?" },
         { value: "b", label: "Where do you work?" },
@@ -634,7 +634,7 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
     {
       id: "qra-qws1",
       type: "word-scramble" as const,
-      question: "Put the words in the right order to make a question.",
+      question: "A classmate asks where you work. Put the words in order to make the question.",
       words: ["Where", "do", "you", "work"],
       correctAnswer: "Where do you work",
       hint: "Wh- word → helper verb → subject → main verb",
