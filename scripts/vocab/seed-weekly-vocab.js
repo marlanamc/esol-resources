@@ -36,6 +36,7 @@ function generatePacketContent(slug, data) {
     term: word.term,
     definition: word.def,
     example: word.ex,
+    topics: Array.isArray(word.topics) ? word.topics : [],
   }));
   return { cards };
 }
@@ -46,6 +47,7 @@ function generateFlashcardContent(slug, data) {
     term: word.term,
     definition: word.def,
     example: word.ex,
+    topics: Array.isArray(word.topics) ? word.topics : [],
   }));
   return { cards };
 }
@@ -188,7 +190,7 @@ async function main() {
     const activityId = `vocab-${slug}`;
     const title = `Unit ${unit}: ${fullWeek}`;
 
-    // Generate content for all 4 vocabulary types
+    // Generate content for all 4 vocabulary types (uses only data.words = the 6 kept words)
     const consolidatedContent = {
       type: "vocabulary",
       wordList: generatePacketContent(slug, data),
@@ -196,6 +198,19 @@ async function main() {
       matching: generateMatchingContent(slug, data),
       fillInBlank: generateFillBlankContent(slug, data),
     };
+
+    // Library-only cards: words that exist for Daily Vocab Review + topical library
+    // but are NOT part of this week's flashcard/matching/fill-blank games.
+    // The catalog sync (syncVocabReviewCatalog) reads these so VocabCard rows survive
+    // when a word is moved from `words` -> `bonusWords` in weekly-vocab-data.js.
+    if (Array.isArray(data.bonusWords) && data.bonusWords.length > 0) {
+      consolidatedContent.libraryOnlyCards = data.bonusWords.map((word) => ({
+        term: word.term,
+        definition: word.def,
+        example: word.ex,
+        topics: Array.isArray(word.topics) ? word.topics : [],
+      }));
+    }
 
     // Create or update single consolidated activity
     await prisma.activity.upsert({
@@ -218,7 +233,9 @@ async function main() {
       },
     });
 
-    console.log(`✓ ${slug} (Unit ${unit}): ${data.topic} — ${data.words.length} words`);
+    const bonusCount = Array.isArray(data.bonusWords) ? data.bonusWords.length : 0;
+    const bonusSuffix = bonusCount > 0 ? ` (+${bonusCount} library-only)` : "";
+    console.log(`✓ ${slug} (Unit ${unit}): ${data.topic} — ${data.words.length} words${bonusSuffix}`);
   }
 
   console.log(`\n✅ Created/updated ${slugs.length} consolidated weekly vocab activities.`);

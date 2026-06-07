@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { PenLine, Gamepad2, BookOpen, ClipboardList, Mic, PenTool, Volume2 } from 'lucide-react';
+import Link from 'next/link';
+import { PenLine, Gamepad2, BookOpen, ClipboardList, Mic, PenTool, Volume2, Sparkles, ArrowRight } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { getLearnerCategoryTone } from '@/lib/learner-theme';
 import { isGamesLibraryActivity } from '@/lib/games-library';
+import { VOCAB_LIBRARY_TOPICS } from '@/lib/vocab/library-topics';
 
 // Re-use the Activity type shape from ActivityCategories
 interface Activity {
@@ -293,6 +295,44 @@ export function ActivityCategoryPicker({
                     {selectedCardDef?.name}
                 </h2>
             </div>
+
+            {selectedCategory === 'vocabulary' && (
+                <Link
+                    href="/dashboard/vocab-library"
+                    className="block mb-6 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/5 via-bg-light to-secondary/5 p-5 transition-all hover:border-primary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                >
+                    <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                            <Sparkles className="w-6 h-6" strokeWidth={1.75} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1">
+                                <h3 className="text-lg font-display font-bold text-text">Vocab Library</h3>
+                                <span className="text-xs font-semibold uppercase tracking-wide text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                                    New
+                                </span>
+                            </div>
+                            <p className="text-sm text-text/70 mb-3">
+                                Browse all vocabulary by real-world topic, not just by week.
+                            </p>
+                            <div className="flex flex-wrap gap-1.5">
+                                {VOCAB_LIBRARY_TOPICS.slice(0, 6).map((t) => (
+                                    <span
+                                        key={t.slug}
+                                        className="text-xs px-2 py-0.5 rounded-full bg-white/60 dark:bg-white/10 text-text/80 border border-border/40"
+                                    >
+                                        {t.label}
+                                    </span>
+                                ))}
+                                <span className="text-xs px-2 py-0.5 rounded-full text-text/60">
+                                    +{VOCAB_LIBRARY_TOPICS.length - 6} more
+                                </span>
+                            </div>
+                        </div>
+                        <ArrowRight className="w-5 h-5 text-text/40 self-center flex-shrink-0" />
+                    </div>
+                </Link>
+            )}
 
             {/* Filtered activity list */}
             <React.Suspense

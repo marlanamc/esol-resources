@@ -2,10 +2,10 @@
 
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import {
-  vocabCycle1,
   vocabUnits,
   displayTitle,
   getVocabUnitNumberFromActivity,
+  getVocabUnitBadgeLabel,
   getVocabThemeChip,
   cleanVocabTerm,
   dedupeVocabTerms,
@@ -1865,14 +1865,9 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                         name: 'Daily Review',
                         activities: [activityIndex.vocabById.get('vocab-daily-review')].filter((a): a is Activity => Boolean(a))
                     },
-                    {
-                        name: 'Cycle 1',
-                        activities: vocabCycle1
-                            .map((month) => activityIndex.vocabById.get(`vocab-${month.id}`))
-                            .filter((activity): activity is Activity => Boolean(activity))
-                    },
                     ...vocabUnits.map(unit => {
-                        // Create a sub-category for each unit (6-10) with all week activities flattened
+                        // Create a sub-category for each unit (1-10) with all week activities flattened.
+                        // Units render empty until their underlying weekly activities are released.
                         const allUnitActivities = unit.weeks
                             .map((week) => activityIndex.vocabById.get(`vocab-${week.id}`))
                             .filter((activity): activity is Activity => Boolean(activity));
@@ -2181,6 +2176,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                             const showProgressState = hasProgress && !isGameCard;
                                             const texture = getActivityTextureForCard(activity, section.label || '');
                                             const cardTitle = displayTitle(activity.title);
+                                            const vocabUnitBadge = filterCategory === 'vocabulary' ? getVocabUnitBadgeLabel(activity) : null;
                                             const grammarCopy = getGrammarChipCopyForActivity(activity);
                                             const hasGrammarVisual = hasGrammarGuideVisual(activity.title);
                                             const cardMeta = activityCardMetaById.get(activity.id);
@@ -2285,6 +2281,8 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                 >
                                                                     {filterCategory === 'pronunciation' && pronunciationCopy.pathChip
                                                                         ? pronunciationCopy.pathChip
+                                                                        : vocabUnitBadge
+                                                                        ? vocabUnitBadge
                                                                         : (() => {
                                                                             const shortened = cardTitle.replace(/ Guide$/i, '').replace(/ Review$/i, '');
                                                                             return shortened === 'Cycle 1' ? 'Cycle 1 Review' : shortened;
@@ -2599,6 +2597,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                             const showProgressState = hasProgress && !isGameCard;
                                                                                             const texture = getActivityTextureForCard(activity, subSubCategory.name);
                                                                                             const cardTitle = displayTitle(activity.title);
+                                                                                            const vocabUnitBadge = filterCategory === 'vocabulary' ? getVocabUnitBadgeLabel(activity) : null;
                                                                                             const grammarCopy = getGrammarChipCopyForActivity(activity);
                                                                                             const hasGrammarVisual = hasGrammarGuideVisual(activity.title);
                                                                                             const points = getActivityPoints(activity.type, { id: activity.id, ui: activity.ui ?? undefined, content: activity.content ?? undefined });
@@ -2655,6 +2654,8 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                                                 >
                                                                     {filterCategory === 'pronunciation' && pronunciationCopy.pathChip
                                                                         ? pronunciationCopy.pathChip
+                                                                        : vocabUnitBadge
+                                                                        ? vocabUnitBadge
                                                                         : (() => {
                                                                             const shortened = cardTitle.replace(/ Guide$/i, '').replace(/ Review$/i, '');
                                                                             return shortened === 'Cycle 1' ? 'Cycle 1 Review' : shortened;

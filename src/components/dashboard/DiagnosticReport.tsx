@@ -306,7 +306,7 @@ export function DiagnosticReport({ classId, activityId, totalStudents }: Diagnos
                                                     {skill.strugglingStudents.map((student) => (
                                                         <Link
                                                             key={`${skill.skillTag}-${student.id}`}
-                                                            href={`/dashboard/students/${student.id}`}
+                                                            href={`/teach/students/${student.id}`}
                                                             className="inline-flex items-center gap-1 rounded-full border border-current/20 bg-white/70 px-2 py-1 text-xs font-medium hover:bg-white"
                                                         >
                                                             <span>{student.name}</span>
@@ -348,7 +348,7 @@ export function DiagnosticReport({ classId, activityId, totalStudents }: Diagnos
                                                     {question.strugglingStudents.map((student) => (
                                                         <Link
                                                             key={`${question.questionId}-${student.id}`}
-                                                            href={`/dashboard/students/${student.id}`}
+                                                            href={`/teach/students/${student.id}`}
                                                             className="inline-flex items-center gap-1 rounded-full border border-current/20 bg-white/70 px-2 py-1 text-xs font-medium hover:bg-white"
                                                         >
                                                             <span>{student.name}</span>

@@ -163,7 +163,7 @@ export default function GrammarGradebook({
                                     <tr key={student.id} className="hover:bg-bg-light/30 transition-colors">
                                         <td className="sticky left-0 z-10 bg-white hover:bg-bg-light/30 transition-colors px-6 py-4 border-r border-border/40 shadow-[2px_0_5px_rgba(0,0,0,0.02)]">
                                             <Link
-                                                href={`/dashboard/students/${student.id}`}
+                                                href={`/teach/students/${student.id}`}
                                                 className="block group"
                                             >
                                                 <div className="font-bold text-text group-hover:text-primary transition-colors">

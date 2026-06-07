@@ -103,7 +103,7 @@ export default function VocabularyRenderer({
     const router = useRouter();
     const searchParams = useSearchParams();
     const currentUi = searchParams.get("ui") as VocabType | null;
-    const fromMenu = searchParams.get("from") === "menu";
+    const initialUiRef = useRef(currentUi);
     const previousUiRef = useRef<VocabType | null>(currentUi);
     const [selectionRefreshTick, setSelectionRefreshTick] = useState(0);
 
@@ -119,14 +119,6 @@ export default function VocabularyRenderer({
         return <div className="p-4 text-red-500">Invalid vocabulary content</div>;
     }
 
-    // Skip the menu — go straight to flashcards unless the student navigated back from an activity.
-    if (!currentUi && !fromMenu) {
-        const params = new URLSearchParams(searchParams);
-        params.set("ui", "flashcards");
-        router.replace(`?${params.toString()}`);
-        return null;
-    }
-
     // In Activity Mode - show full-screen activity
     if (currentUi) {
         return (
@@ -135,18 +127,17 @@ export default function VocabularyRenderer({
                 activityId={activityId}
                 vocabType={currentUi}
                 assignmentId={assignmentId}
-                returnToCourseMap={!fromMenu}
+                returnToCourseMap={Boolean(initialUiRef.current)}
                 onBack={() => {
                     const params = new URLSearchParams(searchParams);
                     params.delete("ui");
-                    params.set("from", "menu");
                     router.push(`?${params.toString()}`);
                 }}
             />
         );
     }
 
-    // In Selection Mode - shown when student navigates back from an activity
+    // Selection mode — word list, flashcards, matching, fill in the blank
     return (
         <SelectionMode
             activityId={activityId}

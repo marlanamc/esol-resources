@@ -110,7 +110,7 @@ export default function RecentActivityFeed({
         return (
           <Link
             key={entry.odgerId}
-            href={`/dashboard/students/${entry.userId}`}
+            href={`/teach/students/${entry.userId}`}
             className="flex items-center gap-3 p-3 rounded-xl bg-white/80 border border-border/40 hover:bg-white hover:shadow-md hover:scale-[1.01] transition-all duration-200"
           >
             {/* Activity Type Icon */}

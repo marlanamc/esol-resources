@@ -100,7 +100,7 @@ export default function ActiveStudentsList({
         return (
           <Link
             key={student.userId}
-            href={`/dashboard/students/${student.userId}`}
+            href={`/teach/students/${student.userId}`}
             className="dashboard-soft-button flex items-center gap-3 p-3 rounded-xl bg-white/80 border border-border/40 hover:bg-white hover:shadow-md hover:scale-[1.02] transition-all duration-200"
           >
             {/* Rank Badge */}

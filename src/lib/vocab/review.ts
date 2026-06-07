@@ -70,6 +70,7 @@ type RawVocabEntry = {
   term: string;
   definition: string;
   example?: string | null;
+  topics?: string[];
 };
 
 export type VocabReviewStateLike = Pick<
@@ -140,27 +141,45 @@ export function normalizeVocabTerm(term: string): string {
     .trim();
 }
 
+function parseRawCards(value: unknown): RawVocabEntry[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .filter((card): card is { term?: unknown; definition?: unknown; example?: unknown; topics?: unknown } => !!card && typeof card === "object")
+    .map((card) => ({
+      term: typeof card.term === "string" ? card.term.trim() : "",
+      definition: typeof card.definition === "string" ? card.definition.trim() : "",
+      example: typeof card.example === "string" ? card.example.trim() : null,
+      topics: Array.isArray(card.topics)
+        ? card.topics.filter((t): t is string => typeof t === "string" && t.trim().length > 0)
+        : [],
+    }))
+    .filter((card) => card.term.length > 0 && card.definition.length > 0);
+}
+
 function extractStructuredCards(content: VocabularyContent): RawVocabEntry[] {
   const entrySets = [content.wordList, content.flashcards] as const;
+  let primary: RawVocabEntry[] = [];
+
   for (const entrySet of entrySets) {
     const cards = entrySet && typeof entrySet === "object" ? (entrySet as { cards?: unknown }).cards : null;
-    if (!Array.isArray(cards)) continue;
-
-    const parsed = cards
-      .filter((card): card is { term?: unknown; definition?: unknown; example?: unknown } => !!card && typeof card === "object")
-      .map((card) => ({
-        term: typeof card.term === "string" ? card.term.trim() : "",
-        definition: typeof card.definition === "string" ? card.definition.trim() : "",
-        example: typeof card.example === "string" ? card.example.trim() : null,
-      }))
-      .filter((card) => card.term.length > 0 && card.definition.length > 0);
-
+    const parsed = parseRawCards(cards);
     if (parsed.length > 0) {
-      return parsed;
+      primary = parsed;
+      break;
     }
   }
 
-  return createEmptyArray<RawVocabEntry>();
+  // Library-only cards: tracked in the catalog (Daily Review + Library) but not
+  // surfaced in the weekly games. Always merged in addition to primary cards.
+  const libraryOnly = parseRawCards(
+    (content as { libraryOnlyCards?: unknown }).libraryOnlyCards
+  );
+
+  if (primary.length === 0 && libraryOnly.length === 0) {
+    return createEmptyArray<RawVocabEntry>();
+  }
+
+  return [...primary, ...libraryOnly];
 }
 
 function extractEntriesFromActivity(activity: ActivityCatalogRow): RawVocabEntry[] {
@@ -238,6 +257,8 @@ export function buildVocabReviewSeedCards(activities: ActivityCatalogRow[]): Voc
 
       const sortOrder = source.sortOrder * 1000 + index;
       const existing = merged.get(normalizedTerm);
+      const wordTopics = entry.topics ?? [];
+      const initialTopics = topic ? [topic, ...wordTopics] : [...wordTopics];
 
       if (!existing) {
         merged.set(normalizedTerm, {
@@ -249,12 +270,12 @@ export function buildVocabReviewSeedCards(activities: ActivityCatalogRow[]): Voc
           sourceKeys: [source.key],
           sourceLabels: [source.label],
           unitNumbers: [source.unitNumber],
-          topics: topic ? [topic] : [],
+          topics: initialTopics,
           sortOrder,
           sourceSet: new Set([source.key]),
           labelSet: new Set([source.label]),
           unitSet: new Set([source.unitNumber]),
-          topicSet: new Set(topic ? [topic] : []),
+          topicSet: new Set(initialTopics),
         });
         return;
       }
@@ -271,9 +292,11 @@ export function buildVocabReviewSeedCards(activities: ActivityCatalogRow[]): Voc
         existing.unitSet.add(source.unitNumber);
         existing.unitNumbers.push(source.unitNumber);
       }
-      if (topic && !existing.topicSet.has(topic)) {
-        existing.topicSet.add(topic);
-        existing.topics.push(topic);
+      for (const t of initialTopics) {
+        if (!existing.topicSet.has(t)) {
+          existing.topicSet.add(t);
+          existing.topics.push(t);
+        }
       }
     });
   }

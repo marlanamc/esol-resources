@@ -10,6 +10,7 @@ export interface ActivityForVocab {
   id: string;
   title: string;
   category: string | null;
+  description?: string | null;
 }
 
 export const vocabCycle1 = [
@@ -21,6 +22,31 @@ export const vocabCycle1 = [
 ];
 
 export const vocabUnits = [
+  {
+    unitNum: 1,
+    label: "Unit 1: September - Getting to Know You",
+    weeks: VOCAB_WEEKLY_UNITS.filter((u) => u.id.startsWith("sep-")),
+  },
+  {
+    unitNum: 2,
+    label: "Unit 2: October - Daily Life in the Community",
+    weeks: VOCAB_WEEKLY_UNITS.filter((u) => u.id.startsWith("oct-")),
+  },
+  {
+    unitNum: 3,
+    label: "Unit 3: November - Community Participation",
+    weeks: VOCAB_WEEKLY_UNITS.filter((u) => u.id.startsWith("nov-")),
+  },
+  {
+    unitNum: 4,
+    label: "Unit 4: December - Consumer Smarts",
+    weeks: VOCAB_WEEKLY_UNITS.filter((u) => u.id.startsWith("dec-")),
+  },
+  {
+    unitNum: 5,
+    label: "Unit 5: January - Housing",
+    weeks: VOCAB_WEEKLY_UNITS.filter((u) => u.id.startsWith("jan-")),
+  },
   {
     unitNum: 6,
     label: "Unit 6: February - Workforce Preparation",
@@ -79,6 +105,12 @@ export const displayTitle = (title: string) =>
       .trim()
   );
 
+/** Carousel chip label: "Unit 7" without week dates or theme suffixes. */
+export function getVocabUnitBadgeLabel(activity: ActivityForVocab): string | null {
+  const unitNumber = getVocabUnitNumberFromActivity(activity);
+  return unitNumber ? `Unit ${unitNumber}` : null;
+}
+
 export function getVocabUnitNumberFromActivity(activity: ActivityForVocab): number | null {
   const titleMatch = displayTitle(activity.title).match(/\bunit\s+(\d+)\b/i);
   if (titleMatch?.[1]) {
@@ -128,10 +160,26 @@ export function extractThemeFromVocabTitle(title: string): string | null {
   return candidate;
 }
 
+// Weekly vocab activities use a description like:
+//   "Unit 6 vocabulary: Jobs: Foundations. schedule, break, time off, ..."
+// Pull the per-week topic (everything between the first colon-space after "vocabulary"
+// and the first period) so each card can show its real week-specific theme instead
+// of the broader unit-level fallback (e.g. "Workforce Preparation").
+function extractTopicFromVocabDescription(description: string | null | undefined): string | null {
+  if (!description) return null;
+  const match = description.match(/^Unit\s+\d+\s+vocabulary:\s*([^.]+?)\s*\./i);
+  if (!match?.[1]) return null;
+  const topic = match[1].trim();
+  return topic.length > 0 ? topic : null;
+}
+
 export function getVocabThemeChip(activity: ActivityForVocab): string | null {
   const isVocabActivity =
     activity.id.startsWith("vocab-") || activity.category?.toLowerCase() === "vocabulary";
   if (!isVocabActivity) return null;
+
+  const themeFromDescription = extractTopicFromVocabDescription(activity.description);
+  if (themeFromDescription) return themeFromDescription;
 
   const themeFromTitle = extractThemeFromVocabTitle(activity.title);
   if (themeFromTitle) return themeFromTitle;

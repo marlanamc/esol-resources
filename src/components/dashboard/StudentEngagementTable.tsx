@@ -197,7 +197,7 @@ export function StudentEngagementTable({ students }: StudentEngagementTableProps
                         return (
                             <Link
                                 key={student.id}
-                                href={`/dashboard/students/${student.id}`}
+                                href={`/teach/students/${student.id}`}
                                 className="block p-4 hover:bg-bg-light transition-colors"
                             >
                                 <div className="flex items-start justify-between mb-3">
@@ -310,7 +310,7 @@ export function StudentEngagementTable({ students }: StudentEngagementTableProps
                                     >
                                         <td className="px-4 py-3">
                                             <Link
-                                                href={`/dashboard/students/${student.id}`}
+                                                href={`/teach/students/${student.id}`}
                                                 className="flex flex-col hover:text-primary transition-colors"
                                             >
                                                 <span className="font-medium text-text">

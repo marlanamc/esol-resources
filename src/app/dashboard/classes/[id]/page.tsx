@@ -190,7 +190,7 @@ export default async function ClassDetailPage({ params }: Props) {
                                                 <tr key={enrollment.id} className="hover:bg-gray-50">
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                         <Link
-                                                            href={`/dashboard/students/${enrollment.student.id}`}
+                                                            href={`/teach/students/${enrollment.student.id}`}
                                                             className="text-indigo-600 hover:text-indigo-900 hover:underline"
                                                         >
                                                             {enrollment.student.name || "No name"}
