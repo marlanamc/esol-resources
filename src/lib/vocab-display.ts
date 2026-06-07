@@ -1,6 +1,9 @@
 // Re-export from new location for backward compatibility
 export {
   stripVocabTypeSuffix,
+  extractTopicFromVocabDescription,
+  getVocabUnitNumberFromActivityId,
+  getVocabActivityDisplayTitle,
   parseVocabTypeLabel,
   getVocabTypeFromTitle,
   getVocabActivityType,

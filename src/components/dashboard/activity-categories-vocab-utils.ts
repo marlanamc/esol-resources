@@ -4,7 +4,7 @@
  */
 
 import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
-import { stripVocabTypeSuffix } from "@/lib/vocab-display";
+import { extractTopicFromVocabDescription, stripVocabTypeSuffix } from "@/lib/vocab-display";
 
 export interface ActivityForVocab {
   id: string;
@@ -158,19 +158,6 @@ export function extractThemeFromVocabTitle(title: string): string | null {
   }
 
   return candidate;
-}
-
-// Weekly vocab activities use a description like:
-//   "Unit 6 vocabulary: Jobs: Foundations. schedule, break, time off, ..."
-// Pull the per-week topic (everything between the first colon-space after "vocabulary"
-// and the first period) so each card can show its real week-specific theme instead
-// of the broader unit-level fallback (e.g. "Workforce Preparation").
-function extractTopicFromVocabDescription(description: string | null | undefined): string | null {
-  if (!description) return null;
-  const match = description.match(/^Unit\s+\d+\s+vocabulary:\s*([^.]+?)\s*\./i);
-  if (!match?.[1]) return null;
-  const topic = match[1].trim();
-  return topic.length > 0 ? topic : null;
 }
 
 export function getVocabThemeChip(activity: ActivityForVocab): string | null {

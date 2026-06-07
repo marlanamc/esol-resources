@@ -1,4 +1,61 @@
 /**
+ * Weekly vocab descriptions follow:
+ *   "Unit 6 vocabulary: Jobs: Foundations. schedule, break, ..."
+ */
+export function extractTopicFromVocabDescription(description: string | null | undefined): string | null {
+  if (!description) return null;
+  const match = description.match(/^Unit\s+\d+\s+vocabulary:\s*([^.]+?)\s*\./i);
+  if (!match?.[1]) return null;
+  const topic = match[1].trim();
+  return topic.length > 0 ? topic : null;
+}
+
+export function getVocabUnitNumberFromActivityId(activityId: string): number | null {
+  if (!activityId.startsWith("vocab-")) return null;
+
+  const coreId = activityId
+    .toLowerCase()
+    .replace(/^vocab-/, "")
+    .replace(/-(packet|flashcards|matching|fillblank)$/, "");
+
+  if (coreId.startsWith("september") || coreId.startsWith("sep-")) return 1;
+  if (coreId.startsWith("october") || coreId.startsWith("oct-")) return 2;
+  if (coreId.startsWith("november") || coreId.startsWith("nov-")) return 3;
+  if (coreId.startsWith("december") || coreId.startsWith("dec-")) return 4;
+  if (coreId.startsWith("january") || coreId.startsWith("jan-")) return 5;
+  if (coreId.startsWith("feb-")) return 6;
+  if (coreId.startsWith("mar-")) return 7;
+  if (coreId.startsWith("apr-")) return 8;
+  if (coreId.startsWith("may-")) return 9;
+  if (coreId.startsWith("jun-")) return 10;
+
+  return null;
+}
+
+/**
+ * Learner-facing vocab title: "Unit 6: Jobs: Foundations" (topic), not "Unit 6: February 3–5" (date).
+ */
+export function getVocabActivityDisplayTitle(params: {
+  id: string;
+  title: string;
+  description?: string | null;
+}): string {
+  const cleaned = stripVocabTypeSuffix(params.title);
+  const topic = extractTopicFromVocabDescription(params.description);
+  const unitFromTitle = cleaned.match(/\bunit\s+(\d+)\b/i)?.[1];
+  const parsedUnit = unitFromTitle ? Number.parseInt(unitFromTitle, 10) : NaN;
+  const unitNumber = Number.isFinite(parsedUnit)
+    ? parsedUnit
+    : getVocabUnitNumberFromActivityId(params.id);
+
+  if (unitNumber && topic) {
+    return `Unit ${unitNumber}: ${topic}`;
+  }
+
+  return cleaned;
+}
+
+/**
  * Strips vocab activity type suffixes from titles for cleaner display.
  * e.g. "Unit 6: February 3–5 Jobs — Flash Cards" → "Unit 6: February 3–5 Jobs"
  */

@@ -109,7 +109,7 @@ function generateFillBlankContent(slug, data) {
 
     let allOptions;
     if (word.fillBlank && Array.isArray(word.fillBlank.options) && word.fillBlank.options.length > 0) {
-      allOptions = [...word.fillBlank.options];
+      allOptions = [...word.fillBlank.options].sort(() => 0.5 - Math.random());
     } else {
       const availableWords = data.words.filter((w) => w.term !== word.term);
       const numWrong = Math.min(3, availableWords.length);
@@ -130,35 +130,6 @@ function generateFillBlankContent(slug, data) {
     };
   });
   return { sentences };
-}
-
-const monthNames = {
-  'sep': 'September',
-  'oct': 'October',
-  'nov': 'November',
-  'dec': 'December',
-  'jan': 'January',
-  'feb': 'February',
-  'mar': 'March',
-  'apr': 'April',
-  'may': 'May',
-  'jun': 'June'
-};
-
-function formatWeek(slug) {
-  const parts = slug.split('-');
-  const m1 = monthNames[parts[0]];
-  if (parts[1] && parts[1].startsWith('w')) {
-    const weekNum = parts[1].substring(1);
-    return `${m1} Week ${weekNum}`;
-  }
-  if (parts.length === 3) {
-    return `${m1} ${parts[1]}–${parts[2]}`;
-  } else if (parts.length === 4) {
-    const m2 = monthNames[parts[2]];
-    return `${m1} ${parts[1]} – ${m2} ${parts[3]}`;
-  }
-  return slug;
 }
 
 async function main() {
@@ -186,9 +157,8 @@ async function main() {
 
     const unit = getUnitNumber(slug);
     const wordList = data.words.map((w) => w.term).join(", ");
-    const fullWeek = formatWeek(slug);
     const activityId = `vocab-${slug}`;
-    const title = `Unit ${unit}: ${fullWeek}`;
+    const title = `Unit ${unit}: ${data.topic}`;
 
     // Generate content for all 4 vocabulary types (uses only data.words = the 6 kept words)
     const consolidatedContent = {

@@ -13,6 +13,7 @@ import { NetworkStatusBanner } from "@/components/NetworkStatusBanner";
 import { SubmissionOutboxManager } from "@/components/SubmissionOutboxManager";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
+import { getVocabActivityDisplayTitle } from "@/lib/vocab-display";
 import { loadActivityPageData } from "./activity-page-data";
 
 interface Props {
@@ -338,6 +339,14 @@ function renderImmersiveActivity(
     shouldShowHeaderProgressBadge: boolean
 ) {
     const immersiveGameUi = activity.type === "game" ? resolveActivityGameUi(activity) : null;
+    const headerTitle =
+        activity.type === "vocabulary"
+            ? getVocabActivityDisplayTitle({
+                id: activityId,
+                title: activity.title,
+                description: activity.description,
+            })
+            : activity.title;
     const shouldRenderImmersiveHeader =
         !(activity.type === "vocabulary" && activity.ui) &&
         immersiveGameUi !== "irregular-verbs" &&
@@ -366,7 +375,7 @@ function renderImmersiveActivity(
                                 className="text-base font-bold line-clamp-2 leading-snug"
                                 style={{ color: "var(--text-color)" }}
                             >
-                                {activity.title}
+                                {headerTitle}
                             </h1>
                         </div>
 
@@ -380,7 +389,7 @@ function renderImmersiveActivity(
                                 className="absolute left-1/2 -translate-x-1/2 text-2xl font-bold"
                                 style={{ color: "var(--text-color)" }}
                             >
-                                {activity.title}
+                                {headerTitle}
                             </h1>
 
                             {shouldShowHeaderProgressBadge && (

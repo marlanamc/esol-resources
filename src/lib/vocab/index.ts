@@ -10,6 +10,9 @@ export {
 // Display utilities
 export {
   stripVocabTypeSuffix,
+  extractTopicFromVocabDescription,
+  getVocabUnitNumberFromActivityId,
+  getVocabActivityDisplayTitle,
   parseVocabTypeLabel,
   getVocabTypeFromTitle,
   getVocabActivityType,
