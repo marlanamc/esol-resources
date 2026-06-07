@@ -36,6 +36,14 @@ type GameMode = 'sorting' | 'minimal-pairs';
 type GamePhase = 'menu' | 'playing' | 'feedback' | 'results';
 type Difficulty = 'easy' | 'medium' | 'hard' | 'mixed';
 
+function normalizeGameMode(mode: unknown): GameMode {
+  return mode === 'minimal-pairs' ? 'minimal-pairs' : 'sorting';
+}
+
+function pickMinimalPairTarget(): 'base' | 'past' {
+  return Math.random() > 0.5 ? 'base' : 'past';
+}
+
 interface GameState {
   mode: GameMode;
   phase: GamePhase;
@@ -120,7 +128,8 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
     try {
       const content = JSON.parse(contentStr);
       if (content.mode) {
-        setState(prev => ({ ...prev, mode: content.mode }));
+        // "mixed" means learners pick a mode in the menu; course-map auto-start uses sorting.
+        setState(prev => ({ ...prev, mode: normalizeGameMode(content.mode) }));
       }
       if (content.difficulty) {
         setState(prev => ({ ...prev, difficulty: content.difficulty }));
@@ -177,10 +186,11 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
   }, [isAudioSupported]);
 
   const startGame = useCallback((mode: GameMode) => {
+    const gameMode = normalizeGameMode(mode);
     const roundSize = 15;
     let verbs: EdVerb[];
 
-    if (mode === 'sorting') {
+    if (gameMode === 'sorting') {
       verbs = getGameRound(roundSize, state.difficulty);
     } else {
       // For minimal pairs, we need base/past pairs
@@ -190,7 +200,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
 
     setState(prev => ({
       ...prev,
-      mode,
+      mode: gameMode,
       phase: 'playing',
       verbs,
       currentIndex: 0,
@@ -201,7 +211,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
       selectedAnswer: null,
       showFeedback: false,
       discoveryPhase: 0,
-      minimalPairTarget: mode === 'minimal-pairs' ? (Math.random() > 0.5 ? 'base' : 'past') : null,
+      minimalPairTarget: gameMode === 'minimal-pairs' ? pickMinimalPairTarget() : null,
       audioPlayed: false,
     }));
   }, [state.difficulty]);
@@ -277,7 +287,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
     } else {
       // Next question
       const nextTarget = state.mode === 'minimal-pairs'
-        ? (Math.random() > 0.5 ? 'base' : 'past')
+        ? pickMinimalPairTarget()
         : null;
 
       setState(prev => ({

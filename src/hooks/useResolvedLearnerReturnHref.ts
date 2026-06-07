@@ -26,7 +26,20 @@ export function useResolvedLearnerReturnHref({
     const searchParams = useSearchParams();
     const searchKey = searchParams.toString();
     const assignmentId = searchParams.get("assignment");
-    const [resolvedHref, setResolvedHref] = useState(fallbackHref);
+
+    // Seed from the query-param sources synchronously (no window/sessionStorage access) so the
+    // back button paints with the correct destination on first render instead of starting at the
+    // fallback and shifting after mount. Course-map navigations always carry an explicit returnTo,
+    // so this removes the visible header "jump" on click-through. sessionStorage-based sources are
+    // still resolved in the effect below.
+    const initialHref = useMemo(() => {
+        const params = new URLSearchParams(searchKey);
+        const explicitReturnTo = sanitizeInternalHref(params.get(RETURN_TO_QUERY_PARAM));
+        const legacyGrammarMap = params.get("from") === "grammar-map" ? "/grammar-map" : null;
+        return explicitReturnTo ?? legacyGrammarMap ?? sanitizeInternalHref(fallbackHref) ?? "/dashboard";
+    }, [searchKey, fallbackHref]);
+
+    const [resolvedHref, setResolvedHref] = useState(initialHref);
 
     const storageKey = useMemo(
         () => buildReturnStorageKey(pathname, assignmentId),

@@ -30,8 +30,11 @@ import { saveActivityProgress } from "@/lib/activityProgress";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
 import type { PartsOfSpeechContent } from "@/types/parts-of-speech";
 
+// Shared fallback for the dynamically-imported activity/game chunks. Fills its container
+// (h-full) so it sits in the same spot as each game's own internal loading spinner — that
+// way the dynamic-import loader hands off to the game's loader without a visible jump.
 const ActivityLoadingFallback = () => (
-    <div className="flex items-center justify-center min-h-[300px]">
+    <div className="flex items-center justify-center h-full min-h-[300px]">
         <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary" />
     </div>
 );

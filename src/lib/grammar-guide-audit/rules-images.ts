@@ -56,8 +56,8 @@ async function loadImageEntriesFromFile(file: string): Promise<ImageEntry[]> {
     const exportName = findImageExportName(source);
     if (!exportName) return [];
 
-    const module = await import(pathToFileURL(filePath).href);
-    const images = module[exportName] as Record<
+    const imageModule = await import(pathToFileURL(filePath).href);
+    const images = imageModule[exportName] as Record<
         string,
         {
             alt?: string;

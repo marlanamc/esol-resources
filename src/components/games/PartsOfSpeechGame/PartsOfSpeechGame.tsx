@@ -32,6 +32,18 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
   const courseMapDirections =
     gameContent?.courseMapDirections ?? 'Follow this guided step. You do not need to choose settings.';
 
+  // Rendered identically across the loading, error, and play states so the guided banner is
+  // present on the very first paint — no pop-in / content shift when the game finishes loading.
+  const courseMapBanner = isCourseMapPreset ? (
+    <div className="mb-4 rounded-2xl border border-[var(--tone-vocab-accent,#6a8d73)]/25 bg-[var(--tone-vocab-surface,rgba(106,141,115,0.08))] px-4 py-3">
+      <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
+        Guided Course Map Step
+      </p>
+      <h1 className="mt-1 text-lg font-display font-bold text-text">{courseMapTitle}</h1>
+      <p className="mt-1 text-sm leading-snug text-text-muted">{courseMapDirections}</p>
+    </div>
+  ) : null;
+
   const {
     state,
     selectGroup,
@@ -75,12 +87,17 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
   // Loading state - uses CSS animation to avoid main thread work
   if (state.loading) {
     return (
-      <div className="h-full min-h-full bg-bg flex items-center justify-center p-6">
-        <div className="text-center">
-          <div className="w-16 h-16 mx-auto mb-6 rounded-full border-4 border-border border-t-primary animate-spin" />
-          <p className="text-text-muted font-display text-lg">
-            Preparing your lesson...
-          </p>
+      <div className="h-full min-h-full bg-bg flex flex-col">
+        {courseMapBanner && (
+          <div className="mx-auto w-full max-w-5xl px-4 pt-6 sm:px-6 sm:pt-10">{courseMapBanner}</div>
+        )}
+        <div className="flex flex-1 items-center justify-center p-6">
+          <div className="text-center">
+            <div className="w-16 h-16 mx-auto mb-6 rounded-full border-4 border-border border-t-primary animate-spin" />
+            <p className="text-text-muted font-display text-lg">
+              Preparing your lesson...
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -134,15 +151,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
             : 'max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
         }`}
       >
-        {isCourseMapPreset && (
-          <div className="mb-4 rounded-2xl border border-[var(--tone-vocab-accent,#6a8d73)]/25 bg-[var(--tone-vocab-surface,rgba(106,141,115,0.08))] px-4 py-3">
-            <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
-              Guided Course Map Step
-            </p>
-            <h1 className="mt-1 text-lg font-display font-bold text-text">{courseMapTitle}</h1>
-            <p className="mt-1 text-sm leading-snug text-text-muted">{courseMapDirections}</p>
-          </div>
-        )}
+        {courseMapBanner}
 
         {/* Back button — selection */}
         {state.phase === 'selection' && !isCourseMapPreset && (

@@ -75,8 +75,8 @@ export async function loadGuide(scope: GuideScopeEntry): Promise<LoadedGuide> {
     let content: InteractiveGuideContent = { type: "interactive-guide", sections: [] };
 
     if (exportName) {
-        const module = await import(pathToFileURL(contentPath).href);
-        content = module[exportName] as InteractiveGuideContent;
+        const guideModule = await import(pathToFileURL(contentPath).href);
+        content = guideModule[exportName] as InteractiveGuideContent;
     }
 
     return {

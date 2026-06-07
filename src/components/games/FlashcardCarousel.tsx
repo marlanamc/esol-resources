@@ -44,7 +44,8 @@ export default function FlashcardCarousel({
     // Settings
     const [mode, setMode] = useState<CardMode>("term-first");
     const [showExample, setShowExample] = useState(true);
-    const [studiedCards, setStudiedCards] = useState<Set<number>>(new Set()); // Track cards that were actually flipped
+    const [studiedCards, setStudiedCards] = useState<Set<number>>(new Set()); // Track cards that were actually flipped (drives points)
+    const [viewedCards, setViewedCards] = useState<Set<number>>(new Set()); // Track cards navigated to (drives completion)
     const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
     // Touch/swipe handling
@@ -191,16 +192,34 @@ export default function FlashcardCarousel({
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [goNext, goPrev, handleFlip]);
 
+    // Mark the current card as "viewed" whenever the learner lands on it (including on mount).
+    // Viewing every card = completing the flashcard review, regardless of whether each was flipped.
+    useEffect(() => {
+        if (total === 0) return;
+        const originalIndex = order[currentIndex];
+        setViewedCards((prev) => {
+            if (prev.has(originalIndex)) return prev;
+            const next = new Set(prev);
+            next.add(originalIndex);
+            return next;
+        });
+    }, [currentIndex, order, total]);
+
     useEffect(() => {
         if (!activityId || total === 0) return;
-        // Progress is based on cards actually studied (flipped), not just navigated
+        // Completion is based on cards viewed (reached the end of the deck), so a learner who pages
+        // through without flipping every card still gets credit. Progress value reflects engagement
+        // (flipped cards) until the deck is fully viewed.
         const studiedPercent = Math.round((studiedCards.size / total) * 100);
+        const viewedAll = viewedCards.size >= total;
+        const status = viewedAll ? "completed" : "in_progress";
+        const progressValue = viewedAll ? 100 : studiedPercent;
 
         const saveProgress = async () => {
             const result = await saveActivityProgress(
                 activityId,
-                studiedPercent,
-                studiedPercent >= 100 ? "completed" : "in_progress",
+                progressValue,
+                status,
                 undefined,
                 undefined,
                 assignmentId ?? null,
@@ -213,7 +232,7 @@ export default function FlashcardCarousel({
         };
 
         void saveProgress();
-    }, [activityId, assignmentId, studiedCards.size, total, vocabType]);
+    }, [activityId, assignmentId, studiedCards.size, viewedCards.size, total, vocabType]);
 
     const [showSettings, setShowSettings] = useState(false);
 

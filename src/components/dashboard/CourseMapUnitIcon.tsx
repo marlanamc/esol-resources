@@ -44,6 +44,9 @@ export function CourseMapUnitIcon({
     style?: CSSProperties;
     strokeWidth?: number;
 }) {
+    // Selecting (not creating) one of a fixed set of Lucide icon components by index — safe and
+    // intentional. The static-components rule can't tell the difference, so scope a disable here.
     const Icon = getCourseMapUnitIcon(unitNumber);
+    // eslint-disable-next-line react-hooks/static-components
     return <Icon size={size} className={className} style={style} strokeWidth={strokeWidth} aria-hidden />;
 }

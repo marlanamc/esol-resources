@@ -31,6 +31,7 @@ const eslintConfig = defineConfig([
     "public/assets/**",
     "_legacy/**",
     "docs/**",
+    "design_handoff_home_map_redesign/**",
   ]),
 ]);
 

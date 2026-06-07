@@ -38,6 +38,9 @@ const QUIZ_VERB_PAIRS: Array<[string, string]> = [
   ["get", "know"],
   ["read", "think"],
   ["drive", "ride"],
+  ["feel", "grow"],
+  ["take", "bring"],
+  ["fall", "lose"],
 ];
 
 function addDays(date: Date, days: number): Date {
