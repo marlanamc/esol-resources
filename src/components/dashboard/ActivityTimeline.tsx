@@ -20,6 +20,8 @@ interface ActivityTimelineProps {
   items: TimelineItem[];
   accent: { fg: string; bg: string };
   className?: string;
+  /** Card rows for desktop panels; list rows for mobile course map */
+  layout?: "card" | "list";
 }
 
 function typeToToneKey(type: string): string {
@@ -179,9 +181,70 @@ function TimelineNode({
   );
 }
 
-export function ActivityTimeline({ items, accent, className }: ActivityTimelineProps) {
+function TimelineMeta({
+  label,
+  mins,
+  toneAccent,
+}: {
+  label: string;
+  mins: number;
+  toneAccent: string;
+}) {
   return (
-    <div className={className} style={{ position: "relative", paddingLeft: 8 }}>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "4px 6px",
+        marginTop: 4,
+        alignItems: "center",
+        fontSize: 11,
+        fontWeight: 600,
+      }}
+    >
+      <span style={{ color: toneAccent }}>{label}</span>
+      <span style={{ color: "var(--text-muted)" }}>·</span>
+      <span style={{ color: "var(--text-muted)", display: "inline-flex", alignItems: "center", gap: 3 }}>
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0 }}>
+          <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.4" />
+          <path d="M6 3.5v2.8l1.5 1.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        </svg>
+        {mins} min
+      </span>
+    </div>
+  );
+}
+
+function StartButton() {
+  return (
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4,
+        marginTop: 8,
+        paddingInline: "12px",
+        paddingBlock: "6px",
+        borderRadius: 8,
+        background: "var(--primary)",
+        color: "#fff",
+        fontSize: 12,
+        fontWeight: 700,
+      }}
+    >
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor">
+        <path d="M3 2.5l6 3.5-6 3.5V2.5z" />
+      </svg>
+      Start
+    </span>
+  );
+}
+
+export function ActivityTimeline({ items, accent, className, layout = "card" }: ActivityTimelineProps) {
+  const isList = layout === "list";
+
+  return (
+    <div className={className} style={{ position: "relative", paddingLeft: isList ? 0 : 8 }}>
       {items.map((item, i) => {
         const last = i === items.length - 1;
         const tone = getLearnerCategoryTone(typeToToneKey(item.type) as Parameters<typeof getLearnerCategoryTone>[0]);
@@ -194,11 +257,55 @@ export function ActivityTimeline({ items, accent, className }: ActivityTimelineP
         const isDone = item.status === "done";
         const isLocked = item.status === "locked";
 
+        const titleStyle: React.CSSProperties = {
+          fontSize: isList ? 15 : 13.5,
+          fontWeight: 700,
+          lineHeight: 1.35,
+          color: isLocked ? "var(--text-muted)" : "var(--text)",
+          textDecoration: isDone ? "line-through" : "none",
+          textDecorationColor: "color-mix(in srgb, var(--text-muted) 70%, transparent)",
+        };
+
+        const listContent = (
+          <div
+            style={{
+              padding: "12px 0",
+              borderBottom: last ? "none" : "1px solid var(--border-subtle)",
+              cursor: isLocked ? "default" : "pointer",
+              opacity: isLocked ? 0.55 : 1,
+            }}
+          >
+            <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+              <span
+                aria-hidden
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: 8,
+                  display: "grid",
+                  placeItems: "center",
+                  fontSize: 17,
+                  flexShrink: 0,
+                  background: "var(--surface-subtle)",
+                  borderLeft: `3px solid ${tone.accent}`,
+                }}
+              >
+                {glyph}
+              </span>
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <div style={titleStyle}>{item.title}</div>
+                <TimelineMeta label={label} mins={mins} toneAccent={tone.accent} />
+                {isCurrent ? <StartButton /> : null}
+              </div>
+            </div>
+          </div>
+        );
+
         const cardContent = (
           <div
             style={{
               display: "flex",
-              alignItems: "center",
+              alignItems: isCurrent ? "flex-start" : "center",
               gap: 11,
               padding: "10px 12px",
               borderRadius: 14,
@@ -211,7 +318,6 @@ export function ActivityTimeline({ items, accent, className }: ActivityTimelineP
             }}
             className={!isLocked ? "timeline-card-hover" : ""}
           >
-            {/* type glyph — neutral surface, category tone as quiet 3px left border */}
             <div
               style={{
                 width: 36,
@@ -230,93 +336,41 @@ export function ActivityTimeline({ items, accent, className }: ActivityTimelineP
               {glyph}
             </div>
 
-            {/* text */}
             <div style={{ minWidth: 0, flex: 1 }}>
-              <div
-                style={{
-                  fontSize: 13.5,
-                  fontWeight: 700,
-                  lineHeight: 1.25,
-                  color: isLocked ? "var(--text-muted)" : "var(--text)",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {item.title}
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  gap: 6,
-                  marginTop: 3,
-                  alignItems: "center",
-                  fontSize: 11,
-                  fontWeight: 600,
-                }}
-              >
-                <span style={{ color: tone.accent }}>{label}</span>
-                <span style={{ color: "var(--text-muted)" }}>·</span>
-                <span style={{ color: "var(--text-muted)", display: "inline-flex", alignItems: "center", gap: 3 }}>
-                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0 }}>
-                    <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.4" />
-                    <path d="M6 3.5v2.8l1.5 1.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-                  </svg>
-                  {mins} min
-                </span>
-              </div>
+              <div style={titleStyle}>{item.title}</div>
+              <TimelineMeta label={label} mins={mins} toneAccent={tone.accent} />
+              {isCurrent ? <StartButton /> : null}
             </div>
 
-            {/* trailing affordance */}
-            {isCurrent && (
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 4,
-                  paddingInline: "10px",
-                  paddingBlock: "5px",
-                  borderRadius: 8,
-                  background: "var(--primary)",
-                  color: "#fff",
-                  fontSize: 11.5,
-                  fontWeight: 700,
-                  whiteSpace: "nowrap",
-                  flexShrink: 0,
-                }}
-              >
-                <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor">
-                  <path d="M3 2.5l6 3.5-6 3.5V2.5z" />
-                </svg>
-                Start
-              </span>
-            )}
-            {!isCurrent && !isLocked && (
+            {!isCurrent && !isLocked ? (
               <svg
                 width="18"
                 height="18"
                 viewBox="0 0 18 18"
                 fill="none"
-                style={{ color: "var(--text-muted)", flexShrink: 0 }}
+                style={{ color: "var(--text-muted)", flexShrink: 0, marginTop: isCurrent ? 4 : 0 }}
               >
                 <path d="M7 5l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            )}
+            ) : null}
           </div>
         );
+
+        const rowContent = isList ? listContent : cardContent;
+        const railWidth = isList ? 28 : 34;
+        const railGap = isList ? 10 : 14;
 
         return (
           <div
             key={item.activityId}
             style={{
               display: "grid",
-              gridTemplateColumns: "34px minmax(0,1fr)",
-              gap: 14,
+              gridTemplateColumns: `${railWidth}px minmax(0,1fr)`,
+              gap: railGap,
               animation: "timelineFadeIn 0.35s ease-out both",
               animationDelay: animDelay,
             }}
           >
-            {/* left rail */}
             <div style={{ display: "grid", justifyItems: "center" }}>
               <TimelineNode status={item.status} accent={accent} index={i} />
               {!last && (
@@ -334,17 +388,29 @@ export function ActivityTimeline({ items, accent, className }: ActivityTimelineP
               )}
             </div>
 
-            {/* right card */}
-            <div style={{ paddingBottom: last ? 0 : 14, minWidth: 0 }}>
+            <div
+              style={{
+                paddingBottom: isList ? 0 : last ? 0 : 14,
+                minWidth: 0,
+                ...(isCurrent && isList
+                  ? {
+                      marginInline: -2,
+                      paddingInline: 10,
+                      borderRadius: 12,
+                      background: "color-mix(in srgb, var(--primary) 5%, var(--surface-base))",
+                    }
+                  : {}),
+              }}
+            >
               {isLocked ? (
-                cardContent
+                rowContent
               ) : (
                 <Link
                   href={item.href}
                   style={{ display: "block", textDecoration: "none" }}
                   prefetch={false}
                 >
-                  {cardContent}
+                  {rowContent}
                 </Link>
               )}
             </div>

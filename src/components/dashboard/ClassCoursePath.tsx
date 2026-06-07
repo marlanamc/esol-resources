@@ -245,7 +245,7 @@ function buildWeekTimelineItems(
 
             return {
                 activityId: activity.id,
-                title: shortActivityTitle(activity.title),
+                title: activity.title,
                 type: activity.activityType,
                 vocabUi: activity.vocabUi,
                 estMinutes: estimatedMinutes(activity),
@@ -689,6 +689,7 @@ function MobileUnitSection({
     onOptionalToggle: (weekNumber: number) => void;
 }) {
     const tone = getCourseMapUnitTone(unit.unitNumber);
+    const hasOpenWeek = openWeekNumber != null && unit.weeks.some((week) => week.level.levelNumber === openWeekNumber);
     return (
         <div
             id={`unit-${unit.unitNumber}`}
@@ -718,9 +719,11 @@ function MobileUnitSection({
                     <div className="font-display" style={{ fontWeight: 700, fontSize: 15, marginTop: 3, lineHeight: 1.15, color: "var(--text)" }}>
                         {unit.unitTitle}
                     </div>
-                    <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 2 }}>
-                        {formatUnitProgressLabel(unit.doneWeeks, unit.totalWeeks, showUnitMonths)}
-                    </div>
+                    {!hasOpenWeek ? (
+                        <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 2 }}>
+                            {formatUnitProgressLabel(unit.doneWeeks, unit.totalWeeks, showUnitMonths)}
+                        </div>
+                    ) : null}
                 </div>
                 <span style={{
                     color: "var(--text-muted)", flexShrink: 0,
@@ -734,22 +737,97 @@ function MobileUnitSection({
             </button>
 
             {isOpen && (
-                <div style={{ padding: "4px 14px 16px", display: "grid", gap: 10 }}>
-                    {unit.weeks.map((week) => (
-                        <div key={week.level.levelNumber} id={`week-${week.level.levelNumber}`} className={MAP_SCROLL_MARGIN}>
-                            <MobileWeekCard
-                                week={week}
-                                isOpen={openWeekNumber === week.level.levelNumber}
-                                optionalOpen={Boolean(openOptional[week.level.levelNumber])}
-                                currentId={currentId}
-                                currentLabel={currentLabel}
-                                guidedAssignments={guidedAssignments}
-                                guidedProgress={guidedProgress}
-                                onToggle={() => onWeekToggle(week.level.levelNumber)}
-                                onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
-                            />
-                        </div>
-                    ))}
+                <div style={{ padding: hasOpenWeek ? "0 10px 12px" : "0 14px 14px" }}>
+                    {hasOpenWeek ? (
+                        <>
+                            {unit.weeks
+                                .filter((week) => openWeekNumber === week.level.levelNumber)
+                                .map((week) => (
+                                    <div
+                                        key={week.level.levelNumber}
+                                        id={`week-${week.level.levelNumber}`}
+                                        className={MAP_SCROLL_MARGIN}
+                                    >
+                                        <MobileWeekCard
+                                            week={week}
+                                            isOpen
+                                            optionalOpen={Boolean(openOptional[week.level.levelNumber])}
+                                            currentId={currentId}
+                                            currentLabel={currentLabel}
+                                            guidedAssignments={guidedAssignments}
+                                            guidedProgress={guidedProgress}
+                                            onToggle={() => onWeekToggle(week.level.levelNumber)}
+                                            onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
+                                        />
+                                    </div>
+                                ))}
+                            {unit.weeks.some((week) => week.level.levelNumber !== openWeekNumber) ? (
+                                <div
+                                    className="border-t pt-2"
+                                    style={{ borderColor: "var(--border-subtle)" }}
+                                >
+                                    <p className="px-1 pb-1 text-[10px] font-bold uppercase tracking-wide text-text-muted">
+                                        More in this unit
+                                    </p>
+                                    {unit.weeks
+                                        .filter((week) => week.level.levelNumber !== openWeekNumber)
+                                        .map((week, index, siblings) => (
+                                            <div
+                                                key={week.level.levelNumber}
+                                                id={`week-${week.level.levelNumber}`}
+                                                className={MAP_SCROLL_MARGIN}
+                                                style={{
+                                                    borderBottom:
+                                                        index < siblings.length - 1
+                                                            ? "1px solid var(--border-subtle)"
+                                                            : undefined,
+                                                }}
+                                            >
+                                                <MobileWeekCard
+                                                    week={week}
+                                                    isOpen={false}
+                                                    optionalOpen={Boolean(openOptional[week.level.levelNumber])}
+                                                    currentId={currentId}
+                                                    currentLabel={currentLabel}
+                                                    guidedAssignments={guidedAssignments}
+                                                    guidedProgress={guidedProgress}
+                                                    onToggle={() => onWeekToggle(week.level.levelNumber)}
+                                                    onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
+                                                />
+                                            </div>
+                                        ))}
+                                </div>
+                            ) : null}
+                        </>
+                    ) : (
+                        unit.weeks.map((week, index) => {
+                            const weekIsOpen = openWeekNumber === week.level.levelNumber;
+                            const isLast = index === unit.weeks.length - 1;
+                            return (
+                                <div
+                                    key={week.level.levelNumber}
+                                    id={`week-${week.level.levelNumber}`}
+                                    className={MAP_SCROLL_MARGIN}
+                                    style={{
+                                        borderTop: index === 0 ? "1px solid var(--border-subtle)" : undefined,
+                                        borderBottom: !isLast && !weekIsOpen ? "1px solid var(--border-subtle)" : undefined,
+                                    }}
+                                >
+                                    <MobileWeekCard
+                                        week={week}
+                                        isOpen={weekIsOpen}
+                                        optionalOpen={Boolean(openOptional[week.level.levelNumber])}
+                                        currentId={currentId}
+                                        currentLabel={currentLabel}
+                                        guidedAssignments={guidedAssignments}
+                                        guidedProgress={guidedProgress}
+                                        onToggle={() => onWeekToggle(week.level.levelNumber)}
+                                        onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
+                                    />
+                                </div>
+                            );
+                        })
+                    )}
                 </div>
             )}
         </div>
@@ -778,115 +856,118 @@ function MobileWeekCard({
     onToggleOptional: () => void;
 }) {
     const focus = focusText(week.level.levelTitle, week.level.levelGoal);
+    const tone = getCourseMapUnitTone(week.unitNumber);
 
-    return (
-        <section
-            id={`week-${week.level.levelNumber}`}
-            className={`dashboard-panel rounded-2xl transition-colors ${MAP_SCROLL_MARGIN} ${isOpen ? "px-4 pb-4 pt-3" : "px-4 py-3.5"}`}
-            style={{
-                ...courseMapUnitToneStyle(week.unitNumber),
-                borderColor: week.hasCurrent ? "color-mix(in srgb, var(--unit-accent,#6a8d73) 45%, var(--border-subtle))" : undefined,
-            }}
-            aria-labelledby={isOpen ? `week-${week.level.levelNumber}-heading` : undefined}
-        >
-            {isOpen ? (
-                <h2
-                    id={`week-${week.level.levelNumber}-heading`}
-                    tabIndex={-1}
-                    className="sr-only"
-                >
-                    {formatLevelLabel(week.level.levelNumber)}: {week.level.levelTitle}
-                </h2>
-            ) : null}
+    if (!isOpen) {
+        return (
             <button
                 type="button"
                 onClick={onToggle}
-                aria-expanded={isOpen}
-                className="block w-full text-left"
+                aria-expanded={false}
+                className="flex w-full items-center gap-3 py-3.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             >
-                <span className="flex items-center gap-3">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm font-bold text-[var(--unit-accent,#6a8d73)]" style={{ borderColor: "color-mix(in srgb, var(--unit-accent,#6a8d73) 55%, var(--border-subtle))" }}>
-                        {week.level.levelNumber}
-                    </span>
-                    <span className="min-w-0 flex-1 text-[11px] font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
-                        {formatLevelLabel(week.level.levelNumber)}
-                    </span>
-                    <span className="shrink-0 rounded-full border px-2.5 py-1 text-xs font-bold tabular-nums text-[var(--unit-accent,#6a8d73)]" style={{ borderColor: "color-mix(in srgb, var(--unit-accent,#6a8d73) 35%, var(--border-subtle))" }}>
-                        {week.requiredDone} / {week.requiredTotal}
-                    </span>
-                    {isOpen ? (
-                        <ChevronDown size={18} className="shrink-0 text-text-muted" aria-hidden />
-                    ) : (
-                        <ChevronRight size={18} className="shrink-0 text-text-muted" aria-hidden />
-                    )}
+                <span
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm font-bold"
+                    style={{
+                        color: tone.accent,
+                        borderColor: `color-mix(in srgb, ${tone.accent} 55%, var(--border-subtle))`,
+                    }}
+                >
+                    {week.level.levelNumber}
                 </span>
-                <span className="mt-2 block text-base font-bold leading-tight text-text">
-                    {week.level.levelTitle}
-                </span>
-                {focus ? (
-                    <span className="mt-1 block text-sm leading-snug text-text-muted">
-                        Focus: {focus}
+                <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-semibold leading-snug text-text">
+                        {week.level.levelTitle}
                     </span>
-                ) : null}
+                    <span className="mt-0.5 block text-xs text-text-muted">
+                        {week.requiredDone} / {week.requiredTotal} done
+                    </span>
+                </span>
+                <ChevronRight size={18} className="shrink-0 text-text-muted" aria-hidden />
+            </button>
+        );
+    }
+
+    return (
+        <section
+            aria-labelledby={`week-${week.level.levelNumber}-heading`}
+            className="pt-3 pb-1"
+            style={courseMapUnitToneStyle(week.unitNumber)}
+        >
+            <h2
+                id={`week-${week.level.levelNumber}-heading`}
+                tabIndex={-1}
+                className="sr-only"
+            >
+                {formatLevelLabel(week.level.levelNumber)}: {week.level.levelTitle}
+            </h2>
+            {focus ? (
+                <p className="mb-3 text-sm leading-relaxed text-text-muted">
+                    {focus}
+                </p>
+            ) : null}
+
+            {(() => {
+                const returnHref = buildMapReturnHref(week.level.levelNumber, true);
+                const timelineItems = buildWeekTimelineItems(
+                    week.level.requiredActivities,
+                    guidedProgress,
+                    guidedAssignments,
+                    currentId,
+                    returnHref
+                );
+                return (
+                    <ActivityTimeline
+                        items={timelineItems}
+                        accent={{ fg: tone.accent, bg: tone.surface }}
+                        layout="list"
+                    />
+                );
+            })()}
+
+            <button
+                type="button"
+                onClick={onToggle}
+                className="mt-2 w-full py-2 text-center text-xs font-semibold text-text-muted"
+            >
+                Collapse level
             </button>
 
-            {isOpen ? (
+            {getExtraPracticeActivities(week.level.extraPractice).length > 0 ? (
                 <div className="mt-5 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
-                    {(() => {
-                        const returnHref = buildMapReturnHref(week.level.levelNumber, true);
-                        const timelineItems = buildWeekTimelineItems(
-                            week.level.requiredActivities,
-                            guidedProgress,
-                            guidedAssignments,
-                            currentId,
-                            returnHref
-                        );
-                        const tone = getCourseMapUnitTone(week.unitNumber);
-                        return (
-                            <ActivityTimeline
-                                items={timelineItems}
-                                accent={{ fg: tone.accent, bg: tone.surface }}
-                            />
-                        );
-                    })()}
+                    <button
+                        type="button"
+                        onClick={onToggleOptional}
+                        aria-expanded={optionalOpen}
+                        className="flex w-full items-center gap-3 text-left"
+                    >
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--unit-chip-bg,#eef3ee)] text-[var(--unit-accent,#6a8d73)]">
+                            {optionalOpen ? <ChevronDown size={20} aria-hidden /> : <Plus size={21} aria-hidden />}
+                        </span>
+                        <span className="min-w-0 flex-1">
+                            <span className="block text-base font-semibold text-text">Optional practice</span>
+                            <span className="block text-sm text-text-muted">
+                                {optionalOpen ? "Hide extra games and activities" : "More games and activities"}
+                            </span>
+                        </span>
+                        <ChevronRight size={18} className={`shrink-0 text-text-muted transition-transform ${optionalOpen ? "rotate-90" : ""}`} aria-hidden />
+                    </button>
 
-                    {getExtraPracticeActivities(week.level.extraPractice).length > 0 ? (
-                        <div className="mt-5 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
-                            <button
-                                type="button"
-                                onClick={onToggleOptional}
-                                aria-expanded={optionalOpen}
-                                className="flex w-full items-center gap-3 text-left"
-                            >
-                                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--unit-chip-bg,#eef3ee)] text-[var(--unit-accent,#6a8d73)]">
-                                    {optionalOpen ? <ChevronDown size={20} aria-hidden /> : <Plus size={21} aria-hidden />}
-                                </span>
-                                <span className="min-w-0 flex-1">
-                                    <span className="block text-base font-semibold text-text">Optional practice</span>
-                                    <span className="block text-sm text-text-muted">
-                                        {optionalOpen ? "Hide extra games and activities" : "More games and activities"}
-                                    </span>
-                                </span>
-                                <ChevronRight size={18} className={`shrink-0 text-text-muted transition-transform ${optionalOpen ? "rotate-90" : ""}`} aria-hidden />
-                            </button>
-
-                            {optionalOpen ? (
-                                <div className="relative ml-[31px] mt-3">
-                                    <div className="absolute -left-[22px] bottom-4 top-4 w-px rounded-full bg-[var(--border-subtle)]" />
-                                    <div className="space-y-1">
-                                        {getExtraPracticeActivities(week.level.extraPractice).map((activity) => (
-                                            <MobileActivityRow
-                                                key={activity.id}
-                                                activity={activity}
-                                                assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
-                                                isCompleted={isMapActivityCompleted(activity, guidedProgress)}
-                                                isCurrent={false}
-                                                currentLabel={currentLabel}
-                                            />
-                                        ))}
-                                    </div>
-                                </div>
-                            ) : null}
+                    {optionalOpen ? (
+                        <div className="relative ml-[31px] mt-3">
+                            <div className="absolute -left-[22px] bottom-4 top-4 w-px rounded-full bg-[var(--border-subtle)]" />
+                            <div className="space-y-1">
+                                {getExtraPracticeActivities(week.level.extraPractice).map((activity) => (
+                                    <MobileActivityRow
+                                        key={activity.id}
+                                        activity={activity}
+                                        assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
+                                        isCompleted={isMapActivityCompleted(activity, guidedProgress)}
+                                        isCurrent={false}
+                                        currentLabel={currentLabel}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     ) : null}
                 </div>
