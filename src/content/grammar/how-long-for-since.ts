@@ -210,7 +210,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           { speaker: "Linh", avatar: "👩🏻", text: "Did you hear? Our landlord is not renewing leases in the spring.", side: "left", tone: "terracotta" },
           { speaker: "Gloria", avatar: "👩🏾", text: "I know. I <strong>have lived</strong> here <strong>for four years</strong>. I do not want to move.", side: "right", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>have been</strong> here <strong>since I moved</strong> from Chelsea. My kids know this school.", side: "left", tone: "terracotta" },
-          { speaker: "Gloria", avatar: "👩🏾", text: "We need to find something before Christmas.", side: "right", tone: "sage" },
+          { speaker: "Gloria", avatar: "👩🏾", text: "We need to find something before spring.", side: "right", tone: "sage" },
         ])}
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0">

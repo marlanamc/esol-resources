@@ -103,7 +103,7 @@ export const haveYouEverContent: InteractiveGuideContent = {
           { speaker: "Claudette", avatar: "👩🏾", text: "Yes, I <strong>have</strong>! There is a restaurant on Maverick Square. It is so good.", side: "right", tone: "terracotta" },
           { speaker: "Jean", avatar: "👨🏽", text: "<strong>Have</strong> you <strong>ever taken</strong> the Blue Line to the airport?", side: "left", tone: "sage" },
           { speaker: "Claudette", avatar: "👩🏾", text: "No, I <strong>haven't</strong>. I always take the bus.", side: "right", tone: "terracotta" },
-          { speaker: "Jean", avatar: "👨🏽", text: "<strong>Have</strong> you <strong>ever cooked</strong> a turkey for <strong>Thanksgiving</strong>?", side: "left", tone: "sage" },
+          { speaker: "Jean", avatar: "👨🏽", text: "<strong>Have</strong> you <strong>ever cooked</strong> a big meal for your family?", side: "left", tone: "sage" },
           { speaker: "Claudette", avatar: "👩🏾", text: "No! What is that? A big dinner in November. my kids learn about it at school.", side: "right", tone: "terracotta" },
         ])}
 

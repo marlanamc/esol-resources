@@ -549,7 +549,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "___ the store ___ (have) that toy in stock by Christmas?",
+                            label: "___ the store ___ (have) that toy in stock by next month?",
                             expectedAnswer: "Will the store have",
                         },
                         {

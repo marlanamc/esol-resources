@@ -363,7 +363,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneVideoCall", "Hotel laundry room after a double shift. Wednesday, 9:30 PM.", "sage")}
 
-        <p>Rosa video-calls her sister <strong>Teresa</strong> after folding sheets for six hours. Coworker <strong>Kevin</strong> had Juneteenth off last week. Rosa never had that holiday before.</p>
+        <p>Rosa video-calls her sister <strong>Teresa</strong> after folding sheets for six hours.</p>
 
         ${dialogue([
           { speaker: "Teresa", avatar: "👩🏽", text: "Still at work?", side: "left", tone: "sage" },

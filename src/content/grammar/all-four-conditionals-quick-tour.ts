@@ -465,7 +465,7 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneEveningClass", "Evening ESOL class, East Boston. Thursday, 7 PM.", "sage")}
 
-        <p>Yemi tells classmate <strong>Djamila</strong> about her bad week. A coworker also mentioned a Cinco de Mayo party on May 5. Yemi learned it is not Mexican Independence Day.</p>
+        <p>Yemi tells classmate <strong>Djamila</strong> about her bad week — a back injury, a clinic trip, and a billing mistake.</p>
 
         ${dialogue([
           { speaker: "Djamila", avatar: "👩🏾", text: "Rough week?", side: "left", tone: "sage" },

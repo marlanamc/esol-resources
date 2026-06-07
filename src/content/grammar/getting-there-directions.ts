@@ -393,7 +393,7 @@ export const gettingThereDirectionsContent: InteractiveGuideContent = {
           </ol>
         </div>
 
-        <p style="margin: 0.75rem 0 0; font-size: 0.95rem; line-height: 1.6">That same week, Elena texted Miguel directions to the mercado on Chelsea Street for marigolds and candles before <strong>Día de los Muertos</strong>: <em><strong>Turn</strong> right after the bus stop. <strong>Walk</strong> past the bakery. The flowers are <strong>next to</strong> the entrance.</em></p>
+        <p style="margin: 0.75rem 0 0; font-size: 0.95rem; line-height: 1.6">That same week, Elena texted Miguel directions to the flower market on Chelsea Street: <em><strong>Turn</strong> right after the bus stop. <strong>Walk</strong> past the bakery. The flowers are <strong>next to</strong> the entrance.</em></p>
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
           <p style="margin: 0; font-size: 1.05rem">Use <strong>First, Then, Next, Finally</strong> to put directions in order. Each step starts with an imperative + preposition to say what to do AND where.</p>

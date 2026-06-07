@@ -183,7 +183,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       title: "How Many or How Much?",
       icon: "🛒",
       explanation: `
-        ${sceneCard("sceneMarketBasket", "Market Basket, Revere Beach Parkway. Claudette shops for New Year's Eve. Her sister's family is coming.", "sage")}
+        ${sceneCard("sceneMarketBasket", "Market Basket, Revere Beach Parkway. Claudette shops before her sister's family arrives.", "sage")}
 
         ${dialogue([
           { speaker: "Claudette", avatar: "👩🏿", text: "<strong>How many</strong> people are coming?", side: "right", tone: "terracotta" },
@@ -402,7 +402,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("countable", "terracotta")}
-            <span><em>There aren't <strong>many</strong> snacks left for New Year's Eve.</em></span>
+            <span><em>There aren't <strong>many</strong> snacks left for the weekend.</em></span>
           </div>
         </div>
       `,
@@ -471,11 +471,11 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
       title: "Enough and Too Much / Too Many",
       icon: "🍲",
       explanation: `
-        ${sceneCard("sceneKitchenPrep", "Beatriz's kitchen, Thursday evening. She's cooking for a group. Her neighbor across the hall is celebrating Kwanzaa.", "sage")}
+        ${sceneCard("sceneKitchenPrep", "Beatriz's kitchen, Thursday evening. She's cooking for a group. Her neighbor across the hall is cooking too.", "sage")}
 
         ${dialogue([
           { speaker: "Beatriz", avatar: "👩🏾", text: "I bought <strong>too many</strong> bags of rice. We can't eat all this.", side: "right", tone: "terracotta" },
-          { speaker: "Luisa", avatar: "👩🏽", text: "Give some to your neighbor. They're cooking for Kwanzaa dinner.", side: "left", tone: "sage" },
+          { speaker: "Luisa", avatar: "👩🏽", text: "Give some to your neighbor. They're making dinner for their family.", side: "left", tone: "sage" },
           { speaker: "Beatriz", avatar: "👩🏾", text: "Good idea. But I don't have <strong>enough</strong> plates for everyone.", side: "right", tone: "terracotta" },
           { speaker: "Luisa", avatar: "👩🏽", text: "There's <strong>too much</strong> food and not enough plates. That's a good problem!", side: "left", tone: "sage" },
         ])}

@@ -572,11 +572,11 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
       title: "Reading a To-Do List: All Three Together",
       icon: "📋",
       explanation: `
-        ${sceneCard("sceneToDoList", "Rosa's kitchen, Friday after Indigenous Peoples' Day weekend.", "terracotta")}
+        ${sceneCard("sceneToDoList", "Rosa's kitchen, Friday morning.", "terracotta")}
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏾", text: "OK, let me check my list before I leave for class.", side: "right", tone: "terracotta" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "School was closed Monday. I <strong>have already taken</strong> the kids to the clinic.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "The kids had Monday off from school. I <strong>have already taken</strong> them to the clinic.", side: "right", tone: "terracotta" },
           { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>have already paid</strong> the rent. Done.", side: "right", tone: "terracotta" },
           { speaker: "Rosa", avatar: "👩🏾", text: "I <strong>have just called</strong> the school about my daughter. Still on my mind.", side: "right", tone: "terracotta" },
           { speaker: "Rosa", avatar: "👩🏾", text: "But I <strong>haven't picked up</strong> the groceries <strong>yet</strong>. That one has to wait.", side: "right", tone: "terracotta" },

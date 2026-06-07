@@ -87,7 +87,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneConstruction", "East Boston construction site, Wednesday morning, 6:45 AM. St. Patrick's Day parade closes Cambridge Street by 9.", "terracotta")}
+        ${sceneCard("sceneConstruction", "East Boston construction site, Wednesday morning, 6:45 AM. A neighborhood parade closes Cambridge Street by 9.", "terracotta")}
 
         <p style="margin: 0 0 1rem 0; line-height: 1.6">Hector and Kevin grab coffee before the crew arrives. The parade means traffic is already backing up.</p>
 

@@ -5,6 +5,7 @@ import { runGlobalImageRules, runGuideImageRules } from "./rules-images";
 import { runCharacterRules, runWiringWarnings } from "./rules-characters";
 import { runToneHeuristics } from "./heuristics-tone";
 import { runGrammarHeuristics } from "./heuristics-grammar";
+import { runHolidayReferenceRules } from "./rules-holiday-references";
 import { runMiniQuizQualityRules } from "./rules-mini-quiz-quality";
 import { runSceneImageContextRules } from "./rules-image-context";
 import { extractSceneContexts } from "./scene-context";
@@ -58,6 +59,7 @@ export async function runMiniGuidesAudit(
             ...runToneHeuristics(loaded, dialogues),
             ...runGrammarHeuristics(loaded),
             ...runMiniQuizQualityRules(loaded),
+            ...runHolidayReferenceRules(loaded),
         ];
 
         guides.push({

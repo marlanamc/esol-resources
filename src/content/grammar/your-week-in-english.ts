@@ -529,11 +529,11 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
       title: "My Weekly Routine",
       icon: "🌟",
       explanation: `
-        ${sceneCard("sceneNeighbors", "Outside an apartment building on Meridian Street, Saturday before Halloween.", "terracotta")}
+        ${sceneCard("sceneNeighbors", "Outside an apartment building on Meridian Street, Saturday evening.", "terracotta")}
 
         ${dialogue([
           { speaker: "Neighbor", avatar: "🧑🏽", text: "Valentina, you\'re always so busy. My kids go trick-or-treating tonight. Do yours?", side: "left", tone: "sage" },
-          { speaker: "Valentina", avatar: "👩🏾", text: "Yes! I <strong>never</strong> work Halloween night. I\'m always home with them.", side: "right", tone: "terracotta" },
+          { speaker: "Valentina", avatar: "👩🏾", text: "Yes! I <strong>never</strong> work Saturday night when my kids are home. I\'m always there with them.", side: "right", tone: "terracotta" },
           { speaker: "Valentina", avatar: "👩🏾", text: "I <strong>usually</strong> work Monday to Friday at the clinic. I <strong>never</strong> work weekends.", side: "right", tone: "terracotta" },
           { speaker: "Neighbor", avatar: "🧑🏽", text: "And English class?", side: "left", tone: "sage" },
           { speaker: "Valentina", avatar: "👩🏾", text: "I go <strong>twice a week</strong>, on Tuesday and Thursday evenings. This week I <strong>have already gone</strong> once. I go again Thursday.", side: "right", tone: "terracotta" },

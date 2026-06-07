@@ -464,14 +464,14 @@ export const gerundsInfinitivesFullReviewContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneEveningClass", "Evening ESOL class, East Boston. Thursday, 7 PM.", "sage")}
 
-        <p>Marisol tells classmate <strong>Djamila</strong> about her week. Memorial Day is Monday. She <strong>plans to visit</strong> her cousin's grave and <strong>hopes</strong> the construction site is closed so she can <strong>stop working</strong> that day.</p>
+        <p>Marisol tells classmate <strong>Djamila</strong> about her week. Monday is a holiday. She <strong>plans to visit</strong> her cousin's grave and <strong>hopes</strong> the construction site is closed so she can <strong>stop working</strong> that day.</p>
 
         ${dialogue([
           { speaker: "Djamila", avatar: "👩🏾", text: "Long week?", side: "left", tone: "sage" },
           { speaker: "Marisol", avatar: "👩🏽", text: "Yes. I'm <strong>tired of commuting</strong>. I <strong>need to call</strong> Mark about rent.", side: "right", tone: "terracotta" },
           { speaker: "Marisol", avatar: "👩🏽", text: "I <strong>keep working</strong> overtime. I <strong>need to stop forgetting</strong> my refills.", side: "right", tone: "terracotta" },
           { speaker: "Marisol", avatar: "👩🏽", text: "And I <strong>plan to change</strong> jobs in the fall. Monday I <strong>plan to visit</strong> my cousin's grave.", side: "right", tone: "terracotta" },
-          { speaker: "Djamila", avatar: "👩🏾", text: "Memorial Day. I hope your site is closed.", side: "left", tone: "sage" },
+          { speaker: "Djamila", avatar: "👩🏾", text: "Monday's a holiday. I hope your site is closed.", side: "left", tone: "sage" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">

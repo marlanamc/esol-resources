@@ -935,7 +935,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     word: "Still",
                     usage: "Emphasizes that something continues to not happen (used with negatives)",
                     examples: [
-                        "I still haven't finished my Christmas shopping.",
+                        "I still haven't finished my shopping.",
                         "She still hasn't called me back.",
                         "They still haven't decided where to go.",
                     ],
@@ -979,7 +979,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "select",
-                            label: "I ___ haven't finished my Christmas shopping.",
+                            label: "I ___ haven't finished my shopping.",
                             options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "still",
                         },

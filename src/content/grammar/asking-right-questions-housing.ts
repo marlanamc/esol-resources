@@ -522,7 +522,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
           { speaker: "Nadine", avatar: "👩🏾", text: "I said: <em>Can you tell me whether children are allowed?</em> He said yes.", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏽", text: "Good. <strong>How long</strong> is the lease?", side: "right", tone: "terracotta" },
           { speaker: "Nadine", avatar: "👩🏾", text: "One year. And <strong>do you know when</strong> you can see it?", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Monday. MLK Day. No work. I finally have time to call listings.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Monday's a holiday. No work. I finally have time to call listings.", side: "right", tone: "terracotta" },
         ])}
 
         <div style="padding: 0.85rem 1rem; background: rgba(59,130,246,0.06); border-left: 3px solid #3b82f6; border-radius: 0 0.4rem 0.4rem 0; margin: 1rem 0">

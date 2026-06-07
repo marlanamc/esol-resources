@@ -484,7 +484,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
     },
 
     // =========================================================================
-    // SECTION 4. "The Best Deal This Week" (Real-world reading + Guadalupe)
+    // SECTION 4. "The Best Deal This Week" (Real-world reading)
     // =========================================================================
     {
       id: "the-best-deal-this-week",
@@ -492,7 +492,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
       title: "The Best Deal This Week",
       icon: "🌼",
       explanation: `
-        ${sceneCard("sceneFlowerMarket", "Flower stall near St. Mary's, East Boston. December 12, Our Lady of Guadalupe.", "terracotta")}
+        ${sceneCard("sceneFlowerMarket", "Flower stall near St. Mary's, East Boston. Saturday morning.", "terracotta")}
 
         ${dialogue([
           { speaker: "Rosa", avatar: "👩🏽", text: "The marigolds here are <strong>more expensive</strong> than last year.", side: "right", tone: "terracotta" },

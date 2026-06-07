@@ -38,6 +38,7 @@
     "audit:grammar-dark-mode": "node --import tsx scripts/checks/audit-grammar-dark-mode.ts",
     "audit:mini-guides": "node --import tsx scripts/checks/audit-mini-guides.ts",
     "audit:mini-quiz-quality": "node --import tsx scripts/checks/audit-mini-quiz-quality.ts --report",
+    "audit:holiday-references": "node --import tsx scripts/checks/audit-holiday-references.ts",
     "audit:mini-guide-images": "node --import tsx scripts/checks/build-mini-guide-image-sheet.ts",
     "report:level1-definitions": "node --import tsx scripts/checks/report-level1-definition-audit.ts",
     "audit:answer-position": "node scripts/checks/audit-answer-position-bias.js",

@@ -471,7 +471,7 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       title: "Mini Review + Building the Sentence",
       icon: "✅",
       explanation: `
-        <p>It is Tuesday evening. Lucia just got home from her housecleaning job. Three Kings Day is January 6th, so the kids are home from school. Her lease ends in three weeks. She opens her notes app and writes everything down.</p>
+        <p>It is Tuesday evening. Lucia just got home from her housecleaning job. The kids are home from school this week. Her lease ends in three weeks. She opens her notes app and writes everything down.</p>
 
         <div style="background: rgba(106,141,115,0.08); border-radius: 0.75rem; padding: 1.1rem 1.25rem; margin: 1.25rem 0; border: 1px solid rgba(106,141,115,0.2)">
           <p style="margin: 0 0 0.5rem 0; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6a8d73">Lucia's list</p>

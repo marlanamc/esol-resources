@@ -460,7 +460,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
       explanation: `
         ${sceneCard("sceneConstructionLocker", "Construction site locker room. Wednesday, April 28.", "terracotta")}
 
-        <p>Yemi's cousin Hector works construction in East Boston. Today is Workers Memorial Day. A safety poster is on the locker room wall.</p>
+        <p>Yemi's cousin Hector works construction in East Boston. A workplace safety poster is on the locker room wall.</p>
 
         ${dialogue([
           { speaker: "Hector", avatar: "👨🏽", text: "The poster says: if the site <strong>had followed</strong> the safety rules, that worker <strong>wouldn't have been</strong> injured.", side: "left", tone: "sage" },
@@ -493,7 +493,7 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
             },
             {
               type: "radio",
-              label: "Workers Memorial Day poster about a past accident.",
+              label: "Workplace safety poster about a past accident.",
               options: [
                 { value: "a", label: "If the site followed the rules, he isn't injured." },
                 { value: "b", label: "If the site had followed the rules, he wouldn't have been injured." },

@@ -81,9 +81,9 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
       title: "Four tenses, one bus ride",
       icon: "🚌",
       explanation: `
-        ${sceneCard("sceneBusStop", "Tuesday after Labor Day. 5:45 PM. Rosa heads to the 121 bus after work.", "terracotta")}
+        ${sceneCard("sceneBusStop", "Tuesday evening, 5:45 PM. Rosa heads to the 121 bus after work.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">You use these tenses every week at work, on the bus, and in class. Rosa had Monday off for Labor Day. Her classmate David had back-to-school night that evening. This guide is a quick refresh, not new grammar.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">You use these tenses every week at work, on the bus, and in class. Rosa had Monday off. Her classmate David had back-to-school night that evening. This guide is a quick refresh, not new grammar.</p>
 
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">Four sentences from Rosa's evening. Read the <strong>time indicator</strong> first, then the verb.</p>
 
