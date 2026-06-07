@@ -11,9 +11,14 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('🗺️  Seeding course map structure...\n');
 
+  const validActivityIds = new Set(
+    (await prisma.activity.findMany({ select: { id: true } })).map((row) => row.id)
+  );
+
   let unitCount = 0;
   let weekCount = 0;
   let itemCount = 0;
+  let skippedActivityLinks = 0;
 
   for (const unit of COURSE_MAP_UNITS) {
     await prisma.courseUnit.upsert({
@@ -32,11 +37,17 @@ async function main() {
       weekCount++;
 
       for (const item of week.items) {
+        const activityId =
+          item.activityId && validActivityIds.has(item.activityId) ? item.activityId : null;
+        if (item.activityId && !activityId) {
+          skippedActivityLinks++;
+        }
+
         await prisma.courseMapItem.upsert({
           where: { id: item.id },
           update: {
             weekId: week.id,
-            activityId: item.activityId ?? null,
+            activityId,
             href: item.href ?? null,
             vocabUi: item.vocabUi ?? null,
             slot: item.slot,
@@ -48,7 +59,7 @@ async function main() {
           create: {
             id: item.id,
             weekId: week.id,
-            activityId: item.activityId ?? null,
+            activityId,
             href: item.href ?? null,
             vocabUi: item.vocabUi ?? null,
             slot: item.slot,
@@ -76,6 +87,9 @@ async function main() {
   console.log(`  ✅ ${unitCount} units`);
   console.log(`  ✅ ${weekCount} weeks`);
   console.log(`  ✅ ${itemCount} items`);
+  if (skippedActivityLinks > 0) {
+    console.log(`  ⚠️  ${skippedActivityLinks} item(s) kept without activityId (activity not seeded yet)`);
+  }
   console.log('\n✨ Course map seeded successfully.');
 }
 
