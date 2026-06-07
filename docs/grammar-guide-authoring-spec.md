@@ -240,8 +240,12 @@ This is a **section-level property**, not an HTML helper. Set it directly on the
 **Element types:**
 
 - `"single-dot"` — one filled circle. Use for simple/finished actions (Past Simple).
-- `"multiple-dots"` — cluster of dots. Use for present simple (habitual/recurring).
+- `"multiple-dots"` — cluster of dots. Use for present simple (habitual/recurring) and past habits (`used to`).
 - `"solid-line"` — horizontal bar. Use for continuous/in-progress actions.
+- `"arc"` — link stamp. Use for Present Perfect (past zone, links to NOW) and Past Perfect if-clause (`past-earlier`).
+- `"arc-dashed"` — dashed link. Use for Future Perfect.
+- `"solid-to-now"` — duration line to NOW. Use for Present Perfect Continuous.
+- `"solid-to-point"` — duration line to a future/past reference point. Use for Future Perfect Continuous and Past Perfect Continuous.
 
 **Zones** (must match `TimelineZone` exactly):
 

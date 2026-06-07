@@ -83,8 +83,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Where it lives on the timeline",
         elements: [
-          { id: "ppc-line", type: "solid-line", zone: "past", position: 35, verbLabel: "have been working (started)" },
-          { id: "ppc-now", type: "solid-line", zone: "present", position: 50, verbLabel: "...still happening now" },
+          { id: "ppc-duration", type: "solid-to-now", zone: "past", position: 35, verbLabel: "have been working (→ NOW)" },
         ],
       },
       explanation: `
@@ -187,8 +186,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
         title: "Started in the past, still true now",
         elements: [
           { id: "ppc-start", type: "single-dot", zone: "past", position: 25, verbLabel: "car broke down (Feb)" },
-          { id: "ppc-ongoing", type: "solid-line", zone: "past", position: 55, verbLabel: "have been taking (since Feb)" },
-          { id: "ppc-present", type: "solid-line", zone: "present", position: 50, verbLabel: "still taking two buses" },
+          { id: "ppc-ongoing", type: "solid-to-now", zone: "past", position: 45, verbLabel: "have been taking (since Feb → NOW)" },
         ],
       },
       explanation: `

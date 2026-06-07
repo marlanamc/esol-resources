@@ -467,8 +467,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Already: finished before now, still relevant",
         elements: [
-          { id: "pp-dot", type: "single-dot", zone: "past", position: 40, verbLabel: "finished" },
-          { id: "pp-now", type: "multiple-dots", zone: "present", position: 55, verbLabel: "still relevant now" },
+          { id: "pp-arc", type: "arc", zone: "past", position: 55, verbLabel: "already finished (before NOW)" },
         ],
       },
       exercises: [

@@ -359,7 +359,7 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Three different meanings",
         elements: [
-          { id: "ut-past", type: "single-dot", zone: "past", position: 30, verbLabel: "used to + verb (past habit)" },
+          { id: "ut-past", type: "multiple-dots", zone: "past", position: 30, verbLabel: "used to + verb (past habit)" },
           { id: "but-present", type: "multiple-dots", zone: "present", position: 55, verbLabel: "be used to + -ing (familiar now)" },
           { id: "gut-progress", type: "solid-line", zone: "present", position: 70, verbLabel: "getting used to + -ing" },
         ],

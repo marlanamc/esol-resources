@@ -83,7 +83,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Used to: a past habit that changed",
         elements: [
-          { id: "ut-past", type: "single-dot", zone: "past", position: 35, verbLabel: "used to + verb (old habit)" },
+          { id: "ut-past", type: "multiple-dots", zone: "past", position: 35, verbLabel: "used to + verb (old habit)" },
           { id: "ut-now", type: "multiple-dots", zone: "present", position: 60, verbLabel: "now (changed)" },
         ],
       },
@@ -262,7 +262,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Past state vs. life now",
         elements: [
-          { id: "ut-state", type: "single-dot", zone: "past", position: 30, verbLabel: "used to live / have / be" },
+          { id: "ut-state", type: "multiple-dots", zone: "past", position: 30, verbLabel: "used to live / have / be" },
           { id: "ut-present", type: "multiple-dots", zone: "present", position: 65, verbLabel: "but now I..." },
         ],
       },

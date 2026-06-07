@@ -281,8 +281,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Where Present Perfect lives on the timeline",
         elements: [
-          { id: "pp-start", type: "single-dot", zone: "past", position: 30, verbLabel: "started (past)" },
-          { id: "pp-bar", type: "solid-line", zone: "present", position: 50, verbLabel: "still true NOW" },
+          { id: "pp-arc", type: "arc", zone: "past", position: 50, verbLabel: "Present Perfect (links to NOW)" },
         ],
       },
       explanation: `
@@ -395,8 +394,8 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "One is still happening. One is done.",
         elements: [
-          { id: "pperf-line", type: "solid-line", zone: "present", position: 50, verbLabel: "Present Perfect (still true)" },
-          { id: "past-dot", type: "single-dot", zone: "past", position: 55, verbLabel: "Past Simple (finished)" },
+          { id: "pperf-arc", type: "arc", zone: "past", position: 40, verbLabel: "Present Perfect (still true)" },
+          { id: "past-dot", type: "single-dot", zone: "past", position: 72, verbLabel: "Past Simple (finished)" },
         ],
       },
       explanation: `

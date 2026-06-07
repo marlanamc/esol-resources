@@ -408,7 +408,7 @@ export const justAlreadyYetContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Yet: expected but not done",
         elements: [
-          { id: "yet-dot", type: "multiple-dots", zone: "present", position: 50, verbLabel: "expected here" },
+          { id: "yet-arc", type: "arc", zone: "past", position: 65, verbLabel: "haven't ... yet (expected, not done)" },
         ],
       },
       explanation: `
