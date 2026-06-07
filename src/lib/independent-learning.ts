@@ -60,6 +60,7 @@ type SequenceActivity = {
     type: string;
     category: string | null;
     isReleased?: boolean | null;
+    isFeaturedForIndependent?: boolean | null;
     content?: string | null;
     createdAt?: Date;
     updatedAt?: Date;
@@ -342,7 +343,7 @@ export function getIndependentNewActivityCards(params: {
             const rightTime = (right.updatedAt ?? right.createdAt ?? new Date(0)).getTime();
             return rightTime - leftTime;
         })
-        .filter((activity) => isIndependentNewRelease(activity.updatedAt ?? activity.createdAt ?? null))
+        .filter((activity) => activity.isFeaturedForIndependent === true)
         .slice(0, params.limit ?? 4)
         .map((activity) =>
             buildIndependentFeaturedAssignment({

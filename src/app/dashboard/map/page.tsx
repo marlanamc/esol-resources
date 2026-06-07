@@ -23,16 +23,42 @@ import { CourseMapPathBreadcrumb } from "@/components/dashboard/CourseMapPathBre
 import { CourseMapUnitNav } from "@/components/dashboard/CourseMapUnitNav";
 import {
     buildMapWeekProgress,
+    findFirstIncompleteRequired,
     parseMapWeekParam,
     resolveCurrentMapWeek,
     resolveNextMapActivity,
+    resolveNextMapActivityLaunch,
 } from "@/lib/course-map-navigation";
+import {
+    formatNextUpActivityTitle,
+    getCourseMapActivityIconEmoji,
+} from "@/lib/course-map-hero";
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
 
 export const metadata = {
     title: "Course Map | Class Companion",
     description: "Your guided learning path through the course.",
 };
+
+function formatActivityTypeLabel(
+    activityType: string,
+    assignmentType?: string,
+    category?: string | null,
+): string {
+    const c = (category || "").toLowerCase();
+    const t = (assignmentType || activityType || "").toLowerCase();
+    if (c === "vocabulary" || t === "vocabulary") return "Vocab";
+    if (t === "guide") return "Grammar";
+    if (t === "game") return "Game";
+    if (t === "quiz") return "Quiz";
+    if (t === "speaking") return "Speaking";
+    if (t === "writing") return "Writing";
+    if (t === "pronunciation") return "Pronunciation";
+    if (t === "review") return "Review";
+    if (t === "assessment") return "Check-in";
+    if (t === "catch-up") return "Catch up";
+    return "Activity";
+}
 
 export default async function MapPage({
     searchParams,
@@ -205,6 +231,27 @@ export default async function MapPage({
     const weekProgress = buildMapWeekProgress(courseMapUnits, guidedProgress);
     const nextActivity = hasPath ? resolveNextMapActivity(courseMapUnits, guidedProgress) : null;
 
+    const nextLaunch = hasPath
+        ? resolveNextMapActivityLaunch(courseMapUnits, guidedProgress, guidedAssignments)
+        : null;
+    const nextIncomplete = hasPath ? findFirstIncompleteRequired(courseMapUnits, guidedProgress) : null;
+    const currentActivity = nextLaunch && nextIncomplete
+        ? (() => {
+              const activity = nextIncomplete.activity;
+              const assignment = activity.activityId ? guidedAssignments[activity.activityId] : undefined;
+              return {
+                  title: formatNextUpActivityTitle(activity.title),
+                  href: nextLaunch.href,
+                  iconEmoji: getCourseMapActivityIconEmoji(
+                      activity.activityType,
+                      assignment?.type,
+                      assignment?.category ?? null
+                  ),
+                  typeLabel: formatActivityTypeLabel(activity.activityType, assignment?.type, assignment?.category),
+              };
+          })()
+        : null;
+
     return (
         <div className="min-h-screen bg-bg">
             <main id="main-content" className="container mx-auto scroll-smooth pt-2 pb-28 px-4 max-w-lg lg:max-w-5xl xl:max-w-6xl lg:pt-4">
@@ -334,13 +381,13 @@ export default async function MapPage({
                                 courseMapUnits.length > 0 ? (
                                     <CourseMapMobileWayfinding
                                         units={courseMapUnits}
-                                        unitProgress={unitProgress}
                                         weekProgress={weekProgress}
                                         currentWeek={currentWeekMeta}
                                         overallPct={overallPct}
                                         completedLevels={completedLevels}
                                         totalLevels={totalLevels}
                                         showUnitMonths={showUnitMonths}
+                                        currentActivity={currentActivity}
                                     />
                                 ) : null
                             }

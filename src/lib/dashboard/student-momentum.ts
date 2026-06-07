@@ -7,6 +7,7 @@ export interface StudentMomentumSnapshot {
     initialLongestStreak: number;
     initialSevenDayActivity: boolean[];
     initialTotalPoints: number;
+    initialWeeklyPoints: number;
 }
 
 export async function getStudentMomentumSnapshot(
@@ -18,7 +19,7 @@ export async function getStudentMomentumSnapshot(
         withPrismaReadRetry(() =>
             prisma.user.findUnique({
                 where: { id: userId },
-                select: { currentStreak: true, longestStreak: true, points: true },
+                select: { currentStreak: true, longestStreak: true, points: true, weeklyPoints: true },
             })
         ),
         withPrismaReadRetry(() =>
@@ -34,5 +35,6 @@ export async function getStudentMomentumSnapshot(
         initialLongestStreak: userStats?.longestStreak ?? 0,
         initialSevenDayActivity: buildCalendarWeekActivity(ledgerEntries),
         initialTotalPoints: userStats?.points ?? 0,
+        initialWeeklyPoints: userStats?.weeklyPoints ?? 0,
     };
 }

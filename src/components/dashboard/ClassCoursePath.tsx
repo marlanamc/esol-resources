@@ -508,9 +508,6 @@ function MobileActivityRow({
                         </span>
                     )}
                 </span>
-                <span className="shrink-0 text-xs font-medium text-text-muted">
-                    {estimatedMinutes(activity)} min
-                </span>
             </ActivityShell>
         </div>
     );
@@ -891,16 +888,27 @@ function MobileWeekCard({
     return (
         <section
             aria-labelledby={`week-${week.level.levelNumber}-heading`}
-            className="pt-3 pb-1"
+            className="pb-1"
             style={courseMapUnitToneStyle(week.unitNumber)}
         >
-            <h2
-                id={`week-${week.level.levelNumber}-heading`}
-                tabIndex={-1}
-                className="sr-only"
+            <div
+                className="sticky top-0 z-10 -mx-[10px] mb-2 border-b px-[10px] py-2 backdrop-blur"
+                style={{
+                    borderColor: "var(--border-subtle)",
+                    background: `color-mix(in srgb, ${tone.surface} 92%, var(--bg))`,
+                }}
             >
-                {formatLevelLabel(week.level.levelNumber)}: {week.level.levelTitle}
-            </h2>
+                <h2
+                    id={`week-${week.level.levelNumber}-heading`}
+                    tabIndex={-1}
+                    className="font-display text-[15px] font-bold leading-tight text-text focus-visible:outline-none"
+                >
+                    <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
+                        {formatLevelLabel(week.level.levelNumber)}
+                    </span>
+                    <span className="ml-1.5 align-middle">{week.level.levelTitle}</span>
+                </h2>
+            </div>
             {focus ? (
                 <p className="mb-3 text-sm leading-relaxed text-text-muted">
                     {focus}
@@ -1039,9 +1047,6 @@ function DesktopActivityRow({
                         </span>
                     ) : null}
                 </span>
-                <span className="shrink-0 text-sm font-medium text-text-muted">
-                    {estimatedMinutes(activity)} min
-                </span>
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-text-muted">
                     {isCompleted ? (
                         <Check size={18} className="text-[var(--unit-accent,#6a8d73)]" />
@@ -1092,15 +1097,8 @@ function DesktopNextUpCard({
                         {nextUpTitle(activity.title)}
                     </h2>
                     <p className="mt-3 flex items-center gap-3 text-base font-medium text-text-muted">
-                        <span className="inline-flex items-center gap-1.5">
-                            <Clock size={17} aria-hidden />
-                            {estimatedMinutes(activity)} min
-                        </span>
                         {progressText ? (
-                            <>
-                                <span aria-hidden>•</span>
-                                <span>{progressText}</span>
-                            </>
+                            <span>{progressText}</span>
                         ) : null}
                     </p>
                 </div>

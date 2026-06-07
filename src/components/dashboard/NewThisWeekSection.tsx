@@ -1,6 +1,7 @@
 "use client";
 
 import { ActivityLink } from "@/components/navigation/ActivityLink";
+import { getGameEmojiForActivity } from "@/lib/game-emoji";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import { stripVocabTypeSuffix } from "@/lib/vocab-display";
 import type { FeaturedAssignment } from "@/components/dashboard/todays-assignments/types";
@@ -51,19 +52,6 @@ function resolveBadgeLabel(assignment: FeaturedAssignment): string {
     return "New";
 }
 
-function resolveMinutes(assignment: FeaturedAssignment): number {
-    const type = (assignment.activity.type || "").toLowerCase();
-    switch (type) {
-        case "game":
-        case "writing":
-        case "speaking":
-            return 10;
-        case "guide":
-            return 5;
-        default:
-            return 7;
-    }
-}
 
 function resolveDisplayTitle(assignment: FeaturedAssignment): string {
     const rawTitle = assignment.title || assignment.activity.title;
@@ -71,6 +59,33 @@ function resolveDisplayTitle(assignment: FeaturedAssignment): string {
         assignment.displayTitle ||
         stripVocabTypeSuffix(rawTitle.replace(/ - Complete Step-by-Step Guide$/i, " Guide"))
     );
+}
+
+function resolveActivityEmoji(assignment: FeaturedAssignment): string {
+    const categoryKey = resolveCategoryKey(assignment);
+    const title = assignment.title || assignment.activity.title;
+
+    if (categoryKey === "games") {
+        return getGameEmojiForActivity({
+            activityId: assignment.activityId,
+            title,
+        });
+    }
+
+    switch (categoryKey) {
+        case "vocabulary":
+            return "🗂️";
+        case "grammar":
+            return "📖";
+        case "speaking":
+            return "🎤";
+        case "pronunciation":
+            return "🔊";
+        case "quizzes":
+            return "✏️";
+        default:
+            return "📌";
+    }
 }
 
 export function NewThisWeekSection({
@@ -104,7 +119,7 @@ export function NewThisWeekSection({
                     const tone = getLearnerCategoryTone(categoryKey);
                     const displayTitle = resolveDisplayTitle(assignment);
                     const typeLabel = resolveTypeLabel(assignment);
-                    const minutes = resolveMinutes(assignment);
+                    const activityEmoji = resolveActivityEmoji(assignment);
                     const badgeLabel = assignment.isNewRelease
                         ? resolveBadgeLabel(assignment)
                         : "Featured";
@@ -128,16 +143,28 @@ export function NewThisWeekSection({
                                 style={{ background: tone.accent }}
                                 aria-hidden
                             />
-                            <div className="min-w-0 flex-1 space-y-1 px-4 py-3.5">
-                                <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-2 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-wide text-primary">
-                                    {badgeLabel}
+                            <div className="flex min-w-0 flex-1 items-center gap-3 px-4 py-3.5">
+                                <span
+                                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] text-base leading-none"
+                                    style={{
+                                        background: `color-mix(in srgb, ${tone.chipBg} 78%, transparent)`,
+                                        boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${tone.border} 40%, transparent)`,
+                                    }}
+                                    aria-hidden
+                                >
+                                    {activityEmoji}
                                 </span>
-                                <p className="truncate text-[15px] font-bold leading-tight text-text">
-                                    {displayTitle}
-                                </p>
-                                <p className="text-xs leading-none text-text-muted/90">
-                                    {typeLabel} · {minutes} min
-                                </p>
+                                <div className="min-w-0 flex-1 space-y-1">
+                                    <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-2 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-wide text-primary">
+                                        {badgeLabel}
+                                    </span>
+                                    <p className="truncate text-[15px] font-bold leading-tight text-text">
+                                        {displayTitle}
+                                    </p>
+                                    <p className="text-xs leading-none text-text-muted/90">
+                                        {typeLabel}
+                                    </p>
+                                </div>
                             </div>
                         </ActivityLink>
                     );

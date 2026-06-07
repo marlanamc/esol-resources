@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, LayoutDashboard, Stethoscope, Users } from "lucide-react";
+import { BookOpen, HeartPulse, LayoutDashboard, Stethoscope, Users } from "lucide-react";
 import { ModeHeader } from "@/components/layout/ModeHeader";
 
 const NAV_ITEMS = [
@@ -8,6 +8,7 @@ const NAV_ITEMS = [
     { href: "/admin/users", label: "Users", Icon: Users, exact: false },
     { href: "/admin/content", label: "Content", Icon: BookOpen, exact: false },
     { href: "/admin/diagnostics", label: "Diagnostics", Icon: Stethoscope, exact: false },
+    { href: "/admin/health", label: "Health", Icon: HeartPulse, exact: false },
 ] as const;
 
 interface AdminHeaderProps {

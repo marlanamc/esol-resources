@@ -69,18 +69,6 @@ function typeGlyph(type: string, vocabUi?: string): string {
   }
 }
 
-function defaultMinutes(type: string): number {
-  switch (type) {
-    case "guide": return 5;
-    case "game":
-    case "writing":
-    case "speaking":
-    case "assessment":
-      return 10;
-    default: return 5;
-  }
-}
-
 function TimelineNode({
   status,
   accent,
@@ -183,11 +171,9 @@ function TimelineNode({
 
 function TimelineMeta({
   label,
-  mins,
   toneAccent,
 }: {
   label: string;
-  mins: number;
   toneAccent: string;
 }) {
   return (
@@ -203,14 +189,6 @@ function TimelineMeta({
       }}
     >
       <span style={{ color: toneAccent }}>{label}</span>
-      <span style={{ color: "var(--text-muted)" }}>·</span>
-      <span style={{ color: "var(--text-muted)", display: "inline-flex", alignItems: "center", gap: 3 }}>
-        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0 }}>
-          <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.4" />
-          <path d="M6 3.5v2.8l1.5 1.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        </svg>
-        {mins} min
-      </span>
     </div>
   );
 }
@@ -249,7 +227,6 @@ export function ActivityTimeline({ items, accent, className, layout = "card" }: 
         const last = i === items.length - 1;
         const tone = getLearnerCategoryTone(typeToToneKey(item.type) as Parameters<typeof getLearnerCategoryTone>[0]);
         const glyph = typeGlyph(item.type, item.vocabUi);
-        const mins = item.estMinutes ?? defaultMinutes(item.type);
         const label = typeLabel(item.type);
         const animDelay = `${i * 55}ms`;
 
@@ -294,7 +271,7 @@ export function ActivityTimeline({ items, accent, className, layout = "card" }: 
               </span>
               <div style={{ minWidth: 0, flex: 1 }}>
                 <div style={titleStyle}>{item.title}</div>
-                <TimelineMeta label={label} mins={mins} toneAccent={tone.accent} />
+                <TimelineMeta label={label} toneAccent={tone.accent} />
                 {isCurrent ? <StartButton /> : null}
               </div>
             </div>
@@ -338,7 +315,7 @@ export function ActivityTimeline({ items, accent, className, layout = "card" }: 
 
             <div style={{ minWidth: 0, flex: 1 }}>
               <div style={titleStyle}>{item.title}</div>
-              <TimelineMeta label={label} mins={mins} toneAccent={tone.accent} />
+              <TimelineMeta label={label} toneAccent={tone.accent} />
               {isCurrent ? <StartButton /> : null}
             </div>
 

@@ -118,6 +118,7 @@ model Activity {
   updatedAt           DateTime             @updatedAt
   ui                  String?
   isReleased          Boolean              @default(false)
+  isFeaturedForIndependent Boolean         @default(false)
   deletedAt           DateTime?
   contentKind         String               @default("practice") // "practice" | "map" | "assignment"
   progress            ActivityProgress[]
@@ -132,6 +133,7 @@ model Activity {
   @@index([contentKind])
   @@index([type, category, isReleased])
   @@index([deletedAt])
+  @@index([isFeaturedForIndependent])
 }
 
 model ActivityProgress {

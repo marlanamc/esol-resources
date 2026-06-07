@@ -1,23 +1,22 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { ChevronDown, Map as MapIcon } from "lucide-react";
+import Link from "next/link";
+import { useMemo } from "react";
+import { ChevronRight, Play } from "lucide-react";
 import type { CourseMapUnit } from "@/lib/course-map";
 import type { CurrentMapWeekMeta, WeekProgressEntry } from "@/lib/course-map-navigation";
 import { useCourseMapScrollSpy } from "@/hooks/useCourseMapScrollSpy";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
-import { CourseMapMobileDrawerPanel } from "@/components/dashboard/CourseMapMobileDrawer";
 
-interface UnitProgress {
-    unitNumber: number;
-    done: number;
-    total: number;
-    isDone: boolean;
+export interface MobileWayfindingCurrentActivity {
+    title: string;
+    href: string;
+    iconEmoji: string;
+    typeLabel: string;
 }
 
 interface Props {
     units: CourseMapUnit[];
-    unitProgress: UnitProgress[];
     weekProgress: WeekProgressEntry[];
     currentWeek: CurrentMapWeekMeta | null;
     overallPct: number;
@@ -25,19 +24,19 @@ interface Props {
     totalLevels: number;
     /** School-year month labels — classroom learners only */
     showUnitMonths?: boolean;
+    currentActivity?: MobileWayfindingCurrentActivity | null;
 }
 
 export function CourseMapMobileWayfinding({
     units,
-    unitProgress,
     weekProgress,
     currentWeek,
     overallPct,
     completedLevels,
     totalLevels,
     showUnitMonths = true,
+    currentActivity = null,
 }: Props) {
-    const [drawerOpen, setDrawerOpen] = useState(false);
     const { activeUnitNumber, activeWeekNumber } = useCourseMapScrollSpy(units);
 
     const meta = useMemo(() => {
@@ -55,6 +54,7 @@ export function CourseMapMobileWayfinding({
         return {
             unitMonth: unit.month,
             unitNumber: unit.unitNumber,
+            unitTitle: unit.unitTitle,
             weekNumber,
             levelTitle: level?.levelTitle ?? weekEntry?.title ?? null,
             levelDone: weekEntry?.done ?? null,
@@ -65,104 +65,145 @@ export function CourseMapMobileWayfinding({
     if (!meta) return null;
 
     const tone = getCourseMapUnitTone(meta.unitNumber);
-    const levelProgressLabel =
-        meta.levelDone != null && meta.levelTotal != null && meta.levelTotal > 0
-            ? `${meta.levelDone}/${meta.levelTotal}`
-            : null;
+    const hasLevelProgress =
+        meta.levelDone != null && meta.levelTotal != null && meta.levelTotal > 0;
+    const levelDone = meta.levelDone ?? 0;
+    const levelTotal = meta.levelTotal ?? 0;
+    const levelPct = hasLevelProgress ? Math.round((levelDone / levelTotal) * 100) : 0;
 
     return (
         <>
             <div
-                className="rounded-xl border px-3 py-2"
+                className="overflow-hidden rounded-2xl border"
                 style={{
                     borderColor: "var(--border-subtle)",
                     backgroundColor: "var(--surface-subtle)",
                 }}
                 aria-live="polite"
             >
-                <div className="flex items-start gap-2">
-                    <p className="min-w-0 flex-1 text-xs font-semibold leading-snug text-text">
-                        <span style={{ color: tone.accent }}>Unit {meta.unitNumber}</span>
-                        {meta.weekNumber != null ? (
-                            <>
-                                <span className="text-text-muted" aria-hidden>
-                                    {" · "}
-                                </span>
-                                <span>Level {meta.weekNumber}</span>
-                            </>
-                        ) : null}
+                {/* Zone A — Orient */}
+                <div className="px-4 pt-3 pb-3">
+                    <p className="font-display text-[17px] font-bold leading-tight text-text">
+                        <span style={{ color: tone.accent }}>Unit {meta.unitNumber}:</span>{" "}
+                        {meta.unitTitle}
                         {showUnitMonths ? (
-                            <>
-                                <span className="text-text-muted" aria-hidden>
-                                    {" · "}
-                                </span>
-                                <span className="font-normal text-text-muted">{meta.unitMonth}</span>
-                            </>
+                            <span className="ml-1.5 text-[11px] font-normal text-text-muted">
+                                {meta.unitMonth}
+                            </span>
                         ) : null}
                     </p>
-
-                    {levelProgressLabel ? (
-                        <span
-                            className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold tabular-nums border"
-                            title={`${meta.levelDone} of ${meta.levelTotal} activities done in this level`}
-                            style={{
-                                background: "color-mix(in srgb, var(--tone-grammar-chip-bg) 80%, transparent)",
-                                color: "var(--tone-grammar-accent, #b05740)",
-                                borderColor: "color-mix(in srgb, var(--tone-grammar-accent, #b05740) 25%, transparent)",
-                            }}
-                        >
-                            {levelProgressLabel}
-                        </span>
-                    ) : totalLevels > 0 ? (
-                        <span
-                            className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold tabular-nums border"
-                            title={`${completedLevels} of ${totalLevels} levels complete`}
-                            style={{
-                                background: completedLevels > 0
-                                    ? "color-mix(in srgb, var(--tone-grammar-chip-bg) 80%, transparent)"
-                                    : "var(--bg)",
-                                color: completedLevels > 0
-                                    ? "var(--tone-grammar-accent, #b05740)"
-                                    : "var(--text-muted)",
-                                borderColor: completedLevels > 0
-                                    ? "color-mix(in srgb, var(--tone-grammar-accent, #b05740) 25%, transparent)"
-                                    : "var(--border-subtle)",
-                            }}
-                        >
-                            {overallPct}%
-                        </span>
+                    {meta.weekNumber != null && meta.levelTitle ? (
+                        <p className="mt-1 text-[13px] leading-tight text-text">
+                            <span className="font-semibold text-text-muted">Level {meta.weekNumber}</span>
+                            <span className="text-text-muted" aria-hidden>{" · "}</span>
+                            <span className="font-semibold">{meta.levelTitle}</span>
+                        </p>
                     ) : null}
 
-                    <button
-                        type="button"
-                        onClick={() => setDrawerOpen(true)}
-                        className="inline-flex shrink-0 items-center gap-1 rounded-lg border px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-text transition-colors hover:bg-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                        style={{ borderColor: "var(--border-subtle)" }}
-                        aria-haspopup="dialog"
-                        aria-expanded={drawerOpen}
-                        aria-label="Browse units and levels"
-                    >
-                        <MapIcon size={12} aria-hidden />
-                        <span>Browse</span>
-                        <ChevronDown size={12} className="-rotate-90" aria-hidden />
-                    </button>
+                    {/* Progress bar with count chip at its end */}
+                    {hasLevelProgress ? (
+                        <div className="mt-2 flex items-center gap-2">
+                            <div
+                                className="relative h-2 flex-1 overflow-hidden rounded-full"
+                                style={{
+                                    background: "var(--bg)",
+                                    border: "1px solid var(--border-subtle)",
+                                }}
+                                role="progressbar"
+                                aria-valuenow={levelDone}
+                                aria-valuemin={0}
+                                aria-valuemax={levelTotal}
+                                aria-label={`Level progress: ${levelDone} of ${levelTotal} activities done`}
+                            >
+                                <div
+                                    className="absolute inset-y-0 left-0 rounded-full transition-[width] duration-500 ease-out"
+                                    style={{
+                                        width: `${levelPct}%`,
+                                        background: tone.accent,
+                                    }}
+                                />
+                            </div>
+                            <span
+                                className="shrink-0 text-[12px] font-bold tabular-nums"
+                                style={{ color: tone.accent }}
+                                aria-hidden
+                            >
+                                {levelDone}/{levelTotal}
+                            </span>
+                        </div>
+                    ) : totalLevels > 0 ? (
+                        <div className="mt-2 flex items-center gap-2">
+                            <div
+                                className="relative h-2 flex-1 overflow-hidden rounded-full"
+                                style={{
+                                    background: "var(--bg)",
+                                    border: "1px solid var(--border-subtle)",
+                                }}
+                                role="progressbar"
+                                aria-valuenow={completedLevels}
+                                aria-valuemin={0}
+                                aria-valuemax={totalLevels}
+                                aria-label={`Course progress: ${completedLevels} of ${totalLevels} levels complete`}
+                            >
+                                <div
+                                    className="absolute inset-y-0 left-0 rounded-full transition-[width] duration-500 ease-out"
+                                    style={{
+                                        width: `${overallPct}%`,
+                                        background: tone.accent,
+                                    }}
+                                />
+                            </div>
+                            <span
+                                className="shrink-0 text-[12px] font-bold tabular-nums"
+                                style={{ color: tone.accent }}
+                                aria-hidden
+                            >
+                                {completedLevels}/{totalLevels}
+                            </span>
+                        </div>
+                    ) : null}
                 </div>
-                {meta.levelTitle ? (
-                    <p className="mt-1 text-sm font-semibold leading-snug text-text">
-                        {meta.levelTitle}
-                    </p>
-                ) : null}
-            </div>
 
-            <CourseMapMobileDrawerPanel
-                units={units}
-                unitProgress={unitProgress}
-                weekProgress={weekProgress}
-                currentWeek={currentWeek}
-                showUnitMonths={showUnitMonths}
-                open={drawerOpen}
-                onOpenChange={setDrawerOpen}
-            />
+                {/* Zone B — Continue */}
+                {currentActivity ? (
+                    <Link
+                        href={currentActivity.href}
+                        className="flex items-center gap-3 border-t px-4 py-3 transition-colors hover:bg-bg focus-visible:outline-none focus-visible:bg-bg focus-visible:ring-2 focus-visible:ring-primary/40"
+                        style={{ borderColor: "var(--border-subtle)" }}
+                    >
+                        <span
+                            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white shadow-sm"
+                            style={{ background: tone.accent }}
+                            aria-hidden
+                        >
+                            <Play size={20} fill="currentColor" className="ml-0.5" />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                            <span className="block text-[10px] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
+                                Continue
+                            </span>
+                            <span className="block truncate text-sm font-semibold leading-tight text-text">
+                                {currentActivity.title}
+                            </span>
+                            <span className="mt-0.5 block text-[11px] text-text-muted">
+                                <span aria-hidden>{currentActivity.iconEmoji}</span>{" "}
+                                {currentActivity.typeLabel}
+                            </span>
+                        </span>
+                        <ChevronRight size={18} className="shrink-0 text-text-muted" aria-hidden />
+                    </Link>
+                ) : (
+                    <div
+                        className="flex items-center gap-3 border-t px-4 py-3"
+                        style={{ borderColor: "var(--border-subtle)" }}
+                    >
+                        <span className="text-xl" aria-hidden>🎉</span>
+                        <p className="text-sm font-semibold text-text">
+                            All caught up — pick anything below to keep practicing.
+                        </p>
+                    </div>
+                )}
+            </div>
         </>
     );
 }

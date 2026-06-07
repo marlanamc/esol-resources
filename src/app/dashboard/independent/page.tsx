@@ -20,7 +20,6 @@ import {
     getIndependentRecommendationActivityIds,
     getIndependentRecommendationActivityTitles,
     getIndependentNewActivityCards,
-    INDEPENDENT_NEW_RELEASE_WINDOW_MS,
 } from "@/lib/independent-learning";
 import { getWeeklyGoalProgress } from "@/lib/independent-progress";
 import { DashboardResumeHero, ExploreCategoriesCarousel, AllActivitiesCategoriesPanel, MomentumCard, NewThisWeekSection, DashboardWelcomeHeader } from "@/components/dashboard";
@@ -58,6 +57,7 @@ export default async function IndependentDashboardPage() {
                     currentStreak: true,
                     longestStreak: true,
                     points: true,
+                    weeklyPoints: true,
                 },
             })
         ),
@@ -81,9 +81,6 @@ export default async function IndependentDashboardPage() {
 
     const sequenceActivityIds = getIndependentRecommendationActivityIds();
     const sequenceActivityTitles = getIndependentRecommendationActivityTitles();
-
-    const recentReleaseCutoff = new Date();
-    recentReleaseCutoff.setTime(recentReleaseCutoff.getTime() - INDEPENDENT_NEW_RELEASE_WINDOW_MS);
 
     const [sequenceActivitiesRaw, recentActivitiesRaw] = await Promise.all([
         timedQuery(
@@ -109,6 +106,7 @@ export default async function IndependentDashboardPage() {
                         type: true,
                         category: true,
                         isReleased: true,
+                        isFeaturedForIndependent: true,
                                         content: true,
                         createdAt: true,
                         updatedAt: true,
@@ -128,10 +126,7 @@ export default async function IndependentDashboardPage() {
                     prisma.activity.findMany({
                         where: {
                             deletedAt: null,
-                            OR: [
-                                { updatedAt: { gte: recentReleaseCutoff } },
-                                { createdAt: { gte: recentReleaseCutoff } },
-                            ],
+                            isFeaturedForIndependent: true,
                         },
                         select: {
                             id: true,
@@ -140,6 +135,7 @@ export default async function IndependentDashboardPage() {
                             type: true,
                             category: true,
                             isReleased: true,
+                            isFeaturedForIndependent: true,
                             content: true,
                             createdAt: true,
                             updatedAt: true,
@@ -289,8 +285,6 @@ export default async function IndependentDashboardPage() {
                             />
                         </div>
 
-                        <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
-
                         {/* Momentum — mobile only (< md) */}
                         <div className="md:hidden">
                             <MomentumCard
@@ -298,8 +292,11 @@ export default async function IndependentDashboardPage() {
                                 initialLongestStreak={userStats?.longestStreak ?? 0}
                                 initialSevenDayActivity={initialSevenDayActivity}
                                 initialTotalPoints={userStats?.points ?? 0}
+                                initialWeeklyPoints={userStats?.weeklyPoints ?? 0}
                             />
                         </div>
+
+                        <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
 
                         <NewThisWeekSection
                             items={newThisWeekItems}
@@ -320,6 +317,7 @@ export default async function IndependentDashboardPage() {
                                 initialLongestStreak={userStats?.longestStreak ?? 0}
                                 initialSevenDayActivity={initialSevenDayActivity}
                                 initialTotalPoints={userStats?.points ?? 0}
+                                initialWeeklyPoints={userStats?.weeklyPoints ?? 0}
                             />
 
                             <IndependentDashboardClient

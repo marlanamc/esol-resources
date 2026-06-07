@@ -83,11 +83,13 @@ function FeaturedFallbackRow() {
         {
             title: "Level 3 Group Trivia",
             meta: "Game · 10 min",
+            emoji: "🎮",
             href: "/dashboard/activities?category=games",
         },
         {
             title: "Comparison Battle",
             meta: "Game · 10 min",
+            emoji: "🎮",
             href: "/dashboard/activities?category=games",
         },
     ];
@@ -126,15 +128,27 @@ function FeaturedFallbackRow() {
                             style={{ background: "var(--tone-games-accent, #b05740)" }}
                             aria-hidden
                         />
-                        <span className="min-w-0 flex-1 px-4 py-3.5 space-y-1">
-                            <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-2 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-wide text-primary">
-                                Featured
+                        <span className="flex min-w-0 flex-1 items-center gap-3 px-4 py-3.5">
+                            <span
+                                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] text-base leading-none"
+                                style={{
+                                    background: "color-mix(in srgb, var(--tone-games-chip-bg, rgba(176,87,64,0.12)) 78%, transparent)",
+                                    boxShadow: "inset 0 0 0 1px color-mix(in srgb, var(--tone-games-border, rgba(176,87,64,0.28)) 40%, transparent)",
+                                }}
+                                aria-hidden
+                            >
+                                {card.emoji}
                             </span>
-                            <span className="block truncate text-[15px] font-bold leading-tight text-text">
-                                {card.title}
-                            </span>
-                            <span className="block text-xs text-text-muted/90">
-                                {card.meta}
+                            <span className="min-w-0 flex-1 space-y-1">
+                                <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-2 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-wide text-primary">
+                                    Featured
+                                </span>
+                                <span className="block truncate text-[15px] font-bold leading-tight text-text">
+                                    {card.title}
+                                </span>
+                                <span className="block text-xs text-text-muted/90">
+                                    {card.meta}
+                                </span>
                             </span>
                         </span>
                     </Link>

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { FlameIcon, CheckCircleIcon } from "@/components/icons/Icons";
-import { StudentQuickStats } from "@/components/dashboard/StudentQuickStats";
 import { useStudentSummary } from "@/hooks/useStudentSummary";
 import {
     CALENDAR_WEEK_DAY_LABELS,
@@ -10,64 +9,6 @@ import {
 } from "@/lib/gamification/calendar-week";
 
 const STREAK_ACCENT = "var(--primary)";
-const STREAK_ACCENT_DARK = "var(--primary-dark)";
-
-function StreakProgressRing({
-    streak,
-    pct,
-    size = 52,
-}: {
-    streak: number;
-    pct: number;
-    size?: number;
-}) {
-    const stroke = size >= 70 ? 7 : 4;
-    const r = (size - stroke) / 2;
-    const circ = 2 * Math.PI * r;
-    const dash = circ * (Math.min(100, Math.max(0, pct)) / 100);
-    const innerSize = size - stroke * 2 - 2;
-
-    return (
-        <div className="relative shrink-0" style={{ width: size, height: size }}>
-            <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden className="absolute inset-0">
-                <circle
-                    cx={size / 2}
-                    cy={size / 2}
-                    r={r}
-                    fill="none"
-                    stroke="color-mix(in srgb, var(--dashboard-border) 70%, transparent)"
-                    strokeWidth={stroke}
-                />
-                <circle
-                    cx={size / 2}
-                    cy={size / 2}
-                    r={r}
-                    fill="none"
-                    stroke={STREAK_ACCENT}
-                    strokeWidth={stroke}
-                    strokeDasharray={`${dash} ${circ}`}
-                    strokeLinecap="round"
-                    transform={`rotate(-90 ${size / 2} ${size / 2})`}
-                    style={{ transition: "stroke-dasharray 0.8s ease-out" }}
-                />
-            </svg>
-            <div
-                className="absolute rounded-full flex flex-col items-center justify-center leading-none"
-                style={{
-                    width: innerSize,
-                    height: innerSize,
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    background: "var(--dashboard-surface-start)",
-                }}
-            >
-                <FlameIcon size={size >= 70 ? 14 : 10} style={{ color: STREAK_ACCENT }} />
-                <span className={`${size >= 70 ? "text-[25px]" : "text-sm"} mt-px font-extrabold tabular-nums text-text leading-none`}>{streak}</span>
-            </div>
-        </div>
-    );
-}
 
 function CheckIcon({ size = 10 }: { size?: number }) {
     return (
@@ -101,6 +42,7 @@ interface MomentumCardProps {
     initialLongestStreak?: number;
     initialSevenDayActivity?: boolean[];
     initialTotalPoints?: number;
+    initialWeeklyPoints?: number;
     /** sidebar = narrow rail (md only); header = beside welcome (lg+) */
     variant?: MomentumCardVariant;
     /** Strip card chrome when nested inside DashboardWelcomeHero */
@@ -113,7 +55,7 @@ export function MomentumCard({
     initialStreak = 0,
     initialLongestStreak = 0,
     initialSevenDayActivity = EMPTY_WEEK,
-    initialTotalPoints = 0,
+    initialWeeklyPoints = 0,
     variant = "default",
     embedded = false,
     borderless = false,
@@ -122,17 +64,13 @@ export function MomentumCard({
 
     const streak = summary?.effectiveCurrentStreak ?? initialStreak;
     const longestStreak = initialLongestStreak;
-    const totalPoints = summary?.totalPoints ?? initialTotalPoints;
+    const weeklyPoints = summary?.actualWeeklyPoints ?? initialWeeklyPoints;
     const sevenDayActivity = summary?.sevenDayActivity ?? initialSevenDayActivity;
 
     const todayIndex = getCalendarWeekTodayIndex();
     const isHotStreak = streak >= 7;
     const isNewRecord = streak > 0 && streak >= longestStreak;
 
-    const activeDaysThisWeek = sevenDayActivity
-        .slice(0, todayIndex + 1)
-        .filter(Boolean).length;
-    const weekActivityPct = Math.round((activeDaysThisWeek / 7) * 100);
     const isSidebar = variant === "sidebar";
     const isHeader = variant === "header";
     const isRail = isSidebar || isHeader;
@@ -154,21 +92,21 @@ export function MomentumCard({
     const dotIconToday = 13;
 
     const streakAccent = isHotStreak && !isRail ? "var(--tone-speaking-accent)" : STREAK_ACCENT;
-    const streakRingPct = isRail ? Math.min(100, streak * 10) : Math.round((activeDaysThisWeek / 7) * 100);
-    const daysToPerfectWeek = Math.max(0, 7 - activeDaysThisWeek);
 
-    const pointsBadge = (
+    const weeklyPointsBadge = (
         <span
             className={`inline-flex items-center gap-1 font-bold leading-none tabular-nums rounded-full dashboard-pill stats-badge-polish ${
-                isRail ? "text-xs px-3 py-1" : "text-[11px] px-2.5 py-1"
+                isRail ? "text-xs px-2.5 py-1" : "text-[11px] px-2.5 py-1"
             }`}
             style={{
-                background: "color-mix(in srgb, var(--primary) 14%, var(--dashboard-surface-start))",
-                color: STREAK_ACCENT_DARK,
-                border: "1px solid color-mix(in srgb, var(--primary) 30%, transparent)",
+                background: "var(--tone-quizzes-chip-bg)",
+                color: "var(--tone-quizzes-accent)",
+                border: "1px solid var(--tone-quizzes-border)",
             }}
+            aria-label={`${weeklyPoints} points this week`}
         >
-            {totalPoints.toLocaleString()} pts
+            <span aria-hidden>⭐</span>
+            {weeklyPoints.toLocaleString()}
         </span>
     );
 
@@ -245,154 +183,52 @@ export function MomentumCard({
         </div>
     );
 
-    const activityBar = (
-        <div
-            className={`relative w-full overflow-hidden rounded-full border h-4 ${
-                weekActivityPct >= 100
-                    ? "border-[#d7c09a]/50 shadow-[inset_0_1px_2px_rgba(138,91,61,0.06)] dark:border-[rgba(245,217,138,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.3)]"
-                    : "border-[#e8e0d4]/50 shadow-[inset_0_1px_2px_rgba(78,57,39,0.04)] dark:border-[rgba(226,232,240,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.32)]"
-            }`}
-            style={{
-                background: weekActivityPct >= 100
-                    ? "var(--checklist-track-bg-complete)"
-                    : "var(--checklist-track-bg)",
-            }}
-        >
-            <div
-                className={`absolute inset-y-0 left-0 rounded-[999px] transition-[width] duration-700 ease-out ${
-                    weekActivityPct >= 90 && weekActivityPct < 100 ? "progress-liquid" : ""
-                }`}
-                style={{
-                    width: `${weekActivityPct}%`,
-                    background: weekActivityPct >= 100
-                        ? "linear-gradient(90deg, #b8442a 0%, #d96838 35%, #e8933a 70%, #f5c842 100%)"
-                        : "linear-gradient(90deg, #c8552e 0%, #dd6b36 40%, #e8882e 75%, #f0a832 100%)",
-                    boxShadow: weekActivityPct >= 100
-                        ? "0 0 12px rgba(217,119,87,0.4), inset 0 1px 0 rgba(255,255,255,0.3)"
-                        : weekActivityPct >= 90
-                            ? "0 0 10px rgba(217,119,87,0.35), inset 0 1px 0 rgba(255,255,255,0.25)"
-                            : "0 0 8px rgba(217,119,87,0.3), inset 0 1px 0 rgba(255,255,255,0.2)",
-                }}
-            />
-        </div>
-    );
-
-    const weeklyFooter = (
-        <div className="mt-3 flex items-center gap-2.5 min-w-0">
-            <div className="shrink-0">
-                <StudentQuickStats
-                    mobile
-                    maxVisible={1}
-                    chipKeys={["weekly"]}
-                    compact
-                    tight
-                    linked={false}
-                />
-            </div>
-            <div className="min-w-0 flex-1">{activityBar}</div>
-            <span className="text-[10px] font-medium text-text-muted leading-none shrink-0 tabular-nums">
-                {activeDaysThisWeek}<span className="text-text-soft">/7 days</span>
-            </span>
-        </div>
-    );
-
     const railCardClass =
         "group block w-full min-w-0 rounded-[26px] border transition-[box-shadow,transform] duration-200 hover:shadow-md hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25";
-    const refinedWeekDots = (
-        <div className="grid w-full grid-cols-7 gap-1.5">
-            {sevenDayActivity.map((active, i) => {
-                const isToday = i === todayIndex;
-                const isFuture = i > todayIndex;
-                const isMissed = !active && !isToday && !isFuture;
-
-                return (
-                    <div key={i} className="flex min-w-0 flex-col items-center gap-1.5">
-                        <div
-                            className="flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300"
-                            style={{
-                                background: active
-                                    ? streakAccent
-                                    : isMissed
-                                        ? "color-mix(in srgb, var(--dashboard-border) 38%, var(--dashboard-surface-start))"
-                                        : "transparent",
-                                border: active
-                                    ? `2px solid ${streakAccent}`
-                                    : isToday
-                                        ? "2px solid color-mix(in srgb, var(--dashboard-border) 42%, transparent)"
-                                        : isFuture
-                                            ? `2px solid ${streakAccent}`
-                                            : "2px solid color-mix(in srgb, var(--dashboard-border) 70%, transparent)",
-                                opacity: isFuture ? 0.9 : 1,
-                            }}
-                        >
-                            {active ? (
-                                <span className="text-white">
-                                    <CheckIcon size={16} />
-                                </span>
-                            ) : null}
-                        </div>
-                        <span
-                            className="text-xs font-bold leading-none"
-                            style={{
-                                color: isToday
-                                    ? streakAccent
-                                    : isFuture
-                                        ? "var(--text-soft, var(--text-muted))"
-                                        : "var(--text-muted)",
-                            }}
-                        >
-                            {CALENDAR_WEEK_DAY_LABELS[i]}
-                        </span>
-                    </div>
-                );
-            })}
-        </div>
-    );
-
-    const refinedRailFooter = (
-        <div className="mt-3.5">
-            <div className="mb-2.5 flex items-center justify-between gap-3 text-[13px] font-semibold text-text-muted">
-                <p>
-                    <span className="text-text tabular-nums">{activeDaysThisWeek} / 7</span>
-                    <span className="ml-2">this week</span>
-                </p>
-                <p className="tabular-nums">
-                    {daysToPerfectWeek === 0
-                        ? "Perfect week"
-                        : `${daysToPerfectWeek} day${daysToPerfectWeek === 1 ? "" : "s"} to perfect week`}
-                </p>
-            </div>
-            <div
-                className="h-2 w-full overflow-hidden rounded-full"
-                style={{ background: "color-mix(in srgb, var(--dashboard-border) 38%, var(--dashboard-surface-start))" }}
-            >
-                <div
-                    className="h-full rounded-full transition-[width] duration-700 ease-out"
-                    style={{
-                        width: `${weekActivityPct}%`,
-                        background: `linear-gradient(90deg, ${STREAK_ACCENT} 0%, color-mix(in srgb, ${STREAK_ACCENT} 82%, var(--primary-light)) 100%)`,
-                    }}
-                />
-            </div>
-        </div>
-    );
 
     const refinedRailBody = (
         <div className="flex flex-col gap-3">
-            {/* Top row: ring + title + pts badge all inline */}
+            {/* Top row: flame badge + streak count + weekly points chip */}
             <div className="flex items-center gap-3">
-                <StreakProgressRing streak={streak} pct={streakRingPct} size={52} />
+                <div
+                    className={`flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full ${isHotStreak ? "animate-pulse" : ""}`}
+                    style={{
+                        background: isHotStreak
+                            ? "linear-gradient(135deg, var(--tone-speaking-chip-bg) 0%, var(--tone-speaking-surface) 100%)"
+                            : "linear-gradient(135deg, var(--tone-quizzes-chip-bg) 0%, var(--tone-quizzes-surface) 100%)",
+                    }}
+                    aria-hidden
+                >
+                    <FlameIcon
+                        size={26}
+                        className={isHotStreak ? "text-[var(--tone-speaking-accent)]" : "text-[var(--tone-quizzes-accent)]"}
+                    />
+                </div>
                 <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                        <p className="font-display text-sm font-bold leading-tight text-text">
-                            Hot streak
-                        </p>
-                        {pointsBadge}
+                    <div className="flex items-baseline gap-1.5">
+                        <span className="font-display text-2xl font-bold leading-none text-text tabular-nums">
+                            {streak}
+                        </span>
+                        <span className="text-sm font-medium text-text-muted">
+                            day{streak !== 1 ? "s" : ""}
+                        </span>
+                        {isNewRecord && streak > 0 ? (
+                            <span
+                                className="ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide"
+                                style={{
+                                    background: "var(--tone-speaking-surface)",
+                                    color: "var(--tone-speaking-chip-text)",
+                                }}
+                            >
+                                Best!
+                            </span>
+                        ) : null}
                     </div>
-                    <p className="mt-0.5 text-xs font-medium leading-tight text-text-muted">
-                        {streak > 0 ? "Keep going!" : "Start today"}
+                    <p className="mt-1 text-xs font-medium leading-tight text-text-muted">
+                        {getMessage(streak, longestStreak)}
                     </p>
                 </div>
+                {weeklyPointsBadge}
             </div>
             {/* Week dots — slightly smaller */}
             <div className="grid w-full grid-cols-7 gap-1">
@@ -433,27 +269,6 @@ export function MomentumCard({
                         </div>
                     );
                 })}
-            </div>
-            {/* Footer: X/7 + days to perfect week + thin bar */}
-            <div>
-                <div className="mb-1.5 flex items-center justify-between gap-2 text-[11px] font-semibold text-text-muted">
-                    <span><span className="text-text tabular-nums">{activeDaysThisWeek} / 7</span> this week</span>
-                    <span className="tabular-nums">
-                        {daysToPerfectWeek === 0 ? "Perfect week" : `${daysToPerfectWeek} day${daysToPerfectWeek === 1 ? "" : "s"} to go`}
-                    </span>
-                </div>
-                <div
-                    className="h-1.5 w-full overflow-hidden rounded-full"
-                    style={{ background: "color-mix(in srgb, var(--dashboard-border) 38%, var(--dashboard-surface-start))" }}
-                >
-                    <div
-                        className="h-full rounded-full transition-[width] duration-700 ease-out"
-                        style={{
-                            width: `${weekActivityPct}%`,
-                            background: `linear-gradient(90deg, ${STREAK_ACCENT} 0%, color-mix(in srgb, ${STREAK_ACCENT} 82%, var(--primary-light)) 100%)`,
-                        }}
-                    />
-                </div>
             </div>
         </div>
     );
@@ -513,10 +328,9 @@ export function MomentumCard({
                                 {getMessage(streak, longestStreak)}
                             </p>
                         </div>
-                        {pointsBadge}
+                        {weeklyPointsBadge}
                     </div>
                     {weekDots}
-                    {weeklyFooter}
                 </>
             )}
         </Link>

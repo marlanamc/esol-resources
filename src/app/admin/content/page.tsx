@@ -3,7 +3,8 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { isAdmin } from "@/lib/roles";
-import { CheckCircle, XCircle, BookOpen, MapPin, FileText } from "lucide-react";
+import { CheckCircle, XCircle, BookOpen, MapPin, FileText, Star } from "lucide-react";
+import { IndependentFeaturedToggle } from "@/components/admin/IndependentFeaturedToggle";
 
 export const metadata = { title: "Content | Admin" };
 
@@ -32,6 +33,7 @@ type ActivityRow = {
     category: string | null;
     contentKind: string | null;
     isReleased: boolean;
+    isFeaturedForIndependent: boolean;
     createdAt: Date;
 };
 
@@ -49,6 +51,7 @@ export default async function AdminContentPage() {
             category: true,
             contentKind: true,
             isReleased: true,
+            isFeaturedForIndependent: true,
             createdAt: true,
         },
         orderBy: { createdAt: "desc" },
@@ -60,6 +63,8 @@ export default async function AdminContentPage() {
         acc[k].push(a);
         return acc;
     }, {});
+
+    const featuredIndependentCount = activities.filter((a) => a.isFeaturedForIndependent).length;
 
     const unreleasedGated = activities.filter(
         (a) => !a.isReleased && (
@@ -81,10 +86,17 @@ export default async function AdminContentPage() {
             </div>
 
             {/* Summary cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
                 <div className="rounded-2xl border bg-white p-4" style={{ borderColor: "rgba(0,0,0,0.08)" }}>
                     <p className="text-2xl font-bold tabular-nums" style={{ color: "#1e2640" }}>{activities.length}</p>
                     <p className="text-xs font-semibold text-text-muted mt-0.5">Total activities</p>
+                </div>
+                <div className="rounded-2xl border bg-white p-4" style={{ borderColor: "rgba(0,0,0,0.08)" }}>
+                    <div className="flex items-center gap-2 mb-1">
+                        <Star className="h-3.5 w-3.5" style={{ color: "#d97706", fill: "#f59e0b" }} />
+                        <p className="text-xs font-semibold" style={{ color: "#d97706" }}>Featured (Indep.)</p>
+                    </div>
+                    <p className="text-2xl font-bold tabular-nums" style={{ color: "#1e2640" }}>{featuredIndependentCount}</p>
                 </div>
                 {["practice", "map", "assignment"].map((kind) => {
                     const Icon = KIND_ICONS[kind] ?? BookOpen;
@@ -142,10 +154,10 @@ export default async function AdminContentPage() {
 
                         <div className="rounded-2xl overflow-hidden border bg-white" style={{ borderColor: "rgba(0,0,0,0.08)" }}>
                             <div className="overflow-x-auto">
-                                <table className="w-full min-w-[550px]">
+                                <table className="w-full min-w-[640px]">
                                     <thead>
                                         <tr style={{ background: "#f8f9fc", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
-                                            {["Title", "Type", "Category", "Released", "Created"].map((h) => (
+                                            {["Title", "Type", "Category", "Released", "Featured", "Created"].map((h) => (
                                                 <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider"
                                                     style={{ color: "#94a3b8" }}>
                                                     {h}
@@ -171,6 +183,12 @@ export default async function AdminContentPage() {
                                                     ) : (
                                                         <XCircle className="h-4 w-4" style={{ color: "#cbd5e1" }} />
                                                     )}
+                                                </td>
+                                                <td className="py-2.5 px-4">
+                                                    <IndependentFeaturedToggle
+                                                        activityId={a.id}
+                                                        initial={a.isFeaturedForIndependent}
+                                                    />
                                                 </td>
                                                 <td className="py-2.5 px-4 text-xs" style={{ color: "#94a3b8" }}>
                                                     {new Date(a.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
