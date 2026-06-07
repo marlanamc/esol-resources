@@ -26,6 +26,7 @@ export interface CourseMapActivity {
   status: CourseMapActivityStatus;
   activityId?: string;
   href?: string;
+  vocabUi?: string;
   wrappedGame?: boolean;
 }
 
@@ -78,6 +79,7 @@ export async function fetchCourseMapUnits(): Promise<CourseMapUnit[]> {
         status: !item.activityId && !item.href ? "planned" : "available",
         ...(item.activityId ? { activityId: item.activityId } : {}),
         ...(item.href ? { href: item.href } : {}),
+        ...(item.vocabUi ? { vocabUi: item.vocabUi } : {}),
         ...(item.wrappedGame ? { wrappedGame: true } : {}),
       });
 
@@ -182,6 +184,7 @@ export async function getVisibleMap(
       status: !item.activityId && !item.href ? "planned" : "available",
       ...(item.activityId && isMapActivity ? { activityId: item.activityId } : {}),
       ...(item.href ? { href: item.href } : {}),
+      ...(item.vocabUi ? { vocabUi: item.vocabUi } : {}),
       ...(item.wrappedGame ? { wrappedGame: true } : {}),
     };
   };

@@ -71,7 +71,8 @@ function activityTypeIcon(type?: string, category?: string | null): string {
     return "📌";
 }
 
-function guidedActivityIcon(type: CourseMapActivityType): string {
+function guidedActivityIcon(type: CourseMapActivityType, vocabUi?: string): string {
+    if (vocabUi) return "🔤";
     switch (type) {
         case "guide": return "📖";
         case "game": return "🎮";
@@ -118,7 +119,7 @@ function ActivityRow({
 
     const icon = assignment
         ? activityTypeIcon(assignment.type, assignment.category)
-        : guidedActivityIcon(activity.activityType);
+        : guidedActivityIcon(activity.activityType, activity.vocabUi);
 
     const rowBase =
         "flex items-start gap-2 rounded-lg px-2 py-1.5 text-xs transition-colors";
@@ -162,6 +163,7 @@ function ActivityRow({
                 activityId={activity.activityId}
                 assignmentId={assignment?.assignmentId}
                 href={activity.href}
+                vocabUi={activity.vocabUi}
                 className={rowClass}
             >
                 {inner}

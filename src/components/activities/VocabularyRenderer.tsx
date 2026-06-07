@@ -9,10 +9,10 @@ const FlashcardCarousel = dynamic(() => import("@/components/games/FlashcardCaro
 const MatchingGame = dynamic(() => import("@/components/games/MatchingGame"));
 const FillInBlankGame = dynamic(() => import("@/components/games/FillInBlankGame"));
 import { BackButton } from "@/components/ui/BackButton";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { parseFlashcards, parsePlainVocabulary } from "@/lib/vocab-parser";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { parseCategoryData } from "@/lib/categoryData";
-import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
 
@@ -103,6 +103,7 @@ export default function VocabularyRenderer({
     const router = useRouter();
     const searchParams = useSearchParams();
     const currentUi = searchParams.get("ui") as VocabType | null;
+    const fromMenu = searchParams.get("from") === "menu";
     const previousUiRef = useRef<VocabType | null>(currentUi);
     const [selectionRefreshTick, setSelectionRefreshTick] = useState(0);
 
@@ -118,6 +119,14 @@ export default function VocabularyRenderer({
         return <div className="p-4 text-red-500">Invalid vocabulary content</div>;
     }
 
+    // Skip the menu — go straight to flashcards unless the student navigated back from an activity.
+    if (!currentUi && !fromMenu) {
+        const params = new URLSearchParams(searchParams);
+        params.set("ui", "flashcards");
+        router.replace(`?${params.toString()}`);
+        return null;
+    }
+
     // In Activity Mode - show full-screen activity
     if (currentUi) {
         return (
@@ -126,16 +135,18 @@ export default function VocabularyRenderer({
                 activityId={activityId}
                 vocabType={currentUi}
                 assignmentId={assignmentId}
+                returnToCourseMap={!fromMenu}
                 onBack={() => {
                     const params = new URLSearchParams(searchParams);
                     params.delete("ui");
+                    params.set("from", "menu");
                     router.push(`?${params.toString()}`);
                 }}
             />
         );
     }
 
-    // In Selection Mode - show 4 cards
+    // In Selection Mode - shown when student navigates back from an activity
     return (
         <SelectionMode
             activityId={activityId}
@@ -144,6 +155,7 @@ export default function VocabularyRenderer({
             onSelectType={(vocabType) => {
                 const params = new URLSearchParams(searchParams);
                 params.set("ui", vocabType);
+                params.delete("from");
                 router.push(`?${params.toString()}`);
             }}
         />
@@ -419,6 +431,7 @@ interface ActivityModeProps {
     activityId: string;
     vocabType: VocabType;
     assignmentId?: string | null;
+    returnToCourseMap?: boolean;
     onBack: () => void;
 }
 
@@ -427,6 +440,7 @@ function ActivityMode({
     activityId,
     vocabType,
     assignmentId,
+    returnToCourseMap,
     onBack,
 }: ActivityModeProps) {
     const config = VOCAB_CONFIG[vocabType];
@@ -436,10 +450,14 @@ function ActivityMode({
             {/* Minimal back bar */}
             <div className="px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 border-b border-border/50">
                 <LearnerMenu mode="quiet" className="h-10 w-10" />
-                <BackButton onClick={onBack}>
-                    <span className="hidden sm:inline">Back to activities</span>
-                    <span className="sm:hidden">Back</span>
-                </BackButton>
+                {returnToCourseMap ? (
+                    <ContextualBackButton fallbackHref="/dashboard" />
+                ) : (
+                    <BackButton onClick={onBack}>
+                        <span className="hidden sm:inline">Back to activities</span>
+                        <span className="sm:hidden">Back</span>
+                    </BackButton>
+                )}
                 <span className="text-border">|</span>
                 <span className="text-sm font-medium text-text">{config.icon} {config.name}</span>
             </div>

@@ -120,7 +120,8 @@ function activityTypeIcon(type?: string, category?: string | null): string {
     return "📌";
 }
 
-function guidedActivityIcon(type: CourseMapActivityType): string {
+function guidedActivityIcon(type: CourseMapActivityType, vocabUi?: string): string {
+    if (vocabUi) return "🔤";
     switch (type) {
         case "guide":
             return "📖";
@@ -235,7 +236,12 @@ function buildWeekTimelineItems(
                 if (activity.href) {
                     href = withReturnTo(activity.href, returnHref);
                 } else if (activity.activityId) {
-                    const base = buildActivityHref(activity.activityId, assignment?.assignmentId);
+                    let base = buildActivityHref(activity.activityId, assignment?.assignmentId);
+                    if (activity.vocabUi) {
+                        const url = new URL(base, "https://x");
+                        url.searchParams.set("ui", activity.vocabUi);
+                        base = `${url.pathname}${url.search}`;
+                    }
                     href = withReturnTo(base, returnHref);
                 }
             }
@@ -244,6 +250,7 @@ function buildWeekTimelineItems(
                 activityId: activity.id,
                 title: shortActivityTitle(activity.title),
                 type: activity.activityType,
+                vocabUi: activity.vocabUi,
                 estMinutes: estimatedMinutes(activity),
                 status,
                 href,
@@ -305,6 +312,7 @@ function ActivityShell({
                 activityId={activity.activityId}
                 assignmentId={assignment?.assignmentId}
                 href={activity.href}
+                vocabUi={activity.vocabUi}
                 returnTo={currentHref}
                 className={baseClass}
             >
@@ -378,6 +386,7 @@ function StartActivityButton({
                 activityId={activity.activityId}
                 assignmentId={assignment?.assignmentId}
                 href={activity.href}
+                vocabUi={activity.vocabUi}
                 returnTo={currentHref}
                 className={className}
             >
@@ -475,7 +484,7 @@ function MobileActivityRow({
 }) {
     const icon = assignment
         ? activityTypeIcon(assignment.type, assignment.category)
-        : guidedActivityIcon(activity.activityType);
+        : guidedActivityIcon(activity.activityType, activity.vocabUi);
 
     return (
         <div className="relative flex items-center gap-3 py-2">
@@ -906,7 +915,7 @@ function DesktopActivityRow({
 }) {
     const icon = assignment
         ? activityTypeIcon(assignment.type, assignment.category)
-        : guidedActivityIcon(activity.activityType);
+        : guidedActivityIcon(activity.activityType, activity.vocabUi);
 
     return (
         <div className="relative" id={isCurrent ? "map-activity-current" : undefined}>
@@ -982,7 +991,7 @@ function DesktopNextUpCard({
 }) {
     const icon = assignment
         ? activityTypeIcon(assignment.type, assignment.category)
-        : guidedActivityIcon(activity.activityType);
+        : guidedActivityIcon(activity.activityType, activity.vocabUi);
 
     return (
         <section

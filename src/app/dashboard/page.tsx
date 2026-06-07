@@ -95,10 +95,15 @@ function FeaturedFallbackRow() {
     return (
         <section aria-label="Featured for you">
             <div className="mb-3.5 flex items-center justify-between gap-3">
-                <h2 className="font-display text-xl font-bold text-text">Featured for you</h2>
+                <div className="flex items-center gap-2">
+                    <span className="h-[2px] w-6 shrink-0 rounded-full bg-primary" aria-hidden />
+                    <h2 className="text-[13px] font-extrabold uppercase tracking-[0.14em] text-primary">
+                        Featured for you
+                    </h2>
+                </div>
                 <Link
                     href="/dashboard/activities"
-                    className="text-sm font-bold text-primary transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 rounded"
+                    className="rounded text-sm font-bold text-primary transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
                 >
                     View all →
                 </Link>
@@ -108,31 +113,27 @@ function FeaturedFallbackRow() {
                     <Link
                         key={card.title}
                         href={card.href}
-                        className="group rounded-[18px] border px-4 py-3.5 flex items-center gap-3.5 transition-[box-shadow,transform,border-color] duration-200 hover:-translate-y-px hover:shadow-[0_2px_4px_rgba(40,31,23,0.05),0_10px_24px_rgba(40,31,23,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
+                        className="group flex items-stretch overflow-hidden rounded-[18px] border transition-[box-shadow,transform,border-color] duration-200 hover:-translate-y-px hover:shadow-[0_2px_4px_rgba(40,31,23,0.05),0_10px_24px_rgba(40,31,23,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
                         style={{
                             background: "var(--surface-elevated, #ffffff)",
                             borderColor: "color-mix(in srgb, var(--dashboard-border) 72%, transparent)",
                             boxShadow: "0 1px 2px rgba(40,31,23,0.04), 0 6px 18px rgba(40,31,23,0.05)",
                         }}
                     >
+                        {/* Category accent stripe — games tone */}
                         <span
-                            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[16px] text-2xl"
-                            style={{
-                                background: "color-mix(in srgb, var(--tone-games-chip-bg) 72%, var(--surface-elevated, #ffffff))",
-                                boxShadow: "inset 0 0 0 1px color-mix(in srgb, var(--tone-games-border) 42%, transparent)",
-                            }}
+                            className="w-[3px] shrink-0 self-stretch rounded-l-[18px]"
+                            style={{ background: "var(--tone-games-accent, #b05740)" }}
                             aria-hidden
-                        >
-                            🎮
-                        </span>
-                        <span className="min-w-0">
-                            <span className="inline-flex rounded-full border px-2 py-[3px] text-[10px] font-semibold leading-none text-[var(--tone-games-chip-text)]">
+                        />
+                        <span className="min-w-0 flex-1 px-4 py-3.5 space-y-1">
+                            <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-2 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-wide text-primary">
                                 Featured
                             </span>
-                            <span className="mt-1.5 block truncate text-[15px] font-bold leading-tight text-text">
+                            <span className="block truncate text-[15px] font-bold leading-tight text-text">
                                 {card.title}
                             </span>
-                            <span className="mt-1 block text-xs text-text-muted/90">
+                            <span className="block text-xs text-text-muted/90">
                                 {card.meta}
                             </span>
                         </span>
@@ -475,7 +476,7 @@ export default async function DashboardPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_348px] gap-5 items-start">
 
                         {/* ── Left / Main column ── */}
-                        <div className="min-w-0 space-y-5">
+                        <div className="min-w-0 space-y-3">
 
                             <div className="hidden lg:block">
                                 <DashboardWelcomeHeader
@@ -500,12 +501,12 @@ export default async function DashboardPage() {
                         </div>
 
                         {/* ── Right sidebar ── */}
-                        <aside className="space-y-4 sticky top-4">
+                        <aside className="space-y-3 sticky top-4">
 
                             {/* Streak / Momentum card — top of sidebar */}
                             <MomentumCard variant="sidebar" {...momentumSnapshot} />
 
-                            <div className="dashboard-panel paper-texture rounded-2xl p-5">
+                            <div className="dashboard-panel paper-texture rounded-2xl p-4">
                                 <MiniCalendar compact flat events={calendarEvents} />
                                 <div className="border-t mt-4 pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
                                     <UpcomingEventsList

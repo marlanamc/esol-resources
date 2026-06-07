@@ -10,6 +10,7 @@ export interface TimelineItem {
   activityId: string;
   title: string;
   type: CourseMapActivityType | "vocabulary" | string;
+  vocabUi?: string;
   estMinutes?: number;
   status: TimelineStatus;
   href: string;
@@ -49,7 +50,8 @@ function typeLabel(type: string): string {
   }
 }
 
-function typeGlyph(type: string): string {
+function typeGlyph(type: string, vocabUi?: string): string {
+  if (vocabUi) return "🔤";
   switch (type) {
     case "guide": return "📖";
     case "game": return "🎮";
@@ -60,7 +62,7 @@ function typeGlyph(type: string): string {
     case "pronunciation": return "🔊";
     case "writing": return "✍️";
     case "speaking": return "🎤";
-    case "vocabulary": return "🗂️";
+    case "vocabulary": return "🔤";
     default: return "📌";
   }
 }
@@ -183,7 +185,7 @@ export function ActivityTimeline({ items, accent, className }: ActivityTimelineP
       {items.map((item, i) => {
         const last = i === items.length - 1;
         const tone = getLearnerCategoryTone(typeToToneKey(item.type) as Parameters<typeof getLearnerCategoryTone>[0]);
-        const glyph = typeGlyph(item.type);
+        const glyph = typeGlyph(item.type, item.vocabUi);
         const mins = item.estMinutes ?? defaultMinutes(item.type);
         const label = typeLabel(item.type);
         const animDelay = `${i * 55}ms`;
@@ -201,15 +203,15 @@ export function ActivityTimeline({ items, accent, className }: ActivityTimelineP
               padding: "10px 12px",
               borderRadius: 14,
               cursor: isLocked ? "default" : "pointer",
-              background: isCurrent ? accent.bg : "var(--surface-base)",
-              border: `1px solid ${isCurrent ? `color-mix(in srgb, ${accent.fg} 28%, transparent)` : "var(--dashboard-border)"}`,
+              background: isCurrent ? "color-mix(in srgb, var(--primary) 6%, var(--surface-base))" : "var(--surface-base)",
+              border: `1px solid ${isCurrent ? "color-mix(in srgb, var(--primary) 28%, transparent)" : "var(--dashboard-border)"}`,
               opacity: isLocked ? 0.6 : 1,
               boxShadow: isCurrent ? "0 4px 16px rgba(0,0,0,0.08)" : "0 1px 3px rgba(0,0,0,0.04)",
               transition: "box-shadow 0.15s ease, transform 0.15s ease",
             }}
             className={!isLocked ? "timeline-card-hover" : ""}
           >
-            {/* type glyph */}
+            {/* type glyph — neutral surface, category tone as quiet 3px left border */}
             <div
               style={{
                 width: 36,
@@ -219,8 +221,10 @@ export function ActivityTimeline({ items, accent, className }: ActivityTimelineP
                 placeItems: "center",
                 fontSize: 18,
                 flexShrink: 0,
-                background: tone.chipBg,
-                border: `1px solid ${tone.border}`,
+                background: "color-mix(in srgb, var(--primary) 6%, var(--surface-base))",
+                border: "1px solid var(--dashboard-border)",
+                borderLeftColor: tone.accent,
+                borderLeftWidth: 3,
               }}
             >
               {glyph}
@@ -273,7 +277,7 @@ export function ActivityTimeline({ items, accent, className }: ActivityTimelineP
                   paddingInline: "10px",
                   paddingBlock: "5px",
                   borderRadius: 8,
-                  background: accent.fg,
+                  background: "var(--primary)",
                   color: "#fff",
                   fontSize: 11.5,
                   fontWeight: 700,
@@ -323,7 +327,7 @@ export function ActivityTimeline({ items, accent, className }: ActivityTimelineP
                     minHeight: 16,
                     marginTop: 2,
                     marginBottom: 2,
-                    background: isDone ? accent.fg : "var(--dashboard-border)",
+                    background: isDone ? "var(--primary)" : "var(--dashboard-border)",
                     borderRadius: 2,
                   }}
                 />

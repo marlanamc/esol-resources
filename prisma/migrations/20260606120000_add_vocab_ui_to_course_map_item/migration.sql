@@ -1,0 +1,2 @@
+ALTER TABLE "CourseMapItem"
+ADD COLUMN IF NOT EXISTS "vocabUi" TEXT;

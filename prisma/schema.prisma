@@ -591,6 +591,7 @@ model CourseMapItem {
   weekId       String
   activityId   String?
   href         String?
+  vocabUi      String?                         // "flashcards" | "matching" | "fill-blank"
   slot         String     @default("required") // "required" | "extra"
   order        Int
   wrappedGame  Boolean    @default(false)

@@ -3,7 +3,6 @@
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import { stripVocabTypeSuffix } from "@/lib/vocab-display";
-import { getGameEmojiForActivity } from "@/lib/game-emoji";
 import type { FeaturedAssignment } from "@/components/dashboard/todays-assignments/types";
 
 interface NewThisWeekSectionProps {
@@ -45,29 +44,6 @@ function resolveTypeLabel(assignment: FeaturedAssignment): string {
     }
 }
 
-function resolveIcon(assignment: FeaturedAssignment): string {
-    const key = resolveCategoryKey(assignment);
-    if (key === "games") {
-        return getGameEmojiForActivity({
-            activityId: assignment.activityId,
-            title: assignment.title || assignment.activity.title,
-        });
-    }
-    switch (key) {
-        case "speaking":
-            return "🎤";
-        case "vocabulary":
-            return "🗂️";
-        case "grammar":
-            return "📖";
-        case "pronunciation":
-            return "🔊";
-        case "quizzes":
-            return "✏️";
-        default:
-            return "📌";
-    }
-}
 
 function resolveBadgeLabel(assignment: FeaturedAssignment): string {
     const key = resolveCategoryKey(assignment);
@@ -110,14 +86,10 @@ export function NewThisWeekSection({
             <div className="mb-3.5">
                 <div className="flex items-center gap-2">
                     <span
-                        className="h-[2px] w-6 shrink-0 rounded-full"
-                        style={{ background: "#7c5cbf" }}
+                        className="h-[2px] w-6 shrink-0 rounded-full bg-primary"
                         aria-hidden
                     />
-                    <h2
-                        className="text-[13px] font-extrabold uppercase tracking-[0.14em]"
-                        style={{ color: "#7c5cbf" }}
-                    >
+                    <h2 className="text-[13px] font-extrabold uppercase tracking-[0.14em] text-primary">
                         Featured for you
                     </h2>
                 </div>
@@ -143,39 +115,27 @@ export function NewThisWeekSection({
                             activityId={assignment.activityId}
                             assignmentId={assignment.assignmentId ?? assignment.id}
                             href={assignment.href}
-                            className="group shrink-0 w-[min(100%,268px)] snap-start rounded-[18px] border px-4 py-3.5 flex items-center gap-3.5 transition-[box-shadow,transform,border-color] duration-200 hover:-translate-y-px hover:shadow-[0_2px_4px_rgba(40,31,23,0.05),0_10px_24px_rgba(40,31,23,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 md:basis-[calc(50%-0.375rem)] md:w-auto"
+                            className="group shrink-0 w-[min(100%,268px)] snap-start overflow-hidden rounded-[18px] border flex items-stretch transition-[box-shadow,transform,border-color] duration-200 hover:-translate-y-px hover:shadow-[0_2px_4px_rgba(40,31,23,0.05),0_10px_24px_rgba(40,31,23,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 md:basis-[calc(50%-0.375rem)] md:w-auto"
                             style={{
                                 background: "var(--surface-elevated, #ffffff)",
                                 borderColor: "color-mix(in srgb, var(--dashboard-border) 72%, transparent)",
-                                boxShadow:
-                                    "0 1px 2px rgba(40, 31, 23, 0.04), 0 6px 18px rgba(40, 31, 23, 0.05)",
+                                boxShadow: "0 1px 2px rgba(40,31,23,0.04), 0 6px 18px rgba(40,31,23,0.05)",
                             }}
                         >
-                            <div
-                                className="shrink-0 flex h-12 w-12 items-center justify-center rounded-[14px] text-[22px] leading-none"
-                                style={{
-                                    background: `color-mix(in srgb, ${tone.chipBg} 72%, var(--surface-elevated, #ffffff))`,
-                                    boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${tone.border} 42%, transparent)`,
-                                }}
+                            {/* Category accent: quiet 3px left border rule instead of icon box */}
+                            <span
+                                className="w-[3px] shrink-0 self-stretch rounded-l-[18px]"
+                                style={{ background: tone.accent }}
                                 aria-hidden
-                            >
-                                {resolveIcon(assignment)}
-                            </div>
-                            <div className="min-w-0 flex-1 space-y-1">
-                                <span
-                                    className="inline-flex rounded-full border px-2 py-[3px] text-[10px] font-semibold leading-none"
-                                    style={{
-                                        background: `color-mix(in srgb, ${tone.chipBg} 88%, var(--surface-elevated, #ffffff))`,
-                                        borderColor: `color-mix(in srgb, ${tone.border} 38%, transparent)`,
-                                        color: tone.chipText,
-                                    }}
-                                >
+                            />
+                            <div className="min-w-0 flex-1 space-y-1 px-4 py-3.5">
+                                <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-2 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-wide text-primary">
                                     {badgeLabel}
                                 </span>
-                                <p className="text-[15px] font-bold text-text leading-tight truncate">
+                                <p className="truncate text-[15px] font-bold leading-tight text-text">
                                     {displayTitle}
                                 </p>
-                                <p className="text-xs text-text-muted/90 leading-none">
+                                <p className="text-xs leading-none text-text-muted/90">
                                     {typeLabel} · {minutes} min
                                 </p>
                             </div>

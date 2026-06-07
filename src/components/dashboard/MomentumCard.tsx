@@ -378,25 +378,83 @@ export function MomentumCard({
     );
 
     const refinedRailBody = (
-        <div className="flex flex-col gap-4">
-            <div className="grid grid-cols-[72px_minmax(0,1fr)] items-center gap-3.5">
-                <StreakProgressRing streak={streak} pct={streakRingPct} size={72} />
-                <div className="min-w-0">
-                    <div className="flex items-start justify-between gap-3">
-                        <div>
-                            <p className="font-display text-base font-bold leading-tight text-text">
-                                Hot streak
-                            </p>
-                            <p className="mt-1 text-[13px] font-medium leading-tight text-text-muted">
-                                {streak > 0 ? "Keep going!" : "Start today"}
-                            </p>
-                        </div>
+        <div className="flex flex-col gap-3">
+            {/* Top row: ring + title + pts badge all inline */}
+            <div className="flex items-center gap-3">
+                <StreakProgressRing streak={streak} pct={streakRingPct} size={52} />
+                <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-2">
+                        <p className="font-display text-sm font-bold leading-tight text-text">
+                            Hot streak
+                        </p>
                         {pointsBadge}
                     </div>
+                    <p className="mt-0.5 text-xs font-medium leading-tight text-text-muted">
+                        {streak > 0 ? "Keep going!" : "Start today"}
+                    </p>
                 </div>
             </div>
-            {refinedWeekDots}
-            {refinedRailFooter}
+            {/* Week dots — slightly smaller */}
+            <div className="grid w-full grid-cols-7 gap-1">
+                {sevenDayActivity.map((active, i) => {
+                    const isToday = i === todayIndex;
+                    const isFuture = i > todayIndex;
+                    const isMissed = !active && !isToday && !isFuture;
+                    return (
+                        <div key={i} className="flex min-w-0 flex-col items-center gap-1">
+                            <div
+                                className="flex h-6 w-6 items-center justify-center rounded-full transition-all duration-300"
+                                style={{
+                                    background: active
+                                        ? streakAccent
+                                        : isMissed
+                                            ? "color-mix(in srgb, var(--dashboard-border) 38%, var(--dashboard-surface-start))"
+                                            : "transparent",
+                                    border: active
+                                        ? `2px solid ${streakAccent}`
+                                        : isToday
+                                            ? "2px solid color-mix(in srgb, var(--dashboard-border) 42%, transparent)"
+                                            : isFuture
+                                                ? `2px solid ${streakAccent}`
+                                                : "2px solid color-mix(in srgb, var(--dashboard-border) 70%, transparent)",
+                                    opacity: isFuture ? 0.9 : 1,
+                                }}
+                            >
+                                {active ? <span className="text-white"><CheckIcon size={12} /></span> : null}
+                            </div>
+                            <span
+                                className="text-[9px] font-bold leading-none"
+                                style={{
+                                    color: isToday ? streakAccent : isFuture ? "var(--text-soft, var(--text-muted))" : "var(--text-muted)",
+                                }}
+                            >
+                                {CALENDAR_WEEK_DAY_LABELS[i]}
+                            </span>
+                        </div>
+                    );
+                })}
+            </div>
+            {/* Footer: X/7 + days to perfect week + thin bar */}
+            <div>
+                <div className="mb-1.5 flex items-center justify-between gap-2 text-[11px] font-semibold text-text-muted">
+                    <span><span className="text-text tabular-nums">{activeDaysThisWeek} / 7</span> this week</span>
+                    <span className="tabular-nums">
+                        {daysToPerfectWeek === 0 ? "Perfect week" : `${daysToPerfectWeek} day${daysToPerfectWeek === 1 ? "" : "s"} to go`}
+                    </span>
+                </div>
+                <div
+                    className="h-1.5 w-full overflow-hidden rounded-full"
+                    style={{ background: "color-mix(in srgb, var(--dashboard-border) 38%, var(--dashboard-surface-start))" }}
+                >
+                    <div
+                        className="h-full rounded-full transition-[width] duration-700 ease-out"
+                        style={{
+                            width: `${weekActivityPct}%`,
+                            background: `linear-gradient(90deg, ${STREAK_ACCENT} 0%, color-mix(in srgb, ${STREAK_ACCENT} 82%, var(--primary-light)) 100%)`,
+                        }}
+                    />
+                </div>
+            </div>
         </div>
     );
 
@@ -407,7 +465,7 @@ export function MomentumCard({
                 isHeader && embedded
                     ? "group block w-full min-w-0 rounded-xl p-0 transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
                     : isRail
-                        ? `${railCardClass} ${isHeader ? "max-w-[420px] shrink-0 p-5" : "p-5"}`
+                        ? `${railCardClass} ${isHeader ? "max-w-[420px] shrink-0 p-4" : "p-4"}`
                         : "dashboard-panel rounded-2xl p-4 block transition-shadow hover:shadow-lg"
             }
             style={
