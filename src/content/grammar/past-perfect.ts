@@ -82,8 +82,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Where Past Perfect lives on the timeline",
         elements: [
-          { id: "pp-first", type: "single-dot", zone: "past-earlier", position: 30, verbLabel: "Past Perfect (1st)" },
-          { id: "ps-second", type: "single-dot", zone: "past", position: 70, verbLabel: "Past Simple (2nd)" },
+          { id: "pp-first", type: "arc", zone: "past-earlier", position: 30, verbLabel: "Past Perfect (1st)" },
+          { id: "ps-second", type: "single-dot", zone: "past-later", position: 70, verbLabel: "Past Simple (2nd)" },
         ],
       },
       explanation: `
@@ -381,8 +381,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
         title: "One action vs. two actions in the past",
         elements: [
           { id: "ps-solo", type: "single-dot", zone: "past", position: 65, verbLabel: "Past Simple (alone)" },
-          { id: "pp-seq", type: "single-dot", zone: "past-earlier", position: 25, verbLabel: "Past Perfect (1st)" },
-          { id: "ps-seq", type: "single-dot", zone: "past", position: 55, verbLabel: "Past Simple (2nd)" },
+          { id: "pp-seq", type: "arc", zone: "past-earlier", position: 25, verbLabel: "Past Perfect (1st)" },
+          { id: "ps-seq", type: "single-dot", zone: "past-later", position: 55, verbLabel: "Past Simple (2nd)" },
         ],
       },
       explanation: `

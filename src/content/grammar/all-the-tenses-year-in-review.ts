@@ -83,17 +83,17 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Where your tenses live on the timeline",
         elements: [
-          { id: "pp-earlier", type: "single-dot", zone: "past-earlier", position: 15, verbLabel: "Past Perfect" },
+          { id: "pp-earlier", type: "arc", zone: "past-earlier", position: 15, verbLabel: "Past Perfect" },
           { id: "past-cont", type: "solid-line", zone: "past", position: 30, verbLabel: "Past Cont." },
           { id: "past-simp", type: "single-dot", zone: "past", position: 55, verbLabel: "Past Simple" },
           { id: "pres-simp", type: "multiple-dots", zone: "present", position: 48, verbLabel: "Pres. Simple" },
           { id: "pres-cont", type: "solid-line", zone: "present", position: 52, verbLabel: "Pres. Cont." },
-          { id: "pres-perf", type: "single-dot", zone: "present", position: 46, verbLabel: "Pres. Perfect" },
-          { id: "ppc-line", type: "solid-line", zone: "present", position: 54, verbLabel: "Pres. Perf. Cont." },
+          { id: "pres-perf", type: "arc", zone: "past", position: 46, verbLabel: "Pres. Perfect" },
+          { id: "ppc-line", type: "solid-to-now", zone: "past", position: 30, verbLabel: "Pres. Perf. Cont." },
           { id: "fut-simp", type: "single-dot", zone: "future", position: 62, verbLabel: "Future Simple" },
           { id: "fut-cont", type: "solid-line", zone: "future", position: 72, verbLabel: "Future Cont." },
-          { id: "fut-perf", type: "single-dot", zone: "future", position: 82, verbLabel: "Future Perfect" },
-          { id: "fpc-line", type: "solid-line", zone: "future", position: 90, verbLabel: "Fut. Perf. Cont." },
+          { id: "fut-perf", type: "arc-dashed", zone: "future", position: 82, verbLabel: "Future Perfect" },
+          { id: "fpc-line", type: "solid-to-point", zone: "future", position: 90, verbLabel: "Fut. Perf. Cont." },
         ],
       },
       explanation: `
@@ -263,7 +263,7 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Past simple, past continuous, and past perfect",
         elements: [
-          { id: "pp-dot", type: "single-dot", zone: "past-earlier", position: 22, verbLabel: "Past Perfect" },
+          { id: "pp-dot", type: "arc", zone: "past-earlier", position: 22, verbLabel: "Past Perfect" },
           { id: "past-cont-line", type: "solid-line", zone: "past", position: 38, verbLabel: "Past Continuous" },
           { id: "past-simp-dot", type: "single-dot", zone: "past", position: 62, verbLabel: "Past Simple" },
         ],
@@ -356,8 +356,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Present perfect and present perfect continuous",
         elements: [
-          { id: "pres-perf-dot", type: "single-dot", zone: "present", position: 44, verbLabel: "Present Perfect" },
-          { id: "ppc-line", type: "solid-line", zone: "present", position: 56, verbLabel: "Pres. Perf. Cont." },
+          { id: "pres-perf-dot", type: "arc", zone: "past", position: 44, verbLabel: "Present Perfect" },
+          { id: "ppc-line", type: "solid-to-now", zone: "past", position: 30, verbLabel: "Pres. Perf. Cont." },
         ],
       },
       explanation: `
@@ -446,8 +446,8 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
         elements: [
           { id: "fs-dot", type: "single-dot", zone: "future", position: 55, verbLabel: "Future Simple" },
           { id: "fc-line", type: "solid-line", zone: "future", position: 65, verbLabel: "Future Continuous" },
-          { id: "fp-dot", type: "single-dot", zone: "future", position: 78, verbLabel: "Future Perfect" },
-          { id: "fpc-line", type: "solid-line", zone: "future", position: 88, verbLabel: "Fut. Perf. Cont." },
+          { id: "fp-dot", type: "arc-dashed", zone: "future", position: 78, verbLabel: "Future Perfect" },
+          { id: "fpc-line", type: "solid-to-point", zone: "future", position: 88, verbLabel: "Fut. Perf. Cont." },
         ],
       },
       explanation: `

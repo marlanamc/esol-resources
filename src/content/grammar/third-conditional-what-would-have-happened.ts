@@ -83,8 +83,8 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
       tenseDiagram: {
         title: "Third conditional: a different past that did not happen",
         elements: [
-          { id: "tc-if", type: "single-dot", zone: "past-earlier", position: 30, verbLabel: "if + had + V3 (missed action)" },
-          { id: "tc-result", type: "single-dot", zone: "past", position: 65, verbLabel: "would have + V3 (different result)" },
+          { id: "tc-if", type: "arc", zone: "past-earlier", position: 30, verbLabel: "if + had + V3 (missed action)" },
+          { id: "tc-result", type: "single-dot", zone: "past-later", position: 65, verbLabel: "would have + V3 (different result)" },
         ],
       },
       explanation: `
@@ -169,8 +169,8 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
       tenseDiagram: {
         title: "The third conditional formula",
         elements: [
-          { id: "tc-had", type: "single-dot", zone: "past-earlier", position: 28, verbLabel: "if + had + V3" },
-          { id: "tc-would-have", type: "single-dot", zone: "past", position: 68, verbLabel: "would have + V3" },
+          { id: "tc-had", type: "arc", zone: "past-earlier", position: 28, verbLabel: "if + had + V3" },
+          { id: "tc-would-have", type: "single-dot", zone: "past-later", position: 68, verbLabel: "would have + V3" },
         ],
       },
       explanation: `
@@ -363,7 +363,8 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
         title: "Second conditional (imaginary now) vs. third conditional (past regret)",
         elements: [
           { id: "second-cond", type: "single-dot", zone: "past", position: 35, verbLabel: "Second: would (imaginary now)" },
-          { id: "third-cond", type: "single-dot", zone: "past-earlier", position: 55, verbLabel: "Third: would have (past regret)" },
+          { id: "third-had", type: "arc", zone: "past-earlier", position: 28, verbLabel: "Third: if + had + V3" },
+          { id: "third-result", type: "single-dot", zone: "past-later", position: 68, verbLabel: "Third: would have + V3" },
         ],
       },
       explanation: `

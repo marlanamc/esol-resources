@@ -263,6 +263,17 @@ elements: [
 ]
 ```
 
+Past Perfect (earlier action links to a later past moment):
+
+```ts
+elements: [
+  { id: "pp-arc", type: "arc", zone: "past-earlier", position: 30, verbLabel: "Past Perfect (1st)" },
+  { id: "ps-dot", type: "single-dot", zone: "past-later", position: 70, verbLabel: "Past Simple (2nd)" },
+]
+```
+
+Use `"arc"` for Past Perfect, not `"single-dot"`. A dot alone looks like Past Simple.
+
 Two tenses contrasted:
 
 ```ts
@@ -292,6 +303,8 @@ elements: [
 
 - **Second conditional if-clause** → `zone: "past"` with `verbLabel: "if + past simple (imaginary)"`
 - **Second conditional result clause** → `zone: "future"` with `verbLabel: "would + verb (imaginary result)"`
+- **Third conditional if-clause (`if + had + V3`)** → `type: "arc"`, `zone: "past-earlier"` (Past Perfect link stamp, not a dot)
+- **Third conditional result (`would have + V3`)** → `type: "single-dot"`, `zone: "past-later"`
 - **First vs. second conditional contrast** → put both in the same diagram: first conditional result in `"future"`, second conditional result also in `"future"` but with a distinct label (e.g., `"would (imaginary)"` vs `"will (real)"`)
 - If a section covers only advice patterns or modal meaning (not tense contrast), you may omit `tenseDiagram` — the audit allowlist covers this.
 

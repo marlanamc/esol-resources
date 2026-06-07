@@ -370,8 +370,8 @@ export const allFourConditionalsQuickTourContent: InteractiveGuideContent = {
       tenseDiagram: {
         title: "Third conditional: different past that did not happen",
         elements: [
-          { id: "tc-if", type: "single-dot", zone: "past-earlier", position: 30, verbLabel: "if + had + V3" },
-          { id: "tc-result", type: "single-dot", zone: "past", position: 65, verbLabel: "would have + V3" },
+          { id: "tc-if", type: "arc", zone: "past-earlier", position: 30, verbLabel: "if + had + V3" },
+          { id: "tc-result", type: "single-dot", zone: "past-later", position: 65, verbLabel: "would have + V3" },
         ],
       },
       explanation: `
