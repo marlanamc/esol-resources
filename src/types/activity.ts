@@ -158,11 +158,9 @@ export interface LegacyGuideMetadata {
     [key: string]: unknown;
 }
 
-export interface MiniQuizQuestion {
+interface MiniQuizQuestionBase {
     id: string;
     question: string;
-    options: Array<{ value: string; label: string }>;
-    correctAnswer: string;
     explanation?: string;
     /** Topic tag for diagnostic reports (e.g., "present-simple", "time-expressions") */
     topic?: string;
@@ -173,6 +171,26 @@ export interface MiniQuizQuestion {
     /** Difficulty level for adaptive learning and reporting */
     difficulty?: "easy" | "medium" | "hard";
 }
+
+export type MiniQuizQuestion =
+    | (MiniQuizQuestionBase & {
+        type?: "radio";
+        options: Array<{ value: string; label: string }>;
+        correctAnswer: string;
+    })
+    | (MiniQuizQuestionBase & {
+        type: "fill-blank";
+        /** The question text. Use ___ to indicate where the blank falls in context if helpful. */
+        correctAnswer: string;
+        acceptedAnswers?: string[];
+    })
+    | (MiniQuizQuestionBase & {
+        type: "word-scramble";
+        words: string[];
+        correctAnswer: string;
+        correctAnswers?: string[];
+        hint?: string;
+    });
 
 /** Individual question response for diagnostic tracking */
 export interface QuestionResponse {

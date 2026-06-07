@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Brain, Award, ThumbsUp, BookMarked, CheckCircle2, Sparkles } from "lucide-react";
+import { Brain, Award, ThumbsUp, BookMarked, CheckCircle2, Sparkles, RotateCcw } from "lucide-react";
 import type { MiniQuizQuestion, QuestionResponse } from "@/types/activity";
 import { Button } from "@/components/ui/Button";
 
@@ -14,21 +14,66 @@ interface MiniQuizSectionProps {
     onBack?: () => void;
 }
 
+function normalize(s: string) {
+    return s.trim().toLowerCase();
+}
+
+function initScramble(questions: MiniQuizQuestion[]) {
+    const state: Record<string, { pool: string[]; selected: string[] }> = {};
+    questions.forEach((q) => {
+        if (q.type === "word-scramble") {
+            state[q.id] = {
+                pool: [...q.words].sort(() => Math.random() - 0.5),
+                selected: [],
+            };
+        }
+    });
+    return state;
+}
+
 export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTitle = "this grammar topic", onBack }: MiniQuizSectionProps) {
     const [answers, setAnswers] = useState<Record<string, string>>({});
+    const [scramble, setScramble] = useState<Record<string, { pool: string[]; selected: string[] }>>(() => initScramble(questions));
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState(0);
     const scoreCardRef = useRef<HTMLDivElement | null>(null);
+
+    const getUserAnswer = (q: MiniQuizQuestion): string => {
+        if (q.type === "word-scramble") return (scramble[q.id]?.selected ?? []).join(" ");
+        return answers[q.id] ?? "";
+    };
+
+    const checkCorrect = (q: MiniQuizQuestion, userAnswer: string): boolean => {
+        if (q.type === "fill-blank") {
+            return (
+                normalize(userAnswer) === normalize(q.correctAnswer) ||
+                (q.acceptedAnswers?.some((a) => normalize(a) === normalize(userAnswer)) ?? false)
+            );
+        }
+        if (q.type === "word-scramble") {
+            return (
+                normalize(userAnswer) === normalize(q.correctAnswer) ||
+                (q.correctAnswers?.some((a) => normalize(a) === normalize(userAnswer)) ?? false)
+            );
+        }
+        return userAnswer === q.correctAnswer;
+    };
+
+    const isQuestionAnswered = (q: MiniQuizQuestion): boolean => {
+        if (q.type === "word-scramble") {
+            return (scramble[q.id]?.selected.length ?? 0) === q.words.length;
+        }
+        return !!answers[q.id];
+    };
 
     const handleSubmit = () => {
         const responses: QuestionResponse[] = [];
         let correct = 0;
 
         questions.forEach((q) => {
-            const userAnswer = answers[q.id];
-            const isCorrect = userAnswer === q.correctAnswer;
+            const userAnswer = getUserAnswer(q);
+            const isCorrect = checkCorrect(q, userAnswer);
             if (isCorrect) correct++;
-
             responses.push({
                 questionId: q.id,
                 userAnswer,
@@ -42,7 +87,6 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
         setScore(correct);
         setSubmitted(true);
 
-        // Save the grade and detailed responses when quiz is submitted (not waiting for "Finish" click)
         if (onScoreSubmit) {
             onScoreSubmit(correct, questions.length, responses);
         }
@@ -50,31 +94,44 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
 
     const handleReset = () => {
         setAnswers({});
+        setScramble(initScramble(questions));
         setSubmitted(false);
         setScore(0);
     };
 
-    const allAnswered = questions.every((q) => answers[q.id]);
-    const answeredCount = Object.keys(answers).length;
+    const moveToSelected = (qId: string, wordIdx: number) => {
+        setScramble((prev) => {
+            const { pool, selected } = prev[qId];
+            const newPool = [...pool];
+            const [word] = newPool.splice(wordIdx, 1);
+            return { ...prev, [qId]: { pool: newPool, selected: [...selected, word] } };
+        });
+    };
+
+    const moveToPool = (qId: string, selIdx: number) => {
+        setScramble((prev) => {
+            const { pool, selected } = prev[qId];
+            const newSelected = [...selected];
+            const [word] = newSelected.splice(selIdx, 1);
+            return { ...prev, [qId]: { pool: [...pool, word], selected: newSelected } };
+        });
+    };
+
+    const allAnswered = questions.every(isQuestionAnswered);
+    const answeredCount = questions.filter(isQuestionAnswered).length;
     const percentage = (score / questions.length) * 100;
 
     useEffect(() => {
         if (!submitted) return;
-
-        const scrollToScore = () => {
-            scoreCardRef.current?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            });
-        };
-
-        const timeoutId = window.setTimeout(scrollToScore, 50);
+        const timeoutId = window.setTimeout(() => {
+            scoreCardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 50);
         return () => window.clearTimeout(timeoutId);
     }, [submitted]);
 
     return (
         <div className="fixed inset-0 z-30 bg-[var(--color-bg)] flex flex-col touch-manipulation md:static md:z-auto md:h-auto md:min-h-0 md:bg-transparent">
-            {/* Mobile Header - Back + Progress */}
+            {/* Mobile Header */}
             <div className="flex-shrink-0 border-b-2 border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-3 md:hidden">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -130,23 +187,20 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                         >
                             <Brain className="w-16 h-16 mx-auto mb-4 text-primary" />
                         </motion.div>
-                        <h2 className="text-3xl font-bold text-primary mb-2 font-display">
-                            Mini Quiz
-                        </h2>
-                        <p className="text-text-muted">
-                            Test your understanding of {topicTitle}!
-                        </p>
+                        <h2 className="text-3xl font-bold text-primary mb-2 font-display">Mini Quiz</h2>
+                        <p className="text-text-muted">Test your understanding of {topicTitle}!</p>
                     </motion.div>
 
+                    {/* Score card */}
                     <AnimatePresence>
                         {submitted && (
                             <motion.div
                                 ref={scoreCardRef}
                                 className={`relative overflow-hidden p-4 sm:p-6 rounded-xl mb-6 ${percentage >= 80
-                                        ? "bg-success/10 border-2 border-success"
-                                        : percentage >= 60
-                                            ? "bg-warning/10 border-2 border-warning"
-                                            : "bg-error/10 border-2 border-error"
+                                    ? "bg-success/10 border-2 border-success"
+                                    : percentage >= 60
+                                        ? "bg-warning/10 border-2 border-warning"
+                                        : "bg-error/10 border-2 border-error"
                                     }`}
                                 initial={{ opacity: 0, scale: 0.8, y: -20 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -169,24 +223,15 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                         )}
                                     </motion.div>
 
-                                    {/* Confetti effect for perfect scores */}
                                     {percentage >= 80 && (
                                         <div className="absolute inset-0 pointer-events-none overflow-hidden">
                                             {[...Array(20)].map((_, i) => (
                                                 <motion.div
                                                     key={i}
                                                     className="absolute"
-                                                    style={{
-                                                        left: `${Math.random() * 100}%`,
-                                                        top: '50%',
-                                                    }}
+                                                    style={{ left: `${Math.random() * 100}%`, top: "50%" }}
                                                     initial={{ opacity: 1, y: 0, rotate: 0 }}
-                                                    animate={{
-                                                        opacity: 0,
-                                                        y: [-50, -200],
-                                                        rotate: Math.random() * 360,
-                                                        x: (Math.random() - 0.5) * 200
-                                                    }}
+                                                    animate={{ opacity: 0, y: [-50, -200], rotate: Math.random() * 360, x: (Math.random() - 0.5) * 200 }}
                                                     transition={{ duration: 1.5, delay: i * 0.05 }}
                                                 >
                                                     <Sparkles className="w-4 h-4 text-success" />
@@ -223,19 +268,14 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                     >
                                         Click <span className="font-semibold text-text">Finish</span> to see your certificate.
                                     </motion.p>
-                                    {/* Desktop result buttons */}
                                     <motion.div
                                         className="hidden sm:flex flex-row items-center justify-center gap-3"
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.5 }}
                                     >
-                                        <Button variant="outline" onClick={handleReset}>
-                                            Try Again
-                                        </Button>
-                                        <Button variant="success" onClick={() => onComplete(score, questions.length)}>
-                                            Finish
-                                        </Button>
+                                        <Button variant="outline" onClick={handleReset}>Try Again</Button>
+                                        <Button variant="success" onClick={() => onComplete(score, questions.length)}>Finish</Button>
                                     </motion.div>
                                 </div>
                             </motion.div>
@@ -244,18 +284,18 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
 
                     <div className="space-y-4">
                         {questions.map((question, index) => {
-                            const userAnswer = answers[question.id];
-                            const isCorrect = userAnswer === question.correctAnswer;
+                            const userAnswer = getUserAnswer(question);
+                            const isCorrect = submitted ? checkCorrect(question, userAnswer) : false;
                             const showFeedback = submitted;
 
                             return (
                                 <motion.div
                                     key={question.id}
                                     className={`quiz-question rounded-xl border bg-[var(--color-surface-elevated)] p-4 sm:p-6 ${showFeedback && isCorrect
-                                            ? "border-success bg-success/5"
-                                            : showFeedback && !isCorrect
-                                                ? "border-error bg-error/5"
-                                                : "border-border"
+                                        ? "border-success bg-success/5"
+                                        : showFeedback && !isCorrect
+                                            ? "border-error bg-error/5"
+                                            : "border-border"
                                         }`}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -275,58 +315,170 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                         </h4>
                                     </div>
 
-                                    <div className="space-y-2 ml-0 sm:ml-11">
-                                        {question.options.map((option) => (
-                                            <label
-                                                key={option.value}
-                                                className={`flex items-center gap-3 rounded-lg border p-3 sm:p-4 text-left transition-[background-color,border-color] cursor-pointer min-h-[52px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${!submitted
+                                    {/* Radio question */}
+                                    {(!question.type || question.type === "radio") && (
+                                        <div className="space-y-2 ml-0 sm:ml-11">
+                                            {question.options.map((option) => (
+                                                <label
+                                                    key={option.value}
+                                                    className={`flex items-center gap-3 rounded-lg border p-3 sm:p-4 text-left transition-[background-color,border-color] cursor-pointer min-h-[52px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${!submitted
                                                         ? "hover:bg-bg-light border-border active:scale-[0.99]"
                                                         : showFeedback && option.value === question.correctAnswer
                                                             ? "border-success bg-success/10"
-                                                            : showFeedback &&
-                                                                option.value === userAnswer &&
-                                                                !isCorrect
+                                                            : showFeedback && option.value === userAnswer && !isCorrect
                                                                 ? "border-error bg-error/10"
                                                                 : "border-border"
+                                                        }`}
+                                                >
+                                                    <input
+                                                        type="radio"
+                                                        name={question.id}
+                                                        value={option.value}
+                                                        checked={userAnswer === option.value}
+                                                        onChange={(e) => setAnswers({ ...answers, [question.id]: e.target.value })}
+                                                        disabled={submitted}
+                                                        className="w-5 h-5 text-primary focus:ring-primary focus:ring-2 flex-shrink-0"
+                                                    />
+                                                    <span className="text-sm sm:text-base text-text flex-1">{option.label}</span>
+                                                    <AnimatePresence>
+                                                        {showFeedback && option.value === question.correctAnswer && (
+                                                            <motion.div
+                                                                className="flex-shrink-0"
+                                                                initial={{ scale: 0, rotate: -180 }}
+                                                                animate={{ scale: 1, rotate: 0 }}
+                                                                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                                                            >
+                                                                <CheckCircle2 className="w-5 h-5 text-success" />
+                                                            </motion.div>
+                                                        )}
+                                                    </AnimatePresence>
+                                                </label>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {/* Fill-in-the-blank question */}
+                                    {question.type === "fill-blank" && (
+                                        <div className="ml-0 sm:ml-11">
+                                            <input
+                                                type="text"
+                                                value={answers[question.id] ?? ""}
+                                                onChange={(e) => setAnswers({ ...answers, [question.id]: e.target.value })}
+                                                disabled={submitted}
+                                                placeholder="Type your answer…"
+                                                className={`w-full rounded-lg border-2 px-4 py-3 text-sm sm:text-base bg-[var(--color-bg)] transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 ${submitted
+                                                    ? isCorrect
+                                                        ? "border-success bg-success/5 text-success"
+                                                        : "border-error bg-error/5"
+                                                    : "border-border hover:border-primary/40"
+                                                    }`}
+                                            />
+                                            <AnimatePresence>
+                                                {showFeedback && !isCorrect && (
+                                                    <motion.p
+                                                        className="mt-2 text-sm text-success font-medium"
+                                                        initial={{ opacity: 0, y: -4 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        exit={{ opacity: 0 }}
+                                                    >
+                                                        Correct answer: <span className="font-bold">{question.correctAnswer}</span>
+                                                    </motion.p>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
+                                    )}
+
+                                    {/* Word-scramble question */}
+                                    {question.type === "word-scramble" && (
+                                        <div className="ml-0 sm:ml-11 space-y-3">
+                                            {question.hint && !submitted && (
+                                                <p className="text-xs text-text-muted italic">Hint: {question.hint}</p>
+                                            )}
+
+                                            {/* Selected tray */}
+                                            <div
+                                                className={`flex flex-wrap gap-2 min-h-[52px] p-3 rounded-lg border-2 border-dashed transition-colors ${submitted
+                                                    ? isCorrect
+                                                        ? "border-success bg-success/5"
+                                                        : "border-error bg-error/5"
+                                                    : "border-primary/30 bg-[var(--color-bg-light)]"
                                                     }`}
                                             >
-                                                <input
-                                                    type="radio"
-                                                    name={question.id}
-                                                    value={option.value}
-                                                    checked={userAnswer === option.value}
-                                                    onChange={(e) =>
-                                                        setAnswers({ ...answers, [question.id]: e.target.value })
-                                                    }
-                                                    disabled={submitted}
-                                                    className="w-5 h-5 text-primary focus:ring-primary focus:ring-2 flex-shrink-0"
-                                                />
-                                                <span className="text-sm sm:text-base text-text flex-1">{option.label}</span>
+                                                {(scramble[question.id]?.selected ?? []).length === 0 && !submitted && (
+                                                    <span className="text-sm text-text-muted self-center">Tap words below to build the sentence</span>
+                                                )}
+                                                {(scramble[question.id]?.selected ?? []).map((word, i) => (
+                                                    <motion.button
+                                                        key={`sel-${i}`}
+                                                        onClick={() => !submitted && moveToPool(question.id, i)}
+                                                        disabled={submitted}
+                                                        className="px-3 py-1.5 rounded-md bg-primary/10 border border-primary/30 text-sm font-medium text-primary hover:bg-primary/20 transition-colors disabled:cursor-default"
+                                                        initial={{ scale: 0.8, opacity: 0 }}
+                                                        animate={{ scale: 1, opacity: 1 }}
+                                                        exit={{ scale: 0.8, opacity: 0 }}
+                                                        layout
+                                                    >
+                                                        {word}
+                                                    </motion.button>
+                                                ))}
+                                            </div>
 
-                                                <AnimatePresence>
-                                                    {showFeedback && option.value === question.correctAnswer && (
-                                                        <motion.div
-                                                            className="flex-shrink-0"
-                                                            initial={{ scale: 0, rotate: -180 }}
-                                                            animate={{ scale: 1, rotate: 0 }}
-                                                            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                                            {/* Word pool */}
+                                            {!submitted && (
+                                                <div className="flex flex-wrap gap-2 p-3 rounded-lg bg-[var(--color-surface-elevated)] border border-border">
+                                                    {(scramble[question.id]?.pool ?? []).map((word, i) => (
+                                                        <motion.button
+                                                            key={`pool-${i}`}
+                                                            onClick={() => moveToSelected(question.id, i)}
+                                                            className="px-3 py-1.5 rounded-md bg-[var(--color-bg)] border border-border text-sm font-medium text-text hover:border-primary hover:text-primary transition-colors"
+                                                            initial={{ scale: 0.8, opacity: 0 }}
+                                                            animate={{ scale: 1, opacity: 1 }}
+                                                            exit={{ scale: 0.8, opacity: 0 }}
+                                                            layout
                                                         >
-                                                            <CheckCircle2 className="w-5 h-5 text-success" />
-                                                        </motion.div>
+                                                            {word}
+                                                        </motion.button>
+                                                    ))}
+                                                    {(scramble[question.id]?.pool ?? []).length === 0 && (
+                                                        <span className="text-xs text-text-muted self-center">All words placed — tap a word above to move it back</span>
                                                     )}
-                                                </AnimatePresence>
-                                            </label>
-                                        ))}
-                                    </div>
+                                                </div>
+                                            )}
 
+                                            <AnimatePresence>
+                                                {showFeedback && !isCorrect && (
+                                                    <motion.p
+                                                        className="text-sm text-success font-medium"
+                                                        initial={{ opacity: 0, y: -4 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        exit={{ opacity: 0 }}
+                                                    >
+                                                        Correct order: <span className="font-bold">{question.correctAnswer}</span>
+                                                    </motion.p>
+                                                )}
+                                            </AnimatePresence>
+
+                                            {/* Reset scramble button */}
+                                            {!submitted && (scramble[question.id]?.selected ?? []).length > 0 && (
+                                                <button
+                                                    onClick={() => setScramble((prev) => ({
+                                                        ...prev,
+                                                        [question.id]: initScramble(questions)[question.id] ?? prev[question.id],
+                                                    }))}
+                                                    className="flex items-center gap-1 text-xs text-text-muted hover:text-text transition-colors"
+                                                >
+                                                    <RotateCcw className="w-3 h-3" />
+                                                    Reset
+                                                </button>
+                                            )}
+                                        </div>
+                                    )}
+
+                                    {/* Explanation (all types) */}
                                     <AnimatePresence>
                                         {showFeedback && question.explanation && (
                                             <motion.div
-                                                className={`mt-4 ml-0 sm:ml-11 p-3 rounded-lg border-l-4 ${
-                                                    isCorrect
-                                                        ? "bg-success/10 border-success"
-                                                        : "bg-error/10 border-error"
-                                                }`}
+                                                className={`mt-4 ml-0 sm:ml-11 p-3 rounded-lg border-l-4 ${isCorrect ? "bg-success/10 border-success" : "bg-error/10 border-error"}`}
                                                 initial={{ opacity: 0, height: 0, y: -10 }}
                                                 animate={{ opacity: 1, height: "auto", y: 0 }}
                                                 exit={{ opacity: 0, height: 0 }}
@@ -356,13 +508,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                 whileHover={{ scale: allAnswered ? 1.05 : 1 }}
                                 whileTap={{ scale: allAnswered ? 0.95 : 1 }}
                             >
-                                <Button
-                                    variant="primary"
-                                    size="lg"
-                                    onClick={handleSubmit}
-                                    disabled={!allAnswered}
-                                    className="w-full"
-                                >
+                                <Button variant="primary" size="lg" onClick={handleSubmit} disabled={!allAnswered} className="w-full">
                                     Submit Quiz
                                 </Button>
                             </motion.div>
@@ -381,7 +527,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                         </motion.div>
                     )}
 
-                    {/* Mobile bottom spacer for fixed button */}
+                    {/* Mobile bottom spacer */}
                     <div className="h-24 sm:hidden" />
                 </motion.div>
             </div>
@@ -395,24 +541,14 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                 Answer all {questions.length} questions to submit
                             </p>
                         )}
-                        <Button
-                            variant="primary"
-                            size="lg"
-                            onClick={handleSubmit}
-                            disabled={!allAnswered}
-                            className="w-full min-h-[52px] text-lg font-bold"
-                        >
+                        <Button variant="primary" size="lg" onClick={handleSubmit} disabled={!allAnswered} className="w-full min-h-[52px] text-lg font-bold">
                             Submit Quiz
                         </Button>
                     </div>
                 ) : (
                     <div className="flex gap-3">
-                        <Button variant="outline" onClick={handleReset} className="flex-1 min-h-[52px]">
-                            Try Again
-                        </Button>
-                        <Button variant="success" onClick={() => onComplete(score, questions.length)} className="flex-1 min-h-[52px]">
-                            Finish
-                        </Button>
+                        <Button variant="outline" onClick={handleReset} className="flex-1 min-h-[52px]">Try Again</Button>
+                        <Button variant="success" onClick={() => onComplete(score, questions.length)} className="flex-1 min-h-[52px]">Finish</Button>
                     </div>
                 )}
             </div>

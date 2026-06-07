@@ -595,7 +595,7 @@ export default async function GrammarPrintPage({ params }: Props) {
                                 <div className="exercise-item-label">
                                     {idx + 1}. {question.question}
                                 </div>
-                                {question.options && (
+                                {"options" in question && question.options && (
                                     <div className="exercise-item-options">
                                         {question.options.map((opt, optIdx) => (
                                             <div

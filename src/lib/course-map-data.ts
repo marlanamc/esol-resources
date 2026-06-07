@@ -320,7 +320,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 2,
             "wrappedGame": false,
             "activityType": "speaking",
-            "title": "Have You Ever...? Speaking Practice"
+            "title": "Conversation Practice: Telling Your Story"
           },
           {
             "id": "vocab-sep-w4-matching",
@@ -338,7 +338,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "writing",
-            "title": "Short Writing: \"I have lived...\" / \"I have worked...\""
+            "title": "Short Writing: \"When I came to the U.S.\""
           },
           {
             "id": "vocab-sep-w4-fill-blank",
@@ -372,7 +372,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-5",
         "number": 5,
-        "title": "Community Places + Daily Routines",
+        "title": "Community Routines: Just, Already, Yet",
         "items": [
           {
             "id": "vocab-oct-w1-flashcards",
@@ -435,17 +435,17 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-6",
         "number": 6,
-        "title": "Transportation + Directions",
+        "title": "Getting Around + Digital Safety",
         "items": [
           {
             "id": "vocab-oct-w2-flashcards",
-            "activityId": "vocab-oct-w2",
+            "activityId": "vocab-oct-w3",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Vocab: Movement Verbs — Flash Cards"
+            "title": "Vocab: Protect Yourself Verbs — Flash Cards"
           },
           {
             "id": "your-week-in-english",
@@ -466,23 +466,23 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-oct-w2-matching",
-            "activityId": "vocab-oct-w2",
+            "activityId": "vocab-oct-w3",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Vocab: Movement Verbs — Matching"
+            "title": "Vocab: Protect Yourself Verbs — Matching"
           },
           {
             "id": "vocab-oct-w2-fill-blank",
-            "activityId": "vocab-oct-w2",
+            "activityId": "vocab-oct-w3",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 4,
-            "title": "Vocab: Movement Verbs — Fill in the Blank"
+            "title": "Vocab: Protect Yourself Verbs — Fill in the Blank"
           },
           {
             "id": "verb-quiz-6",
@@ -502,13 +502,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "items": [
           {
             "id": "vocab-oct-w3-flashcards",
-            "activityId": "vocab-oct-w3",
+            "activityId": "vocab-oct-w2",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Vocab: Protect Yourself Verbs — Flash Cards"
+            "title": "Vocab: Movement Verbs — Flash Cards"
           },
           {
             "id": "getting-there-directions",
@@ -525,27 +525,27 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 2,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Scam or Safe? Practice"
+            "title": "Directions Practice Game"
           },
           {
             "id": "vocab-oct-w3-matching",
-            "activityId": "vocab-oct-w3",
+            "activityId": "vocab-oct-w2",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Vocab: Protect Yourself Verbs — Matching"
+            "title": "Vocab: Movement Verbs — Matching"
           },
           {
             "id": "vocab-oct-w3-fill-blank",
-            "activityId": "vocab-oct-w3",
+            "activityId": "vocab-oct-w2",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 4,
-            "title": "Vocab: Protect Yourself Verbs — Fill in the Blank"
+            "title": "Vocab: Movement Verbs — Fill in the Blank"
           },
           {
             "id": "verb-quiz-7",
@@ -618,7 +618,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 8: sell + burst"
+            "title": "Verb Quiz 8: sell + cut"
           }
         ]
       }
@@ -689,7 +689,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 9: freeze + leak"
+            "title": "Verb Quiz 9: freeze + steal"
           }
         ]
       },
@@ -1093,7 +1093,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
   {
     "id": "unit-5",
     "number": 5,
-    "title": "Housing",
+    "title": "Housing & Renting",
     "month": "January",
     "weeks": [
       {
@@ -1448,17 +1448,17 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-21",
         "number": 21,
-        "title": "Work Stories + Schedules",
+        "title": "Workplace Rules + Must, Have To, Should",
         "items": [
           {
             "id": "vocab-feb-10-12-flashcards",
-            "activityId": "vocab-feb-10-12",
+            "activityId": "vocab-mar-10-12",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Vocab: Workplace Phrasal Verbs — Flash Cards"
+            "title": "Vocab: Rules & Obligation at Work — Flash Cards"
           },
           {
             "id": "must-have-to-should-at-work",
@@ -1479,13 +1479,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-feb-10-12-matching",
-            "activityId": "vocab-feb-10-12",
+            "activityId": "vocab-mar-10-12",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Vocab: Workplace Phrasal Verbs — Matching"
+            "title": "Vocab: Rules & Obligation at Work — Matching"
           },
           {
             "id": "v-w-lab",
@@ -1498,13 +1498,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-feb-10-12-fill-blank",
-            "activityId": "vocab-feb-10-12",
+            "activityId": "vocab-mar-10-12",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Vocab: Workplace Phrasal Verbs — Fill in the Blank"
+            "title": "Vocab: Rules & Obligation at Work — Fill in the Blank"
           },
           {
             "id": "verb-quiz-21",
@@ -1513,7 +1513,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 21: forward + respond"
+            "title": "Verb Quiz 21: see + run"
           }
         ]
       },
@@ -1562,24 +1562,24 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 22: reply + schedule"
+            "title": "Verb Quiz 22: win + catch"
           }
         ]
       },
       {
         "id": "week-23",
         "number": 23,
-        "title": "Workplace Rights + Obligation",
+        "title": "Phrasal Verbs at Work + Workplace Rights",
         "items": [
           {
             "id": "vocab-feb-24-26-flashcards",
-            "activityId": "vocab-feb-24-26",
+            "activityId": "vocab-feb-10-12",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Vocab: Experience & Timelines — Flash Cards"
+            "title": "Vocab: Workplace Phrasal Verbs — Flash Cards"
           },
           {
             "id": "phrasal-verbs-at-work",
@@ -1600,13 +1600,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-feb-24-26-matching",
-            "activityId": "vocab-feb-24-26",
+            "activityId": "vocab-feb-10-12",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Vocab: Experience & Timelines — Matching"
+            "title": "Vocab: Workplace Phrasal Verbs — Matching"
           },
           {
             "id": "at-work-have-to-writing",
@@ -1618,13 +1618,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-feb-24-26-fill-blank",
-            "activityId": "vocab-feb-24-26",
+            "activityId": "vocab-feb-10-12",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Vocab: Experience & Timelines — Fill in the Blank"
+            "title": "Vocab: Workplace Phrasal Verbs — Fill in the Blank"
           },
           {
             "id": "verb-quiz-23",
@@ -1652,13 +1652,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "items": [
           {
             "id": "vocab-mar-3-5-flashcards",
-            "activityId": "vocab-mar-3-5",
+            "activityId": "vocab-feb-24-26",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Vocab: Skills & Qualifications — Flash Cards"
+            "title": "Vocab: Experience & Timelines — Flash Cards"
           },
           {
             "id": "present-perfect-how-long",
@@ -1679,13 +1679,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-mar-3-5-matching",
-            "activityId": "vocab-mar-3-5",
+            "activityId": "vocab-feb-24-26",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Vocab: Skills & Qualifications — Matching"
+            "title": "Vocab: Experience & Timelines — Matching"
           },
           {
             "id": "s-th-lab",
@@ -1698,13 +1698,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-mar-3-5-fill-blank",
-            "activityId": "vocab-mar-3-5",
+            "activityId": "vocab-feb-24-26",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Vocab: Skills & Qualifications — Fill in the Blank"
+            "title": "Vocab: Experience & Timelines — Fill in the Blank"
           },
           {
             "id": "verb-quiz-24",
@@ -1720,17 +1720,17 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-25",
         "number": 25,
-        "title": "Career Stories",
+        "title": "Career Progress + Skills",
         "items": [
           {
             "id": "vocab-mar-10-12-flashcards",
-            "activityId": "vocab-mar-10-12",
+            "activityId": "vocab-mar-3-5",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Vocab: Rules & Obligation — Flash Cards"
+            "title": "Vocab: Skills & Qualifications — Flash Cards"
           },
           {
             "id": "ive-been-working",
@@ -1752,13 +1752,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-mar-10-12-matching",
-            "activityId": "vocab-mar-10-12",
+            "activityId": "vocab-mar-3-5",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Vocab: Rules & Obligation — Matching"
+            "title": "Vocab: Skills & Qualifications — Matching"
           },
           {
             "id": "how-long-speaking",
@@ -1770,13 +1770,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-mar-10-12-fill-blank",
-            "activityId": "vocab-mar-10-12",
+            "activityId": "vocab-mar-3-5",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Vocab: Rules & Obligation — Fill in the Blank"
+            "title": "Vocab: Skills & Qualifications — Fill in the Blank"
           },
           {
             "id": "verb-quiz-25",
@@ -1785,7 +1785,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 25: document + contact"
+            "title": "Verb Quiz 25: wear + begin"
           }
         ]
       },
@@ -1806,13 +1806,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-mar-24-26-flashcards",
-            "activityId": "vocab-mar-24-26",
+            "activityId": "vocab-mar-31-apr-2",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 1,
-            "title": "Vocab: Rights, Rules & Advocacy — Flash Cards"
+            "title": "Vocab: Small Talk at Work — Flash Cards"
           },
           {
             "id": "enjoy-doing-want-to-do",
@@ -1852,13 +1852,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-mar-24-26-matching",
-            "activityId": "vocab-mar-24-26",
+            "activityId": "vocab-mar-31-apr-2",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
             "order": 6,
-            "title": "Vocab: Rights, Rules & Advocacy — Matching"
+            "title": "Vocab: Small Talk at Work — Matching"
           },
           {
             "id": "worked-been-working-writing",
@@ -1880,13 +1880,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-mar-24-26-fill-blank",
-            "activityId": "vocab-mar-24-26",
+            "activityId": "vocab-mar-31-apr-2",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 9,
-            "title": "Vocab: Rights, Rules & Advocacy — Fill in the Blank"
+            "title": "Vocab: Small Talk at Work — Fill in the Blank"
           },
           {
             "id": "verb-quiz-26",
@@ -1895,7 +1895,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 10,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 26: chat + discuss"
+            "title": "Verb Quiz 26: teach + fight"
           }
         ]
       },
@@ -1906,13 +1906,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "items": [
           {
             "id": "vocab-mar-31-apr-2-flashcards",
-            "activityId": "vocab-mar-31-apr-2",
+            "activityId": "vocab-mar-24-26",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Vocab: Small Talk & Social Conversation — Flash Cards"
+            "title": "Vocab: Feedback & Decision-Making — Flash Cards"
           },
           {
             "id": "passive-voice-what-was-done",
@@ -1925,23 +1925,23 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "vocab-mar-31-apr-2-matching",
-            "activityId": "vocab-mar-31-apr-2",
+            "activityId": "vocab-mar-24-26",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
             "order": 2,
-            "title": "Vocab: Small Talk & Social Conversation — Matching"
+            "title": "Vocab: Feedback & Decision-Making — Matching"
           },
           {
             "id": "vocab-mar-31-apr-2-fill-blank",
-            "activityId": "vocab-mar-31-apr-2",
+            "activityId": "vocab-mar-24-26",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 3,
-            "title": "Vocab: Small Talk & Social Conversation — Fill in the Blank"
+            "title": "Vocab: Feedback & Decision-Making — Fill in the Blank"
           },
           {
             "id": "verb-quiz-27",
@@ -1950,7 +1950,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 27: mention + ask"
+            "title": "Verb Quiz 27: put + hurt"
           }
         ]
       }
@@ -1959,7 +1959,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
   {
     "id": "unit-8",
     "number": 8,
-    "title": "Health",
+    "title": "Health & Healthcare",
     "month": "April",
     "weeks": [
       {
@@ -2022,7 +2022,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 28: talk + comply"
+            "title": "Verb Quiz 28: hit + quit"
           }
         ]
       },
@@ -2475,7 +2475,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
   {
     "id": "unit-10",
     "number": 10,
-    "title": "Future Academic Goals",
+    "title": "Year in Review & Next Steps",
     "month": "June",
     "weeks": [
       {

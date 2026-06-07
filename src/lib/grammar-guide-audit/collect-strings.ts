@@ -137,8 +137,10 @@ export function collectGuideStrings(content: InteractiveGuideContent): Collected
         if (question.explanation) {
             pushString(out, `${prefix}.explanation`, question.explanation, false);
         }
-        for (const [optionIndex, option] of question.options.entries()) {
-            pushString(out, `${prefix}.options[${optionIndex}]`, option.label, false);
+        if ("options" in question && Array.isArray(question.options)) {
+            for (const [optionIndex, option] of question.options.entries()) {
+                pushString(out, `${prefix}.options[${optionIndex}]`, option.label, false);
+            }
         }
     }
 
