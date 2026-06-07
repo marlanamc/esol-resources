@@ -11,8 +11,11 @@ import { applyAwardChain } from "@/lib/gamification-award-chain";
 import { logger } from "@/lib/logger";
 import { ApiErrors, apiError } from "@/lib/api-response";
 import { timedQuery } from "@/lib/perf-log";
-
-const VOCAB_TYPES = ['word-list', 'flashcards', 'matching', 'fill-blank'] as const;
+import {
+    chooseBestProgressRecord,
+    isVocabCategoryData,
+    mergeVocabProgressRecords,
+} from "@/lib/vocab/progress-merge";
 
 type ProgressRecord = {
     progress: number;
@@ -73,92 +76,6 @@ export function sanitizeGuideCompletedSectionIds(value: unknown): string[] | und
 
     if (cleaned.length === 0) return undefined;
     return Array.from(new Set(cleaned));
-}
-
-function isVocabCategoryData(data: Record<string, unknown> | null): boolean {
-    if (!data) return false;
-    return VOCAB_TYPES.some((type) => Object.prototype.hasOwnProperty.call(data, type));
-}
-
-export function mergeVocabProgressRecords(assignmentRecord: ProgressRecord, globalRecord: ProgressRecord): ProgressRecord | null {
-    const assignmentData = parseCategoryData(assignmentRecord.categoryData);
-    const globalData = parseCategoryData(globalRecord.categoryData);
-
-    if (!isVocabCategoryData(assignmentData) && !isVocabCategoryData(globalData)) {
-        return null;
-    }
-
-    const mergedData: Record<string, unknown> = {
-        ...(globalData ?? {}),
-        ...(assignmentData ?? {}),
-    };
-
-    let completedCount = 0;
-
-    for (const vocabType of VOCAB_TYPES) {
-        const assignmentTypeData = asObject(assignmentData?.[vocabType]);
-        const globalTypeData = asObject(globalData?.[vocabType]);
-
-        if (!assignmentTypeData && !globalTypeData) {
-            continue;
-        }
-
-        const assignmentCompleted = asBoolean(assignmentTypeData?.completed);
-        const globalCompleted = asBoolean(globalTypeData?.completed);
-        const assignmentProgress = asNumber(assignmentTypeData?.progress) ?? (assignmentCompleted ? 100 : 0);
-        const globalProgress = asNumber(globalTypeData?.progress) ?? (globalCompleted ? 100 : 0);
-        const mergedProgress = Math.max(assignmentProgress, globalProgress);
-        const mergedCompleted = assignmentCompleted || globalCompleted || mergedProgress >= 100;
-
-        if (mergedCompleted) {
-            completedCount += 1;
-        }
-
-        const assignmentCompletedAt = typeof assignmentTypeData?.completedAt === "string" ? assignmentTypeData.completedAt : undefined;
-        const globalCompletedAt = typeof globalTypeData?.completedAt === "string" ? globalTypeData.completedAt : undefined;
-
-        mergedData[vocabType] = {
-            ...(globalTypeData ?? {}),
-            ...(assignmentTypeData ?? {}),
-            completed: mergedCompleted,
-            progress: mergedProgress,
-            ...(assignmentCompletedAt || globalCompletedAt
-                ? { completedAt: assignmentCompletedAt ?? globalCompletedAt }
-                : {}),
-        };
-    }
-
-    const progress = Math.round((completedCount / VOCAB_TYPES.length) * 100);
-    const status = progress >= 100 ? "completed" : "in_progress";
-
-    return {
-        progress,
-        status,
-        categoryData: JSON.stringify(mergedData),
-        updatedAt:
-            assignmentRecord.updatedAt.getTime() >= globalRecord.updatedAt.getTime()
-                ? assignmentRecord.updatedAt
-                : globalRecord.updatedAt,
-    };
-}
-
-export function chooseBestProgressRecord(records: ProgressRecord[]): ProgressRecord | null {
-    if (records.length === 0) return null;
-
-    let best = records[0]!;
-    for (let index = 1; index < records.length; index += 1) {
-        const current = records[index]!;
-        if (current.progress > best.progress) {
-            best = current;
-            continue;
-        }
-
-        if (current.progress === best.progress && current.updatedAt.getTime() > best.updatedAt.getTime()) {
-            best = current;
-        }
-    }
-
-    return best;
 }
 
 export async function GET(request: NextRequest) {

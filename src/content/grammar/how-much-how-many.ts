@@ -298,11 +298,11 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("a few (countable)", "terracotta")}
-            <span><em>I have <strong>a few</strong> onions.</em> / <em>a few apples.</em></span>
+            <span><em>I have <strong>a few</strong> onions.</em> / <em>I have <strong>a few</strong> apples.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("a little (uncountable)", "sage")}
-            <span><em>I have <strong>a little</strong> oil.</em> / <em>a little money.</em></span>
+            <span><em>I have <strong>a little</strong> oil.</em> / <em>I have <strong>a little</strong> money.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(200,50,50,0.07); border-radius: 0.4rem">
             <span style="display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; background: rgba(200,50,50,0.12); color: #c03030">not correct</span>
@@ -394,7 +394,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("uncountable", "sage")}
-            <span><em>Is there <strong>much</strong> fat in the label?</em></span>
+            <span><em>Is there <strong>much</strong> fat in this cereal?</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("countable", "terracotta")}

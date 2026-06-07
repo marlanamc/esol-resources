@@ -1,7 +1,101 @@
 import type { CourseMapActivity, CourseMapUnit } from "@/lib/course-map";
-import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolution";
+import { parseCategoryData } from "@/lib/categoryData";
+import {
+    isVocabCategoryData,
+    mergeVocabProgressRecords,
+} from "@/lib/vocab/progress-merge";
 
 const GRAMMAR_READER_PREFIX = "/grammar-reader/";
+
+export type CourseMapProgressEntry = {
+    status: string | null;
+    categoryData: Record<string, unknown> | null;
+};
+
+/** Per activityId progress used by the course map (status + optional vocab mode data). */
+export type CourseMapProgressState = Record<string, CourseMapProgressEntry>;
+
+type CourseMapProgressRow = {
+    activityId: string;
+    status: string;
+    categoryData: string | null;
+    updatedAt?: Date;
+};
+
+function resolveProgressEntry(
+    progress: CourseMapProgressState | Record<string, string | null>,
+    activityId: string
+): CourseMapProgressEntry | null {
+    const value = progress[activityId];
+    if (value === undefined) return null;
+    if (typeof value === "string" || value === null) {
+        return { status: value, categoryData: null };
+    }
+    return value;
+}
+
+export function buildCourseMapProgressState(rows: CourseMapProgressRow[]): CourseMapProgressState {
+    const grouped = new Map<string, CourseMapProgressRow[]>();
+
+    for (const row of rows) {
+        const list = grouped.get(row.activityId) ?? [];
+        list.push(row);
+        grouped.set(row.activityId, list);
+    }
+
+    const state: CourseMapProgressState = {};
+
+    for (const [activityId, activityRows] of grouped.entries()) {
+        let merged: CourseMapProgressRow | null = null;
+
+        for (const row of activityRows) {
+            if (!merged) {
+                merged = row;
+                continue;
+            }
+
+            const vocabMerged = mergeVocabProgressRecords(
+                {
+                    progress: merged.status === "completed" ? 100 : 0,
+                    status: merged.status,
+                    categoryData: merged.categoryData,
+                    updatedAt: merged.updatedAt ?? new Date(0),
+                },
+                {
+                    progress: row.status === "completed" ? 100 : 0,
+                    status: row.status,
+                    categoryData: row.categoryData,
+                    updatedAt: row.updatedAt ?? new Date(0),
+                }
+            );
+
+            if (vocabMerged) {
+                merged = {
+                    activityId,
+                    status: vocabMerged.status,
+                    categoryData: vocabMerged.categoryData,
+                    updatedAt: vocabMerged.updatedAt,
+                };
+                continue;
+            }
+
+            const mergedData = parseCategoryData(merged.categoryData);
+            const rowData = parseCategoryData(row.categoryData);
+            if (isVocabCategoryData(mergedData) || isVocabCategoryData(rowData)) {
+                merged = row.updatedAt && merged.updatedAt && row.updatedAt > merged.updatedAt ? row : merged;
+            } else if (row.status === "completed" || merged.status !== "completed") {
+                merged = row.status === "completed" ? row : merged;
+            }
+        }
+
+        state[activityId] = {
+            status: merged?.status ?? null,
+            categoryData: parseCategoryData(merged?.categoryData ?? null),
+        };
+    }
+
+    return state;
+}
 
 export function parseGrammarReaderSlug(href?: string): string | null {
     if (!href?.startsWith(GRAMMAR_READER_PREFIX)) return null;
@@ -23,10 +117,20 @@ export function isMapActivityActionable(activity: CourseMapActivity): boolean {
 
 export function isMapActivityCompleted(
     activity: CourseMapActivity,
-    progress: Record<string, string | null>
+    progress: CourseMapProgressState | Record<string, string | null>
 ): boolean {
     const progressId = getMapActivityProgressId(activity);
-    return Boolean(progressId && progress[progressId] === "completed");
+    if (!progressId) return false;
+
+    const entry = resolveProgressEntry(progress, progressId);
+    if (!entry) return false;
+
+    if (activity.vocabUi && entry.categoryData) {
+        const modeData = entry.categoryData[activity.vocabUi] as { completed?: boolean } | undefined;
+        if (modeData?.completed) return true;
+    }
+
+    return entry.status === "completed";
 }
 
 export function getActionableRequiredActivities(units: CourseMapUnit[]): CourseMapActivity[] {
@@ -54,7 +158,7 @@ export function collectGrammarReaderSlugs(units: CourseMapUnit[]): string[] {
     return [...slugs];
 }
 
-function enrichActivity(
+export function enrichActivity(
     activity: CourseMapActivity,
     slugToActivityId: Map<string, string>
 ): CourseMapActivity {
@@ -73,33 +177,6 @@ function enrichActivity(
     }
 
     return activity;
-}
-
-export async function enrichCourseMapUnitsWithGrammarIds(
-    units: CourseMapUnit[]
-): Promise<CourseMapUnit[]> {
-    const slugs = collectGrammarReaderSlugs(units);
-    const slugToActivityId = new Map<string, string>();
-
-    await Promise.all(
-        slugs.map(async (slug) => {
-            const activityId = await resolveCanonicalGrammarActivityId({ slug });
-            if (activityId) slugToActivityId.set(slug, activityId);
-        })
-    );
-
-    return units.map((unit) => ({
-        ...unit,
-        levels: unit.levels.map((level) => ({
-            ...level,
-            requiredActivities: level.requiredActivities.map((activity) =>
-                enrichActivity(activity, slugToActivityId)
-            ),
-            extraPractice: level.extraPractice?.map((activity) =>
-                enrichActivity(activity, slugToActivityId)
-            ),
-        })),
-    }));
 }
 
 export function getCourseMapProgressActivityIds(units: CourseMapUnit[]): string[] {

@@ -3,6 +3,7 @@ import {
     getMapActivityProgressId,
     isMapActivityActionable,
     isMapActivityCompleted,
+    type CourseMapProgressState,
 } from "@/lib/course-map-progress";
 import { buildActivityHref, withReturnTo } from "@/lib/learner-navigation";
 
@@ -81,7 +82,7 @@ export { isMapActivityActionable, isMapActivityCompleted, getMapActivityProgress
 
 export function findFirstIncompleteRequired(
     units: CourseMapUnit[],
-    progress: Record<string, string | null>
+    progress: CourseMapProgressState | Record<string, string | null>
 ): { activity: CourseMapActivity; weekNumber: number; unitNumber: number; unitMonth: string } | null {
     for (const unit of units) {
         for (const level of unit.levels) {
@@ -120,7 +121,7 @@ export interface WeekProgressEntry {
 
 export function buildMapWeekProgress(
     units: CourseMapUnit[],
-    progress: Record<string, string | null>
+    progress: CourseMapProgressState | Record<string, string | null>
 ): WeekProgressEntry[] {
     return units.flatMap((unit) =>
         unit.levels.map((level) => {
@@ -156,7 +157,7 @@ export interface NextMapActivityMeta {
 
 export function resolveNextMapActivity(
     units: CourseMapUnit[],
-    progress: Record<string, string | null>
+    progress: CourseMapProgressState | Record<string, string | null>
 ): NextMapActivityMeta | null {
     const match = findFirstIncompleteRequired(units, progress);
     if (!match) return null;
@@ -175,7 +176,7 @@ export interface NextMapActivityLaunch {
 
 export function resolveNextMapActivityLaunch(
     units: CourseMapUnit[],
-    progress: Record<string, string | null>,
+    progress: CourseMapProgressState | Record<string, string | null>,
     assignmentByActivityId?: Record<string, { assignmentId: string }>
 ): NextMapActivityLaunch | null {
     const match = findFirstIncompleteRequired(units, progress);
@@ -212,7 +213,7 @@ export function focusMapWeekHeading(weekNumber: number): void {
 
 export function resolveCurrentMapWeek(
     units: CourseMapUnit[],
-    progress: Record<string, string | null>
+    progress: CourseMapProgressState | Record<string, string | null>
 ): CurrentMapWeekMeta | null {
     const match = findFirstIncompleteRequired(units, progress);
 

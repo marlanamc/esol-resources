@@ -1,10 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { buildProgressGetResponse } from "@/app/api/activity/progress/route";
 import {
-  buildProgressGetResponse,
   chooseBestProgressRecord,
   mergeVocabProgressRecords,
-} from "@/app/api/activity/progress/route";
+} from "@/lib/vocab/progress-merge";
 
 test("mergeVocabProgressRecords keeps max progress per vocab type", () => {
   const assignmentRecord = {

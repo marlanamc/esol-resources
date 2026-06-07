@@ -368,14 +368,14 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Nadine", avatar: "👩🏾", text: "Hello. <strong>Can you tell me</strong> what the monthly rent is?", side: "right", tone: "sage" },
-          { speaker: "Scott", avatar: "🧑🏽", text: "Sure. The two-bedroom is $1,350 a month.", side: "left", tone: "blue" },
+          { speaker: "Scott", avatar: "🧑🏽", text: "Sure. The two-bedroom apartment is $1,350 a month.", side: "left", tone: "blue" },
           { speaker: "Nadine", avatar: "👩🏾", text: "<strong>Do you know</strong> if heat is included?", side: "right", tone: "sage" },
           { speaker: "Scott", avatar: "🧑🏽", text: "Yes, heat and hot water are both included.", side: "left", tone: "blue" },
           { speaker: "Nadine", avatar: "👩🏾", text: "<strong>Can you tell me</strong> whether children are allowed?", side: "right", tone: "sage" },
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem"><strong>Indirect questions</strong> are polite. After "Can you tell me" or "Do you know," the word order changes to <em>statement order</em>. no inversion.</p>
+          <p style="margin: 0; font-size: 1.05rem"><strong>Indirect questions</strong> are polite. After "Can you tell me" or "Do you know," the word order changes to <em>statement order</em>. No inversion.</p>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1.25rem 0">

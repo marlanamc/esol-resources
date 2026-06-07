@@ -18,11 +18,8 @@ import { useCurrentAppHref } from "@/hooks/useCurrentAppHref";
 import { withReturnTo } from "@/lib/learner-navigation";
 import { buildActivityHref } from "@/lib/learner/navigation";
 import { ActivityTimeline, type TimelineItem, type TimelineStatus } from "@/components/dashboard/ActivityTimeline";
-import type {
-    CourseMapActivity,
-    CourseMapActivityType,
-    CourseMapUnit,
-} from "@/lib/course-map";
+import type { CourseMapActivity, CourseMapActivityType, CourseMapUnit } from "@/lib/course-map";
+import type { CourseMapProgressState } from "@/lib/course-map-progress";
 import { CourseMapNextUpHeroCard } from "@/components/dashboard/CourseMapNextUpHeroCard";
 import { CourseMapUnitIcon } from "@/components/dashboard/CourseMapUnitIcon";
 import {
@@ -85,7 +82,7 @@ interface Props {
     assignments: PathActivity[];
     guidedUnits?: CourseMapUnit[];
     guidedAssignments?: Record<string, GuidedAssignmentInfo>;
-    guidedProgress?: Record<string, string | null>;
+    guidedProgress?: CourseMapProgressState;
     desktopLayout?: boolean;
     initialWeek?: number | null;
     focusNextActivity?: boolean;
@@ -209,7 +206,7 @@ function estimatedMinutes(activity: CourseMapActivity): number {
 
 function buildWeekTimelineItems(
     activities: CourseMapActivity[],
-    guidedProgress: Record<string, string | null>,
+    guidedProgress: CourseMapProgressState,
     guidedAssignments: Record<string, GuidedAssignmentInfo>,
     currentId: string | null,
     returnHref: string
@@ -588,7 +585,7 @@ function DesktopUnitSection({
     currentId: string | null;
     currentLabel: "Start here" | "Next up";
     guidedAssignments: Record<string, GuidedAssignmentInfo>;
-    guidedProgress: Record<string, string | null>;
+    guidedProgress: CourseMapProgressState;
     pulseCurrentActivity?: boolean;
     showUnitMonths?: boolean;
     onToggle: () => void;
@@ -685,7 +682,7 @@ function MobileUnitSection({
     currentId: string | null;
     currentLabel: "Start here" | "Next up";
     guidedAssignments: Record<string, GuidedAssignmentInfo>;
-    guidedProgress: Record<string, string | null>;
+    guidedProgress: CourseMapProgressState;
     showUnitMonths?: boolean;
     onToggle: () => void;
     onWeekToggle: (weekNumber: number) => void;
@@ -776,7 +773,7 @@ function MobileWeekCard({
     currentId: string | null;
     currentLabel: "Start here" | "Next up";
     guidedAssignments: Record<string, GuidedAssignmentInfo>;
-    guidedProgress: Record<string, string | null>;
+    guidedProgress: CourseMapProgressState;
     onToggle: () => void;
     onToggleOptional: () => void;
 }) {
@@ -1057,7 +1054,7 @@ function DesktopWeekPanel({
     currentId: string | null;
     currentLabel: "Start here" | "Next up";
     guidedAssignments: Record<string, GuidedAssignmentInfo>;
-    guidedProgress: Record<string, string | null>;
+    guidedProgress: CourseMapProgressState;
     optionalOpen: boolean;
     pulseCurrent?: boolean;
     onToggle: () => void;
@@ -1204,7 +1201,7 @@ function GuidedCoursePath({
 }: {
     guidedUnits: CourseMapUnit[];
     guidedAssignments: Record<string, GuidedAssignmentInfo>;
-    guidedProgress: Record<string, string | null>;
+    guidedProgress: CourseMapProgressState;
     desktopLayout?: boolean;
     initialWeek?: number | null;
     focusNextActivity?: boolean;

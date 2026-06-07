@@ -86,9 +86,9 @@ export const canShouldMustContent: InteractiveGuideContent = {
         <p style="margin: 0 0 1rem 0; line-height: 1.6">Ryan at the tech table helps Claudette set up her new phone.</p>
 
         ${dialogue([
-          { speaker: "Linh", avatar: "👩🏾", text: "OK, Claudette, your new phone is set up. You <strong>can</strong> make calls, send texts, and use the internet now.", side: "right", tone: "blue" },
+          { speaker: "Ryan", avatar: "👨🏽", text: "OK, Claudette, your new phone is set up. You <strong>can</strong> make calls, send texts, and use the internet now.", side: "right", tone: "blue" },
           { speaker: "Claudette", avatar: "👩🏾", text: "What about my bank account? <strong>Can</strong> someone see it if they use my wifi?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏾", text: "On public wifi, yes, sometimes they <strong>can</strong>. But on your home wifi with a password, they <strong>can't</strong>.", side: "right", tone: "blue" },
+          { speaker: "Ryan", avatar: "👨🏽", text: "On public wifi, yes, sometimes they <strong>can</strong>. But on your home wifi with a password, they <strong>can't</strong>.", side: "right", tone: "blue" },
           { speaker: "Claudette", avatar: "👩🏾", text: "Good. I <strong>can</strong> use the library wifi for looking things up, but not for my bank. Got it.", side: "left", tone: "sage" },
         ])}
 

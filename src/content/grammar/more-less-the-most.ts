@@ -499,7 +499,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           { speaker: "Vendor", avatar: "🧑🏾", text: "Yes, but these are <strong>the freshest</strong> on the street. Look at the color.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏽", text: "The shop on Sumner has <strong>the lowest</strong> price. But it is <strong>farther</strong>.", side: "right", tone: "terracotta" },
           { speaker: "Vendor", avatar: "🧑🏾", text: "Buy here and save the bus fare. It is <strong>the better</strong> deal today.", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏽", text: "Fine. I\'ll take two bundles. Also, I found <strong>the smallest</strong> two-bedroom on the list. But <strong>the cheapest</strong> near the 111 bus.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏽", text: "Fine. I\'ll take two bundles. The smallest two-bedroom apartment is on the list, but the cheapest one is near the 111 bus.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
@@ -523,7 +523,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.07); border-radius: 0.4rem">
             ${labelPill("listing", "sage")}
-            <span><em>"<strong>The cheapest</strong> 2BR near the 111 bus. <strong>More</strong> space, <strong>less</strong> rent."</em></span>
+            <span><em>"<strong>The cheapest</strong> 2BR apartment near the 111 bus. <strong>More</strong> space, <strong>less</strong> rent."</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(233,196,106,0.07); border-radius: 0.4rem">
             ${labelPill("conversation", "amber")}
@@ -608,8 +608,8 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["It", "is", "the", "cheapest", "two-bedroom", "near", "the", "bus", "line"],
-              correctAnswer: "It is the cheapest two-bedroom near the bus line",
+              words: ["It", "is", "the", "cheapest", "two-bedroom", "apartment", "near", "the", "bus", "line"],
+              correctAnswer: "It is the cheapest two-bedroom apartment near the bus line",
             },
           ],
         },

@@ -4,6 +4,9 @@ import { runMechanicalRules } from "./rules-mechanical";
 import { runGlobalImageRules, runGuideImageRules } from "./rules-images";
 import { runCharacterRules, runWiringWarnings } from "./rules-characters";
 import { runToneHeuristics } from "./heuristics-tone";
+import { runGrammarHeuristics } from "./heuristics-grammar";
+import { runSceneImageContextRules } from "./rules-image-context";
+import { extractSceneContexts } from "./scene-context";
 import {
     extractDialoguesFromContent,
     extractDialoguesFromSource,
@@ -41,12 +44,18 @@ export async function runMiniGuidesAudit(
             usesScenes,
         );
 
+        const sceneContexts = usesScenes
+            ? extractSceneContexts(loaded.contentSource)
+            : [];
+
         const findings = [
             ...runMechanicalRules(loaded),
             ...imageResult.findings,
+            ...runSceneImageContextRules(loaded.slug, sceneContexts, imageResult.imageEntries),
             ...runCharacterRules(loaded, dialogues),
             ...runWiringWarnings(loaded),
             ...runToneHeuristics(loaded, dialogues),
+            ...runGrammarHeuristics(loaded),
         ];
 
         guides.push({

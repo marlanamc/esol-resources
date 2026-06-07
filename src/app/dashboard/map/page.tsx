@@ -8,10 +8,13 @@ import { ClassCoursePath } from "@/components/dashboard/ClassCoursePath";
 import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 import { getVisibleMap, getCourseMapActivityIds } from "@/lib/course-map";
 import {
-    enrichCourseMapUnitsWithGrammarIds,
     isMapActivityActionable,
     isMapActivityCompleted,
 } from "@/lib/course-map-progress";
+import {
+    enrichCourseMapUnitsWithGrammarIds,
+    loadCourseMapProgressState,
+} from "@/lib/course-map-progress.server";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { canUseTeacherTools } from "@/lib/roles";
 import { CourseMapJumpToWeek } from "@/components/dashboard/CourseMapJumpToWeek";
@@ -109,6 +112,8 @@ export default async function MapPage({
             .map((a) => a.activityId),
     ])];
 
+    const guidedProgress = await loadCourseMapProgressState(userId, courseMapUnits);
+
     const progressRows = pathActivityIds.length === 0
         ? []
         : await withPrismaReadRetry(() =>
@@ -163,10 +168,6 @@ export default async function MapPage({
             .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry))
     );
 
-    const guidedProgress = Object.fromEntries(
-        guidedActivityIds.map((activityId) => [activityId, progressMap.get(activityId) ?? null])
-    );
-
     // Compute overall progress stats
     const allLevels = courseMapUnits.flatMap((u) => u.levels);
     const allRequiredActivities = allLevels.flatMap((l) => l.requiredActivities);
@@ -175,13 +176,13 @@ export default async function MapPage({
         const actionableRequired = level.requiredActivities.filter(isMapActivityActionable);
         if (actionableRequired.length === 0) return false;
         return actionableRequired.every((activity) =>
-            isMapActivityCompleted(activity, Object.fromEntries(progressMap))
+            isMapActivityCompleted(activity, guidedProgress)
         );
     }).length;
     const totalRequired = allRequiredActivities.filter(isMapActivityActionable).length;
     const completedRequired = allRequiredActivities.filter((activity) =>
         isMapActivityActionable(activity) &&
-        isMapActivityCompleted(activity, Object.fromEntries(progressMap))
+        isMapActivityCompleted(activity, guidedProgress)
     ).length;
     const overallPct = totalRequired > 0 ? Math.round((completedRequired / totalRequired) * 100) : 0;
 
@@ -190,9 +191,8 @@ export default async function MapPage({
     const unitProgress = courseMapUnits.map((unit) => {
         const unitRequired = unit.levels.flatMap((level) => level.requiredActivities);
         const actionableRequired = unitRequired.filter(isMapActivityActionable);
-        const progressRecord = Object.fromEntries(progressMap);
         const done = actionableRequired.filter((activity) =>
-            isMapActivityCompleted(activity, progressRecord)
+            isMapActivityCompleted(activity, guidedProgress)
         ).length;
         const total = actionableRequired.length;
         return {

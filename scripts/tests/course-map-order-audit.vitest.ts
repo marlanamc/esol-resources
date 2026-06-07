@@ -13,7 +13,7 @@ function formatFindings(findings: ReturnType<typeof auditCourseMapOrder>): strin
   return findings
     .map(
       (finding) =>
-        `W${finding.weekNumber} ${finding.weekTitle}:\n${finding.issues.map((issue) => `  - ${issue}`).join("\n")}`
+        `W${finding.weekNumber} ${finding.weekTitle}:\n${finding.issues.map((issue) => `  - ${issue}`).join("\n")}`,
     )
     .join("\n\n");
 }

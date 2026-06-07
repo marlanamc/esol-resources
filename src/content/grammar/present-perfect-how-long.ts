@@ -104,7 +104,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem">
             ${labelPill("question", "blue")}
-            <span><em><strong>How long have you</strong> cleaned hotel rooms?</em></span>
+            <span><em><strong>How long have you been</strong> cleaning hotel rooms?</em></span>
           </div>
         </div>
 

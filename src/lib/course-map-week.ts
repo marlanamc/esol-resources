@@ -2,11 +2,14 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { getVisibleMap, type VisibleMapMode } from "@/lib/course-map";
 import {
-    enrichCourseMapUnitsWithGrammarIds,
-    getCourseMapProgressActivityIds,
     isMapActivityActionable,
     isMapActivityCompleted,
+    type CourseMapProgressState,
 } from "@/lib/course-map-progress";
+import {
+    enrichCourseMapUnitsWithGrammarIds,
+    loadCourseMapProgressState,
+} from "@/lib/course-map-progress.server";
 import { findFirstIncompleteRequired, resolveNextMapActivityLaunch } from "@/lib/course-map-navigation";
 import {
     formatNextUpActivityTitle,
@@ -46,7 +49,7 @@ interface CurrentWeekSnapshot {
     items: TimelineItem[];
     mode: VisibleMapMode;
     units: CourseMapUnit[];
-    guidedProgress: Record<string, string | null>;
+    guidedProgress: CourseMapProgressState;
 }
 
 async function buildCurrentWeekSnapshot(
@@ -58,10 +61,9 @@ async function buildCurrentWeekSnapshot(
     if (rawUnits.length === 0) return null;
 
     const units = await enrichCourseMapUnitsWithGrammarIds(rawUnits);
-    const guidedProgress = await loadGuidedProgress(user.id, units);
-    const progress = guidedProgress;
+    const guidedProgress = await loadCourseMapProgressState(user.id, units);
 
-    const currentMatch = findFirstIncompleteRequired(units, progress);
+    const currentMatch = findFirstIncompleteRequired(units, guidedProgress);
 
     const targetUnitNumber = currentMatch?.unitNumber ?? units[units.length - 1]?.unitNumber ?? 1;
     const targetWeekNumber =
@@ -81,7 +83,7 @@ async function buildCurrentWeekSnapshot(
         if (!isMapActivityActionable(activity)) {
             return toTimelineItem(activity, "locked");
         }
-        if (isMapActivityCompleted(activity, progress)) {
+        if (isMapActivityCompleted(activity, guidedProgress)) {
             return toTimelineItem(activity, "done");
         }
         if (!foundCurrent) {
@@ -147,29 +149,6 @@ async function loadAssignmentByActivityId(userId: string): Promise<
         }
     }
     return assignmentByActivityId;
-}
-
-async function loadGuidedProgress(
-    userId: string,
-    units: CourseMapUnit[]
-): Promise<Record<string, string | null>> {
-    const progressActivityIds = getCourseMapProgressActivityIds(units);
-    const progressRows =
-        progressActivityIds.length === 0
-            ? []
-            : await withPrismaReadRetry(() =>
-                  prisma.activityProgress.findMany({
-                      where: { userId, activityId: { in: progressActivityIds } },
-                      select: { activityId: true, status: true },
-                  })
-              );
-
-    return Object.fromEntries(
-        progressActivityIds.map((activityId) => [
-            activityId,
-            progressRows.find((row) => row.activityId === activityId)?.status ?? null,
-        ])
-    );
 }
 
 export interface ThisWeekPanelData {

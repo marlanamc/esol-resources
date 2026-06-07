@@ -61,7 +61,7 @@ describe("course map progress", () => {
         });
 
         const progress = {
-            "vocab-sep-w1": "completed",
+            "vocab-sep-w1": { status: "completed", categoryData: null },
         };
 
         const next = resolveNextMapActivity(enriched, progress);
@@ -75,8 +75,8 @@ describe("course map progress", () => {
         });
 
         const progress = {
-            "vocab-sep-w1": "completed",
-            "welcome-back-tenses-review-guide": "completed",
+            "vocab-sep-w1": { status: "completed", categoryData: null },
+            "welcome-back-tenses-review-guide": { status: "completed", categoryData: null },
         };
 
         const next = resolveNextMapActivity(enriched, progress);
@@ -90,13 +90,43 @@ describe("course map progress", () => {
         });
 
         const progress = {
-            "vocab-sep-w1": "completed",
+            "vocab-sep-w1": { status: "completed", categoryData: null },
         };
 
         const launch = resolveNextMapActivityLaunch(enriched, progress);
         expect(launch?.href).toContain("/grammar-reader/welcome-back-tenses-review");
         expect(launch?.href).toContain("returnTo=%2Fdashboard%2Fmap");
         expect(launch?.weekNumber).toBe(1);
+    });
+
+    it("counts vocab map items complete per ui mode, not only overall status", () => {
+        const flashcards = {
+            id: "vocab-oct-w1-flashcards",
+            title: "Vocab: Schedule Verbs — Flash Cards",
+            activityType: "game" as const,
+            status: "available" as const,
+            activityId: "vocab-oct-w1",
+            vocabUi: "flashcards",
+        };
+        const matching = {
+            ...flashcards,
+            id: "vocab-oct-w1-matching",
+            title: "Vocab: Schedule Verbs — Matching",
+            vocabUi: "matching",
+        };
+
+        const progress = {
+            "vocab-oct-w1": {
+                status: "in_progress",
+                categoryData: {
+                    flashcards: { completed: true, progress: 100 },
+                    matching: { completed: false, progress: 0 },
+                },
+            },
+        };
+
+        expect(isMapActivityCompleted(flashcards, progress)).toBe(true);
+        expect(isMapActivityCompleted(matching, progress)).toBe(false);
     });
 
     it("does not count planned slots in actionable progress checks", () => {

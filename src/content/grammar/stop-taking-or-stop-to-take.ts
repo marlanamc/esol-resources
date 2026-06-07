@@ -188,7 +188,7 @@ export const stopTakingOrStopToTakeContent: InteractiveGuideContent = {
         <p>The next day at work, Marisol's coworker Kevin sees her new medication on the table. He picks up the bottle and reads the label out loud.</p>
 
         ${dialogue([
-          { speaker: "Kevin", avatar: "👨🏻", text: "It says: 'Stop to take this medicine with food.' What does that mean exactly?", side: "left", tone: "sage" },
+          { speaker: "Kevin", avatar: "👨🏻", text: "It says: 'Stop what you are doing to take this medicine with food.' What does that mean exactly?", side: "left", tone: "sage" },
           { speaker: "Marisol", avatar: "👩🏽", text: "It means: when it's time for my pill, I have to <strong>stop</strong> what I'm doing <strong>to take</strong> it, and I need to eat first. I can't take it on an empty stomach.", side: "right", tone: "terracotta" },
           { speaker: "Kevin", avatar: "👨🏻", text: "Ahh. So it doesn't mean stop taking it forever?", side: "left", tone: "sage" },
           { speaker: "Marisol", avatar: "👩🏽", text: "No, no. That's a different meaning. <strong>Stop taking</strong> means end something. <strong>Stop to take</strong> means pause and do something else.", side: "right", tone: "terracotta" },

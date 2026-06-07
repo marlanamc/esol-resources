@@ -273,7 +273,7 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Carlos", avatar: "👨🏽", text: "Where did you live before you came here?", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to live</strong> with my parents. <strong>But now I</strong> share a two-bedroom with my cousin.", side: "right", tone: "terracotta" },
+          { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to live</strong> with my parents. <strong>But now I</strong> share a two-bedroom apartment with my cousin.", side: "right", tone: "terracotta" },
           { speaker: "Carlos", avatar: "👨🏽", text: "How did you get to work back home?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "I <strong>used to walk</strong> to work. <strong>But now I</strong> take two buses.", side: "right", tone: "terracotta" },
         ])}

@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
+import { buildProgressGetResponse } from "@/app/api/activity/progress/route";
 import {
-  buildProgressGetResponse,
   chooseBestProgressRecord,
   mergeVocabProgressRecords,
-} from "@/app/api/activity/progress/route";
+} from "@/lib/vocab/progress-merge";
 
 describe("activity progress merge", () => {
   it("mergeVocabProgressRecords keeps max progress per vocab type", () => {

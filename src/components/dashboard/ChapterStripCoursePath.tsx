@@ -5,11 +5,8 @@ import { useState } from "react";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { useCurrentAppHref } from "@/hooks/useCurrentAppHref";
 import { withReturnTo } from "@/lib/learner-navigation";
-import type {
-    CourseMapActivity,
-    CourseMapActivityType,
-    CourseMapUnit,
-} from "@/lib/course-map";
+import type { CourseMapActivity, CourseMapActivityType, CourseMapUnit } from "@/lib/course-map";
+import { isMapActivityCompleted, type CourseMapProgressState } from "@/lib/course-map-progress";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -24,7 +21,7 @@ interface GuidedAssignmentInfo {
 interface Props {
     guidedUnits: CourseMapUnit[];
     guidedAssignments: Record<string, GuidedAssignmentInfo>;
-    guidedProgress: Record<string, string | null>;
+    guidedProgress: CourseMapProgressState;
 }
 
 // ─── Per-unit accent palette (cycles through brand tones) ─────────────────────
@@ -87,8 +84,8 @@ function guidedActivityIcon(type: CourseMapActivityType, vocabUi?: string): stri
     }
 }
 
-function isCompleted(activity: CourseMapActivity, progress: Record<string, string | null>): boolean {
-    return Boolean(activity.activityId && progress[activity.activityId] === "completed");
+function isCompleted(activity: CourseMapActivity, progress: CourseMapProgressState): boolean {
+    return isMapActivityCompleted(activity, progress);
 }
 
 function isActionable(activity: CourseMapActivity): boolean {
@@ -192,7 +189,7 @@ function LevelCard({
 }: {
     level: CourseMapUnit["levels"][number];
     assignments: Record<string, GuidedAssignmentInfo>;
-    progress: Record<string, string | null>;
+    progress: CourseMapProgressState;
     currentId: string | null;
     currentLabel: "Start here" | "Next up";
     accent: typeof UNIT_ACCENTS[number];
@@ -294,7 +291,7 @@ function ChapterStrip({
 }: {
     unit: CourseMapUnit;
     assignments: Record<string, GuidedAssignmentInfo>;
-    progress: Record<string, string | null>;
+    progress: CourseMapProgressState;
     currentId: string | null;
     currentLabel: "Start here" | "Next up";
     state: "done" | "current" | "future";

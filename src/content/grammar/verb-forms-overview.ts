@@ -162,7 +162,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Minh", avatar: "👨🏽", text: "I <strong>work</strong> here three days a week. My sister <strong>works</strong> mornings only.", side: "right", tone: "terracotta" },
           { speaker: "Manager", avatar: "🧑‍💼", text: "Right now she\'s <strong>working</strong> the register. Can you cover the back?", side: "left", tone: "sage" },
-          { speaker: "Minh", avatar: "👨🏽", text: "Sure. I am <strong>having</strong> a break, but I can start in five minutes.", side: "right", tone: "terracotta" },
+          { speaker: "Minh", avatar: "👨🏽", text: "Sure. I am <strong>taking</strong> a break, but I can start in five minutes.", side: "right", tone: "terracotta" },
         ])}
 
         <div class="gc-bg-terracotta-alpha gc-callout-terracotta" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
