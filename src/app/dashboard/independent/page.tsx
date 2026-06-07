@@ -148,7 +148,7 @@ export default async function IndependentDashboardPage() {
     const sequenceActivities = filterIndependentVisibleActivities(sequenceActivitiesRaw);
     const recentActivities = filterIndependentVisibleActivities(recentActivitiesRaw);
 
-    const [progressRows, submissions, independentLeaderboard, userPreferences, weeklySubmissions, independentLearnerCount] = await Promise.all([
+    const [progressRows, submissions, independentLeaderboard, userPreferences, weeklySubmissions, weeklyProgressRows, independentLearnerCount] = await Promise.all([
         sequenceActivityIds.length === 0
             ? []
             : timedQuery(
@@ -218,7 +218,17 @@ export default async function IndependentDashboardPage() {
                     status: { in: ["submitted", "graded"] },
                     completedAt: { not: null },
                 },
-                select: { completedAt: true },
+                select: { activityId: true, completedAt: true },
+            })
+        ),
+        withPrismaReadRetry(() =>
+            prisma.activityProgress.findMany({
+                where: {
+                    userId,
+                    status: "completed",
+                    updatedAt: { gte: calendarWeekStart },
+                },
+                select: { activityId: true, status: true, updatedAt: true },
             })
         ),
         withPrismaReadRetry(() =>
@@ -258,7 +268,7 @@ export default async function IndependentDashboardPage() {
         weeklyGoal,
         startDay: weeklyGoalStartDay,
         submissions: weeklySubmissions,
-        progressRows: [],
+        progressRows: weeklyProgressRows,
     });
 
     const studentEntry = independentLeaderboard.find((entry) => entry.id === userId);
@@ -267,25 +277,12 @@ export default async function IndependentDashboardPage() {
 
     return (
         <div className="min-h-screen bg-bg">
-            <main id="main-content" className="container mx-auto pt-2 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1800px]">
+            <main id="main-content" className="container mx-auto pt-0 md:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px] lg:pt-4">
                 <AdminViewSwitcher user={{ id: userId, role: session.user.role }} currentView="independent" />
-                <div className="dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-6 p-0 md:grid-cols-12 md:p-6 lg:p-8 md:items-start">
-                    <div className="md:col-span-8 lg:col-span-9 min-w-0 space-y-6 sm:space-y-8">
-                        <div className="hidden lg:block">
-                            <DashboardWelcomeHeader
-                                userName={session.user?.name?.trim() || "there"}
-                                mode="independent"
-                                nameEmoji={studentLeaderboardMedal ? (
-                                    <span aria-label={`Rank ${studentLeaderboardRank}`}>{studentLeaderboardMedal}</span>
-                                ) : undefined}
-                                streak={userStats?.currentStreak ?? 0}
-                                weeklyCompleted={weeklyGoalProgress.completed}
-                                weeklyGoal={weeklyGoalProgress.goal}
-                                leaderboardRank={studentLeaderboardRank}
-                            />
-                        </div>
 
-                        {/* Momentum — mobile only (< md) */}
+                {/* ── MOBILE + TABLET layout (< lg) ── */}
+                <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-0 p-0 md:p-6">
+                    <div className="min-w-0 space-y-3 md:space-y-5">
                         <div className="md:hidden">
                             <MomentumCard
                                 initialStreak={userStats?.currentStreak ?? 0}
@@ -298,19 +295,41 @@ export default async function IndependentDashboardPage() {
 
                         <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
 
-                        <NewThisWeekSection
-                            items={newThisWeekItems}
-                            subtitle={null}
-                        />
+                        <NewThisWeekSection items={newThisWeekItems} subtitle={null} />
 
                         <ExploreCategoriesCarousel />
-
-                        <AllActivitiesCategoriesPanel />
                     </div>
+                </div>
 
-                    {/* Sidebar */}
-                    <aside className="hidden md:block md:col-span-4 lg:col-span-3">
-                        <div className="sticky top-4 space-y-4">
+                {/* ── DESKTOP layout (lg+) ── */}
+                <div className="hidden lg:block">
+                    <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_348px] gap-5 items-start">
+
+                        {/* ── Left / Main column ── */}
+                        <div className="min-w-0 space-y-3">
+                            <DashboardWelcomeHeader
+                                userName={session.user?.name?.trim() || "there"}
+                                mode="independent"
+                                nameEmoji={studentLeaderboardMedal ? (
+                                    <span aria-label={`Rank ${studentLeaderboardRank}`}>{studentLeaderboardMedal}</span>
+                                ) : undefined}
+                                streak={userStats?.currentStreak ?? 0}
+                                weeklyCompleted={weeklyGoalProgress.completed}
+                                weeklyGoal={weeklyGoalProgress.goal}
+                                leaderboardRank={studentLeaderboardRank}
+                            />
+
+                            <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
+
+                            <NewThisWeekSection items={newThisWeekItems} subtitle={null} />
+
+                            <ExploreCategoriesCarousel />
+
+                            <AllActivitiesCategoriesPanel />
+                        </div>
+
+                        {/* ── Right sidebar ── */}
+                        <aside className="space-y-3 sticky top-4">
                             <MomentumCard
                                 variant="sidebar"
                                 initialStreak={userStats?.currentStreak ?? 0}
@@ -331,8 +350,8 @@ export default async function IndependentDashboardPage() {
                                     learnerCount={independentLearnerCount}
                                 />
                             ) : null}
-                        </div>
-                    </aside>
+                        </aside>
+                    </div>
                 </div>
             </main>
         </div>

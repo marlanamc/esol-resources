@@ -320,8 +320,8 @@ function getWeekEnd(weekStart: Date): Date {
 export function getWeeklyGoalProgress(params: {
     weeklyGoal: number;
     startDay: number; // 0=Sunday, 1=Monday, etc.
-    submissions: Array<Pick<SubmissionInput, "completedAt">>;
-    progressRows: Array<Pick<ProgressInput, "status" | "updatedAt">>;
+    submissions: Array<Pick<SubmissionInput, "activityId" | "completedAt">>;
+    progressRows: Array<Pick<ProgressInput, "activityId" | "status" | "updatedAt">>;
     now?: Date;
 }): WeeklyGoalProgress {
     const { weeklyGoal, startDay, submissions, progressRows, now = new Date() } = params;
@@ -329,32 +329,26 @@ export function getWeeklyGoalProgress(params: {
     const weekStart = getWeekStart(startDay, now);
     const weekEnd = getWeekEnd(weekStart);
 
-    // Count unique completed activities this week
-    const completedThisWeek = new Set<string>();
+    // Dedupe by activityId so a submission + progress row for the same activity counts once
+    const completedActivityIds = new Set<string>();
 
-    // Count submissions completed this week
     for (const sub of submissions) {
         if (sub.completedAt && sub.completedAt >= weekStart && sub.completedAt <= weekEnd) {
-            completedThisWeek.add("submission"); // Simple counter approach
+            completedActivityIds.add(sub.activityId);
         }
     }
 
-    // Count progress marked complete this week
     for (const prog of progressRows) {
         if (
             prog.status === "completed" &&
             prog.updatedAt >= weekStart &&
             prog.updatedAt <= weekEnd
         ) {
-            completedThisWeek.add("progress");
+            completedActivityIds.add(prog.activityId);
         }
     }
 
-    // For simplicity, count total completed activities from submissions
-    const completedCount = submissions.filter(
-        (s) => s.completedAt && s.completedAt >= weekStart && s.completedAt <= weekEnd
-    ).length;
-
+    const completedCount = completedActivityIds.size;
     const daysRemaining = Math.ceil((weekEnd.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
 
     return {
