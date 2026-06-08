@@ -285,6 +285,9 @@ export default async function IndependentDashboardPage() {
                     <div className="min-w-0 space-y-3 md:space-y-5">
                         <div className="md:hidden">
                             <MomentumCard
+                                variant="header"
+                                embedded
+                                borderless
                                 initialStreak={userStats?.currentStreak ?? 0}
                                 initialLongestStreak={userStats?.longestStreak ?? 0}
                                 initialSevenDayActivity={initialSevenDayActivity}
