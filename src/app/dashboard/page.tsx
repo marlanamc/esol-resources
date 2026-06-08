@@ -511,6 +511,12 @@ export default async function DashboardPage() {
 
                             <DashboardResumeHero user={{ id: session.user.id, role: session.user.role }} fallback={nextStepFallback} />
 
+                            {dailyVocabHabit ? (
+                                <section aria-label="Daily vocab review">
+                                    <PinnedDailyHabitRow habit={dailyVocabHabit} compact ctaVariant="vocabulary" />
+                                </section>
+                            ) : null}
+
                             {newThisWeekItems.length > 0 ? (
                                 <NewThisWeekSection items={newThisWeekItems} />
                             ) : (

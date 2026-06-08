@@ -328,6 +328,12 @@ export default async function IndependentDashboardPage() {
 
                             <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
 
+                            {dailyVocabHabit ? (
+                                <section aria-label="Daily vocab review">
+                                    <PinnedDailyHabitRow habit={dailyVocabHabit} compact ctaVariant="vocabulary" />
+                                </section>
+                            ) : null}
+
                             <NewThisWeekSection items={newThisWeekItems} subtitle={null} />
 
                             <ExploreCategoriesCarousel />
