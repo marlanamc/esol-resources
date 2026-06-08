@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
+import { AlertTriangle, ArrowDown, KeyRound } from "lucide-react";
 import { LoginForm } from "@/components/LoginForm";
 
 export default function LoginPage() {
@@ -20,10 +21,35 @@ export default function LoginPage() {
                         Sign in to continue
                     </h2>
                 </div>
-                <div role="alert" className="rounded-2xl border-2 border-[#b05740] bg-[#fdf3ef] dark:bg-[#3a1a10] px-4 py-3 text-sm text-[#7a3020] dark:text-[#f5b8a0]">
-                    <p className="font-bold mb-1">⚠️ Password Reset Required</p>
-                    <p>Your password has been reset. Please sign in with the temporary password <strong>ebhcs123</strong>, then create a new password.</p>
-                    <p className="mt-1 text-xs opacity-80">Español: Tu clave fue reiniciada. Entra con la clave temporal <strong>ebhcs123</strong>, luego crea una nueva.</p>
+                <div
+                    role="alert"
+                    className="rounded-2xl border-2 border-[#b05740] bg-[#fdf3ef] dark:bg-[#3a1a10] px-4 py-4 text-[#7a3020] dark:text-[#f5b8a0]"
+                >
+                    <div className="flex flex-col items-center gap-2">
+                        <span
+                            className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#b05740]/30 bg-white/70 dark:bg-[#4a2218]"
+                            aria-hidden
+                        >
+                            <AlertTriangle className="h-6 w-6 text-[#b05740] dark:text-[#f5b8a0]" strokeWidth={2.25} />
+                        </span>
+                        <p className="text-center text-xs font-bold uppercase tracking-[0.12em]">
+                            ⚠️ Password reset · Clave reiniciada
+                        </p>
+                    </div>
+                    <div className="mt-3 flex items-center justify-center gap-1.5 text-xs font-medium opacity-90">
+                        <KeyRound className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                        <span>Temporary password · Clave temporal</span>
+                    </div>
+                    <p className="mt-1 text-center font-mono text-3xl font-bold tracking-wide text-[#b05740] dark:text-[#f5b8a0]">
+                        ebhcs123
+                    </p>
+                    <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-sm font-semibold leading-snug">
+                        <ArrowDown className="h-4 w-4 shrink-0 animate-bounce" aria-hidden />
+                        <span>Sign in below → pick a new password</span>
+                    </p>
+                    <p className="mt-1 text-center text-xs leading-snug opacity-85">
+                        👇 Entra abajo → crea una clave nueva
+                    </p>
                 </div>
                 <Suspense fallback={<div className="text-center text-sm text-[var(--color-text-muted)]">Loading login form...</div>}>
                     <LoginForm />
@@ -32,17 +58,20 @@ export default function LoginPage() {
                     <p className="text-sm font-semibold text-[var(--color-text)]">
                         First-time login steps
                     </p>
-                    <div className="grid grid-cols-[1.5rem_1fr] items-start gap-x-2 gap-y-2 text-[15px] leading-6 text-[var(--color-text)]">
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold bg-primary-light/30 text-primary-dark">1</span>
-                        <p>Sign in with your temporary password.</p>
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold bg-primary-light/30 text-primary-dark">2</span>
-                        <p>Create a new password.</p>
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold bg-primary-light/30 text-primary-dark">3</span>
-                        <p>Sign in again with your new password.</p>
-                    </div>
-                    <p className="text-xs leading-5 text-[var(--color-text-muted)]">
-                        Espanol: Entra con tu clave temporal. Luego crea una clave nueva. Despues vuelve a entrar.
-                    </p>
+                    <ol className="grid grid-cols-[1.5rem_1fr] items-start gap-x-2 gap-y-2 text-[15px] leading-6 text-[var(--color-text)] list-none">
+                        <li className="contents">
+                            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold bg-primary-light/30 text-primary-dark">1</span>
+                            <p>Sign in with the password above.</p>
+                        </li>
+                        <li className="contents">
+                            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold bg-primary-light/30 text-primary-dark">2</span>
+                            <p>Create a new password.</p>
+                        </li>
+                        <li className="contents">
+                            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold bg-primary-light/30 text-primary-dark">3</span>
+                            <p>Sign in again.</p>
+                        </li>
+                    </ol>
                 </div>
                 <p className="text-center text-sm text-[var(--color-text-muted)]">
                     Have an invite code?{" "}
