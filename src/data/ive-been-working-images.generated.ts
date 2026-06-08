@@ -5,10 +5,10 @@ export const iveBeenWorkingImages: Record<string, {
   credit: { name: string; url: string };
 }> = {
   sceneConstruction: {
-    url: "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1200&q=80&auto=format&fit=crop",
-    alt: "Construction workers in hard hats and safety vests talking at a job site in the morning.",
-    unsplashId: "photo-1609220136736-443140cffec6",
-    credit: { name: "Unsplash", url: "https://unsplash.com" },
+    url: "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?w=1200&q=80&auto=format&fit=crop",
+    alt: "Two construction workers in hard hats and safety vests talking at a job site in the early morning.",
+    unsplashId: "9OB46apMbC4",
+    credit: { name: "Ümit Yıldırım", url: "https://unsplash.com/@umityildirim" },
   },
   sceneBusStop: {
     url: "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=1200&q=80&auto=format&fit=crop",

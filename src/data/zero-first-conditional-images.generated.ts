@@ -29,9 +29,9 @@ export const zeroFirstConditionalImages: Record<string, {
     credit: { name: "Priscilla Du Preez 🇨🇦", url: "https://unsplash.com/@priscilladupreez" },
   },
   sceneMixedPractice: {
-    url: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80&auto=format&fit=crop",
-    alt: "Two women talking at a table, one writing notes on paper.",
-    unsplashId: "photo-1600880292203-757bb62b4baf",
-    credit: { name: "Krakenimages", url: "https://unsplash.com/@krakenimages" },
+    url: "https://images.unsplash.com/photo-1680416124510-5eae1beca412?w=1200&q=80&auto=format&fit=crop",
+    alt: "Small apartment living room where two friends talk over bills and holiday schedules.",
+    unsplashId: "DS9Xc7AWmwQ",
+    credit: { name: "Christian", url: "https://unsplash.com/@axcreativeagency" },
   },
 };

@@ -23,15 +23,15 @@ export const doctorSaidReportedSpeechImages: Record<string, {
     credit: { name: "National Cancer Institute", url: "https://unsplash.com/@nci" },
   },
   sceneBabysitter: {
-    url: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1200&q=80&auto=format&fit=crop",
-    alt: "Two adults talking at a table in a bright office space.",
-    unsplashId: "photo-1556761175-4b46a572b786",
-    credit: { name: "Austin Distel", url: "https://unsplash.com/@austindistel" },
+    url: "https://images.unsplash.com/photo-1752920887032-38d6640e82f8?w=1200&q=80&auto=format&fit=crop",
+    alt: "Two adults talking in a bright apartment living room on a weekday morning.",
+    unsplashId: "jNeo6aIpHQ8",
+    credit: { name: "Odile", url: "https://unsplash.com/@odile__" },
   },
   sceneCallingLucia: {
-    url: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80&auto=format&fit=crop",
-    alt: "A plated meal on a wooden table in a restaurant setting.",
-    unsplashId: "photo-1504674900247-0877df9cc836",
-    credit: { name: "Eaters Collective", url: "https://unsplash.com/@eaterscollective" },
+    url: "https://images.unsplash.com/photo-1604881989793-466aca8dd319?w=1200&q=80&auto=format&fit=crop",
+    alt: "Restaurant worker on a phone call during an evening break in the staff room.",
+    unsplashId: "sOdldNCQEtU",
+    credit: { name: "Priscilla Du Preez", url: "https://unsplash.com/@priscilladupreez" },
   },
 };

@@ -5,16 +5,16 @@ export const askingRightQuestionsHousingImages: Record<string, {
   credit: { name: string; url: string };
 }> = {
   sceneApartmentListing: {
-    url: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=1200&q=80&auto=format&fit=crop",
-    alt: "Woman standing outside an apartment building looking at her phone, about to make a call.",
-    unsplashId: "photo-1554151228-14d9def656e4",
-    credit: { name: "Jacek Dylag", url: "https://unsplash.com/@dylu" },
+    url: "https://images.unsplash.com/photo-1778886741783-bda950187997?w=1200&q=80&auto=format&fit=crop",
+    alt: "Laundromat storefront with a rental flyer posted in the window.",
+    unsplashId: "JwJNxQM4E34",
+    credit: { name: "goodrich kingrey", url: "https://unsplash.com/@affe8a" },
   },
   scenePhoneCall: {
-    url: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80&auto=format&fit=crop",
-    alt: "Person holding a phone to their ear in a hallway, speaking with a landlord.",
-    unsplashId: "photo-1541888946425-d81bb19240f5",
-    credit: { name: "Alex Ware", url: "https://unsplash.com/@alexware" },
+    url: "https://images.unsplash.com/photo-1568911740365-4aee866df332?w=1200&q=80&auto=format&fit=crop",
+    alt: "Woman on the phone outside a storefront window during a short work break.",
+    unsplashId: "Nf5DpGscD3M",
+    credit: { name: "Christian Mack", url: "https://unsplash.com/@jechristianmack" },
   },
   sceneOfficeDesk: {
     url: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80&auto=format&fit=crop",

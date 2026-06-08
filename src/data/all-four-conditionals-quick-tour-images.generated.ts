@@ -5,10 +5,10 @@ export const allFourConditionalsQuickTourImages: Record<string, {
   credit: { name: string; url: string };
 }> = {
   sceneWarehouseLift: {
-    url: "https://images.unsplash.com/photo-1657490016235-8246d81064d2?w=1200&q=80&auto=format&fit=crop",
-    alt: "Warehouse worker moving boxes on a loading dock with safety gear.",
-    unsplashId: "e-u9GQKvDZY",
-    credit: { name: "Etienne Girardet", url: "https://unsplash.com/@etiennegirardet" },
+    url: "https://images.unsplash.com/photo-1620388640785-892616248ec8?w=1200&q=80&auto=format&fit=crop",
+    alt: "A warehouse worker on a loading dock handling freight with safety gear.",
+    unsplashId: "6tAIO3pxde4",
+    credit: { name: "Pickawood", url: "https://unsplash.com/@pickawood" },
   },
   sceneEarlyMorning: {
     url: "https://images.unsplash.com/photo-1527034010651-8dcf514bd147?w=1200&q=80&auto=format&fit=crop",

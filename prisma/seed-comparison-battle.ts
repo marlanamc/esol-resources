@@ -14,7 +14,7 @@ async function main() {
         update: {
             title: "Comparison Battle",
             description:
-                "Practice comparative and superlative adjectives through quick lessons, choice questions, sentence repairs, a speed round, and short writing prompts.",
+                "Practice comparative and superlative adjectives through quick lessons, choice questions, sentence repairs, a speed round, and fill-in-the-blank prompts.",
             type: "game",
             category: "games",
             ui: "comparison-battle",
@@ -27,7 +27,7 @@ async function main() {
             id: "comparison-battle",
             title: "Comparison Battle",
             description:
-                "Practice comparative and superlative adjectives through quick lessons, choice questions, sentence repairs, a speed round, and short writing prompts.",
+                "Practice comparative and superlative adjectives through quick lessons, choice questions, sentence repairs, a speed round, and fill-in-the-blank prompts.",
             type: "game",
             category: "games",
             ui: "comparison-battle",

@@ -11,10 +11,10 @@ export const gerundsInfinitivesFullReviewImages: Record<string, {
     credit: { name: "Chris DUNN", url: "https://unsplash.com/@dunn_chris" },
   },
   sceneKitchenLetter: {
-    url: "https://images.unsplash.com/photo-1758523419048-eeb546daac05?w=1200&q=80&auto=format&fit=crop",
-    alt: "A person at a kitchen table reading a letter and checking their phone late at night.",
-    unsplashId: "Ve4FEk-swHY",
-    credit: { name: "Vitaly Gariev", url: "https://unsplash.com/@silverkblack" },
+    url: "https://images.unsplash.com/photo-1770364321618-09af20458226?w=1200&q=80&auto=format&fit=crop",
+    alt: "A woman at a kitchen table late at night, reading a letter and checking her phone.",
+    unsplashId: "Gb-0qjnOSAM",
+    credit: { name: "F aint", url: "https://unsplash.com/@faintsam" },
   },
   sceneWarehouseFloor: {
     url: "https://images.unsplash.com/photo-1589792923962-537704632910?w=1200&q=80&auto=format&fit=crop",
@@ -23,10 +23,10 @@ export const gerundsInfinitivesFullReviewImages: Record<string, {
     credit: { name: "Remy Gieling", url: "https://unsplash.com/@gieling" },
   },
   scenePharmacyPickup: {
-    url: "https://images.unsplash.com/photo-1777494395822-be72bef7262b?w=1200&q=80&auto=format&fit=crop",
-    alt: "A customer at a pharmacy counter picking up a prescription bag.",
-    unsplashId: "4wPk9cbd28A",
-    credit: { name: "Navy Medicine", url: "https://unsplash.com/@navymedicine" },
+    url: "https://images.unsplash.com/photo-1573552772627-e4c586262784?w=1200&q=80&auto=format&fit=crop",
+    alt: "A customer at a pharmacy counter collecting a prescription bag.",
+    unsplashId: "QjhLbfahVUg",
+    credit: { name: "Reproductive Health Supplies Coalition", url: "https://unsplash.com/@rhsupplies" },
   },
   sceneEveningClass: {
     url: "https://images.unsplash.com/photo-1776178320152-90f9bc841e7b?w=1200&q=80&auto=format&fit=crop",

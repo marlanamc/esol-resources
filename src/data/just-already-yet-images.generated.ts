@@ -19,22 +19,16 @@ export const justAlreadyYetImages: Record<string, JustAlreadyYetSceneImage> = {
     },
   },
   scenePharmacy: {
-    url: "https://images.unsplash.com/photo-1563213126-a4273aed2016?w=1200&q=80&auto=format&fit=crop",
-    alt: "Pharmacy counter with shelves of medicine and a service window.",
-    unsplashId: "1563213126-a4273aed2016",
-    credit: {
-      name: "Myriam Zilles",
-      url: "https://unsplash.com/@myriamzilles",
-    },
+    url: "https://images.unsplash.com/photo-1765031092161-a9ebe556117e?w=1200&q=80&auto=format&fit=crop",
+    alt: "A neighborhood pharmacy counter with shelves of medicine and a prescription pickup window.",
+    unsplashId: "FOSgYGDktlE",
+    credit: { name: "Bernd 📷 Dittrich", url: "https://unsplash.com/@hdbernd" },
   },
   sceneApartmentHallway: {
-    url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80&auto=format&fit=crop",
-    alt: "Apartment building hallway with doors and natural light from a window at the end.",
-    unsplashId: "1558618666-fcd25c85cd64",
-    credit: {
-      name: "Naomi Hébert",
-      url: "https://unsplash.com/@naomish",
-    },
+    url: "https://images.unsplash.com/photo-1664797523026-f6e277258f0c?w=1200&q=80&auto=format&fit=crop",
+    alt: "A residential apartment hallway with numbered doors and natural light at the end of the corridor.",
+    unsplashId: "mHuljON3bC8",
+    credit: { name: "Peter Herrmann", url: "https://unsplash.com/@tama66" },
   },
   sceneKitchenTable: {
     url: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80&auto=format&fit=crop",

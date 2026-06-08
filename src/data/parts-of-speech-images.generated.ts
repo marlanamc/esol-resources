@@ -11,10 +11,10 @@ export const partsOfSpeechImages: Record<string, {
     credit: { name: "Vitaly Gariev", url: "https://unsplash.com/@silverkblack" },
   },
   sceneFormTable: {
-    url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80&auto=format&fit=crop",
-    alt: "Two people sitting at a table, one helping the other fill out paperwork.",
-    unsplashId: "photo-1554224155-6726b3ff858f",
-    credit: { name: "Towfiqu barbhuiya", url: "https://unsplash.com/@towfiqu999999" },
+    url: "https://images.unsplash.com/photo-1641233928292-701edf4fb6dd?w=1200&q=80&auto=format&fit=crop",
+    alt: "Community center desk where a volunteer helps a resident fill out a registration form.",
+    unsplashId: "oHGpNNHlP9g",
+    credit: { name: "Alina Belogolova", url: "https://unsplash.com/@alinabelogolova" },
   },
   sceneAdjectivesFriends: {
     url: "https://images.unsplash.com/photo-1573496546038-82f9c39f6365?w=1200&q=80&auto=format&fit=crop",

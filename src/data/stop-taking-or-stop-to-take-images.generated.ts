@@ -11,10 +11,10 @@ export const stopTakingOrStopToTakeImages: Record<string, {
     credit: { name: "Unsplash", url: "https://unsplash.com" },
   },
   sceneLabel: {
-    url: "https://images.unsplash.com/photo-1624031000106-79254a8faa19?w=1200&q=80&auto=format&fit=crop",
-    alt: "A person reading the label on a prescription medicine bottle carefully.",
-    unsplashId: "Yw9Vgr6i_-0",
-    credit: { name: "Towfiqu barbhuiya", url: "https://unsplash.com/@towfiqu999999" },
+    url: "https://images.unsplash.com/photo-1604598625038-50520974af2c?w=1200&q=80&auto=format&fit=crop",
+    alt: "Worker reading the label on a prescription bottle during a lunch break.",
+    unsplashId: "gYZHmoQnoAo",
+    credit: { name: "jack atkinson", url: "https://unsplash.com/@knowjack" },
   },
   sceneTryGeneric: {
     url: "https://images.unsplash.com/photo-1550572017-4fcdbb59cc32?w=1200&q=80&auto=format&fit=crop",
@@ -29,9 +29,9 @@ export const stopTakingOrStopToTakeImages: Record<string, {
     credit: { name: "Jamie Street", url: "https://unsplash.com/@jamie452" },
   },
   sceneNeighbors: {
-    url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80&auto=format&fit=crop",
-    alt: "Two women sitting together, looking at a document and talking.",
-    unsplashId: "photo-1573496359142-b8d87734a5a2",
-    credit: { name: "Unsplash", url: "https://unsplash.com" },
+    url: "https://images.unsplash.com/photo-1773332589460-5a5d43c80f5b?w=1200&q=80&auto=format&fit=crop",
+    alt: "Two women talking at a kitchen table on a Sunday afternoon.",
+    unsplashId: "3c_k7h8YgHw",
+    credit: { name: "Microsoft Copilot", url: "https://unsplash.com/@microsoftcopilot" },
   },
 };

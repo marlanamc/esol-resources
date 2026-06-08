@@ -26,10 +26,10 @@ export const allTheTensesYearInReviewImages: Record<
     credit: { name: "Jason Briscoe", url: "https://unsplash.com/@jsnbrsc" },
   },
   sceneVideoCall: {
-    url: "https://images.unsplash.com/photo-1628645339131-0c39c7527856?w=1200&q=80&auto=format&fit=crop",
-    alt: "A woman on a video call on her phone after a late work shift.",
-    unsplashId: "_SzvRwdFo6o",
-    credit: { name: "Helena Lopes", url: "https://unsplash.com/@helenalopesph" },
+    url: "https://images.unsplash.com/photo-1517940322679-2b003a168fd2?w=1200&q=80&auto=format&fit=crop",
+    alt: "A woman on a video call on her phone after a long work shift, looking tired.",
+    unsplashId: "w3jVXGkYZCw",
+    credit: { name: "Kev Costello", url: "https://unsplash.com/@kevcostello" },
   },
   sceneBusHome: {
     url: "https://images.unsplash.com/photo-1538054274783-71563ab54168?w=1200&q=80&auto=format&fit=crop",

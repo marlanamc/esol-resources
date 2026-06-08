@@ -17,10 +17,10 @@ export const beUsedToGetUsedToImages: Record<string, {
     credit: { name: "Val Vesa", url: "https://unsplash.com/@adspedia" },
   },
   sceneSchoolPhone: {
-    url: "https://images.unsplash.com/photo-1676738386065-233f1d585023?w=1200&q=80&auto=format&fit=crop",
-    alt: "A parent checking messages on a smartphone while waiting at a bus stop after work.",
-    unsplashId: "R7aBdi5OHtA",
-    credit: { name: "Sanket Mishra", url: "https://unsplash.com/@sanketgraphy" },
+    url: "https://images.unsplash.com/photo-1730303300789-772d7219d76b?w=1200&q=80&auto=format&fit=crop",
+    alt: "A parent at a bus stop checking messages on their phone after a double shift.",
+    unsplashId: "BWxwQB5AS6w",
+    credit: { name: "Alexis Magnone", url: "https://unsplash.com/@alemagnone" },
   },
   sceneChurch: {
     url: "https://images.unsplash.com/photo-1760367120301-a6838ae553d7?w=1200&q=80&auto=format&fit=crop",

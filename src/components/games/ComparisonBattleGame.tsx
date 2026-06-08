@@ -3,9 +3,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, RotateCcw, Sparkles, Trophy, X } from "lucide-react";
 import { fetchActivityProgress, saveActivityProgress } from "@/lib/activityProgress";
+import { gradeErrorRepair, gradeFillInBlank } from "@/lib/comparison-battle/grading";
 import { CourseMapReturnButton } from "@/components/navigation/CourseMapReturnButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 import { useMapReturnCountdown } from "@/hooks/useMapReturnCountdown";
+
+const MAX_ATTEMPTS_BEFORE_REVEAL = 2;
 
 const COLORS = {
     blue: "#1a6fcd",
@@ -110,7 +113,7 @@ const PRACTICE_QUESTIONS = [
         emojis: ["🍕", "🍔", "🌮"],
         labels: ["pizza", "burger", "taco"],
         question: "Three foods. Which sentence is correct?",
-        options: ["Pizza is more delicious than burger.", "Pizza is the most delicious."],
+        options: ["Pizza is deliciouser than the burger.", "Pizza is the most delicious."],
         correct: 1,
         why: "We compare one food with a group of three, so use the most delicious.",
     },
@@ -136,10 +139,10 @@ const PRACTICE_QUESTIONS = [
         title: "Round 3: Tricky Forms",
         emojis: ["🏙️", "🌆", "🌃"],
         labels: ["city A", "city B", "city C"],
-        question: "City A has 9 million people. B has 2 million. C has 1 million.",
+        question: "All three cities. Which sentence compares City A with the whole group?",
         options: ["City A is bigger than City B.", "City A is the biggest of the three cities."],
         correct: 1,
-        why: "The sentence talks about all three cities, so use the biggest.",
+        why: "The question asks about all three cities, so use superlative: the biggest.",
     },
 ];
 
@@ -147,10 +150,10 @@ const ERROR_QUESTIONS = [
     {
         round: "Round 1: Short adjective repairs",
         emoji: "🐘🐕",
-        wrong: "The elephant is more taller than the dog.",
-        error: "more taller",
-        answer: "taller",
-        correct: "The elephant is taller than the dog.",
+        wrong: "The elephant is more bigger than the dog.",
+        error: "more bigger",
+        answer: "bigger",
+        correct: "The elephant is bigger than the dog.",
         rule: "Do not use more with a short adjective that already has -er.",
     },
     {
@@ -245,51 +248,66 @@ const SPEED_QUESTIONS = [
     },
 ];
 
-const WRITING_PROMPTS = [
+const FILL_BLANK_PROMPTS = [
     {
         round: "Round 1",
         emoji: "👥",
-        prompt: "Who is taller? Write a sentence comparing two people.",
-        hint: "Use: ___ is taller than ___.",
+        prompt: "Who is taller? Complete the sentence.",
+        templateBefore: "Maria is ",
+        templateAfter: " Carlos.",
+        validAnswers: ["taller than"],
         type: "comparative" as const,
         example: "Maria is taller than Carlos.",
+        rule: "Comparative uses -er than or more ... than.",
     },
     {
         round: "Round 1",
         emoji: "💪",
         prompt: "Compare two animals. Which one is stronger?",
-        hint: "Use: ___ is stronger than ___.",
+        templateBefore: "A lion is ",
+        templateAfter: " a cat.",
+        validAnswers: ["stronger than"],
         type: "comparative" as const,
         example: "A lion is stronger than a cat.",
+        rule: "Comparative uses -er than or more ... than.",
     },
     {
         round: "Round 2",
         emoji: "🏃",
         prompt: "Who is the fastest in your family or class?",
-        hint: "Use: ___ is the fastest.",
+        templateBefore: "My brother is ",
+        templateAfter: " in the family.",
+        validAnswers: ["the fastest"],
         type: "superlative" as const,
         example: "My brother is the fastest in the family.",
+        rule: "Superlative uses the -est or the most.",
     },
     {
         round: "Round 2",
         emoji: "🏫",
         prompt: "Which subject is the most difficult for you?",
-        hint: "Use: ___ is the most difficult subject.",
+        templateBefore: "Math is ",
+        templateAfter: " subject for me.",
+        validAnswers: ["the most difficult"],
         type: "superlative" as const,
         example: "Math is the most difficult subject for me.",
+        rule: "Superlative uses the -est or the most.",
     },
     {
         round: "Round 3",
         emoji: "🌍",
-        prompt: "Compare three cities or places. Which one is the biggest, best, or most beautiful?",
-        hint: "Use a superlative: ___ is the biggest / best / most beautiful.",
+        prompt: "Compare three cities. Which one is the biggest?",
+        templateBefore: "São Paulo is ",
+        templateAfter: " city in Brazil.",
+        validAnswers: ["the biggest"],
         type: "superlative" as const,
         example: "São Paulo is the biggest city in Brazil.",
+        rule: "Superlative uses the -est or the most.",
     },
 ];
 
 type Screen = "welcome" | "lesson" | "short" | "long" | "irregular" | "gameStart" | "practice" | "errors" | "speed" | "writing" | "checkpoint" | "final";
-type WritingResult = { correct: boolean; feedback: string; correction?: string; rule?: string };
+type FillBlankResult = { correct: boolean; feedback: string; correction?: string; rule?: string };
 type Checkpoint = {
     title: string;
     subtitle: string;
@@ -300,7 +318,7 @@ type Checkpoint = {
 };
 
 const SCORABLE_COUNT =
-    PRACTICE_QUESTIONS.length + ERROR_QUESTIONS.length + SPEED_QUESTIONS.length + WRITING_PROMPTS.length;
+    PRACTICE_QUESTIONS.length + ERROR_QUESTIONS.length + SPEED_QUESTIONS.length + FILL_BLANK_PROMPTS.length;
 
 const SCREEN_PROGRESS: Partial<Record<Screen, number>> = {
     lesson: 12,
@@ -317,49 +335,6 @@ interface Props {
     activityId?: string;
     assignmentId?: string | null;
     variant?: "standalone" | "embedded";
-}
-
-function normalizeAnswer(value: string) {
-    return value.toLowerCase().replace(/[.,!?;:"]/g, "").replace(/\s+/g, " ").trim();
-}
-
-function hasAny(text: string, terms: string[]) {
-    return terms.some((term) => text.includes(term));
-}
-
-function checkWritingAnswer(value: string, prompt: (typeof WRITING_PROMPTS)[number]): WritingResult {
-    const answer = normalizeAnswer(value);
-    if (!answer) {
-        return {
-            correct: false,
-            feedback: "Write one full sentence.",
-            correction: prompt.example,
-        };
-    }
-
-    if (prompt.type === "comparative") {
-        const comparativeMarkers = [" than ", "taller than", "stronger than", "bigger than", "smaller than", "faster than", "more "];
-        const correct = hasAny(` ${answer} `, comparativeMarkers) && !answer.includes("the most") && !answer.includes("the tallest");
-        return correct
-            ? { correct: true, feedback: "Good comparative sentence. You compared two things." }
-            : {
-                  correct: false,
-                  feedback: "This needs a comparative form for two things.",
-                  correction: prompt.example,
-                  rule: "Comparative uses -er than or more ... than.",
-              };
-    }
-
-    const superlativeMarkers = ["the most", "the tallest", "the fastest", "the biggest", "the strongest", "the best", "the worst", "the easiest"];
-    const correct = hasAny(answer, superlativeMarkers);
-    return correct
-        ? { correct: true, feedback: "Good superlative sentence. You chose one thing in a group." }
-        : {
-              correct: false,
-              feedback: "This needs a superlative form for a group.",
-              correction: prompt.example,
-              rule: "Superlative uses the -est or the most.",
-          };
 }
 
 function useGameSound() {
@@ -593,7 +568,10 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
     const [speedDone, setSpeedDone] = useState(false);
     const [writingIndex, setWritingIndex] = useState(0);
     const [writingInput, setWritingInput] = useState("");
-    const [writingResult, setWritingResult] = useState<WritingResult | null>(null);
+    const [writingResult, setWritingResult] = useState<FillBlankResult | null>(null);
+    const [errorAttempts, setErrorAttempts] = useState(0);
+    const [writingAttempts, setWritingAttempts] = useState(0);
+    const [maxReachedScreenIndex, setMaxReachedScreenIndex] = useState(-1);
     const [roundStartScore, setRoundStartScore] = useState(0);
     const [checkpoint, setCheckpoint] = useState<Checkpoint | null>(null);
     const [pointsAwarded, setPointsAwarded] = useState<number | null>(null);
@@ -668,6 +646,10 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
     }, [accuracy, activityId, assignmentId, playSound, reachedCompletionPoint]);
 
     const goTo = (next: Screen) => {
+        const nextIndex = screens.indexOf(next);
+        if (nextIndex >= 0) {
+            setMaxReachedScreenIndex((value) => Math.max(value, nextIndex));
+        }
         setScreen(next);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
@@ -704,6 +686,9 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
         setWritingIndex(0);
         setWritingInput("");
         setWritingResult(null);
+        setErrorAttempts(0);
+        setWritingAttempts(0);
+        setMaxReachedScreenIndex(-1);
         setRoundStartScore(0);
         setCheckpoint(null);
         setPointsAwarded(null);
@@ -934,11 +919,16 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                         total={ERROR_QUESTIONS.length}
                         input={errorInput}
                         submitted={errorSubmitted}
+                        attempts={errorAttempts}
                         setInput={setErrorInput}
                         onSubmit={() => {
                             if (!errorInput.trim()) return;
+                            const item = ERROR_QUESTIONS[errorIndex];
+                            const isCorrect = gradeErrorRepair(errorInput, item);
+                            const nextAttempts = errorAttempts + 1;
+                            setErrorAttempts(nextAttempts);
                             setErrorSubmitted(true);
-                            awardPoint(normalizeAnswer(errorInput) === normalizeAnswer(ERROR_QUESTIONS[errorIndex].answer));
+                            awardPoint(isCorrect);
                         }}
                         onRetry={() => {
                             setErrorInput("");
@@ -949,6 +939,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                                 setErrorIndex((value) => value + 1);
                                 setErrorInput("");
                                 setErrorSubmitted(false);
+                                setErrorAttempts(0);
                                 if ((errorIndex + 1) % 2 === 0) {
                                     showCheckpoint({
                                         title: `Repair Round ${Math.floor(errorIndex / 2) + 1} Complete`,
@@ -1005,7 +996,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                         onContinue={() =>
                             showCheckpoint({
                                 title: "Speed Questions Complete",
-                                subtitle: "Next, write your own comparison sentences.",
+                                subtitle: "Next, complete comparison sentences.",
                                 nextScreen: "writing",
                                 total: 1,
                                 emoji: "⚡",
@@ -1015,30 +1006,44 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                 ) : null}
 
                 {screen === "writing" ? (
-                    <WritingScreen
-                        prompt={WRITING_PROMPTS[writingIndex]}
+                    <FillBlankScreen
+                        prompt={FILL_BLANK_PROMPTS[writingIndex]}
                         index={writingIndex}
-                        total={WRITING_PROMPTS.length}
+                        total={FILL_BLANK_PROMPTS.length}
                         value={writingInput}
                         result={writingResult}
+                        attempts={writingAttempts}
                         setValue={setWritingInput}
                         onCheck={() => {
-                            const result = checkWritingAnswer(writingInput, WRITING_PROMPTS[writingIndex]);
-                            setWritingResult(result);
-                            awardPoint(result.correct);
+                            const prompt = FILL_BLANK_PROMPTS[writingIndex];
+                            const isCorrect = gradeFillInBlank(writingInput, prompt.validAnswers);
+                            const nextAttempts = writingAttempts + 1;
+                            setWritingAttempts(nextAttempts);
+                            setWritingResult({
+                                correct: isCorrect,
+                                feedback: isCorrect
+                                    ? prompt.type === "comparative"
+                                        ? "Good comparative phrase. You compared two things."
+                                        : "Good superlative phrase. You chose one thing in a group."
+                                    : "Check the comparison form for this sentence.",
+                                correction: prompt.example,
+                                rule: isCorrect ? undefined : prompt.rule,
+                            });
+                            awardPoint(isCorrect);
                         }}
                         onRetry={() => {
                             setWritingInput("");
                             setWritingResult(null);
                         }}
                         onNext={() => {
-                            if (writingIndex < WRITING_PROMPTS.length - 1) {
+                            if (writingIndex < FILL_BLANK_PROMPTS.length - 1) {
                                 setWritingIndex((value) => value + 1);
                                 setWritingInput("");
                                 setWritingResult(null);
+                                setWritingAttempts(0);
                                 if ((writingIndex + 1) % 2 === 0) {
                                     showCheckpoint({
-                                        title: `Writing Round ${Math.floor(writingIndex / 2) + 1} Complete`,
+                                        title: `Fill-in Round ${Math.floor(writingIndex / 2) + 1} Complete`,
                                         subtitle: "Review your round score before the next prompts.",
                                         nextScreen: "writing",
                                         total: 2,
@@ -1047,7 +1052,7 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                                 }
                             } else {
                                 showCheckpoint({
-                                    title: "Writing Complete",
+                                    title: "Fill-in Complete",
                                     subtitle: "You finished the last short round. See your final score next.",
                                     nextScreen: "final",
                                     total: 1,
@@ -1126,19 +1131,25 @@ export default function ComparisonBattleGame({ activityId = "comparison-battle",
                 >
                     <div className="mx-auto flex max-w-2xl items-center gap-1">
                         <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto [scrollbar-width:none] sm:justify-around sm:overflow-visible [&::-webkit-scrollbar]:hidden">
-                            {screens.map((item, index) => (
+                            {screens.map((item, index) => {
+                                const unlocked = index <= maxReachedScreenIndex;
+                                return (
                                 <button
                                     key={item}
                                     type="button"
-                                    onClick={() => goTo(item)}
-                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-base font-black transition sm:h-11 sm:min-w-10 sm:px-2 sm:text-lg"
+                                    disabled={!unlocked}
+                                    onClick={() => {
+                                        if (unlocked) goTo(item);
+                                    }}
+                                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-base font-black transition sm:h-11 sm:min-w-10 sm:px-2 sm:text-lg disabled:cursor-not-allowed disabled:opacity-40"
                                     style={{ backgroundColor: item === screen ? COLORS.blueBg : "transparent", color: item === screen ? COLORS.blue : "#64748b" }}
                                     aria-label={`Go to step ${index + 1}`}
                                     aria-current={item === screen ? "step" : undefined}
                                 >
                                     {["📚", "📖", "📖", "⚠️", "🎯", "🔧", "⚡", "🌍"][index]}
                                 </button>
-                            ))}
+                                );
+                            })}
                         </div>
                         {score > 0 ? (
                             <div
@@ -1244,6 +1255,7 @@ function ErrorFixScreen({
     total,
     input,
     submitted,
+    attempts,
     setInput,
     onSubmit,
     onRetry,
@@ -1254,12 +1266,15 @@ function ErrorFixScreen({
     total: number;
     input: string;
     submitted: boolean;
+    attempts: number;
     setInput: (value: string) => void;
     onSubmit: () => void;
     onRetry: () => void;
     onNext: () => void;
 }) {
-    const correct = submitted && normalizeAnswer(input) === normalizeAnswer(item.answer);
+    const correct = submitted && gradeErrorRepair(input, item);
+    const canAdvance = correct || attempts >= MAX_ATTEMPTS_BEFORE_REVEAL;
+    const revealed = submitted && !correct && attempts >= MAX_ATTEMPTS_BEFORE_REVEAL;
     const parts = item.wrong.split(item.error);
     return (
         <section className="space-y-4">
@@ -1283,10 +1298,10 @@ function ErrorFixScreen({
             </Card>
             <input
                 value={input}
-                disabled={submitted}
+                disabled={submitted && canAdvance}
                 onChange={(event) => setInput(event.target.value)}
                 onKeyDown={(event) => {
-                    if (event.key === "Enter" && !submitted) onSubmit();
+                    if (event.key === "Enter" && !(submitted && canAdvance)) onSubmit();
                 }}
                 className="min-h-12 w-full rounded-2xl border-2 bg-white px-4 py-3 text-lg font-bold outline-none"
                 style={{ borderColor: submitted ? (correct ? COLORS.green : COLORS.red) : COLORS.blue }}
@@ -1300,7 +1315,7 @@ function ErrorFixScreen({
                 <>
                     <Card color={correct ? COLORS.green : COLORS.red} bg={correct ? COLORS.greenBg : COLORS.redBg}>
                         <div className="font-black" style={{ color: correct ? COLORS.green : COLORS.red }}>
-                            {correct ? "Perfect." : "Not quite."}
+                            {correct ? "Perfect." : revealed ? "Here is the correct answer." : "Not quite."}
                         </div>
                         {!correct ? (
                             <p className="mt-1 font-bold">
@@ -1317,14 +1332,16 @@ function ErrorFixScreen({
                         </p>
                     </Card>
                     <div className="flex gap-2">
-                        {!correct ? (
+                        {!correct && !revealed ? (
                             <PrimaryButton onClick={onRetry} color="#64748b" className="flex-1">
                                 Try Again
                             </PrimaryButton>
                         ) : null}
-                        <PrimaryButton onClick={onNext} className="flex-[2]">
-                            {index < total - 1 ? "Next Error" : "Continue"} <ArrowRight size={18} />
-                        </PrimaryButton>
+                        {canAdvance ? (
+                            <PrimaryButton onClick={onNext} className={correct || revealed ? "w-full" : "flex-[2]"}>
+                                {index < total - 1 ? "Next Error" : "Continue"} <ArrowRight size={18} />
+                            </PrimaryButton>
+                        ) : null}
                     </div>
                 </>
             )}
@@ -1434,52 +1451,67 @@ function SpeedScreen({
     );
 }
 
-function WritingScreen({
+function FillBlankScreen({
     prompt,
     index,
     total,
     value,
     result,
+    attempts,
     setValue,
     onCheck,
     onRetry,
     onNext,
 }: {
-    prompt: (typeof WRITING_PROMPTS)[number];
+    prompt: (typeof FILL_BLANK_PROMPTS)[number];
     index: number;
     total: number;
     value: string;
-    result: WritingResult | null;
+    result: FillBlankResult | null;
+    attempts: number;
     setValue: (value: string) => void;
     onCheck: () => void;
     onRetry: () => void;
     onNext: () => void;
 }) {
+    const canAdvance = result?.correct || attempts >= MAX_ATTEMPTS_BEFORE_REVEAL;
+    const revealed = result && !result.correct && attempts >= MAX_ATTEMPTS_BEFORE_REVEAL;
+
     return (
         <section className="space-y-4">
             <div className="text-center">
-                <h2 className="text-2xl font-black">Real Life Practice</h2>
+                <h2 className="text-2xl font-black">Complete the Sentence</h2>
                 <p className="text-sm font-black" style={{ color: COLORS.blue }}>
                     {prompt.round}
                 </p>
-                <p className="text-sm font-semibold text-slate-600">Write your own sentence.</p>
+                <p className="text-sm font-semibold text-slate-600">Fill in the missing comparison phrase.</p>
             </div>
             <ProgressDots current={index + 1} total={total} />
             <Card color={COLORS.blue}>
                 <div className="text-center text-5xl">{prompt.emoji}</div>
                 <p className="mt-3 text-center text-lg font-black">{prompt.prompt}</p>
-                <p className="mt-2 text-center text-sm font-bold" style={{ color: COLORS.blue }}>
-                    {prompt.hint}
-                </p>
             </Card>
-            <textarea
-                value={value}
-                disabled={!!result}
-                onChange={(event) => setValue(event.target.value)}
-                className="min-h-28 w-full resize-y rounded-2xl border-2 bg-white p-4 text-lg font-semibold outline-none"
-                style={{ borderColor: result ? (result.correct ? COLORS.green : COLORS.red) : COLORS.blue }}
-                placeholder="Write your sentence here..."
-            />
+            <Card>
+                <div className="flex flex-wrap items-center justify-center gap-1 text-lg font-black leading-relaxed text-slate-900 sm:text-xl">
+                    <span>{prompt.templateBefore}</span>
+                    <input
+                        value={value}
+                        disabled={!!result && canAdvance}
+                        onChange={(event) => setValue(event.target.value)}
+                        onKeyDown={(event) => {
+                            if (event.key === "Enter" && !result) onCheck();
+                        }}
+                        className="min-w-[8rem] flex-1 rounded-xl border-2 bg-white px-3 py-2 text-center text-lg font-black outline-none sm:min-w-[10rem] sm:text-xl"
+                        style={{
+                            borderColor: result ? (result.correct ? COLORS.green : COLORS.red) : COLORS.blue,
+                            maxWidth: "14rem",
+                        }}
+                        placeholder="..."
+                        aria-label="Missing comparison phrase"
+                    />
+                    <span>{prompt.templateAfter}</span>
+                </div>
+            </Card>
             {!result ? (
                 <PrimaryButton onClick={onCheck} color={COLORS.green} disabled={!value.trim()} className="w-full">
                     <Check size={18} /> Check My Answer
@@ -1488,7 +1520,7 @@ function WritingScreen({
                 <>
                     <Card color={result.correct ? COLORS.green : COLORS.red} bg={result.correct ? COLORS.greenBg : COLORS.redBg}>
                         <div className="font-black" style={{ color: result.correct ? COLORS.green : COLORS.red }}>
-                            {result.correct ? "Correct!" : "Not quite."}
+                            {result.correct ? "Correct!" : revealed ? "Here is the correct answer." : "Not quite."}
                         </div>
                         <p className="mt-1 font-semibold text-slate-700">{result.feedback}</p>
                         {result.correction ? <p className="mt-3 rounded-xl bg-white p-3 font-bold text-slate-800">{result.correction}</p> : null}
@@ -1501,14 +1533,16 @@ function WritingScreen({
                         </Card>
                     ) : null}
                     <div className="flex gap-2">
-                        {!result.correct ? (
+                        {!result.correct && !revealed ? (
                             <PrimaryButton onClick={onRetry} color="#64748b" className="flex-1">
                                 <ArrowLeft size={18} /> Retry
                             </PrimaryButton>
                         ) : null}
-                        <PrimaryButton onClick={onNext} className="flex-[2]">
-                            {index < total - 1 ? "Next" : "Final Results"} <Trophy size={18} />
-                        </PrimaryButton>
+                        {canAdvance ? (
+                            <PrimaryButton onClick={onNext} className={result.correct || revealed ? "w-full" : "flex-[2]"}>
+                                {index < total - 1 ? "Next" : "Final Results"} <Trophy size={18} />
+                            </PrimaryButton>
+                        ) : null}
                     </div>
                 </>
             )}
