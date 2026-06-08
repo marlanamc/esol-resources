@@ -174,6 +174,22 @@ export interface NextMapActivityLaunch {
     activityId?: string;
 }
 
+export function buildMapActivityHref(
+    activity: Pick<CourseMapActivity, "href" | "activityId" | "vocabUi">,
+    assignmentId?: string | null
+): string | null {
+    if (activity.href) return activity.href;
+    if (!activity.activityId) return null;
+
+    let href = buildActivityHref(activity.activityId, assignmentId);
+    if (activity.vocabUi) {
+        const url = new URL(href, "https://class-companion.local");
+        url.searchParams.set("ui", activity.vocabUi);
+        href = `${url.pathname}${url.search}`;
+    }
+    return href;
+}
+
 export function resolveNextMapActivityLaunch(
     units: CourseMapUnit[],
     progress: CourseMapProgressState | Record<string, string | null>,
@@ -185,13 +201,11 @@ export function resolveNextMapActivityLaunch(
     const { activity, weekNumber } = match;
     const returnTo = buildMapReturnHref(weekNumber, true);
 
-    let href: string | null = null;
-    if (activity.href) {
-        href = withReturnTo(activity.href, returnTo);
-    } else if (activity.activityId) {
-        const assignmentId = assignmentByActivityId?.[activity.activityId]?.assignmentId;
-        href = withReturnTo(buildActivityHref(activity.activityId, assignmentId), returnTo);
-    }
+    const assignmentId = activity.activityId
+        ? assignmentByActivityId?.[activity.activityId]?.assignmentId
+        : undefined;
+    const base = buildMapActivityHref(activity, assignmentId);
+    const href = base ? withReturnTo(base, returnTo) : null;
 
     if (!href) return null;
 

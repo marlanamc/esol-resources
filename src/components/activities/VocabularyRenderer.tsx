@@ -15,6 +15,7 @@ import { saveActivityProgress } from "@/lib/activityProgress";
 import { parseCategoryData } from "@/lib/categoryData";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
+import { POS_COLORS } from "@/types/parts-of-speech";
 
 interface VocabularyRendererProps {
     content: VocabularyContent;
@@ -26,7 +27,7 @@ interface VocabularyRendererProps {
 type VocabType = "word-list" | "flashcards" | "matching" | "fill-blank";
 
 type RawContentShape = { raw?: unknown; cards?: unknown };
-type CardShape = { term?: string; definition?: string; example?: string };
+type CardShape = { term?: string; definition?: string; example?: string; pos?: string };
 
 function extractRawString(content: Record<string, unknown> | undefined): string {
     if (!content || typeof content !== "object") {
@@ -49,6 +50,7 @@ function extractCards(content: Record<string, unknown> | undefined): CardShape[]
             term: typeof card.term === "string" ? card.term : undefined,
             definition: typeof card.definition === "string" ? card.definition : undefined,
             example: typeof card.example === "string" ? card.example : undefined,
+            pos: typeof card.pos === "string" ? card.pos : undefined,
         }));
 }
 
@@ -554,6 +556,7 @@ function WordListRenderer({ content, activityId, assignmentId, vocabType }: Word
                     term: card.term?.trim() ?? "",
                     definition: card.definition?.trim() ?? "",
                     example: card.example,
+                    pos: card.pos,
                 }))
                 .filter((e) => e.term && e.definition);
         }
@@ -631,7 +634,7 @@ function WordListRenderer({ content, activityId, assignmentId, vocabType }: Word
                                 </button>
                             </div>
                             {entry.pos && (
-                                <span className="px-2 py-0.5 rounded-full bg-bg-light text-text-muted text-[10px] md:text-xs font-semibold italic border border-border">
+                                <span className={`px-2 py-0.5 rounded-full text-[10px] md:text-xs font-semibold italic border ${POS_COLORS[entry.pos as keyof typeof POS_COLORS] ?? "bg-bg-light text-text-muted border-border"}`}>
                                     {entry.pos}
                                 </span>
                             )}

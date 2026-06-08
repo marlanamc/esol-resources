@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import type { DashboardResumeData } from "@/lib/course-map-week";
+import { DashboardHeroCta } from "@/components/dashboard/DashboardHeroCta";
 
 
 function typeGlyph(type: string): string {
@@ -60,13 +60,7 @@ export function DashboardResumeCard({ data }: DashboardResumeCardProps) {
                 </span>
             </span>
 
-            <span
-                className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-primary px-4 py-2 text-sm font-extrabold text-white shadow-[0_4px_12px_rgba(176,87,64,0.28)] transition-colors group-hover:bg-[var(--primary-dark)]"
-                aria-hidden
-            >
-                Start
-                <ArrowRight size={16} />
-            </span>
+            <DashboardHeroCta label="Start" />
         </Link>
     );
 }

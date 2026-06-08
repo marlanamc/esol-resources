@@ -12,8 +12,32 @@
 
 const { PrismaClient } = require("@prisma/client");
 const { weeklyVocabData } = require("./weekly-vocab-data.js");
+const legacyPosMap = require("./legacy-pos-map.js");
+const weeklyVocabPos = require("./weekly-vocab-pos.js");
 
 const prisma = new PrismaClient();
+
+function resolveWordPos(word) {
+  if (word.pos && String(word.pos).trim()) {
+    return String(word.pos).trim();
+  }
+  const key = word.term.toLowerCase();
+  return weeklyVocabPos[key] ?? legacyPosMap[key] ?? undefined;
+}
+
+function toVocabCard(word) {
+  const card = {
+    term: word.term,
+    definition: word.def,
+    example: word.ex,
+    topics: Array.isArray(word.topics) ? word.topics : [],
+  };
+  const pos = resolveWordPos(word);
+  if (pos) {
+    card.pos = pos;
+  }
+  return card;
+}
 
 function getUnitNumber(slug) {
   if (slug.startsWith("sep-")) return 1;
@@ -31,24 +55,13 @@ function getUnitNumber(slug) {
 
 function generatePacketContent(slug, data) {
   if (!data) return {};
-  const unit = getUnitNumber(slug);
-  const cards = data.words.map((word) => ({
-    term: word.term,
-    definition: word.def,
-    example: word.ex,
-    topics: Array.isArray(word.topics) ? word.topics : [],
-  }));
+  const cards = data.words.map((word) => toVocabCard(word));
   return { cards };
 }
 
 function generateFlashcardContent(slug, data) {
   if (!data) return {};
-  const cards = data.words.map((word) => ({
-    term: word.term,
-    definition: word.def,
-    example: word.ex,
-    topics: Array.isArray(word.topics) ? word.topics : [],
-  }));
+  const cards = data.words.map((word) => toVocabCard(word));
   return { cards };
 }
 
@@ -174,12 +187,7 @@ async function main() {
     // The catalog sync (syncVocabReviewCatalog) reads these so VocabCard rows survive
     // when a word is moved from `words` -> `bonusWords` in weekly-vocab-data.js.
     if (Array.isArray(data.bonusWords) && data.bonusWords.length > 0) {
-      consolidatedContent.libraryOnlyCards = data.bonusWords.map((word) => ({
-        term: word.term,
-        definition: word.def,
-        example: word.ex,
-        topics: Array.isArray(word.topics) ? word.topics : [],
-      }));
+      consolidatedContent.libraryOnlyCards = data.bonusWords.map((word) => toVocabCard(word));
     }
 
     // Create or update single consolidated activity

@@ -5,6 +5,10 @@
 
 import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
 import { extractTopicFromVocabDescription, stripVocabTypeSuffix } from "@/lib/vocab-display";
+import {
+  formatCourseMapLevelLabel,
+  getVocabCourseMapLevelNumber,
+} from "@/lib/vocab/course-map-level";
 
 export interface ActivityForVocab {
   id: string;
@@ -109,6 +113,15 @@ export const displayTitle = (title: string) =>
 export function getVocabUnitBadgeLabel(activity: ActivityForVocab): string | null {
   const unitNumber = getVocabUnitNumberFromActivity(activity);
   return unitNumber ? `Unit ${unitNumber}` : null;
+}
+
+/** Carousel chip when the section header already shows the unit — uses global course-map level numbers. */
+export function getVocabLevelBadgeLabel(activity: ActivityForVocab): string | null {
+  if (!activity.id.startsWith("vocab-")) return null;
+  if (activity.id === "vocab-daily-review") return "Daily";
+
+  const levelNumber = getVocabCourseMapLevelNumber(activity.id);
+  return levelNumber ? formatCourseMapLevelLabel(levelNumber) : null;
 }
 
 export function getVocabUnitNumberFromActivity(activity: ActivityForVocab): number | null {

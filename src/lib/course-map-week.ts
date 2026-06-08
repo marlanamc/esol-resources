@@ -10,21 +10,22 @@ import {
     enrichCourseMapUnitsWithGrammarIds,
     loadCourseMapProgressState,
 } from "@/lib/course-map-progress.server";
-import { findFirstIncompleteRequired, resolveNextMapActivityLaunch } from "@/lib/course-map-navigation";
+import {
+    buildMapActivityHref,
+    findFirstIncompleteRequired,
+    resolveNextMapActivityLaunch,
+} from "@/lib/course-map-navigation";
 import {
     formatNextUpActivityTitle,
     getCourseMapEstimatedMinutesForActivity,
 } from "@/lib/course-map-hero";
-import { buildActivityHref } from "@/lib/learner/navigation";
 import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
 import type { TimelineItem, TimelineStatus } from "@/components/dashboard/ActivityTimeline";
 import type { CourseMapActivity, CourseMapUnit } from "@/lib/course-map";
 
 function buildItemHref(activity: CourseMapActivity): string {
-    if (activity.href) return activity.href;
-    if (activity.activityId) return buildActivityHref(activity.activityId);
-    return "/dashboard/map";
+    return buildMapActivityHref(activity) ?? "/dashboard/map";
 }
 
 function toTimelineItem(activity: CourseMapActivity, status: TimelineStatus): TimelineItem {

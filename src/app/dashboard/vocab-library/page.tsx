@@ -8,9 +8,22 @@ import {
   getVocabLibraryTopic,
   isVocabLibraryTopicSlug,
 } from "@/lib/vocab/library-topics";
+import {
+  buildVocabLibraryHref,
+  filterVocabLibraryCards,
+  parseVocabLibrarySort,
+  resolveVocabLibraryTopicSlug,
+  sortVocabLibraryCards,
+} from "@/lib/vocab/library";
+import {
+  VocabLibraryTopicChip,
+  buildTopicChipHref,
+} from "@/components/vocab-library/VocabLibraryTopicChip";
+import { VocabLibraryWordCard } from "@/components/vocab-library/VocabLibraryWordCard";
+import { hasVocabAudioFile } from "@/lib/vocab-audio-available";
 
 type PageProps = {
-  searchParams: Promise<{ topic?: string }>;
+  searchParams: Promise<{ topic?: string; sort?: string }>;
 };
 
 export default async function VocabLibraryPage({ searchParams }: PageProps) {
@@ -19,10 +32,11 @@ export default async function VocabLibraryPage({ searchParams }: PageProps) {
     redirect("/login");
   }
 
-  const { topic: rawTopic } = await searchParams;
-  const selectedSlug =
-    rawTopic && isVocabLibraryTopicSlug(rawTopic) ? rawTopic : null;
+  const { topic: rawTopic, sort: rawSort } = await searchParams;
+  const selectedSlug = resolveVocabLibraryTopicSlug(rawTopic);
   const selectedTopic = selectedSlug ? getVocabLibraryTopic(selectedSlug) : null;
+  const sort = parseVocabLibrarySort(rawSort);
+  const isAllView = !selectedSlug;
 
   const allCards = await prisma.vocabCard.findMany({
     select: {
@@ -30,7 +44,9 @@ export default async function VocabLibraryPage({ searchParams }: PageProps) {
       term: true,
       definition: true,
       example: true,
+      pos: true,
       topics: true,
+      sortOrder: true,
     },
     orderBy: { sortOrder: "asc" },
   });
@@ -43,120 +59,152 @@ export default async function VocabLibraryPage({ searchParams }: PageProps) {
     }
   }
 
-  const visibleWords = selectedSlug
-    ? allCards.filter((c) => c.topics.includes(selectedSlug))
-    : [];
+  const visibleWords = sortVocabLibraryCards(
+    filterVocabLibraryCards(allCards, selectedSlug),
+    sort
+  );
+
+  const sectionLabel = isAllView
+    ? "All topics"
+    : selectedTopic
+      ? `Words tagged ${selectedTopic.label}`
+      : "Vocabulary";
 
   return (
-    <main id="main-content" className="max-w-5xl mx-auto px-4 py-6 pb-24 space-y-6">
-      <header className="space-y-2">
-        <h1 className="text-3xl font-display font-bold text-text">Vocab Library</h1>
-        <p className="text-text/70">
-          Browse vocabulary by topic. Words come from across the year — pick a topic
-          to focus on real-world language you&apos;ll use.
+    <main
+      id="main-content"
+      className="mx-auto max-w-5xl space-y-4 px-3 py-4 pb-24 sm:space-y-6 sm:px-4 sm:py-6"
+    >
+      <header className="space-y-1 sm:space-y-2">
+        <h1 className="font-display text-2xl font-bold text-text sm:text-3xl">Vocab Library</h1>
+        <p className="text-sm leading-snug text-text/70 sm:text-base sm:leading-normal">
+          <span className="sm:hidden">Browse words by real-world topic.</span>
+          <span className="hidden sm:inline">
+            Browse vocabulary by topic. Words come from across the year — pick a topic
+            to focus on real-world language you&apos;ll use.
+          </span>
         </p>
       </header>
 
-      <section aria-label="Topics" className="space-y-3">
-        <h2 className="text-sm uppercase tracking-wide text-text/60 font-semibold">
+      <section aria-label="Topics" className="space-y-2 sm:space-y-3">
+        <h2 className="text-xs font-semibold uppercase tracking-wide text-text/60 sm:text-sm">
           Topics
         </h2>
-        <div className="flex flex-wrap gap-2">
-          {VOCAB_LIBRARY_TOPICS.map((t) => {
-            const isActive = t.slug === selectedSlug;
-            const count = counts[t.slug] ?? 0;
-            return (
-              <Link
+        <div className="-mx-3 border-b border-[var(--dashboard-border)]/60 bg-bg/95 px-3 pb-3 backdrop-blur-sm sm:mx-0 sm:border-0 sm:bg-transparent sm:px-0 sm:pb-0 sm:backdrop-blur-none">
+          <div className="flex gap-2 overflow-x-auto pb-1 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap sm:overflow-visible sm:snap-none">
+            <VocabLibraryTopicChip
+              href={buildTopicChipHref(null, sort)}
+              isActive={isAllView}
+              label="All"
+              count={allCards.length}
+            />
+            {VOCAB_LIBRARY_TOPICS.map((t) => (
+              <VocabLibraryTopicChip
                 key={t.slug}
-                href={isActive ? "/dashboard/vocab-library" : `/dashboard/vocab-library?topic=${t.slug}`}
-                aria-current={isActive ? "true" : undefined}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors border ${
-                  isActive
-                    ? "bg-primary text-white border-primary"
-                    : "bg-[var(--dashboard-surface-start)] text-text border-[var(--dashboard-border)] hover:brightness-95"
-                }`}
-              >
-                <span>{t.label}</span>
-                <span
-                  className={`px-1.5 py-0.5 rounded-full text-xs ${
-                    isActive ? "bg-white/20" : "bg-bg-light text-text/70"
-                  }`}
-                >
-                  {count}
-                </span>
-              </Link>
-            );
-          })}
+                href={buildTopicChipHref(t.slug, sort)}
+                isActive={t.slug === selectedSlug}
+                label={t.label}
+                shortLabel={t.shortLabel}
+                count={counts[t.slug] ?? 0}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
-      {!selectedSlug && (
-        <section className="rounded-2xl border border-[var(--dashboard-border)] bg-[var(--dashboard-surface-start)] p-8 text-center text-text/70">
-          <p className="text-base">
-            Pick a topic above to see the words in that category.
-          </p>
-        </section>
-      )}
-
-      {selectedSlug && selectedTopic && (
-        <section aria-label={`Words tagged ${selectedTopic.label}`} className="space-y-3">
-          <div className="flex items-baseline justify-between">
-            <div>
-              <h2 className="text-xl font-display font-semibold text-text">
+      <section aria-label={sectionLabel} className="space-y-3">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-3">
+          {!isAllView && selectedTopic ? (
+            <div className="min-w-0">
+              <h2 className="font-display text-lg font-semibold text-text sm:text-xl">
                 {selectedTopic.label}
               </h2>
               <p className="text-sm text-text/60">{selectedTopic.description}</p>
             </div>
-            <p className="text-sm text-text/60">
+          ) : (
+            <div className="flex items-baseline justify-between gap-2 sm:block">
+              <h2 className="font-display text-lg font-semibold text-text sm:text-xl">
+                All words
+              </h2>
+              <p className="text-xs text-text/60 sm:hidden">
+                {visibleWords.length} words
+              </p>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between gap-2 sm:justify-end sm:gap-3">
+            <div
+              className="inline-flex rounded-full border border-[var(--dashboard-border)] bg-[var(--dashboard-surface-start)] p-0.5"
+              role="group"
+              aria-label="Sort words"
+            >
+              <Link
+                href={buildVocabLibraryHref({
+                  topic: selectedSlug ?? undefined,
+                  sort: "curriculum",
+                })}
+                aria-current={sort === "curriculum" ? "true" : undefined}
+                className={`rounded-full px-2.5 py-1.5 text-xs font-medium transition-colors sm:px-3 ${
+                  sort === "curriculum"
+                    ? "bg-primary text-white"
+                    : "text-text/70 hover:text-text"
+                }`}
+              >
+                <span className="sm:hidden">By unit</span>
+                <span className="hidden sm:inline">Curriculum order</span>
+              </Link>
+              <Link
+                href={buildVocabLibraryHref({
+                  topic: selectedSlug ?? undefined,
+                  sort: "alpha",
+                })}
+                aria-current={sort === "alpha" ? "true" : undefined}
+                className={`rounded-full px-2.5 py-1.5 text-xs font-medium transition-colors sm:px-3 ${
+                  sort === "alpha"
+                    ? "bg-primary text-white"
+                    : "text-text/70 hover:text-text"
+                }`}
+              >
+                A–Z
+              </Link>
+            </div>
+            <p className="hidden text-sm text-text/60 sm:block">
               {visibleWords.length} word{visibleWords.length === 1 ? "" : "s"}
             </p>
           </div>
+        </div>
 
-          {visibleWords.length === 0 ? (
-            <div className="rounded-2xl border border-[var(--dashboard-border)] bg-[var(--dashboard-surface-start)] p-8 text-center text-text/70">
-              No words tagged with this topic yet.
-            </div>
-          ) : (
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {visibleWords.map((word) => (
-                <li
+        {visibleWords.length === 0 ? (
+          <div className="rounded-2xl border border-[var(--dashboard-border)] bg-[var(--dashboard-surface-start)] p-6 text-center text-sm text-text/70 sm:p-8 sm:text-base">
+            {selectedSlug
+              ? "No words tagged with this topic yet."
+              : "No vocabulary words in the library yet."}
+          </div>
+        ) : (
+          <ul className="grid grid-cols-1 gap-3 p-3 md:grid-cols-2 md:gap-6 md:p-0">
+            {visibleWords.map((word, index) => {
+              const topicLinks = word.topics
+                .filter((t) => t !== selectedSlug && isVocabLibraryTopicSlug(t))
+                .map((t) => getVocabLibraryTopic(t))
+                .filter((t): t is NonNullable<typeof t> => t !== null);
+
+              return (
+                <VocabLibraryWordCard
                   key={word.id}
-                  className="rounded-2xl border border-[var(--dashboard-border)] bg-[var(--dashboard-surface-start)] p-4 space-y-2"
-                >
-                  <div className="flex items-baseline justify-between gap-2">
-                    <h3 className="text-lg font-display font-semibold text-text">
-                      {word.term}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-text/80">{word.definition}</p>
-                  {word.example && (
-                    <p className="text-sm text-text/60 italic">&ldquo;{word.example}&rdquo;</p>
-                  )}
-                  {word.topics.length > 1 && (
-                    <div className="flex flex-wrap gap-1 pt-1">
-                      {word.topics
-                        .filter((t) => t !== selectedSlug && isVocabLibraryTopicSlug(t))
-                        .map((t) => {
-                          const otherTopic = getVocabLibraryTopic(t);
-                          if (!otherTopic) return null;
-                          return (
-                            <Link
-                              key={t}
-                              href={`/dashboard/vocab-library?topic=${t}`}
-                              className="text-xs px-2 py-0.5 rounded-full bg-bg-light text-text/70 hover:bg-bg hover:brightness-95"
-                            >
-                              {otherTopic.label}
-                            </Link>
-                          );
-                        })}
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-      )}
+                  index={index}
+                  term={word.term}
+                  definition={word.definition}
+                  example={word.example}
+                  pos={word.pos}
+                  hasAudio={hasVocabAudioFile(word.term)}
+                  topicLinks={topicLinks}
+                  sort={sort}
+                />
+              );
+            })}
+          </ul>
+        )}
+      </section>
     </main>
   );
 }

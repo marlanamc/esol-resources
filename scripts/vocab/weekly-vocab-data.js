@@ -3,8 +3,13 @@
  * Target cadence: 6 words per week year-round (curated for real-world frequency).
  * Cycle 2 weeks currently still hold 12 words each — to be trimmed to 6 in a future pass.
  *
- * Each word may carry a `topics: string[]` array used to populate VocabCard.topics
- * during seed. The topical vocab library reads these to group words across weeks.
+ * Each word may carry:
+ *   - `topics: string[]` — topical Vocab Library grouping (see below)
+ *   - `pos: string` — optional inline part of speech (e.g. "verb", "noun", "phrasal verb")
+ *
+ * POS is also curated incrementally in `weekly-vocab-pos.js` (unit-by-unit) and
+ * merged at seed time with `legacy-pos-map.js`. After POS edits, run:
+ *   npm run db:seed:weekly-vocab
  *
  * Topic vocabulary (v1):
  *   - career-job-search    Resumes, applications, interviews

@@ -127,22 +127,32 @@ async function generateAudio(text: string, outputPath: string, voiceId: string):
 function collectTerms(): string[] {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { weeklyVocabData } = require("../vocab/weekly-vocab-data.js") as {
-    weeklyVocabData: Record<string, { words: Array<{ term: string }> }>;
+    weeklyVocabData: Record<string, { words?: Array<{ term: string }>; bonusWords?: Array<{ term: string }> }>;
   };
 
   const seen = new Set<string>();
   const terms: string[] = [];
 
   for (const [, data] of Object.entries(weeklyVocabData)) {
-    for (const word of data.words) {
+    for (const word of [...(data.words ?? []), ...(data.bonusWords ?? [])]) {
       const t = word.term.trim();
-      if (!seen.has(t)) {
-        seen.add(t);
-        terms.push(t);
-      }
+      if (!t || seen.has(t)) continue;
+      seen.add(t);
+      terms.push(t);
     }
   }
-  return terms;
+
+  // Library-only / legacy catalog terms (e.g. September nouns still in VocabCard)
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const legacyPosMap = require("../vocab/legacy-pos-map.js") as Record<string, string>;
+  for (const term of Object.keys(legacyPosMap)) {
+    const t = term.trim();
+    if (!t || seen.has(t)) continue;
+    seen.add(t);
+    terms.push(t);
+  }
+
+  return terms.sort((left, right) => left.localeCompare(right, "en"));
 }
 
 // ---------------------------------------------------------------------------

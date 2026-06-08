@@ -6,5 +6,6 @@ export {
   ensureTeacher,
   canManageClass,
   canManageActivity,
+  canAssignActivity,
   classOwnershipWhere,
 } from "./auth/policies";

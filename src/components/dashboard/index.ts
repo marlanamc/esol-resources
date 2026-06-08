@@ -23,5 +23,6 @@ export * from './DashboardWelcomeHeader';
 export * from './ExploreCategoriesCarousel';
 export * from './AllActivitiesCategoriesPanel';
 export * from './NewThisWeekSection';
+export * from './PinnedDailyHabitRow';
 export * from './DashboardResumeHero';
 export * from './AdminDashboardModeToggle';

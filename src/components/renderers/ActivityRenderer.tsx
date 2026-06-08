@@ -29,6 +29,7 @@ import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
 import type { PartsOfSpeechContent } from "@/types/parts-of-speech";
+import { POS_COLORS } from "@/types/parts-of-speech";
 
 // Shared fallback for the dynamically-imported activity/game chunks. Fills its container
 // (h-full) so it sits in the same spot as each game's own internal loading spinner — that
@@ -596,7 +597,7 @@ function ResourceRenderer({
                                 {entry.term}
                             </h3>
                             {entry.pos && (
-                                <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold italic border border-slate-200">
+                                <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold italic border ${POS_COLORS[entry.pos as keyof typeof POS_COLORS] ?? "bg-slate-100 text-slate-600 border-slate-200"}`}>
                                     {entry.pos}
                                 </span>
                             )}

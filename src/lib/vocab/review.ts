@@ -71,6 +71,7 @@ type RawVocabEntry = {
   definition: string;
   example?: string | null;
   topics?: string[];
+  pos?: string | null;
 };
 
 export type VocabReviewStateLike = Pick<
@@ -93,6 +94,7 @@ export type VocabReviewSeedCard = {
   normalizedTerm: string;
   definition: string;
   example: string | null;
+  pos: string | null;
   audioPath: string;
   sourceKeys: string[];
   sourceLabels: string[];
@@ -144,11 +146,15 @@ export function normalizeVocabTerm(term: string): string {
 function parseRawCards(value: unknown): RawVocabEntry[] {
   if (!Array.isArray(value)) return [];
   return value
-    .filter((card): card is { term?: unknown; definition?: unknown; example?: unknown; topics?: unknown } => !!card && typeof card === "object")
+    .filter(
+      (card): card is { term?: unknown; definition?: unknown; example?: unknown; topics?: unknown; pos?: unknown } =>
+        !!card && typeof card === "object"
+    )
     .map((card) => ({
       term: typeof card.term === "string" ? card.term.trim() : "",
       definition: typeof card.definition === "string" ? card.definition.trim() : "",
       example: typeof card.example === "string" ? card.example.trim() : null,
+      pos: typeof card.pos === "string" && card.pos.trim().length > 0 ? card.pos.trim() : null,
       topics: Array.isArray(card.topics)
         ? card.topics.filter((t): t is string => typeof t === "string" && t.trim().length > 0)
         : [],
@@ -198,14 +204,16 @@ function extractEntriesFromActivity(activity: ActivityCatalogRow): RawVocabEntry
       term: card.term.trim(),
       definition: card.definition.trim(),
       example: card.example?.trim() || null,
+      pos: null,
     }));
   }
 
   // Try plain vocab parsing if flashcards fail (handles simpler lists)
-  return parsePlainVocabulary(activity.content).map(item => ({
+  return parsePlainVocabulary(activity.content).map((item) => ({
     term: item.term.trim(),
     definition: item.definition.trim(),
-    example: item.example?.trim() || null
+    example: item.example?.trim() || null,
+    pos: item.pos?.trim() || null,
   }));
 }
 
@@ -266,6 +274,7 @@ export function buildVocabReviewSeedCards(activities: ActivityCatalogRow[]): Voc
           normalizedTerm,
           definition: entry.definition,
           example: entry.example ?? null,
+          pos: entry.pos ?? null,
           audioPath: makeAudioPath(entry.term),
           sourceKeys: [source.key],
           sourceLabels: [source.label],
@@ -278,6 +287,10 @@ export function buildVocabReviewSeedCards(activities: ActivityCatalogRow[]): Voc
           topicSet: new Set(initialTopics),
         });
         return;
+      }
+
+      if (!existing.pos && entry.pos) {
+        existing.pos = entry.pos;
       }
 
       if (!existing.sourceSet.has(source.key)) {
@@ -308,6 +321,7 @@ export function buildVocabReviewSeedCards(activities: ActivityCatalogRow[]): Voc
       normalizedTerm: card.normalizedTerm,
       definition: card.definition,
       example: card.example ?? null,
+      pos: card.pos ?? null,
       audioPath: card.audioPath,
       sourceKeys: dedupeStrings(card.sourceKeys),
       sourceLabels: dedupeStrings(card.sourceLabels),
@@ -359,6 +373,7 @@ export async function syncVocabReviewCatalog(db: VocabReviewDbClient): Promise<{
         term: card.term,
         definition: card.definition,
         example: card.example,
+        pos: card.pos,
         audioPath: card.audioPath,
         sourceKeys: card.sourceKeys,
         sourceLabels: card.sourceLabels,
@@ -371,6 +386,7 @@ export async function syncVocabReviewCatalog(db: VocabReviewDbClient): Promise<{
         normalizedTerm: card.normalizedTerm,
         definition: card.definition,
         example: card.example,
+        pos: card.pos,
         audioPath: card.audioPath,
         sourceKeys: card.sourceKeys,
         sourceLabels: card.sourceLabels,

@@ -299,38 +299,52 @@ export function ActivityCategoryPicker({
             {selectedCategory === 'vocabulary' && (
                 <Link
                     href="/dashboard/vocab-library"
-                    className="block mb-6 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/5 via-bg-light to-secondary/5 p-5 transition-all hover:border-primary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                    className="group mb-6 block rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/5 via-bg-light to-secondary/5 p-4 transition-all hover:border-primary/50 hover:shadow-md active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 sm:p-5"
                 >
-                    <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                            <Sparkles className="w-6 h-6" strokeWidth={1.75} />
+                    <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary sm:h-12 sm:w-12">
+                            <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.75} />
                         </div>
-                        <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 mb-1">
-                                <h3 className="text-lg font-display font-bold text-text">Vocab Library</h3>
-                                <span className="text-xs font-semibold uppercase tracking-wide text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                        <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-2">
+                                <h3 className="font-display text-base font-bold text-text sm:text-lg">
+                                    Vocab Library
+                                </h3>
+                                <span className="shrink-0 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary sm:text-xs">
                                     New
                                 </span>
                             </div>
-                            <p className="text-sm text-text/70 mb-3">
-                                Browse all vocabulary by real-world topic, not just by week.
+                            <p className="mt-1 text-sm leading-snug text-text/70 sm:mt-1.5 sm:leading-relaxed">
+                                Browse vocabulary by real-world topic, not just by week.
                             </p>
-                            <div className="flex flex-wrap gap-1.5">
-                                {VOCAB_LIBRARY_TOPICS.slice(0, 6).map((t) => (
-                                    <span
-                                        key={t.slug}
-                                        className="text-xs px-2 py-0.5 rounded-full bg-white/60 dark:bg-white/10 text-text/80 border border-border/40"
-                                    >
-                                        {t.label}
-                                    </span>
-                                ))}
-                                <span className="text-xs px-2 py-0.5 rounded-full text-text/60">
-                                    +{VOCAB_LIBRARY_TOPICS.length - 6} more
-                                </span>
-                            </div>
                         </div>
-                        <ArrowRight className="w-5 h-5 text-text/40 self-center flex-shrink-0" />
+                        <ArrowRight className="mt-0.5 h-5 w-5 shrink-0 text-text/40 transition-transform group-hover:translate-x-0.5 sm:mt-1" />
                     </div>
+
+                    <p className="mt-3 text-xs leading-relaxed text-text/60 sm:hidden">
+                        {VOCAB_LIBRARY_TOPICS.length} topics including{' '}
+                        {VOCAB_LIBRARY_TOPICS.slice(0, 3).map((t) => t.label).join(', ')}
+                        , and more.
+                    </p>
+
+                    <div className="mt-3 hidden gap-1.5 sm:flex sm:flex-wrap">
+                        {VOCAB_LIBRARY_TOPICS.slice(0, 6).map((t) => (
+                            <span
+                                key={t.slug}
+                                className="rounded-full border border-border/40 bg-white/60 px-2 py-0.5 text-xs text-text/80 dark:bg-white/10"
+                            >
+                                {t.label}
+                            </span>
+                        ))}
+                        <span className="rounded-full px-2 py-0.5 text-xs text-text/60">
+                            +{VOCAB_LIBRARY_TOPICS.length - 6} more
+                        </span>
+                    </div>
+
+                    <span className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-xl border border-primary/25 bg-white/50 px-3 py-2 text-sm font-semibold text-primary transition-colors group-hover:border-primary/40 group-hover:bg-white/70 dark:bg-white/5 dark:group-hover:bg-white/10 sm:hidden">
+                        Open Vocab Library
+                        <ArrowRight className="h-4 w-4" />
+                    </span>
                 </Link>
             )}
 

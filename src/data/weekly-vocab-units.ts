@@ -31,25 +31,46 @@ export const VOCAB_WEEKLY_UNITS_CYCLE1: WeeklyVocabUnit[] = [
   { id: "jan-w4", label: "January Week 4" },
 ];
 
+const CYCLE2_WEEK_IDS = [
+  "feb-3-5",
+  "feb-10-12",
+  "feb-24-26",
+  "mar-3-5",
+  "mar-10-12",
+  "mar-17-19",
+  "mar-24-26",
+  "mar-31-apr-2",
+  "apr-7-9",
+  "apr-14-16",
+  "apr-28-30",
+  "may-5-7",
+  "may-12-14",
+  "may-19-21",
+  "may-26-28",
+  "jun-2-4",
+] as const;
+
+const CYCLE2_MONTH_NAMES: Record<string, string> = {
+  feb: "February",
+  mar: "March",
+  apr: "April",
+  may: "May",
+  jun: "June",
+};
+
+function buildCycle2WeekLabel(id: string, orderedIds: readonly string[]): string {
+  const monthKey = id.split("-")[0] ?? id;
+  const monthName = CYCLE2_MONTH_NAMES[monthKey] ?? monthKey;
+  const weekNumber =
+    orderedIds.filter((candidate) => candidate.startsWith(`${monthKey}-`)).indexOf(id) + 1;
+  return `${monthName} Week ${weekNumber}`;
+}
+
 /** Cycle 2: February – June (Units 6–10) */
-export const VOCAB_WEEKLY_UNITS_CYCLE2: WeeklyVocabUnit[] = [
-  { id: "feb-3-5", label: "February 3–5" },
-  { id: "feb-10-12", label: "February 10–12" },
-  { id: "feb-24-26", label: "February 24–26" },
-  { id: "mar-3-5", label: "March 3–5" },
-  { id: "mar-10-12", label: "March 10–12" },
-  { id: "mar-17-19", label: "March 17–19" },
-  { id: "mar-24-26", label: "March 24–26" },
-  { id: "mar-31-apr-2", label: "March 31 – April 2" },
-  { id: "apr-7-9", label: "April 7–9" },
-  { id: "apr-14-16", label: "April 14–16" },
-  { id: "apr-28-30", label: "April 28–30" },
-  { id: "may-5-7", label: "May 5–7" },
-  { id: "may-12-14", label: "May 12–14" },
-  { id: "may-19-21", label: "May 19–21" },
-  { id: "may-26-28", label: "May 26–28" },
-  { id: "jun-2-4", label: "June 2–4" },
-];
+export const VOCAB_WEEKLY_UNITS_CYCLE2: WeeklyVocabUnit[] = CYCLE2_WEEK_IDS.map((id) => ({
+  id,
+  label: buildCycle2WeekLabel(id, CYCLE2_WEEK_IDS),
+}));
 
 /** All weekly vocab units in calendar order */
 export const VOCAB_WEEKLY_UNITS: WeeklyVocabUnit[] = [

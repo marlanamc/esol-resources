@@ -83,6 +83,42 @@ describe("course map progress", () => {
         expect(next?.title).toContain("Verb Forms");
     });
 
+    it("builds a launch href with ui=flashcards for the next vocab flashcards map item", () => {
+        const vocabFlashcardsUnits: CourseMapUnit[] = [
+            {
+                unitNumber: 1,
+                unitTitle: "Getting to Know You",
+                month: "September",
+                levels: [
+                    {
+                        levelNumber: 1,
+                        levelTitle: "Start the Class",
+                        requiredActivities: [
+                            {
+                                id: "vocab-sep-w1-flashcards",
+                                title: "Vocab: Digital Habits — Flash Cards",
+                                activityType: "game",
+                                status: "available",
+                                activityId: "vocab-sep-w1",
+                                vocabUi: "flashcards",
+                            },
+                        ],
+                    },
+                ],
+            },
+        ];
+
+        const launch = resolveNextMapActivityLaunch(vocabFlashcardsUnits, {}, {
+            "vocab-sep-w1": { assignmentId: "cmpyyjgj7000p0e757m5m31hy" },
+        });
+
+        expect(launch?.href).toContain("/activity/vocab-sep-w1");
+        expect(launch?.href).toContain("ui=flashcards");
+        expect(launch?.href).toContain("assignment=cmpyyjgj7000p0e757m5m31hy");
+        expect(launch?.href).toContain("returnTo=%2Fdashboard%2Fmap");
+        expect(launch?.weekNumber).toBe(1);
+    });
+
     it("builds a launch href with map returnTo for the next grammar guide", () => {
         const enriched = enrichCourseMapUnitsWithGrammarIdMap(mockUnits, {
             "welcome-back-tenses-review": "welcome-back-tenses-review-guide",

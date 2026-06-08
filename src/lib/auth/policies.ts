@@ -47,3 +47,8 @@ export function canManageActivity(
 ): boolean {
     return admin || createdBy === user.id;
 }
+
+/** Any teacher may assign shared curriculum activities to their classes. */
+export function canAssignActivity(user: SessionUser): boolean {
+    return canUseTeacherTools(user);
+}

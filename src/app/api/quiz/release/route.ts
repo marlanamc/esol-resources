@@ -31,16 +31,11 @@ export async function POST(request: Request) {
             id: activityId,
             deletedAt: null,
         },
-        select: { content: true, title: true, createdBy: true }
+        select: { content: true, title: true }
     });
 
     if (!activity) {
         return ApiErrors.notFound("Activity", activityId);
-    }
-
-    // SECURITY: Verify teacher owns this activity (or it's a shared/system activity with null createdBy)
-    if (!admin && activity.createdBy && activity.createdBy !== userId) {
-        return ApiErrors.forbidden("You can only release quizzes you created");
     }
 
     await prisma.activity.update({

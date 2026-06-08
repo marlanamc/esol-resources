@@ -5,7 +5,7 @@ import {
   vocabUnits,
   displayTitle,
   getVocabUnitNumberFromActivity,
-  getVocabUnitBadgeLabel,
+  getVocabLevelBadgeLabel,
   getVocabThemeChip,
   cleanVocabTerm,
   dedupeVocabTerms,
@@ -2176,7 +2176,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                             const showProgressState = hasProgress && !isGameCard;
                                             const texture = getActivityTextureForCard(activity, section.label || '');
                                             const cardTitle = displayTitle(activity.title);
-                                            const vocabUnitBadge = filterCategory === 'vocabulary' ? getVocabUnitBadgeLabel(activity) : null;
+                                            const vocabUnitBadge = filterCategory === 'vocabulary' ? getVocabLevelBadgeLabel(activity) : null;
                                             const grammarCopy = getGrammarChipCopyForActivity(activity);
                                             const hasGrammarVisual = hasGrammarGuideVisual(activity.title);
                                             const cardMeta = activityCardMetaById.get(activity.id);
@@ -2597,7 +2597,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                                             const showProgressState = hasProgress && !isGameCard;
                                                                                             const texture = getActivityTextureForCard(activity, subSubCategory.name);
                                                                                             const cardTitle = displayTitle(activity.title);
-                                                                                            const vocabUnitBadge = filterCategory === 'vocabulary' ? getVocabUnitBadgeLabel(activity) : null;
+                                                                                            const vocabUnitBadge = filterCategory === 'vocabulary' ? getVocabLevelBadgeLabel(activity) : null;
                                                                                             const grammarCopy = getGrammarChipCopyForActivity(activity);
                                                                                             const hasGrammarVisual = hasGrammarGuideVisual(activity.title);
                                                                                             const points = getActivityPoints(activity.type, { id: activity.id, ui: activity.ui ?? undefined, content: activity.content ?? undefined });

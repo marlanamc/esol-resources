@@ -16,7 +16,6 @@ import { usePathname } from "next/navigation";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { useCurrentAppHref } from "@/hooks/useCurrentAppHref";
 import { withReturnTo } from "@/lib/learner-navigation";
-import { buildActivityHref } from "@/lib/learner/navigation";
 import { ActivityTimeline, type TimelineItem, type TimelineStatus } from "@/components/dashboard/ActivityTimeline";
 import type { CourseMapActivity, CourseMapActivityType, CourseMapUnit } from "@/lib/course-map";
 import type { CourseMapProgressState } from "@/lib/course-map-progress";
@@ -29,6 +28,7 @@ import {
 } from "@/lib/course-map-hero";
 import { courseMapUnitToneStyle, getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
 import {
+    buildMapActivityHref,
     buildMapReturnHref,
     COURSE_MAP_OPEN_WEEK_EVENT,
     type CourseMapOpenWeekDetail,
@@ -230,15 +230,8 @@ function buildWeekTimelineItems(
             let href = "/dashboard/map";
 
             if (isActionable) {
-                if (activity.href) {
-                    href = withReturnTo(activity.href, returnHref);
-                } else if (activity.activityId) {
-                    let base = buildActivityHref(activity.activityId, assignment?.assignmentId);
-                    if (activity.vocabUi) {
-                        const url = new URL(base, "https://x");
-                        url.searchParams.set("ui", activity.vocabUi);
-                        base = `${url.pathname}${url.search}`;
-                    }
+                const base = buildMapActivityHref(activity, assignment?.assignmentId);
+                if (base) {
                     href = withReturnTo(base, returnHref);
                 }
             }

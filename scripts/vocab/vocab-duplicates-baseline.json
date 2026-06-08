@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "generatedAt": "2026-06-08T00:00:00.000Z",
+  "scope": "scripts/vocab/weekly-vocab-data.js",
+  "note": "Cross-week duplicate normalized terms. Daily Vocab merges these into one VocabCard; baseline prevents accidental new duplicates during authoring.",
+  "duplicateTerms": [
+    "achieve",
+    "advocate",
+    "avoid",
+    "balance",
+    "career",
+    "compare",
+    "exercise",
+    "experience",
+    "follow up",
+    "improve",
+    "listen",
+    "log in",
+    "maintain",
+    "prevent",
+    "recommend",
+    "report",
+    "request",
+    "required",
+    "resolve",
+    "result",
+    "review",
+    "rule",
+    "schedule",
+    "sign",
+    "submit"
+  ]
+}

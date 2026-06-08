@@ -5,6 +5,10 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { isAdmin } from "@/lib/roles";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
+import {
+    buildTeacherActivitiesWhere,
+    filterTeacherBrowsableActivities,
+} from "@/lib/teacher-activities";
 import { TeacherActivityCategories } from "@/components/dashboard";
 
 export const metadata = { title: "Activities | Class Companion" };
@@ -19,9 +23,7 @@ export default async function TeachActivitiesPage() {
     const [activitiesRaw, classes] = await Promise.all([
         withPrismaReadRetry(() =>
             prisma.activity.findMany({
-                where: admin
-                    ? { deletedAt: null }
-                    : { deletedAt: null, createdBy: userId },
+                where: buildTeacherActivitiesWhere(),
                 select: {
                     id: true,
                     title: true,
@@ -53,7 +55,9 @@ export default async function TeachActivitiesPage() {
         ),
     ]);
 
-    const visibleActivities = collapseEdPronunciationActivities(activitiesRaw);
+    const visibleActivities = collapseEdPronunciationActivities(
+        filterTeacherBrowsableActivities(activitiesRaw)
+    );
 
     const allAssignments = classes.flatMap((c) => c.assignments);
     const featuredAssignments = allAssignments.filter((a) => a.isFeatured);

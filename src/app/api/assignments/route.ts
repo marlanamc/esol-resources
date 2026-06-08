@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { canManageActivity, canManageClass } from "@/lib/policies";
+import { canAssignActivity, canManageClass } from "@/lib/policies";
 import { AssignmentPatchBodySchema, AssignmentPostBodySchema, parseApiBody } from "@/lib/api-schemas";
 import { ApiErrors } from "@/lib/api-response";
 import { requireTeacher } from "@/lib/api-auth";
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
             return ApiErrors.notFound("Activity", activityId);
         }
 
-        if (!canManageActivity(teacherCheck.user, admin, activity.createdBy)) {
+        if (!canAssignActivity(teacherCheck.user)) {
             return ApiErrors.forbidden();
         }
 

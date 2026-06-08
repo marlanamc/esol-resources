@@ -21,6 +21,7 @@ import {
     ExploreCategoriesCarousel,
     AllActivitiesCategoriesPanel,
     DashboardWelcomeHeader,
+    PinnedDailyHabitRow,
 } from "@/components/dashboard";
 import { DashboardResumeHero } from "@/components/dashboard/DashboardResumeHero";
 import { DashboardNextStepFallbackCard } from "@/components/dashboard/DashboardNextStepFallbackCard";
@@ -34,6 +35,7 @@ import { AdminViewSwitcher } from "@/components/dashboard/AdminViewSwitcher";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { persistLearnerPreview } from "@/lib/learner-preview";
 import { canUseTeacherTools } from "@/lib/roles";
+import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 
 type StudentEnrollment = {
     classId: string;
@@ -449,9 +451,10 @@ export default async function DashboardPage() {
     ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     const firstClassId = enrollments[0]?.classId;
-    const [studentLeaderboard, momentumSnapshot] = await Promise.all([
+    const [studentLeaderboard, momentumSnapshot, dailyVocabHabit] = await Promise.all([
         firstClassId ? getTimeframedLeaderboard("week", 20, firstClassId) : Promise.resolve([]),
         getStudentMomentumSnapshot(userId),
+        getDailyVocabHabitForUser(prisma, userId),
     ]);
     const studentEntry = studentLeaderboard.find((e) => e.id === userId);
     const studentLeaderboardRank = studentEntry?.rank ?? null;
@@ -472,6 +475,11 @@ export default async function DashboardPage() {
                         <ClassAnnouncement announcements={classAnnouncements} />
                         {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
                         <DashboardResumeHero user={{ id: userId, role: userRole }} fallback={nextStepFallback} />
+                        {dailyVocabHabit ? (
+                            <section aria-label="Daily vocab review">
+                                <PinnedDailyHabitRow habit={dailyVocabHabit} compact ctaVariant="vocabulary" />
+                            </section>
+                        ) : null}
                         {newThisWeekItems.length > 0 ? (
                             <NewThisWeekSection items={newThisWeekItems} />
                         ) : (

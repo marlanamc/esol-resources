@@ -22,7 +22,8 @@ import {
     getIndependentNewActivityCards,
 } from "@/lib/independent-learning";
 import { getWeeklyGoalProgress } from "@/lib/independent-progress";
-import { DashboardResumeHero, ExploreCategoriesCarousel, AllActivitiesCategoriesPanel, MomentumCard, NewThisWeekSection, DashboardWelcomeHeader } from "@/components/dashboard";
+import { DashboardResumeHero, ExploreCategoriesCarousel, AllActivitiesCategoriesPanel, MomentumCard, NewThisWeekSection, DashboardWelcomeHeader, PinnedDailyHabitRow } from "@/components/dashboard";
+import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 
 export default async function IndependentDashboardPage() {
     const session = await getServerSession(authOptions);
@@ -274,6 +275,7 @@ export default async function IndependentDashboardPage() {
     const studentEntry = independentLeaderboard.find((entry) => entry.id === userId);
     const studentLeaderboardRank = studentEntry?.rank ?? null;
     const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
+    const dailyVocabHabit = await getDailyVocabHabitForUser(prisma, userId);
 
     return (
         <div className="min-h-screen bg-bg">
@@ -297,6 +299,12 @@ export default async function IndependentDashboardPage() {
                         </div>
 
                         <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
+
+                        {dailyVocabHabit ? (
+                            <section aria-label="Daily vocab review">
+                                <PinnedDailyHabitRow habit={dailyVocabHabit} compact ctaVariant="vocabulary" />
+                            </section>
+                        ) : null}
 
                         <NewThisWeekSection items={newThisWeekItems} subtitle={null} />
 

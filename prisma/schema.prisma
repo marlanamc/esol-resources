@@ -348,6 +348,7 @@ model VocabCard {
   term           String
   normalizedTerm String                 @unique
   definition     String
+  pos            String?
   example        String?
   audioPath      String?
   sourceKeys     String[]

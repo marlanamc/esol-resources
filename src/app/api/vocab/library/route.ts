@@ -3,10 +3,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { requireAuth } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
+import { VOCAB_LIBRARY_TOPICS } from "@/lib/vocab/library-topics";
 import {
-  VOCAB_LIBRARY_TOPICS,
-  isVocabLibraryTopicSlug,
-} from "@/lib/vocab/library-topics";
+  filterVocabLibraryCards,
+  parseVocabLibrarySort,
+  resolveVocabLibraryTopicSlug,
+  sortVocabLibraryCards,
+} from "@/lib/vocab/library";
 import { logger } from "@/lib/logger";
 
 function noStoreJson<T>(data: T, status = 200) {
@@ -21,9 +24,12 @@ export async function GET(request: NextRequest) {
   const authErr = requireAuth(session);
   if (authErr) return authErr;
 
-  const topic = request.nextUrl.searchParams.get("topic");
+  const topicParam = request.nextUrl.searchParams.get("topic");
+  const sortParam = request.nextUrl.searchParams.get("sort");
+  const selectedSlug = resolveVocabLibraryTopicSlug(topicParam);
+  const sort = parseVocabLibrarySort(sortParam);
 
-  if (topic && !isVocabLibraryTopicSlug(topic)) {
+  if (topicParam && topicParam !== "all" && selectedSlug === null) {
     return noStoreJson({ error: "Unknown topic" }, 400);
   }
 
@@ -34,8 +40,10 @@ export async function GET(request: NextRequest) {
         term: true,
         definition: true,
         example: true,
+        pos: true,
         audioPath: true,
         topics: true,
+        sortOrder: true,
       },
       orderBy: { sortOrder: "asc" },
     });
@@ -48,25 +56,27 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    const words = topic
-      ? allCards
-          .filter((c) => c.topics.includes(topic))
-          .map((c) => ({
-            id: c.id,
-            term: c.term,
-            definition: c.definition,
-            example: c.example,
-            audioPath: c.audioPath,
-            topics: c.topics,
-          }))
-      : [];
+    const words = sortVocabLibraryCards(
+      filterVocabLibraryCards(allCards, selectedSlug),
+      sort
+    ).map((c) => ({
+      id: c.id,
+      term: c.term,
+      definition: c.definition,
+      example: c.example,
+      pos: c.pos,
+      audioPath: c.audioPath,
+      topics: c.topics,
+    }));
 
     return noStoreJson({
       topics: VOCAB_LIBRARY_TOPICS.map((t) => ({
         ...t,
         count: counts[t.slug] ?? 0,
       })),
-      selectedTopic: topic,
+      totalCount: allCards.length,
+      selectedTopic: selectedSlug ?? (topicParam === "all" || !topicParam ? "all" : null),
+      sort,
       words,
     });
   } catch (error) {

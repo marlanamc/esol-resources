@@ -2,11 +2,11 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
-import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
-import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
+import { getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { logger } from '@/lib/logger';
 import { parseActivityContent } from '@/types/activity';
-import { buildGameLibrarySections, isGamesLibraryActivity } from '@/lib/games-library';
+import { buildGameLibrarySections, isCourseMapOnlyGame, isGamesLibraryActivity } from '@/lib/games-library';
+import { displayTitle, vocabUnits } from '@/components/dashboard/activity-categories-vocab-utils';
 
 interface Activity {
     id: string;
@@ -60,23 +60,6 @@ interface ActivityCardProps {
     defaultClassId: string | null;
 }
 
-const vocabCycle1 = [
-    { id: 'september', label: 'Unit 1: September: Getting to Know You' },
-    { id: 'october', label: 'Unit 2: October: Daily Life in the Community' },
-    { id: 'november', label: 'Unit 3: November: Community Participation' },
-    { id: 'december', label: 'Unit 4: December: Consumer Smarts' },
-    { id: 'january', label: 'Unit 5: January: Housing' },
-];
-
-// Group Cycle 2 (Units 6-10) by unit number
-const vocabUnits = [
-    { unitNum: 6, label: 'Unit 6: February - Workforce Preparation', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('feb-')) },
-    { unitNum: 7, label: 'Unit 7: March - Career Awareness', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('mar-')) },
-    { unitNum: 8, label: 'Unit 8: April - Health', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('apr-')) },
-    { unitNum: 9, label: 'Unit 9: May - Holistic Wellness', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('may-')) },
-    { unitNum: 10, label: 'Unit 10: June - Future Academic Goals', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('jun-')) },
-];
-
 const parseTitleDateMs = (title?: string | null) => {
     if (!title) return null;
     const match = title.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2})\s*:/);
@@ -123,14 +106,6 @@ const parseWeekNumFromTitle = (title?: string | null): number | null => {
     const match = title.match(/Week\s*(\d+)/i);
     return match ? Number(match[1]) : null;
 };
-
-const displayTitle = (title: string) =>
-    stripVocabTypeSuffix(
-        title
-            .replace(/\s*-\s*Complete Step-by-Step Guide\s*$/i, ' Guide')
-            .replace(/\s*-\s*Complete Guide\s*$/i, ' Guide')
-            .trim()
-    );
 
 const ActivityCard = React.memo(function ActivityCard({
     activity,
@@ -627,105 +602,193 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
         ];
     }, [activities]);
 
-    const buildGameSubCategories = useCallback((): SubCategory[] => {
-        const gameActivities = activities.filter(isGamesLibraryActivity);
-        return buildGameLibrarySections(gameActivities, (title) => displayTitle(title || ''));
+    const activityIndex = useMemo(() => {
+        const vocabById = new Map<string, Activity>();
+        const games: Activity[] = [];
+        const courseMapGames: Activity[] = [];
+        const reading: Activity[] = [];
+        const writing: Activity[] = [];
+        const pronunciation: Activity[] = [];
+        const speaking: Activity[] = [];
+        const quizzes: Activity[] = [];
+
+        for (const activity of activities) {
+            const category = (activity.category || '').toLowerCase();
+
+            if (activity.id.startsWith('vocab-')) {
+                vocabById.set(activity.id, activity);
+            }
+
+            if (isCourseMapOnlyGame(activity)) {
+                courseMapGames.push(activity);
+            } else if (isGamesLibraryActivity(activity)) {
+                games.push(activity);
+            }
+
+            if (category === 'reading' || category === 'writing-reading') {
+                reading.push(activity);
+            }
+
+            if (category === 'writing' || category === 'writing-reading') {
+                writing.push(activity);
+            }
+
+            if (
+                category === 'pronunciation' ||
+                activity.ui === 'ed-pronunciation' ||
+                activity.ui === 'minimal-pairs' ||
+                activity.ui === 'pronunciation-listening'
+            ) {
+                pronunciation.push(activity);
+            }
+
+            if (category === 'speaking') {
+                speaking.push(activity);
+            }
+
+            if (category === 'quizzes') {
+                quizzes.push(activity);
+            }
+        }
+
+        return {
+            vocabById,
+            games,
+            courseMapGames,
+            reading,
+            writing,
+            pronunciation,
+            speaking: [...speaking].sort(compareByTitleDateAsc),
+            quizzes: [...quizzes].sort((a, b) => {
+                const aVerb = parseVerbQuizNum(a);
+                const bVerb = parseVerbQuizNum(b);
+                if (aVerb !== null && bVerb !== null) return aVerb - bVerb;
+                if (aVerb !== null) return -1;
+                if (bVerb !== null) return 1;
+
+                const aWeek = parseWeekNumFromTitle(a.title) ?? 999;
+                const bWeek = parseWeekNumFromTitle(b.title) ?? 999;
+                if (aWeek !== bWeek) return aWeek - bWeek;
+                return (a.title || '').localeCompare(b.title || '');
+            }),
+        };
     }, [activities]);
+
+    const buildGameSubCategories = useCallback((): SubCategory[] => {
+        const sections = buildGameLibrarySections(activityIndex.games, (title) => displayTitle(title || ''));
+        if (activityIndex.courseMapGames.length > 0) {
+            sections.push({
+                name: 'Course Map',
+                activities: [...activityIndex.courseMapGames].sort((a, b) =>
+                    displayTitle(a.title || '').localeCompare(displayTitle(b.title || ''))
+                ),
+            });
+        }
+        return sections;
+    }, [activityIndex.courseMapGames, activityIndex.games]);
+
+    const collectCategoryActivityIds = useCallback((categoryList: Category[]) => {
+        const ids = new Set<string>();
+
+        const collectActivities = (list: Activity[]) => {
+            for (const activity of list) {
+                ids.add(activity.id);
+            }
+        };
+
+        for (const category of categoryList) {
+            collectActivities(category.activities);
+            for (const subCategory of category.subCategories ?? []) {
+                collectActivities(subCategory.activities);
+                for (const subSubCategory of subCategory.subCategories ?? []) {
+                    collectActivities(subSubCategory.activities);
+                }
+            }
+        }
+
+        return ids;
+    }, []);
 
     // Organize activities by top-level categories with subcategories
     const categories = useMemo((): Category[] => {
-        return [
+        const baseCategories: Category[] = [
             {
                 name: 'Vocabulary',
                 color: '#f4a261', // warm orange
                 subCategories: [
                     {
                         name: 'Daily Review',
-                        activities: activities.filter((a: Activity) => a.id === 'vocab-daily-review')
+                        activities: [activityIndex.vocabById.get('vocab-daily-review')].filter(
+                            (activity): activity is Activity => Boolean(activity)
+                        ),
                     },
-                    {
-                        name: 'Cycle 1',
-                        activities: vocabCycle1.flatMap(month =>
-                            activities.filter((a: Activity) => a.id === `vocab-${month.id}`)
-                        )
-                    },
-                    ...vocabUnits.map(unit => {
-                        // Create a sub-category for each unit (6-10) with its weeks as nested sub-categories
-                        return {
-                            name: unit.label,
-                            activities: [],
-                            subCategories: unit.weeks.map(week => {
-                                const weekActivities = activities.filter((a: Activity) => a.id === `vocab-${week.id}`);
-                                return {
-                                    name: week.label,
-                                    activities: weekActivities
-                                };
-                            })
-                        };
-                    })
+                    ...vocabUnits.map((unit) => ({
+                        name: unit.label,
+                        activities: [],
+                        subCategories: unit.weeks.map((week) => ({
+                            name: week.label,
+                            activities: [activityIndex.vocabById.get(`vocab-${week.id}`)].filter(
+                                (activity): activity is Activity => Boolean(activity)
+                            ),
+                        })),
+                    })),
                 ],
-                activities: []
+                activities: [],
             },
             {
                 name: 'Grammar',
                 color: '#e76f51', // coral/terracotta
                 subCategories: buildGrammarSubCategories(),
-                activities: []
+                activities: [],
             },
             {
                 name: 'Games',
                 color: '#f97316', // orange
                 subCategories: buildGameSubCategories(),
-                activities: []
+                activities: [],
             },
             {
                 name: 'Reading',
                 color: '#2a9d8f', // teal
-                activities: activities.filter((a: Activity) => a.category === 'reading' || a.category === 'writing-reading')
+                activities: activityIndex.reading,
             },
             {
                 name: 'Writing',
                 color: '#7ba884', // sage green
-                activities: activities.filter((a: Activity) => a.category === 'writing' || a.category === 'writing-reading')
+                activities: activityIndex.writing,
             },
             {
                 name: 'Pronunciation',
                 color: '#6a4c93', // purple
-                activities: activities.filter((a: Activity) =>
-                    a.category === 'pronunciation' ||
-                    a.ui === 'ed-pronunciation' ||
-                    a.ui === 'minimal-pairs' ||
-                    a.ui === 'pronunciation-listening'
-                )
+                activities: activityIndex.pronunciation,
             },
             {
                 name: 'Speaking',
                 color: '#e09f3e', // gold/amber
-                activities: activities
-                    .filter((a: Activity) => a.category === 'speaking')
-                    .sort(compareByTitleDateAsc)
+                activities: activityIndex.speaking,
             },
             {
                 name: 'Quizzes',
                 color: '#c86b51', // terracotta
-                activities: activities.filter((a: Activity) => a.category === 'quizzes')
-                    .sort((a: Activity, b: Activity) => {
-                        // Verb quizzes first, in ascending order (Verb Quiz 1..20)
-                        const aVerb = parseVerbQuizNum(a);
-                        const bVerb = parseVerbQuizNum(b);
-                        if (aVerb !== null && bVerb !== null) return aVerb - bVerb;
-                        if (aVerb !== null) return -1;
-                        if (bVerb !== null) return 1;
-
-                        // Otherwise, sort by week number if present, else fallback to title
-                        const aWeek = parseWeekNumFromTitle(a.title) ?? 999;
-                        const bWeek = parseWeekNumFromTitle(b.title) ?? 999;
-                        if (aWeek !== bWeek) return aWeek - bWeek;
-                        return (a.title || '').localeCompare(b.title || '');
-                    })
-            }
+                activities: activityIndex.quizzes,
+            },
         ];
-    }, [activities, buildGrammarSubCategories, buildGameSubCategories]);
+
+        const placedIds = collectCategoryActivityIds(baseCategories);
+        const uncategorized = activities
+            .filter((activity) => !placedIds.has(activity.id))
+            .sort((a, b) => displayTitle(a.title || '').localeCompare(displayTitle(b.title || '')));
+
+        if (uncategorized.length > 0) {
+            baseCategories.push({
+                name: 'Other',
+                color: '#64748b',
+                activities: uncategorized,
+            });
+        }
+
+        return baseCategories;
+    }, [activities, activityIndex, buildGrammarSubCategories, buildGameSubCategories, collectCategoryActivityIds]);
 
     const renderActivityCard = useCallback((activity: Activity) => {
         const isGrammarGuide = activity.type === 'guide' && activity.category === 'grammar';
