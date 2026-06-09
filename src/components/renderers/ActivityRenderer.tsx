@@ -60,6 +60,7 @@ const TriviaGame = dynamic(() => import("../games/TriviaGame"), { loading: Activ
 const GrammarHospitalGame = dynamic(() => import("../games/GrammarHospitalGame"), { loading: ActivityLoadingFallback });
 const ComparisonBattleGame = dynamic(() => import("../games/ComparisonBattleGame"), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("../activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
+const VerbSpeedRoundGame = dynamic(() => import("../games/VerbSpeedRoundGame").then(m => ({ default: m.VerbSpeedRoundGame })), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("../activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
 const VocabularyRenderer = dynamic(() => import("../activities/VocabularyRenderer"), { loading: ActivityLoadingFallback });
 const TimedWritingRenderer = dynamic(() => import("../activities/TimedWritingRenderer"), { loading: ActivityLoadingFallback });
@@ -253,6 +254,8 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid Grammar Hospital content.</div>;
                     case "comparison-battle":
                         return <ComparisonBattleGame activityId={activity.id} assignmentId={assignmentId} variant="embedded" />;
+                    case "verb-speed-round":
+                        return <VerbSpeedRoundGame activityId={activity.id} />;
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }

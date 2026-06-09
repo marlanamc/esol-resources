@@ -109,6 +109,7 @@
     "import:guided-wrappers": "npx tsx scripts/import/sync-guided-course-map-wrappers.ts",
     "import:time-indicators": "npx tsx scripts/import/import-time-indicators-game.ts",
     "delete:verb-quizzes": "npx tsx scripts/import/delete-verb-quizzes.ts",
+    "import:verb-speed-round": "npx tsx scripts/import/import-verb-speed-round.ts",
     "audio:minimal-pairs": "npx tsx scripts/content/generate-minimal-pairs-audio.ts",
     "audio:pronunciation-sentences": "npx tsx scripts/content/generate-pronunciation-sentence-audio.ts",
     "push:generate-vapid": "node -e \"const webpush=require('web-push');const v=webpush.generateVAPIDKeys();console.log('VAPID_PUBLIC_KEY='+v.publicKey);console.log('VAPID_PRIVATE_KEY='+v.privateKey);\""

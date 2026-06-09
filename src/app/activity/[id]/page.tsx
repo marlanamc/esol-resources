@@ -122,7 +122,8 @@ export default async function ActivityPage({ params, searchParams }: Props) {
             gameUi === "parts-of-speech" ||
             gameUi === "emotion-spin-wheel" ||
             gameUi === "cafe-catch-up" ||
-            gameUi === "grammar-hospital"
+            gameUi === "grammar-hospital" ||
+            gameUi === "verb-speed-round"
         )
     ) {
         return renderImmersiveActivity(

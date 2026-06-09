@@ -697,6 +697,15 @@ export async function POST(request: NextRequest) {
                 }
 
                 points = sessionPoints;
+            } else if (activityGameUi === 'verb-speed-round') {
+                if (sanitizedAccuracy === 100) {
+                    points = POINTS.VERB_SPEED_ROUND_PERFECT;
+                } else if (sanitizedAccuracy !== undefined && sanitizedAccuracy >= 90) {
+                    points = POINTS.VERB_SPEED_ROUND_HIGH;
+                } else {
+                    points = POINTS.VERB_SPEED_ROUND;
+                }
+                activityTypeLabel = 'Verb Speed Round';
             } else if (activityGameUi === 'timeline-tenses') {
                 if (isTimeSignalsRound) {
                     points = POINTS.TIMELINE_TENSES_TIME_SIGNALS;

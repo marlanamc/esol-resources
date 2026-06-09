@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "cafe-catch-up" | "trivia-game" | "grammar-hospital" | "comparison-battle" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "pronunciation-listening" | "irregular-verbs" | "gerund-infinitive" | "timeline-tenses" | "parts-of-speech" | "emotion-spin-wheel" | "cafe-catch-up" | "trivia-game" | "grammar-hospital" | "comparison-battle" | "verb-speed-round" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -38,6 +38,8 @@ function gameUiFromJsonType(parsed: unknown): GameUi | null {
       return "grammar-hospital";
     case "comparison-battle":
       return "comparison-battle";
+    case "verb-speed-round":
+      return "verb-speed-round";
     default:
       return null;
   }
@@ -70,6 +72,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "trivia-game" || ui === "trivia" || ui === "group-trivia") return "trivia-game";
     if (ui === "grammar-hospital" || ui === "grammar-doctor" || ui === "fix-the-sentence") return "grammar-hospital";
     if (ui === "comparison-battle" || ui === "comparatives-superlatives" || ui === "comparative-superlative") return "comparison-battle";
+    if (ui === "verb-speed-round" || ui === "speed-round" || ui === "verb-speed") return "verb-speed-round";
   }
 
   if (typeof content === "string") {
@@ -130,6 +133,8 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
         return POINTS.GRAMMAR_HOSPITAL;
       case "comparison-battle":
         return POINTS.ACTIVITY_COMPLETION;
+      case "verb-speed-round":
+        return POINTS.VERB_SPEED_ROUND;
       default:
         return POINTS.ACTIVITY_COMPLETION;
     }
