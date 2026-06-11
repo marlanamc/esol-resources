@@ -9,6 +9,7 @@
  */
 
 import { NextResponse } from 'next/server';
+import * as Sentry from '@sentry/nextjs';
 import { ValidationError } from '@/lib/validators';
 import { logger } from '@/lib/logger';
 
@@ -118,6 +119,12 @@ export function handleApiError(
             path: context?.path,
         });
 
+        if (process.env.NODE_ENV === 'production') {
+            Sentry.captureException(error, {
+                extra: { userId: context?.userId, path: context?.path },
+            });
+        }
+
         // In development, return detailed error
         if (process.env.NODE_ENV === 'development') {
             return apiError(error.message, 500, 'INTERNAL_ERROR', undefined, {
@@ -135,6 +142,13 @@ export function handleApiError(
         userId: context?.userId,
         path: context?.path,
     });
+
+    if (process.env.NODE_ENV === 'production') {
+        Sentry.captureMessage(`Unknown API error: ${String(error)}`, {
+            level: 'error',
+            extra: { userId: context?.userId, path: context?.path },
+        });
+    }
 
     return apiError(defaultMessage, 500, 'UNKNOWN_ERROR');
 }

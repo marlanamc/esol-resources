@@ -4,8 +4,20 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { ANIMAL_GROUPS } from "@/lib/writing-session";
 import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { handleApiError } from "@/lib/api-response";
 
 export async function GET(request: NextRequest) {
+    try {
+        return await handleGet(request);
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to load active writing session",
+            path: "/api/writing-session/active",
+        });
+    }
+}
+
+async function handleGet(request: NextRequest) {
     const session = await getServerSession(authOptions);
     if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 

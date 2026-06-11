@@ -6,7 +6,7 @@ import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWO
 import { createAuditLogger } from "@/lib/audit-log";
 import { isAdmin } from "@/lib/roles";
 import { checkRateLimit, authRateLimitKey } from "@/lib/rate-limit";
-import { ApiErrors, apiSuccess, apiError } from "@/lib/api-response";
+import { ApiErrors, apiSuccess, apiError, handleApiError } from "@/lib/api-response";
 import { requireTeacher } from "@/lib/api-auth";
 
 export async function POST(request: Request) {
@@ -31,91 +31,99 @@ export async function POST(request: Request) {
         return teacherCheck.response;
     }
 
-    const { userId, newPassword } = await request.json();
-    const admin = isAdmin(teacherCheck.user);
+    try {
+        const { userId, newPassword } = await request.json();
+        const admin = isAdmin(teacherCheck.user);
 
-    if (!userId || typeof userId !== "string") {
-        return apiError("userId is required", 400);
-    }
+        if (!userId || typeof userId !== "string") {
+            return apiError("userId is required", 400);
+        }
 
-    // SECURITY: Validate password length (min and max)
-    if (!newPassword || typeof newPassword !== "string") {
-        return apiError("Invalid password format.", 400);
-    }
+        // SECURITY: Validate password length (min and max)
+        if (!newPassword || typeof newPassword !== "string") {
+            return apiError("Invalid password format.", 400);
+        }
 
-    if (newPassword.length < MIN_PASSWORD_LENGTH) {
-        return apiError(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`, 400);
-    }
+        if (newPassword.length < MIN_PASSWORD_LENGTH) {
+            return apiError(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`, 400);
+        }
 
-    if (newPassword.length > MAX_PASSWORD_LENGTH) {
-        return apiError(`Password must not exceed ${MAX_PASSWORD_LENGTH} characters.`, 400);
-    }
-    if (isDisallowedPassword(newPassword)) {
-        return apiError(DEFAULT_PASSWORD_BLOCKED_MESSAGE, 400);
-    }
+        if (newPassword.length > MAX_PASSWORD_LENGTH) {
+            return apiError(`Password must not exceed ${MAX_PASSWORD_LENGTH} characters.`, 400);
+        }
+        if (isDisallowedPassword(newPassword)) {
+            return apiError(DEFAULT_PASSWORD_BLOCKED_MESSAGE, 400);
+        }
 
-    const user = await prisma.user.findUnique({
-        where: { id: userId },
-        select: { id: true, role: true, isSystemAccount: true },
-    });
+        const user = await prisma.user.findUnique({
+            where: { id: userId },
+            select: { id: true, role: true, isSystemAccount: true },
+        });
 
-    if (!user) {
-        return ApiErrors.notFound("User", userId);
-    }
+        if (!user) {
+            return ApiErrors.notFound("User", userId);
+        }
 
-    if (user.role !== "student") {
-        return apiError("Only student passwords can be changed here", 400);
-    }
-    if (user.isSystemAccount) {
-        return apiError("System accounts cannot be updated here", 400);
-    }
+        if (user.role !== "student") {
+            return apiError("Only student passwords can be changed here", 400);
+        }
+        if (user.isSystemAccount) {
+            return apiError("System accounts cannot be updated here", 400);
+        }
 
-    // SECURITY: Verify teacher owns this student (enrolled in one of their classes)
-    const enrollment = admin
-        ? { id: "admin-access" }
-        : await prisma.classEnrollment.findFirst({
-            where: {
-                studentId: userId,
-                status: "active",
-                class: { teacherId: teacherCheck.user.id },
-                student: {
-                    isSystemAccount: false,
+        // SECURITY: Verify teacher owns this student (enrolled in one of their classes)
+        const enrollment = admin
+            ? { id: "admin-access" }
+            : await prisma.classEnrollment.findFirst({
+                where: {
+                    studentId: userId,
+                    status: "active",
+                    class: { teacherId: teacherCheck.user.id },
+                    student: {
+                        isSystemAccount: false,
+                    },
                 },
+            });
+
+        if (!enrollment) {
+            audit.failure(
+                'admin.unauthorized_student_access',
+                teacherCheck.user.id,
+                teacherCheck.user.role || "teacher",
+                `Teacher attempted to reset password for student not in their classes: ${userId}`
+            );
+            return ApiErrors.forbidden("Access denied - student not in your classes");
+        }
+
+        // SECURITY: Use industry-standard bcrypt rounds (12 in 2025)
+        const passwordHash = await bcrypt.hash(newPassword, BCRYPT_ROUNDS);
+
+        await prisma.user.update({
+            where: { id: userId },
+            data: {
+                password: passwordHash,
+                mustChangePassword: false,
             },
         });
 
-    if (!enrollment) {
-        audit.failure(
-            'admin.unauthorized_student_access',
+        // AUDIT: Log password reset action
+        audit.success(
+            'user.password_reset',
             teacherCheck.user.id,
             teacherCheck.user.role || "teacher",
-            `Teacher attempted to reset password for student not in their classes: ${userId}`
+            {
+                targetId: userId,
+                targetType: 'user',
+                metadata: { resetBy: 'teacher' }
+            }
         );
-        return ApiErrors.forbidden("Access denied - student not in your classes");
+
+        return apiSuccess(undefined, 200, "Password updated");
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to reset password",
+            userId: teacherCheck.user.id,
+            path: "/api/admin/reset-student-password",
+        });
     }
-
-    // SECURITY: Use industry-standard bcrypt rounds (12 in 2025)
-    const passwordHash = await bcrypt.hash(newPassword, BCRYPT_ROUNDS);
-
-    await prisma.user.update({
-        where: { id: userId },
-        data: {
-            password: passwordHash,
-            mustChangePassword: false,
-        },
-    });
-
-    // AUDIT: Log password reset action
-    audit.success(
-        'user.password_reset',
-        teacherCheck.user.id,
-        teacherCheck.user.role || "teacher",
-        {
-            targetId: userId,
-            targetType: 'user',
-            metadata: { resetBy: 'teacher' }
-        }
-    );
-
-    return apiSuccess(undefined, 200, "Password updated");
 }

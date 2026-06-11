@@ -44,6 +44,12 @@ export const JoinClassBodySchema = z.object({
   code: z.string().min(1, "Class code is required"),
 });
 
+export const GradeSubmissionBodySchema = z.object({
+  submissionId: z.string().min(1, "Submission ID is required"),
+  score: z.number().min(0, "Score must be between 0 and 100").max(100, "Score must be between 0 and 100").nullable().optional(),
+  feedback: z.string().nullable().optional(),
+});
+
 export const AssignmentPatchBodySchema = z
   .object({
     assignmentId: z.string().min(1, "Assignment ID is required"),

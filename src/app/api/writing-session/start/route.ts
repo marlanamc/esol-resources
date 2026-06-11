@@ -3,15 +3,27 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { handleApiError } from "@/lib/api-response";
 
 export async function POST(request: NextRequest) {
+    try {
+        return await handlePost(request);
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to start writing session",
+            path: "/api/writing-session/start",
+        });
+    }
+}
+
+async function handlePost(request: NextRequest) {
     const session = await getServerSession(authOptions);
     if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const userId = (session.user as { id: string }).id;
     if (!canUseTeacherTools(session.user)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-    const body = await request.json() as { activityId?: string; classId?: string };
+    const body = await request.json().catch(() => ({})) as { activityId?: string; classId?: string };
     const { activityId, classId } = body;
 
     if (!activityId || !classId) {

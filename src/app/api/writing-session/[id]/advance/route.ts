@@ -5,10 +5,22 @@ import { prisma } from "@/lib/prisma";
 import { chunkIntoGroups, ANIMAL_GROUPS, SESSION_POINTS } from "@/lib/writing-session";
 import { awardPoints } from "@/lib/gamification";
 import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { handleApiError } from "@/lib/api-response";
 
 interface Params { params: Promise<{ id: string }> }
 
 export async function POST(request: NextRequest, { params }: Params) {
+    try {
+        return await handlePost(request, { params });
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to advance writing session",
+            path: "/api/writing-session/[id]/advance",
+        });
+    }
+}
+
+async function handlePost(request: NextRequest, { params }: Params) {
     const session = await getServerSession(authOptions);
     if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 

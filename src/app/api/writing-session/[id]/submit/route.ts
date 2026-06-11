@@ -3,17 +3,29 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { countWords } from "@/lib/writing-session";
+import { handleApiError } from "@/lib/api-response";
 
 interface Params { params: Promise<{ id: string }> }
 
 export async function POST(request: NextRequest, { params }: Params) {
+    try {
+        return await handlePost(request, { params });
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to save submission",
+            path: "/api/writing-session/[id]/submit",
+        });
+    }
+}
+
+async function handlePost(request: NextRequest, { params }: Params) {
     const session = await getServerSession(authOptions);
     if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const userId = (session.user as { id: string }).id;
     const { id: sessionId } = await params;
 
-    const body = await request.json() as { text?: string };
+    const body = await request.json().catch(() => ({})) as { text?: string };
     const rawText = typeof body.text === "string" ? body.text : "";
     const text = rawText.slice(0, 5000);
     if (rawText.length > 5000) {

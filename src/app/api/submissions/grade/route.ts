@@ -3,7 +3,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { requireTeacher } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
-import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { ApiErrors, handleApiError } from "@/lib/api-response";
+import { parseApiBody, GradeSubmissionBodySchema } from "@/lib/api/schemas";
 
 export async function POST(request: NextRequest) {
     try {
@@ -14,12 +15,10 @@ export async function POST(request: NextRequest) {
         const { user, admin } = teacherCheck;
         const userId = user.id;
 
-        const body = await request.json();
-        const { submissionId, score, feedback } = body;
-
-        if (!submissionId) {
-            return apiError("Submission ID is required", 400);
-        }
+        const rawBody = await request.json().catch(() => null);
+        const parsed = parseApiBody(GradeSubmissionBodySchema, rawBody);
+        if (!parsed.ok) return parsed.response;
+        const { submissionId, score, feedback } = parsed.data;
 
         // Get submission with assignment and class
         const submission = await prisma.submission.findUnique({
@@ -42,16 +41,11 @@ export async function POST(request: NextRequest) {
             return ApiErrors.forbidden();
         }
 
-        // Validate score if provided
-        if (score !== null && (score < 0 || score > 100)) {
-            return apiError("Score must be between 0 and 100", 400);
-        }
-
-        // Update submission
+        // Update submission (undefined score leaves the existing value unchanged)
         const updated = await prisma.submission.update({
             where: { id: submissionId },
             data: {
-                score: score !== null ? score : null,
+                score,
                 feedback: feedback || null,
                 status: "graded",
             },

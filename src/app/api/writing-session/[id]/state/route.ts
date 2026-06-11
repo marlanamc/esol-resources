@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { ANIMAL_GROUPS } from "@/lib/writing-session";
+import { handleApiError } from "@/lib/api-response";
 
 interface Params { params: Promise<{ id: string }> }
 
@@ -43,7 +44,18 @@ async function autoAssignGroup(sessionId: string, userId: string): Promise<{ id:
     });
 }
 
-export async function GET(_request: NextRequest, { params }: Params) {
+export async function GET(request: NextRequest, { params }: Params) {
+    try {
+        return await handleGet(request, { params });
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to load writing session state",
+            path: "/api/writing-session/[id]/state",
+        });
+    }
+}
+
+async function handleGet(_request: NextRequest, { params }: Params) {
     const session = await getServerSession(authOptions);
     if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
@@ -106,6 +118,13 @@ export async function GET(_request: NextRequest, { params }: Params) {
     }
 
     // ── Student view ──────────────────────────────────────────────────────────
+
+    // Only students enrolled in the session's class may check in or be grouped.
+    const enrollment = await prisma.classEnrollment.findFirst({
+        where: { classId: ws.classId, studentId: userId, status: "active" },
+        select: { id: true },
+    });
+    if (!enrollment) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
     if (ws.status === "finished") {
         return NextResponse.json({ error: "Session has ended" }, { status: 403 });

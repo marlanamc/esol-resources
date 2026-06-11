@@ -3,10 +3,22 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { handleApiError } from "@/lib/api-response";
 
 interface Params { params: Promise<{ id: string }> }
 
-export async function POST(_request: NextRequest, { params }: Params) {
+export async function POST(request: NextRequest, { params }: Params) {
+    try {
+        return await handlePost(request, { params });
+    } catch (error) {
+        return handleApiError(error, {
+            defaultMessage: "Failed to end writing session",
+            path: "/api/writing-session/[id]/end",
+        });
+    }
+}
+
+async function handlePost(_request: NextRequest, { params }: Params) {
     const session = await getServerSession(authOptions);
     if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
