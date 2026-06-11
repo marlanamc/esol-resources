@@ -71,6 +71,17 @@ __pycache__/
 playwright-report/
 test-results/
 
+# local working artifacts (kept on disk, not versioned)
+/_legacy/
+/tmp/
+/audit/
+/exports/
+/outputs/
+design_handoff_*/
+/test-pos.ts
+/gerunds_inf
+/worksheet-names-list.txt
+
 # utility scripts and one-offs
 check-*.js
 reset-*.js
