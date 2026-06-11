@@ -1,16 +1,20 @@
-# Mini quiz quality audit
+# Answer integrity audit
 
-Generated: 2026-06-11T13:39:14.322Z
+Generated: 2026-06-11T13:38:59.209Z
+
+Rules:
+
+- `answer-leaked-in-question-stem` (error): the full answer sentence appears in the question stem.
+- `answer-recycled-from-explanation-text` (warning): the answer sentence appears verbatim in the guide's teaching text, so the item tests copying rather than production.
 
 ## Summary
 
-- Scope: Weeks 1–40 mini grammar guides
-- Guides reviewed: 37
-- Quiz questions reviewed: 185
-- Formatting / correctness errors: 0
-- Clarity warnings: 0
+- Guides reviewed: 38
+- Guides with findings: 0
+- Errors: 0
+- Warnings: 0
 
-## Guides with findings
+## Guides with findings (worst first)
 
 ## Clean guides
 
@@ -51,3 +55,4 @@ Generated: 2026-06-11T13:39:14.322Z
 - W34 all-four-conditionals-quick-tour
 - W35 gerunds-infinitives-full-review
 - W36 all-the-tenses-year-in-review
+- W0 medical-instructions-complete

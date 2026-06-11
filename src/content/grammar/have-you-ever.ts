@@ -167,8 +167,8 @@ export const haveYouEverContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Have", "you", "ever", "used", "the", "food", "pantry"],
-              correctAnswer: "Have you ever used the food pantry",
+              words: ["Have", "you", "ever", "visited", "city", "hall"],
+              correctAnswer: "Have you ever visited city hall",
             },
             {
               type: "word-scramble",
@@ -297,10 +297,10 @@ export const haveYouEverContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "You want to know if your coworker has experience volunteering at any point in his life.",
+              label: "You want to know if your coworker has experience donating blood at any point in his life.",
               options: [
-                { value: "a", label: "Did you volunteer last summer?" },
-                { value: "b", label: "Have you ever volunteered?" },
+                { value: "a", label: "Did you donate blood last summer?" },
+                { value: "b", label: "Have you ever donated blood?" },
               ],
               expectedAnswer: "b",
             },
@@ -589,11 +589,11 @@ export const haveYouEverContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "hye-q1",
-      question: "Your neighbor wants to know if you have any experience with the food pantry, at any time in your life. Which question should she ask?",
+      question: "Your neighbor wants to know if you have any experience with the night class, at any time in your life. Which question should she ask?",
       options: [
-        { value: "a", label: "Did you go to the food pantry last week?" },
-        { value: "b", label: "Have you ever used the food pantry?" },
-        { value: "c", label: "Do you use the food pantry?" },
+        { value: "a", label: "Did you go to the night class last week?" },
+        { value: "b", label: "Have you ever taken the night class?" },
+        { value: "c", label: "Do you take the night class?" },
       ],
       correctAnswer: "b",
       explanation: "Have you ever is for life experience with no specific time.",
@@ -632,8 +632,8 @@ export const haveYouEverContent: InteractiveGuideContent = {
       id: "hye-qws1",
       type: "word-scramble" as const,
       question: "Build the question by tapping the words in order.",
-      words: ["Have", "you", "ever", "used", "the", "food", "pantry"],
-      correctAnswer: "Have you ever used the food pantry",
+      words: ["Have", "you", "ever", "applied", "for", "a", "library", "card"],
+      correctAnswer: "Have you ever applied for a library card",
       hint: "Have + you + ever + V3",
       explanation: "Have you ever + V3 asks about life experience with no specific time.",
       topic: "present-perfect-experience",

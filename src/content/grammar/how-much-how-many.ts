@@ -424,11 +424,11 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Ana only sees a few ingredients on the label. Which is correct?",
+              label: "Ana only sees a few onions left in the bag. Which is correct?",
               options: [
-                { value: "a", label: "There aren't many ingredients." },
-                { value: "b", label: "There isn't many ingredients." },
-                { value: "c", label: "There aren't much ingredients." },
+                { value: "a", label: "There aren't many onions." },
+                { value: "b", label: "There isn't many onions." },
+                { value: "c", label: "There aren't much onions." },
               ],
               expectedAnswer: "a",
             },

@@ -164,8 +164,8 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Marco", "has", "lived", "in", "East", "Boston", "for", "three", "years"],
-              correctAnswer: "Marco has lived in East Boston for three years",
+              words: ["Marco", "has", "worked", "at", "the", "bakery", "for", "two", "years"],
+              correctAnswer: "Marco has worked at the bakery for two years",
             },
             {
               type: "word-scramble",
@@ -406,11 +406,11 @@ export const howLongForSinceContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"How long have you had your phone plan?\"",
+              label: "\"How long have you had your winter jacket?\"",
               options: [
-                { value: "a", label: "I had it for three years ago." },
-                { value: "b", label: "I have had it for three years." },
-                { value: "c", label: "I have had it three years ago." },
+                { value: "a", label: "I had this jacket for two winters ago." },
+                { value: "b", label: "I have had this jacket for two winters." },
+                { value: "c", label: "I have had this jacket two winters ago." },
               ],
               expectedAnswer: "b",
             },
@@ -690,8 +690,8 @@ export const howLongForSinceContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["How", "long", "has", "it", "been", "since", "you", "saw", "your", "family"],
-              correctAnswer: "How long has it been since you saw your family",
+              words: ["How", "long", "has", "it", "been", "since", "you", "called", "your", "brother"],
+              correctAnswer: "How long has it been since you called your brother",
             },
           ],
         },
@@ -807,7 +807,7 @@ export const howLongForSinceContent: InteractiveGuideContent = {
     },
     {
       id: "hlfs-q7",
-      question: "Beatriz left the restaurant last Tuesday. She does not work there anymore. Which sentence is correct?",
+      question: "Beatriz's last day at the restaurant was Tuesday of last week. She does not work there anymore. Which sentence is correct?",
       options: [
         { value: "a", label: "Beatriz has left the restaurant since last Tuesday." },
         { value: "b", label: "Beatriz has worked at the restaurant for last Tuesday." },

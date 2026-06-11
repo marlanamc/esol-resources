@@ -603,8 +603,8 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "usually", "work", "five", "days", "a", "week"],
-              correctAnswer: "I usually work five days a week",
+              words: ["I", "usually", "clean", "the", "house", "on", "Saturdays"],
+              correctAnswer: "I usually clean the house on Saturdays",
             },
             {
               type: "word-scramble",
@@ -625,14 +625,14 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "your-week-q1",
-      question: "Your coworker asks how often you take the bus. Which answer is correct?",
+      question: "Your coworker asks about your coffee habit. Which answer is correct?",
       options: [
-        { value: "a", label: "I take always the bus." },
-        { value: "b", label: "I always take the bus." },
-        { value: "c", label: "Always I take the bus." },
+        { value: "a", label: "I drink always coffee at work." },
+        { value: "b", label: "I always drink coffee at work." },
+        { value: "c", label: "Always I drink coffee at work." },
       ],
       correctAnswer: "b",
-      explanation: "Adverbs of frequency go before the main verb: I always take.",
+      explanation: "Adverbs of frequency go before the main verb: I always drink.",
       topic: "adverbs-of-frequency",
       skill: "usage",
       skillTag: "adverb-position",

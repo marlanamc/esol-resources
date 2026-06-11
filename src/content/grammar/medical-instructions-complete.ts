@@ -246,9 +246,9 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which is a negative imperative?",
               options: [
-                { value: "a", label: "Don't eat before the test." },
-                { value: "b", label: "You don't eat before the test." },
-                { value: "c", label: "You shouldn't eat before the test." },
+                { value: "a", label: "Don't chew the tablet." },
+                { value: "b", label: "You don't chew the tablet." },
+                { value: "c", label: "You shouldn't chew the tablet." },
               ],
               expectedAnswer: "a",
             },
@@ -376,9 +376,9 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Doctor to patient — an imperative instruction:",
-              words: ["take", "this", "twice", "a", "day"],
-              correctAnswer: "Take this twice a day",
-              correctAnswers: ["Take this twice a day."],
+              words: ["check", "your", "temperature", "every", "evening"],
+              correctAnswer: "Check your temperature every evening",
+              correctAnswers: ["Check your temperature every evening."],
               hint: "Start with the verb. No subject.",
             },
             {
@@ -602,9 +602,9 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which is grammatically correct?",
               options: [
-                { value: "a", label: "You must not to drive after taking this." },
-                { value: "c", label: "You must not driving after taking this." },
-                { value: "b", label: "You must not drive after taking this." },
+                { value: "a", label: "You must not to take aspirin with this." },
+                { value: "c", label: "You must not taking aspirin with this." },
+                { value: "b", label: "You must not take aspirin with this." },
               ],
               expectedAnswer: "b",
             },
@@ -619,9 +619,9 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
               type: "radio",
               label: "Label says: \"DO NOT OPERATE HEAVY MACHINERY AFTER USE.\" (Q1 = dangerous)",
               options: [
-                { value: "should", label: "You should not drive." },
-                { value: "must", label: "You must not drive." },
-                { value: "could", label: "You could not drive." },
+                { value: "should", label: "You should not operate heavy machinery." },
+                { value: "must", label: "You must not operate heavy machinery." },
+                { value: "could", label: "You could not operate heavy machinery." },
               ],
               expectedAnswer: "must",
             },
@@ -639,9 +639,9 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
               type: "radio",
               label: "Patient at reception, asking politely: (Q3 = asking permission, formal)",
               options: [
-                { value: "may", label: "May I have a copy of my records?" },
-                { value: "must", label: "Must I have a copy of my records?" },
-                { value: "should", label: "Should I have a copy of my records?" },
+                { value: "may", label: "May I have an interpreter for my appointment?" },
+                { value: "must", label: "Must I have an interpreter for my appointment?" },
+                { value: "should", label: "Should I have an interpreter for my appointment?" },
               ],
               expectedAnswer: "may",
             },
@@ -919,36 +919,36 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
 
         </div>
 
-        <p><strong>Your turn:</strong> rebuild the missing line in each scene.</p>
+        <p><strong>Your turn:</strong> build a new line that fits each scene.</p>
       `,
       exercises: [
         {
           id: "roleplay-scramble",
-          title: "Rebuild the patient's lines",
+          title: "Build new lines for each scene",
           instructions: "Drag the words into the right order.",
           items: [
             {
               type: "word-scramble",
-              label: "Scene A — patient asking about timing:",
-              words: ["Can", "I", "take", "it", "at", "night"],
-              correctAnswer: "Can I take it at night",
-              correctAnswers: ["Can I take it at night?"],
+              label: "Scene A — the patient asks the doctor for permission:",
+              words: ["Can", "I", "split", "the", "pill", "in", "half"],
+              correctAnswer: "Can I split the pill in half",
+              correctAnswers: ["Can I split the pill in half?"],
               hint: "Start with the permission question.",
             },
             {
               type: "word-scramble",
-              label: "Scene B — patient using a formal request:",
-              words: ["May", "I", "take", "it", "with", "my", "blood", "pressure", "pill"],
-              correctAnswer: "May I take it with my blood pressure pill",
-              correctAnswers: ["May I take it with my blood pressure pill?"],
+              label: "Scene B — the patient asks the pharmacist a formal question:",
+              words: ["May", "I", "pick", "it", "up", "tomorrow"],
+              correctAnswer: "May I pick it up tomorrow",
+              correctAnswers: ["May I pick it up tomorrow?"],
               hint: "Formal = 'May I…?'",
             },
             {
               type: "word-scramble",
               label: "Nurse — a negative imperative at bedside:",
-              words: ["Don't", "get", "up", "by", "yourself", "tonight"],
-              correctAnswer: "Don't get up by yourself tonight",
-              correctAnswers: ["Don't get up by yourself tonight."],
+              words: ["Don't", "remove", "the", "bandage", "tonight"],
+              correctAnswer: "Don't remove the bandage tonight",
+              correctAnswers: ["Don't remove the bandage tonight."],
               hint: "Negative imperative — start with \"Don't\".",
             },
           ],
@@ -1077,9 +1077,9 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
               type: "radio",
               label: "Which is better for an employee emailing their boss?",
               options: [
-                { value: "b", label: "I'd like to request time off." },
-                { value: "a", label: "Approve my time off request." },
-                { value: "c", label: "Give me Friday off." },
+                { value: "b", label: "I'd like to ask about taking Thursday off." },
+                { value: "a", label: "Approve my day off request." },
+                { value: "c", label: "Give me Thursday off." },
               ],
               expectedAnswer: "b",
             },
@@ -1286,15 +1286,15 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
     },
     {
       id: "quiz-3",
-      question: "Convert to imperative: 'You should take this twice a day.'",
+      question: "The nurse wants the patient to use the ear drops two times each day. Which imperative gives that instruction?",
       options: [
-        { value: "b", label: "Take this twice a day." },
-        { value: "a", label: "You take this twice a day." },
-        { value: "c", label: "Taking this twice a day." },
+        { value: "b", label: "Use the drops twice a day." },
+        { value: "a", label: "You use the drops twice a day." },
+        { value: "c", label: "Using the drops twice a day." },
       ],
       correctAnswer: "b",
       explanation:
-        "To form an imperative, remove the subject and start with the base verb: 'Take this twice a day.'",
+        "To form an imperative, remove the subject and start with the base verb: 'Use the drops twice a day.'",
       skillTag: "transformation-declarative-to-imperative",
       difficulty: "medium",
     },
@@ -1443,13 +1443,13 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       id: "quiz-14",
       question: "Which is better for an employee emailing their boss?",
       options: [
-        { value: "b", label: "I'd like to request time off." },
-        { value: "a", label: "Approve my time off request." },
-        { value: "c", label: "Give me Friday off." },
+        { value: "b", label: "I would like to ask for Friday afternoon off, if possible." },
+        { value: "a", label: "Approve my vacation request." },
+        { value: "c", label: "Give me the afternoon off." },
       ],
       correctAnswer: "b",
       explanation:
-        "Employees should use polite declaratives with bosses: 'I'd like to request time off.'",
+        "Employees should use polite declaratives with bosses: 'I would like to ask for...'",
       skillTag: "register-employee-to-boss-declarative",
       difficulty: "medium",
     },
@@ -1485,15 +1485,15 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
     {
       id: "quiz-17",
       question:
-        "Rearranged correctly, which word order is the doctor's imperative instruction?",
+        "Rearranged correctly, which word order is the nurse's imperative instruction?",
       options: [
-        { value: "a", label: "Twice a day take this." },
-        { value: "b", label: "You twice a day take this." },
-        { value: "c", label: "Take this twice a day." },
+        { value: "a", label: "Your arm raise slowly." },
+        { value: "b", label: "You raise your arm slowly." },
+        { value: "c", label: "Raise your arm slowly." },
       ],
       correctAnswer: "c",
       explanation:
-        "Imperatives start with the base verb: 'Take this twice a day.' No subject needed.",
+        "Imperatives start with the base verb: 'Raise your arm slowly.' No subject needed.",
       skillTag: "dialogue-builder-imperative",
       difficulty: "easy",
     },

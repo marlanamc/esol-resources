@@ -284,8 +284,8 @@ export const whatAreYouGoodAtContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "am", "tired", "of", "looking", "for", "work"],
-              correctAnswer: "I am tired of looking for work",
+              words: ["I", "am", "tired", "of", "standing", "all", "day"],
+              correctAnswer: "I am tired of standing all day",
             },
           ],
         },

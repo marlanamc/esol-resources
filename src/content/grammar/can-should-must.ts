@@ -250,8 +250,8 @@ export const canShouldMustContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["You", "should", "check", "your", "bank", "account", "every", "week"],
-              correctAnswer: "You should check your bank account every week",
+              words: ["You", "should", "change", "your", "password", "every", "month"],
+              correctAnswer: "You should change your password every month",
             },
           ],
         },
@@ -542,9 +542,9 @@ export const canShouldMustContent: InteractiveGuideContent = {
       id: "can-should-must-q6",
       question: "\"You don't have to use a special browser for online banking.\" What does this mean?",
       options: [
-        { value: "a", label: "It is forbidden to use a special browser." },
-        { value: "b", label: "It is required to use a special browser." },
-        { value: "c", label: "It is not required, but you can if you want." },
+        { value: "a", label: "Using a special browser is forbidden." },
+        { value: "b", label: "Using a special browser is required." },
+        { value: "c", label: "Using a special browser is optional." },
       ],
       correctAnswer: "c",
       explanation: "'Don't have to' means it is not required. It is different from 'must not,' which means it is forbidden.",

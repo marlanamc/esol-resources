@@ -150,9 +150,9 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           items: [
             {
               type: "word-scramble",
-              label: "Unscramble:",
-              words: ["I", "used", "to", "have", "family", "nearby"],
-              correctAnswer: "I used to have family nearby",
+              label: "Build Linh's sentence about her old neighborhood:",
+              words: ["I", "used", "to", "know", "all", "my", "neighbors"],
+              correctAnswer: "I used to know all my neighbors",
             },
           ],
         },
@@ -201,11 +201,11 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Linh cooks earlier now. Which sentence is correct?",
+              label: "Linh shops at the big market now. Before, she did not. Which sentence is correct?",
               options: [
-                { value: "a", label: "I didn't used to cook dinner at 11 pm." },
-                { value: "b", label: "I didn't use to cook dinner at 11 pm." },
-                { value: "c", label: "I don't use to cook dinner at 11 pm." },
+                { value: "a", label: "I didn't used to shop at the big market." },
+                { value: "b", label: "I didn't use to shop at the big market." },
+                { value: "c", label: "I don't use to shop at the big market." },
               ],
               expectedAnswer: "b",
             },
@@ -315,11 +315,11 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Linh walked to work back home. Which full sentence is correct?",
+              label: "Linh slept more back home. Which full sentence is correct?",
               options: [
-                { value: "a", label: "I used to walk to work, but now I take two buses." },
-                { value: "b", label: "I used to walking to work, but now I take two buses." },
-                { value: "c", label: "I am used to walk to work, but now I take two buses." },
+                { value: "a", label: "I used to sleep eight hours, but now I sleep six." },
+                { value: "b", label: "I used to sleeping eight hours, but now I sleep six." },
+                { value: "c", label: "I am used to sleep eight hours, but now I sleep six." },
               ],
               expectedAnswer: "a",
             },
@@ -479,11 +479,11 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Linh had family nearby before Boston.",
+              label: "Linh had a garden before Boston.",
               options: [
-                { value: "a", label: "I used to have family nearby." },
-                { value: "b", label: "I didn't use to have family nearby." },
-                { value: "c", label: "Did you use to have family nearby?" },
+                { value: "a", label: "I used to have a garden." },
+                { value: "b", label: "I didn't use to have a garden." },
+                { value: "c", label: "Did you use to have a garden?" },
               ],
               expectedAnswer: "a",
             },
@@ -548,9 +548,9 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
       id: "ut-q1",
       question: "Linh used to walk to work, but now she takes two buses. What does \"used to\" describe in sentences like this?",
       options: [
-        { value: "a", label: "A habit that is still true now" },
-        { value: "b", label: "A past habit or state that is NOT true now" },
-        { value: "c", label: "A future plan" },
+        { value: "a", label: "Something that is still true today" },
+        { value: "b", label: "A past habit or state that ended" },
+        { value: "c", label: "A plan for the future" },
       ],
       correctAnswer: "b",
       explanation: "Used to + base verb describes something from the past that changed.",
@@ -561,11 +561,11 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
     },
     {
       id: "ut-q3",
-      question: "Linh cooks earlier now. Which negative sentence is correct?",
+      question: "Linh wakes up later now. Which negative sentence is correct?",
       options: [
-        { value: "a", label: "I didn't used to cook dinner at 11 pm." },
-        { value: "b", label: "I didn't use to cook dinner at 11 pm." },
-        { value: "c", label: "I don't use to cook dinner at 11 pm." },
+        { value: "a", label: "I didn't used to sleep past 5 am." },
+        { value: "b", label: "I didn't use to sleep past 5 am." },
+        { value: "c", label: "I don't use to sleep past 5 am." },
       ],
       correctAnswer: "b",
       explanation: "Negative: didn't use to (no -d on use).",
@@ -603,9 +603,9 @@ export const iUsedToButNowIContent: InteractiveGuideContent = {
     {
       id: "ut-ws1",
       type: "word-scramble" as const,
-      question: "Linh talks about how her neighborhood changed. Put the words in order.",
-      words: ["I", "used", "to", "have", "family", "nearby"],
-      correctAnswer: "I used to have family nearby",
+      question: "Linh talks about how her Sundays changed. Put the words in order.",
+      words: ["I", "used", "to", "see", "my", "cousins", "every", "Sunday"],
+      correctAnswer: "I used to see my cousins every Sunday",
       hint: "used to + base verb for past habits",
       explanation: "Used to + base verb (have) describes a past state that is no longer true.",
       topic: "used-to",

@@ -418,8 +418,8 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
               type: "radio",
               label: "Diego is calling a landlord for the first time. Which sounds more appropriate?",
               options: [
-                { value: "a", label: "\"I want to see the apartment.\"" },
-                { value: "b", label: "\"I would like to see the apartment.\"" },
+                { value: "a", label: "\"I want to schedule a tour.\"" },
+                { value: "b", label: "\"I would like to schedule a tour.\"" },
               ],
               expectedAnswer: "b",
             },
@@ -437,12 +437,12 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
         {
           id: "inf-s4-ex2",
           title: "Fill in the blank",
-          instructions: "Type the four words.",
+          instructions: "Type the missing words.",
           items: [
             {
               type: "text",
-              label: "___ on Saturday at 10. (I would like to + come)",
-              expectedAnswers: ["I would like to come"],
+              label: "___ on Sunday afternoon instead. (make a polite request with 'visit')",
+              expectedAnswers: ["I would like to visit", "I'd like to visit"],
             },
           ],
         },
@@ -454,8 +454,8 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "would", "like", "to", "ask", "about", "the", "heat", "and", "hot", "water"],
-              correctAnswer: "I would like to ask about the heat and hot water",
+              words: ["I", "would", "like", "to", "ask", "about", "the", "parking"],
+              correctAnswer: "I would like to ask about the parking",
             },
           ],
         },
@@ -513,8 +513,8 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "plan", "to", "ask", "my", "supervisor", "for", "Saturday", "off"],
-              correctAnswer: "I plan to ask my supervisor for Saturday off",
+              words: ["I", "plan", "to", "take", "the", "morning", "off", "on", "Friday"],
+              correctAnswer: "I plan to take the morning off on Friday",
             },
             {
               type: "word-scramble",
@@ -596,9 +596,9 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       id: "infinitives-q4",
       question: "Diego is calling a landlord for the first time. Which sounds most polite and appropriate?",
       options: [
-        { value: "a", label: "I want to see the apartment." },
-        { value: "b", label: "I would like to see the apartment." },
-        { value: "c", label: "I need to see the apartment." },
+        { value: "a", label: "I want to look at the lease." },
+        { value: "b", label: "I would like to look at the lease." },
+        { value: "c", label: "I need to look at the lease." },
       ],
       correctAnswer: "b",
       explanation: "'Would like to' is more polite than 'want to'. It works better for calls with landlords, managers, and offices.",
@@ -637,8 +637,8 @@ export const needToFindAPlaceInfinitivesContent: InteractiveGuideContent = {
       id: "infinitives-qws1",
       type: "word-scramble" as const,
       question: "Carlos calls about an apartment on Bremen Street. Put the words in order.",
-      words: ["I", "would", "like", "to", "see", "the", "apartment"],
-      correctAnswer: "I would like to see the apartment",
+      words: ["I", "would", "like", "to", "meet", "the", "landlord"],
+      correctAnswer: "I would like to meet the landlord",
       hint: "would like to + base verb",
       explanation: "'Would like to' + base verb is the polite form. Use it for calls with landlords and offices.",
       topic: "infinitives",

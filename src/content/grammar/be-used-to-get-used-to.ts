@@ -153,9 +153,9 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "word-scramble",
-              label: "Unscramble:",
-              words: ["I'm", "used", "to", "working", "nights"],
-              correctAnswer: "I'm used to working nights",
+              label: "Build a sentence about Rafael's routine:",
+              words: ["I'm", "used", "to", "sleeping", "in", "the", "afternoon"],
+              correctAnswer: "I'm used to sleeping in the afternoon",
             },
           ],
         },
@@ -214,11 +214,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Angelo walked everywhere back home. Which sentence is correct?",
+              label: "Angelo rode a bike everywhere back home. Which sentence is correct?",
               options: [
-                { value: "a", label: "I'm used to walk to work." },
-                { value: "b", label: "I used to walk to work." },
-                { value: "c", label: "I used to walking to work." },
+                { value: "a", label: "I'm used to ride a bike everywhere." },
+                { value: "b", label: "I used to ride a bike everywhere." },
+                { value: "c", label: "I used to riding a bike everywhere." },
               ],
               expectedAnswer: "b",
             },
@@ -302,21 +302,21 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Fabienne can read most school emails now, but she is still learning.",
+              label: "Fabienne can write short notes to the teacher now, but she is still learning.",
               options: [
-                { value: "a", label: "I'm getting used to reading school emails in English." },
-                { value: "b", label: "I used to read school emails in English." },
-                { value: "c", label: "I'm used to read school emails in English." },
+                { value: "a", label: "I'm getting used to writing notes to the teacher." },
+                { value: "b", label: "I used to write notes to the teacher." },
+                { value: "c", label: "I'm used to write notes to the teacher." },
               ],
               expectedAnswer: "a",
             },
             {
               type: "radio",
-              label: "Fabienne checks her phone after every shift. That is normal for her now.",
+              label: "Fabienne packs the kids' lunches every night. That is normal for her now.",
               options: [
-                { value: "a", label: "I'm getting used to checking my phone after work." },
-                { value: "b", label: "I'm used to checking my phone after work." },
-                { value: "c", label: "I used to check my phone after work." },
+                { value: "a", label: "I'm getting used to packing lunches the night before." },
+                { value: "b", label: "I'm used to packing lunches the night before." },
+                { value: "c", label: "I used to pack lunches the night before." },
               ],
               expectedAnswer: "b",
             },
@@ -340,9 +340,9 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "word-scramble",
-              label: "Unscramble:",
-              words: ["I'm", "getting", "used", "to", "reading", "school", "emails"],
-              correctAnswer: "I'm getting used to reading school emails",
+              label: "Build Fabienne's sentence about the teacher:",
+              words: ["I'm", "getting", "used", "to", "texting", "the", "teacher"],
+              correctAnswer: "I'm getting used to texting the teacher",
             },
           ],
         },
@@ -406,11 +406,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Jean worked days before. He works nights now too.",
+              label: "Jean had free weekends before. Not anymore.",
               options: [
-                { value: "a", label: "I used to work only days." },
-                { value: "b", label: "I'm used to work only days." },
-                { value: "c", label: "I'm getting used to work only days." },
+                { value: "a", label: "I used to have weekends free." },
+                { value: "b", label: "I'm used to have weekends free." },
+                { value: "c", label: "I'm getting used to have weekends free." },
               ],
               expectedAnswer: "a",
             },
@@ -499,21 +499,21 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Fabienne worked only days before she moved.",
+              label: "Before she moved, Fabienne always slept before midnight. Not now.",
               options: [
-                { value: "a", label: "I used to work only days." },
-                { value: "b", label: "I'm used to working only days." },
-                { value: "c", label: "I'm getting used to working only days." },
+                { value: "a", label: "I used to sleep before midnight." },
+                { value: "b", label: "I'm used to sleeping before midnight." },
+                { value: "c", label: "I'm getting used to sleeping before midnight." },
               ],
               expectedAnswer: "a",
             },
             {
               type: "radio",
-              label: "Overtime feels normal to Fabienne now.",
+              label: "The early bus feels normal to Fabienne now.",
               options: [
-                { value: "a", label: "I'm used to working overtime." },
-                { value: "b", label: "I used to working overtime." },
-                { value: "c", label: "I'm getting used to work overtime." },
+                { value: "a", label: "I'm used to taking the early bus." },
+                { value: "b", label: "I used to taking the early bus." },
+                { value: "c", label: "I'm getting used to take the early bus." },
               ],
               expectedAnswer: "a",
             },
@@ -529,11 +529,11 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "The night shift is still new, but getting easier.",
+              label: "Winter mornings are still new, but getting easier.",
               options: [
-                { value: "a", label: "I'm getting used to the night shift." },
-                { value: "b", label: "I'm used to the night shift already." },
-                { value: "c", label: "I used to the night shift." },
+                { value: "a", label: "I'm getting used to the winter mornings." },
+                { value: "b", label: "I'm used to the winter mornings already." },
+                { value: "c", label: "I used to the winter mornings." },
               ],
               expectedAnswer: "a",
             },
@@ -557,9 +557,9 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
           items: [
             {
               type: "word-scramble",
-              label: "Unscramble:",
-              words: ["I'm", "not", "used", "to", "waiting", "in", "the", "cold"],
-              correctAnswer: "I'm not used to waiting in the cold",
+              label: "Build Priya's sentence about winter chores:",
+              words: ["I'm", "not", "used", "to", "shoveling", "snow", "yet"],
+              correctAnswer: "I'm not used to shoveling snow yet",
             },
           ],
         },
@@ -586,14 +586,14 @@ export const beUsedToGetUsedToContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "but-q2",
-      question: "Rafael finishes at midnight every Tuesday now. Which sentence is correct?",
+      question: "Rafael eats dinner at 1 AM after his shift every night. Which sentence is correct?",
       options: [
-        { value: "a", label: "I'm used to finish at midnight." },
-        { value: "b", label: "I'm used to finishing at midnight." },
-        { value: "c", label: "I used to finishing at midnight." },
+        { value: "a", label: "I'm used to eat dinner very late." },
+        { value: "b", label: "I'm used to eating dinner very late." },
+        { value: "c", label: "I used to eating dinner very late." },
       ],
       correctAnswer: "b",
-      explanation: "Be used to needs a gerund: finishing, not finish.",
+      explanation: "Be used to needs a gerund: eating, not eat.",
       topic: "be-used-to",
       skill: "usage",
       skillTag: "gerund-after-be-used-to",

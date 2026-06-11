@@ -151,8 +151,8 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["If", "I", "had", "come", "sooner,", "it", "wouldn't", "hurt", "this", "much"],
-              correctAnswer: "If I had come sooner, it wouldn't hurt this much",
+              words: ["If", "I", "had", "taken", "the", "medicine,", "I", "would", "feel", "better", "now"],
+              correctAnswer: "If I had taken the medicine, I would feel better now",
             },
           ],
         },
@@ -550,11 +550,11 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
   miniQuiz: [
     {
       id: "tc-q1",
-      question: "Yemi did not come to the clinic sooner. Which sentence matches her situation?",
+      question: "Yemi did not stretch before her shift. Now her back hurts. Which sentence matches her situation?",
       options: [
-        { value: "a", label: "If I come sooner, it won't hurt this much." },
-        { value: "b", label: "If I had come sooner, it wouldn't hurt this much." },
-        { value: "c", label: "If I came sooner, it wouldn't hurt this much." },
+        { value: "a", label: "If I stretch before work, my back won't hurt." },
+        { value: "b", label: "If I had stretched before work, my back wouldn't hurt this much." },
+        { value: "c", label: "If I stretched before work, my back wouldn't hurt." },
       ],
       correctAnswer: "b",
       explanation: "Third conditional uses if + had + V3 for a past action that did not happen.",
@@ -565,11 +565,11 @@ export const thirdConditionalWhatWouldHaveHappenedContent: InteractiveGuideConte
     },
     {
       id: "tc-q2",
-      question: "What is the formula for third conditional?",
+      question: "Which sentence is a correct third conditional?",
       options: [
-        { value: "a", label: "If + past simple, would + base verb" },
-        { value: "b", label: "If + had + past participle, would have + past participle" },
-        { value: "c", label: "If + present simple, will + base verb" },
+        { value: "a", label: "If Marco saved more, he will have bought the car." },
+        { value: "b", label: "If Marco had saved more, he would have bought the car." },
+        { value: "c", label: "If Marco has saved more, he would buy the car." },
       ],
       correctAnswer: "b",
       explanation: "Third conditional: if + had + V3, would have + V3.",

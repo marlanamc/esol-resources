@@ -7,6 +7,7 @@ import { runToneHeuristics } from "./heuristics-tone";
 import { runGrammarHeuristics } from "./heuristics-grammar";
 import { runHolidayReferenceRules } from "./rules-holiday-references";
 import { runMiniQuizQualityRules } from "./rules-mini-quiz-quality";
+import { runAnswerIntegrityRules } from "./rules-answer-integrity";
 import { runSceneImageContextRules } from "./rules-image-context";
 import { extractSceneContexts } from "./scene-context";
 import {
@@ -59,6 +60,7 @@ export async function runMiniGuidesAudit(
             ...runToneHeuristics(loaded, dialogues),
             ...runGrammarHeuristics(loaded),
             ...runMiniQuizQualityRules(loaded),
+            ...runAnswerIntegrityRules(loaded),
             ...runHolidayReferenceRules(loaded),
         ];
 

@@ -214,11 +214,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "Kelly said: \"The inhaler is almost empty.\" How does Amara report this?",
+              label: "Kelly said: \"The pharmacy is closed today.\" How does Amara report this?",
               options: [
-                { value: "a", label: "Kelly said that the inhaler is almost empty." },
-                { value: "b", label: "Kelly said that the inhaler was almost empty." },
-                { value: "c", label: "Kelly said that the inhaler will be almost empty." },
+                { value: "a", label: "Kelly said that the pharmacy is closed today." },
+                { value: "b", label: "Kelly said that the pharmacy was closed today." },
+                { value: "c", label: "Kelly said that the pharmacy will be closed today." },
               ],
               expectedAnswer: "b",
             },
@@ -310,11 +310,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The doctor said: \"Keep the inhaler in a warm place.\" How does Marco report this?",
+              label: "The doctor said: \"Shake the bottle before each use.\" How does Marco report this?",
               options: [
-                { value: "a", label: "The doctor told me keeping the inhaler in a warm place." },
-                { value: "b", label: "The doctor told me to keep the inhaler in a warm place." },
-                { value: "c", label: "The doctor told me keep the inhaler in a warm place." },
+                { value: "a", label: "The doctor told me shaking the bottle before each use." },
+                { value: "b", label: "The doctor told me to shake the bottle before each use." },
+                { value: "c", label: "The doctor told me shake the bottle before each use." },
               ],
               expectedAnswer: "b",
             },
@@ -410,11 +410,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
             },
             {
               type: "radio",
-              label: "Sarah asked: \"When can you come?\" How does Marco report this?",
+              label: "Sarah asked: \"Where do you live?\" How does Marco report this?",
               options: [
-                { value: "a", label: "Sarah asked when can we come." },
-                { value: "b", label: "Sarah asked when we could come." },
-                { value: "c", label: "Sarah asked when we can come?" },
+                { value: "a", label: "Sarah asked where do we live." },
+                { value: "b", label: "Sarah asked where we lived." },
+                { value: "c", label: "Sarah asked where we live?" },
               ],
               expectedAnswer: "b",
             },
@@ -553,11 +553,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "doctor-said-q1",
-      question: "Kelly said: \"The inhaler is almost empty.\" How does Amara report this to Marco?",
+      question: "Kelly said: \"The new pills are stronger.\" How does Amara report this to Marco?",
       options: [
-        { value: "a", label: "Kelly said that the inhaler is almost empty." },
-        { value: "b", label: "Kelly said that the inhaler was almost empty." },
-        { value: "c", label: "Kelly told me to the inhaler was almost empty." },
+        { value: "a", label: "Kelly said that the new pills are stronger." },
+        { value: "b", label: "Kelly said that the new pills were stronger." },
+        { value: "c", label: "Kelly told me to the new pills were stronger." },
       ],
       correctAnswer: "b",
       explanation: "In reported statements, is becomes was. Use said that + subject + verb.",
@@ -568,11 +568,11 @@ export const doctorSaidReportedSpeechContent: InteractiveGuideContent = {
     },
     {
       id: "doctor-said-q3",
-      question: "The doctor said: \"Keep the inhaler in a warm place.\" How does Marco tell Gloria?",
+      question: "The doctor said: \"Check your blood sugar every morning.\" How does Marco tell Gloria?",
       options: [
-        { value: "a", label: "The doctor told me to keep the inhaler in a warm place." },
-        { value: "b", label: "The doctor said that keep the inhaler in a warm place." },
-        { value: "c", label: "The doctor asked me keep the inhaler in a warm place." },
+        { value: "a", label: "The doctor told me to check my blood sugar every morning." },
+        { value: "b", label: "The doctor said that check my blood sugar every morning." },
+        { value: "c", label: "The doctor asked me check my blood sugar every morning." },
       ],
       correctAnswer: "a",
       explanation: "Commands use told + person + to + base verb.",

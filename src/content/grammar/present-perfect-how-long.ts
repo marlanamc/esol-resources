@@ -118,11 +118,11 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "How long have you worked at this hotel?",
+              label: "How long have you had your library card?",
               options: [
-                { value: "a", label: "I worked here for two years." },
-                { value: "b", label: "I have worked here for two years." },
-                { value: "c", label: "I work here two years." },
+                { value: "a", label: "I had my library card for two years." },
+                { value: "b", label: "I have had my library card for two years." },
+                { value: "c", label: "I have my library card two years." },
               ],
               expectedAnswer: "b",
             },
@@ -543,11 +543,11 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "How long have you worked in housekeeping?",
+              label: "How long have you driven a delivery van?",
               options: [
-                { value: "a", label: "I worked there for three years." },
-                { value: "b", label: "I have worked in housekeeping for three years." },
-                { value: "c", label: "I working for three years." },
+                { value: "a", label: "I drove it for four years." },
+                { value: "b", label: "I have driven a delivery van for four years." },
+                { value: "c", label: "I driving for four years." },
               ],
               expectedAnswer: "b",
             },
@@ -599,11 +599,11 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "pperf-how-long-q1",
-      question: "Jennifer asks: 'How long have you worked here?' Rosa still works at the hotel. Which answer is correct?",
+      question: "Jennifer asks: 'How long have you been on the morning team?' Rosa is still on the team. Which answer is correct?",
       options: [
-        { value: "a", label: "I worked here for three years." },
-        { value: "b", label: "I have worked here for three years." },
-        { value: "c", label: "I am working here for three years." },
+        { value: "a", label: "I was on the morning team for one year." },
+        { value: "b", label: "I have been on the morning team for one year." },
+        { value: "c", label: "I am being on the morning team for one year." },
       ],
       correctAnswer: "b",
       explanation: "Present perfect (have worked) is correct because Rosa still works there. Past simple would mean she left.",

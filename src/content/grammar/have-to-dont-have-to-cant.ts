@@ -127,11 +127,11 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "The sink is leaking. What does the law say about the landlord?",
+              label: "The smoke detector is broken. What does the law say about the landlord?",
               options: [
-                { value: "a", label: "He have to fix it." },
-                { value: "b", label: "He has to fix it." },
-                { value: "c", label: "He to fix it." },
+                { value: "a", label: "He have to replace it." },
+                { value: "b", label: "He has to replace it." },
+                { value: "c", label: "He to replace it." },
               ],
               expectedAnswer: "b",
             },
@@ -458,9 +458,9 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"Landlords are prohibited from entering without 24 hours notice.\"",
               options: [
-                { value: "a", label: "have to. it is required" },
-                { value: "b", label: "don't have to. it is not required" },
-                { value: "c", label: "can't. it is not allowed" },
+                { value: "a", label: "have to" },
+                { value: "b", label: "don't have to" },
+                { value: "c", label: "can't" },
               ],
               expectedAnswer: "c",
             },

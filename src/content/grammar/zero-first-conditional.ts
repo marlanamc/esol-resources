@@ -373,8 +373,8 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["I", "won't", "ask", "him", "unless", "you", "talk", "to", "Scott", "first"],
-              correctAnswer: "I won't ask him unless you talk to Scott first",
+              words: ["I", "won't", "trade", "shifts", "unless", "the", "manager", "agrees"],
+              correctAnswer: "I won't trade shifts unless the manager agrees",
             },
           ],
         },
@@ -467,7 +467,7 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
               label: "Which sentence is Zero Conditional?",
               options: [
                 { value: "a", label: "If I work this Friday, I will have enough for rent." },
-                { value: "b", label: "If someone calls in sick, the whole shift stays." },
+                { value: "b", label: "If the fire alarm rings, everyone leaves the building." },
                 { value: "c", label: "If she picks up the shift, she will pay the bill." },
               ],
               expectedAnswer: "b",
@@ -487,8 +487,8 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["If", "I", "don't", "hear", "from", "you", "by", "6", "PM", "I", "will", "call"],
-              correctAnswer: "If I don't hear from you by 6 PM I will call",
+              words: ["If", "the", "bus", "is", "late", "tomorrow", "I", "will", "text", "you"],
+              correctAnswer: "If the bus is late tomorrow I will text you",
             },
           ],
         },
@@ -547,9 +547,9 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
               type: "radio",
               label: "Linh is talking about her real plan for this week. Which sentence fits?",
               options: [
-                { value: "a", label: "If they offer overtime, I take it." },
-                { value: "b", label: "If they offer overtime, I'll take it." },
-                { value: "c", label: "If they will offer overtime, I'll take it." },
+                { value: "a", label: "If they post extra hours, I sign up." },
+                { value: "b", label: "If they post extra hours, I'll sign up." },
+                { value: "c", label: "If they will post extra hours, I'll sign up." },
               ],
               expectedAnswer: "b",
             },
@@ -604,11 +604,11 @@ export const zeroFirstConditionalContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "zero-first-conditional-q2",
-      question: "Carlos says: 'If I pick up the Saturday shift, I will pay the electric bill.' Which form is correct in the if-part?",
+      question: "Carlos is making a promise about the extra Saturday shift and the electric bill. Which if-part is correct?",
       options: [
-        { value: "a", label: "If I will pick up the Saturday shift..." },
-        { value: "b", label: "If I pick up the Saturday shift..." },
-        { value: "c", label: "If I picked up the Saturday shift..." },
+        { value: "a", label: "If I will take the extra shift..." },
+        { value: "b", label: "If I take the extra shift..." },
+        { value: "c", label: "If I took the extra shift..." },
       ],
       correctAnswer: "b",
       explanation: "In First Conditional, the if-part uses present simple. Never use 'will' in the if-part.",

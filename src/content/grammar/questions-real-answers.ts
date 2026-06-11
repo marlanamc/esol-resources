@@ -220,11 +220,11 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "\"Where you work?\" How do you fix this question?",
+              label: "\"Where you shop?\" How do you fix this question?",
               options: [
-                { value: "a", label: "Where you are working?" },
-                { value: "b", label: "Where do you work?" },
-                { value: "c", label: "Where works you?" },
+                { value: "a", label: "Where you are shopping?" },
+                { value: "b", label: "Where do you shop?" },
+                { value: "c", label: "Where shops you?" },
               ],
               expectedAnswer: "b",
             },
@@ -268,8 +268,8 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["What", "is", "your", "apartment", "number"],
-              correctAnswer: "What is your apartment number",
+              words: ["What", "is", "your", "zip", "code"],
+              correctAnswer: "What is your zip code",
             },
           ],
         },
@@ -463,14 +463,14 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Why", "do", "you", "study", "English"],
-              correctAnswer: "Why do you study English",
+              words: ["Why", "do", "you", "take", "the", "early", "bus"],
+              correctAnswer: "Why do you take the early bus",
             },
             {
               type: "word-scramble",
               label: "Unscramble:",
-              words: ["Why", "did", "she", "choose", "this", "program"],
-              correctAnswer: "Why did she choose this program",
+              words: ["Why", "did", "he", "change", "his", "schedule"],
+              correctAnswer: "Why did he change his schedule",
             },
             {
               type: "text",
@@ -591,11 +591,11 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "qra-q2",
-      question: "You want to know the location of the ESL classroom. Which question do you ask?",
+      question: "You want to know the location of the computer lab. Which question do you ask?",
       options: [
-        { value: "a", label: "Who is the classroom?" },
-        { value: "b", label: "When is the classroom?" },
-        { value: "c", label: "Where is the classroom?" },
+        { value: "a", label: "Who is the computer lab?" },
+        { value: "b", label: "When is the computer lab?" },
+        { value: "c", label: "Where is the computer lab?" },
       ],
       correctAnswer: "c",
       explanation: "Where asks about a place or location.",
@@ -620,12 +620,12 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
       id: "qra-q6",
       question: "Linh is at the community center intake desk. Which question is correctly formed?",
       options: [
-        { value: "a", label: "Where you work?" },
-        { value: "b", label: "Where do you work?" },
-        { value: "c", label: "Where works you?" },
+        { value: "a", label: "What time you start?" },
+        { value: "b", label: "What time do you start?" },
+        { value: "c", label: "What time starts you?" },
       ],
       correctAnswer: "b",
-      explanation: "With most verbs, you need do or does between the Wh- word and the subject. \"Where do you work?\" is the correct form.",
+      explanation: "With most verbs, you need do or does between the Wh- word and the subject. \"What time do you start?\" is the correct form.",
       topic: "question-formation",
       skill: "error-detection",
       skillTag: "form-do-does-missing",
@@ -634,9 +634,9 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
     {
       id: "qra-qws1",
       type: "word-scramble" as const,
-      question: "A classmate asks where you work. Put the words in order to make the question.",
-      words: ["Where", "do", "you", "work"],
-      correctAnswer: "Where do you work",
+      question: "A classmate asks about the bus schedule. Put the words in order to make the question.",
+      words: ["When", "does", "the", "bus", "come"],
+      correctAnswer: "When does the bus come",
       hint: "Wh- word → helper verb → subject → main verb",
       explanation: "Question word order: Wh- word + do/does + subject + main verb.",
       topic: "question-formation",
@@ -646,11 +646,11 @@ export const questionsRealAnswersContent: InteractiveGuideContent = {
     },
     {
       id: "qra-q7",
-      question: "Linh wants to know if the English program is 6 months long or 12 months long. She asks:",
+      question: "Linh wants to know if the waiting list is 2 weeks long or 2 months long. She asks:",
       options: [
-        { value: "a", label: "How often is the program?" },
-        { value: "b", label: "How long is the program?" },
-        { value: "c", label: "How far is the program?" },
+        { value: "a", label: "How often is the waiting list?" },
+        { value: "b", label: "How long is the waiting list?" },
+        { value: "c", label: "How far is the waiting list?" },
       ],
       correctAnswer: "b",
       explanation: "How long asks about duration. Months and years are durations.",

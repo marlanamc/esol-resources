@@ -527,18 +527,18 @@ export const allTheTensesYearInReviewContent: InteractiveGuideContent = {
           items: [
             {
               type: "radio",
-              label: "By the last class tonight, Rosa ___ in evening ESOL for a full year. (study)",
+              label: "By the last class tonight, Rosa ___ evening ESOL for a full year. (attend)",
               options: [
-                { value: "will study", label: "will study" },
-                { value: "will be studying", label: "will be studying" },
-                { value: "will have been studying", label: "will have been studying" },
+                { value: "will attend", label: "will attend" },
+                { value: "will be attending", label: "will be attending" },
+                { value: "will have been attending", label: "will have been attending" },
               ],
-              expectedAnswer: "will have been studying",
+              expectedAnswer: "will have been attending",
             },
             {
               type: "text",
-              label: "By tonight I ___ (study) in evening ESOL for a full year.",
-              expectedAnswers: ["will have been studying"],
+              label: "By tonight I ___ (attend) evening ESOL for a full year.",
+              expectedAnswers: ["will have been attending"],
             },
           ],
         },
