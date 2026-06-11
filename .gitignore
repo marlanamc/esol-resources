@@ -75,12 +75,7 @@ test-results/
 /_legacy/
 /tmp/
 /audit/
-/exports/
-/outputs/
-design_handoff_*/
-/test-pos.ts
-/gerunds_inf
-/worksheet-names-list.txt
+/archive/
 
 # utility scripts and one-offs
 check-*.js
