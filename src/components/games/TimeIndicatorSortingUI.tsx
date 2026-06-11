@@ -1,34 +1,29 @@
 "use client";
 
-import { useMemo, useEffect, useState, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { BackButton } from "@/components/ui/BackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 import {
   type GameState,
-  detectMatchingGameMode,
-  parseVocabPairs,
-  parseRounds,
+  parseTimeIndicatorRounds,
   deriveShuffleSeed,
   deterministicShuffle,
 } from "./matching-game-parse";
 import { InteractionMode } from "./matching-game-shared";
-import { VocabMatchingUI } from "./VocabMatchingUI";
-import { TimeIndicatorSortingUI } from "./TimeIndicatorSortingUI";
-import { VerbSoundsRightSortingUI } from "./VerbSoundsRightSortingUI";
 
-interface Props {
+export function TimeIndicatorSortingUI({
+    contentStr,
+    activityId,
+    assignmentId,
+    vocabType,
+}: {
     contentStr: string;
     activityId?: string;
     assignmentId?: string | null;
     vocabType?: string;
-}
-
-export default function MatchingGame({ contentStr, activityId, assignmentId, vocabType }: Props) {
-    const gameMode = useMemo(() => detectMatchingGameMode(contentStr), [contentStr]);
-    const vocabPairs = useMemo(() => (gameMode === "vocab" ? parseVocabPairs(contentStr) : []), [contentStr, gameMode]);
-
-    const rounds = useMemo(() => parseRounds(contentStr), [contentStr]);
+}) {
+    const rounds = useMemo(() => parseTimeIndicatorRounds(contentStr), [contentStr]);
     const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
     const currentRound = rounds[currentRoundIndex];
     const shuffleSeed = useMemo(
@@ -73,7 +68,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
     const [isRoundComplete, setIsRoundComplete] = useState(false);
     const [isGameComplete, setIsGameComplete] = useState(false);
     const [dropZoneFeedback, setDropZoneFeedback] = useState<{
-        category: "countable" | "uncountable";
+        category: "specified" | "unspecified";
         isCorrect: boolean;
     } | null>(null);
     const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
@@ -89,7 +84,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
 
     // Inject animations and styles
     useEffect(() => {
-        const styleId = "countable-game-styles";
+        const styleId = "time-indicator-game-styles";
         if (document.getElementById(styleId)) return;
 
         const style = document.createElement("style");
@@ -177,8 +172,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
         };
     }, []);
 
-    // Auto-dismiss the "Not quite!" panel so it doesn't block the game on mobile.
-    // Students can keep playing immediately; this is just temporary feedback.
+    // Auto-dismiss explanation panel
     useEffect(() => {
         if (!gameState.showExplanation) return;
 
@@ -238,7 +232,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
         void saveRoundProgress();
     }, [activityId, currentRound, isRoundComplete, assignmentId, overallProgressPercent, vocabType]);
 
-    // Resume from saved round progress (categoryData keys like "round-1", "round-2", ...)
+    // Resume from saved round progress
     useEffect(() => {
         if (!activityId || rounds.length === 0) return;
 
@@ -271,7 +265,6 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
 
                 if (cancelled) return;
 
-                // Seed the ref so we don't re-save already-completed rounds
                 completedRoundCategoriesRef.current = new Set(completedRounds);
 
                 let nextRound = 1;
@@ -280,14 +273,12 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                 }
 
                 if (nextRound > rounds.length) {
-                    // All rounds done
                     setCurrentRoundIndex(Math.max(0, rounds.length - 1));
                     setIsRoundComplete(true);
                     setIsGameComplete(true);
                     return;
                 }
 
-                // Jump to the first incomplete round and reset per-round state
                 setCurrentRoundIndex(nextRound - 1);
                 setGameState({
                     currentWordIndex: 0,
@@ -332,7 +323,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
 
     const handleDropZoneDrop = (
         e: React.DragEvent<HTMLDivElement>,
-        category: "countable" | "uncountable"
+        category: "specified" | "unspecified"
     ) => {
         e.preventDefault();
         if (gameState.showExplanation) handleDismissExplanation();
@@ -348,19 +339,18 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
         }
     };
 
-    const handleDropZoneTap = (category: "countable" | "uncountable") => {
+    const handleDropZoneTap = (category: "specified" | "unspecified") => {
         if (!currentWord) return;
         if (gameState.showExplanation) handleDismissExplanation();
         setInteractionMode(InteractionMode.Checking);
         checkAnswer(category);
     };
 
-    const checkAnswer = (selectedCategory: "countable" | "uncountable") => {
+    const checkAnswer = (selectedCategory: "specified" | "unspecified") => {
         if (!currentWord) return;
 
         const isCorrect = selectedCategory === currentWord.category;
 
-        // Provide immediate visual feedback on the tapped/selected drop zone (especially helpful on mobile)
         setDropZoneFeedback({ category: selectedCategory, isCorrect });
         if (dropZoneFeedbackTimeoutRef.current !== null) {
             window.clearTimeout(dropZoneFeedbackTimeoutRef.current);
@@ -371,7 +361,6 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
         }, 500);
 
         if (isCorrect) {
-            // Correct answer
             setGameState((prev) => ({
                 ...prev,
                 correctCount: prev.correctCount + 1,
@@ -382,7 +371,6 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                 isAutoAdvancing: true,
             }));
 
-            // Auto-advance after 1 second
             setTimeout(() => {
                 setGameState((prev) => ({
                     ...prev,
@@ -391,7 +379,6 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                 advanceToNextWord();
             }, 1000);
         } else {
-            // Incorrect answer - bounce back and show explanation
             setGameState((prev) => ({
                 ...prev,
                 incorrectAttempts: prev.incorrectAttempts + 1,
@@ -400,7 +387,6 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                 explanationText: currentWord.explanation,
             }));
 
-            // Stop bounce animation after it completes
             setTimeout(() => {
                 setGameState((prev) => ({
                     ...prev,
@@ -416,7 +402,6 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
         setGameState((prev) => {
             const nextIndex = prev.currentWordIndex + 1;
             if (nextIndex >= shuffledWords.length) {
-                // Round complete
                 setIsRoundComplete(true);
                 return prev;
             }
@@ -429,10 +414,8 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
 
     const handleNextRound = () => {
         if (currentRoundIndex + 1 >= rounds.length) {
-            // All rounds complete
             setIsGameComplete(true);
         } else {
-            // Move to next round
             setCurrentRoundIndex(currentRoundIndex + 1);
             setGameState({
                 currentWordIndex: 0,
@@ -473,56 +456,22 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
         setIsGameComplete(false);
     };
 
-    // Route non-countable game modes after hooks to preserve hook call order.
-    if (gameMode === "time-indicators") {
-        return (
-            <TimeIndicatorSortingUI
-                contentStr={contentStr}
-                activityId={activityId}
-                assignmentId={assignmentId}
-                vocabType={vocabType}
-            />
-        );
-    }
-
-    if (gameMode === "verb-sounds-right") {
-        return (
-            <VerbSoundsRightSortingUI
-                contentStr={contentStr}
-                activityId={activityId}
-                assignmentId={assignmentId}
-                vocabType={vocabType}
-            />
-        );
-    }
-
-    if (gameMode === "vocab") {
-        if (vocabPairs.length > 0) {
-            return (
-                <VocabMatchingUI
-                    pairs={vocabPairs}
-                    activityId={activityId}
-                    assignmentId={assignmentId}
-                    vocabType={vocabType}
-                />
-            );
-        }
-        return (
-            <div className="max-w-4xl mx-auto p-8 text-center">
-                <p className="text-gray-500">No vocabulary pairs to match.</p>
-            </div>
-        );
-    }
-
     if (rounds.length === 0 || !currentRound) {
         return (
             <div className="max-w-6xl mx-auto p-8 text-center">
                 <p className="text-gray-500">
-                    No countable/uncountable words available.
+                    No time indicator words available.
                 </p>
             </div>
         );
     }
+
+    const difficultyColors = {
+        easy: { bg: "bg-green-100", text: "text-green-700", label: "EASY" },
+        medium: { bg: "bg-yellow-100", text: "text-yellow-700", label: "MEDIUM" },
+        hard: { bg: "bg-red-100", text: "text-red-700", label: "HARD" },
+    };
+    const difficultyStyle = difficultyColors[currentRound.difficulty];
 
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:w-full md:max-w-5xl md:mx-auto md:bg-[var(--color-bg)] md:px-3 md:py-4">
@@ -544,25 +493,28 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                     />
                     <div className="flex-1 min-w-0">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-                            <div>
-                                <h2 className="text-base sm:text-lg md:text-xl font-bold text-[var(--color-text)] leading-tight">
-                                    Countable vs Uncountable Nouns
+                            <div className="flex items-center gap-2 flex-wrap">
+                                <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 dark:text-white leading-tight">
+                                    Time Indicators
                                 </h2>
-                                <p className="text-xs sm:text-sm text-[var(--color-text-muted)] mt-0.5">
-                                    Round {currentRound.roundNumber} of {rounds.length}
-                                </p>
+                                <span className={`px-2 py-0.5 text-xs font-bold rounded-full ${difficultyStyle.bg} ${difficultyStyle.text}`}>
+                                    {difficultyStyle.label}
+                                </span>
                             </div>
-                            <div className="text-sm font-medium text-[var(--color-text-muted)] whitespace-nowrap">
+                            <div className="text-sm font-medium text-gray-600 whitespace-nowrap">
                                 <span className="text-green-600 font-bold">
                                     {gameState.correctCount}
                                 </span>{" "}
                                 / {shuffledWords.length} correct
                             </div>
                         </div>
+                        <p className="text-xs text-[var(--color-text-muted)] mb-1">
+                            Round {currentRound.roundNumber} of {rounds.length}
+                        </p>
                         <p className="text-xs sm:text-sm text-[var(--color-text)] mb-3">
                             {interactionMode === InteractionMode.WordSelected
-                                ? "Tap a group to put the word there"
-                                : "Pick a word and move it to the right group"}
+                                ? "Tap a category to sort"
+                                : "Which tense does this time expression use?"}
                         </p>
                         <div className="h-2.5 w-full bg-[var(--color-bg-light)] rounded-full overflow-hidden">
                             <div
@@ -603,14 +555,14 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                                 }
                             `}
                         >
-                            <h3 className="text-4xl md:text-5xl font-bold text-[var(--color-text)] break-words">
+                            <h3 className="text-3xl md:text-4xl font-bold text-[var(--color-text)] break-words">
                                 {currentWord.word}
                             </h3>
                         </div>
                         <p className="text-center text-xs sm:text-sm text-[var(--color-text-muted)] mt-3">
                             {interactionMode === InteractionMode.WordSelected
-                                ? "Now tap a group below"
-                                : "Tap a group to sort the word"}
+                                ? "Now tap a category below"
+                                : "Tap a category to sort"}
                         </p>
                     </div>
                 )}
@@ -618,24 +570,18 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                 {/* Drop Zones */}
                 <div className="w-full max-w-2xl">
                     {!isRoundComplete ? (
-                        <div
-                            className={`
-                                grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full
-                            `}
-                        >
-                            {/* Countable Zone */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full">
+                            {/* Specified Time Zone */}
                             <div
                                 onDragOver={handleDropZoneDragOver}
-                                onDrop={(e) => handleDropZoneDrop(e, "countable")}
-                                onClick={() =>
-                                    handleDropZoneTap("countable")
-                                }
+                                onDrop={(e) => handleDropZoneDrop(e, "specified")}
+                                onClick={() => handleDropZoneTap("specified")}
                                 className={`
                                     relative p-6 md:p-8 rounded-xl border-4 border-dashed
                                     transition-[border-color,background-color] duration-200 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
-                                    min-h-[120px] flex flex-col items-center justify-center
+                                    min-h-[140px] flex flex-col items-center justify-center
                                     ${
-                                        dropZoneFeedback?.category === "countable"
+                                        dropZoneFeedback?.category === "specified"
                                             ? dropZoneFeedback.isCorrect
                                                 ? "drop-zone-correct"
                                                 : "drop-zone-wrong"
@@ -653,31 +599,27 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                                 `}
                             >
                                 <div className="text-4xl md:text-5xl mb-2">
-                                    📦
+                                    📅
                                 </div>
                                 <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
-                                    Countable
+                                    Specified Time
                                 </div>
-                                <p className="text-xs text-[var(--color-text-muted)] mt-2 text-center">
-                                    You can count these
+                                <p className="text-xs font-semibold text-blue-600 mt-1">
+                                    → Use Past Simple
                                 </p>
                             </div>
 
-                            {/* Uncountable Zone */}
+                            {/* Unspecified Time Zone */}
                             <div
                                 onDragOver={handleDropZoneDragOver}
-                                onDrop={(e) =>
-                                    handleDropZoneDrop(e, "uncountable")
-                                }
-                                onClick={() =>
-                                    handleDropZoneTap("uncountable")
-                                }
+                                onDrop={(e) => handleDropZoneDrop(e, "unspecified")}
+                                onClick={() => handleDropZoneTap("unspecified")}
                                 className={`
                                     relative p-6 md:p-8 rounded-xl border-4 border-dashed
                                     transition-[border-color,background-color] duration-200 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
-                                    min-h-[120px] flex flex-col items-center justify-center
+                                    min-h-[140px] flex flex-col items-center justify-center
                                     ${
-                                        dropZoneFeedback?.category === "uncountable"
+                                        dropZoneFeedback?.category === "unspecified"
                                             ? dropZoneFeedback.isCorrect
                                                 ? "drop-zone-correct"
                                                 : "drop-zone-wrong"
@@ -695,13 +637,13 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                                 `}
                             >
                                 <div className="text-4xl md:text-5xl mb-2">
-                                    ∞
+                                    ⏳
                                 </div>
                                 <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
-                                    Uncountable
+                                    Unspecified Time
                                 </div>
-                                <p className="text-xs text-[var(--color-text-muted)] mt-2 text-center">
-                                    You can't count this
+                                <p className="text-xs font-semibold text-purple-600 mt-1">
+                                    → Use Present Perfect
                                 </p>
                             </div>
                         </div>
@@ -718,7 +660,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                                         You completed all {rounds.length} rounds!
                                     </p>
                                     <p className="text-sm text-white/80">
-                                        You're a countable vs uncountable expert! 🏆
+                                        You're a time expression expert! 🏆
                                     </p>
                                 </>
                             ) : (
@@ -727,10 +669,12 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                                         Great job!
                                     </h2>
                                     <p className="text-lg md:text-xl text-white/90 mb-2">
-                                        You sorted all {shuffledWords.length} words correctly!
+                                        You sorted all {shuffledWords.length} expressions!
                                     </p>
                                     <p className="text-sm text-white/80 mb-4">
                                         Ready for Round {currentRound.roundNumber + 1}?
+                                        {currentRound.roundNumber + 1 > 2 && currentRound.roundNumber + 1 <= 4 && " (Medium difficulty!)"}
+                                        {currentRound.roundNumber + 1 > 4 && " (Hard difficulty!)"}
                                     </p>
                                     <button
                                         onClick={handleNextRound}
@@ -758,10 +702,10 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                             </div>
                             <p className="text-sm md:text-base text-red-900 mb-3">
                                 <strong>
-                                    "{currentWord?.word}" is{" "}
-                                    {currentWord?.category === "countable"
-                                        ? "a countable noun"
-                                        : "an uncountable noun"}
+                                    "{currentWord?.word}" uses{" "}
+                                    {currentWord?.category === "specified"
+                                        ? "Specified Time (Past Simple)"
+                                        : "Unspecified Time (Present Perfect)"}
                                 </strong>
                             </p>
                             <p className="text-sm text-red-800 mb-4 leading-relaxed">
@@ -793,4 +737,4 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
     );
 }
 
-// --- Vocab (term::definition) matching UI ---
+// --- Verb Sounds Right Sorting UI ---
