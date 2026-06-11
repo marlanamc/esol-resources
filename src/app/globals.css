@@ -3249,6 +3249,31 @@ html:not([data-theme="dark"]) .dashboard-accent-button:hover {
   box-shadow: none;
 }
 
+.dark .grammar-reader-container .comparison-table th.bg-warning\/10,
+.dark .grammar-reader-container .comparison-table-cards .bg-warning\/10 {
+  background: rgba(240, 160, 128, 0.14) !important;
+}
+.dark .grammar-reader-container .comparison-table th.bg-success\/10,
+.dark .grammar-reader-container .comparison-table-cards .bg-success\/10 {
+  background: rgba(111, 191, 159, 0.14) !important;
+}
+.dark .grammar-reader-container .comparison-table .text-warning,
+.dark .grammar-reader-container .comparison-table-cards .text-warning {
+  color: var(--tone-quizzes-accent-strong) !important;
+}
+.dark .grammar-reader-container .comparison-table .text-success,
+.dark .grammar-reader-container .comparison-table-cards .text-success {
+  color: var(--tone-grammar-accent-strong) !important;
+}
+.dark .grammar-reader-container .verb-table-display th.bg-primary {
+  background: rgba(176, 87, 64, 0.35) !important;
+  color: #ffd0be !important;
+  border-color: rgba(240, 160, 128, 0.35) !important;
+}
+.dark .grammar-reader-container .verb-table-cards .text-primary {
+  color: var(--tone-quizzes-accent-strong) !important;
+}
+
 /* Mobile readability for inline HTML diagrams in grammar guides */
 @media (max-width: 768px) {
   .grammar-reader-container .grammar-reader-split-screen {
@@ -3316,6 +3341,38 @@ html:not([data-theme="dark"]) .dashboard-accent-button:hover {
   .grammar-reader-container .explanation-content .medicine-card-field-row,
   .grammar-reader-container .explanation-content .medicine-contact-row {
     padding: 0.75rem 0.875rem !important;
+  }
+
+  /* Inline HTML tables — override content min-width and improve wrapping */
+  .grammar-reader-container .explanation-content table {
+    min-width: 0 !important;
+    width: 100% !important;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.875rem;
+  }
+
+  .grammar-reader-container .explanation-content thead,
+  .grammar-reader-container .explanation-content tbody,
+  .grammar-reader-container .explanation-content tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .grammar-reader-container .explanation-content th,
+  .grammar-reader-container .explanation-content td {
+    padding: 0.5rem 0.6rem !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    vertical-align: top;
+  }
+
+  .grammar-reader-container .comparison-table-cards,
+  .grammar-reader-container .verb-table-cards {
+    margin-top: 0.25rem;
   }
 }
 

@@ -29,28 +29,36 @@ const SLOT_THEMES = {
   v2: {
     label: 'V2',
     name: 'Past Tense',
-    badgeBg: 'bg-[#6a8d73] border-[#5a7d63] text-white',
-    accentText: 'text-[#4a6d53]',
-    inputBorder: 'border-[#6a8d73]',
-    inputFocus: 'focus:border-[#4a6d53] focus:ring-[#6a8d73]/40',
-    inputBg: 'bg-[#f3f7f4]',
+    badgeBg:
+      'bg-[#6a8d73] border-[#5a7d63] text-white dark:bg-[#6a8d73]/80 dark:border-[#8ed4b8]/40',
+    accentText: 'text-[#4a6d53] dark:text-[#8ed4b8]',
+    inputBorder: 'border-[#6a8d73] dark:border-[#6fbf9f]/50',
+    inputFocus:
+      'focus:border-[#4a6d53] focus:ring-[#6a8d73]/40 dark:focus:border-[#8ed4b8] dark:focus:ring-[#6fbf9f]/30',
+    inputBg: 'bg-[#f3f7f4] dark:bg-[rgba(111,191,159,0.12)]',
+    inputPlaceholder:
+      'placeholder:text-[#6a8d73]/60 dark:placeholder:text-[#8ed4b8]/55',
     button: 'bg-[#6a8d73] text-white hover:bg-[#5a7d63]',
-    softBg: 'bg-[#f3f7f4]',
-    softBorder: 'border-[#6a8d73]/40',
+    softBg: 'bg-[#f3f7f4] dark:bg-[rgba(111,191,159,0.12)]',
+    softBorder: 'border-[#6a8d73]/40 dark:border-[#6fbf9f]/40',
     placeholder: 'past tense…',
     prompt: 'Type the past (V2)',
   },
   v3: {
     label: 'V3',
     name: 'Past Participle',
-    badgeBg: 'bg-[#e9c46a] border-[#d4a82a] text-[#7a5a10]',
-    accentText: 'text-[#9a6e1a]',
-    inputBorder: 'border-[#e9c46a]',
-    inputFocus: 'focus:border-[#d4a82a] focus:ring-[#e9c46a]/40',
-    inputBg: 'bg-[#fcf6e4]',
+    badgeBg:
+      'bg-[#e9c46a] border-[#d4a82a] text-[#7a5a10] dark:bg-[#e9c46a]/85 dark:border-[#e9c46a]/60 dark:text-[#2a1f08]',
+    accentText: 'text-[#9a6e1a] dark:text-[#e9c46a]',
+    inputBorder: 'border-[#e9c46a] dark:border-[#e9c46a]/50',
+    inputFocus:
+      'focus:border-[#d4a82a] focus:ring-[#e9c46a]/40 dark:focus:border-[#e9c46a] dark:focus:ring-[#e9c46a]/30',
+    inputBg: 'bg-[#fcf6e4] dark:bg-[rgba(233,196,106,0.12)]',
+    inputPlaceholder:
+      'placeholder:text-[#9a6e1a]/60 dark:placeholder:text-[#e9c46a]/55',
     button: 'bg-[#e9c46a] text-[#5a4010] hover:bg-[#d4a82a]',
-    softBg: 'bg-[#fcf6e4]',
-    softBorder: 'border-[#e9c46a]/60',
+    softBg: 'bg-[#fcf6e4] dark:bg-[rgba(233,196,106,0.12)]',
+    softBorder: 'border-[#e9c46a]/60 dark:border-[#e9c46a]/40',
     placeholder: 'past participle…',
     prompt: 'Type the past participle (V3)',
   },
@@ -180,8 +188,9 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
         Verb Speed Round
       </h1>
       <p className="mt-3 text-base text-[var(--color-text-muted)]">
-        Type the <strong className="text-[#4a6d53]">past (V2)</strong> and{' '}
-        <strong className="text-[#9a6e1a]">past participle (V3)</strong> for {DEFAULT_VERBS_PER_ROUND}{' '}
+        Type the <strong className="text-[#4a6d53] dark:text-[#8ed4b8]">past (V2)</strong> and{' '}
+        <strong className="text-[#9a6e1a] dark:text-[#e9c46a]">past participle (V3)</strong> for{' '}
+        {DEFAULT_VERBS_PER_ROUND}{' '}
         random verbs. Build a combo, beat your time.
       </p>
       <div className="mt-6 grid w-full grid-cols-1 gap-3 text-left sm:grid-cols-3">
@@ -232,10 +241,10 @@ function Tip({
 }) {
   const toneClasses =
     tone === 'sage'
-      ? 'border-[#6a8d73] bg-[#e8f0ea] text-[#3a5d43]'
+      ? 'border-[#6a8d73] bg-[#e8f0ea] text-[#3a5d43] dark:border-[#6fbf9f]/40 dark:bg-[rgba(111,191,159,0.12)] dark:text-[#b6ead5]'
       : tone === 'gold'
-      ? 'border-[#d4a82a] bg-[#fcf6e4] text-[#7a5a10]'
-      : 'border-[#b05740] bg-[#f5e6e0] text-[#7a3920]';
+      ? 'border-[#d4a82a] bg-[#fcf6e4] text-[#7a5a10] dark:border-[#e9c46a]/40 dark:bg-[rgba(233,196,106,0.12)] dark:text-[#f5d87a]'
+      : 'border-[#b05740] bg-[#f5e6e0] text-[#7a3920] dark:border-[#f0a080]/40 dark:bg-[rgba(240,160,128,0.12)] dark:text-[#ffd0be]';
   return (
     <div className={`rounded-2xl border p-4 shadow-sm ${toneClasses}`}>
       <div className="flex items-center gap-2">
@@ -433,7 +442,7 @@ function PlayingScreen({
               feedback={feedback ? { correct: feedback.v2Correct, expected: feedback.expectedV2 } : null}
             />
             {v3Skipped ? (
-              <div className="rounded-2xl border border-[#e9c46a]/40 bg-[#fcf6e4] px-4 py-3 text-center text-sm font-semibold text-[#9a6e1a]">
+              <div className="rounded-2xl border border-[#e9c46a]/40 bg-[#fcf6e4] px-4 py-3 text-center text-sm font-semibold text-[#9a6e1a] dark:border-[#e9c46a]/35 dark:bg-[rgba(233,196,106,0.12)] dark:text-[#e9c46a]">
                 V3 is the same as V2 — leave blank
               </div>
             ) : (
@@ -506,14 +515,14 @@ function VerbFormField({
         className={`w-full rounded-2xl border-[3px] px-4 py-3 text-center font-mono text-xl outline-none transition-colors focus:ring-4 ${
           feedback
             ? feedback.correct
-              ? 'border-[#6a8d73] bg-[#e8f0ea] text-[#3a5d43]'
-              : 'border-[#b05740] bg-[#f5e6e0] text-[#7a3920]'
-            : `${theme.inputBorder} ${theme.inputBg} ${theme.inputFocus} text-[var(--color-text)]`
+              ? 'border-[#6a8d73] bg-[#e8f0ea] text-[#3a5d43] dark:border-[#6fbf9f]/60 dark:bg-[rgba(111,191,159,0.2)] dark:text-[#b6ead5]'
+              : 'border-[#b05740] bg-[#f5e6e0] text-[#7a3920] dark:border-[#f0a080]/60 dark:bg-[rgba(240,160,128,0.15)] dark:text-[#ffd0be]'
+            : `${theme.inputBorder} ${theme.inputBg} ${theme.inputFocus} ${theme.inputPlaceholder} text-[var(--color-text)]`
         }`}
         placeholder={theme.placeholder}
       />
       {feedback && !feedback.correct && (
-        <p className="mt-2 text-center text-sm font-semibold text-[#b05740]">
+        <p className="mt-2 text-center text-sm font-semibold text-[#b05740] dark:text-[#f0a080]">
           Answer: <span className="font-mono">{feedback.expected}</span>
         </p>
       )}
@@ -579,9 +588,9 @@ function ResultsScreen({
   const grade = isPerfect
     ? { text: 'Perfect Round!', color: 'text-[#b05740]', Icon: Trophy }
     : isExcellent
-    ? { text: 'Amazing!', color: 'text-[#4a6d53]', Icon: Zap }
+    ? { text: 'Amazing!', color: 'text-[#4a6d53] dark:text-[#8ed4b8]', Icon: Zap }
     : isGood
-    ? { text: 'Nice Run!', color: 'text-[#9a6e1a]', Icon: CheckCircle2 }
+    ? { text: 'Nice Run!', color: 'text-[#9a6e1a] dark:text-[#e9c46a]', Icon: CheckCircle2 }
     : { text: 'Keep Practicing', color: 'text-[var(--color-text-muted)]', Icon: RotateCcw };
 
   return (
@@ -655,7 +664,7 @@ function ResultsScreen({
                       user={r.v3Answer}
                     />
                   ) : (
-                    <div className="flex items-center justify-center rounded-xl border border-[#e9c46a]/30 bg-[#e9c46a]/10 p-2 text-center text-xs font-semibold text-[#9a6e1a]">
+                    <div className="flex items-center justify-center rounded-xl border border-[#e9c46a]/30 bg-[#e9c46a]/10 p-2 text-center text-xs font-semibold text-[#9a6e1a] dark:border-[#e9c46a]/35 dark:bg-[rgba(233,196,106,0.12)] dark:text-[#e9c46a]">
                       V3 = V2 (auto)
                     </div>
                   )}
