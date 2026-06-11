@@ -5,6 +5,10 @@ import {
   auditLevel1Definitions,
   formatDefinitionIssue,
 } from "../checks/level1-definition-audit";
+import {
+  auditLevel1SpanishTranslations,
+  formatSpanishTranslationIssue,
+} from "../checks/level1-spanish-translation-audit";
 
 type AuditCard = {
   unit: string;
@@ -244,6 +248,13 @@ describe("public level 1 vocabulary content audit", () => {
     }
 
     expect(issues, issues.slice(0, 80).join("\n")).toEqual([]);
+  });
+
+  it("keeps Spanish glosses from dropping essential English modifiers", () => {
+    const { issues } = auditLevel1SpanishTranslations();
+    const issueLines = issues.map(formatSpanishTranslationIssue);
+
+    expect(issueLines, issueLines.join("\n")).toEqual([]);
   });
 
   it("flags missing or suspicious images for concrete vocabulary", () => {

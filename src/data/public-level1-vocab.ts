@@ -630,7 +630,7 @@ function categoryLabelSpanish(label: string): string {
   return map[label] ?? label;
 }
 
-const SIMPLE_TERM_DEFINITIONS: Record<string, { en: string }> = {
+const SIMPLE_TERM_DEFINITIONS: Record<string, { en: string; es?: string }> = {
   "Sunday": { en: "a day of the week" },
   "Monday": { en: "a day of the week" },
   "Tuesday": { en: "a day of the week" },
@@ -945,7 +945,7 @@ const SIMPLE_TERM_DEFINITIONS: Record<string, { en: string }> = {
 "Organized": { en: "keeping things in good order" },
 "Dependable": { en: "someone people can trust" },
 "Honest": { en: "telling the truth and not cheating" },
-"Hard-Working": { en: "working hard" },
+"Hard-Working": { en: "working hard", es: "esforzado/a; que trabaja mucho" },
 "Respectful": { en: "showing respect to others" },
 "Head": { en: "the top part of the body" },
 "Arms": { en: "the body parts from the shoulder to the hand" },
@@ -1925,7 +1925,7 @@ const SPANISH_TRANSLATIONS: Record<string, string> = {
   "Organized": "organizado/a",
   "Dependable": "confiable",
   "Honest": "honesto/a",
-  "Hard-Working": "trabajador/a",
+  "Hard-Working": "esforzado/a; que trabaja mucho",
   "Respectful": "respetuoso/a",
   "Head": "la cabeza",
   "Arms": "los brazos",
