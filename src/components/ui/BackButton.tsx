@@ -17,7 +17,8 @@ interface BackButtonBaseProps {
 
 interface BackButtonLinkProps extends BackButtonBaseProps {
   href: string;
-  onClick?: never;
+  /** Optional click interceptor (e.g. to resolve the destination at click time). */
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 interface BackButtonButtonProps extends BackButtonBaseProps {
@@ -82,7 +83,12 @@ export function BackButton({
 
   if (href) {
     return (
-      <Link href={href} className={combinedClass} aria-label={finalAriaLabel}>
+      <Link
+        href={href}
+        onClick={onClick as React.MouseEventHandler<HTMLAnchorElement> | undefined}
+        className={combinedClass}
+        aria-label={finalAriaLabel}
+      >
         {content}
       </Link>
     );
@@ -91,7 +97,7 @@ export function BackButton({
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={onClick as (() => void) | undefined}
       className={combinedClass}
       aria-label={finalAriaLabel}
     >

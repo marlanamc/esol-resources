@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
-import { BackButton } from "@/components/ui/BackButton";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 
 interface FillInBlankQuestion {
@@ -152,8 +152,8 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
             )}
             {/* Header with Progress */}
             <div className="flex flex-shrink-0 items-center gap-3 border-b-2 border-border/40 bg-[var(--color-surface-elevated)] p-4 shadow-sm md:rounded-xl md:border">
-                <BackButton
-                    onClick={() => window.history.back()}
+                <ContextualBackButton
+                    
                     className="shrink-0 md:hidden"
                 />
                 <div className="flex-1">

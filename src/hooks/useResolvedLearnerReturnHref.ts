@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import {
-    ACTIVITIES_LAST_HREF_STORAGE_KEY,
     RETURN_TO_QUERY_PARAM,
     buildReturnStorageKey,
+    resolveLearnerReturnHrefSync,
     sanitizeInternalHref,
 } from "@/lib/learner-navigation";
 
@@ -47,23 +47,15 @@ export function useResolvedLearnerReturnHref({
     );
 
     useEffect(() => {
-        const params = new URLSearchParams(searchKey);
-        const explicitReturnTo = sanitizeInternalHref(params.get(RETURN_TO_QUERY_PARAM));
-        const legacyGrammarMap = params.get("from") === "grammar-map" ? "/grammar-map" : null;
-        const activitiesMemory = sanitizeInternalHref(window.sessionStorage.getItem(ACTIVITIES_LAST_HREF_STORAGE_KEY));
-        const storedReturnTo = sanitizeInternalHref(window.sessionStorage.getItem(storageKey));
-        const fallback = sanitizeInternalHref(fallbackHref) ?? "/dashboard";
-
-        const nextHref =
-            explicitReturnTo ??
-            storedReturnTo ??
-            legacyGrammarMap ??
-            activitiesMemory ??
-            fallback;
+        const nextHref = resolveLearnerReturnHrefSync({
+            pathname,
+            search: searchKey,
+            fallbackHref,
+        });
 
         window.sessionStorage.setItem(storageKey, nextHref);
         setResolvedHref(nextHref);
-    }, [fallbackHref, searchKey, storageKey]);
+    }, [fallbackHref, pathname, searchKey, storageKey]);
 
     return resolvedHref;
 }

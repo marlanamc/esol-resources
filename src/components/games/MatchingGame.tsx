@@ -2,7 +2,7 @@
 
 import { useMemo, useEffect, useState, useRef } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
-import { BackButton } from "@/components/ui/BackButton";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 import {
   type GameState,
@@ -538,8 +538,8 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
             {/* Header */}
             <div className="flex-shrink-0 bg-[var(--color-surface-elevated)] border-b md:border md:rounded-xl shadow-sm border-[var(--color-border-subtle)] p-3 md:p-4">
                 <div className="flex items-start gap-3">
-                    <BackButton
-                        onClick={() => window.history.back()}
+                    <ContextualBackButton
+                        
                         className="shrink-0 md:hidden min-w-[44px] min-h-[44px] justify-center touch-manipulation"
                     />
                     <div className="flex-1 min-w-0">

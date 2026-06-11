@@ -6,4 +6,5 @@ export {
   withReturnTo,
   buildActivityHref,
   buildReturnStorageKey,
+  resolveLearnerReturnHrefSync,
 } from "./learner/navigation";

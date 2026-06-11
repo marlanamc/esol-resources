@@ -165,7 +165,7 @@ function GuidedCoursePath({
             ? buildMapReturnHref(activeWeekNumber, true)
             : null;
 
-    const navigateToWeek = useCallback((weekNumber: number, focusActivity = false) => {
+    const navigateToWeek = useCallback((weekNumber: number, focusActivity = false, behavior: ScrollBehavior = "smooth") => {
         const parentUnit = weekSummaries.find((w) => w.level.levelNumber === weekNumber);
         if (parentUnit) setOpenUnitNumber(parentUnit.unitNumber);
         if (desktopLayout) {
@@ -174,10 +174,10 @@ function GuidedCoursePath({
             setMobileOpenWeek(weekNumber);
         }
         window.requestAnimationFrame(() => {
-            scrollToMapTarget(`week-${weekNumber}`);
+            scrollToMapTarget(`week-${weekNumber}`, behavior);
             if (focusActivity) {
                 setPulseCurrentActivity(true);
-                window.requestAnimationFrame(() => scrollToMapTarget("map-activity-current"));
+                window.requestAnimationFrame(() => scrollToMapTarget("map-activity-current", behavior));
             } else {
                 focusMapWeekHeading(weekNumber);
             }
@@ -193,14 +193,15 @@ function GuidedCoursePath({
             const targetWeek = explicitWeek ?? progressWeekNumber;
             if (targetWeek == null) return;
             didInitialScroll.current = true;
-            navigateToWeek(targetWeek, focusNextActivity);
+            // Returning to the map should land in place, not animate down from the top.
+            navigateToWeek(targetWeek, focusNextActivity, "auto");
             return;
         }
 
         const session = readCourseMapSessionState();
         if (session?.week) {
             didInitialScroll.current = true;
-            navigateToWeek(session.week, false);
+            navigateToWeek(session.week, false, "auto");
             if (session.scrollY > 0) {
                 window.requestAnimationFrame(() => {
                     window.requestAnimationFrame(() => {

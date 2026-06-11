@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
-import { BackButton } from "@/components/ui/BackButton";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 import { VocabWordImage } from "@/components/public-vocab/VocabWordImage";
 import { useLevel1AudioSpeedOptional } from "@/components/public-vocab/level1-ui/Level1AudioSpeedContext";
@@ -254,7 +254,7 @@ export default function FlashcardCarousel({
                 {/* Mobile: Progress row */}
                 <div className="flex items-center justify-between md:hidden">
                     <div className="flex items-center gap-2">
-                        <BackButton onClick={() => window.history.back()} className="shrink-0" />
+                        <ContextualBackButton  className="shrink-0" />
                         <div className="text-sm font-bold text-[var(--color-text-muted)]">
                             {studiedCards.size} / {total} studied
                         </div>

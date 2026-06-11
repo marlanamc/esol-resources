@@ -49,3 +49,31 @@ export function buildActivityHref(activityId: string, assignmentId?: string | nu
 export function buildReturnStorageKey(pathname: string, assignmentId?: string | null): string {
     return `learner-return:${pathname}:${assignmentId ?? ""}`;
 }
+
+/**
+ * Resolves the learner "return" destination synchronously, reading sessionStorage when available.
+ * Same precedence as useResolvedLearnerReturnHref. Call this at interaction time (e.g. in a click
+ * handler) so navigation never uses a stale fallback painted before the async sources resolved.
+ */
+export function resolveLearnerReturnHrefSync(options: {
+    pathname: string;
+    search: string;
+    fallbackHref?: string | null;
+}): string {
+    const params = new URLSearchParams(options.search);
+    const explicitReturnTo = sanitizeInternalHref(params.get(RETURN_TO_QUERY_PARAM));
+    const legacyGrammarMap = params.get("from") === "grammar-map" ? "/grammar-map" : null;
+    const fallback = sanitizeInternalHref(options.fallbackHref) ?? "/dashboard";
+
+    if (typeof window === "undefined") {
+        return explicitReturnTo ?? legacyGrammarMap ?? fallback;
+    }
+
+    const storageKey = buildReturnStorageKey(options.pathname, params.get("assignment"));
+    const storedReturnTo = sanitizeInternalHref(window.sessionStorage.getItem(storageKey));
+    const activitiesMemory = sanitizeInternalHref(
+        window.sessionStorage.getItem(ACTIVITIES_LAST_HREF_STORAGE_KEY)
+    );
+
+    return explicitReturnTo ?? storedReturnTo ?? legacyGrammarMap ?? activitiesMemory ?? fallback;
+}

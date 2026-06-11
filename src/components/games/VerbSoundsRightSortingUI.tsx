@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { saveActivityProgress, fetchActivityProgress } from "@/lib/activityProgress";
-import { BackButton } from "@/components/ui/BackButton";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 import {
   VERB_TENSE_HINTS,
@@ -379,7 +379,7 @@ export function VerbSoundsRightSortingUI({
             {pointsToast && <PointsToast key={pointsToast.key} points={pointsToast.points} onComplete={() => setPointsToast(null)} />}
             <div className="flex-shrink-0 bg-white dark:bg-[var(--surface-elevated)] border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 dark:border-white/10 p-3 md:p-4">
                 <div className="flex items-start gap-3">
-                    <BackButton onClick={() => window.history.back()} className="shrink-0 md:hidden min-w-[44px] min-h-[44px] justify-center touch-manipulation" />
+                    <ContextualBackButton  className="shrink-0 md:hidden min-w-[44px] min-h-[44px] justify-center touch-manipulation" />
                     <div className="flex-1 min-w-0">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
                             <h2 className="text-base sm:text-lg md:text-xl font-bold text-[var(--color-text)]">Pick the word that sounds right</h2>

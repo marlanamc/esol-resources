@@ -20,8 +20,10 @@ import {
   Info,
   X
 } from 'lucide-react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { saveActivityProgress } from '@/lib/activityProgress';
 import { PointsToast } from '@/components/ui/PointsToast';
+import { resolveLearnerReturnHrefSync } from '@/lib/learner-navigation';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import { useTheme } from '@/components/ThemeProvider';
 import {
@@ -79,6 +81,13 @@ const SOUND_COLORS: Record<EdSound, { bg: string; hover: string; active: string;
 
 export default function EdPronunciationGame({ contentStr, activityId, assignmentId }: Props) {
   const { resolvedTheme } = useTheme();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const exitGame = () =>
+    router.push(
+      resolveLearnerReturnHrefSync({ pathname, search: searchParams.toString() })
+    );
   const [state, setState] = useState<GameState>({
     mode: 'sorting',
     phase: 'menu',
@@ -358,8 +367,9 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
           className="min-h-full border-border/20 dark:border-white/10 bg-[var(--surface-elevated)] text-text md:min-h-0 md:overflow-hidden md:rounded-3xl md:border md:shadow-xl"
         >
           <div className="bg-gradient-to-br from-violet-300 to-fuchsia-400 p-6 sm:p-8 text-white text-center pb-12 rounded-b-[2.5rem] md:rounded-b-none shadow-lg md:shadow-none relative">
-            <button 
-              onClick={() => window.history.back()}
+            <button
+              onClick={exitGame}
+              aria-label="Leave game"
               className="absolute top-4 left-4 p-2 bg-white/20 rounded-full hover:bg-white/30 text-white transition-colors"
               style={{ color: '#ffffff' }}
             >

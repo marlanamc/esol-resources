@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import type { InteractiveGuideContent, FormulaPart, Exercise } from "@/types/activity";
-import { BackButton } from "@/components/ui/BackButton";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { applyGrammarDarkClasses } from "@/utils/grammarDarkModeClasses";
 import { getSafeExercisePlaceholder } from "@/utils/exercisePlaceholder";
 
@@ -52,8 +52,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                 <div className="flex items-center gap-4">
                     {/* Back button - only on mobile when no onClose */}
                     {!onClose && (
-                        <BackButton
-                            onClick={() => window.history.back()}
+                        <ContextualBackButton
                             className="shrink-0 md:hidden min-w-[44px] min-h-[44px] justify-center"
                         />
                     )}

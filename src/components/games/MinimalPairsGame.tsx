@@ -16,7 +16,9 @@ import {
   Zap,
   Coins,
 } from 'lucide-react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { saveActivityProgress, fetchActivityProgress, type FetchedActivityProgress } from '@/lib/activityProgress';
+import { resolveLearnerReturnHrefSync } from '@/lib/learner-navigation';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import {
@@ -66,6 +68,13 @@ interface Props {
 const ROUND_OPTIONS = [10, 12, 15];
 
 export default function MinimalPairsGame({ contentStr, activityId, assignmentId }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const exitGame = () =>
+    router.push(
+      resolveLearnerReturnHrefSync({ pathname, search: searchParams.toString() })
+    );
   const [state, setState] = useState<GameState>({
     phase: 'menu',
     contrast: 'mixed',
@@ -309,7 +318,8 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
         >
           <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-6 sm:p-8 text-white text-center pb-12 rounded-b-[2.5rem] md:rounded-b-none shadow-lg md:shadow-none relative">
             <button 
-              onClick={() => window.history.back()}
+              onClick={exitGame}
+              aria-label="Leave game"
               className="absolute top-4 left-4 p-2 bg-white/20 rounded-full hover:bg-white/30 text-white transition-colors"
             >
               <ArrowLeft className="w-6 h-6" />
