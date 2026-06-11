@@ -14,11 +14,10 @@ import { persistLearnerPreview } from "@/lib/learner-preview";
 import { AdminViewSwitcher } from "@/components/dashboard/AdminViewSwitcher";
 import { IndependentDashboardClient } from "@/app/dashboard/independent/IndependentDashboardClient";
 import { IndependentLeaderboardCard } from "@/components/dashboard/independent/IndependentLeaderboardCard";
+import { IndependentWelcomeCard } from "@/components/dashboard/independent/IndependentWelcomeCard";
 import { buildIndependentLeaderboardUserWhere } from "@/lib/gamification/leaderboard-filter";
 import {
     filterIndependentVisibleActivities,
-    getIndependentRecommendationActivityIds,
-    getIndependentRecommendationActivityTitles,
     getIndependentNewActivityCards,
 } from "@/lib/independent-learning";
 import { getWeeklyGoalProgress } from "@/lib/independent-progress";
@@ -80,25 +79,18 @@ export default async function IndependentDashboardPage() {
 
     await persistLearnerPreview(userId, "independent");
 
-    const sequenceActivityIds = getIndependentRecommendationActivityIds();
-    const sequenceActivityTitles = getIndependentRecommendationActivityTitles();
-
-    const [sequenceActivitiesRaw, recentActivitiesRaw] = await Promise.all([
-        timedQuery(
+    const recentActivitiesRaw = await timedQuery(
         {
             route: "/dashboard/independent",
-            queryLabel: "activity.findMany.independentSequence",
+            queryLabel: "activity.findMany.independentRecentReleases",
             userRole: session.user.role,
         },
         () =>
             withPrismaReadRetry(() =>
                 prisma.activity.findMany({
                     where: {
-                        OR: [
-                            { id: { in: sequenceActivityIds } },
-                            { title: { in: sequenceActivityTitles } },
-                        ],
                         deletedAt: null,
+                        isFeaturedForIndependent: true,
                     },
                     select: {
                         id: true,
@@ -108,49 +100,19 @@ export default async function IndependentDashboardPage() {
                         category: true,
                         isReleased: true,
                         isFeaturedForIndependent: true,
-                                        content: true,
+                        content: true,
                         createdAt: true,
                         updatedAt: true,
                     },
                 })
-        ),
+            ),
         (result) => result.length
-        ),
-        timedQuery(
-            {
-                route: "/dashboard/independent",
-                queryLabel: "activity.findMany.independentRecentReleases",
-                userRole: session.user.role,
-            },
-            () =>
-                withPrismaReadRetry(() =>
-                    prisma.activity.findMany({
-                        where: {
-                            deletedAt: null,
-                            isFeaturedForIndependent: true,
-                        },
-                        select: {
-                            id: true,
-                            title: true,
-                            description: true,
-                            type: true,
-                            category: true,
-                            isReleased: true,
-                            isFeaturedForIndependent: true,
-                            content: true,
-                            createdAt: true,
-                            updatedAt: true,
-                        },
-                    })
-                ),
-            (result) => result.length
-        ),
-    ]);
-    const sequenceActivities = filterIndependentVisibleActivities(sequenceActivitiesRaw);
+    );
     const recentActivities = filterIndependentVisibleActivities(recentActivitiesRaw);
+    const recentActivityIds = recentActivities.map((activity) => activity.id);
 
     const [progressRows, submissions, independentLeaderboard, userPreferences, weeklySubmissions, weeklyProgressRows, independentLearnerCount] = await Promise.all([
-        sequenceActivityIds.length === 0
+        recentActivityIds.length === 0
             ? []
             : timedQuery(
                 {
@@ -163,7 +125,7 @@ export default async function IndependentDashboardPage() {
                         prisma.activityProgress.findMany({
                             where: {
                                 userId,
-                                activityId: { in: sequenceActivityIds },
+                                activityId: { in: recentActivityIds },
                             },
                             select: {
                                 activityId: true,
@@ -177,7 +139,7 @@ export default async function IndependentDashboardPage() {
                     ),
                 (result) => result.length
             ),
-        sequenceActivityIds.length === 0
+        recentActivityIds.length === 0
             ? []
             : timedQuery(
                 {
@@ -190,7 +152,7 @@ export default async function IndependentDashboardPage() {
                         prisma.submission.findMany({
                             where: {
                                 userId,
-                                activityId: { in: sequenceActivityIds },
+                                activityId: { in: recentActivityIds },
                                 status: { in: ["submitted", "graded"] },
                             },
                             select: {
@@ -298,6 +260,8 @@ export default async function IndependentDashboardPage() {
                             />
                         </div>
 
+                        <IndependentWelcomeCard />
+
                         <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
 
                         {dailyVocabHabit ? (
@@ -325,6 +289,8 @@ export default async function IndependentDashboardPage() {
                                     <span aria-label={`Rank ${studentLeaderboardRank}`}>{studentLeaderboardMedal}</span>
                                 ) : undefined}
                             />
+
+                            <IndependentWelcomeCard />
 
                             <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
 

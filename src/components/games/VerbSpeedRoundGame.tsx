@@ -14,14 +14,13 @@ import {
 import { PointsToast } from '@/components/ui/PointsToast';
 import { CourseMapReturnButton } from '@/components/navigation/CourseMapReturnButton';
 import {
+  DEFAULT_VERBS_PER_ROUND,
   isFormCorrect,
   resolveCorrectV3,
   v3IsSameAsV2,
   type SpeedRoundVerb,
 } from '@/types/verb-speed-round';
 import { pickRandomVerbs } from '@/data/verb-speed-round-pool';
-
-const VERBS_PER_ROUND = 10;
 
 // Brand colors are not all registered as Tailwind theme tokens (see tailwind.config.ts),
 // so we use arbitrary-value classes with the brand hex codes to guarantee they render.
@@ -81,7 +80,7 @@ export function VerbSpeedRoundGame({ activityId }: Props) {
   const [hasSubmittedProgress, setHasSubmittedProgress] = useState(false);
 
   const start = useCallback(() => {
-    setVerbs(pickRandomVerbs(VERBS_PER_ROUND));
+    setVerbs(pickRandomVerbs(DEFAULT_VERBS_PER_ROUND));
     setResults([]);
     setBestCombo(0);
     setElapsedMs(0);
@@ -182,7 +181,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
       </h1>
       <p className="mt-3 text-base text-[var(--color-text-muted)]">
         Type the <strong className="text-[#4a6d53]">past (V2)</strong> and{' '}
-        <strong className="text-[#9a6e1a]">past participle (V3)</strong> for {VERBS_PER_ROUND}{' '}
+        <strong className="text-[#9a6e1a]">past participle (V3)</strong> for {DEFAULT_VERBS_PER_ROUND}{' '}
         random verbs. Build a combo, beat your time.
       </p>
       <div className="mt-6 grid w-full grid-cols-1 gap-3 text-left sm:grid-cols-3">
@@ -250,37 +249,24 @@ function Tip({
 
 type FormSlot = 'v2' | 'v3';
 
-interface FeedbackState {
-  slot: FormSlot;
-  correct: boolean;
-  expected: string;
+interface VerbFeedback {
+  v2Correct: boolean;
+  v3Correct: boolean;
+  expectedV2: string;
+  expectedV3: string;
 }
 
-interface Prompt {
-  verbIndex: number;
-  verb: SpeedRoundVerb;
-  slot: FormSlot;
-}
-
-function buildShuffledPrompts(verbs: SpeedRoundVerb[]): Prompt[] {
-  const prompts: Prompt[] = [];
-  verbs.forEach((verb, verbIndex) => {
-    prompts.push({ verbIndex, verb, slot: 'v2' });
-    if (!v3IsSameAsV2(verb.v3)) {
-      prompts.push({ verbIndex, verb, slot: 'v3' });
-    }
-  });
-  // Fisher–Yates shuffle
-  for (let i = prompts.length - 1; i > 0; i--) {
+function shuffleVerbs(verbs: SpeedRoundVerb[]): SpeedRoundVerb[] {
+  const copy = [...verbs];
+  for (let i = copy.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [prompts[i], prompts[j]] = [prompts[j], prompts[i]];
+    [copy[i], copy[j]] = [copy[j], copy[i]];
   }
-  return prompts;
+  return copy;
 }
 
-interface VerbAnswers {
-  v2?: { answer: string; correct: boolean };
-  v3?: { answer: string; correct: boolean };
+function countFormsForVerb(verb: SpeedRoundVerb): number {
+  return 1 + (v3IsSameAsV2(verb.v3) ? 0 : 1);
 }
 
 function PlayingScreen({
@@ -290,108 +276,97 @@ function PlayingScreen({
   verbs: SpeedRoundVerb[];
   onComplete: (results: VerbResult[], bestCombo: number, elapsedMs: number) => void;
 }) {
-  const prompts = useMemo(() => buildShuffledPrompts(verbs), [verbs]);
-  const [promptIndex, setPromptIndex] = useState(0);
-  const [input, setInput] = useState('');
+  const roundVerbs = useMemo(() => shuffleVerbs(verbs.slice(0, DEFAULT_VERBS_PER_ROUND)), [verbs]);
+  const [verbIndex, setVerbIndex] = useState(0);
+  const [v2Input, setV2Input] = useState('');
+  const [v3Input, setV3Input] = useState('');
   const [combo, setCombo] = useState(0);
   const [bestCombo, setBestCombo] = useState(0);
   const [correctForms, setCorrectForms] = useState(0);
-  const [feedback, setFeedback] = useState<FeedbackState | null>(null);
-  const [answers, setAnswers] = useState<Record<number, VerbAnswers>>({});
+  const [feedback, setFeedback] = useState<VerbFeedback | null>(null);
+  const [results, setResults] = useState<VerbResult[]>([]);
   const startedAtRef = useRef<number>(Date.now());
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const v2InputRef = useRef<HTMLInputElement | null>(null);
   const [now, setNow] = useState(Date.now());
 
-  // Tick clock for the on-screen timer
+  const totalForms = useMemo(
+    () => roundVerbs.reduce((sum, verb) => sum + countFormsForVerb(verb), 0),
+    [roundVerbs]
+  );
+
   useEffect(() => {
     const interval = window.setInterval(() => setNow(Date.now()), 100);
     return () => window.clearInterval(interval);
   }, []);
 
-  // Refocus input whenever the active prompt changes
   useEffect(() => {
-    inputRef.current?.focus();
-  }, [promptIndex]);
+    v2InputRef.current?.focus();
+  }, [verbIndex]);
 
-  const totalForms = prompts.length;
-  const current = prompts[promptIndex];
-
-  const finish = useCallback(
-    (finalAnswers: Record<number, VerbAnswers>, finalBestCombo: number) => {
-      const finalResults: VerbResult[] = verbs.map((verb, verbIndex) => {
-        const a = finalAnswers[verbIndex] ?? {};
-        const v3Skipped = v3IsSameAsV2(verb.v3);
-        return {
-          verb,
-          v2Answer: a.v2?.answer ?? '',
-          v3Answer: a.v3?.answer ?? '',
-          v2Correct: a.v2?.correct ?? false,
-          v3Correct: v3Skipped ? true : a.v3?.correct ?? false,
-        };
-      });
-      onComplete(finalResults, finalBestCombo, Date.now() - startedAtRef.current);
-    },
-    [onComplete, verbs]
-  );
-
-  const handleSubmit = useCallback(
-    (e?: React.FormEvent) => {
-      e?.preventDefault();
-      if (!current) return;
-      const trimmed = input.trim();
-      if (!trimmed) return;
-
-      const expected = current.slot === 'v2' ? current.verb.v2 : resolveCorrectV3(current.verb);
-      const isCorrect = isFormCorrect(trimmed, expected);
-
-      // Update combo + counters
-      let nextBestCombo = bestCombo;
-      if (isCorrect) {
-        setCorrectForms((c) => c + 1);
-        setCombo((prev) => {
-          const next = prev + 1;
-          nextBestCombo = Math.max(bestCombo, next);
-          setBestCombo(nextBestCombo);
-          return next;
-        });
-      } else {
-        setCombo(0);
-      }
-
-      const nextAnswers: Record<number, VerbAnswers> = {
-        ...answers,
-        [current.verbIndex]: {
-          ...answers[current.verbIndex],
-          [current.slot]: { answer: trimmed, correct: isCorrect },
-        },
-      };
-      setAnswers(nextAnswers);
-
-      setFeedback({ slot: current.slot, correct: isCorrect, expected });
-      const isLast = promptIndex >= prompts.length - 1;
-      window.setTimeout(
-        () => {
-          setFeedback(null);
-          if (isLast) {
-            finish(nextAnswers, nextBestCombo);
-          } else {
-            setPromptIndex((i) => i + 1);
-            setInput('');
-          }
-        },
-        isCorrect ? 350 : 900
-      );
-    },
-    [answers, bestCombo, current, finish, input, promptIndex, prompts.length]
-  );
-
+  const current = roundVerbs[verbIndex];
   if (!current) return null;
 
-  const slotTheme = SLOT_THEMES[current.slot];
+  const v3Skipped = v3IsSameAsV2(current.v3);
+  const canSubmit = v2Input.trim() && (v3Skipped || v3Input.trim());
+
+  const handleSubmit = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    if (!canSubmit || feedback) return;
+
+    const trimmedV2 = v2Input.trim();
+    const trimmedV3 = v3Input.trim();
+    const expectedV2 = current.v2;
+    const expectedV3 = resolveCorrectV3(current);
+    const v2Correct = isFormCorrect(trimmedV2, expectedV2);
+    const v3Correct = v3Skipped ? true : isFormCorrect(trimmedV3, expectedV3);
+
+    let nextBestCombo = bestCombo;
+    let nextCombo = combo;
+    const formsCorrect = (v2Correct ? 1 : 0) + (v3Skipped ? 0 : v3Correct ? 1 : 0);
+    setCorrectForms((count) => count + formsCorrect);
+
+    if (v2Correct && v3Correct) {
+      nextCombo = combo + formsCorrect;
+      nextBestCombo = Math.max(bestCombo, nextCombo);
+      setCombo(nextCombo);
+      setBestCombo(nextBestCombo);
+    } else {
+      setCombo(0);
+    }
+
+    const nextResult: VerbResult = {
+      verb: current,
+      v2Answer: trimmedV2,
+      v3Answer: trimmedV3,
+      v2Correct,
+      v3Correct,
+    };
+    const nextResults = [...results, nextResult];
+    setResults(nextResults);
+    setFeedback({ v2Correct, v3Correct, expectedV2, expectedV3 });
+
+    const isLast = verbIndex >= roundVerbs.length - 1;
+    const allCorrect = v2Correct && v3Correct;
+    window.setTimeout(
+      () => {
+        setFeedback(null);
+        if (isLast) {
+          onComplete(nextResults, nextBestCombo, Date.now() - startedAtRef.current);
+        } else {
+          setVerbIndex((index) => index + 1);
+          setV2Input('');
+          setV3Input('');
+        }
+      },
+      allCorrect ? 350 : 900
+    );
+  };
+
   const elapsedSec = Math.floor((now - startedAtRef.current) / 1000);
   const minutes = Math.floor(elapsedSec / 60);
   const seconds = elapsedSec % 60;
-  const progressPct = totalForms > 0 ? Math.round((correctForms / totalForms) * 100) : 0;
+  const progressPct =
+    roundVerbs.length > 0 ? Math.round(((verbIndex + (feedback ? 1 : 0)) / roundVerbs.length) * 100) : 0;
 
   return (
     <motion.div
@@ -429,10 +404,9 @@ function PlayingScreen({
         />
       </div>
 
-      {/* Verb card */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={promptIndex}
+          key={verbIndex}
           initial={{ opacity: 0, y: 20, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -20, scale: 0.96 }}
@@ -440,91 +414,110 @@ function PlayingScreen({
           className="rounded-3xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] p-6 text-center shadow-xl"
         >
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-            Prompt {promptIndex + 1} of {prompts.length}
+            Verb {verbIndex + 1} of {roundVerbs.length}
           </p>
           <p className="mt-2 text-5xl font-display font-bold text-[var(--color-text)] sm:text-6xl">
-            {current.verb.v1}
+            {current.v1}
+          </p>
+          <p className="mt-3 text-sm font-semibold text-[var(--color-text-muted)]">
+            Type the past (V2) and past participle (V3)
           </p>
 
-          <div className="mt-3 flex items-center justify-center gap-2">
-            <span
-              className={`inline-flex items-center gap-2 rounded-full border-2 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] shadow-sm ${slotTheme.badgeBg}`}
-            >
-              {slotTheme.label}
-              <span className="font-semibold normal-case tracking-normal opacity-90">
-                · {slotTheme.name}
-              </span>
-            </span>
-          </div>
-          <p className={`mt-3 text-sm font-bold uppercase tracking-wider ${slotTheme.accentText}`}>
-            {slotTheme.prompt}
-          </p>
-
-          <form onSubmit={handleSubmit} className="mt-5">
-            <input
-              ref={inputRef}
-              type="text"
-              inputMode="text"
-              enterKeyHint="go"
-              autoCapitalize="none"
-              autoCorrect="off"
-              autoComplete="off"
-              spellCheck={false}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
+          <form onSubmit={handleSubmit} className="mt-5 space-y-4 text-left">
+            <VerbFormField
+              slot="v2"
+              value={v2Input}
+              onChange={setV2Input}
+              inputRef={v2InputRef}
               disabled={!!feedback}
-              className={`w-full rounded-2xl border-[3px] px-4 py-4 text-center font-mono text-2xl outline-none transition-colors focus:ring-4 ${
-                feedback
-                  ? feedback.correct
-                    ? 'border-[#6a8d73] bg-[#e8f0ea] text-[#3a5d43]'
-                    : 'border-[#b05740] bg-[#f5e6e0] text-[#7a3920]'
-                  : `${slotTheme.inputBorder} ${slotTheme.inputBg} ${slotTheme.inputFocus} text-[var(--color-text)]`
-              }`}
-              placeholder={slotTheme.placeholder}
+              feedback={feedback ? { correct: feedback.v2Correct, expected: feedback.expectedV2 } : null}
             />
+            {v3Skipped ? (
+              <div className="rounded-2xl border border-[#e9c46a]/40 bg-[#fcf6e4] px-4 py-3 text-center text-sm font-semibold text-[#9a6e1a]">
+                V3 is the same as V2 — leave blank
+              </div>
+            ) : (
+              <VerbFormField
+                slot="v3"
+                value={v3Input}
+                onChange={setV3Input}
+                disabled={!!feedback}
+                feedback={feedback ? { correct: feedback.v3Correct, expected: feedback.expectedV3 } : null}
+              />
+            )}
             <button
               type="submit"
-              disabled={!input.trim() || !!feedback}
-              className={`mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3 text-base font-bold transition-[background-color,transform,box-shadow] sm:w-auto ${
-                input.trim() && !feedback
-                  ? `${slotTheme.button} shadow-lg hover:scale-[1.02]`
+              disabled={!canSubmit || !!feedback}
+              className={`inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3 text-base font-bold transition-[background-color,transform,box-shadow] ${
+                canSubmit && !feedback
+                  ? 'bg-[#b05740] text-white shadow-lg hover:scale-[1.02] hover:bg-[#9a4830]'
                   : 'cursor-not-allowed bg-[var(--color-bg-light)] text-[var(--color-text-muted)]'
               }`}
             >
               Check
             </button>
           </form>
-
-          {/* Feedback line */}
-          <div className="mt-4 h-6">
-            <AnimatePresence>
-              {feedback && (
-                <motion.div
-                  initial={{ opacity: 0, y: 4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="flex items-center justify-center gap-2 text-sm font-semibold"
-                >
-                  {feedback.correct ? (
-                    <>
-                      <CheckCircle2 className="h-4 w-4 text-[#4a6d53]" />
-                      <span className="text-[#4a6d53]">Correct!</span>
-                    </>
-                  ) : (
-                    <>
-                      <XCircle className="h-4 w-4 text-[#b05740]" />
-                      <span className="text-[#b05740]">
-                        Answer: <span className="font-mono">{feedback.expected}</span>
-                      </span>
-                    </>
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
         </motion.div>
       </AnimatePresence>
     </motion.div>
+  );
+}
+
+function VerbFormField({
+  slot,
+  value,
+  onChange,
+  disabled,
+  feedback,
+  inputRef,
+}: {
+  slot: FormSlot;
+  value: string;
+  onChange: (value: string) => void;
+  disabled: boolean;
+  feedback: { correct: boolean; expected: string } | null;
+  inputRef?: React.RefObject<HTMLInputElement | null>;
+}) {
+  const theme = SLOT_THEMES[slot];
+  return (
+    <div>
+      <div className="mb-2 flex items-center gap-2">
+        <span
+          className={`inline-flex items-center rounded-full border-2 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] shadow-sm ${theme.badgeBg}`}
+        >
+          {theme.label}
+        </span>
+        <span className={`text-xs font-bold uppercase tracking-wider ${theme.accentText}`}>
+          {theme.name}
+        </span>
+      </div>
+      <input
+        ref={inputRef}
+        type="text"
+        inputMode="text"
+        enterKeyHint="go"
+        autoCapitalize="none"
+        autoCorrect="off"
+        autoComplete="off"
+        spellCheck={false}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
+        className={`w-full rounded-2xl border-[3px] px-4 py-3 text-center font-mono text-xl outline-none transition-colors focus:ring-4 ${
+          feedback
+            ? feedback.correct
+              ? 'border-[#6a8d73] bg-[#e8f0ea] text-[#3a5d43]'
+              : 'border-[#b05740] bg-[#f5e6e0] text-[#7a3920]'
+            : `${theme.inputBorder} ${theme.inputBg} ${theme.inputFocus} text-[var(--color-text)]`
+        }`}
+        placeholder={theme.placeholder}
+      />
+      {feedback && !feedback.correct && (
+        <p className="mt-2 text-center text-sm font-semibold text-[#b05740]">
+          Answer: <span className="font-mono">{feedback.expected}</span>
+        </p>
+      )}
+    </div>
   );
 }
 

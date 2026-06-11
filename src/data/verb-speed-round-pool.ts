@@ -178,5 +178,5 @@ export function pickRandomVerbs(count: number): SpeedRoundVerb[] {
     [picked[i], picked[j]] = [picked[j], picked[i]];
   }
 
-  return picked.map((i) => VERB_SPEED_ROUND_POOL[i]);
+  return picked.map((i) => VERB_SPEED_ROUND_POOL[i]).slice(0, count);
 }

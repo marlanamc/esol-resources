@@ -6,6 +6,8 @@ export interface SpeedRoundVerb {
   v3: string;
 }
 
+export const DEFAULT_VERBS_PER_ROUND = 10;
+
 export interface VerbSpeedRoundContent {
   type: 'verb-speed-round';
   /** Verbs per round (defaults to 10). */
