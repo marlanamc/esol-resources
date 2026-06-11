@@ -467,11 +467,6 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
               ],
               expectedAnswer: "v3",
             },
-            {
-              type: "text",
-              label: "Verb Quiz 1 practices the verbs ___ and ___.",
-              expectedAnswers: ["be and have", "be, have", "have and be"],
-            },
           ],
         },
       ],
