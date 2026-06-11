@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     }
 
     try {
-        const { userId, newPassword } = await request.json();
+        const { userId, newPassword } = await request.json().catch(() => ({}));
         const admin = isAdmin(teacherCheck.user);
 
         if (!userId || typeof userId !== "string") {

@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     }
 
     try {
-        const { newPassword, currentPassword } = await request.json();
+        const { newPassword, currentPassword } = await request.json().catch(() => ({}));
 
         const user = await prisma.user.findUnique({
             where: { id: session.user.id },
