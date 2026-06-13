@@ -30,5 +30,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "_legacy", "archive", "src/**/_archive", "scripts/content/output"]
+  "exclude": ["node_modules", "_legacy", "archive", "src/**/_archive", "scripts/content/output", "tools/**/fixtures/**"]
 }

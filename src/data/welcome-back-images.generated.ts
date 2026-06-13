@@ -37,12 +37,9 @@ export const welcomeBackImages: Record<string, WelcomeBackSceneImage> = {
     },
   },
   scenePhone: {
-    url: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80&auto=format&fit=crop",
-    alt: "A person looking at a learning app on their smartphone.",
-    unsplashId: "1512941937669-90a1b58e7e9c",
-    credit: {
-      name: "Robin Worrall",
-      url: "https://unsplash.com/@robin_rednine",
-    },
+    url: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=80&auto=format&fit=crop",
+    alt: "empty classroom with desks and chalkboard",
+    unsplashId: "PDRFeeDniCk",
+    credit: { name: "Ivan Aleksic", url: "https://unsplash.com/@ivalex" },
   },
 };

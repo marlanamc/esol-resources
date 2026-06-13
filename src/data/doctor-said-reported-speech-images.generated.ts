@@ -29,9 +29,9 @@ export const doctorSaidReportedSpeechImages: Record<string, {
     credit: { name: "Odile", url: "https://unsplash.com/@odile__" },
   },
   sceneCallingLucia: {
-    url: "https://images.unsplash.com/photo-1604881989793-466aca8dd319?w=1200&q=80&auto=format&fit=crop",
-    alt: "Restaurant worker on a phone call during an evening break in the staff room.",
-    unsplashId: "sOdldNCQEtU",
-    credit: { name: "Priscilla Du Preez", url: "https://unsplash.com/@priscilladupreez" },
+    url: "https://images.unsplash.com/photo-1761912915167-558fa68f16b7?w=1200&q=80&auto=format&fit=crop",
+    alt: "A quiet workplace break room with tables and chairs at the end of an evening shift.",
+    unsplashId: "jzGvhLrk-Vg",
+    credit: { name: "The Yardcoworking", url: "https://unsplash.com/@theyard_india" },
   },
 };

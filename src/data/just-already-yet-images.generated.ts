@@ -40,12 +40,9 @@ export const justAlreadyYetImages: Record<string, JustAlreadyYetSceneImage> = {
     },
   },
   sceneToDoList: {
-    url: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&q=80&auto=format&fit=crop",
-    alt: "Open notebook with a handwritten to-do list and a pen resting on the page.",
-    unsplashId: "1484480974693-6ca0a78fb36b",
-    credit: {
-      name: "Glenn Carstens-Peters",
-      url: "https://unsplash.com/@glenncarstenspeters",
-    },
+    url: "https://images.unsplash.com/photo-1709422889872-49b1d6aa77b5?w=1200&q=80&auto=format&fit=crop",
+    alt: "a kitchen counter with a napkin and a pen on it",
+    unsplashId: "_3yOqmFjE8I",
+    credit: { name: "Marc Pell", url: "https://unsplash.com/@blinky264" },
   },
 };

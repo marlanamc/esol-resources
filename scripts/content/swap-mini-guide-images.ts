@@ -6,8 +6,12 @@
  *   npx tsx scripts/content/swap-mini-guide-images.ts --dry-run
  *   npx tsx scripts/content/swap-mini-guide-images.ts --only=sceneBreakRoom,sceneBusCommute
  *
- * Each entry below defines the scene key, target file, search query, and alt text.
- * The script calls the Unsplash Search API and patches the generated .ts file in place.
+ * Each entry below defines the scene key, target file, and either an exact
+ * `photoId` (preferred — pick the photo that fits the caption from the contact
+ * sheet and paste its id) or a fuzzy `query` fallback. Alt text is sourced from
+ * the photo's own Unsplash description unless an explicit `alt` override is given,
+ * so stored alt always matches the real image. The script calls the Unsplash API
+ * and patches the generated .ts file in place.
  */
 
 import * as fs from "fs";
@@ -37,10 +41,20 @@ interface SwapTarget {
   sceneId: string;
   /** Generated .ts filename (without path) */
   file: string;
-  /** Unsplash search query */
-  query: string;
-  /** Alt text for the replacement image */
-  alt: string;
+  /**
+   * Exact Unsplash photo id (e.g. "AB04SBsdHjY") to use. When set, this photo is
+   * fetched directly — no fuzzy search, no "first unused result" guessing. This is
+   * the preferred path: pick the photo that matches the caption from the contact
+   * sheet (npm run audit:mini-guide-images) and paste its id here.
+   */
+  photoId?: string;
+  /** Unsplash search query. Used only as a fallback when `photoId` is not set. */
+  query?: string;
+  /**
+   * Optional alt-text override. When omitted, alt is sourced from the photo's own
+   * Unsplash description so it always matches the real image.
+   */
+  alt?: string;
   orientation?: "landscape" | "portrait" | "squarish";
 }
 
@@ -159,8 +173,43 @@ const SWAP_TARGETS: SwapTarget[] = [
   {
     sceneId: "sceneConstructionLocker",
     file: "third-conditional-what-would-have-happened-images.generated.ts",
-    query: "metal lockers hallway school gym workplace storage",
-    alt: "A row of metal lockers in a workplace or gym, where workers store their gear.",
+    query: "construction workers hard hats job site break",
+  },
+
+  // ── scene-image gate backlog (audit:scene-images grandfathered set) ───
+  // Queries target each caption's detected setting group so the photo's own
+  // Unsplash description clears the rules-image-context heuristic. Alt is left
+  // to the real description (no override) so it always matches the image.
+  {
+    sceneId: "scenePhone",
+    file: "welcome-back-images.generated.ts",
+    query: "classroom desks whiteboard empty school",
+  },
+  {
+    sceneId: "sceneTrain",
+    file: "past-simple-past-continuous-images.generated.ts",
+    query: "subway train station platform commuters morning",
+  },
+  {
+    sceneId: "sceneToDoList",
+    file: "just-already-yet-images.generated.ts",
+    query: "kitchen table morning notebook list coffee mug",
+  },
+  {
+    sceneId: "sceneLabel",
+    file: "stop-taking-or-stop-to-take-images.generated.ts",
+    query: "warehouse worker shelves interior inventory",
+  },
+  {
+    sceneId: "sceneCallingLucia",
+    file: "doctor-said-reported-speech-images.generated.ts",
+    query: "office break room interior tables chairs",
+    alt: "A quiet workplace break room with tables and chairs at the end of an evening shift.",
+  },
+  {
+    sceneId: "workplaceEmailLaptop",
+    file: "medical-instructions-images.generated.ts",
+    query: "person laptop coffee kitchen table morning",
   },
 
   // ── your-week-in-english ──────────────────────────────────────────────
@@ -196,6 +245,8 @@ interface UnsplashPhoto {
   id: string;
   urls: { raw?: string; full?: string; regular?: string; small?: string };
   alt_description?: string | null;
+  description?: string | null;
+  links?: { html?: string };
   user?: {
     name?: string;
     username?: string;
@@ -221,11 +272,59 @@ function toCanonicalUrl(raw: string): string {
   }
 }
 
+interface PickedPhoto {
+  url: string;
+  alt: string;
+  unsplashId: string;
+  unsplashPage: string;
+  creditName: string;
+  creditUrl: string;
+}
+
+/** Build a PickedPhoto from a raw Unsplash photo, sourcing alt + credit from the API. */
+function photoToPicked(photo: UnsplashPhoto): PickedPhoto | null {
+  const rawUrl = photo.urls.regular || photo.urls.small || photo.urls.full || photo.urls.raw;
+  if (!rawUrl) return null;
+  const alt = (photo.alt_description || photo.description || "").trim();
+  return {
+    url: toCanonicalUrl(rawUrl),
+    alt,
+    unsplashId: photo.id,
+    unsplashPage: photo.links?.html ?? `https://unsplash.com/photos/${photo.id}`,
+    creditName: photo.user?.name ?? photo.user?.username ?? "Unsplash",
+    creditUrl:
+      photo.user?.links?.html ??
+      (photo.user?.username
+        ? `https://unsplash.com/@${photo.user.username}`
+        : "https://unsplash.com"),
+  };
+}
+
+/** Fetch one exact photo by its Unsplash id. No search, no guessing. */
+async function fetchUnsplashPhotoById(id: string): Promise<PickedPhoto | null> {
+  if (!ACCESS_KEY) return null;
+
+  const res = await fetch(`https://api.unsplash.com/photos/${encodeURIComponent(id)}`, {
+    headers: { Authorization: `Client-ID ${ACCESS_KEY}`, "Accept-Version": "v1" },
+  });
+
+  if (res.status === 429 || res.status === 403) {
+    throw new Error(`Unsplash rate limit (${res.status}) for photo "${id}"`);
+  }
+  if (res.status === 404) {
+    throw new Error(`Unsplash photo not found: "${id}"`);
+  }
+  if (!res.ok) throw new Error(`Unsplash API ${res.status}: ${res.statusText}`);
+
+  const photo = (await res.json()) as UnsplashPhoto;
+  return photoToPicked(photo);
+}
+
 async function searchUnsplash(
   query: string,
   orientation: "landscape" | "portrait" | "squarish",
   usedIds: Set<string>
-): Promise<{ url: string; unsplashId: string; creditName: string; creditUrl: string } | null> {
+): Promise<PickedPhoto | null> {
   if (!ACCESS_KEY) return null;
 
   const shorterQuery = query.split(/\s+/).slice(0, 4).join(" ");
@@ -261,20 +360,10 @@ async function searchUnsplash(
 
       for (const photo of results) {
         if (!photo.id || usedIds.has(photo.id)) continue;
-        const rawUrl =
-          photo.urls.regular || photo.urls.small || photo.urls.full || photo.urls.raw;
-        if (!rawUrl) continue;
+        const picked = photoToPicked(photo);
+        if (!picked) continue;
         usedIds.add(photo.id);
-        return {
-          url: toCanonicalUrl(rawUrl),
-          unsplashId: photo.id,
-          creditName: photo.user?.name ?? photo.user?.username ?? "Unsplash",
-          creditUrl:
-            photo.user?.links?.html ??
-            (photo.user?.username
-              ? `https://unsplash.com/@${photo.user.username}`
-              : "https://unsplash.com"),
-        };
+        return picked;
       }
       if (results.length === 0) break;
     }
@@ -298,6 +387,7 @@ function patchScene(
   url: string,
   alt: string,
   unsplashId: string,
+  unsplashPage: string,
   creditName: string,
   creditUrl: string
 ): string {
@@ -307,10 +397,16 @@ function patchScene(
     "m"
   );
 
+  // Only emit `unsplashPage` for files whose scene-image type declares it
+  // (e.g. MedicalSceneImage); other types would reject it as an excess property.
+  const unsplashPageLine = content.includes("unsplashPage:")
+    ? `\n    unsplashPage: ${JSON.stringify(unsplashPage)},`
+    : "";
+
   const replacement = `  ${sceneId}: {
     url: ${JSON.stringify(url)},
     alt: ${JSON.stringify(alt)},
-    unsplashId: ${JSON.stringify(unsplashId)},
+    unsplashId: ${JSON.stringify(unsplashId)},${unsplashPageLine}
     credit: { name: ${JSON.stringify(creditName)}, url: ${JSON.stringify(creditUrl)} },
   },`;
 
@@ -378,19 +474,37 @@ async function main(): Promise<void> {
 
     for (let i = 0; i < scenes.length; i++) {
       const scene = scenes[i];
-      console.log(`  [${i + 1}/${scenes.length}] ${scene.sceneId}  ← "${scene.query}"`);
+      const source = scene.photoId ? `id ${scene.photoId}` : `"${scene.query ?? ""}"`;
+      console.log(`  [${i + 1}/${scenes.length}] ${scene.sceneId}  ← ${source}`);
 
       if (dryRun) continue;
 
       try {
-        const picked = await searchUnsplash(
-          scene.query,
-          scene.orientation ?? "landscape",
-          usedIds
-        );
+        if (!scene.photoId && !scene.query) {
+          console.warn(`    ✗ no photoId or query — scene not patched`);
+          continue;
+        }
+
+        const picked = scene.photoId
+          ? await fetchUnsplashPhotoById(scene.photoId)
+          : await searchUnsplash(scene.query!, scene.orientation ?? "landscape", usedIds);
 
         if (!picked) {
-          console.warn(`    ✗ no unused image found — scene not patched`);
+          console.warn(`    ✗ no image found — scene not patched`);
+          continue;
+        }
+
+        // searchUnsplash registers its pick in usedIds; the photoId path does not,
+        // so record it here to keep de-dup working when scenes mix photoId + query.
+        usedIds.add(picked.unsplashId);
+
+        // Prefer an explicit override, else use the photo's own description so the
+        // alt text always matches the real image.
+        const alt = scene.alt ?? picked.alt;
+        if (!alt) {
+          console.warn(
+            `    ✗ no alt text (photo has no description and none provided) — scene not patched`
+          );
           continue;
         }
 
@@ -398,8 +512,9 @@ async function main(): Promise<void> {
           content,
           scene.sceneId,
           picked.url,
-          scene.alt,
+          alt,
           picked.unsplashId,
+          picked.unsplashPage,
           picked.creditName,
           picked.creditUrl
         );

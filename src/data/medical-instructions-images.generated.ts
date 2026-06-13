@@ -122,13 +122,10 @@ export const medicalInstructionsImages: Record<string, MedicalSceneImage> = {
     },
   },
   workplaceEmailLaptop: {
-    url: "https://images.unsplash.com/photo-1758522484158-abdb72a85a51?w=1200&q=80&auto=format&fit=crop",
-    alt: "A person at a laptop writing a message, coffee beside them.",
-    unsplashId: "8qKi1nt5P2Y",
-    unsplashPage: "https://unsplash.com/photos/man-on-phone-and-laptop-at-kitchen-table-8qKi1nt5P2Y",
-    credit: {
-      name: "Vitaly Gariev",
-      url: "https://unsplash.com/@silverkblack",
-    },
+    url: "https://images.unsplash.com/photo-1758523419155-9436f8715a94?w=1200&q=80&auto=format&fit=crop",
+    alt: "Woman reading document at kitchen table with coffee",
+    unsplashId: "RNUNbvIXUbg",
+    unsplashPage: "https://unsplash.com/photos/RNUNbvIXUbg",
+    credit: { name: "Vitaly Gariev", url: "https://unsplash.com/@silverkblack" },
   },
 } as const;

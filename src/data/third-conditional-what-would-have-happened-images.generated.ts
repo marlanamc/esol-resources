@@ -29,9 +29,9 @@ export const thirdConditionalWhatWouldHaveHappenedImages: Record<string, {
     credit: { name: "Spencer Davis", url: "https://unsplash.com/@spencerdavis" },
   },
   sceneConstructionLocker: {
-    url: "https://images.unsplash.com/photo-1617755403929-beee5daffbed?w=1200&q=80&auto=format&fit=crop",
-    alt: "A row of metal lockers in a workplace or gym, where workers store their gear.",
-    unsplashId: "LT8LbZ7R3wE",
-    credit: { name: "Thomas Park", url: "https://unsplash.com/@thomascpark" },
+    url: "https://images.unsplash.com/photo-1593812725955-6d89f01ded2d?w=1200&q=80&auto=format&fit=crop",
+    alt: "man in orange hard hat holding red plastic bag",
+    unsplashId: "LQEHpcS8oJI",
+    credit: { name: "Hoang Kim Hung", url: "https://unsplash.com/@hgkmhung" },
   },
 };

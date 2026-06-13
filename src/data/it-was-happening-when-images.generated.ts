@@ -17,10 +17,10 @@ export const itWasHappeningWhenImages: Record<string, {
     credit: { name: "Jeremiah Niengor", url: "https://unsplash.com/@niengors2023" },
   },
   scenePhone: {
-    url: "https://images.unsplash.com/photo-1517940322679-2b003a168fd2?w=1200&q=80&auto=format&fit=crop",
-    alt: "Person holding phone at night, looking worried, calling someone.",
-    unsplashId: "w3jVXGkYZCw",
-    credit: { name: "Kev Costello", url: "https://unsplash.com/@kevcostello" },
+    url: "https://images.unsplash.com/photo-1758876023053-3aa541a0935b?w=1200&q=80&auto=format&fit=crop",
+    alt: "A woman looking at her smartphone on a couch.",
+    unsplashId: "qAuSGkePHV0",
+    credit: { name: "Vitaly Gariev", url: "https://unsplash.com/@silverkblack" },
   },
   sceneInspector: {
     url: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200&q=80&auto=format&fit=crop",

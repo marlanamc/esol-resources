@@ -11,10 +11,10 @@ export const pastSimplePastContinuousImages: Record<string, {
     credit: { name: "Lala Azizli", url: "https://unsplash.com/@lazizli" },
   },
   sceneTrain: {
-    url: "https://images.unsplash.com/photo-1522204828929-4a2a5a3a70f7?w=1200&q=80&auto=format&fit=crop",
-    alt: "A gray concrete tunnel with a narrow pathway.",
-    unsplashId: "1522204828929-4a2a5a3a70f7",
-    credit: { name: "Jiroe (Matia Rengel)", url: "https://unsplash.com/@iamjiroe" },
+    url: "https://images.unsplash.com/uploads/1413387158190559d80f7/6108b580?w=1200&q=80&auto=format&fit=crop",
+    alt: "photo of train station",
+    unsplashId: "gapYVvUg1M8",
+    credit: { name: "Charles Forerunner", url: "https://unsplash.com/@charles_forerunner" },
   },
   sceneClassroom: {
     url: "https://images.unsplash.com/photo-1758270704384-9df36d94a29d?w=1200&q=80&auto=format&fit=crop",

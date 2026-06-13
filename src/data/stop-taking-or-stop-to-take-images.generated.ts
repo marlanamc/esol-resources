@@ -11,10 +11,10 @@ export const stopTakingOrStopToTakeImages: Record<string, {
     credit: { name: "Unsplash", url: "https://unsplash.com" },
   },
   sceneLabel: {
-    url: "https://images.unsplash.com/photo-1604598625038-50520974af2c?w=1200&q=80&auto=format&fit=crop",
-    alt: "Worker reading the label on a prescription bottle during a lunch break.",
-    unsplashId: "gYZHmoQnoAo",
-    credit: { name: "jack atkinson", url: "https://unsplash.com/@knowjack" },
+    url: "https://images.unsplash.com/photo-1664382953403-fc1ac77073a0?w=1200&q=80&auto=format&fit=crop",
+    alt: "a man and a woman in a warehouse",
+    unsplashId: "ZlOlRnWk8zU",
+    credit: { name: "Centre for Ageing Better", url: "https://unsplash.com/@ageing_better" },
   },
   sceneTryGeneric: {
     url: "https://images.unsplash.com/photo-1550572017-4fcdbb59cc32?w=1200&q=80&auto=format&fit=crop",
