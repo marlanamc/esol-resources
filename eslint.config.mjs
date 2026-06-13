@@ -8,6 +8,15 @@ const eslintConfig = defineConfig([
   {
     rules: {
       "@typescript-eslint/no-explicit-any": "warn",
+      // Honor the `_`-prefix convention for intentionally-unused vars/args/catch bindings.
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
       "react/no-unescaped-entities": "off",
       // The react-hooks compiler rules are currently too strict for this codebase.
       "react-hooks/set-state-in-effect": "off",
@@ -30,6 +39,7 @@ const eslintConfig = defineConfig([
     "prisma/migrations/**",
     "public/assets/**",
     "_legacy/**",
+    "archive/**",
     "docs/**",
     "design_handoff_home_map_redesign/**",
   ]),

@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { chunkIntoGroups, ANIMAL_GROUPS, SESSION_POINTS } from "@/lib/writing-session";
-import { awardPoints } from "@/lib/gamification";
+import { awardPoints, type DbClient } from "@/lib/gamification";
 import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import { handleApiError } from "@/lib/api-response";
 
@@ -263,19 +263,34 @@ async function handlePost(request: NextRequest, { params }: Params) {
         const allSubmissions = round.submissions.filter((s) => s.wordCount > 0);
         const classWinnerGroupId = classWinner?.groupId;
 
-        for (const sub of allSubmissions) {
-            let pts = SESSION_POINTS.PARTICIPATION;
-            if (sub.isGroupWinner) pts += SESSION_POINTS.GROUP_WINNER;
-            if (classWinnerGroupId && sub.groupId === classWinnerGroupId) pts += SESSION_POINTS.CLASS_WINNER;
-            if (pts > 0) {
-                await awardPoints(sub.studentId, pts, "writing_session");
-            }
-        }
+        // Award points + flip status to "results" atomically. An advisory lock
+        // serialises concurrent advance calls (teacher double-click, network
+        // retry); the status recheck inside the lock guarantees the award loop
+        // runs exactly once, so a whole class isn't double-awarded.
+        await prisma.$transaction(async (tx) => {
+            await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${sessionId}), hashtext('writing-session-advance'))`;
 
-        await prisma.writingSession.update({
-            where: { id: sessionId },
-            data: { status: "results" },
-        });
+            const fresh = await tx.writingSession.findUnique({
+                where: { id: sessionId },
+                select: { status: true },
+            });
+            // Another request already advanced past class-vote — points are done.
+            if (!fresh || fresh.status !== "class-vote") return;
+
+            for (const sub of allSubmissions) {
+                let pts = SESSION_POINTS.PARTICIPATION;
+                if (sub.isGroupWinner) pts += SESSION_POINTS.GROUP_WINNER;
+                if (classWinnerGroupId && sub.groupId === classWinnerGroupId) pts += SESSION_POINTS.CLASS_WINNER;
+                if (pts > 0) {
+                    await awardPoints(sub.studentId, pts, "writing_session", "award", tx as unknown as DbClient);
+                }
+            }
+
+            await tx.writingSession.update({
+                where: { id: sessionId },
+                data: { status: "results" },
+            });
+        }, { timeout: 20000 });
 
         return NextResponse.json({ status: "results" });
     }

@@ -294,9 +294,9 @@ function PlayingScreen({
   const [correctForms, setCorrectForms] = useState(0);
   const [feedback, setFeedback] = useState<VerbFeedback | null>(null);
   const [results, setResults] = useState<VerbResult[]>([]);
-  const startedAtRef = useRef<number>(Date.now());
   const v2InputRef = useRef<HTMLInputElement | null>(null);
-  const [now, setNow] = useState(Date.now());
+  const [startedAt, setStartedAt] = useState(0);
+  const [now, setNow] = useState(0);
 
   const totalForms = useMemo(
     () => roundVerbs.reduce((sum, verb) => sum + countFormsForVerb(verb), 0),
@@ -304,6 +304,9 @@ function PlayingScreen({
   );
 
   useEffect(() => {
+    const start = Date.now();
+    setStartedAt(start);
+    setNow(start);
     const interval = window.setInterval(() => setNow(Date.now()), 100);
     return () => window.clearInterval(interval);
   }, []);
@@ -360,7 +363,7 @@ function PlayingScreen({
       () => {
         setFeedback(null);
         if (isLast) {
-          onComplete(nextResults, nextBestCombo, Date.now() - startedAtRef.current);
+          onComplete(nextResults, nextBestCombo, Date.now() - startedAt);
         } else {
           setVerbIndex((index) => index + 1);
           setV2Input('');
@@ -371,7 +374,7 @@ function PlayingScreen({
     );
   };
 
-  const elapsedSec = Math.floor((now - startedAtRef.current) / 1000);
+  const elapsedSec = startedAt ? Math.floor((now - startedAt) / 1000) : 0;
   const minutes = Math.floor(elapsedSec / 60);
   const seconds = elapsedSec % 60;
   const progressPct =

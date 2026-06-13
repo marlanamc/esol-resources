@@ -44,22 +44,30 @@ export async function trackLogin(userId: string) {
     const tomorrowUtcStart = new Date(todayUtcStart);
     tomorrowUtcStart.setUTCDate(tomorrowUtcStart.getUTCDate() + 1);
 
-    const existingLogin = await prisma.pointsLedger.findFirst({
-      where: {
-        userId,
-        source: 'login',
-        createdAt: {
-          gte: todayUtcStart,
-          lt: tomorrowUtcStart,
+    // Serialize concurrent logins for the same user (e.g. phone + tablet at the
+    // start of class) with an advisory lock so the "already logged in today?"
+    // check and the ledger/streak writes commit as one atomic unit. Without it,
+    // both sessions can pass the check and write duplicate daily-login rows.
+    await prisma.$transaction(async (tx) => {
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${userId}), hashtext('track-login'))`;
+
+      const existingLogin = await tx.pointsLedger.findFirst({
+        where: {
+          userId,
+          source: 'login',
+          createdAt: {
+            gte: todayUtcStart,
+            lt: tomorrowUtcStart,
+          },
         },
-      },
-    });
+      });
 
-    // Only process the first login marker of the UTC day
-    if (!existingLogin) {
-      await logPointsLedger(userId, 0, 'Daily login', 'login');
+      // Only process the first login marker of the UTC day
+      if (existingLogin) return;
 
-      const user = await prisma.user.findUnique({
+      await logPointsLedger(userId, 0, 'Daily login', 'login', tx as unknown as DbClient);
+
+      const user = await tx.user.findUnique({
         where: { id: userId },
         select: { currentStreak: true, longestStreak: true, lastActivityDate: true },
       });
@@ -72,7 +80,7 @@ export async function trackLogin(userId: string) {
       );
 
       if (streakUpdated) {
-        await prisma.user.update({
+        await tx.user.update({
           where: { id: userId },
           data: {
             currentStreak: newStreak,
@@ -81,12 +89,12 @@ export async function trackLogin(userId: string) {
           },
         });
       } else {
-        await prisma.user.update({
+        await tx.user.update({
           where: { id: userId },
           data: { lastActivityDate: now },
         });
       }
-    }
+    });
   } catch (err) {
     logger.error('[Gamification] Failed to track login', err);
   }
@@ -246,13 +254,38 @@ export async function getTimeframedLeaderboard(
     ? { classes: { some: { classId: { in: classIds }, status: 'active' } } }
     : (classId ? { classes: { some: { classId, status: 'active' } } } : undefined);
 
-  // First, get all students (excluding test accounts and admin accounts)
   const studentWhere = options?.independentOnly
     ? buildIndependentLeaderboardUserWhere()
     : buildLeaderboardEligibleUserWhere(classFilter);
 
-  const allStudents = await prisma.user.findMany({
-    where: studentWhere,
+  // Sum points per user from the ledger for this timeframe. This is naturally
+  // bounded by activity — only users who earned points in the window appear —
+  // so we look up student metadata for just those users below, instead of
+  // pulling the entire roster into memory on every leaderboard render.
+  const whereLedger: Prisma.PointsLedgerWhereInput = {
+    createdAt: { gte: since },
+    user: { ...studentWhere },
+  };
+
+  const grouped = await prisma.pointsLedger.groupBy({
+    by: ['userId'],
+    where: whereLedger,
+    _sum: { points: true },
+  });
+
+  // Create a map of userId -> points from ledger
+  const pointsMap = new Map(grouped.map((entry) => [entry.userId, entry._sum.points || 0]));
+
+  // Only students with a positive timeframe total are shown (login entries log
+  // 0 points, so a user can appear in the ledger with a zero sum).
+  const rankedUserIds = grouped
+    .filter((entry) => (entry._sum.points || 0) > 0)
+    .map((entry) => entry.userId);
+
+  if (rankedUserIds.length === 0) return [];
+
+  const rankedStudents = await prisma.user.findMany({
+    where: { AND: [studentWhere, { id: { in: rankedUserIds } }] },
     select: {
       id: true,
       name: true,
@@ -265,27 +298,8 @@ export async function getTimeframedLeaderboard(
     },
   });
 
-  // Then get points from ledger for this timeframe (excluding test accounts and admin accounts)
-  const whereLedger: Prisma.PointsLedgerWhereInput = {
-    createdAt: { gte: since },
-    user: {
-      ...(options?.independentOnly
-        ? buildIndependentLeaderboardUserWhere()
-        : buildLeaderboardEligibleUserWhere(classFilter)),
-    },
-  };
-
-  const grouped = await prisma.pointsLedger.groupBy({
-    by: ['userId'],
-    where: whereLedger,
-    _sum: { points: true },
-  });
-
-  // Create a map of userId -> points from ledger
-  const pointsMap = new Map(grouped.map((entry) => [entry.userId, entry._sum.points || 0]));
-
-  // Combine all students with their points (0 if not in ledger)
-  const rankings = allStudents.map((student) => ({
+  // Combine the ranked students with their ledger points
+  const rankings = rankedStudents.map((student) => ({
     userId: student.id,
     points: pointsMap.get(student.id) || 0,
     name: options?.independentOnly
@@ -342,11 +356,6 @@ export async function checkAndAwardAchievements(userId: string, db: DbClient = p
           achievement: true,
         },
       },
-      submissions: {
-        where: {
-          status: { in: ['submitted', 'graded'] } // Count both submitted and graded
-        },
-      },
     },
   });
 
@@ -360,6 +369,18 @@ export async function checkAndAwardAchievements(userId: string, db: DbClient = p
 
   const toAward: typeof allAchievements = [];
 
+  // Submission-derived counts are only needed for unearned quiz/activity
+  // achievements. Use indexed COUNT queries instead of loading every submission
+  // row into memory — that payload grows unbounded as a learner stays active.
+  const submissionStatus = { in: ['submitted', 'graded'] };
+  const unearned = allAchievements.filter((a) => !earnedAchievementIds.has(a.id));
+  const submissionCount = unearned.some((a) => a.type === 'activity')
+    ? await db.submission.count({ where: { userId, status: submissionStatus } })
+    : 0;
+  const perfectQuizCount = unearned.some((a) => a.type === 'quiz')
+    ? await db.submission.count({ where: { userId, score: 100, status: submissionStatus } })
+    : 0;
+
   for (const achievement of allAchievements) {
     if (earnedAchievementIds.has(achievement.id)) continue;
 
@@ -372,13 +393,11 @@ export async function checkAndAwardAchievements(userId: string, db: DbClient = p
       case 'points':
         shouldAward = user.points >= achievement.requirement;
         break;
-      case 'quiz': {
-        const perfectQuizzes = user.submissions.filter((s: { score: number | null }) => s.score === 100).length;
-        shouldAward = perfectQuizzes >= achievement.requirement;
+      case 'quiz':
+        shouldAward = perfectQuizCount >= achievement.requirement;
         break;
-      }
       case 'activity':
-        shouldAward = user.submissions.length >= achievement.requirement;
+        shouldAward = submissionCount >= achievement.requirement;
         break;
     }
 
@@ -390,9 +409,15 @@ export async function checkAndAwardAchievements(userId: string, db: DbClient = p
 
   if (toAward.length === 0) return newlyEarned;
 
-  // Batch create all UserAchievement records in one query
+  // Batch create all UserAchievement records in one query.
+  // skipDuplicates guards against a concurrent-submission race where two
+  // transactions both read the same "not yet earned" set and both try to
+  // insert the same (userId, achievementId) — without it the second insert
+  // throws a unique-constraint error that rolls back the whole award chain,
+  // costing the learner their actual activity points.
   await db.userAchievement.createMany({
     data: toAward.map((a) => ({ userId: user.id, achievementId: a.id })),
+    skipDuplicates: true,
   });
 
   const totalPoints = toAward.reduce((sum, a) => sum + a.points, 0);

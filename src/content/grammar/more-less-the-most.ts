@@ -675,7 +675,7 @@ export const moreLessTheMostContent: InteractiveGuideContent = {
     {
       id: "mlm-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Plan B is ___ expensive than Plan A.\" (Long adjective comparative — don't add -er.)",
+      question: "Fill in the blank: \"Plan B is ___ expensive than Plan A.\" (Long adjective comparative: don't add -er.)",
       correctAnswer: "more",
       explanation: "Long adjectives use 'more' for comparatives. Never add -er to a long adjective like 'expensive'.",
       topic: "comparative-form-long-adjective",

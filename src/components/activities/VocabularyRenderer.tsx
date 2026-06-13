@@ -105,7 +105,7 @@ export default function VocabularyRenderer({
     const router = useRouter();
     const searchParams = useSearchParams();
     const currentUi = searchParams.get("ui") as VocabType | null;
-    const initialUiRef = useRef(currentUi);
+    const [initialUi] = useState(currentUi);
     const previousUiRef = useRef<VocabType | null>(currentUi);
     const [selectionRefreshTick, setSelectionRefreshTick] = useState(0);
 
@@ -129,7 +129,7 @@ export default function VocabularyRenderer({
                 activityId={activityId}
                 vocabType={currentUi}
                 assignmentId={assignmentId}
-                returnToCourseMap={Boolean(initialUiRef.current)}
+                returnToCourseMap={Boolean(initialUi)}
                 onBack={() => {
                     const params = new URLSearchParams(searchParams);
                     params.delete("ui");

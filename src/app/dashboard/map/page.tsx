@@ -19,14 +19,12 @@ import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { canUseTeacherTools } from "@/lib/roles";
 import { CourseMapJumpToWeek } from "@/components/dashboard/CourseMapJumpToWeek";
 import { CourseMapMobileWayfinding } from "@/components/dashboard/CourseMapMobileWayfinding";
-import { CourseMapPathBreadcrumb } from "@/components/dashboard/CourseMapPathBreadcrumb";
 import { CourseMapUnitNav } from "@/components/dashboard/CourseMapUnitNav";
 import {
     buildMapWeekProgress,
     findFirstIncompleteRequired,
     parseMapWeekParam,
     resolveCurrentMapWeek,
-    resolveNextMapActivity,
     resolveNextMapActivityLaunch,
 } from "@/lib/course-map-navigation";
 import {
@@ -229,7 +227,6 @@ export default async function MapPage({
         };
     });
     const weekProgress = buildMapWeekProgress(courseMapUnits, guidedProgress);
-    const nextActivity = hasPath ? resolveNextMapActivity(courseMapUnits, guidedProgress) : null;
 
     const nextLaunch = hasPath
         ? resolveNextMapActivityLaunch(courseMapUnits, guidedProgress, guidedAssignments)

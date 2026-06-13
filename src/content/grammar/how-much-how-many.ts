@@ -616,7 +616,7 @@ export const howMuchHowManyContent: InteractiveGuideContent = {
     {
       id: "how-much-how-many-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"She bought ___ rice for dinner.\" (Rice is uncountable — use a little or a few?)",
+      question: "Fill in the blank: \"She bought ___ rice for dinner.\" (Rice is uncountable: use a little or a few?)",
       correctAnswer: "a little",
       explanation: "Rice is uncountable. Use 'a little' with uncountable nouns. 'A few' is only for countable nouns.",
       topic: "a-little-a-few",

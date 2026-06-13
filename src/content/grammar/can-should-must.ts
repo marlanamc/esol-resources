@@ -197,7 +197,7 @@ export const canShouldMustContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("bad idea", "amber")}
-            <span><em>You <strong>shouldn't</strong> click on links in unknown text messages — especially around federal holidays, when scammers send fake "verify your benefits" texts while banks are closed.</em></span>
+            <span><em>You <strong>shouldn't</strong> click on links in unknown text messages, especially around federal holidays, when scammers send fake "verify your benefits" texts while banks are closed.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(106,141,115,0.06); border-radius: 0.4rem">
             ${labelPill("bad idea", "amber")}

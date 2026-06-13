@@ -3,8 +3,12 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { requireAuth } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
-import { DAILY_HABIT_KEYS, markDailyHabitCompleted } from "@/lib/daily-habits";
-import { awardPoints, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
+import {
+  DAILY_HABIT_KEYS,
+  getDailyHabitCompletionForUser,
+  markDailyHabitCompleted,
+} from "@/lib/daily-habits";
+import { applyAwardChain } from "@/lib/gamification/award-chain";
 import { calculateVocabReviewPoints } from "@/lib/gamification/constants";
 
 function json<T>(data: T, status = 200) {
@@ -38,15 +42,34 @@ export async function POST(request: Request) {
 
   const points = calculateVocabReviewPoints(cardsReviewed);
 
+  // Idempotency guard: if the learner already completed today's vocab review,
+  // a retry (network timeout, double-tap, PWA outbox replay) must not award
+  // points a second time. The daily-habit upsert silently no-ops on replay,
+  // but awardPoints does not — so gate on the completion record first.
+  const alreadyCompleted = await getDailyHabitCompletionForUser(
+    prisma,
+    userId,
+    DAILY_HABIT_KEYS.vocabReview
+  );
+  if (alreadyCompleted) {
+    return json({ ok: true, points: 0, duplicate: true, streakUpdated: false });
+  }
+
   await markDailyHabitCompleted(prisma, userId, DAILY_HABIT_KEYS.vocabReview);
-  await awardPoints(userId, points, `Vocab review: ${cardsReviewed} card${cardsReviewed === 1 ? "" : "s"}`);
-  const streakResult = await updateStreak(userId, points);
-  await checkAndAwardAchievements(userId);
+
+  // applyAwardChain wraps awardPoints + updateStreak + checkAndAwardAchievements
+  // in a single transaction so a mid-chain failure can't leave points awarded
+  // without the streak/achievement updates that should accompany them.
+  const chain = await applyAwardChain({
+    userId,
+    points,
+    reason: `Vocab review: ${cardsReviewed} card${cardsReviewed === 1 ? "" : "s"}`,
+  });
 
   return json({
     ok: true,
     points,
-    streakUpdated: streakResult.streakUpdated,
-    newStreak: streakResult.newStreak,
+    streakUpdated: chain.streakUpdated,
+    newStreak: chain.newStreak,
   });
 }

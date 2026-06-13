@@ -515,7 +515,7 @@ export const iveBeenWorkingContent: InteractiveGuideContent = {
     {
       id: "ive-been-working-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"She has been ___ money for months.\" (Present Perfect Continuous — verb-ing after 'has been'.)",
+      question: "Fill in the blank: \"She has been ___ money for months.\" (Present Perfect Continuous: verb-ing after 'has been'.)",
       correctAnswer: "saving",
       explanation: "After 'has been,' always use the -ing form of the verb. 'Has been saving' = the action started in the past and is still continuing.",
       topic: "present-perfect-continuous",

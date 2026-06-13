@@ -190,6 +190,9 @@ model PointsLedger {
   @@index([source])
   @@index([userId, createdAt])
   @@index([source, createdAt])
+  // Serves the hot "this user's entries of one source in a time window" reads
+  // (trackLogin's daily-login lookup, daily-habit vocab-review ledger stats).
+  @@index([userId, source, createdAt])
 }
 
 model Assignment {

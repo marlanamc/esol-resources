@@ -429,7 +429,7 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
           ${[
             ["V1-3rd", "third person (he/she/it)", "v1-3rd"],
             ["V3", "after have / has", "v3"],
-          ].map(([code, desc, val]) => `
+          ].map(([code, desc]) => `
             <div style="padding: 0.6rem 0.85rem; border-radius: 0.45rem; background: rgba(106,141,115,0.08); display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center">
               <strong>${code}</strong>
               <span style="font-size: 0.92rem">${desc}</span>
@@ -466,6 +466,16 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
                 { value: "v3", label: "V3" },
               ],
               expectedAnswer: "v3",
+            },
+            {
+              type: "text",
+              label: "Type the V3 form of <em>have</em>: She has ___ a Chromebook since Monday.",
+              expectedAnswers: ["had"],
+            },
+            {
+              type: "text",
+              label: "Type the V3 form of <em>be</em>: Carlos has ___ in class all week.",
+              expectedAnswers: ["been"],
             },
           ],
         },

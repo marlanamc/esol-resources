@@ -630,7 +630,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
     {
       id: "pperf-how-long-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"I have worked here ___ 2022.\" (Starting point in time — for or since?)",
+      question: "Fill in the blank: \"I have worked here ___ 2022.\" (Starting point in time: for or since?)",
       correctAnswer: "since",
       explanation: "'Since' goes with a starting point like a year, month, or date. 'For' goes with a length of time like 'two years'.",
       topic: "for-since",
@@ -660,7 +660,7 @@ export const presentPerfectHowLongContent: InteractiveGuideContent = {
       words: ["I", "have", "lived", "here", "for", "six", "months"],
       correctAnswer: "I have lived here for six months",
       hint: "have/has + past participle + for + length of time",
-      explanation: "Present perfect (have lived) with 'for' shows an ongoing situation — she still lives there.",
+      explanation: "Present perfect (have lived) with 'for' shows an ongoing situation: she still lives there.",
       topic: "present-perfect",
       skill: "usage",
       skillTag: "how-long-still-true",

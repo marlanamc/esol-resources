@@ -676,7 +676,7 @@ export const askingRightQuestionsHousingContent: InteractiveGuideContent = {
     {
       id: "arqh-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Can you tell me ___ heat is included?\" (Indirect question — use if or whether.)",
+      question: "Fill in the blank: \"Can you tell me ___ heat is included?\" (Indirect question: use if or whether.)",
       correctAnswer: "if",
       acceptedAnswers: ["whether"],
       explanation: "After 'Can you tell me,' use 'if' or 'whether' to introduce a yes/no indirect question. The verb stays in statement order.",

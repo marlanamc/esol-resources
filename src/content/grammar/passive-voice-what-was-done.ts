@@ -651,7 +651,7 @@ export const passiveVoiceWhatWasDoneContent: InteractiveGuideContent = {
     {
       id: "pvwwd-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"My overtime ___ not paid.\" (Overtime is singular — was or were?)",
+      question: "Fill in the blank: \"My overtime ___ not paid.\" (Overtime is singular: was or were?)",
       correctAnswer: "was",
       explanation: "'Overtime' is singular, so the correct passive form is 'was not paid,' not 'were not paid.'",
       topic: "passive-voice",

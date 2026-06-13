@@ -4,7 +4,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { ActivityLink } from '@/components/navigation/ActivityLink';
 import { VocabActivityVisual } from './VocabActivityVisual';
-import type { Activity, ActivityCardMeta } from './activity-categories-types';
+import type { Activity } from './activity-categories-types';
 import { capitalizeFirstLetter } from './activity-categories-helpers';
 import type { TenseTexture } from './activity-categories-textures';
 

@@ -576,7 +576,7 @@ export const secondConditionalWhatWouldYouDoContent: InteractiveGuideContent = {
     {
       id: "sc-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"If I ___ you, I would call the agency.\" (Giving advice — use 'were' for all subjects.)",
+      question: "Fill in the blank: \"If I ___ you, I would call the agency.\" (Giving advice: use 'were' for all subjects.)",
       correctAnswer: "were",
       explanation: "In 'If I were you,' use 'were' for all subjects in the second conditional if-clause, not 'was' or 'am'.",
       topic: "second-conditional",

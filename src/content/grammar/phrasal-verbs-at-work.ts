@@ -561,7 +561,7 @@ export const phrasalVerbsAtWorkContent: InteractiveGuideContent = {
     {
       id: "phrasal-verbs-at-work-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Ana ___ Diego because he was sick.\" (Two words — she did his shift for him.)",
+      question: "Fill in the blank: \"Ana ___ Diego because he was sick.\" (Two words: she did his shift for him.)",
       correctAnswer: "covered for",
       explanation: "Cover for someone means to do their shift because they can't come in.",
       topic: "phrasal-verbs-at-work",

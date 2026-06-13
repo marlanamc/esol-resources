@@ -17,13 +17,6 @@ import {
     mergeVocabProgressRecords,
 } from "@/lib/vocab/progress-merge";
 
-type ProgressRecord = {
-    progress: number;
-    status: string;
-    categoryData: string | null;
-    updatedAt: Date;
-};
-
 export function parseCategoryData(value: string | null): Record<string, unknown> | null {
     if (!value) return null;
     try {

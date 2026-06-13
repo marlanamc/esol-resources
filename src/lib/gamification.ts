@@ -16,4 +16,5 @@ export {
   getExcludedLeaderboardUsernames,
   parseExcludedLeaderboardUsernames,
   type LeaderboardRange,
+  type DbClient,
 } from "./gamification/gamification";

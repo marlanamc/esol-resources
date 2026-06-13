@@ -553,7 +553,7 @@ function AdjectiveList({
     );
 }
 
-export default function ComparisonBattleGame({ activityId = "comparison-battle", assignmentId, variant = "standalone" }: Props) {
+export default function ComparisonBattleGame({ activityId = "comparison-battle", assignmentId }: Props) {
     const [screen, setScreen] = useState<Screen>("welcome");
     const [score, setScore] = useState(0);
     const [lessonStep, setLessonStep] = useState(0);

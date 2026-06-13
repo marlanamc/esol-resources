@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Level 3 ESOL · Class Superlatives 2025–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#173a4f;          /* deep harbor navy */
+    --ink-soft:#3f6076;
+    --paper:#ffffff;
+    --s:1;                  /* screen scale, set by JS */
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{ margin:0; padding:0; }
+  body{
+    background:#e7e2d6;     /* muted desk, screen only */
+    font-family:"EB Garamond", Georgia, serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- screen chrome ---------- */
+  .toolbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; gap:14px;
+    padding:12px 20px;
+    background:rgba(23,58,79,.96);
+    color:#f3efe4;
+    font-family:"EB Garamond", serif;
+  }
+  .toolbar .brand{ font-weight:600; letter-spacing:.04em; font-size:15px; }
+  .toolbar .brand small{ opacity:.7; font-weight:400; margin-left:8px; letter-spacing:.12em; text-transform:uppercase; font-size:11px; }
+  .toolbar .spacer{ flex:1; }
+  .toolbar button{
+    font-family:"EB Garamond", serif; font-size:14px; letter-spacing:.04em;
+    color:#173a4f; background:#f3efe4; border:none; border-radius:6px;
+    padding:8px 16px; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease;
+    box-shadow:0 1px 0 rgba(0,0,0,.15);
+  }
+  .toolbar button:hover{ transform:translateY(-1px); box-shadow:0 3px 8px rgba(0,0,0,.22); }
+  .toolbar .hint{ font-size:12.5px; opacity:.72; letter-spacing:.02em; }
+
+  .stack{
+    padding:34px 20px 60px;
+    display:flex; flex-direction:column; align-items:center;
+  }
+
+  /* ---------- page sizing / scaling ---------- */
+  .frame{
+    position:relative;
+    width:calc(1056px * var(--s));
+    height:calc(816px * var(--s));
+    margin:0 auto 30px;
+  }
+  .page{
+    position:absolute; top:0; left:0;
+    width:1056px; height:816px;
+    transform:scale(var(--s)); transform-origin:top left;
+    background:var(--paper);
+    box-shadow:0 8px 26px rgba(0,0,0,.18);
+    overflow:hidden;
+  }
+
+  /* ---------- certificate frame ---------- */
+  .cert{
+    position:absolute; inset:0;
+    padding:30px;
+  }
+  .border-outer{
+    position:absolute; inset:24px;
+    border:1.5px solid var(--accent);
+    border-radius:3px;
+  }
+  .border-inner{
+    position:absolute; inset:33px;
+    border:1px solid color-mix(in srgb, var(--ink) 55%, transparent);
+    border-radius:2px;
+  }
+
+  .corner{ position:absolute; width:46px; height:46px; color:var(--ink); opacity:.45; }
+  .corner.tl{ top:40px; left:40px; }
+  .corner.tr{ top:40px; right:40px; transform:scaleX(-1); }
+  .corner.bl{ bottom:40px; left:40px; transform:scaleY(-1); }
+  .corner.br{ bottom:40px; right:40px; transform:scale(-1,-1); }
+
+  .inner{
+    position:absolute; top:50px; left:74px; right:74px; bottom:48px;
+    display:flex; flex-direction:column; align-items:center;
+    justify-content:space-between;
+    text-align:center;
+  }
+  .head, .namegroup, .award{
+    display:flex; flex-direction:column; align-items:center;
+  }
+
+  /* header */
+  .crest{ width:46px; height:46px; color:var(--ink); margin-bottom:9px; }
+  .school{
+    font-family:"Cormorant Garamond", serif;
+    font-weight:600; font-size:25px; letter-spacing:.015em;
+    color:var(--ink); line-height:1.05; white-space:nowrap;
+  }
+  .program{
+    margin-top:9px;
+    font-size:12.5px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--ink-soft); font-weight:600; white-space:nowrap;
+  }
+
+  .wave{ width:340px; height:13px; color:var(--accent); margin:15px 0 4px; }
+
+  .presented{
+    font-style:italic; font-size:17.5px; color:var(--ink-soft);
+    letter-spacing:.01em; margin-top:6px; white-space:nowrap;
+  }
+  .name{
+    font-family:"Cormorant Garamond", serif;
+    font-weight:600; font-size:66px; line-height:1;
+    color:var(--ink); margin:6px 0 2px; white-space:nowrap;
+  }
+  .name-rule{
+    width:300px; height:1px; background:color-mix(in srgb,var(--ink) 35%, transparent);
+    margin:6px 0 0;
+  }
+
+  /* award block */
+  .medallion{
+    width:74px; height:74px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:1.5px solid var(--accent);
+    color:var(--accent);
+    margin-bottom:13px;
+    position:relative;
+  }
+  .medallion::before{
+    content:""; position:absolute; inset:5px; border-radius:50%;
+    border:1px dotted color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  .medallion svg{ width:38px; height:38px; }
+  .eyebrow{
+    font-size:11.5px; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin-bottom:6px; white-space:nowrap;
+  }
+  .title{
+    font-family:"Cormorant Garamond", serif;
+    font-weight:600; font-size:33px; line-height:1.12;
+    color:var(--ink); max-width:680px; text-wrap:balance;
+  }
+  .subtitle{
+    font-style:italic; font-size:17px; color:var(--ink-soft);
+    margin-top:6px;
+    letter-spacing:.01em;
+  }
+
+  /* seal centerpiece */
+  .seal-wrap{ display:flex; justify-content:center; }
+  .seal{ width:158px; height:100px; color:var(--accent); }
+
+  /* signatures */
+  .signatures{
+    width:100%;
+    display:flex; justify-content:space-between; align-items:flex-end;
+  }
+  .sig{ text-align:center; width:250px; }
+  .sig-line{
+    width:210px; height:1px; background:var(--ink); margin:0 auto 8px;
+    opacity:.7;
+  }
+  .sig-name{ font-family:"Cormorant Garamond", serif; font-size:22px; font-weight:600; line-height:1; }
+  .sig-role{ font-size:11.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-soft); margin-top:5px; }
+  .sig .date{ font-family:"Cormorant Garamond", serif; font-size:21px; font-weight:500; line-height:1; }
+
+  /* ---------- print ---------- */
+  @media print{
+    @page{ size:11in 8.5in; margin:0; }
+    body{ background:#fff; }
+    .toolbar{ display:none !important; }
+    .stack{ padding:0; }
+    .frame{ width:11in; height:8.5in; margin:0; }
+    .page{
+      position:static; transform:none;
+      width:11in; height:8.5in;
+      box-shadow:none;
+      break-after:page; page-break-after:always;
+    }
+    .frame:last-child .page{ break-after:auto; page-break-after:auto; }
+    *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <span class="brand">Level 3 ESOL · Class Superlatives <small>2025–2026</small></span>
+    <span class="spacer"></span>
+    <span class="hint">Prints one certificate per page · landscape</span>
+    <button onclick="window.print()">Print all</button>
+  </div>
+
+  <div class="stack" id="stack"></div>
+
+  <!-- icon + ornament defs are generated in JS below -->
+  <script>
+  /* ============================================================
+     EDIT HERE — students, awards, accent colors, icons
+     ============================================================ */
+  const SCHOOL   = "East Boston Harborside Community School";
+  const PROGRAM  = "Level 3 ESOL";
+  const YEAR     = "2025–2026";
+  const TEACHER  = "Marlie Creed";
+  const DATELINE = "June 2026";
+
+  const STUDENTS = [
+    { name:"Andrea Cardenas Londoño", eyebrow:"is hereby awarded", title:"Most Likely to Lend a Helping Hand", sub:"Making classmates feel supported, welcome, and never alone", icon:"hand", color:"#d96f4c" },
+    { name:"Carlos Martinez", eyebrow:"is hereby awarded", title:"Best Storyteller", sub:"Bringing classmates together through stories, humor, and heart", icon:"story", color:"#2f8a86" },
+    { name:"Carlos Ochoa", eyebrow:"is hereby awarded", title:"Class Tech Helper", sub:"Helping classmates feel confident when technology got tricky", icon:"laptop", color:"#3a8fb7" },
+    { name:"Carolina Durán", eyebrow:"is hereby awarded", title:"The Steady Anchor", sub:"Making class feel calm, steady, and welcoming", icon:"anchor", color:"#4a6fa5" },
+    { name:"Edwar Meza", eyebrow:"is hereby awarded", title:"Future Teacher Award", sub:"Helping classmates understand, participate, and believe they could do it", icon:"teacher", color:"#4e9e7e" },
+    { name:"Elena Gutierrez", eyebrow:"is hereby awarded", title:"Fastest Out the Door", sub:"Bringing humor, honesty, and energy to our class", icon:"door", color:"#c1593f" },
+    { name:"Erica Ochoa", eyebrow:"is hereby awarded", title:"The Brightest Beacon", sub:"Making the room feel brighter, kinder, and more joyful", icon:"lighthouse", color:"#8b5e83" },
+    { name:"Evelyn Velasquez", eyebrow:"is hereby awarded", title:"Quietly Brilliant Award", sub:"Bringing quiet strength, focus, and thoughtfulness to class", icon:"gem", color:"#2e6f9e" },
+    { name:"Ever Heredia", eyebrow:"is hereby awarded", title:"Ultimate Team Player", sub:"Making classmates feel supported, included, and confident", icon:"team", color:"#6f8f5f" },
+    { name:"Hazel Perez", eyebrow:"is hereby awarded", title:"Most Likely to Need One More Coffee", sub:"Bringing honesty, humor, and effort to every long day", icon:"coffee", color:"#b05c34" },
+    { name:"Ingrid Gomez", eyebrow:"is hereby awarded", title:"The Dream Team Award", sub:"Making every group feel kinder, stronger, and supported", icon:"team", color:"#c0788a" },
+    { name:"Julian Perez", eyebrow:"is hereby awarded", title:"Class Problem-Solver", sub:"Helping the class stay calm and keep moving forward", icon:"question", color:"#bf9430" },
+    { name:"Karina López Navarrete", eyebrow:"is hereby awarded", title:"Best Questions Award", sub:"Helping everyone learn through thoughtful, brave questions", icon:"question", color:"#bf9430" },
+    { name:"Sonia Morales", eyebrow:"is hereby awarded", title:"The Sunshine Award", sub:"Making class feel warm, friendly, and full of joy", icon:"sun", color:"#3e7d5a" },
+    { name:"Susan Vidaur Cruz", eyebrow:"is hereby awarded", title:"Most Likely to Talk About Food", sub:"Making class conversations warmer, funnier, and more joyful", icon:"food", color:"#9e4b5a" },
+    { name:"Tolesa Etana", eyebrow:"is hereby awarded", title:"The All-Around Award", sub:"Making class stronger through steady effort, kindness, and heart", icon:"trophy", color:"#2b9a9a" },
+  ];
+
+  /* ============================================================
+     Line icons (stroke = currentColor)
+     ============================================================ */
+  const ICONS = {
+    hand:`<path d="M8.5 11.5V5.6a1.5 1.5 0 0 1 3 0v4.4"/><path d="M11.5 10V4.3a1.5 1.5 0 0 1 3 0V10"/><path d="M14.5 10.2V6a1.5 1.5 0 0 1 3 0v6.2a7 7 0 0 1-7 7H10a5.5 5.5 0 0 1-4.1-1.85l-3-3.4a1.6 1.6 0 0 1 2.32-2.2l1.78 1.6"/><path d="M8.5 11.5V13"/>`,
+    story:`<path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.2A7.5 7.5 0 1 1 21 11.5Z"/><circle cx="8.5" cy="11.5" r=".7" fill="currentColor" stroke="none"/><circle cx="12" cy="11.5" r=".7" fill="currentColor" stroke="none"/><circle cx="15.5" cy="11.5" r=".7" fill="currentColor" stroke="none"/>`,
+    rise:`<path d="M3 16.5l5.5-5.5 3.5 3.5 8-8"/><path d="M15 6.5h5v5"/>`,
+    anchor:`<circle cx="12" cy="5" r="2.1"/><path d="M12 7.1V21"/><path d="M8.3 10.5h7.4"/><path d="M5 12.5a7 7 0 0 0 14 0"/><path d="M5 12.5l-1.7-1M5 12.5l1.7-1"/><path d="M19 12.5l-1.7-1M19 12.5l1.7-1"/>`,
+    teacher:`<path d="M2.5 9 12 5l9.5 4-9.5 4Z"/><path d="M6.5 11v4.2c0 1.5 2.5 2.8 5.5 2.8s5.5-1.3 5.5-2.8V11"/><path d="M21.5 9v5"/>`,
+    door:`<rect x="5.5" y="3.5" width="8.5" height="17" rx="1"/><circle cx="11.5" cy="12" r=".8" fill="currentColor" stroke="none"/><path d="M16.5 12h5"/><path d="M19.5 9.5 22 12l-2.5 2.5"/>`,
+    lighthouse:`<path d="M9 9.5h6l1 11H8Z"/><path d="M9.4 9.5 9.9 6h4.2l.5 3.5"/><rect x="10.2" y="2.8" width="3.6" height="3.2" rx=".4"/><path d="M8 13.5h8"/><path d="M3.5 6.5 7 8M20.5 6.5 17 8M4.5 11l3-.6M19.5 11l-3-.6"/>`,
+    gem:`<path d="M6.2 3.5h11.6l3.2 5.2L12 20.5 3 8.7Z"/><path d="M3 8.7h18"/><path d="M9 3.5 6.2 8.7 12 20.5l5.8-11.8L15 3.5"/>`,
+    team:`<circle cx="9" cy="8" r="2.8"/><circle cx="16.6" cy="9" r="2.1"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0"/><path d="M15 19.5a4.6 4.6 0 0 1 5.8-3.7"/>`,
+    coffee:`<path d="M4.5 8.5h12v4.8a5 5 0 0 1-5 5H9.5a5 5 0 0 1-5-5Z"/><path d="M16.5 9.5h2.2a2.4 2.4 0 0 1 0 4.8H16.5"/><path d="M8 3c0 1-1 1.2-1 2.2M11 3c0 1-1 1.2-1 2.2M14 3c0 1-1 1.2-1 2.2"/>`,
+    car:`<path d="M3 12.5 5 7.6A2 2 0 0 1 6.85 6.4h10.3A2 2 0 0 1 19 7.6l2 4.9"/><path d="M3 12.5h18v4.2H3Z"/><circle cx="7" cy="16.7" r="1.6"/><circle cx="17" cy="16.7" r="1.6"/><path d="M3 12.5h18"/>`,
+    laptop:`<rect x="4" y="5" width="16" height="10" rx="1.2"/><path d="M2 18.5h20"/><path d="M9.2 18.5l.9-2h3.8l.9 2"/>`,
+    question:`<circle cx="12" cy="12" r="9"/><path d="M9.3 9.4a2.8 2.8 0 0 1 5.4 1c0 2-2.7 2.3-2.7 4.1"/><circle cx="12" cy="17" r=".7" fill="currentColor" stroke="none"/>`,
+    sun:`<circle cx="12" cy="12" r="4"/><path d="M12 2.5V5M12 19v2.5M2.5 12H5M19 12h2.5M5.2 5.2 7 7M17 17l1.8 1.8M18.8 5.2 17 7M7 17l-1.8 1.8"/>`,
+    food:`<path d="M6.8 3v8.5M4.6 3v3.6a2.2 2.2 0 0 0 4.4 0V3M6.8 11.5V21"/><path d="M16.5 3c-1.7 0-2.8 2.1-2.8 4.8s1.1 3.7 2.8 3.7M16.5 3v18"/>`,
+    trophy:`<path d="M7 4.5h10v3.8a5 5 0 0 1-10 0Z"/><path d="M7 6.2H4.4a2.6 2.6 0 0 0 2.6 2.9M17 6.2h2.6A2.6 2.6 0 0 1 17 9.1"/><path d="M12 13.3v3.2"/><path d="M9.3 20.5h5.4l-.9-4H10.2Z"/>`,
+  };
+
+  const CREST = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 9.5h6l1 11H8Z"/><path d="M9.4 9.5 9.9 6h4.2l.5 3.5"/><rect x="10.2" y="2.8" width="3.6" height="3.2" rx=".4"/><path d="M8 13.5h8"/>
+    <path d="M3.5 6.5 7 8M20.5 6.5 17 8"/></svg>`;
+
+  const CORNER = `<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 6c14 0 22 8 22 22"/><path d="M6 6c0 9 4 14 13 16"/>
+    <path d="M6 6l9 1.5M6 6l1.5 9"/><circle cx="6" cy="6" r="2.2"/></svg>`;
+
+  const WAVE = `<svg viewBox="0 0 340 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" preserveAspectRatio="none">
+    <path d="M2 8.5c12 0 12-5 24-5s12 5 24 5 12-5 24-5 12 5 24 5 12-5 24-5 12 5 24 5 12-5 24-5 12 5 24 5 12-5 24-5 12 5 24 5 12-5 24-5 12 5 24 5 12-5 24-5"/>
+  </svg>`;
+
+  function seal(i){
+    const leaf = `M0 0 Q5.4 -3 9.6 -1 Q5.4 2.2 0 0 Z`;
+    const branch = `
+      <path d="M62 82 C 51 75, 45.5 62, 48.5 47.5"/>
+      <g transform="translate(60 77.5) rotate(210)"><path d="${leaf}"/></g>
+      <g transform="translate(55.6 70.5) rotate(223)"><path d="${leaf}"/></g>
+      <g transform="translate(52 63) rotate(237)"><path d="${leaf}"/></g>
+      <g transform="translate(49.6 55) rotate(252)"><path d="${leaf}"/></g>
+      <g transform="translate(48.4 47.8) rotate(268)"><path d="${leaf}"/></g>`;
+    return `<svg class="seal" viewBox="0 0 170 108" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <!-- star -->
+      <path d="M85 4 L87.2 9.6 L93 11 L87.2 12.4 L85 18 L82.8 12.4 L77 11 L82.8 9.6 Z" stroke-width="1.1"/>
+      <!-- anchor -->
+      <g>
+        <circle cx="85" cy="29" r="4.2"/>
+        <path d="M85 33.2 V73"/>
+        <path d="M75.5 41 H94.5"/>
+        <path d="M69 55 a16 16 0 0 0 32 0"/>
+        <path d="M69 55 l-3.6 -2.4 M69 55 l3.4 -2.6"/>
+        <path d="M101 55 l3.6 -2.4 M101 55 l-3.4 -2.6"/>
+      </g>
+      <!-- laurel branches -->
+      <g stroke-width="1.2">${branch}</g>
+      <g stroke-width="1.2" transform="translate(170 0) scale(-1 1)">${branch}</g>
+      <!-- year -->
+      <text x="85" y="103" text-anchor="middle" font-family="EB Garamond, serif" font-size="11" letter-spacing="2.2" fill="currentColor" stroke="none">2025 &#8212; 2026</text>
+    </svg>`;
+  }
+
+  function iconSvg(key){
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${ICONS[key]||""}</svg>`;
+  }
+
+  function certHtml(d, i){
+    return `
+    <div class="frame">
+      <div class="page" style="--accent:${d.color}">
+        <div class="cert">
+          <div class="border-outer"></div>
+          <div class="border-inner"></div>
+          <div class="corner tl">${CORNER}</div>
+          <div class="corner tr">${CORNER}</div>
+          <div class="corner bl">${CORNER}</div>
+          <div class="corner br">${CORNER}</div>
+
+          <div class="inner">
+            <div class="head">
+              <div class="crest">${CREST}</div>
+              <div class="school">${SCHOOL}</div>
+              <div class="program">${PROGRAM} &middot; ${YEAR}</div>
+              <div class="wave">${WAVE}</div>
+            </div>
+
+            <div class="namegroup">
+              <div class="presented">This certificate is proudly presented to</div>
+              <div class="name">${d.name}</div>
+              <div class="name-rule"></div>
+            </div>
+
+            <div class="award">
+              <div class="medallion">${iconSvg(d.icon)}</div>
+              <div class="eyebrow">${d.eyebrow}</div>
+              <div class="title">${d.title}</div>
+              ${d.sub ? `<div class="subtitle">${d.sub}</div>` : ``}
+            </div>
+
+            <div class="seal-wrap">${seal(i)}</div>
+
+            <div class="signatures">
+              <div class="sig">
+                <div class="sig-line"></div>
+                <div class="sig-name">${TEACHER}</div>
+                <div class="sig-role">Teacher</div>
+              </div>
+              <div class="sig">
+                <div class="sig-line"></div>
+                <div class="date">${DATELINE}</div>
+                <div class="sig-role">Date</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  document.getElementById("stack").innerHTML = STUDENTS.map(certHtml).join("");
+
+  /* ---------- auto-fit long names to one elegant line ---------- */
+  function fitNames(){
+    const MAX = 760;
+    document.querySelectorAll(".name").forEach(el=>{
+      let size = 66;
+      el.style.fontSize = size + "px";
+      while(el.scrollWidth > MAX && size > 30){
+        size -= 1;
+        el.style.fontSize = size + "px";
+      }
+    });
+  }
+  fitNames();
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fitNames); }
+
+  /* ---------- responsive screen scaling ---------- */
+  function fit(){
+    const avail = document.getElementById("stack").clientWidth;
+    const s = Math.min(1, avail / 1056);
+    document.documentElement.style.setProperty("--s", s);
+  }
+  window.addEventListener("resize", fit);
+  fit();
+  </script>
+</body>
+</html>

@@ -32,10 +32,6 @@ export function DashboardResumeWeekActivities({
               ? `${doneCount} done`
               : `${upcomingCount} activities`;
 
-    const toggleLabel = expanded
-        ? "Hide this week's activities"
-        : `See all ${items.length} activities this week`;
-
     return (
         <div
             className="mt-4 border-t pt-3"

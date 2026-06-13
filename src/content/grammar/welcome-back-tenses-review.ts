@@ -752,7 +752,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "wbtr-q1",
-      question: "Your neighbor asks about your job — the one you go to every week. Which answer fits best?",
+      question: "Your neighbor asks about your job, the one you go to every week. Which answer fits best?",
       options: [
         { value: "a", label: "I am working at a clinic on Meridian Street right now." },
         { value: "b", label: "I work at a clinic on Meridian Street." },

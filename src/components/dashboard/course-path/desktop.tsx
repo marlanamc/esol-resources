@@ -261,7 +261,6 @@ export function DesktopWeekPanel({
     guidedAssignments,
     guidedProgress,
     optionalOpen,
-    pulseCurrent,
     onToggle,
     onToggleOptional,
 }: {

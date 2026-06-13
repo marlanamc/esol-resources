@@ -641,7 +641,7 @@ export const yourWeekInEnglishContent: InteractiveGuideContent = {
     {
       id: "your-week-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"Carlos ___ to class on Tuesdays and Thursdays.\" (come — he/she/it form)",
+      question: "Fill in the blank: \"Carlos ___ to class on Tuesdays and Thursdays.\" (come: he/she/it form)",
       correctAnswer: "comes",
       explanation: "With he/she/it in present simple, add -s: come → comes.",
       topic: "present-simple",

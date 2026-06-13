@@ -649,7 +649,7 @@ export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSp
 
   // Derived helpers
   // All groups are always unlocked — students can review any POS type freely
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   const isGroupUnlocked = useCallback((_group: POSGroup): boolean => true, []);
 
   const getGroupStagePublic = useCallback((groupId: string) => {

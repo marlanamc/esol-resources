@@ -14,16 +14,6 @@ function warning(
     return { severity: "warning", ruleId, slug, path, message, snippet };
 }
 
-function error(
-    slug: string,
-    ruleId: string,
-    path: string,
-    message: string,
-    snippet?: string,
-): AuditFinding {
-    return { severity: "error", ruleId, slug, path, message, snippet };
-}
-
 export function runCharacterRules(
     guide: LoadedGuide,
     dialogues: DialogueTurn[],

@@ -89,14 +89,17 @@ export function runMechanicalRules(guide: LoadedGuide): AuditFinding[] {
         }
     }
 
+    // Mini-guides use a 5-question quiz format (redesigned 2026). The legacy
+    // 10-question distribution checks below remain for any pre-redesign guides.
+    const EXPECTED_MINI_QUIZ_COUNT = 5;
     const miniQuiz = content.miniQuiz ?? [];
-    if (miniQuiz.length !== 10) {
+    if (miniQuiz.length !== EXPECTED_MINI_QUIZ_COUNT) {
         findings.push(
             finding(
                 slug,
                 "mini-quiz-count",
                 "miniQuiz",
-                `miniQuiz has ${miniQuiz.length} questions (expected 10)`,
+                `miniQuiz has ${miniQuiz.length} questions (expected ${EXPECTED_MINI_QUIZ_COUNT})`,
             ),
         );
     }
@@ -159,13 +162,15 @@ export function runMechanicalRules(guide: LoadedGuide): AuditFinding[] {
         }
     }
 
-    if (errorDetectionCount < 2) {
+    // Scaled proportionally to the 5-question format (was 2 of 10 → 1 of 5).
+    const MIN_ERROR_DETECTION = 1;
+    if (errorDetectionCount < MIN_ERROR_DETECTION) {
         findings.push(
             finding(
                 slug,
                 "mini-quiz-error-detection",
                 "miniQuiz",
-                `Expected at least 2 error-detection questions, found ${errorDetectionCount}`,
+                `Expected at least ${MIN_ERROR_DETECTION} error-detection question(s), found ${errorDetectionCount}`,
             ),
         );
     }

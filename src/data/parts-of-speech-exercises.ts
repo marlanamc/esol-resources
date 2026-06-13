@@ -865,7 +865,7 @@ function makeWordFamilyBuilder(
   group: POSGroup,
   pattern: POSPattern,
   showPattern: boolean,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   _tracker?: ExampleTracker,
 ): POSExercise | null {
   const family = getPatternWordFamily(pattern);
@@ -989,7 +989,7 @@ function makeWordTransform(
   group: POSGroup,
   pattern: POSPattern,
   showPattern: boolean,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   _tracker?: ExampleTracker,
 ): POSExercise | null {
   const family = getPatternWordFamily(pattern);

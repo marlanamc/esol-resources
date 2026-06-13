@@ -627,7 +627,6 @@ async function main() {
         if (!activity?.content) continue;
         try {
             const parsed = JSON.parse(activity.content);
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { due_date, week, ...rest } = parsed;
             if (due_date !== undefined || week !== undefined) {
                 await prisma.activity.update({ where: { id }, data: { content: JSON.stringify(rest) } });

@@ -625,7 +625,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
       type: "fill-blank" as const,
       question: "Fill in the blank: \"Before she got the job, she ___ home care for four years.\" (Earlier of two past actions.)",
       correctAnswer: "had done",
-      explanation: "Past Perfect (had done) shows the action that happened first — before she got the new job.",
+      explanation: "Past Perfect (had done) shows the action that happened first, before she got the new job.",
       topic: "past-perfect",
       skill: "usage",
       skillTag: "work-history-narrative",

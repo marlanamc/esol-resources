@@ -509,7 +509,7 @@ export const itWasHappeningWhenContent: InteractiveGuideContent = {
     {
       id: "iwh-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"While Lucia ___ the landlord, the kids woke up.\" (Action in progress — past continuous.)",
+      question: "Fill in the blank: \"While Lucia ___ the landlord, the kids woke up.\" (Action in progress: past continuous.)",
       correctAnswer: "was calling",
       explanation: "'While' introduces the action that was in progress, so past continuous (was calling) is needed. 'Called' would use past simple.",
       topic: "when-while",

@@ -2666,7 +2666,7 @@ export function getContentGroups(): POSGroup[] {
  */
 export function getUnlockedGroups(
   completedGroupIds: Set<string>,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   _threshold: number,
 ): POSGroup[] {
   return ALL_POS_GROUPS.filter(group => {

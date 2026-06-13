@@ -25,7 +25,7 @@ const HOLIDAY_THEMED_GUIDE_SLUGS = new Set([
     "how-long-for-since",
 ]);
 
-function isContextuallyAllowed(slug: string, text: string, entryPath: string): boolean {
+function isContextuallyAllowed(slug: string, text: string, _entryPath: string): boolean {
     if (slug === "zero-first-conditional" && /\b(?:Christmas Eve|Hanukkah|Christmas week)\b/i.test(text)) {
         return true;
     }

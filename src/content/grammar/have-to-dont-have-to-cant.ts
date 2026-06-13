@@ -548,7 +548,7 @@ export const haveToDontHaveToCantContent: InteractiveGuideContent = {
     {
       id: "have-to-dont-have-to-cant-qfb1",
       type: "fill-blank" as const,
-      question: "Fill in the blank: \"You ___ repaint the walls. That's the landlord's job.\" (Two words — not required.)",
+      question: "Fill in the blank: \"You ___ repaint the walls. That's the landlord's job.\" (Two words: not required.)",
       correctAnswer: "don't have to",
       explanation: "'Don't have to' means it is not your responsibility. 'Can't' would mean it is forbidden, which is different.",
       topic: "dont-have-to",

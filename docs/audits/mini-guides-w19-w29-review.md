@@ -1,19 +1,19 @@
 # Mini Guides Audit — Weeks 1–18
 
-Generated: 2026-06-06T22:19:29.705Z
+Generated: 2026-06-13T04:29:24.165Z
 
 ## Summary
 
 - Guides audited: **11**
-- Errors: **0**
-- Warnings: **0**
+- Errors: **4**
+- Warnings: **2**
 
 ---
 
 ## W19: It Was Happening When: Past Tenses in Housing Stories
 
 - **Slug:** `it-was-happening-when`
-- **Errors / warnings:** 0 / 0
+- **Errors / warnings:** 0 / 1
 
 ### Scenarios
 
@@ -32,28 +32,23 @@ Generated: 2026-06-06T22:19:29.705Z
 _No dialogue turns extracted._
 ### Images
 
-- `sceneApartment`: Apartment hallway at night, dim lighting, water stain on ceiling. _(unsplash: photo-1545888770-5c4a5a7e8dc0)_
-- `sceneKitchen`: Apartment kitchen at night, rice cooker on counter, warm light. _(unsplash: photo-1556742046-914427ad2646)_
-- `scenePhone`: Person holding phone at night, looking worried, calling someone. _(unsplash: photo-1577562993488-30b0892f684f)_
+- `sceneApartment`: Apartment hallway at night, dim lighting, water stain on ceiling. _(unsplash: JVf0nl0dkO8)_
+- `sceneKitchen`: Apartment kitchen at night, rice cooker on counter, warm light. _(unsplash: JnmdqIT96wU)_
+- `scenePhone`: Person holding phone at night, looking worried, calling someone. _(unsplash: w3jVXGkYZCw)_
 - `sceneInspector`: Person with clipboard writing notes in an apartment building hallway. _(unsplash: photo-1556761175-b413da4baf72)_
 
 ### Mini quiz
 
-1. Lucia woke up, saw the water, and called the landlord. Which tense tells these actions?
-2. Which sentence is correct?
-3. Lucia was mopping the floor when the pipe burst. Which action was already in progress?
-4. The pipe burst ___ she was mopping the kitchen.
-5. While Lucia ___ the landlord, the kids woke up.
-6. Which sentence has an error?
-7. Lucia grabbed a bucket right away. This was one quick finished action. Which tense fits?
-8. Brian called Lucia the next morning. She was still cleaning up. Which sentence is correct?
-9. "She was mopping the floor when it was bursting." What is wrong?
-10. The inspector asks: 'What was happening when the pipe burst?' Which answer is best?
+1. Which sentence is correct?
+2. Lucia was mopping the floor when the pipe burst. Which action was already in progress?
+3. Fill in the blank: "While Lucia ___ the landlord, the kids woke up." (Action in progress: past continuous.)
+4. Which sentence has an error?
+5. Lucia was cleaning the kitchen when the pipe burst. Put the words in order.
 
 ### Flags
 
-_None._
-
+- **[WARN]** `image-scene-mismatch` (it-was-happening-when#scenePhone): Scene photo may be a generic stand-in (caption setting [home] but photo shows no matching setting or shared detail)
+  > Lucia's apartment. Wednesday morning, 8:00 AM.
 
 ---
 
@@ -88,15 +83,10 @@ _No dialogue turns extracted._
 ### Mini quiz
 
 1. By the time Gloria walked into the warehouse, she ___ two years in housekeeping.
-2. Which sentence is correct?
-3. James hadn't driven a forklift before he ___.
-4. Which sentence uses 'by the time' correctly?
-5. Diego got promoted last week. Which sentence adds a Past Perfect correctly?
-6. Which sentence has a mistake?
-7. Amara tells her coworker about her last job. Which sounds most natural?
-8. The restaurant hadn't paid Linh overtime. What does this sentence tell us?
-9. Choose the correct tense for each blank: When Jennifer ___ for the references, Gloria ___ them already.
-10. Which sentence uses Past Perfect where it is NOT needed?
+2. James hadn't driven a forklift before he ___.
+3. Fill in the blank: "Before she got the job, she ___ home care for four years." (Earlier of two past actions.)
+4. Which sentence has a mistake?
+5. Teresa finished her tasks before the manager arrived. Put the words in order.
 
 ### Flags
 
@@ -151,16 +141,11 @@ _None._
 
 ### Mini quiz
 
-1. Kevin the foreman says: 'You ___ wear steel-toe boots. It's an OSHA safety rule.' Which word fits?
-2. Amara is the new line cook. Which sentence is correct?
-3. Claudette tells Linh: 'You ___ tell your supervisor before you leave the floor.' It's not a written rule, but it's important. Which word fits?
-4. The health inspector is coming. Jennifer says: 'Rosa ___ be here by 10. No exceptions.' Which word fits?
-5. Which sentence has a grammar error?
-6. The sign on the door says: 'Workers ___ enter without a safety pass.' Which word makes this a prohibition?
-7. Rosa's manager texts: 'You don't have to come in Saturday.' What does this mean?
-8. Diego's first day on a construction site. Which sentence uses the best modal?
-9. Which sentence has an error?
-10. Claudette tells Linh: 'You ___ ask the manager before swapping rooms. She gets upset if you don't.' Which modal fits best?
+1. Claudette tells Linh: 'You ___ tell your supervisor before you leave the floor.' It's not a written rule, but it's important. Which word fits?
+2. Which sentence has a grammar error?
+3. The sign on the door says: 'Workers ___ enter without a safety pass.' Which word makes this a prohibition?
+4. Fill in the blank: "She ___ tell her supervisor before she leaves." (Strong advice, not a written rule.)
+5. The safety sign at the warehouse is non-negotiable. Put the words in order.
 
 ### Flags
 
@@ -200,15 +185,10 @@ _No dialogue turns extracted._
 ### Mini quiz
 
 1. Ramon doesn't have a car. Which sentence is correct?
-2. Carmen works nights. Which sentence matches her situation?
-3. You want to give Beatriz advice. Which sentence is correct?
-4. Which sentence has an error?
-5. Kevin is likely to get overtime next week. Which sentence fits?
-6. Sofia can't go in Saturday because of her son's birthday. Which sentence is correct?
-7. Which sentence has an error?
-8. Milagros is thinking about a promotion she doesn't have yet. Which word completes her sentence? "If the company ___ me team lead, I would train the new workers better."
-9. Jennifer says: "If I ___ in charge, I would give everyone the same schedule." She is not in charge. Which word fits?
-10. Ramon says: "If the new site is close to the bus, I'll take the transfer." Then he says: "If the new site were far, I wouldn't take it." What is the difference?
+2. Which sentence has an error?
+3. Fill in the blank: "If I ___ you, I would call the agency." (Giving advice: use 'were' for all subjects.)
+4. Kevin is likely to get overtime next week. Which sentence fits?
+5. Yemi imagines what she would do if she had more free time. Put the words in order.
 
 ### Flags
 
@@ -248,14 +228,9 @@ _No dialogue turns extracted._
 
 1. Rosa's manager says, "Make sure you clock in before 8 AM." What should Rosa do?
 2. Diego can't go to work because his child is sick. What does he do?
-3. Ana works Diego's shift because he is sick. What does she do?
-4. The manager tells Fatima: "Fill out this form and turn it in before payroll closes." What does Fatima need to do?
-5. Which sentence is NOT correct?
-6. Which sentence is NOT correct?
-7. Hector asks Omar to work his Thursday shift. Omar says yes. What does Omar do?
-8. The manager needs to approve the shift-swap form. Which sentence is correct?
-9. Lucia agreed to work Saturday for her coworker. On Saturday morning, she arrives on time. Which two phrasal verbs describe what Lucia did?
-10. Fatima's manager said: "Fill it out and turn in it before you leave." What is wrong with the manager's sentence?
+3. Fill in the blank: "Ana ___ Diego because he was sick." (Two words: she did his shift for him.)
+4. Which sentence is NOT correct?
+5. Claudette filled out a form at the front desk. Put the words in order. (The pronoun must go in the middle.)
 
 ### Flags
 
@@ -289,21 +264,16 @@ _No dialogue turns extracted._
 - `sceneHotelHallway`: A clean hotel hallway with a housekeeping cart parked outside a room. _(unsplash: photo-1519125323398-675f0ddb6308)_
 - `sceneBreakRoom`: Two hotel workers chatting at a small table during a break. _(unsplash: photo-1601628828688-632f38a5a7d0)_
 - `sceneHROffice`: A hiring manager reviewing a resume with a job applicant across a small office desk. _(unsplash: photo-1551836022-d5d88e9218df)_
-- `sceneJobApplication`: A hand writing on a paper application form at a desk. _(unsplash: photo-1450598657-c3fea5fb7c23)_
+- `sceneJobApplication`: A hand writing on a paper application form at a desk. _(unsplash: OQMZwNd3ThU)_
 - `sceneInterview`: Two people in a professional meeting, one taking notes and one speaking. _(unsplash: photo-1454165804606-c3d57bc86b40)_
 
 ### Mini quiz
 
-1. Jennifer asks: 'How long have you worked here?' Rosa still works at the hotel. Which answer is correct?
-2. Which sentence uses 'since' correctly?
-3. She ___ at this hotel for six months. (She is still working there.)
-4. Which sentence has a mistake?
-5. Claudette left her old job at the hotel last year. Which sentence is correct?
-6. The interviewer asks: 'How long have you lived in East Boston?' Rosa has lived there since 2020 and still does. What should she say?
-7. Which pair uses 'for' and 'since' correctly?
-8. Rosa tells the interviewer: 'I haven't supervised a team, but I've trained two workers.' What does this tell the interviewer?
-9. Which sentence is NOT correct?
-10. Maria says: 'I have worked at this hotel since four months.' What is wrong and what is the correct sentence?
+1. Jennifer asks: 'How long have you been on the morning team?' Rosa is still on the team. Which answer is correct?
+2. Which sentence has a mistake?
+3. Fill in the blank: "I have worked here ___ 2022." (Starting point in time: for or since?)
+4. Which pair uses 'for' and 'since' correctly?
+5. Amara tells her neighbor how long she has lived in the building. Put the words in order.
 
 ### Flags
 
@@ -350,7 +320,7 @@ _None._
 
 ### Images
 
-- `sceneConstruction`: Construction workers in hard hats and safety vests talking at a job site in the morning. _(unsplash: photo-1609220136736-443140cffec6)_
+- `sceneConstruction`: Two construction workers in hard hats and safety vests talking at a job site in the early morning. _(unsplash: 9OB46apMbC4)_
 - `sceneBusStop`: Commuters waiting at a bus stop on a city street after a work shift. _(unsplash: photo-1464219789935-c2d9d9aba644)_
 - `sceneHotel`: Hotel corridor with a housekeeping cart and open room doors. _(unsplash: photo-1566073771259-6a8506099945)_
 - `sceneJobFair`: Job seekers talking with employers and waiting in line at a community career fair. _(unsplash: photo-1559136555-9303baea8ebd)_
@@ -358,15 +328,10 @@ _None._
 ### Mini quiz
 
 1. Hector works six days a week and is still working that schedule now. Which sentence is correct?
-2. Rosa's car broke down on February 10. Today is March 15. Which sentence fits?
-3. Jennifer asks Amara a question about her experience. Which question is correct?
-4. Kevin drives extra shifts because of the parade. He started three weeks ago and is still doing it. Which sentence fits?
-5. Diego finished talking to all three recruiters at the job fair. Which sentence is correct?
-6. Which sentence has a grammar error?
-7. Marta is still standing in line at the job fair after 60 minutes. Which sentence fits?
-8. Amara tells her sister: 'I _____ at this hotel since March.' Which form completes the sentence?
-9. Which sentence uses Present Perfect Continuous correctly?
-10. A recruiter asks Diego: 'You have four years of construction experience. Have you been working on any large projects recently?' Diego finished a big warehouse job last week. Which answer is best?
+2. Jennifer asks Amara a question about her experience. Which question is correct?
+3. Fill in the blank: "She has been ___ money for months." (Present Perfect Continuous: verb-ing after 'has been'.)
+4. Which sentence has a grammar error?
+5. Jennifer asks Amara about her forklift experience at the warehouse. Put the words in order.
 
 ### Flags
 
@@ -398,23 +363,18 @@ _No dialogue turns extracted._
 ### Images
 
 - `sceneHotelCart`: A housekeeping worker pushing a cart down a hotel hallway at the end of a long shift. _(unsplash: photo-1584132967334-10e028bd69f7)_
-- `sceneBus`: Two people talking on a city bus after work, looking out the window. _(unsplash: photo-1553881403-342e4f4e8d0)_
+- `sceneBus`: Two people talking on a city bus after work, looking out the window. _(unsplash: gKxxk0ed8dA)_
 - `sceneCareerCenter`: A person filling out a paper form at a desk in a career center waiting room. _(unsplash: photo-1434030216411-0b793f4b4173)_
 - `sceneBreakRoom`: Two coworkers having a quick conversation near a workplace break area. _(unsplash: photo-1507003211169-0a1dd7228f2d)_
-- `sceneClassroom`: An adult student speaking one-on-one with a teacher after an evening English class. _(unsplash: photo-1488190217125-5b9699aa9ffc)_
+- `sceneClassroom`: An adult student speaking one-on-one with a teacher after an evening English class. _(unsplash: 9faEJgSvmjc)_
 
 ### Mini quiz
 
 1. Elena says: 'I enjoy ___ to the guests.' Which form is correct?
 2. Elena says: 'I want ___ warehouse work.' Which form is correct?
 3. Which sentence has a mistake?
-4. Which sentence has a mistake?
-5. Amara has a bad shoulder. She ___ the heavy laundry carts.
-6. Elena has been at her job a long time. She is thinking about quitting. Which sentence is correct?
-7. Kevin says: 'I hate ___ past 5.' Which option is correct?
-8. Elena tells Ms. Patel: 'I ___ to stay through May and ___ new jobs after that.' Choose the correct pair.
-9. Which sentence uses gerund and infinitive correctly in the same sentence?
-10. Elena says: 'I avoid to lift heavy things because of my back.' What is wrong and what is the correct sentence?
+4. Fill in the blank: "She avoids ___ heavy things because of her shoulder." (Avoid + gerund.)
+5. Marisol talks about her restaurant job and her goals. Put the words in order. (One verb needs a gerund, one needs an infinitive.)
 
 ### Flags
 
@@ -461,24 +421,19 @@ _None._
 
 ### Images
 
-- `sceneReferral`: Two women talking outside a workplace building, one sharing good news with a smile. _(unsplash: photo-1662543771949-f7ad1e01e6e4)_
+- `sceneReferral`: Two women talking outside a workplace building, one sharing good news with a smile. _(unsplash: 7pZbpEFgVi4)_
 - `sceneJobAd`: A person reading a printed job posting at a community board. _(unsplash: photo-1661956601349-f61c959a8fd4)_
-- `sceneFirstDay`: A new employee receiving orientation paperwork from a staff member at a front desk. _(unsplash: photo-1693556779839-bec7c4c82d11)_
-- `sceneScheduleChange`: A work schedule posted on a break room wall showing shift assignments. _(unsplash: photo-1678091007049-46f6cbc81c0b)_
+- `sceneFirstDay`: A new employee receiving orientation paperwork from a staff member at a front desk. _(unsplash: 9tA7YYd9XuA)_
+- `sceneScheduleChange`: A work schedule posted on a break room wall showing shift assignments. _(unsplash: 2bcva4zfMks)_
 - `sceneActivePassive`: A worker reading a company policy document at a table during a break. _(unsplash: photo-1682687982167-d7fb3ed8541d)_
 
 ### Mini quiz
 
 1. Gloria got a new job. She says: 'I ___ hired last Monday.' Which word fits?
-2. A job ad says: 'Steel-toe boots ___ required.' Which word completes the present passive correctly?
-3. Which sentence is passive voice?
-4. Gloria wants to say she didn't get paid for extra hours. Which sentence is correct?
-5. Which sentence has an error?
-6. A hotel handbook says: 'All uniforms ___ cleaned by the hotel.' Which word fits?
-7. You don't know who changed the break schedule. Which sentence is better?
-8. Which sentence has an error?
-9. Gloria says: 'I ___ not told about the schedule change.' Which word completes the negative past passive?
-10. The supervisor tells Gloria: 'Time off requests must be submitted two weeks early.' Gloria tells Jennifer the same rule using passive voice. Which is correct?
+2. Which sentence is passive voice?
+3. Fill in the blank: "My overtime ___ not paid." (Overtime is singular: was or were?)
+4. Which sentence has an error?
+5. Gloria reads the schedule that was posted at work. Put the words in order.
 
 ### Flags
 
@@ -490,7 +445,7 @@ _None._
 ## W28: You Should, You Shouldn't: Health Advice
 
 - **Slug:** `should-shouldnt-health-advice`
-- **Errors / warnings:** 0 / 0
+- **Errors / warnings:** 1 / 0
 
 ### Scenarios
 
@@ -527,32 +482,26 @@ _None._
 ### Images
 
 - `sceneClinicWaiting`: A bright clinic waiting room with chairs along the wall and a reception desk in the background. _(unsplash: photo-1586773860418-d37222d8fce3)_
-- `scenePharmacyCounter`: A pharmacist behind a counter handing a paper bag to a customer. _(unsplash: photo-1576602976037-6976c2a8b3c4)_
+- `scenePharmacyCounter`: A pharmacist behind a counter handing a paper bag to a customer. _(unsplash: byGTytEGjBo)_
 
 ### Mini quiz
 
 1. The nurse says: "You ___ rest for two days." Which word fits best?
-2. Yolanda's back hurts. She ___ lift heavy boxes today.
-3. What does 'ought to' mean in this sentence: "You ought to take the medicine with food."
-4. The doctor says: "You had better not go back to work until Thursday." Why does he use 'had better'?
-5. Yolanda wants to ask the nurse if she can take a bath. Which question is correct?
-6. The pharmacist says: "You must not mix this with your blood pressure medicine." Why 'must not' and not 'shouldn't'?
-7. Find the error: "You should to rest for two days."
-8. Find the error: "You had better to keep your follow-up appointment."
-9. Which sentence is the strongest warning?
-10. Rami texts Yolanda: "The doctor said don't ignore the pain. You ___ call back if it gets worse tonight." Which modal fits?
+2. The doctor says: "You had better not go back to work until Thursday." Why does he use 'had better'?
+3. Fill in the blank: "Yolanda's back hurts. She ___ lift heavy boxes today." (bad idea)
+4. The pharmacist says: "You must not mix this with your blood pressure medicine." Why 'must not' and not 'shouldn't'?
+5. The doctor gives Yolanda a strong warning about her back. Put the words in order.
 
 ### Flags
 
-_None._
-
+- **[ERROR]** `mini-quiz-error-detection` (miniQuiz): Expected at least 1 error-detection question(s), found 0
 
 ---
 
 ## W29: Stop Taking It or Stop to Take It?
 
 - **Slug:** `stop-taking-or-stop-to-take`
-- **Errors / warnings:** 0 / 0
+- **Errors / warnings:** 0 / 1
 
 ### Scenarios
 
@@ -595,25 +544,20 @@ _None._
 ### Images
 
 - `scenePharmacy`: A pharmacist at the counter handing a medication bag to a customer late at night. _(unsplash: photo-1587854692152-cbe660dbde88)_
-- `sceneLabel`: A person reading the label on a prescription medicine bottle carefully. _(unsplash: photo-1631549916768-a097c7b4eea0)_
+- `sceneLabel`: Worker reading the label on a prescription bottle during a lunch break. _(unsplash: gYZHmoQnoAo)_
 - `sceneTryGeneric`: Rows of generic and name-brand medicine bottles on a pharmacy shelf. _(unsplash: photo-1550572017-4fcdbb59cc32)_
-- `sceneAlarm`: A phone screen showing a morning alarm reminder to take medication. _(unsplash: photo-1495368863648-ef8d52f226d)_
-- `sceneNeighbors`: Two women sitting together, looking at a document and talking. _(unsplash: photo-1573496359142-b8d87734a5a2)_
+- `sceneAlarm`: A phone screen showing a morning alarm reminder to take medication. _(unsplash: 33oxtOMk6Ac)_
+- `sceneNeighbors`: Two women talking at a kitchen table on a Sunday afternoon. _(unsplash: 3c_k7h8YgHw)_
 
 ### Mini quiz
 
 1. The pharmacist says: 'You need to stop ___ the old blood pressure pills.' Which word fits?
 2. Marisol was working at her desk. At noon, she stopped ___ her pill. (She paused her work to take the pill.)
-3. The label says: 'Try ___ the tablet with a full glass of water to reduce nausea.' (experiment, see if it helps)
-4. Marisol tried ___ the name-brand medication covered by insurance, but they said no.
-5. The doctor's note says: 'Remember ___ the pill every morning with food.' This is a daily task. Don't forget.
-6. Carlos asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM with my coffee.'
-7. Which sentence has an error?
-8. Which sentence has an error?
-9. Fatuma reads her prescription label: 'Try ___ this medication at bedtime if daytime drowsiness is a problem.' What form fits? (It's a suggestion to experiment.)
-10. Marisol wants to say two things in one sentence: she ended the habit of taking ibuprofen, AND she now pauses her lunch to take her new pill. Which sentence is correct?
+3. Fill in the blank: "Carlos asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM.'" (She is recalling a past memory.)
+4. Which sentence has an error?
+5. Kelly's doctor told her to change an evening habit. Put the words in order.
 
 ### Flags
 
-_None._
-
+- **[WARN]** `image-scene-mismatch` (stop-taking-or-stop-to-take#sceneLabel): Scene photo may not match its caption (caption setting [warehouse, breakroom] vs photo setting [pharmacy])
+  > Break room at the warehouse, Friday lunchtime.

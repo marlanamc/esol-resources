@@ -33,7 +33,6 @@ export function getWelcomeMessage(params: {
 }): { subline: string; highlight: WelcomeHighlight } {
     const {
         mode,
-        streak = 0,
         weeklyCompleted,
         weeklyGoal,
         leaderboardRank,
