@@ -1,0 +1,17 @@
+{
+  "description": "Gamification idempotency guardrail: warns (never blocks) when an edit to a points-critical file risks bypassing awardPoints/PointsLedger.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/guard-gamification.sh",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

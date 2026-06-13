@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { TrophyIcon, FlameIcon, SparklesIcon } from '@/components/icons/Icons';
 import { Badge } from '@/components/ui';
 import { getAvatarEmoji, getColorClass } from '@/lib/avatar-constants';
@@ -416,7 +416,7 @@ export default function LeaderboardPage() {
           </div>
         )}
 
-        {/* Top 3 Podium (hide on mobile, hide if everyone is at 0) */}
+        {/* Top 3 Podium — desktop + compact mobile variants (hidden if everyone is at 0) */}
         {leaderboard.some(entry => entry.rank <= 3) && hasNonZeroScores && (() => {
           // Get all students in top 3 ranks (handles ties)
           const rank1Students = leaderboard.filter(entry => entry.rank === 1);
@@ -424,44 +424,121 @@ export default function LeaderboardPage() {
           const rank3Students = leaderboard.filter(entry => entry.rank === 3);
           const topStudents = [...rank1Students, ...rank2Students, ...rank3Students];
 
+          // Per-rank glow color feeds the shared .animate-medal-glow utility (--medal-glow-color)
+          const glowFor = (rank: number) =>
+            rank === 1 ? 'rgba(233,196,106,0.55)' : rank === 2 ? 'rgba(192,192,192,0.45)' : 'rgba(205,127,50,0.45)';
+
           return (
-            <div className="hidden md:flex flex-wrap justify-center gap-4 mb-8">
-              {/* Display students in rank order (1st, then all 2nd, then all 3rd) */}
-              {topStudents.map((student) => (
-                <div key={student.id} className="flex-shrink-0">
-                  <div
-                    className="border-2 rounded-2xl p-4 text-center min-w-[180px]"
-                    style={{
-                      backgroundColor: getRankColor(student.rank).bg,
-                      borderColor: getRankColor(student.rank).border,
-                      boxShadow: student.rank === 1 ? '0 10px 28px color-mix(in srgb, #FFD700 26%, transparent)' : '0 8px 20px rgba(13,22,32,0.10)'
-                    }}
-                  >
-                    <div className={student.rank === 1 ? "text-5xl mb-2" : "text-4xl mb-2"}>
-                      {getRankIcon(student.rank)}
-                    </div>
-                    {student.avatar && (
-                      <div className="flex justify-center mb-2">
-                        <LeaderboardAvatar avatar={student.avatar} avatarColor={student.avatarColor} size="md" />
+            <>
+              {/* Desktop podium — champions rise above on an aligned baseline */}
+              <div className="hidden md:flex flex-wrap items-end justify-center gap-4 mb-8">
+                {topStudents.map((student, index) => {
+                  const isChampion = student.rank === 1;
+                  const colors = getRankColor(student.rank);
+                  return (
+                    <div
+                      key={student.id}
+                      className="flex-shrink-0 animate-medal-reveal"
+                      style={{ animationDelay: `${index * 90}ms` }}
+                    >
+                      <div
+                        className={`relative overflow-hidden border-2 rounded-3xl px-5 text-center ${
+                          isChampion
+                            ? 'min-w-[210px] py-6 animate-medal-glow animate-shine-sweep'
+                            : 'min-w-[180px] py-4'
+                        }`}
+                        style={{
+                          backgroundColor: colors.bg,
+                          borderColor: colors.border,
+                          boxShadow: isChampion
+                            ? '0 16px 40px rgba(233,196,106,0.30)'
+                            : '0 8px 20px rgba(13,22,32,0.10)',
+                          ...(isChampion ? { ['--medal-glow-color']: glowFor(student.rank) } : {}),
+                        } as CSSProperties}
+                      >
+                        {isChampion && (
+                          <span
+                            className="block text-[11px] font-bold tracking-[0.18em] uppercase mb-1"
+                            style={{ fontFamily: 'var(--font-display)', color: 'color-mix(in srgb, #e9c46a 78%, var(--color-text))' }}
+                          >
+                            Champion
+                          </span>
+                        )}
+                        <div className={`${isChampion ? 'text-6xl animate-medal-float' : 'text-4xl'} mb-2`}>
+                          {getRankIcon(student.rank)}
+                        </div>
+                        {student.avatar && (
+                          <div className="flex justify-center mb-2">
+                            <LeaderboardAvatar avatar={student.avatar} avatarColor={student.avatarColor} size="md" />
+                          </div>
+                        )}
+                        <p
+                          className={`font-bold truncate ${isChampion ? 'text-xl' : 'text-lg'}`}
+                          style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}
+                        >
+                          {student.name}
+                        </p>
+                        <div className="mt-2">
+                          <Badge variant={isChampion ? 'warning' : 'secondary'}>
+                            {student.weeklyPoints} pts
+                          </Badge>
+                        </div>
+                        {student.currentStreak > 0 && (
+                          <div className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold" style={{ color: 'var(--accent-color)' }}>
+                            <FlameIcon size={14} />
+                            <span>{student.currentStreak} day streak</span>
+                          </div>
+                        )}
                       </div>
-                    )}
-                    <p className="font-bold text-lg truncate" style={{ color: 'var(--color-text)' }}>
-                      {student.name}
-                    </p>
-                    {student.rank === 1 && (
-                      <p className="text-sm mt-1" style={{ color: 'var(--success-color)' }}>
-                        Champion
-                      </p>
-                    )}
-                    <div className="mt-2">
-                      <Badge variant={student.rank === 1 ? "warning" : "secondary"}>
-                        {student.weeklyPoints} pts
-                      </Badge>
                     </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+                  );
+                })}
+              </div>
+
+              {/* Mobile podium — compact strip so phone learners still see the top of the board */}
+              <div className="flex md:hidden flex-wrap items-end justify-center gap-2.5 mb-6">
+                {topStudents.map((student, index) => {
+                  const isChampion = student.rank === 1;
+                  const colors = getRankColor(student.rank);
+                  return (
+                    <div
+                      key={student.id}
+                      className="flex-shrink-0 animate-medal-reveal"
+                      style={{ animationDelay: `${index * 80}ms` }}
+                    >
+                      <div
+                        className={`relative overflow-hidden border-2 rounded-2xl px-3 py-3 text-center w-[106px] ${
+                          isChampion ? 'animate-medal-glow' : ''
+                        }`}
+                        style={{
+                          backgroundColor: colors.bg,
+                          borderColor: colors.border,
+                          boxShadow: isChampion
+                            ? '0 10px 24px rgba(233,196,106,0.28)'
+                            : '0 6px 14px rgba(13,22,32,0.10)',
+                          ...(isChampion ? { ['--medal-glow-color']: glowFor(student.rank) } : {}),
+                        } as CSSProperties}
+                      >
+                        <div className={`${isChampion ? 'text-3xl animate-medal-float' : 'text-2xl'} mb-1`}>
+                          {getRankIcon(student.rank)}
+                        </div>
+                        {student.avatar && (
+                          <div className="flex justify-center mb-1">
+                            <LeaderboardAvatar avatar={student.avatar} avatarColor={student.avatarColor} size="sm" />
+                          </div>
+                        )}
+                        <p className="font-bold text-xs truncate" style={{ color: 'var(--color-text)' }}>
+                          {student.name}
+                        </p>
+                        <p className="text-[11px] font-semibold mt-0.5" style={{ color: 'var(--success-color)' }}>
+                          {student.weeklyPoints} pts
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
           );
         })()}
 
@@ -489,7 +566,7 @@ export default function LeaderboardPage() {
               return (
                 <div
                   key={entry.id}
-                  className={`p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 transition-all ${isUserRow ? 'border-l-4' : ''}`}
+                  className={`relative p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 transition-all animate-card-lift ${isUserRow ? 'border-l-4' : ''}`}
                     style={{
                     backgroundColor: isUserRow ? 'color-mix(in srgb, var(--color-primary) 12%, transparent)' : 'transparent',
                     borderLeftColor: isUserRow ? 'var(--color-primary)' : 'transparent',
@@ -497,7 +574,13 @@ export default function LeaderboardPage() {
                 >
                   <div className="flex items-center gap-3 flex-1">
                     <div className="w-10 text-center flex-shrink-0">
-                      <span className="text-xl font-bold" style={{ color: rankColors.text }}>
+                      <span
+                        className={`font-bold ${entry.rank <= 3 && hasNonZeroScores ? 'text-2xl' : 'text-xl'}`}
+                        style={{
+                          color: rankColors.text,
+                          filter: entry.rank <= 3 && hasNonZeroScores ? 'drop-shadow(0 2px 4px rgba(13,22,32,0.18))' : undefined,
+                        }}
+                      >
                         {getRankIcon(entry.rank, hasNonZeroScores)}
                       </span>
                     </div>
@@ -550,13 +633,25 @@ export default function LeaderboardPage() {
             </div>
           </div>
         ) : (
-          <div className="border rounded-2xl overflow-hidden text-center py-12" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)', boxShadow: '0 4px 12px rgba(13,22,32,0.12)' }}>
-            <TrophyIcon className="w-16 h-16 mx-auto mb-4" style={{ color: 'var(--border-strong)' }} />
-            <p className="text-lg font-medium mb-2" style={{ color: 'var(--color-text-muted)' }}>
-              No rankings yet
+          <div className="relative overflow-hidden border rounded-2xl text-center py-14 px-6" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)', boxShadow: '0 4px 12px rgba(13,22,32,0.12)' }}>
+            <div className="relative inline-flex items-center justify-center mb-5">
+              <div
+                className="absolute inset-0 rounded-full blur-2xl"
+                style={{ background: 'radial-gradient(circle, color-mix(in srgb, var(--accent-color) 42%, transparent), transparent 70%)' }}
+                aria-hidden
+              />
+              <div
+                className="relative w-20 h-20 rounded-2xl flex items-center justify-center animate-medal-float"
+                style={{ background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-color-light) 76%, var(--surface-elevated)) 0%, color-mix(in srgb, var(--accent-color) 38%, var(--surface-elevated)) 100%)' }}
+              >
+                <TrophyIcon className="w-10 h-10" style={{ color: 'var(--color-primary)' }} />
+              </div>
+            </div>
+            <p className="text-xl font-bold mb-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
+              The podium is wide open
             </p>
-            <p className="text-sm" style={{ color: 'var(--color-text-light)' }}>
-              Students will appear here once they earn points. Complete activities to climb the ranks!
+            <p className="text-sm max-w-sm mx-auto leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+              Be the first to claim a spot. Complete an activity to earn points and watch your name climb the ranks.
             </p>
           </div>
         )}

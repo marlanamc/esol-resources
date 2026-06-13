@@ -1,0 +1,7 @@
+{
+  "hook_event_name": "PostToolUse",
+  "tool_name": "Edit",
+  "tool_input": {
+    "file_path": "/Users/marlanacreed/Downloads/Projects/ESOL_Teacher_Resources/src/lib/gamification/gamification.ts"
+  }
+}

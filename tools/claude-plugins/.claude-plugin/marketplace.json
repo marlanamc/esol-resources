@@ -1,0 +1,13 @@
+{
+  "name": "class-companion-local",
+  "owner": {
+    "name": "Marlana Creed"
+  },
+  "plugins": [
+    {
+      "name": "class-companion-guardrails",
+      "source": "./class-companion-guardrails",
+      "description": "Repo-local gamification idempotency guardrail hook for Class Companion."
+    }
+  ]
+}

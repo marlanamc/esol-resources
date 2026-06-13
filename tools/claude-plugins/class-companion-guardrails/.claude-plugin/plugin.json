@@ -1,0 +1,9 @@
+{
+  "name": "class-companion-guardrails",
+  "version": "0.1.0",
+  "description": "Repo-local Claude Code guardrails for Class Companion. Ships a deterministic, non-blocking PostToolUse hook that warns when an edit risks breaking gamification idempotency (point-field writes that bypass awardPoints/PointsLedger, or unguarded ledger inserts).",
+  "author": {
+    "name": "Marlana Creed"
+  },
+  "keywords": ["esol", "gamification", "idempotency", "guardrail", "hook"]
+}

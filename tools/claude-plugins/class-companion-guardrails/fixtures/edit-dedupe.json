@@ -1,0 +1,7 @@
+{
+  "hook_event_name": "PostToolUse",
+  "tool_name": "Edit",
+  "tool_input": {
+    "file_path": "/Users/marlanacreed/Downloads/Projects/ESOL_Teacher_Resources/tools/claude-plugins/class-companion-guardrails/fixtures/src/app/api/activity/claim/route.ts"
+  }
+}
