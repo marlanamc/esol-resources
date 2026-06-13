@@ -104,7 +104,7 @@ export function ModeHeader({
         >
             <div
                 className={[
-                    "mx-auto max-w-[1800px] items-center gap-2 px-3 py-2.5 sm:px-6 sm:py-3 lg:px-8",
+                    "mx-auto max-w-[1800px] items-center gap-2 px-3 py-2.5 sm:px-6 sm:py-3 md:px-7 lg:px-8",
                     showViewModeToggle
                         ? "grid min-h-[60px] grid-cols-[minmax(0,auto)_minmax(0,1fr)_auto] md:min-h-[74px] md:grid-cols-[1fr_auto_1fr] md:gap-3"
                         : "flex min-h-[60px] justify-between md:min-h-[74px] md:grid md:grid-cols-[1fr_auto_1fr] md:gap-3",
@@ -160,7 +160,7 @@ export function ModeHeader({
 
             <nav
                 className={[
-                    "mx-auto min-h-12 max-w-[1800px] items-end gap-1 overflow-x-auto px-4 sm:px-6 lg:px-8",
+                    "mx-auto min-h-12 max-w-[1800px] items-end gap-1 overflow-x-auto px-4 sm:px-6 md:px-7 lg:px-8",
                     mode === "student" ? "hidden md:flex" : "flex",
                 ].join(" ")}
                 aria-label={ariaLabel}

@@ -251,7 +251,7 @@ export default async function MapPage({
 
     return (
         <div className="min-h-screen bg-bg">
-            <main id="main-content" className="container mx-auto scroll-smooth pt-2 pb-28 px-4 max-w-lg lg:max-w-5xl xl:max-w-6xl lg:pt-4">
+            <main id="main-content" className="container mx-auto scroll-smooth pt-2 pb-28 px-4 md:px-6 max-w-lg sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl lg:pt-4">
 
                 {/* Desktop two-column layout */}
                 <div className="hidden lg:grid lg:grid-cols-[280px_1fr] xl:grid-cols-[300px_1fr] lg:gap-8 lg:items-start lg:pt-2">
