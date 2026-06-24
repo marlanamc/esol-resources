@@ -2,7 +2,32 @@
 
 import { signIn } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useRouter, useSearchParams } from "next/navigation";
+import { apiFetch, ApiError } from "@/lib/api/client";
+
+const schema = z
+    .object({
+        inviteCode: z
+            .string()
+            .min(8, "Please enter a valid 8-character invite code")
+            .max(8, "Invite code must be 8 characters"),
+        username: z
+            .string()
+            .min(3, "Username must be at least 3 characters")
+            .max(30, "Username too long")
+            .regex(/^[a-z0-9_-]+$/i, "Username can only contain letters, numbers, underscores, and hyphens"),
+        email: z.string().email("Please enter a valid email address"),
+        password: z.string().min(8, "Password must be at least 8 characters"),
+        confirmPassword: z.string().min(1, "Please confirm your password"),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+        message: "Passwords do not match",
+        path: ["confirmPassword"],
+    });
+type FormValues = z.infer<typeof schema>;
 
 interface InviteValidation {
     valid: boolean;
@@ -11,28 +36,28 @@ interface InviteValidation {
 }
 
 export function JoinForm() {
-    const [inviteCode, setInviteCode] = useState("");
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [error, setError] = useState("");
-    const [fieldError, setFieldError] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
     const [isValidatingCode, setIsValidatingCode] = useState(false);
     const [inviteValidation, setInviteValidation] = useState<InviteValidation | null>(null);
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    // Get invite code from URL on mount
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        setError,
+        formState: { errors, isSubmitting },
+    } = useForm<FormValues>({ resolver: zodResolver(schema) });
+
     useEffect(() => {
         const codeFromUrl = searchParams.get("code");
         if (codeFromUrl) {
-            setInviteCode(codeFromUrl.toUpperCase());
-            validateInviteCode(codeFromUrl);
+            const uppercased = codeFromUrl.toUpperCase();
+            setValue("inviteCode", uppercased);
+            validateInviteCode(uppercased);
         }
-    }, [searchParams]);
+    }, [searchParams, setValue]);
 
     const validateInviteCode = async (code: string) => {
         if (!code || code.length < 6) {
@@ -46,114 +71,32 @@ export function JoinForm() {
             const data = await response.json();
 
             if (data.ok && data.data) {
-                setInviteValidation({
-                    valid: true,
-                    invitedBy: data.data.invitedBy,
-                });
+                setInviteValidation({ valid: true, invitedBy: data.data.invitedBy });
             } else {
-                setInviteValidation({
-                    valid: false,
-                    error: data.error || "Invalid invite code",
-                });
+                setInviteValidation({ valid: false, error: data.error || "Invalid invite code" });
             }
         } catch {
-            setInviteValidation({
-                valid: false,
-                error: "Could not validate invite code",
-            });
+            setInviteValidation({ valid: false, error: "Could not validate invite code" });
         } finally {
             setIsValidatingCode(false);
         }
     };
 
-    const handleInviteCodeChange = (value: string) => {
-        const uppercased = value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 8);
-        setInviteCode(uppercased);
-
-        // Validate when code reaches full length
-        if (uppercased.length === 8) {
-            validateInviteCode(uppercased);
-        } else {
-            setInviteValidation(null);
-        }
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError("");
-        setFieldError(null);
-
-        // Client-side validation
-        if (!inviteCode || inviteCode.length !== 8) {
-            setError("Please enter a valid invite code");
-            return;
-        }
-
-        if (username.length < 3) {
-            setFieldError("username");
-            setError("Username must be at least 3 characters");
-            return;
-        }
-
-        if (!/^[a-z0-9_-]+$/i.test(username)) {
-            setFieldError("username");
-            setError("Username can only contain letters, numbers, underscores, and hyphens");
-            return;
-        }
-
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            setFieldError("email");
-            setError("Please enter a valid email address");
-            return;
-        }
-
-        if (password.length < 8) {
-            setFieldError("password");
-            setError("Password must be at least 8 characters");
-            return;
-        }
-
-        if (password !== confirmPassword) {
-            setFieldError("confirmPassword");
-            setError("Passwords do not match");
-            return;
-        }
-
-        setIsLoading(true);
-
+    const onSubmit = async (values: FormValues) => {
         try {
-            const response = await fetch("/api/auth/register", {
+            await apiFetch("/api/auth/register", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    inviteCode,
-                    username: username.toLowerCase(),
-                    email: email.toLowerCase(),
-                    password,
-                }),
+                body: {
+                    inviteCode: values.inviteCode,
+                    username: values.username.toLowerCase(),
+                    email: values.email.toLowerCase(),
+                    password: values.password,
+                },
             });
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                // Map error codes to field errors
-                if (data.code === "USERNAME_TAKEN" || data.code === "INVALID_USERNAME") {
-                    setFieldError("username");
-                } else if (data.code === "EMAIL_TAKEN" || data.code === "INVALID_EMAIL") {
-                    setFieldError("email");
-                } else if (data.code === "INVALID_PASSWORD") {
-                    setFieldError("password");
-                } else if (data.code === "INVALID_INVITE_CODE" || data.code === "INVITE_EXPIRED" || data.code === "INVITE_INACTIVE") {
-                    setFieldError("inviteCode");
-                }
-                setError(data.error || "Registration failed");
-                return;
-            }
-
-            // Registration successful - sign in automatically
             const signInResult = await signIn("credentials", {
-                username: username.toLowerCase(),
-                password,
+                username: values.username.toLowerCase(),
+                password: values.password,
                 redirect: false,
             });
 
@@ -161,23 +104,41 @@ export function JoinForm() {
                 router.push("/dashboard");
                 router.refresh();
             } else {
-                // If auto-login fails, redirect to login page
                 router.push("/login?registered=1");
             }
-        } catch {
-            setError("An error occurred. Please try again.");
-        } finally {
-            setIsLoading(false);
+        } catch (err) {
+            if (err instanceof ApiError) {
+                const body = err.body as { code?: string; error?: string };
+                if (body.code === "USERNAME_TAKEN" || body.code === "INVALID_USERNAME") {
+                    setError("username", { message: body.error ?? "Username error" });
+                } else if (body.code === "EMAIL_TAKEN" || body.code === "INVALID_EMAIL") {
+                    setError("email", { message: body.error ?? "Email error" });
+                } else if (body.code === "INVALID_PASSWORD") {
+                    setError("password", { message: body.error ?? "Password error" });
+                } else if (
+                    body.code === "INVALID_INVITE_CODE" ||
+                    body.code === "INVITE_EXPIRED" ||
+                    body.code === "INVITE_INACTIVE"
+                ) {
+                    setError("inviteCode", { message: body.error ?? "Invalid invite code" });
+                } else {
+                    setError("root", { message: body.error ?? "Registration failed" });
+                }
+            } else {
+                setError("root", { message: "An error occurred. Please try again." });
+            }
         }
     };
 
-    const inputClassName = (field: string) =>
+    const inputClassName = (hasError: boolean) =>
         `w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] ${
-            fieldError === field ? "border-error" : "border-[var(--color-border-strong)]"
+            hasError ? "border-error" : "border-[var(--color-border-strong)]"
         }`;
 
+    const isDisabled = isSubmitting || (inviteValidation !== null && !inviteValidation.valid);
+
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-full">
             <div className="border rounded-2xl p-5 sm:p-6 space-y-5 sm:space-y-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md">
                 {/* Invite Code */}
                 <div>
@@ -187,12 +148,16 @@ export function JoinForm() {
                     <input
                         id="inviteCode"
                         type="text"
-                        value={inviteCode}
-                        onChange={(e) => handleInviteCodeChange(e.target.value)}
+                        {...register("inviteCode")}
+                        onChange={(e) => {
+                            const uppercased = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 8);
+                            setValue("inviteCode", uppercased, { shouldValidate: false });
+                            if (uppercased.length === 8) validateInviteCode(uppercased);
+                            else setInviteValidation(null);
+                        }}
                         placeholder="ABCD1234"
-                        className={`${inputClassName("inviteCode")} font-mono tracking-wider text-center uppercase`}
+                        className={`${inputClassName(!!errors.inviteCode)} font-mono tracking-wider text-center uppercase`}
                         maxLength={8}
-                        required
                         autoComplete="off"
                     />
                     {isValidatingCode && (
@@ -206,6 +171,9 @@ export function JoinForm() {
                     {inviteValidation && !inviteValidation.valid && (
                         <p className="mt-2 text-xs text-error font-medium">{inviteValidation.error}</p>
                     )}
+                    {errors.inviteCode && (
+                        <p className="mt-1.5 text-sm text-error">{errors.inviteCode.message}</p>
+                    )}
                 </div>
 
                 {/* Username */}
@@ -216,17 +184,20 @@ export function JoinForm() {
                     <input
                         id="username"
                         type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value.toLowerCase())}
+                        {...register("username")}
+                        onChange={(e) => setValue("username", e.target.value.toLowerCase(), { shouldValidate: false })}
                         placeholder="your_username"
-                        className={inputClassName("username")}
+                        className={inputClassName(!!errors.username)}
                         maxLength={30}
-                        required
                         autoComplete="username"
                     />
-                    <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">
-                        Letters, numbers, underscores, and hyphens only
-                    </p>
+                    {errors.username ? (
+                        <p className="mt-1.5 text-sm text-error">{errors.username.message}</p>
+                    ) : (
+                        <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">
+                            Letters, numbers, underscores, and hyphens only
+                        </p>
+                    )}
                 </div>
 
                 {/* Email */}
@@ -237,16 +208,16 @@ export function JoinForm() {
                     <input
                         id="email"
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        {...register("email")}
                         placeholder="you@example.com"
-                        className={inputClassName("email")}
-                        required
+                        className={inputClassName(!!errors.email)}
                         autoComplete="email"
                     />
-                    <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">
-                        Used for password recovery
-                    </p>
+                    {errors.email ? (
+                        <p className="mt-1.5 text-sm text-error">{errors.email.message}</p>
+                    ) : (
+                        <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">Used for password recovery</p>
+                    )}
                 </div>
 
                 {/* Password */}
@@ -258,12 +229,9 @@ export function JoinForm() {
                         <input
                             id="password"
                             type={showPassword ? "text" : "password"}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            {...register("password")}
                             placeholder="••••••••"
-                            className={`${inputClassName("password")} pr-11`}
-                            minLength={8}
-                            required
+                            className={`${inputClassName(!!errors.password)} pr-11`}
                             autoComplete="new-password"
                         />
                         <button
@@ -276,7 +244,11 @@ export function JoinForm() {
                             {showPassword ? "Hide" : "Show"}
                         </button>
                     </div>
-                    <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">At least 8 characters</p>
+                    {errors.password ? (
+                        <p className="mt-1.5 text-sm text-error">{errors.password.message}</p>
+                    ) : (
+                        <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">At least 8 characters</p>
+                    )}
                 </div>
 
                 {/* Confirm Password */}
@@ -287,35 +259,35 @@ export function JoinForm() {
                     <input
                         id="confirmPassword"
                         type={showPassword ? "text" : "password"}
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        {...register("confirmPassword")}
                         placeholder="••••••••"
-                        className={inputClassName("confirmPassword")}
-                        minLength={8}
-                        required
+                        className={inputClassName(!!errors.confirmPassword)}
                         autoComplete="new-password"
                     />
+                    {errors.confirmPassword && (
+                        <p className="mt-1.5 text-sm text-error">{errors.confirmPassword.message}</p>
+                    )}
                 </div>
 
                 {/* Error Message */}
-                {error && (
+                {errors.root && (
                     <div role="alert" className="border-2 rounded-lg p-3 bg-error/10 border-error">
-                        <p className="text-sm font-medium text-error">{error}</p>
+                        <p className="text-sm font-medium text-error">{errors.root.message}</p>
                     </div>
                 )}
 
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    disabled={isLoading || (inviteValidation !== null && !inviteValidation.valid)}
+                    disabled={isDisabled}
                     className={`w-full min-h-[52px] py-3 px-4 rounded-xl text-base font-semibold text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 shadow-sm ${
-                        isLoading || (inviteValidation !== null && !inviteValidation.valid)
+                        isDisabled
                             ? "bg-[var(--color-text-muted)] cursor-not-allowed pointer-events-none"
                             : "bg-primary hover:bg-primary-dark cursor-pointer relative z-10 block"
                     }`}
                 >
                     <span className="relative z-20 pointer-events-none">
-                        {isLoading ? "Creating account..." : "Create Account"}
+                        {isSubmitting ? "Creating account..." : "Create Account"}
                     </span>
                 </button>
             </div>

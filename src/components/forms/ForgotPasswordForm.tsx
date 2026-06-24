@@ -1,59 +1,52 @@
 "use client";
 
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { apiFetch, ApiError } from "@/lib/api/client";
 
-type FormMode = "form" | "sent";
+const schema = z.object({
+    email: z.string().email("Please enter a valid email address"),
+});
+type FormValues = z.infer<typeof schema>;
 
 export function ForgotPasswordForm() {
-    const [mode, setMode] = useState<FormMode>("form");
-    const [email, setEmail] = useState("");
-    const [error, setError] = useState("");
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [sent, setSent] = useState(false);
+    const [sentEmail, setSentEmail] = useState("");
+    const {
+        register,
+        handleSubmit,
+        setError,
+        getValues,
+        formState: { errors, isSubmitting },
+    } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError("");
-
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            setError("Please enter a valid email address");
-            return;
-        }
-
-        setIsSubmitting(true);
-
+    const onSubmit = async (values: FormValues) => {
         try {
-            const response = await fetch("/api/auth/forgot-password", {
+            await apiFetch("/api/auth/forgot-password", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: email.toLowerCase() }),
+                body: { email: values.email.toLowerCase() },
             });
-
-            const data = await response.json();
-
-            if (!response.ok && response.status !== 429) {
-                setError(data.error || "Failed to send reset link");
-                return;
+            setSentEmail(values.email);
+            setSent(true);
+        } catch (err) {
+            if (err instanceof ApiError && err.status === 429) {
+                setError("root", { message: "Too many requests. Please try again later." });
+            } else if (err instanceof ApiError && !err.isServerError) {
+                setError("root", { message: err.message });
+            } else {
+                // Always show success to prevent email enumeration
+                setSentEmail(values.email);
+                setSent(true);
             }
-
-            if (response.status === 429) {
-                setError("Too many requests. Please try again later.");
-                return;
-            }
-
-            // Always show success to prevent email enumeration
-            setMode("sent");
-        } catch {
-            setError("An error occurred. Please try again.");
-        } finally {
-            setIsSubmitting(false);
         }
     };
 
     const inputClassName =
         "w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)]";
 
-    // Success state - email sent
-    if (mode === "sent") {
+    if (sent) {
         return (
             <div className="border rounded-2xl p-5 sm:p-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md space-y-4">
                 <div className="text-center">
@@ -66,13 +59,13 @@ export function ForgotPasswordForm() {
                         Check Your Email
                     </h3>
                     <p className="text-sm text-[var(--color-text-muted)] mb-4">
-                        If an account exists with <span className="font-medium text-[var(--color-text)]">{email}</span>, we&apos;ve sent a password reset link.
+                        If an account exists with <span className="font-medium text-[var(--color-text)]">{sentEmail}</span>, we&apos;ve sent a password reset link.
                     </p>
                     <p className="text-xs text-[var(--color-text-muted)]">
                         Didn&apos;t receive an email? Check your spam folder or{" "}
                         <button
                             type="button"
-                            onClick={() => setMode("form")}
+                            onClick={() => setSent(false)}
                             className="text-primary hover:underline font-semibold"
                         >
                             try again
@@ -83,11 +76,9 @@ export function ForgotPasswordForm() {
         );
     }
 
-    // Request form
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-full">
             <div className="border rounded-2xl p-5 sm:p-6 space-y-5 sm:space-y-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md">
-                {/* Email */}
                 <div>
                     <label htmlFor="email" className="block text-sm font-semibold mb-2 text-[var(--color-text)]">
                         Email Address
@@ -95,24 +86,23 @@ export function ForgotPasswordForm() {
                     <input
                         id="email"
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        {...register("email")}
                         placeholder="you@example.com"
                         className={inputClassName}
-                        required
                         autoComplete="email"
                         autoFocus
                     />
+                    {errors.email && (
+                        <p className="mt-1.5 text-sm text-error">{errors.email.message}</p>
+                    )}
                 </div>
 
-                {/* Error Message */}
-                {error && (
+                {errors.root && (
                     <div role="alert" className="border-2 rounded-lg p-3 bg-error/10 border-error">
-                        <p className="text-sm font-medium text-error">{error}</p>
+                        <p className="text-sm font-medium text-error">{errors.root.message}</p>
                     </div>
                 )}
 
-                {/* Submit Button */}
                 <button
                     type="submit"
                     disabled={isSubmitting}

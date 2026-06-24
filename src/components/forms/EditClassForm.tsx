@@ -1,7 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { apiFetch, ApiError } from "@/lib/api/client";
+
+const schema = z.object({
+    name: z.string().min(1, "Class name is required").max(200, "Class name too long"),
+    description: z.string().optional(),
+    sectionSourceClassId: z.string().optional(),
+});
+type FormValues = z.infer<typeof schema>;
 
 interface SectionOption {
     id: string;
@@ -26,48 +36,45 @@ export default function EditClassForm({
     initialSourceClassId,
 }: Props) {
     const router = useRouter();
-    const [name, setName] = useState(initialName);
-    const [description, setDescription] = useState(initialDescription || "");
-    const [sectionSourceClassId, setSectionSourceClassId] = useState(initialSourceClassId || "");
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-
     const isInSectionGroup = Boolean(initialSectionGroupId);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError("");
-        setIsLoading(true);
+    const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors, isSubmitting },
+    } = useForm<FormValues>({
+        resolver: zodResolver(schema),
+        defaultValues: {
+            name: initialName,
+            description: initialDescription ?? "",
+            sectionSourceClassId: initialSourceClassId ?? "",
+        },
+    });
 
+    const onSubmit = async (values: FormValues) => {
         try {
-            const response = await fetch(`/api/classes/${classId}`, {
+            await apiFetch(`/api/classes/${classId}`, {
                 method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name,
-                    description: description || null,
-                    sectionSourceClassId: sectionSourceClassId || null,
-                }),
+                body: {
+                    name: values.name,
+                    description: values.description || null,
+                    sectionSourceClassId: values.sectionSourceClassId || null,
+                },
             });
-
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.error || "Failed to update class");
-            }
-
             router.push(`/dashboard/classes/${classId}`);
             router.refresh();
-        } catch (err: unknown) {
-            setError(err instanceof Error ? err.message : "Failed to update class");
-        } finally {
-            setIsLoading(false);
+        } catch (err) {
+            setError("root", {
+                message: err instanceof ApiError ? err.message : "Failed to update class",
+            });
         }
     };
 
     return (
         <div className="bg-white dark:bg-[var(--surface-elevated)] shadow sm:rounded-lg">
             <div className="px-4 py-5 sm:p-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Class Name *
@@ -75,12 +82,13 @@ export default function EditClassForm({
                         <input
                             id="name"
                             type="text"
-                            required
                             autoComplete="off"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            {...register("name")}
                             className="form-field mt-1"
                         />
+                        {errors.name && (
+                            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name.message}</p>
+                        )}
                     </div>
 
                     <div>
@@ -91,8 +99,7 @@ export default function EditClassForm({
                             id="description"
                             rows={3}
                             autoComplete="off"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            {...register("description")}
                             className="form-field mt-1"
                         />
                     </div>
@@ -103,8 +110,7 @@ export default function EditClassForm({
                         </label>
                         <select
                             id="sectionSourceClassId"
-                            value={sectionSourceClassId}
-                            onChange={(e) => setSectionSourceClassId(e.target.value)}
+                            {...register("sectionSourceClassId")}
                             className="form-field mt-1"
                         >
                             <option value="">Standalone class (no section sync)</option>
@@ -121,9 +127,9 @@ export default function EditClassForm({
                         </p>
                     </div>
 
-                    {error && (
+                    {errors.root && (
                         <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
-                            <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+                            <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                         </div>
                     )}
 
@@ -137,10 +143,10 @@ export default function EditClassForm({
                         </button>
                         <button
                             type="submit"
-                            disabled={isLoading}
+                            disabled={isSubmitting}
                             className="rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:opacity-50"
                         >
-                            {isLoading ? "Saving..." : "Save Changes"}
+                            {isSubmitting ? "Saving..." : "Save Changes"}
                         </button>
                     </div>
                 </form>
@@ -148,4 +154,3 @@ export default function EditClassForm({
         </div>
     );
 }
-

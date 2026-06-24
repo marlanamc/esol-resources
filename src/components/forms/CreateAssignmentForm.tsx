@@ -1,7 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { apiFetch, ApiError } from "@/lib/api/client";
+
+const schema = z.object({
+    activityId: z.string().min(1, "Please select an activity"),
+    title: z.string().optional(),
+    instructions: z.string().optional(),
+    dueDate: z.string().optional(),
+    syncToSectionGroup: z.boolean().default(true),
+});
+type FormValues = z.infer<typeof schema>;
 
 interface Activity {
     id: string;
@@ -24,75 +36,62 @@ export default function CreateAssignmentForm({
     supportsSectionSync = false,
 }: Props) {
     const router = useRouter();
-    const [activityId, setActivityId] = useState("");
-    const [title, setTitle] = useState("");
-    const [instructions, setInstructions] = useState("");
-    const [dueDate, setDueDate] = useState("");
-    const [syncToSectionGroup, setSyncToSectionGroup] = useState(true);
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    const {
+        register,
+        handleSubmit,
+        watch,
+        setValue,
+        setError,
+        formState: { errors, isSubmitting },
+    } = useForm<FormValues>({
+        resolver: zodResolver(schema),
+        defaultValues: { syncToSectionGroup: true },
+    });
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError("");
+    const activityId = watch("activityId");
+    const selectedActivity = activities.find((a) => a.id === activityId);
 
-        if (!activityId) {
-            setError("Please select an activity");
-            return;
-        }
-
-        setIsLoading(true);
-
+    const onSubmit = async (values: FormValues) => {
         try {
-            const response = await fetch("/api/assignments", {
+            await apiFetch(`/api/assignments`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
+                body: {
                     classId,
-                    activityId,
-                    title: title || undefined,
-                    instructions: instructions || undefined,
-                    dueDate: dueDate || undefined,
-                    syncToSectionGroup: supportsSectionSync ? syncToSectionGroup : false,
-                }),
+                    activityId: values.activityId,
+                    title: values.title || undefined,
+                    instructions: values.instructions || undefined,
+                    dueDate: values.dueDate || undefined,
+                    syncToSectionGroup: supportsSectionSync ? values.syncToSectionGroup : false,
+                },
             });
-
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.error || "Failed to create assignment");
-            }
-
             router.push(`/dashboard/classes/${classId}`);
             router.refresh();
-        } catch (err: unknown) {
-            setError(err instanceof Error ? err.message : "Failed to create assignment");
-        } finally {
-            setIsLoading(false);
+        } catch (err) {
+            setError("root", {
+                message: err instanceof ApiError ? err.message : "Failed to create assignment",
+            });
         }
     };
-
-    const selectedActivity = activities.find((a) => a.id === activityId);
 
     return (
         <div className="bg-white dark:bg-[var(--surface-elevated)] shadow sm:rounded-lg">
             <div className="px-4 py-5 sm:p-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div>
                         <label htmlFor="activityId" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Select Activity *
                         </label>
                         <select
                             id="activityId"
-                            value={activityId}
-                            onChange={(e) => {
-                                setActivityId(e.target.value);
-                                const activity = activities.find((a) => a.id === e.target.value);
-                                if (activity && !title) {
-                                    setTitle(activity.title);
-                                }
-                            }}
+                            {...register("activityId", {
+                                onChange: (e) => {
+                                    const activity = activities.find((a) => a.id === e.target.value);
+                                    if (activity && !watch("title")) {
+                                        setValue("title", activity.title);
+                                    }
+                                },
+                            })}
                             className="form-field mt-1"
-                            required
                         >
                             <option value="">Choose an activity…</option>
                             {activities.map((activity) => (
@@ -102,6 +101,9 @@ export default function CreateAssignmentForm({
                                 </option>
                             ))}
                         </select>
+                        {errors.activityId && (
+                            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.activityId.message}</p>
+                        )}
                         {selectedActivity && (
                             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{selectedActivity.description}</p>
                         )}
@@ -114,8 +116,7 @@ export default function CreateAssignmentForm({
                         <input
                             type="text"
                             id="title"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
+                            {...register("title")}
                             placeholder="Leave empty to use activity title"
                             className="form-field mt-1"
                         />
@@ -127,8 +128,7 @@ export default function CreateAssignmentForm({
                         </label>
                         <textarea
                             id="instructions"
-                            value={instructions}
-                            onChange={(e) => setInstructions(e.target.value)}
+                            {...register("instructions")}
                             rows={4}
                             placeholder="Additional instructions for students…"
                             className="form-field mt-1"
@@ -142,8 +142,7 @@ export default function CreateAssignmentForm({
                         <input
                             type="datetime-local"
                             id="dueDate"
-                            value={dueDate}
-                            onChange={(e) => setDueDate(e.target.value)}
+                            {...register("dueDate")}
                             className="form-field mt-1"
                         />
                     </div>
@@ -154,17 +153,16 @@ export default function CreateAssignmentForm({
                                 <input
                                     type="checkbox"
                                     className="mt-0.5"
-                                    checked={syncToSectionGroup}
-                                    onChange={(e) => setSyncToSectionGroup(e.target.checked)}
+                                    {...register("syncToSectionGroup")}
                                 />
                                 Sync this assignment to all sections in this course.
                             </label>
                         </div>
                     )}
 
-                    {error && (
+                    {errors.root && (
                         <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
-                            <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+                            <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                         </div>
                     )}
 
@@ -178,10 +176,10 @@ export default function CreateAssignmentForm({
                         </button>
                         <button
                             type="submit"
-                            disabled={isLoading}
+                            disabled={isSubmitting}
                             className="px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
                         >
-                            {isLoading ? "Creating…" : "Create Assignment"}
+                            {isSubmitting ? "Creating…" : "Create Assignment"}
                         </button>
                     </div>
                 </form>
@@ -189,12 +187,3 @@ export default function CreateAssignmentForm({
         </div>
     );
 }
-
-
-
-
-
-
-
-
-

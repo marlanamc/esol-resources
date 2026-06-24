@@ -1,39 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { apiFetch, ApiError } from "@/lib/api/client";
+
+const schema = z.object({
+    code: z.string().min(1, "Class code is required").max(6, "Code must be 6 characters"),
+});
+type FormValues = z.infer<typeof schema>;
 
 export default function JoinClassForm() {
     const router = useRouter();
-    const [code, setCode] = useState("");
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors, isSubmitting },
+    } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError("");
-        setIsLoading(true);
-
+    const onSubmit = async (values: FormValues) => {
         try {
-            const response = await fetch("/api/classes/join", {
+            const data = await apiFetch<{ classId: string }>("/api/classes/join", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ code: code.toUpperCase().trim() }),
+                body: { code: values.code.toUpperCase().trim() },
             });
-
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.error || "Failed to join class");
-            }
-
-            const data = await response.json();
             router.push(`/dashboard/classes/${data.classId}`);
             router.refresh();
-        } catch (err: unknown) {
-            setError(err instanceof Error ? err.message : "Failed to join class");
-        } finally {
-            setIsLoading(false);
+        } catch (err) {
+            setError("root", {
+                message: err instanceof ApiError ? err.message : "Failed to join class",
+            });
         }
     };
 
@@ -47,7 +46,7 @@ export default function JoinClassForm() {
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div>
                         <label htmlFor="code" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Class Code *
@@ -55,18 +54,19 @@ export default function JoinClassForm() {
                         <input
                             type="text"
                             id="code"
-                            value={code}
-                            onChange={(e) => setCode(e.target.value.toUpperCase())}
+                            {...register("code", { onChange: (e) => { e.target.value = e.target.value.toUpperCase(); } })}
                             placeholder="ABC123"
                             className="form-field mt-1 text-center text-2xl font-mono tracking-wider"
-                            required
                             maxLength={6}
                         />
+                        {errors.code && (
+                            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.code.message}</p>
+                        )}
                     </div>
 
-                    {error && (
+                    {errors.root && (
                         <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
-                            <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+                            <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                         </div>
                     )}
 
@@ -79,10 +79,10 @@ export default function JoinClassForm() {
                         </Link>
                         <button
                             type="submit"
-                            disabled={isLoading}
+                            disabled={isSubmitting}
                             className="px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
                         >
-                            {isLoading ? "Joining…" : "Join Class"}
+                            {isSubmitting ? "Joining…" : "Join Class"}
                         </button>
                     </div>
                 </form>
@@ -90,12 +90,3 @@ export default function JoinClassForm() {
         </div>
     );
 }
-
-
-
-
-
-
-
-
-

@@ -2,7 +2,20 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { apiFetch, ApiError } from "@/lib/api/client";
+
+const schema = z.object({
+    title: z.string().min(1, "Title is required"),
+    description: z.string().optional(),
+    type: z.string().min(1),
+    category: z.string().optional(),
+    level: z.string().optional(),
+});
+type FormValues = z.infer<typeof schema>;
 
 type QuizQuestionType = "text" | "single" | "multiple";
 
@@ -15,18 +28,23 @@ type QuizQuestion = {
 
 export default function CreateActivityForm() {
     const router = useRouter();
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [type, setType] = useState("worksheet");
-    const [category, setCategory] = useState("");
-    const [level, setLevel] = useState("");
-    const [contentType, setContentType] = useState("simple"); // simple, quiz, structured
+    const {
+        register,
+        handleSubmit,
+        watch,
+        setError,
+        formState: { errors, isSubmitting },
+    } = useForm<FormValues>({
+        resolver: zodResolver(schema),
+        defaultValues: { type: "worksheet" },
+    });
+
+    const type = watch("type");
+
+    const [contentType, setContentType] = useState("simple");
     const [content, setContent] = useState("");
     const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>([{ id: 1, question: "", type: "text", options: [] }]);
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
 
-    // Timed writing fields
     type WritingPromptDraft = { text: string; imageUrl: string; starters: string; vocab: string };
     const [writingPrompts, setWritingPrompts] = useState<WritingPromptDraft[]>([
         { text: "", imageUrl: "", starters: "", vocab: "" },
@@ -89,19 +107,11 @@ export default function CreateActivityForm() {
         setQuizQuestions(quizQuestions.filter((_, i) => i !== index));
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError("");
-
-        if (!title.trim()) {
-            setError("Title is required");
-            return;
-        }
-
-        let activityContent;
-        if (type === "writing") {
+    const onSubmit = async (values: FormValues) => {
+        let activityContent: string;
+        if (values.type === "writing") {
             if (!writingPrompts[0]?.text.trim()) {
-                setError("At least one writing prompt is required");
+                setError("root", { message: "At least one writing prompt is required" });
                 return;
             }
             const prompts = writingPrompts
@@ -123,56 +133,47 @@ export default function CreateActivityForm() {
         } else if (contentType === "quiz") {
             const validQuestions = quizQuestions.filter((q) => q.question.trim());
             if (validQuestions.length === 0) {
-                setError("Please add at least one question");
+                setError("root", { message: "Please add at least one question" });
                 return;
             }
             activityContent = JSON.stringify({ questions: validQuestions });
         } else {
             if (!content.trim()) {
-                setError("Content is required");
+                setError("root", { message: "Content is required" });
                 return;
             }
             activityContent = JSON.stringify({ content });
         }
 
-        setIsLoading(true);
-
         try {
-            const response = await fetch("/api/activities", {
+            await apiFetch("/api/activities", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    title,
-                    description: description || null,
-                    type,
-                    category: category || null,
-                    level: level || null,
+                body: {
+                    title: values.title,
+                    description: values.description || null,
+                    type: values.type,
+                    category: values.category || null,
+                    level: values.level || null,
                     content: activityContent,
-                }),
+                },
             });
-
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.error || "Failed to create activity");
-            }
-
             router.push("/dashboard/activities");
             router.refresh();
-        } catch (err: unknown) {
-            setError(err instanceof Error ? err.message : "Failed to create activity");
-        } finally {
-            setIsLoading(false);
+        } catch (err) {
+            setError("root", {
+                message: err instanceof ApiError ? err.message : "Failed to create activity",
+            });
         }
     };
 
     return (
         <div className="bg-white dark:bg-[var(--surface-elevated)] shadow sm:rounded-lg">
             <div className="px-4 py-5 sm:p-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     {/* Basic Info */}
                     <div className="space-y-4">
                         <h3 className="text-lg font-medium text-gray-900 dark:text-white">Basic Information</h3>
-                        
+
                         <div>
                             <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Title *
@@ -180,13 +181,13 @@ export default function CreateActivityForm() {
                             <input
                                 type="text"
                                 id="title"
-                                name="title"
                                 autoComplete="off"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
+                                {...register("title")}
                                 className="form-field mt-1"
-                                required
                             />
+                            {errors.title && (
+                                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.title.message}</p>
+                            )}
                         </div>
 
                         <div>
@@ -195,10 +196,8 @@ export default function CreateActivityForm() {
                             </label>
                             <textarea
                                 id="description"
-                                name="description"
                                 autoComplete="off"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
+                                {...register("description")}
                                 rows={3}
                                 className="form-field mt-1"
                             />
@@ -209,13 +208,7 @@ export default function CreateActivityForm() {
                                 <label htmlFor="type" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                     Type *
                                 </label>
-                                <select
-                                    id="type"
-                                    value={type}
-                                    onChange={(e) => setType(e.target.value)}
-                                    className="form-field mt-1"
-                                    required
-                                >
+                                <select id="type" {...register("type")} className="form-field mt-1">
                                     <option value="worksheet">Worksheet</option>
                                     <option value="quiz">Quiz</option>
                                     <option value="slides">Slides</option>
@@ -230,12 +223,7 @@ export default function CreateActivityForm() {
                                 <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                     Category
                                 </label>
-                                <select
-                                    id="category"
-                                    value={category}
-                                    onChange={(e) => setCategory(e.target.value)}
-                                    className="form-field mt-1"
-                                >
+                                <select id="category" {...register("category")} className="form-field mt-1">
                                     <option value="">Select category</option>
                                     <option value="grammar">Grammar</option>
                                     <option value="vocab">Vocabulary</option>
@@ -248,12 +236,7 @@ export default function CreateActivityForm() {
                                 <label htmlFor="level" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                     Level
                                 </label>
-                                <select
-                                    id="level"
-                                    value={level}
-                                    onChange={(e) => setLevel(e.target.value)}
-                                    className="form-field mt-1"
-                                >
+                                <select id="level" {...register("level")} className="form-field mt-1">
                                     <option value="">Select level</option>
                                     <option value="beginner">Beginner</option>
                                     <option value="intermediate">Intermediate</option>
@@ -269,7 +252,6 @@ export default function CreateActivityForm() {
 
                         {type === "writing" ? (
                             <div className="space-y-6">
-                                {/* Prompts */}
                                 {writingPrompts.map((prompt, index) => (
                                     <div key={index} className="border border-gray-200 dark:border-white/10 rounded-lg p-4 space-y-3">
                                         <div className="flex justify-between items-center">
@@ -290,7 +272,6 @@ export default function CreateActivityForm() {
                                                 placeholder="Describe a time when you felt proud of something you accomplished at work…"
                                             />
                                         </div>
-                                        {/* Image input: upload or paste URL */}
                                         <div>
                                             <div className="flex items-center justify-between mb-1.5">
                                                 <label className="block text-xs font-medium text-gray-600 dark:text-gray-400">
@@ -347,7 +328,6 @@ export default function CreateActivityForm() {
 
                                             {uploadError && <p className="mt-1 text-xs text-red-500">{uploadError}</p>}
 
-                                            {/* Preview */}
                                             {prompt.imageUrl && (
                                                 <div className="mt-2 relative">
                                                     <img
@@ -394,7 +374,6 @@ export default function CreateActivityForm() {
                                         + Add Another Prompt (round {writingPrompts.length + 1})
                                     </button>
                                 )}
-                                {/* Timer + word count settings */}
                                 <div className="grid grid-cols-2 gap-4 pt-2">
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Timer Duration (per round)</label>
@@ -418,35 +397,35 @@ export default function CreateActivityForm() {
                                 </div>
                             </div>
                         ) : (
-                        <div className="mb-4">
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Content Format
-                            </label>
-                            <div className="flex gap-4">
-                                <label className="flex items-center">
-                                    <input
-                                        type="radio"
-                                        name="contentType"
-                                        value="simple"
-                                        checked={contentType === "simple"}
-                                        onChange={(e) => setContentType(e.target.value)}
-                                        className="mr-2"
-                                    />
-                                    Simple Text
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Content Format
                                 </label>
-                                <label className="flex items-center">
-                                    <input
-                                        type="radio"
-                                        name="contentType"
-                                        value="quiz"
-                                        checked={contentType === "quiz"}
-                                        onChange={(e) => setContentType(e.target.value)}
-                                        className="mr-2"
-                                    />
-                                    Quiz Questions
-                                </label>
+                                <div className="flex gap-4">
+                                    <label className="flex items-center">
+                                        <input
+                                            type="radio"
+                                            name="contentType"
+                                            value="simple"
+                                            checked={contentType === "simple"}
+                                            onChange={(e) => setContentType(e.target.value)}
+                                            className="mr-2"
+                                        />
+                                        Simple Text
+                                    </label>
+                                    <label className="flex items-center">
+                                        <input
+                                            type="radio"
+                                            name="contentType"
+                                            value="quiz"
+                                            checked={contentType === "quiz"}
+                                            onChange={(e) => setContentType(e.target.value)}
+                                            className="mr-2"
+                                        />
+                                        Quiz Questions
+                                    </label>
+                                </div>
                             </div>
-                        </div>
                         )}
 
                         {type !== "writing" && (contentType === "quiz" ? (
@@ -467,9 +446,7 @@ export default function CreateActivityForm() {
                                         </div>
                                         <div className="space-y-3">
                                             <div>
-                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                                    Question
-                                                </label>
+                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Question</label>
                                                 <input
                                                     type="text"
                                                     value={question.question}
@@ -479,9 +456,7 @@ export default function CreateActivityForm() {
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                                    Question Type
-                                                </label>
+                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Question Type</label>
                                                 <select
                                                     value={question.type}
                                                     onChange={(e) => {
@@ -502,9 +477,7 @@ export default function CreateActivityForm() {
                                             </div>
                                             {(question.type === "single" || question.type === "multiple") && (
                                                 <div>
-                                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                                        Options
-                                                    </label>
+                                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Options</label>
                                                     {question.options.map((option, optIndex) => (
                                                         <input
                                                             key={optIndex}
@@ -544,7 +517,6 @@ export default function CreateActivityForm() {
                                     rows={12}
                                     className="form-field font-mono text-sm"
                                     placeholder="Enter activity content…"
-                                    required={contentType === "simple"}
                                 />
                                 <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                                     You can use markdown-style formatting or plain text.
@@ -553,9 +525,9 @@ export default function CreateActivityForm() {
                         ))}
                     </div>
 
-                    {error && (
+                    {errors.root && (
                         <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
-                            <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+                            <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                         </div>
                     )}
 
@@ -569,10 +541,10 @@ export default function CreateActivityForm() {
                         </button>
                         <button
                             type="submit"
-                            disabled={isLoading}
+                            disabled={isSubmitting}
                             className="px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
                         >
-                            {isLoading ? "Creating…" : "Create Activity"}
+                            {isSubmitting ? "Creating…" : "Create Activity"}
                         </button>
                     </div>
                 </form>
@@ -580,12 +552,3 @@ export default function CreateActivityForm() {
         </div>
     );
 }
-
-
-
-
-
-
-
-
-

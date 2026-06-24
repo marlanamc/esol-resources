@@ -1,35 +1,48 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { apiFetch, ApiError } from "@/lib/api/client";
+
+const schema = z
+    .object({
+        password: z.string().min(8, "Password must be at least 8 characters"),
+        confirmPassword: z.string().min(1, "Please confirm your password"),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+        message: "Passwords do not match",
+        path: ["confirmPassword"],
+    });
+type FormValues = z.infer<typeof schema>;
 
 type FormMode = "loading" | "invalid" | "form" | "success";
 
 export function ResetPasswordForm() {
     const [mode, setMode] = useState<FormMode>("loading");
     const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [error, setError] = useState("");
-    const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
     const token = searchParams.get("token");
 
-    // Validate token on mount
+    const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors, isSubmitting },
+    } = useForm<FormValues>({ resolver: zodResolver(schema) });
+
     useEffect(() => {
         async function validateToken() {
-            if (!token) {
-                setMode("invalid");
-                return;
-            }
-
+            if (!token) { setMode("invalid"); return; }
             try {
-                const response = await fetch(`/api/auth/reset-password?token=${encodeURIComponent(token)}`);
-                const data = await response.json();
-
+                const data = await apiFetch<{ valid: boolean; username?: string }>(
+                    `/api/auth/reset-password?token=${encodeURIComponent(token)}`
+                );
                 if (data.valid) {
                     setUsername(data.username || "");
                     setMode("form");
@@ -40,57 +53,27 @@ export function ResetPasswordForm() {
                 setMode("invalid");
             }
         }
-
         validateToken();
     }, [token]);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError("");
-
-        if (password.length < 8) {
-            setError("Password must be at least 8 characters");
-            return;
-        }
-
-        if (password !== confirmPassword) {
-            setError("Passwords do not match");
-            return;
-        }
-
-        setIsSubmitting(true);
-
+    const onSubmit = async (values: FormValues) => {
         try {
-            const response = await fetch("/api/auth/reset-password", {
+            await apiFetch("/api/auth/reset-password", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ token, password }),
+                body: { token, password: values.password },
             });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                setError(data.error || "Failed to reset password");
-                return;
-            }
-
             setMode("success");
-
-            // Redirect to login after a delay
-            setTimeout(() => {
-                router.push("/login?updated=1");
-            }, 2000);
-        } catch {
-            setError("An error occurred. Please try again.");
-        } finally {
-            setIsSubmitting(false);
+            setTimeout(() => router.push("/login?updated=1"), 2000);
+        } catch (err) {
+            setError("root", {
+                message: err instanceof ApiError ? err.message : "Failed to reset password",
+            });
         }
     };
 
     const inputClassName =
         "w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)]";
 
-    // Loading state
     if (mode === "loading") {
         return (
             <div className="border rounded-2xl p-5 sm:p-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md">
@@ -101,7 +84,6 @@ export function ResetPasswordForm() {
         );
     }
 
-    // Invalid or expired token
     if (mode === "invalid") {
         return (
             <div className="border rounded-2xl p-5 sm:p-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md space-y-4">
@@ -111,9 +93,7 @@ export function ResetPasswordForm() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </div>
-                    <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2">
-                        Invalid or Expired Link
-                    </h3>
+                    <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2">Invalid or Expired Link</h3>
                     <p className="text-sm text-[var(--color-text-muted)] mb-4">
                         This password reset link is no longer valid. Please request a new one.
                     </p>
@@ -128,7 +108,6 @@ export function ResetPasswordForm() {
         );
     }
 
-    // Success state
     if (mode === "success") {
         return (
             <div className="border rounded-2xl p-5 sm:p-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md space-y-4">
@@ -138,20 +117,15 @@ export function ResetPasswordForm() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-                    <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2">
-                        Password Reset!
-                    </h3>
-                    <p className="text-sm text-[var(--color-text-muted)]">
-                        Redirecting to sign in...
-                    </p>
+                    <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2">Password Reset!</h3>
+                    <p className="text-sm text-[var(--color-text-muted)]">Redirecting to sign in...</p>
                 </div>
             </div>
         );
     }
 
-    // Reset form
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 w-full">
             <div className="border rounded-2xl p-5 sm:p-6 space-y-5 sm:space-y-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md">
                 {username && (
                     <p className="text-sm text-[var(--color-text-muted)] text-center">
@@ -159,7 +133,6 @@ export function ResetPasswordForm() {
                     </p>
                 )}
 
-                {/* New Password */}
                 <div>
                     <label htmlFor="password" className="block text-sm font-semibold mb-2 text-[var(--color-text)]">
                         New Password
@@ -168,12 +141,9 @@ export function ResetPasswordForm() {
                         <input
                             id="password"
                             type={showPassword ? "text" : "password"}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            {...register("password")}
                             placeholder="••••••••"
                             className={`${inputClassName} pr-11`}
-                            minLength={8}
-                            required
                             autoComplete="new-password"
                         />
                         <button
@@ -186,10 +156,13 @@ export function ResetPasswordForm() {
                             {showPassword ? "Hide" : "Show"}
                         </button>
                     </div>
-                    <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">At least 8 characters</p>
+                    {errors.password ? (
+                        <p className="mt-1.5 text-sm text-error">{errors.password.message}</p>
+                    ) : (
+                        <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">At least 8 characters</p>
+                    )}
                 </div>
 
-                {/* Confirm Password */}
                 <div>
                     <label htmlFor="confirmPassword" className="block text-sm font-semibold mb-2 text-[var(--color-text)]">
                         Confirm Password
@@ -197,24 +170,22 @@ export function ResetPasswordForm() {
                     <input
                         id="confirmPassword"
                         type={showPassword ? "text" : "password"}
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        {...register("confirmPassword")}
                         placeholder="••••••••"
                         className={inputClassName}
-                        minLength={8}
-                        required
                         autoComplete="new-password"
                     />
+                    {errors.confirmPassword && (
+                        <p className="mt-1.5 text-sm text-error">{errors.confirmPassword.message}</p>
+                    )}
                 </div>
 
-                {/* Error Message */}
-                {error && (
+                {errors.root && (
                     <div role="alert" className="border-2 rounded-lg p-3 bg-error/10 border-error">
-                        <p className="text-sm font-medium text-error">{error}</p>
+                        <p className="text-sm font-medium text-error">{errors.root.message}</p>
                     </div>
                 )}
 
-                {/* Submit Button */}
                 <button
                     type="submit"
                     disabled={isSubmitting}

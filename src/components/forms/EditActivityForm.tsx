@@ -1,7 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { apiFetch, ApiError } from "@/lib/api/client";
+
+const schema = z.object({
+    title: z.string().min(1, "Title is required"),
+    description: z.string().optional(),
+    type: z.string().min(1, "Type is required"),
+    category: z.string().optional(),
+    level: z.string().optional(),
+    content: z.string().min(1, "Content is required"),
+});
+type FormValues = z.infer<typeof schema>;
 
 interface Activity {
     id: string;
@@ -17,95 +31,84 @@ interface Props {
     activity: Activity;
 }
 
+function parseContentForDisplay(rawContent: string): string {
+    try {
+        const parsed = JSON.parse(rawContent);
+        if (parsed.content) return parsed.content;
+        return JSON.stringify(parsed, null, 2);
+    } catch {
+        return rawContent;
+    }
+}
+
 export default function EditActivityForm({ activity }: Props) {
     const router = useRouter();
-    const [title, setTitle] = useState(activity.title);
-    const [description, setDescription] = useState(activity.description || "");
-    const [type, setType] = useState(activity.type);
-    const [category, setCategory] = useState(activity.category || "");
-    const [level, setLevel] = useState(activity.level || "");
-    const [content, setContent] = useState("");
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    const {
+        register,
+        handleSubmit,
+        reset,
+        setError,
+        formState: { errors, isSubmitting },
+    } = useForm<FormValues>({
+        resolver: zodResolver(schema),
+        defaultValues: {
+            title: activity.title,
+            description: activity.description ?? "",
+            type: activity.type,
+            category: activity.category ?? "",
+            level: activity.level ?? "",
+            content: "",
+        },
+    });
 
     useEffect(() => {
-        // Parse content and display as text
+        reset({
+            title: activity.title,
+            description: activity.description ?? "",
+            type: activity.type,
+            category: activity.category ?? "",
+            level: activity.level ?? "",
+            content: parseContentForDisplay(activity.content),
+        });
+    }, [activity, reset]);
+
+    const onSubmit = async (values: FormValues) => {
+        let activityContent: string;
         try {
-            const parsed = JSON.parse(activity.content);
-            if (parsed.content) {
-                setContent(parsed.content);
-            } else if (parsed.questions) {
-                // For quizzes, show a simplified view
-                setContent(JSON.stringify(parsed, null, 2));
-            } else {
-                setContent(JSON.stringify(parsed, null, 2));
-            }
-        } catch {
-            setContent(activity.content);
-        }
-    }, [activity.content]);
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError("");
-
-        if (!title.trim()) {
-            setError("Title is required");
-            return;
-        }
-
-        if (!content.trim()) {
-            setError("Content is required");
-            return;
-        }
-
-        // Try to preserve JSON structure if it was JSON
-        let activityContent;
-        try {
-            const parsed = JSON.parse(content);
+            const parsed = JSON.parse(values.content);
             activityContent = JSON.stringify(parsed);
         } catch {
-            // If not valid JSON, wrap in content object
-            activityContent = JSON.stringify({ content });
+            activityContent = JSON.stringify({ content: values.content });
         }
 
-        setIsLoading(true);
-
         try {
-            const response = await fetch(`/api/activities/${activity.id}`, {
+            await apiFetch(`/api/activities/${activity.id}`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    title,
-                    description: description || null,
-                    type,
-                    category: category || null,
-                    level: level || null,
+                body: {
+                    title: values.title,
+                    description: values.description || null,
+                    type: values.type,
+                    category: values.category || null,
+                    level: values.level || null,
                     content: activityContent,
-                }),
+                },
             });
-
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.error || "Failed to update activity");
-            }
-
             router.push("/dashboard/activities");
             router.refresh();
-        } catch (err: unknown) {
-            setError(err instanceof Error ? err.message : "Failed to update activity");
-        } finally {
-            setIsLoading(false);
+        } catch (err) {
+            setError("root", {
+                message: err instanceof ApiError ? err.message : "Failed to update activity",
+            });
         }
     };
 
     return (
         <div className="bg-white dark:bg-[var(--surface-elevated)] shadow sm:rounded-lg">
             <div className="px-4 py-5 sm:p-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-4">
                         <h3 className="text-lg font-medium text-gray-900 dark:text-white">Basic Information</h3>
-                        
+
                         <div>
                             <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Title *
@@ -113,11 +116,12 @@ export default function EditActivityForm({ activity }: Props) {
                             <input
                                 type="text"
                                 id="title"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
+                                {...register("title")}
                                 className="form-field mt-1"
-                                required
                             />
+                            {errors.title && (
+                                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.title.message}</p>
+                            )}
                         </div>
 
                         <div>
@@ -126,8 +130,7 @@ export default function EditActivityForm({ activity }: Props) {
                             </label>
                             <textarea
                                 id="description"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
+                                {...register("description")}
                                 rows={3}
                                 className="form-field mt-1"
                             />
@@ -138,13 +141,7 @@ export default function EditActivityForm({ activity }: Props) {
                                 <label htmlFor="type" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                     Type *
                                 </label>
-                                <select
-                                    id="type"
-                                    value={type}
-                                    onChange={(e) => setType(e.target.value)}
-                                    className="form-field mt-1"
-                                    required
-                                >
+                                <select id="type" {...register("type")} className="form-field mt-1">
                                     <option value="worksheet">Worksheet</option>
                                     <option value="quiz">Quiz</option>
                                     <option value="slides">Slides</option>
@@ -158,12 +155,7 @@ export default function EditActivityForm({ activity }: Props) {
                                 <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                     Category
                                 </label>
-                                <select
-                                    id="category"
-                                    value={category}
-                                    onChange={(e) => setCategory(e.target.value)}
-                                    className="form-field mt-1"
-                                >
+                                <select id="category" {...register("category")} className="form-field mt-1">
                                     <option value="">Select category</option>
                                     <option value="grammar">Grammar</option>
                                     <option value="vocab">Vocabulary</option>
@@ -176,12 +168,7 @@ export default function EditActivityForm({ activity }: Props) {
                                 <label htmlFor="level" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                     Level
                                 </label>
-                                <select
-                                    id="level"
-                                    value={level}
-                                    onChange={(e) => setLevel(e.target.value)}
-                                    className="form-field mt-1"
-                                >
+                                <select id="level" {...register("level")} className="form-field mt-1">
                                     <option value="">Select level</option>
                                     <option value="beginner">Beginner</option>
                                     <option value="intermediate">Intermediate</option>
@@ -199,21 +186,22 @@ export default function EditActivityForm({ activity }: Props) {
                             </label>
                             <textarea
                                 id="content"
-                                value={content}
-                                onChange={(e) => setContent(e.target.value)}
+                                {...register("content")}
                                 rows={15}
                                 className="form-field font-mono text-sm"
-                                required
                             />
+                            {errors.content && (
+                                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.content.message}</p>
+                            )}
                             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                                 Edit the activity content. For JSON-based activities, maintain the JSON structure.
                             </p>
                         </div>
                     </div>
 
-                    {error && (
+                    {errors.root && (
                         <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
-                            <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+                            <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                         </div>
                     )}
 
@@ -227,10 +215,10 @@ export default function EditActivityForm({ activity }: Props) {
                         </button>
                         <button
                             type="submit"
-                            disabled={isLoading}
+                            disabled={isSubmitting}
                             className="px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
                         >
-                            {isLoading ? "Saving…" : "Save Changes"}
+                            {isSubmitting ? "Saving…" : "Save Changes"}
                         </button>
                     </div>
                 </form>
@@ -238,13 +226,3 @@ export default function EditActivityForm({ activity }: Props) {
         </div>
     );
 }
-
-
-
-
-
-
-
-
-
-

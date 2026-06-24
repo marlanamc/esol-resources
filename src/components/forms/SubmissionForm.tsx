@@ -1,8 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { submitWithOutbox } from "@/lib/submissionOutbox";
+
+const schema = z.object({
+    submissionContent: z.string().min(1, "Please provide your submission"),
+});
+type FormValues = z.infer<typeof schema>;
 
 interface Submission {
     id: string;
@@ -20,21 +28,28 @@ interface Props {
 
 export default function SubmissionForm({ activityId, assignmentId, existingSubmission }: Props) {
     const router = useRouter();
-    const [submissionContent, setSubmissionContent] = useState("");
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
     const submitButtonRef = useRef<HTMLDivElement>(null);
+    const isAlreadySubmitted =
+        existingSubmission?.status === "submitted" || existingSubmission?.status === "graded";
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        setError,
+        formState: { errors, isSubmitting, isSubmitSuccessful },
+    } = useForm<FormValues>({
+        resolver: zodResolver(schema),
+        defaultValues: { submissionContent: existingSubmission?.content ?? "" },
+    });
 
     useEffect(() => {
-        if (existingSubmission) {
-            setSubmissionContent(existingSubmission.content || "");
-            setIsSubmitted(existingSubmission.status === "submitted" || existingSubmission.status === "graded");
+        if (existingSubmission?.content) {
+            reset({ submissionContent: existingSubmission.content });
         }
-    }, [existingSubmission]);
+    }, [existingSubmission?.content, reset]);
 
     const handleTextareaFocus = () => {
-        // On mobile, scroll the submit button into view after keyboard appears
         if (window.innerWidth < 768) {
             setTimeout(() => {
                 submitButtonRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -42,17 +57,7 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError("");
-
-        if (!submissionContent.trim()) {
-            setError("Please provide your submission");
-            return;
-        }
-
-        setIsLoading(true);
-
+    const onSubmit = async (values: FormValues) => {
         try {
             const submitResult = await submitWithOutbox({
                 endpoint: "/api/submissions",
@@ -60,58 +65,53 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
                 payload: {
                     activityId,
                     assignmentId,
-                    content: submissionContent,
+                    content: values.submissionContent,
                     submissionId: existingSubmission?.id,
                 },
             });
 
-            if (submitResult.queued) {
-                setIsSubmitted(true);
-                setError("");
-                return;
+            if (!submitResult.queued) {
+                const response = submitResult.response;
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.error || "Failed to submit");
+                }
+                router.refresh();
             }
-
-            const response = submitResult.response;
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.error || "Failed to submit");
-            }
-
-            setIsSubmitted(true);
-            router.refresh();
         } catch (err: unknown) {
-            setError(err instanceof Error ? err.message : "Failed to submit");
-        } finally {
-            setIsLoading(false);
+            setError("root", {
+                message: err instanceof Error ? err.message : "Failed to submit",
+            });
         }
     };
 
-    if (isSubmitted && existingSubmission?.status === "graded") {
-        return null; // Don't show form if already graded
-    }
+    if (existingSubmission?.status === "graded") return null;
+
+    const submitted = isSubmitSuccessful || isAlreadySubmitted;
 
     return (
         <div>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
                     <textarea
-                        id="submission"
-                        value={submissionContent}
-                        onChange={(e) => setSubmissionContent(e.target.value)}
+                        {...register("submissionContent")}
                         onFocus={handleTextareaFocus}
                         className="form-field resize-y min-h-[120px] max-h-[40vh] md:min-h-[240px] md:max-h-[400px]"
                         placeholder="Type your answers, responses, or work here…"
-                        disabled={isSubmitted && existingSubmission?.status === "graded"}
+                        disabled={existingSubmission?.status === "graded"}
                     />
+                    {errors.submissionContent && (
+                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.submissionContent.message}</p>
+                    )}
                 </div>
 
-                {error && (
+                {errors.root && (
                     <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
-                        <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+                        <p className="text-sm text-red-800 dark:text-red-200">{errors.root.message}</p>
                     </div>
                 )}
 
-                {isSubmitted && existingSubmission?.status === "submitted" && (
+                {submitted && existingSubmission?.status === "submitted" && (
                     <div className="rounded-md bg-blue-50 dark:bg-blue-900/30 p-4">
                         <p className="text-sm text-blue-800 dark:text-blue-200">
                             ✓ Your submission has been submitted. Waiting for teacher review.
@@ -119,14 +119,14 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
                     </div>
                 )}
 
-                {(!isSubmitted || existingSubmission?.status === "pending") && (
+                {(!submitted || existingSubmission?.status === "pending") && (
                     <div ref={submitButtonRef} className="flex justify-end">
                         <button
                             type="submit"
-                            disabled={isLoading}
+                            disabled={isSubmitting}
                             className="px-4 py-2 min-h-[44px] border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
                         >
-                            {isLoading ? "Submitting…" : existingSubmission ? "Update Submission" : "Submit"}
+                            {isSubmitting ? "Submitting…" : existingSubmission ? "Update Submission" : "Submit"}
                         </button>
                     </div>
                 )}
@@ -134,12 +134,3 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
         </div>
     );
 }
-
-
-
-
-
-
-
-
-
