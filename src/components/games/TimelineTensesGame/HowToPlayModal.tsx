@@ -1,9 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, type ReactNode } from 'react';
 import {
-  X,
   MousePointer2,
   Info,
   Keyboard,
@@ -13,6 +11,7 @@ import {
   Sparkles,
   Layers,
 } from 'lucide-react';
+import { Dialog } from '@/components/ui/Dialog';
 
 export type HowToPlayMode = 'build' | 'read' | 'overview' | 'challenge';
 
@@ -398,9 +397,6 @@ const overviewTabs: { id: OverviewTab; label: string }[] = [
 ];
 
 export function HowToPlayModal({ isOpen, onClose, mode = 'overview' }: HowToPlayModalProps) {
-  const titleId = useId();
-  const panelRef = useRef<HTMLDivElement>(null);
-  const closeBtnRef = useRef<HTMLButtonElement>(null);
   const [overviewTab, setOverviewTab] = useState<OverviewTab>('quick');
 
   const getTitle = () => {
@@ -410,150 +406,87 @@ export function HowToPlayModal({ isOpen, onClose, mode = 'overview' }: HowToPlay
     return 'How to Play';
   };
 
-  const handleEscape = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    },
-    [onClose]
-  );
-
-  useEffect(() => {
-    if (!isOpen) return;
-    document.addEventListener('keydown', handleEscape);
-    const t = window.setTimeout(() => closeBtnRef.current?.focus(), 50);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      window.clearTimeout(t);
-    };
-  }, [isOpen, handleEscape]);
-
-  useEffect(() => {
-    if (isOpen && mode === 'overview') {
-      setOverviewTab('quick');
-    }
-  }, [isOpen, mode]);
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            aria-hidden
-          />
-
-          <motion.div
-            ref={panelRef}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={titleId}
-            tabIndex={-1}
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-2xl bg-white dark:bg-[#162b3d] rounded-3xl shadow-2xl overflow-hidden border border-border dark:border-white/10 outline-none"
-            onKeyDown={(e) => {
-              if (e.key === 'Escape') onClose();
-            }}
+  const body = (
+    <div className="p-6 md:p-8">
+      {mode === 'build' && <BuildContent />}
+      {mode === 'read' && <ReadContent />}
+      {mode === 'challenge' && <ChallengeModesContent />}
+      {mode === 'overview' && (
+        <div className="space-y-6">
+          <div
+            className="flex rounded-2xl border border-border dark:border-white/10 p-1 bg-surface-elevated/80 gap-1"
+            role="tablist"
+            aria-label="Help sections"
           >
-            <div className="flex items-center justify-between p-6 border-b border-border dark:border-white/10">
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <Info className="text-primary" size={24} aria-hidden />
+            {overviewTabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                aria-selected={overviewTab === tab.id}
+                onClick={() => setOverviewTab(tab.id)}
+                className={`flex-1 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-bold transition-colors ${
+                  overviewTab === tab.id
+                    ? 'bg-primary text-white shadow-md'
+                    : 'text-text-muted hover:text-text hover:bg-white/50 dark:hover:bg-white/5'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {overviewTab === 'quick' && <QuickTipsContent />}
+
+          {overviewTab === 'build' && (
+            <>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center">
+                  <MousePointer2 className="text-secondary" size={18} />
                 </div>
-                <h2 id={titleId} className="text-2xl font-bold font-display text-text truncate">
-                  {getTitle()}
-                </h2>
+                <h3 className="text-base font-bold text-text uppercase tracking-wide">Build the Timeline</h3>
               </div>
-              <button
-                ref={closeBtnRef}
-                type="button"
-                onClick={onClose}
-                className="w-10 h-10 rounded-full hover:bg-surface-elevated flex items-center justify-center transition-colors text-text-muted hover:text-text shrink-0"
-                aria-label="Close"
-              >
-                <X size={24} />
-              </button>
-            </div>
+              <BuildContent showCheatSheet={false} />
+            </>
+          )}
 
-            <div className="p-6 md:p-8 overflow-y-auto max-h-[70vh] custom-scrollbar">
-              {mode === 'build' && <BuildContent />}
-              {mode === 'read' && <ReadContent />}
-              {mode === 'challenge' && <ChallengeModesContent />}
-              {mode === 'overview' && (
-                <div className="space-y-6">
-                  <div
-                    className="flex rounded-2xl border border-border dark:border-white/10 p-1 bg-surface-elevated/80 gap-1"
-                    role="tablist"
-                    aria-label="Help sections"
-                  >
-                    {overviewTabs.map((tab) => (
-                      <button
-                        key={tab.id}
-                        type="button"
-                        role="tab"
-                        aria-selected={overviewTab === tab.id}
-                        onClick={() => setOverviewTab(tab.id)}
-                        className={`flex-1 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-bold transition-colors ${
-                          overviewTab === tab.id
-                            ? 'bg-primary text-white shadow-md'
-                            : 'text-text-muted hover:text-text hover:bg-white/50 dark:hover:bg-white/5'
-                        }`}
-                      >
-                        {tab.label}
-                      </button>
-                    ))}
-                  </div>
-
-                  {overviewTab === 'quick' && <QuickTipsContent />}
-
-                  {overviewTab === 'build' && (
-                    <>
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center">
-                          <MousePointer2 className="text-secondary" size={18} />
-                        </div>
-                        <h3 className="text-base font-bold text-text uppercase tracking-wide">Build the Timeline</h3>
-                      </div>
-                      <BuildContent showCheatSheet={false} />
-                    </>
-                  )}
-
-                  {overviewTab === 'read' && (
-                    <>
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                          <Eye className="text-primary" size={18} />
-                        </div>
-                        <h3 className="text-base font-bold text-text uppercase tracking-wide">Read the Timeline</h3>
-                      </div>
-                      <ReadContent showCheatSheet={false} />
-                    </>
-                  )}
-
-                  <div className="border-t border-border dark:border-white/10 pt-6">
-                    <TenseCheatSheet />
-                  </div>
+          {overviewTab === 'read' && (
+            <>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Eye className="text-primary" size={18} />
                 </div>
-              )}
-            </div>
+                <h3 className="text-base font-bold text-text uppercase tracking-wide">Read the Timeline</h3>
+              </div>
+              <ReadContent showCheatSheet={false} />
+            </>
+          )}
 
-            <div className="p-6 bg-surface-elevated border-t border-border dark:border-white/10 text-center">
-              <button
-                type="button"
-                onClick={onClose}
-                className="px-8 py-3 bg-primary text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all active:scale-95"
-              >
-                Got it!
-              </button>
-            </div>
-          </motion.div>
+          <div className="border-t border-border dark:border-white/10 pt-6">
+            <TenseCheatSheet />
+          </div>
         </div>
       )}
-    </AnimatePresence>
+    </div>
+  );
+
+  return (
+    <Dialog
+      isOpen={isOpen}
+      onClose={onClose}
+      title={getTitle()}
+      icon={<Info className="text-primary" size={24} aria-hidden />}
+      footer={
+        <button
+          type="button"
+          onClick={onClose}
+          className="px-8 py-3 bg-primary text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all active:scale-95"
+        >
+          Got it!
+        </button>
+      }
+    >
+      {body}
+    </Dialog>
   );
 }

@@ -277,6 +277,42 @@ Font tokens:
 ```
 Always use `@/` imports for internal modules.
 
+### src/lib/ Canonical Paths (backward-compat shims)
+Many flat files in `src/lib/` are backward-compat re-exports. Prefer importing from the canonical subdirectory path:
+
+| Shim (avoid) | Canonical (prefer) |
+|---|---|
+| `@/lib/auth` | `@/lib/auth/auth` |
+| `@/lib/auth-config` | `@/lib/auth/config` |
+| `@/lib/api-auth` | `@/lib/auth/api-auth` |
+| `@/lib/policies` | `@/lib/auth/policies` |
+| `@/lib/roles` | `@/lib/auth/roles` |
+| `@/lib/prisma` | `@/lib/database/prisma` |
+| `@/lib/prisma-retry` | `@/lib/database/retry` |
+| `@/lib/db-locks` | `@/lib/database/locks` |
+| `@/lib/gamification` | `@/lib/gamification/gamification` |
+| `@/lib/gamification-award-chain` | `@/lib/gamification/award-chain` |
+| `@/lib/learner-theme` | `@/lib/learner/theme` |
+| `@/lib/learner-visibility` | `@/lib/learner/visibility` |
+| `@/lib/learner-navigation` | `@/lib/learner/navigation` |
+| `@/lib/api-response` | `@/lib/api/response` |
+| `@/lib/api-schemas` | `@/lib/api/schemas` |
+| `@/lib/rate-limit` | `@/lib/api/rate-limit` |
+| `@/lib/request-logging` | `@/lib/api/request-logging` |
+| `@/lib/validators` | `@/lib/shared/validators` |
+| `@/lib/env` | `@/lib/shared/env` |
+| `@/lib/logger` | `@/lib/shared/logger` |
+| `@/lib/perf-log` | `@/lib/shared/perf-log` |
+| `@/lib/audit-log` | `@/lib/shared/audit-log` |
+| `@/lib/vocab-display` | `@/lib/vocab/display` |
+| `@/lib/vocab-review` | `@/lib/vocab/review` |
+| `@/lib/vocab-parser` | `@/lib/vocab/parser` |
+| `@/lib/vocab-review-sources` | `@/lib/vocab/sources` |
+| `@/lib/fsrs-algorithm` | `@/lib/vocab/fsrs` |
+| `@/lib/verb-definitions` | `@/lib/verbs/definitions` |
+| `@/lib/gerund-infinitive-progress` | `@/lib/verbs/gerund-infinitive-progress` |
+| `@/lib/irregular-verbs-progress` | `@/lib/verbs/irregular-progress` |
+
 ## Important Development Notes
 
 ### When Working with Activities

@@ -1,4 +1,6 @@
 export { BackButton } from './BackButton';
+export { Dialog } from './Dialog';
+export type { DialogProps } from './Dialog';
 export { Button } from './Button';
 export { Card } from './Card';
 export { Badge } from './Badge';

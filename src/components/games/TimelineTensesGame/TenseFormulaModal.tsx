@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { Dialog } from '@/components/ui/Dialog';
 
 interface TenseFormulaModalProps {
   isOpen: boolean;
@@ -189,127 +188,90 @@ export function TenseFormulaModal({ isOpen, onClose }: TenseFormulaModalProps) {
   const [form, setForm] = useState<FormType>('affirmative');
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            key="formula-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 z-[200] bg-black/40 backdrop-blur-sm"
-          />
+    <Dialog
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Tense Formulas"
+      subtitle="subject + verb form structure"
+      variant="sheet"
+    >
+      {/* Form toggle */}
+      <div className="px-6 pb-4 shrink-0">
+        <div className="inline-flex rounded-xl border border-border/30 bg-surface-elevated p-1 gap-1">
+          {FORM_LABELS.map(({ key, label }) => (
+            <button
+              key={key}
+              onClick={() => setForm(key)}
+              style={form === key ? { backgroundColor: '#d97757', color: '#fff' } : {}}
+              className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${
+                form === key
+                  ? 'shadow-md scale-105'
+                  : 'text-text-muted/60 hover:text-text hover:bg-surface'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
 
-          {/* Panel */}
-          <motion.div
-            key="formula-panel"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 40 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed bottom-0 left-0 right-0 z-[201] sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:max-w-2xl sm:w-full"
-          >
-            <div className="bg-white dark:bg-[#162b3d] rounded-t-[2rem] sm:rounded-[2rem] border border-white/20 shadow-2xl max-h-[90vh] flex flex-col">
-
-              {/* Header */}
-              <div className="flex items-center justify-between px-6 pt-6 pb-4 shrink-0">
-                <div>
-                  <h2 className="font-display text-xl font-black text-text tracking-tight">Tense Formulas</h2>
-                  <p className="text-xs text-text-muted/60 font-medium mt-0.5">subject + verb form structure</p>
-                </div>
-                <button
-                  onClick={onClose}
-                  aria-label="Close"
-                  className="w-10 h-10 rounded-full flex items-center justify-center border border-border/40 text-text-muted hover:text-text hover:bg-surface-elevated transition-colors"
-                >
-                  <X size={18} />
-                </button>
+      {/* Table */}
+      <div className="overflow-y-auto px-6 space-y-5">
+        {(['Simple', 'Continuous', 'Perfect', 'Perfect Continuous'] as const).map((category) => {
+          const rows = TENSES.filter((t) => t.category === category);
+          return (
+            <div key={category}>
+              <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] ${CATEGORY_BADGE[category]}`}>
+                {category}
+              </span>
+              <p className="text-[11px] text-text-muted/50 font-medium mt-1 mb-2 ml-0.5">
+                {CATEGORY_USE_CASE[category]}
+              </p>
+              <div className="overflow-x-auto -mx-1 px-1">
+                <table className="min-w-full text-xs border-collapse">
+                  <tbody>
+                    {rows.map(({ tense, meaning, color, affirmative, negative, question, example }) => {
+                      const formula = form === 'affirmative' ? affirmative : form === 'negative' ? negative : question;
+                      const ex = example[form];
+                      return (
+                        <tr key={tense} className="border-b border-border/15 last:border-0">
+                          <td className="py-2.5 pr-4 w-px">
+                            <div className={`font-black text-[11px] uppercase tracking-wide whitespace-nowrap ${color}`}>
+                              {tense}
+                            </div>
+                            <div className="text-[10px] text-text-muted/50 font-medium whitespace-nowrap mt-0.5">
+                              {meaning}
+                            </div>
+                          </td>
+                          <td className="py-2.5 pr-4 text-text-muted font-medium whitespace-nowrap">
+                            <FormulaText text={formula} />
+                          </td>
+                          <td className="py-2.5 pl-4 text-text-muted/75 italic text-[11px] whitespace-nowrap">
+                            {ex}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
-
-              {/* Form toggle */}
-              <div className="px-6 pb-4 shrink-0">
-                <div className="inline-flex rounded-xl border border-border/30 bg-surface-elevated p-1 gap-1">
-                  {FORM_LABELS.map(({ key, label }) => (
-                    <button
-                      key={key}
-                      onClick={() => setForm(key)}
-                      style={form === key ? { backgroundColor: '#d97757', color: '#fff' } : {}}
-                      className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${
-                        form === key
-                          ? 'shadow-md scale-105'
-                          : 'text-text-muted/60 hover:text-text hover:bg-surface'
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Table */}
-              <div className="overflow-y-auto px-6 space-y-5">
-                {(['Simple', 'Continuous', 'Perfect', 'Perfect Continuous'] as const).map((category) => {
-                  const rows = TENSES.filter((t) => t.category === category);
-                  return (
-                    <div key={category}>
-                      <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] ${CATEGORY_BADGE[category]}`}>
-                        {category}
-                      </span>
-                      <p className="text-[11px] text-text-muted/50 font-medium mt-1 mb-2 ml-0.5">
-                        {CATEGORY_USE_CASE[category]}
-                      </p>
-                      <div className="overflow-x-auto -mx-1 px-1">
-                      <table className="min-w-full text-xs border-collapse">
-                        <tbody>
-                          {rows.map(({ tense, meaning, color, affirmative, negative, question, example }) => {
-                            const formula = form === 'affirmative' ? affirmative : form === 'negative' ? negative : question;
-                            const ex = example[form];
-                            return (
-                              <tr key={tense} className="border-b border-border/15 last:border-0">
-                                <td className="py-2.5 pr-4 w-px">
-                                  <div className={`font-black text-[11px] uppercase tracking-wide whitespace-nowrap ${color}`}>
-                                    {tense}
-                                  </div>
-                                  <div className="text-[10px] text-text-muted/50 font-medium whitespace-nowrap mt-0.5">
-                                    {meaning}
-                                  </div>
-                                </td>
-                                <td className="py-2.5 pr-4 text-text-muted font-medium whitespace-nowrap">
-                                  <FormulaText text={formula} />
-                                </td>
-                                <td className="py-2.5 pl-4 text-text-muted/75 italic text-[11px] whitespace-nowrap">
-                                  {ex}
-                                </td>
-                              </tr>
-                            );
-                          })}
-                        </tbody>
-                      </table>
-                      </div>
-                    </div>
-                  );
-                })}
-                {/* Legend */}
-                <div className="pt-4 pb-6 border-t border-border/20">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-text-muted/40 mb-2">Verb Form Key</p>
-                  <div className="flex flex-wrap gap-2">
-                    {LEGEND.map(({ code, desc, eg }) => (
-                      <div key={code} className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-border/30 text-xs">
-                        <strong className="font-black text-text">{code}</strong>
-                        <span className="text-text-muted/60">= {desc}</span>
-                        <span className="italic text-text-muted/50">({eg})</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
             </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+          );
+        })}
+        {/* Legend */}
+        <div className="pt-4 pb-6 border-t border-border/20">
+          <p className="text-[10px] font-black uppercase tracking-widest text-text-muted/40 mb-2">Verb Form Key</p>
+          <div className="flex flex-wrap gap-2">
+            {LEGEND.map(({ code, desc, eg }) => (
+              <div key={code} className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-surface-elevated border border-border/30 text-xs">
+                <strong className="font-black text-text">{code}</strong>
+                <span className="text-text-muted/60">= {desc}</span>
+                <span className="italic text-text-muted/50">({eg})</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Dialog>
   );
 }

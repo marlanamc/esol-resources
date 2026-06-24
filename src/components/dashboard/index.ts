@@ -1,6 +1,5 @@
 export * from './DashboardHeader';
 export * from './StatsOverview';
-export * from './AssignmentCard';
 export * from './ActivityBrowseGrid';
 export * from './MiniCalendar';
 export * from './TodaysAssignments';
