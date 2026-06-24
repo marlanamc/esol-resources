@@ -1,4 +1,3 @@
-"use client";
 
 /**
  * Small checkmark indicator showing activity completion

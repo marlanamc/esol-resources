@@ -1,4 +1,3 @@
-"use client";
 
 import Link from "next/link";
 import { MODE_TOKENS, type ModeKey } from "./tokens";

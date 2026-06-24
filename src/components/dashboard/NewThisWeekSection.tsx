@@ -1,4 +1,3 @@
-"use client";
 
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { getGameEmojiForActivity } from "@/lib/game-emoji";

@@ -1,4 +1,3 @@
-"use client";
 
 import React from "react";
 import type { MasteryLevel } from "@/lib/vocab-progress";
