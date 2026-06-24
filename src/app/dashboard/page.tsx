@@ -23,6 +23,8 @@ import {
     DashboardWelcomeHeader,
     PinnedDailyHabitRow,
 } from "@/components/dashboard";
+import { MobileStudentGreeting } from "@/components/dashboard/MobileStudentGreeting";
+import { ContinueLearningRow } from "@/components/dashboard/ContinueLearningRow";
 import { DashboardResumeHero } from "@/components/dashboard/DashboardResumeHero";
 import { DashboardNextStepFallbackCard } from "@/components/dashboard/DashboardNextStepFallbackCard";
 import { formatDashboardWeekRangeLabel } from "@/lib/dashboard/week-range-label";
@@ -468,23 +470,20 @@ export default async function DashboardPage() {
                 <AdminViewSwitcher user={{ id: userId, role: userRole }} currentView="classroom" />
                 {/* ── MOBILE + TABLET layout (< lg) ── */}
                 <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-0 p-0 md:p-6">
-                    <div className="min-w-0 space-y-3 md:space-y-5">
+                    <div className="min-w-0 space-y-4 md:space-y-5">
                         <div className="md:hidden">
-                            <MomentumCard variant="header" embedded borderless {...momentumSnapshot} />
+                            <MobileStudentGreeting
+                                userName={session.user?.name?.trim() || "there"}
+                                {...momentumSnapshot}
+                            />
                         </div>
                         <ClassAnnouncement announcements={classAnnouncements} />
                         {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
-                        <DashboardResumeHero user={{ id: userId, role: userRole }} fallback={nextStepFallback} />
-                        {dailyVocabHabit ? (
-                            <section aria-label="Daily vocab review">
-                                <PinnedDailyHabitRow habit={dailyVocabHabit} compact ctaVariant="vocabulary" />
-                            </section>
-                        ) : null}
-                        {newThisWeekItems.length > 0 ? (
-                            <NewThisWeekSection items={newThisWeekItems} />
-                        ) : (
-                            <FeaturedFallbackRow />
-                        )}
+                        <DashboardResumeHero user={{ id: userId, role: userRole }} fallback={nextStepFallback} heroStyle />
+                        <ContinueLearningRow
+                            vocabHabit={dailyVocabHabit}
+                            items={newThisWeekItems}
+                        />
                         <ExploreCategoriesCarousel />
                     </div>
                 </div>
