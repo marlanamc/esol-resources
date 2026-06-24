@@ -7,6 +7,8 @@ const eslintConfig = defineConfig([
   ...nextTs,
   {
     rules: {
+      // Flag console.log/debug left in app code; warn rather than error to allow gradual cleanup
+      "no-console": ["warn", { allow: ["warn", "error"] }],
       "@typescript-eslint/no-explicit-any": "warn",
       // Honor the `_`-prefix convention for intentionally-unused vars/args/catch bindings.
       "@typescript-eslint/no-unused-vars": [

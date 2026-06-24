@@ -261,4 +261,4 @@ console.log("Next steps:");
 console.log("  1. Open each audit/audit-prompt-N.txt, copy the entire file.");
 console.log("  2. Paste into a fresh Claude.ai conversation, send.");
 console.log("  3. Save the JSON response as audit/audit-results-N.json.");
-console.log("  4. Run: node scripts/apply-definition-rewrites.mjs");
+console.log("  4. Run: node scripts/maintenance/apply-definition-rewrites.mjs");

@@ -47,8 +47,10 @@
   --color-surface-subtle: var(--surface-subtle);
   --color-surface-overlay: var(--surface-overlay);
   --color-surface-contrast: var(--surface-contrast);
+  --color-border: var(--border-subtle);
   --color-border-subtle: var(--border-subtle);
   --color-border-strong: var(--border-strong);
+  --color-border-dark: var(--border-strong);
   --color-text-on-accent: var(--text-on-accent);
   /* Soft Sand */
 

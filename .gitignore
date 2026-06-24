@@ -48,6 +48,12 @@ next-env.d.ts
 
 /src/generated/prisma
 
+# source file backups (use git history instead)
+*.backup
+*.ts.backup
+*.tsx.backup
+*.js.backup
+
 # database backups
 backup-*.json
 backup-*.json.gz
