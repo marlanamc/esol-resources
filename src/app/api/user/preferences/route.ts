@@ -10,6 +10,7 @@ import { Prisma } from '@prisma/client';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
+import { isValidAccentKey } from '@/lib/accent-colors';
 
 /**
  * GET /api/user/preferences
@@ -46,6 +47,7 @@ export async function GET() {
       weeklyGoalStartDay: preferences.weeklyGoalStartDay,
       skillFocus: preferences.skillFocus,
       gameSettings: preferences.gameSettings ?? {},
+      accentColor: preferences.accentColor ?? 'terracotta',
     });
   } catch (error) {
     return handleApiError(error, {
@@ -100,12 +102,14 @@ export async function POST(request: Request) {
       weeklyGoalStartDay,
       skillFocus,
       gameSettings,
+      accentColor,
     } = body as {
       hideVerbExplanations?: boolean;
       weeklyActivityGoal?: number;
       weeklyGoalStartDay?: number;
       skillFocus?: string[];
       gameSettings?: unknown;
+      accentColor?: string;
     };
 
     if (hideVerbExplanations !== undefined && typeof hideVerbExplanations !== 'boolean') {
@@ -130,6 +134,10 @@ export async function POST(request: Request) {
       }
     }
 
+    if (accentColor !== undefined && !isValidAccentKey(accentColor)) {
+      return apiError('accentColor must be one of: terracotta, teal, ocean, plum, ember', 400);
+    }
+
     let validatedGameSettings: Record<string, Record<string, unknown>> | undefined;
     if (gameSettings !== undefined) {
       const result = validateGameSettings(gameSettings);
@@ -143,6 +151,7 @@ export async function POST(request: Request) {
       weeklyGoalStartDay?: number;
       skillFocus?: string[];
       gameSettings?: Prisma.InputJsonValue;
+      accentColor?: string;
     } = {};
 
     if (hideVerbExplanations !== undefined) {
@@ -156,6 +165,9 @@ export async function POST(request: Request) {
     }
     if (skillFocus !== undefined) {
       updateData.skillFocus = skillFocus;
+    }
+    if (accentColor !== undefined && isValidAccentKey(accentColor)) {
+      updateData.accentColor = accentColor;
     }
 
     if (validatedGameSettings !== undefined) {
@@ -189,6 +201,7 @@ export async function POST(request: Request) {
       weeklyGoalStartDay: preferences.weeklyGoalStartDay,
       skillFocus: preferences.skillFocus,
       gameSettings: preferences.gameSettings ?? {},
+      accentColor: preferences.accentColor ?? 'terracotta',
     });
   } catch (error) {
     return handleApiError(error, {

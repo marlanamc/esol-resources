@@ -15,7 +15,9 @@ import { ClickableAvatarDisplay } from "@/components/ui/ClickableAvatarDisplay";
 import { MiniCertificateCard, EmptyCertificateCard, NeedsImprovementCard } from "@/components/ui/MiniCertificateCard";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { qualifiesForMedal } from "@/lib/medal-utils";
-import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
+import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight, Palette } from "lucide-react";
+import { AccentColorPicker } from "@/components/dashboard/AccentColorPicker";
+import { resolveAccentKey } from "@/lib/accent-colors";
 
 // Force dynamic rendering to show real-time activity data
 export const dynamic = 'force-dynamic';
@@ -309,6 +311,7 @@ export default async function ProfilePage() {
         releasedGrammarGuideActivities,
         verbQuizSubmissions,
         grammarQuizSubmissions,
+        userPreferences,
     ] = await Promise.all([
         // Get activity progress for category stats
         prisma.activityProgress.findMany({
@@ -405,6 +408,10 @@ export default async function ProfilePage() {
                 },
             },
             orderBy: { updatedAt: "desc" },
+        }),
+        prisma.userPreferences.findUnique({
+            where: { userId },
+            select: { accentColor: true },
         }),
     ]);
 
@@ -698,6 +705,20 @@ export default async function ProfilePage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    {/* Appearance */}
+                    <div className="mb-8 rounded-2xl border border-border/60 bg-white/80 backdrop-blur-md p-6 shadow-sm animate-fade-in-up delay-150">
+                        <div className="mb-5 flex items-center gap-3">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                                <Palette className="h-5 w-5" />
+                            </div>
+                            <div>
+                                <h2 className="text-lg font-bold text-text">Appearance</h2>
+                                <p className="text-sm text-text-muted">Pick your accent color</p>
+                            </div>
+                        </div>
+                        <AccentColorPicker initialAccent={resolveAccentKey(userPreferences?.accentColor)} />
                     </div>
 
                     {/* Mini Quiz Certificates - Medal Collection */}

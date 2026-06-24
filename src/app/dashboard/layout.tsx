@@ -13,6 +13,8 @@ import { SubmissionOutboxManager } from "@/components/SubmissionOutboxManager";
 import { canUseTeacherTools, isAdmin } from "@/lib/roles";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
+import { AccentColorInitializer } from "@/components/dashboard/AccentColorInitializer";
+import { resolveAccentKey } from "@/lib/accent-colors";
 
 async function getStudentDashboardContext(userId: string): Promise<{
     learnerMode: LearnerMode;
@@ -59,12 +61,24 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     let leaderboardRank: number | null = null;
     let learnerMode: LearnerMode = "classroom";
 
+    let accentKey = resolveAccentKey(null);
+
     if (session?.user?.id) {
-        if (session.user.role === "student") {
-            const studentDashboardContext = await getStudentDashboardContext(session.user.id);
-            leaderboardRank = studentDashboardContext.leaderboardRank;
-            learnerMode = studentDashboardContext.learnerMode;
-        } else if (
+        const [dashboardContext, userPrefs] = await Promise.all([
+            session.user.role === "student"
+                ? getStudentDashboardContext(session.user.id)
+                : Promise.resolve({ learnerMode: "classroom" as LearnerMode, leaderboardRank: null }),
+            prisma.userPreferences.findUnique({
+                where: { userId: session.user.id },
+                select: { accentColor: true },
+            }),
+        ]);
+
+        leaderboardRank = dashboardContext.leaderboardRank;
+        learnerMode = dashboardContext.learnerMode;
+        accentKey = resolveAccentKey(userPrefs?.accentColor);
+
+        if (
             canUseTeacherTools(session.user) &&
             (await isAdminInStudentMode(session.user))
         ) {
@@ -74,6 +88,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
 
     return (
         <div className="min-h-screen bg-bg relative">
+            <AccentColorInitializer accentKey={accentKey} />
             <a
                 href="#main-content"
                 className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[999] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold focus:shadow-lg"

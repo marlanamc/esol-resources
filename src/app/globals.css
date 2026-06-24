@@ -314,6 +314,66 @@
   --grammar-map-node-stroke-selected: #0f172a;
 }
 
+/* ── Accent color overrides (light mode) ── */
+html[data-accent="teal"] {
+  --primary-color: #4a8c7a;
+  --primary-color-dark: #366658;
+  --primary-color-light: #72b0a0;
+  --primary: #4a8c7a;
+}
+html[data-accent="ocean"] {
+  --primary-color: #3d7fa5;
+  --primary-color-dark: #2b5f7e;
+  --primary-color-light: #6aaacb;
+  --primary: #3d7fa5;
+}
+html[data-accent="plum"] {
+  --primary-color: #7a5c8c;
+  --primary-color-dark: #5c4070;
+  --primary-color-light: #a080b8;
+  --primary: #7a5c8c;
+}
+html[data-accent="ember"] {
+  --primary-color: #c07840;
+  --primary-color-dark: #9a5e28;
+  --primary-color-light: #e0a870;
+  --primary: #c07840;
+}
+
+/* ── Accent color overrides (dark mode) ── */
+html[data-accent="teal"].dark,
+html[data-accent="teal"] .dark,
+html[data-accent="teal"][data-theme="dark"] {
+  --primary-color: #6bb8a4;
+  --primary-color-dark: #4a9080;
+  --primary-color-light: #92d0c0;
+  --primary: #6bb8a4;
+}
+html[data-accent="ocean"].dark,
+html[data-accent="ocean"] .dark,
+html[data-accent="ocean"][data-theme="dark"] {
+  --primary-color: #6aaacb;
+  --primary-color-dark: #4a88aa;
+  --primary-color-light: #90cce0;
+  --primary: #6aaacb;
+}
+html[data-accent="plum"].dark,
+html[data-accent="plum"] .dark,
+html[data-accent="plum"][data-theme="dark"] {
+  --primary-color: #b090cc;
+  --primary-color-dark: #8c6aaa;
+  --primary-color-light: #ccb0e8;
+  --primary: #b090cc;
+}
+html[data-accent="ember"].dark,
+html[data-accent="ember"] .dark,
+html[data-accent="ember"][data-theme="dark"] {
+  --primary-color: #e0a060;
+  --primary-color-dark: #c07840;
+  --primary-color-light: #f0c090;
+  --primary: #e0a060;
+}
+
 .dark, [data-theme="dark"] {
   /* Glacial dark blue mode - cool, sophisticated, fresh */
   --primary-color: #7fb3d5;
