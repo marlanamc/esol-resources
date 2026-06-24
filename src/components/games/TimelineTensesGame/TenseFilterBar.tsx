@@ -80,12 +80,12 @@ const CATEGORY_CONFIG: Array<{
 
 const CATEGORY_STYLE: Record<string, { tone: string; iconBg: string; activeBg: string; border: string }> = {
   all: { tone: 'text-slate-600 dark:text-slate-400', iconBg: 'bg-slate-100 dark:bg-slate-800', activeBg: 'bg-slate-500', border: 'border-slate-200 dark:border-slate-700' },
-  simple: { tone: 'text-[#3d8e42]', iconBg: 'bg-[#eef4ec] dark:bg-[#3d8e42]/10', activeBg: 'bg-[#3d8e42]', border: 'border-[#3d8e42]/20' },
-  continuous: { tone: 'text-[#268a82]', iconBg: 'bg-[#edf5f4] dark:bg-[#268a82]/10', activeBg: 'bg-[#268a82]', border: 'border-[#268a82]/20' },
-  perfect: { tone: 'text-[#c44a28]', iconBg: 'bg-[#fff7ed] dark:bg-[#c44a28]/10', activeBg: 'bg-[#c44a28]', border: 'border-[#c44a28]/20' },
-  'perfect-continuous': { tone: 'text-[#b56e1a]', iconBg: 'bg-[#f5f0e8] dark:bg-[#b56e1a]/10', activeBg: 'bg-[#b56e1a]', border: 'border-[#b56e1a]/20' },
-  mixed: { tone: 'text-[#7d3fa6]', iconBg: 'bg-[#f5f0fa] dark:bg-[#7d3fa6]/10', activeBg: 'bg-[#7d3fa6]', border: 'border-[#7d3fa6]/20' },
-  'used-to': { tone: 'text-[#6b4fb8]', iconBg: 'bg-[#f0eef8] dark:bg-[#6b4fb8]/10', activeBg: 'bg-[#6b4fb8]', border: 'border-[#6b4fb8]/20' },
+  simple: { tone: 'text-[var(--tone-grammar-accent)]', iconBg: 'bg-[var(--tone-grammar-surface)]', activeBg: 'bg-[var(--tone-grammar-accent)]', border: 'border-[var(--tone-grammar-border)]' },
+  continuous: { tone: 'text-[var(--tone-vocabulary-accent)]', iconBg: 'bg-[var(--tone-vocabulary-surface)]', activeBg: 'bg-[var(--tone-vocabulary-accent)]', border: 'border-[var(--tone-vocabulary-border)]' },
+  perfect: { tone: 'text-[var(--tone-quizzes-accent)]', iconBg: 'bg-[var(--tone-quizzes-surface)]', activeBg: 'bg-[var(--tone-quizzes-accent)]', border: 'border-[var(--tone-quizzes-border)]' },
+  'perfect-continuous': { tone: 'text-[var(--tone-speaking-accent)]', iconBg: 'bg-[var(--tone-speaking-surface)]', activeBg: 'bg-[var(--tone-speaking-accent)]', border: 'border-[var(--tone-speaking-border)]' },
+  mixed: { tone: 'text-[var(--tone-games-accent)]', iconBg: 'bg-[var(--tone-games-surface)]', activeBg: 'bg-[var(--tone-games-accent)]', border: 'border-[var(--tone-games-border)]' },
+  'used-to': { tone: 'text-[var(--tone-used-to-accent)]', iconBg: 'bg-[var(--tone-used-to-surface)]', activeBg: 'bg-[var(--tone-used-to-accent)]', border: 'border-[var(--tone-used-to-border)]' },
 };
 
 const CATEGORY_QUESTION_COUNTS = CATEGORY_CONFIG.reduce<Record<string, number>>(
@@ -129,7 +129,7 @@ export function TenseFilterBar({
               whileTap={{ scale: 0.98 }}
               className={`group relative p-4 rounded-3xl border-2 text-left transition-all duration-300 ${
                 isSelected
-                  ? `bg-white dark:bg-[#162b3d] shadow-xl ${style.border}`
+                  ? `bg-white dark:bg-[var(--surface-base)] shadow-xl ${style.border}`
                   : `border-transparent bg-white/40 dark:bg-white/5 backdrop-blur-md hover:bg-white/60 dark:hover:bg-white/10 shadow-sm`
               }`}
             >

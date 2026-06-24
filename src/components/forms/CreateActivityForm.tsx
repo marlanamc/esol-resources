@@ -184,7 +184,7 @@ export default function CreateActivityForm() {
                                 autoComplete="off"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                                className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                className="form-field mt-1"
                                 required
                             />
                         </div>
@@ -200,7 +200,7 @@ export default function CreateActivityForm() {
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 rows={3}
-                                className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                className="form-field mt-1"
                             />
                         </div>
 
@@ -213,7 +213,7 @@ export default function CreateActivityForm() {
                                     id="type"
                                     value={type}
                                     onChange={(e) => setType(e.target.value)}
-                                    className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                    className="form-field mt-1"
                                     required
                                 >
                                     <option value="worksheet">Worksheet</option>
@@ -234,7 +234,7 @@ export default function CreateActivityForm() {
                                     id="category"
                                     value={category}
                                     onChange={(e) => setCategory(e.target.value)}
-                                    className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                    className="form-field mt-1"
                                 >
                                     <option value="">Select category</option>
                                     <option value="grammar">Grammar</option>
@@ -252,7 +252,7 @@ export default function CreateActivityForm() {
                                     id="level"
                                     value={level}
                                     onChange={(e) => setLevel(e.target.value)}
-                                    className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                    className="form-field mt-1"
                                 >
                                     <option value="">Select level</option>
                                     <option value="beginner">Beginner</option>
@@ -286,7 +286,7 @@ export default function CreateActivityForm() {
                                                 value={prompt.text}
                                                 onChange={(e) => updateWritingPrompt(index, "text", e.target.value)}
                                                 rows={3}
-                                                className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white text-sm"
+                                                className="form-field text-sm"
                                                 placeholder="Describe a time when you felt proud of something you accomplished at work…"
                                             />
                                         </div>
@@ -340,7 +340,7 @@ export default function CreateActivityForm() {
                                                     type="url"
                                                     value={prompt.imageUrl}
                                                     onChange={(e) => updateWritingPrompt(index, "imageUrl", e.target.value)}
-                                                    className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white text-sm"
+                                                    className="form-field text-sm"
                                                     placeholder="https://example.com/image.jpg"
                                                 />
                                             )}
@@ -372,7 +372,7 @@ export default function CreateActivityForm() {
                                                     type="text"
                                                     value={prompt.starters}
                                                     onChange={(e) => updateWritingPrompt(index, "starters", e.target.value)}
-                                                    className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white text-sm"
+                                                    className="form-field text-sm"
                                                     placeholder="I remember when…, At my last job…"
                                                 />
                                             </div>
@@ -382,7 +382,7 @@ export default function CreateActivityForm() {
                                                     type="text"
                                                     value={prompt.vocab}
                                                     onChange={(e) => updateWritingPrompt(index, "vocab", e.target.value)}
-                                                    className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white text-sm"
+                                                    className="form-field text-sm"
                                                     placeholder="pressure, deadline, collaborate"
                                                 />
                                             </div>
@@ -401,7 +401,7 @@ export default function CreateActivityForm() {
                                         <select
                                             value={writingTimerSeconds}
                                             onChange={(e) => setWritingTimerSeconds(Number(e.target.value))}
-                                            className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                            className="form-field"
                                         >
                                             <option value={180}>3 minutes</option>
                                             <option value={300}>5 minutes</option>
@@ -474,7 +474,7 @@ export default function CreateActivityForm() {
                                                     type="text"
                                                     value={question.question}
                                                     onChange={(e) => updateQuizQuestion(index, "question", e.target.value)}
-                                                    className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                                    className="form-field"
                                                     placeholder="Enter question…"
                                                 />
                                             </div>
@@ -493,7 +493,7 @@ export default function CreateActivityForm() {
                                                             updateQuizQuestion(index, "options", []);
                                                         }
                                                     }}
-                                                    className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                                    className="form-field"
                                                 >
                                                     <option value="text">Text Answer</option>
                                                     <option value="single">Single Choice</option>
@@ -515,7 +515,7 @@ export default function CreateActivityForm() {
                                                                 newOptions[optIndex] = e.target.value;
                                                                 updateQuizQuestion(index, "options", newOptions);
                                                             }}
-                                                            className="w-full mb-2 rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                                            className="form-field mb-2"
                                                             placeholder={`Option ${optIndex + 1}`}
                                                         />
                                                     ))}
@@ -542,7 +542,7 @@ export default function CreateActivityForm() {
                                     value={content}
                                     onChange={(e) => setContent(e.target.value)}
                                     rows={12}
-                                    className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white font-mono text-sm"
+                                    className="form-field font-mono text-sm"
                                     placeholder="Enter activity content…"
                                     required={contentType === "simple"}
                                 />

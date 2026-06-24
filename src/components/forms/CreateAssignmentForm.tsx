@@ -91,7 +91,7 @@ export default function CreateAssignmentForm({
                                     setTitle(activity.title);
                                 }
                             }}
-                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                            className="form-field mt-1"
                             required
                         >
                             <option value="">Choose an activity…</option>
@@ -117,7 +117,7 @@ export default function CreateAssignmentForm({
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             placeholder="Leave empty to use activity title"
-                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                            className="form-field mt-1"
                         />
                     </div>
 
@@ -131,7 +131,7 @@ export default function CreateAssignmentForm({
                             onChange={(e) => setInstructions(e.target.value)}
                             rows={4}
                             placeholder="Additional instructions for students…"
-                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                            className="form-field mt-1"
                         />
                     </div>
 
@@ -144,7 +144,7 @@ export default function CreateAssignmentForm({
                             id="dueDate"
                             value={dueDate}
                             onChange={(e) => setDueDate(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                            className="form-field mt-1"
                         />
                     </div>
 

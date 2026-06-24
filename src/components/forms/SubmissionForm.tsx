@@ -99,7 +99,7 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
                         value={submissionContent}
                         onChange={(e) => setSubmissionContent(e.target.value)}
                         onFocus={handleTextareaFocus}
-                        className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white resize-y min-h-[120px] max-h-[40vh] md:min-h-[240px] md:max-h-[400px]"
+                        className="form-field resize-y min-h-[120px] max-h-[40vh] md:min-h-[240px] md:max-h-[400px]"
                         placeholder="Type your answers, responses, or work here…"
                         disabled={isSubmitted && existingSubmission?.status === "graded"}
                     />

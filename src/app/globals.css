@@ -101,6 +101,20 @@
   /* Layout */
   --bottom-nav-height: 56px;
   /* Height of mobile bottom navigation (condensed mobile tab bar) */
+
+  /* Spacing scale (mirrors tailwind.config extend.spacing) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Typography */
+  --font-size-base: 16px;
+  --line-height-base: 1.6;
+
+  /* Motion */
+  --transition-fast: 150ms;
 }
 
 :root {
@@ -254,21 +268,23 @@
   --tone-pronunciation-chip-bg: rgba(253, 240, 247, 0.96);
   --tone-pronunciation-chip-text: #9d174d;
 
-  --tone-reading-surface: #edf5f4;
-  --tone-reading-surface-muted: rgba(237, 245, 244, 0.58);
-  --tone-reading-border: rgba(74, 140, 154, 0.28);
-  --tone-reading-accent: #268a82;
-  --tone-reading-accent-strong: #1a6560;
-  --tone-reading-chip-bg: rgba(237, 245, 244, 0.95);
-  --tone-reading-chip-text: #1a6560;
+  /* Reading = Vocabulary (identical palette — alias to avoid duplication) */
+  --tone-reading-surface: var(--tone-vocabulary-surface);
+  --tone-reading-surface-muted: var(--tone-vocabulary-surface-muted);
+  --tone-reading-border: var(--tone-vocabulary-border);
+  --tone-reading-accent: var(--tone-vocabulary-accent);
+  --tone-reading-accent-strong: var(--tone-vocabulary-accent-strong);
+  --tone-reading-chip-bg: var(--tone-vocabulary-chip-bg);
+  --tone-reading-chip-text: var(--tone-vocabulary-chip-text);
 
-  --tone-writing-surface: #eef4ec;
-  --tone-writing-surface-muted: rgba(238, 244, 236, 0.58);
-  --tone-writing-border: rgba(111, 155, 102, 0.32);
-  --tone-writing-accent: #3d8e42;
-  --tone-writing-accent-strong: #2d6930;
-  --tone-writing-chip-bg: rgba(238, 244, 236, 0.95);
-  --tone-writing-chip-text: #2d6930;
+  /* Writing = Grammar (identical palette — alias to avoid duplication) */
+  --tone-writing-surface: var(--tone-grammar-surface);
+  --tone-writing-surface-muted: var(--tone-grammar-surface-muted);
+  --tone-writing-border: var(--tone-grammar-border);
+  --tone-writing-accent: var(--tone-grammar-accent);
+  --tone-writing-accent-strong: var(--tone-grammar-accent-strong);
+  --tone-writing-chip-bg: var(--tone-grammar-chip-bg);
+  --tone-writing-chip-text: var(--tone-grammar-chip-text);
 
   --tone-speaking-surface: #f5f0e8;
   --tone-speaking-surface-muted: rgba(245, 240, 232, 0.62);
@@ -285,6 +301,15 @@
   --tone-default-accent-strong: #5a4530;
   --tone-default-chip-bg: rgba(242, 239, 234, 0.95);
   --tone-default-chip-text: #5a4530;
+
+  /* Used-to tense (blue-purple — TenseFilterBar category) */
+  --tone-used-to-surface: #f0eef8;
+  --tone-used-to-surface-muted: rgba(240, 238, 248, 0.58);
+  --tone-used-to-border: rgba(107, 79, 184, 0.24);
+  --tone-used-to-accent: #6b4fb8;
+  --tone-used-to-accent-strong: #4f3990;
+  --tone-used-to-chip-bg: rgba(240, 238, 248, 0.95);
+  --tone-used-to-chip-text: #4f3990;
 
   --tone-event-quiz-accent: #5f8267;
   --tone-event-quiz-bg: #eef4ef;
@@ -532,21 +557,32 @@ html[data-accent="ember"][data-theme="dark"] {
   --tone-pronunciation-chip-bg: rgba(244, 114, 182, 0.16);
   --tone-pronunciation-chip-text: #ffd3e8;
 
-  --tone-reading-surface: rgba(127, 179, 213, 0.14);
-  --tone-reading-surface-muted: rgba(127, 179, 213, 0.09);
-  --tone-reading-border: rgba(127, 179, 213, 0.24);
-  --tone-reading-accent: #7fb3d5;
-  --tone-reading-accent-strong: #a8d5f7;
-  --tone-reading-chip-bg: rgba(127, 179, 213, 0.16);
-  --tone-reading-chip-text: #cce8fb;
+  /* Reading = Vocabulary (dark mode alias) */
+  --tone-reading-surface: var(--tone-vocabulary-surface);
+  --tone-reading-surface-muted: var(--tone-vocabulary-surface-muted);
+  --tone-reading-border: var(--tone-vocabulary-border);
+  --tone-reading-accent: var(--tone-vocabulary-accent);
+  --tone-reading-accent-strong: var(--tone-vocabulary-accent-strong);
+  --tone-reading-chip-bg: var(--tone-vocabulary-chip-bg);
+  --tone-reading-chip-text: var(--tone-vocabulary-chip-text);
 
-  --tone-writing-surface: rgba(111, 191, 159, 0.13);
-  --tone-writing-surface-muted: rgba(111, 191, 159, 0.08);
-  --tone-writing-border: rgba(111, 191, 159, 0.24);
-  --tone-writing-accent: #6fbf9f;
-  --tone-writing-accent-strong: #8ed4b8;
-  --tone-writing-chip-bg: rgba(111, 191, 159, 0.16);
-  --tone-writing-chip-text: #b6ead5;
+  /* Writing = Grammar (dark mode alias) */
+  --tone-writing-surface: var(--tone-grammar-surface);
+  --tone-writing-surface-muted: var(--tone-grammar-surface-muted);
+  --tone-writing-border: var(--tone-grammar-border);
+  --tone-writing-accent: var(--tone-grammar-accent);
+  --tone-writing-accent-strong: var(--tone-grammar-accent-strong);
+  --tone-writing-chip-bg: var(--tone-grammar-chip-bg);
+  --tone-writing-chip-text: var(--tone-grammar-chip-text);
+
+  /* Used-to tense (dark mode — muted blue-purple) */
+  --tone-used-to-surface: rgba(139, 120, 215, 0.13);
+  --tone-used-to-surface-muted: rgba(139, 120, 215, 0.08);
+  --tone-used-to-border: rgba(139, 120, 215, 0.24);
+  --tone-used-to-accent: #a08de0;
+  --tone-used-to-accent-strong: #c3b4f0;
+  --tone-used-to-chip-bg: rgba(139, 120, 215, 0.16);
+  --tone-used-to-chip-text: #ddd6fa;
 
   --tone-speaking-surface: rgba(245, 217, 138, 0.12);
   --tone-speaking-surface-muted: rgba(245, 217, 138, 0.08);
@@ -795,25 +831,6 @@ body {
   opacity: 0.08;
 }
 
-.learner-tone-card {
-  background-color: var(--learner-tone-surface);
-  border-color: var(--learner-tone-border);
-  color: var(--color-text);
-}
-
-.learner-tone-chip {
-  background-color: var(--learner-tone-chip-bg);
-  border-color: var(--learner-tone-border);
-  color: var(--learner-tone-chip-text);
-}
-
-.learner-tone-accent {
-  color: var(--learner-tone-accent);
-}
-
-.learner-tone-progress {
-  background-color: var(--learner-tone-accent);
-}
 
 .search-trigger-pill {
   color: var(--search-pill-fg);
@@ -4497,4 +4514,17 @@ button.vocab-match-word-btn {
   .vocab-word-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* ========== Form Utilities ========== */
+/* Standard text input/select/textarea used across all form components */
+.form-field {
+  @apply block w-full rounded-md border px-3 py-2 shadow-sm
+    border-gray-300 dark:border-white/20
+    bg-white dark:bg-white/5
+    text-gray-900 dark:text-white
+    placeholder:text-gray-400 dark:placeholder:text-white/40
+    focus:outline-none focus:ring-1
+    focus:border-[var(--color-primary)] focus:ring-[var(--color-primary)]/30
+    transition-colors duration-150;
 }

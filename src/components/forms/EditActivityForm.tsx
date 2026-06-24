@@ -115,7 +115,7 @@ export default function EditActivityForm({ activity }: Props) {
                                 id="title"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                                className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                className="form-field mt-1"
                                 required
                             />
                         </div>
@@ -129,7 +129,7 @@ export default function EditActivityForm({ activity }: Props) {
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 rows={3}
-                                className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                className="form-field mt-1"
                             />
                         </div>
 
@@ -142,7 +142,7 @@ export default function EditActivityForm({ activity }: Props) {
                                     id="type"
                                     value={type}
                                     onChange={(e) => setType(e.target.value)}
-                                    className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                    className="form-field mt-1"
                                     required
                                 >
                                     <option value="worksheet">Worksheet</option>
@@ -162,7 +162,7 @@ export default function EditActivityForm({ activity }: Props) {
                                     id="category"
                                     value={category}
                                     onChange={(e) => setCategory(e.target.value)}
-                                    className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                    className="form-field mt-1"
                                 >
                                     <option value="">Select category</option>
                                     <option value="grammar">Grammar</option>
@@ -180,7 +180,7 @@ export default function EditActivityForm({ activity }: Props) {
                                     id="level"
                                     value={level}
                                     onChange={(e) => setLevel(e.target.value)}
-                                    className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                    className="form-field mt-1"
                                 >
                                     <option value="">Select level</option>
                                     <option value="beginner">Beginner</option>
@@ -202,7 +202,7 @@ export default function EditActivityForm({ activity }: Props) {
                                 value={content}
                                 onChange={(e) => setContent(e.target.value)}
                                 rows={15}
-                                className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white font-mono text-sm"
+                                className="form-field font-mono text-sm"
                                 required
                             />
                             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">

@@ -79,7 +79,7 @@ export default function EditClassForm({
                             autoComplete="off"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                            className="form-field mt-1"
                         />
                     </div>
 
@@ -93,7 +93,7 @@ export default function EditClassForm({
                             autoComplete="off"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                            className="form-field mt-1"
                         />
                     </div>
 
@@ -105,7 +105,7 @@ export default function EditClassForm({
                             id="sectionSourceClassId"
                             value={sectionSourceClassId}
                             onChange={(e) => setSectionSourceClassId(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                            className="form-field mt-1"
                         >
                             <option value="">Standalone class (no section sync)</option>
                             {sourceOptions.map((cls) => (

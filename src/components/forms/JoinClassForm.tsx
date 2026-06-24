@@ -58,7 +58,7 @@ export default function JoinClassForm() {
                             value={code}
                             onChange={(e) => setCode(e.target.value.toUpperCase())}
                             placeholder="ABC123"
-                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white text-center text-2xl font-mono tracking-wider"
+                            className="form-field mt-1 text-center text-2xl font-mono tracking-wider"
                             required
                             maxLength={6}
                         />

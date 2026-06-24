@@ -80,7 +80,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                             autoComplete="off"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                            className="form-field mt-1"
                             required
                         />
                     </div>
@@ -93,7 +93,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                             id="sourceClassId"
                             value={sourceClassId}
                             onChange={(e) => setSourceClassId(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                            className="form-field mt-1"
                         >
                             <option value="">Standalone class (no section sync)</option>
                             {existingClasses.map((cls) => (
@@ -132,7 +132,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             rows={3}
-                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                            className="form-field mt-1"
                         />
                     </div>
 
@@ -148,7 +148,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                                 onChange={(e) => setCode(e.target.value.toUpperCase())}
                                 placeholder="Leave empty to auto-generate"
                                 maxLength={6}
-                                className="block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
+                                className="form-field"
                             />
                             <button
                                 type="button"

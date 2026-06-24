@@ -39,14 +39,13 @@ export function AdminDiagnosticsPicker({
     return (
         <div className="grid gap-4 sm:grid-cols-2">
             <label className="block">
-                <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[#8b8174]">
+                <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
                     Class
                 </span>
                 <select
                     value={selectedClassId}
                     onChange={(e) => updateSelection(e.target.value, selectedActivityId)}
-                    className="w-full rounded-xl border bg-white px-4 py-2.5 text-sm font-medium text-[#2d261f] outline-none transition-colors focus:border-[#b05740] focus:ring-2 focus:ring-[#b05740]/20"
-                    style={{ borderColor: "rgba(0,0,0,0.12)" }}
+                    className="w-full rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm font-medium text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20"
                 >
                     <option value="">Choose a class…</option>
                     {classes.map((cls) => (
@@ -58,15 +57,14 @@ export function AdminDiagnosticsPicker({
             </label>
 
             <label className="block">
-                <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[#8b8174]">
+                <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
                     Grammar guide mini-quiz
                 </span>
                 <select
                     value={selectedActivityId}
                     onChange={(e) => updateSelection(selectedClassId, e.target.value)}
                     disabled={!selectedClassId}
-                    className="w-full rounded-xl border bg-white px-4 py-2.5 text-sm font-medium text-[#2d261f] outline-none transition-colors focus:border-[#b05740] focus:ring-2 focus:ring-[#b05740]/20 disabled:cursor-not-allowed disabled:bg-[#f5f3ef] disabled:text-[#a8a196]"
-                    style={{ borderColor: "rgba(0,0,0,0.12)" }}
+                    className="w-full rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm font-medium text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 disabled:cursor-not-allowed disabled:bg-[var(--color-bg-light)] disabled:text-[var(--color-text-light)]"
                 >
                     <option value="">Choose a grammar guide…</option>
                     {guides.map((guide) => (
