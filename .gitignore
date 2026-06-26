@@ -112,6 +112,9 @@ public/*_original.html
 # temporary documentation
 vocab-comparison.md
 
+# personal lesson-plan drafts (kept local, not version-controlled)
+/docs/lesson-plans/
+
 # dashboard experiments (temporary)
 /src/app/dashboardv2/
 /src/app/dashboardv3/
