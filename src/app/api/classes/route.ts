@@ -123,6 +123,7 @@ export async function POST(request: NextRequest) {
             // Check if code already exists
             const existingClass = await prisma.class.findUnique({
                 where: { code: code.toUpperCase() },
+                select: { id: true },
             });
 
             if (existingClass) {

@@ -39,7 +39,10 @@ export async function POST(request: NextRequest) {
         }
 
         // Verify ownership
-        const classItem = await prisma.class.findUnique({ where: { id: classId } });
+        const classItem = await prisma.class.findUnique({
+            where: { id: classId },
+            select: { id: true, teacherId: true, sectionGroupId: true },
+        });
         if (!classItem) {
             return ApiErrors.notFound("Class", classId);
         }
@@ -121,7 +124,7 @@ export async function DELETE(request: NextRequest) {
 
         const event = await prisma.calendarEvent.findUnique({
             where: { id },
-            include: { class: true },
+            select: { id: true, class: { select: { teacherId: true } } },
         });
 
         if (!event) {
@@ -182,7 +185,7 @@ export async function PATCH(request: NextRequest) {
 
         const event = await prisma.calendarEvent.findUnique({
             where: { id },
-            include: { class: true },
+            select: { id: true, class: { select: { teacherId: true } } },
         });
         if (!event) {
             return ApiErrors.notFound("Event", id);
