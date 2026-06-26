@@ -9,6 +9,8 @@ import { UserIcon } from "@/components/icons/Icons";
 import { Calendar, LogOut, Sparkles, UserCog, X } from "lucide-react";
 import { DEFAULT_AVATAR, DEFAULT_COLOR } from "@/lib/avatar-constants";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { AccentColorPicker } from "@/components/dashboard/AccentColorPicker";
+import { resolveAccentKey, type AccentKey } from "@/lib/accent-colors";
 
 interface UserProfileDropdownProps {
     userName: string;
@@ -71,6 +73,7 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
     const cachedAvatar = getFreshAvatarCache();
     const [avatarId, setAvatarId] = useState<string>(cachedAvatar?.avatar || DEFAULT_AVATAR);
     const [colorId, setColorId] = useState<string>(cachedAvatar?.avatarColor || DEFAULT_COLOR);
+    const [accentKey, setAccentKey] = useState<AccentKey | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
 
@@ -104,6 +107,31 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
         };
     }, []);
 
+    // Resolve the current accent when the menu first opens. Seed instantly from
+    // the <html data-accent> attribute (set by AccentColorInitializer) so the
+    // picker shows the right selection without waiting on the network.
+    useEffect(() => {
+        if (!isOpen || accentKey !== null) return;
+        const fromAttr = resolveAccentKey(
+            document.documentElement.getAttribute("data-accent"),
+        );
+        setAccentKey(fromAttr);
+        let cancelled = false;
+        (async () => {
+            try {
+                const res = await fetch("/api/user/preferences");
+                if (!res.ok || cancelled) return;
+                const data = (await res.json()) as { accentColor?: string | null };
+                if (!cancelled) setAccentKey(resolveAccentKey(data.accentColor));
+            } catch {
+                /* keep the attribute-derived value */
+            }
+        })();
+        return () => {
+            cancelled = true;
+        };
+    }, [isOpen, accentKey]);
+
     const handleLogout = async () => {
         await Promise.race([
             clearServiceWorkerCache(),
@@ -136,6 +164,27 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
     };
 
     const isDashboardV2Desktop = variant === "dashboardv2";
+
+    const accentSection = (
+        <div className="px-4 py-2">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-text-muted">
+                Accent Color
+            </p>
+            {accentKey ? (
+                <AccentColorPicker initialAccent={accentKey} />
+            ) : (
+                <div className="flex gap-3" aria-hidden>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                        <span
+                            key={i}
+                            className="h-11 w-11 animate-pulse rounded-full"
+                            style={{ backgroundColor: "var(--surface-subtle)" }}
+                        />
+                    ))}
+                </div>
+            )}
+        </div>
+    );
 
     return (
         <div className="relative" ref={dropdownRef}>
@@ -232,6 +281,10 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
                                 <ThemeToggle />
                             </div>
 
+                            <div className="rounded-2xl border px-2 py-2 shadow-sm" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-base)' }}>
+                                {accentSection}
+                            </div>
+
                             <button
                                 onClick={handleLogout}
                                 className="flex w-full items-center gap-3 rounded-2xl border px-4 py-3 text-left text-sm font-medium text-text shadow-sm transition-colors"
@@ -265,7 +318,7 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
                             </div>
                         </div>
                     </div>
-                    <div className="md:hidden absolute right-0 mt-2 w-52 rounded-xl shadow-xl border py-2 z-[280] animate-fade-in-up" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }}>
+                    <div className="md:hidden absolute right-0 mt-2 w-72 rounded-xl shadow-xl border py-2 z-[280] animate-fade-in-up" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }}>
                         <div className="px-4 py-2 border-b" style={{ borderColor: 'var(--border-subtle)' }}>
                             <p className="text-sm font-medium text-text truncate">{userName}</p>
                         </div>
@@ -298,6 +351,9 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
                         <div className="px-3 py-2">
                             <ThemeToggle compact />
                         </div>
+                        <div className="border-t" style={{ borderColor: 'var(--border-subtle)' }}>
+                            {accentSection}
+                        </div>
                         <button
                             onClick={handleLogout}
                             className="w-full text-left px-4 py-2 text-sm font-medium text-text transition-colors flex items-center gap-2 hover:bg-[var(--surface-subtle)]"
@@ -308,7 +364,7 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
                     </div>
                     </>
                 ) : (
-                <div className="absolute right-0 mt-2 w-56 rounded-xl shadow-xl border py-2 z-[280] animate-fade-in-up" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }}>
+                <div className="absolute right-0 mt-2 w-72 rounded-xl shadow-xl border py-2 z-[280] animate-fade-in-up" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }}>
                     <div className="px-4 py-2 border-b" style={{ borderColor: 'var(--border-subtle)' }}>
                         <p className="text-sm font-medium text-text truncate">{userName}</p>
                     </div>
@@ -340,6 +396,9 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
                     </button>
                     <div className="px-3 py-2">
                         <ThemeToggle compact />
+                    </div>
+                    <div className="border-t" style={{ borderColor: 'var(--border-subtle)' }}>
+                        {accentSection}
                     </div>
                     <button
                         onClick={handleLogout}

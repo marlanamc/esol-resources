@@ -102,13 +102,6 @@
   --bottom-nav-height: 56px;
   /* Height of mobile bottom navigation (condensed mobile tab bar) */
 
-  /* Spacing scale (mirrors tailwind.config extend.spacing) */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-
   /* Typography */
   --font-size-base: 16px;
   --line-height-base: 1.6;
@@ -118,6 +111,16 @@
 }
 
 :root {
+  /* Custom spacing scale — kept OUT of @theme so it does not override
+     Tailwind v4's reserved --spacing namespace (which would collapse the
+     dynamic gap/size scale and break grid layouts). Consumed only as raw
+     var(--spacing-*) in CSS, never as Tailwind utilities. */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
   --primary-color: #b05740;
   --primary-color-dark: #8e4432;
   --primary-color-light: #d08b78;

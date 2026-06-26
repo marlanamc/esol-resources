@@ -1,10 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import type { LucideIcon } from "lucide-react";
+import { Blocks, ClipboardList, Gamepad2, Layers, Mic, MessageCircle } from "lucide-react";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 import { buildActivityHref } from "@/lib/learner-navigation";
 import type { DailyChecklistHabit } from "@/lib/daily-habits";
 import type { FeaturedAssignment } from "@/components/dashboard/todays-assignments/types";
+
+const CATEGORY_ICON: Record<string, LucideIcon> = {
+    grammar: Blocks,
+    vocabulary: Layers,
+    games: Gamepad2,
+    pronunciation: Mic,
+    speaking: MessageCircle,
+    quizzes: ClipboardList,
+};
+
+function CategoryIcon({ categoryKey, color }: { categoryKey: string; color: string }) {
+    const Icon = CATEGORY_ICON[categoryKey] ?? ClipboardList;
+    return <Icon size={20} strokeWidth={2} color={color} aria-hidden="true" />;
+}
 
 interface ContinueLearningRowProps {
     vocabHabit: DailyChecklistHabit | null;
@@ -38,39 +54,43 @@ function ContinueCard({
     href,
     categoryKey,
     title,
-    badge,
+    subtitle,
 }: {
     href: string;
     categoryKey: string;
     title: string;
-    badge: string;
+    subtitle: string;
 }) {
     const tone = getLearnerCategoryTone(categoryKey);
 
     return (
         <Link
             href={href}
-            className="flex w-[130px] min-w-[130px] shrink-0 snap-start flex-col justify-between rounded-2xl border p-3 transition-transform duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="dashboard-panel flex w-[140px] min-w-[140px] shrink-0 snap-start flex-col gap-2 rounded-2xl border p-3 transition-transform duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             style={{
                 borderColor: tone.border,
-                background: `linear-gradient(160deg, color-mix(in srgb, ${tone.chipBg} 70%, var(--dashboard-surface-start)) 0%, var(--dashboard-surface-start) 100%)`,
+                background: "linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)",
             }}
         >
-            {/* Category badge */}
+            {/* Category icon */}
             <span
-                className="inline-flex self-start rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide"
+                className="flex h-10 w-10 items-center justify-center rounded-full"
                 style={{
-                    background: tone.chipBg,
-                    color: tone.chipText,
-                    border: `1px solid color-mix(in srgb, ${tone.border} 60%, transparent)`,
+                    background: `color-mix(in srgb, ${tone.accent} 16%, var(--dashboard-surface-start))`,
+                    boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${tone.border} 65%, transparent)`,
                 }}
             >
-                {badge}
+                <CategoryIcon categoryKey={categoryKey} color={tone.accent} />
             </span>
 
             {/* Title */}
-            <p className="mt-2 line-clamp-2 text-[12px] font-semibold leading-tight text-text">
+            <p className="line-clamp-2 text-[12.5px] font-semibold leading-tight text-text">
                 {title}
+            </p>
+
+            {/* Subtitle */}
+            <p className="mt-auto text-[11px] font-medium leading-none text-text-muted">
+                {subtitle}
             </p>
         </Link>
     );
@@ -120,29 +140,31 @@ export function ContinueLearningRow({ vocabHabit, items }: ContinueLearningRowPr
                             key="vocab-daily"
                             href={vocabHabit.href}
                             role="listitem"
-                            className="flex w-[130px] min-w-[130px] shrink-0 snap-start flex-col justify-between rounded-2xl border p-3 transition-transform duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                            className="dashboard-panel flex w-[140px] min-w-[140px] shrink-0 snap-start flex-col gap-2 rounded-2xl border p-3 transition-transform duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                             style={{
                                 borderColor: isDoneToday
                                     ? `color-mix(in srgb, ${vocabTone.border} 50%, var(--border-subtle))`
                                     : vocabTone.border,
-                                background: isDoneToday
-                                    ? `color-mix(in srgb, ${vocabTone.chipBg} 50%, var(--dashboard-surface-start))`
-                                    : `linear-gradient(160deg, color-mix(in srgb, ${vocabTone.chipBg} 70%, var(--dashboard-surface-start)) 0%, var(--dashboard-surface-start) 100%)`,
+                                background: "linear-gradient(180deg, var(--dashboard-surface-start) 0%, var(--dashboard-surface-end) 100%)",
                                 opacity: isDoneToday ? 0.8 : 1,
                             }}
                         >
                             <span
-                                className="inline-flex self-start rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide"
+                                className="flex h-10 w-10 items-center justify-center rounded-full"
                                 style={{
-                                    background: vocabTone.chipBg,
-                                    color: vocabTone.chipText,
-                                    border: `1px solid color-mix(in srgb, ${vocabTone.border} 60%, transparent)`,
+                                    color: vocabTone.accent,
+                                    background: `color-mix(in srgb, ${vocabTone.accent} 16%, var(--dashboard-surface-start))`,
+                                    boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${vocabTone.border} 65%, transparent)`,
                                 }}
+                                aria-hidden="true"
                             >
-                                {vocabBadge}
+                                <Layers size={20} strokeWidth={2} />
                             </span>
-                            <p className="mt-2 line-clamp-2 text-[12px] font-semibold leading-tight text-text">
+                            <p className="line-clamp-2 text-[12.5px] font-semibold leading-tight text-text">
                                 {vocabHabit.title}
+                            </p>
+                            <p className="mt-auto text-[11px] font-medium leading-none text-text-muted">
+                                {vocabBadge}
                             </p>
                         </Link>
                     )}
@@ -158,7 +180,7 @@ export function ContinueLearningRow({ vocabHabit, items }: ContinueLearningRowPr
                                     href={href}
                                     categoryKey={categoryKey}
                                     title={title}
-                                    badge={resolveTypeLabel(item)}
+                                    subtitle={resolveTypeLabel(item)}
                                 />
                             </div>
                         );

@@ -470,7 +470,7 @@ export default async function DashboardPage() {
                 <AdminViewSwitcher user={{ id: userId, role: userRole }} currentView="classroom" />
                 {/* ── MOBILE + TABLET layout (< lg) ── */}
                 <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-0 p-0 md:p-6">
-                    <div className="min-w-0 space-y-4 md:space-y-5">
+                    <div className="min-w-0 space-y-5">
                         <div className="md:hidden">
                             <MobileStudentGreeting
                                 userName={session.user?.name?.trim() || "there"}
