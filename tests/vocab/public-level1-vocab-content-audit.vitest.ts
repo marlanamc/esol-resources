@@ -4,11 +4,11 @@ import { vocabImages } from "@/data/vocab-images";
 import {
   auditLevel1Definitions,
   formatDefinitionIssue,
-} from "../checks/level1-definition-audit";
+} from "../../scripts/checks/level1-definition-audit";
 import {
   auditLevel1SpanishTranslations,
   formatSpanishTranslationIssue,
-} from "../checks/level1-spanish-translation-audit";
+} from "../../scripts/checks/level1-spanish-translation-audit";
 
 type AuditCard = {
   unit: string;

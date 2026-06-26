@@ -4,7 +4,7 @@ import {
   isProductionLikeTarget,
   parseActiveDbTarget,
   requireSafeDbTarget,
-} from "../lib/require-safe-db-target";
+} from "../../scripts/lib/require-safe-db-target";
 
 function withEnv(overrides: Record<string, string | undefined>, fn: () => void) {
   const previous: Record<string, string | undefined> = {};

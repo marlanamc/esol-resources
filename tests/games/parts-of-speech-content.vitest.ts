@@ -9,7 +9,7 @@ import {
 } from "@/data/parts-of-speech-exercises";
 import type { POSExercise, POSGroup } from "@/types/parts-of-speech";
 import { POS_CHECKPOINT_SIZE } from "@/types/parts-of-speech";
-import { parsePartsOfSpeechOverrideCSV } from "../lib/parts-of-speech-round-overrides";
+import { parsePartsOfSpeechOverrideCSV } from "../../scripts/lib/parts-of-speech-round-overrides";
 
 function sentenceFromExercise(exercise: POSExercise): string | null {
   switch (exercise.type) {

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { auditTenseDiagrams, extractTenseDiagrams } from "./lib/audit-tense-diagrams";
+import { auditTenseDiagrams, extractTenseDiagrams } from "../lib/audit-tense-diagrams";
 
 const diagrams = extractTenseDiagrams();
 const findings = auditTenseDiagrams();

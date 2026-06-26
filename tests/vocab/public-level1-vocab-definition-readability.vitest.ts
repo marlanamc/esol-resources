@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   auditDefinitionCard,
   type AuditCard,
-} from "../checks/level1-definition-audit";
+} from "../../scripts/checks/level1-definition-audit";
 
 function makeCard(overrides: Partial<AuditCard>): AuditCard {
   return {

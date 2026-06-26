@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { auditTenseDiagrams, extractTenseDiagrams } from "../lib/audit-tense-diagrams";
+import { auditTenseDiagrams, extractTenseDiagrams } from "../../scripts/lib/audit-tense-diagrams";
 
 describe("grammar guide tenseDiagram stamps", () => {
   it("finds tenseDiagram blocks in mini guides", () => {

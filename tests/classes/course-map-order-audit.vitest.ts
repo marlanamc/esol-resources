@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { auditCourseMapOrder } from "../lib/audit-course-map-order";
+import { auditCourseMapOrder } from "../../scripts/lib/audit-course-map-order";
 
 describe("course map order audit", () => {
   it("keeps grammar second and verb quiz last on standard vocab weeks", () => {
