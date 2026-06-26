@@ -313,11 +313,19 @@ export default async function ProfilePage() {
         grammarQuizSubmissions,
         userPreferences,
     ] = await Promise.all([
-        // Get activity progress for category stats
+        // Get activity progress for category stats.
+        // Only status + activity.category are consumed below (see category filters
+        // and calcCategoryProgress), so avoid hydrating the full activity row —
+        // notably the large activity.content JSON — for every progress row.
         prisma.activityProgress.findMany({
             where: { userId },
-            include: {
-                activity: true,
+            select: {
+                status: true,
+                activity: {
+                    select: {
+                        category: true,
+                    },
+                },
             },
         }),
         // Get points ledger for activity timeline
