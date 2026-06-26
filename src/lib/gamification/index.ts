@@ -6,6 +6,7 @@ export {
   awardPoints,
   updateStreak,
   checkAndAwardAchievements,
+  invalidateAchievementDefinitions,
   getUserGamificationStats,
   getTimeframedLeaderboard,
   getWeeklyLeaderboard,

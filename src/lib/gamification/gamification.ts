@@ -14,6 +14,36 @@ export {
 /** Prisma client or interactive transaction client */
 export type DbClient = Omit<PrismaClient, '$connect' | '$disconnect' | '$on' | '$transaction' | '$use' | '$extends'>;
 
+type AchievementDefinition = Prisma.AchievementGetPayload<Record<string, never>>;
+
+// Achievement definitions are static seeded config that effectively never change
+// at runtime, yet checkAndAwardAchievements() runs on every activity submit.
+// Memoize them with a short TTL so we don't reload the whole table each time.
+// Always read with the base `prisma` client (never an interactive tx), since this
+// is immutable config and must not be coupled to a caller's transaction.
+let achievementDefinitionCache: { data: AchievementDefinition[]; at: number } | null = null;
+const ACHIEVEMENT_DEFINITION_TTL_MS = 5 * 60_000;
+
+async function getAchievementDefinitions(): Promise<AchievementDefinition[]> {
+  if (
+    achievementDefinitionCache &&
+    Date.now() - achievementDefinitionCache.at < ACHIEVEMENT_DEFINITION_TTL_MS
+  ) {
+    return achievementDefinitionCache.data;
+  }
+  const data = await prisma.achievement.findMany();
+  achievementDefinitionCache = { data, at: Date.now() };
+  return data;
+}
+
+/**
+ * Clear the in-process achievement-definition cache. Call after seeding or
+ * editing achievements in a long-running process so the next check reloads.
+ */
+export function invalidateAchievementDefinitions() {
+  achievementDefinitionCache = null;
+}
+
 /**
  * Award points to a user and update their total
  */
@@ -361,7 +391,7 @@ export async function checkAndAwardAchievements(userId: string, db: DbClient = p
 
   if (!user) return [];
 
-  const allAchievements = await db.achievement.findMany();
+  const allAchievements = await getAchievementDefinitions();
   const earnedAchievementIds = new Set(
     user.achievements.map((ua: { achievementId: string }) => ua.achievementId)
   );
