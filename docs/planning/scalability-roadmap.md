@@ -53,11 +53,12 @@ gated by `npm run typecheck`, then delete the shims and the CLAUDE.md table.
 Note: some tests `vi.mock("@/lib/rate-limit")` and similar shim paths —
 update mocks in the same pass.
 
-## 5. Split `src/types/activity.ts`
+## 5. Split `src/types/parts-of-speech.ts` if it keeps growing
 
-35KB / 87 exports in one module. Split by content family (quiz, guide,
-speaking, vocab, pronunciation, writing, timeline) with a barrel re-export
-to keep existing imports working during migration. Same treatment for
+`src/types/activity.ts` has been split into domain modules under
+`src/types/activity/` (guide, speaking, quiz, vocabulary, pronunciation,
+writing, games, timeline, content) behind a barrel that preserves the
+`@/types/activity` import path. Apply the same treatment to
 `src/types/parts-of-speech.ts` (19KB / 43 exports) if it keeps growing.
 
 ## 6. Shared client data-fetching layer
