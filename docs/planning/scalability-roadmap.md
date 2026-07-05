@@ -68,13 +68,12 @@ gated by `npm run typecheck`, then delete the shims and the CLAUDE.md table.
 Note: some tests `vi.mock("@/lib/rate-limit")` and similar shim paths —
 update mocks in the same pass.
 
-## 5. Split `src/types/parts-of-speech.ts` if it keeps growing
+## 5. Type god-modules — DONE
 
-`src/types/activity.ts` has been split into domain modules under
-`src/types/activity/` (guide, speaking, quiz, vocabulary, pronunciation,
-writing, games, timeline, content) behind a barrel that preserves the
-`@/types/activity` import path. Apply the same treatment to
-`src/types/parts-of-speech.ts` (19KB / 43 exports) if it keeps growing.
+Both split into domain modules behind barrels that preserve the original
+import paths: `src/types/activity/` (guide, speaking, quiz, vocabulary,
+pronunciation, writing, games, timeline, content) and
+`src/types/parts-of-speech/` (core, exercises, progression, content).
 
 ## 6. Shared client data-fetching layer
 
