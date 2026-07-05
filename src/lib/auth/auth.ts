@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
                     const reqHeaders = await headers();
                     const ip = getClientIp(reqHeaders);
                     const key = `auth:login:${ip}`;
-                    if (!checkRateLimit(key)) {
+                    if (!(await checkRateLimit(key))) {
                         logger.warn('Login rate limit exceeded', { ip });
                         return null;
                     }

@@ -101,7 +101,7 @@ export async function POST(request: Request) {
     const ip = getClientIp(reqHeaders);
     const rateLimitKey = `auth:register:${ip}`;
 
-    if (!checkRateLimit(rateLimitKey, { limit: 5, windowSeconds: 60 })) {
+    if (!(await checkRateLimit(rateLimitKey, { limit: 5, windowSeconds: 60 }))) {
       logger.warn('Registration rate limit exceeded', { ip });
       return apiError('Too many registration attempts. Please try again later.', 429, 'RATE_LIMITED');
     }

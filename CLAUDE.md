@@ -381,6 +381,7 @@ Use `.env.example` as the canonical source.
 - Database: `DATABASE_URL` (preferred), `POSTGRES_URL` (fallback)
 - Authentication: `NEXTAUTH_SECRET` or `AUTH_SECRET`, `NEXTAUTH_URL`, `NEXT_PUBLIC_APP_URL`
 - Cron: `CRON_SECRET`
+- Rate limiting (optional): `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` — shared auth rate limits across instances; per-instance memory fallback when unset
 - PWA/notifications: `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `PERF_LOG_*` flags
 - Leaderboards: `EXCLUDED_LEADERBOARD_USERNAMES`
 - Accounts: `DEV_SEED_ACCOUNT_PASSWORD`, `TEST_STUDENT_DEFAULT_PASSWORD`

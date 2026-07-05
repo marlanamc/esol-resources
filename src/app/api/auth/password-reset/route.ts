@@ -9,7 +9,7 @@ import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 
 export async function POST(request: Request) {
     const key = authRateLimitKey(request, "password-reset");
-    if (!checkRateLimit(key)) {
+    if (!(await checkRateLimit(key))) {
         return ApiErrors.rateLimited("Too many password reset attempts. Please try again later.");
     }
 

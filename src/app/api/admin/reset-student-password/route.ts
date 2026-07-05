@@ -11,7 +11,7 @@ import { requireTeacher } from "@/lib/api-auth";
 
 export async function POST(request: Request) {
     const key = authRateLimitKey(request, "admin-reset-password");
-    if (!checkRateLimit(key)) {
+    if (!(await checkRateLimit(key))) {
         return ApiErrors.rateLimited("Too many requests. Please try again later.");
     }
 

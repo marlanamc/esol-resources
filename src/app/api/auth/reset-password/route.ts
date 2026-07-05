@@ -77,7 +77,7 @@ export async function POST(request: Request) {
         const ip = getClientIp(reqHeaders);
         const rateLimitKey = `auth:reset-password:${ip}`;
 
-        if (!checkRateLimit(rateLimitKey, { limit: 5, windowSeconds: 60 })) {
+        if (!(await checkRateLimit(rateLimitKey, { limit: 5, windowSeconds: 60 }))) {
             logger.warn('Password reset rate limit exceeded', { ip });
             return apiError('Too many requests. Please try again later.', 429, 'RATE_LIMITED');
         }
