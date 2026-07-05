@@ -6,6 +6,7 @@ import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import { ensureTeacher } from "@/lib/auth/policies";
 import { filterLearnerVisibleActivities } from "@/lib/learner/visibility";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
+import { invalidateGrammarGuideActivityCache } from "@/lib/grammar-guide-activity";
 import { logger } from "@/lib/shared/logger";
 import { timedQuery } from "@/lib/shared/perf-log";
 
@@ -51,6 +52,9 @@ export async function POST(request: NextRequest) {
                 updatedAt: true,
             },
         });
+
+        // A new guide row can become the canonical match for a cached title.
+        invalidateGrammarGuideActivityCache();
 
         return NextResponse.json(activity);
     } catch (error) {

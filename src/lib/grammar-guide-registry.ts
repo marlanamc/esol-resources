@@ -10,7 +10,7 @@ import type { InteractiveGuideContent } from "@/types/activity";
  * grammar-reader/[slug]/print) lives in @/lib/grammar-content-loader.
  */
 export interface GrammarGuideEntry {
-    /** Activity.title used with getActivityIdSafely(title, "guide", "grammar") */
+    /** Activity.title used with getGrammarGuideActivity(title) */
     activityTitle: string;
     metaTitle: string;
     metaDescription: string;

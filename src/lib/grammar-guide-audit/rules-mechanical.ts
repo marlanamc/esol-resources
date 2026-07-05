@@ -52,7 +52,7 @@ export function runMechanicalRules(guide: LoadedGuide): AuditFinding[] {
                     slug,
                     "activity-title-mismatch",
                     pagePath,
-                    `getActivityIdSafely title "${activityTitle}" does not match course-map title "${scope.title}"`,
+                    `activityTitle "${activityTitle}" does not match course-map title "${scope.title}"`,
                 ),
             );
         }

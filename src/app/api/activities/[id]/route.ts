@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { canManageActivity, ensureTeacher } from "@/lib/auth/policies";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
+import { invalidateGrammarGuideActivityCache } from "@/lib/grammar-guide-activity";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -71,6 +72,9 @@ export async function PUT(request: NextRequest, { params }: Props) {
             },
         });
 
+        // Title/type/category edits can change which row a guide title maps to.
+        invalidateGrammarGuideActivityCache();
+
         return NextResponse.json(activity);
     } catch (error) {
         return handleApiError(error, {
@@ -118,6 +122,8 @@ export async function DELETE(request: NextRequest, { params }: Props) {
             },
             select: { id: true },
         });
+
+        invalidateGrammarGuideActivityCache();
 
         return NextResponse.json({ message: "Activity archived successfully" });
     } catch (error) {

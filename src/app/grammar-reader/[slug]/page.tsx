@@ -1,10 +1,9 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import type { Metadata } from "next";
-import { getActivityIdSafely } from "@/lib/build-helpers";
+import { getGrammarGuideActivity } from "@/lib/grammar-guide-activity";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { notFound, redirect } from "next/navigation";
-import { prisma } from "@/lib/database/prisma";
 import { getGrammarGuide } from "@/lib/grammar-guide-registry";
 
 interface Props {
@@ -29,31 +28,13 @@ export default async function GrammarGuidePage({ params }: Props) {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
 
-    const activityId = await getActivityIdSafely(
-        guide.activityTitle,
-        "guide",
-        "grammar"
-    );
+    const activity = await getGrammarGuideActivity(guide.activityTitle);
 
-    // SECURITY: Block student access to unreleased guides
-    if (session.user.role === "student" && activityId) {
-        let isReleased = false;
-
-        try {
-            const activity = await prisma.activity.findUnique({
-                where: { id: activityId },
-                select: { isReleased: true }
-            });
-            isReleased = activity?.isReleased === true;
-        } catch (error) {
-            // Fail closed for students if release-state lookup fails.
-            console.error(`Release check failed for grammar guide "${slug}"`, error);
-        }
-
-        // `redirect()` throws NEXT_REDIRECT; keep it outside try/catch.
-        if (!isReleased) {
-            redirect("/dashboard");
-        }
+    // SECURITY: Block student access to unreleased guides. A guide with no
+    // activity row (or an unreachable DB) stays viewable, matching the old
+    // id-lookup behavior.
+    if (session.user.role === "student" && activity && !activity.isReleased) {
+        redirect("/dashboard");
     }
 
     const content = await guide.loadContent();
@@ -63,7 +44,7 @@ export default async function GrammarGuidePage({ params }: Props) {
             <GrammarReader
                 content={content}
                 completionKey={slug}
-                activityId={activityId}
+                activityId={activity?.id}
             />
         </div>
     );

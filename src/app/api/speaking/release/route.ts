@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { ApiErrors, apiError } from "@/lib/api/response";
+import { invalidateGrammarGuideActivityCache } from "@/lib/grammar-guide-activity";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -40,6 +41,10 @@ export async function POST(request: Request) {
         data: { isReleased: released },
         select: { id: true },
     });
+
+    // The route doesn't verify the activity type, so a guide row could be
+    // toggled here too — keep the guide lookup cache honest.
+    invalidateGrammarGuideActivityCache();
 
     return NextResponse.json({
         ok: true,

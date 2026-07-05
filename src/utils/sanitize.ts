@@ -18,7 +18,7 @@ const BASE_ALLOWED_TAGS = [
 
 const BASE_ALLOWED_ATTR: Record<string, string[]> = {
     a: ["href", "rel", "target"],
-    img: ["src", "alt", "loading", "width", "height", "decoding", "referrerpolicy"],
+    img: ["src", "srcset", "sizes", "alt", "loading", "width", "height", "decoding", "referrerpolicy"],
     "*": ["class", "colspan", "rowspan"],
 };
 

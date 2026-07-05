@@ -132,23 +132,25 @@ performance levers; these are the additional ones.
    plus queries), so a cross-region setup taxes literally every click.
    Check Vercel project settings → Functions region vs the Prisma
    Postgres region; move the function region if they differ.
-2. **Guide-page TTFB: cache the activity lookup.** The
-   `grammar-reader/[slug]` route serves content that is fully static in
-   `src/content/grammar/*.ts`, but each view pays per-request DB queries
-   (`getActivityIdSafely` title→id, then the release check). Cache the
-   title→id map (it only changes at seed/import time) and the release
-   flags (short TTL, or invalidate when a teacher toggles release) so
-   most guide views hit no DB at all.
+2. **Guide-page TTFB: cache the activity lookup — DONE.** The
+   `grammar-reader/[slug]` route now resolves title→`{ id, isReleased }`
+   via `getGrammarGuideActivity` (`src/lib/grammar-guide-activity.ts`),
+   an `unstable_cache` wrapper (5-min TTL, tag
+   `grammar-guide-activity`), so most guide views hit no DB. The release
+   toggle and activity create/edit/archive routes revalidate the tag;
+   seeds/imports are covered by the TTL. `src/lib/build-helpers.ts`
+   (`getActivityIdSafely`) was folded into the new module.
 3. **CDN cache headers on read-heavy GETs.** The pattern already exists
    (five routes set `Cache-Control`; the leaderboard has a 60s
    server-side cache). Extend `s-maxage` + `stale-while-revalidate` to
    other GETs whose responses are not per-user, so repeat requests are
    served by the Vercel CDN without invoking a function.
-4. **Responsive scene images.** `sceneCard` in the guide content emits
-   `<img>` with a fixed `w=1200` Unsplash URL; phones download
-   desktop-size images rendered at ~360px. Emit `srcset` with 400/800/
-   1200 widths plus `sizes` (Unsplash serves arbitrary `w=` values).
-   `loading="lazy"` is already in place.
+4. **Responsive scene images — DONE.** Every `sceneCard` copy (40 guide
+   content files) now emits `srcset` with 400/800/1200 widths (derived by
+   swapping the Unsplash `w=` param) plus
+   `sizes="(max-width: 640px) 100vw, 800px"`. The HTML sanitizer's `img`
+   allowlist gained `srcset`/`sizes` (with scheme filtering verified by
+   test) so the attributes survive rendering.
 5. **Dashboard shell streaming (larger).** The learner dashboard blocks
    on per-user data before paint. With Next 16 Cache Components/PPR the
    static shell can render instantly while widgets stream in; pairs
