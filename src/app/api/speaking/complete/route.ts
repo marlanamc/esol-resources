@@ -4,7 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { applyAwardChain } from '@/lib/gamification-award-chain';
 import { normalizeAssignmentId } from '@/lib/assignment-scope';
-import { acquireUserActivityScopeLock } from '@/lib/db-locks';
+import { acquireUserActivityScopeLock } from '@/lib/database/locks';
 import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
 
 export async function POST(request: NextRequest) {

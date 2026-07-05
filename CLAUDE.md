@@ -289,7 +289,6 @@ Many flat files in `src/lib/` are backward-compat re-exports. Prefer importing f
 | `@/lib/roles` | `@/lib/auth/roles` |
 | `@/lib/prisma` | `@/lib/database/prisma` |
 | `@/lib/prisma-retry` | `@/lib/database/retry` |
-| `@/lib/db-locks` | `@/lib/database/locks` |
 | `@/lib/gamification` | `@/lib/gamification/gamification` |
 | `@/lib/gamification-award-chain` | `@/lib/gamification/award-chain` |
 | `@/lib/learner-theme` | `@/lib/learner/theme` |
@@ -298,18 +297,12 @@ Many flat files in `src/lib/` are backward-compat re-exports. Prefer importing f
 | `@/lib/api-response` | `@/lib/api/response` |
 | `@/lib/api-schemas` | `@/lib/api/schemas` |
 | `@/lib/rate-limit` | `@/lib/api/rate-limit` |
-| `@/lib/request-logging` | `@/lib/api/request-logging` |
-| `@/lib/validators` | `@/lib/shared/validators` |
-| `@/lib/env` | `@/lib/shared/env` |
 | `@/lib/logger` | `@/lib/shared/logger` |
 | `@/lib/perf-log` | `@/lib/shared/perf-log` |
 | `@/lib/audit-log` | `@/lib/shared/audit-log` |
 | `@/lib/vocab-display` | `@/lib/vocab/display` |
 | `@/lib/vocab-review` | `@/lib/vocab/review` |
-| `@/lib/vocab-parser` | `@/lib/vocab/parser` |
 | `@/lib/vocab-review-sources` | `@/lib/vocab/sources` |
-| `@/lib/fsrs-algorithm` | `@/lib/vocab/fsrs` |
-| `@/lib/verb-definitions` | `@/lib/verbs/definitions` |
 | `@/lib/gerund-infinitive-progress` | `@/lib/verbs/gerund-infinitive-progress` |
 | `@/lib/irregular-verbs-progress` | `@/lib/verbs/irregular-progress` |
 

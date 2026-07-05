@@ -1,5 +1,5 @@
 import { parseActivityContent, type InteractiveGuideContent, type QuizContent, type SpeakingActivityContent, type VocabularyContent } from "@/types/activity";
-import { parseFlashcards, parsePlainVocabulary } from "@/lib/vocab-parser";
+import { parseFlashcards, parsePlainVocabulary } from "@/lib/vocab/parser";
 
 type PreviewActivity = {
     title: string;

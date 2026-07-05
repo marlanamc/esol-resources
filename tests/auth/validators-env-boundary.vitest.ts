@@ -4,8 +4,8 @@ import {
   validateClassCode,
   validatePassword,
   validateProgress,
-} from "@/lib/validators";
-import { buildEnvVarConfig, getAppBaseUrl, validateEnv } from "@/lib/env";
+} from "@/lib/shared/validators";
+import { buildEnvVarConfig, getAppBaseUrl, validateEnv } from "@/lib/shared/env";
 
 function withEnv(overrides: Record<string, string | undefined>, fn: () => void) {
   const previous: Record<string, string | undefined> = {};

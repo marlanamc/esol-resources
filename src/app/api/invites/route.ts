@@ -9,7 +9,7 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { ApiErrors, apiSuccess, handleApiError } from '@/lib/api-response';
 import { generateInviteCode } from '@/lib/invite-code';
-import { getAppBaseUrl } from '@/lib/env';
+import { getAppBaseUrl } from '@/lib/shared/env';
 
 /**
  * GET /api/invites

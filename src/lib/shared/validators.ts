@@ -3,7 +3,7 @@
  * Provides type-safe validation with clear error messages
  *
  * Usage:
- * import { validateUserId, validateProgress } from '@/lib/validators';
+ * import { validateUserId, validateProgress } from '@/lib/shared/validators';
  * const validatedId = validateUserId(input);
  * const validatedProgress = validateProgress(input);
  */

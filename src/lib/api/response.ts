@@ -10,7 +10,7 @@
 
 import { NextResponse } from 'next/server';
 import * as Sentry from '@sentry/nextjs';
-import { ValidationError } from '@/lib/validators';
+import { ValidationError } from '@/lib/shared/validators';
 import { logger } from '@/lib/logger';
 
 /**

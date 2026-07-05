@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { VerbQuizContent, VerbQuizSubmission } from '@/types/verb-quiz';
 import { CheckCircle2, XCircle, Trophy, RotateCcw, Star } from 'lucide-react';
-import { getVerbDefinition } from '@/lib/verb-definitions';
+import { getVerbDefinition } from '@/lib/verbs/definitions';
 import { CourseMapReturnButton } from '@/components/navigation/CourseMapReturnButton';
 
 interface VerbQuizResultsProps {

@@ -6,7 +6,7 @@ import { ActivitySubmitBodySchema, parseApiBody } from "@/lib/api-schemas";
 import { calculateQuizPoints, getActivityPoints } from "@/lib/gamification";
 import { claimSubmissionPointsOnce } from "@/lib/submission-points-award";
 import { applyAwardChain } from "@/lib/gamification-award-chain";
-import { acquireUserActivityScopeLock } from "@/lib/db-locks";
+import { acquireUserActivityScopeLock } from "@/lib/database/locks";
 import { normalizeAssignmentId } from "@/lib/assignment-scope";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
 import { logger } from "@/lib/logger";

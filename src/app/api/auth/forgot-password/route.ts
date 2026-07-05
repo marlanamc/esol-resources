@@ -10,7 +10,7 @@ import { sendEmail, generatePasswordResetEmail } from '@/lib/email';
 import { logger } from '@/lib/logger';
 import { headers } from 'next/headers';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
-import { getAppBaseUrl } from '@/lib/env';
+import { getAppBaseUrl } from '@/lib/shared/env';
 
 interface ForgotPasswordRequest {
     email: string;

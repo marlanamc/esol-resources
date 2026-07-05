@@ -10,7 +10,7 @@ const MatchingGame = dynamic(() => import("@/components/games/MatchingGame"));
 const FillInBlankGame = dynamic(() => import("@/components/games/FillInBlankGame"));
 import { BackButton } from "@/components/ui/BackButton";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
-import { parseFlashcards, parsePlainVocabulary } from "@/lib/vocab-parser";
+import { parseFlashcards, parsePlainVocabulary } from "@/lib/vocab/parser";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { parseCategoryData } from "@/lib/categoryData";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";

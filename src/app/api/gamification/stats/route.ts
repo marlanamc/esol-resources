@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { requireAuth } from '@/lib/api-auth';
-import { withRequestLogging } from '@/lib/request-logging';
+import { withRequestLogging } from '@/lib/api/request-logging';
 import { getUserGamificationStats } from '@/lib/gamification';
 import { ApiErrors, handleApiError } from '@/lib/api-response';
 
