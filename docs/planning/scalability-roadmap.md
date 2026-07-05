@@ -7,16 +7,13 @@ library SQL counts, activity-report groupBy aggregation, leaderboard caching,
 pluggable rate-limit store). The items below are larger refactors, ordered
 roughly by impact.
 
-## 1. Grammar-reader route consolidation
+## 1. Grammar-reader route consolidation — DONE (dual source remains)
 
-`src/app/grammar-reader/` contains ~74 near-identical `page.tsx` files
-(~47 lines each, ~3,500 LOC total) that differ only in the content import,
-title, and `completionKey`. Collapse into a single `grammar-reader/[slug]`
-dynamic route backed by a content registry module that maps slug →
-`{ content, title, completionKey }`.
+The ~74 near-identical `page.tsx` files were collapsed into a single
+`grammar-reader/[slug]` dynamic route backed by a content registry.
 
-Prerequisite: resolve the **dual source of truth** — grammar content modules
-in `src/content/grammar/*.ts` are imported directly by reader pages *and*
+Remaining: resolve the **dual source of truth** — grammar content modules
+in `src/content/grammar/*.ts` are imported directly by the reader route *and*
 seeded into Postgres (`prisma/seed-grammar-only.ts`). Pick one canonical
 store (TS modules or DB) so the two copies cannot drift.
 
@@ -59,14 +56,12 @@ Cutover steps (requires a Vercel Blob store):
    `git filter-repo` to shrink `.git` (~33MB) — rewrites history for all
    clones, so do it deliberately.
 
-## 4. Shim codemod
+## 4. Shim codemod — DONE
 
-~25 flat `src/lib/*.ts` backward-compat shims remain (e.g. `@/lib/prisma`
-with 194 importers, `@/lib/auth` with 191), plus 21 one-line re-export stubs
-at `src/components/*.ts`. One mechanical find-and-replace pass per shim,
-gated by `npm run typecheck`, then delete the shims and the CLAUDE.md table.
-Note: some tests `vi.mock("@/lib/rate-limit")` and similar shim paths —
-update mocks in the same pass.
+All flat `src/lib/*.ts` backward-compat shims and the `src/components/*.ts`
+re-export stubs were removed via a repo-wide codemod; imports now use the
+canonical domain paths and the CLAUDE.md shim table was replaced with a
+one-line rule.
 
 ## 5. Type god-modules — DONE
 
@@ -113,13 +108,59 @@ the coverage run). Remaining: group seed/import scripts behind a small
 CLI (`tsx scripts/run.ts <task>`) if the `db:seed:*`/`import:*` families
 keep growing.
 
-## 11. Smaller follow-ups
+## 11. Prisma 7 upgrade (deferred July 2026)
+
+Prisma CLI/client are on 6.19.x; 7.x is out (7.8.0 as of July 2026).
+Deliberately deferred before the summer break — it is a real migration,
+not a version bump: new `prisma.config.ts` config file (no automatic
+`.env` loading), new `prisma-client` generator with changed import paths,
+and a required driver adapter (`@prisma/adapter-pg`) that touches
+`src/lib/database/prisma.ts`, every seed/import script, `ci:db:prepare`,
+and the Vercel build. Do it as a dedicated task in the fall with the full
+health gate plus a watched deploy. Prisma 6.x remains supported meanwhile;
+`npm audit` is clean on it.
+
+## 12. Lightning-fast follow-ups (performance, July 2026)
+
+Ordered by expected impact per hour of work. Items 6 (shared client
+data-fetching) and 7 (`Activity.content` → jsonb) above are also
+performance levers; these are the additional ones.
+
+1. **Region colocation check (one-time, ~15 min).** Verify the Vercel
+   function region sits next to the database region (db.prisma.io).
+   Every API request pays that round-trip several times (session lookup
+   plus queries), so a cross-region setup taxes literally every click.
+   Check Vercel project settings → Functions region vs the Prisma
+   Postgres region; move the function region if they differ.
+2. **Guide-page TTFB: cache the activity lookup.** The
+   `grammar-reader/[slug]` route serves content that is fully static in
+   `src/content/grammar/*.ts`, but each view pays per-request DB queries
+   (`getActivityIdSafely` title→id, then the release check). Cache the
+   title→id map (it only changes at seed/import time) and the release
+   flags (short TTL, or invalidate when a teacher toggles release) so
+   most guide views hit no DB at all.
+3. **CDN cache headers on read-heavy GETs.** The pattern already exists
+   (five routes set `Cache-Control`; the leaderboard has a 60s
+   server-side cache). Extend `s-maxage` + `stale-while-revalidate` to
+   other GETs whose responses are not per-user, so repeat requests are
+   served by the Vercel CDN without invoking a function.
+4. **Responsive scene images.** `sceneCard` in the guide content emits
+   `<img>` with a fixed `w=1200` Unsplash URL; phones download
+   desktop-size images rendered at ~360px. Emit `srcset` with 400/800/
+   1200 widths plus `sizes` (Unsplash serves arbitrary `w=` values).
+   `loading="lazy"` is already in place.
+5. **Dashboard shell streaming (larger).** The learner dashboard blocks
+   on per-user data before paint. With Next 16 Cache Components/PPR the
+   static shell can render instantly while widgets stream in; pairs
+   naturally with item 6's fetch dedup.
+
+## 13. Smaller follow-ups
 
 - Paginate `/api/vocab/library` for `topic=all` responses as the card
   catalog grows.
-- `send-vocab-reminders` cron: filter already-notified/completed users in
-  the subscription query (`notIn`) instead of loading all student
-  subscriptions and filtering in JS.
+- ~~`send-vocab-reminders` cron: filter already-notified/completed users in
+  the subscription query~~ — DONE (SQL-filtered query sends one reminder
+  per student).
 - Split `src/app/api/activity/progress/route.ts` (764 lines multiplexing
   vocab/grammar/course-map progress) into per-domain handlers or a
   dispatcher with small strategy modules.
