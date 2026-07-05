@@ -5,7 +5,6 @@ import { requireAuth } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
 import { VOCAB_LIBRARY_TOPICS } from "@/lib/vocab/library-topics";
 import {
-  filterVocabLibraryCards,
   parseVocabLibrarySort,
   resolveVocabLibraryTopicSlug,
   sortVocabLibraryCards,
@@ -34,32 +33,35 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const allCards = await prisma.vocabCard.findMany({
-      select: {
-        id: true,
-        term: true,
-        definition: true,
-        example: true,
-        pos: true,
-        audioPath: true,
-        topics: true,
-        sortOrder: true,
-      },
-      orderBy: { sortOrder: "asc" },
-    });
+    const [cards, totalCount, topicCounts] = await Promise.all([
+      prisma.vocabCard.findMany({
+        where: selectedSlug ? { topics: { has: selectedSlug } } : {},
+        select: {
+          id: true,
+          term: true,
+          definition: true,
+          example: true,
+          pos: true,
+          audioPath: true,
+          topics: true,
+          sortOrder: true,
+        },
+        orderBy: { sortOrder: "asc" },
+      }),
+      prisma.vocabCard.count(),
+      Promise.all(
+        VOCAB_LIBRARY_TOPICS.map((t) =>
+          prisma.vocabCard.count({ where: { topics: { has: t.slug } } })
+        )
+      ),
+    ]);
 
     const counts: Record<string, number> = {};
-    for (const t of VOCAB_LIBRARY_TOPICS) counts[t.slug] = 0;
-    for (const card of allCards) {
-      for (const t of card.topics) {
-        if (counts[t] !== undefined) counts[t]++;
-      }
-    }
+    VOCAB_LIBRARY_TOPICS.forEach((t, i) => {
+      counts[t.slug] = topicCounts[i] ?? 0;
+    });
 
-    const words = sortVocabLibraryCards(
-      filterVocabLibraryCards(allCards, selectedSlug),
-      sort
-    ).map((c) => ({
+    const words = sortVocabLibraryCards(cards, sort).map((c) => ({
       id: c.id,
       term: c.term,
       definition: c.definition,
@@ -74,7 +76,7 @@ export async function GET(request: NextRequest) {
         ...t,
         count: counts[t.slug] ?? 0,
       })),
-      totalCount: allCards.length,
+      totalCount,
       selectedTopic: selectedSlug ?? (topicParam === "all" || !topicParam ? "all" : null),
       sort,
       words,
