@@ -20,7 +20,7 @@ in `src/content/grammar/*.ts` are imported directly by reader pages *and*
 seeded into Postgres (`prisma/seed-grammar-only.ts`). Pick one canonical
 store (TS modules or DB) so the two copies cannot drift.
 
-## 2. GameShell extraction + game code-splitting
+## 2. GameShell extraction
 
 The 17 game components under `src/components/games/` each hand-roll their
 own state machine, grading, score tracking, and celebration flow (grading
@@ -28,10 +28,12 @@ logic repeated across ~51 files; framer-motion celebration boilerplate in
 ~96 places). Extract a shared `GameShell` (score + progress + results +
 celebration) and a `useGameState` reducer; migrate games incrementally.
 
-Independently valuable: code-split the 25-case switch in
-`src/components/renderers/ActivityRenderer.tsx` with `next/dynamic` so each
-game loads on demand. framer-motion is imported by ~117 client components;
-splitting at the renderer boundary is the single biggest client-bundle win.
+Note: game code-splitting is already in place — every game/activity
+component in `src/components/renderers/ActivityRenderer.tsx` is loaded via
+`next/dynamic` with a shared loading fallback, and remaining static game
+imports are per-route pages that Next splits on its own. (The unused
+`src/components/games/index.ts` barrel, which would have defeated the
+splitting if imported, was removed.)
 
 ## 3. Move generated audio out of git
 
