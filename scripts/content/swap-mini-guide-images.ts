@@ -212,6 +212,20 @@ const SWAP_TARGETS: SwapTarget[] = [
     query: "person laptop coffee kitchen table morning",
   },
 
+  // ── duplicate-unsplash-id fixes (audit:mini-guides gate) ──────────────
+  // Each pair shared one photo across two guides; the scene whose caption fit
+  // the shared photo worse gets a fresh image.
+  {
+    sceneId: "clinicSign",
+    file: "medical-instructions-images.generated.ts",
+    query: "clinic entrance sign medical office building door",
+  },
+  {
+    sceneId: "sceneJobApplication",
+    file: "present-perfect-how-long-images.generated.ts",
+    query: "office desk job application form paperwork pen writing",
+  },
+
   // ── your-week-in-english ──────────────────────────────────────────────
   {
     sceneId: "sceneAfterClass",
@@ -381,6 +395,20 @@ function collectUsedIds(content: string): Set<string> {
   return ids;
 }
 
+/**
+ * The audit gates duplicate unsplashIds ACROSS guides, so query-based swaps must
+ * avoid ids used in any generated image module, not just the file being patched.
+ */
+function collectUsedIdsAcrossDataDir(): Set<string> {
+  const ids = new Set<string>();
+  for (const f of fs.readdirSync(DATA_DIR)) {
+    if (!f.endsWith("-images.generated.ts")) continue;
+    const content = fs.readFileSync(path.join(DATA_DIR, f), "utf-8");
+    for (const id of collectUsedIds(content)) ids.add(id);
+  }
+  return ids;
+}
+
 function patchScene(
   content: string,
   sceneId: string,
@@ -468,7 +496,7 @@ async function main(): Promise<void> {
     }
 
     let content = fs.readFileSync(filePath, "utf-8");
-    const usedIds = collectUsedIds(content);
+    const usedIds = collectUsedIdsAcrossDataDir();
 
     console.log(`\n[${fileIdx}/${byFile.size}] ${filename} (${scenes.length} scene(s))`);
 

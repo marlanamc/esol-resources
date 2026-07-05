@@ -62,14 +62,11 @@ export const medicalInstructionsImages: Record<string, MedicalSceneImage> = {
     },
   },
   clinicSign: {
-    url: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80&auto=format&fit=crop",
-    alt: "A wayfinding sign outside a clinic entrance.",
-    unsplashId: "nMyM7fxpokE",
-    unsplashPage: "https://unsplash.com/photos/white-concrete-counter-stand-nMyM7fxpokE",
-    credit: {
-      name: "Martha Dominguez de Gouveia",
-      url: "https://unsplash.com/@m_dominguez_marketing",
-    },
+    url: "https://images.unsplash.com/photo-1770775776141-6b3ac7ef9dd3?w=1200&q=80&auto=format&fit=crop",
+    alt: "Migration health assessment centre sign on wall.",
+    unsplashId: "PfXhYHaVR7c",
+    unsplashPage: "https://unsplash.com/photos/migration-health-assessment-centre-sign-on-wall-PfXhYHaVR7c",
+    credit: { name: "Long C. Vu", url: "https://unsplash.com/@vclong2003" },
   },
   nurseInstructions: {
     url: "https://images.unsplash.com/photo-1673865641073-4479f93a7776?w=1200&q=80&auto=format&fit=crop",

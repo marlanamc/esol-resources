@@ -26,10 +26,10 @@ export const presentPerfectHowLongImages: Record<
     credit: { name: "Unsplash", url: "https://unsplash.com" },
   },
   sceneJobApplication: {
-    url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80&auto=format&fit=crop",
-    alt: "A hand writing on a paper application form at a desk.",
-    unsplashId: "OQMZwNd3ThU",
-    credit: { name: "Scott Graham", url: "https://unsplash.com/@amstram" },
+    url: "https://images.unsplash.com/photo-1760024354746-85e3b40f2e83?w=1200&q=80&auto=format&fit=crop",
+    alt: "Woman with purple hair talking on phone at desk.",
+    unsplashId: "JQvw5aRFeUw",
+    credit: { name: "Abolfazl Pahlavan", url: "https://unsplash.com/@ardeshir_ref" },
   },
   sceneInterview: {
     url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80&auto=format&fit=crop",
