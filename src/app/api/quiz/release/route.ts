@@ -62,31 +62,32 @@ export async function POST(request: Request) {
 
             const dueDate = parseDateOnly(content.due_date);
 
-            // Create calendar events for each class
-            for (const classItem of classes) {
-                // Check if calendar event already exists for this quiz and class
-                const existingEvent = await prisma.calendarEvent.findFirst({
-                    where: {
-                        classId: classItem.id,
-                        title: activity.title,
-                        type: 'quiz',
-                        date: dueDate
-                    }
-                });
+            // Create calendar events for classes that don't already have one
+            const existingEvents = await prisma.calendarEvent.findMany({
+                where: {
+                    classId: { in: classes.map((c) => c.id) },
+                    title: activity.title,
+                    type: 'quiz',
+                    date: dueDate
+                },
+                select: { classId: true }
+            });
+            const classIdsWithEvent = new Set(existingEvents.map((e) => e.classId));
+            const missingClassIds = classes
+                .map((c) => c.id)
+                .filter((id) => !classIdsWithEvent.has(id));
 
-                // Only create if it doesn't already exist
-                if (!existingEvent) {
-                    await prisma.calendarEvent.create({
-                        data: {
-                            classId: classItem.id,
-                            title: activity.title,
-                            description: `Verb quiz due date`,
-                            date: dueDate,
-                            type: 'quiz',
-                            createdById: userId
-                        }
-                    });
-                }
+            if (missingClassIds.length > 0) {
+                await prisma.calendarEvent.createMany({
+                    data: missingClassIds.map((classId) => ({
+                        classId,
+                        title: activity.title,
+                        description: `Verb quiz due date`,
+                        date: dueDate,
+                        type: 'quiz',
+                        createdById: userId
+                    }))
+                });
             }
         } catch (error) {
             logger.error('Error creating calendar events for verb quiz', error);
