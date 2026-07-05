@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   resolveFinalProgressState,
   shouldAwardProgressPoints,
-} from "@/app/api/activity/progress/route";
+} from "@/lib/activity/progress";
 
 describe("activity progress points gating", () => {
   it("vocab type completion awards once", () => {

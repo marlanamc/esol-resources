@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import { buildVocabReviewSeedCards } from "@/lib/vocab/review";
 import {
   buildVocabLibraryHref,
+  computeVocabLibraryPageMeta,
   filterVocabLibraryCards,
+  paginateVocabLibraryCards,
   parseVocabLibrarySort,
   resolveVocabLibraryTopicSlug,
   sortVocabLibraryCards,
@@ -74,6 +76,34 @@ describe("parseVocabLibrarySort and buildVocabLibraryHref", () => {
     expect(buildVocabLibraryHref({ topic: "health", sort: "alpha" })).toBe(
       "/dashboard/vocab-library?topic=health&sort=alpha"
     );
+    expect(buildVocabLibraryHref({ sort: "alpha", page: 2 })).toBe(
+      "/dashboard/vocab-library?sort=alpha&page=2"
+    );
+  });
+});
+
+describe("computeVocabLibraryPageMeta and paginateVocabLibraryCards", () => {
+  it("computes page metadata from total count", () => {
+    expect(computeVocabLibraryPageMeta(100, 1, 48)).toEqual({
+      page: 1,
+      limit: 48,
+      totalCount: 100,
+      totalPages: 3,
+      hasMore: true,
+    });
+    expect(computeVocabLibraryPageMeta(100, 99, 48).page).toBe(3);
+  });
+
+  it("slices in-memory card lists", () => {
+    const cards = Array.from({ length: 5 }, (_, i) => ({ term: `word-${i}` }));
+    expect(paginateVocabLibraryCards(cards, 2, 2)).toEqual({
+      items: [{ term: "word-2" }, { term: "word-3" }],
+      page: 2,
+      limit: 2,
+      totalCount: 5,
+      totalPages: 3,
+      hasMore: true,
+    });
   });
 });
 

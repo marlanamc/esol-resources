@@ -66,26 +66,27 @@ After seeding, you can log in with the usernames below and the password you set 
 
 ```
 ├── src/
-│   ├── app/
-│   │   ├── dashboard/         # Dashboard pages (teacher/student)
-│   │   │   └── leaderboard/   # Weekly leaderboard page
-│   │   ├── activity/          # Activity viewing pages
-│   │   └── api/               # API routes
-│   │       └── gamification/  # Points, streaks, achievements
-│   ├── components/
-│   │   ├── ui/                # Reusable UI components (Button, Card, Badge, etc.)
-│   │   └── icons/             # SVG icon components
-│   └── lib/
-│       ├── auth.ts            # NextAuth configuration
-│       ├── prisma.ts          # Prisma client
-│       └── gamification.ts    # Points, streaks, achievements logic
-├── prisma/
-│   ├── schema.prisma          # Database schema (includes gamification)
-│   ├── seed.js                # Database seed script
-│   └── seed-achievements.ts   # Achievement seed script
-└── public/
-    └── manifest.json          # PWA manifest for mobile
+│   ├── app/                   # Next.js App Router (pages + API routes)
+│   │   ├── dashboard/         # Learner & teacher dashboards
+│   │   ├── grammar-reader/    # Dynamic grammar guide routes
+│   │   └── api/               # REST handlers (activities, gamification, …)
+│   ├── components/            # UI by domain (dashboard, games, grammar-reader, …)
+│   ├── content/               # Authoring source (grammar guides, speaking warmups)
+│   ├── hooks/                 # Client state hooks (games, dashboard)
+│   ├── lib/                   # Domain logic (auth, gamification, learner, vocab, …)
+│   ├── types/                 # Shared TypeScript types (activity, parts-of-speech)
+│   └── utils/                 # Pure helpers (sanitize, markdown, …)
+├── prisma/                    # Schema, migrations, seed scripts
+├── scripts/                   # Imports, audits, content generation (see scripts/README.md)
+├── tests/                     # Vitest + Playwright (mirrors src domains)
+├── docs/                      # Specs, planning, audits (see docs/README.md)
+├── public/                    # Static assets (audio, images, PWA sw.js)
+├── _legacy/                   # Legacy HTML guides (legacy-guide API)
+├── class_uploads/             # Teacher handouts (objectives tracked in git)
+└── worksheets/                # Printable worksheet HTML by topic
 ```
+
+Key entry points: [`CLAUDE.md`](CLAUDE.md) (dev/agent reference), [`docs/README.md`](docs/README.md) (doc index), [`docs/planning/scalability-roadmap.md`](docs/planning/scalability-roadmap.md) (refactor backlog).
 
 ## Database Schema
 
@@ -132,6 +133,7 @@ npm run test:e2e:mobile
 ## Development
 
 ### Architecture & Safety Docs
+- [`docs/README.md`](docs/README.md) - Documentation index
 - [`docs/SECTIONS_AND_AUTH_GUARDRAILS.md`](docs/SECTIONS_AND_AUTH_GUARDRAILS.md) - Section sync, leaderboard scoping, and authorization guardrails
 - [`docs/CHANGELOG_SAFETY.md`](docs/CHANGELOG_SAFETY.md) - Risk log template and rollback notes for high-impact changes
 - [`docs/MAINTENANCE_DASHBOARD.md`](docs/MAINTENANCE_DASHBOARD.md) - Health gate, current cleanup targets, debt buckets, and weekly/monthly operating cadence

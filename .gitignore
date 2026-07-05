@@ -115,6 +115,17 @@ vocab-comparison.md
 # personal lesson-plan drafts (kept local, not version-controlled)
 /docs/lesson-plans/
 
+# historical research (optional local copy; canonical path is docs/archive/)
+deep-research-report.md
+/docs/deep-research-report.md
+
+# generated audit reports (regenerate with npm run audit:* — see docs/audits/README.md)
+/docs/audits/grammar-dark-mode-sweep.md
+/docs/audits/mini-guides-w*-review.md
+/docs/audits/answer-integrity-audit.md
+/docs/audits/holiday-reference-audit.md
+/docs/audits/mini-quiz-quality*.md
+
 # dashboard experiments (temporary)
 /src/app/dashboardv2/
 /src/app/dashboardv3/

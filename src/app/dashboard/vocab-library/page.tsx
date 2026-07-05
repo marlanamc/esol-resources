@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import Link from "next/link";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import {
@@ -10,7 +10,9 @@ import {
 } from "@/lib/vocab/library-topics";
 import {
   buildVocabLibraryHref,
-  filterVocabLibraryCards,
+  computeVocabLibraryPageMeta,
+  parseVocabLibraryLimit,
+  parseVocabLibraryPage,
   parseVocabLibrarySort,
   resolveVocabLibraryTopicSlug,
   sortVocabLibraryCards,
@@ -23,8 +25,18 @@ import { VocabLibraryWordCard } from "@/components/vocab-library/VocabLibraryWor
 import { hasVocabAudioFile } from "@/lib/vocab-audio-available";
 
 type PageProps = {
-  searchParams: Promise<{ topic?: string; sort?: string }>;
+  searchParams: Promise<{ topic?: string; sort?: string; page?: string; limit?: string }>;
 };
+
+const CARD_SELECT = {
+  id: true,
+  term: true,
+  definition: true,
+  example: true,
+  pos: true,
+  topics: true,
+  sortOrder: true,
+} as const;
 
 export default async function VocabLibraryPage({ searchParams }: PageProps) {
   const session = await getServerSession(authOptions);
@@ -32,43 +44,59 @@ export default async function VocabLibraryPage({ searchParams }: PageProps) {
     redirect("/login");
   }
 
-  const { topic: rawTopic, sort: rawSort } = await searchParams;
+  const { topic: rawTopic, sort: rawSort, page: rawPage, limit: rawLimit } =
+    await searchParams;
   const selectedSlug = resolveVocabLibraryTopicSlug(rawTopic);
   const selectedTopic = selectedSlug ? getVocabLibraryTopic(selectedSlug) : null;
   const sort = parseVocabLibrarySort(rawSort);
+  const page = parseVocabLibraryPage(rawPage);
+  const limit = parseVocabLibraryLimit(rawLimit);
   const isAllView = !selectedSlug;
 
-  const allCards = await prisma.vocabCard.findMany({
-    select: {
-      id: true,
-      term: true,
-      definition: true,
-      example: true,
-      pos: true,
-      topics: true,
-      sortOrder: true,
-    },
-    orderBy: { sortOrder: "asc" },
-  });
+  const [totalCount, topicCounts] = await Promise.all([
+    prisma.vocabCard.count(),
+    Promise.all(
+      VOCAB_LIBRARY_TOPICS.map((t) =>
+        prisma.vocabCard.count({ where: { topics: { has: t.slug } } })
+      )
+    ),
+  ]);
 
   const counts: Record<string, number> = {};
   for (const t of VOCAB_LIBRARY_TOPICS) counts[t.slug] = 0;
-  for (const card of allCards) {
-    for (const t of card.topics) {
-      if (counts[t] !== undefined) counts[t]++;
-    }
-  }
+  VOCAB_LIBRARY_TOPICS.forEach((t, i) => {
+    counts[t.slug] = topicCounts[i] ?? 0;
+  });
 
-  const visibleWords = sortVocabLibraryCards(
-    filterVocabLibraryCards(allCards, selectedSlug),
-    sort
-  );
+  let visibleWords;
+  let pagination: ReturnType<typeof computeVocabLibraryPageMeta> | null = null;
+
+  if (isAllView) {
+    pagination = computeVocabLibraryPageMeta(totalCount, page, limit);
+    visibleWords = await prisma.vocabCard.findMany({
+      select: CARD_SELECT,
+      orderBy: sort === "alpha" ? { term: "asc" } : { sortOrder: "asc" },
+      skip: (pagination.page - 1) * pagination.limit,
+      take: pagination.limit,
+    });
+  } else {
+    const cards = await prisma.vocabCard.findMany({
+      where: { topics: { has: selectedSlug } },
+      select: CARD_SELECT,
+      orderBy: { sortOrder: "asc" },
+    });
+    visibleWords = sortVocabLibraryCards(cards, sort);
+  }
 
   const sectionLabel = isAllView
     ? "All topics"
     : selectedTopic
       ? `Words tagged ${selectedTopic.label}`
       : "Vocabulary";
+
+  const wordCountLabel = isAllView && pagination
+    ? `${visibleWords.length} of ${pagination.totalCount} words`
+    : `${visibleWords.length} word${visibleWords.length === 1 ? "" : "s"}`;
 
   return (
     <main
@@ -96,7 +124,7 @@ export default async function VocabLibraryPage({ searchParams }: PageProps) {
               href={buildTopicChipHref(null, sort)}
               isActive={isAllView}
               label="All"
-              count={allCards.length}
+              count={totalCount}
             />
             {VOCAB_LIBRARY_TOPICS.map((t) => (
               <VocabLibraryTopicChip
@@ -126,9 +154,7 @@ export default async function VocabLibraryPage({ searchParams }: PageProps) {
               <h2 className="font-display text-lg font-semibold text-text sm:text-xl">
                 All words
               </h2>
-              <p className="text-xs text-text/60 sm:hidden">
-                {visibleWords.length} words
-              </p>
+              <p className="text-xs text-text/60 sm:hidden">{wordCountLabel}</p>
             </div>
           )}
 
@@ -142,6 +168,7 @@ export default async function VocabLibraryPage({ searchParams }: PageProps) {
                 href={buildVocabLibraryHref({
                   topic: selectedSlug ?? undefined,
                   sort: "curriculum",
+                  page: isAllView ? page : undefined,
                 })}
                 aria-current={sort === "curriculum" ? "true" : undefined}
                 className={`rounded-full px-2.5 py-1.5 text-xs font-medium transition-colors sm:px-3 ${
@@ -157,6 +184,7 @@ export default async function VocabLibraryPage({ searchParams }: PageProps) {
                 href={buildVocabLibraryHref({
                   topic: selectedSlug ?? undefined,
                   sort: "alpha",
+                  page: isAllView ? page : undefined,
                 })}
                 aria-current={sort === "alpha" ? "true" : undefined}
                 className={`rounded-full px-2.5 py-1.5 text-xs font-medium transition-colors sm:px-3 ${
@@ -168,9 +196,7 @@ export default async function VocabLibraryPage({ searchParams }: PageProps) {
                 A–Z
               </Link>
             </div>
-            <p className="hidden text-sm text-text/60 sm:block">
-              {visibleWords.length} word{visibleWords.length === 1 ? "" : "s"}
-            </p>
+            <p className="hidden text-sm text-text/60 sm:block">{wordCountLabel}</p>
           </div>
         </div>
 
@@ -181,28 +207,67 @@ export default async function VocabLibraryPage({ searchParams }: PageProps) {
               : "No vocabulary words in the library yet."}
           </div>
         ) : (
-          <ul className="grid grid-cols-1 gap-3 p-3 md:grid-cols-2 md:gap-6 md:p-0">
-            {visibleWords.map((word, index) => {
-              const topicLinks = word.topics
-                .filter((t) => t !== selectedSlug && isVocabLibraryTopicSlug(t))
-                .map((t) => getVocabLibraryTopic(t))
-                .filter((t): t is NonNullable<typeof t> => t !== null);
+          <>
+            <ul className="grid grid-cols-1 gap-3 p-3 md:grid-cols-2 md:gap-6 md:p-0">
+              {visibleWords.map((word, index) => {
+                const topicLinks = word.topics
+                  .filter((t) => t !== selectedSlug && isVocabLibraryTopicSlug(t))
+                  .map((t) => getVocabLibraryTopic(t))
+                  .filter((t): t is NonNullable<typeof t> => t !== null);
 
-              return (
-                <VocabLibraryWordCard
-                  key={word.id}
-                  index={index}
-                  term={word.term}
-                  definition={word.definition}
-                  example={word.example}
-                  pos={word.pos}
-                  hasAudio={hasVocabAudioFile(word.term)}
-                  topicLinks={topicLinks}
-                  sort={sort}
-                />
-              );
-            })}
-          </ul>
+                return (
+                  <VocabLibraryWordCard
+                    key={word.id}
+                    index={index}
+                    term={word.term}
+                    definition={word.definition}
+                    example={word.example}
+                    pos={word.pos}
+                    hasAudio={hasVocabAudioFile(word.term)}
+                    topicLinks={topicLinks}
+                    sort={sort}
+                  />
+                );
+              })}
+            </ul>
+
+            {pagination && pagination.totalPages > 1 ? (
+              <nav
+                aria-label="Word pages"
+                className="flex items-center justify-between gap-3 border-t border-[var(--dashboard-border)]/60 pt-4"
+              >
+                {pagination.page > 1 ? (
+                  <Link
+                    href={buildVocabLibraryHref({
+                      sort,
+                      page: pagination.page - 1,
+                    })}
+                    className="rounded-full border border-[var(--dashboard-border)] px-4 py-2 text-sm font-medium text-text/80 transition-colors hover:bg-[var(--dashboard-surface-start)]"
+                  >
+                    Previous
+                  </Link>
+                ) : (
+                  <span />
+                )}
+                <p className="text-sm text-text/60">
+                  Page {pagination.page} of {pagination.totalPages}
+                </p>
+                {pagination.hasMore ? (
+                  <Link
+                    href={buildVocabLibraryHref({
+                      sort,
+                      page: pagination.page + 1,
+                    })}
+                    className="rounded-full border border-[var(--dashboard-border)] px-4 py-2 text-sm font-medium text-text/80 transition-colors hover:bg-[var(--dashboard-surface-start)]"
+                  >
+                    Next
+                  </Link>
+                ) : (
+                  <span />
+                )}
+              </nav>
+            ) : null}
+          </>
         )}
       </section>
     </main>

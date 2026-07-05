@@ -14,6 +14,7 @@ export default defineConfig({
         "src/lib/validators.ts",
         "src/lib/rate-limit.ts",
         "src/app/api/activity/submit/route.ts",
+        "src/lib/activity/progress/**/*.ts",
         "src/app/api/activity/progress/route.ts",
       ],
       exclude: [

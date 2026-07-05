@@ -1,18 +1,26 @@
 # Scalability & Leanness Roadmap
 
-Follow-up work identified during the July 2026 codebase review. The quick wins
-and hot-path fixes from that review already landed (dead dependency removal,
-duplicate wiki cleanup, orphaned shim retirement, quiz-release batching, vocab
-library SQL counts, activity-report groupBy aggregation, leaderboard caching,
-pluggable rate-limit store). The items below are larger refactors, ordered
-roughly by impact.
+Follow-up work identified during the July 2026 codebase review. Quick wins
+from that review already landed (dead dependency removal, duplicate wiki
+cleanup, orphaned shim retirement, quiz-release batching, vocab library SQL
+counts, activity-report groupBy aggregation, leaderboard caching, pluggable
+rate-limit store).
+
+**Status (Jul 2026):** 11 items done or partially done · 7 open · 2 deferred
+(manual ops / fall sprint).
+
+| Done | Open / partial | Deferred |
+|------|----------------|----------|
+| Route consolidation, shims, types, calendar uniqueness, audit retention, test scripts, guide TTFB cache, scene images, vocab pagination, progress route split | Dual grammar source, GameShell, client fetch layer, jsonb migration, CDN headers (partial), dashboard streaming | Audio Blob cutover (ops), Prisma 7 (fall), region colocation (ops) |
+
+---
 
 ## 1. Grammar-reader route consolidation — DONE (dual source remains)
 
 The ~74 near-identical `page.tsx` files were collapsed into a single
 `grammar-reader/[slug]` dynamic route backed by a content registry.
 
-Remaining: resolve the **dual source of truth** — grammar content modules
+**Remaining:** resolve the **dual source of truth** — grammar content modules
 in `src/content/grammar/*.ts` are imported directly by the reader route *and*
 seeded into Postgres (`prisma/seed-grammar-only.ts`). Pick one canonical
 store (TS modules or DB) so the two copies cannot drift.
@@ -41,7 +49,7 @@ when unset, and `npm run audio:upload:blob` uploads `public/audio/**` to
 Vercel Blob idempotently.
 
 Cutover steps (requires a Vercel Blob store):
-1. Vercel dashboard -> Storage -> Blob -> create a store; copy the
+1. Vercel dashboard → Storage → Blob → create a store; copy the
    read-write token.
 2. `BLOB_READ_WRITE_TOKEN=... npm run audio:upload:blob` (re-runnable;
    skips already-uploaded files). It prints the store's base URL.
@@ -91,12 +99,13 @@ then simplify `parseActivityContent`.
 `createMany(skipDuplicates)` and the manual calendar-events route returns
 409 on duplicates.
 
-## 9. `docs/audits/` retention policy
+## 9. `docs/audits/` retention policy — DONE
 
-13 generated audit reports (~824KB, one 524KB file) are committed and some
-are *read* by `health:gate` scripts (`audit-mini-guides`,
-`audit-grammar-dark-mode`). Decide which reports are working inputs vs
-stale outputs; regenerate-on-demand for the rest and gitignore them.
+Generated audit outputs (`grammar-dark-mode-sweep.md`, `mini-guides-w*-review.md`,
+etc.) are gitignored and documented in `docs/audits/README.md` with regenerate
+commands. One-off investigation notes (`GRAMMAR_AUDIT_REPORT.md`, etc.) stay
+tracked. `health:gate` runs live audits (`audit:mini-guides`, `audit:scene-images`)
+and never reads committed report files.
 
 ## 10. npm script consolidation — test wrappers DONE
 
@@ -108,7 +117,7 @@ the coverage run). Remaining: group seed/import scripts behind a small
 CLI (`tsx scripts/run.ts <task>`) if the `db:seed:*`/`import:*` families
 keep growing.
 
-## 11. Prisma 7 upgrade (deferred July 2026)
+## 11. Prisma 7 upgrade (deferred — fall 2026)
 
 Prisma CLI/client are on 6.19.x; 7.x is out (7.8.0 as of July 2026).
 Deliberately deferred before the summer break — it is a real migration,
@@ -126,8 +135,8 @@ Ordered by expected impact per hour of work. Items 6 (shared client
 data-fetching) and 7 (`Activity.content` → jsonb) above are also
 performance levers; these are the additional ones.
 
-1. **Region colocation check (one-time, ~15 min).** Verify the Vercel
-   function region sits next to the database region (db.prisma.io).
+1. **Region colocation check (one-time, ~15 min, manual).** Verify the
+   Vercel function region sits next to the database region (db.prisma.io).
    Every API request pays that round-trip several times (session lookup
    plus queries), so a cross-region setup taxes literally every click.
    Check Vercel project settings → Functions region vs the Prisma
@@ -140,11 +149,11 @@ performance levers; these are the additional ones.
    toggle and activity create/edit/archive routes revalidate the tag;
    seeds/imports are covered by the TTL. `src/lib/build-helpers.ts`
    (`getActivityIdSafely`) was folded into the new module.
-3. **CDN cache headers on read-heavy GETs.** The pattern already exists
-   (five routes set `Cache-Control`; the leaderboard has a 60s
-   server-side cache). Extend `s-maxage` + `stale-while-revalidate` to
-   other GETs whose responses are not per-user, so repeat requests are
-   served by the Vercel CDN without invoking a function.
+3. **CDN cache headers on read-heavy GETs — partial.** Shared presets in
+   `src/lib/api/cache-control.ts`. Applied to `/api/push/vapid-public`
+   (1h CDN) and `/api/ping` (60s CDN). Per-user auth routes stay
+   `no-store` or use server-side `unstable_cache` (leaderboard). Extend
+   to more identical-for-all GETs as they are identified.
 4. **Responsive scene images — DONE.** Every `sceneCard` copy (40 guide
    content files) now emits `srcset` with 400/800/1200 widths (derived by
    swapping the Unsplash `w=` param) plus
@@ -158,13 +167,27 @@ performance levers; these are the additional ones.
 
 ## 13. Smaller follow-ups
 
-- Paginate `/api/vocab/library` for `topic=all` responses as the card
-  catalog grows.
+- ~~Paginate `/api/vocab/library` for `topic=all`~~ — DONE
+  (`page`/`limit` query params, default 48/page, DB `skip`/`take`; dashboard
+  page has prev/next nav).
 - ~~`send-vocab-reminders` cron: filter already-notified/completed users in
   the subscription query~~ — DONE (SQL-filtered query sends one reminder
   per student).
-- Split `src/app/api/activity/progress/route.ts` (764 lines multiplexing
-  vocab/grammar/course-map progress) into per-domain handlers or a
-  dispatcher with small strategy modules.
+- ~~Split `src/app/api/activity/progress/route.ts` (764 lines multiplexing
+  vocab/grammar/course-map progress)~~ — DONE (thin route re-exports;
+  logic in `src/lib/activity/progress/` — get/post handlers, category
+  updates, points award, global vocab sync).
 - Review the `import:verb-quizzes` / `delete:verb-quizzes` workflow pair —
   candidates for an admin UI action rather than npm scripts.
+
+## 14. Project organization (Jul 2026)
+
+Lightweight doc/script navigation added: [`docs/README.md`](../README.md),
+[`scripts/README.md`](../../scripts/README.md), [`docs/archive/`](../archive/)
+for completed checklists. Remaining optional cleanups:
+
+- Group root-level `docs/*.md` feature guides into `docs/features/` subfolders
+  (verb quiz, irregular verbs) when link churn is acceptable.
+- Continue migrating flat `src/lib/*.ts` files into domain subfolders as touched
+  (auth, gamification, learner, vocab, activity already split).
+- `#10` npm script CLI if seed/import families keep growing.

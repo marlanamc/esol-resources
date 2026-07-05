@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { buildProgressGetResponse } from "@/app/api/activity/progress/route";
+import { buildProgressGetResponse } from "@/lib/activity/progress";
 import {
   chooseBestProgressRecord,
   mergeVocabProgressRecords,
