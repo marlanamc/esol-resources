@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
-import { useTheme } from '@/components/ThemeProvider';
+import { useTheme } from '@/components/layout/ThemeProvider';
 import type { VerbExercise } from '@/types/irregular-verbs';
 import { validateAnswer, getExerciseFeedback } from '@/data/irregular-verbs-exercises';
 

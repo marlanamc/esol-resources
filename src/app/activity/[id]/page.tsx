@@ -2,18 +2,18 @@ import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 import Script from "next/script";
 import { isInteractiveGuideContent, isLegacyGuideContent, isVocabularyContent } from "@/types/activity";
-import { ActivityRenderer } from "@/components/ActivityRenderer";
-import { ActivityProgressBadge } from "@/components/ActivityProgressBadge";
-import { CategoryProgressDisplay } from "@/components/CategoryProgressDisplay";
+import ActivityRenderer from "@/components/renderers/ActivityRenderer";
+import { ActivityProgressBadge } from "@/components/renderers/ActivityProgressBadge";
+import { CategoryProgressDisplay } from "@/components/renderers/CategoryProgressDisplay";
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { numbersGameCategoryNames } from "@/data/numbersGameCategories";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
-import { NetworkStatusBanner } from "@/components/NetworkStatusBanner";
-import { SubmissionOutboxManager } from "@/components/SubmissionOutboxManager";
+import NetworkStatusBanner from "@/components/system/NetworkStatusBanner";
+import SubmissionOutboxManager from "@/components/system/SubmissionOutboxManager";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
-import { getVocabActivityDisplayTitle } from "@/lib/vocab-display";
+import { getVocabActivityDisplayTitle } from "@/lib/vocab/display";
 import { loadActivityPageData } from "./activity-page-data";
 
 interface Props {

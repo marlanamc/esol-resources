@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
 import bcrypt from "bcryptjs";
-import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWORD_BLOCKED_MESSAGE, isDisallowedPassword } from "@/lib/auth-config";
-import { checkRateLimit, authRateLimitKey } from "@/lib/rate-limit";
-import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWORD_BLOCKED_MESSAGE, isDisallowedPassword } from "@/lib/auth/config";
+import { checkRateLimit, authRateLimitKey } from "@/lib/api/rate-limit";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
 
 export async function POST(request: Request) {
     const key = authRateLimitKey(request, "password-reset");
-    if (!checkRateLimit(key)) {
+    if (!(await checkRateLimit(key))) {
         return ApiErrors.rateLimited("Too many password reset attempts. Please try again later.");
     }
 

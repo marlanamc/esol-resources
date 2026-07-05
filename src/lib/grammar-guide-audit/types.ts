@@ -27,6 +27,8 @@ export interface LoadedGuide {
     contentSource: string;
     pagePath: string | null;
     pageSource: string | null;
+    /** Route metadata from the page file, or from the guide registry when served by the dynamic [slug] route. Null when no route exists. */
+    pageMeta: { completionKey: string | null; activityTitle: string | null } | null;
     imageModulePath: string | null;
     exportName: string;
 }

@@ -6,7 +6,7 @@ import {
   isStudent,
   isTeacher,
   normalizeUserRole,
-} from "@/lib/roles";
+} from "@/lib/auth/roles";
 
 test("normalizeUserRole maps legacy teacher_admin to admin", () => {
   assert.equal(normalizeUserRole("teacher_admin"), "admin");

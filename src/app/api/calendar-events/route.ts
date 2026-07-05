@@ -1,10 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { canManageClass, ensureTeacher } from "@/lib/policies";
-import { CalendarEventPostBodySchema, parseApiBody } from "@/lib/api-schemas";
-import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { Prisma } from "@prisma/client";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { canManageClass, ensureTeacher } from "@/lib/auth/policies";
+import { CalendarEventPostBodySchema, parseApiBody } from "@/lib/api/schemas";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
+
+/** CalendarEvent has a unique (classId, title, type, date) constraint. */
+function isDuplicateEventError(error: unknown): boolean {
+    return (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2002"
+    );
+}
 
 export async function POST(request: NextRequest) {
     try {
@@ -79,13 +88,14 @@ export async function POST(request: NextRequest) {
                 });
 
                 if (siblingSections.length > 0) {
-                    await tx.calendarEvent.createMany({
+                    const siblingResult = await tx.calendarEvent.createMany({
                         data: siblingSections.map((section) => ({
                             classId: section.id,
                             ...eventData,
                         })),
+                        skipDuplicates: true,
                     });
-                    createdCount += siblingSections.length;
+                    createdCount += siblingResult.count;
                 }
             }
 
@@ -97,6 +107,9 @@ export async function POST(request: NextRequest) {
             createdCount: created.createdCount,
         });
     } catch (error) {
+        if (isDuplicateEventError(error)) {
+            return apiError("An identical event already exists for this class and date", 409);
+        }
         return handleApiError(error, {
             defaultMessage: "Failed to create calendar event",
             path: request.url,
@@ -208,6 +221,9 @@ export async function PATCH(request: NextRequest) {
 
         return NextResponse.json(updated);
     } catch (error) {
+        if (isDuplicateEventError(error)) {
+            return apiError("An identical event already exists for this class and date", 409);
+        }
         return handleApiError(error, {
             defaultMessage: "Failed to update calendar event",
             path: request.url,

@@ -34,7 +34,6 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: [
-      'recharts',
       'framer-motion',
       'lucide-react',
     ],

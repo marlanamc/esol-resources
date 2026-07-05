@@ -1,5 +1,6 @@
 'use client';
 
+import { resolveAudioUrl } from "@/lib/audio/url";
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -23,9 +24,9 @@ import {
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { saveActivityProgress } from '@/lib/activityProgress';
 import { PointsToast } from '@/components/ui/PointsToast';
-import { resolveLearnerReturnHrefSync } from '@/lib/learner-navigation';
+import { resolveLearnerReturnHrefSync } from '@/lib/learner/navigation';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
-import { useTheme } from '@/components/ThemeProvider';
+import { useTheme } from '@/components/layout/ThemeProvider';
 import {
   EdVerb,
   EdSound,
@@ -150,7 +151,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
 
   const playAudio = useCallback(async (word: string) => {
     // Try pre-recorded audio first
-    const audioPath = `/audio/verbs/${word.toLowerCase()}.mp3`;
+    const audioPath = resolveAudioUrl(`/audio/verbs/${word.toLowerCase()}.mp3`);
 
     try {
       const audio = new Audio(audioPath);

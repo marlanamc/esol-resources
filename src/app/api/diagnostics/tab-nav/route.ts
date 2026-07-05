@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { logger } from "@/lib/logger";
-import { ApiErrors, apiError } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { logger } from "@/lib/shared/logger";
+import { ApiErrors, apiError } from "@/lib/api/response";
 
 type TrackedTabPath = "/dashboard" | "/dashboard/calendar" | "/dashboard/activities";
 

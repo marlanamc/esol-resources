@@ -1,6 +1,6 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
-import { logger } from "@/lib/logger";
+import { logger } from "@/lib/shared/logger";
 
 /**
  * Add security headers to response

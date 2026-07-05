@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useEffect, useRef } from 'react';
-import { getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
+import { getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab/display';
 import { ActivityLink } from '@/components/navigation/ActivityLink';
 import { VocabActivityVisual } from './VocabActivityVisual';
 import type { Activity } from './activity-categories-types';

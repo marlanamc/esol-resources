@@ -1,11 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { unstable_cache } from 'next/cache';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { getTimeframedLeaderboard, LeaderboardRange } from '@/lib/gamification';
-import { prisma } from '@/lib/prisma';
-import { classOwnershipWhere, ensureTeacher } from '@/lib/policies';
-import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
+import { authOptions } from '@/lib/auth/auth';
+import { getTimeframedLeaderboard, LeaderboardRange } from '@/lib/gamification/gamification';
+import { prisma } from '@/lib/database/prisma';
+import { classOwnershipWhere, ensureTeacher } from '@/lib/auth/policies';
+import { ApiErrors, apiError, handleApiError } from '@/lib/api/response';
 import { getLearnerState } from '@/lib/learner-mode';
+
+/**
+ * Leaderboard results are shared across every viewer of the same scope,
+ * so cache per (timeframe, limit, class scope) for a short window instead
+ * of re-aggregating the PointsLedger on every request. The callback must
+ * only use its arguments — auth is resolved before this is called.
+ */
+const getCachedLeaderboard = unstable_cache(
+  (
+    timeframe: LeaderboardRange,
+    limit: number,
+    classId: string | undefined,
+    classIds: string[] | undefined,
+    independentOnly: boolean
+  ) =>
+    getTimeframedLeaderboard(
+      timeframe,
+      limit,
+      classId,
+      classIds,
+      independentOnly ? { independentOnly: true } : undefined
+    ),
+  ['gamification-leaderboard'],
+  { revalidate: 60, tags: ['leaderboard'] }
+);
 
 /**
  * GET /api/gamification/leaderboard
@@ -121,7 +147,13 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    const leaderboard = await getTimeframedLeaderboard(timeframe, limit, resolvedClassId, resolvedClassIds, leaderboardOptions);
+    const leaderboard = await getCachedLeaderboard(
+      timeframe,
+      limit,
+      resolvedClassId,
+      resolvedClassIds,
+      leaderboardOptions?.independentOnly === true
+    );
     const userRank = leaderboard.findIndex((entry) => entry.id === user.id) + 1;
 
     return NextResponse.json({

@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { isAdmin } from "@/lib/roles";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
+import { isAdmin } from "@/lib/auth/roles";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import {
     buildTeacherActivitiesWhere,

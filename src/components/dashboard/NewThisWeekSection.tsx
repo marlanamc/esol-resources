@@ -1,8 +1,8 @@
 
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { getGameEmojiForActivity } from "@/lib/game-emoji";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
-import { stripVocabTypeSuffix } from "@/lib/vocab-display";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
+import { stripVocabTypeSuffix } from "@/lib/vocab/display";
 import type { FeaturedAssignment } from "@/components/dashboard/todays-assignments/types";
 
 interface NewThisWeekSectionProps {

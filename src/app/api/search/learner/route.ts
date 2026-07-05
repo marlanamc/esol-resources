@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { logger } from "@/lib/logger";
+import { authOptions } from "@/lib/auth/auth";
+import { logger } from "@/lib/shared/logger";
 import { clampLearnerSearchLimit, normalizeLearnerSearchText, parseLearnerSearchFilter, searchLearnerContent } from "@/lib/learner-search";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import type { LearnerSearchContext } from "@/lib/learner-search/types";
-import { ApiErrors } from "@/lib/api-response";
+import { ApiErrors } from "@/lib/api/response";
 
 function isLearnerSearchContext(value: string | null): value is LearnerSearchContext {
     return value === "quick-open" || value === "search-page";

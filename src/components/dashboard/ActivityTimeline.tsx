@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import type { CourseMapActivityType } from "@/lib/course-map";
 
 export type TimelineStatus = "done" | "current" | "todo" | "locked";

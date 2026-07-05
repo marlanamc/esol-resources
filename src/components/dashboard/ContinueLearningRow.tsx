@@ -3,8 +3,8 @@
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { Blocks, ClipboardList, Gamepad2, Layers, Mic, MessageCircle } from "lucide-react";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
-import { buildActivityHref } from "@/lib/learner-navigation";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
+import { buildActivityHref } from "@/lib/learner/navigation";
 import type { DailyChecklistHabit } from "@/lib/daily-habits";
 import type { FeaturedAssignment } from "@/components/dashboard/todays-assignments/types";
 

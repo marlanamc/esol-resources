@@ -4,13 +4,13 @@
  */
 
 import { randomBytes } from 'crypto';
-import { prisma } from '@/lib/prisma';
-import { apiError, apiSuccess, handleApiError } from '@/lib/api-response';
+import { prisma } from '@/lib/database/prisma';
+import { apiError, apiSuccess, handleApiError } from '@/lib/api/response';
 import { sendEmail, generatePasswordResetEmail } from '@/lib/email';
-import { logger } from '@/lib/logger';
+import { logger } from '@/lib/shared/logger';
 import { headers } from 'next/headers';
-import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
-import { getAppBaseUrl } from '@/lib/env';
+import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
+import { getAppBaseUrl } from '@/lib/shared/env';
 
 interface ForgotPasswordRequest {
     email: string;
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
         const ip = getClientIp(reqHeaders);
         const rateLimitKey = `auth:forgot-password:${ip}`;
 
-        if (!checkRateLimit(rateLimitKey, { limit: 3, windowSeconds: 60 })) {
+        if (!(await checkRateLimit(rateLimitKey, { limit: 3, windowSeconds: 60 }))) {
             logger.warn('Forgot password rate limit exceeded', { ip });
             return apiError('Too many requests. Please try again later.', 429, 'RATE_LIMITED');
         }

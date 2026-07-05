@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { getCourseMapNextLaunchForUser } from "@/lib/course-map-next-launch";
 
 export async function GET() {

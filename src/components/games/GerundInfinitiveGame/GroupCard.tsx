@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { CheckCircle, Star } from 'lucide-react';
-import { getGroupStage } from '@/lib/gerund-infinitive-progress';
+import { getGroupStage } from '@/lib/verbs/gerund-infinitive-progress';
 import type { GerundInfinitiveGroup, GIGroupProgress } from '@/types/gerund-infinitive';
 
 interface GroupCardProps {

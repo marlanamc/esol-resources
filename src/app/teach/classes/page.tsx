@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
-import { isAdmin } from "@/lib/roles";
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { authOptions } from "@/lib/auth/auth";
+import { isAdmin } from "@/lib/auth/roles";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
 import Link from "next/link";
 import { Users, Eye, AlertCircle, ChevronRight } from "lucide-react";
 

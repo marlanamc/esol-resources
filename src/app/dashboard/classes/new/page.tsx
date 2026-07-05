@@ -1,10 +1,10 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
-import { CreateClassForm } from "@/components/CreateClassForm";
+import CreateClassForm from "@/components/forms/CreateClassForm";
 import { BackButton } from "@/components/ui/BackButton";
-import { prisma } from "@/lib/prisma";
-import { classOwnershipWhere, ensureTeacher } from "@/lib/policies";
+import { prisma } from "@/lib/database/prisma";
+import { classOwnershipWhere, ensureTeacher } from "@/lib/auth/policies";
 
 export default async function NewClassPage({
     searchParams,

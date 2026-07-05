@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
-import { CreateActivityForm } from "@/components/CreateActivityForm";
+import CreateActivityForm from "@/components/forms/CreateActivityForm";
 import { BackButton } from "@/components/ui/BackButton";
-import { canUseTeacherTools } from "@/lib/roles";
+import { canUseTeacherTools } from "@/lib/auth/roles";
 
 export default async function NewActivityPage() {
     const session = await getServerSession(authOptions);

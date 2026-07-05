@@ -1,12 +1,12 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { timedQuery } from "@/lib/perf-log";
-import { trackLogin, getTimeframedLeaderboard } from "@/lib/gamification";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
+import { timedQuery } from "@/lib/shared/perf-log";
+import { trackLogin, getTimeframedLeaderboard } from "@/lib/gamification/gamification";
 import { getStudentMomentumSnapshot } from "@/lib/dashboard/student-momentum";
-import { logger } from "@/lib/logger";
+import { logger } from "@/lib/shared/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
 import Link from "next/link";
@@ -28,15 +28,15 @@ import { ContinueLearningRow } from "@/components/dashboard/ContinueLearningRow"
 import { DashboardResumeHero } from "@/components/dashboard/DashboardResumeHero";
 import { DashboardNextStepFallbackCard } from "@/components/dashboard/DashboardNextStepFallbackCard";
 import { formatDashboardWeekRangeLabel } from "@/lib/dashboard/week-range-label";
-import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
-import { buildActivityHref } from "@/lib/learner-navigation";
+import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
+import { buildActivityHref } from "@/lib/learner/navigation";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
 import { getLearnerState } from "@/lib/learner-mode";
 import { isCatchUpPathEnabled } from "@/lib/catch-up-deadlines";
 import { AdminViewSwitcher } from "@/components/dashboard/AdminViewSwitcher";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { persistLearnerPreview } from "@/lib/learner-preview";
-import { canUseTeacherTools } from "@/lib/roles";
+import { canUseTeacherTools } from "@/lib/auth/roles";
 import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 
 type StudentEnrollment = {

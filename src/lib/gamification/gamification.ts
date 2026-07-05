@@ -1,6 +1,7 @@
-import { prisma } from '@/lib/prisma';
+import { revalidateTag } from 'next/cache';
+import { prisma } from '@/lib/database/prisma';
 import type { PrismaClient, Prisma } from "@prisma/client";
-import { logger } from '@/lib/logger';
+import { logger } from '@/lib/shared/logger';
 import { POINTS } from "./constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./streak-utils";
 import { buildIndependentLeaderboardUserWhere, buildLeaderboardEligibleUserWhere } from "./leaderboard-filter";
@@ -130,6 +131,19 @@ export async function trackLogin(userId: string) {
   }
 }
 
+/**
+ * Drop cached leaderboard results (see the unstable_cache wrapper in the
+ * leaderboard route) so awards show up immediately instead of after the TTL.
+ * No-ops outside a Next.js request context (scripts, tests, cron via tsx).
+ */
+function invalidateLeaderboardCache() {
+  try {
+    revalidateTag('leaderboard', 'max');
+  } catch {
+    // Not running inside Next.js — nothing to invalidate.
+  }
+}
+
 export async function awardPoints(userId: string, points: number, reason: string = '', source: string = 'award', db: DbClient = prisma) {
   const user = await db.user.update({
     where: { id: userId },
@@ -142,6 +156,8 @@ export async function awardPoints(userId: string, points: number, reason: string
   await logPointsLedger(userId, points, reason || 'Points awarded', source, db);
 
   logger.info("[Gamification] Awarded points", { userId, points, reason, source });
+
+  invalidateLeaderboardCache();
 
   return user;
 }
@@ -574,6 +590,8 @@ export async function resetWeeklyPoints() {
 
     logger.info(`Weekly points reset complete (${rankings.length} rankings saved)`);
   }, { timeout: 15000 });
+
+  invalidateLeaderboardCache();
 }
 
 /**

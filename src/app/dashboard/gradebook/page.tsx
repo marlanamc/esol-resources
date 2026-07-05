@@ -1,14 +1,14 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { LogoutButton } from "@/components/LogoutButton";
+import LogoutButton from "@/components/layout/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { timedQuery } from "@/lib/perf-log";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
+import { timedQuery } from "@/lib/shared/perf-log";
 import { GradebookClient } from "./GradebookClient";
 import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_PAGE_SIZE = 25;

@@ -10,7 +10,7 @@ import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHr
 import {
   GI_GROUPS,
 } from '@/data/gerund-infinitive-groups';
-import { getProgressSummary, normalizeProgressData } from '@/lib/gerund-infinitive-progress';
+import { getProgressSummary, normalizeProgressData } from '@/lib/verbs/gerund-infinitive-progress';
 import {
   useGerundInfinitiveGameState,
 } from '@/hooks/useGerundInfinitiveGameState';

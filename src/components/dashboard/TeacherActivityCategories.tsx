@@ -2,8 +2,8 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
-import { getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
-import { logger } from '@/lib/logger';
+import { getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab/display';
+import { logger } from '@/lib/shared/logger';
 import { parseActivityContent } from '@/types/activity';
 import { buildGameLibrarySections, isCourseMapOnlyGame, isGamesLibraryActivity } from '@/lib/games-library';
 import { displayTitle, vocabUnits } from '@/components/dashboard/activity-categories-vocab-utils';

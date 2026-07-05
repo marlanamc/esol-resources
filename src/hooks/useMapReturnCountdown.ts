@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { sanitizeInternalHref, RETURN_TO_QUERY_PARAM } from "@/lib/learner-navigation";
+import { sanitizeInternalHref, RETURN_TO_QUERY_PARAM } from "@/lib/learner/navigation";
 import { useCourseMapNextLaunch } from "@/hooks/useCourseMapNextLaunch";
 
 const COUNTDOWN_SECONDS = 5;

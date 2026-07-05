@@ -1,5 +1,5 @@
 import type { PrismaClient } from "@prisma/client";
-import { getVocabReviewSummaryForUser } from "@/lib/vocab-review";
+import { getVocabReviewSummaryForUser } from "@/lib/vocab/review";
 import type { VocabReviewSummary } from "@/types/vocab-review";
 
 export const LEARNER_DAY_TIME_ZONE = "America/New_York";

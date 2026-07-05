@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { AlertTriangle, ArrowDown, KeyRound } from "lucide-react";
-import { LoginForm } from "@/components/LoginForm";
+import LoginForm from "@/components/forms/LoginForm";
 
 export default function LoginPage() {
     return (

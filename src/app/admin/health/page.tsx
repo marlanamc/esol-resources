@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { CheckCircle, XCircle, Circle, Database, KeyRound } from "lucide-react";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { isAdmin } from "@/lib/roles";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { isAdmin } from "@/lib/auth/roles";
 import { buildEnvVarConfig } from "@/lib/shared/env";
 
 export const metadata = { title: "Health | Admin" };

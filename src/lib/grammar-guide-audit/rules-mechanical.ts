@@ -1,7 +1,6 @@
 import type { LoadedGuide } from "./types";
 import type { AuditFinding } from "./types";
 import { collectGuideStrings, countWords } from "./collect-strings";
-import { parsePageMeta } from "./load-guide";
 import {
     TENSE_DIAGRAM_EXEMPT_SLUGS,
     TENSE_DIAGRAM_REQUIRED_SLUGS,
@@ -21,7 +20,7 @@ function finding(
 }
 
 export function runMechanicalRules(guide: LoadedGuide): AuditFinding[] {
-    const { slug, scope, content, contentSource, pageSource, pagePath } = guide;
+    const { slug, scope, content, contentSource, pagePath } = guide;
     const findings: AuditFinding[] = [];
 
     if (!contentSource) {
@@ -31,12 +30,12 @@ export function runMechanicalRules(guide: LoadedGuide): AuditFinding[] {
         return findings;
     }
 
-    if (!pageSource || !pagePath) {
+    if (!guide.pageMeta || !pagePath) {
         findings.push(
             finding(slug, "page-route-missing", pagePath ?? `page/${slug}`, "Page route is missing"),
         );
     } else {
-        const { completionKey, activityTitle } = parsePageMeta(pageSource);
+        const { completionKey, activityTitle } = guide.pageMeta;
         if (completionKey !== slug) {
             findings.push(
                 finding(

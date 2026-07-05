@@ -2,7 +2,7 @@
 
 import { createContext, useContext } from "react";
 import { useCurrentAppHref } from "@/hooks/useCurrentAppHref";
-import { withReturnTo } from "@/lib/learner-navigation";
+import { withReturnTo } from "@/lib/learner/navigation";
 import type { TimelineItem, TimelineStatus } from "@/components/dashboard/ActivityTimeline";
 import type { CourseMapActivity, CourseMapActivityType, CourseMapUnit } from "@/lib/course-map";
 import type { CourseMapProgressState } from "@/lib/course-map-progress";

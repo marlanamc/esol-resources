@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/database/prisma";
 import { awardPoints, checkAndAwardAchievements, updateStreak } from "./gamification";
 import type { DbClient } from "./gamification";
 

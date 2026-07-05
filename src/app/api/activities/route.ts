@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
-import { ensureTeacher } from "@/lib/policies";
-import { filterLearnerVisibleActivities } from "@/lib/learner-visibility";
-import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
-import { logger } from "@/lib/logger";
-import { timedQuery } from "@/lib/perf-log";
+import { ensureTeacher } from "@/lib/auth/policies";
+import { filterLearnerVisibleActivities } from "@/lib/learner/visibility";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
+import { logger } from "@/lib/shared/logger";
+import { timedQuery } from "@/lib/shared/perf-log";
 
 export async function POST(request: NextRequest) {
     try {

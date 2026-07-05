@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { syncVocabReviewCatalog } from "../../src/lib/vocab-review";
+import { syncVocabReviewCatalog } from "../../src/lib/vocab/review";
 
 const prisma = new PrismaClient();
 

@@ -1,6 +1,6 @@
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
+import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 import {
     isMapActivityActionable,
     isMapActivityCompleted,

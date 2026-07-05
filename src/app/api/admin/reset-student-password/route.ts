@@ -1,17 +1,17 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
 import bcrypt from "bcryptjs";
-import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWORD_BLOCKED_MESSAGE, isDisallowedPassword } from "@/lib/auth-config";
-import { createAuditLogger } from "@/lib/audit-log";
-import { isAdmin } from "@/lib/roles";
-import { checkRateLimit, authRateLimitKey } from "@/lib/rate-limit";
-import { ApiErrors, apiSuccess, apiError, handleApiError } from "@/lib/api-response";
-import { requireTeacher } from "@/lib/api-auth";
+import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWORD_BLOCKED_MESSAGE, isDisallowedPassword } from "@/lib/auth/config";
+import { createAuditLogger } from "@/lib/shared/audit-log";
+import { isAdmin } from "@/lib/auth/roles";
+import { checkRateLimit, authRateLimitKey } from "@/lib/api/rate-limit";
+import { ApiErrors, apiSuccess, apiError, handleApiError } from "@/lib/api/response";
+import { requireTeacher } from "@/lib/auth/api-auth";
 
 export async function POST(request: Request) {
     const key = authRateLimitKey(request, "admin-reset-password");
-    if (!checkRateLimit(key)) {
+    if (!(await checkRateLimit(key))) {
         return ApiErrors.rateLimited("Too many requests. Please try again later.");
     }
 

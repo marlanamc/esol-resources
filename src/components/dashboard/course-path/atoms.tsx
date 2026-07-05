@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 import { ActivityLink } from "@/components/navigation/ActivityLink";
-import { withReturnTo } from "@/lib/learner-navigation";
+import { withReturnTo } from "@/lib/learner/navigation";
 import type { CourseMapActivity } from "@/lib/course-map";
 
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";

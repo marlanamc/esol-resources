@@ -1,5 +1,6 @@
 'use client';
 
+import { resolveAudioUrl } from "@/lib/audio/url";
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
@@ -18,7 +19,7 @@ import {
 } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { saveActivityProgress, fetchActivityProgress, type FetchedActivityProgress } from '@/lib/activityProgress';
-import { resolveLearnerReturnHrefSync } from '@/lib/learner-navigation';
+import { resolveLearnerReturnHrefSync } from '@/lib/learner/navigation';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import {
@@ -118,7 +119,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
   }, [contentStr]);
 
   const playAudio = useCallback(async (word: string) => {
-    const audioPath = `/audio/minimal-pairs/${word.toLowerCase()}.mp3`;
+    const audioPath = resolveAudioUrl(`/audio/minimal-pairs/${word.toLowerCase()}.mp3`);
 
     try {
       const audio = new Audio(audioPath);

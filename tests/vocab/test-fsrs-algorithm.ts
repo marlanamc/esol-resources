@@ -1,4 +1,4 @@
-import { applyFSRSRating, calculateCardPriority, estimateOptimalDailyLimit } from "@/lib/fsrs-algorithm";
+import { applyFSRSRating, calculateCardPriority, estimateOptimalDailyLimit } from "@/lib/vocab/fsrs";
 import type { VocabReviewRating } from "@/types/vocab-review";
 
 function testFSRSAlgorithm() {

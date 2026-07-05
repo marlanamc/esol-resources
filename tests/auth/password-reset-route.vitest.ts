@@ -1,20 +1,20 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
 vi.mock("next-auth", () => ({ getServerSession: vi.fn() }));
-vi.mock("@/lib/auth", () => ({ authOptions: {} }));
+vi.mock("@/lib/auth/auth", () => ({ authOptions: {} }));
 vi.mock("@sentry/nextjs", () => ({ captureException: vi.fn(), captureMessage: vi.fn() }));
-vi.mock("@/lib/rate-limit", () => ({
+vi.mock("@/lib/api/rate-limit", () => ({
   checkRateLimit: () => true,
   authRateLimitKey: () => "test-key",
 }));
-vi.mock("@/lib/prisma", () => ({
+vi.mock("@/lib/database/prisma", () => ({
   prisma: {
     user: { findUnique: vi.fn(), update: vi.fn() },
   },
 }));
 
 import { getServerSession } from "next-auth";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/database/prisma";
 import { POST as passwordResetPost } from "@/app/api/auth/password-reset/route";
 
 const mockSession = vi.mocked(getServerSession);

@@ -1,19 +1,19 @@
 import { describe, it, expect } from "vitest";
-import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { checkRateLimit, getClientIp } from "@/lib/api/rate-limit";
 
 describe("rate limit", () => {
-  it("allows requests under limit", () => {
+  it("allows requests under limit", async () => {
     const key = `test:${Date.now()}:${Math.random()}`;
-    expect(checkRateLimit(key, { limit: 5, windowSeconds: 60 })).toBe(true);
-    expect(checkRateLimit(key, { limit: 5, windowSeconds: 60 })).toBe(true);
+    await expect(checkRateLimit(key, { limit: 5, windowSeconds: 60 })).resolves.toBe(true);
+    await expect(checkRateLimit(key, { limit: 5, windowSeconds: 60 })).resolves.toBe(true);
   });
 
-  it("blocks requests over limit", () => {
+  it("blocks requests over limit", async () => {
     const key = `test:overflow:${Date.now()}`;
     const options = { limit: 2, windowSeconds: 60 };
-    expect(checkRateLimit(key, options)).toBe(true);
-    expect(checkRateLimit(key, options)).toBe(true);
-    expect(checkRateLimit(key, options)).toBe(false);
+    await expect(checkRateLimit(key, options)).resolves.toBe(true);
+    await expect(checkRateLimit(key, options)).resolves.toBe(true);
+    await expect(checkRateLimit(key, options)).resolves.toBe(false);
   });
 
   it("getClientIp extracts from x-forwarded-for", () => {

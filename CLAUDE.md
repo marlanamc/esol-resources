@@ -69,20 +69,9 @@ npm run audit:answer-position  # Quiz answer-position bias checks
 ### Tests
 ```bash
 npm run test:vitest                 # Unit tests via Vitest
-npm run test:critical               # Required critical test bundle
-npm run test:gamification
-npm run test:activity-submit
-npm run test:exercise-answer-normalization
-npm run test:activity-submit:contract
-npm run test:activity-progress:merge
-npm run test:activity-progress:points
-npm run test:assignments-featured
-npm run test:classes-join
-npm run test:submission-points-claim
-npm run test:sanitize
-npm run test:validators-env
-npm run test:db-guard
-npm run test:vocab-review
+npm run test:critical               # Critical bundle: vitest dirs (gamification, activity, classes, auth, sanitize) + node suites
+npm run test:node                   # node --test suites (db-guard, catch-up deadlines, vocab review)
+npx vitest run tests/<dir-or-file>  # Run any single suite directly
 npm run test:e2e                  # Playwright suite
 npm run test:e2e:smoke            # Mobile/PWA smoke
 npm run test:e2e:mobile           # Dedicated mobile smoke entry
@@ -277,41 +266,8 @@ Font tokens:
 ```
 Always use `@/` imports for internal modules.
 
-### src/lib/ Canonical Paths (backward-compat shims)
-Many flat files in `src/lib/` are backward-compat re-exports. Prefer importing from the canonical subdirectory path:
-
-| Shim (avoid) | Canonical (prefer) |
-|---|---|
-| `@/lib/auth` | `@/lib/auth/auth` |
-| `@/lib/auth-config` | `@/lib/auth/config` |
-| `@/lib/api-auth` | `@/lib/auth/api-auth` |
-| `@/lib/policies` | `@/lib/auth/policies` |
-| `@/lib/roles` | `@/lib/auth/roles` |
-| `@/lib/prisma` | `@/lib/database/prisma` |
-| `@/lib/prisma-retry` | `@/lib/database/retry` |
-| `@/lib/db-locks` | `@/lib/database/locks` |
-| `@/lib/gamification` | `@/lib/gamification/gamification` |
-| `@/lib/gamification-award-chain` | `@/lib/gamification/award-chain` |
-| `@/lib/learner-theme` | `@/lib/learner/theme` |
-| `@/lib/learner-visibility` | `@/lib/learner/visibility` |
-| `@/lib/learner-navigation` | `@/lib/learner/navigation` |
-| `@/lib/api-response` | `@/lib/api/response` |
-| `@/lib/api-schemas` | `@/lib/api/schemas` |
-| `@/lib/rate-limit` | `@/lib/api/rate-limit` |
-| `@/lib/request-logging` | `@/lib/api/request-logging` |
-| `@/lib/validators` | `@/lib/shared/validators` |
-| `@/lib/env` | `@/lib/shared/env` |
-| `@/lib/logger` | `@/lib/shared/logger` |
-| `@/lib/perf-log` | `@/lib/shared/perf-log` |
-| `@/lib/audit-log` | `@/lib/shared/audit-log` |
-| `@/lib/vocab-display` | `@/lib/vocab/display` |
-| `@/lib/vocab-review` | `@/lib/vocab/review` |
-| `@/lib/vocab-parser` | `@/lib/vocab/parser` |
-| `@/lib/vocab-review-sources` | `@/lib/vocab/sources` |
-| `@/lib/fsrs-algorithm` | `@/lib/vocab/fsrs` |
-| `@/lib/verb-definitions` | `@/lib/verbs/definitions` |
-| `@/lib/gerund-infinitive-progress` | `@/lib/verbs/gerund-infinitive-progress` |
-| `@/lib/irregular-verbs-progress` | `@/lib/verbs/irregular-progress` |
+### src/lib/ Canonical Paths
+`src/lib/` is organized by domain — import from the canonical subdirectory path (e.g. `@/lib/auth/auth`, `@/lib/database/prisma`, `@/lib/gamification/gamification`, `@/lib/api/response`, `@/lib/shared/logger`). The old flat backward-compat shims (`@/lib/prisma`, `@/lib/auth`, etc.) were removed; do not reintroduce them.
 
 ## Important Development Notes
 
@@ -388,11 +344,13 @@ Use `.env.example` as the canonical source.
 - Database: `DATABASE_URL` (preferred), `POSTGRES_URL` (fallback)
 - Authentication: `NEXTAUTH_SECRET` or `AUTH_SECRET`, `NEXTAUTH_URL`, `NEXT_PUBLIC_APP_URL`
 - Cron: `CRON_SECRET`
+- Rate limiting (optional): `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` — shared auth rate limits across instances; per-instance memory fallback when unset
 - PWA/notifications: `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `PERF_LOG_*` flags
 - Leaderboards: `EXCLUDED_LEADERBOARD_USERNAMES`
 - Accounts: `DEV_SEED_ACCOUNT_PASSWORD`, `TEST_STUDENT_DEFAULT_PASSWORD`
 - Vocab imagery: `VOCAB_IMAGE_SIZE`, `UNSPLASH_ACCESS_KEY`, `UNSPLASH_CLIENT_ID`, `UNSPLASH_ACCESS_KEY_ID`, `UNSPLASH_DELAY_MS`, `UNSPLASH_RATE_LIMIT_PER_HOUR`
 - Audio: `ELEVENLABS_API_KEY`, `ELEVENLABS_VOICE_ID`, `ELEVENLABS_VOICE_IDS`
+- Audio hosting (optional): `NEXT_PUBLIC_AUDIO_CDN_URL` (serve /audio/* from Vercel Blob; falls back to public/audio when unset), `BLOB_READ_WRITE_TOKEN` (for `npm run audio:upload:blob`)
 - Backups: `BACKUP_DATABASE_URL`, `BACKUP_ENCRYPTION_KEY`
 - Monitoring: `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN`, `SENTRY_ORG`, `SENTRY_PROJECT`
 - Safety: `ALLOW_PROD_DB_MUTATION`, `CONFIRM_DB_HOST`

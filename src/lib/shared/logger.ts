@@ -2,7 +2,7 @@
  * Structured application logging with consistent levels, timestamps, and context.
  *
  * Usage:
- * import { logger } from '@/lib/logger';
+ * import { logger } from '@/lib/shared/logger';
  * logger.info('User logged in', { userId: '123' });
  * logger.error('Database error', { error, query });
  */

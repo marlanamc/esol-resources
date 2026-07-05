@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { Blocks, ClipboardList, Gamepad2, Layers, Mic } from "lucide-react";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
 
 const EXPLORE_CATEGORIES: Array<{
     key: string;

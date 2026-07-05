@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useTheme } from '@/components/ThemeProvider';
+import { useTheme } from '@/components/layout/ThemeProvider';
 import { HomeIcon, MapIcon, CalendarIcon, TrophyIcon, StarIcon, BookOpenIcon } from '@/components/icons/Icons';
 
 // ─── Stable nav config (never changes, never creates new references) ───

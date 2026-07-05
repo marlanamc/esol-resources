@@ -1,11 +1,11 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { trackLogin } from "@/lib/gamification";
+import { prisma } from "@/lib/database/prisma";
+import { trackLogin } from "@/lib/gamification/gamification";
 import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
-import { getVocabTypeFromTitle, parseVocabTypeLabel, stripVocabTypeSuffix, VOCAB_CHIP_CONFIG } from "@/lib/vocab-display";
+import { getVocabTypeFromTitle, parseVocabTypeLabel, stripVocabTypeSuffix, VOCAB_CHIP_CONFIG } from "@/lib/vocab/display";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import Link from "next/link";
 import { StatCard } from "@/components/ui/StatCard";

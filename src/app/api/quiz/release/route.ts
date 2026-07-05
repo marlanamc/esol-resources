@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
-import { ApiErrors, apiError } from "@/lib/api-response";
-import { logger } from "@/lib/logger";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
+import { ApiErrors, apiError } from "@/lib/api/response";
+import { logger } from "@/lib/shared/logger";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -62,32 +62,19 @@ export async function POST(request: Request) {
 
             const dueDate = parseDateOnly(content.due_date);
 
-            // Create calendar events for each class
-            for (const classItem of classes) {
-                // Check if calendar event already exists for this quiz and class
-                const existingEvent = await prisma.calendarEvent.findFirst({
-                    where: {
-                        classId: classItem.id,
-                        title: activity.title,
-                        type: 'quiz',
-                        date: dueDate
-                    }
-                });
-
-                // Only create if it doesn't already exist
-                if (!existingEvent) {
-                    await prisma.calendarEvent.create({
-                        data: {
-                            classId: classItem.id,
-                            title: activity.title,
-                            description: `Verb quiz due date`,
-                            date: dueDate,
-                            type: 'quiz',
-                            createdById: userId
-                        }
-                    });
-                }
-            }
+            // One event per class; the (classId, title, type, date) unique
+            // constraint makes re-release idempotent.
+            await prisma.calendarEvent.createMany({
+                data: classes.map((classItem) => ({
+                    classId: classItem.id,
+                    title: activity.title,
+                    description: `Verb quiz due date`,
+                    date: dueDate,
+                    type: 'quiz',
+                    createdById: userId
+                })),
+                skipDuplicates: true
+            });
         } catch (error) {
             logger.error('Error creating calendar events for verb quiz', error);
             // Don't fail the request if calendar event creation fails

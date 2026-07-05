@@ -1,6 +1,6 @@
-import { isLearnerVisibleActivity, type LearnerVisibleActivityInput } from "@/lib/learner-visibility";
+import { isLearnerVisibleActivity, type LearnerVisibleActivityInput } from "@/lib/learner/visibility";
 import type { FeaturedAssignment } from "@/components/dashboard/todays-assignments";
-import { getVocabReviewSourceByActivityId } from "@/lib/vocab-review-sources";
+import { getVocabReviewSourceByActivityId } from "@/lib/vocab/sources";
 
 export const INDEPENDENT_NEW_RELEASE_WINDOW_MS = 24 * 60 * 60 * 1000;
 

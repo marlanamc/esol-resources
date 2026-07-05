@@ -1,10 +1,10 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
 import { Card } from "@/components/ui";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 
 export default async function ClassesIndexPage() {
     const session = await getServerSession(authOptions);

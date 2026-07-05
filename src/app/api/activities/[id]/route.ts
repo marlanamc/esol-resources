@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { canManageActivity, ensureTeacher } from "@/lib/policies";
-import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { canManageActivity, ensureTeacher } from "@/lib/auth/policies";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
 
 interface Props {
     params: Promise<{ id: string }>;

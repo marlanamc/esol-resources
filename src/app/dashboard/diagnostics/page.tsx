@@ -1,12 +1,12 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
 import { DiagnosticReport } from "@/components/dashboard/DiagnosticReport";
 import { TabNavTelemetryCard } from "@/components/dashboard/TabNavTelemetryCard";
 import { BackButton } from "@/components/ui/BackButton";
 import { BarChart3 } from "lucide-react";
-import { canUseTeacherTools } from "@/lib/roles";
+import { canUseTeacherTools } from "@/lib/auth/roles";
 
 export default async function DiagnosticsPage({
     searchParams,

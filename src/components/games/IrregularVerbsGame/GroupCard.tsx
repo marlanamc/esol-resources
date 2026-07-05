@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Lock, CheckCircle, ChevronRight, RotateCcw } from 'lucide-react';
 import type { VerbGroup, GroupProgress } from '@/types/irregular-verbs';
-import { getGroupStage } from '@/lib/irregular-verbs-progress';
+import { getGroupStage } from '@/lib/verbs/irregular-progress';
 
 interface GroupCardProps {
   group: VerbGroup;

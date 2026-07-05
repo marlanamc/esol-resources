@@ -2,8 +2,8 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { useTheme } from '@/components/ThemeProvider';
-import { getLearnerEventTone } from '@/lib/learner-theme';
+import { useTheme } from '@/components/layout/ThemeProvider';
+import { getLearnerEventTone } from '@/lib/learner/theme';
 
 export type CalendarEvent = {
     id?: string;

@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { ALL_VOCAB_SOURCE_KEY } from "@/lib/vocab-review-sources";
-import { DEFAULT_VOCAB_REVIEW_LIMIT, getVocabReviewQueueForUser, getVocabReviewSummaryForUser } from "@/lib/vocab-review";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { ALL_VOCAB_SOURCE_KEY } from "@/lib/vocab/sources";
+import { DEFAULT_VOCAB_REVIEW_LIMIT, getVocabReviewQueueForUser, getVocabReviewSummaryForUser } from "@/lib/vocab/review";
 import { VocabReviewClient } from "@/components/vocab-review/VocabReviewClient";
 import type { VocabReviewQueue, VocabReviewSummary } from "@/types/vocab-review";
 

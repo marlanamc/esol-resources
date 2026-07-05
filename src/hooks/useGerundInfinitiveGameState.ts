@@ -35,7 +35,7 @@ import {
   getPassedGroups,
   initializeProgressData,
   getGroupStage,
-} from '@/lib/gerund-infinitive-progress';
+} from '@/lib/verbs/gerund-infinitive-progress';
 
 export type GIGamePhase = 'selection' | 'intro' | 'sorting' | 'exercise' | 'results';
 

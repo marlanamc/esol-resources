@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Lora, DM_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { LearnerSearchProvider } from "@/components/search/LearnerSearchProvider";
 import { cookies } from "next/headers";
 

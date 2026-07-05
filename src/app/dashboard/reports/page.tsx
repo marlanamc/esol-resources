@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { prisma } from "@/lib/database/prisma";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 import TeacherReportCard from "@/components/dashboard/TeacherReportCard";
 

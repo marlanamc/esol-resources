@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { RefObject } from "react";
 import type { LearnerSearchContext, LearnerSearchResult } from "@/lib/learner-search/types";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
 
 type Props = {
     context: LearnerSearchContext;

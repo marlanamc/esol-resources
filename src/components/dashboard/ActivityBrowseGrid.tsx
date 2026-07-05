@@ -2,7 +2,7 @@ import React from 'react';
 import { Badge } from '@/components/ui';
 import type { BadgeVariant } from '@/components/ui/Badge';
 import { ActivityLink } from '@/components/navigation/ActivityLink';
-import { getLearnerCategoryTone } from '@/lib/learner-theme';
+import { getLearnerCategoryTone } from '@/lib/learner/theme';
 
 interface ActivityBrowseGridProps {
     activities: {

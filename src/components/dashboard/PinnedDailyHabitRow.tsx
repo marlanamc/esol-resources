@@ -4,7 +4,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowRight, BookOpen, CheckCircle2 } from "lucide-react";
 import type { DailyChecklistHabit } from "@/lib/daily-habits";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { DashboardHeroCta } from "@/components/dashboard/DashboardHeroCta";
 
 export function PinnedDailyHabitRow({

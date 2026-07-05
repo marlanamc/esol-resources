@@ -3,7 +3,7 @@
 import React from 'react';
 import { Sparkles } from 'lucide-react';
 import { ActivityLink } from '@/components/navigation/ActivityLink';
-import { getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
+import { getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab/display';
 import type { FeaturedAssignment, CategoryStyle } from './types';
 
 const FEATURED_NEW_BADGE_CLASS_NAME = 'inline-flex items-center gap-1 rounded-full border';

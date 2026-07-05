@@ -7,7 +7,7 @@ import {
     buildReturnStorageKey,
     resolveLearnerReturnHrefSync,
     sanitizeInternalHref,
-} from "@/lib/learner-navigation";
+} from "@/lib/learner/navigation";
 
 interface UseResolvedLearnerReturnHrefOptions {
     fallbackHref?: string;

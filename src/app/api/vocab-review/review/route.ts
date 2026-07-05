@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { requireAuth } from "@/lib/api-auth";
-import { prisma } from "@/lib/prisma";
-import { ALL_VOCAB_SOURCE_KEY, isKnownVocabReviewSourceKey } from "@/lib/vocab-review-sources";
-import { saveVocabReviewRating } from "@/lib/vocab-review";
+import { authOptions } from "@/lib/auth/auth";
+import { requireAuth } from "@/lib/auth/api-auth";
+import { prisma } from "@/lib/database/prisma";
+import { ALL_VOCAB_SOURCE_KEY, isKnownVocabReviewSourceKey } from "@/lib/vocab/sources";
+import { saveVocabReviewRating } from "@/lib/vocab/review";
 import type { VocabReviewRating, VocabReviewSubmissionResult } from "@/types/vocab-review";
-import { ApiErrors, handleApiError } from "@/lib/api-response";
+import { ApiErrors, handleApiError } from "@/lib/api/response";
 
 function noStoreJson<T>(data: T, status = 200) {
   return NextResponse.json(data, {

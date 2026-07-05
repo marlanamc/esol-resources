@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { isAdmin } from "@/lib/roles";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { isAdmin } from "@/lib/auth/roles";
 
 export async function PATCH(
     request: Request,

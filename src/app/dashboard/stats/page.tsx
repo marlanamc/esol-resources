@@ -1,18 +1,18 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { LogoutButton } from "@/components/LogoutButton";
+import LogoutButton from "@/components/layout/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { timedQuery } from "@/lib/perf-log";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
+import { timedQuery } from "@/lib/shared/perf-log";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import { StatCard } from "@/components/ui";
 import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon } from "@/components/icons/Icons";
 import { StudentEngagementTable } from "@/components/dashboard/StudentEngagementTable";
 import { VerbQuizWeekSelector } from "@/components/dashboard/VerbQuizWeekSelector";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 import { LearnerTypeFilter } from "@/components/dashboard/LearnerTypeFilter";
 

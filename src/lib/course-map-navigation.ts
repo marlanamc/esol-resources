@@ -5,7 +5,7 @@ import {
     isMapActivityCompleted,
     type CourseMapProgressState,
 } from "@/lib/course-map-progress";
-import { buildActivityHref, withReturnTo } from "@/lib/learner-navigation";
+import { buildActivityHref, withReturnTo } from "@/lib/learner/navigation";
 
 /** Offset for sticky headers when scrolling to map anchors. */
 export const COURSE_MAP_SCROLL_OFFSET_PX = 88;

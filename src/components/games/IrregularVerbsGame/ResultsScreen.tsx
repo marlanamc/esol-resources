@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Target, Zap, Unlock, RotateCcw, ChevronRight, Sparkles, BookOpen, ArrowLeft } from 'lucide-react';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
-import { UNLOCK_THRESHOLD } from '@/lib/irregular-verbs-progress';
+import { UNLOCK_THRESHOLD } from '@/lib/verbs/irregular-progress';
 import type { VerbGroup, VerbGameRoundResults, VerbRoundMode } from '@/types/irregular-verbs';
 
 interface ResultsScreenProps {

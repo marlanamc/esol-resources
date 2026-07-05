@@ -8,7 +8,7 @@ import {
   getVocabLevelBadgeLabel,
   getVocabThemeChip,
 } from './activity-categories-vocab-utils';
-import { getVocabActivityType } from '@/lib/vocab-display';
+import { getVocabActivityType } from '@/lib/vocab/display';
 import { resolveActivityGameUi, getActivityPoints } from '@/lib/gamification/activity-points';
 import { getGameEmojiForActivity } from '@/lib/game-emoji';
 import { ActivityLink } from '@/components/navigation/ActivityLink';

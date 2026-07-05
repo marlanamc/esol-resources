@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { requireTeacher } from "@/lib/api-auth";
-import { resetWeeklyPoints } from "@/lib/gamification";
-import { ApiErrors } from "@/lib/api-response";
-import { logger } from "@/lib/logger";
+import { authOptions } from "@/lib/auth/auth";
+import { requireTeacher } from "@/lib/auth/api-auth";
+import { resetWeeklyPoints } from "@/lib/gamification/gamification";
+import { ApiErrors } from "@/lib/api/response";
+import { logger } from "@/lib/shared/logger";
 
 /**
  * Reset weekly points for all students

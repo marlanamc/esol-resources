@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { requireAuth } from "@/lib/api-auth";
+import { authOptions } from "@/lib/auth/auth";
+import { requireAuth } from "@/lib/auth/api-auth";
 import { isPushConfigured, savePushSubscription } from "@/lib/push";
 import type { PushSubscriptionPayload } from "@/lib/push";
-import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
 
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);

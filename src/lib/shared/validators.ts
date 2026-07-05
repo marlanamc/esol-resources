@@ -3,12 +3,12 @@
  * Provides type-safe validation with clear error messages
  *
  * Usage:
- * import { validateUserId, validateProgress } from '@/lib/validators';
+ * import { validateUserId, validateProgress } from '@/lib/shared/validators';
  * const validatedId = validateUserId(input);
  * const validatedProgress = validateProgress(input);
  */
 
-import { MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH } from '@/lib/auth-config';
+import { MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH } from '@/lib/auth/config';
 
 export class ValidationError extends Error {
     constructor(

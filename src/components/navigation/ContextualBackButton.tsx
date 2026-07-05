@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { BackButtonProps } from "@/components/ui/BackButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { useResolvedLearnerReturnHref } from "@/hooks/useResolvedLearnerReturnHref";
-import { resolveLearnerReturnHrefSync } from "@/lib/learner-navigation";
+import { resolveLearnerReturnHrefSync } from "@/lib/learner/navigation";
 
 type ContextualBackButtonProps = Omit<BackButtonProps, "href" | "onClick"> & {
     fallbackHref?: string;

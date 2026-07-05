@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
-import { ApiErrors } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
+import { ApiErrors } from "@/lib/api/response";
 import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 
 export const maxDuration = 10; // 10 second timeout
-export const revalidate = 300; // Cache for 5 minutes
 
 interface PopularActivity {
   activityId: string;
@@ -138,8 +137,9 @@ export async function GET(request: Request) {
 
     // Parallel queries for report data
     // Include source "activity" (new) and source "award" with activity-style reason (historical)
-    const [pointsData, activities, recentActivityData] = await Promise.all([
-      prisma.pointsLedger.findMany({
+    const [groupedPoints, activities, recentActivityData] = await Promise.all([
+      prisma.pointsLedger.groupBy({
+        by: ["userId", "reason"],
         where: {
           createdAt: { gte: timeThreshold },
           points: { gt: 0 },
@@ -149,20 +149,13 @@ export async function GET(request: Request) {
             { source: "award", reason: { startsWith: "Completed" } },
           ],
           ...(useStudentFilter ? { userId: { in: studentIds } } : {}),
-        },
-        select: {
-          userId: true,
-          points: true,
-          reason: true,
           user: {
-            select: {
-              username: true,
-              name: true,
-              isSystemAccount: true,
-              excludeFromLeaderboard: true,
-            },
+            isSystemAccount: false,
+            excludeFromLeaderboard: false,
           },
         },
+        _sum: { points: true },
+        _count: { _all: true },
       }),
       // Get all activities for name lookup
       prisma.activity.findMany({
@@ -186,6 +179,10 @@ export async function GET(request: Request) {
             { source: "award", reason: { startsWith: "Completed" } },
           ],
           ...(useStudentFilter ? { userId: { in: studentIds } } : {}),
+          user: {
+            isSystemAccount: false,
+            excludeFromLeaderboard: false,
+          },
         },
         orderBy: { createdAt: "desc" },
         take: 25,
@@ -199,29 +196,34 @@ export async function GET(request: Request) {
             select: {
               username: true,
               name: true,
-              isSystemAccount: true,
-              excludeFromLeaderboard: true,
             },
           },
         },
       }),
     ]);
 
-    // Filter out system accounts from results
-    const filteredPointsData = pointsData.filter(
-      (p) => !p.user.isSystemAccount && !p.user.excludeFromLeaderboard
-    );
+    // Memoized activity lookup: reason keys repeat across the report sections
+    const activityMatchCache = new Map<string, (typeof activities)[number] | undefined>();
+    const findActivityForKey = (key: string) => {
+      if (activityMatchCache.has(key)) return activityMatchCache.get(key);
+      const match = activities.find(
+        (a) => key.includes(a.id) || key.toLowerCase().includes(a.title.toLowerCase())
+      );
+      activityMatchCache.set(key, match);
+      return match;
+    };
 
-    // Process popular activities
+    // Process popular activities from grouped rows.
+    // Each grouped row is a unique (userId, reason) pair, so distinct
+    // players per reason is the number of rows sharing that reason.
     const activityMap = new Map<
       string,
       { playCount: number; uniquePlayers: Set<string>; activityId: string }
     >();
 
-    filteredPointsData.forEach((entry) => {
-      // Parse activity ID from reason field
+    groupedPoints.forEach((row) => {
       // Reason can be: "activity:numbers-game", "activity-name", or null
-      const activityId = entry.reason || "unknown";
+      const activityId = row.reason || "unknown";
 
       if (!activityMap.has(activityId)) {
         activityMap.set(activityId, {
@@ -232,8 +234,8 @@ export async function GET(request: Request) {
       }
 
       const activityData = activityMap.get(activityId)!;
-      activityData.playCount++;
-      activityData.uniquePlayers.add(entry.userId);
+      activityData.playCount += row._count._all;
+      activityData.uniquePlayers.add(row.userId);
     });
 
     // Convert to array and sort by play count
@@ -251,12 +253,7 @@ export async function GET(request: Request) {
     const popularActivities: PopularActivity[] = popularActivitiesRaw.map(
       (activity) => {
         // Try to find matching activity by ID or title
-        const dbActivity = activities.find(
-          (a) =>
-            a.id === activity.activityKey ||
-            activity.activityKey.includes(a.id) ||
-            activity.activityKey.toLowerCase().includes(a.title.toLowerCase())
-        );
+        const dbActivity = findActivityForKey(activity.activityKey);
 
         return {
           activityId: activity.activityKey,
@@ -274,17 +271,17 @@ export async function GET(request: Request) {
       { pointsEarned: number; activitiesCompleted: number }
     >();
 
-    filteredPointsData.forEach((entry) => {
-      if (!studentMap.has(entry.userId)) {
-        studentMap.set(entry.userId, {
+    groupedPoints.forEach((row) => {
+      if (!studentMap.has(row.userId)) {
+        studentMap.set(row.userId, {
           pointsEarned: 0,
           activitiesCompleted: 0,
         });
       }
 
-      const studentData = studentMap.get(entry.userId)!;
-      studentData.pointsEarned += entry.points;
-      studentData.activitiesCompleted++;
+      const studentData = studentMap.get(row.userId)!;
+      studentData.pointsEarned += row._sum.points ?? 0;
+      studentData.activitiesCompleted += row._count._all;
     });
 
     // Get top 10 active students
@@ -315,30 +312,26 @@ export async function GET(request: Request) {
     const lastActivityByStudent = new Map<string, { reason: string; time: Date }>();
 
     // recentActivityData is already sorted by createdAt desc, so first entry per user is most recent
-    recentActivityData
-      .filter((entry) => !entry.user.isSystemAccount && !entry.user.excludeFromLeaderboard)
-      .forEach((entry) => {
-        if (!lastActivityByStudent.has(entry.userId)) {
-          lastActivityByStudent.set(entry.userId, {
-            reason: entry.reason || "Activity",
-            time: entry.createdAt,
-          });
-        }
-      });
+    recentActivityData.forEach((entry) => {
+      if (!lastActivityByStudent.has(entry.userId)) {
+        lastActivityByStudent.set(entry.userId, {
+          reason: entry.reason || "Activity",
+          time: entry.createdAt,
+        });
+      }
+    });
+
+    const studentDetailsById = new Map(studentDetails.map((d) => [d.id, d]));
 
     const activeStudents: ActiveStudent[] = activeStudentsWithData.map(
       (student) => {
-        const details = studentDetails.find((d) => d.id === student.userId);
+        const details = studentDetailsById.get(student.userId);
         const lastActivity = lastActivityByStudent.get(student.userId);
 
         // Try to get a friendly activity name
         let lastActivityReason = lastActivity?.reason;
         if (lastActivityReason) {
-          const dbActivity = activities.find(
-            (a) =>
-              lastActivityReason!.includes(a.id) ||
-              lastActivityReason!.toLowerCase().includes(a.title.toLowerCase())
-          );
+          const dbActivity = findActivityForKey(lastActivityReason);
           if (dbActivity) {
             lastActivityReason = dbActivity.title;
           }
@@ -358,17 +351,12 @@ export async function GET(request: Request) {
 
     // Build recent activity feed
     const recentActivity: RecentActivityEntry[] = recentActivityData
-      .filter((entry) => !entry.user.isSystemAccount && !entry.user.excludeFromLeaderboard)
       .map((entry) => {
         // Try to get a friendly activity name and type
         let activityName = entry.reason || "Activity";
         let activityType: string | undefined;
 
-        const dbActivity = activities.find(
-          (a) =>
-            activityName.includes(a.id) ||
-            activityName.toLowerCase().includes(a.title.toLowerCase())
-        );
+        const dbActivity = findActivityForKey(activityName);
 
         if (dbActivity) {
           activityName = dbActivity.title;
@@ -390,10 +378,10 @@ export async function GET(request: Request) {
 
     // Calculate summary
     const summary = {
-      totalPlays: filteredPointsData.length,
+      totalPlays: groupedPoints.reduce((sum, row) => sum + row._count._all, 0),
       totalActiveStudents: studentMap.size,
-      totalPointsAwarded: filteredPointsData.reduce(
-        (sum, entry) => sum + entry.points,
+      totalPointsAwarded: groupedPoints.reduce(
+        (sum, row) => sum + (row._sum.points ?? 0),
         0
       ),
     };

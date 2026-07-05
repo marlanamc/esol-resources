@@ -1,5 +1,6 @@
 'use client';
 
+import { resolveAudioUrl } from "@/lib/audio/url";
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowLeft, BookOpen, CheckCircle2, ChevronRight, Ear, Headphones, Mic, RotateCcw, Volume2, XCircle } from 'lucide-react';
@@ -132,7 +133,7 @@ export default function PronunciationSentenceListeningGame({ contentStr, activit
 
   const playAudio = useCallback(
     async (text: string, promptId: string) => {
-      const audioPath = `/audio/pronunciation-sentences/${promptId}.mp3`;
+      const audioPath = resolveAudioUrl(`/audio/pronunciation-sentences/${promptId}.mp3`);
       try {
         const audio = new Audio(audioPath);
         await new Promise<void>((resolve, reject) => {

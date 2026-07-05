@@ -1,11 +1,11 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { redirect, notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/database/prisma";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
-import { CreateAssignmentForm } from "@/components/CreateAssignmentForm";
+import CreateAssignmentForm from "@/components/forms/CreateAssignmentForm";
 import { BackButton } from "@/components/ui/BackButton";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 
 interface Props {
     params: Promise<{ id: string }>;

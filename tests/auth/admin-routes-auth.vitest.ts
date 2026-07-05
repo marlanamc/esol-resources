@@ -2,13 +2,13 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import type { NextRequest } from "next/server";
 
 vi.mock("next-auth", () => ({ getServerSession: vi.fn() }));
-vi.mock("@/lib/auth", () => ({ authOptions: {} }));
+vi.mock("@/lib/auth/auth", () => ({ authOptions: {} }));
 vi.mock("@sentry/nextjs", () => ({ captureException: vi.fn(), captureMessage: vi.fn() }));
-vi.mock("@/lib/rate-limit", () => ({
+vi.mock("@/lib/api/rate-limit", () => ({
   checkRateLimit: () => true,
   authRateLimitKey: () => "test-key",
 }));
-vi.mock("@/lib/prisma", () => ({
+vi.mock("@/lib/database/prisma", () => ({
   prisma: {
     user: { findUnique: vi.fn(), update: vi.fn() },
     classEnrollment: { findFirst: vi.fn() },
@@ -16,7 +16,7 @@ vi.mock("@/lib/prisma", () => ({
 }));
 
 import { getServerSession } from "next-auth";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/database/prisma";
 import { PATCH as excludeLeaderboardPatch } from "@/app/api/admin/users/[userId]/exclude-leaderboard/route";
 import { POST as resetStudentPasswordPost } from "@/app/api/admin/reset-student-password/route";
 

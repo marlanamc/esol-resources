@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { authOptions } from "@/lib/auth/auth";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { TeachHeader } from "@/components/teach/TeachHeader";
 
 export const metadata = {

@@ -4,8 +4,8 @@
  */
 
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { ApiErrors, apiSuccess, handleApiError } from '@/lib/api-response';
+import { prisma } from '@/lib/database/prisma';
+import { ApiErrors, apiSuccess, handleApiError } from '@/lib/api/response';
 import { normalizeInviteCode, isValidInviteCodeFormat } from '@/lib/invite-code';
 
 interface RouteParams {

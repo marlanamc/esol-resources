@@ -1,7 +1,7 @@
 "use client";
 
 import type { LearnerSearchFilter, LearnerSearchFilterOption } from "@/lib/learner-search/types";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
 
 type Props = {
     activeFilter: LearnerSearchFilter;

@@ -1,8 +1,8 @@
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
 import { getLearnerState, type LearnerMode } from "@/lib/learner-mode";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
-import { canUseTeacherTools } from "@/lib/roles";
+import { canUseTeacherTools } from "@/lib/auth/roles";
 
 export type LearnerPreview = "classroom" | "independent";
 

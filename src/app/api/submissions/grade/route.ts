@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { requireTeacher } from "@/lib/api-auth";
-import { prisma } from "@/lib/prisma";
-import { ApiErrors, handleApiError } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { requireTeacher } from "@/lib/auth/api-auth";
+import { prisma } from "@/lib/database/prisma";
+import { ApiErrors, handleApiError } from "@/lib/api/response";
 import { parseApiBody, GradeSubmissionBodySchema } from "@/lib/api/schemas";
 
 export async function POST(request: NextRequest) {

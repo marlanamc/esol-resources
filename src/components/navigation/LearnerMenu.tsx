@@ -9,8 +9,8 @@ import { BookOpen, ClipboardList, Gamepad2, Map, Menu, Mic, PenLine, PenTool, Se
 import { BookOpenIcon, HomeIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
 import { useDocumentScrollLock } from "@/hooks/useDocumentScrollLock";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
-import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
+import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 import { isGamesLibraryActivity } from "@/lib/games-library";
 
 const MEDAL_EMOJI: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };

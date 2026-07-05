@@ -1,16 +1,16 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
 import type { ActivityProgressStatus } from "@/lib/activityProgress";
-import { getActivityPoints, POINTS, resolveActivityGameUi } from "@/lib/gamification";
+import { getActivityPoints, POINTS, resolveActivityGameUi } from "@/lib/gamification/gamification";
 import { calculateGroupPoints as calculateGIGroupPoints } from "@/lib/verbs/gerund-infinitive-progress";
 import { calculateGroupPoints as calculateVerbGroupPoints } from "@/lib/verbs/irregular-progress";
 import { calculateNumbersGameCompletionPercentage, isNumbersGameCategoryName } from "@/data/numbersGameCategories";
-import { applyAwardChain } from "@/lib/gamification-award-chain";
-import { logger } from "@/lib/logger";
-import { ApiErrors, apiError } from "@/lib/api-response";
-import { timedQuery } from "@/lib/perf-log";
+import { applyAwardChain } from "@/lib/gamification/award-chain";
+import { logger } from "@/lib/shared/logger";
+import { ApiErrors, apiError } from "@/lib/api/response";
+import { timedQuery } from "@/lib/shared/perf-log";
 import {
     chooseBestProgressRecord,
     isVocabCategoryData,

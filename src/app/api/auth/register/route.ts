@@ -4,12 +4,12 @@
  */
 
 import bcrypt from 'bcryptjs';
-import { prisma } from '@/lib/prisma';
-import { apiError, apiSuccess, handleApiError } from '@/lib/api-response';
+import { prisma } from '@/lib/database/prisma';
+import { apiError, apiSuccess, handleApiError } from '@/lib/api/response';
 import { normalizeInviteCode, isValidInviteCodeFormat } from '@/lib/invite-code';
-import { logger } from '@/lib/logger';
+import { logger } from '@/lib/shared/logger';
 import { headers } from 'next/headers';
-import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
+import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 
 interface RegisterRequestBody {
   inviteCode: string;
@@ -101,7 +101,7 @@ export async function POST(request: Request) {
     const ip = getClientIp(reqHeaders);
     const rateLimitKey = `auth:register:${ip}`;
 
-    if (!checkRateLimit(rateLimitKey, { limit: 5, windowSeconds: 60 })) {
+    if (!(await checkRateLimit(rateLimitKey, { limit: 5, windowSeconds: 60 }))) {
       logger.warn('Registration rate limit exceeded', { ip });
       return apiError('Too many registration attempts. Please try again later.', 429, 'RATE_LIMITED');
     }

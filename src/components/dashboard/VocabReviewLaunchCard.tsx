@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import type { VocabReviewSummary } from "@/types/vocab-review";
 
 interface VocabReviewLaunchCardProps {

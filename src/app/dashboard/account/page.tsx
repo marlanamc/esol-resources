@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
-import { canUseTeacherTools } from "@/lib/roles";
+import { authOptions } from "@/lib/auth/auth";
+import { canUseTeacherTools } from "@/lib/auth/roles";
 import { DeleteAccountSection } from "@/components/profile/DeleteAccountSection";
 import AccountSettingsClient from "@/components/profile/StudentAccountSettingsClient";
 

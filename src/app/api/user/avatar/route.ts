@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authOptions } from '@/lib/auth/auth';
+import { prisma } from '@/lib/database/prisma';
 import {
   isValidAvatarId,
   isValidColorId,
   DEFAULT_AVATAR,
   DEFAULT_COLOR,
 } from '@/lib/avatar-constants';
-import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
+import { ApiErrors, apiError, handleApiError } from '@/lib/api/response';
 
 /**
  * GET /api/user/avatar

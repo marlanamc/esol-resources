@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
-import { applyAwardChain } from '@/lib/gamification-award-chain';
+import { authOptions } from '@/lib/auth/auth';
+import { prisma } from '@/lib/database/prisma';
+import { applyAwardChain } from '@/lib/gamification/award-chain';
 import { normalizeAssignmentId } from '@/lib/assignment-scope';
-import { acquireUserActivityScopeLock } from '@/lib/db-locks';
-import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
+import { acquireUserActivityScopeLock } from '@/lib/database/locks';
+import { ApiErrors, apiError, handleApiError } from '@/lib/api/response';
 
 export async function POST(request: NextRequest) {
     try {

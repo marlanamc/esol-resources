@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { VerbQuizContent, VerbQuizAnswers } from '@/types/verb-quiz';
 import { CheckCircle2, Loader2 } from 'lucide-react';
-import { getVerbDefinition } from '@/lib/verb-definitions';
+import { getVerbDefinition } from '@/lib/verbs/definitions';
 
 interface VerbQuizProps {
   content: VerbQuizContent;

@@ -2,7 +2,7 @@
 
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import Link from "next/link";
-import { buildActivityHref, withReturnTo } from "@/lib/learner-navigation";
+import { buildActivityHref, withReturnTo } from "@/lib/learner/navigation";
 import { useCurrentAppHref } from "@/hooks/useCurrentAppHref";
 
 interface ActivityLinkProps extends Omit<ComponentPropsWithoutRef<typeof Link>, "href"> {

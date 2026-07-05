@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { MIN_PASSWORD_LENGTH } from "@/lib/auth-config";
+import { MIN_PASSWORD_LENGTH } from "@/lib/auth/config";
 
 type Student = {
     id: string;

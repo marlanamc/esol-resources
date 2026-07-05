@@ -1,10 +1,10 @@
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { authOptions } from "@/lib/auth";
-import { requireAuth, type SessionUser } from "@/lib/api-auth";
-import { prisma } from "@/lib/prisma";
-import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { requireAuth, type SessionUser } from "@/lib/auth/api-auth";
+import { prisma } from "@/lib/database/prisma";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
 
 const MIN_REASON_LENGTH = 10;
 const MAX_REASON_LENGTH = 2000;

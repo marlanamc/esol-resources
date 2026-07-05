@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
+import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab/display';
 import { parseCategoryData } from '@/lib/categoryData';
 import { getGameEmojiForActivity } from '@/lib/game-emoji';
 import {
@@ -19,7 +19,7 @@ import {
 import { ActivityLink } from '@/components/navigation/ActivityLink';
 import { StudentQuickStats } from '@/components/dashboard/StudentQuickStats';
 import type { DailyChecklistHabit } from '@/lib/daily-habits';
-import { getLearnerCategoryTone } from '@/lib/learner-theme';
+import { getLearnerCategoryTone } from '@/lib/learner/theme';
 import { PinnedDailyHabitRow } from '@/components/dashboard/PinnedDailyHabitRow';
 import { getAssignmentDueDisplay, isAssignmentRequired, isCatchUpPathEnabled, type DueDisplayMeta } from '@/lib/catch-up-deadlines';
 import { formatDashboardWeekRangeLabel } from '@/lib/dashboard/week-range-label';

@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { z } from "zod";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { isAdmin } from "@/lib/roles";
-import { handleApiError } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { isAdmin } from "@/lib/auth/roles";
+import { handleApiError } from "@/lib/api/response";
 import { parseApiBody } from "@/lib/api/schemas";
 
 const ExcludeLeaderboardBodySchema = z.object({

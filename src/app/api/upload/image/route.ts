@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
-import { canUseTeacherTools } from "@/lib/roles";
+import { canUseTeacherTools } from "@/lib/auth/roles";
 
 const ALLOWED_TYPES: Record<string, string> = {
     "image/jpeg": "jpg",
