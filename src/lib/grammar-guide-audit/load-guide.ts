@@ -2,9 +2,12 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import type { InteractiveGuideContent } from "@/types/activity";
+import { grammarGuides } from "@/lib/grammar-guide-registry";
 import type { GuideScopeEntry, LoadedGuide } from "./types";
 
 const ROOT = process.cwd();
+
+const DYNAMIC_PAGE_PATH = path.join(ROOT, "src/app/grammar-reader/[slug]/page.tsx");
 
 export function contentPathForSlug(slug: string): string {
     return path.join(ROOT, "src/content/grammar", `${slug}.ts`);
@@ -60,6 +63,7 @@ export async function loadGuide(scope: GuideScopeEntry): Promise<LoadedGuide> {
             contentSource: "",
             pagePath: null,
             pageSource: null,
+            pageMeta: null,
             imageModulePath: findImageImportPath(contentSource),
             exportName,
         };
@@ -70,6 +74,24 @@ export async function loadGuide(scope: GuideScopeEntry): Promise<LoadedGuide> {
         pageSource = await readFile(pagePath, "utf8");
     } catch {
         pageSource = null;
+    }
+
+    // Route resolution: a dedicated page file wins; otherwise the guide is
+    // served by the dynamic [slug] route when it's in the guide registry.
+    let resolvedPagePath: string | null = null;
+    let pageMeta: LoadedGuide["pageMeta"] = null;
+    if (pageSource) {
+        resolvedPagePath = pagePath;
+        pageMeta = parsePageMeta(pageSource);
+    } else {
+        const registryEntry = grammarGuides[scope.slug];
+        if (registryEntry) {
+            resolvedPagePath = DYNAMIC_PAGE_PATH;
+            pageMeta = {
+                completionKey: scope.slug,
+                activityTitle: registryEntry.activityTitle,
+            };
+        }
     }
 
     let content: InteractiveGuideContent = { type: "interactive-guide", sections: [] };
@@ -85,8 +107,9 @@ export async function loadGuide(scope: GuideScopeEntry): Promise<LoadedGuide> {
         content,
         contentPath,
         contentSource,
-        pagePath,
+        pagePath: resolvedPagePath,
         pageSource,
+        pageMeta,
         imageModulePath: findImageImportPath(contentSource),
         exportName,
     };

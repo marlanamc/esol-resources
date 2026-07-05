@@ -18,6 +18,7 @@ function makeGuide(content: InteractiveGuideContent): LoadedGuide {
         contentSource: "",
         pagePath: null,
         pageSource: null,
+        pageMeta: null,
         imageModulePath: null,
         exportName: "testGuideContent",
     };
