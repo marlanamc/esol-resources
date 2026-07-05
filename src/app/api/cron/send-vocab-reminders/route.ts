@@ -39,30 +39,35 @@ export async function GET(request: NextRequest) {
   const today = new Date();
   const dayKey = getLearnerDayKey(today);
 
-  // Students who completed vocab today (via DailyHabitCompletion)
-  const completedUserIds = await prisma.dailyHabitCompletion
-    .findMany({
+  // Distinct subscribed students who haven't completed today's vocab review.
+  // groupBy dedupes multi-device users (one reminder per student, not per
+  // subscription) and the relation filter keeps completed users out of the
+  // result instead of loading every subscription and filtering in JS.
+  const [toNotify, completedToday] = await Promise.all([
+    prisma.pushSubscription.groupBy({
+      by: ["userId"],
+      where: {
+        user: {
+          role: "student",
+          isSystemAccount: false,
+          dailyHabitCompletions: {
+            none: {
+              habitKey: DAILY_HABIT_KEYS.vocabReview,
+              dayKey,
+            },
+          },
+        },
+      },
+      orderBy: { userId: "asc" },
+    }),
+    prisma.dailyHabitCompletion.count({
       where: {
         habitKey: DAILY_HABIT_KEYS.vocabReview,
         dayKey,
       },
-      select: { userId: true },
-    })
-    .then((rows) => new Set(rows.map((r) => r.userId)));
+    }),
+  ]);
 
-  // Students with push subscriptions who haven't completed today
-  const subscriptions = await prisma.pushSubscription.findMany({
-    where: {
-      user: {
-        role: "student",
-        isSystemAccount: false,
-      },
-    },
-    select: { userId: true },
-    orderBy: { userId: "asc" },
-  });
-
-  const toNotify = subscriptions.filter((s) => !completedUserIds.has(s.userId));
   const scheduledNotifications = toNotify.slice(0, MAX_NOTIFICATIONS_PER_RUN);
   const truncated = toNotify.length > scheduledNotifications.length;
   let sent = 0;
@@ -96,6 +101,6 @@ export async function GET(request: NextRequest) {
     eligible: toNotify.length,
     truncated,
     remaining: Math.max(0, toNotify.length - scheduledNotifications.length),
-    completedToday: completedUserIds.size,
+    completedToday,
   });
 }
