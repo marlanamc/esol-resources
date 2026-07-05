@@ -361,6 +361,7 @@ Use `.env.example` as the canonical source.
 - Accounts: `DEV_SEED_ACCOUNT_PASSWORD`, `TEST_STUDENT_DEFAULT_PASSWORD`
 - Vocab imagery: `VOCAB_IMAGE_SIZE`, `UNSPLASH_ACCESS_KEY`, `UNSPLASH_CLIENT_ID`, `UNSPLASH_ACCESS_KEY_ID`, `UNSPLASH_DELAY_MS`, `UNSPLASH_RATE_LIMIT_PER_HOUR`
 - Audio: `ELEVENLABS_API_KEY`, `ELEVENLABS_VOICE_ID`, `ELEVENLABS_VOICE_IDS`
+- Audio hosting (optional): `NEXT_PUBLIC_AUDIO_CDN_URL` (serve /audio/* from Vercel Blob; falls back to public/audio when unset), `BLOB_READ_WRITE_TOKEN` (for `npm run audio:upload:blob`)
 - Backups: `BACKUP_DATABASE_URL`, `BACKUP_ENCRYPTION_KEY`
 - Monitoring: `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN`, `SENTRY_ORG`, `SENTRY_PROJECT`
 - Safety: `ALLOW_PROD_DB_MUTATION`, `CONFIRM_DB_HOST`

@@ -1,5 +1,6 @@
 "use client";
 
+import { resolveAudioUrl } from "@/lib/audio/url";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -546,7 +547,7 @@ export default function EmotionSpinWheel({}: Props) {
         const word = EMOTIONS[landedIndex].word;
         setIsSpeaking(true);
         try {
-            const audioUrl = `/audio/emotions/${encodeURIComponent(word)}.mp3`;
+            const audioUrl = resolveAudioUrl(`/audio/emotions/${encodeURIComponent(word)}.mp3`);
             await playAudio(audioUrl);
         } catch {
             try {

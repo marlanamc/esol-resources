@@ -115,6 +115,7 @@
     "import:verb-speed-round": "npx tsx scripts/import/import-verb-speed-round.ts",
     "audio:minimal-pairs": "npx tsx scripts/content/generate-minimal-pairs-audio.ts",
     "audio:pronunciation-sentences": "npx tsx scripts/content/generate-pronunciation-sentence-audio.ts",
+    "audio:upload:blob": "npx tsx scripts/audio/upload-audio-to-blob.ts",
     "push:generate-vapid": "node -e \"const webpush=require('web-push');const v=webpush.generateVAPIDKeys();console.log('VAPID_PUBLIC_KEY='+v.publicKey);console.log('VAPID_PRIVATE_KEY='+v.privateKey);\""
   },
   "dependencies": {
@@ -148,6 +149,7 @@
     "@types/react-dom": "^19",
     "@types/sanitize-html": "^2.16.0",
     "@types/web-push": "^3.6.4",
+    "@vercel/blob": "^2.5.0",
     "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.1",

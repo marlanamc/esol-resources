@@ -35,14 +35,29 @@ imports are per-route pages that Next splits on its own. (The unused
 `src/components/games/index.ts` barrel, which would have defeated the
 splitting if imported, was removed.)
 
-## 3. Move generated audio out of git
+## 3. Move generated audio out of git — mechanism in place, cutover pending
 
-`public/audio/` holds 1,189 generated TTS `.mp3` files (~21MB), the main
-driver of repo and clone size. They are regenerable via the `audio:*`
-scripts. Move to blob storage (Vercel Blob / R2 / S3) with a URL prefix
-config, keep local generation for development, and stop tracking the files.
-Purging them from git history (e.g. `git filter-repo`) is optional and
-should be coordinated — it rewrites history for all clones.
+The code side is done: all audio URL construction goes through
+`resolveAudioUrl` (`src/lib/audio/url.ts`), which prefixes
+`NEXT_PUBLIC_AUDIO_CDN_URL` when set and falls back to `public/audio/`
+when unset, and `npm run audio:upload:blob` uploads `public/audio/**` to
+Vercel Blob idempotently.
+
+Cutover steps (requires a Vercel Blob store):
+1. Vercel dashboard -> Storage -> Blob -> create a store; copy the
+   read-write token.
+2. `BLOB_READ_WRITE_TOKEN=... npm run audio:upload:blob` (re-runnable;
+   skips already-uploaded files). It prints the store's base URL.
+3. Set `NEXT_PUBLIC_AUDIO_CDN_URL=<that base URL>` in the Vercel project
+   env and redeploy; verify audio playback in vocab review, minimal pairs,
+   -ed pronunciation, sentence listening, and the emotion wheel.
+4. Remove `public/audio/` from git (`git rm -r public/audio` +
+   `.gitignore` entry) — the ~21MB / 1,189 mp3s stop being tracked. Keep
+   the `audio:*` generation scripts writing to `public/audio/` locally;
+   re-run the upload script after generating new audio.
+5. Optional, coordinated: purge the mp3s from git history with
+   `git filter-repo` to shrink `.git` (~33MB) — rewrites history for all
+   clones, so do it deliberately.
 
 ## 4. Shim codemod
 
