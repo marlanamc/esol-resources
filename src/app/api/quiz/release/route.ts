@@ -62,33 +62,19 @@ export async function POST(request: Request) {
 
             const dueDate = parseDateOnly(content.due_date);
 
-            // Create calendar events for classes that don't already have one
-            const existingEvents = await prisma.calendarEvent.findMany({
-                where: {
-                    classId: { in: classes.map((c) => c.id) },
+            // One event per class; the (classId, title, type, date) unique
+            // constraint makes re-release idempotent.
+            await prisma.calendarEvent.createMany({
+                data: classes.map((classItem) => ({
+                    classId: classItem.id,
                     title: activity.title,
+                    description: `Verb quiz due date`,
+                    date: dueDate,
                     type: 'quiz',
-                    date: dueDate
-                },
-                select: { classId: true }
+                    createdById: userId
+                })),
+                skipDuplicates: true
             });
-            const classIdsWithEvent = new Set(existingEvents.map((e) => e.classId));
-            const missingClassIds = classes
-                .map((c) => c.id)
-                .filter((id) => !classIdsWithEvent.has(id));
-
-            if (missingClassIds.length > 0) {
-                await prisma.calendarEvent.createMany({
-                    data: missingClassIds.map((classId) => ({
-                        classId,
-                        title: activity.title,
-                        description: `Verb quiz due date`,
-                        date: dueDate,
-                        type: 'quiz',
-                        createdById: userId
-                    }))
-                });
-            }
         } catch (error) {
             logger.error('Error creating calendar events for verb quiz', error);
             // Don't fail the request if calendar event creation fails

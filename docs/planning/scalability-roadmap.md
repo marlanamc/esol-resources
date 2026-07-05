@@ -75,12 +75,12 @@ every read parses the whole blob and the DB can't validate or index into
 it. Migrate the column to `Json` (Postgres `jsonb`) with a data migration,
 then simplify `parseActivityContent`.
 
-## 8. `CalendarEvent` uniqueness
+## 8. `CalendarEvent` uniqueness — DONE
 
-No unique constraint on calendar events; quiz release dedupes with a
-check-then-create that has a small race window. Add
-`@@unique([classId, title, type, date])` plus a dedupe migration for
-existing rows, then switch the batch insert to `skipDuplicates: true`.
+`@@unique([classId, title, type, date])` added with a dedupe migration
+(`20260705120000_add_calendar_event_uniqueness`); quiz release now uses
+`createMany(skipDuplicates)` and the manual calendar-events route returns
+409 on duplicates.
 
 ## 9. `docs/audits/` retention policy
 
@@ -98,8 +98,6 @@ behind a small CLI (`tsx scripts/run.ts <task>`).
 
 ## 11. Smaller follow-ups
 
-- Call `revalidateTag('leaderboard')` from `awardPoints()` so leaderboard
-  cache invalidation is event-driven instead of purely TTL-based.
 - Paginate `/api/vocab/library` for `topic=all` responses as the card
   catalog grows.
 - `send-vocab-reminders` cron: filter already-notified/completed users in

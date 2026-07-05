@@ -292,6 +292,7 @@ model CalendarEvent {
   class       Class     @relation(fields: [classId], references: [id])
   createdBy   User?     @relation(fields: [createdById], references: [id])
 
+  @@unique([classId, title, type, date])
   @@index([classId])
   @@index([classId, date])
 }
