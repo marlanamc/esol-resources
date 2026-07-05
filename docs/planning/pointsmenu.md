@@ -61,4 +61,4 @@
 - `awardPoints` (the centralized helper) increments both `points` and `weeklyPoints`, logs into `pointsLedger`, and prints a console trace for every award, so every API route ultimately funnels through this gate (`src/lib/gamification.ts:144`).
 - Login tracking writes a zero-point ledger entry (`trackLogin`) so the activity calendar can show consistent dates without inflating totals (`src/lib/gamification.ts:116`).
 - Run `npx tsx scripts/backfill-activity-ui.ts` after deploying the migration to tag legacy matching games with `ui: "matching"` so the new detection logic applies consistently.
-- Use `npm run test:gamification` for a quick sanity check that rewards, streak gating, and matching detection behave as expected without touching the database.
+- Use `npx vitest run tests/gamification` for a quick sanity check that rewards, streak gating, and matching detection behave as expected without touching the database.

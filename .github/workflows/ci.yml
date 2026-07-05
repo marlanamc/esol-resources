@@ -61,41 +61,8 @@ jobs:
       - name: Prepare database schema
         run: npm run ci:db:prepare
 
-      - name: Critical tests - gamification helpers
-        run: npm run test:gamification
-
-      - name: Critical tests - activity submit assignmentId
-        run: npm run test:activity-submit
-
-      - name: Critical tests - exercise answer normalization
-        run: npm run test:exercise-answer-normalization
-
-      - name: Critical tests - activity submit contract
-        run: npm run test:activity-submit:contract
-
-      - name: Critical tests - activity progress merge
-        run: npm run test:activity-progress:merge
-
-      - name: Critical tests - activity progress points
-        run: npm run test:activity-progress:points
-
-      - name: Critical tests - assignments featured
-        run: npm run test:assignments-featured
-
-      - name: Critical tests - classes join
-        run: npm run test:classes-join
-
-      - name: Critical tests - submission points claim
-        run: npm run test:submission-points-claim
-
-      - name: Critical tests - sanitize
-        run: npm run test:sanitize
-
-      - name: Critical tests - validators env
-        run: npm run test:validators-env
-
-      - name: Critical tests - DB guard
-        run: npm run test:db-guard
+      - name: Node test suites
+        run: npm run test:node
 
       - name: Vitest coverage
         run: npm run test:coverage

@@ -103,12 +103,15 @@ are *read* by `health:gate` scripts (`audit-mini-guides`,
 `audit-grammar-dark-mode`). Decide which reports are working inputs vs
 stale outputs; regenerate-on-demand for the rest and gitignore them.
 
-## 10. npm script consolidation
+## 10. npm script consolidation — test wrappers DONE
 
-~95 scripts in `package.json`, including ~22 single-file `test:*` wrappers
-and a hand-maintained 14-entry `test:critical` chain. Replace one-file
-wrappers with vitest path globs / tags, and group seed/import scripts
-behind a small CLI (`tsx scripts/run.ts <task>`).
+The 15 single-file `test:*` wrappers and the hand-maintained
+`test:critical` chain are gone: `test:critical` now runs vitest
+directories plus `test:node` (the three node --test suites), and CI's 12
+redundant per-file steps collapsed to two (the per-file runs duplicated
+the coverage run). Remaining: group seed/import scripts behind a small
+CLI (`tsx scripts/run.ts <task>`) if the `db:seed:*`/`import:*` families
+keep growing.
 
 ## 11. Smaller follow-ups
 

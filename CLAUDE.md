@@ -69,20 +69,9 @@ npm run audit:answer-position  # Quiz answer-position bias checks
 ### Tests
 ```bash
 npm run test:vitest                 # Unit tests via Vitest
-npm run test:critical               # Required critical test bundle
-npm run test:gamification
-npm run test:activity-submit
-npm run test:exercise-answer-normalization
-npm run test:activity-submit:contract
-npm run test:activity-progress:merge
-npm run test:activity-progress:points
-npm run test:assignments-featured
-npm run test:classes-join
-npm run test:submission-points-claim
-npm run test:sanitize
-npm run test:validators-env
-npm run test:db-guard
-npm run test:vocab-review
+npm run test:critical               # Critical bundle: vitest dirs (gamification, activity, classes, auth, sanitize) + node suites
+npm run test:node                   # node --test suites (db-guard, catch-up deadlines, vocab review)
+npx vitest run tests/<dir-or-file>  # Run any single suite directly
 npm run test:e2e                  # Playwright suite
 npm run test:e2e:smoke            # Mobile/PWA smoke
 npm run test:e2e:mobile           # Dedicated mobile smoke entry
