@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
-import { resetWeeklyPoints } from "@/lib/gamification";
-import { ApiErrors, apiSuccess } from "@/lib/api-response";
-import { logger } from "@/lib/logger";
+import { resetWeeklyPoints } from "@/lib/gamification/gamification";
+import { ApiErrors, apiSuccess } from "@/lib/api/response";
+import { logger } from "@/lib/shared/logger";
 
 /**
  * Cron job to reset weekly leaderboard points

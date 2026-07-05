@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { ApiErrors, apiError } from "@/lib/api-response";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { ApiErrors, apiError } from "@/lib/api/response";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 
 type MiniQuizQuestionMeta = {
     question: string;

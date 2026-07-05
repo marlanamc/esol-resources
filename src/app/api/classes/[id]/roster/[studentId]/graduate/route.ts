@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { canManageClass } from "@/lib/policies";
-import { requireTeacher } from "@/lib/api-auth";
-import { ApiErrors, handleApiError } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
+import { canManageClass } from "@/lib/auth/policies";
+import { requireTeacher } from "@/lib/auth/api-auth";
+import { ApiErrors, handleApiError } from "@/lib/api/response";
 
 interface RouteParams {
     params: Promise<{ id: string; studentId: string }>;

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { checkRateLimit, getClientIp } from "@/lib/api/rate-limit";
 
 describe("rate limit", () => {
   it("allows requests under limit", async () => {

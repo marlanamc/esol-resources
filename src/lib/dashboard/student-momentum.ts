@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
 import { buildCalendarWeekActivity, getCalendarWeekStart } from "@/lib/gamification/calendar-week";
 
 export interface StudentMomentumSnapshot {

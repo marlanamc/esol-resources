@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
 import { isAdmin } from "@/lib/auth/roles";
 import { MAP } from "@/lib/content-kind";

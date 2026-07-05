@@ -1,11 +1,11 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/database/prisma";
 import bcrypt from "bcryptjs";
-import { trackLogin } from "@/lib/gamification";
-import { logger } from "@/lib/logger";
+import { trackLogin } from "@/lib/gamification/gamification";
+import { logger } from "@/lib/shared/logger";
 import { headers } from "next/headers";
-import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { checkRateLimit, getClientIp } from "@/lib/api/rate-limit";
 import { SESSION } from "@/lib/constants";
 import { normalizeUserRole } from "./roles";
 

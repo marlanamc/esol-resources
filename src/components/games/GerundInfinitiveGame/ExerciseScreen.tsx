@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Target, Lightbulb, AlertCircle, ArrowLeft, ChevronRight } from 'lucide-react';
-import { useTheme } from '@/components/ThemeProvider';
+import { useTheme } from '@/components/layout/ThemeProvider';
 import { getExerciseTypeLabel } from '@/data/gerund-infinitive-exercises';
 import { PatternChoiceExercise } from './exercises/PatternChoiceExercise';
 import { PatternIdentifierExercise } from './exercises/PatternIdentifierExercise';

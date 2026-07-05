@@ -23,9 +23,9 @@ import {
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { saveActivityProgress } from '@/lib/activityProgress';
 import { PointsToast } from '@/components/ui/PointsToast';
-import { resolveLearnerReturnHrefSync } from '@/lib/learner-navigation';
+import { resolveLearnerReturnHrefSync } from '@/lib/learner/navigation';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
-import { useTheme } from '@/components/ThemeProvider';
+import { useTheme } from '@/components/layout/ThemeProvider';
 import {
   EdVerb,
   EdSound,

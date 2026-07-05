@@ -1,4 +1,4 @@
-import type { getVocabActivityType } from '@/lib/vocab-display';
+import type { getVocabActivityType } from '@/lib/vocab/display';
 
 export interface Activity {
     id: string;

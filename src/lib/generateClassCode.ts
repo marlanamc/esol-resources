@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { prisma } from './prisma';
+import { prisma } from './database/prisma';
 
 /**
  * Generate a cryptographically secure, random class code

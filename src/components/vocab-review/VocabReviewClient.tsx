@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { ArrowLeft, CheckCircle2, ChevronDown, HelpCircle, RotateCcw, Volume2, X, Sparkles, BrainCircuit, CalendarSync } from "lucide-react";
-import { VocabReminderOptIn } from "@/components/VocabReminderOptIn";
+import { VocabReminderOptIn } from "@/components/vocab/VocabReminderOptIn";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import type {
   VocabReviewCard,
@@ -11,8 +11,8 @@ import type {
   VocabReviewSubmissionResult,
   VocabReviewSummary,
 } from "@/types/vocab-review";
-import { ALL_VOCAB_SOURCE_KEY } from "@/lib/vocab-review-sources";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { ALL_VOCAB_SOURCE_KEY } from "@/lib/vocab/sources";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { getVocabAudioUrl } from "@/lib/vocab-audio-url";
 
 type SessionCard = VocabReviewCard & {

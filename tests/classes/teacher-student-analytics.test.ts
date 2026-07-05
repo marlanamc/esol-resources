@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 import {
   buildTeacherStudentCategorySummaries,
   filterVisibleTeacherAnalyticsAssignments,

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getLearnerCategoryTone } from "@/lib/learner-theme";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
 
 const ACTIVITY_CATEGORIES = [
     { label: "Grammar", href: "/dashboard/activities?category=grammar", category: "grammar", emoji: "📖" },

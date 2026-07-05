@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
-import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import {
   buildTeacherStudentCategorySummaries,
   filterVisibleTeacherAnalyticsAssignments,
 } from "@/lib/teacher-student-analytics";
-import { ApiErrors } from "@/lib/api-response";
+import { ApiErrors } from "@/lib/api/response";
 
 export async function GET(
   _request: Request,

@@ -6,11 +6,11 @@
 
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import { prisma } from '@/lib/prisma';
-import { apiError, apiSuccess, handleApiError } from '@/lib/api-response';
-import { logger } from '@/lib/logger';
+import { prisma } from '@/lib/database/prisma';
+import { apiError, apiSuccess, handleApiError } from '@/lib/api/response';
+import { logger } from '@/lib/shared/logger';
 import { headers } from 'next/headers';
-import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
+import { checkRateLimit, getClientIp } from '@/lib/api/rate-limit';
 
 interface ResetPasswordRequest {
     token: string;

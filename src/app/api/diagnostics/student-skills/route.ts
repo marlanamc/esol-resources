@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
-import { ApiErrors, apiError } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
+import { ApiErrors, apiError } from "@/lib/api/response";
 
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions);

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { useCurrentAppHref } from "@/hooks/useCurrentAppHref";
-import { withReturnTo } from "@/lib/learner-navigation";
+import { withReturnTo } from "@/lib/learner/navigation";
 import type { CourseMapActivity, CourseMapActivityType, CourseMapUnit } from "@/lib/course-map";
 import { isMapActivityCompleted, type CourseMapProgressState } from "@/lib/course-map-progress";
 

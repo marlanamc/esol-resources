@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Trophy, Clock } from 'lucide-react';
-import { parseVocabTypeLabel, VOCAB_CHIP_CONFIG, type VocabActivityType } from '@/lib/vocab-display';
+import { parseVocabTypeLabel, VOCAB_CHIP_CONFIG, type VocabActivityType } from '@/lib/vocab/display';
 
 interface ActivityTimelineItem {
   id: string;

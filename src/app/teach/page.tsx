@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { isAdmin } from "@/lib/roles";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
+import { isAdmin } from "@/lib/auth/roles";
 import Link from "next/link";
 import {
     Users, BookOpen, Calendar, BarChart2, Eye, AlertCircle, Clock,
@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
 import { TeachClassSwitcher } from "@/components/teach/TeachClassSwitcher";
-import { getTimeframedLeaderboard } from "@/lib/gamification";
+import { getTimeframedLeaderboard } from "@/lib/gamification/gamification";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
 
 async function getActiveClass(userId: string, admin: boolean, classId: string) {

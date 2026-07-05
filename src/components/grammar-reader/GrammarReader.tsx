@@ -15,7 +15,7 @@ import { saveActivityProgress } from "@/lib/activityProgress";
 import type { ExerciseCompletionInfo } from "./exercises/ExerciseSection";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { useResolvedLearnerReturnHref } from "@/hooks/useResolvedLearnerReturnHref";
-import { RETURN_TO_QUERY_PARAM } from "@/lib/learner-navigation";
+import { RETURN_TO_QUERY_PARAM } from "@/lib/learner/navigation";
 import { NotepadTextDashed } from "lucide-react";
 
 interface GrammarReaderProps {

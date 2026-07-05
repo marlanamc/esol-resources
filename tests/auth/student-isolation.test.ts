@@ -6,9 +6,9 @@
  * Run with: npx tsx scripts/tests/student-isolation.test.ts
  */
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/database/prisma";
 import { getLearnerState, buildIndependentLearnerWhere } from "@/lib/learner-mode";
-import { getTimeframedLeaderboard } from "@/lib/gamification";
+import { getTimeframedLeaderboard } from "@/lib/gamification/gamification";
 import { enrollStudentInClass, graduateStudentFromClass } from "@/lib/learner-transitions";
 
 const TEST_PREFIX = "test_isolation_";

@@ -1,16 +1,16 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { ActivitySubmitBodySchema, parseApiBody } from "@/lib/api-schemas";
-import { calculateQuizPoints, getActivityPoints } from "@/lib/gamification";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { ActivitySubmitBodySchema, parseApiBody } from "@/lib/api/schemas";
+import { calculateQuizPoints, getActivityPoints } from "@/lib/gamification/gamification";
 import { claimSubmissionPointsOnce } from "@/lib/submission-points-award";
-import { applyAwardChain } from "@/lib/gamification-award-chain";
+import { applyAwardChain } from "@/lib/gamification/award-chain";
 import { acquireUserActivityScopeLock } from "@/lib/database/locks";
 import { normalizeAssignmentId } from "@/lib/assignment-scope";
-import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
-import { logger } from "@/lib/logger";
-import { timedQuery } from "@/lib/perf-log";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
+import { logger } from "@/lib/shared/logger";
+import { timedQuery } from "@/lib/shared/perf-log";
 
 export { normalizeAssignmentId };
 

@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { redirect, notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { prisma } from "@/lib/database/prisma";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { isCatchUpPathEnabled } from "@/lib/catch-up-deadlines";
 import Link from "next/link";
 import { ActivityLink } from "@/components/navigation/ActivityLink";

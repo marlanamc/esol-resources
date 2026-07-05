@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { parseLearnerSearchFilter, searchLearnerContent } from "@/lib/learner-search";
 import { LearnerSearchSurface } from "@/components/search/LearnerSearchSurface";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 
 type Props = {
     searchParams: Promise<{

@@ -3,7 +3,7 @@
  * Provides standardized success and error responses
  *
  * Usage:
- * import { apiSuccess, apiError, handleApiError } from '@/lib/api-response';
+ * import { apiSuccess, apiError, handleApiError } from '@/lib/api/response';
  * return apiSuccess({ data: user }, 201);
  * return apiError('Not found', 404);
  */
@@ -11,7 +11,7 @@
 import { NextResponse } from 'next/server';
 import * as Sentry from '@sentry/nextjs';
 import { ValidationError } from '@/lib/shared/validators';
-import { logger } from '@/lib/logger';
+import { logger } from '@/lib/shared/logger';
 
 /**
  * Standard API error response format

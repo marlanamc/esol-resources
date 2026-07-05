@@ -1,14 +1,14 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { redirect, notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/database/prisma";
 import Link from "next/link";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
-import { LogoutButton } from "@/components/LogoutButton";
+import LogoutButton from "@/components/layout/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { FeatureToggleButton, AssignmentRequirementToggle } from "@/components/dashboard";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { isCatchUpPathEnabled } from "@/lib/catch-up-deadlines";
 

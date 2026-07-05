@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { classOwnershipWhere, ensureTeacher } from "@/lib/policies";
-import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { classOwnershipWhere, ensureTeacher } from "@/lib/auth/policies";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
 import { getLearnerState } from "@/lib/learner-mode";
 
 export async function GET() {

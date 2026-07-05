@@ -1,15 +1,15 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { timedQuery } from "@/lib/perf-log";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
+import { timedQuery } from "@/lib/shared/perf-log";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { TeacherActivityCategories } from "@/components/dashboard";
 import { ActivityCategoryPicker } from "@/components/dashboard/ActivityCategoryPicker";
-import { filterLearnerVisibleActivities } from "@/lib/learner-visibility";
+import { filterLearnerVisibleActivities } from "@/lib/learner/visibility";
 
 type Props = { searchParams: Promise<{ category?: string }> };
 const VOCAB_TYPES = ["word-list", "flashcards", "matching", "fill-blank"] as const;

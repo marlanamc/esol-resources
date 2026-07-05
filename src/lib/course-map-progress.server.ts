@@ -1,7 +1,7 @@
 import type { CourseMapUnit } from "@/lib/course-map";
 import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolution";
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
 import {
     buildCourseMapProgressState,
     collectGrammarReaderSlugs,

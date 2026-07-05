@@ -19,7 +19,7 @@ import {
 import { saveActivityProgress } from '@/lib/activityProgress';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
-import { logger } from '@/lib/logger';
+import { logger } from '@/lib/shared/logger';
 
 interface VerbData {
   v1: string;

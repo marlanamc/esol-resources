@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { canManageClass } from "@/lib/policies";
-import { parseApiBody } from "@/lib/api-schemas";
-import { ApiErrors } from "@/lib/api-response";
-import { requireTeacher } from "@/lib/api-auth";
-import { logger } from "@/lib/logger";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { canManageClass } from "@/lib/auth/policies";
+import { parseApiBody } from "@/lib/api/schemas";
+import { ApiErrors } from "@/lib/api/response";
+import { requireTeacher } from "@/lib/auth/api-auth";
+import { logger } from "@/lib/shared/logger";
 import { z } from "zod";
 
 const ReorderAssignmentsBodySchema = z.object({

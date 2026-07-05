@@ -1,15 +1,15 @@
 import { getServerSession, type Session } from "next-auth";
 import { redirect, notFound } from "next/navigation";
 import type { Prisma } from "@prisma/client";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { logger } from "@/lib/logger";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { logger } from "@/lib/shared/logger";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { grammarTopics } from "@/data/grammar-map";
-import { RETURN_TO_QUERY_PARAM, sanitizeInternalHref } from "@/lib/learner-navigation";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { RETURN_TO_QUERY_PARAM, sanitizeInternalHref } from "@/lib/learner/navigation";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { type ActivityContent, parseActivityContent } from "@/types/activity";
-import { assertLearnerCanAccessActivity } from "@/lib/learner-visibility";
+import { assertLearnerCanAccessActivity } from "@/lib/learner/visibility";
 
 type SessionUser = Session["user"];
 

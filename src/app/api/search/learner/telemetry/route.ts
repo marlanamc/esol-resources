@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { logger } from "@/lib/logger";
-import { ApiErrors, apiError } from "@/lib/api-response";
-import { canUseTeacherTools } from "@/lib/roles";
+import { authOptions } from "@/lib/auth/auth";
+import { logger } from "@/lib/shared/logger";
+import { ApiErrors, apiError } from "@/lib/api/response";
+import { canUseTeacherTools } from "@/lib/auth/roles";
 
 type TelemetryPayload = {
     type: "query" | "zero_results" | "click_result" | "select_filter";

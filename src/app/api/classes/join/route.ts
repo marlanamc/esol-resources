@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { requireStudent } from "@/lib/api-auth";
-import { ApiErrors, apiError } from "@/lib/api-response";
-import { JoinClassBodySchema, parseApiBody } from "@/lib/api-schemas";
-import { canUseTeacherTools } from "@/lib/roles";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { requireStudent } from "@/lib/auth/api-auth";
+import { ApiErrors, apiError } from "@/lib/api/response";
+import { JoinClassBodySchema, parseApiBody } from "@/lib/api/schemas";
+import { canUseTeacherTools } from "@/lib/auth/roles";
 import { enrollStudentInClass } from "@/lib/learner-transitions";
 
 export function validateJoinSession(session: { user?: { role?: string | null } } | null): {

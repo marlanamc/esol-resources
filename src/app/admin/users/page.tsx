@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { isAdmin } from "@/lib/roles";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { isAdmin } from "@/lib/auth/roles";
 import { isLeaderboardExcludedUser } from "@/lib/gamification/leaderboard-filter";
 import { ExcludeLeaderboardToggle } from "@/components/admin/ExcludeLeaderboardToggle";
 import { StudentPasswordManager } from "@/components/student/StudentPasswordManager";

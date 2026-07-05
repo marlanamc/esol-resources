@@ -4,7 +4,7 @@
  */
 
 import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
-import { extractTopicFromVocabDescription, stripVocabTypeSuffix } from "@/lib/vocab-display";
+import { extractTopicFromVocabDescription, stripVocabTypeSuffix } from "@/lib/vocab/display";
 import {
   formatCourseMapLevelLabel,
   getVocabCourseMapLevelNumber,

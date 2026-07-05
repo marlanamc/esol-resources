@@ -5,7 +5,7 @@ import { Trophy, Repeat, CheckCircle, ChevronRight, Award, BookOpen, ArrowLeft }
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import { CelebrationAnimation } from '@/components/ui/CelebrationAnimation';
 import { GI_FINAL_GROUP_ID, GI_REVIEW_GROUP_ID } from '@/data/gerund-infinitive-groups';
-import { REVIEW_UNLOCK_COUNT } from '@/lib/gerund-infinitive-progress';
+import { REVIEW_UNLOCK_COUNT } from '@/lib/verbs/gerund-infinitive-progress';
 import { formatMissedPatternsForDisplay } from '@/lib/csv/gerund-infinitive-csv';
 import type { GerundInfinitiveGroup, GIRoundResults } from '@/types/gerund-infinitive';
 import { GI_UNLOCK_THRESHOLD, GI_MASTERY_THRESHOLD } from '@/types/gerund-infinitive';

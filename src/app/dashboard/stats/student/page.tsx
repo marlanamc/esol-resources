@@ -1,11 +1,11 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { LogoutButton } from "@/components/LogoutButton";
+import LogoutButton from "@/components/layout/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
 import { StudentStatsView } from "@/components/dashboard/StudentStatsView";
-import { filterLearnerVisibleActivities } from "@/lib/learner-visibility";
+import { filterLearnerVisibleActivities } from "@/lib/learner/visibility";
 
 export default async function StudentStatsPage() {
     const session = await getServerSession(authOptions);

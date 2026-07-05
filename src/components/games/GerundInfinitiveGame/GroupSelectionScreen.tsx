@@ -11,7 +11,7 @@ import {
   getProgressSummary,
   getGroupStage,
   REVIEW_UNLOCK_COUNT,
-} from '@/lib/gerund-infinitive-progress';
+} from '@/lib/verbs/gerund-infinitive-progress';
 import { GroupCard } from './GroupCard';
 import type { GerundInfinitiveGroup, GIGroupProgress } from '@/types/gerund-infinitive';
 

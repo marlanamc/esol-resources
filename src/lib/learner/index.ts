@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
 import { isLearnerVisibleActivity, type LearnerVisibleActivityInput } from "./visibility";
 import { grammarContentSlugs } from "@/lib/grammar-content-loader";
 import { grammarTopics } from "@/data/grammar-map";

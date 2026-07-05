@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
 import { parseCategoryData } from "@/lib/categoryData";
-import { isAdmin } from "@/lib/roles";
-import { ApiErrors } from "@/lib/api-response";
-import { requireTeacher } from "@/lib/api-auth";
-import { logger } from "@/lib/logger";
+import { isAdmin } from "@/lib/auth/roles";
+import { ApiErrors } from "@/lib/api/response";
+import { requireTeacher } from "@/lib/auth/api-auth";
+import { logger } from "@/lib/shared/logger";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
-import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 import {
     buildActivitySubmissionMap,
     buildFeaturedAssignmentsWhere,

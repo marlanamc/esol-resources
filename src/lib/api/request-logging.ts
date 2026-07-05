@@ -3,7 +3,7 @@
  * Logs method, path, status, duration, and optional userId.
  */
 
-import { logger } from "@/lib/logger";
+import { logger } from "@/lib/shared/logger";
 
 export interface RequestLogContext {
   method: string;

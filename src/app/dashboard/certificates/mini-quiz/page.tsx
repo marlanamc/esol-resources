@@ -1,13 +1,13 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/database/prisma";
 import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolution";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { CertificateShowcase } from "@/components/ui/CertificateShowcase";
 import { CertificateContinueActions } from "@/components/grammar-reader/CertificateContinueActions";
-import { withReturnTo, sanitizeInternalHref } from "@/lib/learner-navigation";
+import { withReturnTo, sanitizeInternalHref } from "@/lib/learner/navigation";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

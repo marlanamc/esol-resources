@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { unstable_cache } from 'next/cache';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { getTimeframedLeaderboard, LeaderboardRange } from '@/lib/gamification';
-import { prisma } from '@/lib/prisma';
-import { classOwnershipWhere, ensureTeacher } from '@/lib/policies';
-import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
+import { authOptions } from '@/lib/auth/auth';
+import { getTimeframedLeaderboard, LeaderboardRange } from '@/lib/gamification/gamification';
+import { prisma } from '@/lib/database/prisma';
+import { classOwnershipWhere, ensureTeacher } from '@/lib/auth/policies';
+import { ApiErrors, apiError, handleApiError } from '@/lib/api/response';
 import { getLearnerState } from '@/lib/learner-mode';
 
 /**

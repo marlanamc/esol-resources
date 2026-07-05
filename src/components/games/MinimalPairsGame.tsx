@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { saveActivityProgress, fetchActivityProgress, type FetchedActivityProgress } from '@/lib/activityProgress';
-import { resolveLearnerReturnHrefSync } from '@/lib/learner-navigation';
+import { resolveLearnerReturnHrefSync } from '@/lib/learner/navigation';
 import { PointsToast } from '@/components/ui/PointsToast';
 import { useMapReturnCountdown } from '@/hooks/useMapReturnCountdown';
 import {

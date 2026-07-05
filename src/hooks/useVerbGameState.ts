@@ -29,7 +29,7 @@ import {
   normalizeProgressData,
   processRoundResults,
   initializeProgressData,
-} from '@/lib/irregular-verbs-progress';
+} from '@/lib/verbs/irregular-progress';
 import { VERB_GROUPS } from '@/data/irregular-verbs-groups';
 
 export type GamePhase = 'selection' | 'intro' | 'exercise' | 'results';

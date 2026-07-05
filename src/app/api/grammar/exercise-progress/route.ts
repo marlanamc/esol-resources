@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { POINTS } from "@/lib/gamification";
-import { applyAwardChain } from "@/lib/gamification-award-chain";
-import { ApiErrors, apiError } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { POINTS } from "@/lib/gamification/gamification";
+import { applyAwardChain } from "@/lib/gamification/award-chain";
+import { ApiErrors, apiError } from "@/lib/api/response";
 
 interface GrammarExerciseCategoryData {
     exercises: Record<string, {

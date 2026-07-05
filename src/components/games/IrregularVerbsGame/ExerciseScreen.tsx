@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Target, Clock, Lightbulb, ArrowLeft } from 'lucide-react';
-import { useTheme } from '@/components/ThemeProvider';
+import { useTheme } from '@/components/layout/ThemeProvider';
 import { FillInBlankExercise } from './exercises/FillInBlankExercise';
 import { MultipleChoiceExercise } from './exercises/MultipleChoiceExercise';
 import { SentenceCompletionExercise } from './exercises/SentenceCompletionExercise';

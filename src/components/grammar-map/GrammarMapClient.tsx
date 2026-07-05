@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { categoryColors, categoryLabels, type GrammarTopic } from '@/data/grammar-map';
 import { NODE_WIDTH, NODE_HEIGHT } from './constants';
 import { Check, Loader2, ArrowRight, ZoomIn, ZoomOut, Maximize2, List } from 'lucide-react';
-import { withReturnTo } from '@/lib/learner-navigation';
+import { withReturnTo } from '@/lib/learner/navigation';
 
 interface ProgressData {
     completionPercentage: number;

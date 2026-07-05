@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Sparkles } from "lucide-react";
 import { LearnerSearchTrigger } from "@/components/search/LearnerSearchTrigger";
 import { ViewModeSwitcher } from "@/components/teach/ViewModeSwitcher";
-import { UserProfileDropdown } from "@/components/UserProfileDropdown";
+import UserProfileDropdown from "@/components/layout/UserProfileDropdown";
 
 export type ModeHeaderMode = "student" | "teaching" | "admin";
 

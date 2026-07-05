@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
 import { CourseMapManager } from "@/components/teach/CourseMapManager";
 import type { MapWeek } from "@/components/teach/CourseMapManager";

@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { BookOpen, Trophy, Target, Sparkles } from 'lucide-react';
 import { VERB_GROUPS } from '@/data/irregular-verbs-groups';
-import { isGroupUnlocked, getProgressSummary, getGroupStage, hasAnyPassedGroups } from '@/lib/irregular-verbs-progress';
+import { isGroupUnlocked, getProgressSummary, getGroupStage, hasAnyPassedGroups } from '@/lib/verbs/irregular-progress';
 import {
   ALL_PATTERNS_GROUP,
   ALL_PATTERNS_GROUP_ID

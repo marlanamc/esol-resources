@@ -7,9 +7,9 @@
 import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
 import { Prisma } from '@prisma/client';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
-import { ApiErrors, apiError, handleApiError } from '@/lib/api-response';
+import { authOptions } from '@/lib/auth/auth';
+import { prisma } from '@/lib/database/prisma';
+import { ApiErrors, apiError, handleApiError } from '@/lib/api/response';
 import { isValidAccentKey } from '@/lib/accent-colors';
 
 /**

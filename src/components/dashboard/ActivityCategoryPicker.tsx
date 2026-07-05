@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { PenLine, Gamepad2, BookOpen, ClipboardList, Mic, PenTool, Volume2, Sparkles, ArrowRight } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { getLearnerCategoryTone } from '@/lib/learner-theme';
+import { getLearnerCategoryTone } from '@/lib/learner/theme';
 import { isGamesLibraryActivity } from '@/lib/games-library';
 import { VOCAB_LIBRARY_TOPICS } from '@/lib/vocab/library-topics';
 

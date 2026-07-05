@@ -3,8 +3,8 @@ import path from "path";
 import { promises as fs } from "fs";
 import { parse } from "node-html-parser";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
 import type { LegacyGuideResponse } from "@/types/activity";
 
 // This route intentionally reads from project-level legacy assets outside src/.

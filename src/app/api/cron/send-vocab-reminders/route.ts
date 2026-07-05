@@ -1,9 +1,9 @@
 import { NextRequest } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/database/prisma";
 import { sendVocabReminderToUser, isPushConfigured } from "@/lib/push";
 import { getLearnerDayKey, DAILY_HABIT_KEYS } from "@/lib/daily-habits";
-import { ApiErrors, apiSuccess } from "@/lib/api-response";
-import { logger } from "@/lib/logger";
+import { ApiErrors, apiSuccess } from "@/lib/api/response";
+import { logger } from "@/lib/shared/logger";
 
 export const maxDuration = 60;
 

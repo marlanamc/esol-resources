@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { SubmissionsPostBodySchema, parseApiBody } from "@/lib/api-schemas";
-import { ApiErrors, apiError, handleApiError } from "@/lib/api-response";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { SubmissionsPostBodySchema, parseApiBody } from "@/lib/api/schemas";
+import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
 
 function readIdempotencyKey(request: NextRequest): string | null {
     const key = request.headers.get("x-idempotency-key");

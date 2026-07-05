@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   ALL_VOCAB_SOURCE_KEY,
-} from "@/lib/vocab-review-sources";
+} from "@/lib/vocab/sources";
 import {
   addDays,
   applyVocabReviewRating,
@@ -14,7 +14,7 @@ import {
   saveVocabReviewRating,
   type VocabReviewCardLike,
   type VocabReviewStateLike,
-} from "@/lib/vocab-review";
+} from "@/lib/vocab/review";
 
 test("normalizeVocabTerm merges hyphen and spacing variants", () => {
   assert.equal(normalizeVocabTerm("follow-up"), "follow up");

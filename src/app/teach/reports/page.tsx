@@ -1,10 +1,10 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
-import { timedQuery } from "@/lib/perf-log";
-import { isAdmin, canUseTeacherTools } from "@/lib/roles";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
+import { timedQuery } from "@/lib/shared/perf-log";
+import { isAdmin, canUseTeacherTools } from "@/lib/auth/roles";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import TeacherReportCard from "@/components/dashboard/TeacherReportCard";
 import { StudentEngagementTable } from "@/components/dashboard/StudentEngagementTable";

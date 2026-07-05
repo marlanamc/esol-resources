@@ -1,11 +1,11 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { LogoutButton } from "@/components/LogoutButton";
-import { StudentPasswordManager } from "@/components/StudentPasswordManager";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import LogoutButton from "@/components/layout/LogoutButton";
+import { StudentPasswordManager } from "@/components/student/StudentPasswordManager";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
 import { BackButton } from "@/components/ui";
-import { canUseTeacherTools, isAdmin } from "@/lib/roles";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 
 type StudentSummary = {
     id: string;

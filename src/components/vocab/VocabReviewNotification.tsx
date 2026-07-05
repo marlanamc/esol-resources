@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { BookOpen, Clock, X } from 'lucide-react';
-import { getLearnerCategoryTone } from '@/lib/learner-theme';
+import { getLearnerCategoryTone } from '@/lib/learner/theme';
 
 const VOCAB_NOTIFICATION_KEY = 'vocab-review-notification-state';
 const NOTIFICATION_COOLDOWN = 2 * 60 * 60 * 1000; // 2 hours

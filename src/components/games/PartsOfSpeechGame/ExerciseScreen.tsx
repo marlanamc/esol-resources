@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Target, AlertCircle, ArrowLeft, ChevronRight, HelpCircle } from 'lucide-react';
-import { useTheme } from '@/components/ThemeProvider';
+import { useTheme } from '@/components/layout/ThemeProvider';
 import { PatternChoiceExercise } from './exercises/PatternChoiceExercise';
 import { SentenceCompletionExercise } from './exercises/SentenceCompletionExercise';
 import { POSTaggingExercise } from './exercises/POSTaggingExercise';

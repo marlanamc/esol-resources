@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { POINTS } from "@/lib/gamification";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { POINTS } from "@/lib/gamification/gamification";
 import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolution";
-import { applyAwardChain } from "@/lib/gamification-award-chain";
+import { applyAwardChain } from "@/lib/gamification/award-chain";
 import { normalizeAssignmentId } from "@/lib/assignment-scope";
-import { ApiErrors, apiError } from "@/lib/api-response";
-import { logger } from "@/lib/logger";
+import { ApiErrors, apiError } from "@/lib/api/response";
+import { logger } from "@/lib/shared/logger";
 
 interface GrammarExerciseCategoryData {
     exercises: Record<string, {

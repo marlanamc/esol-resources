@@ -2,9 +2,9 @@ import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import type { Metadata } from "next";
 import { getActivityIdSafely } from "@/lib/build-helpers";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/auth/auth";
 import { notFound, redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/database/prisma";
 import { getGrammarGuide } from "@/lib/grammar-guide-registry";
 
 interface Props {

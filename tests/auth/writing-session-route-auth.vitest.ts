@@ -2,9 +2,9 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import type { NextRequest } from "next/server";
 
 vi.mock("next-auth", () => ({ getServerSession: vi.fn() }));
-vi.mock("@/lib/auth", () => ({ authOptions: {} }));
+vi.mock("@/lib/auth/auth", () => ({ authOptions: {} }));
 vi.mock("@sentry/nextjs", () => ({ captureException: vi.fn(), captureMessage: vi.fn() }));
-vi.mock("@/lib/prisma", () => ({
+vi.mock("@/lib/database/prisma", () => ({
   prisma: {
     writingSession: { findUnique: vi.fn() },
     classEnrollment: { findFirst: vi.fn() },
@@ -25,7 +25,7 @@ vi.mock("@/lib/prisma", () => ({
 }));
 
 import { getServerSession } from "next-auth";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/database/prisma";
 import { GET as stateGet } from "@/app/api/writing-session/[id]/state/route";
 import { POST as votePost } from "@/app/api/writing-session/[id]/vote/route";
 import { POST as submitPost } from "@/app/api/writing-session/[id]/submit/route";

@@ -5,9 +5,9 @@
  */
 
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
-import { ApiErrors, apiSuccess, handleApiError } from '@/lib/api-response';
+import { authOptions } from '@/lib/auth/auth';
+import { prisma } from '@/lib/database/prisma';
+import { ApiErrors, apiSuccess, handleApiError } from '@/lib/api/response';
 import { generateInviteCode } from '@/lib/invite-code';
 import { getAppBaseUrl } from '@/lib/shared/env';
 

@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { canAssignActivity, canManageClass } from "@/lib/policies";
-import { AssignmentPatchBodySchema, AssignmentPostBodySchema, parseApiBody } from "@/lib/api-schemas";
-import { ApiErrors } from "@/lib/api-response";
-import { requireTeacher } from "@/lib/api-auth";
-import { logger } from "@/lib/logger";
+import { authOptions } from "@/lib/auth/auth";
+import { prisma } from "@/lib/database/prisma";
+import { canAssignActivity, canManageClass } from "@/lib/auth/policies";
+import { AssignmentPatchBodySchema, AssignmentPostBodySchema, parseApiBody } from "@/lib/api/schemas";
+import { ApiErrors } from "@/lib/api/response";
+import { requireTeacher } from "@/lib/auth/api-auth";
+import { logger } from "@/lib/shared/logger";
 
 export async function POST(request: NextRequest) {
     try {

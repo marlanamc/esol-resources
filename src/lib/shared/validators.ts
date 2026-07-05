@@ -8,7 +8,7 @@
  * const validatedProgress = validateProgress(input);
  */
 
-import { MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH } from '@/lib/auth-config';
+import { MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH } from '@/lib/auth/config';
 
 export class ValidationError extends Error {
     constructor(

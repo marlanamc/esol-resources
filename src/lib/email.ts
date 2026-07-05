@@ -5,7 +5,7 @@
  * If no API key is configured, emails will be logged to console in development.
  */
 
-import { logger } from '@/lib/logger';
+import { logger } from '@/lib/shared/logger';
 
 interface SendEmailParams {
     to: string;

@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/prisma";
-import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { prisma } from "@/lib/database/prisma";
+import { withPrismaReadRetry } from "@/lib/database/retry";
 import { getVisibleMap, type VisibleMapMode } from "@/lib/course-map";
 import {
     isMapActivityActionable,
@@ -19,7 +19,7 @@ import {
     formatNextUpActivityTitle,
     getCourseMapEstimatedMinutesForActivity,
 } from "@/lib/course-map-hero";
-import { isLearnerVisibleActivity } from "@/lib/learner-visibility";
+import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
 import type { TimelineItem, TimelineStatus } from "@/components/dashboard/ActivityTimeline";
 import type { CourseMapActivity, CourseMapUnit } from "@/lib/course-map";

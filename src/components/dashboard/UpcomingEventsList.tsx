@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CalendarEvent } from "./MiniCalendar";
-import { getLearnerEventTone } from "@/lib/learner-theme";
+import { getLearnerEventTone } from "@/lib/learner/theme";
 
 interface Props {
     events: CalendarEvent[];

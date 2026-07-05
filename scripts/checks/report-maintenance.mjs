@@ -11,17 +11,17 @@ const skipVitest = args.has("--skip-vitest");
 
 const wrapperTargets = [
   {
-    importPath: "@/lib/auth",
+    importPath: "@/lib/auth/auth",
     wrapperFile: "src/lib/auth.ts",
     canonicalHome: "src/lib/auth/*",
   },
   {
-    importPath: "@/lib/prisma",
+    importPath: "@/lib/database/prisma",
     wrapperFile: "src/lib/prisma.ts",
     canonicalHome: "src/lib/database/*",
   },
   {
-    importPath: "@/lib/gamification",
+    importPath: "@/lib/gamification/gamification",
     wrapperFile: "src/lib/gamification.ts",
     canonicalHome: "src/lib/gamification/*",
   },

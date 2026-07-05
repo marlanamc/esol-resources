@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { requireAuth } from "@/lib/api-auth";
-import { prisma } from "@/lib/prisma";
+import { authOptions } from "@/lib/auth/auth";
+import { requireAuth } from "@/lib/auth/api-auth";
+import { prisma } from "@/lib/database/prisma";
 import { VOCAB_LIBRARY_TOPICS } from "@/lib/vocab/library-topics";
 import {
   parseVocabLibrarySort,
   resolveVocabLibraryTopicSlug,
   sortVocabLibraryCards,
 } from "@/lib/vocab/library";
-import { logger } from "@/lib/logger";
+import { logger } from "@/lib/shared/logger";
 
 function noStoreJson<T>(data: T, status = 200) {
   return NextResponse.json(data, {

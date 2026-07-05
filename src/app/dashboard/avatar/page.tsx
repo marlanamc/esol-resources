@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { BackButton } from "@/components/ui";
 import { AvatarSelector } from "@/components/ui/AvatarSelector";
 import { DEFAULT_AVATAR, DEFAULT_COLOR } from "@/lib/avatar-constants";
-import { logger } from "@/lib/logger";
+import { logger } from "@/lib/shared/logger";
 
 export default function AvatarPage() {
     const router = useRouter();
