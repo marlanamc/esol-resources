@@ -123,3 +123,6 @@ vocab-comparison.md
 /src/lib/dashboard-v2.ts
 /src/lib/dashboard-v3.ts
 deep-research-report.md
+
+# referenced by check:vocab-duplicates in package.json — must stay tracked
+!scripts/vocab/check-vocab-duplicates.js
