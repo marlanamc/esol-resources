@@ -6,12 +6,12 @@ cleanup, orphaned shim retirement, quiz-release batching, vocab library SQL
 counts, activity-report groupBy aggregation, leaderboard caching, pluggable
 rate-limit store).
 
-**Status (Jul 2026):** 11 items done or partially done · 7 open · 2 deferred
+**Status (Jul 2026):** 12 items done or partially done · 6 open · 2 deferred
 (manual ops / fall sprint).
 
 | Done | Open / partial | Deferred |
 |------|----------------|----------|
-| Route consolidation, shims, types, calendar uniqueness, audit retention, test scripts, guide TTFB cache, scene images, vocab pagination, progress route split | Dual grammar source, GameShell, client fetch layer, jsonb migration, CDN headers (partial), dashboard streaming | Audio Blob cutover (ops), Prisma 7 (fall), region colocation (ops) |
+| Route consolidation, shims, types, calendar uniqueness, audit retention, test scripts, guide TTFB cache, scene images, vocab pagination, progress route split, audio Blob cutover | Dual grammar source, GameShell, client fetch layer, jsonb migration, CDN headers (partial), dashboard streaming | Prisma 7 (fall), region colocation (ops) |
 
 ---
 
@@ -40,29 +40,18 @@ imports are per-route pages that Next splits on its own. (The unused
 `src/components/games/index.ts` barrel, which would have defeated the
 splitting if imported, was removed.)
 
-## 3. Move generated audio out of git — mechanism in place, cutover pending
+## 3. Move generated audio out of git — DONE
 
-The code side is done: all audio URL construction goes through
-`resolveAudioUrl` (`src/lib/audio/url.ts`), which prefixes
-`NEXT_PUBLIC_AUDIO_CDN_URL` when set and falls back to `public/audio/`
-when unset, and `npm run audio:upload:blob` uploads `public/audio/**` to
-Vercel Blob idempotently.
+Audio is served from a public Vercel Blob store via
+`NEXT_PUBLIC_AUDIO_CDN_URL` + `resolveAudioUrl` (`src/lib/audio/url.ts`),
+with fallback to local `public/audio/` when the env is unset.
+`npm run audio:upload:blob` uploads idempotently (pass
+`BLOB_READ_WRITE_TOKEN` explicitly; OIDC is skipped for local runs).
+`public/audio/` is gitignored; keep generating there locally and re-run
+the upload script after new audio.
 
-Cutover steps (requires a Vercel Blob store):
-1. Vercel dashboard → Storage → Blob → create a store; copy the
-   read-write token.
-2. `BLOB_READ_WRITE_TOKEN=... npm run audio:upload:blob` (re-runnable;
-   skips already-uploaded files). It prints the store's base URL.
-3. Set `NEXT_PUBLIC_AUDIO_CDN_URL=<that base URL>` in the Vercel project
-   env and redeploy; verify audio playback in vocab review, minimal pairs,
-   -ed pronunciation, sentence listening, and the emotion wheel.
-4. Remove `public/audio/` from git (`git rm -r public/audio` +
-   `.gitignore` entry) — the ~21MB / 1,189 mp3s stop being tracked. Keep
-   the `audio:*` generation scripts writing to `public/audio/` locally;
-   re-run the upload script after generating new audio.
-5. Optional, coordinated: purge the mp3s from git history with
-   `git filter-repo` to shrink `.git` (~33MB) — rewrites history for all
-   clones, so do it deliberately.
+Optional later: purge historical mp3s from git history with
+`git filter-repo` to shrink `.git` — rewrites history for all clones.
 
 ## 4. Shim codemod — DONE
 

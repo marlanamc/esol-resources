@@ -137,3 +137,7 @@ deep-research-report.md
 
 # referenced by check:vocab-duplicates in package.json — must stay tracked
 !scripts/vocab/check-vocab-duplicates.js
+
+# Generated audio lives on Vercel Blob (NEXT_PUBLIC_AUDIO_CDN_URL).
+# Keep writing to public/audio/ locally; re-upload with npm run audio:upload:blob.
+/public/audio/

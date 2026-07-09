@@ -18,7 +18,9 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
         // Level 1 vocab hotlinks (fetch-vocab-images.ts: static.photos + legacy Unsplash/Pixabay)
         "img-src 'self' data: blob: https://static.photos https://images.unsplash.com https://plus.unsplash.com https://pixabay.com https://cdn.pixabay.com",
         "font-src 'self' data:", // Allow data URIs for fonts
-        "connect-src 'self' https://docs.google.com https://*.google.com https://*.googleusercontent.com https://vercel.live https://*.vercel.live", // Allow preview feedback network calls
+        // Generated audio served from Vercel Blob when NEXT_PUBLIC_AUDIO_CDN_URL is set
+        "media-src 'self' blob: https://*.public.blob.vercel-storage.com",
+        "connect-src 'self' https://docs.google.com https://*.google.com https://*.googleusercontent.com https://vercel.live https://*.vercel.live https://*.public.blob.vercel-storage.com", // Allow preview feedback + Blob audio fetch
         "frame-ancestors 'none'", // Prevent embedding (clickjacking protection)
         "base-uri 'self'", // Restrict base tag URLs
         "form-action 'self'", // Restrict form submissions

@@ -35,11 +35,13 @@ function collectMp3Files(dir: string): string[] {
     return files;
 }
 
-async function listExistingPathnames(): Promise<Set<string>> {
+async function listExistingPathnames(token: string): Promise<Set<string>> {
     const existing = new Set<string>();
     let cursor: string | undefined;
     do {
-        const page = await list({ prefix: "audio/", cursor, limit: 1000 });
+        // Pass token explicitly so local runs don't prefer Vercel OIDC
+        // (OIDC is often unavailable for the "development" environment).
+        const page = await list({ prefix: "audio/", cursor, limit: 1000, token });
         for (const blob of page.blobs) existing.add(blob.pathname);
         cursor = page.cursor ?? undefined;
     } while (cursor);
@@ -47,7 +49,8 @@ async function listExistingPathnames(): Promise<Set<string>> {
 }
 
 async function main() {
-    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    const token = process.env.BLOB_READ_WRITE_TOKEN;
+    if (!token) {
         console.error(
             "BLOB_READ_WRITE_TOKEN is not set.\n" +
                 "Create a Blob store in the Vercel dashboard (Storage -> Blob), then\n" +
@@ -59,7 +62,7 @@ async function main() {
     const files = collectMp3Files(AUDIO_ROOT);
     console.log(`Found ${files.length} mp3 files under public/audio/`);
 
-    const existing = await listExistingPathnames();
+    const existing = await listExistingPathnames(token);
     console.log(`Blob store already has ${existing.size} audio files`);
 
     const pending = files.filter(
@@ -69,6 +72,17 @@ async function main() {
 
     if (dryRun || pending.length === 0) {
         if (dryRun) for (const f of pending.slice(0, 20)) console.log(`  would upload ${f}`);
+        if (!dryRun && pending.length === 0 && existing.size > 0) {
+            // Still print a usable CDN base when everything is already uploaded.
+            const page = await list({ prefix: "audio/", limit: 1, token });
+            const sample = page.blobs[0]?.url;
+            if (sample) {
+                const base = new URL(sample).origin;
+                console.log(
+                    `\nAll files already uploaded. Set:\n  NEXT_PUBLIC_AUDIO_CDN_URL=${base}`
+                );
+            }
+        }
         return;
     }
 
@@ -86,6 +100,7 @@ async function main() {
                     addRandomSuffix: false,
                     contentType: "audio/mpeg",
                     cacheControlMaxAge: ONE_YEAR_SECONDS,
+                    token,
                 });
                 return blob.url;
             })
