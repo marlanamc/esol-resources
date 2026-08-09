@@ -420,7 +420,7 @@ Visit these URLs to verify deployment:
 # Homepage loads
 curl https://yourdomain.com
 
-# API health check (create one if needed)
+# API + DB health check (public JSON: { ok, db, latencyMs })
 curl https://yourdomain.com/api/health
 
 # Authentication works
@@ -531,7 +531,7 @@ Use external uptime monitoring:
 
 Monitor:
 - Homepage availability
-- API endpoint health
+- `GET /api/health` (app + DB — good UptimeRobot target)
 - Database connectivity
 
 ### 5. Weekly Maintenance Tasks
