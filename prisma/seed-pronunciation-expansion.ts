@@ -27,13 +27,14 @@ function createMinimalPairsMeta(contrastId: MinimalPairContrastId): Pronunciatio
 }
 
 async function main() {
+  // Base seed creates the primary instructor as role "admin" (marlie).
   const teacher = await prisma.user.findFirst({
-    where: { role: 'teacher' },
+    where: { role: { in: ['admin', 'teacher'] } },
     select: { id: true },
   });
 
   if (!teacher) {
-    throw new Error('No teacher account found. Run base seed first.');
+    throw new Error('No teacher/admin account found. Run base seed first.');
   }
 
   console.log('Seeding pronunciation expansion activities...');

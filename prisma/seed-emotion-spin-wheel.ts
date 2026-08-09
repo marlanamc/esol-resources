@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-    const teacher = await prisma.user.findFirst({ where: { role: "teacher" } });
+    const teacher = await prisma.user.findFirst({ where: { role: { in: ["admin", "teacher"] } } });
     if (!teacher) {
         console.error("Teacher user not found. Please run main seed first.");
         return;

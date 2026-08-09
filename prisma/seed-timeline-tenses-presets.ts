@@ -101,7 +101,7 @@ const PRESETS: Array<{
 ];
 
 async function main() {
-    const teacher = await prisma.user.findFirst({ where: { role: "teacher" } });
+    const teacher = await prisma.user.findFirst({ where: { role: { in: ["admin", "teacher"] } } });
     if (!teacher) {
         console.error("No teacher found. Run the main seed first.");
         return;

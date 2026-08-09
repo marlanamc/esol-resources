@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   const teacher = await prisma.user.findFirst({
-    where: { role: 'teacher' }
+    where: { role: { in: ["admin", "teacher"] } }
   });
 
   if (!teacher) {
