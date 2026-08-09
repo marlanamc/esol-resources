@@ -87,11 +87,14 @@ test.describe("Mobile PWA smoke", () => {
 
     const { menuButton, menuDialog } = await openLearnerMenu(page);
 
+    // Course Map is the primary learner map entry in the menu.
     await Promise.all([
-      page.waitForURL(/\/grammar-map/, { timeout: 15000 }),
-      menuDialog.locator('a[href="/grammar-map"]').click(),
+      page.waitForURL(/\/dashboard\/map/, { timeout: 15000 }),
+      menuDialog.locator('a[href="/dashboard/map"]').click(),
     ]);
-    await expect(page.getByRole("heading", { name: /level 3 grammar map/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /^course map$/i })).toBeVisible({
+      timeout: 15000,
+    });
 
     await expect(menuButton).toBeVisible();
     await menuButton.click();
