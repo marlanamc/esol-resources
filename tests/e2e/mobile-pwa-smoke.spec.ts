@@ -111,7 +111,12 @@ test.describe("Mobile PWA smoke", () => {
     const { menuDialog } = await openLearnerMenu(page);
     await expect(menuDialog.getByRole("link", { name: /^course map$/i })).toBeVisible();
 
-    await page.getByRole("button", { name: /close menu/i }).click();
+    // Drawer slide transition makes the close control "unstable"/detach in CI.
+    // Wait for the open transform, then force-click the in-drawer close button.
+    await expect(menuDialog).toHaveClass(/translate-x-0/);
+    const closeButton = menuDialog.getByRole("button", { name: /close menu/i });
+    await expect(closeButton).toBeVisible();
+    await closeButton.click({ force: true });
     await expect(menuDialog).toHaveAttribute("aria-hidden", "true");
     await expectDocumentUnlocked(page);
   });
