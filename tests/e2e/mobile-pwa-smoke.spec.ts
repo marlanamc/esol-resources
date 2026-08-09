@@ -27,8 +27,11 @@ async function openLearnerMenu(page: Page) {
 
   let lastError: unknown;
   for (let attempt = 0; attempt < 3; attempt += 1) {
+    // Portal mounts after client hydration; wait for the dialog node first.
+    await expect(menuDialog).toBeAttached({ timeout: 10000 });
     await menuButton.click();
     try {
+      await expect(menuDialog).toHaveAttribute("aria-hidden", "false", { timeout: 5000 });
       await expect(menuDialog).toBeVisible({ timeout: 5000 });
       return { menuButton, menuDialog };
     } catch (error) {
@@ -87,14 +90,13 @@ test.describe("Mobile PWA smoke", () => {
 
     const { menuButton, menuDialog } = await openLearnerMenu(page);
 
-    // Course Map is the primary learner map entry in the menu.
-    await Promise.all([
-      page.waitForURL(/\/dashboard\/map/, { timeout: 15000 }),
-      menuDialog.locator('a[href="/dashboard/map"]').click(),
-    ]);
-    await expect(page.getByRole("heading", { name: /^course map$/i })).toBeVisible({
-      timeout: 15000,
-    });
+    // Course Map is the primary learner map entry. The page h1 is desktop-only,
+    // so assert URL + a marker that exists in the mobile layout.
+    await menuDialog.getByRole("link", { name: /^course map$/i }).click();
+    await expect(page).toHaveURL(/\/dashboard\/map/, { timeout: 15000 });
+    await expect(
+      page.getByRole("link", { name: /practice library/i }).or(page.getByText(/no path set up yet/i)),
+    ).toBeVisible({ timeout: 15000 });
 
     await expect(menuButton).toBeVisible();
     await menuButton.click();
