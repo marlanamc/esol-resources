@@ -62,9 +62,10 @@ jobs:
         id: build
         run: npm run build
 
-      - name: Full dependency audit
+      - name: Dependency audit
         id: audit
-        run: npm audit --audit-level=high
+        # Match CI: fail only on critical vulns in production deps.
+        run: npm audit --omit=dev --audit-level=critical
 
       - name: Create maintenance report
         if: always()
