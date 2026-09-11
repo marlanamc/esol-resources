@@ -16,8 +16,23 @@ const PRESETS: Array<{
     description: string;
     tenseCategories: string[];
     practiceMode?: string;
+    maxDifficulty?: 1 | 2 | 3;
+    singleVerbOnly?: boolean;
+    /** "map" for presets that appear in the Course Map; getVisibleMap only
+     *  surfaces an item's activityId when the activity is contentKind=map. */
+    contentKind?: "practice" | "map";
 }> = [
     // ── Existing Level 1 presets ─────────────────────────────────────────────
+    {
+        // Week 1 on-ramp: easiest questions only, one verb per sentence.
+        id: "timeline-tenses-week1-easy",
+        title: "Timeline Tenses: Easy Start",
+        description: "A gentle first look at the timeline — one short sentence at a time, present and past simple only.",
+        tenseCategories: ["simple"],
+        maxDifficulty: 1,
+        singleVerbOnly: true,
+        contentKind: "map",
+    },
     {
         id: "timeline-tenses-simple",
         title: "Timeline Tenses: Simple Tenses",
@@ -112,6 +127,8 @@ async function main() {
             type: "timeline-tenses",
             tenseCategories: preset.tenseCategories,
             ...(preset.practiceMode ? { practiceMode: preset.practiceMode } : {}),
+            ...(preset.maxDifficulty ? { maxDifficulty: preset.maxDifficulty } : {}),
+            ...(preset.singleVerbOnly ? { singleVerbOnly: true } : {}),
         });
 
         await prisma.activity.upsert({
@@ -122,6 +139,7 @@ async function main() {
                 content,
                 isReleased: true,
                 deletedAt: null,
+                ...(preset.contentKind ? { contentKind: preset.contentKind } : {}),
             },
             create: {
                 id: preset.id,
@@ -134,6 +152,7 @@ async function main() {
                 content,
                 createdBy: teacher.id,
                 isReleased: true,
+                ...(preset.contentKind ? { contentKind: preset.contentKind } : {}),
             },
         });
 

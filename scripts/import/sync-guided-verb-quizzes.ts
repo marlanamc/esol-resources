@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import * as fs from "fs";
 import * as path from "path";
 import { GUIDED_VERB_QUIZ_PLAN, getGuidedVerbQuizTitle } from "@/data/verb-quiz-plan";
+import { MAP } from "@/lib/content-kind";
 
 const { requireSafeDbTarget } = require("../lib/require-safe-db-target");
 
@@ -78,6 +79,10 @@ async function main() {
         level: "intermediate",
         content: JSON.stringify(content),
         isReleased: true,
+        // Course Map content: getVisibleMap only surfaces an item's activityId
+        // when the linked activity is contentKind=map, so a "practice" row here
+        // would make the quiz invisible in its week.
+        contentKind: MAP,
         createdBy: teacher.id,
       },
       create: {
@@ -89,6 +94,7 @@ async function main() {
         level: "intermediate",
         content: JSON.stringify(content),
         isReleased: true,
+        contentKind: MAP,
         createdBy: teacher.id,
       },
     });

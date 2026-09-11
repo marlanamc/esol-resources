@@ -144,7 +144,7 @@ export function buildMapWeekProgress(
 
 function shortMapActivityTitle(title: string): string {
     return title
-        .replace("Welcome Back: Simple & Continuous Review + V3 Preview", "Simple & Continuous Review")
+        .replace("Welcome Back: Simple & Continuous Review", "Simple & Continuous Review")
         .replace("Full Parts of Speech Practice Library", "Parts of Speech Practice")
         .replace(/\s+\+\s+V3 Preview$/i, "")
         .trim();

@@ -37,7 +37,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "id": "week-1",
         "number": 1,
         "title": "Start the Class",
-        "goal": "Get comfortable in the app, learn the five verb form codes, and take Verb Quiz 1.",
+        "goal": "Get comfortable in the app and warm up the tenses you already know.",
         "items": [
           {
             "id": "vocab-sep-w1-flashcards",
@@ -51,6 +51,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "welcome-how-to-use-app",
+            "href": "/grammar-reader/welcome-how-to-use-app",
             "slot": "required",
             "order": 1,
             "wrappedGame": false,
@@ -64,32 +65,23 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 2,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Welcome Back: Simple & Continuous Review + V3 Preview"
-          },
-          {
-            "id": "verb-forms-overview",
-            "href": "/grammar-reader/verb-forms-overview",
-            "slot": "required",
-            "order": 3,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Verb Forms: V1 → V3"
+            "title": "Welcome Back: Simple & Continuous Review"
           },
           {
             "id": "timeline-tenses-week1-intro",
-            "activityId": "timeline-tenses-simple",
+            "activityId": "timeline-tenses-week1-easy",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Timeline Tenses: Simple & Continuous"
+            "title": "Timeline Tenses: Easy Start"
           },
           {
             "id": "vocab-sep-w1-matching",
             "activityId": "vocab-sep-w1",
             "vocabUi": "matching",
             "slot": "required",
-            "order": 5,
+            "order": 4,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Vocab: Introductions — Matching"
@@ -99,27 +91,18 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityId": "vocab-sep-w1",
             "vocabUi": "fill-blank",
             "slot": "required",
-            "order": 6,
+            "order": 5,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Vocab: Introductions — Fill in the Blank"
-          },
-          {
-            "id": "verb-quiz-1",
-            "activityId": "verb-quiz-1",
-            "slot": "required",
-            "order": 7,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 1: be + have"
           }
         ]
       },
       {
         "id": "week-2",
         "number": 2,
-        "title": "Parts of Speech + App Habit",
-        "goal": "Learn the basic building blocks of English and start the weekly app routine.",
+        "title": "Parts of Speech",
+        "goal": "Learn the basic building blocks of English: nouns, verbs, adjectives, and more.",
         "items": [
           {
             "id": "vocab-sep-w2-flashcards",
@@ -141,40 +124,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Parts of Speech Guide"
           },
           {
-            "id": "parts-of-speech-discovery",
-            "activityId": "parts-of-speech-discovery-guided",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Parts of Speech Discovery Game"
-          },
-          {
             "id": "vocab-sep-w2-matching",
             "activityId": "vocab-sep-w2",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 3,
+            "order": 2,
             "title": "Vocab: Say It & Spell It — Matching"
-          },
-          {
-            "id": "helper-verb-repair",
-            "activityId": "grammar-hospital-helper-repair-guided",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Grammar Hospital: Helper Verb Repair"
-          },
-          {
-            "id": "vowel-names-a-e-i",
-            "slot": "required",
-            "order": 5,
-            "wrappedGame": false,
-            "activityType": "pronunciation",
-            "title": "Vowel Names Practice: A / E / I"
           },
           {
             "id": "vocab-sep-w2-fill-blank",
@@ -183,34 +140,16 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 6,
+            "order": 3,
             "title": "Vocab: Say It & Spell It — Fill in the Blank"
-          },
-          {
-            "id": "verb-quiz-2",
-            "activityId": "verb-quiz-2",
-            "slot": "required",
-            "order": 7,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 2: do + make"
-          },
-          {
-            "id": "parts-of-speech-library",
-            "activityId": "parts-of-speech-game",
-            "slot": "extra",
-            "order": 8,
-            "wrappedGame": false,
-            "activityType": "game",
-            "title": "Full Parts of Speech Practice Library"
           }
         ]
       },
       {
         "id": "week-3",
         "number": 3,
-        "title": "Verb Forms + Past -ed Sounds",
-        "goal": "Practice verb forms in context and learn the three -ed ending sounds.",
+        "title": "Verb Forms + Verb Quiz 1",
+        "goal": "Learn the five verb form codes (V1 to V3) and take your first verb quiz.",
         "items": [
           {
             "id": "vocab-sep-w3-flashcards",
@@ -223,22 +162,22 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Digital Habits — Flash Cards"
           },
           {
-            "id": "questions-real-answers",
-            "href": "/grammar-reader/questions-real-answers",
+            "id": "verb-forms-overview",
+            "href": "/grammar-reader/verb-forms-overview",
             "slot": "required",
             "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
-            "title": "Questions That Get Real Answers"
+            "title": "Verb Forms: V1 → V3"
           },
           {
-            "id": "timeline-verb-forms-review",
-            "activityId": "timeline-tenses-simple",
+            "id": "all-verb-tenses-overview",
+            "href": "/grammar-reader/all-verb-tenses-overview",
             "slot": "required",
             "order": 2,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Timeline Tenses: Verb Forms Review"
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "All Verb Tenses Overview"
           },
           {
             "id": "vocab-sep-w3-matching",
@@ -251,48 +190,74 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Digital Habits — Matching"
           },
           {
-            "id": "ed-endings-intro",
-            "activityId": "cmlkjcabs00000ezpkp32c6lz",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": true,
-            "activityType": "pronunciation",
-            "title": "-ed Endings Intro: /t/ /d/ /id/"
-          },
-          {
             "id": "vocab-sep-w3-fill-blank",
             "activityId": "vocab-sep-w3",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 5,
+            "order": 4,
             "title": "Vocab: Digital Habits — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-3",
-            "activityId": "verb-quiz-3",
+            "id": "verb-quiz-1",
+            "activityId": "verb-quiz-1",
             "slot": "required",
-            "order": 6,
+            "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 3: go + come"
+            "title": "Verb Quiz 1: be + have"
           },
           {
-            "id": "ed-endings-game-extra",
-            "activityId": "cmlkjcabs00000ezpkp32c6lz",
+            "id": "timeline-verb-forms-review",
+            "activityId": "timeline-tenses-simple",
+            "slot": "extra",
+            "order": 6,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Timeline Tenses: Verb Forms Review"
+          },
+          {
+            "id": "parts-of-speech-discovery",
+            "activityId": "parts-of-speech-discovery-guided",
             "slot": "extra",
             "order": 7,
             "wrappedGame": true,
-            "activityType": "pronunciation",
-            "title": "-ed Endings Game"
+            "activityType": "game",
+            "title": "Parts of Speech Discovery Game"
+          },
+          {
+            "id": "parts-of-speech-library",
+            "activityId": "parts-of-speech-game",
+            "slot": "extra",
+            "order": 8,
+            "wrappedGame": false,
+            "activityType": "game",
+            "title": "Full Parts of Speech Practice Library"
+          },
+          {
+            "id": "helper-verb-repair",
+            "activityId": "grammar-hospital-helper-repair-guided",
+            "slot": "extra",
+            "order": 9,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Grammar Hospital: Helper Verb Repair"
           }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "id": "unit-2",
+    "number": 2,
+    "title": "Daily Life in the Community",
+    "month": "October",
+    "weeks": [
       {
         "id": "week-4",
         "number": 4,
-        "title": "Past Simple + Past Continuous: Telling the Story",
+        "title": "Telling the Story: Past Simple + Past Continuous",
         "goal": "Use past simple for finished actions and past continuous for what was already in progress.",
         "items": [
           {
@@ -341,34 +306,44 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Short Writing: \"When I came to the U.S.\""
           },
           {
+            "id": "ed-endings-intro",
+            "activityId": "cmlkjcabs00000ezpkp32c6lz",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": true,
+            "activityType": "pronunciation",
+            "title": "-ed Endings Intro: /t/ /d/ /id/"
+          },
+          {
             "id": "vocab-sep-w4-fill-blank",
             "activityId": "vocab-sep-w4",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 5,
+            "order": 6,
             "title": "Vocab: Personal Journey Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-4",
-            "activityId": "verb-quiz-4",
+            "id": "verb-quiz-2",
+            "activityId": "verb-quiz-2",
             "slot": "required",
-            "order": 6,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 4: find + buy"
+            "title": "Verb Quiz 2: do + make"
+          },
+          {
+            "id": "ed-endings-game-extra",
+            "activityId": "cmlkjcabs00000ezpkp32c6lz",
+            "slot": "extra",
+            "order": 8,
+            "wrappedGame": true,
+            "activityType": "pronunciation",
+            "title": "-ed Endings Game"
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "unit-2",
-    "number": 2,
-    "title": "Daily Life in the Community",
-    "month": "October",
-    "weeks": [
+      },
       {
         "id": "week-5",
         "number": 5,
@@ -394,9 +369,18 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Just, Already, Yet"
           },
           {
-            "id": "question-word-practice",
+            "id": "questions-real-answers",
+            "href": "/grammar-reader/questions-real-answers",
             "slot": "required",
             "order": 2,
+            "wrappedGame": false,
+            "activityType": "guide",
+            "title": "Questions That Get Real Answers"
+          },
+          {
+            "id": "question-word-practice",
+            "slot": "required",
+            "order": 3,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Question Word Practice Game"
@@ -408,7 +392,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 3,
+            "order": 4,
             "title": "Vocab: Schedule Verbs — Matching"
           },
           {
@@ -418,34 +402,34 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 4,
+            "order": 5,
             "title": "Vocab: Schedule Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-5",
-            "activityId": "verb-quiz-5",
+            "id": "verb-quiz-3",
+            "activityId": "verb-quiz-3",
             "slot": "required",
-            "order": 5,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 5: keep + build"
+            "title": "Verb Quiz 3: go + come"
           }
         ]
       },
       {
         "id": "week-6",
         "number": 6,
-        "title": "Getting Around + Digital Safety",
+        "title": "Getting Around: Directions + Digital Safety",
         "items": [
           {
             "id": "vocab-oct-w2-flashcards",
-            "activityId": "vocab-oct-w3",
+            "activityId": "vocab-oct-w2",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Vocab: Protect Yourself Verbs — Flash Cards"
+            "title": "Vocab: Movement Verbs — Flash Cards"
           },
           {
             "id": "your-week-in-english",
@@ -457,78 +441,16 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Your Week in English"
           },
           {
-            "id": "map-directions-practice",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Map / Directions Practice Game"
-          },
-          {
-            "id": "vocab-oct-w2-matching",
-            "activityId": "vocab-oct-w3",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "matching",
-            "order": 3,
-            "title": "Vocab: Protect Yourself Verbs — Matching"
-          },
-          {
-            "id": "vocab-oct-w2-fill-blank",
-            "activityId": "vocab-oct-w3",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "fill-blank",
-            "order": 4,
-            "title": "Vocab: Protect Yourself Verbs — Fill in the Blank"
-          },
-          {
-            "id": "verb-quiz-6",
-            "activityId": "verb-quiz-6",
-            "slot": "required",
-            "order": 5,
-            "wrappedGame": false,
-            "activityType": "quiz",
-            "title": "Verb Quiz 6: pay + hold"
-          }
-        ]
-      },
-      {
-        "id": "week-7",
-        "number": 7,
-        "title": "Getting There: Directions + Community",
-        "items": [
-          {
-            "id": "vocab-oct-w3-flashcards",
-            "activityId": "vocab-oct-w2",
-            "slot": "required",
-            "wrappedGame": true,
-            "activityType": "game",
-            "vocabUi": "flashcards",
-            "order": 0,
-            "title": "Vocab: Movement Verbs — Flash Cards"
-          },
-          {
             "id": "getting-there-directions",
             "href": "/grammar-reader/getting-there-directions",
             "slot": "required",
-            "order": 1,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Getting There: Directions + Imperatives"
           },
           {
-            "id": "scam-or-safe-practice",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Directions Practice Game"
-          },
-          {
-            "id": "vocab-oct-w3-matching",
+            "id": "vocab-oct-w2-matching",
             "activityId": "vocab-oct-w2",
             "slot": "required",
             "wrappedGame": true,
@@ -538,7 +460,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Movement Verbs — Matching"
           },
           {
-            "id": "vocab-oct-w3-fill-blank",
+            "id": "vocab-oct-w2-fill-blank",
             "activityId": "vocab-oct-w2",
             "slot": "required",
             "wrappedGame": true,
@@ -548,19 +470,50 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Movement Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-7",
-            "activityId": "verb-quiz-7",
+            "id": "verb-quiz-4",
+            "activityId": "verb-quiz-4",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 7: break + leave"
+            "title": "Verb Quiz 4: find + buy"
+          },
+          {
+            "id": "vocab-oct-w3-flashcards",
+            "activityId": "vocab-oct-w3",
+            "slot": "extra",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "flashcards",
+            "order": 6,
+            "title": "Vocab: Protect Yourself Verbs — Flash Cards"
+          },
+          {
+            "id": "vocab-oct-w3-matching",
+            "activityId": "vocab-oct-w3",
+            "slot": "extra",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "matching",
+            "order": 7,
+            "title": "Vocab: Protect Yourself Verbs — Matching"
+          },
+          {
+            "id": "vocab-oct-w3-fill-blank",
+            "activityId": "vocab-oct-w3",
+            "slot": "extra",
+            "wrappedGame": true,
+            "activityType": "game",
+            "vocabUi": "fill-blank",
+            "order": 8,
+            "title": "Vocab: Protect Yourself Verbs — Fill in the Blank"
           }
-        ]
+        ],
+        "goal": "Give and follow directions, and stay safe online while getting around town."
       },
       {
         "id": "week-8",
-        "number": 8,
+        "number": 7,
         "title": "Phone English + Family Connection",
         "items": [
           {
@@ -612,13 +565,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Communication Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-8",
-            "activityId": "verb-quiz-8",
+            "id": "verb-quiz-5",
+            "activityId": "verb-quiz-5",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 8: sell + cut"
+            "title": "Verb Quiz 5: keep + build"
           }
         ]
       }
@@ -632,7 +585,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-9",
-        "number": 9,
+        "number": 8,
         "title": "Helping + Volunteering",
         "items": [
           {
@@ -683,19 +636,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Action Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-9",
-            "activityId": "verb-quiz-9",
+            "id": "verb-quiz-6",
+            "activityId": "verb-quiz-6",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 9: freeze + steal"
+            "title": "Verb Quiz 6: pay + hold"
           }
         ]
       },
       {
         "id": "week-10",
-        "number": 10,
+        "number": 9,
         "title": "Public Meetings + Suggestions",
         "items": [
           {
@@ -755,19 +708,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Discussion Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-10",
-            "activityId": "verb-quiz-10",
+            "id": "verb-quiz-7",
+            "activityId": "verb-quiz-7",
             "slot": "required",
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 10: call + fix"
+            "title": "Verb Quiz 7: break + leave"
           }
         ]
       },
       {
         "id": "week-11",
-        "number": 11,
+        "number": 10,
         "title": "Voting + Contacting Officials",
         "items": [
           {
@@ -818,19 +771,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Civic Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-11",
-            "activityId": "verb-quiz-11",
+            "id": "verb-quiz-8",
+            "activityId": "verb-quiz-8",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 11: sleep + wake"
+            "title": "Verb Quiz 8: sell + cut"
           }
         ]
       },
       {
         "id": "week-12",
-        "number": 12,
+        "number": 11,
         "title": "Community Issue Case Study",
         "items": [
           {
@@ -889,13 +842,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Problem-Solving Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-12",
-            "activityId": "verb-quiz-12",
+            "id": "verb-quiz-9",
+            "activityId": "verb-quiz-9",
             "slot": "required",
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 12: eat + drink"
+            "title": "Verb Quiz 9: freeze + steal"
           }
         ]
       }
@@ -909,7 +862,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-13",
-        "number": 13,
+        "number": 12,
         "title": "How Long + For and Since",
         "items": [
           {
@@ -969,20 +922,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Money Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-13",
-            "activityId": "verb-quiz-13",
+            "id": "verb-quiz-10",
+            "activityId": "verb-quiz-10",
             "slot": "required",
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 13: sit + spend"
+            "title": "Verb Quiz 10: call + fix"
           }
         ],
         "goal": "Talk about how long you have lived, worked, and kept the same phone plan while hunting for something cheaper."
       },
       {
         "id": "week-14",
-        "number": 14,
+        "number": 13,
         "title": "More, Less, the Most: Comparatives + Superlatives",
         "items": [
           {
@@ -1034,20 +987,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Financial Action Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-14",
-            "activityId": "verb-quiz-14",
+            "id": "verb-quiz-11",
+            "activityId": "verb-quiz-11",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 14: cost + lend"
+            "title": "Verb Quiz 11: sleep + wake"
           }
         ],
         "goal": "Compare prices, phone plans, and apartment listings when stretching a paycheck."
       },
       {
         "id": "week-15",
-        "number": 15,
+        "number": 14,
         "title": "How Much / How Many: Countable + Uncountable",
         "goal": "Use much, many, a lot of, a few, and a little when feeding a family on a budget.",
         "items": [
@@ -1078,13 +1031,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Grocery Budget Practice"
           },
           {
-            "id": "verb-quiz-15-dec",
-            "activityId": "verb-quiz-15",
+            "id": "verb-quiz-12",
+            "activityId": "verb-quiz-12",
             "slot": "required",
             "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 15: give + send"
+            "title": "Verb Quiz 12: eat + drink"
           }
         ]
       }
@@ -1098,7 +1051,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-16",
-        "number": 16,
+        "number": 15,
         "title": "Housing Basics",
         "items": [
           {
@@ -1150,13 +1103,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Renter Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-16",
-            "activityId": "verb-quiz-16",
+            "id": "verb-quiz-13",
+            "activityId": "verb-quiz-13",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 16: write + submit"
+            "title": "Verb Quiz 13: sit + spend"
           },
           {
             "id": "parts-of-speech-refresh-extra",
@@ -1171,7 +1124,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       },
       {
         "id": "week-17",
-        "number": 17,
+        "number": 16,
         "title": "Comparing Housing Options",
         "items": [
           {
@@ -1230,19 +1183,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Decision Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-17",
-            "activityId": "verb-quiz-17",
+            "id": "verb-quiz-14",
+            "activityId": "verb-quiz-14",
             "slot": "required",
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 17: work + apply"
+            "title": "Verb Quiz 14: cost + lend"
           }
         ]
       },
       {
         "id": "week-18",
-        "number": 18,
+        "number": 17,
         "title": "Landlord Calls + Repair Requests",
         "items": [
           {
@@ -1293,19 +1246,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Maintenance Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-18",
-            "activityId": "verb-quiz-18",
+            "id": "verb-quiz-15",
+            "activityId": "verb-quiz-15",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 18: meet + speak"
+            "title": "Verb Quiz 15: give + send"
           }
         ]
       },
       {
         "id": "week-19",
-        "number": 19,
+        "number": 18,
         "title": "Housing Problems + Solutions",
         "items": [
           {
@@ -1364,13 +1317,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Resolution Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-19",
-            "activityId": "verb-quiz-19",
+            "id": "verb-quiz-16",
+            "activityId": "verb-quiz-16",
             "slot": "required",
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 19: tell + say"
+            "title": "Verb Quiz 16: write + submit"
           }
         ]
       }
@@ -1384,7 +1337,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-20",
-        "number": 20,
+        "number": 19,
         "title": "Resume + Workplace Basics",
         "items": [
           {
@@ -1435,19 +1388,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Jobs Foundations — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-20",
-            "activityId": "verb-quiz-20",
+            "id": "verb-quiz-17",
+            "activityId": "verb-quiz-17",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 20: hear + understand"
+            "title": "Verb Quiz 17: work + apply"
           }
         ]
       },
       {
         "id": "week-21",
-        "number": 21,
+        "number": 20,
         "title": "Workplace Rules + Must, Have To, Should",
         "items": [
           {
@@ -1507,19 +1460,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Rules & Obligation at Work — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-21",
-            "activityId": "verb-quiz-21",
+            "id": "verb-quiz-18",
+            "activityId": "verb-quiz-18",
             "slot": "required",
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 21: see + run"
+            "title": "Verb Quiz 18: meet + speak"
           }
         ]
       },
       {
         "id": "week-22",
-        "number": 22,
+        "number": 21,
         "title": "Second Conditional + Catch-Up",
         "items": [
           {
@@ -1556,19 +1509,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Optional Review Games"
           },
           {
-            "id": "verb-quiz-22",
-            "activityId": "verb-quiz-22",
+            "id": "verb-quiz-19",
+            "activityId": "verb-quiz-19",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 22: win + catch"
+            "title": "Verb Quiz 19: tell + say"
           }
         ]
       },
       {
         "id": "week-23",
-        "number": 23,
+        "number": 22,
         "title": "Phrasal Verbs at Work + Workplace Rights",
         "items": [
           {
@@ -1627,13 +1580,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Workplace Phrasal Verbs — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-23",
-            "activityId": "verb-quiz-23",
+            "id": "verb-quiz-20",
+            "activityId": "verb-quiz-20",
             "slot": "required",
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 23: confirm + stand"
+            "title": "Verb Quiz 20: hear + understand"
           }
         ]
       }
@@ -1647,7 +1600,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-24",
-        "number": 24,
+        "number": 23,
         "title": "Job Applications + Interviews",
         "items": [
           {
@@ -1707,19 +1660,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Experience & Timelines — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-24",
-            "activityId": "verb-quiz-24",
+            "id": "verb-quiz-21",
+            "activityId": "verb-quiz-21",
             "slot": "required",
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 24: choose + report"
+            "title": "Verb Quiz 21: see + run"
           }
         ]
       },
       {
         "id": "week-25",
-        "number": 25,
+        "number": 24,
         "title": "Career Progress + Skills",
         "items": [
           {
@@ -1779,19 +1732,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Skills & Qualifications — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-25",
-            "activityId": "verb-quiz-25",
+            "id": "verb-quiz-22",
+            "activityId": "verb-quiz-22",
             "slot": "required",
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 25: wear + begin"
+            "title": "Verb Quiz 22: win + catch"
           }
         ]
       },
       {
         "id": "week-26",
-        "number": 26,
+        "number": 25,
         "title": "Work Experience + Advocacy",
         "items": [
           {
@@ -1889,19 +1842,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Small Talk at Work — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-26",
-            "activityId": "verb-quiz-26",
+            "id": "verb-quiz-23",
+            "activityId": "verb-quiz-23",
             "slot": "required",
             "order": 10,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 26: teach + fight"
+            "title": "Verb Quiz 23: confirm + stand"
           }
         ]
       },
       {
         "id": "week-27",
-        "number": 27,
+        "number": 26,
         "title": "Passive Voice + Pay Stubs",
         "items": [
           {
@@ -1944,13 +1897,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Feedback & Decision-Making — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-27",
-            "activityId": "verb-quiz-27",
+            "id": "verb-quiz-24",
+            "activityId": "verb-quiz-24",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 27: put + hurt"
+            "title": "Verb Quiz 24: choose + report"
           }
         ]
       }
@@ -1964,7 +1917,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-28",
-        "number": 28,
+        "number": 27,
         "title": "Healthcare Basics",
         "items": [
           {
@@ -2016,19 +1969,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Symptoms & Expectations — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-28",
-            "activityId": "verb-quiz-28",
+            "id": "verb-quiz-25",
+            "activityId": "verb-quiz-25",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 28: hit + quit"
+            "title": "Verb Quiz 25: wear + begin"
           }
         ]
       },
       {
         "id": "week-29",
-        "number": 29,
+        "number": 28,
         "title": "Symptoms + Clinic Visits",
         "items": [
           {
@@ -2079,19 +2032,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Symptoms & Care — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-29",
-            "activityId": "verb-quiz-29",
+            "id": "verb-quiz-26",
+            "activityId": "verb-quiz-26",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 29: get + know"
+            "title": "Verb Quiz 26: teach + fight"
           }
         ]
       },
       {
         "id": "week-30",
-        "number": 30,
+        "number": 29,
         "title": "The Doctor Said + Catch-Up",
         "items": [
           {
@@ -2128,19 +2081,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Optional Review Games"
           },
           {
-            "id": "verb-quiz-30",
-            "activityId": "verb-quiz-30",
+            "id": "verb-quiz-27",
+            "activityId": "verb-quiz-27",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 30: read + think"
+            "title": "Verb Quiz 27: put + hurt"
           }
         ]
       },
       {
         "id": "week-31",
-        "number": 31,
+        "number": 30,
         "title": "Third Conditional + Pharmacy",
         "items": [
           {
@@ -2191,13 +2144,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Health Advice & Habits — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-31",
-            "activityId": "verb-quiz-31",
+            "id": "verb-quiz-28",
+            "activityId": "verb-quiz-28",
             "slot": "required",
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 31: drive + ride"
+            "title": "Verb Quiz 28: hit + quit"
           }
         ]
       }
@@ -2211,7 +2164,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-32",
-        "number": 32,
+        "number": 31,
         "title": "I Used to + Wellness",
         "items": [
           {
@@ -2271,19 +2224,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Your Body & Wellness — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-32",
-            "activityId": "verb-quiz-32",
+            "id": "verb-quiz-29",
+            "activityId": "verb-quiz-29",
             "slot": "required",
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 32: feel + grow"
+            "title": "Verb Quiz 29: get + know"
           }
         ]
       },
       {
         "id": "week-33",
-        "number": 33,
+        "number": 32,
         "title": "Be Used to + Still Adjusting",
         "items": [
           {
@@ -2326,19 +2279,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Daily Care & Nutrition — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-33",
-            "activityId": "verb-quiz-33",
+            "id": "verb-quiz-30",
+            "activityId": "verb-quiz-30",
             "slot": "required",
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 33: take + bring"
+            "title": "Verb Quiz 30: read + think"
           }
         ]
       },
       {
         "id": "week-34",
-        "number": 34,
+        "number": 33,
         "title": "All Four Conditionals + One Bad Week",
         "items": [
           {
@@ -2397,19 +2350,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Life Skills & Habits — Fill in the Blank"
           },
           {
-            "id": "verb-quiz-34",
-            "activityId": "verb-quiz-34",
+            "id": "verb-quiz-31",
+            "activityId": "verb-quiz-31",
             "slot": "required",
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 34: fall + lose"
+            "title": "Verb Quiz 31: drive + ride"
           }
         ]
       },
       {
         "id": "week-35",
-        "number": 35,
+        "number": 34,
         "title": "Gerunds + Infinitives + Packed Week",
         "items": [
           {
@@ -2467,6 +2420,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "vocabUi": "fill-blank",
             "order": 5,
             "title": "Vocab: Holistic Health Review — Fill in the Blank"
+          },
+          {
+            "id": "verb-quiz-32",
+            "activityId": "verb-quiz-32",
+            "slot": "required",
+            "order": 6,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 32: feel + grow"
           }
         ]
       }
@@ -2480,7 +2442,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
     "weeks": [
       {
         "id": "week-36",
-        "number": 36,
+        "number": 35,
         "title": "All the Tenses: A Year in Review",
         "items": [
           {
@@ -2579,10 +2541,27 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "End-of-Year Party"
+          },
+          {
+            "id": "verb-quiz-33",
+            "activityId": "verb-quiz-33",
+            "slot": "extra",
+            "order": 11,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 33: take + bring"
+          },
+          {
+            "id": "verb-quiz-34",
+            "activityId": "verb-quiz-34",
+            "slot": "extra",
+            "order": 12,
+            "wrappedGame": false,
+            "activityType": "quiz",
+            "title": "Verb Quiz 34: fall + lose"
           }
         ]
       }
     ]
   }
-]
-;
+];

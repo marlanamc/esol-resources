@@ -171,6 +171,10 @@ export const grammarContentRegistry: Record<string, GrammarContentRegistryEntry>
         sourceFile: "src/content/grammar/welcome-back-tenses-review.ts",
         loader: () => import("@/content/grammar/welcome-back-tenses-review"),
     },
+    "welcome-how-to-use-app": {
+        sourceFile: "src/content/grammar/welcome-how-to-use-app.ts",
+        loader: () => import("@/content/grammar/welcome-how-to-use-app"),
+    },
     "what-are-you-good-at": {
         sourceFile: "src/content/grammar/what-are-you-good-at.ts",
         loader: () => import("@/content/grammar/what-are-you-good-at"),

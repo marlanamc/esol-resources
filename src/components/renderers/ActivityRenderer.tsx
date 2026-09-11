@@ -210,9 +210,15 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         const rawContent = content as Record<string, unknown> | null;
                         const presetCategories = Array.isArray(rawContent?.tenseCategories) ? rawContent.tenseCategories as import("@/types/activity").TenseCategory[] : undefined;
                         const presetPracticeMode = typeof rawContent?.practiceMode === 'string' ? rawContent.practiceMode as import("@/components/games/TimelineTensesGame/timelineTensesUtils").TimelinePracticeMode : undefined;
+                        const rawMaxDifficulty = rawContent?.maxDifficulty;
+                        const presetMaxDifficulty: 1 | 2 | 3 | undefined =
+                            rawMaxDifficulty === 1 || rawMaxDifficulty === 2 || rawMaxDifficulty === 3
+                                ? (rawMaxDifficulty as 1 | 2 | 3)
+                                : undefined;
+                        const presetSingleVerbOnly = rawContent?.singleVerbOnly === true ? true : undefined;
                         // A preset exists if tenseCategories is defined (even empty = all tenses) OR a practiceMode is set.
                         const hasPreset = presetCategories !== undefined || presetPracticeMode !== undefined;
-                        const timelinePreset = hasPreset ? { tenseCategories: presetCategories ?? [], practiceMode: presetPracticeMode } : undefined;
+                        const timelinePreset = hasPreset ? { tenseCategories: presetCategories ?? [], practiceMode: presetPracticeMode, maxDifficulty: presetMaxDifficulty, singleVerbOnly: presetSingleVerbOnly } : undefined;
                         return <TimelineTensesGame activityId={activity.id} assignmentId={assignmentId} preset={timelinePreset} />;
                     }
                     case "parts-of-speech":

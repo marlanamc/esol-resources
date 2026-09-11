@@ -56,7 +56,10 @@ function formatDate(date: Date): string {
   return `${year}-${month}-${day}`;
 }
 
-const firstQuizDueDate = new Date(2026, 8, 18, 12, 0, 0, 0);
+// Quiz 1 lands on the Friday of course Week 3 (Sept 28 - Oct 2, 2026).
+// September 2026 has only three teaching weeks, starting Sept 15, and Weeks 1-2
+// are a light on-ramp with no quiz.
+const firstQuizDueDate = new Date(2026, 9, 2, 12, 0, 0, 0);
 
 export const GUIDED_VERB_QUIZ_PLAN: GuidedVerbQuizPlanItem[] = QUIZ_VERB_PAIRS.map(
   (verbs, index) => {

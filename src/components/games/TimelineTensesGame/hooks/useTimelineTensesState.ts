@@ -21,6 +21,7 @@ import {
   CATEGORY_TUTORIAL_KEY_PREFIX,
 } from '@/data/timeline-tenses-tutorial';
 import {
+  applyTimelineQuestionConstraints,
   buildTimelineRoundQuestions,
   calculateTimelineOverallProgress,
   categoriesToProgressKey,
@@ -165,9 +166,17 @@ function getCategoryQuestionCount(
 export interface TimelineTensesPreset {
   tenseCategories: TenseCategory[];
   practiceMode?: TimelinePracticeMode;
+  /** Cap question difficulty (1-3) for beginner presets. */
+  maxDifficulty?: 1 | 2 | 3;
+  /** Exclude multi-verb sentences for beginner presets. */
+  singleVerbOnly?: boolean;
 }
 
 export function useTimelineTensesState(activityId: string, assignmentId?: string | null, preset?: TimelineTensesPreset) {
+  // Kept in a ref: `preset` is rebuilt each render, so it must not be an effect dep.
+  const presetRef = useRef(preset);
+  presetRef.current = preset;
+
   const [recentQuestionIdsByFilter, setRecentQuestionIdsByFilter] = useState<Record<string, string[]>>(() => {
     if (typeof window === 'undefined') {
       return {};
@@ -316,7 +325,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         setState((prev) => ({
           ...prev,
           loading: false,
-          questionBank: allQuestions,
+          questionBank: applyTimelineQuestionConstraints(allQuestions, presetRef.current),
           categoryProgress,
         }));
       } catch (err) {

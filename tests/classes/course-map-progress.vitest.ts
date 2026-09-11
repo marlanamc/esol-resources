@@ -35,7 +35,7 @@ const mockUnits: CourseMapUnit[] = [
                     },
                     {
                         id: "welcome-back-tenses-review",
-                        title: "Welcome Back: Simple & Continuous Review + V3 Preview",
+                        title: "Welcome Back: Simple & Continuous Review",
                         activityType: "guide",
                         status: "available",
                         href: "/grammar-reader/welcome-back-tenses-review",

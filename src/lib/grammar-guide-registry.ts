@@ -494,10 +494,17 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
         loadContent: () =>
             import("@/content/grammar/verb-forms-overview").then((m) => m.verbFormsOverviewContent),
     },
+    "welcome-how-to-use-app": {
+        activityTitle: "Welcome / How to Use the App",
+        metaTitle: "Welcome / How to Use the App | Class Companion",
+        metaDescription: "How to find this week's work, what the activity types are, and how to add Class Companion to your phone.",
+        loadContent: () =>
+            import("@/content/grammar/welcome-how-to-use-app").then((m) => m.welcomeHowToUseAppContent),
+    },
     "welcome-back-tenses-review": {
-        activityTitle: "Welcome Back: Simple & Continuous Review + V3 Preview",
+        activityTitle: "Welcome Back: Simple & Continuous Review",
         metaTitle: "Welcome Back: Tenses Review - Interactive Guide | Class Companion",
-        metaDescription: "Review present and past simple and continuous tenses, then get a first look at V3 — the form you'll learn more about this year.",
+        metaDescription: "Warm up the present and past simple and continuous tenses you already know, on the timeline.",
         loadContent: () =>
             import("@/content/grammar/welcome-back-tenses-review").then((m) => m.welcomeBackTensesReviewContent),
     },

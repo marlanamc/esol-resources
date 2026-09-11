@@ -818,5 +818,50 @@
         "definition": "to handle a situation, often as in deal with"
       }
     }
+  },
+  "Supplemental Verbs": {
+    "due_date": "2026-06-02",
+    "verbs": {
+      "steal": {
+        "v1": "steal",
+        "v1_3rd": "steals",
+        "v1_ing": "stealing",
+        "v2": "stole",
+        "v3": "stolen",
+        "definition": "to take something that belongs to someone else"
+      },
+      "win": {
+        "v1": "win",
+        "v1_3rd": "wins",
+        "v1_ing": "winning",
+        "v2": "won",
+        "v3": "won",
+        "definition": "to finish first in a game, contest, or election"
+      },
+      "fight": {
+        "v1": "fight",
+        "v1_3rd": "fights",
+        "v1_ing": "fighting",
+        "v2": "fought",
+        "v3": "fought",
+        "definition": "to struggle or argue against someone or something"
+      },
+      "hit": {
+        "v1": "hit",
+        "v1_3rd": "hits",
+        "v1_ing": "hitting",
+        "v2": "hit",
+        "v3": "hit",
+        "definition": "to strike something with force"
+      },
+      "quit": {
+        "v1": "quit",
+        "v1_3rd": "quits",
+        "v1_ing": "quitting",
+        "v2": "quit",
+        "v3": "quit",
+        "definition": "to stop doing something, especially a job"
+      }
+    }
   }
 }

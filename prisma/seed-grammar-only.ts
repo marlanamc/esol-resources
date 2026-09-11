@@ -25,6 +25,11 @@ import { medicineLabelsInsuranceContent } from '../src/content/grammar/medicine-
 import { verbFormsOverviewContent } from '../src/content/grammar/verb-forms-overview';
 import { gettingThereDirectionsContent } from '../src/content/grammar/getting-there-directions';
 import { needToFindAPlaceInfinitivesContent } from '../src/content/grammar/need-to-find-a-place-infinitives';
+import { welcomeBackTensesReviewContent } from '../src/content/grammar/welcome-back-tenses-review';
+import { allVerbTensesOverviewContent } from '../src/content/grammar/all-verb-tenses-overview';
+import { questionsRealAnswersContent } from '../src/content/grammar/questions-real-answers';
+import { pastSimplePastContinuousContent } from '../src/content/grammar/past-simple-past-continuous';
+import { welcomeHowToUseAppContent } from '../src/content/grammar/welcome-how-to-use-app';
 
 const prisma = new PrismaClient();
 
@@ -220,6 +225,49 @@ const grammarGuides = [
     description: 'Learn infinitives after want, need, hope, plan, and would like in a real housing search: lease pressure, bus routes, landlord calls, and Three Kings Day crunch time.',
     level: 'intermediate',
     content: needToFindAPlaceInfinitivesContent,
+    isReleased: true,
+  },
+  // Course-map guides reached by /grammar-reader href. These need Activity rows
+  // so completion can be tracked — without one, the course map treats the guide
+  // as permanently incomplete and "Next up" never advances past it.
+  {
+    id: 'welcome-how-to-use-app-guide',
+    title: 'Welcome / How to Use the App',
+    description: "How to find this week's work, what the activity types are, and how to add Class Companion to your phone.",
+    level: 'beginner',
+    content: welcomeHowToUseAppContent,
+    isReleased: true,
+  },
+  {
+    id: 'welcome-back-tenses-review-guide',
+    title: 'Welcome Back: Simple & Continuous Review',
+    description: 'Warm up the present and past simple and continuous tenses you already know, on the timeline.',
+    level: 'beginner',
+    content: welcomeBackTensesReviewContent,
+    isReleased: true,
+  },
+  {
+    id: 'all-verb-tenses-overview-guide',
+    title: 'All Verb Tenses Overview',
+    description: 'A complete timeline and usage tour of the English verb tenses, for orientation and review.',
+    level: 'beginner',
+    content: allVerbTensesOverviewContent,
+    isReleased: true,
+  },
+  {
+    id: 'questions-real-answers-guide',
+    title: 'Questions That Get Real Answers',
+    description: 'Form information questions with who, what, where, when, why, and how in real conversations.',
+    level: 'beginner',
+    content: questionsRealAnswersContent,
+    isReleased: true,
+  },
+  {
+    id: 'past-simple-past-continuous-guide',
+    title: 'Past Simple + Past Continuous: Telling the Story',
+    description: 'Past simple for finished actions, past continuous for what was already in progress. Practice with when and while.',
+    level: 'beginner',
+    content: pastSimplePastContinuousContent,
     isReleased: true,
   },
 ];

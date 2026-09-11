@@ -2,7 +2,7 @@ import type { CourseMapActivity, CourseMapActivityType } from "@/lib/course-map"
 
 export function formatNextUpActivityTitle(title: string): string {
     const shortened = title
-        .replace("Welcome Back: Simple & Continuous Review + V3 Preview", "Simple & Continuous Review")
+        .replace("Welcome Back: Simple & Continuous Review", "Simple & Continuous Review")
         .replace("Parts of Speech Discovery Game", "Parts of Speech Game")
         .replace("Grammar Hospital: Helper Verb Repair", "Helper Verb Repair")
         .replace("Vowel Names Practice:", "Vowel Names:")

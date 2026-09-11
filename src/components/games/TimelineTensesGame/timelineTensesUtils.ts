@@ -340,6 +340,44 @@ export function categoriesToProgressKey(
   return "all";
 }
 
+export type TimelineQuestionConstraints = {
+  /** Drop anything harder than this (question difficulty is rated 1-3). */
+  maxDifficulty?: 1 | 2 | 3;
+  /** Drop sentences that ask the learner to handle more than one verb. */
+  singleVerbOnly?: boolean;
+};
+
+/** How many verb phrases a question asks the learner to produce or place. */
+function countVerbTargets(question: TimelineTensesQuestion): number {
+  if (question.type === "sentence-to-timeline") {
+    return question.verbPhrase2 ? 2 : 1;
+  }
+  if (question.type === "timeline-to-verb") {
+    return question.blanks.length;
+  }
+  return 1;
+}
+
+/**
+ * Narrow a question bank before any filtering or round building happens.
+ * Used by beginner presets (e.g. the Week 1 on-ramp) that need a gentler pool
+ * than the tense-category filter alone provides.
+ */
+export function applyTimelineQuestionConstraints(
+  questionBank: TimelineTensesQuestion[],
+  constraints?: TimelineQuestionConstraints
+): TimelineTensesQuestion[] {
+  const maxDifficulty = constraints?.maxDifficulty;
+  const singleVerbOnly = constraints?.singleVerbOnly;
+  if (maxDifficulty === undefined && !singleVerbOnly) return questionBank;
+
+  return questionBank.filter((question) => {
+    if (maxDifficulty !== undefined && question.difficulty > maxDifficulty) return false;
+    if (singleVerbOnly && countVerbTargets(question) > 1) return false;
+    return true;
+  });
+}
+
 export function filterTimelineQuestions(
   questionBank: TimelineTensesQuestion[],
   categories: TenseCategory[],   // empty = all tenses
