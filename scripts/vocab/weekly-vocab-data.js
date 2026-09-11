@@ -34,6 +34,30 @@ const weeklyVocabData = {
 
   /** Unit 1 – Getting to Know You (September) */
   "sep-w1": {
+    topic: "Meet the Class: Introductions",
+    words: [
+      { term: "introduce", def: "to present yourself or another person for the first time",           ex: "Please introduce yourself to the class.", fillBlank: { text: "On the first day, please _____ yourself to the class.", options: ["introduce", "greet", "share", "prefer"] } },
+      {"term": "greet", "def": "to say hello to someone", "ex": "Greet your classmates when you arrive.", "fillBlank": {"text": "When you arrive, _____ your classmates by saying hello.", "options": ["share", "greet", "prefer", "describe"]}},
+      {"term": "share", "def": "to tell someone your ideas, feelings, or information", "ex": "Share one interesting fact about yourself.", "fillBlank": {"text": "Tell us something about yourself: _____ one interesting fact with the class.", "options": ["listen", "prefer", "share", "greet"]}},
+      { term: "describe", def: "to say what something or someone is like",                           ex: "Describe your neighborhood to the class.", fillBlank: { text: "_____ your neighborhood. Is it quiet or busy?", options: ["introduce", "describe", "share", "listen"] } },
+      {"term": "prefer", "def": "to like one thing more than another", "ex": "I prefer working with a partner to working alone.", "fillBlank": {"text": "I like working with a partner more than working alone. I _____ partner work.", "options": ["describe", "share", "greet", "prefer"]}},
+      { term: "listen",   def: "to pay attention to sounds or someone speaking",                     ex: "Listen carefully and repeat the words you hear.", fillBlank: { text: "_____ carefully to the audio and write down what you hear.", options: ["greet", "listen", "describe", "share"] } },
+    ],
+  },
+
+  "sep-w2": {
+    topic: "Word Practice: Say It & Spell It",
+    words: [
+      { term: "pronounce",  def: "to say a word out loud correctly",                                  ex: "Practice how to pronounce each new word.", fillBlank: { text: "Repeat after me and _____ each new word out loud.", options: ["spell", "pronounce", "repeat", "practice"] } },
+      { term: "spell",      def: "to write or say the letters of a word in order",                   ex: "Can you spell your last name for me, please?", fillBlank: { text: "G-A-R-C-I-A — please _____ your last name letter by letter.", options: ["pronounce", "spell", "practice", "identify"] } },
+      { term: "identify",   def: "to recognize and name something",                                   ex: "Can you identify the noun in this sentence?", fillBlank: { text: "Can you _____ the noun in this sentence: \"The book is on the table\"?", options: ["categorize", "identify", "spell", "repeat"] } },
+      { term: "categorize", def: "to put things into groups",                                         ex: "Categorize these words as nouns, verbs, or adjectives.", fillBlank: { text: "_____ these words into nouns, verbs, and adjectives.", options: ["identify", "categorize", "pronounce", "practice"] } },
+      { term: "practice",   def: "to do something many times to improve",                             ex: "Practice speaking English every day to get better.", fillBlank: { text: "You will improve faster if you _____ speaking English every day.", options: ["pronounce", "practice", "identify", "repeat"] } },
+      { term: "repeat",   def: "to do or say something again",                                       ex: "Please repeat the word after me.", fillBlank: { text: "Please _____ the word after me: \"appointment.\"", options: ["spell", "repeat", "identify", "categorize"] } },
+    ],
+  },
+
+  "sep-w3": {
     topic: "Start the Class: Digital Habits",
     words: [
       { term: "log in",    def: "to enter your username and password to access a website or app",       ex: "Please log in to the app every day to practice English.", topics: ["digital-skills"], fillBlank: { text: "Enter your username and password to _____ to the learning app.", options: ["access", "log in", "navigate", "submit"] } },
@@ -44,37 +68,16 @@ const weeklyVocabData = {
       { term: "review",   def: "to look at something again to check or learn it better",              ex: "Review the words before the quiz on Friday.", fillBlank: { text: "Before the quiz on Friday, _____ the new words one more time.", options: ["complete", "review", "submit", "navigate"] } },
     ],
   },
-  "sep-w2": {
-    topic: "Parts of Speech: Key Verbs",
-    words: [
-      { term: "identify",   def: "to recognize and name something",                                   ex: "Can you identify the noun in this sentence?", fillBlank: { text: "Can you _____ the noun in this sentence: \"The book is on the table\"?", options: ["categorize", "identify", "spell", "translate"] } },
-      { term: "categorize", def: "to put things into groups",                                         ex: "Categorize these words as nouns, verbs, or adjectives.", fillBlank: { text: "_____ these words into nouns, verbs, and adjectives.", options: ["identify", "categorize", "pronounce", "practice"] } },
-      { term: "pronounce",  def: "to say a word out loud correctly",                                  ex: "Practice how to pronounce each new word.", fillBlank: { text: "Repeat after me and _____ each new word out loud.", options: ["spell", "pronounce", "translate", "practice"] } },
-      { term: "spell",      def: "to write or say the letters of a word in order",                   ex: "Can you spell your last name for me, please?", fillBlank: { text: "G-A-R-C-I-A — please _____ your last name letter by letter.", options: ["pronounce", "spell", "practice", "identify"] } },
-      { term: "translate",  def: "to change words from one language to another",                      ex: "I used my phone to translate that word into English.", fillBlank: { text: "I wrote a word in Spanish. Can you _____ it into English for the class?", options: ["identify", "translate", "spell", "categorize"] } },
-      { term: "practice",   def: "to do something many times to improve",                             ex: "Practice speaking English every day to get better.", fillBlank: { text: "You will improve faster if you _____ speaking English every day.", options: ["pronounce", "practice", "identify", "translate"] } },
-    ],
-  },
-  "sep-w3": {
-    topic: "Verb Forms: Action Words",
-    words: [
-      { term: "explain",  def: "to make something clear by giving details",                          ex: "Can you explain how to use this form?", fillBlank: { text: "Can you _____ step by step how to fill out this form?", options: ["describe", "explain", "discuss", "record"] } },
-      { term: "describe", def: "to say what something or someone is like",                           ex: "Describe your neighborhood to the class.", fillBlank: { text: "_____ your neighborhood. Is it quiet or busy?", options: ["explain", "describe", "discuss", "listen"] } },
-      { term: "discuss",  def: "to talk about something with others",                                ex: "We will discuss the homework in class.", fillBlank: { text: "After we read the article, we will _____ it in small groups.", options: ["describe", "discuss", "explain", "repeat"] } },
-      { term: "listen",   def: "to pay attention to sounds or someone speaking",                     ex: "Listen carefully and repeat the words you hear.", fillBlank: { text: "_____ carefully to the audio and write down what you hear.", options: ["repeat", "listen", "record", "discuss"] } },
-      { term: "record",   def: "to save or write down information; to make an audio or video",       ex: "Record yourself reading the sentence aloud.", fillBlank: { text: "Use your phone to _____ yourself reading the sentence aloud.", options: ["repeat", "record", "listen", "explain"] } },
-      { term: "repeat",   def: "to do or say something again",                                       ex: "Please repeat the word after me.", fillBlank: { text: "Please _____ the word after me: \"appointment.\"", options: ["listen", "repeat", "record", "describe"] } },
-    ],
-  },
+
   "sep-w4": {
     topic: "Life Experience: Personal Journey Verbs",
     words: [
-      { term: "relocate",  def: "to move to a new city or country",                                  ex: "My family decided to relocate to the United States.", fillBlank: { text: "My family decided to _____ from Guatemala to Boston.", options: ["immigrate", "relocate", "introduce", "achieve"] } },
-      { term: "introduce", def: "to present yourself or another person for the first time",           ex: "Please introduce yourself to the class.", fillBlank: { text: "On the first day, please _____ yourself to the class.", options: ["introduce", "motivate", "relocate", "achieve"] } },
-      { term: "motivate",  def: "to give someone a reason to do something",                          ex: "My children motivate me to learn English every day.", fillBlank: { text: "My children _____ me to study English every evening.", options: ["achieve", "motivate", "overcome", "introduce"] } },
+      { term: "relocate",  def: "to move to a new city or country",                                  ex: "My family decided to relocate to the United States.", fillBlank: { text: "My family decided to _____ from Guatemala to Boston.", options: ["immigrate", "relocate", "belong", "achieve"] } },
+      { term: "motivate",  def: "to give someone a reason to do something",                          ex: "My children motivate me to learn English every day.", fillBlank: { text: "My children _____ me to study English every evening.", options: ["achieve", "motivate", "overcome", "belong"] } },
       { term: "achieve",   def: "to reach a goal through hard work",                                 ex: "With practice, you can achieve your language goals.", fillBlank: { text: "With hard work, you can _____ your goal of passing the test.", options: ["overcome", "achieve", "motivate", "immigrate"] } },
       { term: "overcome",  def: "to successfully deal with a challenge",                             ex: "She worked hard to overcome the language barrier.", fillBlank: { text: "She worked hard to _____ her fear of speaking in public.", options: ["achieve", "overcome", "motivate", "relocate"] } },
-      { term: "immigrate", def: "to come to a new country to live there permanently",                ex: "He immigrated to the U.S. five years ago.", fillBlank: { text: "He _____ to the United States to live here permanently.", options: ["relocate", "immigrate", "introduce", "overcome"] } },
+      { term: "immigrate", def: "to come to a new country to live there permanently",                ex: "He immigrated to the U.S. five years ago.", fillBlank: { text: "He plans to _____ to the United States to live here permanently.", options: ["relocate", "immigrate", "belong", "overcome"] } },
+      {"term": "belong", "def": "to feel accepted as part of a group or place", "ex": "My classmates welcome me and help me feel that I belong.", "fillBlank": {"text": "My classmates accept me as part of the group, so I feel that I _____.", "options": ["belong", "achieve", "relocate", "overcome"]}},
     ],
   },
 

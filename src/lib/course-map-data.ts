@@ -47,7 +47,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 0,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Vocab: Digital Habits — Flash Cards"
+            "title": "Vocab: Introductions — Flash Cards"
           },
           {
             "id": "welcome-how-to-use-app",
@@ -92,7 +92,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Vocab: Digital Habits — Matching"
+            "title": "Vocab: Introductions — Matching"
           },
           {
             "id": "vocab-sep-w1-fill-blank",
@@ -102,7 +102,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Vocab: Digital Habits — Fill in the Blank"
+            "title": "Vocab: Introductions — Fill in the Blank"
           },
           {
             "id": "verb-quiz-1",
@@ -129,7 +129,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Vocab: Key Verbs — Flash Cards"
+            "title": "Vocab: Say It & Spell It — Flash Cards"
           },
           {
             "id": "parts-of-speech-mini-guide",
@@ -157,7 +157,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Vocab: Key Verbs — Matching"
+            "title": "Vocab: Say It & Spell It — Matching"
           },
           {
             "id": "helper-verb-repair",
@@ -184,7 +184,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 6,
-            "title": "Vocab: Key Verbs — Fill in the Blank"
+            "title": "Vocab: Say It & Spell It — Fill in the Blank"
           },
           {
             "id": "verb-quiz-2",
@@ -220,7 +220,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "flashcards",
             "order": 0,
-            "title": "Vocab: Action Words — Flash Cards"
+            "title": "Vocab: Digital Habits — Flash Cards"
           },
           {
             "id": "questions-real-answers",
@@ -248,7 +248,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "matching",
             "order": 3,
-            "title": "Vocab: Action Words — Matching"
+            "title": "Vocab: Digital Habits — Matching"
           },
           {
             "id": "ed-endings-intro",
@@ -267,7 +267,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game",
             "vocabUi": "fill-blank",
             "order": 5,
-            "title": "Vocab: Action Words — Fill in the Blank"
+            "title": "Vocab: Digital Habits — Fill in the Blank"
           },
           {
             "id": "verb-quiz-3",

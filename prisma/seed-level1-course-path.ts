@@ -39,17 +39,17 @@ const LEVEL1_PATH: Array<{
     {
         activityId: "vocab-sep-w1",
         unitLabel: "Unit 1: Simple Tense Review",
-        title: "Vocab: Digital Habits",
+        title: "Vocab: Introductions",
     },
     {
         activityId: "vocab-sep-w2",
         unitLabel: "Unit 1: Simple Tense Review",
-        title: "Vocab: Key Verbs",
+        title: "Vocab: Say It & Spell It",
     },
     {
         activityId: "vocab-sep-w3",
         unitLabel: "Unit 1: Simple Tense Review",
-        title: "Vocab: Action Words",
+        title: "Vocab: Digital Habits",
     },
     {
         activityId: "vocab-sep-w4",

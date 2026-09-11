@@ -20,37 +20,42 @@
 module.exports = {
   // ── Unit 1: September ────────────────────────────────────────────────────
 
-  // sep-w1: Start the Class: Digital Habits
+  // sep-w1: Meet the Class: Introductions
+  "introduce": "verb",
+  "greet": "verb",
+  "share": "verb",
+  "describe": "verb",
+  "listen": "verb",
+
+  // sep-w2: Word Practice: Say It & Spell It
+  "pronounce": "verb",
+  "spell": "verb",
+  "identify": "verb",
+  "categorize": "verb",
+  "practice": "verb",
+  "repeat": "verb",
+
+  // sep-w3: Start the Class: Digital Habits
   "log in": "phrasal verb",
-  navigate: "verb",
-  submit: "verb",
-  access: "verb",
-  complete: "verb",
-  review: "verb",
-
-  // sep-w2: Parts of Speech: Key Verbs
-  identify: "verb",
-  categorize: "verb",
-  pronounce: "verb",
-  spell: "verb",
-  translate: "verb",
-  practice: "verb",
-
-  // sep-w3: Verb Forms: Action Words
-  explain: "verb",
-  describe: "verb",
-  discuss: "verb",
-  listen: "verb",
-  record: "verb",
-  repeat: "verb",
+  "navigate": "verb",
+  "submit": "verb",
+  "access": "verb",
+  "complete": "verb",
+  "review": "verb",
 
   // sep-w4: Life Experience: Personal Journey Verbs
-  relocate: "verb",
-  introduce: "verb",
-  motivate: "verb",
-  achieve: "verb",
-  overcome: "verb",
-  immigrate: "verb",
+  "relocate": "verb",
+  "motivate": "verb",
+  "achieve": "verb",
+  "overcome": "verb",
+  "immigrate": "verb",
+  "belong": "verb",
+
+  // Additional library vocabulary
+  explain: "verb",
+  discuss: "verb",
+  record: "verb",
+  translate: "verb",
 
   // ── Unit 2: October ──────────────────────────────────────────────────────
 
