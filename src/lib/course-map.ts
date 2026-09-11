@@ -112,6 +112,39 @@ export interface VisibleMapResult {
  *
  * Units with no visible weeks are omitted from the result.
  */
+/**
+ * Week IDs currently visible to the given classes.
+ *
+ * A week is visible when it has been revealed manually, or when its scheduled
+ * reveal time has passed. The schedule is evaluated here at read time rather
+ * than by a cron, so the timing is exact and nothing can be missed overnight.
+ * Shared by the learner map and the teacher's reveal view so the two can never
+ * disagree about what students can see.
+ */
+export async function getVisibleWeekIdsForClasses(
+  classIds: string[],
+  now: Date = new Date()
+): Promise<Set<string>> {
+  if (classIds.length === 0) return new Set();
+
+  const [reveals, dueSchedules] = await Promise.all([
+    withPrismaReadRetry(() =>
+      prisma.classReveal.findMany({
+        where: { classId: { in: classIds } },
+        select: { weekId: true },
+      })
+    ),
+    withPrismaReadRetry(() =>
+      prisma.classWeekSchedule.findMany({
+        where: { classId: { in: classIds }, revealAt: { lte: now } },
+        select: { weekId: true },
+      })
+    ),
+  ]);
+
+  return new Set([...reveals.map((r) => r.weekId), ...dueSchedules.map((s) => s.weekId)]);
+}
+
 export async function getVisibleMap(
   user: { id: string; role?: string | null },
   options?: { mode?: VisibleMapMode }
@@ -152,25 +185,15 @@ export async function getVisibleMap(
         .map((w) => w.id)
     );
   } else {
-    // In-class: only weeks explicitly revealed for any of the student's active classes
+    // In-class: manual reveals plus any scheduled reveal whose time has passed.
     const enrollments = await withPrismaReadRetry(() =>
       prisma.classEnrollment.findMany({
         where: { studentId: user.id, status: "active" },
         select: { classId: true },
       })
     );
-    const classIds = enrollments.map((e) => e.classId);
 
-    const reveals = classIds.length === 0
-      ? []
-      : await withPrismaReadRetry(() =>
-          prisma.classReveal.findMany({
-            where: { classId: { in: classIds } },
-            select: { weekId: true },
-          })
-        );
-
-    revealedWeekIds = new Set(reveals.map((r) => r.weekId));
+    revealedWeekIds = await getVisibleWeekIdsForClasses(enrollments.map((e) => e.classId));
   }
 
   // Only surface the activityId when the linked activity is contentKind=map.

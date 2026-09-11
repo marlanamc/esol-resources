@@ -5,6 +5,7 @@ import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
+import { getVisibleWeekIdsForClasses } from "@/lib/course-map";
 import { CourseMapManager } from "@/components/teach/CourseMapManager";
 import type { MapWeek } from "@/components/teach/CourseMapManager";
 
@@ -69,15 +70,12 @@ export default async function TeachMapPage({
                 },
             })
         ),
-        withPrismaReadRetry(() =>
-            prisma.classReveal.findMany({
-                where: { classId: cls.id },
-                select: { weekId: true },
-            })
-        ),
+        getVisibleWeekIdsForClasses([cls.id]),
     ]);
 
-    const revealedWeekIds = reveals.map((r) => r.weekId);
+    // Includes weeks opened by the automatic schedule, so this view always
+    // matches what students actually see.
+    const revealedWeekIds = [...reveals];
 
     const allWeeks: MapWeek[] = unitsRaw.flatMap((unit) =>
         unit.weeks.map((week) => ({

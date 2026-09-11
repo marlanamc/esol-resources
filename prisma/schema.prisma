@@ -65,19 +65,20 @@ model User {
 }
 
 model Class {
-  id              String            @id @default(cuid())
+  id              String              @id @default(cuid())
   name            String
   description     String?
-  code            String            @unique
+  code            String              @unique
   teacherId       String
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
   announcement    String?
   sectionGroupId  String?
   assignments     Assignment[]
   calendarEvents  CalendarEvent[]
   classReveals    ClassReveal[]
-  teacher         User              @relation("ClassTeacher", fields: [teacherId], references: [id])
+  weekSchedules   ClassWeekSchedule[]
+  teacher         User                @relation("ClassTeacher", fields: [teacherId], references: [id])
   enrollments     ClassEnrollment[]
   writingSessions WritingSession[]
 
@@ -106,28 +107,28 @@ model ClassEnrollment {
 }
 
 model Activity {
-  id                  String               @id @default(cuid())
-  title               String
-  description         String?
-  type                String
-  category            String?
-  level               String?
-  content             String
-  createdBy           String?
-  createdAt           DateTime             @default(now())
-  updatedAt           DateTime             @updatedAt
-  ui                  String?
-  isReleased          Boolean              @default(false)
-  isFeaturedForIndependent Boolean         @default(false)
-  deletedAt           DateTime?
-  contentKind         String               @default("practice") // "practice" | "map" | "assignment"
-  progress            ActivityProgress[]
-  assignments         Assignment[]
-  courseMapItems      CourseMapItem[]
-  quizResponses       QuizResponse[]
-  speakingSubmissions SpeakingSubmission[]
-  submissions         Submission[]
-  writingSessions     WritingSession[]
+  id                       String               @id @default(cuid())
+  title                    String
+  description              String?
+  type                     String
+  category                 String?
+  level                    String?
+  content                  String
+  createdBy                String?
+  createdAt                DateTime             @default(now())
+  updatedAt                DateTime             @updatedAt
+  ui                       String?
+  isReleased               Boolean              @default(false)
+  isFeaturedForIndependent Boolean              @default(false)
+  deletedAt                DateTime?
+  contentKind              String               @default("practice") // "practice" | "map" | "assignment"
+  progress                 ActivityProgress[]
+  assignments              Assignment[]
+  courseMapItems           CourseMapItem[]
+  quizResponses            QuizResponse[]
+  speakingSubmissions      SpeakingSubmission[]
+  submissions              Submission[]
+  writingSessions          WritingSession[]
 
   @@index([isReleased])
   @@index([contentKind])
@@ -560,7 +561,7 @@ model WritingSessionCheckIn {
 // ── Course Map ────────────────────────────────────────────────────────────────
 
 model CourseUnit {
-  id     String       @id     // e.g., "unit-1"
+  id     String       @id // e.g., "unit-1"
   number Int          @unique
   title  String
   month  String?
@@ -568,14 +569,15 @@ model CourseUnit {
 }
 
 model CourseWeek {
-  id     String          @id   // e.g., "week-1"
-  unitId String
-  number Int
-  title  String
-  goal   String?
-  unit         CourseUnit      @relation(fields: [unitId], references: [id], onDelete: Cascade)
-  items        CourseMapItem[]
-  classReveals ClassReveal[]
+  id            String              @id // e.g., "week-1"
+  unitId        String
+  number        Int
+  title         String
+  goal          String?
+  unit          CourseUnit          @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  items         CourseMapItem[]
+  classReveals  ClassReveal[]
+  weekSchedules ClassWeekSchedule[]
 
   @@unique([unitId, number])
   @@index([unitId])
@@ -594,17 +596,36 @@ model ClassReveal {
   @@index([weekId])
 }
 
+/// Scheduled automatic week reveals. A week counts as visible to a class once
+/// its `revealAt` has passed, evaluated at read time in getVisibleMap() — so no
+/// cron is involved and the timing is exact. Manual ClassReveal rows still work
+/// and are unioned with these, letting a teacher open a week early.
+model ClassWeekSchedule {
+  id        String     @id @default(cuid())
+  classId   String
+  weekId    String
+  revealAt  DateTime
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  class     Class      @relation(fields: [classId], references: [id], onDelete: Cascade)
+  week      CourseWeek @relation(fields: [weekId], references: [id], onDelete: Cascade)
+
+  @@unique([classId, weekId])
+  @@index([classId])
+  @@index([classId, revealAt])
+}
+
 model CourseMapItem {
-  id           String     @id   // stable slug e.g., "verb-forms-mini-guide"
+  id           String     @id // stable slug e.g., "verb-forms-mini-guide"
   weekId       String
   activityId   String?
   href         String?
-  vocabUi      String?                         // "flashcards" | "matching" | "fill-blank"
+  vocabUi      String? // "flashcards" | "matching" | "fill-blank"
   slot         String     @default("required") // "required" | "extra"
   order        Int
   wrappedGame  Boolean    @default(false)
-  activityType String     @default("guide")    // matches CourseMapActivityType
-  title        String     @default("")         // display title (from static map)
+  activityType String     @default("guide") // matches CourseMapActivityType
+  title        String     @default("") // display title (from static map)
   week         CourseWeek @relation(fields: [weekId], references: [id], onDelete: Cascade)
   activity     Activity?  @relation(fields: [activityId], references: [id])
 

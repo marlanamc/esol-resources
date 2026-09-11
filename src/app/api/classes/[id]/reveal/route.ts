@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { canManageClass } from "@/lib/auth/policies";
+import { getVisibleWeekIdsForClasses } from "@/lib/course-map";
 import { requireTeacher, type SessionUser } from "@/lib/auth/api-auth";
 import { ApiErrors, apiError, handleApiError } from "@/lib/api/response";
 
@@ -32,8 +33,10 @@ async function loadRevealData(classId: string) {
         ),
     ]);
 
-    const revealedIds = new Set(reveals.map((r) => r.weekId));
-    const nextWeek = allWeeks.find((w) => !revealedIds.has(w.id)) ?? null;
+    // "Next" must account for weeks the automatic schedule has already opened,
+    // otherwise the manual button offers a week students can already see.
+    const visibleIds = await getVisibleWeekIdsForClasses([classId]);
+    const nextWeek = allWeeks.find((w) => !visibleIds.has(w.id)) ?? null;
     const current = reveals[reveals.length - 1] ?? null;
 
     return { reveals, current, nextWeek };
