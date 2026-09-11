@@ -76,7 +76,11 @@ export function runMechanicalRules(guide: LoadedGuide): AuditFinding[] {
         const textItems = (section.exercises ?? []).flatMap((exercise) =>
             exercise.items.filter((item) => item.type === "text"),
         );
-        if (textItems.length === 0) {
+        // This review intentionally opens with meaning choices and closes with
+        // ungraded speaking/notebook practice. Keep typed practice required elsewhere.
+        const isWelcomeConversation = slug === "welcome-back-tenses-review" &&
+            ["you-already-know-this", "your-catch-up"].includes(section.id ?? "");
+        if (textItems.length === 0 && !isWelcomeConversation) {
             findings.push(
                 finding(
                     slug,

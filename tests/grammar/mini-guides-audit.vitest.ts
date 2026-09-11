@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { runMechanicalRules } from "@/lib/grammar-guide-audit/rules-mechanical";
 import { runMiniGuidesAudit } from "@/lib/grammar-guide-audit";
 import type { AuditFinding } from "@/lib/grammar-guide-audit/types";
 
@@ -108,5 +109,28 @@ describe("mini guides audit (weeks 19–29)", () => {
             );
         }
         expect(warnings).toHaveLength(0);
+    });
+});
+
+
+describe("welcome review conversation sections", () => {
+    it("allows oral tasks but still detects missing typed grammar practice", async () => {
+        const result = await runMiniGuidesAudit({ minWeek: 1, maxWeek: 1 });
+        const guide = result.guides.find(({ guide }) => guide.slug === "welcome-back-tenses-review")!.guide;
+        const withoutPractice = {
+            ...guide,
+            content: {
+                ...guide.content,
+                sections: guide.content.sections.map((section) => ({ ...section, exercises: [] })),
+            },
+        };
+        const missing = runMechanicalRules(withoutPractice)
+            .filter((finding) => finding.ruleId === "missing-text-exercise");
+        expect(missing.map((finding) => finding.path)).toEqual([
+            "sections[1]", "sections[2]", "sections[3]",
+        ]);
+        const otherGuide = { ...withoutPractice, slug: "another-guide" };
+        expect(runMechanicalRules(otherGuide)
+            .filter((finding) => finding.ruleId === "missing-text-exercise")).toHaveLength(5);
     });
 });
