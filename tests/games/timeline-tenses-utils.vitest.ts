@@ -285,6 +285,25 @@ describe("timeline tenses utils", () => {
     expect(round).toHaveLength(12);
   });
 
+  it("keeps single-category rounds at the requested size on every level", () => {
+    // The per-difficulty counts are rounded independently, so a short round can
+    // overshoot: at level 1 a 5-question round rounds both 3.5 and 1.5 up to 6.
+    for (const level of [1, 2, 3, 4, 5]) {
+      const round = buildTimelineRoundQuestions(
+        TIMELINE_TENSES_QUESTIONS,
+        ["simple"],
+        "mixed-practice",
+        5,
+        "all",
+        "all",
+        level
+      );
+
+      expect(round, `level ${level}`).toHaveLength(5);
+      expect(new Set(round.map((question) => question.id)).size, `level ${level}`).toBe(5);
+    }
+  });
+
   it("gives spot-the-difference questions explicit prompt metadata and balanced correct sides", () => {
     expect(TIMELINE_COMPARISON_QUESTIONS.length).toBeGreaterThanOrEqual(24);
 

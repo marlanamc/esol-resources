@@ -18,13 +18,16 @@ const PRESETS: Array<{
     practiceMode?: string;
     maxDifficulty?: 1 | 2 | 3;
     singleVerbOnly?: boolean;
+    /** Questions per round. Defaults to 10 in the game; beginner rungs run 5. */
+    roundSize?: number;
     /** "map" for presets that appear in the Course Map; getVisibleMap only
      *  surfaces an item's activityId when the activity is contentKind=map. */
     contentKind?: "practice" | "map";
 }> = [
     // ── Level 1 ladder: one tense family at a time ───────────────────────────
     // Weeks 1 → 5 walk up the timeline in rungs instead of dropping students
-    // straight into a mixed simple + continuous set.
+    // straight into a mixed simple + continuous set. Every rung runs a 5-question
+    // round — 10 is a long first sitting for a class new to the timeline.
     {
         // Week 1 on-ramp: easiest questions only, one verb per sentence.
         id: "timeline-tenses-week1-easy",
@@ -33,6 +36,7 @@ const PRESETS: Array<{
         tenseCategories: ["simple"],
         maxDifficulty: 1,
         singleVerbOnly: true,
+        roundSize: 5,
         contentKind: "map",
     },
     {
@@ -41,6 +45,7 @@ const PRESETS: Array<{
         title: "Timeline Tenses: Simple Only",
         description: "Simple tenses on their own — present, past, and future simple. Nothing else mixed in.",
         tenseCategories: ["simple"],
+        roundSize: 5,
         contentKind: "map",
     },
     {
@@ -49,6 +54,7 @@ const PRESETS: Array<{
         title: "Timeline Tenses: Continuous Only",
         description: "Continuous tenses on their own — present, past, and future continuous. Still no simple tenses mixed in.",
         tenseCategories: ["continuous"],
+        roundSize: 5,
         contentKind: "map",
     },
     {
@@ -57,6 +63,7 @@ const PRESETS: Array<{
         title: "Timeline Tenses: Simple + Continuous",
         description: "Now mix the two — choose between simple and continuous and show the difference on the timeline.",
         tenseCategories: ["simple", "continuous"],
+        roundSize: 5,
         contentKind: "map",
     },
 
@@ -140,6 +147,7 @@ async function main() {
             ...(preset.practiceMode ? { practiceMode: preset.practiceMode } : {}),
             ...(preset.maxDifficulty ? { maxDifficulty: preset.maxDifficulty } : {}),
             ...(preset.singleVerbOnly ? { singleVerbOnly: true } : {}),
+            ...(preset.roundSize ? { roundSize: preset.roundSize } : {}),
         });
 
         await prisma.activity.upsert({

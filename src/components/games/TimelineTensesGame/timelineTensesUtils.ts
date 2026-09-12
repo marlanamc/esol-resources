@@ -537,7 +537,10 @@ function buildStandardDifficultyBalancedRound(
     result.push(...shuffleArray(remaining).slice(0, roundSize - result.length));
   }
 
-  return shuffleArray(result);
+  // The per-difficulty counts are rounded independently, so they can add up to
+  // more than roundSize (a 5-question round at level 1 rounds 3.5 and 1.5 both
+  // up, giving 6). Trim back to the round the caller asked for.
+  return shuffleArray(result).slice(0, roundSize);
 }
 
 function buildCommonFirstAllRound(

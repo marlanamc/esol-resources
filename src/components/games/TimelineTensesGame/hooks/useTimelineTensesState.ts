@@ -137,10 +137,22 @@ interface GameState {
 
 const DEFAULT_ROUND_SIZE = 10;
 const CHALLENGE_ROUND_SIZE = 5;
+const MIN_ROUND_SIZE = 1;
+const MAX_ROUND_SIZE = 20;
 const PASSES_REQUIRED_PER_LEVEL = 2;
 const RECENT_QUESTION_MEMORY_KEY = 'timeline-recent-questions-v1';
 
-function getRoundSizeForPracticeMode(practiceMode: TimelinePracticeMode): number {
+/**
+ * Questions per round.
+ *
+ * A preset may ask for a shorter round — beginner rungs on the course map run
+ * 5 so a first timeline session is finishable in one sitting. Otherwise
+ * challenge modes are short by nature and everything else runs the full round.
+ */
+function getRoundSize(practiceMode: TimelinePracticeMode, presetRoundSize?: number): number {
+  if (presetRoundSize !== undefined && Number.isFinite(presetRoundSize)) {
+    return Math.min(MAX_ROUND_SIZE, Math.max(MIN_ROUND_SIZE, Math.floor(presetRoundSize)));
+  }
   return isChallengeMode(practiceMode) ? CHALLENGE_ROUND_SIZE : DEFAULT_ROUND_SIZE;
 }
 
@@ -170,6 +182,8 @@ export interface TimelineTensesPreset {
   maxDifficulty?: 1 | 2 | 3;
   /** Exclude multi-verb sentences for beginner presets. */
   singleVerbOnly?: boolean;
+  /** Questions per round — shorter rounds for beginner presets (default 10, or 5 in challenge modes). */
+  roundSize?: number;
 }
 
 export function useTimelineTensesState(activityId: string, assignmentId?: string | null, preset?: TimelineTensesPreset) {
@@ -261,7 +275,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       questionBank: [],
       roundQuestions: [],
       currentQuestionIndex: 0,
-      roundSize: getRoundSizeForPracticeMode(DEFAULT_TIMELINE_PRACTICE_MODE),
+      roundSize: getRoundSize(DEFAULT_TIMELINE_PRACTICE_MODE, preset?.roundSize),
       selectedCategories: preset?.tenseCategories ?? [],
       selectedSentenceForm: 'all',
       selectedTimeFrame: 'all',
@@ -348,7 +362,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       const categories = preset.tenseCategories;
       const effectiveCategoryKey = categoriesToProgressKey(categories);
       const practiceMode = preset.practiceMode ?? prev.selectedPracticeMode;
-      const roundSize = getRoundSizeForPracticeMode(practiceMode);
+      const roundSize = getRoundSize(practiceMode, preset.roundSize);
       const isCompleted = typeof window !== 'undefined' && (
         window.localStorage.getItem(TUTORIAL_COMPLETED_KEY) === '1' ||
         window.localStorage.getItem(`${CATEGORY_TUTORIAL_KEY_PREFIX}${effectiveCategoryKey}`) === '1'
@@ -428,7 +442,7 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
       ...prev,
       error: null,
       selectedPracticeMode: practiceMode,
-      roundSize: getRoundSizeForPracticeMode(practiceMode),
+      roundSize: getRoundSize(practiceMode, presetRef.current?.roundSize),
     }));
   }, []);
 

@@ -216,9 +216,11 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                                 ? (rawMaxDifficulty as 1 | 2 | 3)
                                 : undefined;
                         const presetSingleVerbOnly = rawContent?.singleVerbOnly === true ? true : undefined;
+                        const rawRoundSize = rawContent?.roundSize;
+                        const presetRoundSize = typeof rawRoundSize === 'number' && Number.isFinite(rawRoundSize) ? rawRoundSize : undefined;
                         // A preset exists if tenseCategories is defined (even empty = all tenses) OR a practiceMode is set.
                         const hasPreset = presetCategories !== undefined || presetPracticeMode !== undefined;
-                        const timelinePreset = hasPreset ? { tenseCategories: presetCategories ?? [], practiceMode: presetPracticeMode, maxDifficulty: presetMaxDifficulty, singleVerbOnly: presetSingleVerbOnly } : undefined;
+                        const timelinePreset = hasPreset ? { tenseCategories: presetCategories ?? [], practiceMode: presetPracticeMode, maxDifficulty: presetMaxDifficulty, singleVerbOnly: presetSingleVerbOnly, roundSize: presetRoundSize } : undefined;
                         return <TimelineTensesGame activityId={activity.id} assignmentId={assignmentId} preset={timelinePreset} />;
                     }
                     case "parts-of-speech":
