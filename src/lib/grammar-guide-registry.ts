@@ -33,7 +33,7 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
             import("@/content/grammar/all-the-tenses-year-in-review").then((m) => m.allTheTensesYearInReviewContent),
     },
     "all-verb-tenses-overview": {
-        activityTitle: "All Verb Tenses Overview Guide",
+        activityTitle: "All Verb Tenses Overview",
         metaTitle: "All Verb Tenses Overview - Interactive Grammar Guide | ESOL Teacher Resources",
         metaDescription: "Master all 12 English verb tenses with a complete timeline and usage guide. Perfect for comprehensive review and final presentations.",
         loadContent: () =>
@@ -497,7 +497,7 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
     "welcome-how-to-use-app": {
         activityTitle: "Welcome / How to Use the App",
         metaTitle: "Welcome / How to Use the App | Class Companion",
-        metaDescription: "How to find this week's work, what the activity types are, and how to add Class Companion to your phone.",
+        metaDescription: "Your first mission: find Start, walk This Week, meet vocab, guides, games, and points — with real pictures of the app.",
         loadContent: () =>
             import("@/content/grammar/welcome-how-to-use-app").then((m) => m.welcomeHowToUseAppContent),
     },

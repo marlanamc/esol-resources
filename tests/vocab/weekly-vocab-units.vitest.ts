@@ -25,11 +25,14 @@ describe("getVocabLevelBadgeLabel", () => {
     expect(getVocabLevelBadgeLabel({ id: "vocab-oct-w1", title: "Unit 2: Topic", category: "vocabulary" })).toBe(
       "Level 5"
     );
+    // These track the course map. September dropping to three weeks and
+    // October's two directions weeks merging shifted everything from November
+    // on down by one, so January now starts at 15 and February at 19.
     expect(getVocabLevelBadgeLabel({ id: "vocab-jan-w1", title: "Unit 5: Topic", category: "vocabulary" })).toBe(
-      "Level 16"
+      "Level 15"
     );
     expect(getVocabLevelBadgeLabel({ id: "vocab-feb-3-5", title: "Unit 6: Topic", category: "vocabulary" })).toBe(
-      "Level 20"
+      "Level 19"
     );
     expect(getVocabLevelBadgeLabel({ id: "vocab-daily-review", title: "Daily", category: "vocabulary" })).toBe("Daily");
   });

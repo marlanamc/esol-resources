@@ -53,7 +53,10 @@ function preview(findings: AuditFinding[]): string {
 describe("mini guides audit (weeks 1–18)", () => {
     it("runs without throwing and audits the expected guide count", async () => {
         const result = await runMiniGuidesAudit();
-        expect(result.guides.length).toBe(19);
+        // 22 after the September rescope: the Week 1 app guide and the Week 3
+        // all-tenses overview joined the map, and renumbering pulled one more
+        // guide inside the W1-W18 window.
+        expect(result.guides.length).toBe(22);
     });
 
     it("has no objective errors in required W1–W18 guides", async () => {

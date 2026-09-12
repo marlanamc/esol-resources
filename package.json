@@ -76,6 +76,7 @@
     "content:medical-images": "npx tsx scripts/content/fetch-medical-instructions-images.ts",
     "content:medicine-images": "npx tsx scripts/content/fetch-medicine-labels-images.ts",
     "content:reported-speech-images": "npx tsx scripts/content/fetch-reported-speech-images.ts",
+    "capture:how-to-screenshots": "npx tsx scripts/content/capture-how-to-use-screenshots.ts",
     "db:seed:weekly-vocab": "npm run check:vocab-duplicates && node scripts/vocab/seed-weekly-vocab.js && npm run db:sync:vocab-review",
     "vocab:pos:coverage": "node scripts/vocab/report-pos-coverage.js",
     "vocab:audio:coverage": "node scripts/vocab/report-vocab-audio-coverage.js",
@@ -114,13 +115,13 @@
     "bcryptjs": "^3.0.3",
     "framer-motion": "^12.23.25",
     "lucide-react": "^0.556.0",
-    "next": "^16.2.1",
+    "next": "^16.3.5",
     "next-auth": "^4.24.15",
     "node-html-parser": "^6.1.13",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-hook-form": "^7.56.0",
-    "sanitize-html": "^2.14.0",
+    "sanitize-html": "^2.17.7",
     "web-push": "^3.6.7",
     "zod": "^4.3.6"
   },
@@ -147,9 +148,7 @@
   },
   "overrides": {
     "flatted": "^3.4.2",
-    "next": {
-      "postcss": "^8.5.10"
-    },
+    "postcss": "^8.5.23",
     "next-auth": {
       "uuid": "^11.1.1"
     }

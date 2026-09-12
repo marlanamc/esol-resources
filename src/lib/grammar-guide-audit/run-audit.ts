@@ -1,4 +1,5 @@
 import { resolveWeek1to18Guides } from "./scope";
+import { isRuleExempt } from "./config";
 import { loadGuide } from "./load-guide";
 import { runMechanicalRules } from "./rules-mechanical";
 import { runGlobalImageRules, runGuideImageRules } from "./rules-images";
@@ -62,7 +63,7 @@ export async function runMiniGuidesAudit(
             ...runMiniQuizQualityRules(loaded),
             ...runAnswerIntegrityRules(loaded),
             ...runHolidayReferenceRules(loaded),
-        ];
+        ].filter((finding) => !isRuleExempt(loaded.slug, finding.ruleId));
 
         guides.push({
             guide: loaded,

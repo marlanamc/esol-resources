@@ -1,3 +1,52 @@
+/**
+ * Rules waived for guides that sit inside the audited weeks but are not weekly
+ * grammar mini-guides. The audit encodes mini-guide authoring conventions, and
+ * applying them to a different kind of artifact produces noise, not quality.
+ *
+ *   welcome-how-to-use-app
+ *     An app tutorial. There is no grammar point to drill, so per-section typed
+ *     practice, a fixed quiz length, an error-detection question, and the
+ *     scenario-character conventions do not apply.
+ *
+ *   all-verb-tenses-overview
+ *     A whole-year reference covering all 12 tenses. Capping it at five
+ *     sections and five questions would gut the thing it exists to be, and its
+ *     quiz deliberately checks recall of formulas printed in its own reference
+ *     chart, which is what answer-recycled-from-explanation-text flags.
+ *
+ * Universal rules still apply to both: em dashes, title consistency, having
+ * sections at all, and malformed exercises.
+ */
+export const GUIDE_RULE_EXEMPTIONS: Record<string, ReadonlySet<string>> = {
+    "welcome-how-to-use-app": new Set([
+        "section-count",
+        "missing-text-exercise",
+        "mini-quiz-count",
+        "mini-quiz-topic",
+        "mini-quiz-skill",
+        "mini-quiz-skill-tag",
+        "mini-quiz-error-detection",
+        "american-name-missing",
+        "avatar-skin-tone-monotone",
+    ]),
+    "all-verb-tenses-overview": new Set([
+        "section-count",
+        "missing-text-exercise",
+        "mini-quiz-count",
+        "mini-quiz-topic",
+        "mini-quiz-skill",
+        "mini-quiz-skill-tag",
+        "mini-quiz-error-detection",
+        "american-name-missing",
+        "answer-recycled-from-explanation-text",
+    ]),
+};
+
+/** True when this rule is waived for this guide. See GUIDE_RULE_EXEMPTIONS. */
+export function isRuleExempt(slug: string, ruleId: string): boolean {
+    return GUIDE_RULE_EXEMPTIONS[slug]?.has(ruleId) ?? false;
+}
+
 /** Guides that do not require tenseDiagram sections (non-tense grammar focus). */
 export const TENSE_DIAGRAM_EXEMPT_SLUGS = new Set([
     "verb-forms-overview",
