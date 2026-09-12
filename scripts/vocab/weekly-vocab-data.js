@@ -38,10 +38,10 @@ const weeklyVocabData = {
     words: [
       { term: "introduce", def: "to present yourself or another person for the first time",           ex: "Please introduce yourself to the class.", fillBlank: { text: "On the first day, please _____ yourself to the class.", options: ["introduce", "greet", "share", "prefer"] } },
       {"term": "greet", "def": "to say hello to someone", "ex": "Greet your classmates when you arrive.", "fillBlank": {"text": "When you arrive, _____ your classmates by saying hello.", "options": ["share", "greet", "prefer", "describe"]}},
-      {"term": "share", "def": "to tell someone your ideas, feelings, or information", "ex": "Share one interesting fact about yourself.", "fillBlank": {"text": "Tell us something about yourself: _____ one interesting fact with the class.", "options": ["listen", "prefer", "share", "greet"]}},
-      { term: "describe", def: "to say what something or someone is like",                           ex: "Describe your neighborhood to the class.", fillBlank: { text: "_____ your neighborhood. Is it quiet or busy?", options: ["introduce", "describe", "share", "listen"] } },
+      {"term": "share", "def": "to tell someone your ideas, feelings, or information", "ex": "Share one interesting fact about yourself.", "fillBlank": {"text": "Tell us something about yourself: _____ one interesting fact with the class.", "options": ["catch up", "prefer", "share", "greet"]}},
+      { term: "describe", def: "to say what something or someone is like",                           ex: "Describe your neighborhood to the class.", fillBlank: { text: "_____ your neighborhood. Is it quiet or busy?", options: ["introduce", "describe", "share", "catch up"] } },
       {"term": "prefer", "def": "to like one thing more than another", "ex": "I prefer working with a partner to working alone.", "fillBlank": {"text": "I like working with a partner more than working alone. I _____ partner work.", "options": ["describe", "share", "greet", "prefer"]}},
-      { term: "listen",   def: "to pay attention to sounds or someone speaking",                     ex: "Listen carefully and repeat the words you hear.", fillBlank: { text: "_____ carefully to the audio and write down what you hear.", options: ["greet", "listen", "describe", "share"] } },
+      { term: "catch up", def: "to talk and share news with someone",                                 ex: "Let's catch up — what did you do this summer?", fillBlank: { text: "We have not talked since last year. Let's _____ before class starts.", options: ["greet", "catch up", "describe", "share"] } },
     ],
   },
 
@@ -380,10 +380,10 @@ const weeklyVocabData = {
   "mar-31-apr-2": {
     topic: "Jobs: Small Talk & Social Conversation",
     words: [
-      { term: "catch up", def: "to talk and share news with someone", ex: "It's always nice to catch up with coworkers on Monday morning.", topics: ["communication", "career-on-the-job"], fillBlank: { text: "We had not talked in weeks, so we stayed after class to _____ for a few minutes.", options: ["run into", "catch up", "show up", "drop by"] } },
+      { term: "clarify", def: "to make something clearer or easier to understand", ex: "Can you clarify what time the meeting starts?", topics: ["communication", "career-on-the-job"], fillBlank: { text: "I did not understand the new schedule. Can you _____ the start time?", options: ["run into", "clarify", "show up", "drop by"] } },
       { term: "show up", def: "to arrive at a place", ex: "I usually show up a few minutes early for work.", topics: ["career-on-the-job"], fillBlank: { text: "Please _____ on time for the meeting tomorrow morning.", options: ["show up", "hang out", "run into", "look forward to"] } },
       { term: "follow up", def: "to check in later about something", ex: "I will follow up with an email after our meeting.", topics: ["career-on-the-job", "communication"], fillBlank: { text: "I need to _____ with the manager after the interview.", options: ["follow up", "hang out", "run into", "show up"] } },
-      { term: "find out", def: "to learn or discover information", ex: "I need to find out what time the training starts.", topics: ["communication"], fillBlank: { text: "Let's _____ whether the office is open on Friday.", options: ["hang out", "show up", "find out", "catch up"] } },
+      { term: "find out", def: "to learn or discover information", ex: "I need to find out what time the training starts.", topics: ["communication"], fillBlank: { text: "Let's _____ whether the office is open on Friday.", options: ["hang out", "show up", "find out", "clarify"] } },
       { term: "help out", def: "to help someone with something", ex: "My coworker helped out when the front desk got busy.", topics: ["soft-skills", "career-on-the-job"], fillBlank: { text: "Can you _____ at the front desk for ten minutes?", options: ["help out", "hear from", "work out", "show up"] } },
       { term: "look forward to", def: "to feel excited about something in the future", ex: "We are looking forward to the long weekend.", topics: ["communication"], fillBlank: { text: "I _____ the team lunch on Friday because everyone will be there.", options: ["run into", "show up", "look forward to", "drop by"] } },
     ],

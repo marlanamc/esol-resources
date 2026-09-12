@@ -25,7 +25,8 @@ module.exports = {
   "greet": "verb",
   "share": "verb",
   "describe": "verb",
-  "listen": "verb",
+  "prefer": "verb",
+  "catch up": "phrasal verb",
 
   // sep-w2: Word Practice: Say It & Spell It
   "pronounce": "verb",
@@ -107,7 +108,7 @@ module.exports = {
   propose: "verb",
   recommend: "verb",
   agree: "verb",
-  // "listen" already mapped above
+  listen: "verb",
 
   // nov-w3: Voting + Contacting Officials: Civic Verbs
   vote: "verb",
@@ -297,7 +298,7 @@ module.exports = {
   // "career" already mapped above
 
   // mar-31-apr-2: Jobs: Small Talk & Social Conversation
-  "catch up": "phrasal verb",
+  clarify: "verb",
   "show up": "phrasal verb",
   // "follow up" already mapped above
   "find out": "phrasal verb",

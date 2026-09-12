@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-11T21:25:08.931Z",
+  "generatedAt": "2026-09-12T06:03:14.700Z",
   "scope": "scripts/vocab/weekly-vocab-data.js",
   "note": "Cross-week duplicate normalized terms. Daily Vocab merges these into one VocabCard; baseline prevents accidental new duplicates during authoring.",
   "duplicateTerms": [
@@ -14,7 +14,6 @@
     "experience",
     "follow up",
     "improve",
-    "listen",
     "log in",
     "maintain",
     "prefer",
