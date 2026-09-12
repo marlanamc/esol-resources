@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type ComponentType } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Target, AlertCircle, ArrowLeft, ChevronRight, HelpCircle } from 'lucide-react';
 import { useTheme } from '@/components/layout/ThemeProvider';
@@ -21,7 +21,7 @@ import { ContrastPairExercise } from './exercises/ContrastPairExercise';
 import { SwipeSortExercise } from './exercises/SwipeSortExercise';
 import { SentenceDiagramExercise } from './exercises/SentenceDiagramExercise';
 import { SpeakButton } from './SpeakButton';
-import type { POSGroup, POSExercise, POSRoundMode, PartOfSpeech } from '@/types/parts-of-speech';
+import type { POSGroup, POSExercise, POSExerciseType, POSRoundMode, PartOfSpeech } from '@/types/parts-of-speech';
 import { POS_LABELS } from '@/types/parts-of-speech';
 
 const EXERCISE_TYPE_LABELS: Record<string, string> = {
@@ -104,27 +104,44 @@ function getRoundLabel(roundMode: POSRoundMode): string {
   return labels[roundMode] ?? '';
 }
 
+interface ExerciseRendererProps {
+  exercise: POSExercise;
+  onAnswer: (correct: boolean) => void;
+  answered: boolean;
+}
+
+/**
+ * Every exercise type's renderer, keyed by type.
+ *
+ * Typed as a total Record so adding a POSExerciseType without a renderer is a
+ * compile error rather than a silent fallback. It replaced a switch whose
+ * `default` arm rendered PatternChoiceExercise for anything unrecognised —
+ * which meant a mistyped or newly added type shipped looking plausible.
+ * Exported so tests can assert renderer/union parity without rendering.
+ */
+export const EXERCISE_RENDERERS: Record<POSExerciseType, ComponentType<ExerciseRendererProps>> = {
+  'pattern-choice': PatternChoiceExercise,
+  'sentence-completion': SentenceCompletionExercise,
+  'pos-tagging': POSTaggingExercise,
+  'pattern-sorting': PatternSortingExercise,
+  'odd-one-out': OddOneOutExercise,
+  'word-family': WordFamilyBuilderExercise,
+  'mad-libs': MadLibsExercise,
+  'word-transform': WordTransformExercise,
+  'function-match': FunctionMatchExercise,
+  'minimal-pair': MinimalPairExercise,
+  'sentence-builder': SentenceBuilderExercise,
+  'photo-sort': PhotoSortExercise,
+  'error-correction': ErrorCorrectionExercise,
+  'contrast-pair': ContrastPairExercise,
+  'swipe-sort': SwipeSortExercise,
+  'sentence-diagram': SentenceDiagramExercise,
+};
+
 function renderExercise(exercise: POSExercise, onAnswer: (correct: boolean) => void, answered: boolean) {
-  const props = { exercise, onAnswer, answered };
-  switch (exercise.type) {
-    case 'pattern-choice':     return <PatternChoiceExercise {...props} />;
-    case 'sentence-completion': return <SentenceCompletionExercise {...props} />;
-    case 'pos-tagging':        return <POSTaggingExercise {...props} />;
-    case 'pattern-sorting':    return <PatternSortingExercise {...props} />;
-    case 'odd-one-out':        return <OddOneOutExercise {...props} />;
-    case 'word-family':        return <WordFamilyBuilderExercise {...props} />;
-    case 'mad-libs':           return <MadLibsExercise {...props} />;
-    case 'word-transform':     return <WordTransformExercise {...props} />;
-    case 'function-match':     return <FunctionMatchExercise {...props} />;
-    case 'minimal-pair':       return <MinimalPairExercise {...props} />;
-    case 'sentence-builder':   return <SentenceBuilderExercise {...props} />;
-    case 'photo-sort':         return <PhotoSortExercise {...props} />;
-    case 'error-correction':   return <ErrorCorrectionExercise {...props} />;
-    case 'contrast-pair':      return <ContrastPairExercise {...props} />;
-    case 'swipe-sort':         return <SwipeSortExercise {...props} />;
-    case 'sentence-diagram':   return <SentenceDiagramExercise {...props} />;
-    default: return <PatternChoiceExercise {...props} />;
-  }
+  const Renderer = EXERCISE_RENDERERS[exercise.type];
+  if (!Renderer) return null;
+  return <Renderer exercise={exercise} onAnswer={onAnswer} answered={answered} />;
 }
 
 interface ExerciseScreenProps {

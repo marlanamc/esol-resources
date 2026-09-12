@@ -564,7 +564,7 @@ function resolveExerciseTypes(
 // Harder types are unlocked progressively so the game gets more complex as students advance.
 // This function is the phase-transition control point for both hardcoded pedagogical logic
 // and CSV-driven overrides from imported configuration.
-function getAvailableExerciseTypes(
+export function getAvailableExerciseTypes(
   phase: POSPhase,
   round: number,
   options?: POSGenerationOptions,

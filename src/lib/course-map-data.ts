@@ -242,7 +242,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-1",
             "activityId": "verb-quiz-1",
             "slot": "required",
-            "order": 5,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 1: be + have"
@@ -251,7 +251,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "parts-of-speech-discovery",
             "activityId": "parts-of-speech-discovery-guided",
             "slot": "required",
-            "order": 6,
+            "order": 5,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Parts of Speech Discovery Game"
