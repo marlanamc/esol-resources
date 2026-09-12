@@ -441,9 +441,11 @@ export default async function TeachHomePage({
                             <h2 className="mb-3 font-body text-sm font-semibold uppercase tracking-wider text-[#8f8579]">
                                 Pending reviews
                             </h2>
-                            <Link
-                                href="/dashboard/students"
-                                className="flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors hover:bg-[#f4f2ee]"
+                            {/* Speaking submissions are reviewed in class, not in the app —
+                                there is no review queue page to link to yet. Keep this as a
+                                read-only count rather than a link to a route that does not exist. */}
+                            <div
+                                className="flex items-center gap-3 rounded-lg border px-4 py-3"
                                 style={{ borderColor: "#d5d1cc" }}
                             >
                                 <span
@@ -454,10 +456,9 @@ export default async function TeachHomePage({
                                 </span>
                                 <div className="min-w-0 flex-1">
                                     <p className="text-2xl font-extrabold tabular-nums text-[#b05740]">{pendingReviews}</p>
-                                    <p className="text-sm font-bold text-[#6d6358]">speaking submissions to review</p>
+                                    <p className="text-sm font-bold text-[#6d6358]">speaking submissions awaiting review</p>
                                 </div>
-                                <ArrowRight className="h-4 w-4 shrink-0 text-[#9a9186]" />
-                            </Link>
+                            </div>
                         </section>
                     ) : null}
 
