@@ -119,7 +119,7 @@ function renderUnhealthy(c: GrammarHospitalCase): React.ReactNode {
         <>
             {before}
             <span className="relative inline-block">
-                <span className="relative z-10 text-primary font-bold">{mid}</span>
+                <span className="relative z-10 text-primary dark:text-primary-light font-bold">{mid}</span>
                 <span
                     aria-hidden="true"
                     className="absolute left-0 right-0 bottom-0 h-[0.32em] bg-primary/15 rounded-sm -z-0"
@@ -487,7 +487,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                             Today&apos;s Report
                         </p>
                         <h1 className="font-display text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-50 leading-tight">
-                            Great work, Doctor.
+                            Ward is quiet.
                         </h1>
                         {isCompleted && pointsAwarded !== null && pointsAwarded > 0 && (
                             <p className="mt-3 text-sm text-secondary-dark dark:text-secondary-light font-medium">
@@ -497,6 +497,8 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                     </div>
 
                     <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1f1a] shadow-[0_1px_2px_rgba(74,47,26,0.04),0_8px_24px_rgba(74,47,26,0.06)] p-6 sm:p-8">
+                        <WardRecap results={results} />
+
                         <div className="flex items-center justify-center mb-6">
                             <AccuracyDial value={accuracy} />
                         </div>
@@ -626,6 +628,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         current,
         phase === "feedback" ? "repair" : phase
     );
+    const vitalsSeverity = getVitalsSeverity(phase, lastCorrect);
 
     return (
         <div className="min-h-full bg-[#fdf9f0] dark:bg-[#1a1410]">
@@ -633,9 +636,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                 <div className="flex items-center justify-between gap-3 mb-4">
                     <div className="flex items-center gap-3 min-w-0">
                         <ContextualBackButton aria-label="Back to activities" />
-                        <span className="text-sm text-gray-500 dark:text-gray-400 tabular-nums">
-                            {caseIdx + 1} / {totalCases}
-                        </span>
+                        <WardStrip total={totalCases} currentIdx={caseIdx} results={results} />
                     </div>
                     {streak >= 2 && (
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/25 text-amber-900 dark:text-amber-100 text-xs font-semibold border border-accent/40">
@@ -644,22 +645,19 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                     )}
                 </div>
 
-                <div className="h-1 w-full rounded-full bg-gray-200 dark:bg-white/10 overflow-hidden mb-5">
-                    <div
-                        className="h-full bg-primary rounded-full transition-[width] duration-500"
-                        style={{
-                            width: `${((caseIdx + (stepInfo.stepNumber / stepInfo.totalSteps)) / totalCases) * 100}%`,
-                        }}
-                    />
-                </div>
-
                 <div
-                    className={`rounded-2xl border bg-white dark:bg-[#2a1f1a] shadow-[0_1px_2px_rgba(74,47,26,0.04),0_8px_24px_rgba(74,47,26,0.06)] p-5 sm:p-7 transition-colors duration-500 ${
+                    className={`rounded-2xl border bg-white dark:bg-[#2a1f1a] shadow-[0_1px_2px_rgba(74,47,26,0.04),0_8px_24px_rgba(74,47,26,0.06)] overflow-hidden transition-colors duration-500 ${
                         phase === "feedback" && lastCorrect
                             ? "border-secondary/40 bg-gradient-to-b from-secondary/8 to-white dark:from-secondary/10 dark:to-[#2a1f1a]"
                             : "border-gray-200 dark:border-white/10"
                     }`}
                 >
+                    <PatientVitals
+                        severity={vitalsSeverity}
+                        caseNumber={caseIdx + 1}
+                        totalCases={totalCases}
+                    />
+                    <div className="p-5 sm:p-7">
                     <div
                         className={
                             phase === "feedback" && lastCorrect
@@ -670,9 +668,9 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                         {phase === "feedback" && lastCorrect ? (
                             <>
                                 <p className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-secondary-dark dark:text-secondary-light mb-2">
-                                    <Sparkles size={13} /> Fixed
+                                    <CheckCircle2 size={13} /> Discharged
                                 </p>
-                                <p className="font-display font-bold text-secondary-dark dark:text-secondary-light tracking-[-0.02em] leading-[1.15] text-[1.75rem] sm:text-[2.25rem]">
+                                <p className="font-display font-bold text-secondary-dark dark:text-secondary-light tracking-[-0.02em] leading-[1.15] text-[1.75rem] sm:text-[2.25rem] gh-discharge">
                                     {current.healthy}
                                 </p>
                             </>
@@ -698,6 +696,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
 
                     {phase === "diagnose" && (
                         <DiagnoseStep
+                            stepInfo={stepInfo}
                             options={diagnoseConfig.tags}
                             multiSelect={diagnoseConfig.multiSelect}
                             selected={diagnoseSel}
@@ -708,6 +707,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                     )}
                     {phase === "helper" && (
                         <HelperStep
+                            stepInfo={stepInfo}
                             pick={helperPick}
                             onPick={pickHelper}
                             caseItem={current}
@@ -717,6 +717,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                     )}
                     {phase === "repair" && (
                         <RepairStep
+                            stepInfo={stepInfo}
                             buildMode={isBuildMode}
                             input={repairInput}
                             onInput={setRepairInput}
@@ -743,6 +744,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                             isLast={caseIdx + 1 >= totalCases}
                         />
                     )}
+                    </div>
                 </div>
             </div>
 
@@ -807,7 +809,30 @@ function ReminderInfo() {
     );
 }
 
+/**
+ * "Step 2 of 3 · Which helper?" — the number comes from getCaseStepInfo, which
+ * builds the real sequence for this case, so a case that skips diagnose says
+ * "Step 1 of 2" rather than silently starting at two.
+ */
+function StepLabel({
+    stepInfo,
+    children,
+}: {
+    stepInfo: { stepNumber: number; totalSteps: number };
+    children: React.ReactNode;
+}) {
+    return (
+        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+            <span className="font-semibold text-gray-600 dark:text-gray-300 tabular-nums">
+                Step {stepInfo.stepNumber} of {stepInfo.totalSteps}
+            </span>{" "}
+            · {children}
+        </p>
+    );
+}
+
 function DiagnoseStep({
+    stepInfo,
     options,
     multiSelect,
     selected,
@@ -815,6 +840,7 @@ function DiagnoseStep({
     wrong,
     onContinue,
 }: {
+    stepInfo: { stepNumber: number; totalSteps: number };
     options: GrammarHospitalErrorTag[];
     multiSelect: boolean;
     selected: Set<GrammarHospitalErrorTag>;
@@ -824,9 +850,9 @@ function DiagnoseStep({
 }) {
     return (
         <div>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+            <StepLabel stepInfo={stepInfo}>
                 {multiSelect ? "What's wrong? Pick all that apply." : "What's wrong?"}
-            </p>
+            </StepLabel>
 
             <ul className="space-y-2">
                 {options.map((tag) => {
@@ -877,12 +903,14 @@ function DiagnoseStep({
 }
 
 function HelperStep({
+    stepInfo,
     pick,
     onPick,
     caseItem,
     wrong,
     onContinue,
 }: {
+    stepInfo: { stepNumber: number; totalSteps: number };
     pick: GrammarHospitalHelper | null;
     onPick: (h: GrammarHospitalHelper) => void;
     caseItem: GrammarHospitalCase;
@@ -912,6 +940,7 @@ function HelperStep({
 
     return (
         <div>
+            <StepLabel stepInfo={stepInfo}>Which helper does this patient need?</StepLabel>
             <div className="grid grid-cols-2 gap-2">
                 {options.map((opt) => {
                     const active = pick === opt;
@@ -962,6 +991,7 @@ function HelperStep({
 }
 
 function RepairStep({
+    stepInfo,
     buildMode,
     input,
     onInput,
@@ -975,6 +1005,7 @@ function RepairStep({
     onCheck,
     revealed,
 }: {
+    stepInfo: { stepNumber: number; totalSteps: number };
     buildMode: boolean;
     input: string;
     onInput: (v: string) => void;
@@ -992,6 +1023,7 @@ function RepairStep({
     const canCheck = buildMode ? repairTiles.length > 0 && bankTiles.length === 0 : input.trim().length > 0;
     return (
         <div>
+            <StepLabel stepInfo={stepInfo}>Write the healthy sentence</StepLabel>
             {revealed && (
                 <div className="mb-4 rounded-xl border border-secondary/40 bg-secondary/8 px-4 py-3">
                     <p className="text-xs font-semibold uppercase tracking-wide text-secondary-dark dark:text-secondary-light mb-1">
@@ -1159,6 +1191,230 @@ function FeedbackStep({
                     Answer: <span className="font-medium text-gray-700 dark:text-gray-200">{caseItem.healthy}</span>
                 </p>
             )}
+        </div>
+    );
+}
+
+/**
+ * Patient vitals — the theater around the drill.
+ *
+ * The teaching loop is unchanged; these components just make the case feel
+ * like a patient. Severity is derived from the phase, so the heartbeat races
+ * while the sentence is broken and settles once it is repaired. Purely
+ * decorative: everything here is aria-hidden, and the global
+ * prefers-reduced-motion rule in globals.css stills it.
+ */
+type VitalsSeverity = "critical" | "responding" | "stable";
+
+function getVitalsSeverity(phase: Phase, lastCorrect: boolean | null): VitalsSeverity {
+    if (phase === "feedback" && lastCorrect) return "stable";
+    if (phase === "repair" || phase === "feedback") return "responding";
+    return "critical";
+}
+
+const VITALS: Record<
+    VitalsSeverity,
+    { status: string; bpm: number; color: string; calm: boolean; head: string; label: string }
+> = {
+    critical: {
+        status: "Critical — needs help",
+        bpm: 126,
+        color: "#b05740",
+        calm: false,
+        head: "bg-primary/[0.07] dark:bg-primary/[0.14]",
+        label: "text-primary-dark dark:text-primary-light",
+    },
+    responding: {
+        status: "Responding to treatment",
+        bpm: 88,
+        color: "#cba342",
+        calm: false,
+        head: "bg-accent/[0.14] dark:bg-accent/[0.12]",
+        label: "text-amber-800 dark:text-accent-light",
+    },
+    stable: {
+        status: "Stable — recovered",
+        bpm: 72,
+        color: "#6a8d73",
+        calm: true,
+        head: "bg-secondary/[0.09] dark:bg-secondary/[0.14]",
+        label: "text-secondary-dark dark:text-secondary-light",
+    },
+};
+
+/** Vitals strip: heartbeat, status and a running ECG trace. */
+function PatientVitals({
+    severity,
+    caseNumber,
+    totalCases,
+}: {
+    severity: VitalsSeverity;
+    caseNumber: number;
+    totalCases: number;
+}) {
+    const v = VITALS[severity];
+    return (
+        <div
+            className={`px-4 sm:px-6 py-3 border-b border-gray-100 dark:border-white/10 transition-colors duration-500 ${v.head}`}
+        >
+            <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5 min-w-0">
+                    <svg
+                        aria-hidden="true"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill={v.color}
+                        stroke={v.color}
+                        strokeWidth="1.6"
+                        strokeLinejoin="round"
+                        className={`shrink-0 gh-heart ${v.calm ? "gh-heart-calm" : ""}`}
+                    >
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                    </svg>
+                    <div className="min-w-0">
+                        <p
+                            className={`text-[0.62rem] uppercase tracking-[0.16em] font-bold leading-tight ${v.label}`}
+                        >
+                            {v.status}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-px tabular-nums">
+                            Patient {caseNumber} of {totalCases} · {v.bpm} bpm
+                        </p>
+                    </div>
+                </div>
+                <svg
+                    aria-hidden="true"
+                    width="112"
+                    height="30"
+                    viewBox="0 0 112 30"
+                    fill="none"
+                    className="shrink-0 hidden xs:block sm:block"
+                >
+                    <path
+                        d="M0 15h22l4-9 5 18 5-9h18l4-9 5 18 5-9h18l4-9 5 18 5-9h12"
+                        stroke={v.color}
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeDasharray="300"
+                        opacity="0.85"
+                        className="gh-ecg-trace"
+                    />
+                </svg>
+            </div>
+        </div>
+    );
+}
+
+/**
+ * The ward: one bed per case in the round, filling in as patients are
+ * discharged. Replaces the thin progress bar with something readable at a
+ * glance. Falls back to a plain count past 12 cases so the beds never wrap
+ * into an unreadable smear on a phone.
+ */
+function WardStrip({
+    total,
+    currentIdx,
+    results,
+}: {
+    total: number;
+    currentIdx: number;
+    results: Array<{ id: string; correct: boolean }>;
+    }) {
+    const cases = useMemo(() => Array.from({ length: total }, (_, i) => i), [total]);
+    const correctCount = results.filter((r) => r.correct).length;
+
+    if (total > 12) {
+        return (
+            <p className="text-sm text-gray-500 dark:text-gray-400 tabular-nums">
+                {currentIdx + 1} / {total} · {correctCount} discharged
+            </p>
+        );
+    }
+
+    return (
+        <div
+            className="flex items-center gap-1.5"
+            role="img"
+            aria-label={`Patient ${currentIdx + 1} of ${total}, ${correctCount} discharged`}
+        >
+            {cases.map((i) => {
+                const done = i < currentIdx;
+                const active = i === currentIdx;
+                if (done) {
+                    return (
+                        <span
+                            key={i}
+                            aria-hidden="true"
+                            className="w-[30px] h-[26px] rounded-md bg-secondary/20 border border-secondary/55 flex items-center justify-center"
+                        >
+                            <svg
+                                width="11"
+                                height="11"
+                                viewBox="0 0 24 24"
+                                fill="#6a8d73"
+                                stroke="#6a8d73"
+                                strokeWidth="1.6"
+                                strokeLinejoin="round"
+                            >
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                            </svg>
+                        </span>
+                    );
+                }
+                return (
+                    <span
+                        key={i}
+                        aria-hidden="true"
+                        className={
+                            active
+                                ? "w-[30px] h-[26px] rounded-md bg-primary/12 border-2 border-primary"
+                                : "w-[30px] h-[26px] rounded-md border border-dashed border-gray-300 dark:border-white/15"
+                        }
+                    />
+                );
+            })}
+        </div>
+    );
+}
+
+/**
+ * End-of-shift ward: a bed per patient treated, sage for discharged and gold
+ * for still needing care. Driven straight off `results` so it can never drift
+ * from the counts listed beneath it. Hidden past 12 cases, where the rows
+ * already say it better than a wrapping grid of beds would.
+ */
+function WardRecap({ results }: { results: Array<{ id: string; correct: boolean }> }) {
+    if (results.length === 0 || results.length > 12) return null;
+    return (
+        <div className="mb-6">
+            <p className="text-[0.62rem] uppercase tracking-[0.14em] font-bold text-gray-500 dark:text-gray-400 mb-2.5">
+                Tonight&rsquo;s ward
+            </p>
+            <div className="flex flex-wrap gap-2">
+                {results.map((r) => (
+                    <span
+                        key={r.id}
+                        title={r.correct ? "Discharged" : "Needs more care"}
+                        className={
+                            r.correct
+                                ? "flex-1 min-w-[52px] rounded-xl border border-secondary/50 bg-secondary/15 py-2.5 flex items-center justify-center"
+                                : "flex-1 min-w-[52px] rounded-xl border border-accent/60 bg-accent/20 py-2.5 flex items-center justify-center"
+                        }
+                    >
+                        <HeartPulse
+                            size={16}
+                            aria-hidden="true"
+                            className={
+                                r.correct
+                                    ? "text-secondary-dark dark:text-secondary-light"
+                                    : "text-amber-700 dark:text-accent-light"
+                            }
+                        />
+                    </span>
+                ))}
+            </div>
         </div>
     );
 }
