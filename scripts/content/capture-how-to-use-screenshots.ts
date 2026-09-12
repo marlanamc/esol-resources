@@ -148,7 +148,6 @@ async function login(page: Page, username: string): Promise<void> {
 
 async function dismissChrome(page: Page): Promise<void> {
   await page.evaluate(() => {
-    window.localStorage.setItem("pwa-install-prompt-permanent-dismiss-v1", "1");
     window.localStorage.setItem("independent-welcome-dismissed-v1", "1");
     for (const node of Array.from(document.querySelectorAll("div, section, aside"))) {
       if (node instanceof HTMLElement && node.textContent?.includes("Admin preview")) {
@@ -323,7 +322,6 @@ async function newPage(browser: Browser, viewport: { width: number; height: numb
   });
   const page = await context.newPage();
   await page.addInitScript(() => {
-    window.localStorage.setItem("pwa-install-prompt-permanent-dismiss-v1", "1");
     window.localStorage.setItem("independent-welcome-dismissed-v1", "1");
     window.localStorage.setItem("class-companion-theme", "light");
   });

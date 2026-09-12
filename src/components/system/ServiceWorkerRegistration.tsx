@@ -5,6 +5,16 @@ import type { SwUpdateAvailableDetail } from '@/types/pwa';
 
 export default function ServiceWorkerRegistration() {
   useEffect(() => {
+    const suppressBrowserInstallPrompt = (event: Event) => {
+      event.preventDefault();
+    };
+    window.addEventListener("beforeinstallprompt", suppressBrowserInstallPrompt);
+    return () => {
+      window.removeEventListener("beforeinstallprompt", suppressBrowserInstallPrompt);
+    };
+  }, []);
+
+  useEffect(() => {
     // Register service worker on ALL devices (not just mobile)
     // This ensures consistent behavior and update notifications everywhere
     if (

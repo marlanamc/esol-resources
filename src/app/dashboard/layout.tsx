@@ -7,7 +7,6 @@ import { getLearnerState, type LearnerMode } from "@/lib/learner-mode";
 import { BottomNav } from "@/components/ui";
 import { DashboardHeader } from "@/components/dashboard";
 import ServiceWorkerRegistration from "@/components/system/ServiceWorkerRegistration";
-import PWAInstallPrompt from "@/components/system/PWAInstallPrompt";
 import NetworkStatusBanner from "@/components/system/NetworkStatusBanner";
 import SubmissionOutboxManager from "@/components/system/SubmissionOutboxManager";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
@@ -113,7 +112,6 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                     <SubmissionOutboxManager />
                 </>
             )}
-            <PWAInstallPrompt />
             <BottomNav variant={learnerMode} />
         </div>
     );
