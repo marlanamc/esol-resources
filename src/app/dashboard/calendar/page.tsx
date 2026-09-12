@@ -4,6 +4,7 @@ import { prisma } from "@/lib/database/prisma";
 import { CalendarMonthSplit, CalendarEvent } from "@/components/dashboard";
 import { redirect } from "next/navigation";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
+import { isAdminInStudentMode } from "@/lib/admin-student-view";
 
 export default async function CalendarPage() {
     const session = await getServerSession(authOptions);
@@ -15,10 +16,14 @@ export default async function CalendarPage() {
     const userRole = session.user?.role || "student";
     const userId = session.user?.id;
     const admin = isAdmin(session.user);
+    // A teacher/admin browsing in student view should see the learner calendar
+    // for the classes they are enrolled in, not the all-classes teacher roll-up.
+    const studentMode = await isAdminInStudentMode(session.user);
+    const showTeacherView = canUseTeacherTools(session.user) && !studentMode;
 
     let calendarEvents: CalendarEvent[] = [];
 
-    if (canUseTeacherTools(session.user)) {
+    if (showTeacherView) {
         const classes = await prisma.class.findMany({
             where: admin ? {} : { teacherId: userId },
             include: {
@@ -134,8 +139,8 @@ export default async function CalendarPage() {
             <main className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-24 md:pb-12">
                 <CalendarMonthSplit
                     events={calendarEvents}
-                    allowDelete={userRole === 'teacher'}
-                    showSyncedLabel={userRole === 'teacher'}
+                    allowDelete={showTeacherView && userRole === 'teacher'}
+                    showSyncedLabel={showTeacherView && userRole === 'teacher'}
                 />
             </main>
         </div>
