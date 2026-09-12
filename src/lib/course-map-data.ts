@@ -36,7 +36,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
       {
         "id": "week-1",
         "number": 1,
-        "title": "Start the Class",
+        "title": "Getting Started",
         "goal": "Get comfortable in the app, then show what you already know — three short timeline checks, five questions each.",
         "items": [
           {
