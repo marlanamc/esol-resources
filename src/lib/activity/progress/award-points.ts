@@ -58,6 +58,9 @@ export async function awardProgressActivityPoints(
                 points: 5,
                 reason: `Completed activity ${activityId}`,
                 source: "activity",
+                // This route's client effects can fire concurrently; dedupe so a
+                // double-submit cannot award twice.
+                dedupeKey: true,
             });
             return 5;
         } catch (err) {
@@ -237,13 +240,16 @@ export async function awardProgressActivityPoints(
         : `Completed: ${activity.title}`;
 
     try {
-        await applyAwardChain({
+        const result = await applyAwardChain({
             userId,
             points,
             reason,
             source: "activity",
+            // This route's client effects can fire concurrently; dedupe so a
+            // double-submit cannot award twice.
+            dedupeKey: true,
         });
-        return points;
+        return result.deduped ? 0 : points;
     } catch (err) {
         logger.error("[Progress] Award chain failed after progress save", {
             userId,

@@ -48,6 +48,10 @@ export default function FlashcardCarousel({
     const [viewedCards, setViewedCards] = useState<Set<number>>(new Set()); // Track cards navigated to (drives completion)
     const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
+    // Serializes overlapping progress saves so a completion is only ever POSTed once.
+    const saveChainRef = useRef<Promise<void>>(Promise.resolve());
+    const completionSavedRef = useRef(false);
+
     // Touch/swipe handling
     const touchStartX = useRef<number | null>(null);
     const touchStartY = useRef<number | null>(null);
@@ -215,20 +219,35 @@ export default function FlashcardCarousel({
         const status = viewedAll ? "completed" : "in_progress";
         const progressValue = viewedAll ? 100 : studiedPercent;
 
+        // This effect fires on every card view, so saves can overlap. Serialize them behind a
+        // single in-flight promise: concurrent completion POSTs would otherwise each award points
+        // and write duplicate ledger rows.
         const saveProgress = async () => {
-            const result = await saveActivityProgress(
-                activityId,
-                progressValue,
-                status,
-                undefined,
-                undefined,
-                assignmentId ?? null,
-                undefined,
-                vocabType
-            );
-            if (result?.pointsAwarded && result.pointsAwarded > 0) {
-                setPointsToast({ points: result.pointsAwarded, key: Date.now() });
-            }
+            const previous = saveChainRef.current;
+            const next = previous
+                .catch(() => undefined)
+                .then(async () => {
+                    // A completion already acknowledged by the server can never award again, so
+                    // skip the redundant round-trip entirely.
+                    if (completionSavedRef.current) return;
+                    if (status === "completed") completionSavedRef.current = true;
+
+                    const result = await saveActivityProgress(
+                        activityId,
+                        progressValue,
+                        status,
+                        undefined,
+                        undefined,
+                        assignmentId ?? null,
+                        undefined,
+                        vocabType
+                    );
+                    if (result?.pointsAwarded && result.pointsAwarded > 0) {
+                        setPointsToast({ points: result.pointsAwarded, key: Date.now() });
+                    }
+                });
+            saveChainRef.current = next;
+            return next;
         };
 
         void saveProgress();
