@@ -21,7 +21,6 @@ import {
     AllActivitiesCategoriesPanel,
     DashboardWelcomeHeader,
 } from "@/components/dashboard";
-import { DashboardResumeHero } from "@/components/dashboard/DashboardResumeHero";
 import { DashboardNextStepFallbackCard } from "@/components/dashboard/DashboardNextStepFallbackCard";
 import { ThisWeekPanel } from "@/components/dashboard/ThisWeekPanel";
 import { formatDashboardWeekRangeLabel } from "@/lib/dashboard/week-range-label";
@@ -82,13 +81,13 @@ function FeaturedFallbackRow() {
     const cards = [
         {
             title: "Level 3 Group Trivia",
-            meta: "Game · 10 min",
+            meta: "Game",
             emoji: "🎮",
             href: "/dashboard/activities?category=games",
         },
         {
             title: "Comparison Battle",
-            meta: "Game · 10 min",
+            meta: "Game",
             emoji: "🎮",
             href: "/dashboard/activities?category=games",
         },
@@ -110,12 +109,12 @@ function FeaturedFallbackRow() {
                     View all →
                 </Link>
             </div>
-            <div className="grid gap-3 md:grid-cols-2">
+            <div className="grid grid-cols-2 gap-2 md:gap-3">
                 {cards.map((card) => (
                     <Link
                         key={card.title}
                         href={card.href}
-                        className="group flex items-stretch overflow-hidden rounded-[18px] border transition-[box-shadow,transform,border-color] duration-200 hover:-translate-y-px hover:shadow-[0_2px_4px_rgba(40,31,23,0.05),0_10px_24px_rgba(40,31,23,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
+                        className="group flex items-stretch overflow-hidden rounded-[14px] border transition-[box-shadow,transform,border-color] duration-200 hover:-translate-y-px hover:shadow-[0_2px_4px_rgba(40,31,23,0.05),0_10px_24px_rgba(40,31,23,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 md:rounded-[18px]"
                         style={{
                             background: "var(--surface-elevated, #ffffff)",
                             borderColor: "color-mix(in srgb, var(--dashboard-border) 72%, transparent)",
@@ -124,13 +123,13 @@ function FeaturedFallbackRow() {
                     >
                         {/* Category accent stripe — games tone */}
                         <span
-                            className="w-[3px] shrink-0 self-stretch rounded-l-[18px]"
+                            className="w-[3px] shrink-0 self-stretch rounded-l-[14px] md:rounded-l-[18px]"
                             style={{ background: "var(--tone-games-accent, #b05740)" }}
                             aria-hidden
                         />
-                        <span className="flex min-w-0 flex-1 items-center gap-3 px-4 py-3.5">
+                        <span className="flex min-w-0 flex-1 items-center gap-2 px-2.5 py-2.5 md:gap-3 md:px-4 md:py-3.5">
                             <span
-                                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] text-base leading-none"
+                                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[9px] text-sm leading-none md:h-8 md:w-8 md:rounded-[10px] md:text-base"
                                 style={{
                                     background: "color-mix(in srgb, var(--tone-games-chip-bg, rgba(176,87,64,0.12)) 78%, transparent)",
                                     boxShadow: "inset 0 0 0 1px color-mix(in srgb, var(--tone-games-border, rgba(176,87,64,0.28)) 40%, transparent)",
@@ -139,14 +138,14 @@ function FeaturedFallbackRow() {
                             >
                                 {card.emoji}
                             </span>
-                            <span className="min-w-0 flex-1 space-y-1">
-                                <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-2 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-wide text-primary">
+                            <span className="min-w-0 flex-1 space-y-0.5 md:space-y-1">
+                                <span className="hidden md:inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-2 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-wide text-primary">
                                     Featured
                                 </span>
-                                <span className="block truncate text-[15px] font-bold leading-tight text-text">
+                                <span className="block line-clamp-2 text-[13px] font-semibold leading-tight text-text md:truncate md:text-[15px] md:font-bold">
                                     {card.title}
                                 </span>
-                                <span className="block text-xs text-text-muted/90">
+                                <span className="block text-[11px] text-text-muted/90 md:text-xs">
                                     {card.meta}
                                 </span>
                             </span>
@@ -472,6 +471,11 @@ export default async function DashboardPage() {
                             user={{ id: userId, role: userRole }}
                             fallback={nextStepFallback}
                         />
+                        {newThisWeekItems.length > 0 ? (
+                            <NewThisWeekSection items={newThisWeekItems} />
+                        ) : (
+                            <FeaturedFallbackRow />
+                        )}
                         <HelpfulLinksCard variant="plain" />
                     </div>
                 </div>
@@ -496,7 +500,11 @@ export default async function DashboardPage() {
                                 />
                             </div>
 
-                            <DashboardResumeHero user={{ id: session.user.id, role: session.user.role }} fallback={nextStepFallback} />
+                            <ThisWeekPanel
+                                user={{ id: userId, role: userRole }}
+                                fallback={nextStepFallback}
+                                collapsedLimit={3}
+                            />
 
                             {newThisWeekItems.length > 0 ? (
                                 <NewThisWeekSection items={newThisWeekItems} />

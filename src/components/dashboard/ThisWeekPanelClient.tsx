@@ -20,6 +20,8 @@ export interface ThisWeekPanelClientProps {
     continueLabel: string;
     mapHref: string;
     showUnitMonths?: boolean;
+    /** How many timeline rows to show before "See full week". Desktop can show more. */
+    collapsedLimit?: number;
 }
 
 export function ThisWeekPanelClient({
@@ -32,6 +34,7 @@ export function ThisWeekPanelClient({
     continueLabel,
     mapHref,
     showUnitMonths = true,
+    collapsedLimit = 1,
 }: ThisWeekPanelClientProps) {
     const [expanded, setExpanded] = useState(false);
     const panelId = useId();
@@ -41,8 +44,8 @@ export function ThisWeekPanelClient({
     const currentItem =
         items.find((item) => item.status === "current") ??
         items.find((item) => item.status === "todo");
-    const collapsedItems = currentItem ? [currentItem] : items.slice(0, 1);
-    const canExpand = items.length > 1;
+    const collapsedItems = previewAroundCurrent(items, currentItem, collapsedLimit);
+    const canExpand = items.length > collapsedItems.length;
     const visibleItems = expanded ? items : collapsedItems;
     const progressPct = progress.total > 0 ? Math.round((progress.done / progress.total) * 100) : 0;
 
@@ -121,7 +124,7 @@ export function ThisWeekPanelClient({
                 <div className="px-5 pb-4 pt-1">
                     <Link
                         href={continueHref}
-                        className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-5 text-[15px] font-bold transition-transform duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+                        className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-5 text-[15px] font-bold transition-transform duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 lg:w-auto lg:min-w-[10.5rem] lg:px-7"
                         style={{ background: "var(--primary)", color: "var(--text-on-accent)" }}
                     >
                         {continueLabel}
@@ -131,6 +134,22 @@ export function ThisWeekPanelClient({
             </div>
         </section>
     );
+}
+
+function previewAroundCurrent(
+    items: TimelineItem[],
+    currentItem: TimelineItem | undefined,
+    limit: number
+): TimelineItem[] {
+    if (items.length === 0 || limit <= 0) return [];
+    if (limit >= items.length) return items;
+    if (limit === 1) return currentItem ? [currentItem] : items.slice(0, 1);
+
+    const idx = currentItem
+        ? Math.max(0, items.findIndex((item) => item.activityId === currentItem.activityId))
+        : 0;
+    const start = Math.max(0, Math.min(idx - 1, items.length - limit));
+    return items.slice(start, start + limit);
 }
 
 function WeekProgressRing({

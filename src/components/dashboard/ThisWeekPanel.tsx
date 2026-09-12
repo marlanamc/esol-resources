@@ -5,9 +5,10 @@ import { ThisWeekPanelClient } from "@/components/dashboard/ThisWeekPanelClient"
 interface ThisWeekPanelProps {
     user: { id: string; role?: string | null };
     fallback?: ReactNode;
+    collapsedLimit?: number;
 }
 
-export async function ThisWeekPanel({ user, fallback = null }: ThisWeekPanelProps) {
+export async function ThisWeekPanel({ user, fallback = null, collapsedLimit }: ThisWeekPanelProps) {
     const data = await getDashboardResumeData(user);
     if (!data) return fallback;
 
@@ -25,6 +26,7 @@ export async function ThisWeekPanel({ user, fallback = null }: ThisWeekPanelProp
             continueLabel={data.continueLabel}
             mapHref={data.mapHref}
             showUnitMonths={data.showUnitMonths}
+            collapsedLimit={collapsedLimit}
         />
     );
 }

@@ -175,11 +175,9 @@ function TimelineNode({
 
 function TimelineMeta({
   typeLabelText,
-  estMinutes,
   isCurrent,
 }: {
   typeLabelText: string;
-  estMinutes?: number;
   isCurrent?: boolean;
 }) {
   return (
@@ -195,14 +193,6 @@ function TimelineMeta({
       }}
     >
       <span style={{ color: "var(--text-muted)" }}>{typeLabelText}</span>
-      {estMinutes ? (
-        <>
-          <span style={{ color: "var(--text-muted)" }} aria-hidden>
-            ·
-          </span>
-          <span style={{ color: "var(--text-muted)" }}>{estMinutes} min</span>
-        </>
-      ) : null}
       {isCurrent ? (
         <span
           className="inline-flex items-center rounded-full bg-primary/12 px-2 py-0.5 text-[10px] font-bold leading-none text-primary"
@@ -303,7 +293,6 @@ export function ActivityTimeline({
                 <div style={titleStyle}>{item.title}</div>
                 <TimelineMeta
                   typeLabelText={label}
-                  estMinutes={item.estMinutes}
                   isCurrent={isCurrent}
                 />
                 {isCurrent && showStartButton ? <StartButton /> : null}
@@ -351,7 +340,6 @@ export function ActivityTimeline({
               <div style={titleStyle}>{item.title}</div>
               <TimelineMeta
                 typeLabelText={label}
-                estMinutes={item.estMinutes}
                 isCurrent={isCurrent}
               />
               {isCurrent && showStartButton ? <StartButton /> : null}
