@@ -150,7 +150,7 @@ export function UnitBadge({ n, status, size = 44 }: { n: number; status: "done" 
         <div style={{
             width: size, height: size, borderRadius: 14, flexShrink: 0,
             display: "grid", placeItems: "center", position: "relative",
-            background: `linear-gradient(150deg, color-mix(in srgb, ${tone.accent} 78%, #fff), ${tone.accent})`,
+            background: tone.accent,
             color: "var(--text-on-accent)",
             boxShadow: `0 5px 12px color-mix(in srgb, ${tone.accent} 32%, transparent)`,
         }}>

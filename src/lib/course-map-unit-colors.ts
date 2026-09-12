@@ -8,7 +8,7 @@ export interface CourseMapUnitTone {
   button: string;
 }
 
-/** School-year rainbow: September = red through June = gold. Hex lives in globals.css so dark mode can lighten accents. */
+/** School-year rainbow: September terracotta through June rose. Hex lives in globals.css so dark mode can lighten accents. */
 const UNIT_MONTHS = [
   "September",
   "October",
