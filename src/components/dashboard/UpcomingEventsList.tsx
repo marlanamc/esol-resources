@@ -9,9 +9,15 @@ interface Props {
     events: CalendarEvent[];
     allowDelete?: boolean;
     showSyncedLabel?: boolean;
+    emptyMessage?: string;
 }
 
-export default function UpcomingEventsList({ events, allowDelete = true, showSyncedLabel = true }: Props) {
+export default function UpcomingEventsList({
+    events,
+    allowDelete = true,
+    showSyncedLabel = true,
+    emptyMessage = "No dates yet.",
+}: Props) {
     const router = useRouter();
     const [isDeleting, setIsDeleting] = useState<string | null>(null);
     const [isSaving, setIsSaving] = useState<string | null>(null);
@@ -122,10 +128,10 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                 </div>
             )}
             {events.length === 0 ? (
-                <p className="rounded-2xl border px-4 py-3 text-sm italic text-text-muted surface-card-shadow" style={{ borderColor: 'var(--dashboard-divider)', backgroundColor: 'var(--dashboard-surface-start)' }}>No dates yet.</p>
+                <p className="rounded-2xl border px-4 py-3 text-sm italic text-text-muted surface-card-shadow" style={{ borderColor: 'var(--dashboard-divider)', backgroundColor: 'var(--dashboard-surface-start)' }}>{emptyMessage}</p>
             ) : (
                 <div className="space-y-4">
-                    {events.slice(0, 6).map((ev, idx) => {
+                    {events.map((ev, idx) => {
                         const startDate = new Date(ev.date);
                         const endDate = ev.endDate ? new Date(ev.endDate) : startDate;
                         const sameDay = startDate.toDateString() === endDate.toDateString();

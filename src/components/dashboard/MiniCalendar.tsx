@@ -14,39 +14,102 @@ export type CalendarEvent = {
     description?: string | null;
 };
 
+export const CALENDAR_VIEW_DATE_STORAGE_KEY = "dashboard-mini-calendar-view-date-v1";
+
+export function startOfCalendarMonth(date: Date) {
+    const next = new Date(date);
+    next.setDate(1);
+    next.setHours(0, 0, 0, 0);
+    return next;
+}
+
+export function readStoredCalendarViewDate(): Date {
+    if (typeof window !== "undefined") {
+        const raw = window.sessionStorage.getItem(CALENDAR_VIEW_DATE_STORAGE_KEY);
+        if (raw) {
+            const saved = new Date(raw);
+            if (!Number.isNaN(saved.getTime())) {
+                return startOfCalendarMonth(saved);
+            }
+        }
+    }
+    return startOfCalendarMonth(new Date());
+}
+
+export function useCalendarViewDate() {
+    const [viewDate, setViewDateState] = useState(() => startOfCalendarMonth(new Date()));
+    const [hasHydrated, setHasHydrated] = useState(false);
+
+    useEffect(() => {
+        setViewDateState(readStoredCalendarViewDate());
+        setHasHydrated(true);
+    }, []);
+
+    useEffect(() => {
+        if (!hasHydrated) return;
+        window.sessionStorage.setItem(CALENDAR_VIEW_DATE_STORAGE_KEY, viewDate.toISOString());
+    }, [hasHydrated, viewDate]);
+
+    const setViewDate = (next: Date) => setViewDateState(startOfCalendarMonth(next));
+    return [viewDate, setViewDate] as const;
+}
+
+export function eventOverlapsMonth(event: CalendarEvent, viewDate: Date): boolean {
+    const start = new Date(event.date);
+    const end = event.endDate ? new Date(event.endDate) : new Date(event.date);
+    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return false;
+
+    const rangeStart = start.getTime() <= end.getTime() ? start : end;
+    const rangeEnd = start.getTime() <= end.getTime() ? end : start;
+    const monthStart = new Date(viewDate.getFullYear(), viewDate.getMonth(), 1);
+    monthStart.setHours(0, 0, 0, 0);
+    const monthEnd = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 0);
+    monthEnd.setHours(23, 59, 59, 999);
+
+    return rangeStart.getTime() <= monthEnd.getTime() && rangeEnd.getTime() >= monthStart.getTime();
+}
+
 interface MiniCalendarProps {
     events?: CalendarEvent[];
     /** Tighter layout for dashboard sidebar */
     compact?: boolean;
     /** No inner card border (sidebar week rail) */
     flat?: boolean;
+    viewDate?: Date;
+    onViewDateChange?: (date: Date) => void;
 }
 
-export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [], compact = false, flat = false }) => {
+export const MiniCalendar: React.FC<MiniCalendarProps> = ({
+    events = [],
+    compact = false,
+    flat = false,
+    viewDate: viewDateProp,
+    onViewDateChange,
+}) => {
     const { resolvedTheme } = useTheme();
-    const VIEW_DATE_STORAGE_KEY = 'dashboard-mini-calendar-view-date-v1';
+    const isControlled = viewDateProp !== undefined;
     // Calculate today fresh on every render to avoid caching issues
     const today = new Date();
 
-    const [viewDate, setViewDate] = useState(() => {
-        if (typeof window !== 'undefined') {
-            const raw = window.sessionStorage.getItem(VIEW_DATE_STORAGE_KEY);
-            if (raw) {
-                const saved = new Date(raw);
-                if (!Number.isNaN(saved.getTime())) {
-                    saved.setDate(1);
-                    return saved;
-                }
-            }
-        }
-        const d = new Date();
-        d.setDate(1);
-        return d;
-    });
+    const [uncontrolledViewDate, setUncontrolledViewDate] = useState(() => startOfCalendarMonth(new Date()));
+    const hasHydratedUncontrolled = React.useRef(false);
 
     useEffect(() => {
-        window.sessionStorage.setItem(VIEW_DATE_STORAGE_KEY, viewDate.toISOString());
-    }, [viewDate]);
+        if (isControlled) return;
+        if (!hasHydratedUncontrolled.current) {
+            hasHydratedUncontrolled.current = true;
+            setUncontrolledViewDate(readStoredCalendarViewDate());
+            return;
+        }
+        window.sessionStorage.setItem(CALENDAR_VIEW_DATE_STORAGE_KEY, uncontrolledViewDate.toISOString());
+    }, [isControlled, uncontrolledViewDate]);
+
+    const viewDate = isControlled ? startOfCalendarMonth(viewDateProp) : uncontrolledViewDate;
+    const setViewDate = (next: Date) => {
+        const normalized = startOfCalendarMonth(next);
+        if (!isControlled) setUncontrolledViewDate(normalized);
+        onViewDateChange?.(normalized);
+    };
 
     const viewMonth = viewDate.getMonth();
     const viewYear = viewDate.getFullYear();

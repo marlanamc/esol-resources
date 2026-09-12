@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { isAdmin } from "@/lib/auth/roles";
-import { MiniCalendar, UpcomingEventsList, CalendarEvent } from "@/components/dashboard";
+import { CalendarMonthSplit, CalendarEvent } from "@/components/dashboard";
 import { CreateCalendarEventForm } from "@/components/dashboard/CreateCalendarEventForm";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
 
@@ -68,14 +68,6 @@ export default async function TeachCalendarPage({
         ),
     ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const upcomingEvents = calendarEvents.filter((ev) => {
-        const end = ev.endDate ? new Date(ev.endDate) : new Date(ev.date);
-        end.setHours(0, 0, 0, 0);
-        return end >= today;
-    });
-
     const classOptions = classes.map((c) => ({
         id: c.id,
         name: c.name,
@@ -96,48 +88,22 @@ export default async function TeachCalendarPage({
                 ) : null}
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-[auto_1fr_300px]">
-                {/* Mini calendar */}
-                <div
-                    className="w-full max-w-sm rounded-2xl border p-4 sm:p-5 self-start"
-                    style={{
-                        borderColor: "var(--border-subtle)",
-                        background: "linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)",
-                    }}
-                >
-                    <MiniCalendar events={calendarEvents} />
-                </div>
-
-                {/* Upcoming events */}
-                <div
-                    className="rounded-2xl border p-4 sm:p-5"
-                    style={{
-                        borderColor: "var(--border-subtle)",
-                        background: "linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)",
-                    }}
-                >
-                    <h2 className="font-display font-bold text-lg text-text flex items-center gap-3 mb-4">
-                        <span className="w-1.5 h-5 rounded-full" style={{ background: "#7a6955" }} />
-                        Upcoming
-                    </h2>
-                    <UpcomingEventsList
-                        events={upcomingEvents}
-                        allowDelete
-                        showSyncedLabel
-                    />
-                </div>
-
-                {/* Add event form */}
-                <div
-                    className="rounded-2xl border p-4 sm:p-5 self-start"
-                    style={{ borderColor: "var(--border-subtle)", background: "var(--surface-elevated)" }}
-                >
-                    <h2 className="font-semibold text-sm text-text mb-3">
-                        Add event
-                    </h2>
-                    <CreateCalendarEventForm classes={classOptions} />
-                </div>
-            </div>
+            <CalendarMonthSplit
+                events={calendarEvents}
+                allowDelete
+                showSyncedLabel
+                extraColumn={
+                    <div
+                        className="rounded-2xl border p-4 sm:p-5 self-start"
+                        style={{ borderColor: "var(--border-subtle)", background: "var(--surface-elevated)" }}
+                    >
+                        <h2 className="font-semibold text-sm text-text mb-3">
+                            Add event
+                        </h2>
+                        <CreateCalendarEventForm classes={classOptions} />
+                    </div>
+                }
+            />
         </div>
     );
 }

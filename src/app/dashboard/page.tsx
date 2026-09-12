@@ -11,17 +11,16 @@ import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
 import Link from "next/link";
 import {
-    MiniCalendar,
     CalendarEvent,
-    UpcomingEventsList,
+    DashboardCalendarCard,
     ClassAnnouncement,
+    HelpfulLinksCard,
     NewThisWeekSection,
     MissedClassCatchUpCard,
     MomentumCard,
     ExploreCategoriesCarousel,
     AllActivitiesCategoriesPanel,
     DashboardWelcomeHeader,
-    PinnedDailyHabitRow,
 } from "@/components/dashboard";
 import { MobileStudentGreeting } from "@/components/dashboard/MobileStudentGreeting";
 import { ContinueLearningRow } from "@/components/dashboard/ContinueLearningRow";
@@ -37,7 +36,6 @@ import { AdminViewSwitcher } from "@/components/dashboard/AdminViewSwitcher";
 import { isAdminInStudentMode } from "@/lib/admin-student-view";
 import { persistLearnerPreview } from "@/lib/learner-preview";
 import { canUseTeacherTools } from "@/lib/auth/roles";
-import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 
 type StudentEnrollment = {
     classId: string;
@@ -453,10 +451,9 @@ export default async function DashboardPage() {
     ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     const firstClassId = enrollments[0]?.classId;
-    const [studentLeaderboard, momentumSnapshot, dailyVocabHabit] = await Promise.all([
+    const [studentLeaderboard, momentumSnapshot] = await Promise.all([
         firstClassId ? getTimeframedLeaderboard("week", 20, firstClassId) : Promise.resolve([]),
         getStudentMomentumSnapshot(userId),
-        getDailyVocabHabitForUser(prisma, userId),
     ]);
     const studentEntry = studentLeaderboard.find((e) => e.id === userId);
     const studentLeaderboardRank = studentEntry?.rank ?? null;
@@ -481,10 +478,11 @@ export default async function DashboardPage() {
                         {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
                         <DashboardResumeHero user={{ id: userId, role: userRole }} fallback={nextStepFallback} heroStyle />
                         <ContinueLearningRow
-                            vocabHabit={dailyVocabHabit}
+                            vocabHabit={null}
                             items={newThisWeekItems}
                         />
                         <ExploreCategoriesCarousel />
+                        <HelpfulLinksCard />
                     </div>
                 </div>
 
@@ -510,12 +508,6 @@ export default async function DashboardPage() {
 
                             <DashboardResumeHero user={{ id: session.user.id, role: session.user.role }} fallback={nextStepFallback} />
 
-                            {dailyVocabHabit ? (
-                                <section aria-label="Daily vocab review">
-                                    <PinnedDailyHabitRow habit={dailyVocabHabit} compact ctaVariant="vocabulary" />
-                                </section>
-                            ) : null}
-
                             {newThisWeekItems.length > 0 ? (
                                 <NewThisWeekSection items={newThisWeekItems} />
                             ) : (
@@ -531,20 +523,9 @@ export default async function DashboardPage() {
                             {/* Streak / Momentum card — top of sidebar */}
                             <MomentumCard variant="sidebar" {...momentumSnapshot} />
 
-                            <div className="dashboard-panel paper-texture rounded-2xl p-4">
-                                <MiniCalendar compact flat events={calendarEvents} />
-                                <div className="border-t mt-4 pt-4" style={{ borderColor: "color-mix(in srgb, var(--dashboard-border) 65%, transparent)" }}>
-                                    <UpcomingEventsList
-                                        events={calendarEvents.filter(event => {
-                                            const today = new Date(); today.setHours(0,0,0,0);
-                                            const end = event.endDate ? new Date(event.endDate) : new Date(event.date); end.setHours(0,0,0,0);
-                                            return end >= today;
-                                        })}
-                                        allowDelete={false}
-                                        showSyncedLabel={false}
-                                    />
-                                </div>
-                            </div>
+                            <DashboardCalendarCard events={calendarEvents} />
+
+                            <HelpfulLinksCard />
 
                         </aside>
                     </div>

@@ -1,3 +1,4 @@
+import { toSafeExternalUrl } from "@/lib/shared/safe-url";
 import { sanitizeHtml } from "@/utils/sanitize";
 
 function escapeHtml(input: string): string {
@@ -16,24 +17,12 @@ function formatInlineMarkdown(input: string): string {
         .replace(/(^|[^\*])\*([^*\n]+)\*/g, "$1<em>$2</em>");
 }
 
-function toSafeLink(url: string): string | null {
-    try {
-        const parsed = new URL(url.trim());
-        if (parsed.protocol === "http:" || parsed.protocol === "https:") {
-            return parsed.toString();
-        }
-        return null;
-    } catch {
-        return null;
-    }
-}
-
 function tokenizeLinks(input: string): { withTokens: string; linkMap: Map<string, string> } {
     const linkMap = new Map<string, string>();
     let index = 0;
 
     const withTokens = input.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (full, label: string, rawUrl: string) => {
-        const safeUrl = toSafeLink(rawUrl);
+        const safeUrl = toSafeExternalUrl(rawUrl);
         if (!safeUrl) {
             return full;
         }

@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
-import { MiniCalendar, UpcomingEventsList, CalendarEvent } from "@/components/dashboard";
+import { CalendarMonthSplit, CalendarEvent } from "@/components/dashboard";
 import { redirect } from "next/navigation";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 
@@ -132,45 +132,11 @@ export default async function CalendarPage() {
     return (
         <div className="min-h-screen bg-bg">
             <main className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-24 md:pb-12">
-                {/* Calendar - Full width on mobile, centered on larger screens */}
-                <div className="flex justify-center w-full">
-                    <div
-                        className="w-full max-w-md rounded-2xl border p-4 sm:p-6 surface-card-shadow"
-                        style={{
-                            borderColor: 'var(--border-subtle)',
-                            background: 'linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)',
-                        }}
-                    >
-                        <MiniCalendar events={calendarEvents} />
-                    </div>
-                </div>
-
-                {/* Upcoming Events - Full Width */}
-                <div
-                    className="rounded-2xl border p-4 sm:p-6 surface-card-shadow"
-                    style={{
-                        borderColor: 'var(--border-subtle)',
-                        background: 'linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)',
-                    }}
-                >
-                    <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-xl font-display font-bold text-text flex items-center gap-3">
-                            <span className="w-1.5 h-6 rounded-full bg-[#7a6955]"></span>
-                            Upcoming
-                        </h2>
-                    </div>
-                    <UpcomingEventsList
-                        events={calendarEvents.filter(event => {
-                            const today = new Date();
-                            today.setHours(0, 0, 0, 0);
-                            const eventEndDate = event.endDate ? new Date(event.endDate) : new Date(event.date);
-                            eventEndDate.setHours(0, 0, 0, 0);
-                            return eventEndDate >= today;
-                        })}
-                        allowDelete={userRole === 'teacher'}
-                        showSyncedLabel={userRole === 'teacher'}
-                    />
-                </div>
+                <CalendarMonthSplit
+                    events={calendarEvents}
+                    allowDelete={userRole === 'teacher'}
+                    showSyncedLabel={userRole === 'teacher'}
+                />
             </main>
         </div>
     );

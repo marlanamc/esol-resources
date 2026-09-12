@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
-import { BookOpen, ClipboardList, Gamepad2, Map, Menu, Mic, PenLine, PenTool, Search, Volume2, X } from "lucide-react";
+import { BookOpen, ClipboardList, ExternalLink, Gamepad2, GraduationCap, Map, Megaphone, Menu, Mic, PenLine, PenTool, Search, Volume2, X } from "lucide-react";
+import { getHelpfulLinks, HELPFUL_LINK_TONE_KEYS, type HelpfulLink, type HelpfulLinkId } from "@/lib/helpful-links";
+import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { BookOpenIcon, HomeIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
 import { useDocumentScrollLock } from "@/hooks/useDocumentScrollLock";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 import { isGamesLibraryActivity } from "@/lib/games-library";
 
@@ -171,6 +172,7 @@ export function LearnerMenu({
     }, []);
 
     const closeMenu = () => setIsOpen(false);
+    const helpfulLinks = getHelpfulLinks();
 
     const trigger = mode === "brand" ? (
         <button
@@ -297,6 +299,21 @@ export function LearnerMenu({
                               <MenuLink href="/dashboard/leaderboard" label="Leaderboard" icon={<TrophyIcon className="w-5 h-5 text-[#cda46f]" />} onNavigate={closeMenu} />
                               <MenuLink href="/dashboard/profile" label="My Profile" icon={<StarIcon className="w-5 h-5 text-[#88A392]" />} onNavigate={closeMenu} />
 
+                              {helpfulLinks.length > 0 ? (
+                                  <>
+                                      <div className="h-px my-3 mx-2" style={{ backgroundColor: "var(--border-subtle)" }} />
+                                      <p
+                                          className="px-4 text-[13px] font-bold text-text-muted uppercase tracking-wider mb-2"
+                                          style={{ letterSpacing: "0.1em" }}
+                                      >
+                                          Class resources
+                                      </p>
+                                      {helpfulLinks.map((link) => (
+                                          <ExternalMenuLink key={link.id} link={link} onNavigate={closeMenu} />
+                                      ))}
+                                  </>
+                              ) : null}
+
                               <div className="h-px my-3 mx-2" style={{ backgroundColor: 'var(--border-subtle)' }} />
 
                               {Object.values(availableSubjects).some(Boolean) ? (
@@ -356,6 +373,36 @@ interface MenuLinkProps {
     onNavigate: () => void;
     light?: boolean;
     toneKey?: "grammar" | "vocabulary" | "games" | "quizzes" | "speaking" | "writing" | "pronunciation";
+}
+
+const EXTERNAL_LINK_ICONS: Record<HelpfulLinkId, typeof GraduationCap> = {
+    "google-classroom": GraduationCap,
+    "absence-form": ClipboardList,
+    "advisor-bulletin-board": Megaphone,
+};
+
+function ExternalMenuLink({ link, onNavigate }: { link: HelpfulLink; onNavigate: () => void }) {
+    const Icon = EXTERNAL_LINK_ICONS[link.id];
+    const tone = getLearnerCategoryTone(HELPFUL_LINK_TONE_KEYS[link.id]);
+
+    return (
+        <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 rounded-xl border px-4 py-3 font-semibold transition-[transform,box-shadow] duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            style={{
+                backgroundColor: tone.surface,
+                borderColor: tone.border,
+                color: tone.accentStrong,
+            }}
+            onClick={onNavigate}
+        >
+            <Icon className="h-5 w-5 shrink-0" style={{ color: tone.accent }} aria-hidden />
+            <span className="min-w-0 flex-1">{link.label}</span>
+            <ExternalLink className="h-4 w-4 shrink-0" style={{ color: tone.accent }} aria-hidden />
+        </a>
+    );
 }
 
 function MenuLink({ href, label, icon, onNavigate, light = false, toneKey }: MenuLinkProps) {
