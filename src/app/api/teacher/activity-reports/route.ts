@@ -6,8 +6,6 @@ import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { ApiErrors } from "@/lib/api/response";
 import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 
-export const maxDuration = 10; // 10 second timeout
-
 interface PopularActivity {
   activityId: string;
   name: string;

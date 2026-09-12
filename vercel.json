@@ -1,5 +1,10 @@
 {
   "buildCommand": "npm run build",
+  "functions": {
+    "src/app/**/*.{js,ts,jsx,tsx}": {
+      "maxDuration": 60
+    }
+  },
   "crons": [
     {
       "path": "/api/cron/reset-weekly-points",

@@ -32,6 +32,35 @@ const nextConfig: NextConfig = {
       "./css-from-legacy/**/*",
     ],
   },
+  // Prisma's generated client traces unused DB engines, WASM, and maps into
+  // every serverless function. Drop them so each deploy ships one Postgres
+  // query engine instead of ~30MB of extra Prisma artifacts.
+  outputFileTracingExcludes: {
+    "*": [
+      "node_modules/.prisma/client/libquery_engine-darwin*",
+      "node_modules/.prisma/client/query_engine_bg.wasm",
+      "node_modules/.prisma/client/wasm*",
+      "node_modules/.prisma/client/edge.js",
+      "node_modules/@prisma/engines/**",
+      "node_modules/@prisma/engines-version/**",
+      "node_modules/@prisma/client/runtime/query_engine_bg.mysql*",
+      "node_modules/@prisma/client/runtime/query_engine_bg.sqlite*",
+      "node_modules/@prisma/client/runtime/query_engine_bg.cockroachdb*",
+      "node_modules/@prisma/client/runtime/query_engine_bg.sqlserver*",
+      "node_modules/@prisma/client/runtime/query_compiler_bg.mysql*",
+      "node_modules/@prisma/client/runtime/query_compiler_bg.sqlite*",
+      "node_modules/@prisma/client/runtime/query_compiler_bg.cockroachdb*",
+      "node_modules/@prisma/client/runtime/query_compiler_bg.sqlserver*",
+      "node_modules/@prisma/client/runtime/query_compiler_bg.mongodb*",
+      "node_modules/@prisma/client/runtime/edge.js",
+      "node_modules/@prisma/client/runtime/edge-esm.js",
+      "node_modules/@prisma/client/runtime/index-browser*",
+      "node_modules/@prisma/client/runtime/react-native*",
+      "node_modules/@prisma/client/runtime/wasm*",
+      "node_modules/@prisma/client/runtime/**/*.map",
+      "node_modules/typescript/**",
+    ],
+  },
   experimental: {
     optimizePackageImports: [
       'framer-motion',
