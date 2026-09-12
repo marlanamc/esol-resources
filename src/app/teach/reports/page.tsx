@@ -10,7 +10,7 @@ import TeacherReportCard from "@/components/dashboard/TeacherReportCard";
 import { StudentEngagementTable } from "@/components/dashboard/StudentEngagementTable";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
 
-export const metadata = { title: "Reports | Class Companion" };
+export const metadata = { title: "Reports | My ESOL Class" };
 
 export default async function TeachReportsPage({
     searchParams,

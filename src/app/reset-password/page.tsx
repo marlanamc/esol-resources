@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ResetPasswordForm } from "@/components/forms/ResetPasswordForm";
 
 export const metadata = {
-    title: "Reset Password - Class Companion",
+    title: "Reset Password - My ESOL Class",
     description: "Create a new password for your account",
 };
 

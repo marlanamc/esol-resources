@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { StudentDetailView } from "@/components/dashboard/StudentDetailView";
 
-export const metadata = { title: "Student | Class Companion" };
+export const metadata = { title: "Student | My ESOL Class" };
 
 interface Props {
     params: Promise<{ id: string }>;

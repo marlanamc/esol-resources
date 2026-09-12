@@ -68,6 +68,8 @@ test.describe("Mobile PWA smoke", () => {
     const manifest = await response.json();
     expect(manifest.display).toBe("standalone");
     expect(manifest.start_url).toBe("/dashboard");
+    expect(manifest.name).toBe("My ESOL Class");
+    expect(manifest.short_name).toBe("My ESOL");
     expect(manifest.icons?.length).toBeGreaterThan(0);
   });
 

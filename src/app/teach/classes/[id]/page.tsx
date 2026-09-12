@@ -13,7 +13,7 @@ import {
     Megaphone, AlertCircle, Clock,
 } from "lucide-react";
 
-export const metadata = { title: "Class | Class Companion" };
+export const metadata = { title: "Class | My ESOL Class" };
 
 interface Props {
     params: Promise<{ id: string }>;

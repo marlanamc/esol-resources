@@ -9,7 +9,7 @@ import { getVisibleWeekIdsForClasses } from "@/lib/course-map";
 import { CourseMapManager } from "@/components/teach/CourseMapManager";
 import type { MapWeek } from "@/components/teach/CourseMapManager";
 
-export const metadata = { title: "Course Map | Class Companion" };
+export const metadata = { title: "Course Map | My ESOL Class" };
 
 export default async function TeachMapPage({
     searchParams,

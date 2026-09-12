@@ -6,7 +6,7 @@ import { isAdmin, canUseTeacherTools } from "@/lib/auth/roles";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 
 export const metadata = {
-    title: "Admin | Class Companion",
+    title: "Admin | My ESOL Class",
 };
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {

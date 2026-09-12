@@ -7,7 +7,7 @@ import { buildIndependentLearnerWhere } from "@/lib/learner-mode";
 import TeacherReportCard from "@/components/dashboard/TeacherReportCard";
 
 export const metadata = {
-  title: "Activity Reports | Class Companion",
+  title: "Activity Reports | My ESOL Class",
   description: "View daily and weekly activity reports for your classes",
 };
 

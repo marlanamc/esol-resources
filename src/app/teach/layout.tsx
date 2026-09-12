@@ -8,7 +8,7 @@ import { resolveTeachClassId } from "@/lib/teach/active-class";
 import { TeachClassSwitcher } from "@/components/teach/TeachClassSwitcher";
 
 export const metadata = {
-    title: "Teaching | Class Companion",
+    title: "Teaching | My ESOL Class",
 };
 
 export default async function TeachLayout({ children }: { children: ReactNode }) {

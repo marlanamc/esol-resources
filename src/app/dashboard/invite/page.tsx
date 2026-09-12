@@ -76,7 +76,7 @@ export default function InvitePage() {
         setShareError("");
 
         const shareData = {
-            title: "Join Class Companion",
+            title: "Join My ESOL Class",
             text: DEFAULT_SHARE_MESSAGE,
             url: invite.url,
         };

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { APP_NAME } from '@/lib/brand';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -17,7 +18,7 @@ const MIN_VISITS_BEFORE_IOS_PROMPT = 3;
 const IOS_PROMPT_SHOW_INTERVAL_MS = 21 * 24 * 60 * 60 * 1000;
 
 const copy = {
-  installTitle: "Install Class Companion",
+  installTitle: `Install ${APP_NAME}`,
   installDescription: "Add to your home screen for quick access and offline use.",
   iosTitle: "Add to Home Screen",
   iosDescription: "Tap Share, then choose “Add to Home Screen” for faster access.",

@@ -1,4 +1,4 @@
-// Service Worker for Class Companion PWA
+// Service Worker for My ESOL Class PWA
 const swUrl = new URL(self.location.href);
 const buildId = swUrl.searchParams.get("build") || "local-dev";
 const CACHE_NAME = `class-companion-${buildId}`;

@@ -1,7 +1,7 @@
 import { ForgotPasswordForm } from "@/components/forms/ForgotPasswordForm";
 
 export const metadata = {
-    title: "Forgot Password - Class Companion",
+    title: "Forgot Password - My ESOL Class",
     description: "Request a password reset link",
 };
 

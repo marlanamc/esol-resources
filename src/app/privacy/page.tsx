@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Privacy Policy - Class Companion",
+  title: "Privacy Policy - My ESOL Class",
   description:
-    "Privacy policy for Class Companion ESOL learning platform. How we collect, use, and protect your data.",
+    "Privacy policy for My ESOL Class ESOL learning platform. How we collect, use, and protect your data.",
 };
 
 export default function PrivacyPage() {

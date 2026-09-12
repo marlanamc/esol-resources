@@ -8,7 +8,7 @@ import { grammarTopics } from '@/data/grammar-map';
 import { LearnerMenu } from '@/components/navigation/LearnerMenu';
 
 export const metadata = {
-    title: 'Grammar Map | Class Companion',
+    title: 'Grammar Map | My ESOL Class',
     description: 'Visual map of all Level 3 grammar topics showing your progress and how concepts connect',
 };
 

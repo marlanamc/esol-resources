@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Users, Eye, AlertCircle, ChevronRight } from "lucide-react";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
 
-export const metadata = { title: "Classes | Class Companion" };
+export const metadata = { title: "Classes | My ESOL Class" };
 
 const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
 function getCutoff() { return Date.now() - SEVEN_DAYS_MS; }

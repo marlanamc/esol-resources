@@ -7,7 +7,7 @@ import { CalendarMonthSplit, CalendarEvent } from "@/components/dashboard";
 import { CreateCalendarEventForm } from "@/components/dashboard/CreateCalendarEventForm";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
 
-export const metadata = { title: "Calendar | Class Companion" };
+export const metadata = { title: "Calendar | My ESOL Class" };
 
 export default async function TeachCalendarPage({
     searchParams,

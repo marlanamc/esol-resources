@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { LearnerSearchProvider } from "@/components/search/LearnerSearchProvider";
 import { cookies } from "next/headers";
+import { APP_DESCRIPTION, APP_NAME, APP_SHORT_NAME } from "@/lib/brand";
 
 const lora = Lora({
   variable: "--font-display",
@@ -27,14 +28,13 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Class Companion - ESOL Learning Hub",
-  description:
-    "An interactive classroom companion for ESOL students and teachers. Practice grammar, build vocabulary, compete with classmates, and track your progress.",
+  title: APP_NAME,
+  description: APP_DESCRIPTION,
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Class Companion",
+    title: APP_SHORT_NAME,
   },
   icons: {
     icon: [

@@ -34,7 +34,7 @@ import {
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
 
 export const metadata = {
-    title: "Course Map | Class Companion",
+    title: "Course Map | My ESOL Class",
     description: "Your guided learning path through the course.",
 };
 

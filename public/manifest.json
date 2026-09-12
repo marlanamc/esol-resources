@@ -1,7 +1,7 @@
 {
-  "name": "Class Companion - ESOL Learning Hub",
-  "short_name": "Class Companion",
-  "description": "Interactive classroom companion for ESOL students and teachers",
+  "name": "My ESOL Class",
+  "short_name": "My ESOL",
+  "description": "Interactive ESOL classroom app for students and teachers",
   "start_url": "/dashboard",
   "display": "standalone",
   "background_color": "#fdf9f0",

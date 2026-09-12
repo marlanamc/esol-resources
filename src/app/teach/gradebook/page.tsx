@@ -9,7 +9,7 @@ import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
 
-export const metadata = { title: "Gradebook | Class Companion" };
+export const metadata = { title: "Gradebook | My ESOL Class" };
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_PAGE_SIZE = 25;

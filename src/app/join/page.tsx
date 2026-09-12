@@ -3,7 +3,7 @@ import Link from "next/link";
 import { JoinForm } from "@/components/forms/JoinForm";
 
 export const metadata = {
-    title: "Join Class Companion",
+    title: "Join My ESOL Class",
     description: "Create your free account to start learning English",
 };
 

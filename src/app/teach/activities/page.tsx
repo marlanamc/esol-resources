@@ -12,7 +12,7 @@ import {
 import { TeacherActivityCategories } from "@/components/dashboard";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
 
-export const metadata = { title: "Activities | Class Companion" };
+export const metadata = { title: "Activities | My ESOL Class" };
 
 export default async function TeachActivitiesPage({
     searchParams,
