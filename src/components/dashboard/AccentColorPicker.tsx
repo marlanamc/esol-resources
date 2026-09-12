@@ -40,7 +40,7 @@ export function AccentColorPicker({ initialAccent }: AccentColorPickerProps) {
 
     return (
         <div>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex w-full flex-nowrap justify-between gap-1">
                 {ACCENT_KEYS.map((key) => {
                     const preset = ACCENT_PRESETS[key];
                     const isActive = selected === key;
@@ -51,10 +51,10 @@ export function AccentColorPicker({ initialAccent }: AccentColorPickerProps) {
                             disabled={isPending}
                             aria-label={`${preset.label} accent color${isActive ? " (selected)" : ""}`}
                             aria-pressed={isActive}
-                            className="group relative flex flex-col items-center gap-2 focus-visible:outline-none"
+                            className="group relative flex min-w-0 flex-1 flex-col items-center gap-1.5 focus-visible:outline-none"
                         >
                             <span
-                                className="flex h-11 w-11 items-center justify-center rounded-full transition-transform duration-150 group-hover:scale-110 group-active:scale-95"
+                                className="flex h-10 w-10 items-center justify-center rounded-full transition-transform duration-150 group-hover:scale-110 group-active:scale-95"
                                 style={{
                                     background: preset.swatch,
                                     boxShadow: isActive
@@ -74,7 +74,9 @@ export function AccentColorPicker({ initialAccent }: AccentColorPickerProps) {
                                     </svg>
                                 )}
                             </span>
-                            <span className="text-[11px] font-medium text-text-muted">{preset.label}</span>
+                            <span className="w-full text-center text-[9px] font-medium leading-tight text-text-muted">
+                                {preset.label}
+                            </span>
                         </button>
                     );
                 })}

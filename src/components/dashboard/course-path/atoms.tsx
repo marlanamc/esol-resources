@@ -151,7 +151,7 @@ export function UnitBadge({ n, status, size = 44 }: { n: number; status: "done" 
             width: size, height: size, borderRadius: 14, flexShrink: 0,
             display: "grid", placeItems: "center", position: "relative",
             background: `linear-gradient(150deg, color-mix(in srgb, ${tone.accent} 78%, #fff), ${tone.accent})`,
-            color: "#fff",
+            color: "var(--text-on-accent)",
             boxShadow: `0 5px 12px color-mix(in srgb, ${tone.accent} 32%, transparent)`,
         }}>
             <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: size * 0.42 }}>{n}</span>

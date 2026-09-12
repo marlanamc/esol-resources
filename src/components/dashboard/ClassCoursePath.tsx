@@ -2,11 +2,14 @@
 
 import { Check, ChevronDown, ChevronRight } from "lucide-react";
 import {
+    cloneElement,
+    isValidElement,
     useCallback,
     useEffect,
     useMemo,
     useRef,
     useState,
+    type ReactElement,
     type ReactNode,
 } from "react";
 import { usePathname } from "next/navigation";
@@ -255,9 +258,21 @@ function GuidedCoursePath({
     let content: ReactNode;
 
     if (!desktopLayout) {
+        const openUnitHeader = isValidElement(mobileWayfinding)
+            ? cloneElement(mobileWayfinding as ReactElement<{
+                embedded?: boolean;
+                pinnedUnitNumber?: number | null;
+                pinnedWeekNumber?: number | null;
+            }>, {
+                embedded: true,
+                pinnedUnitNumber: openUnitNumber,
+                pinnedWeekNumber: mobileOpenWeek,
+            })
+            : mobileWayfinding;
+
         content = (
             <div className="space-y-3">
-                {mobileWayfinding}
+                {openUnitNumber == null ? mobileWayfinding : null}
 
                 <div className="space-y-3">
                     {unitSummaries.map((unit) => (
@@ -265,6 +280,7 @@ function GuidedCoursePath({
                             key={unit.unitNumber}
                             unit={unit}
                             isOpen={openUnitNumber === unit.unitNumber}
+                            header={openUnitNumber === unit.unitNumber ? openUnitHeader : null}
                             openWeekNumber={mobileOpenWeek}
                             openOptional={mobileOptionalOpen}
                             currentId={currentId}
@@ -274,7 +290,9 @@ function GuidedCoursePath({
                             showUnitMonths={showUnitMonths}
                             onToggle={() =>
                                 setOpenUnitNumber((prev) =>
-                                    prev === unit.unitNumber ? null : unit.unitNumber
+                                    prev === unit.unitNumber
+                                        ? (currentUnit?.unitNumber ?? null)
+                                        : unit.unitNumber
                                 )
                             }
                             onWeekToggle={(weekNumber) =>

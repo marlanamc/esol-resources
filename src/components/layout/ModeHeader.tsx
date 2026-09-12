@@ -31,8 +31,6 @@ type ModeHeaderProps = {
     searchLabel?: string;
     actions?: ReactNode;
     profileVariant?: "default" | "dashboardv2";
-    /** Compact status (streak / points) shown on mobile before search */
-    statusSlot?: ReactNode;
 };
 
 const MODE_ACCENT: Record<ModeHeaderMode, string> = {
@@ -92,7 +90,6 @@ export function ModeHeader({
     searchLabel = "Search",
     actions,
     profileVariant = "default",
-    statusSlot,
 }: ModeHeaderProps) {
     const pathname = usePathname();
     const accent = MODE_ACCENT[mode];
@@ -139,7 +136,6 @@ export function ModeHeader({
                 </div>
 
                 <div className="flex shrink-0 items-center justify-end gap-1.5 sm:gap-2 md:min-w-0 md:gap-3 md:justify-self-end">
-                    {statusSlot ? <div className="flex items-center gap-2 md:hidden">{statusSlot}</div> : null}
                     <div className="hidden items-center gap-2 sm:flex md:contents">
                         {actions}
                     </div>

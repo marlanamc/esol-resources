@@ -101,7 +101,7 @@ function TimelineNode({
           ...nodeStyle,
           background: accent.fg,
           border: `2px solid ${accent.fg}`,
-          color: "#fff",
+          color: "var(--text-on-accent)",
           boxShadow: `0 3px 7px color-mix(in srgb, ${accent.fg} 32%, transparent)`,
         }}
       >
@@ -177,12 +177,10 @@ function TimelineMeta({
   typeLabelText,
   estMinutes,
   isCurrent,
-  toneAccent,
 }: {
   typeLabelText: string;
   estMinutes?: number;
   isCurrent?: boolean;
-  toneAccent: string;
 }) {
   return (
     <div
@@ -206,12 +204,11 @@ function TimelineMeta({
         </>
       ) : null}
       {isCurrent ? (
-        <>
-          <span style={{ color: "var(--text-muted)" }} aria-hidden>
-            ·
-          </span>
-          <span style={{ color: toneAccent }}>you are here</span>
-        </>
+        <span
+          className="inline-flex items-center rounded-full bg-primary/12 px-2 py-0.5 text-[10px] font-bold leading-none text-primary"
+        >
+          you are here
+        </span>
       ) : null}
     </div>
   );
@@ -308,7 +305,6 @@ export function ActivityTimeline({
                   typeLabelText={label}
                   estMinutes={item.estMinutes}
                   isCurrent={isCurrent}
-                  toneAccent={tone.accent}
                 />
                 {isCurrent && showStartButton ? <StartButton /> : null}
               </div>
@@ -357,7 +353,6 @@ export function ActivityTimeline({
                 typeLabelText={label}
                 estMinutes={item.estMinutes}
                 isCurrent={isCurrent}
-                toneAccent={tone.accent}
               />
               {isCurrent && showStartButton ? <StartButton /> : null}
             </div>

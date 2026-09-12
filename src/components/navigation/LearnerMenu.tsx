@@ -185,7 +185,7 @@ export function LearnerMenu({
             aria-haspopup="dialog"
         >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md group-hover:shadow-lg transition-[box-shadow,transform] duration-300 group-hover:scale-105">
-                <BookOpenIcon className="w-5 h-5 text-white" />
+                <BookOpenIcon className="w-5 h-5 text-[var(--text-on-accent)]" />
             </div>
             <div className={["min-w-0 flex items-center gap-1.5 sm:hidden", hideMobileName ? "hidden" : ""].join(" ")}>
                 <span className="block max-w-[7rem] truncate font-display text-base font-bold leading-tight tracking-[-0.01em] text-text">
@@ -255,7 +255,7 @@ export function LearnerMenu({
                               className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-lg"
                           >
                               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md group-hover:shadow-lg transition-[box-shadow,transform] duration-300 group-hover:scale-105">
-                                  <BookOpenIcon className="w-5 h-5 text-white" />
+                                  <BookOpenIcon className="w-5 h-5 text-[var(--text-on-accent)]" />
                               </div>
                               <div className="flex flex-col text-left">
                                   <span className="text-[11px] font-medium text-secondary tracking-[0.06em] uppercase pl-[2px]">

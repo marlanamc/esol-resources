@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { Check, ChevronDown, ChevronRight, Plus } from "lucide-react";
 import { ActivityTimeline } from "@/components/dashboard/ActivityTimeline";
 import type { CourseMapActivity } from "@/lib/course-map";
@@ -82,8 +83,8 @@ export function MobileActivityRow({
 
     return (
         <div className="relative flex items-center gap-3 py-2">
-            <div className="absolute -left-[31px] top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full border bg-white" style={{ borderColor: isCompleted ? "var(--unit-accent,#b05740)" : "var(--border-subtle)" }}>
-                {isCompleted ? <Check size={11} className="text-[var(--unit-accent,#b05740)]" /> : isCurrent ? <span className="h-2 w-2 rounded-full bg-[var(--unit-accent,#6a8d73)]" /> : null}
+            <div className="absolute -left-[31px] top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full border bg-[var(--surface-base)]" style={{ borderColor: isCompleted ? "var(--primary)" : "var(--border-subtle)" }}>
+                {isCompleted ? <Check size={11} className="text-primary" /> : isCurrent ? <span className="h-2 w-2 rounded-full bg-primary" /> : null}
             </div>
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--unit-chip-bg,#eef3ee)] text-xl" aria-hidden>
                 {icon}
@@ -123,6 +124,7 @@ export function MobileUnitSection({
     onToggle,
     onWeekToggle,
     onOptionalToggle,
+    header = null,
 }: {
     unit: UnitSummary;
     isOpen: boolean;
@@ -136,6 +138,7 @@ export function MobileUnitSection({
     onToggle: () => void;
     onWeekToggle: (weekNumber: number) => void;
     onOptionalToggle: (weekNumber: number) => void;
+    header?: ReactNode;
 }) {
     const tone = getCourseMapUnitTone(unit.unitNumber);
     const hasOpenWeek = openWeekNumber != null && unit.weeks.some((week) => week.level.levelNumber === openWeekNumber);
@@ -143,17 +146,23 @@ export function MobileUnitSection({
         <div
             id={`unit-${unit.unitNumber}`}
             className={`dashboard-panel overflow-hidden ${MAP_SCROLL_MARGIN}`}
-            style={{ borderRadius: 18 }}
+            style={{
+                borderRadius: 18,
+                border: isOpen
+                    ? `1px solid color-mix(in srgb, ${tone.accent} 18%, var(--dashboard-border))`
+                    : undefined,
+            }}
         >
+            {isOpen ? null : (
             <button
                 type="button"
                 onClick={onToggle}
-                aria-expanded={isOpen}
+                aria-expanded={false}
                 className="w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                 style={{
                     display: "flex", alignItems: "center", gap: 12,
                     padding: "14px 14px",
-                    background: isOpen ? `linear-gradient(135deg, ${tone.surface}, transparent)` : "transparent",
+                    background: "transparent",
                     border: "none",
                 }}
             >
@@ -168,25 +177,22 @@ export function MobileUnitSection({
                     <div className="font-display" style={{ fontWeight: 700, fontSize: 15, marginTop: 3, lineHeight: 1.15, color: "var(--text)" }}>
                         {unit.unitTitle}
                     </div>
-                    {!hasOpenWeek ? (
-                        <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 2 }}>
-                            {formatUnitProgressLabel(unit.doneWeeks, unit.totalWeeks, showUnitMonths)}
-                        </div>
-                    ) : null}
+                    <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 2 }}>
+                        {formatUnitProgressLabel(unit.doneWeeks, unit.totalWeeks, showUnitMonths)}
+                    </div>
                 </div>
-                <span style={{
-                    color: "var(--text-muted)", flexShrink: 0,
-                    transform: isOpen ? "rotate(90deg)" : "none",
-                    transition: "transform .2s",
-                }}>
+                <span style={{ color: "var(--text-muted)", flexShrink: 0 }}>
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                         <path d="M6.5 4.5l5 4.5-5 4.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                 </span>
             </button>
+            )}
+
+            {isOpen ? header : null}
 
             {isOpen && (
-                <div style={{ padding: hasOpenWeek ? "0 10px 12px" : "0 14px 14px" }}>
+                <div style={{ padding: hasOpenWeek ? "14px 16px 14px" : "0 14px 14px" }}>
                     {hasOpenWeek ? (
                         <>
                             {unit.weeks
@@ -342,30 +348,21 @@ export function MobileWeekCard({
         );
     }
 
+    const pathAccent = { fg: "var(--primary)", bg: "var(--surface-base)" };
+
     return (
         <section
             aria-labelledby={`week-${week.level.levelNumber}-heading`}
             className="pb-1"
             style={courseMapUnitToneStyle(week.unitNumber)}
         >
-            <div
-                className="sticky top-0 z-10 -mx-[10px] mb-2 border-b px-[10px] py-2 backdrop-blur"
-                style={{
-                    borderColor: "var(--border-subtle)",
-                    background: `color-mix(in srgb, ${tone.surface} 92%, var(--bg))`,
-                }}
+            <h2
+                id={`week-${week.level.levelNumber}-heading`}
+                tabIndex={-1}
+                className="sr-only"
             >
-                <h2
-                    id={`week-${week.level.levelNumber}-heading`}
-                    tabIndex={-1}
-                    className="font-display text-[15px] font-bold leading-tight text-text focus-visible:outline-none"
-                >
-                    <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
-                        {formatLevelLabel(week.level.levelNumber, showUnitMonths)}
-                    </span>
-                    <span className="ml-1.5 align-middle">{week.level.levelTitle}</span>
-                </h2>
-            </div>
+                {formatLevelLabel(week.level.levelNumber, showUnitMonths)} {week.level.levelTitle}
+            </h2>
             {focus ? (
                 <p className="mb-3 text-sm leading-relaxed text-text-muted">
                     {focus}
@@ -384,19 +381,13 @@ export function MobileWeekCard({
                 return (
                     <ActivityTimeline
                         items={timelineItems}
-                        accent={{ fg: tone.accent, bg: tone.surface }}
+                        accent={pathAccent}
                         layout="list"
+                        showStartButton={false}
+                        plain
                     />
                 );
             })()}
-
-            <button
-                type="button"
-                onClick={onToggle}
-                className="mt-2 w-full py-2 text-center text-xs font-semibold text-text-muted"
-            >
-                {showUnitMonths ? "Collapse week" : "Collapse level"}
-            </button>
 
             {getExtraPracticeActivities(week.level.extraPractice).length > 0 ? (
                 <div className="mt-5 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
@@ -406,7 +397,7 @@ export function MobileWeekCard({
                         aria-expanded={optionalOpen}
                         className="flex w-full items-center gap-3 text-left"
                     >
-                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--unit-chip-bg,#eef3ee)] text-[var(--unit-accent,#6a8d73)]">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-subtle text-text-muted">
                             {optionalOpen ? <ChevronDown size={20} aria-hidden /> : <Plus size={21} aria-hidden />}
                         </span>
                         <span className="min-w-0 flex-1">

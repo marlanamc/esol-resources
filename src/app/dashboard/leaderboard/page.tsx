@@ -29,6 +29,9 @@ interface LeaderboardEntry {
   avatarColor: string | null;
 }
 
+const TROPHY_TILE_BG =
+  "linear-gradient(135deg, var(--primary) 0%, var(--primary-color-dark) 100%)";
+
 type LeaderboardPayload = {
   leaderboard: LeaderboardEntry[];
   userRank: number | null;
@@ -289,8 +292,8 @@ export default function LeaderboardPage() {
         <div className="container mx-auto pt-2.5 pb-0.5 px-4 sm:py-4 sm:px-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-2.5 sm:gap-4">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shadow-sm" style={{ background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-color-light) 76%, var(--surface-elevated)) 0%, color-mix(in srgb, var(--accent-color) 38%, var(--surface-elevated)) 100%)' }}>
-                <TrophyIcon className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: 'var(--color-primary)' }} />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shadow-sm" style={{ background: TROPHY_TILE_BG }}>
+                <TrophyIcon className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: 'var(--text-on-accent)' }} />
               </div>
               <div className="flex flex-col justify-center py-0.5 pt-1 sm:pt-0.5">
                 <h1 className="text-[1.75rem] leading-[0.95] sm:text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
@@ -484,7 +487,7 @@ export default function LeaderboardPage() {
                           </Badge>
                         </div>
                         {student.currentStreak > 0 && (
-                          <div className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold" style={{ color: 'var(--accent-color)' }}>
+                          <div className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold" style={{ color: 'var(--color-primary)' }}>
                             <FlameIcon size={14} />
                             <span>{student.currentStreak} day streak</span>
                           </div>
@@ -608,7 +611,7 @@ export default function LeaderboardPage() {
                           <span>{entry.weeklyPoints} pts</span>
                         </div>
                         {entry.currentStreak > 0 && (
-                          <div className="flex items-center gap-1 text-sm" style={{ color: 'var(--accent-color)' }}>
+                          <div className="flex items-center gap-1 text-sm" style={{ color: 'var(--color-primary)' }}>
                             <FlameIcon size={16} />
                             <span>{entry.currentStreak} day streak</span>
                           </div>
@@ -637,14 +640,14 @@ export default function LeaderboardPage() {
             <div className="relative inline-flex items-center justify-center mb-5">
               <div
                 className="absolute inset-0 rounded-full blur-2xl"
-                style={{ background: 'radial-gradient(circle, color-mix(in srgb, var(--accent-color) 42%, transparent), transparent 70%)' }}
+                style={{ background: 'radial-gradient(circle, color-mix(in srgb, var(--primary) 42%, transparent), transparent 70%)' }}
                 aria-hidden
               />
               <div
                 className="relative w-20 h-20 rounded-2xl flex items-center justify-center animate-medal-float"
-                style={{ background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-color-light) 76%, var(--surface-elevated)) 0%, color-mix(in srgb, var(--accent-color) 38%, var(--surface-elevated)) 100%)' }}
+                style={{ background: TROPHY_TILE_BG }}
               >
-                <TrophyIcon className="w-10 h-10" style={{ color: 'var(--color-primary)' }} />
+                <TrophyIcon className="w-10 h-10" style={{ color: 'var(--text-on-accent)' }} />
               </div>
             </div>
             <p className="text-xl font-bold mb-2" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>

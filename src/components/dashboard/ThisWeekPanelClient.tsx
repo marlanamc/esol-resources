@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { ActivityTimeline, type TimelineItem } from "@/components/dashboard/ActivityTimeline";
+import { formatLevelLabel } from "@/components/dashboard/course-path/shared";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
 
 export interface ThisWeekPanelClientProps {
@@ -18,6 +19,7 @@ export interface ThisWeekPanelClientProps {
     continueHref: string;
     continueLabel: string;
     mapHref: string;
+    showUnitMonths?: boolean;
 }
 
 export function ThisWeekPanelClient({
@@ -29,11 +31,12 @@ export function ThisWeekPanelClient({
     continueHref,
     continueLabel,
     mapHref,
+    showUnitMonths = true,
 }: ThisWeekPanelClientProps) {
     const [expanded, setExpanded] = useState(false);
     const panelId = useId();
     const tone = getCourseMapUnitTone(unitNumber);
-    const accent = { fg: tone.accent, bg: tone.surface };
+    const accent = { fg: "var(--primary)", bg: "var(--surface-base)" };
 
     const currentItem =
         items.find((item) => item.status === "current") ??
@@ -41,9 +44,10 @@ export function ThisWeekPanelClient({
     const collapsedItems = currentItem ? [currentItem] : items.slice(0, 1);
     const canExpand = items.length > 1;
     const visibleItems = expanded ? items : collapsedItems;
+    const progressPct = progress.total > 0 ? Math.round((progress.done / progress.total) * 100) : 0;
 
     return (
-        <section aria-label="This week">
+        <section aria-label={showUnitMonths ? "This week" : "This level"}>
             <div
                 className="dashboard-panel rounded-3xl overflow-hidden"
                 style={{ border: `1px solid color-mix(in srgb, ${tone.accent} 18%, var(--dashboard-border))` }}
@@ -55,19 +59,24 @@ export function ThisWeekPanelClient({
                         background: `color-mix(in srgb, ${tone.surface} 70%, var(--dashboard-surface-start))`,
                     }}
                 >
-                    <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-x-3 gap-y-0.5">
-                        <span
-                            className="text-xs font-bold leading-none"
-                            style={{ color: tone.accent }}
-                        >
-                            Week {weekNumber}
-                        </span>
-                        <span className="text-xs font-bold leading-none tabular-nums text-text-muted">
-                            {progress.done} of {progress.total}
-                        </span>
-                        <h2 className="col-span-2 m-0 font-display text-[1.65rem] font-bold leading-[1.1] tracking-tight text-text">
-                            {weekTitle}
-                        </h2>
+                    <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3">
+                        <div className="min-w-0">
+                            <span
+                                className="block text-xs font-bold leading-none"
+                                style={{ color: tone.accent }}
+                            >
+                                {formatLevelLabel(weekNumber, showUnitMonths)}
+                            </span>
+                            <h2 className="m-0 mt-1 font-display text-[1.65rem] font-bold leading-[1.1] tracking-tight text-text">
+                                {weekTitle}
+                            </h2>
+                        </div>
+                        <WeekProgressRing
+                            pct={progressPct}
+                            done={progress.done}
+                            total={progress.total}
+                            noun={showUnitMonths ? "week" : "level"}
+                        />
                     </div>
                 </div>
 
@@ -85,13 +94,12 @@ export function ThisWeekPanelClient({
                     {canExpand ? (
                         <button
                             type="button"
-                            className="inline-flex items-center gap-1 rounded-lg py-2 text-sm font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                            style={{ color: tone.accent }}
+                            className="inline-flex items-center gap-1 rounded-lg py-2 text-sm font-bold text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                             aria-expanded={expanded}
                             aria-controls={panelId}
                             onClick={() => setExpanded((open) => !open)}
                         >
-                            {expanded ? "Show less" : "See full week"}
+                            {expanded ? "Show less" : showUnitMonths ? "See full week" : "See full level"}
                             <ChevronDown
                                 size={16}
                                 aria-hidden
@@ -103,8 +111,7 @@ export function ThisWeekPanelClient({
                     )}
                     <Link
                         href={mapHref}
-                        className="inline-flex items-center gap-0.5 rounded-lg py-2 text-sm font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                        style={{ color: tone.accent }}
+                        className="inline-flex items-center gap-0.5 rounded-lg py-2 text-sm font-bold text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                     >
                         Full map
                         <ArrowRight size={14} aria-hidden />
@@ -114,8 +121,8 @@ export function ThisWeekPanelClient({
                 <div className="px-5 pb-4 pt-1">
                     <Link
                         href={continueHref}
-                        className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-5 text-[15px] font-bold text-white transition-transform duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                        style={{ background: tone.accent }}
+                        className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-5 text-[15px] font-bold transition-transform duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+                        style={{ background: "var(--primary)", color: "var(--text-on-accent)" }}
                     >
                         {continueLabel}
                         <ArrowRight size={16} aria-hidden />
@@ -123,5 +130,56 @@ export function ThisWeekPanelClient({
                 </div>
             </div>
         </section>
+    );
+}
+
+function WeekProgressRing({
+    pct,
+    done,
+    total,
+    noun,
+}: {
+    pct: number;
+    done: number;
+    total: number;
+    noun: string;
+}) {
+    const size = 46;
+    const stroke = 4.5;
+    const r = (size - stroke) / 2;
+    const circ = 2 * Math.PI * r;
+    const dash = circ * (pct / 100);
+
+    return (
+        <span
+            className="relative inline-flex shrink-0"
+            role="img"
+            aria-label={`${done} of ${total} ${noun} activities done, ${pct} percent`}
+        >
+            <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden>
+                <circle
+                    cx={size / 2}
+                    cy={size / 2}
+                    r={r}
+                    fill="none"
+                    stroke="var(--dashboard-border)"
+                    strokeWidth={stroke}
+                />
+                <circle
+                    cx={size / 2}
+                    cy={size / 2}
+                    r={r}
+                    fill="none"
+                    stroke="var(--primary)"
+                    strokeWidth={stroke}
+                    strokeDasharray={`${dash} ${circ}`}
+                    strokeLinecap="round"
+                    transform={`rotate(-90 ${size / 2} ${size / 2})`}
+                />
+            </svg>
+            <span className="absolute inset-0 grid place-items-center text-[11px] font-extrabold tabular-nums leading-none text-text">
+                {pct}%
+            </span>
+        </span>
     );
 }

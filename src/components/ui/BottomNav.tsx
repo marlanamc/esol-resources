@@ -3,7 +3,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useTheme } from '@/components/layout/ThemeProvider';
 import { HomeIcon, MapIcon, CalendarIcon, TrophyIcon, StarIcon, BookOpenIcon } from '@/components/icons/Icons';
 
 // ─── Stable nav config (never changes, never creates new references) ───
@@ -116,21 +115,14 @@ interface BottomNavProps {
 export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { resolvedTheme } = useTheme();
-  const [hasMounted, setHasMounted] = useState(false);
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
   const navTapAtRef = useRef<number | null>(null);
   const navFromPathRef = useRef<TrackedTabPath | null>(null);
   const shouldTrackRef = useRef(false);
   const previousPathnameRef = useRef<string | null>(null);
-  const renderTheme = hasMounted ? resolvedTheme : 'light';
   // Layout passes variant for enrolled teachers previewing independent mode
   const isIndependentVariant = variant === 'independent';
   const navItems = isIndependentVariant ? INDEPENDENT_NAV_ITEMS : CLASSROOM_NAV_ITEMS;
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
 
   // Keyboard visibility detection (mobile only)
   useEffect(() => {
@@ -304,9 +296,7 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
               : item.href === '/dashboard/independent'
               ? pathname === '/dashboard/independent'
               : pathname === item.href || pathname?.startsWith(item.href + '/');
-            const isMapTab = item.href === '/dashboard/map';
             const IconComponent = ICON_MAP[item.iconKey];
-            const useIndependentTabStyle = isIndependentVariant;
 
             return (
               <Link
@@ -316,140 +306,35 @@ export const BottomNav = React.memo(function BottomNav({ variant }: BottomNavPro
                 onClick={() => handleClick(item)}
                 onTouchStart={() => handleTouchStart(item.href)}
                 aria-label={item.label}
-                className="relative flex h-full w-full items-center justify-center focus-visible:outline-none rounded-xl"
+                aria-current={isActive ? 'page' : undefined}
+                className="relative flex h-full w-full items-center justify-center rounded-xl focus-visible:outline-none"
                 style={{
                   WebkitTapHighlightColor: 'transparent'
                 }}
               >
                 <div
-                  className={`relative z-10 flex flex-col items-center justify-center transition-[color,opacity] duration-150 ${
-                    useIndependentTabStyle
-                      ? 'gap-0'
-                      : 'gap-0.5'
-                  } ${
-                    isMapTab
-                      ? isActive
-                        ? renderTheme === 'dark' ? 'text-[#8bc4a8]' : 'text-[#9f523d]'
-                        : renderTheme === 'dark' ? 'text-[#6da88a]' : 'text-[#b86a56]'
-                      : isActive
-                        ? renderTheme === 'dark' ? 'text-[#7fb3d5]' : 'text-[#9f523d]'
-                        : renderTheme === 'dark' ? 'text-[#8a9bb0]' : 'text-[#4a5a6a]'
-                  }`}
+                  className="relative z-10 flex flex-col items-center justify-center gap-0.5 transition-colors duration-150"
+                  style={{ color: isActive ? 'var(--primary)' : 'var(--text-muted)' }}
                 >
-                  <div
-                    className={`relative flex items-center justify-center transition-all ${
-                      useIndependentTabStyle
-                        ? 'h-8 w-8'
-                        : isMapTab
-                        ? 'h-10 w-10'
-                        : 'h-8 w-8'
-                    }`}
-                  >
-                    {isMapTab && (
-                      <div
-                        className="absolute inset-0 rounded-2xl"
-                        style={{
-                          background: renderTheme === 'dark'
-                            ? isActive
-                              ? 'linear-gradient(135deg, rgba(139, 196, 168, 0.2) 0%, rgba(109, 168, 138, 0.12) 48%, rgba(89, 140, 110, 0.16) 100%)'
-                              : 'linear-gradient(135deg, rgba(139, 196, 168, 0.1) 0%, rgba(109, 168, 138, 0.05) 48%, rgba(89, 140, 110, 0.08) 100%)'
-                            : isActive
-                            ? 'linear-gradient(135deg, rgba(152, 185, 162, 0.28) 0%, rgba(122, 157, 132, 0.16) 48%, rgba(92, 126, 103, 0.22) 100%)'
-                            : 'linear-gradient(135deg, rgba(152, 185, 162, 0.16) 0%, rgba(122, 157, 132, 0.08) 48%, rgba(92, 126, 103, 0.14) 100%)',
-                          boxShadow: renderTheme === 'dark'
-                            ? isActive
-                              ? '0 0 16px rgba(139, 196, 168, 0.15), 0 6px 14px rgba(89, 140, 110, 0.08), inset 0 1px 0 rgba(255,255,255,0.1)'
-                              : '0 0 10px rgba(139, 196, 168, 0.08), 0 3px 8px rgba(89, 140, 110, 0.04), inset 0 1px 0 rgba(255,255,255,0.05)'
-                            : isActive
-                            ? '0 0 16px rgba(122, 157, 132, 0.24), 0 6px 14px rgba(92, 126, 103, 0.12), inset 0 1px 0 rgba(255,255,255,0.55)'
-                            : '0 0 10px rgba(122, 157, 132, 0.14), 0 3px 8px rgba(92, 126, 103, 0.08), inset 0 1px 0 rgba(255,255,255,0.45)'
-                        }}
-                      />
-                    )}
-
-                    <div
-                      className={`relative [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto ${
-                        useIndependentTabStyle
-                          ? 'h-6.5 w-6.5'
-                          : isMapTab
-                          ? 'h-8 w-8'
-                          : 'h-7 w-7'
-                      }`}
-                      style={isMapTab
-                        ? {
-                            color: renderTheme === 'dark'
-                              ? isActive ? '#8bc4a8' : '#6da88a'
-                              : isActive ? '#5c7e67' : '#4a6e53',
-                            filter: renderTheme === 'dark'
-                              ? isActive
-                                ? 'drop-shadow(0 2px 6px rgba(139,196,168,0.15))'
-                                : 'drop-shadow(0 1px 3px rgba(139,196,168,0.1))'
-                              : isActive
-                              ? 'drop-shadow(0 2px 6px rgba(122,157,132,0.22))'
-                              : 'drop-shadow(0 1px 3px rgba(122,157,132,0.16))'
-                          }
-                        : useIndependentTabStyle
-                        ? {
-                            color: renderTheme === 'dark'
-                              ? isActive ? '#9fc0da' : '#93a6ba'
-                              : isActive ? '#8fc6aa' : '#a9b8c6',
-                            filter: renderTheme === 'dark'
-                              ? isActive
-                                ? 'drop-shadow(0 2px 6px rgba(159,192,218,0.18))'
-                                : 'drop-shadow(0 1px 2px rgba(147,166,186,0.10))'
-                              : isActive
-                              ? 'drop-shadow(0 2px 6px rgba(143,198,170,0.18))'
-                              : 'drop-shadow(0 1px 2px rgba(169,184,198,0.10))'
-                          }
-                        : undefined}
-                    >
+                  <div className="relative flex h-8 w-8 items-center justify-center">
+                    <div className="relative h-7 w-7 [&_svg]:mx-auto [&_svg]:block [&_svg]:h-full [&_svg]:w-full">
                       <IconComponent />
                     </div>
                   </div>
-                  <span className={`font-bold tracking-tight transition-all duration-200 opacity-100 ${
-                    useIndependentTabStyle
-                      ? isActive
-                        ? 'mt-0.5 text-[10px] leading-none text-[#dce8f4] dark:text-[#dce8f4]'
-                        : 'mt-0.5 text-[10px] leading-none text-[#a9b8c6] dark:text-[#9aacbe]'
-                      : isMapTab
-                      ? isActive
-                        ? 'text-[10px] text-[#3d5c47] dark:text-[#8bc4a8]'
-                        : 'text-[11px] text-[#3d5c47] dark:text-[#6da88a]'
-                      : isActive
-                        ? 'text-[10px] text-[#9f523d] dark:text-[#7fb3d5]'
-                        : 'text-[10px] text-[#3d4d5d] dark:text-[#9aacbe]'
-                  }`}>
+                  <span className="text-[10px] font-bold tracking-tight">
                     {item.label}
                   </span>
                 </div>
-                
+
                 <div
-                  className={`bottom-nav-indicator absolute top-0 left-1/2 -translate-x-1/2 rounded-b-full ${
-                    useIndependentTabStyle
-                      ? 'w-8 h-1'
-                      : isMapTab
-                      ? 'w-14 h-1.5'
-                      : 'w-10 h-1'
-                  } ${
-                    isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+                  className={`bottom-nav-indicator absolute top-0 left-1/2 h-1 w-10 -translate-x-1/2 rounded-b-full ${
+                    isActive ? 'scale-100 opacity-100' : 'scale-75 opacity-0'
                   }`}
                   style={{
-                    background: useIndependentTabStyle
-                      ? renderTheme === 'dark'
-                        ? 'linear-gradient(90deg, #8fc6aa 0%, #9fc0da 100%)'
-                        : 'linear-gradient(90deg, #88A392 0%, #7fb3d5 100%)'
-                      : renderTheme === 'dark'
-                      ? isMapTab
-                        ? 'linear-gradient(90deg, #f5d98a 0%, #e8a090 50%, #d08878 100%)'
-                        : 'linear-gradient(90deg, #5a92b8 0%, #7fb3d5 50%, #a8d5f7 100%)'
-                      : isMapTab
-                      ? 'linear-gradient(90deg, #e9c46a 0%, #c88470 50%, #b86a56 100%)'
-                      : '#c88470',
-                    boxShadow: renderTheme === 'dark'
-                      ? isActive
-                        ? isMapTab ? '0 2px 6px rgba(232, 160, 144, 0.2)' : '0 2px 6px rgba(127, 179, 213, 0.3)'
-                        : 'none'
-                      : isActive ? '0 2px 6px rgba(200, 132, 112, 0.3)' : 'none'
+                    background: 'var(--primary)',
+                    boxShadow: isActive
+                      ? '0 2px 6px color-mix(in srgb, var(--primary) 35%, transparent)'
+                      : 'none',
                   }}
                 />
               </Link>

@@ -142,6 +142,8 @@
   --text-color: #1a202c;
   --text-color-muted: #5e6b7d;
   --text-color-light: #94a3b8;
+  --text: var(--text-color);
+  --text-muted: var(--text-color-muted);
   --bg-color: #fdf9f0;
   --bg-color-light: #f7f2e8;
   --bg-color-gray: #f2ead3;
@@ -333,6 +335,48 @@
   --tone-event-other-bg: #f3f0f8;
   --tone-event-other-border: #d7cfe4;
   --tone-event-other-text: #5f5178;
+
+  /* Course-map unit rainbow (text accents target 4.5:1 on cream surfaces) */
+  --unit-1-accent: #b33f2e;
+  --unit-1-chip-bg: #fae8e5;
+  --unit-1-surface: rgba(196, 77, 58, 0.09);
+  --unit-1-button: #a83d2c;
+  --unit-2-accent: #a85618;
+  --unit-2-chip-bg: #faecd8;
+  --unit-2-surface: rgba(201, 115, 42, 0.09);
+  --unit-2-button: #a85e1f;
+  --unit-3-accent: #8a5e00;
+  --unit-3-chip-bg: #faf3d8;
+  --unit-3-surface: rgba(184, 134, 11, 0.1);
+  --unit-3-button: #946f09;
+  --unit-4-accent: #4a7c59;
+  --unit-4-chip-bg: #e8f0ea;
+  --unit-4-surface: rgba(74, 124, 89, 0.09);
+  --unit-4-button: #3a6347;
+  --unit-5-accent: #2d7a8a;
+  --unit-5-chip-bg: #e0f2f5;
+  --unit-5-surface: rgba(45, 122, 138, 0.09);
+  --unit-5-button: #236270;
+  --unit-6-accent: #3d6ba8;
+  --unit-6-chip-bg: #e8eef8;
+  --unit-6-surface: rgba(61, 107, 168, 0.09);
+  --unit-6-button: #31568a;
+  --unit-7-accent: #5b4d9a;
+  --unit-7-chip-bg: #eceaf5;
+  --unit-7-surface: rgba(91, 77, 154, 0.09);
+  --unit-7-button: #4a3e7c;
+  --unit-8-accent: #8b4596;
+  --unit-8-chip-bg: #f5eaf7;
+  --unit-8-surface: rgba(139, 69, 150, 0.09);
+  --unit-8-button: #72377a;
+  --unit-9-accent: #b84d6f;
+  --unit-9-chip-bg: #fae8ef;
+  --unit-9-surface: rgba(184, 77, 111, 0.09);
+  --unit-9-button: #9a3f5d;
+  --unit-10-accent: #845e00;
+  --unit-10-chip-bg: #faf5e0;
+  --unit-10-surface: rgba(196, 154, 26, 0.1);
+  --unit-10-button: #a07f15;
 
   /* Grammar map graph - light mode */
   --grammar-map-bg-start: #f8fafc;
@@ -622,6 +666,39 @@ html[data-accent="ember"][data-theme="dark"] {
   --tone-event-other-bg: rgba(159, 144, 200, 0.16);
   --tone-event-other-border: rgba(159, 144, 200, 0.24);
   --tone-event-other-text: #f0e9ff;
+
+  /* Lighter unit accents so week/map text hits 4.5:1 on navy surfaces. Buttons stay deep for white labels.
+     September stays a clear tomato red — the previous salmon (#e88b7a) read peachy on navy. */
+  --unit-1-accent: #ff6250;
+  --unit-1-chip-bg: rgba(255, 98, 80, 0.18);
+  --unit-1-surface: rgba(255, 98, 80, 0.12);
+  --unit-2-accent: #e0a05c;
+  --unit-2-chip-bg: rgba(224, 160, 92, 0.16);
+  --unit-2-surface: rgba(224, 160, 92, 0.12);
+  --unit-3-accent: #e0c25a;
+  --unit-3-chip-bg: rgba(224, 194, 90, 0.16);
+  --unit-3-surface: rgba(224, 194, 90, 0.12);
+  --unit-4-accent: #7fbf92;
+  --unit-4-chip-bg: rgba(127, 191, 146, 0.16);
+  --unit-4-surface: rgba(127, 191, 146, 0.12);
+  --unit-5-accent: #6ec4d0;
+  --unit-5-chip-bg: rgba(110, 196, 208, 0.16);
+  --unit-5-surface: rgba(110, 196, 208, 0.12);
+  --unit-6-accent: #86b4e0;
+  --unit-6-chip-bg: rgba(134, 180, 224, 0.16);
+  --unit-6-surface: rgba(134, 180, 224, 0.12);
+  --unit-7-accent: #b0a0e0;
+  --unit-7-chip-bg: rgba(176, 160, 224, 0.16);
+  --unit-7-surface: rgba(176, 160, 224, 0.12);
+  --unit-8-accent: #d49ad4;
+  --unit-8-chip-bg: rgba(212, 154, 212, 0.16);
+  --unit-8-surface: rgba(212, 154, 212, 0.12);
+  --unit-9-accent: #e890a8;
+  --unit-9-chip-bg: rgba(232, 144, 168, 0.16);
+  --unit-9-surface: rgba(232, 144, 168, 0.12);
+  --unit-10-accent: #e8c85a;
+  --unit-10-chip-bg: rgba(232, 200, 90, 0.16);
+  --unit-10-surface: rgba(232, 200, 90, 0.12);
 
   /* Grammar map graph - dark mode */
   --grammar-map-bg-start: #0d1620;

@@ -24,6 +24,7 @@ export async function ThisWeekPanel({ user, fallback = null }: ThisWeekPanelProp
             continueHref={data.continueHref}
             continueLabel={data.continueLabel}
             mapHref={data.mapHref}
+            showUnitMonths={data.showUnitMonths}
         />
     );
 }

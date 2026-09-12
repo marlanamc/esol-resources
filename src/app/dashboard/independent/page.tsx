@@ -21,7 +21,7 @@ import {
     getIndependentNewActivityCards,
 } from "@/lib/independent-learning";
 import { getWeeklyGoalProgress } from "@/lib/independent-progress";
-import { DashboardResumeHero, ExploreCategoriesCarousel, AllActivitiesCategoriesPanel, MomentumCard, NewThisWeekSection, DashboardWelcomeHeader, PinnedDailyHabitRow } from "@/components/dashboard";
+import { DashboardResumeHero, ExploreCategoriesCarousel, AllActivitiesCategoriesPanel, MomentumCard, NewThisWeekSection, DashboardWelcomeHeader, PinnedDailyHabitRow, ThisWeekPanel } from "@/components/dashboard";
 import { getDailyVocabHabitForUser } from "@/lib/daily-habits";
 
 export default async function IndependentDashboardPage() {
@@ -241,38 +241,22 @@ export default async function IndependentDashboardPage() {
 
     return (
         <div className="min-h-screen bg-bg">
-            <main id="main-content" className="container mx-auto pt-0 md:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px] lg:pt-4">
+            <main id="main-content" className="container mx-auto pt-3 md:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px] lg:pt-4">
                 <AdminViewSwitcher user={{ id: userId, role: session.user.role }} currentView="independent" />
 
                 {/* ── MOBILE + TABLET layout (< lg) ── */}
                 <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-0 p-0 md:p-6">
-                    <div className="min-w-0 space-y-3 md:space-y-5">
-                        <div className="md:hidden">
-                            <MomentumCard
-                                variant="header"
-                                embedded
-                                borderless
-                                initialStreak={userStats?.currentStreak ?? 0}
-                                initialLongestStreak={userStats?.longestStreak ?? 0}
-                                initialSevenDayActivity={initialSevenDayActivity}
-                                initialTotalPoints={userStats?.points ?? 0}
-                                initialWeeklyPoints={userStats?.weeklyPoints ?? 0}
-                            />
-                        </div>
-
+                    <div className="min-w-0 space-y-5">
                         <IndependentWelcomeCard />
-
-                        <DashboardResumeHero user={{ id: userId, role: session.user.role }} />
-
+                        <ThisWeekPanel
+                            user={{ id: userId, role: session.user.role }}
+                            fallback={<DashboardResumeHero user={{ id: userId, role: session.user.role }} />}
+                        />
                         {dailyVocabHabit ? (
                             <section aria-label="Daily vocab review">
                                 <PinnedDailyHabitRow habit={dailyVocabHabit} compact ctaVariant="vocabulary" />
                             </section>
                         ) : null}
-
-                        <NewThisWeekSection items={newThisWeekItems} subtitle={null} />
-
-                        <ExploreCategoriesCarousel />
                     </div>
                 </div>
 
