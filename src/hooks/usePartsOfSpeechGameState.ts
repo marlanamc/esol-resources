@@ -63,6 +63,29 @@ function getGroupStage(progress?: POSGroupProgress): 'not-started' | 'in-progres
   return highest >= 1 ? 'in-progress' : 'not-started';
 }
 
+/**
+ * Resolve where a resuming learner should land.
+ *
+ * Walks the group sequence from `floorGroupId` and returns the first group the
+ * learner has not yet mastered, so a Course Map entry picks up where they left
+ * off instead of re-pinning them to the floor on every visit. Never returns a
+ * group before the floor; if every group from the floor on is mastered, returns
+ * the last one so the learner can keep practising rather than hitting a wall.
+ */
+export function resolveResumeGroup(
+  categoryData: Record<string, POSGroupProgress>,
+  floorGroupId: string,
+): POSGroup | null {
+  const floorIndex = ALL_POS_GROUPS.findIndex(group => group.id === floorGroupId);
+  if (floorIndex === -1) return null;
+
+  const candidates = ALL_POS_GROUPS.slice(floorIndex);
+  const unmastered = candidates.find(
+    group => getGroupStage(categoryData[group.id]) !== 'mastered',
+  );
+  return unmastered ?? candidates[candidates.length - 1] ?? null;
+}
+
 /** Returns the next unpassed round number (1-based), capped by group.maxRounds */
 function getNextRound(group: POSGroup, progress?: POSGroupProgress): number {
   const highest = progress?.highestRoundPassed ?? 0;
@@ -324,6 +347,7 @@ export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSp
   };
   const presetGroupId = config?.gameContent?.courseMapPreset ? config.gameContent.groupId : undefined;
   const presetRoundMode = config?.gameContent?.roundMode;
+  const presetResumes = config?.gameContent?.resumeFromProgress === true;
 
   // Load progress on mount
   useEffect(() => {
@@ -338,8 +362,12 @@ export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSp
             ? JSON.parse(data.categoryData)
             : data.categoryData)
           : initializeProgressData();
+        // A resuming preset treats groupId as a floor and advances with the
+        // learner; a plain preset pins them to that exact group every visit.
         const presetGroup = presetGroupId
-          ? ALL_POS_GROUPS.find(group => group.id === presetGroupId) ?? null
+          ? (presetResumes
+            ? resolveResumeGroup(categoryData, presetGroupId)
+            : ALL_POS_GROUPS.find(group => group.id === presetGroupId) ?? null)
           : null;
         setState(prev => ({
           ...prev,
@@ -359,7 +387,7 @@ export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSp
       }
     };
     init();
-  }, [activityId, presetGroupId, presetRoundMode]);
+  }, [activityId, presetGroupId, presetRoundMode, presetResumes]);
 
   const selectGroup = useCallback((group: POSGroup) => {
     const roundMode = getDefaultRoundMode(group, state.categoryData);

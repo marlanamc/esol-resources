@@ -250,7 +250,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "parts-of-speech-discovery",
             "activityId": "parts-of-speech-discovery-guided",
-            "slot": "extra",
+            "slot": "required",
             "order": 6,
             "wrappedGame": true,
             "activityType": "game",

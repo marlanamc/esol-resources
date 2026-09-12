@@ -10,9 +10,13 @@ export const partsOfSpeechDiscoveryContent: PartsOfSpeechContent = {
   type: "parts-of-speech",
   courseMapPreset: true,
   courseMapTitle: "Parts of Speech Discovery Game",
-  courseMapDirections: "Start here: learn verbs first. This version is already set up for you.",
+  courseMapDirections: "Start with verbs. Picks up where you left off each time you come back.",
+  // A floor, not a pin: resumeFromProgress advances the learner through the
+  // group sequence instead of restarting them at verbs on every visit.
   groupId: "pos-1-verbs",
-  roundMode: "round1",
+  resumeFromProgress: true,
+  // No roundMode here on purpose — getDefaultRoundMode then advances the
+  // learner through rounds within a group as they pass them.
   roundOverrides: {
     foundation: {
       rounds: {

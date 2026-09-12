@@ -25,7 +25,7 @@ async function main() {
     where: { id: "parts-of-speech-discovery-guided" },
     update: {
       title: "Parts of Speech Discovery Game",
-      description: "Guided Course Map version. Starts directly with verbs, Round 1, with no settings to choose.",
+      description: "Guided Course Map version. Starts at verbs and resumes where the learner left off, with no settings to choose.",
       type: "game",
       category: "games",
       level: "beginner",
@@ -38,7 +38,7 @@ async function main() {
     create: {
       id: "parts-of-speech-discovery-guided",
       title: "Parts of Speech Discovery Game",
-      description: "Guided Course Map version. Starts directly with verbs, Round 1, with no settings to choose.",
+      description: "Guided Course Map version. Starts at verbs and resumes where the learner left off, with no settings to choose.",
       type: "game",
       category: "games",
       level: "beginner",
