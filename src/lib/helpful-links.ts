@@ -1,6 +1,10 @@
 import { toSafeExternalUrl } from "@/lib/shared/safe-url";
 
-export type HelpfulLinkId = "google-classroom" | "absence-form" | "advisor-bulletin-board";
+export type HelpfulLinkId =
+    | "google-classroom"
+    | "absence-form"
+    | "advisor-bulletin-board"
+    | "in-class-games-library";
 
 export type HelpfulLink = {
     id: HelpfulLinkId;
@@ -13,6 +17,7 @@ export const HELPFUL_LINK_TONE_KEYS: Record<HelpfulLinkId, "vocabulary" | "quizz
     "google-classroom": "vocabulary",
     "absence-form": "quizzes",
     "advisor-bulletin-board": "games",
+    "in-class-games-library": "games",
 };
 
 const HELPFUL_LINK_CONFIG: { id: HelpfulLinkId; label: string; envKey: string }[] = [
@@ -22,6 +27,11 @@ const HELPFUL_LINK_CONFIG: { id: HelpfulLinkId; label: string; envKey: string }[
         id: "advisor-bulletin-board",
         label: "Advisor Bulletin Board",
         envKey: "NEXT_PUBLIC_ADVISOR_BULLETIN_BOARD_URL",
+    },
+    {
+        id: "in-class-games-library",
+        label: "In-class games library",
+        envKey: "NEXT_PUBLIC_IN_CLASS_GAMES_LIBRARY_URL",
     },
 ];
 

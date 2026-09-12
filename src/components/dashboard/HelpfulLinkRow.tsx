@@ -1,6 +1,6 @@
 "use client";
 
-import { ClipboardList, ExternalLink, GraduationCap, Megaphone } from "lucide-react";
+import { ClipboardList, ExternalLink, Gamepad2, GraduationCap, Megaphone } from "lucide-react";
 import { HELPFUL_LINK_TONE_KEYS, type HelpfulLink, type HelpfulLinkId } from "@/lib/helpful-links";
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { handleExternalLinkClick } from "@/lib/shared/open-external-link";
@@ -9,6 +9,7 @@ const LINK_ICONS: Record<HelpfulLinkId, typeof GraduationCap> = {
     "google-classroom": GraduationCap,
     "absence-form": ClipboardList,
     "advisor-bulletin-board": Megaphone,
+    "in-class-games-library": Gamepad2,
 };
 
 export function HelpfulLinkRow({ link }: { link: HelpfulLink }) {

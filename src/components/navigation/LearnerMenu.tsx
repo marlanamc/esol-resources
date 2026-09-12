@@ -377,6 +377,7 @@ const EXTERNAL_LINK_ICONS: Record<HelpfulLinkId, typeof GraduationCap> = {
     "google-classroom": GraduationCap,
     "absence-form": ClipboardList,
     "advisor-bulletin-board": Megaphone,
+    "in-class-games-library": Gamepad2,
 };
 
 function ExternalMenuLink({ link, onNavigate }: { link: HelpfulLink; onNavigate: () => void }) {

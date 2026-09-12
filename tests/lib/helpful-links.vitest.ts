@@ -5,6 +5,7 @@ const ENV_KEYS = [
     "NEXT_PUBLIC_GOOGLE_CLASSROOM_URL",
     "NEXT_PUBLIC_ABSENCE_FORM_URL",
     "NEXT_PUBLIC_ADVISOR_BULLETIN_BOARD_URL",
+    "NEXT_PUBLIC_IN_CLASS_GAMES_LIBRARY_URL",
 ] as const;
 
 function withEnv(overrides: Record<string, string | undefined>, fn: () => void) {
@@ -48,6 +49,7 @@ describe("getHelpfulLinks", () => {
                 NEXT_PUBLIC_GOOGLE_CLASSROOM_URL: undefined,
                 NEXT_PUBLIC_ABSENCE_FORM_URL: undefined,
                 NEXT_PUBLIC_ADVISOR_BULLETIN_BOARD_URL: undefined,
+                NEXT_PUBLIC_IN_CLASS_GAMES_LIBRARY_URL: undefined,
             },
             () => {
                 expect(getHelpfulLinks()).toEqual([]);
@@ -61,6 +63,7 @@ describe("getHelpfulLinks", () => {
                 NEXT_PUBLIC_GOOGLE_CLASSROOM_URL: "https://classroom.google.com/c/abc123",
                 NEXT_PUBLIC_ABSENCE_FORM_URL: "https://docs.google.com/forms/d/e/xyz/viewform",
                 NEXT_PUBLIC_ADVISOR_BULLETIN_BOARD_URL: "https://ebhcsjobboard.web.app/",
+                NEXT_PUBLIC_IN_CLASS_GAMES_LIBRARY_URL: "https://esol-level-3.vercel.app/",
             },
             () => {
                 expect(getHelpfulLinks()).toEqual([
@@ -78,6 +81,11 @@ describe("getHelpfulLinks", () => {
                         id: "advisor-bulletin-board",
                         label: "Advisor Bulletin Board",
                         href: "https://ebhcsjobboard.web.app/",
+                    },
+                    {
+                        id: "in-class-games-library",
+                        label: "In-class games library",
+                        href: "https://esol-level-3.vercel.app/",
                     },
                 ]);
             }
