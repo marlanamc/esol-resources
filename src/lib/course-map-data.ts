@@ -37,7 +37,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "id": "week-1",
         "number": 1,
         "title": "Start the Class",
-        "goal": "Get comfortable in the app and warm up the tenses you already know.",
+        "goal": "Get comfortable in the app, then show what you already know — three short timeline checks, five questions each.",
         "items": [
           {
             "id": "vocab-sep-w1-flashcards",
@@ -68,20 +68,38 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Welcome Back: Simple & Continuous Review"
           },
           {
-            "id": "timeline-tenses-week1-intro",
-            "activityId": "timeline-tenses-week1-easy",
+            "id": "timeline-check-simple",
+            "activityId": "timeline-tenses-simple",
+            "title": "Timeline Check: Simple Tenses",
             "slot": "required",
             "order": 3,
             "wrappedGame": true,
-            "activityType": "game",
-            "title": "Timeline Tenses: Easy Start"
+            "activityType": "game"
+          },
+          {
+            "id": "timeline-check-continuous",
+            "activityId": "timeline-tenses-continuous",
+            "title": "Timeline Check: Continuous Tenses",
+            "slot": "required",
+            "order": 4,
+            "wrappedGame": true,
+            "activityType": "game"
+          },
+          {
+            "id": "timeline-check-simple-continuous",
+            "activityId": "timeline-tenses-simple-continuous",
+            "title": "Timeline Check: Simple + Continuous",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": true,
+            "activityType": "game"
           },
           {
             "id": "vocab-sep-w1-matching",
             "activityId": "vocab-sep-w1",
             "vocabUi": "matching",
             "slot": "required",
-            "order": 4,
+            "order": 6,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Vocab: Introductions — Matching"
@@ -91,10 +109,19 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityId": "vocab-sep-w1",
             "vocabUi": "fill-blank",
             "slot": "required",
-            "order": 5,
+            "order": 7,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Vocab: Introductions — Fill in the Blank"
+          },
+          {
+            "id": "timeline-tenses-week1-intro",
+            "activityId": "timeline-tenses-week1-easy",
+            "slot": "extra",
+            "order": 8,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Timeline Tenses: Easy Start"
           }
         ]
       },
@@ -180,22 +207,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "All Verb Tenses Overview"
           },
           {
-            "id": "timeline-verb-forms-review",
-            "activityId": "timeline-tenses-simple",
-            "slot": "required",
-            "order": 3,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Timeline Tenses: Simple Only"
-          },
-          {
             "id": "vocab-sep-w3-matching",
             "activityId": "vocab-sep-w3",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 4,
+            "order": 3,
             "title": "Vocab: Digital Habits — Matching"
           },
           {
@@ -205,14 +223,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 5,
+            "order": 4,
             "title": "Vocab: Digital Habits — Fill in the Blank"
           },
           {
             "id": "verb-quiz-1",
             "activityId": "verb-quiz-1",
             "slot": "required",
-            "order": 6,
+            "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 1: be + have"
@@ -221,7 +239,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "parts-of-speech-discovery",
             "activityId": "parts-of-speech-discovery-guided",
             "slot": "extra",
-            "order": 7,
+            "order": 6,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Parts of Speech Discovery Game"
@@ -230,7 +248,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "parts-of-speech-library",
             "activityId": "parts-of-speech-game",
             "slot": "extra",
-            "order": 8,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "game",
             "title": "Full Parts of Speech Practice Library"
@@ -239,7 +257,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "helper-verb-repair",
             "activityId": "grammar-hospital-helper-repair-guided",
             "slot": "extra",
-            "order": 9,
+            "order": 8,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Grammar Hospital: Helper Verb Repair"
@@ -280,18 +298,9 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Past Simple + Past Continuous: Telling the Story"
           },
           {
-            "id": "timeline-continuous-only",
-            "activityId": "timeline-tenses-continuous",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Timeline Tenses: Continuous Only"
-          },
-          {
             "id": "have-you-ever-speaking",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Conversation Practice: Telling Your Story"
@@ -303,13 +312,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 4,
+            "order": 3,
             "title": "Vocab: Personal Journey Verbs — Matching"
           },
           {
             "id": "lived-worked-writing",
             "slot": "required",
-            "order": 5,
+            "order": 4,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Short Writing: \"When I came to the U.S.\""
@@ -318,7 +327,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "ed-endings-intro",
             "activityId": "cmlkjcabs00000ezpkp32c6lz",
             "slot": "required",
-            "order": 6,
+            "order": 5,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "-ed Endings Intro: /t/ /d/ /id/"
@@ -330,14 +339,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 7,
+            "order": 6,
             "title": "Vocab: Personal Journey Verbs — Fill in the Blank"
           },
           {
             "id": "verb-quiz-2",
             "activityId": "verb-quiz-2",
             "slot": "required",
-            "order": 8,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 2: do + make"
@@ -346,7 +355,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "ed-endings-game-extra",
             "activityId": "cmlkjcabs00000ezpkp32c6lz",
             "slot": "extra",
-            "order": 9,
+            "order": 8,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "-ed Endings Game"
@@ -395,22 +404,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Question Word Practice Game"
           },
           {
-            "id": "timeline-simple-continuous",
-            "activityId": "timeline-tenses-simple-continuous",
-            "slot": "required",
-            "order": 4,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Timeline Tenses: Simple + Continuous"
-          },
-          {
             "id": "vocab-oct-w1-matching",
             "activityId": "vocab-oct-w1",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 5,
+            "order": 4,
             "title": "Vocab: Schedule Verbs — Matching"
           },
           {
@@ -420,14 +420,14 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 6,
+            "order": 5,
             "title": "Vocab: Schedule Verbs — Fill in the Blank"
           },
           {
             "id": "verb-quiz-3",
             "activityId": "verb-quiz-3",
             "slot": "required",
-            "order": 7,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 3: go + come"

@@ -24,12 +24,13 @@ const PRESETS: Array<{
      *  surfaces an item's activityId when the activity is contentKind=map. */
     contentKind?: "practice" | "map";
 }> = [
-    // ── Level 1 ladder: one tense family at a time ───────────────────────────
-    // Weeks 1 → 5 walk up the timeline in rungs instead of dropping students
-    // straight into a mixed simple + continuous set. Every rung runs a 5-question
-    // round — 10 is a long first sitting for a class new to the timeline.
+    // ── Week 1 placement check: one tense family at a time ───────────────────
+    // Three short rounds in Week 1 read where a class actually is, instead of
+    // opening on a mixed simple + continuous set and learning nothing from a bad
+    // score. Five questions each — 10 is a long sitting for a first timeline day.
     {
-        // Week 1 on-ramp: easiest questions only, one verb per sentence.
+        // Week 1 fallback: easiest questions only, one verb per sentence, for
+        // anyone the check shows is not ready for a full round.
         id: "timeline-tenses-week1-easy",
         title: "Timeline Tenses: Easy Start",
         description: "A gentle first look at the timeline — one short sentence at a time, present and past simple only.",
@@ -40,7 +41,7 @@ const PRESETS: Array<{
         contentKind: "map",
     },
     {
-        // Rung 1 (Week 3): simple tenses on their own, no difficulty cap.
+        // Check 1: simple tenses on their own, no difficulty cap.
         id: "timeline-tenses-simple",
         title: "Timeline Tenses: Simple Only",
         description: "Simple tenses on their own — present, past, and future simple. Nothing else mixed in.",
@@ -49,7 +50,7 @@ const PRESETS: Array<{
         contentKind: "map",
     },
     {
-        // Rung 2 (Week 4): continuous on its own, once simple feels steady.
+        // Check 2: continuous on its own, nothing mixed in.
         id: "timeline-tenses-continuous",
         title: "Timeline Tenses: Continuous Only",
         description: "Continuous tenses on their own — present, past, and future continuous. Still no simple tenses mixed in.",
@@ -58,7 +59,7 @@ const PRESETS: Array<{
         contentKind: "map",
     },
     {
-        // Rung 3 (Week 5): the two families together — the first real mix.
+        // Check 3: the two families together — the one that sorts the class.
         id: "timeline-tenses-simple-continuous",
         title: "Timeline Tenses: Simple + Continuous",
         description: "Now mix the two — choose between simple and continuous and show the difference on the timeline.",
