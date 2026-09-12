@@ -122,4 +122,37 @@ describe("grammar hospital deck", () => {
             expect(c.tier ?? "beginner", `case ${c.id}`).toBe("beginner");
         }
     });
+
+    /**
+     * Verbs whose simple past is spelled like the bare form. "It cost five
+     * dollars." is a correct PAST sentence, so marking it a third-person -s
+     * error fails the learner who read it that way. A present-time marker
+     * ("every day", "usually") rules the past reading out; without one these
+     * sentences have two right answers and only one is accepted.
+     */
+    const PAST_EQUALS_BASE = [
+        "cost", "cut", "put", "hit", "let", "set", "shut", "read", "hurt",
+        "quit", "split", "spread", "bet", "cast", "burst", "upset", "shed",
+    ];
+    const PRESENT_TIME_MARKERS = [
+        "every", "always", "usually", "often", "sometimes", "never",
+        "each", "daily", "rarely", "seldom", "now",
+    ];
+
+    it("never asks for third-person -s on a sentence that is valid past tense", () => {
+        for (const c of cases) {
+            if (!c.errorTags.includes("verb-form")) continue;
+            const words: string[] = c.unhealthy.toLowerCase().match(/[a-z']+/g) ?? [];
+            const ambiguous = words.filter((w) => PAST_EQUALS_BASE.includes(w));
+            if (ambiguous.length === 0) continue;
+            const hasMarker = PRESENT_TIME_MARKERS.some((m) => words.includes(m));
+            expect(
+                hasMarker,
+                `case ${c.id} ("${c.unhealthy}") uses "${ambiguous.join(", ")}", ` +
+                    `whose past tense is spelled the same. Without a present-time ` +
+                    `marker the sentence is already correct as past tense, so a ` +
+                    `learner who reads it that way is marked wrong.`
+            ).toBe(true);
+        }
+    });
 });
