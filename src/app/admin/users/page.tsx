@@ -4,7 +4,7 @@ import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { isAdmin } from "@/lib/auth/roles";
 import { isLeaderboardExcludedUser } from "@/lib/gamification/leaderboard-filter";
-import { ExcludeLeaderboardToggle } from "@/components/admin/ExcludeLeaderboardToggle";
+import { AdminStudentsTable } from "@/components/admin/AdminStudentsTable";
 import { StudentPasswordManager } from "@/components/student/StudentPasswordManager";
 import { KeyRound, Users } from "lucide-react";
 
@@ -81,7 +81,17 @@ export default async function AdminUsersPage() {
     const allStudents = Array.from(studentMap.values());
 
     const teachers = users.filter((u) => u.role === "teacher" || u.role === "admin");
-    const students = users.filter((u) => u.role === "student" && !u.isSystemAccount);
+    const students = users
+        .filter((u) => u.role === "student" && !u.isSystemAccount)
+        .map((u) => ({
+            id: u.id,
+            username: u.username,
+            name: u.name,
+            excludeFromLeaderboard: isLeaderboardExcludedUser(u),
+            lastActivityDate: u.lastActivityDate?.toISOString() ?? null,
+            createdAt: u.createdAt.toISOString(),
+            classes: u.classes.map((e) => ({ id: e.class.id, name: e.class.name })),
+        }));
 
     return (
         <div className="space-y-8">
@@ -140,51 +150,7 @@ export default async function AdminUsersPage() {
 
             {/* Students table */}
             <section>
-                <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider mb-3" style={{ color: "#64748b" }}>
-                    <Users className="h-3.5 w-3.5" />
-                    Students ({students.length})
-                </h2>
-                <div className="rounded-2xl overflow-hidden border bg-white" style={{ borderColor: "rgba(0,0,0,0.08)" }}>
-                    <div className="overflow-x-auto">
-                        <table className="w-full min-w-[700px]">
-                            <thead>
-                                <tr style={{ background: "#f8f9fc", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
-                                    {["Username", "Name", "Enrolled In", "Leaderboard", "Last Active", "Joined"].map((h) => (
-                                        <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "#94a3b8" }}>
-                                            {h}
-                                        </th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {students.map((u) => {
-                                    const isExcluded = isLeaderboardExcludedUser(u);
-                                    const classNames = u.classes.map((e) => e.class.name);
-                                    return (
-                                        <tr key={u.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}>
-                                            <td className="py-3 px-4 text-sm font-semibold" style={{ color: "#1e2640" }}>{u.username}</td>
-                                            <td className="py-3 px-4 text-sm" style={{ color: "#475569" }}>{u.name || "—"}</td>
-                                            <td className="py-3 px-4 text-xs" style={{ color: "#64748b" }}>
-                                                {classNames.length > 0 ? classNames.join(", ") : <em style={{ color: "#94a3b8" }}>independent</em>}
-                                            </td>
-                                            <td className="py-3 px-4">
-                                                <ExcludeLeaderboardToggle userId={u.id} initialExcluded={isExcluded} />
-                                            </td>
-                                            <td className="py-3 px-4 text-xs" style={{ color: "#94a3b8" }}>
-                                                {u.lastActivityDate
-                                                    ? new Date(u.lastActivityDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })
-                                                    : "Never"}
-                                            </td>
-                                            <td className="py-3 px-4 text-xs" style={{ color: "#94a3b8" }}>
-                                                {new Date(u.createdAt).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <AdminStudentsTable students={students} />
             </section>
 
             {/* Password reset */}

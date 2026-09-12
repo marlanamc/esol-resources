@@ -172,20 +172,53 @@ export function UnitBadge({ n, status, size = 44 }: { n: number; status: "done" 
     );
 }
 
+const statusChipBase: React.CSSProperties = {
+    display: "inline-flex",
+    alignItems: "center",
+    paddingInline: 8,
+    paddingBlock: 3,
+    borderRadius: 999,
+    fontSize: 10.5,
+    fontWeight: 700,
+    lineHeight: 1.2,
+};
+
+function tintedStatusChipStyle(accent: string, extra?: React.CSSProperties): React.CSSProperties {
+    return {
+        ...statusChipBase,
+        background: `color-mix(in srgb, ${accent} 18%, var(--surface-base))`,
+        boxShadow: `inset 0 0 0 1px color-mix(in srgb, ${accent} 32%, transparent)`,
+        ...extra,
+    };
+}
+
 export function UnitStatusChip({ status }: { status: "done" | "current" | "todo" }) {
     if (status === "done") return (
-        <span style={{ display: "inline-flex", alignItems: "center", gap: 4, paddingInline: "8px", paddingBlock: "3px", borderRadius: 999, background: "#e9f0ea", color: "#3a6347", fontSize: 10.5, fontWeight: 700 }}>
+        <span
+            className="text-[var(--success-color)] dark:text-[var(--secondary-color-light)]"
+            style={tintedStatusChipStyle("var(--success-color)", { gap: 4 })}
+        >
             <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5l2.5 2.5L9 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
             Completed
         </span>
     );
     if (status === "current") return (
-        <span style={{ display: "inline-flex", alignItems: "center", paddingInline: "8px", paddingBlock: "3px", borderRadius: 999, background: "#fbeae4", color: "var(--primary)", fontSize: 10.5, fontWeight: 700 }}>
+        <span
+            className="text-[var(--primary-color-dark)] dark:text-[var(--primary-color-light)]"
+            style={tintedStatusChipStyle("var(--primary)")}
+        >
             In progress
         </span>
     );
     return (
-        <span style={{ display: "inline-flex", alignItems: "center", paddingInline: "8px", paddingBlock: "3px", borderRadius: 999, background: "var(--surface-subtle, #f5f0e8)", color: "var(--text-muted)", fontSize: 10.5, fontWeight: 700 }}>
+        <span
+            className="text-text-muted"
+            style={{
+                ...statusChipBase,
+                background: "var(--surface-subtle, #f5f0e8)",
+                boxShadow: "inset 0 0 0 1px var(--border-subtle)",
+            }}
+        >
             Upcoming
         </span>
     );

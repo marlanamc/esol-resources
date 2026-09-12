@@ -64,11 +64,20 @@ export function ThisWeekPanelClient({
                 >
                     <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3">
                         <div className="min-w-0">
-                            <span
-                                className="block text-xs font-bold leading-none"
-                                style={{ color: tone.accent }}
-                            >
-                                {formatLevelLabel(weekNumber, showUnitMonths)}
+                            <span className="flex items-center gap-2">
+                                <span
+                                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-sm leading-none shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]"
+                                    style={{ background: `color-mix(in srgb, ${tone.accent} 16%, transparent)` }}
+                                    aria-hidden
+                                >
+                                    📋
+                                </span>
+                                <span
+                                    className="text-xs font-bold leading-none"
+                                    style={{ color: tone.accent }}
+                                >
+                                    {formatLevelLabel(weekNumber, showUnitMonths)}
+                                </span>
                             </span>
                             <h2 className="m-0 mt-1 font-display text-[1.65rem] font-bold leading-[1.1] tracking-tight text-text">
                                 {weekTitle}

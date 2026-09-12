@@ -112,7 +112,11 @@ export default function LeaderboardPage() {
         setLearnerMode(contextData.learnerMode || null);
         setIsAdmin(contextData.isAdmin || false);
         setSelectedClassId(payload.classId || contextData.defaultClassId || null);
-        setScope(contextData.defaultScope || payload.scope || 'section');
+        setScope(
+          contextData.learnerMode === 'independent' || contextData.defaultScope === 'independent'
+            ? 'independent'
+            : 'section'
+        );
       } catch (error) {
         console.error('Failed to fetch leaderboard:', error);
       } finally {
@@ -240,48 +244,16 @@ export default function LeaderboardPage() {
         boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.12), 0 1px 2px rgba(13,22,32,0.10)',
       }}
     >
-      <button
-        type="button"
-        onClick={() => void onScopeChange('section')}
-        aria-pressed={scope === 'section'}
-        className="!min-h-0 !min-w-0 px-3 py-1 text-[10px] leading-none sm:px-4 sm:py-1.5 sm:text-xs font-semibold sm:font-bold rounded-full sm:rounded-md transition-all duration-200"
-        style={
-          scope === 'section'
-            ? {
-                backgroundColor: 'var(--color-primary)',
-                color: 'var(--text-on-accent)',
-                boxShadow: '0 1px 2px color-mix(in srgb, var(--color-primary) 28%, transparent), inset 0 1px 0 rgba(255,255,255,0.18)',
-              }
-            : {
-                backgroundColor: 'transparent',
-                color: 'var(--color-text-muted)',
-              }
-        }
+      <span
+        className="inline-flex items-center px-3 py-1 text-[10px] leading-none sm:px-4 sm:py-1.5 sm:text-xs font-semibold sm:font-bold rounded-full sm:rounded-md"
+        style={{
+          backgroundColor: 'var(--color-primary)',
+          color: 'var(--text-on-accent)',
+          boxShadow: '0 1px 2px color-mix(in srgb, var(--color-primary) 28%, transparent), inset 0 1px 0 rgba(255,255,255,0.18)',
+        }}
       >
-        <span className="sm:hidden">My Class</span>
-        <span className="hidden sm:inline">My Class</span>
-      </button>
-      <button
-        type="button"
-        onClick={() => void onScopeChange('all')}
-        aria-pressed={scope === 'all'}
-        className="!min-h-0 !min-w-0 px-3 py-1 text-[10px] leading-none sm:px-4 sm:py-1.5 sm:text-xs font-semibold sm:font-bold rounded-full sm:rounded-md transition-all duration-200"
-        style={
-          scope === 'all'
-            ? {
-                backgroundColor: 'var(--color-primary)',
-                color: 'var(--text-on-accent)',
-                boxShadow: '0 1px 2px color-mix(in srgb, var(--color-primary) 28%, transparent), inset 0 1px 0 rgba(255,255,255,0.18)',
-              }
-            : {
-                backgroundColor: 'transparent',
-                color: 'var(--color-text-muted)',
-              }
-        }
-      >
-        <span className="sm:hidden">All</span>
-        <span className="hidden sm:inline">All Classes</span>
-      </button>
+        My Class
+      </span>
     </div>
   ) : null;
 
@@ -605,7 +577,7 @@ export default function LeaderboardPage() {
                           </span>
                         )}
                       </p>
-                      <div className="flex items-center flex-wrap gap-3 mt-1">
+                      <div className="flex items-center flex-wrap gap-3 mt-0.5 leading-tight">
                         <div className="flex items-center gap-1 text-sm" style={{ color: 'var(--color-text-muted)' }}>
                           <SparklesIcon size={16} />
                           <span>{entry.weeklyPoints} pts</span>

@@ -9,7 +9,6 @@ interface DashboardWelcomeHeaderProps {
     userName: string;
     mode: DashboardWelcomeMode;
     nameEmoji?: ReactNode;
-    weekLabel?: string;
     className?: string;
 }
 
@@ -17,11 +16,10 @@ export function DashboardWelcomeHeader({
     userName,
     mode,
     nameEmoji,
-    weekLabel,
     className = "",
 }: DashboardWelcomeHeaderProps) {
     const displayName = userName.trim() || "there";
-    const eyebrow = getWelcomeEyebrow(mode, weekLabel);
+    const eyebrow = getWelcomeEyebrow(mode);
     const greeting = getTimeOfDayGreeting();
 
     return (
@@ -39,15 +37,17 @@ export function DashboardWelcomeHeader({
             />
 
             <div className="relative min-w-0">
-                <p className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-text-muted">
-                    <span
-                        className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-sm leading-none shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]"
-                        aria-hidden
-                    >
-                        {eyebrow.icon}
-                    </span>
-                    {eyebrow.label}
-                </p>
+                {mode === "independent" ? (
+                    <p className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-text-muted">
+                        <span
+                            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-sm leading-none shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]"
+                            aria-hidden
+                        >
+                            {eyebrow.icon}
+                        </span>
+                        {eyebrow.label}
+                    </p>
+                ) : null}
 
                 <h1
                     className="font-display font-bold text-text leading-[1.05] tracking-tight"

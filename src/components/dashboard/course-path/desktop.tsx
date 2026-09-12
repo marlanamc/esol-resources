@@ -333,7 +333,7 @@ export function DesktopWeekPanel({
                     </span>
                     {focus ? (
                         <span className="mt-2 block max-w-2xl text-sm leading-snug text-text-muted">
-                            Focus: {focus}
+                            {focus}
                         </span>
                     ) : null}
                 </span>

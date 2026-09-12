@@ -22,7 +22,6 @@ import {
 } from "@/components/dashboard";
 import { DashboardNextStepFallbackCard } from "@/components/dashboard/DashboardNextStepFallbackCard";
 import { ThisWeekPanel } from "@/components/dashboard/ThisWeekPanel";
-import { formatDashboardWeekRangeLabel } from "@/lib/dashboard/week-range-label";
 import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 import { buildActivityHref } from "@/lib/learner/navigation";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
@@ -412,7 +411,6 @@ export default async function DashboardPage() {
                                 <DashboardWelcomeHeader
                                     userName={session.user?.name?.trim() || "there"}
                                     mode="classroom"
-                                    weekLabel={formatDashboardWeekRangeLabel(new Date())}
                                     nameEmoji={desktopNameEmoji}
                                 />
                             </div>

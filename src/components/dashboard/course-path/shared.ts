@@ -119,8 +119,10 @@ export function focusText(title: string, goal?: string): string | null {
     if (focusOverrides[title]) return focusOverrides[title];
     if (!goal) return null;
 
-    const firstSentence = goal.split(/[.!?]/)[0] ?? goal;
+    const beforeDash = goal.split(/\s+[—–]\s+/)[0] ?? goal;
+    const firstSentence = beforeDash.split(/[.!?]/)[0] ?? beforeDash;
     return firstSentence
+        .replace(/^Focus:\s+/i, "")
         .replace(/^Learn the basic building blocks of English and\s+/i, "Build ")
         .replace(/^Practice\s+/i, "Use ")
         .replace(/^Learn\s+/i, "Build ")

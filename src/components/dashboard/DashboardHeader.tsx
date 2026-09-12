@@ -1,9 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { BookOpen, Calendar, Home, Map } from "lucide-react";
-import { TrophyIcon } from "@/components/icons/Icons";
+import { BookOpen, Calendar, Home, Map, Trophy } from "lucide-react";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { ModeHeader } from "@/components/layout/ModeHeader";
 
@@ -11,6 +9,7 @@ const STUDENT_NAV_ITEMS = [
     { href: "/dashboard", label: "Home", Icon: Home, exact: true },
     { href: "/dashboard/map", label: "Map", Icon: Map, exact: false },
     { href: "/dashboard/activities", label: "Activities", Icon: BookOpen, exact: false },
+    { href: "/dashboard/leaderboard", label: "Leaderboard", Icon: Trophy, exact: false },
 ] as const;
 
 interface DashboardHeaderProps {
@@ -69,37 +68,24 @@ export function DashboardHeader({
             enableSearch={enableSearch}
             profileVariant={variant}
             actions={
-                <>
-                    {variant === "dashboardv2" ? (
-                        <button
-                            type="button"
-                            onClick={handleCalendarOpen}
-                            className="hidden h-11 shrink-0 appearance-none items-center justify-center gap-2 rounded-xl border px-3 py-0 font-bold text-white shadow-[0_2px_8px_rgba(38,31,23,0.08)] transition-colors hover:bg-[#c46a52] hover:border-[#b75e46] focus:outline-none focus:ring-2 focus:ring-[#d48c76] focus:ring-offset-1 xl:inline-flex"
-                            style={{
-                                backgroundColor: "#cf7a5f",
-                                borderColor: "#c06d52",
-                                fontSize: "14px",
-                                lineHeight: "20px",
-                                minWidth: "132px",
-                            }}
-                            aria-label="Open calendar"
-                        >
-                            <Calendar className="h-4 w-4 text-white" />
-                            <span className="font-bold text-white leading-5">Calendar</span>
-                        </button>
-                    ) : null}
-                    <Link
-                        href="/dashboard/leaderboard"
-                        className="hidden h-11 min-w-[132px] shrink-0 items-center justify-center gap-2 rounded-xl border px-4 text-sm font-bold text-white shadow-[0_2px_8px_rgba(38,31,23,0.08)] transition-all duration-200 hover:scale-[1.01] hover:shadow-[0_4px_12px_rgba(136,163,146,0.2)] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 md:inline-flex"
+                variant === "dashboardv2" ? (
+                    <button
+                        type="button"
+                        onClick={handleCalendarOpen}
+                        className="hidden h-11 shrink-0 appearance-none items-center justify-center gap-2 rounded-xl border px-3 py-0 font-bold text-white shadow-[0_2px_8px_rgba(38,31,23,0.08)] transition-colors hover:bg-[#c46a52] hover:border-[#b75e46] focus:outline-none focus:ring-2 focus:ring-[#d48c76] focus:ring-offset-1 xl:inline-flex"
                         style={{
-                            backgroundColor: "#88A392",
-                            borderColor: "#7a9384",
+                            backgroundColor: "#cf7a5f",
+                            borderColor: "#c06d52",
+                            fontSize: "14px",
+                            lineHeight: "20px",
+                            minWidth: "132px",
                         }}
+                        aria-label="Open calendar"
                     >
-                        <TrophyIcon className="w-4 h-4" />
-                        Leaderboard
-                    </Link>
-                </>
+                        <Calendar className="h-4 w-4 text-white" />
+                        <span className="font-bold text-white leading-5">Calendar</span>
+                    </button>
+                ) : undefined
             }
         />
     );
