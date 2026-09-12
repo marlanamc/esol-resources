@@ -188,7 +188,7 @@ export function LearnerMenu({
                 <BookOpenIcon className="w-5 h-5 text-white" />
             </div>
             <div className={["min-w-0 flex items-center gap-1.5 sm:hidden", hideMobileName ? "hidden" : ""].join(" ")}>
-                <span className="block max-w-[7rem] truncate font-legible text-base font-bold leading-tight text-text">
+                <span className="block max-w-[7rem] truncate font-display text-base font-bold leading-tight tracking-[-0.01em] text-text">
                     {mobileName}
                 </span>
                 {showMarlieEmoji && (
