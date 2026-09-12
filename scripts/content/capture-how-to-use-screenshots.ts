@@ -11,6 +11,9 @@
  *
  * Writes PNGs to public/images/how-to-use-app/. Re-run when the learner UI changes.
  * Do not run in CI.
+ *
+ * Logs in through the form, then opens independent preview so the published
+ * course map is visible (the E2E classroom has no week reveals).
  */
 
 import { spawn, type ChildProcess } from "node:child_process";
@@ -127,32 +130,18 @@ async function seedE2eUsers(): Promise<void> {
 }
 
 async function login(page: Page, username: string): Promise<void> {
-  const authRequest = page.context().request;
-  const csrfResponse = await authRequest.get(`${BASE_URL}/api/auth/csrf`);
-  if (!csrfResponse.ok()) {
-    throw new Error(`CSRF fetch failed: ${csrfResponse.status()}`);
-  }
-  const csrfPayload = (await csrfResponse.json()) as { csrfToken?: string };
-  if (!csrfPayload.csrfToken) {
-    throw new Error("NextAuth CSRF response missing csrfToken");
-  }
-
-  const signInResponse = await authRequest.post(`${BASE_URL}/api/auth/callback/credentials?json=true`, {
-    form: {
-      csrfToken: csrfPayload.csrfToken,
-      username,
-      password: PASSWORD,
-      callbackUrl: `${BASE_URL}/dashboard`,
-      json: "true",
-    },
-  });
-  if (!signInResponse.ok()) {
-    throw new Error(`Sign-in failed for ${username}: ${signInResponse.status()}`);
-  }
-
-  await page.goto(`${BASE_URL}/dashboard`, { waitUntil: "domcontentloaded" });
-  if (page.url().includes("password-reset") || page.url().includes("login")) {
-    throw new Error(`Login for ${username} did not reach the dashboard. URL: ${page.url()}`);
+  await page.goto(`${BASE_URL}/login`, { waitUntil: "domcontentloaded" });
+  await page.getByLabel(/username/i).fill(username);
+  await page.locator('input[name="password"]').fill(PASSWORD);
+  const credentialsResponse = page.waitForResponse(
+    (response) =>
+      response.url().includes("/api/auth/callback/credentials") && response.request().method() === "POST",
+    { timeout: 20_000 },
+  );
+  await page.getByRole("button", { name: /sign in/i }).click();
+  const response = await credentialsResponse;
+  if (!response.ok()) {
+    throw new Error(`Credentials callback failed for ${username}: ${response.status()}`);
   }
   await expect(page).toHaveURL(/\/dashboard/, { timeout: 20_000 });
 }
@@ -168,6 +157,18 @@ async function dismissChrome(page: Page): Promise<void> {
     }
     const welcome = document.querySelector('[aria-label="Welcome to Class Companion"]');
     if (welcome instanceof HTMLElement) welcome.style.display = "none";
+    for (const portal of Array.from(document.querySelectorAll("nextjs-portal"))) {
+      if (portal instanceof HTMLElement) portal.style.display = "none";
+    }
+    for (const node of Array.from(document.body.children)) {
+      if (
+        node instanceof HTMLElement &&
+        node.className.includes("fixed") &&
+        /points!/i.test(node.textContent || "")
+      ) {
+        node.style.display = "none";
+      }
+    }
   });
 }
 
@@ -208,6 +209,7 @@ async function gotoReady(page: Page, url: string): Promise<void> {
 }
 
 async function captureDesktop(page: Page): Promise<void> {
+  await gotoReady(page, `${BASE_URL}/dashboard/independent`);
   await gotoReady(page, `${BASE_URL}/dashboard/map?week=1`);
   await page
     .getByRole("heading", { name: /week 1|start the class/i })
@@ -293,16 +295,23 @@ async function captureDesktop(page: Page): Promise<void> {
 }
 
 async function captureMobile(page: Page): Promise<void> {
+  await gotoReady(page, `${BASE_URL}/dashboard/independent`);
   await gotoReady(page, `${BASE_URL}/dashboard/map?week=1`);
-  await page.waitForTimeout(800);
-  await shotFirstVisible(
-    page,
-    [
-      page.locator("#week-1"),
-      page.locator("main"),
-    ],
-    "mobile-home.png",
-  );
+  await page
+    .getByRole("heading", { name: /week 1|start the class/i })
+    .first()
+    .waitFor({ state: "visible", timeout: 20_000 })
+    .catch(() => undefined);
+  await page.evaluate(() => {
+    window.scrollTo(0, 0);
+  });
+  await page.waitForTimeout(500);
+  await page.screenshot({
+    path: path.join(OUT_DIR, "mobile-home.png"),
+    animations: "disabled",
+    fullPage: false,
+  });
+  console.log("  saved mobile-home.png (phone viewport)");
 }
 
 async function newPage(browser: Browser, viewport: { width: number; height: number }): Promise<Page> {
