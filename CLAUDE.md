@@ -355,6 +355,7 @@ Use `.env.example` as the canonical source.
 - Monitoring: `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN`, `SENTRY_ORG`, `SENTRY_PROJECT`
 - Safety: `ALLOW_PROD_DB_MUTATION`, `CONFIRM_DB_HOST`
 - Offline queue: `NEXT_PUBLIC_ENABLE_SUBMISSION_OUTBOX`
+- External links: `NEXT_PUBLIC_ENABLE_SAFARI_EXTERNAL_ESCAPE` (default on; set `"false"` to disable the iOS PWA escape-to-Safari hatch in `src/lib/shared/open-external-link.ts`)
 
 
 <!-- BEGIN:nextjs-agent-rules -->
