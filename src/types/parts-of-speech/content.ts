@@ -22,4 +22,17 @@ export interface PartsOfSpeechContent {
   roundOverrides?: POSPhaseRoundOverridesMap;
 }
 
+/**
+ * Runtime guard for an Activity.content payload.
+ *
+ * The renderer reaches this game by id or ui as well as by content type, so a
+ * row can arrive with content that is plain text, a legacy shape, or another
+ * game's JSON. Callers pass null on failure rather than erroring: this game
+ * runs fine with no content (free-play mode), unlike games that need a deck.
+ */
+export function isPartsOfSpeechContent(value: unknown): value is PartsOfSpeechContent {
+  if (!value || typeof value !== 'object') return false;
+  return (value as Record<string, unknown>)['type'] === 'parts-of-speech';
+}
+
 // ─── Constants ────────────────────────────────────────────────────────────────

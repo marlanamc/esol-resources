@@ -28,7 +28,7 @@ import type { SpeakingActivityContent, CafeCatchUpContent, TriviaGameContent, Gr
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
-import type { PartsOfSpeechContent } from "@/types/parts-of-speech";
+import { isPartsOfSpeechContent } from "@/types/parts-of-speech";
 import { POS_COLORS } from "@/types/parts-of-speech";
 
 // Shared fallback for the dynamically-imported activity/game chunks. Fills its container
@@ -169,7 +169,7 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                 }
                 // Always render parts-of-speech game when ID matches
                 if (activity.id === "parts-of-speech-game" || activity.ui === "parts-of-speech") {
-                    return <PartsOfSpeechGame activityId={activity.id} gameContent={content as PartsOfSpeechContent | null} />;
+                    return <PartsOfSpeechGame activityId={activity.id} gameContent={isPartsOfSpeechContent(content) ? content : null} />;
                 }
                 const gameUi = resolveActivityGameUi(activity);
                 switch (gameUi) {
@@ -224,7 +224,7 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <TimelineTensesGame activityId={activity.id} assignmentId={assignmentId} preset={timelinePreset} />;
                     }
                     case "parts-of-speech":
-                        return <PartsOfSpeechGame activityId={activity.id} gameContent={content as PartsOfSpeechContent | null} />;
+                        return <PartsOfSpeechGame activityId={activity.id} gameContent={isPartsOfSpeechContent(content) ? content : null} />;
                     case "emotion-spin-wheel":
                         return <EmotionSpinWheel activityId={activity.id} contentStr={activity.content} assignmentId={assignmentId} />;
                     case "cafe-catch-up":

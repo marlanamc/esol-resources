@@ -12,6 +12,7 @@ import type {
   POSRoundResults,
   POSGroupProgress,
   POSRoundMode,
+  POSGamePhase,
   PartsOfSpeechContent,
 } from '@/types/parts-of-speech';
 import {
@@ -27,8 +28,6 @@ import {
   getNextGroup,
 } from '@/data/parts-of-speech-groups';
 
-// ─── Phase type (extends base with no sorting step needed) ────────────────────
-export type POSGamePhase = 'selection' | 'intro' | 'exercise' | 'results';
 
 interface ExerciseOutcome {
   exercise: POSExercise;

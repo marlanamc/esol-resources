@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { getPOSGroup } from "@/data/parts-of-speech-groups";
 import { generateRound1Exercises } from "@/data/parts-of-speech-exercises";
-import type { POSGroup } from "@/types/parts-of-speech";
+import { isPartsOfSpeechContent, type POSGroup } from "@/types/parts-of-speech";
 import { partsOfSpeechDiscoveryContent } from "../../scripts/import/guided-course-map-content";
 
 // Guards the round configuration the guided Course Map wrapper actually ships,
@@ -71,5 +71,19 @@ describe("Guided Course Map preset: Parts of Speech Discovery", () => {
       const exercises = generateRound1Exercises(group, options);
       expect(exercises.length).toBeLessThanOrEqual(configuredSize!);
     }
+  });
+});
+
+describe("isPartsOfSpeechContent", () => {
+  it("accepts the content the guided wrapper ships", () => {
+    expect(isPartsOfSpeechContent(partsOfSpeechDiscoveryContent)).toBe(true);
+  });
+
+  it("rejects payloads the renderer can legitimately be handed", () => {
+    expect(isPartsOfSpeechContent(null)).toBe(false);
+    expect(isPartsOfSpeechContent(undefined)).toBe(false);
+    expect(isPartsOfSpeechContent("Q: what is a verb?")).toBe(false);
+    expect(isPartsOfSpeechContent({ type: "grammar-hospital", cases: [] })).toBe(false);
+    expect(isPartsOfSpeechContent({})).toBe(false);
   });
 });
