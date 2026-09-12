@@ -1,37 +1,13 @@
 import { PrismaClient } from "@prisma/client";
-import type { PartsOfSpeechContent } from "@/types/parts-of-speech";
 import type { GrammarHospitalContent } from "@/types/activity";
+import {
+  numbersThroughTrillionsContent,
+  partsOfSpeechDiscoveryContent,
+} from "./guided-course-map-content";
 
 const { requireSafeDbTarget } = require("../lib/require-safe-db-target");
 
 const prisma = new PrismaClient();
-
-const partsOfSpeechDiscoveryContent: PartsOfSpeechContent = {
-  type: "parts-of-speech",
-  courseMapPreset: true,
-  courseMapTitle: "Parts of Speech Discovery Game",
-  courseMapDirections: "Start here: learn verbs first. This version is already set up for you.",
-  groupId: "pos-1-verbs",
-  roundMode: "round1",
-  roundOverrides: {
-    foundation: {
-      rounds: {
-        round1: {
-          roundSize: 6,
-          exerciseTypes: ["photo-sort", "pattern-choice", "swipe-sort"],
-        },
-      },
-    },
-  },
-};
-
-const numbersThroughTrillionsContent = {
-  type: "numbers-game",
-  courseMapPreset: true,
-  courseMapTitle: "Numbers Through Trillions",
-  courseMapDirections: "Practice big round numbers. The category is already chosen for this level.",
-  category: "Round Numbers (1,000 | 5 million | 1 billion)",
-};
 
 async function main() {
   requireSafeDbTarget("sync guided Course Map wrappers");

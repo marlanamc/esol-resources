@@ -576,15 +576,19 @@ function getAvailableExerciseTypes(
   const allowFunctionMatch = round >= 4;
 
   if (phase === 'foundation') {
-    if (round === 1) return ['pattern-choice'];
+    // Round 1 mirrors what the hardcoded foundation branch always generated
+    // (pattern-choice + the two supporting types), plus the picture-based
+    // sorts. Keeping it accurate matters now that the branch honors this list:
+    // an omission here silently removes an exercise type from beginners.
+    if (round === 1) return [...base, 'photo-sort', 'swipe-sort'];
     if (round === 2) return [...base, 'swipe-sort'];
     return [...base, 'swipe-sort', 'contrast-pair'];
   }
   if (phase === 'sentence-roles') {
     if (round === 1) return ['pattern-choice', 'sentence-completion', 'odd-one-out', 'swipe-sort'];
     if (round === 2) return [...base, 'pos-tagging', 'photo-sort'];
-    if (round === 3) return [...base, 'pos-tagging', 'photo-sort', 'word-family', 'sentence-diagram', 'error-correction', 'contrast-pair'];
-    const types = [...base, 'pos-tagging', 'photo-sort', 'word-family', 'sentence-diagram', 'error-correction', 'contrast-pair'] as POSExerciseType[];
+    if (round === 3) return [...base, 'pos-tagging', 'photo-sort', 'word-family', 'sentence-diagram', 'error-correction', 'contrast-pair', 'pattern-sorting'];
+    const types = [...base, 'pos-tagging', 'photo-sort', 'word-family', 'sentence-diagram', 'error-correction', 'contrast-pair', 'pattern-sorting'] as POSExerciseType[];
     if (allowFunctionMatch) types.push('function-match');
     return types;
   }
@@ -604,13 +608,16 @@ function getAvailableExerciseTypes(
     if (allowFunctionMatch) types.push('function-match');
     return types;
   }
-  // application-bridge: all types from Round 1
+  // application-bridge: the widest mix, from Round 1.
+  // 'sentence-builder' is deliberately excluded — drag-to-build is the
+  // highest-friction interaction in the set and these final groups are
+  // rarely reached. The renderer stays on disk; re-add here to revive it.
   return [
     'pattern-choice', 'sentence-completion', 'odd-one-out',
     'pos-tagging', 'word-family', 'minimal-pair',
-    'word-transform', 'function-match', 'mad-libs', 'sentence-builder',
+    'word-transform', 'function-match', 'mad-libs',
     'sentence-diagram', 'photo-sort', 'swipe-sort',
-    'error-correction', 'contrast-pair',
+    'error-correction', 'contrast-pair', 'pattern-sorting',
   ] as POSExerciseType[];
 }
 
@@ -1532,21 +1539,50 @@ export function generateRound1Exercises(group: POSGroup, options?: POSGeneration
 
   const isFoundation = group.phase === 'foundation';
   const roundSize = resolveRoundSize(group, 1, options);
+  // Resolved before the foundation branch: that branch used to return without
+  // ever consulting the whitelist, so a course-map preset's exerciseTypes were
+  // silently discarded for foundation groups (photo-sort and swipe-sort never
+  // reached students). Guarded by tests/games/parts-of-speech-round-config.
+  const available = getAvailableExerciseTypes(group.phase, 1, options);
 
   if (isFoundation) {
     // Foundation Round 1: 3-choice cap for pattern-choice + short supporting types.
+    // pattern-choice is the baseline recognition exercise and stays unconditional,
+    // matching the non-foundation branch below.
+    let foundationPhotoSortCount = 0;
+    let foundationSwipeSortCount = 0;
+
     for (const pattern of patterns) {
       exercises.push(makePatternChoice(group, pattern, true, tracker));
     }
-    for (const pattern of patterns) {
-      if (exercises.length >= roundSize) break;
-      const sc = makeSentenceCompletion(group, pattern, true, tracker);
-      if (sc) exercises.push(sc);
+    if (available.includes('sentence-completion')) {
+      for (const pattern of patterns) {
+        if (exercises.length >= roundSize) break;
+        const sc = makeSentenceCompletion(group, pattern, true, tracker);
+        if (sc) exercises.push(sc);
+      }
     }
-    for (const pattern of patterns) {
-      if (exercises.length >= roundSize) break;
-      const ooo = makeOddOneOut(group, pattern, true);
-      if (ooo) exercises.push(ooo);
+    if (available.includes('odd-one-out')) {
+      for (const pattern of patterns) {
+        if (exercises.length >= roundSize) break;
+        const ooo = makeOddOneOut(group, pattern, true);
+        if (ooo) exercises.push(ooo);
+      }
+    }
+    // Capped at one apiece so a short round never becomes all photo or all swipe cards.
+    if (available.includes('photo-sort')) {
+      for (const pattern of patterns) {
+        if (foundationPhotoSortCount >= 1) break;
+        const ps = makePhotoSort(group, pattern, true);
+        if (ps) { exercises.push(ps); foundationPhotoSortCount += 1; }
+      }
+    }
+    if (available.includes('swipe-sort')) {
+      for (const pattern of patterns) {
+        if (foundationSwipeSortCount >= 1) break;
+        const ss = makeSwipeSort(group, pattern, true);
+        if (ss) { exercises.push(ss); foundationSwipeSortCount += 1; }
+      }
     }
 
     // Shuffle and slice, then apply graduation
@@ -1563,7 +1599,6 @@ export function generateRound1Exercises(group: POSGroup, options?: POSGeneration
   }
 
   // Non-foundation phases: mix gated by phase/round
-  const available = getAvailableExerciseTypes(group.phase, 1, options);
   let swipeSortCount = 0;
   let sentenceDiagramCount = 0;
   let r1PhotoSortCount = 0;
@@ -1622,9 +1657,13 @@ export function generateRound1Exercises(group: POSGroup, options?: POSGeneration
     }
   }
 
-  // Sorting exercise as a round-out (cross-POS or intra-POS subcategory)
-  const sort = makePatternSorting(group, patterns, true) ?? makeSubcategorySorting(group, patterns, true);
-  if (sort) exercises.push(sort);
+  // Sorting exercise as a round-out (cross-POS or intra-POS subcategory).
+  // Gated like every other type so a preset's exerciseTypes can suppress it;
+  // it used to append unconditionally and so could not be turned off.
+  if (available.includes('pattern-sorting')) {
+    const sort = makePatternSorting(group, patterns, true) ?? makeSubcategorySorting(group, patterns, true);
+    if (sort) exercises.push(sort);
+  }
 
   return shuffle(exercises).slice(0, roundSize);
 }
