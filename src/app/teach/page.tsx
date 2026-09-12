@@ -11,7 +11,6 @@ import {
     AlertTriangle, Plus,
 } from "lucide-react";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
-import { TeachClassSwitcher } from "@/components/teach/TeachClassSwitcher";
 import { getTimeframedLeaderboard } from "@/lib/gamification/gamification";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
 
@@ -124,7 +123,7 @@ export default async function TeachHomePage({
     const params = await searchParams;
     const userId = session.user.id;
     const admin = isAdmin(session.user);
-    const { classId: resolvedClassId, classes: classOptions } = await resolveTeachClassId(
+    const { classId: resolvedClassId } = await resolveTeachClassId(
         userId,
         admin,
         params.classId
@@ -234,10 +233,6 @@ export default async function TeachHomePage({
                         </p>
                     </div>
                     <div className="flex flex-wrap items-center gap-2">
-                        <TeachClassSwitcher
-                            classes={classOptions}
-                            selectedClassId={cls.id}
-                        />
                         <Link
                             href={`/teach/classes/${cls.id}`}
                             className="inline-flex items-center gap-1.5 rounded border px-3 py-2 text-sm font-bold text-[#345476] transition-colors hover:bg-[#f4f2ee]"

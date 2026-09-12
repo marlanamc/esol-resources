@@ -1,5 +1,9 @@
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
+import { TEACH_CLASS_COOKIE } from "@/lib/teach/active-class-shared";
+
+export { TEACH_CLASS_COOKIE };
 
 export const E2E_CLASS_CODE = "E2ETEST";
 
@@ -33,15 +37,24 @@ export async function listTeachClasses(userId: string, admin: boolean): Promise<
     return sortTeachClasses(classes, userId);
 }
 
+/**
+ * Resolves the active teaching class, preferring an explicit `?classId=` over
+ * the remembered cookie, then falling back to the teacher's first class.
+ */
 export async function resolveTeachClassId(
     userId: string,
     admin: boolean,
     classId?: string | null
 ): Promise<{ classId: string | null; classes: TeachClassOption[] }> {
-    const classes = await listTeachClasses(userId, admin);
+    const [classes, cookieStore] = await Promise.all([
+        listTeachClasses(userId, admin),
+        cookies(),
+    ]);
 
-    if (classId) {
-        const selected = classes.find((cls) => cls.id === classId);
+    const candidates = [classId, cookieStore.get(TEACH_CLASS_COOKIE)?.value];
+    for (const candidate of candidates) {
+        if (!candidate) continue;
+        const selected = classes.find((cls) => cls.id === candidate);
         if (selected) return { classId: selected.id, classes };
     }
 

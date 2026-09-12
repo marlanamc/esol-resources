@@ -6,18 +6,26 @@ import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import Link from "next/link";
 import { Users, Eye, AlertCircle, ChevronRight } from "lucide-react";
+import { resolveTeachClassId } from "@/lib/teach/active-class";
 
 export const metadata = { title: "Classes | Class Companion" };
 
 const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
 function getCutoff() { return Date.now() - SEVEN_DAYS_MS; }
 
-export default async function TeachClassesPage() {
+export default async function TeachClassesPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ classId?: string }>;
+}) {
     const session = await getServerSession(authOptions);
     if (!session?.user) redirect("/login");
 
+    const params = await searchParams;
     const userId = session.user.id;
     const admin = isAdmin(session.user);
+    // This page deliberately lists every class; the active one is just marked.
+    const { classId: activeClassId } = await resolveTeachClassId(userId, admin, params.classId);
 
     const classes = await withPrismaReadRetry(() =>
         prisma.class.findMany({
@@ -89,17 +97,26 @@ export default async function TeachClassesPage() {
                             (e) => !e.student.lastActivityDate || e.student.lastActivityDate.getTime() < getCutoff()
                         ).length;
                         const currentWeek = cls.classReveals[0]?.week ?? null;
+                        const isActive = cls.id === activeClassId;
 
                         return (
                             <Link
                                 key={cls.id}
                                 href={`/dashboard/classes/${cls.id}`}
                                 className="flex items-center gap-4 p-4 rounded-2xl border bg-white transition-shadow hover:shadow-md"
-                                style={{ borderColor: "var(--border-subtle)" }}
+                                style={{ borderColor: isActive ? "var(--primary)" : "var(--border-subtle)" }}
                             >
                                 <div className="min-w-0 flex-1">
                                     <p className="font-display font-bold text-lg text-text leading-tight">
                                         {cls.name}
+                                        {isActive ? (
+                                            <span
+                                                className="ml-2 align-middle rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white"
+                                                style={{ background: "var(--primary)" }}
+                                            >
+                                                Active
+                                            </span>
+                                        ) : null}
                                     </p>
                                     <p className="text-xs text-text-muted font-mono mt-0.5 tracking-widest">
                                         {cls.code}

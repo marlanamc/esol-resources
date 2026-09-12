@@ -7,6 +7,7 @@ import { timedQuery } from "@/lib/shared/perf-log";
 import { GradebookClient } from "@/app/dashboard/gradebook/GradebookClient";
 import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
+import { resolveTeachClassId } from "@/lib/teach/active-class";
 
 export const metadata = { title: "Gradebook | Class Companion" };
 
@@ -35,7 +36,8 @@ export default async function TeachGradebookPage({
     const admin = isAdmin(session.user);
 
     const params = await searchParams;
-    const selectedClassId = params.classId || null;
+    // The Teaching header owns the class selection; this page follows it.
+    const { classId: selectedClassId } = await resolveTeachClassId(userId, admin, params.classId);
     const searchQuery = (params.q || "").trim();
     const requestedPage = parsePositiveInt(params.page, DEFAULT_PAGE);
     const requestedPageSize = Math.min(MAX_PAGE_SIZE, parsePositiveInt(params.pageSize, DEFAULT_PAGE_SIZE));
@@ -60,6 +62,7 @@ export default async function TeachGradebookPage({
 
     const filteredClasses = selectedClassId ? classes.filter((c) => c.id === selectedClassId) : classes;
     const classOptions = classes.map((c) => ({ id: c.id, name: c.name }));
+    const activeClassName = classes.find((c) => c.id === selectedClassId)?.name ?? null;
     const studentIds = Array.from(new Set(filteredClasses.flatMap((c) => c.enrollments.map((e) => e.student.id))));
 
     const studentWhere = {
@@ -161,7 +164,8 @@ export default async function TeachGradebookPage({
                     Grammar Gradebook
                 </h1>
                 <p className="text-sm text-text-muted mt-1">
-                    Mini-quiz scores across all grammar guides.
+                    Mini-quiz scores across all grammar guides
+                    {activeClassName ? ` · ${activeClassName}` : ""}.
                 </p>
             </div>
 
@@ -171,6 +175,7 @@ export default async function TeachGradebookPage({
                 submissions={submissions}
                 classes={classOptions}
                 selectedClassId={selectedClassId}
+                showClassFilter={false}
                 searchQuery={searchQuery}
                 pagination={{
                     page: currentPage,

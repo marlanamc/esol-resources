@@ -8,23 +8,33 @@ import { isAdmin, canUseTeacherTools } from "@/lib/auth/roles";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import TeacherReportCard from "@/components/dashboard/TeacherReportCard";
 import { StudentEngagementTable } from "@/components/dashboard/StudentEngagementTable";
+import { resolveTeachClassId } from "@/lib/teach/active-class";
 
 export const metadata = { title: "Reports | Class Companion" };
 
-export default async function TeachReportsPage() {
+export default async function TeachReportsPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ classId?: string }>;
+}) {
     const session = await getServerSession(authOptions);
     if (!session?.user) redirect("/login");
     if (!canUseTeacherTools(session.user)) redirect("/dashboard");
 
+    const params = await searchParams;
     const userId = session.user.id;
     const admin = isAdmin(session.user);
     const userRole = session.user.role || "teacher";
+    const { classId: activeClassId } = await resolveTeachClassId(userId, admin, params.classId);
 
     const classes = await timedQuery(
         { route: "/teach/reports", queryLabel: "class.findMany.teacherReports", userRole },
         () => withPrismaReadRetry(() =>
             prisma.class.findMany({
-                where: admin ? {} : { teacherId: userId },
+                where: {
+                    ...(admin ? {} : { teacherId: userId }),
+                    ...(activeClassId ? { id: activeClassId } : {}),
+                },
                 select: {
                     id: true,
                     name: true,
@@ -60,6 +70,7 @@ export default async function TeachReportsPage() {
         name: cls.name,
         studentCount: cls.enrollments.length,
     }));
+    const activeClassName = classes.find((cls) => cls.id === activeClassId)?.name ?? null;
 
     // Build enriched student list for engagement table
     const studentSectionsMap = new Map<string, Map<string, string>>();
@@ -147,12 +158,15 @@ export default async function TeachReportsPage() {
                     Activity Reports
                 </h1>
                 <p className="text-text-muted text-sm mt-1">
-                    Track student engagement and popular activities across your classes
+                    Track student engagement and popular activities
+                    {activeClassName ? ` in ${activeClassName}` : " across your classes"}
                 </p>
             </div>
 
             <TeacherReportCard
                 classes={formattedClasses}
+                activeClassId={activeClassId}
+                showClassFilter={false}
             />
 
             {enrichedStudents.length > 0 && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { GrammarGradebook } from "@/components/dashboard";
 
@@ -33,6 +33,8 @@ interface Props {
     submissions: Submission[];
     classes: ClassOption[];
     selectedClassId: string | null;
+    /** Hidden under /teach, where the header class switcher owns the selection. */
+    showClassFilter?: boolean;
     searchQuery: string;
     pagination: {
         page: number;
@@ -48,19 +50,21 @@ export function GradebookClient({
     submissions,
     classes,
     selectedClassId,
+    showClassFilter = true,
     searchQuery,
     pagination,
 }: Props) {
     const router = useRouter();
+    const pathname = usePathname();
     const searchParams = useSearchParams();
 
     const pushWithParams = useCallback(
         (mutate: (params: URLSearchParams) => void) => {
             const params = new URLSearchParams(searchParams.toString());
             mutate(params);
-            router.push(`/dashboard/gradebook?${params.toString()}`);
+            router.push(`${pathname}?${params.toString()}`);
         },
-        [router, searchParams]
+        [pathname, router, searchParams]
     );
 
     const handleClassChange = useCallback(
@@ -118,7 +122,7 @@ export function GradebookClient({
             submissions={submissions}
             classes={classes}
             selectedClassId={selectedClassId}
-            onClassChange={handleClassChange}
+            onClassChange={showClassFilter ? handleClassChange : undefined}
             searchQuery={searchQuery}
             onSearchChange={handleSearchChange}
             pagination={pagination}

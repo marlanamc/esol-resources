@@ -5,18 +5,28 @@ import { prisma } from "@/lib/database/prisma";
 import { isAdmin } from "@/lib/auth/roles";
 import { MiniCalendar, UpcomingEventsList, CalendarEvent } from "@/components/dashboard";
 import { CreateCalendarEventForm } from "@/components/dashboard/CreateCalendarEventForm";
+import { resolveTeachClassId } from "@/lib/teach/active-class";
 
 export const metadata = { title: "Calendar | Class Companion" };
 
-export default async function TeachCalendarPage() {
+export default async function TeachCalendarPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ classId?: string }>;
+}) {
     const session = await getServerSession(authOptions);
     if (!session?.user) redirect("/login");
 
+    const params = await searchParams;
     const userId = session.user.id;
     const admin = isAdmin(session.user);
+    const { classId: activeClassId } = await resolveTeachClassId(userId, admin, params.classId);
 
     const classes = await prisma.class.findMany({
-        where: admin ? {} : { teacherId: userId },
+        where: {
+            ...(admin ? {} : { teacherId: userId }),
+            ...(activeClassId ? { id: activeClassId } : {}),
+        },
         include: {
             assignments: {
                 include: {
@@ -70,6 +80,7 @@ export default async function TeachCalendarPage() {
         id: c.id,
         name: c.name,
     }));
+    const activeClassName = classes.find((c) => c.id === activeClassId)?.name ?? null;
 
     return (
         <div>
@@ -80,6 +91,9 @@ export default async function TeachCalendarPage() {
                 <h1 className="font-display font-bold text-2xl sm:text-3xl text-text mt-0.5">
                     Calendar
                 </h1>
+                {activeClassName ? (
+                    <p className="mt-1 text-sm font-medium text-text-muted">{activeClassName}</p>
+                ) : null}
             </div>
 
             <div className="grid gap-6 lg:grid-cols-[auto_1fr_300px]">

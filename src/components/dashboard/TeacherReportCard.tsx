@@ -59,6 +59,10 @@ type LearnerType = 'classroom' | 'independent' | 'all';
 interface TeacherReportCardProps {
   initialData?: ReportData;
   classes?: ClassOption[];
+  /** Class picked in the Teaching header; seeds and follows the report scope. */
+  activeClassId?: string | null;
+  /** Hidden under /teach, where the header class switcher owns the selection. */
+  showClassFilter?: boolean;
   showLearnerTypeFilter?: boolean;
   classroomCount?: number;
   independentCount?: number;
@@ -81,17 +85,24 @@ function timeAgo(dateString: string): string {
 export default function TeacherReportCard({
   initialData,
   classes = [],
+  activeClassId = null,
+  showClassFilter = true,
   showLearnerTypeFilter = false,
   classroomCount = 0,
   independentCount = 0,
 }: TeacherReportCardProps) {
   const [timeframe, setTimeframe] = useState<'daily' | 'weekly'>('weekly');
-  const [selectedClassId, setSelectedClassId] = useState<string>('all');
+  const [selectedClassId, setSelectedClassId] = useState<string>(activeClassId || 'all');
   const [learnerType, setLearnerType] = useState<LearnerType>('classroom');
   const [data, setData] = useState<ReportData | null>(initialData || null);
   const [loading, setLoading] = useState(!initialData);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdatedText, setLastUpdatedText] = useState('');
+
+  // Follow the Teaching header when it switches class.
+  useEffect(() => {
+    if (activeClassId) setSelectedClassId(activeClassId);
+  }, [activeClassId]);
 
   // Update "time ago" text every minute
   useEffect(() => {
@@ -242,7 +253,7 @@ export default function TeacherReportCard({
         {/* Class Selector and Toggle Buttons Row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
           {/* Class Selector Dropdown - hide when viewing independent learners */}
-          {classes.length > 0 && learnerType !== 'independent' && (
+          {showClassFilter && classes.length > 0 && learnerType !== 'independent' && (
             <select
               value={selectedClassId}
               onChange={(e) => setSelectedClassId(e.target.value)}
