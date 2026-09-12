@@ -10,11 +10,18 @@ interface ClassOption {
 
 interface Props {
     classes: ClassOption[];
+    /** The class the surrounding page is scoped to. Events saved to any other
+     *  class are filtered out of that page's list, so default to it. */
+    defaultClassId?: string | null;
 }
 
-export function CreateCalendarEventForm({ classes }: Props) {
+export function CreateCalendarEventForm({ classes, defaultClassId }: Props) {
     const router = useRouter();
-    const [classId, setClassId] = useState(classes[0]?.id || "");
+    const initialClassId =
+        (defaultClassId && classes.some((cls) => cls.id === defaultClassId)
+            ? defaultClassId
+            : classes[0]?.id) || "";
+    const [classId, setClassId] = useState(initialClassId);
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
     const [type, setType] = useState<"holiday" | "event" | "due" | "quiz">("holiday");
@@ -77,15 +84,15 @@ export function CreateCalendarEventForm({ classes }: Props) {
                 <p className="text-xs text-text-muted">Create a class first to share dates.</p>
             )}
 
-            {classes.length > 1 && (
+            {classes.length > 0 && (
                 <div className="space-y-1">
-                    <label className={labelClass}>Class</label>
+                    <label className={labelClass} htmlFor="calendar-event-class">Class</label>
                     <select
+                        id="calendar-event-class"
                         value={classId}
                         onChange={(e) => setClassId(e.target.value)}
                         className={fieldClass}
                         style={fieldStyle}
-                        disabled={classes.length === 0}
                     >
                         {classes.map((cls) => (
                             <option key={cls.id} value={cls.id}>{cls.name}</option>

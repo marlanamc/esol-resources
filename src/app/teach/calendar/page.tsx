@@ -100,7 +100,7 @@ export default async function TeachCalendarPage({
                         <h2 className="font-semibold text-sm text-text mb-3">
                             Add event
                         </h2>
-                        <CreateCalendarEventForm classes={classOptions} />
+                        <CreateCalendarEventForm classes={classOptions} defaultClassId={activeClassId} />
                     </div>
                 }
             />

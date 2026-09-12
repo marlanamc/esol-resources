@@ -156,7 +156,7 @@ export default function UpcomingEventsList({
 
                         return (
                             <div
-                                key={`${ev.title}-${idx}`}
+                                key={ev.id ?? `${ev.title}-${ev.date}-${idx}`}
                                 className="dashboard-panel-hover relative rounded-2xl border px-4 py-4 surface-card-shadow"
                                 style={{
                                     borderColor: "var(--dashboard-border)",
@@ -271,10 +271,10 @@ export default function UpcomingEventsList({
                                                 }}
                                                 className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                                             >
-                                                <option value="holiday">Holiday</option>
-                                                <option value="event">Event</option>
-                                                <option value="due">Reminder</option>
-                                                <option value="quiz">Quiz/Test</option>
+                                                <option value="holiday">Holiday / No school</option>
+                                                <option value="event">School event</option>
+                                                <option value="due">Reminder / due date</option>
+                                                <option value="quiz">Quiz / Test</option>
                                             </select>
                                         </div>
                                         <div className="space-y-1">
