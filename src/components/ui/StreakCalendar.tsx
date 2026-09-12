@@ -83,7 +83,7 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
   const getColorClass = (level: number): string => {
     switch (level) {
       case 0:
-        return 'bg-gray-100 border border-gray-200';
+        return 'bg-gray-100 border border-gray-200 dark:bg-black/70 dark:border-white/5';
       case 1:
         return 'bg-primary/20 border border-primary/30';
       case 2:
@@ -91,7 +91,7 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
       case 3:
         return 'bg-primary border border-primary';
       default:
-        return 'bg-gray-100 border border-gray-200';
+        return 'bg-gray-100 border border-gray-200 dark:bg-black/70 dark:border-white/5';
     }
   };
 
@@ -157,8 +157,8 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
                         className={`
                           w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-sm transition-[background-color,opacity] duration-200
                           ${getColorClass(level)}
-                          ${isToday ? 'ring-2 ring-primary ring-offset-1 z-10' : ''}
-                          hover:ring-2 hover:ring-gray-400 hover:ring-offset-1
+                          ${isToday ? 'ring-2 ring-primary ring-offset-1 ring-offset-background z-10' : ''}
+                          hover:ring-2 hover:ring-gray-400 hover:ring-offset-1 hover:ring-offset-background
                           cursor-pointer shrink-0
                         `}
                         title={`${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}: ${activityCount} ${activityCount === 1 ? 'activity' : 'activities'}`}

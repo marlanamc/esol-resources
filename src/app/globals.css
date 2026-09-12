@@ -995,10 +995,14 @@ textarea {
 /* Removed fixed font-size declarations to allow Tailwind classes to work */
 /* Use Tailwind utility classes (text-xl, text-2xl, etc.) for sizing */
 
-:where(p) {
-  margin-bottom: var(--spacing-md);
-  color: var(--color-text);
-  line-height: var(--line-height-base);
+/* Keep a readable default on unstyled <p>. In @layer base so Tailwind
+   margin/leading utilities can override it. */
+@layer base {
+  :where(p) {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+    line-height: var(--line-height-base);
+  }
 }
 
 a:not([class]) {

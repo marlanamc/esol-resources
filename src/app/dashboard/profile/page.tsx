@@ -15,9 +15,10 @@ import { ClickableAvatarDisplay } from "@/components/ui/ClickableAvatarDisplay";
 import { MiniCertificateCard, EmptyCertificateCard, NeedsImprovementCard } from "@/components/ui/MiniCertificateCard";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { qualifiesForMedal } from "@/lib/medal-utils";
-import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight, Palette } from "lucide-react";
-import { AccentColorPicker } from "@/components/dashboard/AccentColorPicker";
-import { resolveAccentKey } from "@/lib/accent-colors";
+import { getVisibleMap, type CourseMapUnit } from "@/lib/course-map";
+import { enrichCourseMapUnitsWithGrammarIds } from "@/lib/course-map-progress.server";
+import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
+import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
 
 // Force dynamic rendering to show real-time activity data
 export const dynamic = 'force-dynamic';
@@ -57,6 +58,18 @@ const hasMiniQuiz = (content: string): boolean => {
     const parsed = parseActivityContent(content);
     return Boolean(parsed?.miniQuiz);
 };
+
+function collectVisibleMapActivityIds(units: CourseMapUnit[]): Set<string> {
+    const ids = new Set<string>();
+    for (const unit of units) {
+        for (const level of unit.levels) {
+            for (const item of [...level.requiredActivities, ...(level.extraPractice ?? [])]) {
+                if (item.activityId) ids.add(item.activityId);
+            }
+        }
+    }
+    return ids;
+}
 
 const cleanGuideTitle = (title: string): string => {
     return title
@@ -311,7 +324,7 @@ export default async function ProfilePage() {
         releasedGrammarGuideActivities,
         verbQuizSubmissions,
         grammarQuizSubmissions,
-        userPreferences,
+        visibleMapUnits,
     ] = await Promise.all([
         // Get activity progress for category stats.
         // Only status + activity.category are consumed below (see category filters
@@ -352,6 +365,8 @@ export default async function ProfilePage() {
             where: {
                 type: "quiz",
                 category: "quizzes",
+                deletedAt: null,
+                isReleased: true,
                 content: {
                     contains: "\"type\":\"verb-quiz\"",
                 },
@@ -361,6 +376,10 @@ export default async function ProfilePage() {
                 title: true,
                 content: true,
                 createdAt: true,
+                type: true,
+                category: true,
+                isReleased: true,
+                deletedAt: true,
             },
             orderBy: { createdAt: "asc" },
         }),
@@ -368,12 +387,17 @@ export default async function ProfilePage() {
             where: {
                 type: "guide",
                 category: "grammar",
+                deletedAt: null,
                 isReleased: true,
             },
             select: {
                 id: true,
                 title: true,
                 content: true,
+                type: true,
+                category: true,
+                isReleased: true,
+                deletedAt: true,
             },
             orderBy: { createdAt: "desc" },
         }),
@@ -417,10 +441,9 @@ export default async function ProfilePage() {
             },
             orderBy: { updatedAt: "desc" },
         }),
-        prisma.userPreferences.findUnique({
-            where: { userId },
-            select: { accentColor: true },
-        }),
+        getVisibleMap({ id: userId, role: userRole }).then(({ units }) =>
+            enrichCourseMapUnitsWithGrammarIds(units)
+        ),
     ]);
 
     // Combine both date sources
@@ -530,8 +553,10 @@ export default async function ProfilePage() {
             };
         });
 
+    const visibleMapActivityIds = collectVisibleMapActivityIds(visibleMapUnits);
+
     const releasedVerbQuizActivities = releasedVerbQuizActivitiesRaw
-        .filter((activity) => parseActivityContent(activity.content)?.released === true)
+        .filter((activity) => isLearnerVisibleActivity(activity))
         .sort((a, b) => getVerbQuizOrder(a.title) - getVerbQuizOrder(b.title));
 
     const latestVerbSubmissionByActivityId = new Map<string, { score: number; submittedAt: Date }>();
@@ -546,7 +571,11 @@ export default async function ProfilePage() {
         }
     }
 
-    const verbQuizGrades: QuizGradeRow[] = releasedVerbQuizActivities.map((activity) => {
+    const verbQuizGrades: QuizGradeRow[] = releasedVerbQuizActivities
+        .filter((activity) =>
+            visibleMapActivityIds.has(activity.id) || latestVerbSubmissionByActivityId.has(activity.id)
+        )
+        .map((activity) => {
         const submission = latestVerbSubmissionByActivityId.get(activity.id);
         return {
             id: activity.id,
@@ -557,22 +586,22 @@ export default async function ProfilePage() {
     });
 
     const orderedReleasedGrammarGuideActivities = getOrderedGrammarGuidesForActivities(releasedGrammarGuideActivities);
-    const releasedMiniQuizActivities = orderedReleasedGrammarGuideActivities.filter((activity) =>
-        hasMiniQuiz(activity.content)
+    const miniQuizEligibleActivities = orderedReleasedGrammarGuideActivities.filter((activity) =>
+        hasMiniQuiz(activity.content) && isLearnerVisibleActivity(activity)
     );
 
-    const releasedMiniQuizActivityIds = new Set(releasedMiniQuizActivities.map((activity) => activity.id));
-    const releasedMiniQuizIdByTitle = new Map(
-        releasedMiniQuizActivities.map((activity) => [normalizeGuideTitle(activity.title), activity.id] as const)
+    const miniQuizEligibleIds = new Set(miniQuizEligibleActivities.map((activity) => activity.id));
+    const miniQuizEligibleIdByTitle = new Map(
+        miniQuizEligibleActivities.map((activity) => [normalizeGuideTitle(activity.title), activity.id] as const)
     );
 
     const latestMiniQuizSubmissionByActivityId = new Map<string, { score: number; submittedAt: Date }>();
     for (const submission of grammarQuizSubmissions) {
         if (submission.score === null) continue;
 
-        const canonicalActivityId = releasedMiniQuizActivityIds.has(submission.activityId)
+        const canonicalActivityId = miniQuizEligibleIds.has(submission.activityId)
             ? submission.activityId
-            : releasedMiniQuizIdByTitle.get(normalizeGuideTitle(submission.activity.title));
+            : miniQuizEligibleIdByTitle.get(normalizeGuideTitle(submission.activity.title));
 
         if (!canonicalActivityId) continue;
 
@@ -584,6 +613,10 @@ export default async function ProfilePage() {
             });
         }
     }
+
+    const releasedMiniQuizActivities = miniQuizEligibleActivities.filter((activity) =>
+        visibleMapActivityIds.has(activity.id) || latestMiniQuizSubmissionByActivityId.has(activity.id)
+    );
 
     const miniQuizGrades: QuizGradeRow[] = releasedMiniQuizActivities.map((activity) => {
         const submission = latestMiniQuizSubmissionByActivityId.get(activity.id);
@@ -655,84 +688,70 @@ export default async function ProfilePage() {
                                     <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-display text-text mb-1 tracking-tight">
                                         Hi, {user.username ?? user.name?.split(' ')[0] ?? 'there'}! 👋
                                     </h1>
-                                    <p className="text-base sm:text-lg text-text-muted font-medium">
+                                    <p className="mb-0 text-base font-medium text-text-muted sm:text-lg">
                                         {welcomeMessage}
                                     </p>
                                 </div>
 
                                 {/* Inline stats - visible on larger screens */}
-                                <div className="hidden lg:flex items-center gap-6">
+                                <div className="hidden items-center gap-5 lg:flex">
                                     <div className="flex items-center gap-2 text-primary">
-                                        <Trophy className="w-5 h-5" />
-                                        <div className="text-right">
-                                            <p className="text-xl font-bold leading-tight">{user.points.toLocaleString()}</p>
-                                            <p className="text-xs text-text-muted">Points</p>
+                                        <Trophy className="h-4 w-4" />
+                                        <div className="text-right leading-none">
+                                            <div className="text-lg font-bold tabular-nums">{user.points.toLocaleString()}</div>
+                                            <div className="mt-0.5 text-[11px] font-medium text-text-muted">Points</div>
                                         </div>
                                     </div>
-                                    <div className="w-px h-10 bg-border/60" />
+                                    <div className="h-8 w-px bg-border/60" />
                                     <div className="flex items-center gap-2 text-amber-500">
-                                        <Flame className="w-5 h-5" />
-                                        <div className="text-right">
-                                            <p className="text-xl font-bold leading-tight">{effectiveCurrentStreak}</p>
-                                            <p className="text-xs text-text-muted">Day Streak</p>
+                                        <Flame className="h-4 w-4" />
+                                        <div className="text-right leading-none">
+                                            <div className="text-lg font-bold tabular-nums">{effectiveCurrentStreak}</div>
+                                            <div className="mt-0.5 text-[11px] font-medium text-text-muted">Day streak</div>
                                         </div>
                                     </div>
-                                    <div className="w-px h-10 bg-border/60" />
+                                    <div className="h-8 w-px bg-border/60" />
                                     <div className="flex items-center gap-2 text-success">
-                                        <BookOpen className="w-5 h-5" />
-                                        <div className="text-right">
-                                            <p className="text-xl font-bold leading-tight">{totalCompleted}</p>
-                                            <p className="text-xs text-text-muted">Explored</p>
+                                        <BookOpen className="h-4 w-4" />
+                                        <div className="text-right leading-none">
+                                            <div className="text-lg font-bold tabular-nums">{totalCompleted}</div>
+                                            <div className="mt-0.5 text-[11px] font-medium text-text-muted">Explored</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Stats row for mobile/tablet - shown below greeting */}
-                            <div className="lg:hidden grid grid-cols-3 gap-3 mt-5 pt-5 border-t border-border/40">
-                                <div className="flex flex-col items-center text-center">
-                                    <div className="flex items-center gap-1.5 text-primary mb-1">
-                                        <Trophy className="w-4 h-4" />
-                                        <span className="text-lg sm:text-xl font-bold">{user.points.toLocaleString()}</span>
+                            <div className="mt-5 grid grid-cols-3 gap-3 border-t border-border/40 pt-4 lg:hidden">
+                                <div className="flex flex-col items-center text-center leading-none">
+                                    <div className="mb-1 flex items-center gap-1.5 text-primary">
+                                        <Trophy className="h-4 w-4" />
+                                        <span className="text-lg font-bold tabular-nums sm:text-xl">{user.points.toLocaleString()}</span>
                                     </div>
-                                    <p className="text-xs text-text-muted">Points</p>
+                                    <div className="text-[11px] font-medium text-text-muted">Points</div>
                                 </div>
-                                <div className="flex flex-col items-center text-center border-x border-border/40">
-                                    <div className="flex items-center gap-1.5 text-amber-500 mb-1">
-                                        <Flame className="w-4 h-4" />
-                                        <span className="text-lg sm:text-xl font-bold">{effectiveCurrentStreak}</span>
+                                <div className="flex flex-col items-center border-x border-border/40 text-center leading-none">
+                                    <div className="mb-1 flex items-center gap-1.5 text-amber-500">
+                                        <Flame className="h-4 w-4" />
+                                        <span className="text-lg font-bold tabular-nums sm:text-xl">{effectiveCurrentStreak}</span>
                                     </div>
-                                    <p className="text-xs text-text-muted">Day Streak</p>
+                                    <div className="text-[11px] font-medium text-text-muted">Day streak</div>
                                 </div>
-                                <div className="flex flex-col items-center text-center">
-                                    <div className="flex items-center gap-1.5 text-success mb-1">
-                                        <BookOpen className="w-4 h-4" />
-                                        <span className="text-lg sm:text-xl font-bold">{totalCompleted}</span>
+                                <div className="flex flex-col items-center text-center leading-none">
+                                    <div className="mb-1 flex items-center gap-1.5 text-success">
+                                        <BookOpen className="h-4 w-4" />
+                                        <span className="text-lg font-bold tabular-nums sm:text-xl">{totalCompleted}</span>
                                     </div>
-                                    <p className="text-xs text-text-muted">Explored</p>
+                                    <div className="text-[11px] font-medium text-text-muted">Explored</div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    {/* Appearance */}
-                    <div className="mb-8 rounded-2xl border border-border/60 bg-white/80 backdrop-blur-md p-6 shadow-sm animate-fade-in-up delay-150">
-                        <div className="mb-5 flex items-center gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                                <Palette className="h-5 w-5" />
-                            </div>
-                            <div>
-                                <h2 className="text-lg font-bold text-text">Appearance</h2>
-                                <p className="text-sm text-text-muted">Pick your accent color</p>
-                            </div>
-                        </div>
-                        <AccentColorPicker initialAccent={resolveAccentKey(userPreferences?.accentColor)} />
                     </div>
 
                     {/* Mini Quiz Certificates - Medal Collection */}
-                    <div id="mini-quiz-certificates" className="mb-10 rounded-2xl border border-amber-200/60 bg-gradient-to-br from-amber-50/50 via-white to-amber-50/30 p-6 shadow-sm animate-fade-in-up delay-300">
+                    <div id="mini-quiz-certificates" className="mb-10 rounded-2xl border border-amber-200/60 bg-gradient-to-br from-amber-50/50 via-white to-amber-50/30 p-6 shadow-sm animate-fade-in-up delay-300 dark:border-border/60 dark:from-[var(--dashboard-surface-start)] dark:via-[var(--dashboard-surface-end)] dark:to-[var(--dashboard-surface-start)]">
                         <div className="mb-6 flex items-center gap-3">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-100 to-amber-50 text-amber-600 shadow-inner">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-100 to-amber-50 text-amber-600 shadow-inner dark:bg-primary/15 dark:from-transparent dark:to-transparent dark:text-accent">
                                 <Award className="h-6 w-6" />
                             </div>
                             <div>
@@ -936,13 +955,13 @@ export default async function ProfilePage() {
                                     {user.achievements.map((userAchievement) => (
                                         <div
                                             key={userAchievement.id}
-                                            className="flex items-center gap-4 p-4 bg-gradient-to-br from-amber-50 to-orange-50/30 border border-amber-100/50 rounded-xl hover:shadow-md transition-shadow"
+                                            className="flex items-center gap-4 p-4 bg-gradient-to-br from-amber-50 to-orange-50/30 border border-amber-100/50 rounded-xl hover:shadow-md transition-shadow dark:from-amber-950/40 dark:to-transparent dark:border-amber-500/20"
                                         >
-                                            <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-2xl shrink-0">
+                                            <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-2xl shrink-0 dark:bg-[var(--surface-elevated)]">
                                                 {userAchievement.achievement.icon}
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="font-bold text-text-dark">{userAchievement.achievement.name}</p>
+                                                <p className="font-bold text-text">{userAchievement.achievement.name}</p>
                                                 <p className="text-xs text-text-muted mt-0.5 line-clamp-2">{userAchievement.achievement.description}</p>
                                             </div>
                                         </div>
