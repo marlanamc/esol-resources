@@ -8,6 +8,7 @@ import { createPortal } from "react-dom";
 import { BookOpen, ClipboardList, ExternalLink, Gamepad2, GraduationCap, Map, Megaphone, Menu, Mic, PenLine, PenTool, Search, Volume2, X } from "lucide-react";
 import { getHelpfulLinks, HELPFUL_LINK_TONE_KEYS, type HelpfulLink, type HelpfulLinkId } from "@/lib/helpful-links";
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
+import { handleExternalLinkClick } from "@/lib/shared/open-external-link";
 import { BookOpenIcon, HomeIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
 import { useDocumentScrollLock } from "@/hooks/useDocumentScrollLock";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -396,7 +397,10 @@ function ExternalMenuLink({ link, onNavigate }: { link: HelpfulLink; onNavigate:
                 borderColor: tone.border,
                 color: tone.accentStrong,
             }}
-            onClick={onNavigate}
+            onClick={(event) => {
+                handleExternalLinkClick(event, link.href);
+                onNavigate();
+            }}
         >
             <Icon className="h-5 w-5 shrink-0" style={{ color: tone.accent }} aria-hidden />
             <span className="min-w-0 flex-1">{link.label}</span>

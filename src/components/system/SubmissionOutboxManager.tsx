@@ -11,7 +11,6 @@ import type { SubmissionOutboxSnapshot } from "@/types/pwa";
 
 export default function SubmissionOutboxManager() {
   const [snapshot, setSnapshot] = useState<SubmissionOutboxSnapshot>(() => getSubmissionOutboxSnapshot());
-  const [showSyncedMessage, setShowSyncedMessage] = useState(false);
 
   useEffect(() => {
     if (!isSubmissionOutboxEnabled) return;
@@ -19,12 +18,7 @@ export default function SubmissionOutboxManager() {
     const handleOutboxUpdate = (event: Event) => {
       const customEvent = event as CustomEvent<SubmissionOutboxSnapshot>;
       if (customEvent.detail) {
-        const nextSnapshot = customEvent.detail;
-        setSnapshot(nextSnapshot);
-        if (!nextSnapshot.syncing && nextSnapshot.pending === 0 && nextSnapshot.failed === 0) {
-          setShowSyncedMessage(true);
-          window.setTimeout(() => setShowSyncedMessage(false), 2500);
-        }
+        setSnapshot(customEvent.detail);
       }
     };
 
@@ -62,14 +56,14 @@ export default function SubmissionOutboxManager() {
   if (!isSubmissionOutboxEnabled) return null;
 
   const hasQueueItems = snapshot.pending > 0 || snapshot.failed > 0;
-  if (!hasQueueItems && !showSyncedMessage) return null;
+  if (!hasQueueItems && !snapshot.syncing) return null;
 
   return (
     <div className="fixed left-4 right-4 bottom-24 md:bottom-4 z-[9998] md:max-w-sm md:left-auto">
       <div className="rounded-xl border bg-white/95 backdrop-blur p-3 shadow-lg">
         {snapshot.syncing ? (
           <p className="text-sm font-medium text-text">Sending saved work…</p>
-        ) : hasQueueItems ? (
+        ) : (
           <div className="space-y-2">
             <p className="text-sm font-medium text-text">
               {snapshot.pending > 0
@@ -84,8 +78,6 @@ export default function SubmissionOutboxManager() {
               Try again now
             </button>
           </div>
-        ) : (
-          <p className="text-sm font-medium text-success">Saved work sent.</p>
         )}
       </div>
     </div>
