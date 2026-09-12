@@ -7,6 +7,7 @@ type LearnerToneKey =
   | "reading"
   | "writing"
   | "speaking"
+  | "info"
   | "default";
 
 export type LearnerTone = {
@@ -110,6 +111,17 @@ const TONES: Record<LearnerToneKey, LearnerTone> = {
     chipBg: "var(--tone-speaking-chip-bg)",
     chipText: "var(--tone-speaking-chip-text)",
   },
+  info: {
+    key: "info",
+    label: "Info",
+    surface: "var(--tone-info-surface)",
+    surfaceMuted: "var(--tone-info-surface-muted)",
+    border: "var(--tone-info-border)",
+    accent: "var(--tone-info-accent)",
+    accentStrong: "var(--tone-info-accent-strong)",
+    chipBg: "var(--tone-info-chip-bg)",
+    chipText: "var(--tone-info-chip-text)",
+  },
   default: {
     key: "default",
     label: "Activity",
@@ -135,6 +147,7 @@ export function getLearnerCategoryTone(category?: string | null): LearnerTone {
   if (key === "speaking") return TONES.speaking;
   if (key === "pronunciation") return TONES.pronunciation;
   if (key === "games" || key === "activity") return TONES.games;
+  if (key === "info") return TONES.info;
   return TONES.default;
 }
 

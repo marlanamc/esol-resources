@@ -79,7 +79,7 @@ describe("getHelpfulLinks", () => {
                     },
                     {
                         id: "advisor-bulletin-board",
-                        label: "Advisor Bulletin Board",
+                        label: "Advisor bulletin board",
                         href: "https://ebhcsjobboard.web.app/",
                     },
                     {

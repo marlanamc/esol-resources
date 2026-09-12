@@ -13,10 +13,13 @@ export type HelpfulLink = {
 };
 
 /** Category tone keys used for colorful link styling in the dashboard and menu. */
-export const HELPFUL_LINK_TONE_KEYS: Record<HelpfulLinkId, "vocabulary" | "quizzes" | "games"> = {
+export const HELPFUL_LINK_TONE_KEYS: Record<
+    HelpfulLinkId,
+    "vocabulary" | "quizzes" | "games" | "info"
+> = {
     "google-classroom": "vocabulary",
     "absence-form": "quizzes",
-    "advisor-bulletin-board": "games",
+    "advisor-bulletin-board": "info",
     "in-class-games-library": "games",
 };
 
@@ -25,7 +28,7 @@ const HELPFUL_LINK_CONFIG: { id: HelpfulLinkId; label: string; envKey: string }[
     { id: "absence-form", label: "Absence form", envKey: "NEXT_PUBLIC_ABSENCE_FORM_URL" },
     {
         id: "advisor-bulletin-board",
-        label: "Advisor Bulletin Board",
+        label: "Advisor bulletin board",
         envKey: "NEXT_PUBLIC_ADVISOR_BULLETIN_BOARD_URL",
     },
     {
