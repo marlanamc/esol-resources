@@ -22,7 +22,9 @@ const PRESETS: Array<{
      *  surfaces an item's activityId when the activity is contentKind=map. */
     contentKind?: "practice" | "map";
 }> = [
-    // ── Existing Level 1 presets ─────────────────────────────────────────────
+    // ── Level 1 ladder: one tense family at a time ───────────────────────────
+    // Weeks 1 → 5 walk up the timeline in rungs instead of dropping students
+    // straight into a mixed simple + continuous set.
     {
         // Week 1 on-ramp: easiest questions only, one verb per sentence.
         id: "timeline-tenses-week1-easy",
@@ -34,25 +36,31 @@ const PRESETS: Array<{
         contentKind: "map",
     },
     {
+        // Rung 1 (Week 3): simple tenses on their own, no difficulty cap.
         id: "timeline-tenses-simple",
-        title: "Timeline Tenses: Simple Tenses",
-        description: "Practice present simple and past simple on the timeline — no setup needed.",
+        title: "Timeline Tenses: Simple Only",
+        description: "Simple tenses on their own — present, past, and future simple. Nothing else mixed in.",
         tenseCategories: ["simple"],
+        contentKind: "map",
     },
     {
+        // Rung 2 (Week 4): continuous on its own, once simple feels steady.
+        id: "timeline-tenses-continuous",
+        title: "Timeline Tenses: Continuous Only",
+        description: "Continuous tenses on their own — present, past, and future continuous. Still no simple tenses mixed in.",
+        tenseCategories: ["continuous"],
+        contentKind: "map",
+    },
+    {
+        // Rung 3 (Week 5): the two families together — the first real mix.
         id: "timeline-tenses-simple-continuous",
-        title: "Timeline Tenses: Simple & Continuous",
-        description: "Practice all simple and continuous tenses together on the timeline.",
+        title: "Timeline Tenses: Simple + Continuous",
+        description: "Now mix the two — choose between simple and continuous and show the difference on the timeline.",
         tenseCategories: ["simple", "continuous"],
+        contentKind: "map",
     },
 
     // ── Level 3 tense-focused presets ────────────────────────────────────────
-    {
-        id: "timeline-tenses-continuous",
-        title: "Timeline Tenses: Continuous Tenses",
-        description: "Practice all continuous tenses on the timeline — present, past, and future continuous.",
-        tenseCategories: ["continuous"],
-    },
     {
         id: "timeline-tenses-perfect",
         title: "Timeline Tenses: Present Perfect",
@@ -64,12 +72,14 @@ const PRESETS: Array<{
         title: "Timeline Tenses: Perfect Continuous",
         description: "Practice present perfect continuous and past perfect continuous on the timeline.",
         tenseCategories: ["perfect-continuous"],
+        contentKind: "map",
     },
     {
         id: "timeline-tenses-perfect-pair",
         title: "Timeline Tenses: Perfect & Perfect Continuous",
         description: "Practice perfect and perfect continuous tenses together — see the contrast on the timeline.",
         tenseCategories: ["perfect", "perfect-continuous"],
+        contentKind: "map",
     },
     {
         id: "timeline-tenses-used-to",
@@ -82,6 +92,7 @@ const PRESETS: Array<{
         title: "Timeline Tenses: Full Mix",
         description: "All tenses together — a full mixed challenge across the whole timeline.",
         tenseCategories: [],
+        contentKind: "map",
     },
 
     // ── Level 3 challenge mode presets ───────────────────────────────────────
