@@ -278,7 +278,7 @@ export interface TimelineTensesContent {
     questions: TimelineTensesQuestion[];
     /** Optional tense category filters for practice */
     tenseFilters?: TenseCategory[];
-    /** Questions per round (default: 10) */
+    /** Questions per round (default: 5) */
     roundSize?: number;
 }
 

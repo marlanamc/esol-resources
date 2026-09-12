@@ -18,7 +18,7 @@ const PRESETS: Array<{
     practiceMode?: string;
     maxDifficulty?: 1 | 2 | 3;
     singleVerbOnly?: boolean;
-    /** Questions per round. Defaults to 10 in the game; beginner rungs run 5. */
+    /** Questions per round. Defaults to 5 in the game; set this only to differ. */
     roundSize?: number;
     /** "map" for presets that appear in the Course Map; getVisibleMap only
      *  surfaces an item's activityId when the activity is contentKind=map. */
@@ -27,7 +27,7 @@ const PRESETS: Array<{
     // ── Week 1 placement check: one tense family at a time ───────────────────
     // Three short rounds in Week 1 read where a class actually is, instead of
     // opening on a mixed simple + continuous set and learning nothing from a bad
-    // score. Five questions each — 10 is a long sitting for a first timeline day.
+    // score. Rounds are 5 questions by default, so none of these set a size.
     {
         // Week 1 fallback: easiest questions only, one verb per sentence, for
         // anyone the check shows is not ready for a full round.
@@ -37,7 +37,6 @@ const PRESETS: Array<{
         tenseCategories: ["simple"],
         maxDifficulty: 1,
         singleVerbOnly: true,
-        roundSize: 5,
         contentKind: "map",
     },
     {
@@ -46,7 +45,6 @@ const PRESETS: Array<{
         title: "Timeline Tenses: Simple Only",
         description: "Simple tenses on their own — present, past, and future simple. Nothing else mixed in.",
         tenseCategories: ["simple"],
-        roundSize: 5,
         contentKind: "map",
     },
     {
@@ -55,7 +53,6 @@ const PRESETS: Array<{
         title: "Timeline Tenses: Continuous Only",
         description: "Continuous tenses on their own — present, past, and future continuous. Still no simple tenses mixed in.",
         tenseCategories: ["continuous"],
-        roundSize: 5,
         contentKind: "map",
     },
     {
@@ -64,7 +61,6 @@ const PRESETS: Array<{
         title: "Timeline Tenses: Simple + Continuous",
         description: "Now mix the two — choose between simple and continuous and show the difference on the timeline.",
         tenseCategories: ["simple", "continuous"],
-        roundSize: 5,
         contentKind: "map",
     },
 

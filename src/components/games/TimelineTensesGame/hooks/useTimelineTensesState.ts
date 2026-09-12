@@ -135,7 +135,7 @@ interface GameState {
   phaseBeforeTenseTools: 'exercise' | 'selection' | null;
 }
 
-const DEFAULT_ROUND_SIZE = 10;
+const DEFAULT_ROUND_SIZE = 5;
 const CHALLENGE_ROUND_SIZE = 5;
 const MIN_ROUND_SIZE = 1;
 const MAX_ROUND_SIZE = 20;
@@ -145,9 +145,9 @@ const RECENT_QUESTION_MEMORY_KEY = 'timeline-recent-questions-v1';
 /**
  * Questions per round.
  *
- * A preset may ask for a shorter round — beginner rungs on the course map run
- * 5 so a first timeline session is finishable in one sitting. Otherwise
- * challenge modes are short by nature and everything else runs the full round.
+ * Five, everywhere: a timeline round asks real work of a learner — read the
+ * sentence, place the marks, read the feedback — and ten of those is a long
+ * sitting. A preset may still name its own size for a longer or shorter round.
  */
 function getRoundSize(practiceMode: TimelinePracticeMode, presetRoundSize?: number): number {
   if (presetRoundSize !== undefined && Number.isFinite(presetRoundSize)) {
