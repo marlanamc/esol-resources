@@ -22,6 +22,10 @@ interface ActivityTimelineProps {
   className?: string;
   /** Card rows for desktop panels; list rows for mobile course map */
   layout?: "card" | "list";
+  /** Hide the inline Start chip when a parent already provides the CTA */
+  showStartButton?: boolean;
+  /** Title + meta only — no glyph tile or current-row wash */
+  plain?: boolean;
 }
 
 function typeToToneKey(type: string): string {
@@ -170,10 +174,14 @@ function TimelineNode({
 }
 
 function TimelineMeta({
-  label,
+  typeLabelText,
+  estMinutes,
+  isCurrent,
   toneAccent,
 }: {
-  label: string;
+  typeLabelText: string;
+  estMinutes?: number;
+  isCurrent?: boolean;
   toneAccent: string;
 }) {
   return (
@@ -188,7 +196,23 @@ function TimelineMeta({
         fontWeight: 600,
       }}
     >
-      <span style={{ color: toneAccent }}>{label}</span>
+      <span style={{ color: "var(--text-muted)" }}>{typeLabelText}</span>
+      {estMinutes ? (
+        <>
+          <span style={{ color: "var(--text-muted)" }} aria-hidden>
+            ·
+          </span>
+          <span style={{ color: "var(--text-muted)" }}>{estMinutes} min</span>
+        </>
+      ) : null}
+      {isCurrent ? (
+        <>
+          <span style={{ color: "var(--text-muted)" }} aria-hidden>
+            ·
+          </span>
+          <span style={{ color: toneAccent }}>you are here</span>
+        </>
+      ) : null}
     </div>
   );
 }
@@ -218,7 +242,14 @@ function StartButton() {
   );
 }
 
-export function ActivityTimeline({ items, accent, className, layout = "card" }: ActivityTimelineProps) {
+export function ActivityTimeline({
+  items,
+  accent,
+  className,
+  layout = "card",
+  showStartButton = true,
+  plain = false,
+}: ActivityTimelineProps) {
   const isList = layout === "list";
 
   return (
@@ -246,33 +277,40 @@ export function ActivityTimeline({ items, accent, className, layout = "card" }: 
         const listContent = (
           <div
             style={{
-              padding: "12px 0",
+              padding: plain ? "10px 0" : "12px 0",
               borderBottom: last ? "none" : "1px solid var(--border-subtle)",
               cursor: isLocked ? "default" : "pointer",
               opacity: isLocked ? 0.55 : 1,
             }}
           >
             <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-              <span
-                aria-hidden
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 8,
-                  display: "grid",
-                  placeItems: "center",
-                  fontSize: 17,
-                  flexShrink: 0,
-                  background: "var(--surface-subtle)",
-                  borderLeft: `3px solid ${tone.accent}`,
-                }}
-              >
-                {glyph}
-              </span>
+              {plain ? null : (
+                <span
+                  aria-hidden
+                  style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: 8,
+                    display: "grid",
+                    placeItems: "center",
+                    fontSize: 17,
+                    flexShrink: 0,
+                    background: "var(--surface-subtle)",
+                    borderLeft: `3px solid ${tone.accent}`,
+                  }}
+                >
+                  {glyph}
+                </span>
+              )}
               <div style={{ minWidth: 0, flex: 1 }}>
                 <div style={titleStyle}>{item.title}</div>
-                <TimelineMeta label={label} toneAccent={tone.accent} />
-                {isCurrent ? <StartButton /> : null}
+                <TimelineMeta
+                  typeLabelText={label}
+                  estMinutes={item.estMinutes}
+                  isCurrent={isCurrent}
+                  toneAccent={tone.accent}
+                />
+                {isCurrent && showStartButton ? <StartButton /> : null}
               </div>
             </div>
           </div>
@@ -315,8 +353,13 @@ export function ActivityTimeline({ items, accent, className, layout = "card" }: 
 
             <div style={{ minWidth: 0, flex: 1 }}>
               <div style={titleStyle}>{item.title}</div>
-              <TimelineMeta label={label} toneAccent={tone.accent} />
-              {isCurrent ? <StartButton /> : null}
+              <TimelineMeta
+                typeLabelText={label}
+                estMinutes={item.estMinutes}
+                isCurrent={isCurrent}
+                toneAccent={tone.accent}
+              />
+              {isCurrent && showStartButton ? <StartButton /> : null}
             </div>
 
             {!isCurrent && !isLocked ? (
@@ -336,6 +379,15 @@ export function ActivityTimeline({ items, accent, className, layout = "card" }: 
         const rowContent = isList ? listContent : cardContent;
         const railWidth = isList ? 28 : 34;
         const railGap = isList ? 10 : 14;
+        const prevDone = i > 0 && items[i - 1].status === "done";
+        const lineStyle = (done: boolean): React.CSSProperties => ({
+          position: "absolute",
+          left: "50%",
+          width: 2.5,
+          transform: "translateX(-50%)",
+          background: done ? "var(--primary)" : "var(--dashboard-border)",
+          borderRadius: 2,
+        });
 
         return (
           <div
@@ -344,32 +396,50 @@ export function ActivityTimeline({ items, accent, className, layout = "card" }: 
               display: "grid",
               gridTemplateColumns: `${railWidth}px minmax(0,1fr)`,
               gap: railGap,
+              alignItems: "center",
               animation: "timelineFadeIn 0.35s ease-out both",
               animationDelay: animDelay,
             }}
           >
-            <div style={{ display: "grid", justifyItems: "center" }}>
-              <TimelineNode status={item.status} accent={accent} index={i} />
-              {!last && (
+            <div
+              style={{
+                position: "relative",
+                alignSelf: "stretch",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {i > 0 ? (
                 <div
+                  aria-hidden
                   style={{
-                    width: 2.5,
-                    flex: 1,
-                    minHeight: 16,
-                    marginTop: 2,
-                    marginBottom: 2,
-                    background: isDone ? "var(--primary)" : "var(--dashboard-border)",
-                    borderRadius: 2,
+                    ...lineStyle(prevDone),
+                    top: 0,
+                    bottom: "50%",
                   }}
                 />
-              )}
+              ) : null}
+              {!last ? (
+                <div
+                  aria-hidden
+                  style={{
+                    ...lineStyle(isDone),
+                    top: "50%",
+                    bottom: 0,
+                  }}
+                />
+              ) : null}
+              <div style={{ position: "relative", zIndex: 1 }}>
+                <TimelineNode status={item.status} accent={accent} index={i} />
+              </div>
             </div>
 
             <div
               style={{
                 paddingBottom: isList ? 0 : last ? 0 : 14,
                 minWidth: 0,
-                ...(isCurrent && isList
+                ...(isCurrent && isList && !plain
                   ? {
                       marginInline: -2,
                       paddingInline: 10,

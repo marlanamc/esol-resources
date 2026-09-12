@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Lora, DM_Sans, Caveat } from "next/font/google";
+import { Lora, DM_Sans, Caveat, Atkinson_Hyperlegible } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
@@ -24,6 +24,13 @@ const caveat = Caveat({
   variable: "--font-handwritten",
   subsets: ["latin"],
   weight: ["600", "700"],
+  display: "swap",
+});
+
+const atkinson = Atkinson_Hyperlegible({
+  variable: "--font-atkinson",
+  subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -109,7 +116,7 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${lora.variable} ${dmSans.variable} ${caveat.variable} antialiased`}
+        className={`${lora.variable} ${dmSans.variable} ${caveat.variable} ${atkinson.variable} antialiased`}
       >
         <ThemeProvider>
           <LearnerSearchProvider>{children}</LearnerSearchProvider>

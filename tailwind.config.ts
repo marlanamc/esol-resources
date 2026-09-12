@@ -27,6 +27,7 @@ const config: Config = {
         display: ["var(--font-display)", "serif"],
         body: ["var(--font-body)", "sans-serif"],
         handwritten: ["var(--font-handwritten)", "cursive"],
+        legible: ["var(--font-legible)", "sans-serif"],
       },
       colors: {
         // Warm Educational Palette - Dynamic Variables

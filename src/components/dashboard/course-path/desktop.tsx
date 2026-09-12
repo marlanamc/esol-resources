@@ -110,6 +110,7 @@ export function DesktopUnitSection({
                                 guidedProgress={guidedProgress}
                                 optionalOpen={Boolean(openOptional[week.level.levelNumber])}
                                 pulseCurrent={pulseCurrentActivity}
+                                showUnitMonths={showUnitMonths}
                                 onToggle={() => onWeekToggle(week.level.levelNumber)}
                                 onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
                             />
@@ -263,6 +264,7 @@ export function DesktopWeekPanel({
     optionalOpen,
     onToggle,
     onToggleOptional,
+    showUnitMonths = true,
 }: {
     week: WeekSummary;
     isOpen: boolean;
@@ -274,6 +276,7 @@ export function DesktopWeekPanel({
     pulseCurrent?: boolean;
     onToggle: () => void;
     onToggleOptional: () => void;
+    showUnitMonths?: boolean;
 }) {
     const focus = focusText(week.level.levelTitle, week.level.levelGoal);
     const extraPractice = getExtraPracticeActivities(week.level.extraPractice);
@@ -291,7 +294,7 @@ export function DesktopWeekPanel({
                     </span>
                     <span className="min-w-0 flex-1">
                         <span className="block text-xs font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
-                            {formatLevelLabel(week.level.levelNumber)}
+                            {formatLevelLabel(week.level.levelNumber, showUnitMonths)}
                         </span>
                         <span className="mt-0.5 block font-display text-xl font-bold leading-tight text-text">
                             {week.level.levelTitle}
@@ -318,12 +321,12 @@ export function DesktopWeekPanel({
                 tabIndex={-1}
                 className="sr-only"
             >
-                {formatLevelLabel(week.level.levelNumber)}: {week.level.levelTitle}
+                {formatLevelLabel(week.level.levelNumber, showUnitMonths)}: {week.level.levelTitle}
             </h2>
             <button type="button" onClick={onToggle} aria-expanded={isOpen} className="flex w-full items-start gap-5 text-left">
                 <span className="min-w-0 flex-1">
                     <span className="block text-xs font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
-                        {formatLevelLabel(week.level.levelNumber)}
+                        {formatLevelLabel(week.level.levelNumber, showUnitMonths)}
                     </span>
                     <span className="mt-2 block font-display text-3xl font-bold leading-tight text-text">
                         {week.level.levelTitle}

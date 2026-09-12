@@ -2,16 +2,44 @@
 
 import React from "react";
 import Link from "next/link";
-import { BookOpen, Calendar, Home, Map } from "lucide-react";
-import { TrophyIcon } from "@/components/icons/Icons";
+import { BookOpen, Calendar, Home, Map, Star } from "lucide-react";
+import { FlameIcon, TrophyIcon } from "@/components/icons/Icons";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { ModeHeader } from "@/components/layout/ModeHeader";
+import { useStudentSummary } from "@/hooks/useStudentSummary";
 
 const STUDENT_NAV_ITEMS = [
     { href: "/dashboard", label: "Home", Icon: Home, exact: true },
     { href: "/dashboard/map", label: "Map", Icon: Map, exact: false },
     { href: "/dashboard/activities", label: "Activities", Icon: BookOpen, exact: false },
 ] as const;
+
+function HeaderStatusPills() {
+    const summary = useStudentSummary();
+    const streak = summary?.effectiveCurrentStreak ?? 0;
+    const weeklyPoints = summary?.actualWeeklyPoints ?? 0;
+
+    return (
+        <>
+            <Link
+                href="/dashboard/profile"
+                aria-label={`${streak} day streak — view profile`}
+                className="inline-flex min-h-9 items-center gap-1 rounded-full px-1.5 text-sm font-bold tabular-nums text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            >
+                <FlameIcon size={14} className="text-primary" aria-hidden />
+                {streak}
+            </Link>
+            <Link
+                href="/dashboard/profile"
+                aria-label={`${weeklyPoints} points this week — view profile`}
+                className="inline-flex min-h-9 items-center gap-1 rounded-full px-1.5 text-sm font-bold tabular-nums text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            >
+                <Star size={14} className="fill-[var(--accent)] text-[var(--accent)]" aria-hidden />
+                {weeklyPoints}
+            </Link>
+        </>
+    );
+}
 
 interface DashboardHeaderProps {
     userName?: string;
@@ -68,6 +96,7 @@ export function DashboardHeader({
             showAdminMode={isAdmin}
             enableSearch={enableSearch}
             profileVariant={variant}
+            statusSlot={<HeaderStatusPills />}
             actions={
                 <>
                     {variant === "dashboardv2" ? (

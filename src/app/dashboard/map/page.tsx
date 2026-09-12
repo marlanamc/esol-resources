@@ -288,7 +288,9 @@ export default async function MapPage({
                                     <div className="min-w-0">
                                         <p className="text-base font-bold text-text leading-tight">
                                             {completedLevels > 0 ? "🏆 " : ""}{completedLevels}{" "}
-                                            <span className="font-normal text-text-muted text-sm">/ {totalLevels} Levels</span>
+                                            <span className="font-normal text-text-muted text-sm">
+                                                / {totalLevels} {showUnitMonths ? "Weeks" : "Levels"}
+                                            </span>
                                         </p>
                                         <p className="text-xs text-text-muted mt-0.5">{overallPct}% Complete</p>
                                     </div>

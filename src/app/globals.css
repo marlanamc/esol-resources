@@ -68,6 +68,9 @@
   --font-handwritten:
     var(--font-caveat), cursive, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
+  --font-legible:
+    var(--font-atkinson), ui-sans-serif, system-ui, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
 
   /* Border Radius - Sophisticated (slightly tighter) */
   --radius-sm: 4px;

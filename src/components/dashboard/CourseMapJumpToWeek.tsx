@@ -8,6 +8,7 @@ import {
 } from "@/lib/course-map-navigation";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
 import { CourseMapUnitIcon } from "@/components/dashboard/CourseMapUnitIcon";
+import { formatLevelLabel } from "@/components/dashboard/course-path/shared";
 
 interface Props {
     currentWeek: CurrentMapWeekMeta | null;
@@ -20,7 +21,7 @@ function formatJumpLabel(
     unitMonth: string,
     showUnitMonths: boolean
 ): string {
-    const levelLabel = `Level ${weekNumber}`;
+    const levelLabel = formatLevelLabel(weekNumber, showUnitMonths);
     return showUnitMonths ? `${levelLabel} · ${unitMonth}` : levelLabel;
 }
 

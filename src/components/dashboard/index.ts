@@ -26,4 +26,5 @@ export * from './AllActivitiesCategoriesPanel';
 export * from './NewThisWeekSection';
 export * from './PinnedDailyHabitRow';
 export * from './DashboardResumeHero';
+export * from './ThisWeekPanel';
 export * from './AdminDashboardModeToggle';

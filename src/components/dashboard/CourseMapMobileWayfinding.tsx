@@ -7,6 +7,7 @@ import type { CourseMapUnit } from "@/lib/course-map";
 import type { CurrentMapWeekMeta, WeekProgressEntry } from "@/lib/course-map-navigation";
 import { useCourseMapScrollSpy } from "@/hooks/useCourseMapScrollSpy";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
+import { formatLevelLabel } from "@/components/dashboard/course-path/shared";
 
 export interface MobileWayfindingCurrentActivity {
     title: string;
@@ -94,7 +95,9 @@ export function CourseMapMobileWayfinding({
                     </p>
                     {meta.weekNumber != null && meta.levelTitle ? (
                         <p className="mt-1 text-[13px] leading-tight text-text">
-                            <span className="font-semibold text-text-muted">Level {meta.weekNumber}</span>
+                            <span className="font-semibold text-text-muted">
+                                {formatLevelLabel(meta.weekNumber, showUnitMonths)}
+                            </span>
                             <span className="text-text-muted" aria-hidden>{" · "}</span>
                             <span className="font-semibold">{meta.levelTitle}</span>
                         </p>
@@ -113,7 +116,7 @@ export function CourseMapMobileWayfinding({
                                 aria-valuenow={levelDone}
                                 aria-valuemin={0}
                                 aria-valuemax={levelTotal}
-                                aria-label={`Level progress: ${levelDone} of ${levelTotal} activities done`}
+                                aria-label={`${showUnitMonths ? "Week" : "Level"} progress: ${levelDone} of ${levelTotal} activities done`}
                             >
                                 <div
                                     className="absolute inset-y-0 left-0 rounded-full transition-[width] duration-500 ease-out"
@@ -143,7 +146,7 @@ export function CourseMapMobileWayfinding({
                                 aria-valuenow={completedLevels}
                                 aria-valuemin={0}
                                 aria-valuemax={totalLevels}
-                                aria-label={`Course progress: ${completedLevels} of ${totalLevels} levels complete`}
+                                aria-label={`Course progress: ${completedLevels} of ${totalLevels} ${showUnitMonths ? "weeks" : "levels"} complete`}
                             >
                                 <div
                                     className="absolute inset-y-0 left-0 rounded-full transition-[width] duration-500 ease-out"

@@ -18,14 +18,12 @@ import {
     NewThisWeekSection,
     MissedClassCatchUpCard,
     MomentumCard,
-    ExploreCategoriesCarousel,
     AllActivitiesCategoriesPanel,
     DashboardWelcomeHeader,
 } from "@/components/dashboard";
-import { MobileStudentGreeting } from "@/components/dashboard/MobileStudentGreeting";
-import { ContinueLearningRow } from "@/components/dashboard/ContinueLearningRow";
 import { DashboardResumeHero } from "@/components/dashboard/DashboardResumeHero";
 import { DashboardNextStepFallbackCard } from "@/components/dashboard/DashboardNextStepFallbackCard";
+import { ThisWeekPanel } from "@/components/dashboard/ThisWeekPanel";
 import { formatDashboardWeekRangeLabel } from "@/lib/dashboard/week-range-label";
 import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 import { buildActivityHref } from "@/lib/learner/navigation";
@@ -463,26 +461,18 @@ export default async function DashboardPage() {
 
     return (
         <div className="min-h-screen bg-bg">
-            <main id="main-content" className="container mx-auto pt-0 md:pt-6 pb-24 md:pb-12 px-3 sm:px-6 md:px-7 lg:px-8 max-w-full lg:max-w-[1600px] lg:pt-4">
+            <main id="main-content" className="container mx-auto pt-3 md:pt-6 pb-24 md:pb-12 px-3 sm:px-6 md:px-7 lg:px-8 max-w-full lg:max-w-[1600px] lg:pt-4">
                 <AdminViewSwitcher user={{ id: userId, role: userRole }} currentView="classroom" />
                 {/* ── MOBILE + TABLET layout (< lg) ── */}
                 <div className="lg:hidden dashboard-shell grid w-full max-w-full min-w-0 grid-cols-1 gap-0 p-0 md:p-6">
                     <div className="min-w-0 space-y-5">
-                        <div className="md:hidden">
-                            <MobileStudentGreeting
-                                userName={session.user?.name?.trim() || "there"}
-                                {...momentumSnapshot}
-                            />
-                        </div>
                         <ClassAnnouncement announcements={classAnnouncements} />
                         {isCatchUpPathEnabled && featuredAssignments.some((a) => a.isRequired === true) && <MissedClassCatchUpCard />}
-                        <DashboardResumeHero user={{ id: userId, role: userRole }} fallback={nextStepFallback} heroStyle />
-                        <ContinueLearningRow
-                            vocabHabit={null}
-                            items={newThisWeekItems}
+                        <ThisWeekPanel
+                            user={{ id: userId, role: userRole }}
+                            fallback={nextStepFallback}
                         />
-                        <ExploreCategoriesCarousel />
-                        <HelpfulLinksCard />
+                        <HelpfulLinksCard variant="plain" />
                     </div>
                 </div>
 

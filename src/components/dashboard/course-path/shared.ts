@@ -49,8 +49,8 @@ export interface GuidedAssignmentInfo {
     category?: string | null;
 }
 
-export function formatLevelLabel(levelNumber: number): string {
-    return `Level ${levelNumber}`;
+export function formatLevelLabel(levelNumber: number, showUnitMonths = true): string {
+    return showUnitMonths ? `Week ${levelNumber}` : `Level ${levelNumber}`;
 }
 
 export function formatUnitProgressLabel(done: number, total: number, showUnitMonths: boolean): string {

@@ -205,6 +205,7 @@ export function MobileUnitSection({
                                             currentLabel={currentLabel}
                                             guidedAssignments={guidedAssignments}
                                             guidedProgress={guidedProgress}
+                                            showUnitMonths={showUnitMonths}
                                             onToggle={() => onWeekToggle(week.level.levelNumber)}
                                             onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
                                         />
@@ -240,6 +241,7 @@ export function MobileUnitSection({
                                                     currentLabel={currentLabel}
                                                     guidedAssignments={guidedAssignments}
                                                     guidedProgress={guidedProgress}
+                                                    showUnitMonths={showUnitMonths}
                                                     onToggle={() => onWeekToggle(week.level.levelNumber)}
                                                     onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
                                                 />
@@ -270,6 +272,7 @@ export function MobileUnitSection({
                                         currentLabel={currentLabel}
                                         guidedAssignments={guidedAssignments}
                                         guidedProgress={guidedProgress}
+                                        showUnitMonths={showUnitMonths}
                                         onToggle={() => onWeekToggle(week.level.levelNumber)}
                                         onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
                                     />
@@ -293,6 +296,7 @@ export function MobileWeekCard({
     guidedProgress,
     onToggle,
     onToggleOptional,
+    showUnitMonths = true,
 }: {
     week: WeekSummary;
     isOpen: boolean;
@@ -303,6 +307,7 @@ export function MobileWeekCard({
     guidedProgress: CourseMapProgressState;
     onToggle: () => void;
     onToggleOptional: () => void;
+    showUnitMonths?: boolean;
 }) {
     const focus = focusText(week.level.levelTitle, week.level.levelGoal);
     const tone = getCourseMapUnitTone(week.unitNumber);
@@ -356,7 +361,7 @@ export function MobileWeekCard({
                     className="font-display text-[15px] font-bold leading-tight text-text focus-visible:outline-none"
                 >
                     <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
-                        {formatLevelLabel(week.level.levelNumber)}
+                        {formatLevelLabel(week.level.levelNumber, showUnitMonths)}
                     </span>
                     <span className="ml-1.5 align-middle">{week.level.levelTitle}</span>
                 </h2>
@@ -390,7 +395,7 @@ export function MobileWeekCard({
                 onClick={onToggle}
                 className="mt-2 w-full py-2 text-center text-xs font-semibold text-text-muted"
             >
-                Collapse level
+                {showUnitMonths ? "Collapse week" : "Collapse level"}
             </button>
 
             {getExtraPracticeActivities(week.level.extraPractice).length > 0 ? (

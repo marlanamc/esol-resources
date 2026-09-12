@@ -11,6 +11,7 @@ import {
 import { useCourseMapScrollSpy } from "@/hooks/useCourseMapScrollSpy";
 import { CourseMapUnitIcon } from "@/components/dashboard/CourseMapUnitIcon";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
+import { formatLevelLabel } from "@/components/dashboard/course-path/shared";
 
 interface UnitProgress {
     unitNumber: number;
@@ -153,8 +154,8 @@ export function CourseMapMobileDrawerPanel({
                                 </span>
                                 <span className="mt-0.5 block text-sm font-bold text-text leading-tight">
                                     {showUnitMonths
-                                        ? `Level ${currentWeek.weekNumber} · ${currentWeek.unitMonth}`
-                                        : `Level ${currentWeek.weekNumber}`}
+                                        ? `${formatLevelLabel(currentWeek.weekNumber, true)} · ${currentWeek.unitMonth}`
+                                        : formatLevelLabel(currentWeek.weekNumber, false)}
                                 </span>
                             </span>
                             <MapPin size={16} className="shrink-0 text-text-muted" aria-hidden />
