@@ -55,6 +55,7 @@ async function main() {
       level: "beginner",
       ui: "parts-of-speech",
       isReleased: true,
+      contentKind: "map",
       content: JSON.stringify(partsOfSpeechDiscoveryContent),
       createdBy: teacher.id,
     },
@@ -67,6 +68,7 @@ async function main() {
       level: "beginner",
       ui: "parts-of-speech",
       isReleased: true,
+      contentKind: "map",
       content: JSON.stringify(partsOfSpeechDiscoveryContent),
       createdBy: teacher.id,
     },
@@ -84,6 +86,7 @@ async function main() {
       level: "beginner",
       ui: "numbers",
       isReleased: true,
+      contentKind: "map",
       content: JSON.stringify(numbersThroughTrillionsContent),
       createdBy: teacher.id,
     },
@@ -96,6 +99,7 @@ async function main() {
       level: "beginner",
       ui: "numbers",
       isReleased: true,
+      contentKind: "map",
       content: JSON.stringify(numbersThroughTrillionsContent),
       createdBy: teacher.id,
     },
@@ -118,46 +122,78 @@ async function main() {
   }
 
   const grammarHospitalContent = JSON.parse(grammarHospitalSource.content) as GrammarHospitalContent;
-  const guidedGrammarHospitalContent: GrammarHospitalContent = {
-    ...grammarHospitalContent,
-    courseMapPreset: true,
-    courseMapTitle: "Grammar Hospital: Helper Verb Repair",
-    courseMapDirections: "Fix helper-verb sentences.",
-    defaultSettings: {
-      tier: "beginner",
-      complexity: 2,
-      focuses: ["do-does", "be-vs-do"],
-    },
-  };
 
-  await prisma.activity.upsert({
-    where: { id: "grammar-hospital-helper-repair-guided" },
-    update: {
-      title: "Grammar Hospital: Helper Verb Repair",
-      description: "Guided Course Map version. Starts with beginner helper-verb repair and no difficulty selector.",
-      type: "game",
-      category: "games",
-      level: "beginner",
-      ui: "grammar-hospital",
-      isReleased: true,
-      content: JSON.stringify(guidedGrammarHospitalContent),
-      createdBy: teacher.id,
-    },
-    create: {
+  // contentKind MUST be "map" on every wrapper the Course Map links to.
+  // getVisibleMap only attaches an item's activityId when the activity is
+  // contentKind=map (src/lib/course-map.ts) — otherwise the tile renders but
+  // is inert, with no error anywhere to explain why.
+  const grammarHospitalWrappers: Array<{
+    id: string;
+    title: string;
+    description: string;
+    content: GrammarHospitalContent;
+  }> = [
+    {
       id: "grammar-hospital-helper-repair-guided",
       title: "Grammar Hospital: Helper Verb Repair",
-      description: "Guided Course Map version. Starts with beginner helper-verb repair and no difficulty selector.",
+      description:
+        "Guided Course Map version. Starts with beginner helper-verb repair and no difficulty selector.",
+      content: {
+        ...grammarHospitalContent,
+        courseMapPreset: true,
+        courseMapTitle: "Grammar Hospital: Helper Verb Repair",
+        courseMapDirections: "Fix helper-verb sentences.",
+        defaultSettings: {
+          tier: "beginner",
+          complexity: 2,
+          focuses: ["do-does", "be-vs-do"],
+        },
+      },
+    },
+    {
+      // Week 1 extra practice: the two errors every beginner makes — a dropped
+      // third-person -s, and BE standing in for DO. Five cases a sitting.
+      id: "grammar-hospital-first-aid-guided",
+      title: "Grammar Hospital: First Aid",
+      description:
+        "Guided Course Map version for Week 1. Five short sentences: missing third-person -s and is/does mix-ups.",
+      content: {
+        ...grammarHospitalContent,
+        courseMapPreset: true,
+        courseMapTitle: "Fix the Sentence",
+        courseMapDirections: "Five sentences. Find what's wrong, then fix it.",
+        roundSize: 5,
+        defaultSettings: {
+          tier: "beginner",
+          complexity: 2,
+          focuses: ["subject-verb-agreement", "be-vs-do"],
+        },
+      },
+    },
+  ];
+
+  for (const wrapper of grammarHospitalWrappers) {
+    const fields = {
+      title: wrapper.title,
+      description: wrapper.description,
       type: "game",
       category: "games",
       level: "beginner",
       ui: "grammar-hospital",
       isReleased: true,
-      content: JSON.stringify(guidedGrammarHospitalContent),
+      contentKind: "map",
+      content: JSON.stringify(wrapper.content),
       createdBy: teacher.id,
-    },
-  });
+    };
 
-  console.log("Synced guided wrapper: grammar-hospital-helper-repair-guided");
+    await prisma.activity.upsert({
+      where: { id: wrapper.id },
+      update: fields,
+      create: { id: wrapper.id, ...fields },
+    });
+
+    console.log(`Synced guided wrapper: ${wrapper.id}`);
+  }
 }
 
 main()

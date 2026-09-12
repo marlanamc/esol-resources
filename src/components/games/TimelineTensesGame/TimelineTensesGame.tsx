@@ -593,7 +593,8 @@ export function TimelineTensesGame({ activityId, assignmentId, preset }: Timelin
               <div className="px-4 sm:px-0 mb-6">
                 <div className="flex items-center justify-between mb-2">
                   <button
-                    onClick={retryRound}
+                    onClick={preset ? () => router.push(returnHref) : retryRound}
+                    aria-label={preset ? "Leave activity" : "Back to setup"}
                     className="text-text-muted hover:text-text transition-colors"
                   >
                     <ArrowLeft size={20} />
@@ -754,7 +755,7 @@ export function TimelineTensesGame({ activityId, assignmentId, preset }: Timelin
                 results={state.roundResults}
                 questions={state.roundQuestions}
                 onRetry={retryRound}
-                onBack={retryRound}
+                onBack={preset ? () => router.push(returnHref) : retryRound}
               />
             </motion.div>
           )}

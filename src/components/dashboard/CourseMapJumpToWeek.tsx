@@ -56,7 +56,7 @@ export function CourseMapJumpToWeek({ currentWeek, variant, showUnitMonths = tru
                 </span>
                 <span className="min-w-0 flex-1">
                     <span className="block text-[10px] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
-                        Jump to my level
+                        {showUnitMonths ? "Jump to this week" : "Jump to my level"}
                     </span>
                     <span className="mt-0.5 block text-sm font-bold text-text leading-tight">
                         {formatJumpLabel(currentWeek.weekNumber, currentWeek.unitMonth, showUnitMonths)}
@@ -79,7 +79,7 @@ export function CourseMapJumpToWeek({ currentWeek, variant, showUnitMonths = tru
         >
             <span className="min-w-0">
                 <span className="block text-[10px] font-bold uppercase tracking-wide" style={{ color: tone.accent }}>
-                    Your level
+                    {showUnitMonths ? "This week" : "Your level"}
                 </span>
                 <span className="mt-0.5 block text-sm font-bold text-text">
                     {formatJumpLabel(currentWeek.weekNumber, currentWeek.unitMonth, showUnitMonths)}

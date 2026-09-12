@@ -197,8 +197,10 @@ export interface GrammarHospitalCase {
     highlightSpan?: [number, number];
     /** Primary error(s) — used to score the diagnose step (multi-select). */
     errorTags: GrammarHospitalErrorTag[];
-    /** Correct helper for this sentence. */
-    correctHelper: GrammarHospitalHelper;
+    /** Correct helper for this sentence. Omit when the error involves no helper
+     *  verb at all (e.g. a missing third-person -s: "She work here."); the
+     *  helper step is then skipped. */
+    correctHelper?: GrammarHospitalHelper;
     /** The healed sentence (canonical correct answer). */
     healthy: string;
     /** Optional alternate accepted spellings/contractions for the repair step. */
@@ -235,6 +237,8 @@ export interface GrammarHospitalContent {
         focuses?: GrammarHospitalFocus[];
     };
     cases: GrammarHospitalCase[];
+    /** Cases served per round. Omit to serve the whole filtered deck. */
+    roundSize?: number;
     /** Default 5 — awarded once on full completion. */
     participationPoints?: number;
     released?: boolean;

@@ -112,6 +112,7 @@ async function main() {
         wrappedGame: item.wrappedGame,
         activityType: item.activityType,
         title: item.title,
+        badge: item.badge ?? null,
       };
 
       await prisma.courseMapItem.upsert({

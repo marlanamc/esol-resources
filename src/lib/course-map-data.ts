@@ -8,6 +8,8 @@ export interface CourseMapItemDef {
   wrappedGame: boolean;
   activityType: string;
   title: string;
+  /** Short chip shown next to the item on the map, e.g. "Challenge". */
+  badge?: string;
 }
 
 export interface CourseWeekDef {
@@ -37,7 +39,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "id": "week-1",
         "number": 1,
         "title": "Getting Started",
-        "goal": "Get comfortable in the app, then show what you already know — three short timeline checks, five questions each.",
+        "goal": "Get comfortable in the app, then show what you already know — short timeline checks of five questions each, ending with a challenge that mixes both.",
         "items": [
           {
             "id": "vocab-sep-w1-flashcards",
@@ -86,20 +88,11 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityType": "game"
           },
           {
-            "id": "timeline-check-simple-continuous",
-            "activityId": "timeline-tenses-simple-continuous",
-            "title": "Timeline Check: Simple + Continuous",
-            "slot": "required",
-            "order": 5,
-            "wrappedGame": true,
-            "activityType": "game"
-          },
-          {
             "id": "vocab-sep-w1-matching",
             "activityId": "vocab-sep-w1",
             "vocabUi": "matching",
             "slot": "required",
-            "order": 6,
+            "order": 5,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Vocab: Introductions — Matching"
@@ -109,10 +102,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityId": "vocab-sep-w1",
             "vocabUi": "fill-blank",
             "slot": "required",
-            "order": 7,
+            "order": 6,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Vocab: Introductions — Fill in the Blank"
+          },
+          {
+            "id": "timeline-check-simple-continuous",
+            "activityId": "timeline-tenses-simple-continuous",
+            "title": "Timeline Check: Simple + Continuous",
+            "slot": "required",
+            "order": 7,
+            "wrappedGame": true,
+            "activityType": "game",
+            "badge": "Challenge"
           },
           {
             "id": "timeline-tenses-week1-intro",
@@ -122,6 +125,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "title": "Timeline Tenses: Easy Start"
+          },
+          {
+            "id": "grammar-hospital-first-aid",
+            "activityId": "grammar-hospital-first-aid-guided",
+            "slot": "extra",
+            "order": 9,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Grammar Hospital: First Aid"
           }
         ]
       },

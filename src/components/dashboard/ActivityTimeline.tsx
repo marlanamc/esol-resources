@@ -14,6 +14,8 @@ export interface TimelineItem {
   estMinutes?: number;
   status: TimelineStatus;
   href: string;
+  /** Short chip shown beside the type label, e.g. "Challenge". */
+  badge?: string;
 }
 
 interface ActivityTimelineProps {
@@ -40,7 +42,10 @@ function typeToToneKey(type: string): string {
   }
 }
 
-function typeLabel(type: string): string {
+function typeLabel(type: string, vocabUi?: string): string {
+  // Vocab rounds are stored as activityType "game" and told apart by vocabUi,
+  // the same way typeGlyph picks their icon. Without this they all read "Game".
+  if (vocabUi) return "Vocab";
   switch (type) {
     case "guide": return "Grammar";
     case "game": return "Game";
@@ -51,7 +56,7 @@ function typeLabel(type: string): string {
     case "pronunciation": return "Pronunciation";
     case "writing": return "Writing";
     case "speaking": return "Speaking";
-    case "vocabulary": return "Vocabulary";
+    case "vocabulary": return "Vocab";
     default: return "Activity";
   }
 }
@@ -176,9 +181,11 @@ function TimelineNode({
 function TimelineMeta({
   typeLabelText,
   isCurrent,
+  badge,
 }: {
   typeLabelText: string;
   isCurrent?: boolean;
+  badge?: string;
 }) {
   return (
     <div
@@ -193,6 +200,13 @@ function TimelineMeta({
       }}
     >
       <span style={{ color: "var(--text-muted)" }}>{typeLabelText}</span>
+      {badge ? (
+        <span
+          className="inline-flex items-center rounded-full bg-accent/25 px-2 py-0.5 text-[10px] font-bold leading-none text-text"
+        >
+          {badge}
+        </span>
+      ) : null}
       {isCurrent ? (
         <span
           className="inline-flex items-center rounded-full bg-primary/12 px-2 py-0.5 text-[10px] font-bold leading-none text-primary"
@@ -245,7 +259,7 @@ export function ActivityTimeline({
         const last = i === items.length - 1;
         const tone = getLearnerCategoryTone(typeToToneKey(item.type) as Parameters<typeof getLearnerCategoryTone>[0]);
         const glyph = typeGlyph(item.type, item.vocabUi);
-        const label = typeLabel(item.type);
+        const label = typeLabel(item.type, item.vocabUi);
         const animDelay = `${i * 55}ms`;
 
         const isCurrent = item.status === "current";
@@ -294,6 +308,7 @@ export function ActivityTimeline({
                 <TimelineMeta
                   typeLabelText={label}
                   isCurrent={isCurrent}
+                  badge={item.badge}
                 />
                 {isCurrent && showStartButton ? <StartButton /> : null}
               </div>
@@ -341,6 +356,7 @@ export function ActivityTimeline({
               <TimelineMeta
                 typeLabelText={label}
                 isCurrent={isCurrent}
+                badge={item.badge}
               />
               {isCurrent && showStartButton ? <StartButton /> : null}
             </div>

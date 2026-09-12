@@ -107,30 +107,14 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
         };
     }, []);
 
-    // Resolve the current accent when the menu first opens. Seed instantly from
-    // the <html data-accent> attribute (set by AccentColorInitializer) so the
-    // picker shows the right selection without waiting on the network.
+    // Keep the picker checkmark aligned with the live theme whenever the menu
+    // opens. data-accent is maintained by AccentColorInitializer and the picker.
     useEffect(() => {
-        if (!isOpen || accentKey !== null) return;
-        const fromAttr = resolveAccentKey(
-            document.documentElement.getAttribute("data-accent"),
+        if (!isOpen) return;
+        setAccentKey(
+            resolveAccentKey(document.documentElement.getAttribute("data-accent")),
         );
-        setAccentKey(fromAttr);
-        let cancelled = false;
-        (async () => {
-            try {
-                const res = await fetch("/api/user/preferences");
-                if (!res.ok || cancelled) return;
-                const data = (await res.json()) as { accentColor?: string | null };
-                if (!cancelled) setAccentKey(resolveAccentKey(data.accentColor));
-            } catch {
-                /* keep the attribute-derived value */
-            }
-        })();
-        return () => {
-            cancelled = true;
-        };
-    }, [isOpen, accentKey]);
+    }, [isOpen]);
 
     const handleLogout = async () => {
         await Promise.race([
@@ -171,7 +155,10 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
                 Accent Color
             </p>
             {accentKey ? (
-                <AccentColorPicker initialAccent={accentKey} />
+                <AccentColorPicker
+                    initialAccent={accentKey}
+                    onAccentChange={setAccentKey}
+                />
             ) : (
                 <div className="flex gap-3" aria-hidden>
                     {Array.from({ length: 5 }).map((_, i) => (

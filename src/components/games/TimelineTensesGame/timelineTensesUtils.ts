@@ -701,8 +701,27 @@ export function getQuestionTimeFrame(
 }
 
 export function calculateTimelineOverallProgress(
-  categoryProgress: Record<string, CategoryProgressLike>
+  categoryProgress: Record<string, CategoryProgressLike>,
+  /**
+   * Tense families this activity actually asks for (a course-map preset's
+   * `tenseCategories`). Omit — or pass an empty list, which presets use to mean
+   * "all tenses" — to measure against the whole set.
+   */
+  scopeCategories?: TenseCategory[]
 ): number {
+  // A preset-scoped activity is done when its own families are done. Without
+  // this, passing "Simple Only" scores 1/6 and the course map never ticks it
+  // off, because the learner is being graded on tenses it never asked about.
+  if (scopeCategories && scopeCategories.length > 0) {
+    const scopeKey = categoriesToProgressKey(scopeCategories);
+    // A multi-family preset writes progress under the shared 'all' key, so that
+    // key alone decides it; a single-family preset is judged on its own key.
+    const done = scopeKey === 'all'
+      ? categoryProgress['all']?.completed
+      : categoryProgress[scopeKey]?.completed;
+    return done ? 100 : 0;
+  }
+
   // Count completed individual categories, but also treat the 'all' key as
   // a proxy for overall progress when students play in All Tenses mode.
   const categoryKeys = [...REAL_TENSE_CATEGORIES, 'all'] as string[];

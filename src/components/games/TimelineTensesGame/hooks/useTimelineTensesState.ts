@@ -887,8 +887,13 @@ export function useTimelineTensesState(activityId: string, assignmentId?: string
         [categoryKey]: newProgress,
       };
 
-      // Calculate overall progress
-      const overallProgress = calculateTimelineOverallProgress(updatedCategoryData);
+      // Calculate overall progress. Course-map presets are scoped to specific
+      // tense families, so they finish when those families are done rather than
+      // when every tense on the timeline is.
+      const overallProgress = calculateTimelineOverallProgress(
+        updatedCategoryData,
+        presetRef.current?.tenseCategories
+      );
 
       // Direct API call to save progress with categoryData
       const response = await fetch('/api/activity/progress', {

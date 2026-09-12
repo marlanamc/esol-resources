@@ -32,14 +32,16 @@ import {
     type GrammarHospitalSettings,
 } from "@/components/games/grammar-hospital/SettingsPanel";
 import {
+    filterDeck,
     getCaseStepInfo,
     getDiagnoseConfig,
     getInitialCasePhase,
-    sortCasesProgressively,
+    sampleRound,
+    shouldSkipHelper,
 } from "@/lib/grammar-hospital/progression";
 import {
-    BEGINNER_HELPER_OPTIONS,
     formatHelperOptionLabel,
+    getHelperOptions,
     helperAtSentenceStart,
     resolveCorrectHelper,
 } from "@/lib/grammar-hospital/helpers";
@@ -50,11 +52,16 @@ const GAME_ID = "grammar-hospital";
  * Grammar Hospital — diagnose / choose helper / repair drill.
  *
  * Adult ESOL learners default to BE as a universal helper under pressure
- * ("Are they work here?"). Each case walks them through three steps:
- *   1. Diagnose what's wrong (multi-select error tags)
- *   2. Choose the correct helper (do / does / be)
+ * ("Are they work here?"). Each case walks them through up to three steps:
+ *   1. Diagnose what's wrong (error tags, graded against case.errorTags)
+ *   2. Choose the correct helper (graded against case.correctHelper)
  *   3. Repair the sentence (type or tap-to-build)
  * Then a soft feedback step before moving to the next patient.
+ *
+ * Every step is graded: a wrong pick does not advance. Tries are unlimited and
+ * help is always one tap away, so the gate teaches rather than punishes — but
+ * the loop can no longer be clicked through without engaging. Steps 1 and 2 are
+ * each skipped for cases where they would not teach anything (see progression).
  *
  * Participation grant on full completion via saveActivityProgress(100, "completed");
  * idempotent server-side so refreshes do not double-award.
@@ -126,11 +133,16 @@ function renderUnhealthy(c: GrammarHospitalCase): React.ReactNode {
 export default function GrammarHospitalGame({ activityId, content }: Props) {
     const allCases = useMemo(() => content.cases ?? [], [content.cases]);
     const participationPoints = content.participationPoints ?? 5;
+    const roundSize = content.roundSize;
     const isCourseMapPreset = content.courseMapPreset === true;
     const presetSettings = useMemo(
         () => normalizeGHSettings(content.defaultSettings),
         [content.defaultSettings]
     );
+
+    // Bumped to draw a fresh sample from the deck — see playAgain. Declared
+    // before the deck memo below, which reads it.
+    const [roundKey, setRoundKey] = useState(0);
 
     // Settings — defaults until preferences load. Filtering uses these.
     const [settings, setSettings] = useState<GrammarHospitalSettings>(DEFAULT_GH_SETTINGS);
@@ -152,20 +164,15 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         return acc;
     }, [allCases]);
 
-    // Filtered deck — drives the actual queue the learner sees.
-    // Empty-result fallback: if focus filter yields nothing, widen to all
-    // focuses in tier; if that's still empty, widen to all cases.
+    // The round the learner actually plays. filterDeck narrows by tier,
+    // complexity and focus (widening back rather than stranding them on an
+    // empty deck); sampleRound then cuts it to content.roundSize.
     const cases = useMemo(() => {
-        const inTier = allCases.filter((c) => (c.tier ?? "beginner") === settings.tier);
-        const inComplexity = inTier.filter((c) => (c.complexity ?? 3) <= settings.complexity);
-        const base = inComplexity.length > 0 ? inComplexity : inTier;
-        let filtered = base;
-        if (settings.focuses.length > 0) {
-            const narrowed = base.filter((c) => settings.focuses.includes(c.grammarFocus ?? "do-does"));
-            filtered = narrowed.length > 0 ? narrowed : base;
-        }
-        return sortCasesProgressively(filtered);
-    }, [allCases, settings]);
+        return sampleRound(filterDeck(allCases, settings), roundSize);
+        // roundKey is a cache-buster, not an input: bumping it on replay draws
+        // a fresh sample rather than repeating the same cases.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [allCases, settings, roundSize, roundKey]);
 
     const totalCases = cases.length;
 
@@ -179,6 +186,14 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
     const [hintOpen, setHintOpen] = useState(false);
     const [lastCorrect, setLastCorrect] = useState<boolean | null>(null);
     const [attempts, setAttempts] = useState(0);
+
+    // Wrong picks on the graded steps. Held per case so the tile can stay
+    // marked while the learner tries again.
+    const [diagnoseWrong, setDiagnoseWrong] = useState(false);
+    const [helperWrong, setHelperWrong] = useState(false);
+    // Set once the learner asks to see the answer, so the repair step can show
+    // it while still requiring them to enter it.
+    const [answerShown, setAnswerShown] = useState(false);
 
     // Per-case scoring tally
     const [results, setResults] = useState<Array<{ id: string; correct: boolean; attempts: number }>>([]);
@@ -237,14 +252,15 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         });
     }, [settingsKey, cases]);
 
-    // Pre-existing completion → jump to review.
+    // Pre-existing completion → note it so we don't re-grant, but still open on
+    // the intro. Jumping straight to the review screen used to show an empty
+    // 0/0 report, which is the wrong greeting for a replayable practice item.
     useEffect(() => {
         let cancelled = false;
         void fetchActivityProgress(activityId).then((p) => {
             if (cancelled || !p) return;
             if (p.status === "completed" || p.status === "submitted" || p.progress >= 100) {
                 setIsCompleted(true);
-                setPhase("review");
             }
         });
         return () => {
@@ -261,6 +277,9 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         setHintOpen(false);
         setLastCorrect(null);
         setAttempts(0);
+        setDiagnoseWrong(false);
+        setHelperWrong(false);
+        setAnswerShown(false);
         if (current.wordBank && current.wordBank.length > 0) {
             setBankTiles(shuffle(current.wordBank));
             setRepairTiles([]);
@@ -280,7 +299,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         if (grantingRef.current || isCompleted) return;
         grantingRef.current = true;
         try {
-            const result = await saveActivityProgress(activityId, 100, "completed");
+            const result = await saveActivityProgress(activityId, 100, "completed", accuracy);
             if (!result?.ok) return;
             setIsCompleted(true);
             const awarded = result.pointsAwarded ?? participationPoints;
@@ -289,7 +308,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         } catch {
             // ignore — UI doesn't depend on the toast
         }
-    }, [activityId, isCompleted, participationPoints]);
+    }, [activityId, isCompleted, participationPoints, accuracy]);
 
     const goNextCase = useCallback(() => {
         if (caseIdx + 1 >= totalCases) {
@@ -304,6 +323,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
 
     // ---- Step handlers ----
     const toggleErrorTag = (tag: GrammarHospitalErrorTag) => {
+        setDiagnoseWrong(false);
         setDiagnoseSel((prev) => {
             if (!diagnoseConfig.multiSelect) {
                 return prev.has(tag) ? new Set() : new Set([tag]);
@@ -315,6 +335,44 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         });
     };
 
+    /** The diagnose step is graded against case.errorTags. */
+    const diagnoseIsCorrect = useCallback((): boolean => {
+        if (!current) return false;
+        const required = new Set(current.errorTags);
+        if (diagnoseConfig.multiSelect) {
+            // Every required tag, and nothing extra.
+            if (diagnoseSel.size !== required.size) return false;
+            return [...diagnoseSel].every((t) => required.has(t));
+        }
+        // Single-select: any one of the case's real errors counts.
+        return diagnoseSel.size === 1 && required.has([...diagnoseSel][0]);
+    }, [current, diagnoseConfig.multiSelect, diagnoseSel]);
+
+    const submitDiagnose = () => {
+        if (diagnoseSel.size === 0) return;
+        if (!diagnoseIsCorrect()) {
+            setDiagnoseWrong(true);
+            return;
+        }
+        setDiagnoseWrong(false);
+        setPhase(current && shouldSkipHelper(current) ? "repair" : "helper");
+    };
+
+    const pickHelper = (h: GrammarHospitalHelper) => {
+        setHelperWrong(false);
+        setHelperPick(h);
+    };
+
+    const submitHelper = () => {
+        if (!current || !helperPick) return;
+        if (helperPick !== resolveCorrectHelper(current.correctHelper ?? "do")) {
+            setHelperWrong(true);
+            return;
+        }
+        setHelperWrong(false);
+        setPhase("repair");
+    };
+
     const submitRepair = () => {
         if (!current) return;
         const value = isBuildMode ? repairTiles.join(" ") : repairInput;
@@ -322,7 +380,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         setAttempts((a) => a + 1);
         setLastCorrect(ok);
         setPhase("feedback");
-        if (ok) {
+        if (ok && !answerShown) {
             setStreak((s) => {
                 const next = s + 1;
                 setBestStreak((b) => Math.max(b, next));
@@ -332,8 +390,15 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                 ...prev.filter((r) => r.id !== current.id),
                 { id: current.id, correct: true, attempts: attempts + 1 },
             ]);
-        } else {
+        } else if (!ok) {
             setStreak(0);
+            // Record the miss now, so a learner who abandons the case mid-round
+            // still shows up in the report.
+            setResults((prev) =>
+                prev.some((r) => r.id === current.id)
+                    ? prev
+                    : [...prev, { id: current.id, correct: false, attempts: attempts + 1 }]
+            );
         }
     };
 
@@ -349,14 +414,29 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         setPhase("repair");
     };
 
-    const acceptIncorrectAndMove = () => {
+    /**
+     * Replaces the old Skip link. Skipping recorded the case wrong and advanced
+     * without the learner ever producing the sentence — which, combined with
+     * flat participation points, meant a whole round could be clicked through.
+     * Now the answer is shown and the learner still has to enter it; the case
+     * is recorded incorrect either way, so this costs nothing but attention.
+     */
+    const showAnswerAndRetry = () => {
         if (!current) return;
-        // Record as needs-more-care, then advance.
         setResults((prev) => [
             ...prev.filter((r) => r.id !== current.id),
             { id: current.id, correct: false, attempts },
         ]);
-        goNextCase();
+        setAnswerShown(true);
+        setStreak(0);
+        if (isBuildMode && current.wordBank) {
+            setBankTiles(shuffle(current.wordBank));
+            setRepairTiles([]);
+        } else {
+            setRepairInput("");
+        }
+        setLastCorrect(null);
+        setPhase("repair");
     };
 
     // Never nest setters here. Strict mode double-invokes updater functions,
@@ -439,7 +519,10 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                                     setStreak(0);
                                     setBestStreak(0);
                                     setCaseIdx(0);
-                                    setPhase(getInitialCasePhase(cases[0]));
+                                    // Re-sample so a replay is not the same five
+                                    // sentences; the deck memo keys off this.
+                                    setRoundKey((k) => k + 1);
+                                    setPhase("intro");
                                 }}
                                 className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold transition-all ${
                                     isCourseMapPreset
@@ -483,7 +566,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                                 <HeartPulse size={22} />
                             </div>
                             <h1 className="font-display text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-50 leading-tight tracking-[-0.02em]">
-                                Fix the Sentence
+                                {content.courseMapTitle ?? "Fix the Sentence"}
                             </h1>
                             <button
                                 type="button"
@@ -619,15 +702,17 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                             multiSelect={diagnoseConfig.multiSelect}
                             selected={diagnoseSel}
                             onToggle={toggleErrorTag}
-                            onContinue={() => setPhase("helper")}
+                            wrong={diagnoseWrong}
+                            onContinue={submitDiagnose}
                         />
                     )}
                     {phase === "helper" && (
                         <HelperStep
                             pick={helperPick}
-                            onPick={setHelperPick}
+                            onPick={pickHelper}
                             caseItem={current}
-                            onContinue={() => setPhase("repair")}
+                            wrong={helperWrong}
+                            onContinue={submitHelper}
                         />
                     )}
                     {phase === "repair" && (
@@ -643,6 +728,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                             hintOpen={hintOpen}
                             onToggleHint={() => setHintOpen((h) => !h)}
                             onCheck={submitRepair}
+                            revealed={answerShown ? current.healthy : null}
                         />
                     )}
                     {phase === "feedback" && (
@@ -651,7 +737,8 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                             caseItem={current}
                             attempts={attempts}
                             onTryAgain={tryRepairAgain}
-                            onAcceptAndMove={acceptIncorrectAndMove}
+                            onShowAnswer={showAnswerAndRetry}
+                            answerShown={answerShown}
                             onNext={goNextCase}
                             isLast={caseIdx + 1 >= totalCases}
                         />
@@ -725,12 +812,14 @@ function DiagnoseStep({
     multiSelect,
     selected,
     onToggle,
+    wrong,
     onContinue,
 }: {
     options: GrammarHospitalErrorTag[];
     multiSelect: boolean;
     selected: Set<GrammarHospitalErrorTag>;
     onToggle: (tag: GrammarHospitalErrorTag) => void;
+    wrong: boolean;
     onContinue: () => void;
 }) {
     return (
@@ -764,6 +853,15 @@ function DiagnoseStep({
                 })}
             </ul>
 
+            {wrong && (
+                <p
+                    role="status"
+                    className="mt-4 text-sm font-medium text-primary"
+                >
+                    Not quite — look at the underlined part again.
+                </p>
+            )}
+
             <div className="mt-5 flex justify-end">
                 <button
                     type="button"
@@ -782,15 +880,20 @@ function HelperStep({
     pick,
     onPick,
     caseItem,
+    wrong,
     onContinue,
 }: {
     pick: GrammarHospitalHelper | null;
     onPick: (h: GrammarHospitalHelper) => void;
     caseItem: GrammarHospitalCase;
+    wrong: boolean;
     onContinue: () => void;
 }) {
     const atSentenceStart = helperAtSentenceStart(caseItem);
-    const correctHelper = resolveCorrectHelper(caseItem.correctHelper);
+    // Guarded by shouldSkipHelper — this step never renders without one.
+    const correctHelper = resolveCorrectHelper(caseItem.correctHelper ?? "do");
+    // Options are derived per case so the correct answer is always on screen.
+    const options = getHelperOptions(caseItem);
 
     const optionButtonClass = (state: "correct" | "wrong" | "active" | "default") => {
         const base =
@@ -810,7 +913,7 @@ function HelperStep({
     return (
         <div>
             <div className="grid grid-cols-2 gap-2">
-                {BEGINNER_HELPER_OPTIONS.map((opt) => {
+                {options.map((opt) => {
                     const active = pick === opt;
                     const isWrongPick = pick && pick !== correctHelper && pick === opt;
                     const isCorrectPick = pick && active && pick === correctHelper;
@@ -838,6 +941,12 @@ function HelperStep({
                 })}
             </div>
 
+            {wrong && (
+                <p role="status" className="mt-4 text-sm font-medium text-primary">
+                    Not that one — try another helper.
+                </p>
+            )}
+
             <div className="mt-5 flex justify-end">
                 <button
                     type="button"
@@ -864,6 +973,7 @@ function RepairStep({
     hintOpen,
     onToggleHint,
     onCheck,
+    revealed,
 }: {
     buildMode: boolean;
     input: string;
@@ -876,10 +986,25 @@ function RepairStep({
     hintOpen: boolean;
     onToggleHint: () => void;
     onCheck: () => void;
+    /** Set once the learner asked to see the answer; they still enter it. */
+    revealed: string | null;
 }) {
     const canCheck = buildMode ? repairTiles.length > 0 && bankTiles.length === 0 : input.trim().length > 0;
     return (
         <div>
+            {revealed && (
+                <div className="mb-4 rounded-xl border border-secondary/40 bg-secondary/8 px-4 py-3">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-secondary-dark dark:text-secondary-light mb-1">
+                        The answer
+                    </p>
+                    <p className="text-base font-semibold text-gray-900 dark:text-gray-50">
+                        {revealed}
+                    </p>
+                    <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
+                        Write it out below — that is how it sticks.
+                    </p>
+                </div>
+            )}
             {buildMode ? (
                 <div className="space-y-4">
                     <div className="min-h-[72px] rounded-xl border-2 border-dashed border-primary/40 bg-amber-50/40 dark:bg-[#3a2820]/40 p-3 flex flex-wrap gap-2 items-start">
@@ -965,7 +1090,8 @@ function FeedbackStep({
     caseItem,
     attempts,
     onTryAgain,
-    onAcceptAndMove,
+    onShowAnswer,
+    answerShown,
     onNext,
     isLast,
 }: {
@@ -973,7 +1099,8 @@ function FeedbackStep({
     caseItem: GrammarHospitalCase;
     attempts: number;
     onTryAgain: () => void;
-    onAcceptAndMove: () => void;
+    onShowAnswer: () => void;
+    answerShown: boolean;
     onNext: () => void;
     isLast: boolean;
 }) {
@@ -1007,13 +1134,17 @@ function FeedbackStep({
             </p>
 
             <div className="flex items-center justify-between gap-3">
-                <button
-                    type="button"
-                    onClick={onAcceptAndMove}
-                    className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
-                >
-                    Skip
-                </button>
+                {answerShown ? (
+                    <span />
+                ) : (
+                    <button
+                        type="button"
+                        onClick={onShowAnswer}
+                        className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors underline underline-offset-4"
+                    >
+                        Show me the answer
+                    </button>
+                )}
                 <button
                     type="button"
                     onClick={onTryAgain}

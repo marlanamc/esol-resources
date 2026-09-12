@@ -626,6 +626,7 @@ model CourseMapItem {
   wrappedGame  Boolean    @default(false)
   activityType String     @default("guide") // matches CourseMapActivityType
   title        String     @default("") // display title (from static map)
+  badge        String? // short chip shown next to the item, e.g. "Challenge"
   week         CourseWeek @relation(fields: [weekId], references: [id], onDelete: Cascade)
   activity     Activity?  @relation(fields: [activityId], references: [id])
 

@@ -616,6 +616,55 @@ describe("timeline tenses utils", () => {
     expect(progress).toBe(33);
   });
 
+  it("scores a single-family preset on its own family, so the course map can tick it off", () => {
+    // Week 1's "Timeline Check: Simple Tenses" only ever asks about simple.
+    // Scored against all six families it would sit at 17% forever.
+    expect(
+      calculateTimelineOverallProgress({ simple: { completed: true } }, ["simple"])
+    ).toBe(100);
+
+    expect(
+      calculateTimelineOverallProgress({ simple: { completed: false } }, ["simple"])
+    ).toBe(0);
+  });
+
+  it("does not credit a scoped preset for a different family's round", () => {
+    // Passing the simple check must not complete the continuous check.
+    expect(
+      calculateTimelineOverallProgress({ simple: { completed: true } }, ["continuous"])
+    ).toBe(0);
+  });
+
+  it("scores a multi-family preset on the shared all key", () => {
+    // Two or more families write progress under 'all' (categoriesToProgressKey),
+    // which is how Week 1's Simple + Continuous challenge completes.
+    expect(
+      calculateTimelineOverallProgress({ all: { completed: true } }, [
+        "simple",
+        "continuous",
+      ])
+    ).toBe(100);
+
+    // A finished simple-only round is not the mixed challenge.
+    expect(
+      calculateTimelineOverallProgress({ simple: { completed: true } }, [
+        "simple",
+        "continuous",
+      ])
+    ).toBe(0);
+  });
+
+  it("falls back to full-set scoring when a preset covers all tenses", () => {
+    // Presets use an empty tenseCategories list to mean "all tenses", which must
+    // not be mistaken for a scope of nothing.
+    expect(
+      calculateTimelineOverallProgress(
+        { all: { completed: true }, simple: { completed: true } },
+        []
+      )
+    ).toBe(33);
+  });
+
   it("keeps the all-category tutorial focused on common introductory patterns", () => {
     const tutorialItems = CATEGORIZED_TUTORIAL_QUESTIONS.all;
 

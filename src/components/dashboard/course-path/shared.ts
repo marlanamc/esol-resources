@@ -172,6 +172,7 @@ export function buildWeekTimelineItems(
                 estMinutes: estimatedMinutes(activity),
                 status,
                 href,
+                ...(activity.badge ? { badge: activity.badge } : {}),
             };
         });
 }

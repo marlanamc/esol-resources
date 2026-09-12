@@ -28,6 +28,8 @@ export interface CourseMapActivity {
   href?: string;
   vocabUi?: string;
   wrappedGame?: boolean;
+  /** Short chip shown next to the item on the map, e.g. "Challenge". */
+  badge?: string;
 }
 
 export interface CourseMapLevel {
@@ -81,6 +83,7 @@ export async function fetchCourseMapUnits(): Promise<CourseMapUnit[]> {
         ...(item.href ? { href: item.href } : {}),
         ...(item.vocabUi ? { vocabUi: item.vocabUi } : {}),
         ...(item.wrappedGame ? { wrappedGame: true } : {}),
+        ...(item.badge ? { badge: item.badge } : {}),
       });
 
       return {
@@ -209,7 +212,15 @@ export async function getVisibleMap(
       ...(item.href ? { href: item.href } : {}),
       ...(item.vocabUi ? { vocabUi: item.vocabUi } : {}),
       ...(item.wrappedGame ? { wrappedGame: true } : {}),
+      ...(item.badge ? { badge: item.badge } : {}),
     };
+  };
+
+  const extraPracticeFor = (
+    week: (typeof allUnitsRaw)[number]["weeks"][number]
+  ): CourseMapActivity[] | undefined => {
+    const extras = week.items.filter((i) => i.slot === "extra").map(toActivity);
+    return extras.length > 0 ? extras : undefined;
   };
 
   const units: CourseMapUnit[] = allUnitsRaw
@@ -226,9 +237,7 @@ export async function getVisibleMap(
           levelTitle: week.title,
           levelGoal: week.goal ?? undefined,
           requiredActivities: week.items.filter((i) => i.slot === "required").map(toActivity),
-          extraPractice: week.items.filter((i) => i.slot === "extra").map(toActivity).length > 0
-            ? week.items.filter((i) => i.slot === "extra").map(toActivity)
-            : undefined,
+          extraPractice: extraPracticeFor(week),
         })),
       };
     })

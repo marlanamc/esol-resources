@@ -191,6 +191,9 @@ export async function POST(request: Request) {
         weeklyGoalStartDay: weeklyGoalStartDay ?? 1,
         skillFocus: skillFocus ?? [],
         gameSettings: (validatedGameSettings ?? {}) as Prisma.InputJsonValue,
+        ...(accentColor !== undefined && isValidAccentKey(accentColor)
+          ? { accentColor }
+          : {}),
       }
     });
 

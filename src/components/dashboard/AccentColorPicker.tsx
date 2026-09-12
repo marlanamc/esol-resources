@@ -1,20 +1,27 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { ACCENT_PRESETS, ACCENT_KEYS, type AccentKey } from "@/lib/accent-colors";
 
 interface AccentColorPickerProps {
     initialAccent: AccentKey;
+    onAccentChange?: (key: AccentKey) => void;
 }
 
-export function AccentColorPicker({ initialAccent }: AccentColorPickerProps) {
+export function AccentColorPicker({ initialAccent, onAccentChange }: AccentColorPickerProps) {
     const [selected, setSelected] = useState<AccentKey>(initialAccent);
     const [isPending, startTransition] = useTransition();
     const [error, setError] = useState<string | null>(null);
 
+    // Keep in sync when the parent re-seeds (e.g. menu reopens with a fresh value).
+    useEffect(() => {
+        setSelected(initialAccent);
+    }, [initialAccent]);
+
     const handleSelect = (key: AccentKey) => {
         if (key === selected) return;
         setSelected(key);
+        onAccentChange?.(key);
         setError(null);
 
         // Apply immediately via data attribute on <html>

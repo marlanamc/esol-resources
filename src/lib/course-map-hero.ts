@@ -5,6 +5,7 @@ export function formatNextUpActivityTitle(title: string): string {
         .replace("Welcome Back: Simple & Continuous Review", "Simple & Continuous Review")
         .replace("Parts of Speech Discovery Game", "Parts of Speech Game")
         .replace("Grammar Hospital: Helper Verb Repair", "Helper Verb Repair")
+        .replace("Grammar Hospital: First Aid", "Grammar First Aid")
         .replace("Vowel Names Practice:", "Vowel Names:")
         .replace("Timeline Tenses:", "Timeline:")
         .replace("Full Parts of Speech Practice Library", "Parts of Speech Practice")
