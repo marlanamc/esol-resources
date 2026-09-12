@@ -359,38 +359,6 @@ export default function LeaderboardPage() {
       </header>
 
       <main className="container mx-auto py-6 px-4 sm:px-6 space-y-6 pb-28 md:pb-10">
-        {/* User's Rank Card - Only show if user has points and appears in leaderboard */}
-        {userRank && leaderboard.some((entry) => entry.rank === userRank) && (
-          <div className="border-2 rounded-2xl p-5 sm:p-6" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--color-primary)', boxShadow: '0 4px 14px color-mix(in srgb, var(--color-primary) 22%, transparent)' }}>
-            <div className="flex flex-col items-center text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
-              <div>
-                <p className="text-sm font-semibold mb-1" style={{ color: 'var(--success-color)' }}>
-                  Your Rank
-                </p>
-                <p className="text-4xl font-bold" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-primary)' }}>
-                  {getRankIcon(userRank, hasNonZeroScores)}
-                </p>
-              </div>
-              {leaderboard.find((entry) => entry.rank === userRank)?.rankChange && (
-                <div className="mt-4 sm:mt-0 sm:text-right">
-                  <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                    From last week
-                  </p>
-                  {(() => {
-                    const userEntry = leaderboard.find((entry) => entry.rank === userRank);
-                    const change = getRankChangeIndicator(userEntry?.rankChange || null);
-                    return change ? (
-                      <p className="text-2xl font-bold" style={{ color: change.color }}>
-                        {change.icon} {change.text}
-                      </p>
-                    ) : null;
-                  })()}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-
         {/* Top 3 Podium — desktop + compact mobile variants (hidden if everyone is at 0) */}
         {leaderboard.some(entry => entry.rank <= 3) && hasNonZeroScores && (() => {
           // Get all students in top 3 ranks (handles ties)
@@ -541,16 +509,16 @@ export default function LeaderboardPage() {
               return (
                 <div
                   key={entry.id}
-                  className={`relative p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 transition-all animate-card-lift ${isUserRow ? 'border-l-4' : ''}`}
+                  className={`relative flex items-center justify-between gap-3 px-4 py-2.5 leading-none transition-all animate-card-lift ${isUserRow ? 'border-l-4' : ''}`}
                     style={{
                     backgroundColor: isUserRow ? 'color-mix(in srgb, var(--color-primary) 12%, transparent)' : 'transparent',
                     borderLeftColor: isUserRow ? 'var(--color-primary)' : 'transparent',
                   }}
                 >
-                  <div className="flex items-center gap-3 flex-1">
-                    <div className="w-10 text-center flex-shrink-0">
+                  <div className="flex min-w-0 flex-1 items-center gap-3">
+                    <div className="w-10 shrink-0 text-center">
                       <span
-                        className={`font-bold ${entry.rank <= 3 && hasNonZeroScores ? 'text-2xl' : 'text-xl'}`}
+                        className={`font-bold leading-none ${entry.rank <= 3 && hasNonZeroScores ? 'text-2xl' : 'text-xl'}`}
                         style={{
                           color: rankColors.text,
                           filter: entry.rank <= 3 && hasNonZeroScores ? 'drop-shadow(0 2px 4px rgba(13,22,32,0.18))' : undefined,
@@ -562,29 +530,29 @@ export default function LeaderboardPage() {
                     {entry.avatar ? (
                       <LeaderboardAvatar avatar={entry.avatar} avatarColor={entry.avatarColor} size="sm" />
                     ) : (
-                      <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-gray-400 text-sm font-semibold">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-200">
+                        <span className="text-sm font-semibold text-gray-400">
                           {entry.name.charAt(0).toUpperCase()}
                         </span>
                       </div>
                     )}
-                    <div className="flex-1 min-w-0">
-                      <p className="font-semibold truncate" style={{ color: 'var(--color-text)' }}>
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate font-semibold leading-snug" style={{ color: 'var(--color-text)' }}>
                         {entry.name}
                         {isUserRow && (
                           <span className="ml-2 text-xs font-bold" style={{ color: 'var(--color-primary)' }}>
                             (You)
                           </span>
                         )}
-                      </p>
-                      <div className="flex items-center flex-wrap gap-3 mt-0.5 leading-tight">
+                      </div>
+                      <div className="mt-0.5 flex flex-wrap items-center gap-2.5 leading-none">
                         <div className="flex items-center gap-1 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-                          <SparklesIcon size={16} />
+                          <SparklesIcon size={14} />
                           <span>{entry.weeklyPoints} pts</span>
                         </div>
                         {entry.currentStreak > 0 && (
                           <div className="flex items-center gap-1 text-sm" style={{ color: 'var(--color-primary)' }}>
-                            <FlameIcon size={16} />
+                            <FlameIcon size={14} />
                             <span>{entry.currentStreak} day streak</span>
                           </div>
                         )}
@@ -592,14 +560,14 @@ export default function LeaderboardPage() {
                     </div>
                   </div>
                   {rankChange && (
-                    <div className="hidden md:block text-left sm:text-right">
-                      <div className="flex items-center gap-1 text-lg font-bold sm:justify-end" style={{ color: rankChange.color }}>
+                    <div className="hidden shrink-0 text-right md:block">
+                      <div className="flex items-center justify-end gap-1 text-sm font-bold" style={{ color: rankChange.color }}>
                         <span>{rankChange.icon}</span>
-                        <span className="text-sm">{Math.abs(entry.rankChange || 0)}</span>
+                        <span>{Math.abs(entry.rankChange || 0)}</span>
                       </div>
-                      <p className="text-xs" style={{ color: 'var(--color-text-light)' }}>
+                      <div className="text-[11px] leading-none" style={{ color: 'var(--color-text-light)' }}>
                         vs last week
-                      </p>
+                      </div>
                     </div>
                   )}
                 </div>
