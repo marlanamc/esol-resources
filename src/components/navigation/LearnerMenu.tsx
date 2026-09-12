@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
 import { BookOpen, ClipboardList, ExternalLink, Gamepad2, GraduationCap, Map, Megaphone, Menu, Mic, PenLine, PenTool, Search, Volume2, X } from "lucide-react";
-import { getHelpfulLinks, HELPFUL_LINK_TONE_KEYS, type HelpfulLink, type HelpfulLinkId } from "@/lib/helpful-links";
+import { getHelpfulLinkColors, getHelpfulLinks, type HelpfulLink, type HelpfulLinkId } from "@/lib/helpful-links";
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import { handleExternalLinkClick } from "@/lib/shared/open-external-link";
 import { BookOpenIcon, HomeIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
@@ -382,7 +382,7 @@ const EXTERNAL_LINK_ICONS: Record<HelpfulLinkId, typeof GraduationCap> = {
 
 function ExternalMenuLink({ link, onNavigate }: { link: HelpfulLink; onNavigate: () => void }) {
     const Icon = EXTERNAL_LINK_ICONS[link.id];
-    const tone = getLearnerCategoryTone(HELPFUL_LINK_TONE_KEYS[link.id]);
+    const colors = getHelpfulLinkColors(link.id);
 
     return (
         <a
@@ -391,18 +391,18 @@ function ExternalMenuLink({ link, onNavigate }: { link: HelpfulLink; onNavigate:
             rel="noopener noreferrer"
             className="flex items-center gap-3 rounded-xl border px-4 py-3 font-semibold transition-[transform,box-shadow] duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             style={{
-                backgroundColor: tone.surface,
-                borderColor: tone.border,
-                color: tone.accentStrong,
+                backgroundColor: colors.surface,
+                borderColor: colors.border,
+                color: colors.accentStrong,
             }}
             onClick={(event) => {
                 handleExternalLinkClick(event, link.href);
                 onNavigate();
             }}
         >
-            <Icon className="h-5 w-5 shrink-0" style={{ color: tone.accent }} aria-hidden />
+            <Icon className="h-5 w-5 shrink-0" style={{ color: colors.accent }} aria-hidden />
             <span className="min-w-0 flex-1">{link.label}</span>
-            <ExternalLink className="h-4 w-4 shrink-0" style={{ color: tone.accent }} aria-hidden />
+            <ExternalLink className="h-4 w-4 shrink-0" style={{ color: colors.accent }} aria-hidden />
         </a>
     );
 }

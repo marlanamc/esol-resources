@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { getHelpfulLinks } from "@/lib/helpful-links";
+import { getHelpfulLinkColors, getHelpfulLinks, HELPFUL_LINK_ACCENT_KEYS } from "@/lib/helpful-links";
+import { ACCENT_PRESETS } from "@/lib/accent-colors";
 
 const ENV_KEYS = [
     "NEXT_PUBLIC_GOOGLE_CLASSROOM_URL",
@@ -120,5 +121,23 @@ describe("getHelpfulLinks", () => {
                 ]);
             }
         );
+    });
+});
+
+describe("getHelpfulLinkColors", () => {
+    it("maps each link to the requested accent swatch", () => {
+        expect(HELPFUL_LINK_ACCENT_KEYS).toEqual({
+            "google-classroom": "ocean",
+            "absence-form": "teal",
+            "advisor-bulletin-board": "terracotta",
+            "in-class-games-library": "plum",
+        });
+
+        expect(getHelpfulLinkColors("google-classroom").accent).toBe(ACCENT_PRESETS.ocean.swatch);
+        expect(getHelpfulLinkColors("absence-form").accent).toBe(ACCENT_PRESETS.teal.swatch);
+        expect(getHelpfulLinkColors("advisor-bulletin-board").accent).toBe(
+            ACCENT_PRESETS.terracotta.swatch
+        );
+        expect(getHelpfulLinkColors("in-class-games-library").accent).toBe(ACCENT_PRESETS.plum.swatch);
     });
 });

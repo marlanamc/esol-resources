@@ -39,7 +39,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "id": "week-1",
         "number": 1,
         "title": "Getting Started",
-        "goal": "Get comfortable in the app, then show what you already know — short timeline checks of five questions each, ending with a challenge that mixes both.",
+        "goal": "Get comfortable in the app, then show what you already know.",
         "items": [
           {
             "id": "vocab-sep-w1-flashcards",

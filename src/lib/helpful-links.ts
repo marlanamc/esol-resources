@@ -1,3 +1,4 @@
+import { ACCENT_PRESETS, type AccentKey } from "@/lib/accent-colors";
 import { toSafeExternalUrl } from "@/lib/shared/safe-url";
 
 export type HelpfulLinkId =
@@ -12,16 +13,23 @@ export type HelpfulLink = {
     href: string;
 };
 
-/** Category tone keys used for colorful link styling in the dashboard and menu. */
-export const HELPFUL_LINK_TONE_KEYS: Record<
-    HelpfulLinkId,
-    "vocabulary" | "quizzes" | "games" | "info"
-> = {
-    "google-classroom": "vocabulary",
-    "absence-form": "quizzes",
-    "advisor-bulletin-board": "info",
-    "in-class-games-library": "games",
+/** Accent presets used for Class resources icon + menu chip colors. */
+export const HELPFUL_LINK_ACCENT_KEYS: Record<HelpfulLinkId, AccentKey> = {
+    "google-classroom": "ocean",
+    "absence-form": "teal",
+    "advisor-bulletin-board": "terracotta",
+    "in-class-games-library": "plum",
 };
+
+export function getHelpfulLinkColors(id: HelpfulLinkId) {
+    const preset = ACCENT_PRESETS[HELPFUL_LINK_ACCENT_KEYS[id]];
+    return {
+        accent: preset.swatch,
+        accentStrong: preset.light.primaryDark,
+        surface: `color-mix(in srgb, ${preset.swatch} 12%, white)`,
+        border: `color-mix(in srgb, ${preset.swatch} 28%, transparent)`,
+    };
+}
 
 const HELPFUL_LINK_CONFIG: { id: HelpfulLinkId; label: string; envKey: string }[] = [
     { id: "google-classroom", label: "Google Classroom", envKey: "NEXT_PUBLIC_GOOGLE_CLASSROOM_URL" },

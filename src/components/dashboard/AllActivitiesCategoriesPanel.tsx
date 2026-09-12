@@ -7,7 +7,6 @@ const ACTIVITY_CATEGORIES = [
     { label: "Quizzes", href: "/dashboard/activities?category=quizzes", category: "quizzes", emoji: "✏️" },
     { label: "Games", href: "/dashboard/activities?category=games", category: "games", emoji: "🎮" },
     { label: "Pronunciation", href: "/dashboard/activities?category=pronunciation", category: "pronunciation", emoji: "🔊" },
-    { label: "Speaking", href: "/dashboard/activities?category=speaking", category: "speaking", emoji: "🎤" },
 ] as const;
 
 export function AllActivitiesCategoriesPanel() {
@@ -23,7 +22,7 @@ export function AllActivitiesCategoriesPanel() {
                     Browse all →
                 </Link>
             </div>
-            <div className="grid grid-cols-6 gap-2.5">
+            <div className="grid grid-cols-5 gap-2.5">
                 {ACTIVITY_CATEGORIES.map((chip) => {
                     const tone = getLearnerCategoryTone(chip.category);
 

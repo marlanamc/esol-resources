@@ -122,7 +122,6 @@ export function focusText(title: string, goal?: string): string | null {
     const firstSentence = goal.split(/[.!?]/)[0] ?? goal;
     return firstSentence
         .replace(/^Learn the basic building blocks of English and\s+/i, "Build ")
-        .replace(/^Get comfortable in the app,\s*/i, "Start the app routine, ")
         .replace(/^Practice\s+/i, "Use ")
         .replace(/^Learn\s+/i, "Build ")
         .trim();
