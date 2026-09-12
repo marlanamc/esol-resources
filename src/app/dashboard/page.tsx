@@ -9,7 +9,6 @@ import { getStudentMomentumSnapshot } from "@/lib/dashboard/student-momentum";
 import { logger } from "@/lib/shared/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
-import Link from "next/link";
 import {
     CalendarEvent,
     DashboardCalendarCard,
@@ -75,86 +74,6 @@ function isWithinNewReleaseWindow(date: Date | null | undefined): boolean {
     if (!date) return false;
     const ageMs = Date.now() - date.getTime();
     return ageMs >= 0 && ageMs <= NEW_RELEASE_WINDOW_MS;
-}
-
-function FeaturedFallbackRow() {
-    const cards = [
-        {
-            title: "Level 3 Group Trivia",
-            meta: "Game",
-            emoji: "🎮",
-            href: "/dashboard/activities?category=games",
-        },
-        {
-            title: "Comparison Battle",
-            meta: "Game",
-            emoji: "🎮",
-            href: "/dashboard/activities?category=games",
-        },
-    ];
-
-    return (
-        <section aria-label="Featured for you">
-            <div className="mb-3.5 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
-                    <span className="h-[2px] w-6 shrink-0 rounded-full bg-primary" aria-hidden />
-                    <h2 className="text-[13px] font-extrabold uppercase tracking-[0.14em] text-primary">
-                        Featured for you
-                    </h2>
-                </div>
-                <Link
-                    href="/dashboard/activities"
-                    className="rounded text-sm font-bold text-primary transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
-                >
-                    View all →
-                </Link>
-            </div>
-            <div className="grid grid-cols-2 gap-2 md:gap-3">
-                {cards.map((card) => (
-                    <Link
-                        key={card.title}
-                        href={card.href}
-                        className="group flex items-stretch overflow-hidden rounded-[14px] border transition-[box-shadow,transform,border-color] duration-200 hover:-translate-y-px hover:shadow-[0_2px_4px_rgba(40,31,23,0.05),0_10px_24px_rgba(40,31,23,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 md:rounded-[18px]"
-                        style={{
-                            background: "var(--surface-elevated, #ffffff)",
-                            borderColor: "color-mix(in srgb, var(--dashboard-border) 72%, transparent)",
-                            boxShadow: "0 1px 2px rgba(40,31,23,0.04), 0 6px 18px rgba(40,31,23,0.05)",
-                        }}
-                    >
-                        {/* Category accent stripe — games tone */}
-                        <span
-                            className="w-[3px] shrink-0 self-stretch rounded-l-[14px] md:rounded-l-[18px]"
-                            style={{ background: "var(--tone-games-accent, #b05740)" }}
-                            aria-hidden
-                        />
-                        <span className="flex min-w-0 flex-1 items-center gap-2 px-2.5 py-2.5 md:gap-3 md:px-4 md:py-3.5">
-                            <span
-                                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[9px] text-sm leading-none md:h-8 md:w-8 md:rounded-[10px] md:text-base"
-                                style={{
-                                    background: "color-mix(in srgb, var(--tone-games-chip-bg, rgba(176,87,64,0.12)) 78%, transparent)",
-                                    boxShadow: "inset 0 0 0 1px color-mix(in srgb, var(--tone-games-border, rgba(176,87,64,0.28)) 40%, transparent)",
-                                }}
-                                aria-hidden
-                            >
-                                {card.emoji}
-                            </span>
-                            <span className="min-w-0 flex-1 space-y-0.5 md:space-y-1">
-                                <span className="hidden md:inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-2 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-wide text-primary">
-                                    Featured
-                                </span>
-                                <span className="block line-clamp-2 text-[13px] font-semibold leading-tight text-text md:truncate md:text-[15px] md:font-bold">
-                                    {card.title}
-                                </span>
-                                <span className="block text-[11px] text-text-muted/90 md:text-xs">
-                                    {card.meta}
-                                </span>
-                            </span>
-                        </span>
-                    </Link>
-                ))}
-            </div>
-        </section>
-    );
 }
 
 export default async function DashboardPage() {
@@ -473,9 +392,7 @@ export default async function DashboardPage() {
                         />
                         {newThisWeekItems.length > 0 ? (
                             <NewThisWeekSection items={newThisWeekItems} />
-                        ) : (
-                            <FeaturedFallbackRow />
-                        )}
+                        ) : null}
                         <HelpfulLinksCard variant="plain" />
                     </div>
                 </div>
@@ -508,9 +425,7 @@ export default async function DashboardPage() {
 
                             {newThisWeekItems.length > 0 ? (
                                 <NewThisWeekSection items={newThisWeekItems} />
-                            ) : (
-                                <FeaturedFallbackRow />
-                            )}
+                            ) : null}
 
                             <AllActivitiesCategoriesPanel />
                         </div>
