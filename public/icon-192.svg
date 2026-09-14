@@ -1,17 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="My ESOL Class">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#b05740"/>
-      <stop offset="100%" stop-color="#d97757"/>
-    </linearGradient>
-  </defs>
-  <!-- Full-bleed background for maskable PWA icons -->
-  <rect width="512" height="512" fill="url(#bg)"/>
-  <!-- Open book glyph centered in ~80% safe zone -->
-  <g fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M156 168 C156 148 172 136 256 136 C340 136 356 148 356 168 V344 C356 364 340 376 256 376 C172 376 156 364 156 344 Z"/>
-    <path d="M256 136 V376"/>
-    <path d="M196 196 C220 184 244 180 256 180 C268 180 292 184 316 196"/>
-    <path d="M196 260 C220 248 244 244 256 244 C268 244 292 248 316 260"/>
+  <!-- Direction 1a "The Slab E": solid-shape letterform, legible down to 16px.
+       Full-bleed terracotta ground keeps this safe as a maskable PWA icon. -->
+  <rect width="512" height="512" fill="#b05740"/>
+  <g>
+    <rect x="141" y="110" width="62" height="292" rx="14" fill="#fdf9f0"/>
+    <rect x="141" y="110" width="230" height="62" rx="14" fill="#fdf9f0"/>
+    <rect x="141" y="225" width="182" height="62" rx="14" fill="#e9c46a"/>
+    <rect x="141" y="340" width="230" height="62" rx="14" fill="#fdf9f0"/>
   </g>
 </svg>
