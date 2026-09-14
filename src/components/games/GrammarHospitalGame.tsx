@@ -14,9 +14,7 @@ import {
 import type {
     GrammarHospitalCase,
     GrammarHospitalContent,
-    GrammarHospitalErrorTag,
     GrammarHospitalFocus,
-    GrammarHospitalHelper,
     GrammarHospitalTier,
 } from "@/types/activity";
 import { fetchActivityProgress, saveActivityProgress } from "@/lib/activityProgress";
@@ -31,41 +29,11 @@ import {
     SettingsForm,
     type GrammarHospitalSettings,
 } from "@/components/games/grammar-hospital/SettingsPanel";
-import {
-    filterDeck,
-    getCaseStepInfo,
-    getDiagnoseConfig,
-    getInitialCasePhase,
-    sampleRound,
-    shouldSkipHelper,
-} from "@/lib/grammar-hospital/progression";
-import {
-    formatHelperOptionLabel,
-    getHelperOptions,
-    helperAtSentenceStart,
-    resolveCorrectHelper,
-} from "@/lib/grammar-hospital/helpers";
+import { filterDeck, sampleRound } from "@/lib/grammar-hospital/progression";
 
 const GAME_ID = "grammar-hospital";
 
-/**
- * Grammar Hospital — diagnose / choose helper / repair drill.
- *
- * Adult ESOL learners default to BE as a universal helper under pressure
- * ("Are they work here?"). Each case walks them through up to three steps:
- *   1. Diagnose what's wrong (error tags, graded against case.errorTags)
- *   2. Choose the correct helper (graded against case.correctHelper)
- *   3. Repair the sentence (type or tap-to-build)
- * Then a soft feedback step before moving to the next patient.
- *
- * Every step is graded: a wrong pick does not advance. Tries are unlimited and
- * help is always one tap away, so the gate teaches rather than punishes — but
- * the loop can no longer be clicked through without engaging. Steps 1 and 2 are
- * each skipped for cases where they would not teach anything (see progression).
- *
- * Participation grant on full completion via saveActivityProgress(100, "completed");
- * idempotent server-side so refreshes do not double-award.
- */
+/** Sentence repair practice with optional hints and unlimited attempts. */
 
 interface Props {
     activityId: string;
@@ -73,19 +41,12 @@ interface Props {
     assignmentId?: string | null;
 }
 
-type Phase = "intro" | "diagnose" | "helper" | "repair" | "feedback" | "review";
-
-const ERROR_LABELS: Record<GrammarHospitalErrorTag, string> = {
-    "wrong-helper": "Wrong helper",
-    "verb-form": "Verb form problem",
-    "extra-word": "Extra word",
-    "missing-word": "Missing word",
-    "word-order": "Word order problem",
-};
+type Phase = "intro" | "repair" | "feedback" | "review";
 
 function normalizeAnswer(s: string): string {
     return s
         .toLowerCase()
+        .replace(/[’‘]/g, "'")
         .replace(/[.,!?;:"]/g, "")
         .replace(/\s+/g, " ")
         .trim();
@@ -119,7 +80,7 @@ function renderUnhealthy(c: GrammarHospitalCase): React.ReactNode {
         <>
             {before}
             <span className="relative inline-block">
-                <span className="relative z-10 text-primary font-bold">{mid}</span>
+                <span className="relative z-10 text-primary dark:text-primary-light font-bold">{mid}</span>
                 <span
                     aria-hidden="true"
                     className="absolute left-0 right-0 bottom-0 h-[0.32em] bg-primary/15 rounded-sm -z-0"
@@ -178,8 +139,6 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
 
     const [caseIdx, setCaseIdx] = useState(0);
     const [phase, setPhase] = useState<Phase>("intro");
-    const [diagnoseSel, setDiagnoseSel] = useState<Set<GrammarHospitalErrorTag>>(new Set());
-    const [helperPick, setHelperPick] = useState<GrammarHospitalHelper | null>(null);
     const [repairInput, setRepairInput] = useState("");
     const [repairTiles, setRepairTiles] = useState<string[]>([]);
     const [bankTiles, setBankTiles] = useState<string[]>([]);
@@ -187,10 +146,6 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
     const [lastCorrect, setLastCorrect] = useState<boolean | null>(null);
     const [attempts, setAttempts] = useState(0);
 
-    // Wrong picks on the graded steps. Held per case so the tile can stay
-    // marked while the learner tries again.
-    const [diagnoseWrong, setDiagnoseWrong] = useState(false);
-    const [helperWrong, setHelperWrong] = useState(false);
     // Set once the learner asks to see the answer, so the repair step can show
     // it while still requiring them to enter it.
     const [answerShown, setAnswerShown] = useState(false);
@@ -208,11 +163,6 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
 
     const current: GrammarHospitalCase | undefined = cases[caseIdx];
     const isBuildMode = !!current?.wordBank && current.wordBank.length > 0;
-    const diagnoseConfig = useMemo(
-        () => (current ? getDiagnoseConfig(current) : { tags: [] as GrammarHospitalErrorTag[], multiSelect: false }),
-        [current]
-    );
-
     // Load user settings on mount, mirror to server when changed.
     useEffect(() => {
         let cancelled = false;
@@ -248,7 +198,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         setStreak(0);
         setPhase((p) => {
             if (p === "intro") return p;
-            return getInitialCasePhase(cases[0]);
+            return "repair";
         });
     }, [settingsKey, cases]);
 
@@ -271,14 +221,10 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
     // Reset per-case state whenever we enter a new case.
     useEffect(() => {
         if (!current) return;
-        setDiagnoseSel(new Set());
-        setHelperPick(null);
         setRepairInput("");
         setHintOpen(false);
         setLastCorrect(null);
         setAttempts(0);
-        setDiagnoseWrong(false);
-        setHelperWrong(false);
         setAnswerShown(false);
         if (current.wordBank && current.wordBank.length > 0) {
             setBankTiles(shuffle(current.wordBank));
@@ -317,62 +263,11 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         } else {
             const nextIdx = caseIdx + 1;
             setCaseIdx(nextIdx);
-            setPhase(getInitialCasePhase(cases[nextIdx]));
+            setPhase("repair");
         }
-    }, [caseIdx, totalCases, grantCompletion, cases]);
+    }, [caseIdx, totalCases, grantCompletion]);
 
     // ---- Step handlers ----
-    const toggleErrorTag = (tag: GrammarHospitalErrorTag) => {
-        setDiagnoseWrong(false);
-        setDiagnoseSel((prev) => {
-            if (!diagnoseConfig.multiSelect) {
-                return prev.has(tag) ? new Set() : new Set([tag]);
-            }
-            const next = new Set(prev);
-            if (next.has(tag)) next.delete(tag);
-            else next.add(tag);
-            return next;
-        });
-    };
-
-    /** The diagnose step is graded against case.errorTags. */
-    const diagnoseIsCorrect = useCallback((): boolean => {
-        if (!current) return false;
-        const required = new Set(current.errorTags);
-        if (diagnoseConfig.multiSelect) {
-            // Every required tag, and nothing extra.
-            if (diagnoseSel.size !== required.size) return false;
-            return [...diagnoseSel].every((t) => required.has(t));
-        }
-        // Single-select: any one of the case's real errors counts.
-        return diagnoseSel.size === 1 && required.has([...diagnoseSel][0]);
-    }, [current, diagnoseConfig.multiSelect, diagnoseSel]);
-
-    const submitDiagnose = () => {
-        if (diagnoseSel.size === 0) return;
-        if (!diagnoseIsCorrect()) {
-            setDiagnoseWrong(true);
-            return;
-        }
-        setDiagnoseWrong(false);
-        setPhase(current && shouldSkipHelper(current) ? "repair" : "helper");
-    };
-
-    const pickHelper = (h: GrammarHospitalHelper) => {
-        setHelperWrong(false);
-        setHelperPick(h);
-    };
-
-    const submitHelper = () => {
-        if (!current || !helperPick) return;
-        if (helperPick !== resolveCorrectHelper(current.correctHelper ?? "do")) {
-            setHelperWrong(true);
-            return;
-        }
-        setHelperWrong(false);
-        setPhase("repair");
-    };
-
     const submitRepair = () => {
         if (!current) return;
         const value = isBuildMode ? repairTiles.join(" ") : repairInput;
@@ -404,12 +299,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
 
     const tryRepairAgain = () => {
         if (!current) return;
-        if (isBuildMode && current.wordBank) {
-            setBankTiles(shuffle(current.wordBank));
-            setRepairTiles([]);
-        } else {
-            setRepairInput("");
-        }
+        // Keep the attempt so learners can edit only what needs changing.
         setLastCorrect(null);
         setPhase("repair");
     };
@@ -487,7 +377,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                             Today&apos;s Report
                         </p>
                         <h1 className="font-display text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-50 leading-tight">
-                            Great work, Doctor.
+                            You fixed every sentence!
                         </h1>
                         {isCompleted && pointsAwarded !== null && pointsAwarded > 0 && (
                             <p className="mt-3 text-sm text-secondary-dark dark:text-secondary-light font-medium">
@@ -497,14 +387,16 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                     </div>
 
                     <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1f1a] shadow-[0_1px_2px_rgba(74,47,26,0.04),0_8px_24px_rgba(74,47,26,0.06)] p-6 sm:p-8">
+                        <WardRecap results={results} />
+
                         <div className="flex items-center justify-center mb-6">
                             <AccuracyDial value={accuracy} />
                         </div>
 
                         <ul className="divide-y divide-gray-100 dark:divide-white/10">
-                            <SummaryRow icon={<Clipboard size={16} />} label="Patients treated" value={String(treated)} />
-                            <SummaryRow icon={<CheckCircle2 size={16} className="text-secondary-dark" />} label="Correct" value={String(correct)} />
-                            <SummaryRow icon={<HeartPulse size={16} className="text-primary" />} label="Needs more care" value={String(needsCare)} />
+                            <SummaryRow icon={<Clipboard size={16} />} label="Sentences practiced" value={String(treated)} />
+                            <SummaryRow icon={<CheckCircle2 size={16} className="text-secondary-dark" />} label="Solved without showing the answer" value={String(correct)} />
+                            <SummaryRow icon={<HeartPulse size={16} className="text-primary" />} label="Practiced with the answer" value={String(needsCare)} />
                             <SummaryRow icon={<Trophy size={16} className="text-accent" />} label="Best streak" value={`${bestStreak} in a row`} />
                         </ul>
 
@@ -568,12 +460,14 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                             <h1 className="font-display text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-50 leading-tight tracking-[-0.02em]">
                                 {content.courseMapTitle ?? "Fix the Sentence"}
                             </h1>
+                            <p className="mt-4 text-gray-600 dark:text-gray-300">Fix each sentence. Use a hint if you need help. You can try again as many times as you need.</p>
                             <button
                                 type="button"
-                                onClick={() => setPhase(getInitialCasePhase(cases[0]))}
+                                disabled={!settingsLoaded}
+                                onClick={() => setPhase("repair")}
                                 className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-8 py-3.5 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
                             >
-                                Start
+                                Start practicing
                             </button>
                             <p className="mt-4 text-sm text-gray-400 dark:text-gray-500">
                                 {totalCases} {totalCases === 1 ? "sentence" : "sentences"}
@@ -588,12 +482,14 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                                 <h1 className="font-display text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-50 leading-tight tracking-[-0.02em]">
                                     Grammar Hospital
                                 </h1>
+                                <p className="mt-4 text-gray-600 dark:text-gray-300">Fix each sentence. Use a hint if you need help. You can try again as many times as you need.</p>
                                 <button
                                     type="button"
-                                    onClick={() => setPhase(getInitialCasePhase(cases[0]))}
+                                    disabled={!settingsLoaded}
+                                    onClick={() => setPhase("repair")}
                                     className="mt-7 inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-7 py-3 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
                                 >
-                                    Start
+                                    Start practicing
                                 </button>
                                 <p className="mt-3 text-sm text-gray-400 dark:text-gray-500">
                                     {totalCases} {totalCases === 1 ? "sentence" : "sentences"} at this level
@@ -620,12 +516,9 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
     }
 
     // ============================================================
-    // CASE WORKING SCREENS (diagnose / helper / repair / feedback)
+    // CASE WORKING SCREENS (repair / feedback)
     // ============================================================
-    const stepInfo = getCaseStepInfo(
-        current,
-        phase === "feedback" ? "repair" : phase
-    );
+    const vitalsSeverity = getVitalsSeverity(phase, lastCorrect);
 
     return (
         <div className="min-h-full bg-[#fdf9f0] dark:bg-[#1a1410]">
@@ -633,9 +526,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                 <div className="flex items-center justify-between gap-3 mb-4">
                     <div className="flex items-center gap-3 min-w-0">
                         <ContextualBackButton aria-label="Back to activities" />
-                        <span className="text-sm text-gray-500 dark:text-gray-400 tabular-nums">
-                            {caseIdx + 1} / {totalCases}
-                        </span>
+                        <WardStrip total={totalCases} currentIdx={caseIdx} results={results} />
                     </div>
                     {streak >= 2 && (
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/25 text-amber-900 dark:text-amber-100 text-xs font-semibold border border-accent/40">
@@ -644,22 +535,19 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                     )}
                 </div>
 
-                <div className="h-1 w-full rounded-full bg-gray-200 dark:bg-white/10 overflow-hidden mb-5">
-                    <div
-                        className="h-full bg-primary rounded-full transition-[width] duration-500"
-                        style={{
-                            width: `${((caseIdx + (stepInfo.stepNumber / stepInfo.totalSteps)) / totalCases) * 100}%`,
-                        }}
-                    />
-                </div>
-
                 <div
-                    className={`rounded-2xl border bg-white dark:bg-[#2a1f1a] shadow-[0_1px_2px_rgba(74,47,26,0.04),0_8px_24px_rgba(74,47,26,0.06)] p-5 sm:p-7 transition-colors duration-500 ${
+                    className={`rounded-2xl border bg-white dark:bg-[#2a1f1a] shadow-[0_1px_2px_rgba(74,47,26,0.04),0_8px_24px_rgba(74,47,26,0.06)] overflow-hidden transition-colors duration-500 ${
                         phase === "feedback" && lastCorrect
                             ? "border-secondary/40 bg-gradient-to-b from-secondary/8 to-white dark:from-secondary/10 dark:to-[#2a1f1a]"
                             : "border-gray-200 dark:border-white/10"
                     }`}
                 >
+                    <PatientVitals
+                        severity={vitalsSeverity}
+                        caseNumber={caseIdx + 1}
+                        totalCases={totalCases}
+                    />
+                    <div className="p-5 sm:p-7">
                     <div
                         className={
                             phase === "feedback" && lastCorrect
@@ -670,9 +558,9 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                         {phase === "feedback" && lastCorrect ? (
                             <>
                                 <p className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-secondary-dark dark:text-secondary-light mb-2">
-                                    <Sparkles size={13} /> Fixed
+                                    <CheckCircle2 size={13} /> Sentence fixed
                                 </p>
-                                <p className="font-display font-bold text-secondary-dark dark:text-secondary-light tracking-[-0.02em] leading-[1.15] text-[1.75rem] sm:text-[2.25rem]">
+                                <p className="font-display font-bold text-secondary-dark dark:text-secondary-light tracking-[-0.02em] leading-[1.15] text-[1.75rem] sm:text-[2.25rem] gh-discharge">
                                     {current.healthy}
                                 </p>
                             </>
@@ -690,31 +578,11 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                                             focusCounts={focusCounts}
                                         />
                                     )}
-                                    <ReminderInfo />
                                 </div>
                             </>
                         )}
                     </div>
 
-                    {phase === "diagnose" && (
-                        <DiagnoseStep
-                            options={diagnoseConfig.tags}
-                            multiSelect={diagnoseConfig.multiSelect}
-                            selected={diagnoseSel}
-                            onToggle={toggleErrorTag}
-                            wrong={diagnoseWrong}
-                            onContinue={submitDiagnose}
-                        />
-                    )}
-                    {phase === "helper" && (
-                        <HelperStep
-                            pick={helperPick}
-                            onPick={pickHelper}
-                            caseItem={current}
-                            wrong={helperWrong}
-                            onContinue={submitHelper}
-                        />
-                    )}
                     {phase === "repair" && (
                         <RepairStep
                             buildMode={isBuildMode}
@@ -734,15 +602,16 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                     {phase === "feedback" && (
                         <FeedbackStep
                             correct={!!lastCorrect}
+                            submittedAnswer={isBuildMode ? repairTiles.join(" ") : repairInput}
                             caseItem={current}
-                            attempts={attempts}
-                            onTryAgain={tryRepairAgain}
+                                            onTryAgain={tryRepairAgain}
                             onShowAnswer={showAnswerAndRetry}
                             answerShown={answerShown}
                             onNext={goNextCase}
                             isLast={caseIdx + 1 >= totalCases}
                         />
                     )}
+                    </div>
                 </div>
             </div>
 
@@ -760,206 +629,6 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
 // ============================================================================
 // Sub-components
 // ============================================================================
-
-function ReminderInfo() {
-    const [open, setOpen] = useState(false);
-    const ref = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        if (!open) return;
-        const onClick = (e: MouseEvent) => {
-            if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-        };
-        const onKey = (e: KeyboardEvent) => {
-            if (e.key === "Escape") setOpen(false);
-        };
-        document.addEventListener("mousedown", onClick);
-        document.addEventListener("keydown", onKey);
-        return () => {
-            document.removeEventListener("mousedown", onClick);
-            document.removeEventListener("keydown", onKey);
-        };
-    }, [open]);
-
-    return (
-        <div ref={ref} className="relative">
-            <button
-                type="button"
-                onClick={() => setOpen((o) => !o)}
-                aria-expanded={open}
-                aria-label="Helper verb reminder"
-                title="Helper verb reminder"
-                className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/80 dark:bg-[#2a1f1a]/80 border border-gray-200 dark:border-white/15 text-gray-500 dark:text-gray-300 hover:text-primary hover:border-primary/50 backdrop-blur-sm shadow-sm transition-colors"
-            >
-                <Lightbulb size={15} />
-            </button>
-            {open && (
-                <div
-                    role="dialog"
-                    aria-label="Helper verb reminder"
-                    className="absolute right-0 mt-2 w-64 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1f1a] shadow-lg p-3.5 z-20 text-sm text-gray-600 dark:text-gray-300"
-                >
-                    <p><span className="font-semibold text-gray-900 dark:text-gray-50">Actions</span> → do / does</p>
-                    <p className="mt-1.5"><span className="font-semibold text-gray-900 dark:text-gray-50">States</span> → am / is / are</p>
-                </div>
-            )}
-        </div>
-    );
-}
-
-function DiagnoseStep({
-    options,
-    multiSelect,
-    selected,
-    onToggle,
-    wrong,
-    onContinue,
-}: {
-    options: GrammarHospitalErrorTag[];
-    multiSelect: boolean;
-    selected: Set<GrammarHospitalErrorTag>;
-    onToggle: (tag: GrammarHospitalErrorTag) => void;
-    wrong: boolean;
-    onContinue: () => void;
-}) {
-    return (
-        <div>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                {multiSelect ? "What's wrong? Pick all that apply." : "What's wrong?"}
-            </p>
-
-            <ul className="space-y-2">
-                {options.map((tag) => {
-                    const active = selected.has(tag);
-                    return (
-                        <li key={tag}>
-                            <button
-                                type="button"
-                                onClick={() => onToggle(tag)}
-                                aria-pressed={active}
-                                className={
-                                    active
-                                        ? "w-full flex items-center gap-3 px-4 py-3 rounded-xl border-2 border-primary bg-primary/8 text-gray-900 dark:text-gray-50 font-medium text-base transition-all"
-                                        : "w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#332419] text-gray-800 dark:text-gray-100 font-medium text-base hover:border-primary/40 transition-all"
-                                }
-                            >
-                                <span className="flex-1 text-left">{ERROR_LABELS[tag]}</span>
-                                {active && (
-                                    <CheckCircle2 size={16} className="text-primary shrink-0" />
-                                )}
-                            </button>
-                        </li>
-                    );
-                })}
-            </ul>
-
-            {wrong && (
-                <p
-                    role="status"
-                    className="mt-4 text-sm font-medium text-primary"
-                >
-                    Not quite — look at the underlined part again.
-                </p>
-            )}
-
-            <div className="mt-5 flex justify-end">
-                <button
-                    type="button"
-                    onClick={onContinue}
-                    disabled={selected.size === 0}
-                    className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold px-6 py-2.5 shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
-                >
-                    Continue
-                </button>
-            </div>
-        </div>
-    );
-}
-
-function HelperStep({
-    pick,
-    onPick,
-    caseItem,
-    wrong,
-    onContinue,
-}: {
-    pick: GrammarHospitalHelper | null;
-    onPick: (h: GrammarHospitalHelper) => void;
-    caseItem: GrammarHospitalCase;
-    wrong: boolean;
-    onContinue: () => void;
-}) {
-    const atSentenceStart = helperAtSentenceStart(caseItem);
-    // Guarded by shouldSkipHelper — this step never renders without one.
-    const correctHelper = resolveCorrectHelper(caseItem.correctHelper ?? "do");
-    // Options are derived per case so the correct answer is always on screen.
-    const options = getHelperOptions(caseItem);
-
-    const optionButtonClass = (state: "correct" | "wrong" | "active" | "default") => {
-        const base =
-            "w-full px-3 py-3.5 rounded-xl font-display text-xl sm:text-2xl font-bold tracking-tight transition-all flex items-center justify-center gap-2 min-h-[56px]";
-        if (state === "correct") {
-            return `${base} border-2 border-secondary bg-secondary/10 text-secondary-dark dark:text-secondary-light`;
-        }
-        if (state === "wrong") {
-            return `${base} border-2 border-primary bg-primary/8 text-primary`;
-        }
-        if (state === "active") {
-            return `${base} border-2 border-primary bg-primary/8 text-gray-900 dark:text-gray-50`;
-        }
-        return `${base} border border-gray-200 dark:border-white/10 bg-white dark:bg-[#332419] text-gray-900 dark:text-gray-50 hover:border-primary/40`;
-    };
-
-    return (
-        <div>
-            <div className="grid grid-cols-2 gap-2">
-                {options.map((opt) => {
-                    const active = pick === opt;
-                    const isWrongPick = pick && pick !== correctHelper && pick === opt;
-                    const isCorrectPick = pick && active && pick === correctHelper;
-                    const state = isCorrectPick
-                        ? "correct"
-                        : isWrongPick
-                          ? "wrong"
-                          : active
-                            ? "active"
-                            : "default";
-                    return (
-                        <button
-                            key={opt}
-                            type="button"
-                            onClick={() => onPick(opt)}
-                            aria-pressed={active}
-                            className={optionButtonClass(state)}
-                        >
-                            <span>{formatHelperOptionLabel(opt, atSentenceStart)}</span>
-                            {isCorrectPick && (
-                                <CheckCircle2 size={16} className="text-secondary-dark dark:text-secondary-light shrink-0" />
-                            )}
-                        </button>
-                    );
-                })}
-            </div>
-
-            {wrong && (
-                <p role="status" className="mt-4 text-sm font-medium text-primary">
-                    Not that one — try another helper.
-                </p>
-            )}
-
-            <div className="mt-5 flex justify-end">
-                <button
-                    type="button"
-                    onClick={onContinue}
-                    disabled={!pick}
-                    className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold px-6 py-2.5 shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
-                >
-                    Continue
-                </button>
-            </div>
-        </div>
-    );
-}
 
 function RepairStep({
     buildMode,
@@ -992,6 +661,10 @@ function RepairStep({
     const canCheck = buildMode ? repairTiles.length > 0 && bankTiles.length === 0 : input.trim().length > 0;
     return (
         <div>
+            <p id="repair-instructions" className="text-base font-semibold text-gray-800 dark:text-gray-100 mb-4">
+                {buildMode ? "Put the words in order to fix the sentence." : "Write the correct sentence below."}
+            </p>
+            {buildMode && <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Tap a word to add it. Tap it again to move it back.</p>}
             {revealed && (
                 <div className="mb-4 rounded-xl border border-secondary/40 bg-secondary/8 px-4 py-3">
                     <p className="text-xs font-semibold uppercase tracking-wide text-secondary-dark dark:text-secondary-light mb-1">
@@ -1001,7 +674,7 @@ function RepairStep({
                         {revealed}
                     </p>
                     <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
-                        Write it out below — that is how it sticks.
+                        {buildMode ? "Use the words below to build this sentence." : "Type this sentence below to practice."}
                     </p>
                 </div>
             )}
@@ -1047,6 +720,8 @@ function RepairStep({
                     onKeyDown={(e) => {
                         if (e.key === "Enter" && canCheck) onCheck();
                     }}
+                    aria-labelledby="repair-instructions"
+                    autoComplete="off"
                     autoFocus
                     placeholder="Write the correct sentence"
                     className="w-full rounded-xl border border-gray-300 dark:border-white/15 bg-white dark:bg-[#332419] px-4 py-3.5 text-lg font-display text-gray-900 dark:text-gray-50 placeholder:text-gray-400 placeholder:font-body placeholder:text-base focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
@@ -1058,10 +733,11 @@ function RepairStep({
                     <button
                         type="button"
                         onClick={onToggleHint}
+                        aria-expanded={hintOpen}
                         className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-primary transition-colors"
                     >
                         <Lightbulb size={14} />
-                        Hint
+                        {hintOpen ? "Hide hint" : "Show hint"}
                     </button>
                 ) : (
                     <span />
@@ -1072,7 +748,7 @@ function RepairStep({
                     disabled={!canCheck}
                     className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold px-6 py-2.5 shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
                 >
-                    Check
+                    Check answer
                 </button>
             </div>
 
@@ -1087,8 +763,8 @@ function RepairStep({
 
 function FeedbackStep({
     correct,
+    submittedAnswer,
     caseItem,
-    attempts,
     onTryAgain,
     onShowAnswer,
     answerShown,
@@ -1096,8 +772,8 @@ function FeedbackStep({
     isLast,
 }: {
     correct: boolean;
+    submittedAnswer: string;
     caseItem: GrammarHospitalCase;
-    attempts: number;
     onTryAgain: () => void;
     onShowAnswer: () => void;
     answerShown: boolean;
@@ -1106,7 +782,7 @@ function FeedbackStep({
 }) {
     if (correct) {
         return (
-            <div className="text-center">
+            <div className="text-center" role="status">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/15 text-secondary-dark dark:bg-secondary/25 dark:text-secondary-light mb-4 motion-safe:animate-bounce">
                     <CheckCircle2 size={34} strokeWidth={2.5} />
                 </div>
@@ -1128,9 +804,13 @@ function FeedbackStep({
     }
 
     return (
-        <div>
+        <div role="status">
+            <p className="font-semibold text-gray-900 dark:text-gray-50 mb-2">Not quite yet. You can edit your answer.</p>
+            <p className="mb-4 rounded-xl bg-gray-50 dark:bg-[#332419] p-3 text-gray-700 dark:text-gray-200">
+                <span className="font-semibold">Your answer: </span>{submittedAnswer}
+            </p>
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-5 leading-relaxed">
-                {caseItem.explanation}
+                {caseItem.hint ?? caseItem.explanation}
             </p>
 
             <div className="flex items-center justify-between gap-3">
@@ -1154,11 +834,231 @@ function FeedbackStep({
                 </button>
             </div>
 
-            {attempts >= 2 && (
-                <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 text-center">
-                    Answer: <span className="font-medium text-gray-700 dark:text-gray-200">{caseItem.healthy}</span>
-                </p>
-            )}
+
+        </div>
+    );
+}
+
+/**
+ * Patient vitals — the theater around the drill.
+ *
+ * The teaching loop is unchanged; these components just make the case feel
+ * like a patient. Severity is derived from the phase, so the heartbeat races
+ * while the sentence is broken and settles once it is repaired. Purely
+ * decorative: everything here is aria-hidden, and the global
+ * prefers-reduced-motion rule in globals.css stills it.
+ */
+type VitalsSeverity = "critical" | "responding" | "stable";
+
+function getVitalsSeverity(phase: Phase, lastCorrect: boolean | null): VitalsSeverity {
+    if (phase === "feedback" && lastCorrect) return "stable";
+    if (phase === "repair" || phase === "feedback") return "responding";
+    return "critical";
+}
+
+const VITALS: Record<
+    VitalsSeverity,
+    { status: string; bpm: number; color: string; calm: boolean; head: string; label: string }
+> = {
+    critical: {
+        status: "Critical — needs help",
+        bpm: 126,
+        color: "#b05740",
+        calm: false,
+        head: "bg-primary/[0.07] dark:bg-primary/[0.14]",
+        label: "text-primary-dark dark:text-primary-light",
+    },
+    responding: {
+        status: "Responding to treatment",
+        bpm: 88,
+        color: "#cba342",
+        calm: false,
+        head: "bg-accent/[0.14] dark:bg-accent/[0.12]",
+        label: "text-amber-800 dark:text-accent-light",
+    },
+    stable: {
+        status: "Stable — recovered",
+        bpm: 72,
+        color: "#6a8d73",
+        calm: true,
+        head: "bg-secondary/[0.09] dark:bg-secondary/[0.14]",
+        label: "text-secondary-dark dark:text-secondary-light",
+    },
+};
+
+/** Vitals strip: heartbeat, status and a running ECG trace. */
+function PatientVitals({
+    severity,
+    caseNumber,
+    totalCases,
+}: {
+    severity: VitalsSeverity;
+    caseNumber: number;
+    totalCases: number;
+}) {
+    const v = VITALS[severity];
+    return (
+        <div
+            className={`px-4 sm:px-6 py-3 border-b border-gray-100 dark:border-white/10 transition-colors duration-500 ${v.head}`}
+        >
+            <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5 min-w-0">
+                    <svg
+                        aria-hidden="true"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill={v.color}
+                        stroke={v.color}
+                        strokeWidth="1.6"
+                        strokeLinejoin="round"
+                        className={`shrink-0 gh-heart ${v.calm ? "gh-heart-calm" : ""}`}
+                    >
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                    </svg>
+                    <div className="min-w-0">
+                        <p
+                            className={`text-[0.62rem] uppercase tracking-[0.16em] font-bold leading-tight ${v.label}`}
+                        >
+                            {v.status}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-px tabular-nums">
+                            Patient {caseNumber} of {totalCases} · {v.bpm} bpm
+                        </p>
+                    </div>
+                </div>
+                <svg
+                    aria-hidden="true"
+                    width="112"
+                    height="30"
+                    viewBox="0 0 112 30"
+                    fill="none"
+                    className="shrink-0 hidden xs:block sm:block"
+                >
+                    <path
+                        d="M0 15h22l4-9 5 18 5-9h18l4-9 5 18 5-9h18l4-9 5 18 5-9h12"
+                        stroke={v.color}
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeDasharray="300"
+                        opacity="0.85"
+                        className="gh-ecg-trace"
+                    />
+                </svg>
+            </div>
+        </div>
+    );
+}
+
+/**
+ * The ward: one bed per case in the round, filling in as patients are
+ * discharged. Replaces the thin progress bar with something readable at a
+ * glance. Falls back to a plain count past 12 cases so the beds never wrap
+ * into an unreadable smear on a phone.
+ */
+function WardStrip({
+    total,
+    currentIdx,
+    results,
+}: {
+    total: number;
+    currentIdx: number;
+    results: Array<{ id: string; correct: boolean }>;
+}) {
+    const cases = useMemo(() => Array.from({ length: total }, (_, i) => i), [total]);
+    const completedCount = results.length;
+
+    if (total > 12) {
+        return (
+            <p className="text-sm text-gray-500 dark:text-gray-400 tabular-nums">
+                {currentIdx + 1} / {total} · {completedCount} fixed
+            </p>
+        );
+    }
+
+    return (
+        <div
+            className="flex items-center gap-1.5"
+            role="img"
+            aria-label={`Patient ${currentIdx + 1} of ${total}, ${completedCount} fixed`}
+        >
+            {cases.map((i) => {
+                const done = i < currentIdx;
+                const active = i === currentIdx;
+                if (done) {
+                    return (
+                        <span
+                            key={i}
+                            aria-hidden="true"
+                            className="w-[30px] h-[26px] rounded-md bg-secondary/20 border border-secondary/55 flex items-center justify-center"
+                        >
+                            <svg
+                                width="11"
+                                height="11"
+                                viewBox="0 0 24 24"
+                                fill="#6a8d73"
+                                stroke="#6a8d73"
+                                strokeWidth="1.6"
+                                strokeLinejoin="round"
+                            >
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                            </svg>
+                        </span>
+                    );
+                }
+                return (
+                    <span
+                        key={i}
+                        aria-hidden="true"
+                        className={
+                            active
+                                ? "w-[30px] h-[26px] rounded-md bg-primary/12 border-2 border-primary"
+                                : "w-[30px] h-[26px] rounded-md border border-dashed border-gray-300 dark:border-white/15"
+                        }
+                    />
+                );
+            })}
+        </div>
+    );
+}
+
+/**
+ * End-of-shift ward: a bed per patient treated, sage for discharged and gold
+ * for still needing care. Driven straight off `results` so it can never drift
+ * from the counts listed beneath it. Hidden past 12 cases, where the rows
+ * already say it better than a wrapping grid of beds would.
+ */
+function WardRecap({ results }: { results: Array<{ id: string; correct: boolean }> }) {
+    if (results.length === 0 || results.length > 12) return null;
+    return (
+        <div className="mb-6">
+            <p className="text-[0.62rem] uppercase tracking-[0.14em] font-bold text-gray-500 dark:text-gray-400 mb-2.5">
+                Your practice
+            </p>
+            <div className="flex flex-wrap gap-2">
+                {results.map((r) => (
+                    <span
+                        key={r.id}
+                        title={r.correct ? "Solved without showing the answer" : "Practiced with the answer"}
+                        className={
+                            r.correct
+                                ? "flex-1 min-w-[52px] rounded-xl border border-secondary/50 bg-secondary/15 py-2.5 flex items-center justify-center"
+                                : "flex-1 min-w-[52px] rounded-xl border border-accent/60 bg-accent/20 py-2.5 flex items-center justify-center"
+                        }
+                    >
+                        <HeartPulse
+                            size={16}
+                            aria-hidden="true"
+                            className={
+                                r.correct
+                                    ? "text-secondary-dark dark:text-secondary-light"
+                                    : "text-amber-700 dark:text-accent-light"
+                            }
+                        />
+                    </span>
+                ))}
+            </div>
         </div>
     );
 }
@@ -1201,7 +1101,7 @@ function AccuracyDial({ value }: { value: number }) {
                     {value}%
                 </span>
                 <span className="text-[0.6rem] uppercase tracking-wide font-bold text-gray-500 dark:text-gray-400 mt-0.5">
-                    Accuracy
+                    Without answer
                 </span>
             </div>
         </div>

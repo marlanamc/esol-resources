@@ -1,5 +1,5 @@
 // Hand-curated Unsplash images for the Welcome Back: Tenses Review guide.
-// Unit 1 — Getting to Know You. Scenes: bus stop, classroom, neighborhood, phone/app.
+// Unit 1 — Getting to Know You. Scenes: bus stop, sneakers/shoes story, neighborhood, phone/app.
 
 export interface WelcomeBackSceneImage {
   url: string;
@@ -19,12 +19,12 @@ export const welcomeBackImages: Record<string, WelcomeBackSceneImage> = {
     },
   },
   sceneClassroom: {
-    url: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=80&auto=format&fit=crop",
-    alt: "Adult students sitting together in a bright classroom, engaged in learning.",
-    unsplashId: "1580582932707-520aed937b7b",
+    url: "https://images.unsplash.com/photo-1565095747113-c462f5fbf6d6?w=1200&q=80&auto=format&fit=crop",
+    alt: "A pair of red and yellow sneakers side by side.",
+    unsplashId: "miWGZ02CLKI",
     credit: {
-      name: "Alexis Brown",
-      url: "https://unsplash.com/@alexisrbrown",
+      name: "Franck V.",
+      url: "https://unsplash.com/@possessedphotography",
     },
   },
   sceneNeighborhood: {

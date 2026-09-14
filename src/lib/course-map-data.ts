@@ -39,7 +39,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "id": "week-1",
         "number": 1,
         "title": "Getting Started",
-        "goal": "Get comfortable in the app, then show what you already know.",
+        "goal": "Show what you already know with a warm-up review and timeline practice.",
         "items": [
           {
             "id": "vocab-sep-w1-flashcards",
@@ -52,19 +52,10 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Vocab: Introductions — Flash Cards"
           },
           {
-            "id": "welcome-how-to-use-app",
-            "href": "/grammar-reader/welcome-how-to-use-app",
-            "slot": "required",
-            "order": 1,
-            "wrappedGame": false,
-            "activityType": "guide",
-            "title": "Welcome / How to Use the App"
-          },
-          {
             "id": "welcome-back-tenses-review",
             "href": "/grammar-reader/welcome-back-tenses-review",
             "slot": "required",
-            "order": 2,
+            "order": 1,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "Welcome Back: Simple & Continuous Review"
@@ -74,7 +65,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityId": "timeline-tenses-simple",
             "title": "Timeline Check: Simple Tenses",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": true,
             "activityType": "game"
           },
@@ -83,7 +74,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityId": "timeline-tenses-continuous",
             "title": "Timeline Check: Continuous Tenses",
             "slot": "required",
-            "order": 4,
+            "order": 3,
             "wrappedGame": true,
             "activityType": "game"
           },
@@ -92,7 +83,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityId": "vocab-sep-w1",
             "vocabUi": "matching",
             "slot": "required",
-            "order": 5,
+            "order": 4,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Vocab: Introductions — Matching"
@@ -102,7 +93,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityId": "vocab-sep-w1",
             "vocabUi": "fill-blank",
             "slot": "required",
-            "order": 6,
+            "order": 5,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Vocab: Introductions — Fill in the Blank"
@@ -112,7 +103,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "activityId": "timeline-tenses-simple-continuous",
             "title": "Timeline Check: Simple + Continuous",
             "slot": "required",
-            "order": 7,
+            "order": 6,
             "wrappedGame": true,
             "activityType": "game",
             "badge": "Challenge"
@@ -121,7 +112,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "timeline-tenses-week1-intro",
             "activityId": "timeline-tenses-week1-easy",
             "slot": "extra",
-            "order": 8,
+            "order": 7,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Timeline Tenses: Easy Start"
@@ -130,7 +121,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "grammar-hospital-first-aid",
             "activityId": "grammar-hospital-first-aid-guided",
             "slot": "extra",
-            "order": 9,
+            "order": 8,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Grammar Hospital: First Aid"

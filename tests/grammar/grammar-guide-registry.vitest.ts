@@ -3,8 +3,7 @@ import { grammarGuides, grammarGuideSlugs, getGrammarGuide } from "@/lib/grammar
 
 describe("grammar guide registry", () => {
   it("has the expected number of guides", () => {
-    // 74 since the Week 1 "Welcome / How to Use the App" guide was added.
-    expect(grammarGuideSlugs.length).toBe(74);
+    expect(grammarGuideSlugs.length).toBe(73);
   });
 
   it("returns null for unknown slugs", () => {

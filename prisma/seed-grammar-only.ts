@@ -29,7 +29,6 @@ import { welcomeBackTensesReviewContent } from '../src/content/grammar/welcome-b
 import { allVerbTensesOverviewContent } from '../src/content/grammar/all-verb-tenses-overview';
 import { questionsRealAnswersContent } from '../src/content/grammar/questions-real-answers';
 import { pastSimplePastContinuousContent } from '../src/content/grammar/past-simple-past-continuous';
-import { welcomeHowToUseAppContent } from '../src/content/grammar/welcome-how-to-use-app';
 
 const prisma = new PrismaClient();
 
@@ -231,14 +230,6 @@ const grammarGuides = [
   // so completion can be tracked — without one, the course map treats the guide
   // as permanently incomplete and "Next up" never advances past it.
   {
-    id: 'welcome-how-to-use-app-guide',
-    title: 'Welcome / How to Use the App',
-    description: "How to find this week's work, what the activity types are, and how to add Class Companion to your phone.",
-    level: 'beginner',
-    content: welcomeHowToUseAppContent,
-    isReleased: true,
-  },
-  {
     id: 'welcome-back-tenses-review-guide',
     title: 'Welcome Back: Simple & Continuous Review',
     description: 'Warm up the present and past simple and continuous tenses you already know, on the timeline.',
@@ -320,6 +311,15 @@ async function main() {
 
   console.log('\n✨ Grammar guides seeded successfully!');
   console.log(`   Created: ${created} | Updated: ${updated}`);
+
+  const retired = await prisma.activity.updateMany({
+    where: { id: 'welcome-how-to-use-app-guide', deletedAt: null },
+    data: { deletedAt: new Date(), isReleased: false },
+  });
+  if (retired.count > 0) {
+    console.log(`   🧹 Soft-deleted retired guide: welcome-how-to-use-app-guide`);
+  }
+
   console.log('\n💡 Student progress (ActivityProgress, Submissions) was preserved.');
 }
 
