@@ -13,6 +13,7 @@
  * Usage:
  *   npx tsx scripts/maintenance/seed-school-calendar-events.ts --class <classId>
  *   npx tsx scripts/maintenance/seed-school-calendar-events.ts --class <classId> --apply
+ *   npx tsx scripts/maintenance/seed-school-calendar-events.ts --all --apply
  */
 import { PrismaClient } from "@prisma/client";
 import { buildTeachingWeeks } from "@/lib/course-map-schedule";
@@ -85,48 +86,22 @@ function planEvents(): PlannedEvent[] {
   return events.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
 }
 
-async function main() {
-  const classId = arg("class");
-  const apply = hasFlag("apply");
+interface TargetClass {
+  id: string;
+  name: string;
+  teacherId: string;
+}
 
-  if (!classId) {
-    const classes = await prisma.class.findMany({
-      select: { id: true, name: true, _count: { select: { enrollments: true } } },
-      orderBy: { createdAt: "desc" },
-    });
-    console.log("Pass --class <id>. Classes available:\n");
-    for (const c of classes) console.log(`  ${c.id}  ${c.name}  (${c._count.enrollments} enrolled)`);
-    return;
-  }
-
-  const cls = await prisma.class.findUnique({
-    where: { id: classId },
-    select: { id: true, name: true, teacherId: true },
-  });
-  if (!cls) throw new Error(`No class with id ${classId}`);
-
-  const events = planEvents();
-  console.log(`Class:    ${cls.name} (${cls.id})`);
-  console.log(`Calendar: ${SCHOOL_YEAR_LABEL} — ${events.length} events\n`);
-
-  for (const e of events) {
-    const span = e.endDate ? `${pretty(e.date)} – ${pretty(e.endDate)}` : pretty(e.date);
-    console.log(`  ${e.type.padEnd(8)} ${span.padEnd(34)} ${e.title}`);
-  }
-
-  if (!apply) {
-    console.log(`\nDry run. Re-run with --apply to write these to the class calendar.`);
-    return;
-  }
-
+async function writeEvents(cls: TargetClass, events: PlannedEvent[]) {
   let created = 0;
   let updated = 0;
+
   for (const e of events) {
     const date = parseDateOnly(e.date);
     const endDate = e.endDate ? parseDateOnly(e.endDate) : null;
 
     const existing = await prisma.calendarEvent.findUnique({
-      where: { classId_title_type_date: { classId, title: e.title, type: e.type, date } },
+      where: { classId_title_type_date: { classId: cls.id, title: e.title, type: e.type, date } },
       select: { id: true },
     });
 
@@ -139,7 +114,7 @@ async function main() {
     } else {
       await prisma.calendarEvent.create({
         data: {
-          classId,
+          classId: cls.id,
           title: e.title,
           type: e.type,
           date,
@@ -152,7 +127,60 @@ async function main() {
     }
   }
 
-  console.log(`\nCreated ${created}, updated ${updated}.`);
+  return { created, updated };
+}
+
+async function main() {
+  const classId = arg("class");
+  const allClasses = hasFlag("all");
+  const apply = hasFlag("apply");
+
+  if (!classId && !allClasses) {
+    const classes = await prisma.class.findMany({
+      select: { id: true, name: true, _count: { select: { enrollments: true } } },
+      orderBy: { createdAt: "desc" },
+    });
+    console.log("Pass --class <id>, or --all for every class. Classes available:\n");
+    for (const c of classes) console.log(`  ${c.id}  ${c.name}  (${c._count.enrollments} enrolled)`);
+    return;
+  }
+
+  const targets: TargetClass[] = allClasses
+    ? await prisma.class.findMany({
+        select: { id: true, name: true, teacherId: true },
+        orderBy: { createdAt: "desc" },
+      })
+    : await prisma.class
+        .findUnique({ where: { id: classId }, select: { id: true, name: true, teacherId: true } })
+        .then((cls) => {
+          if (!cls) throw new Error(`No class with id ${classId}`);
+          return [cls];
+        });
+
+  if (targets.length === 0) {
+    console.log("No classes to seed.");
+    return;
+  }
+
+  const events = planEvents();
+  console.log(`Calendar: ${SCHOOL_YEAR_LABEL} — ${events.length} events`);
+  console.log(`Classes:  ${targets.map((c) => c.name).join(", ")}\n`);
+
+  for (const e of events) {
+    const span = e.endDate ? `${pretty(e.date)} – ${pretty(e.endDate)}` : pretty(e.date);
+    console.log(`  ${e.type.padEnd(8)} ${span.padEnd(34)} ${e.title}`);
+  }
+
+  if (!apply) {
+    console.log(`\nDry run. Re-run with --apply to write these to the class calendar.`);
+    return;
+  }
+
+  console.log("");
+  for (const cls of targets) {
+    const { created, updated } = await writeEvents(cls, events);
+    console.log(`  ${cls.name} (${cls.id}): created ${created}, updated ${updated}.`);
+  }
 }
 
 main()

@@ -12,7 +12,7 @@
     "analyze": "ANALYZE=true next build",
     "analyze:server": "BUNDLE_ANALYZE=server ANALYZE=true next build",
     "analyze:browser": "BUNDLE_ANALYZE=browser ANALYZE=true next build",
-    "test:node": "node --import tsx --test tests/auth/require-safe-db-target.test.ts tests/calendar/catch-up-deadlines.test.ts tests/vocab/vocab-review.test.ts",
+    "test:node": "node --import tsx --test tests/auth/require-safe-db-target.test.ts tests/calendar/catch-up-deadlines.test.ts tests/calendar/class-days.test.ts tests/vocab/vocab-review.test.ts",
     "test:critical": "vitest run tests/gamification tests/activity tests/classes tests/auth tests/games/sanitize-security.vitest.ts && npm run test:node",
     "test:vitest": "vitest run",
     "test:coverage": "vitest run --coverage",

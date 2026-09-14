@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '@/components/layout/ThemeProvider';
 import { getLearnerEventTone } from '@/lib/learner/theme';
+import { getClassDayInfo } from '@/lib/class-days';
 
 export type CalendarEvent = {
     id?: string;
@@ -248,9 +249,21 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
 
                         if (!day) return <div key={idx} className={emptyCellMinH} />;
 
+                        // Class days are drawn, not stored: Tue/Thu inside the term,
+                        // minus the no-school closures, get a colored outline.
+                        const classDay = getClassDayInfo(new Date(viewYear, viewMonth, day));
+                        const isClassDay = classDay.meets;
+                        const cancelledLabel = classDay.cancelledBy?.label;
+                        const dayLabel = isClassDay
+                            ? 'Class day'
+                            : cancelledLabel
+                                ? `No class — ${cancelledLabel}`
+                                : undefined;
+
                         return (
                             <div
                                 key={idx}
+                                title={dayLabel}
                                 className={`${dayCellMinH} ${compact ? "rounded-md" : "rounded-lg"} border transition-colors cursor-default ${
                                     isToday
                                         ? 'text-[color:var(--text-on-accent)] border-primary shadow-sm'
@@ -259,14 +272,25 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                                 style={{
                                     background: isToday
                                         ? 'linear-gradient(180deg, var(--color-primary) 0%, color-mix(in srgb, var(--color-primary) 88%, #000) 100%)'
-                                        : 'linear-gradient(180deg, color-mix(in srgb, var(--dashboard-surface-start) 96%, var(--dashboard-shell-bg)) 0%, var(--dashboard-surface-end) 100%)',
-                                    borderColor: isToday ? 'var(--color-primary)' : 'var(--dashboard-divider)',
+                                        : isClassDay
+                                            ? 'linear-gradient(180deg, color-mix(in srgb, var(--tone-class-day-accent) 12%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-class-day-accent) 7%, var(--dashboard-surface-end)) 100%)'
+                                            : 'linear-gradient(180deg, color-mix(in srgb, var(--dashboard-surface-start) 96%, var(--dashboard-shell-bg)) 0%, var(--dashboard-surface-end) 100%)',
+                                    borderColor: isToday
+                                        ? 'var(--color-primary)'
+                                        : isClassDay
+                                            ? 'var(--tone-class-day-accent)'
+                                            : 'var(--dashboard-divider)',
+                                    borderWidth: !isToday && isClassDay ? '2px' : undefined,
+                                    boxShadow: isToday && isClassDay
+                                        ? '0 0 0 2px color-mix(in srgb, var(--tone-class-day-accent) 70%, transparent)'
+                                        : undefined,
                                 }}
                             >
                                 <div className="h-full flex flex-col items-center justify-center">
-                                    <span className={`leading-none ${compact ? "text-[11px]" : "text-xs"} ${isToday ? "font-bold" : "font-medium"}`}>
+                                    <span className={`leading-none ${compact ? "text-[11px]" : "text-xs"} ${isToday || isClassDay ? "font-bold" : "font-medium"}`}>
                                         {day}
                                     </span>
+                                    {dayLabel && <span className="sr-only">{dayLabel}</span>}
                                     {!isToday && (hasQuiz || hasDue || hasHoliday || hasOther) && (
                                         <span className="mt-1 flex items-center gap-0.5" aria-hidden="true">
                                             {hasQuiz && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('quiz').accent }} />}
@@ -305,6 +329,20 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({
                             >
                                 <span className={`${dotClass} bg-primary`} />
                                 Today
+                            </span>
+                            <span
+                                className={chipClass}
+                                style={{
+                                    backgroundColor: "color-mix(in srgb, var(--tone-class-day-accent) 10%, var(--dashboard-surface-start))",
+                                    borderColor: "var(--tone-class-day-accent)",
+                                    color: "var(--tone-class-day-text)",
+                                }}
+                            >
+                                <span
+                                    className={`${compact ? "w-1.5 h-1.5" : "w-2 h-2"} rounded-[3px] border-2 shrink-0`}
+                                    style={{ borderColor: "var(--tone-class-day-accent)" }}
+                                />
+                                Class day
                             </span>
                             <span
                                 className={chipClass}
