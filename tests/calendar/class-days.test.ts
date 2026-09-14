@@ -15,6 +15,7 @@ test("toDateKey reads the local calendar day", () => {
 test("Tuesdays and Thursdays in the term are class days", () => {
     assert.equal(isClassDay(on("2026-09-15")), true); // Tuesday
     assert.equal(isClassDay(on("2026-09-17")), true); // Thursday
+    assert.equal(isClassDay(on("2026-09-22")), true); // Tuesday
     assert.equal(isClassDay(on("2027-06-10")), true); // last Thursday of the term
 });
 
@@ -32,6 +33,7 @@ test("dates outside the term are not class days", () => {
 test("a holiday cancels the class day it lands on", () => {
     // Every Tue/Thu the 2026-27 closures take out.
     const cancelled: Array<[string, string]> = [
+        ["2026-09-24", "No Class"],
         ["2026-11-26", "Thanksgiving Break"],
         ["2026-12-24", "Winter Break"],
         ["2026-12-29", "Winter Break"],

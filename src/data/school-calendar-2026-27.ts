@@ -24,6 +24,7 @@ export interface SchoolClosure {
 }
 
 export const SCHOOL_CLOSURES: SchoolClosure[] = [
+  { from: "2026-09-24", to: "2026-09-24", label: "No Class" },
   { from: "2026-10-12", to: "2026-10-12", label: "Indigenous Peoples' Day" },
   { from: "2026-11-11", to: "2026-11-11", label: "Veterans Day" },
   { from: "2026-11-25", to: "2026-11-28", label: "Thanksgiving Break" },
