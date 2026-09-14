@@ -19,8 +19,11 @@ export default function ResetPasswordPage() {
             <div id="reset-form" className="max-w-md w-full space-y-5 sm:space-y-6" tabIndex={-1}>
                 <div className="text-center">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-2 text-primary">
-                        Class Companion
+                        My ESOL Class
                     </h1>
+                    <p className="text-base sm:text-lg mb-3 sm:mb-4 font-bold text-secondary">
+                        Class Companion
+                    </p>
                     <h2 className="text-2xl sm:text-3xl font-display font-bold mb-3 sm:mb-4 text-[var(--color-text)]">
                         Reset Password
                     </h2>

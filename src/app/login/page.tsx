@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import { AlertTriangle, ArrowDown, KeyRound } from "lucide-react";
 import LoginForm from "@/components/forms/LoginForm";
 
 export default function LoginPage() {
@@ -12,44 +11,14 @@ export default function LoginPage() {
             <div id="login-form" className="max-w-md w-full space-y-5 sm:space-y-6" tabIndex={-1}>
                 <div className="text-center">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-2 text-primary">
-                        Class Companion
+                        My ESOL Class
                     </h1>
                     <p className="text-base sm:text-lg mb-3 sm:mb-4 font-bold text-secondary">
-                        ESOL Students
+                        Class Companion
                     </p>
                     <h2 className="text-2xl sm:text-3xl font-display font-bold mb-3 sm:mb-4 text-[var(--color-text)]">
                         Sign in to continue
                     </h2>
-                </div>
-                <div
-                    role="alert"
-                    className="rounded-2xl border-2 border-[#b05740] bg-[#fdf3ef] dark:bg-[#3a1a10] px-4 py-4 text-[#7a3020] dark:text-[#f5b8a0]"
-                >
-                    <div className="flex flex-col items-center gap-2">
-                        <span
-                            className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#b05740]/30 bg-white/70 dark:bg-[#4a2218]"
-                            aria-hidden
-                        >
-                            <AlertTriangle className="h-6 w-6 text-[#b05740] dark:text-[#f5b8a0]" strokeWidth={2.25} />
-                        </span>
-                        <p className="text-center text-xs font-bold uppercase tracking-[0.12em]">
-                            ⚠️ Password reset · Clave reiniciada
-                        </p>
-                    </div>
-                    <div className="mt-3 flex items-center justify-center gap-1.5 text-xs font-medium opacity-90">
-                        <KeyRound className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                        <span>Temporary password · Clave temporal</span>
-                    </div>
-                    <p className="mt-1 text-center font-mono text-3xl font-bold tracking-wide text-[#b05740] dark:text-[#f5b8a0]">
-                        ebhcs123
-                    </p>
-                    <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-sm font-semibold leading-snug">
-                        <ArrowDown className="h-4 w-4 shrink-0 animate-bounce" aria-hidden />
-                        <span>Sign in below → pick a new password</span>
-                    </p>
-                    <p className="mt-1 text-center text-xs leading-snug opacity-85">
-                        👇 Entra abajo → crea una clave nueva
-                    </p>
                 </div>
                 <Suspense fallback={<div className="text-center text-sm text-[var(--color-text-muted)]">Loading login form...</div>}>
                     <LoginForm />
@@ -61,15 +30,15 @@ export default function LoginPage() {
                     <ol className="grid grid-cols-[1.5rem_1fr] items-start gap-x-2 gap-y-2 text-[15px] leading-6 text-[var(--color-text)] list-none">
                         <li className="contents">
                             <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold bg-primary-light/30 text-primary-dark">1</span>
-                            <p>Sign in with the password above.</p>
+                            <p>Sign in with the username and password from your teacher.</p>
                         </li>
                         <li className="contents">
                             <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold bg-primary-light/30 text-primary-dark">2</span>
-                            <p>Create a new password.</p>
+                            <p>If asked, create a new password.</p>
                         </li>
                         <li className="contents">
                             <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold bg-primary-light/30 text-primary-dark">3</span>
-                            <p>Sign in again.</p>
+                            <p>Find your class work on the dashboard.</p>
                         </li>
                     </ol>
                 </div>

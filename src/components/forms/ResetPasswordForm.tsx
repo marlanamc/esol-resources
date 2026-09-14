@@ -95,13 +95,13 @@ export function ResetPasswordForm() {
                     </div>
                     <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2">Invalid or Expired Link</h3>
                     <p className="text-sm text-[var(--color-text-muted)] mb-4">
-                        This password reset link is no longer valid. Please request a new one.
+                        This password reset link is no longer valid. Ask Marlie for help.
                     </p>
                     <Link
                         href="/forgot-password"
                         className="inline-block px-6 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
                     >
-                        Request New Link
+                        Ask Marlie for Help
                     </Link>
                 </div>
             </div>
