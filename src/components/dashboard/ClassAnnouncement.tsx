@@ -1,20 +1,27 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Megaphone, ChevronDown, ChevronUp } from 'lucide-react';
+import { Megaphone, ChevronDown, ChevronUp, CalendarClock } from 'lucide-react';
+
+export interface AnnouncementItem {
+    className: string;
+    message: string;
+    messageHtml: string;
+    /** "schedule" items are generated from the class calendar, not written by a teacher. */
+    kind?: 'teacher' | 'schedule';
+}
 
 interface ClassAnnouncementProps {
-    announcements: {
-        className: string;
-        message: string;
-        messageHtml: string;
-    }[];
+    announcements: AnnouncementItem[];
 }
 
 export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announcements }) => {
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     if (!announcements || announcements.length === 0) return null;
+
+    // With nothing hand-written in the panel, "From teacher" would be a lie.
+    const hasTeacherMessage = announcements.some((a) => a.kind !== 'schedule');
 
     return (
         <section>
@@ -34,7 +41,7 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
                                     Notice
                                 </p>
                                 <h2 className="text-base sm:text-lg font-bold font-display text-text mt-0.5">
-                                    From teacher
+                                    {hasTeacherMessage ? 'From teacher' : 'Class schedule'}
                                 </h2>
                             </div>
                         </div>
@@ -51,33 +58,65 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
 
                     {!isCollapsed && (
                         <div className="mt-4 space-y-4">
-                            {announcements.map((announcement, index) => (
-                                <div
-                                    key={`${announcement.className}-${index}`}
-                                    className="group relative"
-                                >
+                            {announcements.map((announcement, index) => {
+                                const isSchedule = announcement.kind === 'schedule';
+
+                                return (
                                     <div
-                                        className="dashboard-panel dashboard-panel-hover flex items-start gap-4 rounded-2xl p-4 sm:p-5"
-                                        style={{
-                                            borderColor: 'var(--dashboard-divider)',
-                                            background: 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, color-mix(in srgb, #d97706 1.5%, var(--dashboard-surface-end)) 100%)',
-                                        }}
+                                        key={`${announcement.className}-${index}`}
+                                        className="group relative"
                                     >
-                                        <div className="flex-1">
-                                            <div className="flex items-center gap-2 mb-2">
-                                                <span className="handwritten text-primary text-xs sm:text-sm font-bold bg-primary/5 px-2 py-0.5 rounded-md">
-                                                    {announcement.className}
-                                                </span>
-                                                <div className="h-[1px] flex-1 bg-gradient-to-r from-amber-100 to-transparent"></div>
+                                        <div
+                                            className="dashboard-panel dashboard-panel-hover flex items-start gap-4 rounded-2xl p-4 sm:p-5"
+                                            style={{
+                                                borderColor: isSchedule
+                                                    ? 'var(--tone-class-day-accent)'
+                                                    : 'var(--dashboard-divider)',
+                                                background: isSchedule
+                                                    ? 'linear-gradient(180deg, color-mix(in srgb, var(--tone-class-day-accent) 10%, var(--dashboard-surface-start)) 0%, color-mix(in srgb, var(--tone-class-day-accent) 5%, var(--dashboard-surface-end)) 100%)'
+                                                    : 'linear-gradient(180deg, var(--dashboard-surface-start) 0%, color-mix(in srgb, #d97706 1.5%, var(--dashboard-surface-end)) 100%)',
+                                            }}
+                                        >
+                                            {isSchedule && (
+                                                <div
+                                                    className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl"
+                                                    style={{
+                                                        backgroundColor: 'color-mix(in srgb, var(--tone-class-day-accent) 18%, transparent)',
+                                                        color: 'var(--tone-class-day-text)',
+                                                    }}
+                                                    aria-hidden="true"
+                                                >
+                                                    <CalendarClock className="h-5 w-5" />
+                                                </div>
+                                            )}
+                                            <div className="flex-1">
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        className={`handwritten text-xs sm:text-sm font-bold px-2 py-0.5 rounded-md ${
+                                                            isSchedule ? '' : 'text-primary bg-primary/5'
+                                                        }`}
+                                                        style={
+                                                            isSchedule
+                                                                ? {
+                                                                      color: 'var(--tone-class-day-text)',
+                                                                      backgroundColor: 'color-mix(in srgb, var(--tone-class-day-accent) 14%, transparent)',
+                                                                  }
+                                                                : undefined
+                                                        }
+                                                    >
+                                                        {announcement.className}
+                                                    </span>
+                                                    <div className="h-[1px] flex-1 bg-gradient-to-r from-amber-100 to-transparent"></div>
+                                                </div>
+                                                <div
+                                                    className="announcement-markdown prose prose-sm max-w-prose text-sm sm:text-base text-text/85"
+                                                    dangerouslySetInnerHTML={{ __html: announcement.messageHtml }}
+                                                />
                                             </div>
-                                            <div
-                                                className="announcement-markdown prose prose-sm max-w-prose text-sm sm:text-base text-text/85"
-                                                dangerouslySetInnerHTML={{ __html: announcement.messageHtml }}
-                                            />
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     )}
                 </div>

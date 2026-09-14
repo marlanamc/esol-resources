@@ -35,6 +35,18 @@ export const SCHOOL_CLOSURES: SchoolClosure[] = [
   { from: "2027-05-31", to: "2027-05-31", label: "Memorial Day" },
 ];
 
+/**
+ * The zone every wall-clock time on this calendar is read in.
+ * Matches LEARNER_DAY_TIME_ZONE; kept here so the calendar data stays
+ * dependency-free and usable from client components.
+ */
+export const CLASS_TIME_ZONE = "America/New_York";
+
+/** Evening classes run 6:00pm to 8:30pm. */
+export const CLASS_START_HOUR = 18;
+export const CLASS_END_HOUR = 20;
+export const CLASS_END_MINUTE = 30;
+
 /** Local time a week opens to students, in the learner timezone. */
 export const WEEK_REVEAL_WEEKDAY = 0; // Sunday
 export const WEEK_REVEAL_HOUR = 20; // 8pm
