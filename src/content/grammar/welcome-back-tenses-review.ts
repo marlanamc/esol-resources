@@ -75,9 +75,9 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         <p>Welcome back! Catch up with Rosa and David. Read for the message first.</p>
         ${dialogue([
           { speaker: "David", avatar: "🧑🏽", text: "Hey, Rosa! Ready to be back?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "Almost! Last night I <strong>was doing</strong> the dishes when my daughter <strong>said</strong>, ‘Mom, school starts tomorrow!’", side: "right", tone: "terracotta" },
-          { speaker: "David", avatar: "🧑🏽", text: "Oh no. Where was her backpack?", side: "left", tone: "sage" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "Good question! We <strong>leave</strong> everything by the door on school nights. But last night? We couldn’t even find her shoes.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Almost! Last night I <strong>was doing</strong> the dishes when my daughter <strong>asked</strong>, ‘Mom, where are my gym shoes?’", side: "right", tone: "terracotta" },
+          { speaker: "David", avatar: "🧑🏽", text: "First-day chaos?", side: "left", tone: "sage" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Totally! We <strong>leave</strong> everything by the door on school nights. But last night? One shoe was still under the couch.", side: "right", tone: "terracotta" },
           { speaker: "David", avatar: "🧑🏽", text: "That sounds like my house. How’s today going?", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏾", text: "Better. My sister <strong>is helping</strong> with the kids this week. Now I just need to find MY notebook!", side: "right", tone: "terracotta" },
         ])}
@@ -87,7 +87,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
           <ul style="padding-left: 1.25rem; line-height: 1.7">
             <li><strong>Present simple:</strong> a routine or stable fact. “We leave everything by the door on school nights.”</li>
             <li><strong>Present continuous:</strong> happening now or temporarily. “My sister is helping with the kids this week.”</li>
-            <li><strong>Past simple:</strong> a completed past event. “My daughter reminded me about school.”</li>
+            <li><strong>Past simple:</strong> a completed past event. “My daughter asked about her gym shoes.”</li>
             <li><strong>Past continuous:</strong> in progress at a past moment. “I was doing the dishes.”</li>
           </ul>
         </div>
@@ -106,7 +106,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
             ], expectedAnswer: "temporary",
           },
           {
-            type: "radio", label: "What was Rosa doing when her daughter mentioned school?",
+            type: "radio", label: "What was Rosa doing when her daughter asked about the gym shoes?",
             options: [
               { value: "kids", label: "Rosa was doing the dishes." },
               { value: "bus", label: "Rosa was riding the bus." },
@@ -131,7 +131,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Classmate", avatar: "🧑🏽", text: "You always have snacks in that bag!", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏾", text: "Of course. My daughter <strong>gets</strong> hungry the minute we leave the house.", side: "right", tone: "terracotta" },
-          { speaker: "Classmate", avatar: "🧑🏽", text: "Mine too. He <strong>says</strong>, ‘I’m not hungry.’ Then he <strong>eats</strong> my sandwich.", side: "left", tone: "sage" },
+          { speaker: "Classmate", avatar: "🧑🏽", text: "Same with my son. He <strong>says</strong>, ‘I’m not hungry.’ Then he <strong>eats</strong> my sandwich.", side: "left", tone: "sage" },
           { speaker: "Rosa", avatar: "👩🏾", text: "Exactly! I <strong>pack</strong> two now. One for her and one for me.", side: "right", tone: "terracotta" },
         ])}
 
@@ -171,8 +171,8 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         ${dialogue([
           { speaker: "Rosa's sister", avatar: "👩‍👧", text: "Quick question. Where’s the rice?", side: "left", tone: "blue" },
           { speaker: "Rosa", avatar: "👩🏾", text: "Top shelf, next to the pasta. What <strong>are</strong> you <strong>making</strong>?", side: "right", tone: "terracotta" },
-          { speaker: "Rosa's sister", avatar: "👩‍👧", text: "I<strong>’m making</strong> dinner. Your daughter <strong>is helping</strong> me. Well, she<strong>’s eating</strong> the carrots.", side: "left", tone: "blue" },
-          { speaker: "Rosa", avatar: "👩🏾", text: "She’s checking that they’re good! Save me some dinner. I’m hungry already.", side: "right", tone: "terracotta" },
+          { speaker: "Rosa's sister", avatar: "👩‍👧", text: "I<strong>’m making</strong> dinner. Your daughter <strong>is helping</strong> me. Well, she<strong>’s eating</strong> some pineapple.", side: "left", tone: "blue" },
+          { speaker: "Rosa", avatar: "👩🏾", text: "Ha! Save some for me. I’m hungry already.", side: "right", tone: "terracotta" },
         ])}
 
         <p>Rosa’s sister is making dinner while Rosa waits for class. What’s happening at your home right now?</p>
@@ -183,7 +183,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         title: "Give an update",
         instructions: "Think about what is happening. For a blank, type only the missing words.",
         items: [
-          { type: "text", label: "Rosa’s sister sends a photo from the kitchen: “Your daughter ___ all the carrots!” (eat)", expectedAnswers: ["is eating"] },
+          { type: "text", label: "Rosa’s sister sends a photo from the kitchen: “Your daughter ___ all the pineapple!” (eat)", expectedAnswers: ["is eating"] },
           {
             type: "radio", label: "Rosa’s sister usually works evenings. This week she’s off. Which message tells Rosa about her help just for this week?",
             options: [
@@ -209,13 +209,13 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         ],
       },
       explanation: `
-        ${sceneCard("sceneClassroom", "Back in class, everyone has a first-day story.", "amber")}
+        ${sceneCard("sceneClassroom", "First morning back. Two different shoes.", "amber")}
 
         ${dialogue([
           { speaker: "Teacher", avatar: "👩‍🏫", text: "How was the first morning back? Everyone on time?", side: "left", tone: "amber" },
           { speaker: "Student", avatar: "🙋", text: "Almost. We <strong>were waiting</strong> for the bus when my son <strong>looked</strong> down at his feet. Two different shoes.", side: "right", tone: "sage" },
           { speaker: "Teacher", avatar: "👩‍🏫", text: "Oh no! What did you do?", side: "left", tone: "amber" },
-          { speaker: "Student", avatar: "🙋", text: "We <strong>ran</strong> home. I <strong>found</strong> his other shoe under the sofa. Right next to my keys!", side: "right", tone: "sage" },
+          { speaker: "Student", avatar: "🙋", text: "We <strong>ran</strong> home. I <strong>found</strong> his other shoe under the sofa. He <strong>made</strong> the bus!", side: "right", tone: "sage" },
         ])}
 
         <p>They were already waiting for the bus when the boy noticed his shoes. Then they ran home.</p>
@@ -239,7 +239,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
       title: "Your turn: catch up, check, try again",
       icon: "💬",
       explanation: `
-        <p><strong>First, try it with support.</strong> Say the replies aloud or write them in your notebook. Use your own details. These answers are not graded.</p>
+        <p><strong>First, try it with support.</strong> Say the replies aloud or write them in your notebook. Use your own details.</p>
         ${dialogue([
           { speaker: "Classmate", avatar: "🧑🏽", text: "What’s one thing you always do before you leave home?", side: "left", tone: "sage" },
           { speaker: "You", avatar: "🙋", text: "I usually …", side: "right", tone: "terracotta" },
@@ -251,9 +251,9 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
         <p><strong>Now make it yours.</strong> Look away from the starters. Catch up with a partner, speak aloud to yourself, or write a short message: share your routine, something temporary, and a past story. You can invent details.</p>
         <div class="gc-callout-sage" style="padding: 1rem; border-radius: 0.5rem; background: rgba(106,141,115,0.12)">
           <p><strong>Say it → check one sentence → say it again.</strong></p>
-          <p>“I doing the dishes when my daughter reminded me about school.”</p>
+          <p>“I doing the dishes when my daughter asked about her gym shoes.”</p>
           <p>I mean the dishes were not finished yet. <strong>Past continuous needs was/were.</strong></p>
-          <p>“I <strong>was doing</strong> the dishes when my daughter reminded me about school.”</p>
+          <p>“I <strong>was doing</strong> the dishes when my daughter asked about her gym shoes.”</p>
         </div>
         <p>Choose just one sentence from your catch-up. Does it express your meaning? Use the tense reference if you need help checking the verb. Then say or write the sentence again. If it already works, keep it!</p>
       `,
@@ -273,7 +273,7 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
     },
     {
       id: "wbtr-qfb1", type: "fill-blank" as const,
-      question: "Rosa’s sister sends a photo of dinner on the stove: “I ___ rice. Do you want some?” (cook)",
+      question: "Rosa’s sister sends a photo of dinner cooking on the stove: “I ___ rice. Do you want some?” (cook)",
       correctAnswer: "am cooking", acceptedAnswers: ["Am cooking", "'m cooking", "’m cooking"],
       explanation: "Present continuous describes what is happening now: ‘I’m cooking rice.’ I’m means I am.",
       topic: "present-continuous", skill: "usage", skillTag: "form-am-verb-ing", difficulty: "easy",
@@ -291,13 +291,13 @@ export const welcomeBackTensesReviewContent: InteractiveGuideContent = {
     },
     {
       id: "wbtr-past-background",
-      question: "‘I was doing the dishes when my daughter reminded me about school.’ What was happening?",
+      question: "‘I was doing the dishes when my daughter asked about her gym shoes.’ What was happening?",
       options: [
-        { value: "a", label: "Rosa started the dishes after the reminder." },
+        { value: "a", label: "Rosa started the dishes after her daughter asked." },
         { value: "b", label: "Rosa had already finished the dishes." },
         { value: "c", label: "Rosa was still doing the dishes when her daughter spoke." },
       ], correctAnswer: "c",
-      explanation: "Past continuous (‘was doing’) shows what Rosa was in the middle of. Past simple (‘reminded’) tells what happened during it.",
+      explanation: "Past continuous (‘was doing’) shows what Rosa was in the middle of. Past simple (‘asked’) tells what happened during it.",
       topic: "past-continuous", skill: "usage", skillTag: "meaning-past-background", difficulty: "easy",
     },
     {

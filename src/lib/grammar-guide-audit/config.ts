@@ -3,32 +3,16 @@
  * grammar mini-guides. The audit encodes mini-guide authoring conventions, and
  * applying them to a different kind of artifact produces noise, not quality.
  *
- *   welcome-how-to-use-app
- *     An app tutorial. There is no grammar point to drill, so per-section typed
- *     practice, a fixed quiz length, an error-detection question, and the
- *     scenario-character conventions do not apply.
- *
  *   all-verb-tenses-overview
  *     A whole-year reference covering all 12 tenses. Capping it at five
  *     sections and five questions would gut the thing it exists to be, and its
  *     quiz deliberately checks recall of formulas printed in its own reference
  *     chart, which is what answer-recycled-from-explanation-text flags.
  *
- * Universal rules still apply to both: em dashes, title consistency, having
- * sections at all, and malformed exercises.
+ * Universal rules still apply: em dashes, title consistency, having sections at
+ * all, and malformed exercises.
  */
 export const GUIDE_RULE_EXEMPTIONS: Record<string, ReadonlySet<string>> = {
-    "welcome-how-to-use-app": new Set([
-        "section-count",
-        "missing-text-exercise",
-        "mini-quiz-count",
-        "mini-quiz-topic",
-        "mini-quiz-skill",
-        "mini-quiz-skill-tag",
-        "mini-quiz-error-detection",
-        "american-name-missing",
-        "avatar-skin-tone-monotone",
-    ]),
     "all-verb-tenses-overview": new Set([
         "section-count",
         "missing-text-exercise",

@@ -21,8 +21,8 @@ const mockUnits: CourseMapUnit[] = [
                 levelTitle: "Start the Class",
                 requiredActivities: [
                     {
-                        id: "welcome-how-to-use-app",
-                        title: "Welcome / How to Use the App",
+                        id: "planned-placeholder-guide",
+                        title: "Coming Soon Guide",
                         activityType: "guide",
                         status: "planned",
                     },
@@ -170,7 +170,7 @@ describe("course map progress", () => {
         const placeholder = enriched[0].levels[0].requiredActivities[0];
         expect(isMapActivityActionable(placeholder)).toBe(false);
         expect(
-            isMapActivityCompleted(placeholder, { "welcome-how-to-use-app": "completed" })
+            isMapActivityCompleted(placeholder, { "planned-placeholder-guide": "completed" })
         ).toBe(false);
     });
 });

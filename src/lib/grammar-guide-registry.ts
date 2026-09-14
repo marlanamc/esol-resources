@@ -494,13 +494,6 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
         loadContent: () =>
             import("@/content/grammar/verb-forms-overview").then((m) => m.verbFormsOverviewContent),
     },
-    "welcome-how-to-use-app": {
-        activityTitle: "Welcome / How to Use the App",
-        metaTitle: "Welcome / How to Use the App | Class Companion",
-        metaDescription: "Your first mission: find Start, walk This Week, meet vocab, guides, games, and points — with real pictures of the app.",
-        loadContent: () =>
-            import("@/content/grammar/welcome-how-to-use-app").then((m) => m.welcomeHowToUseAppContent),
-    },
     "welcome-back-tenses-review": {
         activityTitle: "Welcome Back: Simple & Continuous Review",
         metaTitle: "Welcome Back: Tenses Review - Interactive Guide | Class Companion",

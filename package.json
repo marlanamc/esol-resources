@@ -77,7 +77,6 @@
     "content:medical-images": "npx tsx scripts/content/fetch-medical-instructions-images.ts",
     "content:medicine-images": "npx tsx scripts/content/fetch-medicine-labels-images.ts",
     "content:reported-speech-images": "npx tsx scripts/content/fetch-reported-speech-images.ts",
-    "capture:how-to-screenshots": "npx tsx scripts/content/capture-how-to-use-screenshots.ts",
     "db:seed:weekly-vocab": "npm run check:vocab-duplicates && node scripts/vocab/seed-weekly-vocab.js && npm run db:sync:vocab-review",
     "vocab:pos:coverage": "node scripts/vocab/report-pos-coverage.js",
     "vocab:audio:coverage": "node scripts/vocab/report-vocab-audio-coverage.js",
