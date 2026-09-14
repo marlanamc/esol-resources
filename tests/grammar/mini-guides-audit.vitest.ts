@@ -53,10 +53,9 @@ function preview(findings: AuditFinding[]): string {
 describe("mini guides audit (weeks 1–18)", () => {
     it("runs without throwing and audits the expected guide count", async () => {
         const result = await runMiniGuidesAudit();
-        // 22 after the September rescope: the Week 1 app guide and the Week 3
-        // all-tenses overview joined the map, and renumbering pulled one more
-        // guide inside the W1-W18 window.
-        expect(result.guides.length).toBe(22);
+        // Removing the Week 1 app tutorial leaves 21 guides in W1–W18.
+        expect(result.guides.length).toBe(21);
+        expect(result.guides.map(({ guide }) => guide.slug)).not.toContain("welcome-how-to-use-app");
     });
 
     it("has no objective errors in required W1–W18 guides", async () => {
