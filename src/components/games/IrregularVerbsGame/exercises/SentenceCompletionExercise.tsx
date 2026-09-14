@@ -24,7 +24,7 @@ export function SentenceCompletionExercise({
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [feedback, setFeedback] = useState('');
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const handleSubmit = () => {
     const isCorrect = validateAnswer(exercise, answer);
@@ -50,7 +50,7 @@ export function SentenceCompletionExercise({
     : ['', promptWithoutBaseHint];
   const sentence = rawSentence || promptWithoutBaseHint;
   const parts = sentence.split('_____');
-  const isLightMode = theme === 'light' || (theme === 'system' && resolvedTheme === 'light');
+  const isLightMode = resolvedTheme === 'light';
   const promptCardClassName = isLightMode
     ? 'bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-200'
     : 'bg-gradient-to-br from-emerald-950/50 to-teal-950/50 border-emerald-700/50';

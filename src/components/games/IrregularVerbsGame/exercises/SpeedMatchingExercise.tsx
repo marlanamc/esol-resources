@@ -26,7 +26,7 @@ export function SpeedMatchingExercise({
   const [feedback, setFeedback] = useState('');
   const [timeLeft, setTimeLeft] = useState(15); // 15 second timer
   const [timerActive, setTimerActive] = useState(true);
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const handleTimeUp = () => {
     if (!submitted) {
@@ -79,7 +79,7 @@ export function SpeedMatchingExercise({
   const options = exercise.options || [];
   const timerColor =
     timeLeft > 10 ? 'text-green-600 dark:text-green-400' : timeLeft > 5 ? 'text-yellow-600 dark:text-yellow-400' : 'text-red-600 dark:text-red-400';
-  const isLightMode = theme === 'light' || (theme === 'system' && resolvedTheme === 'light');
+  const isLightMode = resolvedTheme === 'light';
   const promptCardClassName = isLightMode
     ? 'bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-200'
     : 'bg-gradient-to-br from-indigo-950/50 to-purple-950/50 border-indigo-700/50';

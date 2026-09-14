@@ -161,12 +161,12 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
   const [isCorrect, setIsCorrect] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const [showWhy, setShowWhy] = useState(false);
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const currentExercise = exercises[currentIndex];
   const progress = exercises.length > 0 ? ((currentIndex + 1) / exercises.length) * 100 : 0;
   const remaining = exercises.length - currentIndex - 1;
-  const isLight = theme === 'light' || (theme === 'system' && resolvedTheme === 'light');
+  const isLight = resolvedTheme === 'light';
 
   const backButtonClass = isLight
     ? 'bg-white border-border text-text-muted hover:text-text'

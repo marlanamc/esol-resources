@@ -1,8 +1,8 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, useCallback, useMemo } from "react";
+import { createContext, useContext, useState, useCallback, useMemo } from "react";
 
-type Theme = "light" | "dark" | "system";
+type Theme = "light" | "dark";
 type ResolvedTheme = "light" | "dark";
 
 interface ThemeContextValue {
@@ -17,11 +17,6 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 const THEME_STORAGE_KEY = "class-companion-theme";
 const THEME_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
-function getSystemTheme(): ResolvedTheme {
-    if (typeof window === "undefined") return "light";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-}
-
 // Read the resolved theme from DOM (what the inline script already set)
 function getInitialResolvedTheme(): ResolvedTheme {
     if (typeof document === "undefined") return "light";
@@ -30,14 +25,17 @@ function getInitialResolvedTheme(): ResolvedTheme {
 
 // Read stored theme preference
 function getStoredTheme(): Theme {
-    if (typeof window === "undefined") return "system";
+    if (typeof window === "undefined") return "light";
     try {
         const stored = localStorage.getItem(THEME_STORAGE_KEY);
-        if (stored === "light" || stored === "dark" || stored === "system") return stored;
+        if (stored === "light" || stored === "dark") return stored;
+        if (stored !== null) return "light"; // Retire old "system" preferences.
     } catch {
         // localStorage may be unavailable in private browsing
     }
-    return "system";
+    const cookieTheme = document.cookie.match(/(?:^|; )class-companion-theme=([^;]+)/)?.[1];
+    if (cookieTheme === "dark") return "dark";
+    return "light";
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
@@ -74,26 +72,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         document.cookie = `${THEME_STORAGE_KEY}=${encodeURIComponent(newTheme)}; path=/; max-age=${THEME_COOKIE_MAX_AGE}; samesite=lax`;
 
         // Apply to DOM
-        const newResolved = newTheme === "system" ? getSystemTheme() : newTheme;
-        applyTheme(newResolved);
+        applyTheme(newTheme);
     }, [applyTheme]);
 
     const toggleTheme = useCallback(() => {
         setTheme(resolvedTheme === "light" ? "dark" : "light");
     }, [resolvedTheme, setTheme]);
-
-    // Listen for system theme changes when using "system" preference
-    useEffect(() => {
-        if (theme !== "system") return;
-
-        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-        const handleChange = () => {
-            applyTheme(getSystemTheme());
-        };
-
-        mediaQuery.addEventListener("change", handleChange);
-        return () => mediaQuery.removeEventListener("change", handleChange);
-    }, [theme, applyTheme]);
 
     const value = useMemo(() => ({
         theme,

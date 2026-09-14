@@ -25,7 +25,7 @@ export function PatternSortingExercise({
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [feedback, setFeedback] = useState('');
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const handleSelectOption = (optionId: string) => {
     if (!submitted) {
@@ -53,7 +53,7 @@ export function PatternSortingExercise({
   };
 
   const options = exercise.options || [];
-  const isLightMode = theme === 'light' || (theme === 'system' && resolvedTheme === 'light');
+  const isLightMode = resolvedTheme === 'light';
   const verbCardClassName = isLightMode
     ? 'bg-gradient-to-br from-orange-50 to-red-50 border-orange-200'
     : 'bg-gradient-to-br from-orange-950/50 to-red-950/50 border-orange-700/50';

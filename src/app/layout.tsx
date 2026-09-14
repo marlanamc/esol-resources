@@ -71,7 +71,7 @@ export default async function RootLayout({
   const cookieStore = await cookies();
   const savedTheme = cookieStore.get("class-companion-theme")?.value;
   const htmlClassName = savedTheme === "dark" ? "dark" : undefined;
-  const htmlTheme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : undefined;
+  const htmlTheme = savedTheme === "dark" ? "dark" : "light";
 
   return (
     <html
@@ -95,7 +95,7 @@ export default async function RootLayout({
                     var cookieMatch = document.cookie.match(/(?:^|; )class-companion-theme=([^;]+)/);
                     theme = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
                   }
-                  if (theme === 'dark' || (theme !== 'light' && theme !== 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  if (theme === 'dark') {
                     d.classList.add('dark');
                     d.setAttribute('data-theme', 'dark');
                   } else {

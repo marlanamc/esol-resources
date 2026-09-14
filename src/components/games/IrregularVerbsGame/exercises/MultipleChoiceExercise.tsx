@@ -25,7 +25,7 @@ export function MultipleChoiceExercise({
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [feedback, setFeedback] = useState('');
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const handleSelectOption = (option: string) => {
     if (!submitted) {
@@ -56,7 +56,7 @@ export function MultipleChoiceExercise({
 
   // Determine if asking for V2 or V3
   const isAskingV2 = exercise.prompt.includes('V2');
-  const isLightMode = theme === 'light' || (theme === 'system' && resolvedTheme === 'light');
+  const isLightMode = resolvedTheme === 'light';
   const questionCardClassName = isLightMode
     ? 'bg-gradient-to-br from-violet-50 to-purple-50 border-violet-200'
     : 'bg-gradient-to-br from-violet-950/50 to-purple-950/50 border-violet-700/50';

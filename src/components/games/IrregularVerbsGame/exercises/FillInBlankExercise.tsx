@@ -24,7 +24,7 @@ export function FillInBlankExercise({
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [feedback, setFeedback] = useState('');
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   // Count blanks needed
   const blanksInPrompt = (exercise.prompt.match(/_+/g) || []).length;
@@ -66,7 +66,7 @@ export function FillInBlankExercise({
     ? exercise.prompt.split(':').pop() ?? exercise.prompt
     : exercise.prompt;
   const promptParts = conjugationSegment.split('→').map(p => p.trim());
-  const isLightMode = theme === 'light' || (theme === 'system' && resolvedTheme === 'light');
+  const isLightMode = resolvedTheme === 'light';
   const promptCardClassName = isLightMode
     ? 'bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20'
     : 'bg-gradient-to-br from-primary/20 to-secondary/20 border-primary/30';

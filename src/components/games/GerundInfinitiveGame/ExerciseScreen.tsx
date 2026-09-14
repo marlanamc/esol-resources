@@ -40,12 +40,12 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
   const [answered, setAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const currentExercise = exercises[currentIndex];
   const progress = exercises.length > 0 ? ((currentIndex + 1) / exercises.length) * 100 : 0;
   const remaining = exercises.length - currentIndex - 1;
-  const isLightMode = theme === 'light' || (theme === 'system' && resolvedTheme === 'light');
+  const isLightMode = resolvedTheme === 'light';
 
   // Theme-based classes (matching IrregularVerbsGame)
   const backButtonClassName = isLightMode

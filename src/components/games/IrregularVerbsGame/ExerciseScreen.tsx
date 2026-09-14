@@ -33,7 +33,7 @@ export function ExerciseScreen({
   const [correctCount, setCorrectCount] = useState(0);
   const [streak, setStreak] = useState(0);
   const [showStreakAnimation, setShowStreakAnimation] = useState(false);
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   if (exercises.length === 0 || currentIndex >= exercises.length) {
     return null;
@@ -42,7 +42,7 @@ export function ExerciseScreen({
   const currentExercise = exercises[currentIndex];
   const progress = ((currentIndex + 1) / exercises.length) * 100;
   const remaining = exercises.length - currentIndex - 1;
-  const isLightMode = theme === 'light' || (theme === 'system' && resolvedTheme === 'light');
+  const isLightMode = resolvedTheme === 'light';
   const backButtonClassName = isLightMode
     ? 'bg-white border-border text-text-muted hover:text-text'
     : 'bg-[#162b3d] border-white/10 text-text-muted hover:text-text';

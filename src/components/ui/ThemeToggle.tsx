@@ -1,9 +1,9 @@
 "use client";
 
 import { useTheme } from "@/components/layout/ThemeProvider";
-import { Monitor, Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 
-type Theme = "system" | "light" | "dark";
+type Theme = "light" | "dark";
 
 interface ThemeOption {
     value: Theme;
@@ -12,7 +12,6 @@ interface ThemeOption {
 }
 
 const themeOptions: ThemeOption[] = [
-    { value: "system", label: "Auto", icon: <Monitor className="w-3.5 h-3.5" /> },
     { value: "light", label: "Light", icon: <Sun className="w-3.5 h-3.5" /> },
     { value: "dark", label: "Dark", icon: <Moon className="w-3.5 h-3.5" /> },
 ];
@@ -71,7 +70,7 @@ export function ThemeToggle({ compact = false, className = "" }: ThemeToggleProp
                     Theme
                 </span>
                 <span className="text-xs text-text-muted">
-                    {theme === "system" ? "Switch to Light" : theme === "light" ? "Switch to Dark" : "Switch to Auto"}
+                    {theme === "light" ? "Switch to Dark" : "Switch to Light"}
                 </span>
             </div>
             <div
@@ -105,12 +104,7 @@ export function ThemeToggle({ compact = false, className = "" }: ThemeToggleProp
                 })}
             </div>
             <p className="text-[11px] text-text-muted mt-0.5">
-                {theme === "system"
-                    ? "Auto follows your system"
-                    : theme === "light"
-                        ? "Always use light theme"
-                        : "Always use dark theme"
-                }
+                {theme === "light" ? "Always use light theme" : "Always use dark theme"}
             </p>
         </div>
     );
