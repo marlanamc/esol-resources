@@ -6,6 +6,12 @@ import { BackButton } from "@/components/ui";
 import { AvatarSelector } from "@/components/ui/AvatarSelector";
 import { DEFAULT_AVATAR, DEFAULT_COLOR } from "@/lib/avatar-constants";
 import { logger } from "@/lib/shared/logger";
+import {
+    fetchAndCacheAvatar,
+    getFreshMemoryAvatar,
+    readCachedAvatar,
+    writeCachedAvatar,
+} from "@/lib/avatar-cache";
 
 export default function AvatarPage() {
     const router = useRouter();
@@ -18,15 +24,21 @@ export default function AvatarPage() {
     const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const pendingSaveRef = useRef<{ avatar: string; avatarColor: string } | null>(null);
 
-    // Load saved selections on mount from database
+    // Load saved selections on mount from cache, then database
     useEffect(() => {
         async function loadAvatar() {
+            const cached = getFreshMemoryAvatar() ?? readCachedAvatar();
+            if (cached) {
+                setCurrentAvatar(cached.avatar);
+                setCurrentColor(cached.avatarColor);
+                setIsLoading(false);
+            }
+
             try {
-                const res = await fetch("/api/user/avatar");
-                if (res.ok) {
-                    const data = await res.json();
-                    setCurrentAvatar(data.avatar || DEFAULT_AVATAR);
-                    setCurrentColor(data.avatarColor || DEFAULT_COLOR);
+                const data = await fetchAndCacheAvatar();
+                if (data) {
+                    setCurrentAvatar(data.avatar);
+                    setCurrentColor(data.avatarColor);
                 }
             } catch (error) {
                 logger.error("Failed to load avatar", error);
@@ -50,6 +62,7 @@ export default function AvatarPage() {
     const debouncedSave = useCallback((avatar: string, avatarColor: string) => {
         // Store the pending save data
         pendingSaveRef.current = { avatar, avatarColor };
+        writeCachedAvatar(avatar, avatarColor);
 
         // Clear any existing timeout
         if (saveTimeoutRef.current) {
@@ -70,6 +83,7 @@ export default function AvatarPage() {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(saveData),
                 });
+                writeCachedAvatar(saveData.avatar, saveData.avatarColor);
             } catch (error) {
                 logger.error("Failed to save avatar", error);
             } finally {

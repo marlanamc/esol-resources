@@ -31,6 +31,8 @@ type ModeHeaderProps = {
     searchLabel?: string;
     actions?: ReactNode;
     profileVariant?: "default" | "dashboardv2";
+    initialAvatar?: string | null;
+    initialAvatarColor?: string | null;
 };
 
 const MODE_ACCENT: Record<ModeHeaderMode, string> = {
@@ -90,6 +92,8 @@ export function ModeHeader({
     searchLabel = "Search",
     actions,
     profileVariant = "default",
+    initialAvatar = null,
+    initialAvatarColor = null,
 }: ModeHeaderProps) {
     const pathname = usePathname();
     const accent = MODE_ACCENT[mode];
@@ -154,7 +158,12 @@ export function ModeHeader({
                             </div>
                         </>
                     ) : null}
-                    <UserProfileDropdown userName={userName} variant={profileVariant} />
+                    <UserProfileDropdown
+                        userName={userName}
+                        variant={profileVariant}
+                        initialAvatar={initialAvatar}
+                        initialAvatarColor={initialAvatarColor}
+                    />
                 </div>
             </div>
 

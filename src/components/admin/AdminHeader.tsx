@@ -13,9 +13,15 @@ const NAV_ITEMS = [
 
 interface AdminHeaderProps {
     userName?: string;
+    initialAvatar?: string | null;
+    initialAvatarColor?: string | null;
 }
 
-export function AdminHeader({ userName = "" }: AdminHeaderProps) {
+export function AdminHeader({
+    userName = "",
+    initialAvatar = null,
+    initialAvatarColor = null,
+}: AdminHeaderProps) {
     return (
         <ModeHeader
             mode="admin"
@@ -26,6 +32,8 @@ export function AdminHeader({ userName = "" }: AdminHeaderProps) {
             ariaLabel="Admin navigation"
             showViewModeToggle
             showAdminMode
+            initialAvatar={initialAvatar}
+            initialAvatarColor={initialAvatarColor}
         />
     );
 }

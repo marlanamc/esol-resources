@@ -16,9 +16,16 @@ const NAV_ITEMS = [
 interface TeachHeaderProps {
     userName?: string;
     isAdmin?: boolean;
+    initialAvatar?: string | null;
+    initialAvatarColor?: string | null;
 }
 
-export function TeachHeader({ userName = "", isAdmin = false }: TeachHeaderProps) {
+export function TeachHeader({
+    userName = "",
+    isAdmin = false,
+    initialAvatar = null,
+    initialAvatarColor = null,
+}: TeachHeaderProps) {
     return (
         <ModeHeader
             mode="teaching"
@@ -29,6 +36,8 @@ export function TeachHeader({ userName = "", isAdmin = false }: TeachHeaderProps
             ariaLabel="Teacher navigation"
             showViewModeToggle={isAdmin}
             showAdminMode={isAdmin}
+            initialAvatar={initialAvatar}
+            initialAvatarColor={initialAvatarColor}
         />
     );
 }

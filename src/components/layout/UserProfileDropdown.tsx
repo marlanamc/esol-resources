@@ -3,11 +3,18 @@
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import { clearServiceWorkerCache } from "@/lib/clearCache";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { SelectedAvatarDisplay } from "@/components/ui/SelectedAvatarDisplay";
 import { UserIcon } from "@/components/icons/Icons";
 import { Calendar, LogOut, Sparkles, UserCog, X } from "lucide-react";
-import { DEFAULT_AVATAR, DEFAULT_COLOR } from "@/lib/avatar-constants";
+import {
+    AVATAR_UPDATED_EVENT,
+    fetchAndCacheAvatar,
+    getFreshMemoryAvatar,
+    readCachedAvatar,
+    resolveServerAvatar,
+    type CachedAvatar,
+} from "@/lib/avatar-cache";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { AccentColorPicker } from "@/components/dashboard/AccentColorPicker";
 import { resolveAccentKey, type AccentKey } from "@/lib/accent-colors";
@@ -15,67 +22,29 @@ import { resolveAccentKey, type AccentKey } from "@/lib/accent-colors";
 interface UserProfileDropdownProps {
     userName: string;
     variant?: "default" | "dashboardv2";
+    /** Server-provided avatar so first paint skips the default flash */
+    initialAvatar?: string | null;
+    initialAvatarColor?: string | null;
 }
 
-type AvatarResponse = {
-    avatar?: string | null;
-    avatarColor?: string | null;
-};
-
-type NormalizedAvatar = {
-    avatar: string;
-    avatarColor: string;
-};
-
-type AvatarCache = {
-    data: NormalizedAvatar;
-    cachedAt: number;
-};
-
-const AVATAR_CACHE_TTL_MS = 60_000;
-let avatarCache: AvatarCache | null = null;
-let avatarInFlight: Promise<NormalizedAvatar | null> | null = null;
-
-function getFreshAvatarCache(): NormalizedAvatar | null {
-    if (!avatarCache) return null;
-    if (Date.now() - avatarCache.cachedAt > AVATAR_CACHE_TTL_MS) return null;
-    return avatarCache.data;
-}
-
-async function loadAvatar(): Promise<NormalizedAvatar | null> {
-    const cached = getFreshAvatarCache();
-    if (cached) return cached;
-    if (avatarInFlight) return avatarInFlight;
-
-    avatarInFlight = (async () => {
-        try {
-            const res = await fetch("/api/user/avatar");
-            if (!res.ok) return null;
-            const data = (await res.json()) as AvatarResponse;
-            const normalized = {
-                avatar: data.avatar || DEFAULT_AVATAR,
-                avatarColor: data.avatarColor || DEFAULT_COLOR,
-            };
-            avatarCache = { data: normalized, cachedAt: Date.now() };
-            return normalized;
-        } catch {
-            return null;
-        } finally {
-            avatarInFlight = null;
-        }
-    })();
-
-    return avatarInFlight;
-}
-
-export default function UserProfileDropdown({ userName, variant = "default" }: UserProfileDropdownProps) {
+export default function UserProfileDropdown({
+    userName,
+    variant = "default",
+    initialAvatar = null,
+    initialAvatarColor = null,
+}: UserProfileDropdownProps) {
     const [isOpen, setIsOpen] = useState(false);
-    const cachedAvatar = getFreshAvatarCache();
-    const [avatarId, setAvatarId] = useState<string>(cachedAvatar?.avatar || DEFAULT_AVATAR);
-    const [colorId, setColorId] = useState<string>(cachedAvatar?.avatarColor || DEFAULT_COLOR);
+    const serverAvatar = resolveServerAvatar({
+        avatar: initialAvatar ?? undefined,
+        avatarColor: initialAvatarColor ?? undefined,
+    });
+    const hasServerAvatar = initialAvatar != null || initialAvatarColor != null;
+    const [avatarId, setAvatarId] = useState<string>(serverAvatar.avatar);
+    const [colorId, setColorId] = useState<string>(serverAvatar.avatarColor);
     const [accentKey, setAccentKey] = useState<AccentKey | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
+    const pathname = usePathname();
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -93,20 +62,55 @@ export default function UserProfileDropdown({ userName, variant = "default" }: U
         };
     }, [isOpen]);
 
-    // Fetch avatar data
+    // Seed from client cache / server props, then refresh from API.
+    // Re-run on pathname so edits on /dashboard/avatar sync back into the header.
     useEffect(() => {
         let cancelled = false;
+
+        const apply = (avatar: string, avatarColor: string) => {
+            if (cancelled) return;
+            setAvatarId(avatar);
+            setColorId(avatarColor);
+        };
+
+        // Memory (same-tab saves) > server props > localStorage > API.
+        // Do not write server props into the client cache — that can block a
+        // fresh API read after the layout props go stale.
+        const memory = getFreshMemoryAvatar();
+        if (memory) {
+            apply(memory.avatar, memory.avatarColor);
+        } else if (hasServerAvatar) {
+            apply(serverAvatar.avatar, serverAvatar.avatarColor);
+        } else {
+            const stored = readCachedAvatar();
+            if (stored) apply(stored.avatar, stored.avatarColor);
+        }
+
         (async () => {
-            const avatar = await loadAvatar();
+            const avatar = await fetchAndCacheAvatar();
             if (!avatar || cancelled) return;
-            setAvatarId(avatar.avatar);
-            setColorId(avatar.avatarColor);
+            apply(avatar.avatar, avatar.avatarColor);
         })();
+
         return () => {
             cancelled = true;
         };
-    }, []);
+    }, [hasServerAvatar, serverAvatar.avatar, serverAvatar.avatarColor, pathname]);
 
+    // Keep header in sync while the avatar page writes the cache.
+    useEffect(() => {
+        function handleAvatarUpdated(event: Event) {
+            const detail = (event as CustomEvent<CachedAvatar>).detail;
+            if (!detail) return;
+            setAvatarId(detail.avatar);
+            setColorId(detail.avatarColor);
+        }
+
+        window.addEventListener(AVATAR_UPDATED_EVENT, handleAvatarUpdated);
+        return () => {
+            window.removeEventListener(AVATAR_UPDATED_EVENT, handleAvatarUpdated);
+        };
+    }, []);
     // Keep the picker checkmark aligned with the live theme whenever the menu
     // opens. data-accent is maintained by AccentColorInitializer and the picker.
     useEffect(() => {

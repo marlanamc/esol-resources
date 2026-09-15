@@ -24,6 +24,8 @@ interface DashboardHeaderProps {
     showViewModeToggle?: boolean;
     /** Whether to show the Admin option in the switcher */
     isAdmin?: boolean;
+    initialAvatar?: string | null;
+    initialAvatarColor?: string | null;
 }
 
 export function DashboardHeader({
@@ -34,6 +36,8 @@ export function DashboardHeader({
     showMarlieEmoji = false,
     showViewModeToggle = false,
     isAdmin = false,
+    initialAvatar = null,
+    initialAvatarColor = null,
 }: DashboardHeaderProps) {
     const handleCalendarOpen = () => {
         if (typeof window !== "undefined") {
@@ -67,6 +71,8 @@ export function DashboardHeader({
             showAdminMode={isAdmin}
             enableSearch={enableSearch}
             profileVariant={variant}
+            initialAvatar={initialAvatar}
+            initialAvatarColor={initialAvatarColor}
             actions={
                 variant === "dashboardv2" ? (
                     <button

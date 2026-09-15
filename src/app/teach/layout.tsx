@@ -6,6 +6,7 @@ import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { TeachHeader } from "@/components/teach/TeachHeader";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
 import { TeachClassSwitcher } from "@/components/teach/TeachClassSwitcher";
+import { prisma } from "@/lib/database/prisma";
 
 export const metadata = {
     title: "Teaching | My ESOL Class",
@@ -26,11 +27,22 @@ export default async function TeachLayout({ children }: { children: ReactNode })
     const userName = session.user.name ?? session.user.username ?? "";
 
     // The active class is shared by every /teach page, so the switcher lives in the shell.
-    const { classId: activeClassId, classes } = await resolveTeachClassId(session.user.id, admin);
+    const [{ classId: activeClassId, classes }, userAvatar] = await Promise.all([
+        resolveTeachClassId(session.user.id, admin),
+        prisma.user.findUnique({
+            where: { id: session.user.id },
+            select: { avatar: true, avatarColor: true },
+        }),
+    ]);
 
     return (
         <div className="min-h-screen bg-bg">
-            <TeachHeader userName={userName} isAdmin={admin} />
+            <TeachHeader
+                userName={userName}
+                isAdmin={admin}
+                initialAvatar={userAvatar?.avatar ?? null}
+                initialAvatarColor={userAvatar?.avatarColor ?? null}
+            />
             {classes.length > 1 ? (
                 <div
                     className="border-b bg-[var(--surface-subtle)]"

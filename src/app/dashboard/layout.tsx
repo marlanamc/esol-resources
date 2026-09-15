@@ -61,9 +61,11 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     let learnerMode: LearnerMode = "classroom";
 
     let accentKey = resolveAccentKey(null);
+    let initialAvatar: string | null = null;
+    let initialAvatarColor: string | null = null;
 
     if (session?.user?.id) {
-        const [dashboardContext, userPrefs] = await Promise.all([
+        const [dashboardContext, userPrefs, userAvatar] = await Promise.all([
             session.user.role === "student"
                 ? getStudentDashboardContext(session.user.id)
                 : Promise.resolve({ learnerMode: "classroom" as LearnerMode, leaderboardRank: null }),
@@ -71,11 +73,17 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                 where: { userId: session.user.id },
                 select: { accentColor: true },
             }),
+            prisma.user.findUnique({
+                where: { id: session.user.id },
+                select: { avatar: true, avatarColor: true },
+            }),
         ]);
 
         leaderboardRank = dashboardContext.leaderboardRank;
         learnerMode = dashboardContext.learnerMode;
         accentKey = resolveAccentKey(userPrefs?.accentColor);
+        initialAvatar = userAvatar?.avatar ?? null;
+        initialAvatarColor = userAvatar?.avatarColor ?? null;
 
         if (
             canUseTeacherTools(session.user) &&
@@ -102,6 +110,8 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                     showMarlieEmoji={session.user?.username?.toLowerCase() === "marlie"}
                     showViewModeToggle={canUseTeacherTools(session.user)}
                     isAdmin={isAdmin(session.user)}
+                    initialAvatar={initialAvatar}
+                    initialAvatarColor={initialAvatarColor}
                 />
             )}
             {children}
