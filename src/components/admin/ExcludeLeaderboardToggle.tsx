@@ -44,9 +44,10 @@ export function ExcludeLeaderboardToggle({
           ? "bg-amber-100 text-amber-800 border-amber-200 hover:bg-amber-200"
           : "bg-emerald-100 text-emerald-800 border-emerald-200 hover:bg-emerald-200"
       }`}
-      title={`Click to ${excluded ? "include in" : "exclude from"} leaderboard`}
+      title={`Shown on leaderboard: ${excluded ? "No" : "Yes"}. Click to ${excluded ? "include" : "exclude"} this user.`}
+      aria-label={`Shown on leaderboard: ${excluded ? "No" : "Yes"}. Click to ${excluded ? "include" : "exclude"} this user.`}
     >
-      {loading ? "..." : excluded ? "Yes" : "No"}
+      {loading ? "..." : excluded ? "No" : "Yes"}
     </button>
   );
 }

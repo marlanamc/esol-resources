@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { z } from "zod";
+import { revalidateTag } from "next/cache";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { isAdmin } from "@/lib/auth/roles";
@@ -58,6 +59,8 @@ export async function PATCH(
         excludeFromLeaderboard: true,
       },
     });
+
+    revalidateTag("leaderboard", "max");
 
     return NextResponse.json({
       success: true,

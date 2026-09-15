@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import type { NextRequest } from "next/server";
 
 vi.mock("next-auth", () => ({ getServerSession: vi.fn() }));
+vi.mock("next/cache", () => ({ revalidateTag: vi.fn() }));
 vi.mock("@/lib/auth/auth", () => ({ authOptions: {} }));
 vi.mock("@sentry/nextjs", () => ({ captureException: vi.fn(), captureMessage: vi.fn() }));
 vi.mock("@/lib/api/rate-limit", () => ({
@@ -16,6 +17,7 @@ vi.mock("@/lib/database/prisma", () => ({
 }));
 
 import { getServerSession } from "next-auth";
+import { revalidateTag } from "next/cache";
 import { prisma } from "@/lib/database/prisma";
 import { PATCH as excludeLeaderboardPatch } from "@/app/api/admin/users/[userId]/exclude-leaderboard/route";
 import { POST as resetStudentPasswordPost } from "@/app/api/admin/reset-student-password/route";
@@ -80,6 +82,7 @@ describe("exclude-leaderboard route", () => {
     expect(mockPrisma.user.update).toHaveBeenCalledWith(
       expect.objectContaining({ data: { excludeFromLeaderboard: true } })
     );
+    expect(revalidateTag).toHaveBeenCalledWith("leaderboard", "max");
   });
 });
 
