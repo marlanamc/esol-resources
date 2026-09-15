@@ -40,7 +40,7 @@ const weeklyVocabData = {
       {"term": "greet", "def": "to say hello to someone", "ex": "Greet your classmates when you arrive.", "fillBlank": {"text": "When you arrive, _____ your classmates by saying hello.", "options": ["share", "greet", "prefer", "describe"]}},
       {"term": "share", "def": "to tell someone your ideas, feelings, or information", "ex": "Share one interesting fact about yourself.", "fillBlank": {"text": "Tell us something about yourself: _____ one interesting fact with the class.", "options": ["catch up", "prefer", "share", "greet"]}},
       { term: "describe", def: "to say what something or someone is like",                           ex: "Describe your neighborhood to the class.", fillBlank: { text: "_____ your neighborhood. Is it quiet or busy?", options: ["introduce", "describe", "share", "catch up"] } },
-      {"term": "prefer", "def": "to like one thing more than another", "ex": "I prefer working with a partner to working alone.", "fillBlank": {"text": "I like working with a partner more than working alone. I _____ partner work.", "options": ["describe", "share", "greet", "prefer"]}},
+      {"term": "prefer", "def": "to like one thing more than another", "ex": "I prefer working with a partner to working alone.", "fillBlank": {"text": "I like working with a partner more than working alone. I _____ working with a partner.", "options": ["describe", "share", "greet", "prefer"]}},
       { term: "catch up", def: "to talk and share news with someone",                                 ex: "Let's catch up — what did you do this summer?", fillBlank: { text: "We have not talked since last year. Let's _____ before class starts.", options: ["greet", "catch up", "describe", "share"] } },
     ],
   },
@@ -65,7 +65,7 @@ const weeklyVocabData = {
       { term: "submit",   def: "to send your work or information officially",                          ex: "Submit your answers before the timer runs out.", topics: ["digital-skills"], fillBlank: { text: "Click the button to _____ your homework before the deadline.", options: ["review", "submit", "access", "complete"] } },
       { term: "access",   def: "to open or enter a file, website, or building",                       ex: "You can access your lessons from any device.", topics: ["digital-skills"], fillBlank: { text: "You can _____ your lessons from your phone or computer.", options: ["log in", "access", "navigate", "submit"] } },
       { term: "complete", def: "to finish all parts of a task",                                       ex: "Try to complete at least one activity each day.", fillBlank: { text: "Try to _____ at least one vocabulary activity every day.", options: ["review", "complete", "submit", "access"] } },
-      { term: "review",   def: "to look at something again to check or learn it better",              ex: "Review the words before the quiz on Friday.", fillBlank: { text: "Before the quiz on Friday, _____ the new words one more time.", options: ["complete", "review", "submit", "navigate"] } },
+      { term: "review",   def: "to look at something again to check or learn it better",              ex: "Review the words before class on Thursday.", fillBlank: { text: "Before class on Thursday, _____ the new words one more time.", options: ["complete", "review", "submit", "navigate"] } },
     ],
   },
 

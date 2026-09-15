@@ -2,7 +2,8 @@
  * The 2026-27 evening-class calendar, transcribed from the program's
  * "School Calendar & Important Dates" sheet.
  *
- * Evening classes meet Tuesday and Thursday, Sept 14 2026 through June 10 2027.
+ * The term starts Monday, Sept 14, 2026; the first evening class meets
+ * Tuesday, Sept 15. Classes meet Tuesday and Thursday through June 10, 2027.
  * Family Literacy runs a different calendar and is not represented here.
  */
 

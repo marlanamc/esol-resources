@@ -33,7 +33,7 @@ const PRESETS: Array<{
         // anyone the check shows is not ready for a full round.
         id: "timeline-tenses-week1-easy",
         title: "Timeline Tenses: Easy Start",
-        description: "A gentle first look at the timeline — one short sentence at a time, present and past simple only.",
+        description: "A gentle first look at simple tenses — one verb at a time, using only the easiest questions.",
         tenseCategories: ["simple"],
         maxDifficulty: 1,
         singleVerbOnly: true,
