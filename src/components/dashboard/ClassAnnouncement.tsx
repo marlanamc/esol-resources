@@ -7,8 +7,6 @@ export interface AnnouncementItem {
     className: string;
     message: string;
     messageHtml: string;
-    /** "schedule" items are generated from the class calendar, not written by a teacher. */
-    kind?: 'teacher' | 'schedule';
 }
 
 interface ClassAnnouncementProps {
@@ -20,18 +18,14 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
 
     if (!announcements || announcements.length === 0) return null;
 
-    // With nothing hand-written in the panel, "From teacher" would be a lie.
-    const hasTeacherMessage = announcements.some((a) => a.kind !== 'schedule');
-
     return (
         <section className="dashboard-panel max-w-4xl rounded-2xl px-4 py-3 sm:px-5" aria-label="Announcements">
             <div className="flex items-center justify-between gap-3">
                 <div className="flex min-w-0 items-center gap-2.5">
                     <Megaphone className="h-4 w-4 shrink-0 text-amber-700" aria-hidden="true" />
                     <h2 className="truncate font-display text-base font-bold text-text">
-                        {hasTeacherMessage ? 'From teacher' : 'Class schedule'}
+                        Announcements
                     </h2>
-                    <span className="hidden text-[10px] font-bold uppercase tracking-widest text-amber-700/70 sm:inline">Notice</span>
                 </div>
                 <button
                     type="button"
@@ -47,27 +41,17 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
 
             {!isCollapsed && (
                 <div className="mt-2 divide-y divide-[var(--dashboard-divider)]">
-                    {announcements.map((announcement, index) => {
-                        const isSchedule = announcement.kind === 'schedule';
-
-                        return (
-                            <div key={`${announcement.className}-${index}`} className="flex flex-wrap items-start gap-x-3 gap-y-1.5 py-2.5 first:pt-2">
-                                <span
-                                    className={`shrink-0 rounded-md px-2 py-0.5 text-xs font-semibold ${isSchedule ? '' : 'bg-primary/5 text-primary'}`}
-                                    style={isSchedule ? {
-                                        color: 'var(--tone-class-day-text)',
-                                        backgroundColor: 'color-mix(in srgb, var(--tone-class-day-accent) 12%, transparent)',
-                                    } : undefined}
-                                >
-                                    {announcement.className}
-                                </span>
-                                <div
-                                    className="announcement-markdown prose prose-sm min-w-0 flex-1 basis-56 text-sm leading-relaxed text-text/85 sm:text-base"
-                                    dangerouslySetInnerHTML={{ __html: announcement.messageHtml }}
-                                />
-                            </div>
-                        );
-                    })}
+                    {announcements.map((announcement, index) => (
+                        <div key={`${announcement.className}-${index}`} className="flex flex-wrap items-start gap-x-3 gap-y-1.5 py-2.5 first:pt-2">
+                            <span className="shrink-0 rounded-md bg-primary/5 px-2 py-0.5 text-xs font-semibold text-primary">
+                                {announcement.className}
+                            </span>
+                            <div
+                                className="announcement-markdown prose prose-sm min-w-0 flex-1 basis-56 text-sm leading-relaxed text-text/85 sm:text-base"
+                                dangerouslySetInnerHTML={{ __html: announcement.messageHtml }}
+                            />
+                        </div>
+                    ))}
                 </div>
             )}
         </section>

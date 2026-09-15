@@ -9,7 +9,6 @@ import { getStudentMomentumSnapshot } from "@/lib/dashboard/student-momentum";
 import { logger } from "@/lib/shared/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
-import { getClassDayAnnouncement } from "@/lib/class-days";
 import {
     CalendarEvent,
     DashboardCalendarCard,
@@ -185,31 +184,13 @@ export default async function DashboardPage() {
                 className: enrollment.class.name,
             }))
     );
-    const teacherAnnouncements = enrollments
+    const classAnnouncements: AnnouncementItem[] = enrollments
         .map((enrollment: StudentEnrollment) => ({
             className: enrollment.class.name,
             message: enrollment.class.announcement?.trim() || "",
             messageHtml: renderAnnouncementMarkdown(enrollment.class.announcement),
-            kind: "teacher" as const,
         }))
         .filter((announcement) => announcement.message.length > 0);
-
-    // Drawn from the school calendar, not stored: shows from midnight until
-    // class lets out on the Tue/Thu that class actually meets. The school
-    // calendar is program-wide, so this is one banner regardless of how many
-    // classes the student is enrolled in.
-    const classDayMessage = enrollments.length > 0 ? getClassDayAnnouncement() : null;
-    const classAnnouncements: AnnouncementItem[] = [
-        ...(classDayMessage
-            ? [{
-                  className: "Today",
-                  message: classDayMessage,
-                  messageHtml: renderAnnouncementMarkdown(classDayMessage),
-                  kind: "schedule" as const,
-              }]
-            : []),
-        ...teacherAnnouncements,
-    ];
 
     const classIds = enrollments.map(e => e.classId);
     const featuredClassIds = await withPrismaReadRetry(() =>
