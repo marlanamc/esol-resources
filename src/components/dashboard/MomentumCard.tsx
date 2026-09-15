@@ -22,14 +22,6 @@ function CheckIcon({ size = 11 }: { size?: number }) {
     );
 }
 
-function getMessage(streak: number, longestStreak: number): string {
-    if (streak === 0) return "Complete an activity today to start your streak.";
-    if (streak === 1) return "Great start — come back tomorrow.";
-    if (streak < 7) return `${7 - streak} more day${7 - streak === 1 ? "" : "s"} to a hot streak.`;
-    if (streak >= longestStreak && streak > 0) return "New personal best — keep going.";
-    return "You're on fire — keep it going.";
-}
-
 const EMPTY_WEEK: boolean[] = [false, false, false, false, false, false, false];
 
 type MomentumCardVariant = "default" | "sidebar" | "header";
@@ -64,6 +56,7 @@ export function MomentumCard({
     const todayIndex = getCalendarWeekTodayIndex();
     const isHotStreak = streak >= 7;
     const isNewRecord = streak > 0 && streak >= longestStreak;
+    const isOnARoll = streak >= 2;
     const isSidebar = variant === "sidebar";
     const isHeader = variant === "header";
     const isRail = isSidebar || isHeader;
@@ -88,11 +81,11 @@ export function MomentumCard({
                         className="flex h-8 w-8 items-center justify-center rounded-full"
                         style={{
                             background: "color-mix(in srgb, var(--tone-quizzes-accent) 20%, var(--dashboard-surface-start))",
-                            color: "var(--tone-quizzes-accent)",
+                            color: isOnARoll ? "var(--tone-quizzes-accent)" : "var(--text-muted)",
                         }}
                         aria-hidden
                     >
-                        <Flame size={16} fill="currentColor" strokeWidth={1.6} />
+                        <Flame size={16} fill={isOnARoll ? "currentColor" : "none"} strokeWidth={1.6} />
                     </div>
 
                     <div className="leading-none">
@@ -105,17 +98,7 @@ export function MomentumCard({
                     </div>
                 </div>
 
-                <div
-                    className="h-7 w-px shrink-0"
-                    style={{ background: "color-mix(in srgb, var(--text-muted) 36%, transparent)" }}
-                    aria-hidden
-                />
-
-                <div className="min-w-0 flex-1 text-[12px] font-medium leading-snug text-text">
-                    {getMessage(streak, longestStreak)}
-                </div>
-
-                <span className="shrink-0 text-[13px] font-bold tabular-nums leading-none text-text">
+                <span className="ml-auto shrink-0 text-[13px] font-bold tabular-nums leading-none text-text">
                     {weeklyPoints.toLocaleString()} pts
                 </span>
             </div>
@@ -179,7 +162,7 @@ export function MomentumCard({
                     ? undefined
                     : { background: cardGradient, borderColor: cardBorder }
             }
-            aria-label={`${streak}-day streak${isNewRecord ? ", personal best" : ""}. ${getMessage(streak, longestStreak)} ${weeklyPoints} points this week.`}
+            aria-label={`${streak}-day streak${isNewRecord ? ", personal best" : ""}. ${weeklyPoints} points this week.`}
         >
             {isHeader && embedded ? (
                 <div
