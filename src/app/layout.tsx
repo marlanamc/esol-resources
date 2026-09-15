@@ -50,6 +50,16 @@ export const metadata: Metadata = {
     ],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      // iOS applies its own darkening to any touch icon that ships no dark
+      // variant, which turned the terracotta ground near-black under the
+      // Dark home screen icon appearance. Claiming the artwork as the dark
+      // asset too keeps the brand color in both appearances.
+      {
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+        media: "(prefers-color-scheme: dark)",
+      },
     ],
   },
 };
