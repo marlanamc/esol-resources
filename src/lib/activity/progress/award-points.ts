@@ -1,4 +1,4 @@
-import { getActivityPoints, POINTS } from "@/lib/gamification/gamification";
+import { getActivityPoints, getVocabularyTypePoints, POINTS } from "@/lib/gamification/gamification";
 import { calculateGroupPoints as calculateGIGroupPoints } from "@/lib/verbs/gerund-infinitive-progress";
 import { calculateGroupPoints as calculateVerbGroupPoints } from "@/lib/verbs/irregular-progress";
 import { applyAwardChain } from "@/lib/gamification/award-chain";
@@ -70,13 +70,7 @@ export async function awardProgressActivityPoints(
     }
 
     if (activity.type === "vocabulary" && isVocabularyTypeUpdate && isVocabProgressType(vocabType)) {
-        const vocabPoints: Record<string, number> = {
-            "word-list": 5,
-            flashcards: 4,
-            matching: 7,
-            "fill-blank": 5,
-        };
-        points = vocabPoints[vocabType] || 5;
+        points = getVocabularyTypePoints(vocabType);
 
         const vocabTypeLabels: Record<string, string> = {
             "word-list": "Word List",
