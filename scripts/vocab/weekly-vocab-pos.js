@@ -20,7 +20,7 @@
 module.exports = {
   // ── Unit 1: September ────────────────────────────────────────────────────
 
-  // sep-w1: Meet the Class: Introductions
+  // sep-w1: Start the Class
   "introduce": "verb",
   "greet": "verb",
   "share": "verb",

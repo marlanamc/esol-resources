@@ -34,7 +34,7 @@ const weeklyVocabData = {
 
   /** Unit 1 – Getting to Know You (September) */
   "sep-w1": {
-    topic: "Meet the Class: Introductions",
+    topic: "Start the Class",
     words: [
       { term: "introduce", def: "to present yourself or another person for the first time",           ex: "Please introduce yourself to the class.", fillBlank: { text: "On the first day, please _____ yourself to the class.", options: ["introduce", "greet", "share", "prefer"] } },
       {"term": "greet", "def": "to say hello to someone", "ex": "Greet your classmates when you arrive.", "fillBlank": {"text": "When you arrive, _____ your classmates by saying hello.", "options": ["share", "greet", "prefer", "describe"]}},

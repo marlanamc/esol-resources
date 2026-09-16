@@ -200,6 +200,13 @@ export async function GET(request: Request) {
       }),
     ]);
 
+    // Historical PointsLedger.reason strings are permanent and can drift from
+    // an activity's current title (e.g. after a rename). Falling back to the
+    // raw reason for display should never leak the internal "title|quizType"
+    // format or the "Completed: " prefix.
+    const cleanReasonLabel = (reason: string) =>
+      reason.split("|")[0].replace(/^Completed:\s*/, "");
+
     // Memoized activity lookup: reason keys repeat across the report sections
     const activityMatchCache = new Map<string, (typeof activities)[number] | undefined>();
     const findActivityForKey = (key: string) => {
@@ -255,7 +262,7 @@ export async function GET(request: Request) {
 
         return {
           activityId: activity.activityKey,
-          name: dbActivity?.title || activity.activityKey,
+          name: dbActivity?.title || cleanReasonLabel(activity.activityKey),
           type: dbActivity?.type || "unknown",
           playCount: activity.playCount,
           uniquePlayers: activity.uniquePlayers,
@@ -330,9 +337,7 @@ export async function GET(request: Request) {
         let lastActivityReason = lastActivity?.reason;
         if (lastActivityReason) {
           const dbActivity = findActivityForKey(lastActivityReason);
-          if (dbActivity) {
-            lastActivityReason = dbActivity.title;
-          }
+          lastActivityReason = dbActivity?.title ?? cleanReasonLabel(lastActivityReason);
         }
 
         return {
@@ -359,6 +364,8 @@ export async function GET(request: Request) {
         if (dbActivity) {
           activityName = dbActivity.title;
           activityType = dbActivity.type || undefined;
+        } else {
+          activityName = cleanReasonLabel(activityName);
         }
 
         return {
