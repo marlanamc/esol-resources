@@ -40,7 +40,7 @@ export function FontSizeToggle({ compact = false, className = "" }: FontSizeTogg
                                 onClick={() => setFontSize(option.value)}
                                 className={`
                                     flex items-center justify-center px-2.5 py-1.5 rounded-md font-bold
-                                    transition-all duration-200 ${option.glyphClassName}
+                                    transition-all duration-200
                                     ${isActive
                                         ? "text-text shadow-sm"
                                         : "text-text-muted hover:text-text"
@@ -51,7 +51,7 @@ export function FontSizeToggle({ compact = false, className = "" }: FontSizeTogg
                                 aria-label={`Set text size to ${option.label}`}
                                 title={option.label}
                             >
-                                A
+                                <span className={option.glyphClassName}>A</span>
                             </button>
                         );
                     })}
