@@ -6,7 +6,7 @@ import { POINTS } from "./constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./streak-utils";
 import { buildIndependentLeaderboardUserWhere, buildLeaderboardEligibleUserWhere } from "./leaderboard-filter";
 export { POINTS } from "./constants";
-export { getActivityPoints, resolveActivityGameUi } from "./activity-points";
+export { getActivityPoints, resolveActivityGameUi, getVocabularyTypePoints } from "./activity-points";
 export {
   getExcludedLeaderboardUsernames,
   parseExcludedLeaderboardUsernames,

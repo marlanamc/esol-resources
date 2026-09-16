@@ -163,8 +163,8 @@ export function getVocabularyTypePoints(vocabType: string): number {
   const vocabPoints: Record<string, number> = {
     'word-list': 5,
     'flashcards': 4,
-    'matching': 7,
-    'fill-blank': 5,
+    'matching': 5,
+    'fill-blank': 7,
   };
   return vocabPoints[vocabType] || 5;
 }

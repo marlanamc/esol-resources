@@ -60,7 +60,6 @@
     "db:seed:grammar-hospital": "npx tsx prisma/seed-grammar-hospital.ts",
     "db:seed:comparison-battle": "npx tsx prisma/seed-comparison-battle.ts",
     "db:seed:timeline-presets": "npx tsx prisma/seed-timeline-tenses-presets.ts",
-    "db:seed:level1-path": "npx tsx prisma/seed-level1-course-path.ts",
     "db:seed:pronunciation": "npx tsx prisma/seed-pronunciation-expansion.ts",
     "db:seed:achievements": "npx tsx prisma/seed-achievements.ts",
     "db:seed:course-map": "npx tsx prisma/seed-course-map.ts",
