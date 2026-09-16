@@ -16,6 +16,7 @@ import {
     type CachedAvatar,
 } from "@/lib/avatar-cache";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { FontSizeToggle } from "@/components/ui/FontSizeToggle";
 import { AccentColorPicker } from "@/components/dashboard/AccentColorPicker";
 import { resolveAccentKey, type AccentKey } from "@/lib/accent-colors";
 
@@ -272,6 +273,10 @@ export default function UserProfileDropdown({
                                 <ThemeToggle />
                             </div>
 
+                            <div className="rounded-2xl border px-4 py-3 shadow-sm" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-base)' }}>
+                                <FontSizeToggle />
+                            </div>
+
                             <div className="rounded-2xl border px-2 py-2 shadow-sm" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-base)' }}>
                                 {accentSection}
                             </div>
@@ -342,6 +347,9 @@ export default function UserProfileDropdown({
                         <div className="px-3 py-2">
                             <ThemeToggle compact />
                         </div>
+                        <div className="px-3 py-2">
+                            <FontSizeToggle compact />
+                        </div>
                         <div className="border-t" style={{ borderColor: 'var(--border-subtle)' }}>
                             {accentSection}
                         </div>
@@ -387,6 +395,9 @@ export default function UserProfileDropdown({
                     </button>
                     <div className="px-3 py-2">
                         <ThemeToggle compact />
+                    </div>
+                    <div className="px-3 py-2">
+                        <FontSizeToggle compact />
                     </div>
                     <div className="border-t" style={{ borderColor: 'var(--border-subtle)' }}>
                         {accentSection}

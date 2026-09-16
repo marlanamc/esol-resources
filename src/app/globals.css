@@ -829,6 +829,12 @@ html {
   max-width: 100%;
 }
 
+/* Large Text accessibility preference — scales all rem-based Tailwind
+   text utilities app-wide via the root font-size. */
+html[data-font-size="large"] {
+  font-size: 118.75%;
+}
+
 body {
   -webkit-overflow-scrolling: touch;
   overflow-x: clip;

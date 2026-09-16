@@ -3,6 +3,7 @@ import { Lora, DM_Sans, Caveat, Atkinson_Hyperlegible } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { FontSizeProvider } from "@/components/layout/FontSizeProvider";
 import { LearnerSearchProvider } from "@/components/search/LearnerSearchProvider";
 import { cookies } from "next/headers";
 import { APP_DESCRIPTION, APP_NAME, APP_SHORT_NAME } from "@/lib/brand";
@@ -82,6 +83,8 @@ export default async function RootLayout({
   const savedTheme = cookieStore.get("class-companion-theme")?.value;
   const htmlClassName = savedTheme === "dark" ? "dark" : undefined;
   const htmlTheme = savedTheme === "dark" ? "dark" : "light";
+  const savedFontSize = cookieStore.get("class-companion-font-size")?.value;
+  const htmlFontSize = savedFontSize === "large" ? "large" : undefined;
 
   return (
     <html
@@ -89,6 +92,7 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={htmlClassName}
       data-theme={htmlTheme}
+      data-font-size={htmlFontSize}
     >
       <head>
         <script
@@ -113,6 +117,17 @@ export default async function RootLayout({
                     d.setAttribute('data-theme', 'light');
                   }
 
+                  var fontSize = localStorage.getItem('class-companion-font-size');
+                  if (!fontSize) {
+                    var fontSizeCookieMatch = document.cookie.match(/(?:^|; )class-companion-font-size=([^;]+)/);
+                    fontSize = fontSizeCookieMatch ? decodeURIComponent(fontSizeCookieMatch[1]) : null;
+                  }
+                  if (fontSize === 'large') {
+                    d.setAttribute('data-font-size', 'large');
+                  } else {
+                    d.removeAttribute('data-font-size');
+                  }
+
                   // Remove hydration class after first paint
                   requestAnimationFrame(function() {
                     requestAnimationFrame(function() {
@@ -129,7 +144,9 @@ export default async function RootLayout({
         className={`${lora.variable} ${dmSans.variable} ${caveat.variable} ${atkinson.variable} antialiased`}
       >
         <ThemeProvider>
-          <LearnerSearchProvider>{children}</LearnerSearchProvider>
+          <FontSizeProvider>
+            <LearnerSearchProvider>{children}</LearnerSearchProvider>
+          </FontSizeProvider>
         </ThemeProvider>
         <Analytics />
       </body>
