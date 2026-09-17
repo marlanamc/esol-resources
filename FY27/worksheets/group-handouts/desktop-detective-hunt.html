@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desktop Detective Hunt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #fff;
+    color: #000;
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    padding: 28px;
+    line-height: 1.55;
+    font-size: 18px;
+  }
+
+  .sheet {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 8px;
+  }
+
+  .sub {
+    margin: 0 0 18px;
+    font-size: 1.1rem;
+  }
+
+  .team-line {
+    margin-bottom: 18px;
+    font-size: 1.05rem;
+  }
+
+  .team-line > * {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .team-line span {
+    display: inline-block;
+    border-bottom: 2px solid #000;
+    min-width: 260px;
+    height: 1.6em;
+  }
+
+  .instructions {
+    border: 2px solid #000;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
+
+  ol.clues {
+    margin: 0;
+    padding-left: 26px;
+  }
+
+  ol.clues li {
+    margin-bottom: 24px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  ol.clues li::marker {
+    font-size: 1.15rem;
+    font-weight: bold;
+  }
+
+  .clue-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+  }
+
+  .clue-text {
+    margin: 4px 0 8px;
+    font-size: 1.15rem;
+  }
+
+  .answer-line {
+    display: block;
+    border-bottom: 2px solid #000;
+    height: 3em;
+  }
+
+  .bonus {
+    border: 2px solid #000;
+    padding: 14px 16px;
+    margin-top: 8px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .bonus .clue-label { font-size: 0.95rem; }
+  .bonus .clue-text { font-size: 1.15rem; }
+
+  .print-bar {
+    text-align: right;
+    margin-top: 20px;
+  }
+
+  .print-btn {
+    font: inherit;
+    font-size: 1rem;
+    padding: 8px 18px;
+    cursor: pointer;
+  }
+
+  footer {
+    margin-top: 22px;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  @media print {
+    body { padding: 0.35in; font-size: 13.5px; line-height: 1.35; }
+    .print-bar { display: none; }
+    h1 { font-size: 1.6rem; margin-bottom: 4px; }
+    .sub { margin-bottom: 12px; }
+    .instructions { margin-bottom: 14px; }
+    ol.clues li { margin-bottom: 16px; }
+    .clue-text { margin-bottom: 6px; }
+    .answer-line { height: 2.4em; }
+    .instructions, .bonus { padding: 8px 12px; }
+    footer { margin-top: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <h1>Desktop Detective Hunt</h1>
+  <p class="sub">My ESOL App &mdash; look around the app with your team.</p>
+
+  <div class="team-line">
+    Name: <span>&nbsp;</span>
+  </div>
+
+  <div class="instructions">
+    <strong>How to play:</strong> Sit with your group. Read each clue out loud, find the answer in the app, then agree on what to write. Take turns using the mouse for each clue.
+  </div>
+
+  <ol class="clues">
+
+    <li>
+      <div class="clue-label">Calendar</div>
+      <p class="clue-text">Open Calendar. Find Thursday, September 24, 2026. Is there class that day?</p>
+      <span class="answer-line">YES / NO &mdash; because it says:</span>
+    </li>
+
+    <li>
+      <div class="clue-label">Calendar</div>
+      <p class="clue-text">Still in Calendar, look at December. What is our last day of class in December?</p>
+      <span class="answer-line"></span>
+    </li>
+
+    <li>
+      <div class="clue-label">Settings</div>
+      <p class="clue-text">Find Text Size and try both Large and Normal. Which size do you prefer?</p>
+      <span class="answer-line"></span>
+    </li>
+
+    <li>
+      <div class="clue-label">Leaderboard</div>
+      <p class="clue-text">Open Leaderboard in the top menu. Write the name in 1st place this week.</p>
+      <span class="answer-line"></span>
+    </li>
+
+    <li>
+      <div class="clue-label">Profile</div>
+      <p class="clue-text">Go to your Profile. Find your streak card. How many days in a row have you practiced?</p>
+      <span class="answer-line"></span>
+    </li>
+
+    <li>
+      <div class="clue-label">Home</div>
+      <p class="clue-text">On the Home screen, find Weekly Checklist. Click "Show full week." How many activities are on the list this week?</p>
+      <span class="answer-line"></span>
+    </li>
+
+    <li>
+      <div class="clue-label">Map</div>
+      <p class="clue-text">Open the Map. Find Week 1. What is Week 1 called?</p>
+      <span class="answer-line"></span>
+    </li>
+
+    <li>
+      <div class="clue-label">Map</div>
+      <p class="clue-text">Still on the Map, find Optional Practice. How many items are in Optional Practice?</p>
+      <span class="answer-line"></span>
+    </li>
+
+    <li>
+      <div class="clue-label">Class resources</div>
+      <p class="clue-text">Find Class resources on your Home screen. What do you click if you know you are going to be absent?</p>
+      <span class="answer-line"></span>
+    </li>
+
+    <li>
+      <div class="clue-label">Search</div>
+      <p class="clue-text">Use the search bar and type "games." Write the name of the first result that shows up.</p>
+      <span class="answer-line"></span>
+    </li>
+
+    <li>
+      <div class="clue-label">Install the app</div>
+      <p class="clue-text">Did you install the app on your phone's home screen? If not, ask someone in your group to help you.</p>
+      <span class="answer-line"></span>
+    </li>
+
+  </ol>
+
+  <div class="bonus">
+    <div class="clue-label">Bonus &mdash; talk it out</div>
+    <p class="clue-text">A "streak" means days in a row you practice. Why do you think it is good to practice every day? Write one reason.</p>
+    <span class="answer-line"></span>
+  </div>
+
+  <div class="print-bar">
+    <button class="print-btn" onclick="window.print()">Print this hunt</button>
+  </div>
+
+  <footer>My ESOL App &mdash; Desktop Detective Hunt &mdash; Fall 2026</footer>
+
+</div>
+
+</body>
+</html>

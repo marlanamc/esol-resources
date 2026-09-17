@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 3 Day 2 Arrival Warm-Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .page {
+    display: flex;
+    width: 100%;
+  }
+
+  .copy {
+    width: 50%;
+    height: 100vh;
+    padding: 0.3in 0.35in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .copy:first-child {
+    border-right: 1.5px dashed #000;
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 — each step ~1.25x the next */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 9px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .date {
+    font-size: 11px;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+
+  /* Section-level gap (.task) is deliberately much larger than the
+     tight, related-item gaps below, so sections read as distinct
+     groups rather than one uniform rhythm. */
+  .task { margin-bottom: 15px; }
+
+  .task-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .task-instructions {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+
+  .word-bank {
+    border: 1px solid #000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 10px;
+    margin-bottom: 7px;
+    letter-spacing: 0.3px;
+  }
+
+  .fill-blank-list { list-style: none; }
+  .fill-blank-list li {
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+  .fill-blank-list li b { margin-right: 6px; }
+
+  .scramble-words {
+    font-style: italic;
+  }
+
+  .blank {
+    display: inline-block;
+    border-bottom: 1.5px solid #000;
+    width: 5.5em;
+    margin: 0 2px;
+  }
+
+  .answer-line {
+    display: inline-block;
+    border-bottom: 1.5px solid #000;
+    width: 100%;
+    height: 1.1em;
+    margin-top: 1px;
+  }
+
+  .bonus-line {
+    border-bottom: 1.5px solid #000;
+    height: 20px;
+    margin-bottom: 6px;
+  }
+
+  .footer-note {
+    margin-top: auto;
+    padding-top: 8px;
+    font-size: 11px;
+    font-style: italic;
+  }
+
+  @media print {
+    @page { size: letter landscape; margin: 0; }
+    body { background: #fff; }
+    .copy { height: auto; min-height: 8.1in; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 3, Thursday</h1>
+        <span class="date">10/1/26</span>
+      </div>
+
+      <section class="task">
+        <div class="task-title">1&ensp;Unscramble the sentence</div>
+        <p class="task-instructions">Put the words in order to make a correct sentence. Write it on the line.</p>
+        <ol class="fill-blank-list">
+          <li><b>1.</b> <span class="scramble-words">every / log in / Please / day.</span><br><span class="answer-line"></span></li>
+          <li><b>2.</b> <span class="scramble-words">the / Use / to / menu / navigate / the / site.</span><br><span class="answer-line"></span></li>
+          <li><b>3.</b> <span class="scramble-words">your / on / Submit / time. / homework</span><br><span class="answer-line"></span></li>
+          <li><b>4.</b> <span class="scramble-words">your / anywhere. / access / You / lessons / can</span><br><span class="answer-line"></span></li>
+          <li><b>5.</b> <span class="scramble-words">one / complete / Try / activity / daily. / to</span><br><span class="answer-line"></span></li>
+          <li><b>6.</b> <span class="scramble-words">before / Review / quiz. / words / the / the</span><br><span class="answer-line"></span></li>
+        </ol>
+      </section>
+
+      <section class="task">
+        <div class="task-title">2&ensp;Choose be or have</div>
+        <p class="task-instructions">Write the correct form: am, is, are, was, were, have, has, or had.</p>
+        <div class="word-bank">has &middot; was &middot; are &middot; am &middot; had &middot; is</div>
+        <ol class="fill-blank-list">
+          <li><b>1.</b> I <span class="blank"></span> a new student in this class.</li>
+          <li><b>2.</b> She <span class="blank"></span> always on time for class.</li>
+          <li><b>3.</b> Yesterday, we <span class="blank"></span> a quiz about verbs.</li>
+          <li><b>4.</b> They <span class="blank"></span> ready to learn new words.</li>
+          <li><b>5.</b> He <span class="blank"></span> three years of English classes already.</li>
+          <li><b>6.</b> Last week, I <span class="blank"></span> absent one day.</li>
+        </ol>
+      </section>
+
+      <section class="task">
+        <div class="task-title">Bonus round</div>
+        <p class="task-instructions">Fast finisher? Write one more sentence using "was" or "were."</p>
+        <div class="bonus-line"></div>
+      </section>
+
+      <p class="footer-note">Finished? Circle your favorite word from today and use it in one sentence in your notebook.</p>
+    </div>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 3, Thursday</h1>
+        <span class="date">10/1/26</span>
+      </div>
+
+      <section class="task">
+        <div class="task-title">1&ensp;Unscramble the sentence</div>
+        <p class="task-instructions">Put the words in order to make a correct sentence. Write it on the line.</p>
+        <ol class="fill-blank-list">
+          <li><b>1.</b> <span class="scramble-words">every / log in / Please / day.</span><br><span class="answer-line"></span></li>
+          <li><b>2.</b> <span class="scramble-words">the / Use / to / menu / navigate / the / site.</span><br><span class="answer-line"></span></li>
+          <li><b>3.</b> <span class="scramble-words">your / on / Submit / time. / homework</span><br><span class="answer-line"></span></li>
+          <li><b>4.</b> <span class="scramble-words">your / anywhere. / access / You / lessons / can</span><br><span class="answer-line"></span></li>
+          <li><b>5.</b> <span class="scramble-words">one / complete / Try / activity / daily. / to</span><br><span class="answer-line"></span></li>
+          <li><b>6.</b> <span class="scramble-words">before / Review / quiz. / words / the / the</span><br><span class="answer-line"></span></li>
+        </ol>
+      </section>
+
+      <section class="task">
+        <div class="task-title">2&ensp;Choose be or have</div>
+        <p class="task-instructions">Write the correct form: am, is, are, was, were, have, has, or had.</p>
+        <div class="word-bank">has &middot; was &middot; are &middot; am &middot; had &middot; is</div>
+        <ol class="fill-blank-list">
+          <li><b>1.</b> I <span class="blank"></span> a new student in this class.</li>
+          <li><b>2.</b> She <span class="blank"></span> always on time for class.</li>
+          <li><b>3.</b> Yesterday, we <span class="blank"></span> a quiz about verbs.</li>
+          <li><b>4.</b> They <span class="blank"></span> ready to learn new words.</li>
+          <li><b>5.</b> He <span class="blank"></span> three years of English classes already.</li>
+          <li><b>6.</b> Last week, I <span class="blank"></span> absent one day.</li>
+        </ol>
+      </section>
+
+      <section class="task">
+        <div class="task-title">Bonus round</div>
+        <p class="task-instructions">Fast finisher? Write one more sentence using "was" or "were."</p>
+        <div class="bonus-line"></div>
+      </section>
+
+      <p class="footer-note">Finished? Circle your favorite word from today and use it in one sentence in your notebook.</p>
+    </div>
+  </div>
+</body>
+</html>

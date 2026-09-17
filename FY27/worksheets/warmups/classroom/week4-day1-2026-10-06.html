@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 4 Day 1 Arrival Warm-Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .copy {
+    max-width: 7.5in;
+    margin: 0 auto;
+    padding: 0.6in 0.5in;
+  }
+
+  /* Type scale: 28 / 22 / 17 / 13 — each step ~1.25x the next */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 7px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .date {
+    font-size: 13px;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+
+  .task { margin-bottom: 18px; }
+
+  .task-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .task-instructions {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .word-search {
+    border-collapse: collapse;
+    margin: 0 auto 10px;
+  }
+  .word-search td {
+    border: 1px solid #000;
+    width: 1.7em;
+    height: 1.7em;
+    text-align: center;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .word-list {
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+  }
+
+  .fill-blank-list { list-style: none; }
+  .fill-blank-list li {
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+  .fill-blank-list li b { margin-right: 8px; }
+
+  .why-line {
+    display: inline-block;
+    border-bottom: 1.5px solid #000;
+    width: 10em;
+    margin-left: 4px;
+  }
+
+  .bonus-line {
+    border-bottom: 1.5px solid #000;
+    height: 30px;
+    margin-bottom: 8px;
+  }
+
+  .footer-note {
+    margin-top: 18px;
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+    body { background: #fff; }
+  }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <div class="header-row">
+      <h1>Warm-Up: Week 4, Tuesday</h1>
+      <span class="date">10/6/26</span>
+    </div>
+
+    <section class="task">
+      <div class="task-title">1&ensp;Word search</div>
+      <p class="task-instructions">Find these 6 words. They go across or down.</p>
+      <table class="word-search">
+        <tr><td>I</td><td>M</td><td>M</td><td>I</td><td>G</td><td>R</td><td>A</td><td>T</td><td>E</td><td>B</td></tr>
+        <tr><td>K</td><td>P</td><td>S</td><td>D</td><td>F</td><td>H</td><td>J</td><td>N</td><td>Q</td><td>E</td></tr>
+        <tr><td>R</td><td>E</td><td>L</td><td>O</td><td>C</td><td>A</td><td>T</td><td>E</td><td>X</td><td>L</td></tr>
+        <tr><td>T</td><td>H</td><td>W</td><td>M</td><td>Z</td><td>V</td><td>Y</td><td>K</td><td>R</td><td>O</td></tr>
+        <tr><td>M</td><td>O</td><td>T</td><td>I</td><td>V</td><td>A</td><td>T</td><td>E</td><td>X</td><td>N</td></tr>
+        <tr><td>P</td><td>L</td><td>K</td><td>J</td><td>H</td><td>F</td><td>D</td><td>S</td><td>W</td><td>G</td></tr>
+        <tr><td>O</td><td>V</td><td>E</td><td>R</td><td>C</td><td>O</td><td>M</td><td>E</td><td>X</td><td>X</td></tr>
+        <tr><td>B</td><td>N</td><td>M</td><td>K</td><td>J</td><td>H</td><td>G</td><td>F</td><td>D</td><td>S</td></tr>
+        <tr><td>A</td><td>C</td><td>H</td><td>I</td><td>E</td><td>V</td><td>E</td><td>R</td><td>T</td><td>Y</td></tr>
+        <tr><td>Z</td><td>X</td><td>C</td><td>V</td><td>B</td><td>N</td><td>M</td><td>L</td><td>K</td><td>J</td></tr>
+      </table>
+      <div class="word-list">RELOCATE &middot; MOTIVATE &middot; ACHIEVE &middot; OVERCOME &middot; IMMIGRATE &middot; BELONG</div>
+    </section>
+
+    <section class="task">
+      <div class="task-title">2&ensp;Would you rather?</div>
+      <p class="task-instructions">Circle your answer. Write one reason why.</p>
+      <ol class="fill-blank-list">
+        <li><b>1.</b> Would you rather <u>relocate</u> to a big city or a small town? <span class="why-line"></span></li>
+        <li><b>2.</b> Would you rather <u>overcome</u> one big challenge or many small ones? <span class="why-line"></span></li>
+        <li><b>3.</b> Would you rather <u>achieve</u> one big goal this year or five small goals? <span class="why-line"></span></li>
+        <li><b>4.</b> Would you rather <u>immigrate</u> somewhere warm or somewhere cold? <span class="why-line"></span></li>
+        <li><b>5.</b> Would you rather <u>belong</u> at work or belong in your neighborhood? <span class="why-line"></span></li>
+      </ol>
+    </section>
+
+    <section class="task">
+      <div class="task-title">Bonus round</div>
+      <p class="task-instructions">Fast finisher? Write one sentence using "motivate."</p>
+      <div class="bonus-line"></div>
+    </section>
+
+    <p class="footer-note">Finished? Circle your favorite word from today and use it in one sentence in your notebook.</p>
+  </div>
+</body>
+</html>

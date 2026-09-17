@@ -280,6 +280,7 @@ Always use `@/` imports for internal modules.
    - Other activities visible unless deleted
 4. Respect the release compatibility helper: `supportsActivityIsReleasedInContent()` before referencing optional schema fields
 5. Keep activity and submission logic in `src/lib/learner` and `src/lib/learner/visibility.ts`
+6. If you rename a `CourseWeek.title` in `src/lib/course-map-data.ts`, also check the matching `topic` string in `scripts/vocab/weekly-vocab-data.js` (keyed the same, e.g. `sep-w1`). That week's vocab `Activity.title` is generated as `` `Unit ${unit}: ${data.topic}` `` in `scripts/vocab/seed-weekly-vocab.js`, so a stale topic surfaces the old week name anywhere the raw activity title is shown. After editing, re-run `npm run db:seed:weekly-vocab`.
 
 ### Grammar Guide Styling (Future Refactor)
 Grammar guides still carry inline style blocks in `src/content/grammar/*.ts`.

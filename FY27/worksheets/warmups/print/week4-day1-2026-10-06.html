@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 4 Day 1 Arrival Warm-Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .page {
+    display: flex;
+    width: 100%;
+  }
+
+  .copy {
+    width: 50%;
+    height: 100vh;
+    padding: 0.3in 0.35in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .copy:first-child {
+    border-right: 1.5px dashed #000;
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 — each step ~1.25x the next */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 9px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .date {
+    font-size: 11px;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+
+  /* Section-level gap (.task) is deliberately much larger than the
+     tight, related-item gaps below, so sections read as distinct
+     groups rather than one uniform rhythm. */
+  .task { margin-bottom: 15px; }
+
+  .task-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .task-instructions {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+
+  .word-search {
+    border-collapse: collapse;
+    margin: 0 auto 6px;
+  }
+  .word-search td {
+    border: 1px solid #000;
+    width: 1.5em;
+    height: 1.5em;
+    text-align: center;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .word-list {
+    text-align: center;
+    font-weight: bold;
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+
+  .fill-blank-list { list-style: none; }
+  .fill-blank-list li {
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .fill-blank-list li b { margin-right: 6px; }
+
+  .why-line {
+    display: inline-block;
+    border-bottom: 1.5px solid #000;
+    width: 8em;
+    margin-left: 4px;
+  }
+
+  .bonus-line {
+    border-bottom: 1.5px solid #000;
+    height: 20px;
+    margin-bottom: 6px;
+  }
+
+  .footer-note {
+    margin-top: auto;
+    padding-top: 8px;
+    font-size: 11px;
+    font-style: italic;
+  }
+
+  @media print {
+    @page { size: letter landscape; margin: 0; }
+    body { background: #fff; }
+    .copy { height: auto; min-height: 8.1in; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 4, Tuesday</h1>
+        <span class="date">10/6/26</span>
+      </div>
+
+      <section class="task">
+        <div class="task-title">1&ensp;Word search</div>
+        <p class="task-instructions">Find these 6 words. They go across or down.</p>
+        <table class="word-search">
+          <tr><td>I</td><td>M</td><td>M</td><td>I</td><td>G</td><td>R</td><td>A</td><td>T</td><td>E</td><td>B</td></tr>
+          <tr><td>K</td><td>P</td><td>S</td><td>D</td><td>F</td><td>H</td><td>J</td><td>N</td><td>Q</td><td>E</td></tr>
+          <tr><td>R</td><td>E</td><td>L</td><td>O</td><td>C</td><td>A</td><td>T</td><td>E</td><td>X</td><td>L</td></tr>
+          <tr><td>T</td><td>H</td><td>W</td><td>M</td><td>Z</td><td>V</td><td>Y</td><td>K</td><td>R</td><td>O</td></tr>
+          <tr><td>M</td><td>O</td><td>T</td><td>I</td><td>V</td><td>A</td><td>T</td><td>E</td><td>X</td><td>N</td></tr>
+          <tr><td>P</td><td>L</td><td>K</td><td>J</td><td>H</td><td>F</td><td>D</td><td>S</td><td>W</td><td>G</td></tr>
+          <tr><td>O</td><td>V</td><td>E</td><td>R</td><td>C</td><td>O</td><td>M</td><td>E</td><td>X</td><td>X</td></tr>
+          <tr><td>B</td><td>N</td><td>M</td><td>K</td><td>J</td><td>H</td><td>G</td><td>F</td><td>D</td><td>S</td></tr>
+          <tr><td>A</td><td>C</td><td>H</td><td>I</td><td>E</td><td>V</td><td>E</td><td>R</td><td>T</td><td>Y</td></tr>
+          <tr><td>Z</td><td>X</td><td>C</td><td>V</td><td>B</td><td>N</td><td>M</td><td>L</td><td>K</td><td>J</td></tr>
+        </table>
+        <div class="word-list">RELOCATE &middot; MOTIVATE &middot; ACHIEVE &middot; OVERCOME &middot; IMMIGRATE &middot; BELONG</div>
+      </section>
+
+      <section class="task">
+        <div class="task-title">2&ensp;Would you rather?</div>
+        <p class="task-instructions">Circle your answer. Write one reason why.</p>
+        <ol class="fill-blank-list">
+          <li><b>1.</b> Would you rather <u>relocate</u> to a big city or a small town? <span class="why-line"></span></li>
+          <li><b>2.</b> Would you rather <u>overcome</u> one big challenge or many small ones? <span class="why-line"></span></li>
+          <li><b>3.</b> Would you rather <u>achieve</u> one big goal this year or five small goals? <span class="why-line"></span></li>
+          <li><b>4.</b> Would you rather <u>immigrate</u> somewhere warm or somewhere cold? <span class="why-line"></span></li>
+          <li><b>5.</b> Would you rather <u>belong</u> at work or belong in your neighborhood? <span class="why-line"></span></li>
+        </ol>
+      </section>
+
+      <section class="task">
+        <div class="task-title">Bonus round</div>
+        <p class="task-instructions">Fast finisher? Write one sentence using "motivate."</p>
+        <div class="bonus-line"></div>
+      </section>
+
+      <p class="footer-note">Finished? Circle your favorite word from today and use it in one sentence in your notebook.</p>
+    </div>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 4, Tuesday</h1>
+        <span class="date">10/6/26</span>
+      </div>
+
+      <section class="task">
+        <div class="task-title">1&ensp;Word search</div>
+        <p class="task-instructions">Find these 6 words. They go across or down.</p>
+        <table class="word-search">
+          <tr><td>I</td><td>M</td><td>M</td><td>I</td><td>G</td><td>R</td><td>A</td><td>T</td><td>E</td><td>B</td></tr>
+          <tr><td>K</td><td>P</td><td>S</td><td>D</td><td>F</td><td>H</td><td>J</td><td>N</td><td>Q</td><td>E</td></tr>
+          <tr><td>R</td><td>E</td><td>L</td><td>O</td><td>C</td><td>A</td><td>T</td><td>E</td><td>X</td><td>L</td></tr>
+          <tr><td>T</td><td>H</td><td>W</td><td>M</td><td>Z</td><td>V</td><td>Y</td><td>K</td><td>R</td><td>O</td></tr>
+          <tr><td>M</td><td>O</td><td>T</td><td>I</td><td>V</td><td>A</td><td>T</td><td>E</td><td>X</td><td>N</td></tr>
+          <tr><td>P</td><td>L</td><td>K</td><td>J</td><td>H</td><td>F</td><td>D</td><td>S</td><td>W</td><td>G</td></tr>
+          <tr><td>O</td><td>V</td><td>E</td><td>R</td><td>C</td><td>O</td><td>M</td><td>E</td><td>X</td><td>X</td></tr>
+          <tr><td>B</td><td>N</td><td>M</td><td>K</td><td>J</td><td>H</td><td>G</td><td>F</td><td>D</td><td>S</td></tr>
+          <tr><td>A</td><td>C</td><td>H</td><td>I</td><td>E</td><td>V</td><td>E</td><td>R</td><td>T</td><td>Y</td></tr>
+          <tr><td>Z</td><td>X</td><td>C</td><td>V</td><td>B</td><td>N</td><td>M</td><td>L</td><td>K</td><td>J</td></tr>
+        </table>
+        <div class="word-list">RELOCATE &middot; MOTIVATE &middot; ACHIEVE &middot; OVERCOME &middot; IMMIGRATE &middot; BELONG</div>
+      </section>
+
+      <section class="task">
+        <div class="task-title">2&ensp;Would you rather?</div>
+        <p class="task-instructions">Circle your answer. Write one reason why.</p>
+        <ol class="fill-blank-list">
+          <li><b>1.</b> Would you rather <u>relocate</u> to a big city or a small town? <span class="why-line"></span></li>
+          <li><b>2.</b> Would you rather <u>overcome</u> one big challenge or many small ones? <span class="why-line"></span></li>
+          <li><b>3.</b> Would you rather <u>achieve</u> one big goal this year or five small goals? <span class="why-line"></span></li>
+          <li><b>4.</b> Would you rather <u>immigrate</u> somewhere warm or somewhere cold? <span class="why-line"></span></li>
+          <li><b>5.</b> Would you rather <u>belong</u> at work or belong in your neighborhood? <span class="why-line"></span></li>
+        </ol>
+      </section>
+
+      <section class="task">
+        <div class="task-title">Bonus round</div>
+        <p class="task-instructions">Fast finisher? Write one sentence using "motivate."</p>
+        <div class="bonus-line"></div>
+      </section>
+
+      <p class="footer-note">Finished? Circle your favorite word from today and use it in one sentence in your notebook.</p>
+    </div>
+  </div>
+</body>
+</html>

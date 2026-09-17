@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 2 Day 1 Arrival Warm-Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .page {
+    display: flex;
+    width: 100%;
+  }
+
+  .copy {
+    width: 50%;
+    height: 100vh;
+    padding: 0.3in 0.35in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .copy:first-child {
+    border-right: 1.5px dashed #000;
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 — each step ~1.25x the next */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 5px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .date {
+    font-size: 11px;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+
+  .subtitle {
+    font-size: 11px;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  /* Section-level gap (.task) is deliberately much larger than the
+     tight, related-item gaps below, so sections read as distinct
+     groups rather than one uniform rhythm. */
+  .task { margin-bottom: 18px; }
+
+  .task-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .task-instructions {
+    font-size: 11px;
+    margin-bottom: 7px;
+  }
+
+  .word-bank {
+    border: 1px solid #000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 6px 10px;
+    margin-bottom: 9px;
+    letter-spacing: 0.3px;
+  }
+
+  .scramble-list { list-style: none; }
+  .scramble-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .scramble-word {
+    font-weight: bold;
+    letter-spacing: 1.5px;
+  }
+  .scramble-clue {
+    flex: 1;
+    font-style: italic;
+  }
+
+  .blank {
+    display: inline-block;
+    border-bottom: 1.5px solid #000;
+    width: 6em;
+    margin: 0 2px;
+  }
+
+  .sort-boxes {
+    display: flex;
+    gap: 10px;
+  }
+  .sort-box {
+    flex: 1;
+    border: 1px solid #000;
+    min-height: 118px;
+    padding: 6px 8px;
+  }
+  .sort-box-title {
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+
+  .bonus-line {
+    border-bottom: 1.5px solid #000;
+    height: 22px;
+    margin-bottom: 6px;
+  }
+
+  .footer-note {
+    margin-top: auto;
+    padding-top: 10px;
+    font-size: 11px;
+    font-style: italic;
+  }
+
+  @media print {
+    @page { size: letter landscape; margin: 0; }
+    body { background: #fff; }
+    .copy { height: auto; min-height: 8.1in; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 2, Tuesday</h1>
+        <span class="date">9/22/26</span>
+      </div>
+      <p class="subtitle">Word Detective Challenge &mdash; solve both puzzles before class starts.</p>
+
+      <section class="task">
+        <div class="task-title">1&ensp;Crack the code</div>
+        <p class="task-instructions">Unscramble each word. Use the clue if you need help.</p>
+        <ol class="scramble-list">
+          <li><b>1.</b> <span class="scramble-word">OUNCERPON</span> <span class="scramble-clue">to say a word out loud correctly</span> <span class="blank"></span></li>
+          <li><b>2.</b> <span class="scramble-word">LEPSL</span> <span class="scramble-clue">to write or say the letters of a word in order</span> <span class="blank"></span></li>
+          <li><b>3.</b> <span class="scramble-word">TINIFYED</span> <span class="scramble-clue">to recognize and name something</span> <span class="blank"></span></li>
+          <li><b>4.</b> <span class="scramble-word">OZARIGETCE</span> <span class="scramble-clue">to put things into groups</span> <span class="blank"></span></li>
+          <li><b>5.</b> <span class="scramble-word">CEPITRAC</span> <span class="scramble-clue">to do something many times to improve</span> <span class="blank"></span></li>
+          <li><b>6.</b> <span class="scramble-word">EPATER</span> <span class="scramble-clue">to do or say something again</span> <span class="blank"></span></li>
+        </ol>
+      </section>
+
+      <section class="task">
+        <div class="task-title">2&ensp;Sort it out</div>
+        <p class="task-instructions">Read each word below. Write it in the correct box: Noun, Verb, or Adjective.</p>
+        <div class="word-bank">teacher &middot; pronounce &middot; friendly &middot; classroom &middot; categorize &middot; quiet &middot; spell &middot; careful &middot; identify &middot; notebook &middot; repeat &middot; practice</div>
+        <div class="sort-boxes">
+          <div class="sort-box"><div class="sort-box-title">Noun</div></div>
+          <div class="sort-box"><div class="sort-box-title">Verb</div></div>
+          <div class="sort-box"><div class="sort-box-title">Adjective</div></div>
+        </div>
+      </section>
+
+      <section class="task">
+        <div class="task-title">Bonus round</div>
+        <p class="task-instructions">Fast finisher? Pick two words from the box above and write one sentence using both.</p>
+        <div class="bonus-line"></div>
+      </section>
+
+      <p class="footer-note">Finished? Circle your favorite word from today and use it in one sentence in your notebook.</p>
+    </div>
+    <div class="copy">
+      <div class="header-row">
+        <h1>Warm-Up: Week 2, Tuesday</h1>
+        <span class="date">9/22/26</span>
+      </div>
+      <p class="subtitle">Word Detective Challenge &mdash; solve both puzzles before class starts.</p>
+
+      <section class="task">
+        <div class="task-title">1&ensp;Crack the code</div>
+        <p class="task-instructions">Unscramble each word. Use the clue if you need help.</p>
+        <ol class="scramble-list">
+          <li><b>1.</b> <span class="scramble-word">OUNCERPON</span> <span class="scramble-clue">to say a word out loud correctly</span> <span class="blank"></span></li>
+          <li><b>2.</b> <span class="scramble-word">LEPSL</span> <span class="scramble-clue">to write or say the letters of a word in order</span> <span class="blank"></span></li>
+          <li><b>3.</b> <span class="scramble-word">TINIFYED</span> <span class="scramble-clue">to recognize and name something</span> <span class="blank"></span></li>
+          <li><b>4.</b> <span class="scramble-word">OZARIGETCE</span> <span class="scramble-clue">to put things into groups</span> <span class="blank"></span></li>
+          <li><b>5.</b> <span class="scramble-word">CEPITRAC</span> <span class="scramble-clue">to do something many times to improve</span> <span class="blank"></span></li>
+          <li><b>6.</b> <span class="scramble-word">EPATER</span> <span class="scramble-clue">to do or say something again</span> <span class="blank"></span></li>
+        </ol>
+      </section>
+
+      <section class="task">
+        <div class="task-title">2&ensp;Sort it out</div>
+        <p class="task-instructions">Read each word below. Write it in the correct box: Noun, Verb, or Adjective.</p>
+        <div class="word-bank">teacher &middot; pronounce &middot; friendly &middot; classroom &middot; categorize &middot; quiet &middot; spell &middot; careful &middot; identify &middot; notebook &middot; repeat &middot; practice</div>
+        <div class="sort-boxes">
+          <div class="sort-box"><div class="sort-box-title">Noun</div></div>
+          <div class="sort-box"><div class="sort-box-title">Verb</div></div>
+          <div class="sort-box"><div class="sort-box-title">Adjective</div></div>
+        </div>
+      </section>
+
+      <section class="task">
+        <div class="task-title">Bonus round</div>
+        <p class="task-instructions">Fast finisher? Pick two words from the box above and write one sentence using both.</p>
+        <div class="bonus-line"></div>
+      </section>
+
+      <p class="footer-note">Finished? Circle your favorite word from today and use it in one sentence in your notebook.</p>
+    </div>
+  </div>
+</body>
+</html>
