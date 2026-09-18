@@ -394,84 +394,90 @@ export async function getTimeframedLeaderboard(
  * Check if user unlocked any achievements and award them
  */
 export async function checkAndAwardAchievements(userId: string, db: DbClient = prisma) {
-  const user = await db.user.findUnique({
-    where: { id: userId },
-    include: {
-      achievements: {
-        include: {
-          achievement: true,
-        },
-      },
-    },
-  });
-
-  if (!user) return [];
-
-  const allAchievements = await getAchievementDefinitions();
-  const earnedAchievementIds = new Set(
-    user.achievements.map((ua: { achievementId: string }) => ua.achievementId)
-  );
   const newlyEarned: string[] = [];
 
-  const toAward: typeof allAchievements = [];
+  // Awarding an achievement's point bonus can itself cross another
+  // points-based achievement's threshold (e.g. the "Point Collector" bonus
+  // pushes the user over "Point Hoarder"). Loop until a pass finds nothing
+  // new so the whole cascade resolves in this one call instead of leaking
+  // into a later, unrelated award chain as a separate lump-sum entry.
+  for (;;) {
+    const user = await db.user.findUnique({
+      where: { id: userId },
+      include: {
+        achievements: {
+          include: {
+            achievement: true,
+          },
+        },
+      },
+    });
 
-  // Submission-derived counts are only needed for unearned quiz/activity
-  // achievements. Use indexed COUNT queries instead of loading every submission
-  // row into memory — that payload grows unbounded as a learner stays active.
-  const submissionStatus = { in: ['submitted', 'graded'] };
-  const unearned = allAchievements.filter((a) => !earnedAchievementIds.has(a.id));
-  const submissionCount = unearned.some((a) => a.type === 'activity')
-    ? await db.submission.count({ where: { userId, status: submissionStatus } })
-    : 0;
-  const perfectQuizCount = unearned.some((a) => a.type === 'quiz')
-    ? await db.submission.count({ where: { userId, score: 100, status: submissionStatus } })
-    : 0;
+    if (!user) return newlyEarned;
 
-  for (const achievement of allAchievements) {
-    if (earnedAchievementIds.has(achievement.id)) continue;
+    const allAchievements = await getAchievementDefinitions();
+    const earnedAchievementIds = new Set(
+      user.achievements.map((ua: { achievementId: string }) => ua.achievementId)
+    );
 
-    let shouldAward = false;
+    const toAward: typeof allAchievements = [];
 
-    switch (achievement.type) {
-      case 'streak':
-        shouldAward = user.currentStreak >= achievement.requirement;
-        break;
-      case 'points':
-        shouldAward = user.points >= achievement.requirement;
-        break;
-      case 'quiz':
-        shouldAward = perfectQuizCount >= achievement.requirement;
-        break;
-      case 'activity':
-        shouldAward = submissionCount >= achievement.requirement;
-        break;
+    // Submission-derived counts are only needed for unearned quiz/activity
+    // achievements. Use indexed COUNT queries instead of loading every submission
+    // row into memory — that payload grows unbounded as a learner stays active.
+    const submissionStatus = { in: ['submitted', 'graded'] };
+    const unearned = allAchievements.filter((a) => !earnedAchievementIds.has(a.id));
+    const submissionCount = unearned.some((a) => a.type === 'activity')
+      ? await db.submission.count({ where: { userId, status: submissionStatus } })
+      : 0;
+    const perfectQuizCount = unearned.some((a) => a.type === 'quiz')
+      ? await db.submission.count({ where: { userId, score: 100, status: submissionStatus } })
+      : 0;
+
+    for (const achievement of allAchievements) {
+      if (earnedAchievementIds.has(achievement.id)) continue;
+
+      let shouldAward = false;
+
+      switch (achievement.type) {
+        case 'streak':
+          shouldAward = user.currentStreak >= achievement.requirement;
+          break;
+        case 'points':
+          shouldAward = user.points >= achievement.requirement;
+          break;
+        case 'quiz':
+          shouldAward = perfectQuizCount >= achievement.requirement;
+          break;
+        case 'activity':
+          shouldAward = submissionCount >= achievement.requirement;
+          break;
+      }
+
+      if (shouldAward) {
+        toAward.push(achievement);
+        newlyEarned.push(achievement.id);
+      }
     }
 
-    if (shouldAward) {
-      toAward.push(achievement);
-      newlyEarned.push(achievement.id);
+    if (toAward.length === 0) return newlyEarned;
+
+    // Batch create all UserAchievement records in one query.
+    // skipDuplicates guards against a concurrent-submission race where two
+    // transactions both read the same "not yet earned" set and both try to
+    // insert the same (userId, achievementId) — without it the second insert
+    // throws a unique-constraint error that rolls back the whole award chain,
+    // costing the learner their actual activity points.
+    await db.userAchievement.createMany({
+      data: toAward.map((a) => ({ userId: user.id, achievementId: a.id })),
+      skipDuplicates: true,
+    });
+
+    const totalPoints = toAward.reduce((sum, a) => sum + a.points, 0);
+    if (totalPoints > 0) {
+      await awardPoints(userId, totalPoints, `Achievements: ${toAward.map((a) => a.name).join(', ')}`, 'award', db);
     }
   }
-
-  if (toAward.length === 0) return newlyEarned;
-
-  // Batch create all UserAchievement records in one query.
-  // skipDuplicates guards against a concurrent-submission race where two
-  // transactions both read the same "not yet earned" set and both try to
-  // insert the same (userId, achievementId) — without it the second insert
-  // throws a unique-constraint error that rolls back the whole award chain,
-  // costing the learner their actual activity points.
-  await db.userAchievement.createMany({
-    data: toAward.map((a) => ({ userId: user.id, achievementId: a.id })),
-    skipDuplicates: true,
-  });
-
-  const totalPoints = toAward.reduce((sum, a) => sum + a.points, 0);
-  if (totalPoints > 0) {
-    await awardPoints(userId, totalPoints, `Achievements: ${toAward.map((a) => a.name).join(', ')}`, 'award', db);
-  }
-
-  return newlyEarned;
 }
 
 /**
