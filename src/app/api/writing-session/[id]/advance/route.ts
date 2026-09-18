@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { chunkIntoGroups, ANIMAL_GROUPS, SESSION_POINTS } from "@/lib/writing-session";
-import { awardPoints, type DbClient } from "@/lib/gamification/gamification";
+import { awardPoints, updateStreak, checkAndAwardAchievements, type DbClient } from "@/lib/gamification/gamification";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { handleApiError } from "@/lib/api/response";
 
@@ -282,7 +282,10 @@ async function handlePost(request: NextRequest, { params }: Params) {
                 if (sub.isGroupWinner) pts += SESSION_POINTS.GROUP_WINNER;
                 if (classWinnerGroupId && sub.groupId === classWinnerGroupId) pts += SESSION_POINTS.CLASS_WINNER;
                 if (pts > 0) {
-                    await awardPoints(sub.studentId, pts, "writing_session", "award", tx as unknown as DbClient);
+                    const db = tx as unknown as DbClient;
+                    await awardPoints(sub.studentId, pts, "writing_session", "award", db);
+                    await updateStreak(sub.studentId, pts, db);
+                    await checkAndAwardAchievements(sub.studentId, db);
                 }
             }
 
