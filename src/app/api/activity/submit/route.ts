@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { prisma } from "@/lib/database/prisma";
 import { ActivitySubmitBodySchema, parseApiBody } from "@/lib/api/schemas";
-import { calculateQuizPoints, getActivityPoints } from "@/lib/gamification/gamification";
+import { calculateQuizPoints, getActivityPoints, checkAndAwardAchievements } from "@/lib/gamification/gamification";
 import { claimSubmissionPointsOnce } from "@/lib/submission-points-award";
 import { applyAwardChain } from "@/lib/gamification/award-chain";
 import { acquireUserActivityScopeLock } from "@/lib/database/locks";
@@ -375,6 +375,11 @@ export async function POST(request: NextRequest) {
                 });
                 throw awardError;
             }
+        } else if (!duplicate && calculatedPoints === 0) {
+            // No points to award, but a new Submission row was still created — check
+            // submission-count achievements now instead of deferring them until the
+            // next point-earning submission silently unlocks a backlog all at once.
+            await checkAndAwardAchievements(userId);
         }
 
         const responsePayload = {
