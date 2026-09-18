@@ -50,8 +50,8 @@ function parseArgs(argv: string[]) {
   return args;
 }
 
-function countBundledAchievements(reason: string) {
-  if (!reason.startsWith(LUMP_SUM_REASON_PREFIX)) return 0;
+function countBundledAchievements(reason: string | null) {
+  if (!reason || !reason.startsWith(LUMP_SUM_REASON_PREFIX)) return 0;
   return reason.slice(LUMP_SUM_REASON_PREFIX.length).split(",").length;
 }
 
