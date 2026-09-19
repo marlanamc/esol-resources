@@ -19,9 +19,14 @@ interface ResultsScreenProps {
   onContinue: () => void;
   onReturnToSelection: () => void;
   courseMapPreset?: boolean;
+  /**
+   * A wrapper pinned to one round never serves the next one, so pointing the
+   * learner at it is a dead end. Discovery, which does advance, leaves this off.
+   */
+  pinnedRound?: boolean;
 }
 
-export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, onReturnToSelection, courseMapPreset = false }: ResultsScreenProps) {
+export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, onReturnToSelection, courseMapPreset = false, pinnedRound = false }: ResultsScreenProps) {
   const { accuracy, correctAnswers, exercisesCompleted, completed, pointsAwarded, streak, missedPatternIds } = results;
   const passed = completed;
   const countdown = useMapReturnCountdown({ active: courseMapPreset });
@@ -38,7 +43,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
   const nextRoundMode = results.nextStep && results.nextStep in POS_ROUND_LABELS
     ? results.nextStep as keyof typeof POS_ROUND_LABELS
     : null;
-  const nextRoundLabel = nextRoundMode ? POS_ROUND_LABELS[nextRoundMode].name : null;
+  const nextRoundLabel = nextRoundMode && !pinnedRound ? POS_ROUND_LABELS[nextRoundMode].name : null;
 
   const accuracyColor = accuracy >= POS_MASTERY_THRESHOLD ? 'text-secondary' : accuracy >= POS_UNLOCK_THRESHOLD ? 'text-primary' : 'text-error';
   const accuracyBg = accuracy >= POS_MASTERY_THRESHOLD ? 'bg-secondary/10' : accuracy >= POS_UNLOCK_THRESHOLD ? 'bg-primary/10' : 'bg-error/10';

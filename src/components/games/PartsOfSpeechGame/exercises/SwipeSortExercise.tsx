@@ -22,7 +22,7 @@ interface Result {
   correct: boolean;
 }
 
-export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onAnswer }: Props) {
+export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onAnswer, answered }: Props) {
   const data = exercise.swipeSortData;
   const playFeedback = useDragFeedback();
 
@@ -30,6 +30,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   const [results, setResults] = useState<Result[]>([]);
   const [exitDir, setExitDir] = useState<'left' | 'right' | null>(null);
   const animatingRef = useRef(false);
+  const finishedRef = useRef(false);
   const reducedMotion = useRef(false);
 
   useEffect(() => {
@@ -39,8 +40,12 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
 
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-200, 200], [-12, 12]);
-  const leftOpacity = useTransform(x, [-200, 0], [1, 0.35]);
-  const rightOpacity = useTransform(x, [0, 200], [0.35, 1]);
+  // These drive the two bucket buttons, so at rest they must both be fully
+  // legible -- the old [-200, 0] -> [1, 0.35] mapping bottomed out at 0.35 with
+  // the card untouched, which read as "disabled" once the headers became the
+  // controls. Now dragging dims the side the learner is moving away from.
+  const leftOpacity = useTransform(x, [-200, 0, 200], [1, 1, 0.4]);
+  const rightOpacity = useTransform(x, [-200, 0, 200], [0.4, 1, 1]);
 
   const cards = data?.cards ?? [];
   const total = cards.length;
@@ -53,6 +58,8 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   if (!data || !leftBucket || !rightBucket || total === 0) return null;
 
   const finish = (final: Result[]) => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
     const correctCount = final.filter(r => r.correct).length;
     const pass = correctCount / total >= 0.7;
     playFeedback(pass ? 'correct' : 'wrong');
@@ -60,7 +67,11 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   };
 
   const commit = (direction: 'left' | 'right') => {
-    if (animatingRef.current || !current) return;
+    // `answered` means the round has already taken this exercise's result.
+    // Without it the last card stayed live after finish(), and every further
+    // tap re-reported a correct answer -- inflating the streak and the round
+    // accuracy that decides whether points are awarded.
+    if (animatingRef.current || !current || answered || finishedRef.current) return;
     animatingRef.current = true;
     const chosen = direction === 'left' ? leftBucket : rightBucket;
     const correct = chosen === current.correctBucket;
@@ -74,6 +85,9 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
       x.set(0);
       setExitDir(null);
       if (index + 1 >= total) {
+        // Advance past the last card so `done` turns true: that swaps the card
+        // for the summary and removes the bucket buttons.
+        setIndex(total);
         animatingRef.current = false;
         finish(newResults);
       } else {
@@ -93,10 +107,6 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
 
   return (
     <div className="space-y-5">
-      <p className="text-sm text-text-muted text-center">
-        Swipe each word toward the correct category — or tap a button below.
-      </p>
-
       {/* Progress dots */}
       <div className="flex items-center justify-center gap-1">
         {cards.map((c, i) => {
@@ -119,20 +129,42 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
         })}
       </div>
 
-      {/* Bucket headers */}
+      {/*
+        One row, not two. These used to be decorative headers with a second,
+        identical-looking row of real buttons underneath, which left the learner
+        guessing which pair to press. They are the swipe targets, so they are
+        also the tap targets -- and they keep the drag-direction feedback.
+
+        The colour lives on an inner span rather than the button: globals.css
+        carries an unlayered `button { border: none; background: none; color:
+        inherit }`, and unlayered rules beat Tailwind's layered utilities, so a
+        POS_COLORS class set directly on the button renders as bare text.
+      */}
       <div className="grid grid-cols-2 gap-3 items-stretch">
-        <motion.div
+        <motion.button
+          type="button"
+          onClick={() => commit('left')}
+          disabled={done || answered}
+          aria-label={`Sort this word as ${POS_LABELS[leftBucket]}`}
           style={{ opacity: leftOpacity }}
-          className={`flex items-center justify-center gap-1 rounded-xl border-2 px-2 py-2 text-xs font-black uppercase tracking-widest ${POS_COLORS[leftBucket]}`}
+          className="block transition-transform active:scale-[0.98] disabled:pointer-events-none"
         >
-          <ChevronLeft size={14} /> {POS_LABELS[leftBucket]}
-        </motion.div>
-        <motion.div
+          <span className={`flex min-h-[48px] items-center justify-center gap-1.5 rounded-xl border-2 border-solid px-2 py-2 text-sm font-black uppercase tracking-widest ${POS_COLORS[leftBucket]}`}>
+            <ChevronLeft size={16} /> {POS_LABELS[leftBucket]}
+          </span>
+        </motion.button>
+        <motion.button
+          type="button"
+          onClick={() => commit('right')}
+          disabled={done || answered}
+          aria-label={`Sort this word as ${POS_LABELS[rightBucket]}`}
           style={{ opacity: rightOpacity }}
-          className={`flex items-center justify-center gap-1 rounded-xl border-2 px-2 py-2 text-xs font-black uppercase tracking-widest ${POS_COLORS[rightBucket]}`}
+          className="block transition-transform active:scale-[0.98] disabled:pointer-events-none"
         >
-          {POS_LABELS[rightBucket]} <ChevronRight size={14} />
-        </motion.div>
+          <span className={`flex min-h-[48px] items-center justify-center gap-1.5 rounded-xl border-2 border-solid px-2 py-2 text-sm font-black uppercase tracking-widest ${POS_COLORS[rightBucket]}`}>
+            {POS_LABELS[rightBucket]} <ChevronRight size={16} />
+          </span>
+        </motion.button>
       </div>
 
       {/* Card stack */}
@@ -164,8 +196,9 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
               transition={{ type: 'spring', stiffness: 320, damping: 26 }}
               className="absolute inset-x-4 h-full rounded-3xl border-2 border-primary/40 bg-white dark:bg-[#1c3a52] shadow-xl flex flex-col items-center justify-center gap-1 cursor-grab active:cursor-grabbing"
             >
-              <span className="text-[11px] uppercase tracking-widest font-bold text-text-muted">Card {index + 1} of {total}</span>
-              <span className="text-2xl sm:text-3xl font-display font-bold text-text">{current.word}</span>
+              {/* No "Card 1 of 6" here -- the dots above already show it, and a
+                  counter on the card competes with the one word it exists to show. */}
+              <span className="text-3xl sm:text-4xl font-display font-bold text-text">{current.word}</span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -182,25 +215,6 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
         )}
       </div>
 
-      {/* Button alternatives */}
-      {!done && (
-        <div className="grid grid-cols-2 gap-3">
-          <button
-            type="button"
-            onClick={() => commit('left')}
-            className="rounded-xl border-2 border-border bg-white dark:bg-[#162b3d] py-3 text-sm font-semibold hover:border-primary/50 transition-colors flex items-center justify-center gap-1.5"
-          >
-            <ChevronLeft size={16} /> {POS_LABELS[leftBucket]}
-          </button>
-          <button
-            type="button"
-            onClick={() => commit('right')}
-            className="rounded-xl border-2 border-border bg-white dark:bg-[#162b3d] py-3 text-sm font-semibold hover:border-primary/50 transition-colors flex items-center justify-center gap-1.5"
-          >
-            {POS_LABELS[rightBucket]} <ChevronRight size={16} />
-          </button>
-        </div>
-      )}
     </div>
   );
 });

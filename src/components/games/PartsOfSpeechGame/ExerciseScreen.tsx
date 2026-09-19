@@ -144,6 +144,13 @@ function renderExercise(exercise: POSExercise, onAnswer: (correct: boolean) => v
   return <Renderer exercise={exercise} onAnswer={onAnswer} answered={answered} />;
 }
 
+// Exercises whose content is a word, a picture or a drag target rather than a
+// sentence have nothing worth reading aloud.
+const SILENT_EXERCISE_TYPES: POSExerciseType[] = [
+  'photo-sort', 'pattern-sorting', 'odd-one-out', 'word-family',
+  'sentence-builder', 'swipe-sort', 'sentence-diagram',
+];
+
 interface ExerciseScreenProps {
   group: POSGroup;
   exercises: POSExercise[];
@@ -151,9 +158,31 @@ interface ExerciseScreenProps {
   roundMode: POSRoundMode;
   onAnswer: (correct: boolean, exercise: POSExercise) => void;
   onBack: () => void;
+  /**
+   * A Course Map wrapper pinned to one round is a single exercise repeated, so
+   * the round badge, the question counter, the type label and the card shell
+   * are all constants the learner has to read past. Strip them and leave the
+   * exercise itself.
+   */
+  minimalChrome?: boolean;
+  /**
+   * Shown instead of the group title. A Course Map step is named on the tile
+   * the learner tapped, so the screen should carry that name rather than a
+   * second, different one.
+   */
+  titleOverride?: string;
 }
 
-export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAnswer, onBack }: ExerciseScreenProps) {
+export function ExerciseScreen({
+  group,
+  exercises,
+  currentIndex,
+  roundMode,
+  onAnswer,
+  onBack,
+  minimalChrome = false,
+  titleOverride,
+}: ExerciseScreenProps) {
   const [correctCount, setCorrectCount] = useState(0);
   const [streak, setStreak] = useState(0);
   const [showStreakAnimation, setShowStreakAnimation] = useState(false);
@@ -167,6 +196,8 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
   const progress = exercises.length > 0 ? ((currentIndex + 1) / exercises.length) * 100 : 0;
   const remaining = exercises.length - currentIndex - 1;
   const isLight = resolvedTheme === 'light';
+  const showListenButton =
+    !!currentExercise?.prompt && !SILENT_EXERCISE_TYPES.includes(currentExercise.type);
 
   const backButtonClass = isLight
     ? 'bg-white border-border text-text-muted hover:text-text'
@@ -204,6 +235,11 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
   }
 
   const handleAnswer = (correct: boolean) => {
+    // Every renderer is meant to stop accepting input once it has reported,
+    // but that is 16 components' worth of discipline and a lapse silently
+    // double-counts toward correctCount and the streak. Hold the invariant here
+    // too, where the score actually lives.
+    if (answered) return;
     setAnswered(true);
     setIsCorrect(correct);
     setShowFeedback(true);
@@ -238,7 +274,7 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
   };
 
   return (
-    <div className="flex min-h-full flex-col">
+    <div className="flex min-h-full flex-1 flex-col">
       {/* Streak animation */}
       <AnimatePresence>
         {showStreakAnimation && (
@@ -281,14 +317,15 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
             <ArrowLeft size={16} />
           </button>
           <div className="flex-1 min-w-0">
-            <h2 className="font-display text-sm font-semibold text-text truncate">{group.title}</h2>
+            <h2 className="font-display text-sm font-semibold text-text truncate">{titleOverride ?? group.title}</h2>
             <div className="flex items-center gap-1.5 text-[11px] text-text-muted">
-              <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold ${getRoundBadgeColor(roundMode)}`}>
-                {getRoundLabel(roundMode)}
-              </span>
-              <span>Q{currentIndex + 1}/{exercises.length}</span>
-              <span className="text-border">·</span>
-              <span>{remaining} left</span>
+              {!minimalChrome && (
+                <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold ${getRoundBadgeColor(roundMode)}`}>
+                  {getRoundLabel(roundMode)}
+                </span>
+              )}
+              {/* "N left" only restates Q x/y, and the bar below already shows it. */}
+              {!minimalChrome && <span>Q{currentIndex + 1}/{exercises.length}</span>}
             </div>
           </div>
           <div className="flex items-center gap-1 flex-shrink-0">
@@ -306,7 +343,7 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
         </div>
         <div className="mt-2 sm:hidden h-1.5 bg-bg-gray rounded-full overflow-hidden">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent transition-[width] duration-500 ease-out"
+            className="h-full rounded-full bg-primary transition-[width] duration-500 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -322,12 +359,16 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
               <ArrowLeft size={18} />
             </button>
             <div className="flex-1">
-              <h2 className="font-display text-2xl text-text truncate">{group.title}</h2>
+              <h2 className="font-display text-2xl text-text truncate">{titleOverride ?? group.title}</h2>
               <div className="flex items-center gap-2 mt-1">
-                <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold ${getRoundBadgeColor(roundMode)}`}>
-                  {getRoundLabel(roundMode)}
-                </span>
-                <p className="text-sm text-text-muted">Question {currentIndex + 1} of {exercises.length}</p>
+                {!minimalChrome && (
+                  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold ${getRoundBadgeColor(roundMode)}`}>
+                    {getRoundLabel(roundMode)}
+                  </span>
+                )}
+                {!minimalChrome && (
+                  <p className="text-sm text-text-muted">Question {currentIndex + 1} of {exercises.length}</p>
+                )}
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -346,7 +387,7 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
           <div className="mt-3 space-y-2">
             <div className="h-2 bg-bg-gray rounded-full overflow-hidden relative">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent transition-[width] duration-500 ease-out"
+                className="h-full rounded-full bg-primary transition-[width] duration-500 ease-out"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -364,25 +405,42 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        className={`mx-3 mt-2 flex flex-col overflow-hidden rounded-xl border sm:mx-0 sm:mt-6 sm:rounded-2xl sm:border-2 ${shellClass}`}
+        className={
+          minimalChrome
+            // my-auto, not justify-center on the parent: auto margins centre
+            // this block in the leftover space while the sticky header stays
+            // where it is at the top.
+            ? 'mx-3 my-auto flex flex-col overflow-hidden sm:mx-0'
+            : `mx-3 mt-2 flex flex-col overflow-hidden rounded-xl border sm:mx-0 sm:mt-6 sm:rounded-2xl sm:border-2 ${shellClass}`
+        }
       >
-        {/* Exercise type badge + friendly subtitle + optional listen button */}
-        <div className={`border-b px-3 py-2 sm:px-6 sm:py-3 flex items-start gap-3 ${shellHeaderClass}`}>
-          <div className="flex-1 min-w-0">
-            <p className="text-xs sm:text-sm text-text font-semibold">
-              {EXERCISE_TYPE_LABELS[currentExercise.type] ?? 'Exercise'}
-            </p>
-            {EXERCISE_TYPE_SUBTITLE[currentExercise.type] && (
-              <p className="mt-0.5 text-[11px] sm:text-xs text-text-muted leading-snug">
-                {EXERCISE_TYPE_SUBTITLE[currentExercise.type]}
+        {/*
+          Exercise type badge + friendly subtitle + optional listen button.
+
+          minimalChrome drops the label and subtitle, but never the listen
+          button: the row collapses only when there is no audio in it. A sort
+          game has none today, so nothing shows — but a preset pinned to a
+          sentence-based type would otherwise lose its audio silently.
+        */}
+        {(!minimalChrome || showListenButton) && (
+        <div className={minimalChrome ? 'flex justify-end px-3 pt-2 sm:px-6' : `border-b px-3 py-2 sm:px-6 sm:py-3 flex items-start gap-3 ${shellHeaderClass}`}>
+          {!minimalChrome && (
+            <div className="flex-1 min-w-0">
+              <p className="text-xs sm:text-sm text-text font-semibold">
+                {EXERCISE_TYPE_LABELS[currentExercise.type] ?? 'Exercise'}
               </p>
-            )}
-          </div>
-          {/* Show listen button for sentence-based exercises */}
-          {currentExercise.prompt && !['photo-sort', 'pattern-sorting', 'odd-one-out', 'word-family', 'sentence-builder', 'swipe-sort', 'sentence-diagram'].includes(currentExercise.type) && (
-            <SpeakButton text={currentExercise.prompt.replace('___', typeof currentExercise.correctAnswer === 'string' ? currentExercise.correctAnswer : '')} size="sm" />
+              {EXERCISE_TYPE_SUBTITLE[currentExercise.type] && (
+                <p className="mt-0.5 text-[11px] sm:text-xs text-text-muted leading-snug">
+                  {EXERCISE_TYPE_SUBTITLE[currentExercise.type]}
+                </p>
+              )}
+            </div>
+          )}
+          {showListenButton && (
+            <SpeakButton text={currentExercise.prompt!.replace('___', typeof currentExercise.correctAnswer === 'string' ? currentExercise.correctAnswer : '')} size="sm" />
           )}
         </div>
+        )}
 
         {/* Content */}
         <div className="p-3 sm:p-6">

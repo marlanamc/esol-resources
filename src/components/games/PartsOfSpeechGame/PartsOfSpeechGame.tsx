@@ -28,21 +28,38 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
   const isCourseMapPreset = gameContent?.courseMapPreset === true;
+  // A wrapper that pins an exact round and never resumes (Week 2's Word Sort)
+  // replays that one round on every visit. The Round 1 walkthrough is the
+  // teaching screen for a learner meeting a group for the first time -- in
+  // front of a drill it is a long lecture, and both intro screens advertise a
+  // "rounds to mastery" ladder this activity can never climb.
+  const isPinnedRound =
+    isCourseMapPreset && !!gameContent?.roundMode && gameContent?.resumeFromProgress !== true;
   const courseMapTitle = gameContent?.courseMapTitle ?? 'Course Map Activity';
   const courseMapDirections =
     gameContent?.courseMapDirections ?? 'Follow this guided step. You do not need to choose settings.';
 
   // Rendered identically across the loading, error, and play states so the guided banner is
   // present on the very first paint — no pop-in / content shift when the game finishes loading.
-  const courseMapBanner = isCourseMapPreset ? (
-    <div className="mb-4 rounded-2xl border border-[var(--tone-vocab-accent,#6a8d73)]/25 bg-[var(--tone-vocab-surface,rgba(106,141,115,0.08))] px-4 py-3">
-      <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
-        Guided Course Map Step
-      </p>
-      <h1 className="mt-1 text-lg font-display font-bold text-text">{courseMapTitle}</h1>
-      <p className="mt-1 text-sm leading-snug text-text-muted">{courseMapDirections}</p>
-    </div>
-  ) : null;
+  const renderCourseMapBanner = (showDirections: boolean) =>
+    isCourseMapPreset ? (
+      <div className="mb-4 rounded-2xl border border-[var(--tone-vocab-accent,#6a8d73)]/25 bg-[var(--tone-vocab-surface,rgba(106,141,115,0.08))] px-4 py-3">
+        <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
+          Guided Course Map Step
+        </p>
+        <h1 className="mt-1 text-lg font-display font-bold text-text">{courseMapTitle}</h1>
+        {/*
+          Directions belong on the way in. Once the learner is playing, the
+          exercise card states the same thing, and a banner repeating it is one
+          more block of text between them and the word they are sorting.
+        */}
+        {showDirections && (
+          <p className="mt-1 text-sm leading-snug text-text-muted">{courseMapDirections}</p>
+        )}
+      </div>
+    ) : null;
+
+  const courseMapBanner = renderCourseMapBanner(true);
 
   const {
     state,
@@ -145,13 +162,17 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className={`relative z-10 mx-auto flex min-h-full w-full flex-col ${
+        className={`relative z-10 mx-auto flex w-full flex-col ${
           state.phase === 'exercise'
-            ? 'w-full max-w-none px-0 py-2 sm:max-w-5xl sm:px-6 sm:py-10'
-            : 'max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
+            // A definite height to distribute. The page wrapper above collapses
+            // to content height, so `min-h-full` resolves to 100% of nothing --
+            // and it is the same property, so leaving both on would just be a
+            // coin toss decided by stylesheet order rather than class order.
+            ? 'min-h-[92svh] w-full max-w-none px-0 py-2 sm:max-w-5xl sm:px-6 sm:py-10'
+            : 'min-h-full max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
         }`}
       >
-        {courseMapBanner}
+        {state.phase === 'exercise' ? null : renderCourseMapBanner(true)}
 
         {/* Back button — selection */}
         {state.phase === 'selection' && !isCourseMapPreset && (
@@ -205,7 +226,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
             >
-              {state.selectedRoundMode === 'round1' && !state.selectedGroup.isCheckpoint ? (
+              {state.selectedRoundMode === 'round1' && !state.selectedGroup.isCheckpoint && !isPinnedRound ? (
                 <PatternWalkthroughScreen
                   group={state.selectedGroup}
                   roundMode={state.selectedRoundMode}
@@ -218,6 +239,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                   roundMode={state.selectedRoundMode}
                   onStartChallenge={startGroupChallenge}
                   onBack={isCourseMapPreset ? () => router.push(returnHref) : quitGame}
+                  hideRoundLadder={isPinnedRound}
                 />
               )}
             </motion.div>
@@ -230,7 +252,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              className="flex min-h-full flex-col"
+              className="flex min-h-full flex-1 flex-col"
             >
               <ExerciseScreen
                 group={state.selectedGroup}
@@ -239,6 +261,8 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                 roundMode={state.selectedRoundMode}
                 onAnswer={submitAnswer}
                 onBack={returnToGroupIntro}
+                minimalChrome={isPinnedRound}
+                titleOverride={isPinnedRound ? courseMapTitle : undefined}
               />
             </motion.div>
           )}
@@ -259,6 +283,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                 onContinue={isCourseMapPreset ? () => router.push(returnHref) : continueToNext}
                 onReturnToSelection={isCourseMapPreset ? () => router.push(returnHref) : quitGame}
                 courseMapPreset={isCourseMapPreset}
+                pinnedRound={isPinnedRound}
               />
             </motion.div>
           )}

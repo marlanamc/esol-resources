@@ -52,6 +52,8 @@ const VALID_EXERCISE_TYPES = [
   "function-match",
   "minimal-pair",
   "photo-sort",
+  "swipe-sort",
+  "sentence-diagram",
 ] as const;
 
 const VALID_PHASE_SET = new Set<string>(VALID_PHASES);

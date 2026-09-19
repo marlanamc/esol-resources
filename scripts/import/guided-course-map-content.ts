@@ -1,4 +1,5 @@
 import type { PartsOfSpeechContent } from "@/types/parts-of-speech";
+import type { DeckFilter } from "@/lib/grammar-hospital/progression";
 
 // Content payloads for the guided Course Map wrapper activities.
 //
@@ -29,10 +30,84 @@ export const partsOfSpeechDiscoveryContent: PartsOfSpeechContent = {
   },
 };
 
+// Week 2 sorting games. Week 2 meets once (Sept 24 is a closure), so these run
+// as independent work: one mechanic, two buckets, no settings to choose.
+//
+// roundSize and exerciseTypes live under roundOverrides rather than at the top
+// level on purpose -- usePartsOfSpeechGameState only forwards roundOverrides and
+// exerciseTypes into the generator, so a top-level roundSize is dropped silently.
+//
+// resumeFromProgress is deliberately absent: that makes groupId a pin rather
+// than a floor, so every visit replays the same short sort instead of walking
+// the learner into harder groups.
+export const partsOfSpeechWordSortVerbsContent: PartsOfSpeechContent = {
+  type: "parts-of-speech",
+  courseMapPreset: true,
+  courseMapTitle: "Word Sort: Verbs",
+  courseMapDirections: "Swipe each word into the right box. Is it a verb, or not?",
+  groupId: "pos-1-verbs",
+  roundMode: "round1",
+  roundOverrides: {
+    foundation: {
+      rounds: {
+        round1: {
+          roundSize: 3,
+          exerciseTypes: ["swipe-sort"],
+        },
+      },
+    },
+  },
+};
+
+export const partsOfSpeechWordSortNounsContent: PartsOfSpeechContent = {
+  type: "parts-of-speech",
+  courseMapPreset: true,
+  courseMapTitle: "Word Sort: Nouns",
+  courseMapDirections: "Swipe each word into the right box. Is it a noun, or not?",
+  groupId: "pos-2-nouns",
+  roundMode: "round1",
+  roundOverrides: {
+    foundation: {
+      rounds: {
+        round1: {
+          roundSize: 3,
+          exerciseTypes: ["swipe-sort"],
+        },
+      },
+    },
+  },
+};
+
 export const numbersThroughTrillionsContent = {
   type: "numbers-game",
   courseMapPreset: true,
   courseMapTitle: "Numbers Through Trillions",
   courseMapDirections: "Practice big round numbers. The category is already chosen for this level.",
   category: "Round Numbers (1,000 | 5 million | 1 billion)",
+};
+
+// Grammar Hospital deck filters for the Course Map wrappers.
+//
+// The wrappers themselves are assembled in sync-guided-course-map-wrappers.ts
+// by spreading the seeded activity's content, so only these filters are
+// literal -- and they are what decides which cases a learner actually sees.
+// They live here so tests read the same values that ship; a private copy in
+// the test file passes happily while production drifts away from it.
+
+/**
+ * Week 1 / Week 2 extra practice. complexity is a ceiling, not a target:
+ * sampleRound deals across every level in the deck and sorts easiest-first, so
+ * 3 keeps the gentle opening and adds a step up at the end of the round.
+ */
+export const GRAMMAR_HOSPITAL_FIRST_AID_SETTINGS: DeckFilter = {
+  tier: "beginner",
+  complexity: 3,
+  focuses: ["subject-verb-agreement", "be-vs-do"],
+};
+
+/** Week 3: helper-verb choice, do/does against be. */
+export const GRAMMAR_HOSPITAL_HELPER_REPAIR_SETTINGS: DeckFilter = {
+  tier: "beginner",
+  complexity: 2,
+  focuses: ["do-does", "be-vs-do"],
 };

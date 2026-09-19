@@ -29,7 +29,7 @@ import {
     SettingsForm,
     type GrammarHospitalSettings,
 } from "@/components/games/grammar-hospital/SettingsPanel";
-import { filterDeck, sampleRound } from "@/lib/grammar-hospital/progression";
+import { filterDeck, sampleRound, toWordTiles } from "@/lib/grammar-hospital/progression";
 
 const GAME_ID = "grammar-hospital";
 
@@ -162,7 +162,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
     const grantingRef = useRef(false);
 
     const current: GrammarHospitalCase | undefined = cases[caseIdx];
-    const isBuildMode = !!current?.wordBank && current.wordBank.length > 0;
+    const isBuildMode = !!current?.wordBank && toWordTiles(current.wordBank).length > 0;
     // Load user settings on mount, mirror to server when changed.
     useEffect(() => {
         let cancelled = false;
@@ -227,7 +227,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         setAttempts(0);
         setAnswerShown(false);
         if (current.wordBank && current.wordBank.length > 0) {
-            setBankTiles(shuffle(current.wordBank));
+            setBankTiles(shuffle(toWordTiles(current.wordBank)));
             setRepairTiles([]);
         } else {
             setBankTiles([]);
@@ -320,7 +320,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
         setAnswerShown(true);
         setStreak(0);
         if (isBuildMode && current.wordBank) {
-            setBankTiles(shuffle(current.wordBank));
+            setBankTiles(shuffle(toWordTiles(current.wordBank)));
             setRepairTiles([]);
         } else {
             setRepairInput("");
@@ -418,8 +418,8 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                                 }}
                                 className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-bold transition-all ${
                                     isCourseMapPreset
-                                        ? "border border-gray-200 bg-white text-gray-800 hover:border-primary/40 dark:border-white/10 dark:bg-[#2a1f1a] dark:text-gray-100"
-                                        : "bg-primary text-white shadow-[0_4px_14px_rgba(176,87,64,0.28)] hover:bg-[#984734]"
+                                        ? "border! border-gray-200! bg-white! text-gray-800! hover:border-primary/40! dark:border-white/10! dark:bg-[#2a1f1a]! dark:text-gray-100!"
+                                        : "bg-primary! text-white! shadow-[0_4px_14px_rgba(176,87,64,0.28)] hover:bg-[#984734]!"
                                 }`}
                             >
                                 <RotateCcw size={16} /> Keep practicing
@@ -465,7 +465,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                                 type="button"
                                 disabled={!settingsLoaded}
                                 onClick={() => setPhase("repair")}
-                                className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-8 py-3.5 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
+                                className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary! hover:bg-[#984734]! text-white! font-bold px-8 py-3.5 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
                             >
                                 Start practicing
                             </button>
@@ -487,7 +487,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
                                     type="button"
                                     disabled={!settingsLoaded}
                                     onClick={() => setPhase("repair")}
-                                    className="mt-7 inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-7 py-3 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
+                                    className="mt-7 inline-flex items-center gap-2 rounded-full bg-primary! hover:bg-[#984734]! text-white! font-bold px-7 py-3 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
                                 >
                                     Start practicing
                                 </button>
@@ -689,7 +689,7 @@ function RepairStep({
                                     key={`${t}-${i}`}
                                     type="button"
                                     onClick={() => onUnpickTile(t, i)}
-                                    className="inline-flex items-center rounded-lg border border-primary/40 bg-white dark:bg-[#2a1f1a] px-3 py-2 text-base font-semibold text-gray-900 dark:text-gray-50 shadow-sm hover:border-primary transition-all min-h-[44px]"
+                                    className="inline-flex items-center rounded-lg border! border-primary/40! bg-white! dark:bg-[#2a1f1a]! px-3 py-2 text-base font-semibold text-gray-900! dark:text-gray-50! shadow-sm hover:border-primary! transition-all min-h-[44px]"
                                 >
                                     {t}
                                 </button>
@@ -702,7 +702,7 @@ function RepairStep({
                                     key={`${t}-${i}`}
                                     type="button"
                                     onClick={() => onPickTile(t, i)}
-                                    className="inline-flex items-center rounded-lg border border-gray-300 dark:border-white/15 bg-white dark:bg-[#332419] px-3 py-2 text-base font-semibold text-gray-800 dark:text-gray-100 hover:border-primary hover:bg-amber-50 dark:hover:bg-[#3a2820] transition-all min-h-[44px]"
+                                    className="inline-flex items-center rounded-lg border! border-gray-300! dark:border-white/15! bg-white! dark:bg-[#332419]! px-3 py-2 text-base font-semibold text-gray-800! dark:text-gray-100! hover:border-primary! hover:bg-amber-50! dark:hover:bg-[#3a2820]! transition-all min-h-[44px]"
                                 >
                                     {t}
                                 </button>
@@ -728,28 +728,45 @@ function RepairStep({
                 />
             )}
 
-            <div className="mt-4 flex items-center justify-between gap-3">
-                {hint ? (
-                    <button
-                        type="button"
-                        onClick={onToggleHint}
-                        aria-expanded={hintOpen}
-                        className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-primary transition-colors"
-                    >
-                        <Lightbulb size={14} />
-                        {hintOpen ? "Hide hint" : "Show hint"}
-                    </button>
-                ) : (
-                    <span />
-                )}
+            {/*
+                This is the only way forward, so it reads like it: full width and
+                large, rather than a small pill sharing a row with the hint link.
+                Disabled used to be opacity-40 terracotta on cream, which read as
+                decoration -- and in build mode it silently stays disabled until
+                every tile is placed, so it now says which thing is missing
+                instead of leaving the learner tapping a dead button.
+            */}
+            <div className="mt-5 space-y-3">
                 <button
                     type="button"
                     onClick={onCheck}
                     disabled={!canCheck}
-                    className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold px-6 py-2.5 shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
+                    className="w-full min-h-[56px] inline-flex items-center justify-center gap-2 rounded-xl bg-primary! hover:bg-[#984734]! disabled:bg-gray-200! dark:disabled:bg-white/10! disabled:text-gray-500! dark:disabled:text-gray-400! disabled:shadow-none disabled:cursor-not-allowed text-white! font-bold text-lg px-6 py-3.5 shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
                 >
                     Check answer
                 </button>
+                {!canCheck && (
+                    <p className="text-center text-sm text-gray-500 dark:text-gray-400">
+                        {buildMode
+                            ? repairTiles.length === 0
+                                ? "Tap the words below to build the sentence."
+                                : `Use all the words — ${bankTiles.length} still to place.`
+                            : "Write the sentence above first."}
+                    </p>
+                )}
+                {hint ? (
+                    <div className="flex justify-center">
+                        <button
+                            type="button"
+                            onClick={onToggleHint}
+                            aria-expanded={hintOpen}
+                            className="inline-flex items-center gap-1.5 text-sm text-gray-500! dark:text-gray-400! hover:text-primary! transition-colors"
+                        >
+                            <Lightbulb size={14} />
+                            {hintOpen ? "Hide hint" : "Show hint"}
+                        </button>
+                    </div>
+                ) : null}
             </div>
 
             {hintOpen && hint && (
@@ -795,7 +812,7 @@ function FeedbackStep({
                 <button
                     type="button"
                     onClick={onNext}
-                    className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-7 py-3 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary! hover:bg-[#984734]! text-white! font-bold px-7 py-3 text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px transition-all"
                 >
                     {isLast ? "See results" : "Next sentence"} <Activity size={16} />
                 </button>
@@ -820,7 +837,7 @@ function FeedbackStep({
                     <button
                         type="button"
                         onClick={onShowAnswer}
-                        className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors underline underline-offset-4"
+                        className="text-sm text-gray-500! dark:text-gray-400! hover:text-gray-800! dark:hover:text-gray-200! transition-colors underline underline-offset-4"
                     >
                         Show me the answer
                     </button>
@@ -828,7 +845,7 @@ function FeedbackStep({
                 <button
                     type="button"
                     onClick={onTryAgain}
-                    className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-[#984734] text-white font-bold px-6 py-2.5 transition-all"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary! hover:bg-[#984734]! text-white! font-bold px-6 py-2.5 transition-all"
                 >
                     <RotateCcw size={15} /> Try again
                 </button>

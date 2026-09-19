@@ -33,6 +33,12 @@ interface PatternIntroScreenProps {
   roundMode: POSRoundMode;
   onStartChallenge: () => void;
   onBack: () => void;
+  /**
+   * A Course Map wrapper that pins its round replays that same round forever,
+   * so the "rounds to mastery" ladder would promise a progression the learner
+   * can never reach from this activity.
+   */
+  hideRoundLadder?: boolean;
 }
 
 export function PatternIntroScreen({
@@ -40,6 +46,7 @@ export function PatternIntroScreen({
   roundMode,
   onStartChallenge,
   onBack,
+  hideRoundLadder = false,
 }: PatternIntroScreenProps) {
   const roundNum = parseInt(roundMode.replace('round', '')) || 0;
   const isRound1 = roundMode === 'round1';
@@ -315,7 +322,7 @@ export function PatternIntroScreen({
       )}
 
       {/* Round 1 only: show the full progression ladder */}
-      {!!isRound1 && !group.isCheckpoint && (
+      {!!isRound1 && !group.isCheckpoint && !hideRoundLadder && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -346,7 +353,7 @@ export function PatternIntroScreen({
       )}
 
       {/* Round 2+ notice: where they are in the journey */}
-      {!isRound1 && roundLabel && (
+      {!isRound1 && roundLabel && !hideRoundLadder && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
