@@ -16,6 +16,7 @@ import { InteractionMode } from "./matching-game-shared";
 import { VocabMatchingUI } from "./VocabMatchingUI";
 import { TimeIndicatorSortingUI } from "./TimeIndicatorSortingUI";
 import { VerbSoundsRightSortingUI } from "./VerbSoundsRightSortingUI";
+import { ActionDescriptionSortingUI } from "./ActionDescriptionSortingUI";
 
 interface Props {
     contentStr: string;
@@ -474,6 +475,17 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
     };
 
     // Route non-countable game modes after hooks to preserve hook call order.
+    if (gameMode === "action-description") {
+        return (
+            <ActionDescriptionSortingUI
+                contentStr={contentStr}
+                activityId={activityId}
+                assignmentId={assignmentId}
+                vocabType={vocabType}
+            />
+        );
+    }
+
     if (gameMode === "time-indicators") {
         return (
             <TimeIndicatorSortingUI

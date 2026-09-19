@@ -85,6 +85,7 @@ npm run import:verb-quizzes    # Import verb quiz activities
 npm run import:simple-tenses
 npm run import:time-indicators
 npm run import:countable-uncountable
+npm run import:action-description  # Import "Action or Description?" sorting game
 npm run import:gerund-infinitive
 npm run import:parts-of-speech  # Import Parts of Speech game content
 npm run import:verb-quiz-sync

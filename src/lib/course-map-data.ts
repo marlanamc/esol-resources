@@ -172,6 +172,15 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "vocabUi": "fill-blank",
             "order": 3,
             "title": "Vocab: Say It & Spell It — Fill in the Blank"
+          },
+          {
+            "id": "action-description-game",
+            "activityId": "action-or-description",
+            "slot": "required",
+            "wrappedGame": true,
+            "activityType": "game",
+            "order": 4,
+            "title": "Action or Description?"
           }
         ]
       },
