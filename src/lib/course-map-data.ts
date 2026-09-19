@@ -199,6 +199,24 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "title": "Word Sort: Nouns"
+          },
+          {
+            "id": "parts-of-speech-word-sort-pronouns",
+            "activityId": "parts-of-speech-word-sort-pronouns-guided",
+            "slot": "extra",
+            "order": 7,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Word Sort: Pronouns"
+          },
+          {
+            "id": "parts-of-speech-word-sort-articles",
+            "activityId": "parts-of-speech-word-sort-articles-guided",
+            "slot": "extra",
+            "order": 8,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Word Sort: Articles"
           }
         ]
       },

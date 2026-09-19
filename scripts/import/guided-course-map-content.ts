@@ -78,6 +78,44 @@ export const partsOfSpeechWordSortNounsContent: PartsOfSpeechContent = {
   },
 };
 
+export const partsOfSpeechWordSortPronounsContent: PartsOfSpeechContent = {
+  type: "parts-of-speech",
+  courseMapPreset: true,
+  courseMapTitle: "Word Sort: Pronouns",
+  courseMapDirections: "Swipe each word into the right box. Is it a pronoun, or not?",
+  groupId: "pos-3-pronouns",
+  roundMode: "round1",
+  roundOverrides: {
+    foundation: {
+      rounds: {
+        round1: {
+          roundSize: 3,
+          exerciseTypes: ["swipe-sort"],
+        },
+      },
+    },
+  },
+};
+
+export const partsOfSpeechWordSortArticlesContent: PartsOfSpeechContent = {
+  type: "parts-of-speech",
+  courseMapPreset: true,
+  courseMapTitle: "Word Sort: Articles",
+  courseMapDirections: "Swipe each word into the right box. Is it an article, or not?",
+  groupId: "pos-4-articles",
+  roundMode: "round1",
+  roundOverrides: {
+    foundation: {
+      rounds: {
+        round1: {
+          roundSize: 3,
+          exerciseTypes: ["swipe-sort"],
+        },
+      },
+    },
+  },
+};
+
 export const numbersThroughTrillionsContent = {
   type: "numbers-game",
   courseMapPreset: true,

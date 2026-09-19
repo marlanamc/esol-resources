@@ -4,7 +4,9 @@ import { generateRound1Exercises } from "@/data/parts-of-speech-exercises";
 import { isPartsOfSpeechContent, type POSGroup } from "@/types/parts-of-speech";
 import {
   partsOfSpeechDiscoveryContent,
+  partsOfSpeechWordSortArticlesContent,
   partsOfSpeechWordSortNounsContent,
+  partsOfSpeechWordSortPronounsContent,
   partsOfSpeechWordSortVerbsContent,
 } from "../../scripts/import/guided-course-map-content";
 import type { PartsOfSpeechContent } from "@/types/parts-of-speech";
@@ -85,6 +87,8 @@ describe("Guided Course Map preset: Parts of Speech Discovery", () => {
 describe.each([
   ["Word Sort: Verbs", partsOfSpeechWordSortVerbsContent, "verb"],
   ["Word Sort: Nouns", partsOfSpeechWordSortNounsContent, "noun"],
+  ["Word Sort: Pronouns", partsOfSpeechWordSortPronounsContent, "pronoun"],
+  ["Word Sort: Articles", partsOfSpeechWordSortArticlesContent, "article"],
 ] as const)("Guided Course Map preset: %s", (_label, content: PartsOfSpeechContent, targetPOS) => {
   const options = { phaseOverrides: content.roundOverrides };
   const roundConfig = content.roundOverrides?.foundation?.rounds?.round1;

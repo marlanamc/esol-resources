@@ -5,7 +5,9 @@ import {
   GRAMMAR_HOSPITAL_HELPER_REPAIR_SETTINGS,
   numbersThroughTrillionsContent,
   partsOfSpeechDiscoveryContent,
+  partsOfSpeechWordSortArticlesContent,
   partsOfSpeechWordSortNounsContent,
+  partsOfSpeechWordSortPronounsContent,
   partsOfSpeechWordSortVerbsContent,
 } from "./guided-course-map-content";
 
@@ -72,6 +74,20 @@ async function main() {
       description:
         "Guided Course Map version for Week 2 extra practice. Same swipe sort, worked from the noun side.",
       content: partsOfSpeechWordSortNounsContent,
+    },
+    {
+      id: "parts-of-speech-word-sort-pronouns-guided",
+      title: "Word Sort: Pronouns",
+      description:
+        "Guided Course Map version for Week 2 extra practice. Same swipe sort, worked from the pronoun side.",
+      content: partsOfSpeechWordSortPronounsContent,
+    },
+    {
+      id: "parts-of-speech-word-sort-articles-guided",
+      title: "Word Sort: Articles",
+      description:
+        "Guided Course Map version for Week 2 extra practice. Same swipe sort, worked from the article side.",
+      content: partsOfSpeechWordSortArticlesContent,
     },
   ];
 
