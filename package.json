@@ -89,6 +89,7 @@
     "db:sync:vocab-review": "npx tsx scripts/vocab/sync-vocab-review.ts",
     "import:simple-tenses": "node scripts/import/import-simple-tenses.mjs",
     "import:countable-uncountable": "npx tsx scripts/import/import-countable-uncountable-game.ts",
+    "import:action-description": "npx tsx scripts/import/import-action-description-game.ts",
     "import:gerund-infinitive": "npx tsx scripts/import/import-gerund-infinitive-game.ts",
     "import:parts-of-speech": "npx tsx scripts/import/import-parts-of-speech-game.ts",
     "import:cafe-catch-up": "npx tsx scripts/import/import-cafe-catch-up.ts",

@@ -17,6 +17,7 @@ export function getGameEmojiForActivity({
   if (haystack.includes("verb form")) return "🔤";
   if (haystack.includes("sounds right") || haystack.includes("pronunciation")) return "🔊";
   if (haystack.includes("numbers")) return "🔢";
+  if (haystack.includes("action or description") || haystack.includes("action-or-description")) return "🏃";
   if (haystack.includes("countable") || haystack.includes("uncountable")) return "🧺";
   if (haystack.includes("matching") || haystack.includes("match")) return "🧩";
   if (haystack.includes("flashcard")) return "🃏";

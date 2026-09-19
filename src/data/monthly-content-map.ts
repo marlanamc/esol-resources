@@ -126,6 +126,7 @@ export const MONTHLY_CONTENT_MAP: Record<number, MonthlyContentConfig> = {
     ],
     games: [
       "numbers-game",
+      "action-or-description",
     ],
   },
 

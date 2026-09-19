@@ -45,6 +45,27 @@ export interface TimeIndicatorRound {
   words: TimeIndicatorWord[];
 }
 
+/**
+ * A single sortable card in the "Action or Description?" game. The learner decides
+ * whether the word needs a main verb ("action") or needs BE ("description"), then
+ * sees the finished sentence.
+ */
+export interface ActionDescriptionCard {
+  id: number;
+  word: string;
+  category: "action" | "description";
+  explanation: string;
+  /** Finished sentence shown after sorting. `*...*` marks the verb or BE form. */
+  sentence: string;
+}
+
+export interface ActionDescriptionRound {
+  roundNumber: number;
+  /** Optional banner for the round, from a leading `NOTE:` line. */
+  note?: string;
+  words: ActionDescriptionCard[];
+}
+
 export const VERB_TENSE_HINTS: Record<
   string,
   { emoji: string; label: string; bgClass: string; textClass: string }
@@ -112,7 +133,12 @@ export function buildVerbOptions(blank: VerbBlank, shouldSwap: boolean): string[
   return fallback ? [fallback] : [];
 }
 
-export type MatchingGameMode = "vocab" | "countable" | "time-indicators" | "verb-sounds-right";
+export type MatchingGameMode =
+  | "vocab"
+  | "countable"
+  | "time-indicators"
+  | "verb-sounds-right"
+  | "action-description";
 
 export function detectMatchingGameMode(content: string): MatchingGameMode {
   const hasRoundMarkers = /\[ROUND\s*\d+/.test(content);
@@ -120,6 +146,7 @@ export function detectMatchingGameMode(content: string): MatchingGameMode {
   let hasCountableUncountableLine = false;
   let hasTimeIndicatorLine = false;
   let hasVerbSoundsRightLine = false;
+  let hasActionDescriptionLine = false;
 
   for (const line of lines) {
     if (!line.includes("::")) continue;
@@ -133,12 +160,16 @@ export function detectMatchingGameMode(content: string): MatchingGameMode {
     if (lower.startsWith("specified") || lower.startsWith("unspecified")) {
       hasTimeIndicatorLine = true;
     }
-    if (first.includes("_____") && parts.length >= 3 && !lower.startsWith("countable") && !lower.startsWith("uncountable") && !lower.startsWith("specified") && !lower.startsWith("unspecified")) {
+    if (lower.startsWith("action") || lower.startsWith("description")) {
+      hasActionDescriptionLine = true;
+    }
+    if (first.includes("_____") && parts.length >= 3 && !lower.startsWith("countable") && !lower.startsWith("uncountable") && !lower.startsWith("specified") && !lower.startsWith("unspecified") && !lower.startsWith("action") && !lower.startsWith("description")) {
       hasVerbSoundsRightLine = true;
     }
   }
 
   if (hasRoundMarkers && hasVerbSoundsRightLine) return "verb-sounds-right";
+  if (hasRoundMarkers && hasActionDescriptionLine) return "action-description";
   if (hasRoundMarkers && hasTimeIndicatorLine) return "time-indicators";
   if (hasRoundMarkers && hasCountableUncountableLine) return "countable";
   return "vocab";
@@ -198,6 +229,7 @@ export function parseVocabPairs(content: string): VocabPair[] {
 
     const lower = definition.toLowerCase();
     if (lower.startsWith("countable") || lower.startsWith("uncountable")) continue;
+    if (lower.startsWith("action") || lower.startsWith("description")) continue;
 
     term = term.replace(/\s*\([^)]+\)$/, "").trim();
 
@@ -402,6 +434,59 @@ export function parseTimeIndicatorRounds(content: string): TimeIndicatorRound[] 
         difficulty,
         words,
       });
+      roundNumber++;
+    }
+  }
+
+  return rounds;
+}
+
+export function parseActionDescriptionRounds(content: string): ActionDescriptionRound[] {
+  const rounds: ActionDescriptionRound[] = [];
+  const roundBlocks = content.split(/\[ROUND\s*\d+(?:\s*-\s*[^\]]+)?\]/).filter((b) => b.trim());
+
+  let roundNumber = 1;
+  let globalId = 1;
+
+  for (const block of roundBlocks) {
+    const words: ActionDescriptionCard[] = [];
+    const lines = block.trim().split("\n").filter((l) => l.trim());
+    let note: string | undefined;
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+
+      if (!trimmed.includes("::")) {
+        const noteMatch = trimmed.match(/^NOTE:\s*(.+)$/i);
+        if (noteMatch && !note) note = noteMatch[1].trim();
+        continue;
+      }
+
+      // Three fields: word :: Category - explanation :: finished sentence.
+      // Indexed rather than destructured so the sentence is not dropped.
+      const parts = trimmed.split("::").map((s) => s.trim());
+      const word = parts[0] ?? "";
+      const definition = parts[1] ?? "";
+      const sentence = parts[2] ?? "";
+      if (!word || !definition) continue;
+
+      const isAction = definition.toLowerCase().startsWith("action");
+      const category: "action" | "description" = isAction ? "action" : "description";
+
+      const explanationMatch = definition.match(/(?:Action|Description)\s*-\s*(.+)/i);
+      const explanation = explanationMatch ? explanationMatch[1] : definition;
+
+      words.push({
+        id: globalId++,
+        word,
+        category,
+        explanation,
+        sentence,
+      });
+    }
+
+    if (words.length > 0) {
+      rounds.push({ roundNumber, ...(note ? { note } : {}), words });
       roundNumber++;
     }
   }
