@@ -22,7 +22,7 @@ interface Result {
   correct: boolean;
 }
 
-export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onAnswer }: Props) {
+export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onAnswer, answered }: Props) {
   const data = exercise.swipeSortData;
   const playFeedback = useDragFeedback();
 
@@ -30,6 +30,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   const [results, setResults] = useState<Result[]>([]);
   const [exitDir, setExitDir] = useState<'left' | 'right' | null>(null);
   const animatingRef = useRef(false);
+  const finishedRef = useRef(false);
   const reducedMotion = useRef(false);
 
   useEffect(() => {
@@ -53,6 +54,8 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   if (!data || !leftBucket || !rightBucket || total === 0) return null;
 
   const finish = (final: Result[]) => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
     const correctCount = final.filter(r => r.correct).length;
     const pass = correctCount / total >= 0.7;
     playFeedback(pass ? 'correct' : 'wrong');
@@ -60,7 +63,11 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   };
 
   const commit = (direction: 'left' | 'right') => {
-    if (animatingRef.current || !current) return;
+    // `answered` means the round has already taken this exercise's result.
+    // Without it the last card stayed live after finish(), and every further
+    // tap re-reported a correct answer -- inflating the streak and the round
+    // accuracy that decides whether points are awarded.
+    if (animatingRef.current || !current || answered || finishedRef.current) return;
     animatingRef.current = true;
     const chosen = direction === 'left' ? leftBucket : rightBucket;
     const correct = chosen === current.correctBucket;
@@ -74,6 +81,9 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
       x.set(0);
       setExitDir(null);
       if (index + 1 >= total) {
+        // Advance past the last card so `done` turns true: that swaps the card
+        // for the summary and removes the bucket buttons.
+        setIndex(total);
         animatingRef.current = false;
         finish(newResults);
       } else {

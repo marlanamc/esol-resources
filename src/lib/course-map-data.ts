@@ -154,13 +154,22 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Parts of Speech Guide"
           },
           {
+            "id": "parts-of-speech-word-sort",
+            "activityId": "parts-of-speech-word-sort-guided",
+            "slot": "required",
+            "order": 2,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Word Sort: Verbs"
+          },
+          {
             "id": "vocab-sep-w2-matching",
             "activityId": "vocab-sep-w2",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 2,
+            "order": 3,
             "title": "Vocab: Say It & Spell It — Matching"
           },
           {
@@ -170,8 +179,17 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 3,
+            "order": 4,
             "title": "Vocab: Say It & Spell It — Fill in the Blank"
+          },
+          {
+            "id": "parts-of-speech-word-sort-nouns",
+            "activityId": "parts-of-speech-word-sort-nouns-guided",
+            "slot": "extra",
+            "order": 5,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Word Sort: Nouns"
           }
         ]
       },

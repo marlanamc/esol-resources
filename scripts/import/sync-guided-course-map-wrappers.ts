@@ -3,6 +3,8 @@ import type { GrammarHospitalContent } from "@/types/activity";
 import {
   numbersThroughTrillionsContent,
   partsOfSpeechDiscoveryContent,
+  partsOfSpeechWordSortNounsContent,
+  partsOfSpeechWordSortVerbsContent,
 } from "./guided-course-map-content";
 
 const { requireSafeDbTarget } = require("../lib/require-safe-db-target");
@@ -51,6 +53,48 @@ async function main() {
   });
 
   console.log("Synced guided wrapper: parts-of-speech-discovery-guided");
+
+  // Week 2 sorting games. Same engine as the Discovery wrapper, pinned to a
+  // swipe-sort-only round so the whole activity is one mechanic.
+  const wordSortWrappers = [
+    {
+      id: "parts-of-speech-word-sort-guided",
+      title: "Word Sort: Verbs",
+      description:
+        "Guided Course Map version for Week 2. Swipe common words into Verb or Noun — one mechanic, no settings.",
+      content: partsOfSpeechWordSortVerbsContent,
+    },
+    {
+      id: "parts-of-speech-word-sort-nouns-guided",
+      title: "Word Sort: Nouns",
+      description:
+        "Guided Course Map version for Week 2 extra practice. Same swipe sort, worked from the noun side.",
+      content: partsOfSpeechWordSortNounsContent,
+    },
+  ];
+
+  for (const wrapper of wordSortWrappers) {
+    const fields = {
+      title: wrapper.title,
+      description: wrapper.description,
+      type: "game",
+      category: "games",
+      level: "beginner",
+      ui: "parts-of-speech",
+      isReleased: true,
+      contentKind: "map",
+      content: JSON.stringify(wrapper.content),
+      createdBy: teacher.id,
+    };
+
+    await prisma.activity.upsert({
+      where: { id: wrapper.id },
+      update: fields,
+      create: { id: wrapper.id, ...fields },
+    });
+
+    console.log(`Synced guided wrapper: ${wrapper.id}`);
+  }
 
   await prisma.activity.upsert({
     where: { id: "numbers-through-trillions-guided" },

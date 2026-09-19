@@ -28,6 +28,13 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
   const isCourseMapPreset = gameContent?.courseMapPreset === true;
+  // A wrapper that pins an exact round and never resumes (Week 2's Word Sort)
+  // replays that one round on every visit. The Round 1 walkthrough is the
+  // teaching screen for a learner meeting a group for the first time -- in
+  // front of a drill it is a long lecture, and both intro screens advertise a
+  // "rounds to mastery" ladder this activity can never climb.
+  const isPinnedRound =
+    isCourseMapPreset && !!gameContent?.roundMode && gameContent?.resumeFromProgress !== true;
   const courseMapTitle = gameContent?.courseMapTitle ?? 'Course Map Activity';
   const courseMapDirections =
     gameContent?.courseMapDirections ?? 'Follow this guided step. You do not need to choose settings.';
@@ -205,7 +212,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
             >
-              {state.selectedRoundMode === 'round1' && !state.selectedGroup.isCheckpoint ? (
+              {state.selectedRoundMode === 'round1' && !state.selectedGroup.isCheckpoint && !isPinnedRound ? (
                 <PatternWalkthroughScreen
                   group={state.selectedGroup}
                   roundMode={state.selectedRoundMode}
@@ -218,6 +225,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                   roundMode={state.selectedRoundMode}
                   onStartChallenge={startGroupChallenge}
                   onBack={isCourseMapPreset ? () => router.push(returnHref) : quitGame}
+                  hideRoundLadder={isPinnedRound}
                 />
               )}
             </motion.div>
@@ -259,6 +267,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                 onContinue={isCourseMapPreset ? () => router.push(returnHref) : continueToNext}
                 onReturnToSelection={isCourseMapPreset ? () => router.push(returnHref) : quitGame}
                 courseMapPreset={isCourseMapPreset}
+                pinnedRound={isPinnedRound}
               />
             </motion.div>
           )}

@@ -335,8 +335,10 @@ const FALLBACK_CLOZE_DISTRACTOR_BANK: { word: string; partOfSpeech: PartOfSpeech
   { word: 'a',         partOfSpeech: 'article' },
 ];
 
-function buildClozeDistractorBank() {
-  const deduped = new Map<string, { word: string; partOfSpeech: PartOfSpeech }>();
+type WordBankEntry = { word: string; partOfSpeech: PartOfSpeech };
+
+function buildWordBank(include: (add: (word: string, partOfSpeech: PartOfSpeech) => void) => void) {
+  const deduped = new Map<string, WordBankEntry>();
   const addDistractor = (word: string, partOfSpeech: PartOfSpeech) => {
     const normalized = normalize(word);
     if (!normalized) return;
@@ -345,24 +347,43 @@ function buildClozeDistractorBank() {
     deduped.set(key, { word, partOfSpeech });
   };
 
-  for (const pos of POS_OPTION_LABELS) {
-    for (const word of POS_FREQUENCY_WORDS_BY_PART_OF_SPEECH[pos].slice(0, 12)) {
-      addDistractor(word, pos);
-    }
-  }
-
-  for (const verb of POS_TRICKY_VERBS) {
-    addDistractor(verb, 'verb');
-  }
-
-  for (const fallback of FALLBACK_CLOZE_DISTRACTOR_BANK) {
-    addDistractor(fallback.word, fallback.partOfSpeech);
-  }
+  include(addDistractor);
 
   return Array.from(deduped.values());
 }
 
+function addCommonWords(add: (word: string, partOfSpeech: PartOfSpeech) => void) {
+  for (const pos of POS_OPTION_LABELS) {
+    for (const word of POS_FREQUENCY_WORDS_BY_PART_OF_SPEECH[pos].slice(0, 12)) {
+      add(word, pos);
+    }
+  }
+
+  for (const fallback of FALLBACK_CLOZE_DISTRACTOR_BANK) {
+    add(fallback.word, fallback.partOfSpeech);
+  }
+}
+
+function buildClozeDistractorBank() {
+  return buildWordBank(add => {
+    addCommonWords(add);
+    for (const verb of POS_TRICKY_VERBS) {
+      add(verb, 'verb');
+    }
+  });
+}
+
 const CLOZE_DISTRACTOR_BANK = buildClozeDistractorBank();
+
+// Sort cards ask "which part of speech is this word?" with no sentence around
+// it, so the word has to be one a beginner already knows. The cloze bank is the
+// wrong source for that: POS_TRICKY_VERBS pulls in ~60 gerund/infinitive verbs
+// (loathe, entail, contemplate, recollect) that exist to make *advanced* cloze
+// distractors hard, and they swamped the pool -- 75 verbs against 14 nouns, so
+// the noun side repeated every round while the verb side was mostly words the
+// learner has never met. The common-word bank keeps the high-frequency head of
+// each part of speech, which is both easier and roughly balanced.
+const COMMON_WORD_BANK = buildWordBank(addCommonWords);
 
 function buildFrequencyHintWords(
   targetPOS: PartOfSpeech,
@@ -1353,10 +1374,15 @@ function makeSwipeSort(
   const targetWords = new Set<string>();
   const otherPOSCount = new Map<PartOfSpeech, Set<string>>();
 
-  const addTarget = (w: string) => { const t = w.trim(); if (t) targetWords.add(t); };
+  // A card shows the bare word, so anything that is really a label for a set of
+  // forms -- 'be (am / is / are)', 'have / has' -- cannot be one. Those read as
+  // instructions, not as a word to sort.
+  const isSortableWord = (w: string) => /^[a-z][a-z'-]*$/i.test(w.trim());
+
+  const addTarget = (w: string) => { const t = w.trim(); if (t && isSortableWord(t)) targetWords.add(t); };
   const addOther = (pos: PartOfSpeech, w: string) => {
     const t = w.trim();
-    if (!t || pos === targetPOS) return;
+    if (!t || pos === targetPOS || !isSortableWord(t)) return;
     if (!otherPOSCount.has(pos)) otherPOSCount.set(pos, new Set());
     otherPOSCount.get(pos)!.add(t);
   };
@@ -1366,7 +1392,7 @@ function makeSwipeSort(
     if (p.partOfSpeech === targetPOS) addTarget(word);
     else addOther(p.partOfSpeech, word);
   }
-  for (const entry of CLOZE_DISTRACTOR_BANK) {
+  for (const entry of COMMON_WORD_BANK) {
     if (entry.partOfSpeech === targetPOS) addTarget(entry.word);
     else addOther(entry.partOfSpeech, entry.word);
   }
@@ -1547,13 +1573,26 @@ export function generateRound1Exercises(group: POSGroup, options?: POSGeneration
 
   if (isFoundation) {
     // Foundation Round 1: 3-choice cap for pattern-choice + short supporting types.
-    // pattern-choice is the baseline recognition exercise and stays unconditional,
-    // matching the non-foundation branch below.
+    // pattern-choice is the baseline recognition exercise, so it leads the round
+    // whenever it is available -- but a preset that asks only for sorting types
+    // (Week 2's Word Sort) has to be able to leave it out entirely.
     let foundationPhotoSortCount = 0;
     let foundationSwipeSortCount = 0;
 
-    for (const pattern of patterns) {
-      exercises.push(makePatternChoice(group, pattern, true, tracker));
+    // A sort-only preset wants a round made of sort cards, not one token card
+    // among multiple choice. Any other configuration keeps the one-apiece cap
+    // so a mixed round never collapses into all photos or all swipes.
+    const sortOnly = available.every(type => type === 'photo-sort' || type === 'swipe-sort');
+    const sortCap = sortOnly ? roundSize : 1;
+
+    const addPatternChoices = () => {
+      for (const pattern of patterns) {
+        exercises.push(makePatternChoice(group, pattern, true, tracker));
+      }
+    };
+
+    if (available.includes('pattern-choice')) {
+      addPatternChoices();
     }
     if (available.includes('sentence-completion')) {
       for (const pattern of patterns) {
@@ -1569,20 +1608,27 @@ export function generateRound1Exercises(group: POSGroup, options?: POSGeneration
         if (ooo) exercises.push(ooo);
       }
     }
-    // Capped at one apiece so a short round never becomes all photo or all swipe cards.
     if (available.includes('photo-sort')) {
       for (const pattern of patterns) {
-        if (foundationPhotoSortCount >= 1) break;
+        if (foundationPhotoSortCount >= sortCap) break;
         const ps = makePhotoSort(group, pattern, true);
         if (ps) { exercises.push(ps); foundationPhotoSortCount += 1; }
       }
     }
     if (available.includes('swipe-sort')) {
       for (const pattern of patterns) {
-        if (foundationSwipeSortCount >= 1) break;
+        if (foundationSwipeSortCount >= sortCap) break;
         const ss = makeSwipeSort(group, pattern, true);
         if (ss) { exercises.push(ss); foundationSwipeSortCount += 1; }
       }
+    }
+
+    // A preset can name types this group has no data for (makeSwipeSort and
+    // makePhotoSort both bail out on thin pools). Falling back to the baseline
+    // recognition exercise keeps a misconfigured wrapper from handing a learner
+    // an empty round with nothing to answer.
+    if (exercises.length === 0) {
+      addPatternChoices();
     }
 
     // Shuffle and slice, then apply graduation

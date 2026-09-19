@@ -204,6 +204,11 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
   }
 
   const handleAnswer = (correct: boolean) => {
+    // Every renderer is meant to stop accepting input once it has reported,
+    // but that is 16 components' worth of discipline and a lapse silently
+    // double-counts toward correctCount and the streak. Hold the invariant here
+    // too, where the score actually lives.
+    if (answered) return;
     setAnswered(true);
     setIsCorrect(correct);
     setShowFeedback(true);
