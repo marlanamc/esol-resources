@@ -58,6 +58,17 @@ const nextConfig: NextConfig = {
       "node_modules/@prisma/client/runtime/react-native*",
       "node_modules/@prisma/client/runtime/wasm*",
       "node_modules/@prisma/client/runtime/**/*.map",
+      // The WASM engines ship as base64-encoded JS, ~11MB per function, and the
+      // existing wasm* globs miss them because of the `query_*_bg.` prefix.
+      // This project uses the native binary engine (prisma-client-js with no
+      // driver adapter), so nothing loads them -- they were pure weight in all
+      // ~300 route functions, which is what filled Functions Storage.
+      "node_modules/@prisma/client/runtime/*wasm-base64*",
+      "node_modules/@prisma/client/runtime/query_engine_bg.postgresql*",
+      "node_modules/@prisma/client/runtime/query_compiler_bg.postgresql*",
+      "node_modules/@prisma/client/runtime/binary.*",
+      "node_modules/@prisma/client/runtime/*.d.ts",
+      "node_modules/@prisma/client/runtime/*.d.mts",
       "node_modules/typescript/**",
     ],
   },
