@@ -21,7 +21,7 @@ import { ContrastPairExercise } from './exercises/ContrastPairExercise';
 import { SwipeSortExercise } from './exercises/SwipeSortExercise';
 import { SentenceDiagramExercise } from './exercises/SentenceDiagramExercise';
 import { SpeakButton } from './SpeakButton';
-import type { POSGroup, POSExercise, POSExerciseType, POSRoundMode, PartOfSpeech } from '@/types/parts-of-speech';
+import type { POSAnswerDetail, POSGroup, POSExercise, POSExerciseType, POSRoundMode, PartOfSpeech } from '@/types/parts-of-speech';
 import { POS_LABELS } from '@/types/parts-of-speech';
 
 const EXERCISE_TYPE_LABELS: Record<string, string> = {
@@ -106,7 +106,7 @@ function getRoundLabel(roundMode: POSRoundMode): string {
 
 interface ExerciseRendererProps {
   exercise: POSExercise;
-  onAnswer: (correct: boolean) => void;
+  onAnswer: (correct: boolean, detail?: POSAnswerDetail) => void;
   answered: boolean;
 }
 
@@ -138,7 +138,11 @@ export const EXERCISE_RENDERERS: Record<POSExerciseType, ComponentType<ExerciseR
   'sentence-diagram': SentenceDiagramExercise,
 };
 
-function renderExercise(exercise: POSExercise, onAnswer: (correct: boolean) => void, answered: boolean) {
+function renderExercise(
+  exercise: POSExercise,
+  onAnswer: (correct: boolean, detail?: POSAnswerDetail) => void,
+  answered: boolean,
+) {
   const Renderer = EXERCISE_RENDERERS[exercise.type];
   if (!Renderer) return null;
   return <Renderer exercise={exercise} onAnswer={onAnswer} answered={answered} />;
@@ -151,12 +155,18 @@ const SILENT_EXERCISE_TYPES: POSExerciseType[] = [
   'sentence-builder', 'swipe-sort', 'sentence-diagram',
 ];
 
+// Exercises that grade several items behind one report and show their own
+// per-item feedback. The shell banner reports on `correctAnswer`, which for a
+// multi-card deck is the deck's theme -- "The answer is Verb" to a learner who
+// missed two nouns -- so it has to stay out of their way.
+const SELF_FEEDBACK_EXERCISE_TYPES: POSExerciseType[] = ['swipe-sort'];
+
 interface ExerciseScreenProps {
   group: POSGroup;
   exercises: POSExercise[];
   currentIndex: number;
   roundMode: POSRoundMode;
-  onAnswer: (correct: boolean, exercise: POSExercise) => void;
+  onAnswer: (correct: boolean, exercise: POSExercise, detail?: POSAnswerDetail) => void;
   onBack: () => void;
   /**
    * A Course Map wrapper pinned to one round is a single exercise repeated, so
@@ -215,6 +225,7 @@ export function ExerciseScreen({
   const currentPattern = currentExercise
     ? group.patterns.find(p => p.id === currentExercise.patternId)
     : undefined;
+  const selfFeedback = SELF_FEEDBACK_EXERCISE_TYPES.includes(currentExercise.type);
   const hasExplanation = Boolean(
     currentExercise?.explanation || currentPattern?.errorExplanation || currentPattern?.memoryTrick
   );
@@ -234,7 +245,7 @@ export function ExerciseScreen({
     );
   }
 
-  const handleAnswer = (correct: boolean) => {
+  const handleAnswer = (correct: boolean, detail?: POSAnswerDetail) => {
     // Every renderer is meant to stop accepting input once it has reported,
     // but that is 16 components' worth of discipline and a lapse silently
     // double-counts toward correctCount and the streak. Hold the invariant here
@@ -246,6 +257,20 @@ export function ExerciseScreen({
 
     if (correct) {
       setCorrectCount(prev => prev + 1);
+    }
+
+    // Suppressed banner means no Next button, and the wrong-answer path below
+    // relies on that button to advance -- without this the round would sit on a
+    // finished deck with no way forward. Keep the streak bookkeeping, then move.
+    if (SELF_FEEDBACK_EXERCISE_TYPES.includes(currentExercise.type)) {
+      setStreak(prev => (correct ? prev + 1 : 0));
+      setShowFeedback(false);
+      // Long enough to read the deck's own "4 / 6 correct" summary.
+      setTimeout(() => onAnswer(correct, currentExercise, detail), 900);
+      return;
+    }
+
+    if (correct) {
       setStreak(prev => {
         const newStreak = prev + 1;
         if (newStreak >= 3 && newStreak % 3 === 0) {
@@ -446,7 +471,7 @@ export function ExerciseScreen({
         <div className="p-3 sm:p-6">
           {/* Polite live region for screen readers */}
           <div className="sr-only" role="status" aria-live="polite">
-            {showFeedback
+            {showFeedback && !selfFeedback
               ? isCorrect
                 ? `Correct. ${streak >= 2 ? `${streak} in a row.` : ''}`
                 : `Incorrect. The answer is ${formatCorrectAnswer(currentExercise.correctAnswer)}.`
@@ -454,7 +479,7 @@ export function ExerciseScreen({
           </div>
 
           <AnimatePresence>
-            {showFeedback && (
+            {showFeedback && !selfFeedback && (
               <motion.div
                 key="feedback"
                 initial={{ opacity: 0, y: -8 }}

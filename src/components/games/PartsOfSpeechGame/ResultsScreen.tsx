@@ -27,7 +27,7 @@ interface ResultsScreenProps {
 }
 
 export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, onReturnToSelection, courseMapPreset = false, pinnedRound = false }: ResultsScreenProps) {
-  const { accuracy, correctAnswers, exercisesCompleted, completed, pointsAwarded, streak, missedPatternIds } = results;
+  const { accuracy, correctAnswers, exercisesCompleted, completed, pointsAwarded, streak, missedPatternIds, missedWords } = results;
   const passed = completed;
   const countdown = useMapReturnCountdown({ active: courseMapPreset });
 
@@ -263,6 +263,32 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
           delay={0.35}
         />
       </motion.div>
+
+      {/*
+        Words missed inside multi-card exercises. A swipe-sort deck shares one
+        patternId across every card, so the pattern list below cannot say which
+        words went wrong -- this is the list a learner can actually act on.
+      */}
+      {missedWords && missedWords.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="p-4 rounded-xl bg-error/5 border border-error/20"
+        >
+          <p className="font-semibold text-text text-sm mb-2">Words to practice:</p>
+          <div className="flex flex-wrap gap-2">
+            {missedWords.slice(0, 12).map(word => (
+              <span
+                key={word}
+                className="text-sm px-2.5 py-1 rounded-lg bg-error/10 text-error font-semibold"
+              >
+                {word}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      )}
 
       {/* Missed patterns */}
       {missedPatternIds && missedPatternIds.length > 0 && (

@@ -7,6 +7,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import type {
+  POSAnswerDetail,
   POSGroup,
   POSExercise,
   POSRoundResults,
@@ -32,6 +33,12 @@ import {
 interface ExerciseOutcome {
   exercise: POSExercise;
   correct: boolean;
+  /**
+   * Set by exercises that grade several items behind one report (swipe-sort
+   * decks). Without it a 6-card deck counts once, so 5/6 and 6/6 are the same
+   * number to the round.
+   */
+  detail?: POSAnswerDetail;
 }
 
 interface POSGameInternalState {
@@ -126,6 +133,16 @@ function buildMissedPatternIds(
     .filter((id, i, arr) => arr.indexOf(id) === i);
 }
 
+/**
+ * Individual words missed inside multi-item exercises. Kept separate from
+ * buildMissedPatternIds, which is pattern-level: a swipe-sort deck shares one
+ * patternId across every card, so it cannot express which words were missed.
+ */
+function buildMissedWords(results: ExerciseOutcome[]): string[] {
+  const words = results.flatMap(r => r.detail?.missedWords ?? []);
+  return words.filter((w, i) => words.indexOf(w) === i);
+}
+
 function roundModeToNumber(mode: POSRoundMode): number {
   const map: Record<POSRoundMode, number> = {
     round1: 1, round2: 2, round3: 3, round4: 4, round5: 5, review: 0, final: 0,
@@ -140,8 +157,15 @@ function computeRoundResults(
   results: ExerciseOutcome[],
   categoryData: Record<string, POSGroupProgress>,
 ): POSRoundResults {
-  const total = results.length;
-  const correct = results.filter(r => r.correct).length;
+  // Weight by item, not by exercise. A swipe-sort round is 3 decks of ~6 cards;
+  // scoring it as 3 booleans threw away 15 of the learner's 18 decisions and
+  // made 5/6 indistinguishable from 6/6. Exercises with no detail still count
+  // as the single item they are.
+  const total = results.reduce((n, r) => n + (r.detail?.cardsTotal ?? 1), 0);
+  const correct = results.reduce(
+    (n, r) => n + (r.detail ? r.detail.cardsCorrect : r.correct ? 1 : 0),
+    0,
+  );
   const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
 
   // Use the per-round threshold (round1=70%, round2=75%, ... round5=90%)
@@ -153,6 +177,7 @@ function computeRoundResults(
   const mastery = isFinalRound && accuracy >= POS_MASTERY_THRESHOLD;
   const bestStreak = calculateBestStreak(results);
   const missedPatternIds = buildMissedPatternIds(exercises, results);
+  const missedWords = buildMissedWords(results);
 
   const existing = categoryData[group.id] ?? { completed: false, accuracy: 0, attempts: 0 };
   const prevHighest = existing.highestRoundPassed ?? 0;
@@ -223,6 +248,7 @@ function computeRoundResults(
     pointsAwarded,
     unlocked,
     missedPatternIds,
+    missedWords,
     nextStep,
     masteryAchieved: mastery,
     updatedCategoryData: {
@@ -448,9 +474,9 @@ export function usePartsOfSpeechGameState(activityId: string, config?: PartsOfSp
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.selectedGroup, state.selectedRoundMode, state.categoryData, state.recentlyUsedSentences]);
 
-  const submitAnswer = useCallback((correct: boolean, exercise: POSExercise) => {
+  const submitAnswer = useCallback((correct: boolean, exercise: POSExercise, detail?: POSAnswerDetail) => {
     setState(prev => {
-      const newResults = [...prev.exerciseResults, { correct, exercise }];
+      const newResults = [...prev.exerciseResults, { correct, exercise, detail }];
       const newIndex = prev.currentExerciseIndex + 1;
 
       if (newIndex >= prev.exercises.length && prev.selectedGroup) {

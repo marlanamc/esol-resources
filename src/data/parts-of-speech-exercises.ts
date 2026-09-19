@@ -17,8 +17,10 @@ import type {
   PhotoSortItem,
   WordFamilyMember,
   POSDiagramChunk,
+  POSSwipeSortCard,
   GrammaticalRole,
 } from '@/types/parts-of-speech';
+import { getWordNote } from '@/data/parts-of-speech-word-notes';
 import {
   PHOTO_SORT_DISTRACTOR_BANK,
   buildPhotoGalleryFromWords,
@@ -1409,16 +1411,28 @@ function makeSwipeSort(
   const rightPool = Array.from(targetWords);
   if (leftPool.length < 2 || rightPool.length < 2) return null;
 
-  const leftCards = pickRandom(leftPool, Math.min(3, leftPool.length)).map((word, i) => ({
-    id: `ss-l-${i}-${word}`,
-    word,
-    correctBucket: leftPOS!,
-  }));
-  const rightCards = pickRandom(rightPool, Math.min(3, rightPool.length)).map((word, i) => ({
-    id: `ss-r-${i}-${word}`,
-    word,
-    correctBucket: targetPOS,
-  }));
+  // The word bank files each word under exactly one part of speech, but several
+  // of the most common words belong under two. Attaching the note here lets the
+  // card accept either answer and explain the double meaning when it corrects.
+  const buildCard = (id: string, word: string, correctBucket: PartOfSpeech): POSSwipeSortCard => {
+    const note = getWordNote(word);
+    if (!note) return { id, word, correctBucket };
+    const alsoAccepts = note.accepts.filter(pos => pos !== correctBucket);
+    return {
+      id,
+      word,
+      correctBucket,
+      ...(alsoAccepts.length > 0 ? { alsoAccepts } : {}),
+      explanation: note.note,
+    };
+  };
+
+  const leftCards = pickRandom(leftPool, Math.min(3, leftPool.length)).map((word, i) =>
+    buildCard(`ss-l-${i}-${word}`, word, leftPOS!),
+  );
+  const rightCards = pickRandom(rightPool, Math.min(3, rightPool.length)).map((word, i) =>
+    buildCard(`ss-r-${i}-${word}`, word, targetPOS),
+  );
   const cards = shuffle([...leftCards, ...rightCards]);
   if (cards.length < 4) return null;
 

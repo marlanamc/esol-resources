@@ -120,6 +120,14 @@ export interface POSSwipeSortCard {
   id: string;
   word: string;
   correctBucket: PartOfSpeech;
+  /**
+   * Buckets that also count as correct. Some high-frequency words genuinely are
+   * two parts of speech ('work', 'like', 'back'), and marking a learner wrong
+   * for the defensible answer teaches them to distrust what they know.
+   */
+  alsoAccepts?: PartOfSpeech[];
+  /** Shown when correcting this card, in place of the category definition. */
+  explanation?: string;
 }
 
 export interface POSSwipeSortData {
@@ -161,6 +169,17 @@ export interface POSWordFamilyData {
 export interface POSMadLibsData {
   sentenceParts: { text: string; isBlank: boolean; requiredPOS?: PartOfSpeech; correctWord?: string }[];
   wordBank: { word: string; partOfSpeech: PartOfSpeech }[];
+}
+
+/**
+ * Per-item outcome for an exercise that grades several items behind one
+ * report. Deliberately not swipe-specific: pattern-sorting and pos-tagging
+ * flatten the same way and can adopt this without another type change.
+ */
+export interface POSAnswerDetail {
+  cardsTotal: number;
+  cardsCorrect: number;
+  missedWords: string[];
 }
 
 // ─── Main Exercise interface ──────────────────────────────────────────────────

@@ -102,6 +102,8 @@ export interface POSRoundResults {
   newAchievements?: string[];
   updatedCategoryData?: Record<string, POSGroupProgress>;
   missedPatternIds?: string[];
+  /** Individual words missed across swipe-sort decks, for the results review. */
+  missedWords?: string[];
   nextStep?: 'round2' | 'round3' | 'round4' | 'round5' | 'selection' | 'next-group' | 'review' | 'final' | 'finish';
   masteryAchieved?: boolean;
 }
