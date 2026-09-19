@@ -5,6 +5,7 @@ import React from 'react';
 type GameMotif =
   | 'numbers'
   | 'countable-basket'
+  | 'action-vs-be'
   | 'sound-wave'
   | 'time-track'
   | 'timeline-flow'
@@ -17,6 +18,7 @@ function getGameMotif(activityId: string, title: string) {
 
   if (haystack.includes('numbers')) return { motif: 'numbers' as const, color: '#b692e6' };
   if (haystack.includes('countable') || haystack.includes('uncountable')) return { motif: 'countable-basket' as const, color: '#9ec3e2' };
+  if (haystack.includes('action or description') || haystack.includes('action-or-description')) return { motif: 'action-vs-be' as const, color: '#c98bb0' };
   if (haystack.includes('sounds right') || haystack.includes('pronunciation')) return { motif: 'sound-wave' as const, color: '#7ba884' };
   if (haystack.includes('time indicator')) return { motif: 'time-track' as const, color: '#7ba884' };
   if (haystack.includes('verb forms') || haystack.includes('verb form')) return { motif: 'verb-cards' as const, color: '#7ba884' };
@@ -49,6 +51,16 @@ function VisualSvg({ motif, color }: { motif: GameMotif; color: string }) {
           <path d="M33 22c1-5 4-8 7-8s6 3 7 8" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" />
           <circle cx="64" cy="20" r="5" fill="white" stroke={color} strokeWidth="2" />
           <path d="M72 18h8M72 24h8" stroke={color} strokeWidth="2" strokeLinecap="round" />
+        </>
+      )}
+
+      {motif === 'action-vs-be' && (
+        <>
+          <rect x="20" y="16" width="26" height="20" rx="5" fill={soft} stroke={color} strokeWidth="2" />
+          <path d="M26 26h11M33 22l4 4-4 4" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M50 14v24" stroke={mid} strokeWidth="2" strokeLinecap="round" strokeDasharray="3 3" />
+          <rect x="54" y="16" width="26" height="20" rx="5" fill="white" stroke={color} strokeWidth="2" />
+          <path d="M61 23h12M61 29h12" stroke={color} strokeWidth="2" strokeLinecap="round" />
         </>
       )}
 
@@ -129,6 +141,9 @@ export function getGameCardCopy(activityId: string, title: string) {
   }
   if (haystack.includes('countable') || haystack.includes('uncountable')) {
     return { friendlyTitle: 'Countable vs. uncountable', useThisFor: 'sort nouns by how we talk about quantity' };
+  }
+  if (haystack.includes('action or description') || haystack.includes('action-or-description')) {
+    return { friendlyTitle: 'Action or description', useThisFor: 'decide when a sentence needs a verb and when it needs am / is / are' };
   }
   if (haystack.includes('numbers')) {
     return { friendlyTitle: 'Numbers game', useThisFor: 'build speed and confidence reading numbers in English' };

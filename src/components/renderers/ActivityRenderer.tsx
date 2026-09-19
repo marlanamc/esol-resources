@@ -703,9 +703,14 @@ function parsePlainVocabulary(contentStr: string): Array<{ term: string; pos?: s
                 example = next.replace(/^example:\s*/i, "").trim();
                 i += 1; // skip example line
             }
-            // Skip special countable definitions
+            // Skip sorting-game definitions (countable/uncountable, action/description)
             const lowerDef = definition.toLowerCase();
-            if (!lowerDef.startsWith("countable") && !lowerDef.startsWith("uncountable")) {
+            if (
+                !lowerDef.startsWith("countable") &&
+                !lowerDef.startsWith("uncountable") &&
+                !lowerDef.startsWith("action") &&
+                !lowerDef.startsWith("description")
+            ) {
                  entries.push({ term, pos, definition, example });
             }
         }

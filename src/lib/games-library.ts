@@ -98,7 +98,9 @@ const GAME_LIBRARY_SECTION_DEFS: Array<{ name: string; match: GameLibraryMatcher
       activity.id.includes("parts-of-speech") ||
       title.includes("parts of speech") ||
       title.includes("countable") ||
-      title.includes("uncountable"),
+      title.includes("uncountable") ||
+      activity.id === "action-or-description" ||
+      title.includes("action or description"),
   },
   {
     name: "Gerunds & Infinitives",

@@ -251,6 +251,7 @@ export type GameFamily =
     | 'time-indicators'
     | 'sound-choice'
     | 'countable-sort'
+    | 'action-description-sort'
     | 'matching-game'
     | 'game-other';
 
@@ -302,6 +303,14 @@ export const GAME_TEXTURES: Record<GameFamily, ActivityTexture> = {
         gradient: 'linear-gradient(135deg, rgba(158, 195, 226, 0.08) 0%, rgba(158, 195, 226, 0.02) 100%)',
         pattern: 'grid',
         icon: '🧺',
+    },
+    'action-description-sort': {
+        id: 'action-description-sort',
+        color: '#c98bb0',           // Soft rose - action vs. BE sorting
+        bgColor: 'rgba(201, 139, 176, 0.05)',
+        gradient: 'linear-gradient(135deg, rgba(201, 139, 176, 0.08) 0%, rgba(201, 139, 176, 0.02) 100%)',
+        pattern: 'grid',
+        icon: '🏃',
     },
     'matching-game': {
         id: 'matching-game',
@@ -515,6 +524,7 @@ export const detectGameType = (activityId: string, ui: string | null): GameFamil
     if (id.includes('irregular')) return 'irregular-patterns';
     if (id.includes('time-indicator')) return 'time-indicators';
     if (id.includes('sounds-right') || id.includes('sound') || id.includes('pronunciation')) return 'sound-choice';
+    if (id.includes('action-or-description')) return 'action-description-sort';
     if (id.includes('countable') || id.includes('uncountable')) return 'countable-sort';
     if (id.includes('matching') || id.includes('match')) return 'matching-game';
     return 'game-other';
