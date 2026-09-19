@@ -526,7 +526,7 @@ export function ActionDescriptionSortingUI({
   if (rounds.length === 0 || !currentRound) {
     return (
       <div className="max-w-6xl mx-auto p-8 text-center">
-        <p className="text-gray-500">No sorting cards available.</p>
+        <p className="text-text-muted">No sorting cards available.</p>
       </div>
     );
   }
@@ -553,7 +553,7 @@ export function ActionDescriptionSortingUI({
               <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 dark:text-white leading-tight">
                 Action or Description?
               </h2>
-              <div className="text-sm font-medium text-gray-600 whitespace-nowrap">
+              <div className="text-sm font-medium text-text-muted whitespace-nowrap">
                 <span className="text-green-600 font-bold">
                   {gameState.correctCount}
                 </span>{" "}

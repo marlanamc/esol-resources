@@ -87,11 +87,11 @@ export default async function AdminContentPage() {
 
             {/* Summary cards */}
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
-                <div className="rounded-2xl border bg-white p-4" style={{ borderColor: "rgba(0,0,0,0.08)" }}>
+                <div className="rounded-2xl border bg-surface-elevated p-4" style={{ borderColor: "var(--border-subtle)" }}>
                     <p className="text-2xl font-bold tabular-nums" style={{ color: "#1e2640" }}>{activities.length}</p>
                     <p className="text-xs font-semibold text-text-muted mt-0.5">Total activities</p>
                 </div>
-                <div className="rounded-2xl border bg-white p-4" style={{ borderColor: "rgba(0,0,0,0.08)" }}>
+                <div className="rounded-2xl border bg-surface-elevated p-4" style={{ borderColor: "var(--border-subtle)" }}>
                     <div className="flex items-center gap-2 mb-1">
                         <Star className="h-3.5 w-3.5" style={{ color: "#d97706", fill: "#f59e0b" }} />
                         <p className="text-xs font-semibold" style={{ color: "#d97706" }}>Featured (Indep.)</p>
@@ -102,7 +102,7 @@ export default async function AdminContentPage() {
                     const Icon = KIND_ICONS[kind] ?? BookOpen;
                     const count = byKind[kind]?.length ?? 0;
                     return (
-                        <div key={kind} className="rounded-2xl border bg-white p-4" style={{ borderColor: "rgba(0,0,0,0.08)" }}>
+                        <div key={kind} className="rounded-2xl border bg-surface-elevated p-4" style={{ borderColor: "var(--border-subtle)" }}>
                             <div className="flex items-center gap-2 mb-1">
                                 <Icon className="h-3.5 w-3.5" style={{ color: KIND_COLORS[kind] }} />
                                 <p className="text-xs font-semibold" style={{ color: KIND_COLORS[kind] }}>{KIND_LABELS[kind]}</p>
@@ -152,7 +152,7 @@ export default async function AdminContentPage() {
                             </span>
                         </div>
 
-                        <div className="rounded-2xl overflow-hidden border bg-white" style={{ borderColor: "rgba(0,0,0,0.08)" }}>
+                        <div className="rounded-2xl overflow-hidden border bg-surface-elevated" style={{ borderColor: "var(--border-subtle)" }}>
                             <div className="overflow-x-auto">
                                 <table className="w-full min-w-[640px]">
                                     <thead>

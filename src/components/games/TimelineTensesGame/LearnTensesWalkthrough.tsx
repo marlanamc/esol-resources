@@ -21,7 +21,7 @@ interface LearnTensesWalkthroughProps {
 
 const FAMILY_STYLE: Record<LearnTensesFamilyId, { chip: string; accent: string; dot: string; slot: Record<string, string> }> = {
   simple: {
-    chip: 'bg-[#eef4ec] text-[#3d8e42] border-[#3d8e42]/15',
+    chip: 'bg-[#eef4ec] text-[#3d8e42] border-[#3d8e42]/15 dark:bg-[#3d8e42]/15 dark:text-[#8fd094] dark:border-[#8fd094]/25',
     accent: 'from-[#eef4ec] via-white to-[#f8fafc]',
     dot: 'bg-[#3d8e42]',
     slot: {
@@ -31,7 +31,7 @@ const FAMILY_STYLE: Record<LearnTensesFamilyId, { chip: string; accent: string; 
     },
   },
   continuous: {
-    chip: 'bg-[#edf5f4] text-[#268a82] border-[#268a82]/15',
+    chip: 'bg-[#edf5f4] text-[#268a82] border-[#268a82]/15 dark:bg-[#268a82]/15 dark:text-[#7fd0c8] dark:border-[#7fd0c8]/25',
     accent: 'from-[#edf5f4] via-white to-[#f4fbfa]',
     dot: 'bg-[#268a82]',
     slot: {
@@ -41,7 +41,7 @@ const FAMILY_STYLE: Record<LearnTensesFamilyId, { chip: string; accent: string; 
     },
   },
   perfect: {
-    chip: 'bg-[#fff7ed] text-[#c44a28] border-[#c44a28]/15',
+    chip: 'bg-[#fff7ed] text-[#c44a28] border-[#c44a28]/15 dark:bg-[#c44a28]/15 dark:text-[#f09b7e] dark:border-[#f09b7e]/25',
     accent: 'from-[#fff7ed] via-white to-[#fff5f1]',
     dot: 'bg-[#c44a28]',
     slot: {
@@ -51,7 +51,7 @@ const FAMILY_STYLE: Record<LearnTensesFamilyId, { chip: string; accent: string; 
     },
   },
   'perfect-continuous': {
-    chip: 'bg-[#f5f0e8] text-[#b56e1a] border-[#b56e1a]/15',
+    chip: 'bg-[#f5f0e8] text-[#b56e1a] border-[#b56e1a]/15 dark:bg-[#b56e1a]/15 dark:text-[#e5b571] dark:border-[#e5b571]/25',
     accent: 'from-[#f5f0e8] via-white to-[#fff9f2]',
     dot: 'bg-[#b56e1a]',
     slot: {
@@ -61,7 +61,7 @@ const FAMILY_STYLE: Record<LearnTensesFamilyId, { chip: string; accent: string; 
     },
   },
   'used-to': {
-    chip: 'bg-[#f0eef8] text-[#6b4fb8] border-[#6b4fb8]/15',
+    chip: 'bg-[#f0eef8] text-[#6b4fb8] border-[#6b4fb8]/15 dark:bg-[#6b4fb8]/20 dark:text-[#b5a2e8] dark:border-[#b5a2e8]/25',
     accent: 'from-[#f0eef8] via-white to-[#f7f5fd]',
     dot: 'bg-[#6b4fb8]',
     slot: {

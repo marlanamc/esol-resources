@@ -241,7 +241,7 @@ export default function TeacherReportCard({
                   className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all duration-200 ${
                     learnerType === option.type
                       ? 'bg-primary text-white shadow-sm'
-                      : 'text-text-muted hover:text-text hover:bg-white'
+                      : 'text-text-muted hover:text-text hover:bg-surface-elevated'
                   }`}
                 >
                   {option.label}
@@ -261,7 +261,7 @@ export default function TeacherReportCard({
             <select
               value={selectedClassId}
               onChange={(e) => setSelectedClassId(e.target.value)}
-              className="px-4 py-2 rounded-lg border border-border bg-white text-text font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all w-full sm:w-auto"
+              className="px-4 py-2 rounded-lg border border-border bg-surface-elevated text-text font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all w-full sm:w-auto"
             >
               <option value="all">All Classes ({classes.reduce((sum, c) => sum + c.studentCount, 0)} students)</option>
               {classes.map((cls) => (
@@ -285,7 +285,7 @@ export default function TeacherReportCard({
             className={`flex-1 sm:flex-initial px-4 py-2 rounded-lg font-bold text-sm transition-all duration-200 ${
               timeframe === 'daily'
                 ? 'bg-primary text-white shadow-md'
-                : 'bg-white/60 text-text-muted hover:bg-white hover:text-text'
+                : 'bg-surface-elevated/60 text-text-muted hover:bg-surface-elevated hover:text-text'
             }`}
           >
             Daily
@@ -298,7 +298,7 @@ export default function TeacherReportCard({
             className={`flex-1 sm:flex-initial px-4 py-2 rounded-lg font-bold text-sm transition-all duration-200 ${
               timeframe === 'weekly'
                 ? 'bg-primary text-white shadow-md'
-                : 'bg-white/60 text-text-muted hover:bg-white hover:text-text'
+                : 'bg-surface-elevated/60 text-text-muted hover:bg-surface-elevated hover:text-text'
             }`}
           >
             Weekly

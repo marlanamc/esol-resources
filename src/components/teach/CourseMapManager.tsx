@@ -71,7 +71,7 @@ export function CourseMapManager({ classId, className, allWeeks, revealedWeekIds
         <div className="space-y-6">
             {/* Current status card */}
             <div
-                className="rounded-2xl border bg-white px-6 py-5"
+                className="rounded-2xl border bg-surface-elevated px-6 py-5"
                 style={{ borderColor: "var(--border-subtle)" }}
             >
                 <div className="flex items-start justify-between gap-4 flex-wrap">
@@ -156,7 +156,7 @@ export function CourseMapManager({ classId, className, allWeeks, revealedWeekIds
             {/* Week list */}
             <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">All weeks</p>
-                <div className="rounded-xl border bg-white overflow-hidden" style={{ borderColor: "var(--border-subtle)" }}>
+                <div className="rounded-xl border bg-surface-elevated overflow-hidden" style={{ borderColor: "var(--border-subtle)" }}>
                     {allWeeks.map((week, i) => {
                         const revealed = revealedIds.has(week.id);
                         const isCurrent = week.id === currentWeek?.id;
@@ -167,8 +167,8 @@ export function CourseMapManager({ classId, className, allWeeks, revealedWeekIds
                                 style={{
                                     borderBottom: i < allWeeks.length - 1 ? "1px solid rgba(0,0,0,0.04)" : "none",
                                     background: isCurrent
-                                        ? "color-mix(in srgb, var(--secondary) 6%, white)"
-                                        : "white",
+                                        ? "color-mix(in srgb, var(--secondary) 6%, var(--surface-elevated))"
+                                        : "var(--surface-elevated)",
                                 }}
                             >
                                 <span className="shrink-0 w-5 flex justify-center">

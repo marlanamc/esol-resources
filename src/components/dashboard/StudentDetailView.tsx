@@ -23,34 +23,34 @@ const CATEGORY_META: Record<
     vocab: {
         label: 'Vocabulary',
         icon: '📚',
-        accent: 'text-emerald-700',
-        accentBg: 'bg-emerald-50',
+        accent: 'text-emerald-700 dark:text-emerald-300',
+        accentBg: 'bg-emerald-50 dark:bg-emerald-950/25',
         bar: 'bg-emerald-500',
-        cardBorder: 'border-emerald-200/70',
+        cardBorder: 'border-emerald-200/70 dark:border-emerald-900/50',
     },
     grammar: {
         label: 'Grammar',
         icon: '✍️',
-        accent: 'text-orange-700',
-        accentBg: 'bg-orange-50',
+        accent: 'text-orange-700 dark:text-orange-300',
+        accentBg: 'bg-orange-50 dark:bg-orange-950/25',
         bar: 'bg-orange-500',
-        cardBorder: 'border-orange-200/70',
+        cardBorder: 'border-orange-200/70 dark:border-orange-900/50',
     },
     numbers: {
         label: 'Numbers',
         icon: '🔢',
-        accent: 'text-sky-700',
-        accentBg: 'bg-sky-50',
+        accent: 'text-sky-700 dark:text-sky-300',
+        accentBg: 'bg-sky-50 dark:bg-sky-950/25',
         bar: 'bg-sky-500',
-        cardBorder: 'border-sky-200/70',
+        cardBorder: 'border-sky-200/70 dark:border-sky-900/50',
     },
     other: {
         label: 'Other',
         icon: '🧩',
-        accent: 'text-slate-700',
-        accentBg: 'bg-slate-100',
+        accent: 'text-slate-700 dark:text-slate-300',
+        accentBg: 'bg-slate-100 dark:bg-slate-800/40',
         bar: 'bg-slate-500',
-        cardBorder: 'border-slate-200/80',
+        cardBorder: 'border-slate-200/80 dark:border-slate-700/60',
     },
 };
 
@@ -60,19 +60,19 @@ const STATUS_META: Record<
 > = {
     'on-track': {
         label: 'On track',
-        className: 'bg-emerald-100 text-emerald-800 border border-emerald-200',
+        className: 'bg-emerald-100 text-emerald-800 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-900/60',
     },
     'needs-attention': {
         label: 'Needs attention',
-        className: 'bg-rose-100 text-rose-800 border border-rose-200',
+        className: 'bg-rose-100 text-rose-800 border border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-900/60',
     },
     'not-started': {
         label: 'Not started',
-        className: 'bg-amber-100 text-amber-800 border border-amber-200',
+        className: 'bg-amber-100 text-amber-800 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-900/60',
     },
     'no-assigned-work': {
         label: 'No assigned work',
-        className: 'bg-slate-100 text-slate-700 border border-slate-200',
+        className: 'bg-slate-100 text-slate-700 border border-slate-200 dark:bg-slate-800/50 dark:text-slate-300 dark:border-slate-700/60',
     },
 };
 
@@ -176,7 +176,7 @@ function InterventionCategoryCard({
     const actionMeta = getActionMeta(summary);
 
     return (
-        <div className={`rounded-2xl border bg-white p-5 shadow-sm ${meta.cardBorder}`}>
+        <div className={`rounded-2xl border bg-surface-elevated p-5 shadow-sm ${meta.cardBorder}`}>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div className="min-w-0">
                     <div className="flex items-center gap-3">
@@ -302,7 +302,7 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
 
     if (error || !data) {
         return (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-6 dark:bg-red-950/30 dark:border-red-900/50">
                 <p className="text-red-900">Error loading student data: {error}</p>
             </div>
         );
@@ -313,7 +313,7 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
             {/* Engagement Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {/* Current Streak */}
-                <div className="bg-white rounded-lg border border-border p-4">
+                <div className="bg-surface-elevated rounded-lg border border-border p-4">
                     <div className="flex items-center justify-between mb-2">
                         <span className="text-sm text-text-muted">Current Streak</span>
                         <span className="text-2xl">🔥</span>
@@ -327,7 +327,7 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
                 </div>
 
                 {/* Total Points */}
-                <div className="bg-white rounded-lg border border-border p-4">
+                <div className="bg-surface-elevated rounded-lg border border-border p-4">
                     <div className="flex items-center justify-between mb-2">
                         <span className="text-sm text-text-muted">Total Points</span>
                         <span className="text-2xl">⭐</span>
@@ -341,7 +341,7 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
                 </div>
 
                 {/* Activities Completed */}
-                <div className="bg-white rounded-lg border border-border p-4">
+                <div className="bg-surface-elevated rounded-lg border border-border p-4">
                     <div className="flex items-center justify-between mb-2">
                         <span className="text-sm text-text-muted">Completed</span>
                         <span className="text-2xl">✅</span>
@@ -355,7 +355,7 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
                 </div>
 
                 {/* Days Active */}
-                <div className="bg-white rounded-lg border border-border p-4">
+                <div className="bg-surface-elevated rounded-lg border border-border p-4">
                     <div className="flex items-center justify-between mb-2">
                         <span className="text-sm text-text-muted">Days Active</span>
                         <span className="text-2xl">📅</span>
@@ -374,7 +374,7 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
                 {/* Left Column - Favorite Activities & Progress */}
                 <div className="lg:col-span-2 space-y-6">
                     {/* Favorite Activities */}
-                    <div className="bg-white rounded-lg border border-border p-6">
+                    <div className="bg-surface-elevated rounded-lg border border-border p-6">
                         <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
                             <span>❤️</span>
                             Favorite Activities
@@ -416,7 +416,7 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
                     </div>
 
                     {/* Grammar Guide Quiz Results */}
-                    <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+                    <div className="bg-surface-elevated rounded-lg border border-border p-6 shadow-sm">
                         <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
                             <span className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -438,10 +438,10 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
                                         className={`flex items-center justify-between p-4 rounded-xl transition-all border ${
                                             quiz.completed
                                                 ? quiz.score !== null && quiz.score >= 80
-                                                    ? 'bg-emerald-50/50 border-emerald-100 hover:bg-emerald-50'
+                                                    ? 'bg-emerald-50/50 border-emerald-100 hover:bg-emerald-50 dark:bg-emerald-950/25 dark:border-emerald-900/50 dark:hover:bg-emerald-950/40'
                                                     : quiz.score !== null && quiz.score >= 60
-                                                    ? 'bg-amber-50/50 border-amber-100 hover:bg-amber-50'
-                                                    : 'bg-rose-50/50 border-rose-100 hover:bg-rose-50'
+                                                    ? 'bg-amber-50/50 border-amber-100 hover:bg-amber-50 dark:bg-amber-950/25 dark:border-amber-900/50 dark:hover:bg-amber-950/40'
+                                                    : 'bg-rose-50/50 border-rose-100 hover:bg-rose-50 dark:bg-rose-950/25 dark:border-rose-900/50 dark:hover:bg-rose-950/40'
                                                 : 'bg-bg border-border/40'
                                         }`}
                                     >
@@ -479,7 +479,7 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
                                                     </div>
                                                 </div>
                                             ) : (
-                                                <span className="text-xs font-medium text-text-muted bg-white/50 px-2 py-1 rounded border border-border/40">Not Started</span>
+                                                <span className="text-xs font-medium text-text-muted bg-surface-elevated/50 px-2 py-1 rounded border border-border/40">Not Started</span>
                                             )}
                                         </div>
                                     </div>
@@ -489,9 +489,9 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
                     </div>
 
                     {/* Verb Quiz Results */}
-                    <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+                    <div className="bg-surface-elevated rounded-lg border border-border p-6 shadow-sm">
                         <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
-                            <span className="p-2 bg-amber-50 rounded-lg text-amber-600">
+                            <span className="p-2 bg-amber-50 rounded-lg text-amber-600 dark:bg-amber-950/30 dark:text-amber-400">
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                 </svg>
@@ -508,10 +508,10 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
                                         className={`flex items-center justify-between p-3 rounded-lg border ${
                                             quiz.completed
                                                 ? quiz.score !== null && quiz.score >= 80
-                                                    ? 'bg-green-50/50 border-green-100'
+                                                    ? 'bg-green-50/50 border-green-100 dark:bg-green-950/25 dark:border-green-900/50'
                                                     : quiz.score !== null && quiz.score >= 60
-                                                    ? 'bg-yellow-50/50 border-yellow-100'
-                                                    : 'bg-red-50/50 border-red-100'
+                                                    ? 'bg-yellow-50/50 border-yellow-100 dark:bg-yellow-950/25 dark:border-yellow-900/50'
+                                                    : 'bg-red-50/50 border-red-100 dark:bg-red-950/25 dark:border-red-900/50'
                                                 : 'bg-bg border-border/40'
                                         }`}
                                     >
@@ -549,7 +549,7 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
                     </div>
 
                     {/* Progress by Category */}
-                    <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
+                    <div className="bg-surface-elevated rounded-2xl border border-border p-6 shadow-sm">
                         <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
                             <span>📊</span>
                             Category Intervention
@@ -573,7 +573,7 @@ export function StudentDetailView({ studentId }: { studentId: string }) {
 
                 {/* Right Column - Recent Activity Timeline */}
                 <div className="space-y-6">
-                    <div className="bg-white rounded-lg border border-border p-6">
+                    <div className="bg-surface-elevated rounded-lg border border-border p-6">
                         <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
                             <span>⏱️</span>
                             Recent Activity

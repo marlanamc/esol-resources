@@ -13,27 +13,27 @@ interface GroupCardProps {
 
 // Maps each group colorClass to accent colors — all values spelled out for Tailwind JIT
 const COLOR_ACCENTS: Record<string, { bar: string; iconBg: string; iconText: string }> = {
-  'bg-red-50 border-red-300':          { bar: 'bg-red-300',    iconBg: 'bg-red-100',    iconText: 'text-red-800' },
-  'bg-red-50 border-red-400':          { bar: 'bg-red-400',    iconBg: 'bg-red-100',    iconText: 'text-red-800' },
-  'bg-blue-50 border-blue-300':        { bar: 'bg-blue-300',   iconBg: 'bg-blue-100',   iconText: 'text-blue-800' },
-  'bg-blue-50 border-blue-400':        { bar: 'bg-blue-400',   iconBg: 'bg-blue-100',   iconText: 'text-blue-800' },
-  'bg-green-50 border-green-300':      { bar: 'bg-green-300',  iconBg: 'bg-green-100',  iconText: 'text-green-800' },
-  'bg-gray-50 border-gray-300':        { bar: 'bg-gray-300',   iconBg: 'bg-gray-100',   iconText: 'text-gray-700' },
-  'bg-yellow-50 border-yellow-400':    { bar: 'bg-yellow-400', iconBg: 'bg-yellow-100', iconText: 'text-yellow-800' },
-  'bg-amber-50 border-amber-300':      { bar: 'bg-amber-300',  iconBg: 'bg-amber-100',  iconText: 'text-amber-800' },
-  'bg-amber-50 border-amber-400':      { bar: 'bg-amber-400',  iconBg: 'bg-amber-100',  iconText: 'text-amber-800' },
-  'bg-purple-50 border-purple-300':    { bar: 'bg-purple-300', iconBg: 'bg-purple-100', iconText: 'text-purple-800' },
-  'bg-purple-50 border-purple-400':    { bar: 'bg-purple-400', iconBg: 'bg-purple-100', iconText: 'text-purple-800' },
-  'bg-teal-50 border-teal-300':        { bar: 'bg-teal-300',   iconBg: 'bg-teal-100',   iconText: 'text-teal-800' },
-  'bg-teal-50 border-teal-400':        { bar: 'bg-teal-400',   iconBg: 'bg-teal-100',   iconText: 'text-teal-800' },
-  'bg-orange-50 border-orange-300':    { bar: 'bg-orange-300', iconBg: 'bg-orange-100', iconText: 'text-orange-800' },
-  'bg-orange-50 border-orange-400':    { bar: 'bg-orange-400', iconBg: 'bg-orange-100', iconText: 'text-orange-800' },
-  'bg-violet-50 border-violet-300':    { bar: 'bg-violet-300', iconBg: 'bg-violet-100', iconText: 'text-violet-800' },
-  'bg-violet-50 border-violet-400':    { bar: 'bg-violet-400', iconBg: 'bg-violet-100', iconText: 'text-violet-800' },
+  'bg-red-50 border-red-300':          { bar: 'bg-red-300',    iconBg: 'bg-red-100 dark:bg-red-950/40', iconText: 'text-red-800 dark:text-red-300' },
+  'bg-red-50 border-red-400':          { bar: 'bg-red-400',    iconBg: 'bg-red-100 dark:bg-red-950/40', iconText: 'text-red-800 dark:text-red-300' },
+  'bg-blue-50 border-blue-300':        { bar: 'bg-blue-300',   iconBg: 'bg-blue-100 dark:bg-blue-950/40', iconText: 'text-blue-800 dark:text-blue-300' },
+  'bg-blue-50 border-blue-400':        { bar: 'bg-blue-400',   iconBg: 'bg-blue-100 dark:bg-blue-950/40', iconText: 'text-blue-800 dark:text-blue-300' },
+  'bg-green-50 border-green-300':      { bar: 'bg-green-300',  iconBg: 'bg-green-100 dark:bg-green-950/40', iconText: 'text-green-800 dark:text-green-300' },
+  'bg-gray-50 border-gray-300':        { bar: 'bg-gray-300',   iconBg: 'bg-gray-100 dark:bg-gray-950/40', iconText: 'text-gray-700 dark:text-gray-300' },
+  'bg-yellow-50 border-yellow-400':    { bar: 'bg-yellow-400', iconBg: 'bg-yellow-100 dark:bg-yellow-950/40', iconText: 'text-yellow-800 dark:text-yellow-300' },
+  'bg-amber-50 border-amber-300':      { bar: 'bg-amber-300',  iconBg: 'bg-amber-100 dark:bg-amber-950/40', iconText: 'text-amber-800 dark:text-amber-300' },
+  'bg-amber-50 border-amber-400':      { bar: 'bg-amber-400',  iconBg: 'bg-amber-100 dark:bg-amber-950/40', iconText: 'text-amber-800 dark:text-amber-300' },
+  'bg-purple-50 border-purple-300':    { bar: 'bg-purple-300', iconBg: 'bg-purple-100 dark:bg-purple-950/40', iconText: 'text-purple-800 dark:text-purple-300' },
+  'bg-purple-50 border-purple-400':    { bar: 'bg-purple-400', iconBg: 'bg-purple-100 dark:bg-purple-950/40', iconText: 'text-purple-800 dark:text-purple-300' },
+  'bg-teal-50 border-teal-300':        { bar: 'bg-teal-300',   iconBg: 'bg-teal-100 dark:bg-teal-950/40', iconText: 'text-teal-800 dark:text-teal-300' },
+  'bg-teal-50 border-teal-400':        { bar: 'bg-teal-400',   iconBg: 'bg-teal-100 dark:bg-teal-950/40', iconText: 'text-teal-800 dark:text-teal-300' },
+  'bg-orange-50 border-orange-300':    { bar: 'bg-orange-300', iconBg: 'bg-orange-100 dark:bg-orange-950/40', iconText: 'text-orange-800 dark:text-orange-300' },
+  'bg-orange-50 border-orange-400':    { bar: 'bg-orange-400', iconBg: 'bg-orange-100 dark:bg-orange-950/40', iconText: 'text-orange-800 dark:text-orange-300' },
+  'bg-violet-50 border-violet-300':    { bar: 'bg-violet-300', iconBg: 'bg-violet-100 dark:bg-violet-950/40', iconText: 'text-violet-800 dark:text-violet-300' },
+  'bg-violet-50 border-violet-400':    { bar: 'bg-violet-400', iconBg: 'bg-violet-100 dark:bg-violet-950/40', iconText: 'text-violet-800 dark:text-violet-300' },
   'bg-gradient-to-r from-violet-50 to-red-50 border-violet-400':
-                                        { bar: 'bg-violet-400', iconBg: 'bg-violet-100', iconText: 'text-violet-800' },
+                                        { bar: 'bg-violet-400', iconBg: 'bg-violet-100 dark:bg-violet-950/40', iconText: 'text-violet-800 dark:text-violet-300' },
   'bg-gradient-to-r from-yellow-50 to-amber-50 border-yellow-500':
-                                        { bar: 'bg-yellow-500', iconBg: 'bg-yellow-100', iconText: 'text-yellow-800' },
+                                        { bar: 'bg-yellow-500', iconBg: 'bg-yellow-100 dark:bg-yellow-950/40', iconText: 'text-yellow-800 dark:text-yellow-300' },
 };
 
 const FALLBACK_ACCENT = { bar: 'bg-primary/40', iconBg: 'bg-primary/10', iconText: 'text-primary' };

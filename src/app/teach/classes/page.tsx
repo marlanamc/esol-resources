@@ -103,7 +103,7 @@ export default async function TeachClassesPage({
                             <Link
                                 key={cls.id}
                                 href={`/teach/classes/${cls.id}`}
-                                className="flex items-center gap-4 p-4 rounded-2xl border bg-white transition-shadow hover:shadow-md"
+                                className="flex items-center gap-4 p-4 rounded-2xl border bg-surface-elevated transition-shadow hover:shadow-md"
                                 style={{ borderColor: isActive ? "var(--primary)" : "var(--border-subtle)" }}
                             >
                                 <div className="min-w-0 flex-1">

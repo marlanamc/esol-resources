@@ -78,11 +78,11 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
     };
 
     return (
-        <div className="bg-white dark:bg-[var(--surface-elevated)] shadow sm:rounded-lg">
+        <div className="bg-surface-elevated shadow sm:rounded-lg">
             <div className="px-4 py-5 sm:p-6">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <label htmlFor="name" className="block text-sm font-medium text-text">
                             Class Name *
                         </label>
                         <input
@@ -98,7 +98,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                     </div>
 
                     <div>
-                        <label htmlFor="sourceClassId" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <label htmlFor="sourceClassId" className="block text-sm font-medium text-text">
                             Create As Section Of
                         </label>
                         <select
@@ -132,7 +132,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                     )}
 
                     <div>
-                        <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <label htmlFor="description" className="block text-sm font-medium text-text">
                             Description
                         </label>
                         <textarea
@@ -145,7 +145,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                     </div>
 
                     <div>
-                        <label htmlFor="code" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <label htmlFor="code" className="block text-sm font-medium text-text">
                             Class Code
                         </label>
                         <div className="mt-1 flex gap-2">

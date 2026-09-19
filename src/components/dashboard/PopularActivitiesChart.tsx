@@ -35,10 +35,10 @@ function SkeletonActivitiesChart() {
       {[1, 2, 3, 4, 5].map((i) => (
         <div key={i} className="space-y-2">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded bg-gray-200 animate-pulse" />
-            <div className="h-4 bg-gray-200 rounded animate-pulse flex-1" />
+            <div className="w-6 h-6 rounded bg-surface-elevated animate-pulse" />
+            <div className="h-4 bg-surface-elevated rounded animate-pulse flex-1" />
           </div>
-          <div className="h-3 bg-gray-200 rounded animate-pulse w-full" />
+          <div className="h-3 bg-surface-elevated rounded animate-pulse w-full" />
         </div>
       ))}
     </div>

@@ -40,7 +40,7 @@ export default async function NewClassPage({
             <header className="border-b border-border pb-5">
                 <div className="space-y-2">
                     <BackButton href="/teach/classes" className="mb-4">Back to Classes</BackButton>
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Create New Class</h1>
+                    <h1 className="text-3xl font-bold text-text">Create New Class</h1>
                 </div>
             </header>
             <section className="max-w-3xl">

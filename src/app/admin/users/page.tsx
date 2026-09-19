@@ -110,7 +110,7 @@ export default async function AdminUsersPage() {
                     <Users className="h-3.5 w-3.5" />
                     Teachers &amp; Admins ({teachers.length})
                 </h2>
-                <div className="rounded-2xl overflow-hidden border bg-white" style={{ borderColor: "rgba(0,0,0,0.08)" }}>
+                <div className="rounded-2xl overflow-hidden border bg-surface-elevated" style={{ borderColor: "var(--border-subtle)" }}>
                     <table className="w-full min-w-[600px]">
                         <thead>
                             <tr style={{ background: "#f8f9fc", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
@@ -159,7 +159,7 @@ export default async function AdminUsersPage() {
                     <KeyRound className="h-3.5 w-3.5" />
                     Password Reset
                 </h2>
-                <div className="rounded-2xl border p-5 bg-white" style={{ borderColor: "rgba(0,0,0,0.08)" }}>
+                <div className="rounded-2xl border p-5 bg-surface-elevated" style={{ borderColor: "var(--border-subtle)" }}>
                     {allStudents.length === 0 ? (
                         <p className="text-sm text-text-muted text-center py-4">No enrolled students found.</p>
                     ) : (

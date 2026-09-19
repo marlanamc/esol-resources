@@ -521,7 +521,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
         }
         return (
             <div className="max-w-4xl mx-auto p-8 text-center">
-                <p className="text-gray-500">No vocabulary pairs to match.</p>
+                <p className="text-text-muted">No vocabulary pairs to match.</p>
             </div>
         );
     }
@@ -529,7 +529,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
     if (rounds.length === 0 || !currentRound) {
         return (
             <div className="max-w-6xl mx-auto p-8 text-center">
-                <p className="text-gray-500">
+                <p className="text-text-muted">
                     No countable/uncountable words available.
                 </p>
             </div>

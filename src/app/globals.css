@@ -4712,9 +4712,34 @@ button.vocab-match-word-btn {
 .workspace {
     --workspace-ink: #304d65;
     --workspace-muted: #68665f;
+    --workspace-active-bg: #e5eaf0;
+    --workspace-active-fg: #304d65;
+    --workspace-brand-bg: #345476;
+    --workspace-tabs-active: #345476;
+    --workspace-focus-ring: #345476;
+    --workspace-btn-primary-bg: #345476;
+    --workspace-btn-primary-hover: #28435f;
     min-height: 100dvh;
+    color-scheme: light dark;
     background: var(--bg, #faf8f1);
     color: var(--text, #292d32);
+}
+
+/* Workspace dark mode: remap the light chrome tokens onto the dark theme palette. */
+.dark .workspace,
+[data-theme="dark"] .workspace {
+    --workspace-ink: var(--text-color);
+    --workspace-muted: var(--text-color-muted);
+    --workspace-active-bg: rgba(127, 179, 213, 0.15);
+    --workspace-active-fg: var(--primary-color-light);
+    --workspace-brand-bg: var(--primary-color-dark);
+    --workspace-brand-fg: var(--text-color);
+    --workspace-tabs-active: var(--primary-color-light);
+    --workspace-focus-ring: var(--primary-color-light);
+    --workspace-btn-primary-bg: var(--primary-color-dark);
+    --workspace-btn-primary-fg: var(--text-color);
+    --workspace-btn-primary-hover: var(--primary-color);
+    color-scheme: dark;
 }
 .workspace-sidebar {
     display: none;
@@ -4770,8 +4795,8 @@ button.vocab-match-word-btn {
     margin-top: 4px;
 }
 .workspace-brand-mark {
-    background: #345476;
-    color: white;
+    background: var(--workspace-brand-bg);
+    color: var(--workspace-brand-fg, #fff);
     padding: 10px;
     border-radius: 12px;
 }
@@ -4791,8 +4816,8 @@ button.vocab-match-word-btn {
 }
 .workspace-nav-link.is-active,
 .workspace-nav-link[aria-current="page"] {
-    color: #304d65;
-    background: #e5eaf0;
+    color: var(--workspace-active-fg);
+    background: var(--workspace-active-bg);
 }
 .workspace-bottom-nav {
     position: fixed;
@@ -4818,8 +4843,8 @@ button.vocab-match-word-btn {
     color: var(--workspace-muted);
 }
 .workspace-bottom-nav [aria-current="page"] {
-    color: #304d65;
-    background: #e5eaf0;
+    color: var(--workspace-active-fg);
+    background: var(--workspace-active-bg);
 }
 .workspace-menu {
     margin: auto auto 0;
@@ -4850,8 +4875,8 @@ button.vocab-match-word-btn {
     color: var(--workspace-muted);
 }
 .workspace-tabs [aria-current="page"] {
-    color: #345476;
-    border-color: #345476;
+    color: var(--workspace-tabs-active);
+    border-color: var(--workspace-tabs-active);
 }
 .workspace-button {
     display: inline-flex;
@@ -4871,12 +4896,12 @@ button.vocab-match-word-btn {
     background: var(--surface-subtle, #eeece5);
 }
 .workspace-button-primary {
-    background: #345476;
-    color: white;
-    border-color: #345476;
+    background: var(--workspace-btn-primary-bg);
+    color: var(--workspace-btn-primary-fg, #fff);
+    border-color: var(--workspace-btn-primary-bg);
 }
 .workspace-button-primary:hover {
-    background: #28435f;
+    background: var(--workspace-btn-primary-hover);
 }
 .workspace-icon-button {
     display: inline-flex;
@@ -4897,7 +4922,7 @@ button.vocab-match-word-btn {
     border-radius: 12px;
 }
 .workspace :where(a, button, input, select, textarea, summary):focus-visible {
-    outline: 2px solid #345476;
+    outline: 2px solid var(--workspace-focus-ring);
     outline-offset: 3px;
 }
 .workspace

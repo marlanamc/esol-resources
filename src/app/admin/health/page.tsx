@@ -194,8 +194,8 @@ export default async function AdminHealthPage() {
                     </h2>
                 </div>
                 <div
-                    className="rounded-2xl border bg-white p-5 space-y-3"
-                    style={{ borderColor: "rgba(0,0,0,0.08)" }}
+                    className="rounded-2xl border bg-surface-elevated p-5 space-y-3"
+                    style={{ borderColor: "var(--border-subtle)" }}
                 >
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-medium" style={{ color: "#1e2640" }}>
@@ -246,8 +246,8 @@ export default async function AdminHealthPage() {
                     </span>
                 </div>
                 <div
-                    className="rounded-2xl overflow-hidden border bg-white"
-                    style={{ borderColor: "rgba(0,0,0,0.08)" }}
+                    className="rounded-2xl overflow-hidden border bg-surface-elevated"
+                    style={{ borderColor: "var(--border-subtle)" }}
                 >
                     <div className="overflow-x-auto">
                         <table className="w-full min-w-[520px]">

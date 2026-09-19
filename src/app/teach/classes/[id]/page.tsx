@@ -104,21 +104,21 @@ export default async function TeachClassDetailPage({ params }: Props) {
 
             {/* Stat chips */}
             <div className="flex flex-wrap gap-3">
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full border bg-white text-sm" style={{ borderColor: "var(--border-subtle)" }}>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full border bg-surface-elevated text-sm" style={{ borderColor: "var(--border-subtle)" }}>
                     <Users className="h-4 w-4" style={{ color: "#4a8ca0" }} />
                     <span className="font-bold text-text">{cls.enrollments.length}</span>
                     <span className="text-text-muted">student{cls.enrollments.length !== 1 ? "s" : ""}</span>
                 </div>
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full border bg-white text-sm" style={{ borderColor: "var(--border-subtle)" }}>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full border bg-surface-elevated text-sm" style={{ borderColor: "var(--border-subtle)" }}>
                     <BookOpen className="h-4 w-4" style={{ color: "#b05740" }} />
                     <span className="font-bold text-text">{cls.assignments.length}</span>
                     <span className="text-text-muted">assignment{cls.assignments.length !== 1 ? "s" : ""}</span>
                 </div>
                 {attentionCount > 0 && (
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-full border text-sm" style={{ borderColor: "#f9a8d4", background: "#fff1f5" }}>
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-full border text-sm" style={{ borderColor: "color-mix(in srgb, var(--error-color) 40%, transparent)", background: "color-mix(in srgb, var(--error-color) 12%, var(--surface-elevated))" }}>
                         <AlertCircle className="h-4 w-4 text-warning" />
                         <span className="font-bold text-warning">{attentionCount}</span>
-                        <span style={{ color: "#be185d" }}>silent 7+ days</span>
+                        <span style={{ color: "var(--error-color)" }}>silent 7+ days</span>
                     </div>
                 )}
             </div>
@@ -135,12 +135,12 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                 No students yet. Share code <strong className="text-text font-mono">{cls.code}</strong> to enroll students.
                             </div>
                         ) : (
-                            <div className="rounded-xl border bg-white overflow-hidden" style={{ borderColor: "var(--border-subtle)" }}>
+                            <div className="rounded-xl border bg-surface-elevated overflow-hidden" style={{ borderColor: "var(--border-subtle)" }}>
                                 <table className="w-full">
                                     <thead>
-                                        <tr style={{ background: "#f8f9fc", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+                                        <tr style={{ background: "var(--surface-subtle)", borderBottom: "1px solid var(--border-subtle)" }}>
                                             {["Name", "Username", "Streak", "Pts this wk", "Last active"].map((h) => (
-                                                <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "#94a3b8" }}>
+                                                <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--text-color-muted)" }}>
                                                     {h}
                                                 </th>
                                             ))}
@@ -150,7 +150,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                         {cls.enrollments.map((e) => {
                                             const silent = !e.student.lastActivityDate || e.student.lastActivityDate.getTime() < cutoff();
                                             return (
-                                                <tr key={e.id} style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }}>
+                                                <tr key={e.id} style={{ borderBottom: "1px solid var(--border-subtle)" }}>
                                                     <td className="py-3 px-4">
                                                         <Link
                                                             href={`/teach/students/${e.student.id}`}
@@ -168,7 +168,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                                     <td className="py-3 px-4 text-sm font-semibold" style={{ color: "var(--primary)" }}>
                                                         {e.student.weeklyPoints > 0 ? `${e.student.weeklyPoints} pts` : "—"}
                                                     </td>
-                                                    <td className="py-3 px-4 text-xs" style={{ color: silent ? "#be185d" : "#94a3b8" }}>
+                                                    <td className="py-3 px-4 text-xs" style={{ color: silent ? "var(--error-color)" : "var(--text-color-muted)" }}>
                                                         {e.student.lastActivityDate
                                                             ? `${daysAgo(e.student.lastActivityDate)}d ago`
                                                             : "Never"}
@@ -203,7 +203,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                         ) : (
                             <div className="space-y-2">
                                 {cls.assignments.map((a) => (
-                                    <div key={a.id} className="rounded-xl border bg-white px-4 py-3 flex items-start gap-4" style={{ borderColor: "var(--border-subtle)" }}>
+                                    <div key={a.id} className="rounded-xl border bg-surface-elevated px-4 py-3 flex items-start gap-4" style={{ borderColor: "var(--border-subtle)" }}>
                                         <div className="flex-1 min-w-0">
                                             <p className="text-sm font-semibold text-text truncate">
                                                 {a.title || a.activity.title}
@@ -261,7 +261,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                 {/* Right rail */}
                 <div className="space-y-4">
                     {/* Announcement */}
-                    <div className="rounded-xl border bg-white px-4 py-4" style={{ borderColor: "var(--border-subtle)" }}>
+                    <div className="rounded-xl border bg-surface-elevated px-4 py-4" style={{ borderColor: "var(--border-subtle)" }}>
                         <div className="flex items-center gap-2 mb-3">
                             <Megaphone className="h-4 w-4 shrink-0" style={{ color: "var(--primary)" }} />
                             <p className="text-sm font-semibold text-text">Announcement</p>
@@ -270,7 +270,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                     </div>
 
                     {/* Quick actions */}
-                    <div className="rounded-xl border bg-white px-4 py-4 space-y-2" style={{ borderColor: "var(--border-subtle)" }}>
+                    <div className="rounded-xl border bg-surface-elevated px-4 py-4 space-y-2" style={{ borderColor: "var(--border-subtle)" }}>
                         <p className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">Actions</p>
                         <Link
                             href={`/teach/classes/${id}/assignments/new`}

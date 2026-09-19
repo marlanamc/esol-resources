@@ -204,8 +204,8 @@ export default async function AdminDiagnosticsPage({
             </div>
 
             <div
-                className="rounded-2xl border bg-white p-5"
-                style={{ borderColor: "rgba(0,0,0,0.08)" }}
+                className="rounded-2xl border bg-surface-elevated p-5"
+                style={{ borderColor: "var(--border-subtle)" }}
             >
                 <h2 className="mb-1 text-sm font-semibold">Choose a report</h2>
                 <p className="mb-4 text-xs text-[#8b8174]">
@@ -222,8 +222,8 @@ export default async function AdminDiagnosticsPage({
 
             {hasReport && classData && activityData ? (
                 <div
-                    className="rounded-2xl border bg-white p-5"
-                    style={{ borderColor: "rgba(0,0,0,0.08)" }}
+                    className="rounded-2xl border bg-surface-elevated p-5"
+                    style={{ borderColor: "var(--border-subtle)" }}
                 >
                     <div className="mb-4 flex items-center gap-3">
                         <div
@@ -251,8 +251,8 @@ export default async function AdminDiagnosticsPage({
                 <div className="space-y-4">
                     <div className="grid gap-3 sm:grid-cols-3">
                         <div
-                            className="rounded-xl border bg-white p-4"
-                            style={{ borderColor: "rgba(0,0,0,0.08)" }}
+                            className="rounded-xl border bg-surface-elevated p-4"
+                            style={{ borderColor: "var(--border-subtle)" }}
                         >
                             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#8b8174]">
                                 <Users className="h-3.5 w-3.5" />
@@ -262,8 +262,8 @@ export default async function AdminDiagnosticsPage({
                             <p className="text-xs text-[#94a3b8]">with active enrollments</p>
                         </div>
                         <div
-                            className="rounded-xl border bg-white p-4"
-                            style={{ borderColor: "rgba(0,0,0,0.08)" }}
+                            className="rounded-xl border bg-surface-elevated p-4"
+                            style={{ borderColor: "var(--border-subtle)" }}
                         >
                             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#8b8174]">
                                 <BookOpen className="h-3.5 w-3.5" />
@@ -273,8 +273,8 @@ export default async function AdminDiagnosticsPage({
                             <p className="text-xs text-[#94a3b8]">released grammar guides</p>
                         </div>
                         <div
-                            className="rounded-xl border bg-white p-4"
-                            style={{ borderColor: "rgba(0,0,0,0.08)" }}
+                            className="rounded-xl border bg-surface-elevated p-4"
+                            style={{ borderColor: "var(--border-subtle)" }}
                         >
                             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#8b8174]">
                                 <BarChart3 className="h-3.5 w-3.5" />
@@ -287,8 +287,8 @@ export default async function AdminDiagnosticsPage({
 
                     {quickReports.length > 0 ? (
                         <div
-                            className="rounded-2xl border bg-white p-5"
-                            style={{ borderColor: "rgba(0,0,0,0.08)" }}
+                            className="rounded-2xl border bg-surface-elevated p-5"
+                            style={{ borderColor: "var(--border-subtle)" }}
                         >
                             <h2 className="mb-1 text-sm font-semibold">Recent reports with data</h2>
                             <p className="mb-4 text-xs text-[#8b8174]">
@@ -300,7 +300,7 @@ export default async function AdminDiagnosticsPage({
                                         key={`${report.classId}-${report.activityId}`}
                                         href={`/admin/diagnostics?classId=${report.classId}&activityId=${report.activityId}`}
                                         className="flex flex-wrap items-center justify-between gap-3 rounded-xl border px-4 py-3 transition-colors hover:bg-[#faf8f4]"
-                                        style={{ borderColor: "rgba(0,0,0,0.08)" }}
+                                        style={{ borderColor: "var(--border-subtle)" }}
                                     >
                                         <div>
                                             <p className="text-sm font-semibold">
@@ -341,8 +341,8 @@ export default async function AdminDiagnosticsPage({
                         </div>
                     ) : (
                         <div
-                            className="rounded-xl border bg-white px-5 py-8 text-center"
-                            style={{ borderColor: "rgba(0,0,0,0.08)" }}
+                            className="rounded-xl border bg-surface-elevated px-5 py-8 text-center"
+                            style={{ borderColor: "var(--border-subtle)" }}
                         >
                             <BarChart3 className="mx-auto mb-3 h-8 w-8 text-[#cbd5e1]" />
                             <p className="text-sm font-semibold text-[#475569]">No skill data yet</p>
@@ -369,8 +369,8 @@ export default async function AdminDiagnosticsPage({
             )}
 
             <div
-                className="rounded-2xl border bg-white p-5"
-                style={{ borderColor: "rgba(0,0,0,0.08)" }}
+                className="rounded-2xl border bg-surface-elevated p-5"
+                style={{ borderColor: "var(--border-subtle)" }}
             >
                 <h3 className="mb-3 text-sm font-semibold">How to use this page</h3>
                 <ol className="space-y-2 text-sm text-[#64748b] list-decimal list-inside">

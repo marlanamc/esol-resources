@@ -52,7 +52,7 @@ export default async function NewAssignmentPage({ params }: Props) {
             <header className="border-b border-border pb-5">
                 <div className="space-y-2">
                     <BackButton href={`/teach/classes/${id}`} className="mb-4">Back to Class</BackButton>
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Create Assignment</h1>
+                    <h1 className="text-3xl font-bold text-text">Create Assignment</h1>
                     <p className="text-gray-600 dark:text-gray-400 mt-1">Class: {classItem.name}</p>
                 </div>
             </header>

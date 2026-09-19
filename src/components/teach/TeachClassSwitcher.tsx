@@ -40,8 +40,8 @@ export function TeachClassSwitcher({ classes, selectedClassId }: Props) {
                     router.replace(basePath);
                     router.refresh();
                 }}
-                className="rounded border bg-white px-3 py-2 text-sm font-bold text-[#345476] outline-none transition-colors focus:border-[#b05740] focus:ring-2 focus:ring-[#b05740]/20"
-                style={{ borderColor: "#bdb7af" }}
+                className="rounded border bg-surface-elevated px-3 py-2 text-sm font-bold text-primary outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+                style={{ borderColor: "var(--border-subtle)" }}
             >
                 {classes.map((cls) => (
                     <option key={cls.id} value={cls.id}>

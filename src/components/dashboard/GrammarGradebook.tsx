@@ -75,14 +75,16 @@ export default function GrammarGradebook({
 
     const getScoreColor = (score: number | undefined) => {
         if (score === undefined) return "text-text-muted/30";
-        if (score >= 80) return "bg-emerald-50 text-emerald-700 font-bold border-emerald-100";
-        if (score >= 60) return "bg-amber-50 text-amber-700 font-bold border-amber-100";
-        return "bg-rose-50 text-rose-700 font-bold border-rose-100";
+        if (score >= 80)
+            return "bg-emerald-50 text-emerald-700 font-bold border-emerald-100 dark:bg-emerald-950/30 dark:text-emerald-300 dark:border-emerald-900/50";
+        if (score >= 60)
+            return "bg-amber-50 text-amber-700 font-bold border-amber-100 dark:bg-amber-950/30 dark:text-amber-300 dark:border-amber-900/50";
+        return "bg-rose-50 text-rose-700 font-bold border-rose-100 dark:bg-rose-950/30 dark:text-rose-300 dark:border-rose-900/50";
     };
 
     return (
         <div className="space-y-6">
-            <div className="bg-white p-4 rounded-xl border border-border/40 shadow-sm">
+            <div className="bg-surface-elevated p-4 rounded-xl border border-border/40 shadow-sm">
                 <div className="flex flex-col sm:flex-row gap-4">
                     <input
                         type="text"
@@ -97,7 +99,7 @@ export default function GrammarGradebook({
                             onChange={(e) =>
                                 onClassChange(e.target.value || null)
                             }
-                            className="px-4 py-2 rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                            className="px-4 py-2 rounded-lg border border-border bg-surface-elevated focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
                         >
                             <option value="">All Classes</option>
                             {classes.map((c) => (
@@ -111,7 +113,7 @@ export default function GrammarGradebook({
                         <select
                             value={pagination.pageSize}
                             onChange={(e) => onPageSizeChange(Number(e.target.value))}
-                            className="px-4 py-2 rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                            className="px-4 py-2 rounded-lg border border-border bg-surface-elevated focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
                         >
                             <option value={25}>25 / page</option>
                             <option value={50}>50 / page</option>
@@ -121,7 +123,7 @@ export default function GrammarGradebook({
                 </div>
             </div>
 
-            <div className="bg-white rounded-2xl border border-border/40 shadow-xl overflow-hidden">
+            <div className="bg-surface-elevated rounded-2xl border border-border/40 shadow-xl overflow-hidden">
                 <div className="overflow-x-auto" role="region" aria-label="Gradebook scores, scroll horizontally for more activities" tabIndex={0}>
                     <table className="w-full border-collapse">
                         <thead>
@@ -163,7 +165,7 @@ export default function GrammarGradebook({
                             ) : (
                                 filteredStudents.map((student) => (
                                     <tr key={student.id} className="hover:bg-bg-light/30 transition-colors">
-                                        <td className="sticky left-0 z-10 bg-white hover:bg-bg-light/30 transition-colors px-6 py-4 border-r border-border/40 shadow-[2px_0_5px_rgba(0,0,0,0.02)]">
+                                        <td className="sticky left-0 z-10 bg-surface-elevated hover:bg-surface-subtle/30 transition-colors px-6 py-4 border-r border-border/40 shadow-[2px_0_5px_rgba(0,0,0,0.02)]">
                                             <Link
                                                 href={`/teach/students/${student.id}`}
                                                 className="block group"
@@ -201,27 +203,27 @@ export default function GrammarGradebook({
                 </div>
             </div>
 
-            <div className="flex flex-wrap gap-4 text-xs text-text-muted bg-white p-4 rounded-xl border border-border/40">
+            <div className="flex flex-wrap gap-4 text-xs text-text-muted bg-surface-elevated p-4 rounded-xl border border-border/40">
                 <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded bg-emerald-100 border border-emerald-200"></div>
+                    <div className="w-3 h-3 rounded bg-emerald-100 border border-emerald-200 dark:bg-emerald-950/40 dark:border-emerald-900/60"></div>
                     <span>Mastered (80%+)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded bg-amber-100 border border-amber-200"></div>
+                    <div className="w-3 h-3 rounded bg-amber-100 border border-amber-200 dark:bg-amber-950/40 dark:border-amber-900/60"></div>
                     <span>Progressing (60-79%)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded bg-rose-100 border border-rose-200"></div>
+                    <div className="w-3 h-3 rounded bg-rose-100 border border-rose-200 dark:bg-rose-950/40 dark:border-rose-900/60"></div>
                     <span>Review Needed (&lt;60%)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded bg-gray-50 border border-gray-200"></div>
+                    <div className="w-3 h-3 rounded bg-surface-subtle border border-border"></div>
                     <span>Not Attempted</span>
                 </div>
             </div>
 
             {pagination && onPageChange && (
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white p-4 rounded-xl border border-border/40">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-surface-elevated p-4 rounded-xl border border-border/40">
                     <p className="text-sm text-text-muted">
                         Showing page {pagination.page} of {pagination.totalPages} ({pagination.total} students)
                     </p>

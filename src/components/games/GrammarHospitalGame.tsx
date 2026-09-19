@@ -353,7 +353,7 @@ export default function GrammarHospitalGame({ activityId, content }: Props) {
 
     if (totalCases === 0) {
         return (
-            <div className="p-6 text-gray-600 bg-amber-50 border border-amber-200 rounded-lg">
+            <div className="p-6 text-text-muted bg-amber-50 dark:bg-amber-950/25 border border-amber-200 dark:border-amber-900/50 rounded-lg">
                 No patients have been added to this Grammar Hospital yet.
             </div>
         );
@@ -682,7 +682,7 @@ function RepairStep({
                 <div className="space-y-4">
                     <div className="min-h-[72px] rounded-xl border-2 border-dashed border-primary/40 bg-amber-50/40 dark:bg-[#3a2820]/40 p-3 flex flex-wrap gap-2 items-start">
                         {repairTiles.length === 0 ? (
-                            <p className="text-sm text-gray-400 self-center mx-auto">Tap words below</p>
+                            <p className="text-sm text-text-muted self-center mx-auto">Tap words below</p>
                         ) : (
                             repairTiles.map((t, i) => (
                                 <button
@@ -708,7 +708,7 @@ function RepairStep({
                                 </button>
                             ))}
                         {bankTiles.length === 0 && (
-                            <p className="text-xs text-gray-400">Tap a word above to change it.</p>
+                            <p className="text-xs text-text-muted">Tap a word above to change it.</p>
                         )}
                     </div>
                 </div>
