@@ -104,9 +104,24 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
   // Loading state - uses CSS animation to avoid main thread work
   if (state.loading) {
     return (
-      <div className="h-full min-h-full bg-bg flex flex-col">
+      <div className="fixed inset-0 bg-bg flex flex-col">
         {courseMapBanner && (
-          <div className="mx-auto w-full max-w-5xl px-4 pt-6 sm:px-6 sm:pt-10">{courseMapBanner}</div>
+          <div className="mx-auto w-full max-w-5xl px-4 pt-6 sm:px-6 sm:pt-10">
+            {isCourseMapPreset && (
+              <div className="px-3 sm:px-0 pb-3 flex items-center">
+                <button
+                  type="button"
+                  onClick={() => router.push(returnHref)}
+                  aria-label="Back to Course Map"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-sm font-medium text-text hover:bg-bg-light dark:hover:bg-white/5 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                >
+                  <ArrowLeft size={16} className="shrink-0" />
+                  <span>Back to Course Map</span>
+                </button>
+              </div>
+            )}
+            {courseMapBanner}
+          </div>
         )}
         <div className="flex flex-1 items-center justify-center p-6">
           <div className="text-center">
@@ -125,7 +140,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="h-full min-h-full bg-bg flex items-center justify-center p-4"
+        className="fixed inset-0 bg-bg flex items-center justify-center p-4"
       >
         <div className="max-w-md w-full p-8 bg-white dark:bg-[#162b3d] rounded-2xl border border-border shadow-lg text-center">
           <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-error/10 flex items-center justify-center">
@@ -147,12 +162,12 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
   return (
     <div
       ref={contentScrollRef}
-      className="relative h-full min-h-full overflow-y-auto overscroll-contain bg-bg touch-manipulation"
+      className="fixed inset-0 overflow-y-auto overscroll-contain bg-bg touch-manipulation"
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
       {/* Grain texture */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.04] z-0"
+        className="fixed inset-0 pointer-events-none opacity-[0.04] z-0"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23888' fill-opacity='0.4'%3E%3Ccircle cx='5' cy='5' r='1'/%3E%3Ccircle cx='25' cy='10' r='0.8'/%3E%3Ccircle cx='45' cy='3' r='1'/%3E%3Ccircle cx='15' cy='25' r='0.6'/%3E%3Ccircle cx='35' cy='20' r='1'/%3E%3Ccircle cx='55' cy='28' r='0.7'/%3E%3C/g%3E%3C/svg%3E")`,
           backgroundSize: '60px 60px',
@@ -162,44 +177,48 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className={`relative z-10 mx-auto flex w-full flex-col ${
-          // A definite height to distribute. The page wrapper above collapses
-          // to content height, so `min-h-full` resolves to 100% of nothing --
-          // every phase needs the viewport-relative unit, not just exercise,
-          // or a tall intro/selection/results screen can outgrow its scroll
-          // container and hide the CTA below the fold with no way to reach it.
+        className={`relative z-10 mx-auto flex min-h-full w-full flex-col ${
           state.phase === 'exercise'
-            ? 'min-h-[92svh] w-full max-w-none px-0 py-2 sm:max-w-5xl sm:px-6 sm:py-10'
-            : 'min-h-[92svh] max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
+            ? 'w-full max-w-none px-0 py-2 sm:max-w-5xl sm:px-6 sm:py-10'
+            : 'max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
         }`}
       >
+        {/* Back navigation in the upper left */}
+        {state.phase !== 'exercise' && (
+          <div className="px-3 sm:px-0 pb-3 flex items-center">
+            {isCourseMapPreset ? (
+              <button
+                type="button"
+                onClick={() => router.push(returnHref)}
+                aria-label="Back to Course Map"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-sm font-medium text-text hover:bg-bg-light dark:hover:bg-white/5 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+              >
+                <ArrowLeft size={16} className="shrink-0" />
+                <span>Back to Course Map</span>
+              </button>
+            ) : state.phase === 'selection' ? (
+              <button
+                type="button"
+                onClick={() => router.push(returnHref)}
+                aria-label="Go back"
+                className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text transition-colors shadow-sm"
+              >
+                <ArrowLeft size={20} />
+              </button>
+            ) : state.phase === 'intro' ? (
+              <button
+                type="button"
+                onClick={quitGame}
+                aria-label="Go back"
+                className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text transition-colors shadow-sm"
+              >
+                <ArrowLeft size={20} />
+              </button>
+            ) : null}
+          </div>
+        )}
+
         {state.phase === 'exercise' ? null : renderCourseMapBanner(true)}
-
-        {/* Back button — selection */}
-        {state.phase === 'selection' && !isCourseMapPreset && (
-          <div className="px-3 sm:px-0 pb-2">
-            <button
-              onClick={() => router.push(returnHref)}
-              aria-label="Go back"
-              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text transition-colors"
-            >
-              <ArrowLeft size={20} />
-            </button>
-          </div>
-        )}
-
-        {/* Back button — intro (desktop only) */}
-        {state.phase === 'intro' && !isCourseMapPreset && (
-          <div className="hidden sm:block px-3 sm:px-0 pb-2">
-            <button
-              onClick={quitGame}
-              aria-label="Go back"
-              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text transition-colors"
-            >
-              <ArrowLeft size={20} />
-            </button>
-          </div>
-        )}
 
         <AnimatePresence mode="wait">
           {state.phase === 'selection' && (
