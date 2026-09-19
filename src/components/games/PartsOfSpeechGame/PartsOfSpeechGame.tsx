@@ -162,13 +162,17 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className={`relative z-10 mx-auto flex min-h-full w-full flex-col ${
+        className={`relative z-10 mx-auto flex w-full flex-col ${
           state.phase === 'exercise'
-            ? 'w-full max-w-none px-0 py-2 sm:max-w-5xl sm:px-6 sm:py-10'
-            : 'max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
+            // A definite height to distribute. The page wrapper above collapses
+            // to content height, so `min-h-full` resolves to 100% of nothing --
+            // and it is the same property, so leaving both on would just be a
+            // coin toss decided by stylesheet order rather than class order.
+            ? 'min-h-[92svh] w-full max-w-none px-0 py-2 sm:max-w-5xl sm:px-6 sm:py-10'
+            : 'min-h-full max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
         }`}
       >
-        {renderCourseMapBanner(state.phase !== 'exercise')}
+        {state.phase === 'exercise' ? null : renderCourseMapBanner(true)}
 
         {/* Back button — selection */}
         {state.phase === 'selection' && !isCourseMapPreset && (
@@ -248,7 +252,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              className="flex min-h-full flex-col"
+              className="flex min-h-full flex-1 flex-col"
             >
               <ExerciseScreen
                 group={state.selectedGroup}
@@ -257,7 +261,8 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                 roundMode={state.selectedRoundMode}
                 onAnswer={submitAnswer}
                 onBack={returnToGroupIntro}
-                hideRoundBadge={isPinnedRound}
+                minimalChrome={isPinnedRound}
+                titleOverride={isPinnedRound ? courseMapTitle : undefined}
               />
             </motion.div>
           )}

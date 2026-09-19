@@ -196,8 +196,9 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
               transition={{ type: 'spring', stiffness: 320, damping: 26 }}
               className="absolute inset-x-4 h-full rounded-3xl border-2 border-primary/40 bg-white dark:bg-[#1c3a52] shadow-xl flex flex-col items-center justify-center gap-1 cursor-grab active:cursor-grabbing"
             >
-              <span className="text-[11px] uppercase tracking-widest font-bold text-text-muted">Card {index + 1} of {total}</span>
-              <span className="text-2xl sm:text-3xl font-display font-bold text-text">{current.word}</span>
+              {/* No "Card 1 of 6" here -- the dots above already show it, and a
+                  counter on the card competes with the one word it exists to show. */}
+              <span className="text-3xl sm:text-4xl font-display font-bold text-text">{current.word}</span>
             </motion.div>
           )}
         </AnimatePresence>
