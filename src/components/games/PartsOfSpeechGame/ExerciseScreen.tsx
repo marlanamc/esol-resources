@@ -151,9 +151,22 @@ interface ExerciseScreenProps {
   roundMode: POSRoundMode;
   onAnswer: (correct: boolean, exercise: POSExercise) => void;
   onBack: () => void;
+  /**
+   * A Course Map wrapper pinned to one round always shows the same badge, so it
+   * is chrome the learner has to read past rather than information.
+   */
+  hideRoundBadge?: boolean;
 }
 
-export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAnswer, onBack }: ExerciseScreenProps) {
+export function ExerciseScreen({
+  group,
+  exercises,
+  currentIndex,
+  roundMode,
+  onAnswer,
+  onBack,
+  hideRoundBadge = false,
+}: ExerciseScreenProps) {
   const [correctCount, setCorrectCount] = useState(0);
   const [streak, setStreak] = useState(0);
   const [showStreakAnimation, setShowStreakAnimation] = useState(false);
@@ -288,12 +301,13 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
           <div className="flex-1 min-w-0">
             <h2 className="font-display text-sm font-semibold text-text truncate">{group.title}</h2>
             <div className="flex items-center gap-1.5 text-[11px] text-text-muted">
-              <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold ${getRoundBadgeColor(roundMode)}`}>
-                {getRoundLabel(roundMode)}
-              </span>
+              {!hideRoundBadge && (
+                <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold ${getRoundBadgeColor(roundMode)}`}>
+                  {getRoundLabel(roundMode)}
+                </span>
+              )}
+              {/* "N left" only restates Q x/y, and the bar below already shows it. */}
               <span>Q{currentIndex + 1}/{exercises.length}</span>
-              <span className="text-border">·</span>
-              <span>{remaining} left</span>
             </div>
           </div>
           <div className="flex items-center gap-1 flex-shrink-0">
@@ -329,9 +343,11 @@ export function ExerciseScreen({ group, exercises, currentIndex, roundMode, onAn
             <div className="flex-1">
               <h2 className="font-display text-2xl text-text truncate">{group.title}</h2>
               <div className="flex items-center gap-2 mt-1">
-                <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold ${getRoundBadgeColor(roundMode)}`}>
-                  {getRoundLabel(roundMode)}
-                </span>
+                {!hideRoundBadge && (
+                  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold ${getRoundBadgeColor(roundMode)}`}>
+                    {getRoundLabel(roundMode)}
+                  </span>
+                )}
                 <p className="text-sm text-text-muted">Question {currentIndex + 1} of {exercises.length}</p>
               </div>
             </div>

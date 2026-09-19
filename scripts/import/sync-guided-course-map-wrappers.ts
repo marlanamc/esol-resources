@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import type { GrammarHospitalContent } from "@/types/activity";
 import {
+  GRAMMAR_HOSPITAL_FIRST_AID_SETTINGS,
+  GRAMMAR_HOSPITAL_HELPER_REPAIR_SETTINGS,
   numbersThroughTrillionsContent,
   partsOfSpeechDiscoveryContent,
   partsOfSpeechWordSortNounsContent,
@@ -163,11 +165,7 @@ async function main() {
         courseMapPreset: true,
         courseMapTitle: "Grammar Hospital: Helper Verb Repair",
         courseMapDirections: "Fix helper-verb sentences.",
-        defaultSettings: {
-          tier: "beginner",
-          complexity: 2,
-          focuses: ["do-does", "be-vs-do"],
-        },
+        defaultSettings: GRAMMAR_HOSPITAL_HELPER_REPAIR_SETTINGS,
       },
     },
     {
@@ -183,11 +181,7 @@ async function main() {
         courseMapTitle: "Fix the Sentence",
         courseMapDirections: "Five sentences. Find what's wrong, then fix it.",
         roundSize: 5,
-        defaultSettings: {
-          tier: "beginner",
-          complexity: 2,
-          focuses: ["subject-verb-agreement", "be-vs-do"],
-        },
+        defaultSettings: GRAMMAR_HOSPITAL_FIRST_AID_SETTINGS,
       },
     },
   ];

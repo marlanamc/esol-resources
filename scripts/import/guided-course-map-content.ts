@@ -1,4 +1,5 @@
 import type { PartsOfSpeechContent } from "@/types/parts-of-speech";
+import type { DeckFilter } from "@/lib/grammar-hospital/progression";
 
 // Content payloads for the guided Course Map wrapper activities.
 //
@@ -83,4 +84,30 @@ export const numbersThroughTrillionsContent = {
   courseMapTitle: "Numbers Through Trillions",
   courseMapDirections: "Practice big round numbers. The category is already chosen for this level.",
   category: "Round Numbers (1,000 | 5 million | 1 billion)",
+};
+
+// Grammar Hospital deck filters for the Course Map wrappers.
+//
+// The wrappers themselves are assembled in sync-guided-course-map-wrappers.ts
+// by spreading the seeded activity's content, so only these filters are
+// literal -- and they are what decides which cases a learner actually sees.
+// They live here so tests read the same values that ship; a private copy in
+// the test file passes happily while production drifts away from it.
+
+/**
+ * Week 1 / Week 2 extra practice. complexity is a ceiling, not a target:
+ * sampleRound deals across every level in the deck and sorts easiest-first, so
+ * 3 keeps the gentle opening and adds a step up at the end of the round.
+ */
+export const GRAMMAR_HOSPITAL_FIRST_AID_SETTINGS: DeckFilter = {
+  tier: "beginner",
+  complexity: 3,
+  focuses: ["subject-verb-agreement", "be-vs-do"],
+};
+
+/** Week 3: helper-verb choice, do/does against be. */
+export const GRAMMAR_HOSPITAL_HELPER_REPAIR_SETTINGS: DeckFilter = {
+  tier: "beginner",
+  complexity: 2,
+  focuses: ["do-does", "be-vs-do"],
 };

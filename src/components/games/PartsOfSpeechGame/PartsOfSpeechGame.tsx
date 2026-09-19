@@ -41,15 +41,25 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
 
   // Rendered identically across the loading, error, and play states so the guided banner is
   // present on the very first paint — no pop-in / content shift when the game finishes loading.
-  const courseMapBanner = isCourseMapPreset ? (
-    <div className="mb-4 rounded-2xl border border-[var(--tone-vocab-accent,#6a8d73)]/25 bg-[var(--tone-vocab-surface,rgba(106,141,115,0.08))] px-4 py-3">
-      <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
-        Guided Course Map Step
-      </p>
-      <h1 className="mt-1 text-lg font-display font-bold text-text">{courseMapTitle}</h1>
-      <p className="mt-1 text-sm leading-snug text-text-muted">{courseMapDirections}</p>
-    </div>
-  ) : null;
+  const renderCourseMapBanner = (showDirections: boolean) =>
+    isCourseMapPreset ? (
+      <div className="mb-4 rounded-2xl border border-[var(--tone-vocab-accent,#6a8d73)]/25 bg-[var(--tone-vocab-surface,rgba(106,141,115,0.08))] px-4 py-3">
+        <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
+          Guided Course Map Step
+        </p>
+        <h1 className="mt-1 text-lg font-display font-bold text-text">{courseMapTitle}</h1>
+        {/*
+          Directions belong on the way in. Once the learner is playing, the
+          exercise card states the same thing, and a banner repeating it is one
+          more block of text between them and the word they are sorting.
+        */}
+        {showDirections && (
+          <p className="mt-1 text-sm leading-snug text-text-muted">{courseMapDirections}</p>
+        )}
+      </div>
+    ) : null;
+
+  const courseMapBanner = renderCourseMapBanner(true);
 
   const {
     state,
@@ -158,7 +168,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
             : 'max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
         }`}
       >
-        {courseMapBanner}
+        {renderCourseMapBanner(state.phase !== 'exercise')}
 
         {/* Back button — selection */}
         {state.phase === 'selection' && !isCourseMapPreset && (
@@ -247,6 +257,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                 roundMode={state.selectedRoundMode}
                 onAnswer={submitAnswer}
                 onBack={returnToGroupIntro}
+                hideRoundBadge={isPinnedRound}
               />
             </motion.div>
           )}

@@ -6,6 +6,19 @@ import type {
     GrammarHospitalTier,
 } from "@/types/activity";
 
+/**
+ * The tiles a learner actually gets in build mode.
+ *
+ * Every shipped word bank ends with a bare '?' or '.' tile, which made terminal
+ * punctuation a word to place rather than the grammar being taught. Worse, the
+ * Check answer button only enables once the bank is empty, so a forgotten '?'
+ * left the learner tapping a disabled button with nothing explaining why.
+ * Answer matching ignores punctuation, so the tiles can simply go.
+ */
+export function toWordTiles(wordBank: readonly string[]): string[] {
+    return wordBank.filter((tile) => tile.trim() && /[\p{L}\p{N}]/u.test(tile));
+}
+
 /** Teaching order — most common beginner errors first. */
 export const DIAGNOSE_TAG_ORDER: GrammarHospitalErrorTag[] = [
     "wrong-helper",
@@ -127,6 +140,15 @@ export function getInitialCasePhase(
  * same five sentences every time. Returns the whole deck when no size is set or
  * the deck is already small enough.
  */
+/**
+ * Deal a round that climbs.
+ *
+ * A flat random draw from a deck spanning several complexity levels can hand a
+ * learner five of the same difficulty -- five easy ones teach nothing new, five
+ * hard ones stall them on the first case. Dealing round-robin from easiest
+ * upwards spans every level present, so after sortCasesProgressively the round
+ * opens on the gentlest case available and ends on the hardest.
+ */
 export function sampleRound(
     cases: GrammarHospitalCase[],
     roundSize?: number
@@ -135,13 +157,38 @@ export function sampleRound(
         return sortCasesProgressively(cases);
     }
 
-    const pool = [...cases];
-    for (let i = pool.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [pool[i], pool[j]] = [pool[j], pool[i]];
+    const byComplexity = new Map<number, GrammarHospitalCase[]>();
+    for (const caseItem of cases) {
+        const level = caseItem.complexity ?? 3;
+        const bucket = byComplexity.get(level);
+        if (bucket) bucket.push(caseItem);
+        else byComplexity.set(level, [caseItem]);
     }
 
-    return sortCasesProgressively(pool.slice(0, roundSize));
+    const levels = [...byComplexity.keys()].sort((a, b) => a - b);
+    for (const level of levels) {
+        const bucket = byComplexity.get(level)!;
+        for (let i = bucket.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [bucket[i], bucket[j]] = [bucket[j], bucket[i]];
+        }
+    }
+
+    const picked: GrammarHospitalCase[] = [];
+    while (picked.length < roundSize) {
+        let tookOne = false;
+        for (const level of levels) {
+            if (picked.length >= roundSize) break;
+            const next = byComplexity.get(level)!.pop();
+            if (!next) continue;
+            picked.push(next);
+            tookOne = true;
+        }
+        // Every bucket is empty — the caller asked for more than the deck holds.
+        if (!tookOne) break;
+    }
+
+    return sortCasesProgressively(picked);
 }
 
 export interface DeckFilter {

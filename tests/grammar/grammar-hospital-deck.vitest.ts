@@ -2,6 +2,11 @@ import { describe, expect, it } from "vitest";
 import { beginnerCases, cases } from "../../prisma/grammar-hospital-cases";
 import { filterDeck, shouldSkipHelper } from "@/lib/grammar-hospital/progression";
 import { getHelperOptions, resolveCorrectHelper } from "@/lib/grammar-hospital/helpers";
+import { sampleRound, toWordTiles } from "@/lib/grammar-hospital/progression";
+import {
+    GRAMMAR_HOSPITAL_FIRST_AID_SETTINGS,
+    GRAMMAR_HOSPITAL_HELPER_REPAIR_SETTINGS,
+} from "../../scripts/import/guided-course-map-content";
 
 /**
  * Guards the shipped deck, not the engine.
@@ -11,17 +16,11 @@ import { getHelperOptions, resolveCorrectHelper } from "@/lib/grammar-hospital/h
  * whole tier and the learner gets a grab bag instead of the focused round the
  * preset promised — with nothing in the UI to signal it.
  */
-const WEEK_1_FIRST_AID = {
-    tier: "beginner" as const,
-    complexity: 2,
-    focuses: ["subject-verb-agreement", "be-vs-do"] as const,
-};
-
-const HELPER_REPAIR = {
-    tier: "beginner" as const,
-    complexity: 2,
-    focuses: ["do-does", "be-vs-do"] as const,
-};
+// Imported, not restated: a local copy of these filters keeps passing while
+// the shipped wrapper drifts away from it.
+const WEEK_1_FIRST_AID = GRAMMAR_HOSPITAL_FIRST_AID_SETTINGS;
+const HELPER_REPAIR = GRAMMAR_HOSPITAL_HELPER_REPAIR_SETTINGS;
+const FIRST_AID_ROUND_SIZE = 5;
 
 describe("grammar hospital deck", () => {
     it("has unique case ids", () => {
@@ -70,6 +69,42 @@ describe("grammar hospital deck", () => {
         }
     });
 
+    it("gives build mode words to order, never bare punctuation tiles", () => {
+        // A '?' tile is not a word, and leaving it in the bank keeps the Check
+        // answer button disabled with nothing on screen explaining why.
+        for (const c of cases) {
+            if (!c.wordBank) continue;
+            for (const tile of toWordTiles(c.wordBank)) {
+                expect(tile, `case ${c.id} offers "${tile}" as a word tile`).toMatch(/[\p{L}\p{N}]/u);
+            }
+        }
+    });
+
+    it("stays winnable in build mode once punctuation tiles are dropped", () => {
+        // Placing every remaining tile in the right order has to produce an
+        // accepted answer, comparing the way the game does — ignoring
+        // punctuation and case.
+        const normalize = (v: string) =>
+            v
+                .toLowerCase()
+                .replace(/[\u2019\u2018]/g, "'")
+                .replace(/[.,!?;:"]/g, "")
+                .replace(/\s+/g, " ")
+                .trim();
+
+        for (const c of cases) {
+            if (!c.wordBank) continue;
+            const tiles = toWordTiles(c.wordBank);
+            expect(tiles.length, `case ${c.id} has no word tiles left`).toBeGreaterThan(0);
+
+            const accepted = [c.healthy, ...(c.acceptable ?? [])].map((a) =>
+                normalize(a).split(" ").sort().join("|")
+            );
+            const built = tiles.map((t) => normalize(t)).filter(Boolean).sort().join("|");
+            expect(accepted, `case ${c.id} tiles: ${tiles.join(" ")}`).toContain(built);
+        }
+    });
+
     describe("Week 1 First Aid preset", () => {
         const deck = filterDeck(cases, {
             ...WEEK_1_FIRST_AID,
@@ -86,10 +121,34 @@ describe("grammar hospital deck", () => {
             }
         });
 
-        it("stays at beginner tier and gentle complexity", () => {
+        it("stays at beginner tier and inside the preset's ceiling", () => {
             for (const c of deck) {
                 expect(c.tier ?? "beginner").toBe("beginner");
-                expect(c.complexity ?? 3).toBeLessThanOrEqual(2);
+                expect(c.complexity ?? 3).toBeLessThanOrEqual(WEEK_1_FIRST_AID.complexity);
+            }
+        });
+
+        it("still opens on the gentlest cases in the deck", () => {
+            // Raising the ceiling must not cost beginners the easy entry: the
+            // round is sorted easiest-first, so the opener stays at the floor.
+            const floor = Math.min(...deck.map((c) => c.complexity ?? 3));
+            for (let i = 0; i < 20; i += 1) {
+                const round = sampleRound(deck, FIRST_AID_ROUND_SIZE);
+                expect(round[0].complexity ?? 3).toBe(floor);
+            }
+        });
+
+        it("ramps within the round instead of dealing one flat difficulty", () => {
+            const ceiling = Math.max(...deck.map((c) => c.complexity ?? 3));
+            for (let i = 0; i < 20; i += 1) {
+                const round = sampleRound(deck, FIRST_AID_ROUND_SIZE);
+                expect(round).toHaveLength(FIRST_AID_ROUND_SIZE);
+
+                const levels = round.map((c) => c.complexity ?? 3);
+                // Sorted easiest-first, and it actually reaches the hard end.
+                expect([...levels].sort((a, b) => a - b)).toEqual(levels);
+                expect(levels[levels.length - 1]).toBe(ceiling);
+                expect(new Set(levels).size).toBeGreaterThan(1);
             }
         });
 
