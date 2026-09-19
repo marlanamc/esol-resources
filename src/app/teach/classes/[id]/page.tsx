@@ -86,14 +86,14 @@ export default async function TeachClassDetailPage({ params }: Props) {
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
                     <Link
-                        href={`/dashboard/classes/${id}/edit`}
+                        href={`/teach/classes/${id}/edit`}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold border transition-colors hover:bg-[var(--surface-subtle)]"
                         style={{ borderColor: "var(--border-subtle)", color: "var(--text-color)" }}
                     >
                         <Pencil className="h-3.5 w-3.5" /> Edit
                     </Link>
                     <Link
-                        href={`/dashboard/classes/${id}/assignments/new`}
+                        href={`/teach/classes/${id}/assignments/new`}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold text-white"
                         style={{ background: "var(--primary)" }}
                     >
@@ -189,7 +189,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                 Assignments
                             </h2>
                             <Link
-                                href={`/dashboard/classes/${id}/assignments/new`}
+                                href={`/teach/classes/${id}/assignments/new`}
                                 className="text-xs font-semibold"
                                 style={{ color: "var(--primary)" }}
                             >
@@ -236,7 +236,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                                 />
                                             )}
                                             <Link
-                                                href={`/dashboard/classes/${id}/assignments/${a.id}/submissions`}
+                                                href={`/teach/classes/${id}/assignments/${a.id}/submissions`}
                                                 className="text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors hover:bg-[var(--surface-subtle)]"
                                                 style={{ borderColor: "var(--border-subtle)", color: "var(--text-muted)" }}
                                             >
@@ -273,7 +273,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                     <div className="rounded-xl border bg-white px-4 py-4 space-y-2" style={{ borderColor: "var(--border-subtle)" }}>
                         <p className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">Actions</p>
                         <Link
-                            href={`/dashboard/classes/${id}/assignments/new`}
+                            href={`/teach/classes/${id}/assignments/new`}
                             className="flex items-center gap-3 px-3 py-2.5 rounded-lg border text-sm font-semibold transition-colors hover:bg-[var(--surface-subtle)]"
                             style={{ borderColor: "var(--border-subtle)", color: "var(--text-color)" }}
                         >

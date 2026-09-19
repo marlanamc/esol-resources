@@ -64,7 +64,7 @@ export default function CreateAssignmentForm({
                     syncToSectionGroup: supportsSectionSync ? values.syncToSectionGroup : false,
                 },
             });
-            router.push(`/dashboard/classes/${classId}`);
+            router.push(`/teach/classes/${classId}`);
             router.refresh();
         } catch (err) {
             setError("root", {

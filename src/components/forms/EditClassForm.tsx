@@ -62,7 +62,7 @@ export default function EditClassForm({
                     sectionSourceClassId: values.sectionSourceClassId || null,
                 },
             });
-            router.push(`/dashboard/classes/${classId}`);
+            router.push(`/teach/classes/${classId}`);
             router.refresh();
         } catch (err) {
             setError("root", {

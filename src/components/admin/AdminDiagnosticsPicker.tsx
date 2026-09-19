@@ -1,5 +1,6 @@
 "use client";
 
+import { TEACH_CLASS_COOKIE } from "@/lib/teach/active-class-shared";
 import { useRouter } from "next/navigation";
 
 type ClassOption = {
@@ -14,6 +15,7 @@ type GuideOption = {
 };
 
 type Props = {
+    showClassFilter?: boolean;
     classes: ClassOption[];
     guides: GuideOption[];
     selectedClassId?: string;
@@ -23,12 +25,14 @@ type Props = {
 export function AdminDiagnosticsPicker({
     classes,
     guides,
+    showClassFilter = true,
     selectedClassId = "",
     selectedActivityId = "",
 }: Props) {
     const router = useRouter();
 
     const updateSelection = (classId: string, activityId: string) => {
+        if (classId) document.cookie = `${TEACH_CLASS_COOKIE}=${encodeURIComponent(classId)}; path=/; max-age=31536000; samesite=lax`;
         const params = new URLSearchParams();
         if (classId) params.set("classId", classId);
         if (activityId) params.set("activityId", activityId);
@@ -37,8 +41,8 @@ export function AdminDiagnosticsPicker({
     };
 
     return (
-        <div className="grid gap-4 sm:grid-cols-2">
-            <label className="block">
+        <div className={showClassFilter ? "grid gap-4 sm:grid-cols-2" : "max-w-xl"}>
+            {showClassFilter && <label className="block">
                 <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
                     Class
                 </span>
@@ -54,7 +58,7 @@ export function AdminDiagnosticsPicker({
                         </option>
                     ))}
                 </select>
-            </label>
+            </label>}
 
             <label className="block">
                 <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">

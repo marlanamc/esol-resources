@@ -170,6 +170,7 @@ export default async function TeachGradebookPage({
             </div>
 
             <GradebookClient
+                diagnosticsBasePath={admin ? "/admin/diagnostics" : null}
                 students={students}
                 activities={activitiesWithQuizzes}
                 submissions={submissions}

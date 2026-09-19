@@ -57,6 +57,7 @@ interface ClassOption {
 type LearnerType = 'classroom' | 'independent' | 'all';
 
 interface TeacherReportCardProps {
+  compact?: boolean;
   initialData?: ReportData;
   classes?: ClassOption[];
   /** Class picked in the Teaching header; seeds and follows the report scope. */
@@ -83,6 +84,7 @@ function timeAgo(dateString: string): string {
 }
 
 export default function TeacherReportCard({
+  compact = false,
   initialData,
   classes = [],
   activeClassId = null,
@@ -91,6 +93,8 @@ export default function TeacherReportCard({
   classroomCount = 0,
   independentCount = 0,
 }: TeacherReportCardProps) {
+  const [expanded, setExpanded] = useState(false);
+  const [retry, setRetry] = useState(0);
   const [timeframe, setTimeframe] = useState<'daily' | 'weekly'>('weekly');
   const [selectedClassId, setSelectedClassId] = useState<string>(activeClassId || 'all');
   const [learnerType, setLearnerType] = useState<LearnerType>('classroom');
@@ -175,7 +179,7 @@ export default function TeacherReportCard({
     };
 
     fetchData();
-  }, [timeframe, selectedClassId, learnerType]); // Fetch when timeframe, class, or learner type changes
+  }, [timeframe, selectedClassId, learnerType, retry]); // Fetch when timeframe, class, or learner type changes
 
   // Keyboard shortcuts (D for Daily, W for Weekly)
   useEffect(() => {
@@ -211,7 +215,7 @@ export default function TeacherReportCard({
         {/* Title and Timestamp */}
         <div>
           <h2 className="text-xl font-display font-bold text-text mb-1">
-            Class Activity Report
+            {compact ? "Recent class activity" : "Class Activity Report"}
           </h2>
           {lastUpdatedText && (
             <p className="text-xs text-text-muted">
@@ -311,7 +315,7 @@ export default function TeacherReportCard({
           <span>{error}</span>
           {error !== 'Showing cached data' && (
             <button
-              onClick={() => setTimeframe(timeframe)} // Trigger refetch
+              onClick={() => setRetry(value => value + 1)}
               className="ml-auto text-xs underline hover:no-underline"
             >
               Retry
@@ -321,9 +325,9 @@ export default function TeacherReportCard({
       )}
 
       {/* Summary Stats */}
-      <div aria-live="polite">
+      {!compact && <div aria-live="polite">
         <ReportSummaryStats summary={data?.summary} loading={loading} />
-      </div>
+      </div>}
 
       {/* Recent Activity Feed - Primary Section */}
       <div className="mb-6" aria-live="polite">
@@ -331,13 +335,14 @@ export default function TeacherReportCard({
           Recent Activity
         </h3>
         <RecentActivityFeed
-          activities={data?.recentActivity || []}
+          activities={compact && !expanded ? (data?.recentActivity || []).slice(0, 5) : data?.recentActivity || []}
           loading={loading}
         />
       </div>
 
+      {compact && (data?.recentActivity.length ?? 0) > 5 && <button className="workspace-button mb-4" onClick={() => setExpanded(value => !value)} aria-expanded={expanded}>{expanded ? "Show less activity" : "Show more activity"}</button>}
       {/* Activities and Students Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6" aria-live="polite">
+      {!compact && <div className="grid grid-cols-1 md:grid-cols-2 gap-6" aria-live="polite">
         {/* Popular Activities */}
         <div>
           <h3 className="text-sm font-bold uppercase tracking-widest text-text-muted mb-4">
@@ -359,7 +364,7 @@ export default function TeacherReportCard({
             loading={loading}
           />
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

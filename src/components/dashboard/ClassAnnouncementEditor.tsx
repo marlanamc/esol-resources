@@ -53,7 +53,6 @@ export function ClassAnnouncementEditor({
     };
 
     const clearAnnouncement = async () => {
-        setAnnouncement("");
         setIsSaving(true);
         setError(null);
         setIsSaved(false);
@@ -72,6 +71,8 @@ export function ClassAnnouncementEditor({
                 throw new Error(data?.error || "Failed to clear announcement");
             }
 
+            setAnnouncement("");
+
             setIsSaved(true);
             router.refresh();
         } catch (err: unknown) {
@@ -88,8 +89,9 @@ export function ClassAnnouncementEditor({
             </p>
 
             <textarea
+                aria-label="Class announcement"
                 value={announcement}
-                onChange={(event) => setAnnouncement(event.target.value)}
+                onChange={(event) => { setAnnouncement(event.target.value); setIsSaved(false); }}
                 rows={4}
                 maxLength={MAX_ANNOUNCEMENT_LENGTH}
                 placeholder="e.g. Quiz on Friday. Complete all speaking activities by Thursday."
@@ -101,8 +103,8 @@ export function ClassAnnouncementEditor({
                 {remaining} / {MAX_ANNOUNCEMENT_LENGTH}
             </div>
 
-            {error && <p className="mt-2 text-xs text-red-600">{error}</p>}
-            {isSaved && !error && <p className="mt-2 text-xs text-secondary font-semibold">Saved.</p>}
+            {error && <p role="alert" className="mt-2 text-xs text-red-600">{error}</p>}
+            {isSaved && !error && <p role="status" className="mt-2 text-xs text-secondary font-semibold">Saved.</p>}
 
             <div className="mt-3 flex items-center gap-2">
                 <button

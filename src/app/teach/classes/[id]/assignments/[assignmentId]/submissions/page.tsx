@@ -1,0 +1,108 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth/auth";
+import { redirect, notFound } from "next/navigation";
+import { prisma } from "@/lib/database/prisma";
+import { BackButton } from "@/components/ui/BackButton";
+import SubmissionsList from "@/components/student/SubmissionsList";
+import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
+
+interface Props {
+    params: Promise<{ id: string; assignmentId: string }>;
+}
+
+export default async function SubmissionsPage({ params }: Props) {
+    const session = await getServerSession(authOptions);
+    const { id, assignmentId } = await params;
+
+    if (!session) {
+        redirect("/login");
+    }
+
+    const userId = session.user?.id;
+    const admin = isAdmin(session.user);
+
+    if (!canUseTeacherTools(session.user)) {
+        redirect("/dashboard");
+    }
+
+    const classItem = await prisma.class.findUnique({
+        where: { id },
+        include: {
+            teacher: true,
+        },
+    });
+
+    if (!classItem || (!admin && classItem.teacherId !== userId)) {
+        redirect("/dashboard");
+    }
+
+    const assignment = await prisma.assignment.findUnique({
+        where: { id: assignmentId },
+        include: {
+            activity: {
+                select: {
+                    id: true,
+                    title: true,
+                    type: true,
+                },
+            },
+            class: {
+                include: {
+                    enrollments: {
+                        where: {
+                            student: {
+                                isSystemAccount: false,
+                            },
+                        },
+                        include: {
+                            student: true,
+                        },
+                    },
+                },
+            },
+            submissions: {
+                where: {
+                    user: {
+                        isSystemAccount: false,
+                    },
+                },
+                include: {
+                    user: true,
+                },
+                orderBy: { createdAt: "desc" },
+            },
+        },
+    });
+
+    if (!assignment || assignment.classId !== id) {
+        notFound();
+    }
+
+    return (
+        <div className="space-y-6">
+            <header className="border-b border-border pb-5">
+                <div className="space-y-2">
+                    <div>
+                        <BackButton href={`/teach/classes/${id}`} className="mb-2">Back to Class</BackButton>
+                        <h1 className="text-2xl font-bold text-gray-900">
+                            Submissions: {assignment.title || assignment.activity.title}
+                        </h1>
+                        <p className="text-gray-600 text-sm mt-1">
+                            {assignment.submissions.length} submission{assignment.submissions.length !== 1 ? "s" : ""}
+                        </p>
+                    </div>
+                </div>
+            </header>
+            <section>
+                <div className="min-w-0">
+                    <SubmissionsList
+                        assignment={assignment}
+                        students={assignment.class.enrollments.map((enrollment) => enrollment.student)}
+                    />
+                </div>
+            </section>
+        </div>
+    );
+}
+
+

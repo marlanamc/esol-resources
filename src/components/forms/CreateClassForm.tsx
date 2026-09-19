@@ -68,7 +68,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                     copyAssignments: values.sourceClassId ? values.copyAssignments : undefined,
                 },
             });
-            router.push(`/dashboard/classes/${data.id}`);
+            router.push(`/teach/classes/${data.id}`);
             router.refresh();
         } catch (err) {
             setError("root", {

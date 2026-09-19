@@ -1,3 +1,4 @@
+import { resolveTeachClassId } from "@/lib/teach/active-class";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -142,7 +143,8 @@ export default async function AdminDiagnosticsPage({
     if (!isAdmin(session.user)) redirect("/teach");
 
     const params = await searchParams;
-    const classId = params.classId;
+    const { classId: resolvedClassId } = await resolveTeachClassId(session.user.id, true, params.classId);
+    const classId = resolvedClassId ?? undefined;
     const activityId = params.activityId;
 
     const [classesRaw, guides] = await Promise.all([
@@ -162,7 +164,7 @@ export default async function AdminDiagnosticsPage({
         }),
         getDiagnosableGrammarGuides(),
     ]);
-    const quickReports = await getQuickReports(guides);
+    const quickReports = (await getQuickReports(guides)).filter(report => report.classId === classId);
 
     const classes = classesRaw.map((cls) => ({
         id: cls.id,
@@ -210,6 +212,7 @@ export default async function AdminDiagnosticsPage({
                     Reports are built from tagged mini-quiz answers. Students must finish a grammar guide quiz first.
                 </p>
                 <AdminDiagnosticsPicker
+                    showClassFilter={false}
                     classes={classes}
                     guides={guides}
                     selectedClassId={classId}

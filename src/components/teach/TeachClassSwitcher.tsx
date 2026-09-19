@@ -35,7 +35,8 @@ export function TeachClassSwitcher({ classes, selectedClassId }: Props) {
 
                     // Drop any stale `?classId=` so the freshly written cookie wins
                     // on this page and every other /teach page.
-                    const basePath = pathname?.startsWith("/teach") ? pathname : "/teach";
+                    const isClassDetail = /^\/teach\/classes\/[^/]+/.test(pathname);
+                    const basePath = isClassDetail ? `/teach/classes/${nextClassId}` : pathname.startsWith("/teach/students") ? "/teach/reports" : pathname === "/admin/diagnostics" ? pathname : pathname?.startsWith("/teach") ? pathname : "/teach";
                     router.replace(basePath);
                     router.refresh();
                 }}

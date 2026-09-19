@@ -4707,3 +4707,245 @@ button.vocab-match-word-btn {
 .gh-discharge {
   animation: gh-discharge 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
+
+/* Teacher and administration workspace; learner pages retain their own shell. */
+.workspace {
+    --workspace-ink: #304d65;
+    --workspace-muted: #68665f;
+    min-height: 100dvh;
+    background: var(--bg, #faf8f1);
+    color: var(--text, #292d32);
+}
+.workspace-sidebar {
+    display: none;
+}
+.workspace-body {
+    min-width: 0;
+}
+.workspace-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 20px;
+    padding-top: max(12px, env(safe-area-inset-top));
+    border-bottom: 1px solid var(--border-subtle, #dedbd2);
+    background: var(--surface-overlay, #fffdf7);
+}
+.workspace-header select {
+    max-width: min(65vw, 360px);
+    min-height: 44px;
+}
+.workspace-main {
+    max-width: 1380px;
+    margin: auto;
+    min-width: 0;
+    padding: 24px 16px calc(100px + env(safe-area-inset-bottom));
+}
+.workspace-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--workspace-muted);
+}
+.workspace-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 4px 36px;
+    font-family: var(--font-display, Georgia, serif);
+    font-weight: 700;
+    font-size: 18px;
+}
+.workspace-brand small {
+    display: block;
+    font-family: var(--font-body, Arial, sans-serif);
+    color: var(--workspace-muted);
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 4px;
+}
+.workspace-brand-mark {
+    background: #345476;
+    color: white;
+    padding: 10px;
+    border-radius: 12px;
+}
+.workspace-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: var(--workspace-muted);
+    font-size: 14px;
+    font-weight: 600;
+}
+.workspace-nav-link:hover {
+    background: var(--surface-subtle, #eeece5);
+}
+.workspace-nav-link.is-active,
+.workspace-nav-link[aria-current="page"] {
+    color: #304d65;
+    background: #e5eaf0;
+}
+.workspace-bottom-nav {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 60;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+    background: var(--surface-overlay, #fffdf7);
+    border-top: 1px solid var(--border-subtle, #dedbd2);
+}
+.workspace-bottom-nav a,
+.workspace-bottom-nav button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 50px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--workspace-muted);
+}
+.workspace-bottom-nav [aria-current="page"] {
+    color: #304d65;
+    background: #e5eaf0;
+}
+.workspace-menu {
+    margin: auto auto 0;
+    width: 100%;
+    max-width: 560px;
+    max-height: 85dvh;
+    overflow: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px 20px 0 0;
+    padding: 24px 20px max(24px, env(safe-area-inset-bottom));
+    background: var(--surface-overlay, #fffdf7);
+    color: var(--text);
+}
+.workspace-menu::backdrop {
+    background: rgb(25 32 40 / 0.4);
+}
+.workspace-tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-subtle, #dedbd2);
+}
+.workspace-tabs a {
+    min-height: 44px;
+    padding: 12px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    color: var(--workspace-muted);
+}
+.workspace-tabs [aria-current="page"] {
+    color: #345476;
+    border-color: #345476;
+}
+.workspace-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid var(--border-subtle, #d6d3cb);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--surface-elevated, #fff);
+    color: var(--workspace-ink);
+}
+.workspace-button:hover {
+    background: var(--surface-subtle, #eeece5);
+}
+.workspace-button-primary {
+    background: #345476;
+    color: white;
+    border-color: #345476;
+}
+.workspace-button-primary:hover {
+    background: #28435f;
+}
+.workspace-icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+    border-radius: 8px;
+}
+.workspace-panel {
+    border: 1px solid var(--border-subtle, #dedbd2);
+    border-radius: 12px;
+    padding: 20px;
+    background: var(--surface-elevated, #fff);
+}
+.workspace .dashboard-panel {
+    box-shadow: none;
+    border-radius: 12px;
+}
+.workspace :where(a, button, input, select, textarea, summary):focus-visible {
+    outline: 2px solid #345476;
+    outline-offset: 3px;
+}
+.workspace
+    :where(input:not([type="checkbox"]):not([type="radio"]), select, button) {
+    min-height: 44px;
+}
+.workspace .text-text-muted {
+    color: var(--workspace-muted);
+}
+.workspace :where(h1, h2, h3, p) {
+    overflow-wrap: break-word;
+}
+@media (min-width: 768px) {
+    .workspace-main {
+        padding: 32px 28px 110px;
+    }
+}
+@media (min-width: 1024px) {
+    .workspace-sidebar {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: 236px;
+        padding: 28px 16px;
+        overflow: auto;
+        background: var(--surface-overlay, #fffdf7);
+        border-right: 1px solid var(--border-subtle, #dedbd2);
+    }
+    .workspace-body {
+        margin-left: 236px;
+    }
+    .workspace-bottom-nav {
+        display: none;
+    }
+    .workspace-header {
+        padding: 12px 32px;
+    }
+    .workspace-main {
+        padding: 32px 32px 60px;
+    }
+}
+.workspace-main :where(h1, h2, h3) {
+    margin-block-start: 0;
+}
+.workspace-main :where(h1, h2, h3).workspace-eyebrow {
+    font-family: var(--font-body, Arial, sans-serif);
+}
+.workspace-main .workspace-panel {
+    box-shadow: none;
+}

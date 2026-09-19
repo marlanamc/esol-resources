@@ -1,17 +1,12 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth/auth";
-import { prisma } from "@/lib/database/prisma";
-import { withPrismaReadRetry } from "@/lib/database/retry";
-import { timedQuery } from "@/lib/shared/perf-log";
 import { isAdmin, canUseTeacherTools } from "@/lib/auth/roles";
-import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import TeacherReportCard from "@/components/dashboard/TeacherReportCard";
-import { StudentEngagementTable } from "@/components/dashboard/StudentEngagementTable";
+import { ParticipationList } from "@/components/workspace/ParticipationList";
 import { resolveTeachClassId } from "@/lib/teach/active-class";
-
-export const metadata = { title: "Reports | My ESOL Class" };
-
+import { getClassParticipation } from "@/lib/teach/participation";
+export const metadata = { title: "Participation | My ESOL Class" };
 export default async function TeachReportsPage({
     searchParams,
 }: {
@@ -20,162 +15,47 @@ export default async function TeachReportsPage({
     const session = await getServerSession(authOptions);
     if (!session?.user) redirect("/login");
     if (!canUseTeacherTools(session.user)) redirect("/dashboard");
-
     const params = await searchParams;
-    const userId = session.user.id;
-    const admin = isAdmin(session.user);
-    const userRole = session.user.role || "teacher";
-    const { classId: activeClassId } = await resolveTeachClassId(userId, admin, params.classId);
-
-    const classes = await timedQuery(
-        { route: "/teach/reports", queryLabel: "class.findMany.teacherReports", userRole },
-        () => withPrismaReadRetry(() =>
-            prisma.class.findMany({
-                where: {
-                    ...(admin ? {} : { teacherId: userId }),
-                    ...(activeClassId ? { id: activeClassId } : {}),
-                },
-                select: {
-                    id: true,
-                    name: true,
-                    enrollments: {
-                        where: { status: "active", student: { isSystemAccount: false, excludeFromLeaderboard: false } },
-                        select: {
-                            student: {
-                                select: {
-                                    id: true,
-                                    name: true,
-                                    username: true,
-                                    points: true,
-                                    weeklyPoints: true,
-                                    currentStreak: true,
-                                    longestStreak: true,
-                                    lastActivityDate: true,
-                                },
-                            },
-                        },
-                    },
-                    assignments: {
-                        select: { id: true },
-                    },
-                },
-                orderBy: { name: "asc" },
-            })
-        ),
-        (r) => r.length
+    const { classId, classes } = await resolveTeachClassId(
+        session.user.id,
+        isAdmin(session.user),
+        params.classId,
     );
-
-    const formattedClasses = classes.map((cls) => ({
-        id: cls.id,
-        name: cls.name,
-        studentCount: cls.enrollments.length,
-    }));
-    const activeClassName = classes.find((cls) => cls.id === activeClassId)?.name ?? null;
-
-    // Build enriched student list for engagement table
-    const studentSectionsMap = new Map<string, Map<string, string>>();
-    for (const cls of classes) {
-        for (const enrollment of cls.enrollments) {
-            const studentId = enrollment.student.id;
-            if (!studentSectionsMap.has(studentId)) {
-                studentSectionsMap.set(studentId, new Map<string, string>());
-            }
-            studentSectionsMap.get(studentId)?.set(cls.id, cls.name);
-        }
-    }
-
-    const allStudents = Array.from(
-        new Map(
-            classes.flatMap((c) => c.enrollments.map((e) => [e.student.id, e.student]))
-        ).values()
-    );
-    const studentIds = allStudents.map((s) => s.id);
-
-    const [recentActivity, recentProgressUpdate, activitiesToday] = studentIds.length
-        ? await Promise.all([
-              withPrismaReadRetry(() =>
-                  prisma.pointsLedger.groupBy({
-                      by: ["userId"],
-                      where: { userId: { in: studentIds } },
-                      _max: { createdAt: true },
-                  })
-              ),
-              withPrismaReadRetry(() =>
-                  prisma.activityProgress.groupBy({
-                      by: ["userId"],
-                      where: { userId: { in: studentIds } },
-                      _max: { updatedAt: true },
-                  })
-              ),
-              withPrismaReadRetry(() => {
-                  const today = new Date();
-                  today.setHours(0, 0, 0, 0);
-                  return prisma.pointsLedger.groupBy({
-                      by: ["userId"],
-                      where: { userId: { in: studentIds }, createdAt: { gte: today } },
-                      _count: true,
-                  });
-              }),
-          ])
-        : [[], [], []];
-
-    const lastActiveMap = recentActivity.reduce((acc, e) => {
-        acc[e.userId] = e._max.createdAt;
-        return acc;
-    }, {} as Record<string, Date | null>);
-
-    const lastProgressMap = recentProgressUpdate.reduce((acc, e) => {
-        acc[e.userId] = e._max.updatedAt;
-        return acc;
-    }, {} as Record<string, Date | null>);
-
-    const activitiesTodayMap = activitiesToday.reduce((acc, e) => {
-        acc[e.userId] = e._count;
-        return acc;
-    }, {} as Record<string, number>);
-
-    const enrichedStudents = allStudents.map((student) => ({
-        ...student,
-        currentStreak: getEffectiveStreak(student.currentStreak, student.lastActivityDate),
-        lastActive:
-            [lastActiveMap[student.id], lastProgressMap[student.id], student.lastActivityDate]
-                .filter((d): d is Date => d instanceof Date)
-                .sort((a, b) => b.getTime() - a.getTime())[0] || null,
-        activitiesToday: activitiesTodayMap[student.id] || 0,
-        sections: Array.from(studentSectionsMap.get(student.id)?.entries() || []).map(([id, name]) => ({
-            id,
-            name,
-        })),
-    }));
-
+    const students = classId ? await getClassParticipation(classId) : [];
     return (
-        <div className="space-y-8">
+        <div className="space-y-6">
             <div>
-                <p className="text-xs font-semibold tracking-widest uppercase" style={{ color: "var(--secondary)" }}>
-                    Analytics
-                </p>
-                <h1 className="font-display font-bold text-2xl sm:text-3xl text-text mt-0.5">
-                    Activity Reports
+                <p className="workspace-eyebrow mb-2">Student progress</p>
+                <h1 className="font-display text-3xl font-bold">
+                    Participation
                 </h1>
-                <p className="text-text-muted text-sm mt-1">
-                    Track student engagement and popular activities
-                    {activeClassName ? ` in ${activeClassName}` : " across your classes"}
+                <p className="text-sm text-text-muted mt-2">
+                    See who is practicing, what they worked on, and who may need
+                    a check-in.
                 </p>
             </div>
-
-            <TeacherReportCard
-                classes={formattedClasses}
-                activeClassId={activeClassId}
-                showClassFilter={false}
+            <ParticipationList
+                students={students}
+                classId={classId}
+                now={new Date().getTime()}
             />
-
-            {enrichedStudents.length > 0 && (
-                <section>
-                    <h2 className="text-sm font-semibold uppercase tracking-wider text-text-muted mb-3">
-                        Student Engagement
-                    </h2>
-                    <StudentEngagementTable students={enrichedStudents} />
-                </section>
+            <p className="text-xs text-text-muted">
+                Active enrollment only. System accounts and students excluded
+                from reporting are omitted, so this count may differ from your
+                class roster. Activity reflects app use, not mastery.
+            </p>
+            {classId && (
+                <TeacherReportCard
+                    key={classId}
+                    classes={classes.map((c) => ({
+                        id: c.id,
+                        name: c.name,
+                        studentCount: students.length,
+                    }))}
+                    activeClassId={classId}
+                    showClassFilter={false}
+                    compact
+                />
             )}
         </div>
     );

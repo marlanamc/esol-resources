@@ -1,3 +1,4 @@
+import { safeProgressReturn } from "@/lib/teach/participation-status";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
 import { redirect, notFound } from "next/navigation";
@@ -11,9 +12,10 @@ export const metadata = { title: "Student | My ESOL Class" };
 
 interface Props {
     params: Promise<{ id: string }>;
+    searchParams: Promise<{ returnTo?: string }>;
 }
 
-export default async function TeachStudentDetailPage({ params }: Props) {
+export default async function TeachStudentDetailPage({ params, searchParams }: Props) {
     const session = await getServerSession(authOptions);
     if (!session?.user) redirect("/login");
     if (!canUseTeacherTools(session.user)) redirect("/dashboard");
@@ -44,10 +46,10 @@ export default async function TeachStudentDetailPage({ params }: Props) {
         <div className="space-y-6">
             <div>
                 <Link
-                    href="/teach/classes"
+                    href={safeProgressReturn((await searchParams).returnTo)}
                     className="text-xs text-text-muted hover:text-primary font-semibold inline-flex items-center gap-1"
                 >
-                    <ChevronLeft className="h-3 w-3" /> Classes
+                    <ChevronLeft className="h-3 w-3" /> Back to participation
                 </Link>
             </div>
 

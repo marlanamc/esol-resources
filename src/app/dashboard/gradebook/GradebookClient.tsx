@@ -28,6 +28,7 @@ interface ClassOption {
 }
 
 interface Props {
+    diagnosticsBasePath?: string | null;
     students: Student[];
     activities: Activity[];
     submissions: Submission[];
@@ -45,6 +46,7 @@ interface Props {
 }
 
 export function GradebookClient({
+    diagnosticsBasePath = "/dashboard/diagnostics",
     students,
     activities,
     submissions,
@@ -117,6 +119,7 @@ export function GradebookClient({
 
     return (
         <GrammarGradebook
+            diagnosticsBasePath={diagnosticsBasePath}
             students={students}
             activities={activities}
             submissions={submissions}

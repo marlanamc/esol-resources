@@ -28,6 +28,7 @@ interface ClassOption {
 }
 
 interface Props {
+    diagnosticsBasePath?: string | null;
     students: Student[];
     activities: Activity[];
     submissions: Submission[];
@@ -47,6 +48,7 @@ interface Props {
 }
 
 export default function GrammarGradebook({
+    diagnosticsBasePath = "/dashboard/diagnostics",
     students,
     activities,
     submissions,
@@ -120,7 +122,7 @@ export default function GrammarGradebook({
             </div>
 
             <div className="bg-white rounded-2xl border border-border/40 shadow-xl overflow-hidden">
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto" role="region" aria-label="Gradebook scores, scroll horizontally for more activities" tabIndex={0}>
                     <table className="w-full border-collapse">
                         <thead>
                             <tr className="bg-bg-light border-b border-border/60">
@@ -135,9 +137,9 @@ export default function GrammarGradebook({
                                         <div className="line-clamp-2 leading-tight mb-2">
                                             {activity.title}
                                         </div>
-                                        {selectedClassId && (
+                                        {selectedClassId && diagnosticsBasePath && (
                                             <Link
-                                                href={`/dashboard/diagnostics?classId=${selectedClassId}&activityId=${activity.id}`}
+                                                href={`${diagnosticsBasePath}?classId=${selectedClassId}&activityId=${activity.id}`}
                                                 className="inline-flex items-center gap-1 text-[9px] text-primary hover:text-primary/80 font-normal normal-case tracking-normal transition-colors"
                                             >
                                                 <BarChart3 className="w-3 h-3" />

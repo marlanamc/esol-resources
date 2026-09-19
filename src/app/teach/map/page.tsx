@@ -103,6 +103,7 @@ export default async function TeachMapPage({
             </div>
 
             <CourseMapManager
+                key={cls.id}
                 classId={cls.id}
                 className={cls.name}
                 allWeeks={allWeeks}
