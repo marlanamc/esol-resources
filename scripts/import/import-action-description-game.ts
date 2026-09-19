@@ -82,7 +82,7 @@ in class :: Description - This says WHERE someone is. Use am / is / are. :: We *
 on time :: Description - This describes a person, not an action. Use am / is / are. :: The teacher *is* always on time.
 
 [ROUND 6]
-NOTE: Tricky round! These words are feelings and thoughts, not actions - but they are still verbs. Never put BE in front of them.
+NOTE: Challenge Round
 know :: Action - "Know" happens in your head, but it is still a verb. Never BE. Wrong: I am know her. Right: I know her. :: I *know* her name.
 want :: Action - "Want" is a feeling, but it is still a verb. Never BE. Wrong: She is want a job. Right: She wants a job. :: She *wants* a new job.
 have :: Action - "Have" is a state, but it is still a verb. Never BE. Wrong: We are have two children. Right: We have two children. :: We *have* two children.

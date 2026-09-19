@@ -10,7 +10,7 @@ work :: Action - Something you DO. Use the verb by itself. :: She *works* at the
 tired :: Description - A feeling, not an action. Use am / is / are. :: I *am* tired.
 
 [ROUND 2]
-NOTE: Tricky round! These are feelings, but they are still verbs.
+NOTE: Challenge Round
 know :: Action - "Know" happens in your head, but it is still a verb. Never BE. :: I *know* her name.
 hungry :: Description - Careful! In English you ARE hungry. :: I *am* hungry.
 `;
@@ -85,9 +85,7 @@ describe("parseActionDescriptionRounds", () => {
 
     it("captures a NOTE line as the round banner", () => {
         expect(rounds[0].note).toBeUndefined();
-        expect(rounds[1].note).toBe(
-            "Tricky round! These are feelings, but they are still verbs."
-        );
+        expect(rounds[1].note).toBe("Challenge Round");
     });
 
     it("sorts state verbs into the action bucket", () => {
