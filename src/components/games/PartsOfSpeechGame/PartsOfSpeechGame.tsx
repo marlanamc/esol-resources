@@ -163,13 +163,14 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className={`relative z-10 mx-auto flex w-full flex-col ${
+          // A definite height to distribute. The page wrapper above collapses
+          // to content height, so `min-h-full` resolves to 100% of nothing --
+          // every phase needs the viewport-relative unit, not just exercise,
+          // or a tall intro/selection/results screen can outgrow its scroll
+          // container and hide the CTA below the fold with no way to reach it.
           state.phase === 'exercise'
-            // A definite height to distribute. The page wrapper above collapses
-            // to content height, so `min-h-full` resolves to 100% of nothing --
-            // and it is the same property, so leaving both on would just be a
-            // coin toss decided by stylesheet order rather than class order.
             ? 'min-h-[92svh] w-full max-w-none px-0 py-2 sm:max-w-5xl sm:px-6 sm:py-10'
-            : 'min-h-full max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
+            : 'min-h-[92svh] max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
         }`}
       >
         {state.phase === 'exercise' ? null : renderCourseMapBanner(true)}
@@ -260,7 +261,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
                 currentIndex={state.currentExerciseIndex}
                 roundMode={state.selectedRoundMode}
                 onAnswer={submitAnswer}
-                onBack={returnToGroupIntro}
+                onBack={isCourseMapPreset ? () => router.push(returnHref) : returnToGroupIntro}
                 minimalChrome={isPinnedRound}
                 titleOverride={isPinnedRound ? courseMapTitle : undefined}
               />
