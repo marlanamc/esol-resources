@@ -87,9 +87,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara walks in to sign up for a free English class. James at the front desk greets her. Every sign, every room, and every person here has a <strong>name</strong>. Those names are nouns.</p>
 
         ${dialogue([
-          { speaker: "Volunteer", avatar: "🙋", text: "Welcome! This is the <strong>registration desk</strong>. Can I get your <strong>name</strong> and <strong>address</strong>?", side: "left", tone: "sage" },
+          { speaker: "James", avatar: "🙋🏼", text: "Welcome! This is the <strong>registration desk</strong>. Can I get your <strong>name</strong> and <strong>address</strong>?", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏾", text: "My name is Amara. I live on Meridian <strong>Street</strong>, near the <strong>hospital</strong>.", side: "right", tone: "terracotta" },
-          { speaker: "Volunteer", avatar: "🙋", text: "Great. The <strong>classroom</strong> is on the second <strong>floor</strong>. You will need a <strong>pencil</strong> and a <strong>notebook</strong>.", side: "left", tone: "sage" },
+          { speaker: "James", avatar: "🙋🏼", text: "Great. The <strong>classroom</strong> is on the second <strong>floor</strong>. You will need a <strong>pencil</strong> and a <strong>notebook</strong>.", side: "left", tone: "sage" },
           { speaker: "Amara", avatar: "👩🏾", text: "Thank you. I already have a <strong>bag</strong> with my <strong>supplies</strong>.", side: "right", tone: "terracotta" },
         ])}
 
