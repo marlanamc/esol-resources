@@ -40,7 +40,7 @@ export function DiagramSentence({ text, colorClass }: DiagramSentenceProps) {
               return (
                 <span 
                   key={j} 
-                  className={`text-[10px] sm:text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded-full border shadow-sm mx-1 ${tagStyle} transform -translate-y-0.5`}
+                  className={`text-xs sm:text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded-full border shadow-sm mx-1 ${tagStyle} transform -translate-y-0.5`}
                 >
                   {part.slice(1, -1)}
                 </span>

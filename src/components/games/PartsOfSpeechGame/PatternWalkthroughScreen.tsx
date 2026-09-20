@@ -181,7 +181,7 @@ export function PatternWalkthroughScreen({
           <div className="flex items-center gap-2 mb-2">
             <span className="text-2xl sm:text-3xl leading-none">{group.icon ?? '📚'}</span>
             <span
-              className="text-[10px] sm:text-xs font-black uppercase tracking-[0.18em] px-2 py-0.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/20"
+              className="text-xs font-black uppercase tracking-[0.18em] px-2 py-0.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/20"
               style={{ color: '#ffffff' }}
             >
               Discover
@@ -254,7 +254,7 @@ export function PatternWalkthroughScreen({
                 className="flex-shrink-0 w-[82%] sm:w-[320px] snap-start rounded-2xl border-2 border-border bg-white dark:bg-[#162b3d] shadow-sm overflow-hidden flex flex-col"
               >
                 <div className={`px-4 py-2 flex items-center justify-between border-b-2 border-border ${POS_COLORS[pattern.partOfSpeech]}`}>
-                  <span className="text-[11px] font-black uppercase tracking-widest">{POS_LABELS[pattern.partOfSpeech]}</span>
+                  <span className="text-xs font-black uppercase tracking-widest">{POS_LABELS[pattern.partOfSpeech]}</span>
                   <span className="text-xs font-semibold opacity-75">#{i + 1}</span>
                 </div>
                 <div className="p-4 flex-1 flex flex-col gap-3">
@@ -377,7 +377,7 @@ export function PatternWalkthroughScreen({
                   }`}>{round.n}</span>
                   <p className={`font-semibold text-sm flex-1 ${isCurrent ? 'text-primary' : 'text-text'}`}>
                     Round {round.n} &middot; {round.label}
-                    {isCurrent && <span className="ml-2 text-[10px] uppercase tracking-wide text-primary font-bold">You&rsquo;re here</span>}
+                    {isCurrent && <span className="ml-2 text-xs uppercase tracking-wide text-primary font-bold">You&rsquo;re here</span>}
                   </p>
                   <span className="text-xs font-bold text-text-muted">{round.threshold}+</span>
                 </div>

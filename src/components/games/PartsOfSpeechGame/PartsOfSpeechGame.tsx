@@ -44,7 +44,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
   const renderCourseMapBanner = (showDirections: boolean) =>
     isCourseMapPreset ? (
       <div className="mb-4 rounded-2xl border border-[var(--tone-vocab-accent,#6a8d73)]/25 bg-[var(--tone-vocab-surface,rgba(106,141,115,0.08))] px-4 py-3">
-        <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
+        <p className="text-xs font-bold uppercase tracking-wide text-[var(--tone-vocab-accent,#6a8d73)]">
           Guided Course Map Step
         </p>
         <h1 className="mt-1 text-lg font-display font-bold text-text">{courseMapTitle}</h1>
