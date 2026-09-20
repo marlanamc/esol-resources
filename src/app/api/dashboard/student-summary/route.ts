@@ -85,7 +85,11 @@ export async function GET() {
         return NextResponse.json({
             totalPoints: user?.points ?? 0,
             effectiveCurrentStreak: getEffectiveStreak(user?.currentStreak ?? 0, user?.lastActivityDate ?? null),
-            actualWeeklyPoints: weeklyPointsData._sum.points ?? 0,
+            // Floored at 0: a "correction" ledger row (see
+            // scripts/gamification/audit-and-reverse-achievement-backfill.ts) can push
+            // this week's ledger sum negative. User.weeklyPoints is already floored the
+            // same way, so without this the card could show a learner "-615 pts".
+            actualWeeklyPoints: Math.max(0, weeklyPointsData._sum.points ?? 0),
             sevenDayActivity,
         });
     } catch (error) {
