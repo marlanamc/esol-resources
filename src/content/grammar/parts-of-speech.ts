@@ -116,6 +116,13 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         </div>
 
         <div style="padding: 1rem 1.25rem; border-radius: 0.5rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); margin-top: 1rem">
+          <p style="margin: 0 0 0.4rem 0; font-weight: 600">Thing or idea?</p>
+          <p style="margin: 0 0 0.25rem 0; font-size: 0.95rem">A <strong>thing</strong> is something you can touch: <em>a pencil, a notebook, the form, a bag</em>.</p>
+          <p style="margin: 0 0 0.25rem 0; font-size: 0.95rem">An <strong>idea</strong> is something you cannot touch. You can only think about it or feel it: <em>English, education, registration, progress</em>.</p>
+          <p style="margin: 0; font-size: 0.88rem; color: var(--color-text-muted)">Ask yourself: can I pick it up with my hands? If no, it is an idea.</p>
+        </div>
+
+        <div style="padding: 1rem 1.25rem; border-radius: 0.5rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); margin-top: 1rem">
           <p style="margin: 0 0 0.4rem 0; font-weight: 600">Singular and plural:</p>
           <p style="margin: 0 0 0.25rem 0; font-size: 0.95rem"><em>one <strong>class</strong> / two <strong>classes</strong></em></p>
           <p style="margin: 0 0 0.25rem 0; font-size: 0.95rem"><em>a <strong>student</strong> / many <strong>students</strong></em></p>
@@ -163,16 +170,17 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         {
           id: "pos-n-2",
           title: "Person, place, thing, or idea?",
-          instructions: "What kind of noun is it?",
+          instructions:
+            "What kind of noun is it? Remember: a thing is something you can touch. An idea is something you cannot touch.",
           items: [
             {
               type: "radio",
               label: "What kind of noun is the word 'hospital'?",
               options: [
-                { value: "person", label: "Person" },
-                { value: "place", label: "Place" },
-                { value: "thing", label: "Thing" },
-                { value: "idea", label: "Idea" },
+                { value: "person", label: "Person (who)" },
+                { value: "place", label: "Place (where)" },
+                { value: "thing", label: "Thing (you can touch it)" },
+                { value: "idea", label: "Idea (you cannot touch it)" },
               ],
               expectedAnswer: "place",
             },
@@ -180,10 +188,10 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "What kind of noun is the word 'education'?",
               options: [
-                { value: "person", label: "Person" },
-                { value: "place", label: "Place" },
-                { value: "thing", label: "Thing" },
-                { value: "idea", label: "Idea" },
+                { value: "person", label: "Person (who)" },
+                { value: "place", label: "Place (where)" },
+                { value: "thing", label: "Thing (you can touch it)" },
+                { value: "idea", label: "Idea (you cannot touch it)" },
               ],
               expectedAnswer: "idea",
             },
@@ -191,10 +199,10 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "What kind of noun is the word 'notebook'?",
               options: [
-                { value: "person", label: "Person" },
-                { value: "place", label: "Place" },
-                { value: "thing", label: "Thing" },
-                { value: "idea", label: "Idea" },
+                { value: "person", label: "Person (who)" },
+                { value: "place", label: "Place (where)" },
+                { value: "thing", label: "Thing (you can touch it)" },
+                { value: "idea", label: "Idea (you cannot touch it)" },
               ],
               expectedAnswer: "thing",
             },
@@ -210,12 +218,14 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               label: "Unscramble:",
               words: ["The", "volunteer", "hands", "Amara", "a", "form"],
               correctAnswer: "The volunteer hands Amara a form",
+              correctAnswers: ["Amara hands the volunteer a form"],
             },
             {
               type: "word-scramble",
               label: "Unscramble:",
               words: ["The", "supply", "closet", "is", "behind", "the", "first", "door"],
               correctAnswer: "The supply closet is behind the first door",
+              correctAnswers: ["The first door is behind the supply closet"],
             },
           ],
         },
@@ -415,6 +425,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               label: "Unscramble:",
               words: ["Amara", "sees", "Carlos", "at", "the", "coffee", "shop"],
               correctAnswer: "Amara sees Carlos at the coffee shop",
+              correctAnswers: ["Carlos sees Amara at the coffee shop"],
             },
           ],
         },
@@ -830,6 +841,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               label: "Unscramble:",
               words: ["Yemi", "and", "Linh", "read", "the", "notice", "together"],
               correctAnswer: "Yemi and Linh read the notice together",
+              correctAnswers: ["Linh and Yemi read the notice together"],
             },
             {
               type: "word-scramble",
