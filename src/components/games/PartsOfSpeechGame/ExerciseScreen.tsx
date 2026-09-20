@@ -226,6 +226,13 @@ export function ExerciseScreen({
     ? group.patterns.find(p => p.id === currentExercise.patternId)
     : undefined;
   const selfFeedback = SELF_FEEDBACK_EXERCISE_TYPES.includes(currentExercise.type);
+  /**
+   * Word Sort owns its own horizontal padding. The shell's `mx-3` and `p-3`
+   * stack on top of the game's own `px-*`, which cost it 36px per side on a
+   * 390px phone -- enough to squeeze the two category boxes below the width
+   * their own definition text needs.
+   */
+  const isSwipeSort = currentExercise.type === 'swipe-sort';
   const hasExplanation = Boolean(
     currentExercise?.explanation || currentPattern?.errorExplanation || currentPattern?.memoryTrick
   );
@@ -265,8 +272,10 @@ export function ExerciseScreen({
     if (SELF_FEEDBACK_EXERCISE_TYPES.includes(currentExercise.type)) {
       setStreak(prev => (correct ? prev + 1 : 0));
       setShowFeedback(false);
-      // Long enough to read the deck's own "4 / 6 correct" summary.
-      setTimeout(() => onAnswer(correct, currentExercise, detail), 900);
+      // Long enough to read the deck's own "4 / 6 correct" summary. The
+      // crossfade below adds to this, so it does not need to carry the whole
+      // pause on its own.
+      setTimeout(() => onAnswer(correct, currentExercise, detail), 700);
       return;
     }
 
@@ -435,7 +444,7 @@ export function ExerciseScreen({
             // my-auto, not justify-center on the parent: auto margins centre
             // this block in the leftover space while the sticky header stays
             // where it is at the top.
-            ? 'mx-3 my-auto flex flex-col overflow-hidden sm:mx-0'
+            ? `${isSwipeSort ? 'mx-0' : 'mx-3'} my-auto flex flex-col overflow-hidden sm:mx-0`
             : `mx-3 mt-2 flex flex-col overflow-hidden rounded-xl border sm:mx-0 sm:mt-6 sm:rounded-2xl sm:border-2 ${shellClass}`
         }
       >
@@ -468,7 +477,7 @@ export function ExerciseScreen({
         )}
 
         {/* Content */}
-        <div className="p-3 sm:p-6">
+        <div className={isSwipeSort ? 'px-0 py-1 sm:p-6' : 'p-3 sm:p-6'}>
           {/* Polite live region for screen readers */}
           <div className="sr-only" role="status" aria-live="polite">
             {showFeedback && !selfFeedback
@@ -568,7 +577,10 @@ export function ExerciseScreen({
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.25 }}
+              // mode="wait" pays this twice per exercise, so it is the single
+              // biggest fixed cost between one deck ending and the next
+              // starting.
+              transition={{ duration: 0.18 }}
             >
               {renderExercise(currentExercise, handleAnswer, answered)}
             </motion.div>
