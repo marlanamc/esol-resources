@@ -78,6 +78,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     // =========================================================================
     {
       id: "nouns",
+      stepNumber: 1,
       title: "Nouns: naming the world around you",
       icon: "🧱",
       explanation: `
@@ -236,13 +237,13 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           items: [
             {
               type: "text",
-              label: "one class / two ___",
-              expectedAnswers: ["classes"],
+              label: "one notebook / two ___",
+              expectedAnswers: ["notebooks"],
             },
             {
               type: "text",
-              label: "one student / many ___",
-              expectedAnswers: ["students"],
+              label: "one box / three ___",
+              expectedAnswers: ["boxes"],
             },
           ],
         },
@@ -270,7 +271,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
-          <p style="margin: 0; font-size: 1.05rem">There are two types of verbs. <strong>Action verbs</strong> describe things you do. <strong>State verbs</strong> describe things that are true about you. what you feel, know, have, or think.</p>
+          <p style="margin: 0; font-size: 1.05rem">There are two types of verbs. <strong>Action verbs</strong> describe things you do. <strong>State verbs</strong> describe things that are true about you — what you feel, know, have, or think.</p>
         </div>
 
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">Action verbs: things you do</p>
@@ -297,7 +298,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(176,87,64,0.05); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("state", "terracotta")}
-            <span><em>Carlos <strong>speaks</strong> Spanish and some Haitian Creole. He <strong>needs</strong> to practice more.</em></span>
+            <span><em>Amara <strong>has</strong> two children. She <strong>needs</strong> a class in the evening.</em></span>
           </div>
         </div>
 
@@ -324,8 +325,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Carlos <strong>helps</strong> new students every Tuesday.",
               options: [
-                { value: "action", label: "Action verb. you can watch someone do it" },
-                { value: "state", label: "State verb. describes a feeling, fact, or mental state" },
+                { value: "action", label: "Action verb — you can watch someone do it" },
+                { value: "state", label: "State verb — a feeling, a fact, or something in the mind" },
               ],
               expectedAnswer: "action",
             },
@@ -333,8 +334,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Amara <strong>knows</strong> Carlos from the neighborhood.",
               options: [
-                { value: "action", label: "Action verb. you can watch someone do it" },
-                { value: "state", label: "State verb. describes a feeling, fact, or mental state" },
+                { value: "action", label: "Action verb — you can watch someone do it" },
+                { value: "state", label: "State verb — a feeling, a fact, or something in the mind" },
               ],
               expectedAnswer: "state",
             },
@@ -342,8 +343,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "She <strong>fills out</strong> the form at the registration desk.",
               options: [
-                { value: "action", label: "Action verb. you can watch someone do it" },
-                { value: "state", label: "State verb. describes a feeling, fact, or mental state" },
+                { value: "action", label: "Action verb — you can watch someone do it" },
+                { value: "state", label: "State verb — a feeling, a fact, or something in the mind" },
               ],
               expectedAnswer: "action",
             },
@@ -351,8 +352,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Carlos <strong>wants</strong> to practice his Haitian Creole.",
               options: [
-                { value: "action", label: "Action verb. you can watch someone do it" },
-                { value: "state", label: "State verb. describes a feeling, fact, or mental state" },
+                { value: "action", label: "Action verb — you can watch someone do it" },
+                { value: "state", label: "State verb — a feeling, a fact, or something in the mind" },
               ],
               expectedAnswer: "state",
             },
@@ -367,8 +368,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"I am knowing all the students in my class.\"",
               options: [
-                { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct. Should be: I know all the students." },
+                { value: "correct", label: "Correct — this verb can use the -ing form." },
+                { value: "incorrect", label: "Not correct — this verb cannot use the -ing form." },
               ],
               expectedAnswer: "incorrect",
             },
@@ -376,8 +377,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"Carlos is helping a student right now.\"",
               options: [
-                { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct" },
+                { value: "correct", label: "Correct — this verb can use the -ing form." },
+                { value: "incorrect", label: "Not correct — this verb cannot use the -ing form." },
               ],
               expectedAnswer: "correct",
             },
@@ -385,8 +386,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"She is wanting the Tuesday evening class.\"",
               options: [
-                { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct. Should be: She wants the Tuesday evening class." },
+                { value: "correct", label: "Correct — this verb can use the -ing form." },
+                { value: "incorrect", label: "Not correct — this verb cannot use the -ing form." },
               ],
               expectedAnswer: "incorrect",
             },
@@ -437,7 +438,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     // =========================================================================
     {
       id: "adjectives",
-      stepNumber: 2,
+      stepNumber: 3,
       title: "Adjectives: describing words",
       icon: "🎨",
       explanation: `
@@ -508,9 +509,14 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               expectedAnswer: "small",
             },
             {
-              type: "text",
-              label: "Amara has a ___ job at a busy hospital. (full-time)",
-              expectedAnswers: ["full-time", "fulltime"],
+              type: "radio",
+              label: "Dilnoza has three brothers.",
+              options: [
+                { value: "has", label: "has" },
+                { value: "three", label: "three" },
+                { value: "brothers", label: "brothers" },
+              ],
+              expectedAnswer: "three",
             },
           ],
         },
@@ -523,8 +529,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"She has a schedule busy.\"",
               options: [
-                { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct. Should be 'a busy schedule.'" },
+                { value: "correct", label: "Correct — the adjective is in the right place." },
+                { value: "incorrect", label: "Not correct — the adjective is in the wrong place." },
               ],
               expectedAnswer: "incorrect",
             },
@@ -532,8 +538,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"The new building has two small rooms.\"",
               options: [
-                { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct" },
+                { value: "correct", label: "Correct — the adjective is in the right place." },
+                { value: "incorrect", label: "Not correct — the adjective is in the wrong place." },
               ],
               expectedAnswer: "correct",
             },
@@ -541,8 +547,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"They have children three.\"",
               options: [
-                { value: "correct", label: "Correct" },
-                { value: "incorrect", label: "Not correct. Should be 'three children.'" },
+                { value: "correct", label: "Correct — the adjective is in the right place." },
+                { value: "incorrect", label: "Not correct — the adjective is in the wrong place." },
               ],
               expectedAnswer: "incorrect",
             },
@@ -575,7 +581,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     // =========================================================================
     {
       id: "adverbs",
-      stepNumber: 3,
+      stepNumber: 4,
       title: "Adverbs: how, when, how often",
       icon: "⚡",
       explanation: `
@@ -585,13 +591,13 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
 
         ${dialogue([
           { speaker: "Coordinator", avatar: "📋", text: "How often can you volunteer, Carlos?", side: "left", tone: "blue" },
-          { speaker: "Carlos", avatar: "👨🏽", text: "I come <strong>every Tuesday</strong>. I work <strong>quickly</strong> and I finish <strong>early</strong>, so I can help <strong>after</strong> my shift.", side: "right", tone: "sage" },
+          { speaker: "Carlos", avatar: "👨🏽", text: "I come <strong>every Tuesday</strong>. I work <strong>quickly</strong> and I finish <strong>early</strong>, so I can help here <strong>after my shift</strong>.", side: "right", tone: "sage" },
           { speaker: "Coordinator", avatar: "📋", text: "Do you speak English well?", side: "left", tone: "blue" },
           { speaker: "Carlos", avatar: "👨🏽", text: "I speak it <strong>pretty well</strong> now. I practiced <strong>hard</strong> last year.", side: "right", tone: "sage" },
         ])}
 
         <div class="gc-bg-blue-alpha gc-callout-blue" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1rem">
-          <p style="margin: 0; font-size: 1.05rem"><strong>Adverbs</strong> describe verbs. They answer <em>how?</em>, <em>when?</em>, or <em>how often?</em> Many adverbs end in <strong>-ly</strong> (quickly, carefully, quietly). But not all of them do (well, hard, early, fast).</p>
+          <p style="margin: 0; font-size: 1.05rem"><strong>Adverbs</strong> describe verbs. They answer <em>how?</em>, <em>when?</em>, or <em>how often?</em> Many adverbs end in <strong>-ly</strong> (quickly, carefully, quietly). But not all of them do (well, hard, early, fast). A <strong>group of words</strong> can do the same job: <em>every Tuesday, last year, after work</em>.</p>
         </div>
 
         <div style="display: grid; gap: 0.5rem; margin: 1rem 0">
@@ -601,7 +607,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(100,149,237,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("when", "blue")}
-            <span><em>He finishes <strong>early</strong>. He comes <strong>after</strong> his shift on Tuesdays.</em></span>
+            <span><em>He finishes <strong>early</strong>. He comes <strong>after his shift</strong> on Tuesdays.</em></span>
           </div>
           <div style="display: flex; gap: 0.75rem; align-items: baseline; padding: 0.5rem 0.75rem; background: rgba(100,149,237,0.06); border-radius: 0.4rem; flex-wrap: wrap">
             ${labelPill("how often", "blue")}
@@ -630,11 +636,18 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             </div>
           </div>
         </div>
+
+        <div style="padding: 1rem 1.25rem; border-radius: 0.5rem; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); margin: 1rem 0">
+          <p style="margin: 0 0 0.5rem 0; font-weight: 600">Careful: hard and hardly</p>
+          <p style="margin: 0 0 0.25rem 0; font-size: 0.95rem"><em>Carlos works <strong>hard</strong>.</em> <span style="font-size: 0.88rem; color: var(--color-text-muted)">(with a lot of effort)</span></p>
+          <p style="margin: 0 0 0.25rem 0; font-size: 0.95rem"><em>Carlos <strong>hardly</strong> works.</em> <span style="font-size: 0.88rem; color: var(--color-text-muted)">(almost never, the opposite meaning)</span></p>
+          <p style="margin: 0.5rem 0 0; font-size: 0.88rem; color: var(--color-text-muted)">Adding -ly does not always make the adverb. <em>Hardly</em> is a different word with a different meaning.</p>
+        </div>
       `,
       tipBox: {
         title: "good vs. well",
         content:
-          "Good is an adjective. Well is an adverb. His English is good. He speaks English well. This pair catches many learners.",
+          "Good is an adjective: his English is good. Well is an adverb: he speaks English well. This pair catches many learners, including native speakers.",
       },
       exercises: [
         {
@@ -705,7 +718,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
     // =========================================================================
     {
       id: "all-four-together",
-      stepNumber: 4,
+      stepNumber: 5,
       title: "All four working together",
       icon: "🔍",
       explanation: `
@@ -714,18 +727,18 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         <p style="margin: 0 0 1rem 0; line-height: 1.6">After signing up, Yemi and Linh stop at the bulletin board. They read an announcement and help each other figure out the word types.</p>
 
         ${dialogue([
-          { speaker: "Yemi", avatar: "👨🏿", text: "Look at this notice. 'Free <strong>English</strong> classes start <strong>Monday</strong>.' English and Monday are both nouns, right?", side: "left", tone: "sage" },
+          { speaker: "Yemi", avatar: "👨🏿", text: "Look at this notice. 'Free <strong>English</strong> classes start in <strong>September</strong>.' English and September are both nouns, right?", side: "left", tone: "sage" },
           { speaker: "Linh", avatar: "👩🏻", text: "Yes. And 'start' is the verb. What about 'free'?", side: "right", tone: "blue" },
           { speaker: "Yemi", avatar: "👨🏿", text: "'Free' describes 'classes.' That's an adjective. And 'every Tuesday <strong>evening</strong>'... 'every Tuesday' tells us when.", side: "left", tone: "sage" },
-          { speaker: "Linh", avatar: "👩🏻", text: "So 'every Tuesday' is an adverb because it tells us when the classes <strong>meet</strong>. Got it!", side: "right", tone: "blue" },
+          { speaker: "Linh", avatar: "👩🏻", text: "So 'every Tuesday' does an adverb's job. It tells us when the classes <strong>meet</strong>. Got it!", side: "right", tone: "blue" },
         ])}
 
         <div style="padding: 1.1rem 1.25rem; border-radius: 0.5rem; background: rgba(106,141,115,0.08); border: 1px solid rgba(106,141,115,0.2); margin: 1.25rem 0">
           <p style="margin: 0 0 0.75rem 0; font-weight: 600; font-size: 0.95rem">The notice on the bulletin board:</p>
-          <p style="margin: 0 0 0.35rem 0; font-size: 1.05rem; line-height: 1.7"><em>Free <span style="color:#b05740;font-weight:700">English</span> classes <span style="color:#268a82;font-weight:700">start</span> Monday. Classes <span style="color:#268a82;font-weight:700">meet</span> every Tuesday evening in the <span style="color:#b56e1a;font-weight:700">large</span> room. <span style="color:#268a82;font-weight:700">Bring</span> a pencil and a <span style="color:#b56e1a;font-weight:700">small</span> notebook.</em></p>
+          <p style="margin: 0 0 0.35rem 0; font-size: 1.05rem; line-height: 1.7"><em>Free <span style="color:#b05740;font-weight:700">English</span> classes <span style="color:#268a82;font-weight:700">start</span> in September. Classes <span style="color:#268a82;font-weight:700">meet</span> every Tuesday evening in the <span style="color:#b56e1a;font-weight:700">large</span> room. <span style="color:#268a82;font-weight:700">Bring</span> a pencil and a <span style="color:#b56e1a;font-weight:700">small</span> notebook.</em></p>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem">
             ${labelPill("nouns", "terracotta")}
-            <span style="font-size: 0.88rem; align-self: center">English, classes, Monday, room, pencil, notebook</span>
+            <span style="font-size: 0.88rem; align-self: center">English, classes, September, room, pencil, notebook</span>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.35rem">
             ${labelPill("verbs", "sage")}
@@ -737,7 +750,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.35rem">
             ${labelPill("adverb", "blue")}
-            <span style="font-size: 0.88rem; align-self: center">every Tuesday evening (tells us when)</span>
+            <span style="font-size: 0.88rem; align-self: center">every Tuesday evening (a group of words that tells us when)</span>
           </div>
         </div>
 
@@ -800,23 +813,30 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               expectedAnswer: "adverb",
             },
             {
-              type: "text",
-              label: "They need a ___ notebook. (small)",
-              expectedAnswers: ["small"],
+              type: "radio",
+              label: "\"The evening classes are <strong>free</strong>.\"",
+              options: [
+                { value: "noun", label: "Noun" },
+                { value: "verb", label: "Verb" },
+                { value: "adjective", label: "Adjective" },
+                { value: "adverb", label: "Adverb" },
+              ],
+              expectedAnswer: "adjective",
             },
           ],
         },
         {
           id: "pos-all-2",
           title: "Fix the sentence",
-          instructions: "One word is in the wrong form. Choose the correct option.",
+          instructions:
+            "Choose the correct word for each sentence. Sometimes the word in bold is already correct.",
           items: [
             {
               type: "radio",
               label: "\"Yemi reads the announcement <strong>careful</strong>.\"",
               options: [
-                { value: "careful", label: "careful (adjective). correct as is" },
-                { value: "carefully", label: "carefully (adverb). reads how?" },
+                { value: "careful", label: "careful — an adjective, it describes a noun" },
+                { value: "carefully", label: "carefully — an adverb, it describes a verb" },
               ],
               expectedAnswer: "carefully",
             },
@@ -824,10 +844,19 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"The room is <strong>largely</strong> and comfortable.\"",
               options: [
-                { value: "largely", label: "largely (adverb). correct as is" },
-                { value: "large", label: "large (adjective). describes the room" },
+                { value: "large", label: "large — an adjective, it describes a noun" },
+                { value: "largely", label: "largely — an adverb, it describes a verb" },
               ],
               expectedAnswer: "large",
+            },
+            {
+              type: "radio",
+              label: "\"Yemi is a <strong>careful</strong> reader.\"",
+              options: [
+                { value: "careful", label: "careful — an adjective, it describes a noun" },
+                { value: "carefully", label: "carefully — an adverb, it describes a verb" },
+              ],
+              expectedAnswer: "careful",
             },
           ],
         },
@@ -872,6 +901,22 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       difficulty: "easy",
     },
     {
+      id: "pos-q2",
+      question: "Amara is talking about the class schedule. Which sentence is correct?",
+      options: [
+        { value: "a", label: "\"I am understanding the schedule.\"" },
+        { value: "b", label: "\"I understand the schedule.\"" },
+        { value: "c", label: "\"I understanding the schedule.\"" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Understand is a state verb, so it does not take the -ing form. Other state verbs: know, want, need, remember, like, have.",
+      topic: "verbs",
+      skill: "usage",
+      skillTag: "state-verb-no-ing",
+      difficulty: "medium",
+    },
+    {
       id: "pos-q3",
       question: "\"Carlos is a helpful volunteer at the community center.\" Which word is the adjective?",
       options: [
@@ -887,17 +932,6 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       difficulty: "easy",
     },
     {
-      id: "pos-qfb1",
-      type: "fill-blank" as const,
-      question: "Fill in the blank: \"Carlos works ___. He puts in a lot of effort.\" (Use the adverb form of 'hard'.)",
-      correctAnswer: "hard",
-      explanation: "Hard is both an adjective AND an adverb. 'Hardly' means almost not at all, the opposite meaning.",
-      topic: "adverbs",
-      skill: "usage",
-      skillTag: "hard-as-adverb",
-      difficulty: "medium",
-    },
-    {
       id: "pos-qws1",
       type: "word-scramble" as const,
       question: "Amara tells the class about her sister's work schedule. Put the words in order.",
@@ -908,6 +942,17 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       topic: "adjectives",
       skill: "usage",
       skillTag: "adjective-position",
+      difficulty: "medium",
+    },
+    {
+      id: "pos-qfb1",
+      type: "fill-blank" as const,
+      question: "Fill in the blank: \"Linh writes her address ___ so everyone can read it.\" (Use the adverb form of 'neat'.)",
+      correctAnswer: "neatly",
+      explanation: "Most adverbs of manner add -ly to the adjective: neat becomes neatly, clear becomes clearly, careful becomes carefully.",
+      topic: "adverbs",
+      skill: "usage",
+      skillTag: "form-ly-adverb",
       difficulty: "medium",
     },
     {
