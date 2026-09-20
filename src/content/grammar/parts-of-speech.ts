@@ -271,7 +271,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         ])}
 
         <div class="gc-bg-sage-alpha gc-callout-sage" style="padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem">
-          <p style="margin: 0; font-size: 1.05rem">There are two types of verbs. <strong>Action verbs</strong> describe things you do. <strong>State verbs</strong> describe things that are true about you — what you feel, know, have, or think.</p>
+          <p style="margin: 0; font-size: 1.05rem">There are two types of verbs. <strong>Action verbs</strong> describe things you do. <strong>State verbs</strong> describe things that are true about you, such as what you feel, know, have, or think.</p>
         </div>
 
         <p style="margin: 0 0 0.75rem 0; font-weight: 600">Action verbs: things you do</p>
@@ -325,8 +325,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Carlos <strong>helps</strong> new students every Tuesday.",
               options: [
-                { value: "action", label: "Action verb — you can watch someone do it" },
-                { value: "state", label: "State verb — a feeling, a fact, or something in the mind" },
+                { value: "action", label: "Action verb: you can watch someone do it" },
+                { value: "state", label: "State verb: a feeling, a fact, or something in the mind" },
               ],
               expectedAnswer: "action",
             },
@@ -334,8 +334,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Amara <strong>knows</strong> Carlos from the neighborhood.",
               options: [
-                { value: "action", label: "Action verb — you can watch someone do it" },
-                { value: "state", label: "State verb — a feeling, a fact, or something in the mind" },
+                { value: "action", label: "Action verb: you can watch someone do it" },
+                { value: "state", label: "State verb: a feeling, a fact, or something in the mind" },
               ],
               expectedAnswer: "state",
             },
@@ -343,8 +343,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "She <strong>fills out</strong> the form at the registration desk.",
               options: [
-                { value: "action", label: "Action verb — you can watch someone do it" },
-                { value: "state", label: "State verb — a feeling, a fact, or something in the mind" },
+                { value: "action", label: "Action verb: you can watch someone do it" },
+                { value: "state", label: "State verb: a feeling, a fact, or something in the mind" },
               ],
               expectedAnswer: "action",
             },
@@ -352,8 +352,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "Carlos <strong>wants</strong> to practice his Haitian Creole.",
               options: [
-                { value: "action", label: "Action verb — you can watch someone do it" },
-                { value: "state", label: "State verb — a feeling, a fact, or something in the mind" },
+                { value: "action", label: "Action verb: you can watch someone do it" },
+                { value: "state", label: "State verb: a feeling, a fact, or something in the mind" },
               ],
               expectedAnswer: "state",
             },
@@ -368,8 +368,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"I am knowing all the students in my class.\"",
               options: [
-                { value: "correct", label: "Correct — this verb can use the -ing form." },
-                { value: "incorrect", label: "Not correct — this verb cannot use the -ing form." },
+                { value: "correct", label: "Correct: this verb can use the -ing form." },
+                { value: "incorrect", label: "Not correct: this verb cannot use the -ing form." },
               ],
               expectedAnswer: "incorrect",
             },
@@ -377,8 +377,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"Carlos is helping a student right now.\"",
               options: [
-                { value: "correct", label: "Correct — this verb can use the -ing form." },
-                { value: "incorrect", label: "Not correct — this verb cannot use the -ing form." },
+                { value: "correct", label: "Correct: this verb can use the -ing form." },
+                { value: "incorrect", label: "Not correct: this verb cannot use the -ing form." },
               ],
               expectedAnswer: "correct",
             },
@@ -386,8 +386,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"She is wanting the Tuesday evening class.\"",
               options: [
-                { value: "correct", label: "Correct — this verb can use the -ing form." },
-                { value: "incorrect", label: "Not correct — this verb cannot use the -ing form." },
+                { value: "correct", label: "Correct: this verb can use the -ing form." },
+                { value: "incorrect", label: "Not correct: this verb cannot use the -ing form." },
               ],
               expectedAnswer: "incorrect",
             },
@@ -529,8 +529,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"She has a schedule busy.\"",
               options: [
-                { value: "correct", label: "Correct — the adjective is in the right place." },
-                { value: "incorrect", label: "Not correct — the adjective is in the wrong place." },
+                { value: "correct", label: "Correct: the adjective is in the right place." },
+                { value: "incorrect", label: "Not correct: the adjective is in the wrong place." },
               ],
               expectedAnswer: "incorrect",
             },
@@ -538,8 +538,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"The new building has two small rooms.\"",
               options: [
-                { value: "correct", label: "Correct — the adjective is in the right place." },
-                { value: "incorrect", label: "Not correct — the adjective is in the wrong place." },
+                { value: "correct", label: "Correct: the adjective is in the right place." },
+                { value: "incorrect", label: "Not correct: the adjective is in the wrong place." },
               ],
               expectedAnswer: "correct",
             },
@@ -547,8 +547,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"They have children three.\"",
               options: [
-                { value: "correct", label: "Correct — the adjective is in the right place." },
-                { value: "incorrect", label: "Not correct — the adjective is in the wrong place." },
+                { value: "correct", label: "Correct: the adjective is in the right place." },
+                { value: "incorrect", label: "Not correct: the adjective is in the wrong place." },
               ],
               expectedAnswer: "incorrect",
             },
@@ -570,6 +570,23 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               label: "Unscramble:",
               words: ["The", "form", "has", "five", "short", "sections"],
               correctAnswer: "The form has five short sections",
+            },
+          ],
+        },
+        {
+          id: "pos-adj-4",
+          title: "Write the adjective",
+          instructions: "Write the word that describes the noun.",
+          items: [
+            {
+              type: "text",
+              label: "\"Dilnoza has a busy schedule.\" Which word describes \"schedule\"?",
+              expectedAnswers: ["busy"],
+            },
+            {
+              type: "text",
+              label: "\"The new building has two small rooms.\" Which word describes \"rooms\"?",
+              expectedAnswers: ["small"],
             },
           ],
         },
@@ -835,8 +852,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"Yemi reads the announcement <strong>careful</strong>.\"",
               options: [
-                { value: "careful", label: "careful — an adjective, it describes a noun" },
-                { value: "carefully", label: "carefully — an adverb, it describes a verb" },
+                { value: "careful", label: "careful: an adjective, it describes a noun" },
+                { value: "carefully", label: "carefully: an adverb, it describes a verb" },
               ],
               expectedAnswer: "carefully",
             },
@@ -844,8 +861,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"The room is <strong>largely</strong> and comfortable.\"",
               options: [
-                { value: "large", label: "large — an adjective, it describes a noun" },
-                { value: "largely", label: "largely — an adverb, it describes a verb" },
+                { value: "large", label: "large: an adjective, it describes a noun" },
+                { value: "largely", label: "largely: an adverb, it describes a verb" },
               ],
               expectedAnswer: "large",
             },
@@ -853,8 +870,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"Yemi is a <strong>careful</strong> reader.\"",
               options: [
-                { value: "careful", label: "careful — an adjective, it describes a noun" },
-                { value: "carefully", label: "carefully — an adverb, it describes a verb" },
+                { value: "careful", label: "careful: an adjective, it describes a noun" },
+                { value: "carefully", label: "carefully: an adverb, it describes a verb" },
               ],
               expectedAnswer: "careful",
             },
@@ -877,6 +894,23 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
               label: "Unscramble:",
               words: ["Free", "classes", "start", "every", "Tuesday", "evening"],
               correctAnswer: "Free classes start every Tuesday evening",
+            },
+          ],
+        },
+        {
+          id: "pos-all-4",
+          title: "Write the word type",
+          instructions: "Read the notice again. Write the word type: noun, verb, adjective, or adverb.",
+          items: [
+            {
+              type: "text",
+              label: "In \"Free English classes start in September,\" what type of word is \"start\"?",
+              expectedAnswers: ["verb"],
+            },
+            {
+              type: "text",
+              label: "In \"Bring a small notebook,\" what type of word is \"small\"?",
+              expectedAnswers: ["adjective"],
             },
           ],
         },
@@ -942,17 +976,6 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       topic: "adjectives",
       skill: "usage",
       skillTag: "adjective-position",
-      difficulty: "medium",
-    },
-    {
-      id: "pos-qfb1",
-      type: "fill-blank" as const,
-      question: "Fill in the blank: \"Linh writes her address ___ so everyone can read it.\" (Use the adverb form of 'neat'.)",
-      correctAnswer: "neatly",
-      explanation: "Most adverbs of manner add -ly to the adjective: neat becomes neatly, clear becomes clearly, careful becomes carefully.",
-      topic: "adverbs",
-      skill: "usage",
-      skillTag: "form-ly-adverb",
       difficulty: "medium",
     },
     {
