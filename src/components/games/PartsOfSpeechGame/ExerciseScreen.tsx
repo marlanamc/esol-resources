@@ -351,10 +351,10 @@ export function ExerciseScreen({
             <ArrowLeft size={16} />
           </button>
           <div className="flex-1 min-w-0">
-            <h2 className="font-display text-sm font-semibold text-text truncate">{titleOverride ?? group.title}</h2>
-            <div className="flex items-center gap-1.5 text-[11px] text-text-muted">
+            <h2 className="font-display text-base font-semibold text-text truncate">{titleOverride ?? group.title}</h2>
+            <div className="flex items-center gap-1.5 text-xs text-text-muted">
               {!minimalChrome && (
-                <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold ${getRoundBadgeColor(roundMode)}`}>
+                <span className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-bold ${getRoundBadgeColor(roundMode)}`}>
                   {getRoundLabel(roundMode)}
                 </span>
               )}
@@ -365,13 +365,13 @@ export function ExerciseScreen({
           <div className="flex items-center gap-1 flex-shrink-0">
             {streak > 0 && (
               <div className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-orange-100 dark:bg-orange-900/40 border border-orange-200 dark:border-orange-600/50">
-                <Zap size={10} className="text-orange-500" />
-                <span className="text-[10px] font-bold text-orange-700 dark:text-orange-200">{streak}</span>
+                <Zap size={12} className="text-orange-500" />
+                <span className="text-xs font-bold text-orange-700 dark:text-orange-200">{streak}</span>
               </div>
             )}
             <div className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-secondary/10 border border-secondary/20">
-              <Target size={10} className="text-secondary" />
-              <span className="text-[10px] font-bold text-secondary-dark">{correctCount}</span>
+              <Target size={12} className="text-secondary" />
+              <span className="text-xs font-bold text-secondary-dark">{correctCount}</span>
             </div>
           </div>
         </div>
@@ -460,11 +460,11 @@ export function ExerciseScreen({
         <div className={minimalChrome ? 'flex justify-end px-3 pt-2 sm:px-6' : `border-b px-3 py-2 sm:px-6 sm:py-3 flex items-start gap-3 ${shellHeaderClass}`}>
           {!minimalChrome && (
             <div className="flex-1 min-w-0">
-              <p className="text-xs sm:text-sm text-text font-semibold">
+              <p className="text-sm sm:text-base text-text font-semibold">
                 {EXERCISE_TYPE_LABELS[currentExercise.type] ?? 'Exercise'}
               </p>
               {EXERCISE_TYPE_SUBTITLE[currentExercise.type] && (
-                <p className="mt-0.5 text-[11px] sm:text-xs text-text-muted leading-snug">
+                <p className="mt-0.5 text-xs sm:text-sm text-text-muted leading-snug">
                   {EXERCISE_TYPE_SUBTITLE[currentExercise.type]}
                 </p>
               )}
@@ -515,7 +515,7 @@ export function ExerciseScreen({
                       type="button"
                       onClick={() => setShowWhy(prev => !prev)}
                       aria-expanded={showWhy}
-                      className="inline-flex items-center gap-1 rounded-full border border-current/20 px-2 py-0.5 text-[11px] font-semibold opacity-80 hover:opacity-100 transition"
+                      className="inline-flex items-center gap-1 rounded-full border border-current/20 px-2 py-0.5 text-xs font-semibold opacity-80 hover:opacity-100 transition"
                     >
                       <HelpCircle size={12} />
                       {showWhy ? 'Hide why' : 'Why?'}

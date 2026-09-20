@@ -77,7 +77,7 @@ export const MadLibsExercise = memo(function MadLibsExercise({ exercise, onAnswe
                 `}
                 disabled={answered}
               >
-                {blankValue ? blankValue : <span className="text-[10px] uppercase tracking-widest">{requiredPOS ? POS_LABELS[requiredPOS] : 'word'}</span>}
+                {blankValue ? blankValue : <span className="text-xs uppercase tracking-widest">{requiredPOS ? POS_LABELS[requiredPOS] : 'word'}</span>}
               </button>
             );
           })}

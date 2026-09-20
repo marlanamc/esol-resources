@@ -134,7 +134,7 @@ export function GroupCard({ group, progress, locked = false, onClick }: GroupCar
             <div className="flex items-center gap-2 mt-2">
               {!group.isCheckpoint ? (
                 <>
-                  <span className="text-[10px] font-medium text-text-muted uppercase tracking-wide">Rounds:</span>
+                  <span className="text-xs font-medium text-text-muted uppercase tracking-wide">Rounds:</span>
                   <div className="flex items-center gap-1">
                     {Array.from({ length: group.maxRounds }, (_, i) => {
                       const roundNum = i + 1;
@@ -169,7 +169,7 @@ export function GroupCard({ group, progress, locked = false, onClick }: GroupCar
                   </span>
                 </>
               ) : (
-                <span className="text-[10px] font-medium text-text-muted uppercase tracking-wide">
+                <span className="text-xs font-medium text-text-muted uppercase tracking-wide">
                   ★ Review checkpoint
                 </span>
               )}

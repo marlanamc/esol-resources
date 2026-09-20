@@ -104,7 +104,7 @@ export const PhotoSortExercise = memo(function PhotoSortExercise({ exercise, onA
           referrerPolicy="no-referrer-when-downgrade"
         />
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent pt-6 pb-1.5 px-2">
-          <p className="text-[11px] font-bold text-white leading-tight truncate">{item.word}</p>
+          <p className="text-xs font-bold text-white leading-tight truncate">{item.word}</p>
         </div>
         <AnimatePresence>
           {submitted && (
@@ -186,7 +186,7 @@ export const PhotoSortExercise = memo(function PhotoSortExercise({ exercise, onA
             const isTarget = bin === targetPOS;
             return (
               <div key={bin} className="space-y-1.5">
-                <h3 className={`text-center text-[11px] font-black uppercase tracking-widest px-2 py-1.5 rounded-lg border ${POS_COLORS[bin]} ${isTarget ? 'ring-2 ring-offset-1 ring-primary/40' : ''}`}>
+                <h3 className={`text-center text-xs font-black uppercase tracking-widest px-2 py-1.5 rounded-lg border ${POS_COLORS[bin]} ${isTarget ? 'ring-2 ring-offset-1 ring-primary/40' : ''}`}>
                   {POS_LABELS[bin]}
                 </h3>
                 <DroppableSlot
@@ -211,7 +211,7 @@ export const PhotoSortExercise = memo(function PhotoSortExercise({ exercise, onA
                     </motion.div>
                   ))}
                   {placedItems.length === 0 && !submitted && (
-                    <div className="flex items-center justify-center w-full text-[10px] font-bold uppercase tracking-tight text-text-muted/40 py-4 pointer-events-none">
+                    <div className="flex items-center justify-center w-full text-xs font-bold uppercase tracking-tight text-text-muted/40 py-4 pointer-events-none">
                       Drop here
                     </div>
                   )}

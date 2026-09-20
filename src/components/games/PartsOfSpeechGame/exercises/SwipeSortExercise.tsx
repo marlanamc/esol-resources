@@ -350,11 +350,15 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
           }`}
         >
           {/*
-            Small type and tight tracking on mobile: "Conjunction" and
-            "Preposition" at the old text-xs/tracking-widest needed ~144px and
-            were silently clipped by the overflow-hidden above.
+            Sentence case on mobile, caps only from sm up. Caps are harder to
+            read -- more so with low vision, and these are language learners --
+            and "Conjunction" in caps does not fit the rail at 320px once the
+            Large Text setting is on. Sizes here and below are rem-based on
+            purpose: that setting scales the root font size (globals.css,
+            html[data-font-size="large"]), which an absolute text-[11px]
+            silently ignored.
           */}
-          <span className="flex w-[92px] shrink-0 items-center justify-center gap-1 border-r-2 border-solid border-current/20 px-1.5 py-2 text-center text-[11px] font-black uppercase leading-tight tracking-wide sm:w-auto sm:gap-1.5 sm:border-r-0 sm:border-b-2 sm:px-2 sm:py-2.5 sm:text-sm sm:tracking-widest">
+          <span className="flex w-auto min-w-[88px] max-w-[48%] shrink-0 flex-col items-center justify-center gap-0.5 border-r-2 sm:min-w-0 sm:max-w-none sm:flex-row sm:gap-1.5 border-solid border-current/20 px-2 py-2 text-center text-sm font-black leading-tight sm:w-auto sm:border-r-0 sm:border-b-2 sm:px-2 sm:py-2.5 sm:text-sm sm:uppercase sm:tracking-widest">
             {side === 'left' && (
               <>
                 <ChevronUp className="h-3.5 w-3.5 shrink-0 opacity-70 sm:hidden" aria-hidden="true" />
@@ -380,7 +384,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
           {/* The stack. Empty buckets say what goes in them rather than sitting blank. */}
           <span className="flex flex-1 flex-row flex-wrap items-center content-center justify-center gap-1.5 overflow-hidden px-2 py-2 sm:flex-col sm:flex-nowrap sm:py-2.5">
             {stack.length === 0 ? (
-              <span className="m-auto px-0.5 text-center text-xs font-medium leading-snug text-balance opacity-50">
+              <span className="m-auto px-0.5 text-center text-sm font-medium leading-snug text-balance opacity-60 sm:text-base">
                 {POS_DEFINITIONS[bucket]}
               </span>
             ) : (
@@ -391,7 +395,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
                     initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -14, scale: 0.85 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={STACK_IN}
-                    className={`flex items-center justify-center gap-1 rounded-lg border border-solid px-2 py-1 text-sm leading-tight font-bold break-words sm:w-full sm:text-base ${
+                    className={`flex items-center justify-center gap-1 rounded-lg border border-solid px-2.5 py-1 text-base leading-tight font-bold break-words sm:w-full sm:text-lg ${
                       r.correct
                         ? 'border-current/25 bg-white/70 dark:bg-white/10'
                         : 'border-error/40 bg-error/10 text-error line-through decoration-2'
@@ -443,7 +447,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
         {!done && !correction && (
           <>
             <Hand size={14} className="shrink-0 text-text-muted" aria-hidden="true" />
-            <p className="text-xs font-medium text-text-muted sm:text-sm">{hint}</p>
+            <p className="text-sm font-medium text-text-muted sm:text-base">{hint}</p>
           </>
         )}
       </div>
@@ -525,11 +529,11 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
               animate={{ opacity: 1, y: 0 }}
               className="absolute inset-0 sm:m-auto sm:aspect-[4/7] sm:h-auto sm:max-h-full sm:w-full rounded-3xl border-2 border-border bg-white dark:bg-[#162b3d] shadow-sm flex flex-col items-center justify-center gap-1"
             >
-              <p className="text-xs text-text-muted sm:text-sm">All done</p>
+              <p className="text-sm text-text-muted sm:text-base">All done</p>
               <p className="text-xl font-display font-bold text-text sm:text-3xl">
                 {summaryCorrect} / {total}
               </p>
-              <p className="text-[11px] text-text-muted sm:text-xs">correct</p>
+              <p className="text-sm text-text-muted">correct</p>
             </motion.div>
           )}
         </div>
@@ -561,7 +565,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
               } flex flex-col items-center justify-center gap-2 text-center`}
             >
               <p
-                className={`text-[11px] font-black uppercase tracking-widest sm:text-xs ${
+                className={`text-xs font-black uppercase tracking-widest sm:text-sm ${
                   correction.alternate ? 'text-secondary' : 'text-error'
                 }`}
               >
@@ -569,16 +573,16 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
               </p>
 
               {correction.alternate ? (
-                <p className="text-sm font-display font-bold leading-snug text-text sm:text-lg">
+                <p className="text-lg font-display font-bold leading-snug text-text sm:text-xl">
                   &ldquo;{correction.card.word}&rdquo; works as both.
                 </p>
               ) : (
-                <p className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-sm font-display font-bold leading-snug text-text sm:text-lg">
+                <p className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-lg font-display font-bold leading-snug text-text sm:text-xl">
                   <span>
                     &ldquo;{correction.card.word}&rdquo; is {articleFor(correction.card.correctBucket)}
                   </span>
                   <span
-                    className={`inline-flex items-center rounded-lg border-2 border-solid px-2 py-0.5 text-[10px] font-black uppercase tracking-widest sm:text-xs ${
+                    className={`inline-flex items-center rounded-lg border-2 border-solid px-2 py-0.5 text-xs font-black uppercase tracking-widest sm:text-sm ${
                       POS_COLORS[correction.card.correctBucket]
                     }`}
                   >
@@ -594,7 +598,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
                 which matters because the deck is generated and nothing here
                 knows the word.
               */}
-              <p className="line-clamp-3 max-w-[34ch] text-[11px] leading-snug text-text-muted sm:max-w-none sm:text-sm">
+              <p className="line-clamp-3 max-w-[34ch] text-sm leading-snug text-text-muted sm:max-w-none sm:text-base">
                 {correction.card.explanation ?? POS_DEFINITIONS[correction.card.correctBucket]}
               </p>
 
@@ -604,7 +608,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
                 onClick={() => advance(results)}
                 className="mt-0.5 block w-full max-w-[220px]"
               >
-                <span className="flex min-h-[44px] w-full items-center justify-center rounded-xl border-2 border-solid border-primary bg-primary px-3 py-2 text-sm font-bold text-white">
+                <span className="flex min-h-[44px] w-full items-center justify-center rounded-xl border-2 border-solid border-primary bg-primary px-3 py-2 text-base font-bold text-white">
                   {index + 1 >= total ? 'See results' : 'Next word'}
                 </span>
               </button>

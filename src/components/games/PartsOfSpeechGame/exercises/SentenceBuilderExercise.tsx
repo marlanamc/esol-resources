@@ -133,7 +133,7 @@ export const SentenceBuilderExercise = memo(function SentenceBuilderExercise({ e
                     <div className="min-w-[72px] px-3 py-2 rounded-xl border-2 bg-bg-gray border-border text-sm font-semibold text-text text-center">
                       {slot.correctWord}
                     </div>
-                    <span className={`text-[10px] font-semibold uppercase tracking-wide ${posTextClass}`}>{posLabel}</span>
+                    <span className={`text-xs font-semibold uppercase tracking-wide ${posTextClass}`}>{posLabel}</span>
                   </div>
                 );
               }
@@ -171,7 +171,7 @@ export const SentenceBuilderExercise = memo(function SentenceBuilderExercise({ e
                       <span className="pointer-events-none">{value || '____'}</span>
                     )}
                   </DroppableSlot>
-                  <span className={`text-[10px] font-semibold uppercase tracking-wide ${posTextClass}`}>{posLabel}</span>
+                  <span className={`text-xs font-semibold uppercase tracking-wide ${posTextClass}`}>{posLabel}</span>
                 </div>
               );
             })}

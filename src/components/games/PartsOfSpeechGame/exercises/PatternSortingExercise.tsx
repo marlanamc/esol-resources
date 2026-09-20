@@ -208,7 +208,7 @@ export const PatternSortingExercise = memo(function PatternSortingExercise({ exe
                   ))}
                   {placedEntries.length === 0 && !submitted && (
                     <div className="flex flex-col items-center justify-center w-full h-full py-6 text-text-muted/40 pointer-events-none">
-                      <span className="text-[10px] font-bold uppercase tracking-tight">Drop here</span>
+                      <span className="text-xs font-bold uppercase tracking-tight">Drop here</span>
                     </div>
                   )}
                 </DroppableSlot>

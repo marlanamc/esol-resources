@@ -127,7 +127,7 @@ export const SentenceDiagramExercise = memo(function SentenceDiagramExercise({ e
                       initial={{ opacity: 0, y: -4 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
-                      className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${ROLE_COLORS[assigned.role]}`}
+                      className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${ROLE_COLORS[assigned.role]}`}
                     >
                       {ROLE_LABELS[assigned.role]}
                     </motion.span>
