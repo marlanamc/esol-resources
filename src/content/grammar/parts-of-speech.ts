@@ -84,7 +84,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
       explanation: `
         ${sceneCard("sceneFrontDesk", "East Boston Community Center. Tuesday, 5:30 PM.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara walks in to sign up for a free English class. James at the front desk greets her. A poster says <strong>Hispanic Heritage Month</strong> starts September 15. Her daughter saw the same sign at school. Every sign, every room, every person has a <strong>name</strong>. Those names are nouns.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Amara walks in to sign up for a free English class. James at the front desk greets her. Every sign, every room, and every person here has a <strong>name</strong>. Those names are nouns.</p>
 
         ${dialogue([
           { speaker: "Volunteer", avatar: "🙋", text: "Welcome! This is the <strong>registration desk</strong>. Can I get your <strong>name</strong> and <strong>address</strong>?", side: "left", tone: "sage" },
