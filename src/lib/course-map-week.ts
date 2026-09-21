@@ -13,8 +13,12 @@ import {
 import {
     buildMapActivityHref,
     findFirstIncompleteRequired,
-    resolveNextMapActivityLaunch,
+    resolveWeekActivityLaunch,
 } from "@/lib/course-map-navigation";
+import {
+    resolveCurrentWeek,
+    visibleWeekNumbers,
+} from "@/lib/course-map-current-week";
 import {
     formatNextUpActivityTitle,
     getCourseMapEstimatedMinutesForActivity,
@@ -55,24 +59,30 @@ interface CurrentWeekSnapshot {
 
 async function buildCurrentWeekSnapshot(
     user: { id: string; role?: string | null },
-    mode?: VisibleMapMode
+    options?: { mode?: VisibleMapMode; now?: Date }
 ): Promise<CurrentWeekSnapshot | null> {
-    const learnerMode = mode ?? (await getEffectiveLearnerMode(user.id, user));
+    const learnerMode = options?.mode ?? (await getEffectiveLearnerMode(user.id, user));
     const { units: rawUnits } = await getVisibleMap(user, { mode: learnerMode });
     if (rawUnits.length === 0) return null;
 
     const units = await enrichCourseMapUnitsWithGrammarIds(rawUnits);
     const guidedProgress = await loadCourseMapProgressState(user.id, units);
 
-    const currentMatch = findFirstIncompleteRequired(units, guidedProgress);
+    // Classroom learners follow the school calendar; independent learners keep
+    // their progress-based week. resolveCurrentWeek owns that choice.
+    const progressMatch = findFirstIncompleteRequired(units, guidedProgress);
+    const resolved = resolveCurrentWeek({
+        mode: learnerMode,
+        visibleWeeks: visibleWeekNumbers(units),
+        progressWeek: progressMatch?.weekNumber ?? null,
+        ...(options?.now ? { now: options.now } : {}),
+    });
+    if (!resolved) return null;
 
-    const targetUnitNumber = currentMatch?.unitNumber ?? units[units.length - 1]?.unitNumber ?? 1;
-    const targetWeekNumber =
-        currentMatch?.weekNumber ??
-        units[units.length - 1]?.levels[units[units.length - 1].levels.length - 1]?.levelNumber ??
-        1;
-
-    const currentUnit = units.find((u) => u.unitNumber === targetUnitNumber);
+    const targetWeekNumber = resolved.weekNumber;
+    const currentUnit = units.find((u) =>
+        u.levels.some((l) => l.levelNumber === targetWeekNumber)
+    );
     const currentLevel = currentUnit?.levels.find((l) => l.levelNumber === targetWeekNumber);
 
     if (!currentUnit || !currentLevel) return null;
@@ -185,23 +195,26 @@ export interface DashboardResumeData {
     progress: { done: number; total: number };
     currentItem: TimelineItem;
     continueHref: string;
-    continueLabel: "Start here" | "Continue" | "Review map";
+    continueLabel: "Start here" | "Continue" | "Review this week";
     mapHref: string;
     weekItems: TimelineItem[];
 }
 
-export async function getDashboardResumeData(user: {
-    id: string;
-    role?: string | null;
-}): Promise<DashboardResumeData | null> {
-    const snapshot = await buildCurrentWeekSnapshot(user);
+export async function getDashboardResumeData(
+    user: { id: string; role?: string | null },
+    options?: { now?: Date }
+): Promise<DashboardResumeData | null> {
+    const snapshot = await buildCurrentWeekSnapshot(user, options);
     if (!snapshot) return null;
 
     const learnerMode = snapshot.mode;
     const assignmentByActivityId = await loadAssignmentByActivityId(user.id);
-    const launch = resolveNextMapActivityLaunch(
+    // Scoped to the week the calendar put us on, so the button never jumps the
+    // learner into a different week than the one the card is titled with.
+    const launch = resolveWeekActivityLaunch(
         snapshot.units,
         snapshot.guidedProgress,
+        snapshot.weekNumber,
         assignmentByActivityId
     );
 
@@ -213,17 +226,15 @@ export async function getDashboardResumeData(user: {
     if (!currentItem) return null;
 
     const continueHref = launch?.href ?? currentItem.href;
-    const mapHref =
-        launch != null
-            ? `/dashboard/map?week=${launch.weekNumber}&focus=next#week-${launch.weekNumber}`
-            : `/dashboard/map?week=${snapshot.weekNumber}#week-${snapshot.weekNumber}`;
+    const mapHref = `/dashboard/map?week=${snapshot.weekNumber}&focus=next#week-${snapshot.weekNumber}`;
 
-    const continueLabel =
-        snapshot.progress.done === 0
-            ? "Start here"
-            : snapshot.progress.done >= snapshot.progress.total
-              ? "Review map"
-              : "Continue";
+    const weekComplete =
+        snapshot.progress.total > 0 && snapshot.progress.done >= snapshot.progress.total;
+    const continueLabel = weekComplete
+        ? "Review this week"
+        : snapshot.progress.done === 0
+          ? "Start here"
+          : "Continue";
 
     return {
         weekNumber: snapshot.weekNumber,
@@ -236,7 +247,8 @@ export async function getDashboardResumeData(user: {
         progress: snapshot.progress,
         currentItem: {
             ...currentItem,
-            title: formatNextUpActivityTitle(currentItem.title),
+            ...(launch?.isReview ? { status: "done" as const } : {}),
+            title: formatNextUpActivityTitle(launch?.title ?? currentItem.title),
         },
         continueHref,
         continueLabel,

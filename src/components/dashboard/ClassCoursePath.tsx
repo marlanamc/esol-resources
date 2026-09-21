@@ -56,6 +56,8 @@ interface Props {
     mobileWayfinding?: ReactNode;
     /** School-year month labels (e.g. September) — classroom only */
     showUnitMonths?: boolean;
+    /** The week the school calendar says the class is on. */
+    scheduledWeek?: number | null;
 }
 
 
@@ -68,6 +70,7 @@ function GuidedCoursePath({
     focusNextActivity = false,
     mobileWayfinding,
     showUnitMonths = true,
+    scheduledWeek = null,
 }: {
     guidedUnits: CourseMapUnit[];
     guidedAssignments: Record<string, GuidedAssignmentInfo>;
@@ -77,6 +80,7 @@ function GuidedCoursePath({
     focusNextActivity?: boolean;
     mobileWayfinding?: ReactNode;
     showUnitMonths?: boolean;
+    scheduledWeek?: number | null;
 }) {
     const pathname = usePathname();
     const requiredActivities = useMemo(() => flattenRequired(guidedUnits), [guidedUnits]);
@@ -144,14 +148,23 @@ function GuidedCoursePath({
 
     const currentWeek = weekSummaries.find((week) => week.hasCurrent) ?? weekSummaries.find((week) => !week.isDone) ?? weekSummaries[0];
     const currentUnit = unitSummaries.find((u) => u.hasCurrent) ?? unitSummaries.find((u) => u.status !== "done") ?? unitSummaries[0];
-    const progressWeekNumber = currentWeek?.level.levelNumber ?? null;
+    // Default opening position: the calendar's week when there is one, so the
+    // map lands on what the class is doing rather than on the oldest gap.
+    // An explicit ?week= link or hash still wins — deliberate visits are never
+    // redirected away.
+    const defaultWeekNumber = scheduledWeek ?? currentWeek?.level.levelNumber ?? null;
+    const progressWeekNumber = defaultWeekNumber;
     const resolveOpenWeek = () =>
         resolveInitialMapOpenWeek({
             initialWeek,
             hashWeek: typeof window !== "undefined" ? parseMapWeekFromHash(window.location.hash) : null,
-            progressWeek: progressWeekNumber,
+            progressWeek: defaultWeekNumber,
         });
-    const [openUnitNumber, setOpenUnitNumber] = useState<number | null>(() => currentUnit?.unitNumber ?? null);
+    const defaultUnitNumber =
+        weekSummaries.find((week) => week.level.levelNumber === defaultWeekNumber)?.unitNumber ??
+        currentUnit?.unitNumber ??
+        null;
+    const [openUnitNumber, setOpenUnitNumber] = useState<number | null>(() => defaultUnitNumber);
     const [mobileOpenWeek, setMobileOpenWeek] = useState<number | null>(resolveOpenWeek);
     const [mobileOptionalOpen, setMobileOptionalOpen] = useState<Record<number, boolean>>({});
     const [desktopSelectedWeek, setDesktopSelectedWeek] = useState<number | null>(resolveOpenWeek);
@@ -288,10 +301,11 @@ function GuidedCoursePath({
                             guidedAssignments={guidedAssignments}
                             guidedProgress={guidedProgress}
                             showUnitMonths={showUnitMonths}
+                            scheduledWeek={scheduledWeek}
                             onToggle={() =>
                                 setOpenUnitNumber((prev) =>
                                     prev === unit.unitNumber
-                                        ? (currentUnit?.unitNumber ?? null)
+                                        ? (defaultUnitNumber ?? null)
                                         : unit.unitNumber
                                 )
                             }
@@ -327,6 +341,7 @@ function GuidedCoursePath({
                     guidedProgress={guidedProgress}
                     pulseCurrentActivity={pulseCurrentActivity}
                     showUnitMonths={showUnitMonths}
+                    scheduledWeek={scheduledWeek}
                     onToggle={() =>
                         setOpenUnitNumber((prev) =>
                             prev === unit.unitNumber ? null : unit.unitNumber
@@ -542,6 +557,7 @@ export function ClassCoursePath({
     focusNextActivity = false,
     mobileWayfinding,
     showUnitMonths = true,
+    scheduledWeek = null,
 }: Props) {
     if (guidedUnits.length > 0) {
         return (
@@ -554,6 +570,7 @@ export function ClassCoursePath({
                 focusNextActivity={focusNextActivity}
                 mobileWayfinding={mobileWayfinding}
                 showUnitMonths={showUnitMonths}
+                scheduledWeek={scheduledWeek}
             />
         );
     }

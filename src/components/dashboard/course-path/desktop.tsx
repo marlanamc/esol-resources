@@ -1,11 +1,16 @@
 "use client";
 
-import { Check, ChevronDown, ChevronRight, Plus } from "lucide-react";
+import { Check, ChevronDown, ChevronRight, Plus, RotateCcw } from "lucide-react";
 import { ActivityTimeline } from "@/components/dashboard/ActivityTimeline";
 import type { CourseMapActivity } from "@/lib/course-map";
 import type { CourseMapProgressState } from "@/lib/course-map-progress";
 import { courseMapUnitToneStyle, getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
-import { buildMapReturnHref, isMapActivityCompleted } from "@/lib/course-map-navigation";
+import {
+    buildMapReturnHref,
+    dispatchOpenMapWeek,
+    isMapActivityCompleted,
+    scrollToMapTarget,
+} from "@/lib/course-map-navigation";
 import {
     type GuidedAssignmentInfo,
     type UnitSummary,
@@ -34,6 +39,7 @@ export function DesktopUnitSection({
     guidedProgress,
     pulseCurrentActivity,
     showUnitMonths = true,
+    scheduledWeek = null,
     onToggle,
     onWeekToggle,
     onOptionalToggle,
@@ -48,6 +54,7 @@ export function DesktopUnitSection({
     guidedProgress: CourseMapProgressState;
     pulseCurrentActivity?: boolean;
     showUnitMonths?: boolean;
+    scheduledWeek?: number | null;
     onToggle: () => void;
     onWeekToggle: (weekNumber: number) => void;
     onOptionalToggle: (weekNumber: number) => void;
@@ -99,23 +106,55 @@ export function DesktopUnitSection({
 
             {isOpen && (
                 <div style={{ padding: "4px 18px 18px", display: "grid", gap: 10 }}>
-                    {unit.weeks.map((week) => (
-                        <div key={week.level.levelNumber} id={`week-${week.level.levelNumber}`} className={MAP_SCROLL_MARGIN}>
-                            <DesktopWeekPanel
-                                week={week}
-                                isOpen={openWeekNumber === week.level.levelNumber}
-                                currentId={currentId}
-                                currentLabel={currentLabel}
-                                guidedAssignments={guidedAssignments}
-                                guidedProgress={guidedProgress}
-                                optionalOpen={Boolean(openOptional[week.level.levelNumber])}
-                                pulseCurrent={pulseCurrentActivity}
-                                showUnitMonths={showUnitMonths}
-                                onToggle={() => onWeekToggle(week.level.levelNumber)}
-                                onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
-                            />
-                        </div>
-                    ))}
+                    {(() => {
+                        // Same grouping as mobile: earlier weeks under "Previous
+                        // weeks", already-released later ones under "Upcoming".
+                        const renderWeek = (week: (typeof unit.weeks)[number]) => (
+                            <div key={week.level.levelNumber} id={`week-${week.level.levelNumber}`} className={MAP_SCROLL_MARGIN}>
+                                <DesktopWeekPanel
+                                    week={week}
+                                    isOpen={openWeekNumber === week.level.levelNumber}
+                                    currentId={currentId}
+                                    currentLabel={currentLabel}
+                                    guidedAssignments={guidedAssignments}
+                                    guidedProgress={guidedProgress}
+                                    optionalOpen={Boolean(openOptional[week.level.levelNumber])}
+                                    pulseCurrent={pulseCurrentActivity}
+                                    showUnitMonths={showUnitMonths}
+                                    scheduledWeek={scheduledWeek}
+                                    onToggle={() => onWeekToggle(week.level.levelNumber)}
+                                    onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
+                                />
+                            </div>
+                        );
+
+                        if (scheduledWeek == null || !showUnitMonths) {
+                            return unit.weeks.map(renderWeek);
+                        }
+
+                        const previous = unit.weeks.filter((w) => w.level.levelNumber < scheduledWeek);
+                        const currentAndLater = unit.weeks.filter((w) => w.level.levelNumber === scheduledWeek);
+                        const upcoming = unit.weeks.filter((w) => w.level.levelNumber > scheduledWeek);
+
+                        const groupLabel = (label: string) => (
+                            <p
+                                key={label}
+                                className="mt-1 text-[11px] font-bold uppercase tracking-wide text-text-muted"
+                            >
+                                {label}
+                            </p>
+                        );
+
+                        return [
+                            ...(previous.length > 0
+                                ? [groupLabel("Previous weeks"), ...previous.map(renderWeek)]
+                                : []),
+                            ...currentAndLater.map(renderWeek),
+                            ...(upcoming.length > 0
+                                ? [groupLabel("Upcoming weeks"), ...upcoming.map(renderWeek)]
+                                : []),
+                        ];
+                    })()}
                 </div>
             )}
         </div>
@@ -257,6 +296,7 @@ export function DesktopNextUpCard({
 export function DesktopWeekPanel({
     week,
     isOpen,
+    scheduledWeek = null,
     currentId,
     currentLabel,
     guidedAssignments,
@@ -267,6 +307,7 @@ export function DesktopWeekPanel({
     showUnitMonths = true,
 }: {
     week: WeekSummary;
+    scheduledWeek?: number | null;
     isOpen: boolean;
     currentId: string | null;
     currentLabel: "Start here" | "Next up";
@@ -309,6 +350,16 @@ export function DesktopWeekPanel({
         );
     }
 
+    const isScheduled = scheduledWeek != null && week.level.levelNumber === scheduledWeek;
+    const isAhead = scheduledWeek != null && week.level.levelNumber > scheduledWeek;
+    const weekPrefix = !showUnitMonths || scheduledWeek == null
+        ? null
+        : isScheduled
+          ? "This week"
+          : isAhead
+            ? "Coming up"
+            : "Viewing";
+
     return (
         <section
             id={`week-${week.level.levelNumber}`}
@@ -326,6 +377,7 @@ export function DesktopWeekPanel({
             <button type="button" onClick={onToggle} aria-expanded={isOpen} className="flex w-full items-start gap-5 text-left">
                 <span className="min-w-0 flex-1">
                     <span className="block text-xs font-bold uppercase tracking-wide text-[var(--unit-accent,#6a8d73)]">
+                        {weekPrefix ? `${weekPrefix} · ` : ""}
                         {formatLevelLabel(week.level.levelNumber, showUnitMonths)}
                     </span>
                     <span className="mt-2 block font-display text-3xl font-bold leading-tight text-text">
@@ -342,6 +394,20 @@ export function DesktopWeekPanel({
                 </span>
                 <ChevronDown size={22} className="mt-2 shrink-0 rotate-180 text-text" aria-hidden />
             </button>
+
+            {!isScheduled && scheduledWeek != null && showUnitMonths ? (
+                <button
+                    type="button"
+                    onClick={() => {
+                        dispatchOpenMapWeek(scheduledWeek, false);
+                        scrollToMapTarget(`week-${scheduledWeek}`);
+                    }}
+                    className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-full bg-[var(--unit-chip-bg,#eef3ee)] px-4 text-sm font-bold text-[var(--unit-accent,#6a8d73)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--unit-accent,#6a8d73)]/40"
+                >
+                    <RotateCcw size={15} aria-hidden />
+                    Back to this week · {formatLevelLabel(scheduledWeek, showUnitMonths)}
+                </button>
+            ) : null}
 
             <div className="mt-6">
                 {(() => {

@@ -121,6 +121,7 @@ export function MobileUnitSection({
     guidedAssignments,
     guidedProgress,
     showUnitMonths = true,
+    scheduledWeek = null,
     onToggle,
     onWeekToggle,
     onOptionalToggle,
@@ -135,6 +136,7 @@ export function MobileUnitSection({
     guidedAssignments: Record<string, GuidedAssignmentInfo>;
     guidedProgress: CourseMapProgressState;
     showUnitMonths?: boolean;
+    scheduledWeek?: number | null;
     onToggle: () => void;
     onWeekToggle: (weekNumber: number) => void;
     onOptionalToggle: (weekNumber: number) => void;
@@ -217,24 +219,46 @@ export function MobileUnitSection({
                                         />
                                     </div>
                                 ))}
-                            {unit.weeks.some((week) => week.level.levelNumber !== openWeekNumber) ? (
-                                <div
-                                    className="border-t pt-2"
-                                    style={{ borderColor: "var(--border-subtle)" }}
-                                >
-                                    <p className="px-1 pb-1 text-[10px] font-bold uppercase tracking-wide text-text-muted">
-                                        More in this unit
-                                    </p>
-                                    {unit.weeks
-                                        .filter((week) => week.level.levelNumber !== openWeekNumber)
-                                        .map((week, index, siblings) => (
+                            {(() => {
+                                // Weeks around the open one, split by where they
+                                // sit relative to the week the class is on.
+                                const siblings = unit.weeks.filter(
+                                    (week) => week.level.levelNumber !== openWeekNumber
+                                );
+                                if (siblings.length === 0) return null;
+                                const pivot = scheduledWeek ?? openWeekNumber ?? 0;
+                                const groups: { label: string; weeks: typeof siblings }[] = [
+                                    {
+                                        label: "Previous weeks",
+                                        weeks: siblings.filter((w) => w.level.levelNumber < pivot),
+                                    },
+                                    {
+                                        label: "Upcoming weeks",
+                                        weeks: siblings.filter((w) => w.level.levelNumber > pivot),
+                                    },
+                                    {
+                                        label: "More in this unit",
+                                        weeks: siblings.filter((w) => w.level.levelNumber === pivot),
+                                    },
+                                ].filter((group) => group.weeks.length > 0);
+
+                                return groups.map((group) => (
+                                    <div
+                                        key={group.label}
+                                        className="border-t pt-2"
+                                        style={{ borderColor: "var(--border-subtle)" }}
+                                    >
+                                        <p className="px-1 pb-1 text-[10px] font-bold uppercase tracking-wide text-text-muted">
+                                            {group.label}
+                                        </p>
+                                        {group.weeks.map((week, index) => (
                                             <div
                                                 key={week.level.levelNumber}
                                                 id={`week-${week.level.levelNumber}`}
                                                 className={MAP_SCROLL_MARGIN}
                                                 style={{
                                                     borderBottom:
-                                                        index < siblings.length - 1
+                                                        index < group.weeks.length - 1
                                                             ? "1px solid var(--border-subtle)"
                                                             : undefined,
                                                 }}
@@ -253,8 +277,9 @@ export function MobileUnitSection({
                                                 />
                                             </div>
                                         ))}
-                                </div>
-                            ) : null}
+                                    </div>
+                                ));
+                            })()}
                         </>
                     ) : (
                         unit.weeks.map((week, index) => {
@@ -336,11 +361,14 @@ export function MobileWeekCard({
                     {week.level.levelNumber}
                 </span>
                 <span className="min-w-0 flex-1">
+                    <span className="block text-xs font-bold text-[var(--unit-accent,var(--primary))]">
+                        {formatLevelLabel(week.level.levelNumber, showUnitMonths)}
+                    </span>
                     <span className="block text-sm font-semibold leading-snug text-text">
                         {week.level.levelTitle}
                     </span>
                     <span className="mt-0.5 block text-xs text-text-muted">
-                        {week.requiredDone} / {week.requiredTotal} done
+                        {week.requiredDone} of {week.requiredTotal} activities finished
                     </span>
                 </span>
                 <ChevronRight size={18} className="shrink-0 text-text-muted" aria-hidden />

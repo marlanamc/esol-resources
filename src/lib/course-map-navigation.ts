@@ -103,6 +103,58 @@ export function findFirstIncompleteRequired(
     return null;
 }
 
+/**
+ * First unfinished required activity inside one week. Unlike
+ * findFirstIncompleteRequired this never spills into a later week, so a button
+ * scoped to a week can never send the learner somewhere else.
+ */
+export function findFirstIncompleteInWeek(
+    units: CourseMapUnit[],
+    progress: CourseMapProgressState | Record<string, string | null>,
+    weekNumber: number
+): { activity: CourseMapActivity; weekNumber: number; unitNumber: number; unitMonth: string } | null {
+    for (const unit of units) {
+        for (const level of unit.levels) {
+            if (level.levelNumber !== weekNumber) continue;
+            const firstIncomplete = level.requiredActivities.find(
+                (activity) =>
+                    isMapActivityActionable(activity) && !isMapActivityCompleted(activity, progress)
+            );
+            if (firstIncomplete) {
+                return {
+                    activity: firstIncomplete,
+                    weekNumber: level.levelNumber,
+                    unitNumber: unit.unitNumber,
+                    unitMonth: unit.month,
+                };
+            }
+        }
+    }
+    return null;
+}
+
+/** First actionable activity in a week, finished or not — used to offer review. */
+export function findFirstActionableInWeek(
+    units: CourseMapUnit[],
+    weekNumber: number
+): { activity: CourseMapActivity; weekNumber: number; unitNumber: number; unitMonth: string } | null {
+    for (const unit of units) {
+        for (const level of unit.levels) {
+            if (level.levelNumber !== weekNumber) continue;
+            const first = level.requiredActivities.find(isMapActivityActionable);
+            if (first) {
+                return {
+                    activity: first,
+                    weekNumber: level.levelNumber,
+                    unitNumber: unit.unitNumber,
+                    unitMonth: unit.month,
+                };
+            }
+        }
+    }
+    return null;
+}
+
 export interface CurrentMapWeekMeta {
     weekNumber: number;
     unitNumber: number;
@@ -217,12 +269,72 @@ export function resolveNextMapActivityLaunch(
     };
 }
 
+export interface WeekActivityLaunch extends NextMapActivityLaunch {
+    /** True when the week is finished and this link is a review of it. */
+    isReview: boolean;
+}
+
+/**
+ * The launch target for one specific week: its first unfinished activity, or —
+ * when the week is complete — its first activity again, offered as review.
+ *
+ * Both the title and the href come from the same week, so a button labelled for
+ * a week can never open a different week's work.
+ */
+export function resolveWeekActivityLaunch(
+    units: CourseMapUnit[],
+    progress: CourseMapProgressState | Record<string, string | null>,
+    weekNumber: number,
+    assignmentByActivityId?: Record<string, { assignmentId: string }>
+): WeekActivityLaunch | null {
+    const incomplete = findFirstIncompleteInWeek(units, progress, weekNumber);
+    const match = incomplete ?? findFirstActionableInWeek(units, weekNumber);
+    if (!match) return null;
+
+    const { activity } = match;
+    const returnTo = buildMapReturnHref(weekNumber, true);
+    const assignmentId = activity.activityId
+        ? assignmentByActivityId?.[activity.activityId]?.assignmentId
+        : undefined;
+    const base = buildMapActivityHref(activity, assignmentId);
+    const href = base ? withReturnTo(base, returnTo) : null;
+    if (!href) return null;
+
+    return {
+        href,
+        title: shortMapActivityTitle(activity.title),
+        weekNumber,
+        isReview: incomplete == null,
+        ...(activity.activityId ? { activityId: activity.activityId } : {}),
+    };
+}
+
 export function focusMapWeekHeading(weekNumber: number): void {
     if (typeof document === "undefined") return;
     window.requestAnimationFrame(() => {
         const heading = document.getElementById(`week-${weekNumber}-heading`);
         heading?.focus({ preventScroll: true });
     });
+}
+
+/** Unit/month metadata for a specific week number, for headings and labels. */
+export function getMapWeekMeta(
+    units: CourseMapUnit[],
+    weekNumber: number
+): CurrentMapWeekMeta | null {
+    for (const unit of units) {
+        for (const level of unit.levels) {
+            if (level.levelNumber === weekNumber) {
+                return {
+                    weekNumber: level.levelNumber,
+                    unitNumber: unit.unitNumber,
+                    unitMonth: unit.month,
+                    unitTitle: unit.unitTitle,
+                };
+            }
+        }
+    }
+    return null;
 }
 
 export function resolveCurrentMapWeek(

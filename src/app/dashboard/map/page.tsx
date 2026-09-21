@@ -22,41 +22,20 @@ import { CourseMapMobileWayfinding } from "@/components/dashboard/CourseMapMobil
 import { CourseMapUnitNav } from "@/components/dashboard/CourseMapUnitNav";
 import {
     buildMapWeekProgress,
-    findFirstIncompleteRequired,
+    getMapWeekMeta,
     parseMapWeekParam,
     resolveCurrentMapWeek,
-    resolveNextMapActivityLaunch,
 } from "@/lib/course-map-navigation";
 import {
-    formatNextUpActivityTitle,
-    getCourseMapActivityIconEmoji,
-} from "@/lib/course-map-hero";
+    resolveCurrentWeek,
+    visibleWeekNumbers,
+} from "@/lib/course-map-current-week";
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
 
 export const metadata = {
     title: "Course Map | My ESOL Class",
     description: "Your guided learning path through the course.",
 };
-
-function formatActivityTypeLabel(
-    activityType: string,
-    assignmentType?: string,
-    category?: string | null,
-): string {
-    const c = (category || "").toLowerCase();
-    const t = (assignmentType || activityType || "").toLowerCase();
-    if (c === "vocabulary" || t === "vocabulary") return "Vocab";
-    if (t === "guide") return "Grammar";
-    if (t === "game") return "Game";
-    if (t === "quiz") return "Quiz";
-    if (t === "speaking") return "Speaking";
-    if (t === "writing") return "Writing";
-    if (t === "pronunciation") return "Pronunciation";
-    if (t === "review") return "Review";
-    if (t === "assessment") return "Check-in";
-    if (t === "catch-up") return "Catch up";
-    return "Activity";
-}
 
 export default async function MapPage({
     searchParams,
@@ -211,7 +190,21 @@ export default async function MapPage({
     const overallPct = totalRequired > 0 ? Math.round((completedRequired / totalRequired) * 100) : 0;
 
     const hasPath = courseMapUnits.length > 0 || coursePathAssignments.some((a) => a.sequenceNumber != null);
-    const currentWeekMeta = hasPath ? resolveCurrentMapWeek(courseMapUnits, guidedProgress) : null;
+
+    // The week the class is on. Classroom learners follow the school calendar;
+    // independent learners keep the progress-based week.
+    const progressWeekMeta = hasPath ? resolveCurrentMapWeek(courseMapUnits, guidedProgress) : null;
+    const resolvedCurrent = hasPath
+        ? resolveCurrentWeek({
+              mode: effectiveLearnerMode,
+              visibleWeeks: visibleWeekNumbers(courseMapUnits),
+              progressWeek: progressWeekMeta?.weekNumber ?? null,
+          })
+        : null;
+    const currentWeekMeta =
+        resolvedCurrent != null
+            ? getMapWeekMeta(courseMapUnits, resolvedCurrent.weekNumber) ?? progressWeekMeta
+            : progressWeekMeta;
     const unitProgress = courseMapUnits.map((unit) => {
         const unitRequired = unit.levels.flatMap((level) => level.requiredActivities);
         const actionableRequired = unitRequired.filter(isMapActivityActionable);
@@ -227,27 +220,6 @@ export default async function MapPage({
         };
     });
     const weekProgress = buildMapWeekProgress(courseMapUnits, guidedProgress);
-
-    const nextLaunch = hasPath
-        ? resolveNextMapActivityLaunch(courseMapUnits, guidedProgress, guidedAssignments)
-        : null;
-    const nextIncomplete = hasPath ? findFirstIncompleteRequired(courseMapUnits, guidedProgress) : null;
-    const currentActivity = nextLaunch && nextIncomplete
-        ? (() => {
-              const activity = nextIncomplete.activity;
-              const assignment = activity.activityId ? guidedAssignments[activity.activityId] : undefined;
-              return {
-                  title: formatNextUpActivityTitle(activity.title),
-                  href: nextLaunch.href,
-                  iconEmoji: getCourseMapActivityIconEmoji(
-                      activity.activityType,
-                      assignment?.type,
-                      assignment?.category ?? null
-                  ),
-                  typeLabel: formatActivityTypeLabel(activity.activityType, assignment?.type, assignment?.category),
-              };
-          })()
-        : null;
 
     return (
         <div className="min-h-screen bg-bg">
@@ -350,6 +322,7 @@ export default async function MapPage({
                                 initialWeek={initialWeek}
                                 focusNextActivity={focusNextActivity}
                                 showUnitMonths={showUnitMonths}
+                                scheduledWeek={currentWeekMeta?.weekNumber ?? null}
                             />
                         ) : (
                             <div className="dashboard-panel rounded-2xl p-8 text-center">
@@ -376,6 +349,7 @@ export default async function MapPage({
                             initialWeek={initialWeek}
                             focusNextActivity={focusNextActivity}
                             showUnitMonths={showUnitMonths}
+                            scheduledWeek={currentWeekMeta?.weekNumber ?? null}
                             mobileWayfinding={
                                 courseMapUnits.length > 0 ? (
                                     <CourseMapMobileWayfinding
@@ -386,7 +360,8 @@ export default async function MapPage({
                                         completedLevels={completedLevels}
                                         totalLevels={totalLevels}
                                         showUnitMonths={showUnitMonths}
-                                        currentActivity={currentActivity}
+                                        guidedProgress={guidedProgress}
+                                        guidedAssignments={guidedAssignments}
                                     />
                                 ) : null
                             }
