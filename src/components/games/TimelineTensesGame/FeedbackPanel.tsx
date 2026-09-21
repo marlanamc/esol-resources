@@ -74,7 +74,7 @@ export function FeedbackPanel({
         ) : null}
         {blankFeedback?.filter((blank) => !blank.isCorrect).map((blank) => (
           <p key={blank.blankId} className="text-sm">
-            {blank.promptLabel}: {blank.userAnswer || '(missing)'} → {blank.validAnswers[0]?.answer}
+            {blank.promptLabel}: <span className="rounded px-1 py-0.5 font-semibold bg-[#fef2f2] text-[#991b1b] dark:bg-[#450a0a] dark:text-[#fecaca]">{blank.userAnswer || '(missing)'}</span> → {blank.validAnswers[0]?.answer}
           </p>
         ))}
         {answerVisual}

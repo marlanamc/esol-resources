@@ -304,7 +304,7 @@ export const SentenceTransformerExercise = memo(function SentenceTransformerExer
             <p className="font-semibold">{question.targetTense}</p>
             <p>{highlightTimeClues(reviewSentence)}</p>
             {question.verbBlanks.filter((blank) => !blank.validAnswers.some((answer) => areExerciseAnswersEquivalent(userInputs[blank.index] ?? '', answer))).map((blank) => (
-              <p key={blank.index} className="text-sm">Blank {question.verbBlanks.indexOf(blank) + 1}: {userInputs[blank.index] || '(missing)'} → {blank.validAnswers[0]}</p>
+              <p key={blank.index} className="text-sm">Blank {question.verbBlanks.indexOf(blank) + 1}: <span className="rounded px-1 py-0.5 font-semibold bg-[#fef2f2] text-[#991b1b] dark:bg-[#450a0a] dark:text-[#fecaca]">{userInputs[blank.index] || '(missing)'}</span> → {blank.validAnswers[0]}</p>
             ))}
           </>}
           details={<>
