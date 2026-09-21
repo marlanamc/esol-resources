@@ -8,6 +8,7 @@ import Link from "next/link";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { FeatureToggleButton, AssignmentRequirementToggle } from "@/components/dashboard";
 import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
+import { RosterStudentActions } from "@/components/teach/RosterStudentActions";
 import {
     Users, Pencil, ChevronRight, BookOpen, Plus,
     Megaphone, AlertCircle, Clock,
@@ -36,7 +37,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
         include: {
             teacher: { select: { name: true, username: true } },
             enrollments: {
-                where: { status: "active", student: { isSystemAccount: false } },
+                where: { student: { isSystemAccount: false } },
                 include: {
                     student: {
                         select: {
@@ -67,7 +68,10 @@ export default async function TeachClassDetailPage({ params }: Props) {
     const isTeacher = admin || cls.teacherId === userId;
     if (!isTeacher) redirect("/teach");
 
-    const attentionCount = cls.enrollments.filter(
+    const activeEnrollments = cls.enrollments.filter((e) => e.status === "active");
+    const pastEnrollments = cls.enrollments.filter((e) => e.status !== "active");
+
+    const attentionCount = activeEnrollments.filter(
         (e) => !e.student.lastActivityDate || e.student.lastActivityDate.getTime() < cutoff()
     ).length;
 
@@ -106,8 +110,8 @@ export default async function TeachClassDetailPage({ params }: Props) {
             <div className="flex flex-wrap gap-3">
                 <div className="flex items-center gap-2 px-4 py-2 rounded-full border bg-surface-elevated text-sm" style={{ borderColor: "var(--border-subtle)" }}>
                     <Users className="h-4 w-4" style={{ color: "#4a8ca0" }} />
-                    <span className="font-bold text-text">{cls.enrollments.length}</span>
-                    <span className="text-text-muted">student{cls.enrollments.length !== 1 ? "s" : ""}</span>
+                    <span className="font-bold text-text">{activeEnrollments.length}</span>
+                    <span className="text-text-muted">student{activeEnrollments.length !== 1 ? "s" : ""}</span>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 rounded-full border bg-surface-elevated text-sm" style={{ borderColor: "var(--border-subtle)" }}>
                     <BookOpen className="h-4 w-4" style={{ color: "#b05740" }} />
@@ -130,7 +134,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                         <h2 className="text-sm font-semibold uppercase tracking-wider text-text-muted mb-3">
                             Roster
                         </h2>
-                        {cls.enrollments.length === 0 ? (
+                        {activeEnrollments.length === 0 ? (
                             <div className="rounded-xl border p-6 text-center text-sm text-text-muted" style={{ borderColor: "var(--border-subtle)", background: "var(--surface-subtle)" }}>
                                 No students yet. Share code <strong className="text-text font-mono">{cls.code}</strong> to enroll students.
                             </div>
@@ -139,7 +143,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                 <table className="w-full">
                                     <thead>
                                         <tr style={{ background: "var(--surface-subtle)", borderBottom: "1px solid var(--border-subtle)" }}>
-                                            {["Name", "Username", "Streak", "Pts this wk", "Last active"].map((h) => (
+                                            {["Name", "Username", "Streak", "Pts this wk", "Last active", ""].map((h) => (
                                                 <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--text-color-muted)" }}>
                                                     {h}
                                                 </th>
@@ -147,7 +151,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {cls.enrollments.map((e) => {
+                                        {activeEnrollments.map((e) => {
                                             const silent = !e.student.lastActivityDate || e.student.lastActivityDate.getTime() < cutoff();
                                             return (
                                                 <tr key={e.id} style={{ borderBottom: "1px solid var(--border-subtle)" }}>
@@ -173,6 +177,14 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                                             ? `${daysAgo(e.student.lastActivityDate)}d ago`
                                                             : "Never"}
                                                     </td>
+                                                    <td className="py-3 px-4 text-right">
+                                                        <RosterStudentActions
+                                                            classId={id}
+                                                            studentId={e.student.id}
+                                                            studentName={e.student.name ?? e.student.username}
+                                                            status={e.status}
+                                                        />
+                                                    </td>
                                                 </tr>
                                             );
                                         })}
@@ -181,6 +193,61 @@ export default async function TeachClassDetailPage({ params }: Props) {
                             </div>
                         )}
                     </section>
+
+                    {/* Past students — removed or graduated, restorable */}
+                    {pastEnrollments.length > 0 && (
+                        <section>
+                            <h2 className="text-sm font-semibold uppercase tracking-wider text-text-muted mb-3">
+                                Past students ({pastEnrollments.length})
+                            </h2>
+                            <div className="rounded-xl border bg-surface-elevated overflow-hidden" style={{ borderColor: "var(--border-subtle)" }}>
+                                <table className="w-full">
+                                    <thead>
+                                        <tr style={{ background: "var(--surface-subtle)", borderBottom: "1px solid var(--border-subtle)" }}>
+                                            {["Name", "Username", "Status", ""].map((h) => (
+                                                <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--text-color-muted)" }}>
+                                                    {h}
+                                                </th>
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {pastEnrollments.map((e) => (
+                                            <tr key={e.id} style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                                                <td className="py-3 px-4">
+                                                    <Link
+                                                        href={`/teach/students/${e.student.id}`}
+                                                        className="text-sm font-semibold hover:underline flex items-center gap-1"
+                                                        style={{ color: "var(--primary)" }}
+                                                    >
+                                                        {e.student.name ?? e.student.username}
+                                                        <ChevronRight className="h-3 w-3 opacity-50" />
+                                                    </Link>
+                                                </td>
+                                                <td className="py-3 px-4 text-xs text-text-muted font-mono">{e.student.username}</td>
+                                                <td className="py-3 px-4">
+                                                    <span
+                                                        className="inline-flex px-2 py-0.5 rounded-full text-xs font-semibold"
+                                                        style={{ background: "var(--surface-subtle)", color: "var(--text-muted)" }}
+                                                    >
+                                                        {e.status}
+                                                    </span>
+                                                </td>
+                                                <td className="py-3 px-4 text-right">
+                                                    <RosterStudentActions
+                                                        classId={id}
+                                                        studentId={e.student.id}
+                                                        studentName={e.student.name ?? e.student.username}
+                                                        status={e.status}
+                                                    />
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    )}
 
                     {/* Assignments */}
                     <section>
