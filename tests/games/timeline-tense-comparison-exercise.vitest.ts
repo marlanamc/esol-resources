@@ -56,14 +56,15 @@ describe("TenseComparisonExercise", () => {
     // Feedback uses highlightTimeClues(); sentences may be split across spans.
     expect(html).toMatch(/I will call you/);
     expect(html).toMatch(/will be working at 8/);
-    expect(html).toContain("Key Difference");
+    expect(html).toContain("Why?");
+    expect(html).not.toMatch(/<details[^>]* open/);
     expect(html).toContain(
       baseQuestion.keyDifference.replaceAll('"', "&quot;")
     );
     const correctTense =
       baseQuestion.correctOption === "A" ? baseQuestion.tenseA : baseQuestion.tenseB;
     expect(html).toContain(
-      `Correct match: Timeline ${baseQuestion.correctOption} = ${correctTense}`
+      `Timeline ${baseQuestion.correctOption}: <strong>${correctTense}</strong>`
     );
   });
 

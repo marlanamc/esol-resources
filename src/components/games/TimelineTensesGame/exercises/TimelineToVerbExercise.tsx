@@ -302,6 +302,7 @@ export const TimelineToVerbExercise = memo(function TimelineToVerbExercise({
       ) : (
         /* Feedback */
         <FeedbackPanel
+          feedbackKey={question.id}
           isCorrect={lastAnswerCorrect ?? false}
           tenseName={feedbackTenseName}
           explanation={buildExplanation()}

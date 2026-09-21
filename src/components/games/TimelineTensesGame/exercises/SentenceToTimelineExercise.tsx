@@ -179,6 +179,7 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
   return (
     <div className="px-2 sm:px-0 max-w-full overflow-hidden">
       {/* Question card */}
+      {!showFeedback && (
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -210,6 +211,7 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
         </div>
         <InlineInfoTooltip text="Highlighted words are time clues. Underlined words are the verb phrase." />
       </motion.div>
+      )}
 
       {!showFeedback ? (
         <>
@@ -417,46 +419,28 @@ export const SentenceToTimelineExercise = memo(function SentenceToTimelineExerci
         </>
       ) : (
         /* Feedback */
-        <div className="space-y-8">
-          {!lastAnswerCorrect && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white/60 dark:bg-[#162b3d]/60 backdrop-blur-2xl rounded-[2.5rem] border border-white/30 p-6 sm:p-10 shadow-xl overflow-hidden relative"
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl -z-10" />
-              
-              <div className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-[0.3em] mb-8 flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                Correct Mapping
-              </div>
-              
-              <div className="opacity-90 scale-95 origin-top filter drop-shadow-lg">
-                <TimelineCanvas
-                  elements={question.correctElements}
-                  interactive={false}
-                  showLabels={true}
-                  pastTimelineLayout={question.correctElements.some(el => el.zone.startsWith('past-')) ? 'split' : 'single'}
-                />
-              </div>
-              
-              <div className="mt-8 pt-6 border-t border-emerald-500/10 text-center">
-                <p className="text-sm font-bold text-text-muted/60">Study how the stamps correspond to the tense.</p>
-              </div>
-            </motion.div>
-          )}
-
-          <FeedbackPanel
-            isCorrect={lastAnswerCorrect ?? false}
-            tenseName={question.tenseName}
-            explanation={question.explanation}
-            sentence={question.sentence}
-            verbPhrase={question.verbPhrase}
-            verbPhrase2={question.verbPhrase2}
-            realLifeDialogue={question.realLifeDialogue}
-            onContinue={onNext}
-          />
-        </div>
+        <FeedbackPanel
+          feedbackKey={question.id}
+          isCorrect={lastAnswerCorrect ?? false}
+          tenseName={question.tenseName}
+          explanation={question.explanation}
+          sentence={question.sentence}
+          verbPhrase={question.verbPhrase}
+          verbPhrase2={question.verbPhrase2}
+          realLifeDialogue={question.realLifeDialogue}
+          onContinue={onNext}
+          answerVisual={!lastAnswerCorrect ? (
+            <div className="min-w-0 pt-2">
+              <p className="mb-2 text-sm font-semibold">Correct timeline</p>
+              <TimelineCanvas
+                elements={question.correctElements}
+                interactive={false}
+                showLabels={true}
+                pastTimelineLayout={question.correctElements.some(el => el.zone.startsWith('past-')) ? 'split' : 'single'}
+              />
+            </div>
+          ) : undefined}
+        />
       )}
     </div>
   );

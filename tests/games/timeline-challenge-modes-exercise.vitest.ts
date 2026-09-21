@@ -112,7 +112,9 @@ describe("Timeline challenge exercise behavior", () => {
       })
     );
 
-    expect(html).toContain("Story Complete!");
+    expect(html).toContain("Story complete");
+    expect(html).toContain("Review story");
+    expect(html).not.toMatch(/<details[^>]* open/);
     expect(html).toContain("had already started");
     expect(html).toContain("was waiting");
     expect(html).toContain("was feeling");

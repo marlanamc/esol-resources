@@ -8,6 +8,7 @@ import { TimelineCanvas } from '../TimelineCanvas';
 import { elementsUseSplitPast } from '../timelineTensesUtils';
 import { useTimelineAudio } from '../hooks/useTimelineAudio';
 import { areExerciseAnswersEquivalent } from '@/lib/exercise-answer-normalization';
+import { AnswerFeedback } from '../AnswerFeedback';
 import { TenseDialogueCard } from '../TenseDialogueCard';
 
 interface StoryBuilderExerciseProps {
@@ -155,8 +156,10 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
 }: StoryBuilderExerciseProps) {
   const [currentSentenceIdx, setCurrentSentenceIdx] = useState(0);
   const [inputs, setInputs] = useState<Record<number, string>>({});
+  const [sentenceCorrection, setSentenceCorrection] = useState('');
   const [sentenceCorrect, setSentenceCorrect] = useState<boolean | null>(null);
   const [completedSentences, setCompletedSentences] = useState<number>(0);
+  const [sentenceReviews, setSentenceReviews] = useState<Record<number, string>>({});
   // Revealed timeline elements grow as sentences are completed
   const [revealedElements, setRevealedElements] = useState<typeof question.fullTimelineElements>([]);
   const inputRefs = useRef<Record<number, HTMLInputElement | null>>({});
@@ -191,15 +194,25 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
   const handleCheckSentence = useCallback(() => {
     const isCorrect = checkCurrentSentence();
     setSentenceCorrect(isCorrect);
+    setSentenceCorrection(currentSentence.blanks
+      .filter((blank) => !blank.validAnswers.some((answer) => areExerciseAnswersEquivalent(inputs[blank.index] ?? '', answer)))
+      .map((blank) => blank.validAnswers[0]).join(', '));
     if (isCorrect) {
       playPing();
+      setSentenceReviews((previous) => ({
+        ...previous,
+        [currentSentenceIdx]: buildStorySentenceReviewText(currentSentence.template, currentSentence.blanks.map((blank) => ({
+          ...blank,
+          validAnswers: [blank.validAnswers.find((answer) => areExerciseAnswersEquivalent(inputs[blank.index] ?? '', answer)) ?? blank.validAnswers[0]],
+        }))),
+      }));
       // Grow the timeline
       setRevealedElements((prev) => [...prev, ...currentSentence.elements]);
       setCompletedSentences((n) => n + 1);
     } else {
       playThump();
     }
-  }, [checkCurrentSentence, currentSentence.elements, playPing, playThump]);
+  }, [checkCurrentSentence, currentSentence, currentSentenceIdx, inputs, playPing, playThump]);
 
   const handleNextSentence = useCallback(() => {
     if (isLastSentence) {
@@ -379,6 +392,8 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
+                  role="status"
+                  aria-live="polite"
                   className={`mt-4 p-3 rounded-2xl flex items-center gap-3 ${
                     sentenceCorrect ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-amber-500/10 border border-amber-500/20'
                   }`}
@@ -390,8 +405,8 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
                   )}
                   <span className={`text-sm font-bold ${sentenceCorrect ? 'text-emerald-700 dark:text-emerald-400' : 'text-amber-700 dark:text-amber-400'}`}>
                     {sentenceCorrect
-                      ? 'Perfect! The timeline is growing.'
-                      : `Try again. Correct: ${currentSentence.blanks.map((b) => b.validAnswers[0]).join(', ')}`}
+                      ? 'Correct'
+                      : `Not quite. Try: ${sentenceCorrection}`}
                   </span>
                 </motion.div>
               )}
@@ -426,76 +441,24 @@ export const StoryBuilderExercise = memo(function StoryBuilderExercise({
         </>
       ) : (
         /* Final story feedback */
-        <AnimatePresence>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="space-y-5"
-          >
-            <motion.div
-              className={`rounded-[2.5rem] p-6 sm:p-8 border border-white/30 backdrop-blur-2xl shadow-2xl ${
-                lastAnswerCorrect ? 'bg-white/40 dark:bg-emerald-500/10' : 'bg-white/40 dark:bg-amber-500/10'
-              }`}
-            >
-              <div className="flex items-center gap-4 mb-5">
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
-                  lastAnswerCorrect ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white'
-                }`}>
-                  {lastAnswerCorrect ? <Check size={28} strokeWidth={3} /> : <X size={28} strokeWidth={3} />}
-                </div>
-                <div>
-                  <h3 className={`text-2xl font-black font-display ${lastAnswerCorrect ? 'text-emerald-700 dark:text-emerald-400' : 'text-amber-700 dark:text-amber-400'}`}>
-                    {lastAnswerCorrect ? 'Story Complete!' : 'Story Finished'}
-                  </h3>
-                  <p className="text-sm text-text-muted font-medium mt-1">
-                    {completedSentences} / {question.sentences.length} sentences correct
-                  </p>
-                </div>
+        <AnswerFeedback
+          feedbackKey={question.id}
+          isCorrect={lastAnswerCorrect ?? false}
+          resultLabel="Story complete"
+          onContinue={onNext}
+          answer={<p>{completedSentences} / {question.sentences.length} sentences correct</p>}
+          detailsLabel="Review story"
+          details={<>
+            {question.sentences.map((sentence, index) => (
+              <div key={index}>
+                <p className="text-sm font-semibold">{sentence.targetTense}</p>
+                <p>{sentenceReviews[index] ?? buildStorySentenceReviewText(sentence.template, sentence.blanks)}</p>
               </div>
-
-              {/* Full story text */}
-              <div className="p-5 bg-white/40 dark:bg-white/5 rounded-3xl border border-white/20 space-y-2">
-                {question.sentences.map((s, i) => (
-                  <p key={i} className="text-base font-medium text-text leading-relaxed">
-                    <span className="text-xs font-black text-primary/60 uppercase tracking-widest mr-2">{s.targetTense}</span>
-                    {buildStorySentenceReviewText(s.template, s.blanks)}
-                  </p>
-                ))}
-              </div>
-
-              <div className="mt-5">
-                <TenseDialogueCard dialogue={question.realLifeDialogue} />
-              </div>
-            </motion.div>
-
-            {/* Complete timeline */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="rounded-[2rem] border border-white/30 bg-white/60 dark:bg-[#162b3d]/60 p-5 sm:p-6 shadow-md"
-            >
-              <div className="text-xs font-black text-primary uppercase tracking-[0.3em] mb-3">Complete Story Timeline</div>
-              <TimelineCanvas
-                elements={question.fullTimelineElements}
-                interactive={false}
-                showLabels={true}
-                pastTimelineLayout={elementsUseSplitPast(question.fullTimelineElements) ? 'split' : 'single'}
-              />
-            </motion.div>
-
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              onClick={onNext}
-              className="w-full py-5 bg-primary text-white rounded-[1.5rem] font-black text-xl shadow-[0_12px_24px_-8px_rgba(var(--primary-color-rgb),0.5)] hover:bg-primary-dark transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3"
-            >
-              <span>Next Question</span>
-              <ArrowRight size={24} />
-            </motion.button>
-          </motion.div>
-        </AnimatePresence>
+            ))}
+            <TenseDialogueCard dialogue={question.realLifeDialogue} />
+            <TimelineCanvas elements={question.fullTimelineElements} interactive={false} showLabels={true} pastTimelineLayout={elementsUseSplitPast(question.fullTimelineElements) ? 'split' : 'single'} />
+          </>}
+        />
       )}
     </div>
   );

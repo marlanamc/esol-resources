@@ -40,7 +40,9 @@ describe("SentenceTransformerExercise", () => {
       })
     );
 
-    expect(html).toContain("Correct Transformation:");
+    expect(html).toContain("Correct");
+    expect(html).toContain("Why?");
+    expect(html).not.toMatch(/<details[^>]* open/);
     expect(html).toContain(transformerQuestion.targetSentence);
     expect(html).toContain(transformerQuestion.explanation);
   });

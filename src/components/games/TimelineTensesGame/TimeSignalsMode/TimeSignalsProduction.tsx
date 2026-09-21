@@ -1,5 +1,7 @@
 'use client';
 
+import { AnswerFeedback } from '../AnswerFeedback';
+
 import { Fragment, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CheckCircle, XCircle } from 'lucide-react';
@@ -232,31 +234,16 @@ export function TimeSignalsProduction({
           </div>
 
           {isAnswered && (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`rounded-2xl border p-4 ${
-                isCorrect
-                  ? 'bg-secondary/5 border-secondary/20'
-                  : 'bg-error/5 border-error/20'
-              }`}
-            >
-              <p className={`text-sm font-bold mb-1 ${isCorrect ? 'text-secondary' : 'text-error'}`}>
-                {isCorrect ? 'Correct!' : 'Not quite.'}
-              </p>
-              <p className="text-sm text-text-muted leading-snug">{question.explanation}</p>
-            </motion.div>
-          )}
-
-          {isAnswered && (
-            <motion.button
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              onClick={handleNext}
-              className="w-full py-4 bg-primary text-white rounded-2xl font-black text-lg hover:bg-primary-dark transition-colors"
-            >
-              {qIndex + 1 >= questionSet.length ? 'See Results' : 'Next →'}
-            </motion.button>
+            <AnswerFeedback
+              feedbackKey={String(qIndex)}
+              isCorrect={isCorrect}
+              onContinue={handleNext}
+              continueLabel={qIndex + 1 >= questionSet.length ? 'See Results' : 'Next Question'}
+              answer={<p>{question.sentence.replace('______', question.options[correctIndex].conjugated)}</p>}
+              details={<>
+                <p>{question.explanation}</p>
+              </>}
+            />
           )}
         </motion.div>
       </AnimatePresence>

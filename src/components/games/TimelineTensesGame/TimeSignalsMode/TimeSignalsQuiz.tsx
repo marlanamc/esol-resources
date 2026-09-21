@@ -1,5 +1,7 @@
 'use client';
 
+import { AnswerFeedback } from '../AnswerFeedback';
+
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, XCircle } from 'lucide-react';
@@ -495,44 +497,19 @@ export function TimeSignalsQuiz({ group, onComplete, onGoToExercises }: TimeSign
             })}
           </div>
 
-          {/* Feedback */}
           {isAnswered && (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`rounded-2xl border p-4 ${
-                isCorrect
-                  ? 'bg-secondary/5 border-secondary/20'
-                  : 'bg-error/5 border-error/20'
-              }`}
-            >
-              <p className={`text-sm font-bold mb-1 ${isCorrect ? 'text-secondary' : 'text-error'}`}>
-                {isCorrect ? 'Correct!' : 'Not quite.'}
-              </p>
-              <p className="text-sm text-text-muted leading-snug">{question.entry.meaning}</p>
-              {question.source.contextLabel && (
-                <p className="text-xs text-secondary mt-2 font-black uppercase tracking-wide">
-                  {question.source.contextLabel}
-                </p>
-              )}
-              {question.source.note ? (
-                <p className="text-xs text-text-muted/70 mt-2 font-medium">{question.source.note}</p>
-              ) : question.entry.notes && (
-                <p className="text-xs text-text-muted/70 mt-2 font-medium">{question.entry.notes}</p>
-              )}
-            </motion.div>
-          )}
-
-          {/* Next button */}
-          {isAnswered && (
-            <motion.button
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              onClick={handleNext}
-              className="w-full py-4 bg-primary text-white rounded-2xl font-black text-lg hover:bg-primary-dark transition-colors"
-            >
-              {qIndex + 1 >= questions.length ? 'See Results' : 'Next →'}
-            </motion.button>
+            <AnswerFeedback
+              feedbackKey={String(qIndex)}
+              isCorrect={isCorrect}
+              onContinue={handleNext}
+              continueLabel={qIndex + 1 >= questions.length ? 'See Results' : 'Next Question'}
+              answer={<p>{question.options[question.correctIndex].label}</p>}
+              details={<>
+                <p>{question.entry.meaning}</p>
+                {question.source.contextLabel && <p>{question.source.contextLabel}</p>}
+                {(question.source.note || question.entry.notes) && <p>{question.source.note || question.entry.notes}</p>}
+              </>}
+            />
           )}
         </motion.div>
       </AnimatePresence>
