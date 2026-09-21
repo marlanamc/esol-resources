@@ -12,15 +12,20 @@ import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
 import {
     buildActivitySubmissionMap,
     buildFeaturedAssignmentsWhere,
+    buildGlobalFeaturedActivitiesWhere,
     deriveFeaturedAssignmentProgress,
     isWithinNewReleaseWindow,
+    mergeFeaturedEntries,
 } from "@/lib/featured-assignments";
+import { buildIndependentFeaturedAssignment } from "@/lib/independent-learning";
 
 export {
     buildActivitySubmissionMap,
     buildFeaturedAssignmentsWhere,
+    buildGlobalFeaturedActivitiesWhere,
     deriveFeaturedAssignmentProgress,
     isWithinNewReleaseWindow,
+    mergeFeaturedEntries,
 };
 
 export async function GET() {
@@ -75,8 +80,34 @@ export async function GET() {
             isLearnerVisibleActivity(assignment.activity)
         );
 
-        const activityIds = Array.from(new Set(visibleFeaturedAssignments.map((a) => a.activityId)));
-        const activityTitles = Array.from(new Set(visibleFeaturedAssignments.map((a) => a.activity.title).filter(Boolean))) as string[];
+        // Activities featured for everyone in /admin/content. Classroom students
+        // see these alongside anything featured for their class.
+        const globalFeaturedActivities = await prisma.activity.findMany({
+            where: buildGlobalFeaturedActivitiesWhere(),
+            select: {
+                id: true,
+                title: true,
+                description: true,
+                type: true,
+                category: true,
+                isReleased: true,
+                content: true,
+                createdAt: true,
+                updatedAt: true,
+            },
+        });
+        const visibleGlobalFeatured = globalFeaturedActivities.filter((activity) =>
+            isLearnerVisibleActivity(activity)
+        );
+
+        const activityIds = Array.from(new Set([
+            ...visibleFeaturedAssignments.map((a) => a.activityId),
+            ...visibleGlobalFeatured.map((a) => a.id),
+        ]));
+        const activityTitles = Array.from(new Set([
+            ...visibleFeaturedAssignments.map((a) => a.activity.title),
+            ...visibleGlobalFeatured.map((a) => a.title),
+        ].filter(Boolean))) as string[];
 
         // Fetch all submissions for these activities to ensure we catch completion
         // even if it wasn't recorded under the exact assigned ID (e.g. canonical resolution shifted it).
@@ -94,6 +125,7 @@ export async function GET() {
             select: {
                 activityId: true,
                 score: true,
+                completedAt: true,
                 activity: {
                     select: { title: true }
                 }
@@ -176,7 +208,53 @@ export async function GET() {
                 .values()
         );
 
-        return NextResponse.json(deduped);
+        // Build the global cards with the same shape the independent dashboard
+        // uses, then union them in. Class-featured wins on the same activity —
+        // it carries the assignmentId that links and submissions depend on.
+        const submissionsByActivityId = new Map<
+            string,
+            Array<{ activityId: string; score: number | null; completedAt: Date | null }>
+        >();
+        for (const submission of allActivitySubmissions) {
+            const list = submissionsByActivityId.get(submission.activityId) ?? [];
+            list.push({
+                activityId: submission.activityId,
+                score: submission.score,
+                completedAt: submission.completedAt,
+            });
+            submissionsByActivityId.set(submission.activityId, list);
+        }
+
+        const globalCards = visibleGlobalFeatured.map((activity) => {
+            const p = progressMap.get(activity.id);
+            return buildIndependentFeaturedAssignment({
+                activity,
+                progress: p
+                    ? {
+                          activityId: activity.id,
+                          progress: p.progress,
+                          status: p.status,
+                          // progressMap already parsed this; the builder only
+                          // passes it straight through to the card.
+                          categoryData: null,
+                      }
+                    : undefined,
+                submissions: submissionsByActivityId.get(activity.id) ?? [],
+            });
+        });
+
+        // Restore the parsed categoryData the builder could not receive.
+        const globalCardsWithProgress = globalCards.map((card) => ({
+            ...card,
+            categoryData: progressMap.get(card.activityId)?.categoryData ?? null,
+        }));
+
+        const merged = mergeFeaturedEntries<{ activityId: string }>(
+            deduped,
+            globalCardsWithProgress
+        ) as Array<(typeof deduped)[number] | (typeof globalCardsWithProgress)[number]>;
+
+        return NextResponse.json(merged);
     } catch (error: unknown) {
         logger.error("Error fetching featured assignments", error);
         return ApiErrors.internal("Failed to fetch featured assignments");

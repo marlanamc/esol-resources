@@ -14,6 +14,41 @@ export function buildFeaturedAssignmentsWhere(classIds: string[]) {
     };
 }
 
+/**
+ * Activities featured for every learner, set once in /admin/content.
+ *
+ * Classroom and independent learners both read this, so featuring something
+ * globally reaches the whole app instead of having to be repeated per class.
+ * Classroom students see these alongside their class-featured assignments.
+ */
+export function buildGlobalFeaturedActivitiesWhere() {
+    return {
+        isFeaturedForIndependent: true,
+        deletedAt: null,
+    };
+}
+
+/**
+ * Merge class-featured assignments with globally-featured activities.
+ *
+ * A class-featured entry always wins for the same activity: it carries the
+ * assignmentId that activity links and submissions are keyed to, which the
+ * global card has no way to supply.
+ */
+export function mergeFeaturedEntries<T extends { activityId: string }>(
+    classFeatured: T[],
+    globalFeatured: T[]
+): T[] {
+    const byActivityId = new Map<string, T>();
+    for (const entry of classFeatured) {
+        if (!byActivityId.has(entry.activityId)) byActivityId.set(entry.activityId, entry);
+    }
+    for (const entry of globalFeatured) {
+        if (!byActivityId.has(entry.activityId)) byActivityId.set(entry.activityId, entry);
+    }
+    return [...byActivityId.values()];
+}
+
 export function buildActivitySubmissionMap(submissions: Array<{
     activityId: string;
     score: number | null;

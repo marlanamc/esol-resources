@@ -24,6 +24,8 @@ import {
 import { DashboardNextStepFallbackCard } from "@/components/dashboard/DashboardNextStepFallbackCard";
 import { ThisWeekPanel } from "@/components/dashboard/ThisWeekPanel";
 import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
+import { buildGlobalFeaturedActivitiesWhere } from "@/lib/featured-assignments";
+import { buildIndependentFeaturedAssignment } from "@/lib/independent-learning";
 import { buildActivityHref } from "@/lib/learner/navigation";
 import { expandClassIdsToSectionGroupIds } from "@/lib/section-group-classes";
 import { getLearnerState } from "@/lib/learner-mode";
@@ -240,6 +242,37 @@ export default async function DashboardPage() {
 
     const featuredAssignmentsRaw = featuredAssignmentsRawUnfiltered.filter(filterReleasedActivities);
 
+    // Activities featured for every learner in /admin/content. Shown alongside
+    // whatever the class has featured, so featuring once reaches everyone.
+    const globalFeaturedRaw = await timedQuery(
+        {
+            route: "/dashboard",
+            queryLabel: "activity.findMany.globalFeatured",
+            userRole,
+        },
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.activity.findMany({
+                    where: buildGlobalFeaturedActivitiesWhere(),
+                    select: {
+                        id: true,
+                        title: true,
+                        description: true,
+                        type: true,
+                        category: true,
+                        isReleased: true,
+                        content: true,
+                        createdAt: true,
+                        updatedAt: true,
+                    },
+                })
+            ),
+        (result) => result.length
+    );
+    const globalFeatured = globalFeaturedRaw.filter((activity) =>
+        isLearnerVisibleActivity(activity)
+    );
+
     // Deduplicate by activityId: section-group expansion can return same activity from multiple classes.
     // Prefer assignments from the student's enrolled classes so activity links work (access check requires enrollment).
     const enrolledClassIds = new Set(classIds);
@@ -263,7 +296,10 @@ export default async function DashboardPage() {
             .values()
     );
 
-    const featuredActivityIds = Array.from(new Set(featuredAssignmentsDeduped.map((a) => a.activityId)));
+    const featuredActivityIds = Array.from(new Set([
+        ...featuredAssignmentsDeduped.map((a) => a.activityId),
+        ...globalFeatured.map((a) => a.id),
+    ]));
     const featuredProgressRows =
         featuredActivityIds.length === 0
             ? []
@@ -326,13 +362,46 @@ export default async function DashboardPage() {
             };
         });
 
-    const newThisWeekItems = featuredAssignments;
-    const nextStepAssignment = featuredAssignments[0] ?? allAssignments[0] ?? null;
+    // Union in the globally-featured activities. A class-featured entry wins on
+    // the same activity: it carries the assignmentId that activity links need.
+    const classFeaturedActivityIds = new Set(featuredAssignments.map((a) => a.activityId));
+    const globalFeaturedCards = globalFeatured
+        .filter((activity) => activity.id !== "vocab-daily-review")
+        .filter((activity) => !classFeaturedActivityIds.has(activity.id))
+        .map((activity) => {
+            const p = featuredProgressMap.get(activity.id);
+            return buildIndependentFeaturedAssignment({
+                activity,
+                progress: p
+                    ? {
+                          activityId: activity.id,
+                          progress: p.progress,
+                          status: p.status,
+                          categoryData: null,
+                      }
+                    : undefined,
+            });
+        })
+        .map((card) => ({
+            ...card,
+            categoryData: featuredProgressMap.get(card.activityId)?.categoryData ?? null,
+        }));
+
+    const allFeatured = [...featuredAssignments, ...globalFeaturedCards];
+
+    const newThisWeekItems = allFeatured;
+    const nextStepAssignment = allFeatured[0] ?? allAssignments[0] ?? null;
     const nextStepFallback = nextStepAssignment ? (
         <DashboardNextStepFallbackCard
-            href={buildActivityHref(nextStepAssignment.activityId, nextStepAssignment.id)}
+            href={
+                // Global featured cards carry their own href; class-featured
+                // ones are linked through their assignment.
+                "assignmentId" in nextStepAssignment && nextStepAssignment.assignmentId == null
+                    ? (nextStepAssignment.href ?? buildActivityHref(nextStepAssignment.activityId))
+                    : buildActivityHref(nextStepAssignment.activityId, nextStepAssignment.id)
+            }
             title={nextStepAssignment.title || nextStepAssignment.activity.title}
-            type={nextStepAssignment.activity.type}
+            type={nextStepAssignment.activity.type ?? "activity"}
             category={nextStepAssignment.activity.category}
             minutes={nextStepAssignment.activity.type?.toLowerCase() === "guide" ? 5 : 10}
         />
