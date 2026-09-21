@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Users } from "lucide-react";
 import { ExcludeLeaderboardToggle } from "@/components/admin/ExcludeLeaderboardToggle";
+import { DeleteStudentButton } from "@/components/admin/DeleteStudentButton";
 
 export type AdminStudentRow = {
     id: string;
@@ -12,6 +13,9 @@ export type AdminStudentRow = {
     lastActivityDate: string | null;
     createdAt: string;
     classes: { id: string; name: string }[];
+    /** Never-engaged accounts may be deleted outright; others may not. */
+    deletable: boolean;
+    notDeletableReason?: string;
 };
 
 type Props = {
@@ -141,7 +145,7 @@ export function AdminStudentsTable({ students }: Props) {
                     <table className="w-full min-w-[700px]">
                         <thead>
                             <tr style={{ background: "#f8f9fc", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
-                                {["Username", "Name", "Enrolled In", "Leaderboard", "Last Active", "Joined"].map(
+                                {["Username", "Name", "Enrolled In", "Leaderboard", "Last Active", "Joined", ""].map(
                                     (h) => (
                                         <th
                                             key={h}
@@ -158,7 +162,7 @@ export function AdminStudentsTable({ students }: Props) {
                             {filteredStudents.length === 0 ? (
                                 <tr>
                                     <td
-                                        colSpan={6}
+                                        colSpan={7}
                                         className="py-10 px-4 text-center text-sm"
                                         style={{ color: "#94a3b8" }}
                                     >
@@ -205,6 +209,14 @@ export function AdminStudentsTable({ students }: Props) {
                                                     month: "short",
                                                     year: "numeric",
                                                 })}
+                                            </td>
+                                            <td className="py-3 px-4 text-right">
+                                                <DeleteStudentButton
+                                                    userId={u.id}
+                                                    username={u.username}
+                                                    deletable={u.deletable}
+                                                    reason={u.notDeletableReason}
+                                                />
                                             </td>
                                         </tr>
                                     );

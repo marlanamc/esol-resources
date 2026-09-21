@@ -5,6 +5,7 @@ import { prisma } from "@/lib/database/prisma";
 import { isAdmin } from "@/lib/auth/roles";
 import { isLeaderboardExcludedUser } from "@/lib/gamification/leaderboard-filter";
 import { AdminStudentsTable } from "@/components/admin/AdminStudentsTable";
+import { checkStudentDeletable } from "@/lib/admin/student-deletion";
 import { StudentPasswordManager } from "@/components/student/StudentPasswordManager";
 import { KeyRound, Users } from "lucide-react";
 
@@ -32,6 +33,7 @@ export default async function AdminUsersPage() {
             mustChangePassword: true,
             lastActivityDate: true,
             createdAt: true,
+            points: true,
             classes: {
                 select: { class: { select: { id: true, name: true } } },
                 orderBy: { class: { name: "asc" } },
@@ -40,7 +42,19 @@ export default async function AdminUsersPage() {
                 select: { id: true, name: true },
                 orderBy: { name: "asc" },
             },
-            _count: { select: { classes: true, createdClasses: true } },
+            _count: {
+                select: {
+                    classes: true,
+                    createdClasses: true,
+                    submissions: true,
+                    activityProgress: true,
+                    pointsLedger: true,
+                    achievements: true,
+                    quizResponses: true,
+                    speakingSubmissions: true,
+                    writingSubmissions: true,
+                },
+            },
         },
         orderBy: [{ role: "asc" }, { username: "asc" }],
     });
@@ -83,15 +97,36 @@ export default async function AdminUsersPage() {
     const teachers = users.filter((u) => u.role === "teacher" || u.role === "admin");
     const students = users
         .filter((u) => u.role === "student" && !u.isSystemAccount)
-        .map((u) => ({
-            id: u.id,
-            username: u.username,
-            name: u.name,
-            excludeFromLeaderboard: isLeaderboardExcludedUser(u),
-            lastActivityDate: u.lastActivityDate?.toISOString() ?? null,
-            createdAt: u.createdAt.toISOString(),
-            classes: u.classes.map((e) => ({ id: e.class.id, name: e.class.name })),
-        }));
+        .map((u) => {
+            // Same rule the DELETE route enforces, so the UI can never offer a
+            // delete the server would refuse.
+            const check = checkStudentDeletable({
+                points: u.points,
+                isSystemAccount: u.isSystemAccount,
+                role: u.role,
+                counts: {
+                    submissions: u._count.submissions,
+                    activityProgress: u._count.activityProgress,
+                    pointsLedger: u._count.pointsLedger,
+                    achievements: u._count.achievements,
+                    quizResponses: u._count.quizResponses,
+                    speakingSubmissions: u._count.speakingSubmissions,
+                    writingSubmissions: u._count.writingSubmissions,
+                },
+            });
+
+            return {
+                id: u.id,
+                username: u.username,
+                name: u.name,
+                excludeFromLeaderboard: isLeaderboardExcludedUser(u),
+                lastActivityDate: u.lastActivityDate?.toISOString() ?? null,
+                createdAt: u.createdAt.toISOString(),
+                classes: u.classes.map((e) => ({ id: e.class.id, name: e.class.name })),
+                deletable: check.deletable,
+                ...(check.deletable ? {} : { notDeletableReason: check.reason }),
+            };
+        });
 
     return (
         <div className="space-y-8">
