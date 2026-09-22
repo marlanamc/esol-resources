@@ -18,7 +18,9 @@ const inET = (d: Date) =>
         day: "2-digit",
         hour: "2-digit",
         minute: "2-digit",
-        hour12: false,
+        // h23, not hour12: false -- some ICU builds (CI's Node 20) read that as h24
+        // and render midnight as "24:00".
+        hourCycle: "h23",
     }).format(d);
 
 /** All 36 teaching weeks, as a classroom learner with everything released. */
