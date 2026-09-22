@@ -1,7 +1,7 @@
 /**
  * Who may be permanently deleted from the admin dashboard.
  *
- * Deleting a User cascades away every related row — submissions, progress,
+ * Deleting a User removes every related row — submissions, progress,
  * points, achievements, enrollments — and cannot be undone. So deletion is
  * limited to accounts that never engaged: students who were rostered and then
  * never showed up. Anyone who did real work is removed from a class instead,
