@@ -233,6 +233,13 @@ export function ExerciseScreen({
    * their own definition text needs.
    */
   const isSwipeSort = currentExercise.type === 'swipe-sort';
+  /**
+   * Below sm, Word Sort fills the height left under the header instead of
+   * floating at its natural size -- PartsOfSpeechGame stops the page scrolling
+   * for it, so every wrapper from here to the grid has to pass a real height
+   * down (flex-1 + min-h-0) rather than a min-height.
+   */
+  const fill = isSwipeSort ? 'max-sm:flex-1 max-sm:min-h-0' : '';
   const hasExplanation = Boolean(
     currentExercise?.explanation || currentPattern?.errorExplanation || currentPattern?.memoryTrick
   );
@@ -308,7 +315,7 @@ export function ExerciseScreen({
   };
 
   return (
-    <div className="flex min-h-full flex-1 flex-col">
+    <div className={`flex min-h-full flex-1 flex-col ${isSwipeSort ? 'max-sm:min-h-0' : ''}`}>
       {/* Streak animation */}
       <AnimatePresence>
         {showStreakAnimation && (
@@ -444,8 +451,8 @@ export function ExerciseScreen({
             // my-auto, not justify-center on the parent: auto margins centre
             // this block in the leftover space while the sticky header stays
             // where it is at the top.
-            ? `${isSwipeSort ? 'mx-0' : 'mx-3'} my-auto flex flex-col overflow-hidden sm:mx-0`
-            : `mx-3 mt-2 flex flex-col overflow-hidden rounded-xl border sm:mx-0 sm:mt-6 sm:rounded-2xl sm:border-2 ${shellClass}`
+            ? `${isSwipeSort ? 'mx-0' : 'mx-3'} my-auto flex flex-col overflow-hidden sm:mx-0 ${fill}`
+            : `mx-3 mt-2 flex flex-col overflow-hidden rounded-xl border sm:mx-0 sm:mt-6 sm:rounded-2xl sm:border-2 ${shellClass} ${fill}`
         }
       >
         {/*
@@ -477,7 +484,7 @@ export function ExerciseScreen({
         )}
 
         {/* Content */}
-        <div className={isSwipeSort ? 'px-0 py-1 sm:p-6' : 'p-3 sm:p-6'}>
+        <div className={isSwipeSort ? `px-0 py-1 sm:p-6 max-sm:flex max-sm:flex-col ${fill}` : 'p-3 sm:p-6'}>
           {/* Polite live region for screen readers */}
           <div className="sr-only" role="status" aria-live="polite">
             {showFeedback && !selfFeedback
@@ -581,6 +588,7 @@ export function ExerciseScreen({
               // biggest fixed cost between one deck ending and the next
               // starting.
               transition={{ duration: 0.18 }}
+              className={isSwipeSort ? `max-sm:flex max-sm:flex-col ${fill}` : undefined}
             >
               {renderExercise(currentExercise, handleAnswer, answered)}
             </motion.div>

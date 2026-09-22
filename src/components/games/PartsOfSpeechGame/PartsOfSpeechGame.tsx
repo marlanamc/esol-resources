@@ -159,10 +159,24 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
     );
   }
 
+  /*
+    Word Sort is a vertical-swipe game on a phone, so below sm its play area is
+    sized to the screen and the page does not scroll at all. Left scrollable, a
+    few pixels of overflow (Large Text, a taller header) turned every up/down
+    swipe that started a little off the card into a page scroll or an iOS
+    rubber-band, which is what made the gesture feel unreliable. Each wrapper
+    down to the grid swaps its min-height for a real one so the stage can take
+    exactly the space that is left.
+  */
+  const fillsScreen =
+    state.phase === 'exercise' && state.exercises[state.currentExerciseIndex]?.type === 'swipe-sort';
+
   return (
     <div
       ref={contentScrollRef}
-      className="fixed inset-0 overflow-y-auto overscroll-contain bg-bg touch-manipulation"
+      className={`fixed inset-0 overflow-y-auto overscroll-contain bg-bg touch-manipulation ${
+        fillsScreen ? 'max-sm:overflow-hidden max-sm:overscroll-none' : ''
+      }`}
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
       {/* Grain texture */}
@@ -178,6 +192,8 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className={`relative z-10 mx-auto flex min-h-full w-full flex-col ${
+          fillsScreen ? 'max-sm:h-full max-sm:min-h-0' : ''
+        } ${
           state.phase === 'exercise'
             ? 'w-full max-w-none px-0 py-2 sm:max-w-5xl sm:px-6 sm:py-10'
             : 'max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
@@ -272,7 +288,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              className="flex min-h-full flex-1 flex-col"
+              className={`flex min-h-full flex-1 flex-col ${fillsScreen ? 'max-sm:min-h-0' : ''}`}
             >
               <ExerciseScreen
                 group={state.selectedGroup}
