@@ -4,6 +4,7 @@ import { useState, useEffect, type ComponentType } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Target, AlertCircle, ArrowLeft, ChevronRight, HelpCircle } from 'lucide-react';
 import { useTheme } from '@/components/layout/ThemeProvider';
+import { SCREEN_FADE } from './transitions';
 import { PatternChoiceExercise } from './exercises/PatternChoiceExercise';
 import { SentenceCompletionExercise } from './exercises/SentenceCompletionExercise';
 import { POSTaggingExercise } from './exercises/POSTaggingExercise';
@@ -342,10 +343,13 @@ export function ExerciseScreen({
         )}
       </AnimatePresence>
 
-      {/* Sticky header */}
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+      {/*
+        Sticky header. No entrance animation: it is the fixed frame of the play
+        screen, and the phase crossfade in PartsOfSpeechGame already brings it
+        in. It used to drop in from y:-20 at the same moment the play area slid
+        in from the right.
+      */}
+      <header
         className="sticky top-0 z-30 px-3 sm:px-0 py-2 sm:py-3 bg-bg/98 backdrop-blur-md border-b border-border/50 sm:relative sm:bg-transparent sm:backdrop-blur-0 sm:border-0"
       >
         {/* Mobile layout */}
@@ -438,14 +442,14 @@ export function ExerciseScreen({
             </div>
           </div>
         </div>
-      </motion.header>
+      </header>
 
-      {/* Exercise card */}
-      <motion.div
-        key={currentExercise.id}
-        initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+      {/*
+        Exercise card. A plain frame that stays put between exercises: it was
+        keyed per exercise and slid in from the right every time, on top of
+        the inner crossfade below. Only the content inside it changes.
+      */}
+      <div
         className={
           minimalChrome
             // my-auto, not justify-center on the parent: auto margins centre
@@ -581,20 +585,16 @@ export function ExerciseScreen({
           <AnimatePresence mode="wait">
             <motion.div
               key={`exercise-${currentIndex}`}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              // mode="wait" pays this twice per exercise, so it is the single
-              // biggest fixed cost between one deck ending and the next
-              // starting.
-              transition={{ duration: 0.18 }}
+              // A quiet crossfade from one exercise to the next -- opacity
+              // only. mode="wait" pays it twice, so it stays short.
+              {...SCREEN_FADE}
               className={isSwipeSort ? `max-sm:flex max-sm:flex-col ${fill}` : undefined}
             >
               {renderExercise(currentExercise, handleAnswer, answered)}
             </motion.div>
           </AnimatePresence>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

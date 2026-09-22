@@ -164,7 +164,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
+        transition={{ type: 'spring', stiffness: 200 }}
         className="flex flex-col items-center text-center pt-4"
       >
         <div className={`w-24 h-24 rounded-full flex items-center justify-center mb-4 ${passed ? 'bg-secondary/10' : 'bg-error/10'}`}>
@@ -196,10 +196,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
 
       {/* Round transition */}
       {nextRoundLabel && !courseMapPreset && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
+        <div
           className="p-4 rounded-2xl bg-gradient-to-r from-blue-50 to-emerald-50 dark:from-blue-900/20 dark:to-emerald-900/20 border border-blue-200 dark:border-blue-800/50"
         >
           <p className="font-display text-lg text-text mb-3 text-center">Level Progress</p>
@@ -231,14 +228,11 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
               ? `Score ${POS_MASTERY_THRESHOLD}% for mastery!`
               : 'Complete the next round to keep leveling up this group.'}
           </p>
-        </motion.div>
+        </div>
       )}
 
       {/* Score grid */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
+      <div
         className="grid grid-cols-3 gap-3"
       >
         <ScoreCard
@@ -246,23 +240,20 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
           value={`${accuracy}%`}
           sublabel={`${correctAnswers}/${exercisesCompleted} correct`}
           className={`${accuracyColor} ${accuracyBg}`}
-          delay={0.25}
         />
         <ScoreCard
           label="Points"
           value={`+${pointsAwarded}`}
           sublabel="earned this round"
           className="text-primary bg-primary/10"
-          delay={0.3}
         />
         <ScoreCard
           label="Streak"
           value={`${streak}`}
           sublabel="best in a row"
           className="text-primary-dark bg-accent/10"
-          delay={0.35}
         />
-      </motion.div>
+      </div>
 
       {/*
         Words missed inside multi-card exercises. A swipe-sort deck shares one
@@ -270,10 +261,7 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
         words went wrong -- this is the list a learner can actually act on.
       */}
       {missedWords && missedWords.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+        <div
           className="p-4 rounded-xl bg-error/5 border border-error/20"
         >
           <p className="font-semibold text-text text-sm mb-2">Words to practice:</p>
@@ -287,15 +275,12 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
               </span>
             ))}
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* Missed patterns */}
       {missedPatternIds && missedPatternIds.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+        <div
           className="p-4 rounded-xl bg-error/5 border border-error/20"
         >
           <p className="font-semibold text-text text-sm mb-2">
@@ -310,14 +295,11 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
               </span>
             ))}
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* Actions */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.45 }}
+      <div
         className="space-y-3 pt-4 border-t border-border"
       >
         {passed && nextGroup && !nextRoundLabel && !courseMapPreset && (
@@ -376,24 +358,21 @@ export function ResultsScreen({ group, results, nextGroup, onRetry, onContinue, 
             <span className="text-xs opacity-70">Back to group selection</span>
           </motion.button>
         )}
-      </motion.div>
+      </div>
     </div>
   );
 }
 
-function ScoreCard({ label, value, sublabel, className, delay }: {
-  label: string; value: string; sublabel: string; className: string; delay: number;
+function ScoreCard({ label, value, sublabel, className }: {
+  label: string; value: string; sublabel: string; className: string;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay }}
+    <div
       className={`p-4 rounded-2xl text-center ${className} border border-transparent`}
     >
       <div className="font-display text-2xl sm:text-3xl font-bold mb-1">{value}</div>
       <div className="text-xs font-semibold uppercase tracking-wide opacity-80">{label}</div>
       <div className="text-xs opacity-60 mt-0.5">{sublabel}</div>
-    </motion.div>
+    </div>
   );
 }

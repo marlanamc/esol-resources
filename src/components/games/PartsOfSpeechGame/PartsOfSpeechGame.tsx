@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
 import { AlertCircle, ArrowLeft } from 'lucide-react';
 import { ErrorToast } from '@/components/ui/ErrorToast';
 import { PointsToast } from '@/components/ui/PointsToast';
@@ -14,6 +14,7 @@ import { PatternIntroScreen } from './PatternIntroScreen';
 import { PatternWalkthroughScreen } from './PatternWalkthroughScreen';
 import { ExerciseScreen } from './ExerciseScreen';
 import { ResultsScreen } from './ResultsScreen';
+import { SCREEN_FADE } from './transitions';
 import type { PartsOfSpeechContent } from '@/types/parts-of-speech';
 import type { POSGroup } from '@/types/parts-of-speech';
 
@@ -138,8 +139,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
   if (state.error && state.phase === 'selection') {
     return (
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        {...SCREEN_FADE}
         className="fixed inset-0 bg-bg flex items-center justify-center p-4"
       >
         <div className="max-w-md w-full p-8 bg-white dark:bg-[#162b3d] rounded-2xl border border-border shadow-lg text-center">
@@ -172,6 +172,9 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
     state.phase === 'exercise' && state.exercises[state.currentExerciseIndex]?.type === 'swipe-sort';
 
   return (
+    // reducedMotion="user": with the OS "reduce motion" setting on, every
+    // framer animation in the game drops its movement and keeps only fades.
+    <MotionConfig reducedMotion="user">
     <div
       ref={contentScrollRef}
       className={`fixed inset-0 overflow-y-auto overscroll-contain bg-bg touch-manipulation ${
@@ -188,9 +191,12 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
         }}
       />
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+      {/*
+        No entrance fade on this container. It replaces the loading screen,
+        which already shows the background, the back button and the Course Map
+        banner; fading it in from 0 made all of those blink out and back.
+      */}
+      <div
         className={`relative z-10 mx-auto flex min-h-full w-full flex-col ${
           fillsScreen ? 'max-sm:h-full max-sm:min-h-0' : ''
         } ${
@@ -240,10 +246,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
           {state.phase === 'selection' && (
             <motion.div
               key="selection"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+              {...SCREEN_FADE}
             >
               <GroupSelectionScreen
                 categoryData={state.categoryData}
@@ -257,10 +260,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
           {state.phase === 'intro' && state.selectedGroup && (
             <motion.div
               key="intro"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+              {...SCREEN_FADE}
             >
               {state.selectedRoundMode === 'round1' && !state.selectedGroup.isCheckpoint && !isPinnedRound ? (
                 <PatternWalkthroughScreen
@@ -284,10 +284,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
           {state.phase === 'exercise' && state.selectedGroup && (
             <motion.div
               key="exercise"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+              {...SCREEN_FADE}
               className={`flex min-h-full flex-1 flex-col ${fillsScreen ? 'max-sm:min-h-0' : ''}`}
             >
               <ExerciseScreen
@@ -306,10 +303,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
           {state.phase === 'results' && state.selectedGroup && state.roundResults && (
             <motion.div
               key="results"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+              {...SCREEN_FADE}
             >
               <ResultsScreen
                 group={state.selectedGroup}
@@ -324,7 +318,7 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </div>
 
       {state.saveError && (
         <ErrorToast message={state.saveError} onDismiss={dismissSaveError} />
@@ -340,5 +334,6 @@ export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGame
         />
       )}
     </div>
+    </MotionConfig>
   );
 }

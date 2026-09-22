@@ -78,9 +78,7 @@ export function PatternIntroScreen({
     <div className="space-y-6 max-w-2xl mx-auto pb-24 sm:pb-0">
 
       {/* Badge row */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
+      <div
         className="flex items-center justify-between"
       >
         <div className="flex items-center gap-2">
@@ -94,24 +92,18 @@ export function PatternIntroScreen({
             {roundLabel.name}
           </span>
         )}
-      </motion.div>
+      </div>
 
       {/* Title */}
-      <motion.h1
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.05 }}
+      <h1
         className="font-display text-3xl sm:text-4xl text-text leading-tight"
       >
         {group.title}
-      </motion.h1>
+      </h1>
 
       {/* Photo recall strip — shown for groups with visual gallery (nouns, verbs) */}
       {group.photoGallery && group.photoGallery.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.06 }}
+        <div
           className="flex gap-3 overflow-x-auto pb-1"
         >
           {group.photoGallery.map(entry => (
@@ -136,15 +128,12 @@ export function PatternIntroScreen({
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
       )}
 
       {/* Memory trick */}
       {group.memoryTrick && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.08 }}
+        <div
           className="p-4 rounded-xl bg-accent/15 border-2 border-accent/40"
         >
           <p className="text-sm font-bold text-amber-700 dark:text-amber-400 flex items-center gap-2 mb-1">
@@ -152,14 +141,11 @@ export function PatternIntroScreen({
             Quick rule
           </p>
           <p className="text-sm font-semibold text-text leading-relaxed">{group.memoryTrick}</p>
-        </motion.div>
+        </div>
       )}
 
       {/* Pattern */}
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
+      <div
         className="space-y-4"
       >
         <div className={`p-6 bg-gradient-to-br ${group.colorClass.replace(/bg-\w+-50/, 'from-transparent to-black/5 dark:to-white/5').replace('border-', 'border-2 border-')} border-dashed rounded-3xl shadow-sm relative overflow-hidden`}>
@@ -195,14 +181,11 @@ export function PatternIntroScreen({
             <DiagramSentence text={group.patternExample} colorClass={group.colorClass} />
           </div>
         )}
-      </motion.div>
+      </div>
 
       {/* POS color legend */}
       {groupPOS.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.12 }}
+        <div
           className="flex flex-wrap gap-2"
         >
           {groupPOS.map(pos => (
@@ -213,15 +196,12 @@ export function PatternIntroScreen({
               {POS_LABELS[pos]}
             </span>
           ))}
-        </motion.div>
+        </div>
       )}
 
       {/* Examples */}
       {displayExamples.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15 }}
+        <div
           className="space-y-3"
         >
           <h2 className="font-display text-lg text-text flex items-center gap-2">
@@ -231,11 +211,8 @@ export function PatternIntroScreen({
 
           <div className="space-y-2">
             {displayExamples.map((ex, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 + i * 0.05 }}
                 className="flex items-start gap-3 p-4 rounded-xl bg-white dark:bg-[#162b3d] border border-border shadow-sm"
               >
                 <span className={`flex-shrink-0 px-2 py-0.5 rounded-md text-xs font-bold border mt-0.5 ${POS_COLORS[ex.partOfSpeech]}`}>
@@ -268,18 +245,15 @@ export function PatternIntroScreen({
                     <p className="text-xs text-text-muted mt-1 italic">{ex.context}</p>
                   )}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* Common errors reminder */}
       {group.patterns.some(p => p.commonError) && !!isRound1 && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+        <div
           className="p-4 rounded-xl bg-error/5 border border-error/20"
         >
           <p className="text-sm font-bold text-error flex items-center gap-2 mb-2">
@@ -291,15 +265,12 @@ export function PatternIntroScreen({
               <li key={i} className="text-xs text-error/80">{p.commonError}</li>
             ))}
           </ul>
-        </motion.div>
+        </div>
       )}
 
       {/* Word families reminder */}
       {group.patterns.some(p => p.wordFamily?.length) && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.32 }}
+        <div
           className="p-4 rounded-xl bg-sky-50 dark:bg-sky-900/25 border border-sky-200 dark:border-sky-800"
         >
           <p className="text-sm font-bold text-sky-800 dark:text-sky-200 flex items-center gap-2 mb-2">
@@ -318,15 +289,12 @@ export function PatternIntroScreen({
               ))
             ).slice(0, 8)}
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* Round 1 only: show the full progression ladder */}
       {!!isRound1 && !group.isCheckpoint && !hideRoundLadder && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+        <div
           className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50"
         >
           <p className="font-bold text-text text-sm mb-3">📘 How it works — {group.maxRounds} rounds to mastery</p>
@@ -349,15 +317,12 @@ export function PatternIntroScreen({
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* Round 2+ notice: where they are in the journey */}
       {!isRound1 && roundLabel && !hideRoundLadder && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+        <div
           className="p-4 rounded-xl bg-primary/5 border border-primary/20"
         >
           <p className="font-bold text-text text-sm mb-1">{roundLabel.name}</p>
@@ -366,14 +331,11 @@ export function PatternIntroScreen({
               ? `Score 90%+ to earn the ✦ mastery badge. Exercises target your trickiest patterns.`
               : `Score ${[70,75,80,85,90][roundNum - 1] ?? 80}%+ to unlock Round ${roundNum + 1}. Keep building!`}
           </p>
-        </motion.div>
+        </div>
       )}
 
       {/* Desktop CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
+      <div
         className="hidden sm:flex gap-3 pt-2"
       >
         <button
@@ -393,7 +355,7 @@ export function PatternIntroScreen({
           <Play size={18} />
           {ctaLabel}
         </motion.button>
-      </motion.div>
+      </div>
 
       {/* Mobile fixed bottom bar */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between gap-3 px-4 py-3 bg-bg/95 backdrop-blur-md border-t border-border pb-[max(0.75rem,env(safe-area-inset-bottom))]">

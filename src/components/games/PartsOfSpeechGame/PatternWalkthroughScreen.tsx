@@ -217,9 +217,7 @@ export function PatternWalkthroughScreen({
         </div>
 
         {group.memoryTrick && (
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
             className="relative overflow-hidden p-4 rounded-2xl bg-gradient-to-br from-accent/20 to-amber-100/30 dark:from-accent/15 dark:to-amber-900/20 border-2 border-accent/40"
           >
             <div className="absolute top-2 right-3 text-4xl opacity-10 select-none">{group.icon}</div>
@@ -228,7 +226,7 @@ export function PatternWalkthroughScreen({
               Remember this
             </p>
             <p className="text-base font-bold text-text leading-relaxed">{group.memoryTrick}</p>
-          </motion.div>
+          </div>
         )}
       </section>
 
@@ -246,11 +244,8 @@ export function PatternWalkthroughScreen({
             const example = pattern.examples[0];
             const sentence = example?.blank ? example.sentence.replace('___', example.blank) : example?.sentence ?? '';
             return (
-              <motion.div
+              <div
                 key={pattern.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
                 className="flex-shrink-0 w-[82%] sm:w-[320px] snap-start rounded-2xl border-2 border-border bg-white dark:bg-[#162b3d] shadow-sm overflow-hidden flex flex-col"
               >
                 <div className={`px-4 py-2 flex items-center justify-between border-b-2 border-border ${POS_COLORS[pattern.partOfSpeech]}`}>
@@ -274,7 +269,7 @@ export function PatternWalkthroughScreen({
                     </p>
                   )}
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
@@ -308,11 +303,8 @@ export function PatternWalkthroughScreen({
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {mistakes.map((p, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
                 className="rounded-2xl overflow-hidden border border-border shadow-sm"
               >
                 <div className="flex items-start gap-3 px-4 py-3 bg-error/5 border-b border-error/15">
@@ -331,7 +323,7 @@ export function PatternWalkthroughScreen({
                     {p.word}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </section>
@@ -429,10 +421,7 @@ function CheckpointQuestionCard({
   onAnswer,
 }: CheckpointQuestionCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.1 }}
+    <div
       className="p-5 sm:p-6 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/20 border-2 border-indigo-100 dark:border-indigo-900/50 space-y-4 shadow-sm"
     >
       <div className="flex items-center gap-2 border-b border-indigo-100 dark:border-indigo-900/30 pb-3">
@@ -519,6 +508,6 @@ function CheckpointQuestionCard({
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
