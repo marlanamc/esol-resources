@@ -12,9 +12,11 @@ import { checkStudentDeletable } from "@/lib/admin/student-deletion";
  * DELETE /api/admin/users/[userId]
  *
  * Permanently deletes a student account that never engaged — a roster entry for
- * someone who never showed up. Every User relation cascades, so this also
- * removes their enrollment rows; there is nothing else to remove because the
- * eligibility check requires all of it to be empty.
+ * someone who never showed up. Not every User relation cascades in the
+ * database: enrollments and writing-session rows are ON DELETE RESTRICT, so a
+ * rostered student can't be deleted until those rows are removed first. A
+ * never-engaged student can still have them (the teacher enrolled them or put
+ * them in a writing group), so they are cleared in the same transaction.
  *
  * Students who did any work are rejected here, not merely hidden in the UI.
  * Use the class roster's remove/graduate actions for them instead.
@@ -88,7 +90,14 @@ export async function DELETE(
             return NextResponse.json({ error: check.reason }, { status: 409 });
         }
 
-        await prisma.user.delete({ where: { id: userId } });
+        await prisma.$transaction(async (tx) => {
+            await tx.classEnrollment.deleteMany({ where: { studentId: userId } });
+            await tx.writingGroupMember.deleteMany({ where: { studentId: userId } });
+            await tx.writingSessionCheckIn.deleteMany({ where: { studentId: userId } });
+            await tx.writingGroupVote.deleteMany({ where: { voterId: userId } });
+            await tx.writingClassVote.deleteMany({ where: { voterId: userId } });
+            await tx.user.delete({ where: { id: userId } });
+        });
 
         logger.warn("Admin deleted a never-engaged student account", {
             deletedUserId: user.id,
