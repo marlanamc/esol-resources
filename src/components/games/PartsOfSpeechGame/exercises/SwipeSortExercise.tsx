@@ -1,7 +1,7 @@
 'use client';
 
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { motion, useMotionValue, useTransform, AnimatePresence, animate } from 'framer-motion';
+import { memo, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
+import { motion, useMotionValue, useMotionValueEvent, useTransform, AnimatePresence, animate } from 'framer-motion';
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Hand } from 'lucide-react';
 import type { PanInfo } from 'framer-motion';
 import type { POSAnswerDetail, POSExercise, POSSwipeSortCard, PartOfSpeech } from '@/types/parts-of-speech';
@@ -34,12 +34,24 @@ const SWIPE_DISTANCE = 64;
 const SWIPE_VELOCITY = 500;
 /** Floor under the flick path so a jittery tap cannot commit. */
 const FLICK_MIN_DISTANCE = 20;
+/**
+ * Window for our own release-speed estimate, in ms. Framer's `info.velocity`
+ * averages over ~100ms including the slow start of the gesture, so a quick
+ * 30px flick came back as ~60px/s and silently snapped home.
+ */
+const FLICK_WINDOW_MS = 60;
 
 /**
  * How far off centre the card flies. It is fully faded well before it lands, so
  * this only has to clear the card box rather than the viewport.
  */
 const EXIT_TRAVEL = 320;
+/** Mobile fly-out overshoots the bucket's centre by this much past the card edge. */
+const STACKED_EXIT_EXTRA = 40;
+/** How small the card gets as it lands in a bucket on a phone. */
+const STACKED_LANDING_SCALE = 0.6;
+/** How far the card has shrunk by the time a swipe is armed. */
+const STACKED_ARMED_SCALE = 0.92;
 /** Correct card -> next card. The card is invisible from ~130ms. */
 const EXIT_MS = 150;
 /** Miss -> correction panel. The one card that still costs a beat, on purpose. */
@@ -68,6 +80,35 @@ const PANEL_IN = {
 const VOWEL_POS: PartOfSpeech[] = ['adjective', 'adverb', 'article'];
 const articleFor = (pos: PartOfSpeech) => (VOWEL_POS.includes(pos) ? 'an' : 'a');
 
+/**
+ * Speed over the last FLICK_WINDOW_MS of a drag, in px/s. A finger that stops
+ * and then lifts has no sample inside the window, so it measures against the
+ * last one it left and reads 0 -- a pause before release is not a flick.
+ */
+function releaseSpeed(samples: Array<[number, number]>, travel: number, now: number): number {
+  const first = samples.find(([t]) => now - t <= FLICK_WINDOW_MS) ?? samples[samples.length - 1];
+  if (!first) return 0;
+  const dt = Math.max(now - first[0], 8);
+  return ((travel - first[1]) / dt) * 1000;
+}
+
+/*
+  Below `sm` the buckets stack and the card is swiped up/down. Read through
+  useSyncExternalStore rather than useState(false) + an effect, so the first
+  client render already has the right axis instead of arming a horizontal drag
+  for one commit.
+*/
+const STACKED_QUERY = '(max-width: 639px)';
+const subscribeStacked = (onChange: () => void) => {
+  if (typeof window === 'undefined' || !window.matchMedia) return () => {};
+  const mq = window.matchMedia(STACKED_QUERY);
+  mq.addEventListener('change', onChange);
+  return () => mq.removeEventListener('change', onChange);
+};
+const getStacked = () =>
+  typeof window !== 'undefined' && !!window.matchMedia && window.matchMedia(STACKED_QUERY).matches;
+const getStackedOnServer = () => false;
+
 interface Correction {
   card: POSSwipeSortCard;
   chosen: PartOfSpeech;
@@ -85,7 +126,6 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   const [results, setResults] = useState<DeckState>([]);
   const [exitDir, setExitDir] = useState<'left' | 'right' | null>(null);
   const [correction, setCorrection] = useState<Correction | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
   const [flash, setFlash] = useState<'left' | 'right' | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const animatingRef = useRef(false);
@@ -129,15 +169,9 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   // they flank the card and it is swiped left/right. Three columns cannot all
   // be comfortable on a 390px phone -- the buckets end up too narrow to hold
   // their own definition text -- so the axis follows the layout.
-  const [stacked, setStacked] = useState(false);
-  useEffect(() => {
-    if (typeof window === 'undefined' || !window.matchMedia) return;
-    const mq = window.matchMedia('(max-width: 639px)');
-    setStacked(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setStacked(e.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
+  const stacked = useSyncExternalStore(subscribeStacked, getStacked, getStackedOnServer);
+  /** The card column, measured so a phone fly-out lands on the bucket. */
+  const cardAreaRef = useRef<HTMLDivElement | null>(null);
 
   /**
    * Displacement along whichever axis is live. The sign convention is the same
@@ -149,13 +183,47 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   // [-200, 200] range put the card at 1.9deg when it was already committed,
   // which read as no feedback at all.
   const rotate = useTransform(x, [-140, 140], [-10, 10]);
-  // These drive the two bucket buttons, so at rest they must both be fully
-  // legible -- the old [-200, 0] -> [1, 0.35] mapping bottomed out at 0.35 with
-  // the card untouched, which read as "disabled" once the headers became the
-  // controls. Now dragging dims the side the learner is moving away from, and
-  // reaches full dim right about where the card commits.
-  const leftOpacity = useTransform(x, [-96, 0, 96], [1, 1, 0.4]);
-  const rightOpacity = useTransform(x, [-96, 0, 96], [0.4, 1, 1]);
+  /*
+    The "armed" state: every drag cue reaches its end value at SWIPE_DISTANCE,
+    the exact point where letting go commits. The dim used to finish at 96px,
+    32px past the commit, and nothing lit up on the side being chosen, so a
+    release was a guess.
+
+    These drive the two bucket buttons, so at rest they must both be fully
+    legible. Dragging dims the side the learner is moving away from, and grows
+    and outlines the side they are moving toward.
+  */
+  const leftOpacity = useTransform(x, [-SWIPE_DISTANCE, 0, SWIPE_DISTANCE], [1, 1, 0.4]);
+  const rightOpacity = useTransform(x, [-SWIPE_DISTANCE, 0, SWIPE_DISTANCE], [0.4, 1, 1]);
+  const leftScale = useTransform(x, [-SWIPE_DISTANCE, 0], [1.03, 1]);
+  const rightScale = useTransform(x, [0, SWIPE_DISTANCE], [1, 1.03]);
+  const leftRing = useTransform(x, [-SWIPE_DISTANCE, -SWIPE_DISTANCE / 2], [1, 0]);
+  const rightRing = useTransform(x, [SWIPE_DISTANCE / 2, SWIPE_DISTANCE], [0, 1]);
+  // Phone only: the vertical card has no tilt to show it is moving, so it
+  // shrinks instead -- a little by the commit point, and on down to landing
+  // size as the fly-out carries it into the bucket. One transform covers both
+  // the drag and the exit, so there is no hand-off between them.
+  const stackedScale = useTransform(
+    x,
+    [-EXIT_TRAVEL, -SWIPE_DISTANCE, 0, SWIPE_DISTANCE, EXIT_TRAVEL],
+    [STACKED_LANDING_SCALE, STACKED_ARMED_SCALE, 1, STACKED_ARMED_SCALE, STACKED_LANDING_SCALE],
+  );
+
+  // A haptic tick each time the drag crosses the commit line, either way, so
+  // the learner can feel the point of no return (Android; iOS has no
+  // vibration API). Tracked in a ref so the drag never re-renders.
+  const armedRef = useRef(false);
+  const draggingRef = useRef(false);
+  /** Recent [time, offset] samples along the live axis, for the flick speed. */
+  const samplesRef = useRef<Array<[number, number]>>([]);
+  useMotionValueEvent(x, 'change', latest => {
+    if (!draggingRef.current) return;
+    const armed = Math.abs(latest) >= SWIPE_DISTANCE;
+    if (armed !== armedRef.current) {
+      armedRef.current = armed;
+      if (armed) playFeedback('arm');
+    }
+  });
 
   const cards = useMemo(() => data?.cards ?? [], [data]);
   const total = cards.length;
@@ -261,25 +329,52 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
     // old `style={exitDir ? undefined : {x, rotate}}`) made framer drop the
     // value, paint one frame at dead centre, and then animate out from 0 --
     // a visible snap back to the middle on every single card.
+    // On a phone, fly to the bucket rather than a flat distance: half the card
+    // area puts the card's centre on the area's edge, and the extra carries it
+    // onto the bucket, where stackedScale has shrunk it to landing size.
+    const travel =
+      stacked && cardAreaRef.current
+        ? Math.min(cardAreaRef.current.offsetHeight / 2 + STACKED_EXIT_EXTRA, EXIT_TRAVEL)
+        : EXIT_TRAVEL;
     exitAnimRef.current?.stop();
-    exitAnimRef.current = animate(x, direction === 'left' ? -EXIT_TRAVEL : EXIT_TRAVEL, {
+    exitAnimRef.current = animate(x, direction === 'left' ? -travel : travel, {
       ...FLY_OUT,
       velocity,
     });
     commitTimerRef.current = window.setTimeout(settle, stops ? MISS_MS : EXIT_MS);
   };
 
-  const handleDragStart = () => {
-    setIsDragging(true);
+  // Times come from the events themselves: `timeStamp` is on the same clock
+  // as performance.now() and keeps these handlers pure for the React compiler.
+  const handleDragStart = (event: MouseEvent | TouchEvent | PointerEvent) => {
+    // No state here: a setState on drag start re-rendered the whole exercise,
+    // bucket stacks and all, on the first frame of the gesture.
+    draggingRef.current = true;
+    armedRef.current = false;
+    samplesRef.current = [[event.timeStamp, 0]];
     // A frame later: the pick blip is decoration, the first frame of the drag
     // is not.
     requestAnimationFrame(() => playFeedback('pick'));
   };
 
-  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    setIsDragging(false);
+  const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const now = event.timeStamp;
+    const samples = samplesRef.current;
+    samples.push([now, stacked ? info.offset.y : info.offset.x]);
+    // Keep one sample older than the window so the estimate always spans it.
+    while (samples.length > 2 && now - samples[1][0] > FLICK_WINDOW_MS) samples.shift();
+  };
+
+  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    draggingRef.current = false;
+    armedRef.current = false;
     const travel = stacked ? info.offset.y : info.offset.x;
-    const speed = stacked ? info.velocity.y : info.velocity.x;
+    const framerSpeed = stacked ? info.velocity.y : info.velocity.x;
+    const ownSpeed = releaseSpeed(samplesRef.current, travel, event.timeStamp);
+    samplesRef.current = [];
+    // Whichever reads faster: ours catches the short flick, framer's the long
+    // steady throw.
+    const speed = Math.abs(ownSpeed) > Math.abs(framerSpeed) ? ownSpeed : framerSpeed;
     const dragged = Math.abs(travel) >= SWIPE_DISTANCE;
     const flicked = Math.abs(speed) >= SWIPE_VELOCITY && Math.abs(travel) >= FLICK_MIN_DISTANCE;
 
@@ -297,7 +392,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   const done = index >= total;
   const buttonsDisabled = done || answered || !!correction;
 
-  const hint = isDragging ? 'Let go to choose.' : 'Tap a box. Or swipe the card.';
+  const hint = 'Tap a box. Or swipe the card.';
   const correctLabel = correction ? POS_LABELS[correction.card.correctBucket] : '';
   const announcement = correction
     ? correction.alternate
@@ -313,6 +408,8 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   const renderBucket = (side: 'left' | 'right') => {
     const bucket = side === 'left' ? leftBucket : rightBucket;
     const opacity = side === 'left' ? leftOpacity : rightOpacity;
+    const scale = side === 'left' ? leftScale : rightScale;
+    const ring = side === 'left' ? leftRing : rightRing;
     const stack = sortedInto(bucket);
     const isFlashing = flash === side;
     // Written out rather than interpolated -- Tailwind cannot see a class name
@@ -331,8 +428,8 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
         onClick={() => commit(side)}
         disabled={buttonsDisabled}
         aria-label={`Sort this word as ${POS_LABELS[bucket]}`}
-        style={{ opacity: correction ? 0.6 : opacity }}
-        className={`group ${placement} col-start-1 block h-full w-full text-left transition-transform active:scale-[0.99] disabled:pointer-events-none`}
+        style={{ opacity: correction ? 0.6 : opacity, scale }}
+        className={`group ${placement} col-start-1 block h-full w-full text-left transition-[scale] active:scale-[0.99] disabled:pointer-events-none`}
       >
         {/*
           The colour lives on this span rather than the button: globals.css
@@ -345,10 +442,16 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
           drift apart the way the old pair of min-h literals did.
         */}
         <span
-          className={`flex h-full min-h-[76px] flex-row overflow-hidden rounded-2xl border-2 border-solid transition-colors sm:min-h-[var(--stage)] sm:flex-col ${
+          className={`relative flex h-full min-h-[76px] flex-row overflow-hidden rounded-2xl border-2 border-solid transition-colors sm:min-h-[var(--stage)] sm:flex-col ${
             isFlashing ? 'border-error bg-error/10' : POS_COLORS[bucket]
           }`}
         >
+          {/* The armed outline, in the bucket's own colour. */}
+          <motion.span
+            aria-hidden="true"
+            style={{ opacity: ring }}
+            className="pointer-events-none absolute inset-0 rounded-[inherit] ring-4 ring-inset ring-current/45"
+          />
           {/*
             Sentence case on mobile, caps only from sm up. Caps are harder to
             read -- more so with low vision, and these are language learners --
@@ -413,7 +516,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   };
 
   return (
-    <div className="space-y-2 px-2 sm:space-y-3 sm:px-0">
+    <div className="flex flex-col gap-2 px-2 max-sm:min-h-0 max-sm:flex-1 max-sm:pb-[max(0.5rem,env(safe-area-inset-bottom))] sm:gap-3 sm:px-0">
       {/* Progress dots */}
       <div className="flex items-center justify-center gap-1">
         {cards.map((c, i) => {
@@ -458,21 +561,36 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
         learner no sense of progress and left the screen mostly empty.
         They are the swipe targets, so they are also the tap targets.
 
-        --stage is the one height declaration for the whole play area. On a
-        phone it grows into whatever the sticky header and the dots leave
-        behind (the 12rem budget covers header 63 + wrapper 16 + dots/hint 50 +
-        breathing room over the home indicator) and caps out so a tall tablet
-        does not stretch it into a ribbon. Desktop is pinned back to the
-        template and 320px this screen has always used.
+        On a phone the grid takes whatever height the flex column above it
+        leaves (ExerciseScreen and PartsOfSpeechGame pass a real height down,
+        and the page does not scroll), capped so a tall phone does not stretch
+        it into a ribbon. It used to be a calc(100dvh - 10.5rem) guess at the
+        header's height, which Large Text or a taller header overflowed by a
+        few pixels -- enough to make the page scroll under a vertical swipe.
+        From sm up, --stage pins the template to the 320px this screen has
+        always used.
 
         Every child is placed explicitly so the correction panel can overlay
         the row instead of wrapping onto a second one.
       */}
-      <div className="mx-auto grid h-[var(--stage)] max-w-3xl grid-cols-1 grid-rows-[auto_minmax(0,1fr)_auto] items-stretch gap-2 [--stage:clamp(340px,calc(100dvh_-_10.5rem_-_env(safe-area-inset-bottom,0px)),640px)] sm:h-auto sm:grid-cols-[minmax(84px,1fr)_minmax(0,1.5fr)_minmax(84px,1fr)] sm:grid-rows-1 sm:gap-3 sm:[--stage:320px]">
+      <div className="mx-auto grid w-full max-w-3xl grid-cols-1 max-sm:my-auto max-sm:max-h-[40rem] max-sm:min-h-0 max-sm:flex-1 grid-rows-[auto_minmax(0,1fr)_auto] items-stretch gap-2 sm:h-auto sm:grid-cols-[minmax(84px,1fr)_minmax(0,1.5fr)_minmax(84px,1fr)] sm:grid-rows-1 sm:gap-3 sm:[--stage:320px]">
         {renderBucket('left')}
 
         {/* Card stack */}
-        <div className="relative col-start-1 row-start-2 flex items-center justify-center select-none sm:col-start-2 sm:row-start-1 sm:min-h-[var(--stage)]">
+        {/*
+          touch-none is on this wrapper, not the card: framer writes the card's
+          own touch-action inline (pan-x for a vertical drag), and the effective
+          value is the intersection with every ancestor. Left at pan-x, a
+          slightly diagonal swipe could be claimed by the browser as a
+          horizontal pan or a back-swipe and cancel the drag mid-gesture.
+
+          z-10 keeps the card above the bottom bucket, a later sibling, while it
+          flies into it.
+        */}
+        <div
+          ref={cardAreaRef}
+          className="relative z-10 col-start-1 row-start-2 flex touch-none items-center justify-center select-none sm:col-start-2 sm:row-start-1 sm:min-h-[var(--stage)]"
+        >
           {/* Peek card (next) */}
           <AnimatePresence>
             {!done && !correction && cards[index + 1] && (
@@ -480,7 +598,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
                 key={`peek-${cards[index + 1].id}`}
                 initial={{ scale: 0.92, y: 10, opacity: 0.5 }}
                 animate={{ scale: 0.94, y: 8, opacity: 0.55 }}
-                className="absolute inset-x-3 inset-y-2 sm:inset-0 sm:m-auto sm:aspect-[4/7] sm:h-auto sm:max-h-[86%] sm:w-[calc(100%-1rem)] rounded-3xl border-2 border-border bg-white dark:bg-[#162b3d] shadow-sm pointer-events-none"
+                className="absolute inset-0 m-auto aspect-[3/4] h-auto max-h-full w-[min(calc(100%-2rem),20rem)] sm:aspect-[4/7] sm:max-h-[86%] sm:w-[calc(100%-1rem)] rounded-3xl border-2 border-border bg-white dark:bg-[#162b3d] shadow-sm pointer-events-none"
               />
             )}
           </AnimatePresence>
@@ -498,27 +616,35 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
                 // Framer's own drag-end inertia would otherwise launch an
                 // unconstrained card off on its own and fight the fly-out.
                 dragMomentum={false}
-                style={stacked ? { y: x } : { x, rotate }}
+                style={stacked ? { y: x, scale: stackedScale } : { x, rotate }}
+                onDrag={handleDrag}
                 onDragEnd={handleDragEnd}
                 onDragStart={handleDragStart}
-                // x is driven imperatively (see commit); opacity and scale are
-                // not in `style`, so the animate prop can own them with no
-                // conflict. The card is invisible before the swap, which is
-                // what makes the advance timing independent of where it is.
-                initial={{ opacity: 0, scale: 0.94 }}
-                animate={exitDir ? { opacity: 0, scale: 0.92 } : { opacity: 1, scale: 1 }}
-                transition={exitDir ? CARD_OUT : CARD_IN}
+                // Sized on a phone, not stretched across the whole row: a
+                // 390x450 slab moved 64px barely looked like it had moved.
                 // inset-0 + m-auto centres on both axes without a transform, so
-                // it cannot fight the motion x/rotate. Aspect-driven rather
-                // than height-driven: at 92% of a stage that now fills the
-                // screen, the card would be a 150x478 ribbon.
-                className="absolute inset-0 sm:m-auto sm:aspect-[4/7] sm:h-auto sm:max-h-[92%] sm:w-full rounded-3xl border-2 border-primary/40 bg-white dark:bg-[#1c3a52] shadow-xl flex flex-col items-center justify-center gap-1 cursor-grab active:cursor-grabbing"
+                // it cannot fight the motion values.
+                className="absolute inset-0 m-auto aspect-[3/4] h-auto max-h-full w-[min(calc(100%-2rem),20rem)] sm:aspect-[4/7] sm:max-h-[92%] sm:w-full cursor-grab active:cursor-grabbing"
               >
-                {/* No "Card 1 of 6" here -- the dots above already show it, and a
-                    counter on the card competes with the one word it exists to show. */}
-                <span className="px-3 text-center text-[clamp(2rem,11vw,3.25rem)] font-display font-bold leading-tight break-words text-text sm:text-5xl">
-                  {current.word}
-                </span>
+                {/*
+                  Opacity and scale on an inner layer: the outer one's scale is
+                  bound to the drag on a phone, and the animate prop cannot own
+                  a value `style` already holds. The card is invisible before
+                  the swap, which is what makes the advance timing independent
+                  of where it is.
+                */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.94 }}
+                  animate={exitDir ? { opacity: 0, scale: 0.92 } : { opacity: 1, scale: 1 }}
+                  transition={exitDir ? CARD_OUT : CARD_IN}
+                  className="flex h-full w-full flex-col items-center justify-center gap-1 rounded-3xl border-2 border-primary/40 bg-white shadow-xl dark:bg-[#1c3a52]"
+                >
+                  {/* No "Card 1 of 6" here -- the dots above already show it, and a
+                      counter on the card competes with the one word it exists to show. */}
+                  <span className="px-3 text-center text-[clamp(2rem,11vw,3.25rem)] font-display font-bold leading-tight break-words text-text sm:text-5xl">
+                    {current.word}
+                  </span>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -527,7 +653,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="absolute inset-0 sm:m-auto sm:aspect-[4/7] sm:h-auto sm:max-h-full sm:w-full rounded-3xl border-2 border-border bg-white dark:bg-[#162b3d] shadow-sm flex flex-col items-center justify-center gap-1"
+              className="absolute inset-0 m-auto aspect-[3/4] h-auto max-h-full w-[min(calc(100%-2rem),20rem)] sm:aspect-[4/7] sm:w-full rounded-3xl border-2 border-border bg-white dark:bg-[#162b3d] shadow-sm flex flex-col items-center justify-center gap-1"
             >
               <p className="text-sm text-text-muted sm:text-base">All done</p>
               <p className="text-xl font-display font-bold text-text sm:text-3xl">

@@ -2,7 +2,11 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 
-type FeedbackKind = 'pick' | 'drop' | 'correct' | 'wrong';
+/**
+ * `arm` is haptic-only: a short tick when a drag crosses its commit threshold,
+ * so the learner can feel the point where letting go will count.
+ */
+type FeedbackKind = 'pick' | 'drop' | 'correct' | 'wrong' | 'arm';
 
 interface FeedbackOptions {
   enabled?: boolean;
@@ -86,12 +90,16 @@ export function useDragFeedback(options: FeedbackOptions = {}): (kind: FeedbackK
       // Haptics
       if (!reducedRef.current && 'vibrate' in navigator) {
         try {
-          const pattern = kind === 'correct' ? [15, 30, 15] : kind === 'wrong' ? [40] : [10];
+          const pattern =
+            kind === 'correct' ? [15, 30, 15] : kind === 'wrong' ? [40] : kind === 'arm' ? [8] : [10];
           navigator.vibrate(pattern);
         } catch {
           // no-op
         }
       }
+
+      // The threshold tick fires mid-drag, where a tone would be noise.
+      if (kind === 'arm') return;
 
       // Audio (very quiet, avoids being jarring)
       const ctx = ensureCtx();
