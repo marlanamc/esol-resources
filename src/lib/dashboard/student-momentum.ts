@@ -25,7 +25,7 @@ export async function getStudentMomentumSnapshot(
         withPrismaReadRetry(() =>
             prisma.pointsLedger.findMany({
                 where: { userId, createdAt: { gte: calendarWeekStart } },
-                select: { createdAt: true },
+                select: { createdAt: true, points: true },
             })
         ),
     ]);

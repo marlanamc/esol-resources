@@ -22,7 +22,8 @@ function getLearnerWeekdayIndex(referenceDate: Date): number {
     return LEARNER_WEEKDAY_INDEX[weekday] ?? 0;
 }
 
-function addDaysToDayKey(dayKey: string, delta: number): string {
+/** Shift a YYYY-MM-DD learner day key by whole days. */
+export function addDaysToDayKey(dayKey: string, delta: number): string {
     const [y, m, d] = dayKey.split("-").map(Number);
     const next = new Date(Date.UTC(y, m - 1, d + delta));
     return next.toISOString().slice(0, 10);
@@ -67,14 +68,24 @@ export function getCalendarWeekDayLabel(dayIndex: number): string {
     return CALENDAR_WEEK_DAY_LABELS[dayIndex] ?? "?";
 }
 
-/** Seven booleans for Mon–Sun of the current calendar week (index 0 = Monday). */
+/**
+ * Seven booleans for Mon–Sun of the current calendar week (index 0 = Monday).
+ *
+ * A day counts only when the learner earned points that day. Every ledger row
+ * used to light a dot, including the 0-point "Daily login" marker, so merely
+ * opening the app showed a check mark as though work had been completed.
+ * Entries without a `points` value are treated as earning (callers that select
+ * only `createdAt` predate this and pass real award rows).
+ */
 export function buildCalendarWeekActivity(
-    ledgerEntries: Array<{ createdAt: Date }>,
+    ledgerEntries: Array<{ createdAt: Date; points?: number }>,
     referenceDate: Date = new Date()
 ): boolean[] {
     const weekStartKey = getCalendarWeekStartDayKey(referenceDate);
     const activeDates = new Set(
-        ledgerEntries.map((entry) => getLearnerDayKey(new Date(entry.createdAt)))
+        ledgerEntries
+            .filter((entry) => entry.points === undefined || entry.points > 0)
+            .map((entry) => getLearnerDayKey(new Date(entry.createdAt)))
     );
 
     return Array.from({ length: 7 }, (_, i) => activeDates.has(addDaysToDayKey(weekStartKey, i)));

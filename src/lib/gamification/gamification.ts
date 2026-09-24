@@ -5,6 +5,7 @@ import { logger } from '@/lib/shared/logger';
 import { POINTS } from "./constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./streak-utils";
 import { buildIndependentLeaderboardUserWhere, buildLeaderboardEligibleUserWhere } from "./leaderboard-filter";
+import { addDaysToDayKey as addDaysToLearnerDayKey, getInstantForLearnerDayStart, getLearnerDayKey } from "./calendar-week";
 export { POINTS } from "./constants";
 export { getActivityPoints, resolveActivityGameUi, getVocabularyTypePoints } from "./activity-points";
 export {
@@ -69,11 +70,14 @@ async function logPointsLedger(userId: string, points: number, reason: string, s
  */
 export async function trackLogin(userId: string) {
   try {
-    // Check if we already have a login entry for today (UTC-aligned with streak math)
+    // Check if we already have a login entry for today. Bucketed by learner-local
+    // day (not UTC) so one classroom day produces one login marker -- under UTC,
+    // an afternoon and an evening login on the same ET day landed in different
+    // UTC days and wrote two rows.
     const now = new Date();
-    const todayUtcStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
-    const tomorrowUtcStart = new Date(todayUtcStart);
-    tomorrowUtcStart.setUTCDate(tomorrowUtcStart.getUTCDate() + 1);
+    const todayKey = getLearnerDayKey(now);
+    const todayStart = getInstantForLearnerDayStart(todayKey);
+    const tomorrowStart = getInstantForLearnerDayStart(addDaysToLearnerDayKey(todayKey, 1));
 
     // Serialize concurrent logins for the same user (e.g. phone + tablet at the
     // start of class) with an advisory lock so the "already logged in today?"
@@ -87,44 +91,26 @@ export async function trackLogin(userId: string) {
           userId,
           source: 'login',
           createdAt: {
-            gte: todayUtcStart,
-            lt: tomorrowUtcStart,
+            gte: todayStart,
+            lt: tomorrowStart,
           },
         },
       });
 
-      // Only process the first login marker of the UTC day
+      // Only process the first login marker of the learner-local day
       if (existingLogin) return;
 
       await logPointsLedger(userId, 0, 'Daily login', 'login', tx as unknown as DbClient);
 
-      const user = await tx.user.findUnique({
-        where: { id: userId },
-        select: { currentStreak: true, longestStreak: true, lastActivityDate: true },
-      });
-      if (!user) return;
-
-      const { streakUpdated, newStreak } = getNextStreakState(
-        user.currentStreak,
-        user.lastActivityDate,
-        now
-      );
-
-      if (streakUpdated) {
-        await tx.user.update({
-          where: { id: userId },
-          data: {
-            currentStreak: newStreak,
-            longestStreak: Math.max(newStreak, user.longestStreak),
-            lastActivityDate: now,
-          },
-        });
-      } else {
-        await tx.user.update({
-          where: { id: userId },
-          data: { lastActivityDate: now },
-        });
-      }
+      // Logging in is NOT activity. This used to call getNextStreakState and
+      // advance currentStreak on every new day, so a learner who only opened the
+      // app -- and completed nothing -- still built an unbroken streak. Streaks
+      // are earned through completions only, via updateStreak(), which gates on
+      // shouldAwardStreak(activityPoints).
+      //
+      // lastActivityDate is deliberately left alone for the same reason: it is
+      // what getEffectiveStreak reads to decide whether a streak is still alive,
+      // so touching it here would keep a stale streak from ever lapsing.
     });
   } catch (err) {
     logger.error('[Gamification] Failed to track login', err);

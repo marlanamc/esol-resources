@@ -26,8 +26,8 @@ test("buildCalendarWeekActivity marks days with earned points", () => {
     const reference = new Date("2026-06-01T13:00:00.000Z");
     const activity = buildCalendarWeekActivity(
         [
-            { createdAt: new Date("2026-06-01T14:00:00.000Z") },
-            { createdAt: new Date("2026-06-04T18:00:00.000Z") },
+            { createdAt: new Date("2026-06-01T14:00:00.000Z"), points: 10 },
+            { createdAt: new Date("2026-06-04T18:00:00.000Z"), points: 5 },
         ],
         reference
     );
@@ -35,10 +35,23 @@ test("buildCalendarWeekActivity marks days with earned points", () => {
     assert.deepEqual(activity, [true, false, false, true, false, false, false]);
 });
 
-test("buildCalendarWeekActivity marks login-only days", () => {
+test("buildCalendarWeekActivity does not mark login-only days", () => {
     const reference = new Date("2026-06-02T13:00:00.000Z");
     const activity = buildCalendarWeekActivity(
-        [{ createdAt: new Date("2026-06-02T12:00:00.000Z") }],
+        [{ createdAt: new Date("2026-06-02T12:00:00.000Z"), points: 0 }],
+        reference
+    );
+
+    assert.deepEqual(activity, [false, false, false, false, false, false, false]);
+});
+
+test("buildCalendarWeekActivity marks a day that has both a login and real work", () => {
+    const reference = new Date("2026-06-02T13:00:00.000Z");
+    const activity = buildCalendarWeekActivity(
+        [
+            { createdAt: new Date("2026-06-02T12:00:00.000Z"), points: 0 },
+            { createdAt: new Date("2026-06-02T12:30:00.000Z"), points: 15 },
+        ],
         reference
     );
 
