@@ -74,7 +74,7 @@ export async function GET() {
                                 userId: session.user.id,
                                 createdAt: { gte: calendarWeekStart },
                             },
-                            select: { createdAt: true },
+                            select: { createdAt: true, points: true },
                         })
                     )
             ),

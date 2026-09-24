@@ -31,6 +31,27 @@ describe("gamification helpers", () => {
     ).toEqual({ streakUpdated: true, newStreak: 6 });
   });
 
+  it("evening work counts as the same learner day, not the next one", () => {
+    // 2026-02-09T23:30Z is 6:30pm ET the same day. Under the old UTC bucketing
+    // this read as a new day and advanced the streak a second time.
+    expect(
+      getNextStreakState(5, new Date("2026-02-09T18:00:00.000Z"), new Date("2026-02-09T23:30:00.000Z"))
+    ).toEqual({ streakUpdated: false, newStreak: 5 });
+  });
+
+  it("work after 8pm ET does not skip ahead a day", () => {
+    // 2026-02-10T01:30Z is still 8:30pm ET on Feb 9.
+    expect(
+      getNextStreakState(5, new Date("2026-02-08T18:00:00.000Z"), new Date("2026-02-10T01:30:00.000Z"))
+    ).toEqual({ streakUpdated: true, newStreak: 6 });
+  });
+
+  it("streak stays alive across an evening-to-next-morning gap", () => {
+    expect(
+      getEffectiveStreak(5, new Date("2026-02-10T01:30:00.000Z"), new Date("2026-02-10T15:00:00.000Z"))
+    ).toBe(5);
+  });
+
   it("next streak state should reset when more than one day was missed", () => {
     expect(
       getNextStreakState(5, new Date("2026-02-09T12:00:00.000Z"), new Date("2026-02-12T12:00:00.000Z"))
