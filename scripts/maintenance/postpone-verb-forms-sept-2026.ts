@@ -21,7 +21,7 @@ import {
   type CourseUnitDef,
   type CourseWeekDef,
 } from "@/lib/course-map-data";
-import { GUIDED_VERB_QUIZ_PLAN } from "@/data/verb-quiz-plan";
+import { GUIDED_VERB_QUIZ_PLAN, getGuidedVerbQuizTitle } from "@/data/verb-quiz-plan";
 
 const DEST = path.resolve("src/lib/course-map-data.ts");
 
@@ -105,9 +105,8 @@ const QUIZ_OFFSET = 3;
 const planByNumber = new Map(GUIDED_VERB_QUIZ_PLAN.map((q) => [q.quizNumber, q]));
 const isQuiz = (item: CourseMapItemDef) => item.id.startsWith("verb-quiz-");
 const quizTitle = (quizNumber: number) => {
-  const plan = planByNumber.get(quizNumber);
-  if (!plan) throw new Error(`No verb quiz plan for quiz ${quizNumber}`);
-  return `Verb Quiz ${quizNumber}: ${plan.verbs[0]} + ${plan.verbs[1]}`;
+  if (!planByNumber.has(quizNumber)) throw new Error(`No verb quiz plan for quiz ${quizNumber}`);
+  return getGuidedVerbQuizTitle(quizNumber);
 };
 const lastQuizNumber = Math.max(...GUIDED_VERB_QUIZ_PLAN.map((q) => q.quizNumber));
 const allWeeks = units.flatMap((u) => u.weeks);

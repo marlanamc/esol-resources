@@ -62,6 +62,7 @@ const VERB_DEFINITIONS: Record<string, string> = {
   learn: "to get knowledge or a skill",
   leave: "to go away from a place",
   lend: "to give something temporarily and expect it back",
+  let: "to allow someone to do something",
   make: "to create or produce something",
   mean: "to have a particular meaning or intention",
   meet: "to come together with someone",
