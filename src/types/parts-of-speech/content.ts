@@ -5,6 +5,7 @@ import type { POSExerciseType } from "./exercises";
 import type { POSPhaseRoundOverridesMap, POSRoundModeOverride } from "./progression";
 export interface PartsOfSpeechContent {
   type: 'parts-of-speech';
+  wordSort?: import('@/lib/word-sort/types').WordSortConfig;
   groupId?: string;
   /**
    * When true, `groupId` is a starting floor rather than a fixed pin: the game

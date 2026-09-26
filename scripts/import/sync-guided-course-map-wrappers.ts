@@ -27,6 +27,7 @@ async function main() {
     throw new Error("No teacher account found. Create or seed a teacher before syncing wrappers.");
   }
 
+  if (!process.argv.includes("--word-sort-only")) {
   await prisma.activity.upsert({
     where: { id: "parts-of-speech-discovery-guided" },
     update: {
@@ -57,36 +58,36 @@ async function main() {
   });
 
   console.log("Synced guided wrapper: parts-of-speech-discovery-guided");
+  }
 
-  // Week 2 sorting games. Same engine as the Discovery wrapper, pinned to a
-  // swipe-sort-only round so the whole activity is one mechanic.
+  // Word Sort owns a three-level progression while sharing swipe controls.
   const wordSortWrappers = [
     {
       id: "parts-of-speech-word-sort-guided",
       title: "Word Sort: Verbs",
       description:
-        "Guided Course Map version for Week 2. Swipe common words into Verb or Noun — one mechanic, no settings.",
+        "Sort words, then unlock sentence and challenge levels. Complete Words for the assignment; review missed cards for extra practice.",
       content: partsOfSpeechWordSortVerbsContent,
     },
     {
       id: "parts-of-speech-word-sort-nouns-guided",
       title: "Word Sort: Nouns",
       description:
-        "Guided Course Map version for Week 2 extra practice. Same swipe sort, worked from the noun side.",
+        "Sort words, then unlock sentence and challenge levels. Complete Words for the assignment; review missed cards for extra practice.",
       content: partsOfSpeechWordSortNounsContent,
     },
     {
       id: "parts-of-speech-word-sort-pronouns-guided",
       title: "Word Sort: Pronouns",
       description:
-        "Guided Course Map version for Week 2 extra practice. Same swipe sort, worked from the pronoun side.",
+        "Sort words, then unlock sentence and challenge levels. Complete Words for the assignment; review missed cards for extra practice.",
       content: partsOfSpeechWordSortPronounsContent,
     },
     {
       id: "parts-of-speech-word-sort-articles-guided",
       title: "Word Sort: Articles",
       description:
-        "Guided Course Map version for Week 2 extra practice. Same swipe sort, worked from the article side.",
+        "Sort words, then unlock sentence and challenge levels. Complete Words for the assignment; review missed cards for extra practice.",
       content: partsOfSpeechWordSortArticlesContent,
     },
   ];
@@ -113,6 +114,8 @@ async function main() {
 
     console.log(`Synced guided wrapper: ${wrapper.id}`);
   }
+
+  if (process.argv.includes("--word-sort-only")) return;
 
   await prisma.activity.upsert({
     where: { id: "numbers-through-trillions-guided" },

@@ -1,3 +1,5 @@
+import { WORD_SORT_ACTIVITIES } from '@/lib/word-sort/types';
+import { saveWordSortAttempt, InvalidWordSortAttempt } from './word-sort';
 import { NextResponse, type NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
@@ -91,6 +93,19 @@ export async function POST(request: NextRequest) {
             }),
         (result) => (result ? 1 : 0)
     );
+
+    // Existing Word Sort IDs also route here before their updated content is synced.
+    const wordSort = WORD_SORT_ACTIVITIES[activityId];
+    if (wordSort && activity) {
+        if (!body.wordSortAttempt) return apiError("A completed Word Sort attempt is required", 400);
+        try {
+            return await saveWordSortAttempt(userId, activityId, activity.title, wordSort.target, body.wordSortAttempt);
+        } catch (error) {
+            if (error instanceof InvalidWordSortAttempt) return apiError(error.message, 400);
+            logger.error("Word Sort progress save failed", { userId, activityId, error });
+            return apiError("Progress could not be saved. Please retry.", 500);
+        }
+    }
 
     const activityGameUi = activity ? resolveActivityGameUi(activity) : "unknown";
     const isPronunciationPracticeActivity =

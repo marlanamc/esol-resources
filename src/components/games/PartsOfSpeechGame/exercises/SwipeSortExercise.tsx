@@ -239,7 +239,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
       finishedRef.current = true;
       const { pass, ...detail } = summarize(final, total);
       playFeedback(pass ? 'correct' : 'wrong');
-      onAnswer(pass, detail);
+      onAnswer(pass, { ...detail, sortResponses: final.map(result => ({ cardId: result.card.id, chosen: result.chosen })) });
     },
     [onAnswer, playFeedback, total],
   );
@@ -256,28 +256,20 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
       x.jump(0);
       setExitDir(null);
       setCorrection(null);
-      setIndex(i => {
-        const next = i + 1;
-        if (next >= total) {
-          // Land on the summary tile, which also removes the bucket buttons.
-          finish(nextResults);
-          return total;
-        }
-        return next;
-      });
+      const next = index + 1;
+      setIndex(Math.min(next, total));
+      if (next >= total) finish(nextResults);
       animatingRef.current = false;
     },
-    [finish, total, x],
+    [finish, index, total, x],
   );
 
-  if (!data || !leftBucket || !rightBucket || total === 0) return null;
-
-  const commit = (direction: 'left' | 'right', velocity = 0) => {
+  const commit = useCallback((direction: 'left' | 'right', velocity = 0) => {
     // `answered` means the round has already taken this exercise's result.
     // Without it the last card stayed live after finish(), and every further
     // tap re-reported a correct answer -- inflating the streak and the round
     // accuracy that decides whether points are awarded.
-    if (animatingRef.current || !current || answered || finishedRef.current || correction) return;
+    if (!leftBucket || !rightBucket || animatingRef.current || !current || answered || finishedRef.current || correction) return;
     animatingRef.current = true;
     const card = current;
     const chosen = direction === 'left' ? leftBucket : rightBucket;
@@ -342,7 +334,25 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
       velocity,
     });
     commitTimerRef.current = window.setTimeout(settle, stops ? MISS_MS : EXIT_MS);
-  };
+  }, [advance, answered, correction, current, leftBucket, playFeedback, reducedMotion, results, rightBucket, stacked, x]);
+
+  useEffect(() => {
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.repeat || event.altKey || event.ctrlKey || event.metaKey) return;
+      const target = event.target;
+      if (!(target instanceof HTMLElement) || target.isContentEditable ||
+        target.matches('input, textarea, select') || !target.closest('[data-word-sort-game], [data-swipe-sort]')) return;
+      const direction = event.key === (stacked ? 'ArrowUp' : 'ArrowLeft') ? 'left'
+        : event.key === (stacked ? 'ArrowDown' : 'ArrowRight') ? 'right' : null;
+      if (!direction || correction || answered) return;
+      event.preventDefault();
+      commit(direction);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [answered, commit, correction, stacked]);
+
+  if (!data || !leftBucket || !rightBucket || total === 0) return null;
 
   // Times come from the events themselves: `timeStamp` is on the same clock
   // as performance.now() and keeps these handlers pure for the React compiler.
@@ -392,13 +402,13 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   const done = index >= total;
   const buttonsDisabled = done || answered || !!correction;
 
-  const hint = 'Tap a box. Or swipe the card.';
+  const hint = current?.sentence ? 'Sort the highlighted word. Tap a box or swipe.' : 'Tap a box. Or swipe the card.';
   const correctLabel = correction ? POS_LABELS[correction.card.correctBucket] : '';
   const announcement = correction
     ? correction.alternate
       ? `Both work. "${correction.card.word}" can be ${articleFor(correction.chosen)} ${POS_LABELS[correction.chosen]} or ${articleFor(correction.card.correctBucket)} ${correctLabel}.`
       : `Not quite. "${correction.card.word}" is ${articleFor(correction.card.correctBucket)} ${correctLabel}.`
-    : '';
+    : current ? `Card ${index + 1} of ${total}. ${current.sentence ?? current.word}${current.sentence ? ` Sort the word ${current.word}.` : ''}` : '';
 
   /** Words already sorted into a bucket, newest last: they stack downward beside
    *  the card on desktop, and flow across the bar on a phone. */
@@ -516,7 +526,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
   };
 
   return (
-    <div className="flex flex-col gap-2 px-2 max-sm:min-h-0 max-sm:flex-1 max-sm:pb-[max(0.5rem,env(safe-area-inset-bottom))] sm:gap-3 sm:px-0">
+    <div data-swipe-sort className="flex flex-col gap-2 px-2 max-sm:min-h-0 max-sm:flex-1 max-sm:pb-[max(0.5rem,env(safe-area-inset-bottom))] sm:gap-3 sm:px-0">
       {/* Progress dots */}
       <div className="flex items-center justify-center gap-1">
         {cards.map((c, i) => {
@@ -641,9 +651,15 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
                 >
                   {/* No "Card 1 of 6" here -- the dots above already show it, and a
                       counter on the card competes with the one word it exists to show. */}
-                  <span className="px-3 text-center text-[clamp(2rem,11vw,3.25rem)] font-display font-bold leading-tight break-words text-text sm:text-5xl">
-                    {current.word}
-                  </span>
+                  {current.sentence && current.targetSpan ? (
+                    <p className="px-4 text-center text-lg font-medium leading-relaxed text-text sm:text-xl">
+                      {current.sentence.slice(0, current.targetSpan.start)}
+                      <mark className="rounded bg-primary/15 px-1 font-bold text-text underline decoration-primary decoration-2 underline-offset-4">{current.sentence.slice(current.targetSpan.start, current.targetSpan.end)}</mark>
+                      {current.sentence.slice(current.targetSpan.end)}
+                    </p>
+                  ) : (
+                    <span className="px-3 text-center text-[clamp(2rem,11vw,3.25rem)] font-display font-bold leading-tight break-words text-text sm:text-5xl">{current.word}</span>
+                  )}
                 </motion.div>
               </motion.div>
             )}
@@ -724,7 +740,7 @@ export const SwipeSortExercise = memo(function SwipeSortExercise({ exercise, onA
                 which matters because the deck is generated and nothing here
                 knows the word.
               */}
-              <p className="line-clamp-3 max-w-[34ch] text-sm leading-snug text-text-muted sm:max-w-none sm:text-base">
+              <p className="max-w-[34ch] text-sm leading-snug text-text-muted sm:max-w-none sm:text-base">
                 {correction.card.explanation ?? POS_DEFINITIONS[correction.card.correctBucket]}
               </p>
 
