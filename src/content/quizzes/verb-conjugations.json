@@ -861,6 +861,38 @@
         "v2": "quit",
         "v3": "quit",
         "definition": "to stop doing something, especially a job"
+      },
+      "become": {
+        "v1": "become",
+        "v1_3rd": "becomes",
+        "v1_ing": "becoming",
+        "v2": "became",
+        "v3": "become",
+        "definition": "to start to be or develop into something different"
+      },
+      "forget": {
+        "v1": "forget",
+        "v1_3rd": "forgets",
+        "v1_ing": "forgetting",
+        "v2": "forgot",
+        "v3": "forgotten",
+        "definition": "to not remember something or fail to do something you planned"
+      },
+      "show": {
+        "v1": "show",
+        "v1_3rd": "shows",
+        "v1_ing": "showing",
+        "v2": "showed",
+        "v3": "shown",
+        "definition": "to let someone see something or explain how to do it"
+      },
+      "let": {
+        "v1": "let",
+        "v1_3rd": "lets",
+        "v1_ing": "letting",
+        "v2": "let",
+        "v3": "let",
+        "definition": "to allow someone to do something"
       }
     }
   }

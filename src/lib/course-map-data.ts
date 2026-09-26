@@ -688,7 +688,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 4: find + buy"
+            "title": "Verb Quiz 4: tell + say"
           }
         ]
       }
@@ -759,7 +759,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 5: keep + build"
+            "title": "Verb Quiz 5: take + bring"
           }
         ]
       },
@@ -831,7 +831,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 6: pay + hold"
+            "title": "Verb Quiz 6: meet + speak"
           }
         ]
       },
@@ -894,7 +894,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 7: break + leave"
+            "title": "Verb Quiz 7: write + send"
           }
         ]
       },
@@ -965,7 +965,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 8: sell + cut"
+            "title": "Verb Quiz 8: think + know"
           }
         ]
       }
@@ -1045,7 +1045,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 9: freeze + steal"
+            "title": "Verb Quiz 9: cost + spend"
           }
         ],
         "goal": "Talk about how long you have lived, worked, and kept the same phone plan while hunting for something cheaper."
@@ -1110,7 +1110,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 10: call + fix"
+            "title": "Verb Quiz 10: buy + sell"
           }
         ],
         "goal": "Compare prices, phone plans, and apartment listings when stretching a paycheck."
@@ -1154,7 +1154,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 3,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 11: sleep + wake"
+            "title": "Verb Quiz 11: eat + drink"
           }
         ]
       }
@@ -1226,7 +1226,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 12: eat + drink"
+            "title": "Verb Quiz 12: see + find"
           },
           {
             "id": "parts-of-speech-refresh-extra",
@@ -1306,7 +1306,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 13: sit + spend"
+            "title": "Verb Quiz 13: choose + let"
           }
         ]
       },
@@ -1369,7 +1369,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 14: cost + lend"
+            "title": "Verb Quiz 14: break + hold"
           }
         ]
       },
@@ -1440,7 +1440,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 15: give + send"
+            "title": "Verb Quiz 15: hear + leave"
           }
         ]
       }
@@ -1511,7 +1511,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 16: write + submit"
+            "title": "Verb Quiz 16: become + lead · review: go"
           }
         ]
       },
@@ -1583,7 +1583,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 17: work + apply"
+            "title": "Verb Quiz 17: wear + keep · review: leave"
           }
         ]
       },
@@ -1632,7 +1632,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 18: meet + speak"
+            "title": "Verb Quiz 18: win + fly"
           }
         ]
       },
@@ -1703,7 +1703,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 19: tell + say"
+            "title": "Verb Quiz 19: get + put · review: bring"
           }
         ]
       }
@@ -1783,7 +1783,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 20: hear + understand"
+            "title": "Verb Quiz 20: understand + mean · review: speak"
           }
         ]
       },
@@ -1855,7 +1855,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 21: see + run"
+            "title": "Verb Quiz 21: grow + build · review: do"
           }
         ]
       },
@@ -1965,7 +1965,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 10,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 22: win + catch"
+            "title": "Verb Quiz 22: teach + show · review: think"
           }
         ]
       },
@@ -2020,7 +2020,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 23: confirm + stand"
+            "title": "Verb Quiz 23: pay + give · review: write"
           }
         ]
       }
@@ -2092,7 +2092,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 24: choose + report"
+            "title": "Verb Quiz 24: feel + sleep · review: eat"
           }
         ]
       },
@@ -2155,7 +2155,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 25: wear + begin"
+            "title": "Verb Quiz 25: fall + hurt · review: take"
           }
         ]
       },
@@ -2204,7 +2204,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 26: teach + fight"
+            "title": "Verb Quiz 26: sit + stand"
           }
         ]
       },
@@ -2267,7 +2267,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 5,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 27: put + hurt"
+            "title": "Verb Quiz 27: forget + read · review: know"
           }
         ]
       }
@@ -2347,7 +2347,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 28: hit + quit"
+            "title": "Verb Quiz 28: run + ride · review: drink"
           }
         ]
       },
@@ -2402,7 +2402,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 4,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 29: get + know"
+            "title": "Verb Quiz 29: drive + wake · review: come"
           }
         ]
       },
@@ -2473,7 +2473,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 30: read + think"
+            "title": "Verb Quiz 30: lose + cut · review: break"
           }
         ]
       },
@@ -2545,7 +2545,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 31: drive + ride"
+            "title": "Verb Quiz 31: begin + quit · review: choose"
           }
         ]
       }
@@ -2666,7 +2666,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 11,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 32: feel + grow"
+            "title": "Verb Quiz 32: steal + freeze"
           },
           {
             "id": "verb-quiz-33",
@@ -2675,7 +2675,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 12,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 33: take + bring"
+            "title": "Verb Quiz 33: catch + fight"
           },
           {
             "id": "verb-quiz-34",
@@ -2684,7 +2684,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 13,
             "wrappedGame": false,
             "activityType": "quiz",
-            "title": "Verb Quiz 34: fall + lose"
+            "title": "Verb Quiz 34: hit + lend"
           }
         ]
       }
