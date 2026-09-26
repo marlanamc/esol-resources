@@ -30,8 +30,8 @@ export const partsOfSpeechDiscoveryContent: PartsOfSpeechContent = {
   },
 };
 
-// Week 2 sorting games. Week 2 meets once (Sept 24 is a closure), so these run
-// as independent work: one mechanic, two buckets, no settings to choose.
+// Word Sort uses its dedicated three-level flow. The beginner-only round
+// fields remain as a compatible fallback for older app deployments.
 //
 // roundSize and exerciseTypes live under roundOverrides rather than at the top
 // level on purpose -- usePartsOfSpeechGameState only forwards roundOverrides and
@@ -44,7 +44,8 @@ export const partsOfSpeechWordSortVerbsContent: PartsOfSpeechContent = {
   type: "parts-of-speech",
   courseMapPreset: true,
   courseMapTitle: "Word Sort: Verbs",
-  courseMapDirections: "Swipe each word into the right box. Is it a verb, or not?",
+  wordSort: { target: "verb" },
+  courseMapDirections: "Pass Words to complete this activity, then unlock Sentences and Challenge. Tap a box or swipe to sort.",
   groupId: "pos-1-verbs",
   roundMode: "round1",
   roundOverrides: {
@@ -63,7 +64,8 @@ export const partsOfSpeechWordSortNounsContent: PartsOfSpeechContent = {
   type: "parts-of-speech",
   courseMapPreset: true,
   courseMapTitle: "Word Sort: Nouns",
-  courseMapDirections: "Swipe each word into the right box. Is it a noun, or not?",
+  wordSort: { target: "noun" },
+  courseMapDirections: "Pass Words to complete this activity, then unlock Sentences and Challenge. Tap a box or swipe to sort.",
   groupId: "pos-2-nouns",
   roundMode: "round1",
   roundOverrides: {
@@ -82,7 +84,8 @@ export const partsOfSpeechWordSortPronounsContent: PartsOfSpeechContent = {
   type: "parts-of-speech",
   courseMapPreset: true,
   courseMapTitle: "Word Sort: Pronouns",
-  courseMapDirections: "Swipe each word into the right box. Is it a pronoun, or not?",
+  wordSort: { target: "pronoun" },
+  courseMapDirections: "Pass Words to complete this activity, then unlock Sentences and Challenge. Tap a box or swipe to sort.",
   groupId: "pos-3-pronouns",
   roundMode: "round1",
   roundOverrides: {
@@ -101,7 +104,8 @@ export const partsOfSpeechWordSortArticlesContent: PartsOfSpeechContent = {
   type: "parts-of-speech",
   courseMapPreset: true,
   courseMapTitle: "Word Sort: Articles",
-  courseMapDirections: "Swipe each word into the right box. Is it an article, or not?",
+  wordSort: { target: "article" },
+  courseMapDirections: "Pass Words to complete this activity, then unlock Sentences and Challenge. Tap a box or swipe to sort.",
   groupId: "pos-4-articles",
   roundMode: "round1",
   roundOverrides: {

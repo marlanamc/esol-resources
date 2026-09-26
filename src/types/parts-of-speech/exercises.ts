@@ -117,6 +117,8 @@ export interface POSSortingItem {
 
 // swipe-sort: binary (or ternary) Tinder-style sorter
 export interface POSSwipeSortCard {
+  sentence?: string;
+  targetSpan?: { start: number; end: number };
   id: string;
   word: string;
   correctBucket: PartOfSpeech;
@@ -180,6 +182,7 @@ export interface POSAnswerDetail {
   cardsTotal: number;
   cardsCorrect: number;
   missedWords: string[];
+  sortResponses?: Array<{ cardId: string; chosen: PartOfSpeech }>;
 }
 
 // ─── Main Exercise interface ──────────────────────────────────────────────────

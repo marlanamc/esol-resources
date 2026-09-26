@@ -9,6 +9,8 @@ import { useRouter } from 'next/navigation';
 import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
 import { ALL_POS_GROUPS } from '@/data/parts-of-speech-groups';
 import { usePartsOfSpeechGameState } from '@/hooks/usePartsOfSpeechGameState';
+import { WordSortGame } from './WordSortGame';
+import { WORD_SORT_ACTIVITIES } from '@/lib/word-sort/types';
 import { GroupSelectionScreen } from './GroupSelectionScreen';
 import { PatternIntroScreen } from './PatternIntroScreen';
 import { PatternWalkthroughScreen } from './PatternWalkthroughScreen';
@@ -23,7 +25,13 @@ interface PartsOfSpeechGameProps {
   gameContent?: PartsOfSpeechContent | null;
 }
 
-export function PartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGameProps) {
+export function PartsOfSpeechGame(props: PartsOfSpeechGameProps) {
+  const wordSort = props.gameContent?.wordSort ?? WORD_SORT_ACTIVITIES[props.activityId];
+  if (wordSort) return <WordSortGame key={props.activityId} activityId={props.activityId} config={wordSort} title={props.gameContent?.courseMapTitle ?? 'Word Sort'} />;
+  return <DiscoveryPartsOfSpeechGame {...props} />;
+}
+
+function DiscoveryPartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGameProps) {
   const router = useRouter();
   const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/dashboard' });
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
