@@ -72,11 +72,11 @@ const weeklyVocabData = {
   "sep-w4": {
     topic: "Life Experience: Personal Journey Verbs",
     words: [
-      { term: "relocate",  def: "to move to a new city or country",                                  ex: "My family decided to relocate to the United States.", fillBlank: { text: "My family decided to _____ from Guatemala to Boston.", options: ["immigrate", "relocate", "belong", "achieve"] } },
+      { term: "relocate",  def: "to move to a new place to live or work (another city, state, or country)", ex: "My company asked me to relocate from Boston to Chicago.", fillBlank: { text: "I got a new job in Chicago, so my family will _____ from Boston next month.", options: ["immigrate", "relocate", "belong", "achieve"] } },
       { term: "motivate",  def: "to give someone a reason to do something",                          ex: "My children motivate me to learn English every day.", fillBlank: { text: "My children _____ me to study English every evening.", options: ["achieve", "motivate", "overcome", "belong"] } },
       { term: "achieve",   def: "to reach a goal through hard work",                                 ex: "With practice, you can achieve your language goals.", fillBlank: { text: "With hard work, you can _____ your goal of passing the test.", options: ["overcome", "achieve", "motivate", "immigrate"] } },
       { term: "overcome",  def: "to successfully deal with a challenge",                             ex: "She worked hard to overcome the language barrier.", fillBlank: { text: "She worked hard to _____ her fear of speaking in public.", options: ["achieve", "overcome", "motivate", "relocate"] } },
-      { term: "immigrate", def: "to come to a new country to live there permanently",                ex: "He immigrated to the U.S. five years ago.", fillBlank: { text: "He plans to _____ to the United States to live here permanently.", options: ["relocate", "immigrate", "belong", "overcome"] } },
+      { term: "immigrate", def: "to come to a new country to live there permanently",                ex: "He immigrated to the U.S. five years ago.", fillBlank: { text: "He plans to _____ to the United States to live here permanently.", options: ["motivate", "immigrate", "belong", "overcome"] } },
       {"term": "belong", "def": "to feel accepted as part of a group or place", "ex": "My classmates welcome me and help me feel that I belong.", "fillBlank": {"text": "My classmates accept me as part of the group, so I feel that I _____.", "options": ["belong", "achieve", "relocate", "overcome"]}},
     ],
   },
