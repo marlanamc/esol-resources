@@ -35,3 +35,14 @@ describe('Parts of Speech review persistence', () => {
     expect(db.transaction).not.toHaveBeenCalled();
   });
 });
+
+it('saves a later week independently without completing the foundation or issuing rewards', async () => {
+    const lessonId = 'week-5-subjects';
+    const input = { ...attempt(), lessonId, answers: REVIEW_LESSONS[lessonId].questions.map(q => ({ questionId: q.id, answer: q.answer })) };
+    const response = await savePartsOfSpeechReview('student', 'parts-of-speech-game', input);
+    expect(await response.json()).toMatchObject({ progress: 0, status: 'in_progress', pointsAwarded: 0, review: { lessons: { 'week-5-subjects': { completed: true, correct: 8 } } } });
+    await savePartsOfSpeechReview('student', 'parts-of-speech-game', input);
+    expect(db.writes).toBe(1);
+    const saved = JSON.parse(db.rows[0].categoryData as string)._partsOfSpeechReview.lessons;
+    expect(saved['nouns-verbs']).toBeUndefined();
+});

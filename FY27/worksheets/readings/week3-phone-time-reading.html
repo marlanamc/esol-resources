@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Too Much Phone Time Reading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* One .sheet = one portrait letter page.
+     Pages 1-2 are the student worksheet (print double-sided).
+     Pages 3-4 are teacher pages. */
+  .sheet {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.5in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .sheet { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 8px;
+  }
+  h1 { font-size: 22px; }
+  .tag { font-size: 14px; white-space: nowrap; }
+  .subtitle { font-size: 14px; font-style: italic; margin-bottom: 8px; }
+  .small { font-size: 11px; }
+  .footer-note { margin-top: auto; padding-top: 6px; font-size: 11px; font-style: italic; }
+  .task { margin-bottom: 9px; }
+  .task-title { font-size: 18px; font-weight: bold; margin-bottom: 3px; }
+  .task-instructions { font-size: 14px; margin-bottom: 5px; }
+  .box { border: 1.5px solid #000; padding: 5px 10px; font-size: 14px; margin-bottom: 6px; }
+  .line { border-bottom: 1.5px solid #000; height: 28px; }
+  .blank { display: inline-block; border-bottom: 1.5px solid #000; width: 5.5em; margin: 0 2px; }
+  .blank.short { width: 3em; }
+  .blank.long { width: 8em; }
+  ol.items { list-style: none; }
+  ol.items li { margin-bottom: 5px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+
+  /* Article */
+  .article-box { border: 2px solid #000; padding: 10px 14px 6px; margin-bottom: 10px; }
+  .article-title { font-size: 22px; font-weight: bold; }
+  .byline { font-size: 11px; margin-bottom: 8px; }
+  .article p { font-size: 15px; line-height: 1.55; margin-bottom: 6px; }
+  .article b { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+  .article sup { font-size: 10px; font-weight: bold; margin-left: 1px; }
+  .source { font-size: 11px; font-style: italic; }
+
+  /* Tables */
+  table.grid { width: 100%; border-collapse: collapse; }
+  table.grid th, table.grid td { border: 1.5px solid #000; padding: 4px 6px; font-size: 14px; text-align: center; }
+  table.grid th { font-size: 11px; }
+  table.grid td.l { text-align: left; }
+  table.survey td { height: 25px; }
+
+  .directions { font-size: 14px; margin-bottom: 10px; border-width: 2px; }
+  .tf { display: flex; justify-content: space-between; gap: 8px; }
+  .tf span.circle { white-space: nowrap; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     PAGE 1 (front): Directions, prediction, article, read for the story
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="header-row"><h1>Reading: Phone Time</h1><span class="tag">Name: ______________________</span></div>
+
+  <div class="box directions">
+    <b>Work on your own.</b> Please stay quiet because some classmates are still testing.
+    Do parts <b>A &rarr; G</b> in order (C&ndash;G are on the back). Stuck? Skip it and come back later.
+    <b>Not finished? Finish at home and bring it on Tuesday.</b>
+  </div>
+
+  <section class="task">
+    <div class="task-title">A&ensp;Before you read: guess!</div>
+    <ol class="items">
+      <li><b>1.</b> How many hours a day do you use your phone? <span class="blank short"></span> hours</li>
+      <li><b>2.</b> Guess: How many U.S. adults say they use their phone too much? &nbsp;&nbsp;1 in 10 &middot; 1 in 4 &middot; 1 in 2 &nbsp;<span class="small">(circle)</span></li>
+    </ol>
+  </section>
+
+  <div class="article-box">
+    <div class="article-title">Too Much Time on Our Phones?</div>
+    <div class="byline">Based on a Pew Research Center survey, September 2026</div>
+    <div class="article">
+      <p>Do you <b>check</b><sup>1</sup> your phone in the morning? You are not alone. A new <b>survey</b><sup>2</sup> from the Pew Research Center asked almost 10,000 adults in the United States about their phones. More than half said <b>they</b><sup>3</sup> spend too much time on their phones.</p>
+      <p>Phones are a part of daily life. About one in four adults said they are on their phones &ldquo;almost constantly.&rdquo; That means almost all the time! Most other adults use their phones several times a day.</p>
+      <p>Age makes a <b>big</b><sup>4</sup> difference. Seven out of ten adults under 30 said they spend too much time on their phones. For adults 30 to 49, it was about two out of three. About half of people ages 50 to 64 said the same. For people 65 and older, it was only one in four.</p>
+      <p>Many people want to <b>change</b><sup>5</sup>. In the past year, 45 percent of adults tried to use their phones less. Was it easy? Not really. Only one in four of them said they were very successful. About half were a little successful. The rest did not change much.</p>
+      <p>Why is it so hard? A phone is a <b>useful</b><sup>6</sup> <b>tool</b><sup>7</sup>. We use it to call <b>our</b><sup>8</sup> families, find jobs, pay bills, and learn English. We need it every day. But <b>a</b><sup>9</sup> phone can also <b>steal</b><sup>10</sup> our time. Apps like TikTok and Instagram are fun, and <b>the</b><sup>11</sup> videos never stop. One video becomes ten videos, and ten minutes becomes an hour. Using a phone late at night can hurt our <b>sleep</b><sup>12</sup>, too.</p>
+      <p>So what can we do? Here are some ideas. Turn off notifications for apps you don&rsquo;t need. Put your phone in another room at night. Use the &ldquo;screen time&rdquo; setting to see your hours every day. Some people set a timer before they open TikTok.</p>
+      <p>What about you? How many hours do you spend on your phone every day? Do you want to change?</p>
+    </div>
+    <p class="source">Source: Pew Research Center, &ldquo;About half of Americans say they spend too much time on their phone,&rdquo; Sept. 1, 2026. Adapted for English learners.</p>
+  </div>
+
+  <section class="task">
+    <div class="task-title">B&ensp;Read for the story</div>
+    <p class="task-instructions">Read the article one time. Don't stop for the numbers. Circle T (true) or F (false). Then look back at your guess in A!</p>
+    <ol class="items">
+      <li class="tf"><span><b>1.</b> The survey asked adults about their phones.</span><span class="circle">T &nbsp; F</span></li>
+      <li class="tf"><span><b>2.</b> People over 65 worry more than young adults.</span><span class="circle">T &nbsp; F</span></li>
+      <li class="tf"><span><b>3.</b> Most people who tried to change were very successful.</span><span class="circle">T &nbsp; F</span></li>
+      <li class="tf"><span><b>4.</b> About one in four adults are on their phones almost all the time.</span><span class="circle">T &nbsp; F</span></li>
+      <li><b>5.</b> One idea from the article to use your phone less: <span class="blank long"></span><span class="blank long"></span></li>
+    </ol>
+  </section>
+
+</div>
+
+<!-- ======================================================
+     PAGE 2 (back): Parts of speech + my phone habits
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="header-row"><h1>Phone Time: Word Jobs</h1><span class="tag">Week 3 &middot; Parts of Speech</span></div>
+
+  <section class="task">
+    <div class="task-title">C&ensp;Word families: -ful</div>
+    <p class="task-instructions"><b>-ful</b> makes an <b>adjective</b>. Write the adjective. You can find these words in the article!</p>
+    <ol class="items">
+      <li><b>1.</b> use &rarr; A phone is a <span class="blank"></span> tool. &nbsp;&nbsp;<b>2.</b> help &rarr; My teacher is very <span class="blank"></span>.</li>
+      <li><b>3.</b> success &rarr; Only one in four were very <span class="blank long"></span>.</li>
+    </ol>
+  </section>
+
+  <section class="task">
+    <div class="task-title">D&ensp;Word Detective</div>
+    <p class="task-instructions">Read again. Find the <u>underlined</u> words 1&ndash;12. Write the job: N, V, ADJ, PRON, or ART. &nbsp;<b>Example:</b> phone &rarr; <b>N</b></p>
+    <div class="box"><b>Clues:</b> After <i>a / the / my</i> &rarr; often a <b>noun</b>. &nbsp;After <i>I / we / to</i> &rarr; often a <b>verb</b>. &nbsp;Before a noun &rarr; <b>ADJ</b>, <b>PRON</b> (my, our), or <b>ART</b>.</div>
+    <table class="grid">
+      <tr><th>#</th><th>Word</th><th>Job</th><th>#</th><th>Word</th><th>Job</th><th>#</th><th>Word</th><th>Job</th></tr>
+      <tr><td>1</td><td class="l">check</td><td></td><td>5</td><td class="l">change</td><td></td><td>9</td><td class="l">a</td><td></td></tr>
+      <tr><td>2</td><td class="l">survey</td><td></td><td>6</td><td class="l">useful</td><td></td><td>10</td><td class="l">steal</td><td></td></tr>
+      <tr><td>3</td><td class="l">they</td><td></td><td>7</td><td class="l">tool</td><td></td><td>11</td><td class="l">the</td><td></td></tr>
+      <tr><td>4</td><td class="l">big</td><td></td><td>8</td><td class="l">our</td><td></td><td>12</td><td class="l">sleep</td><td></td></tr>
+    </table>
+  </section>
+
+  <section class="task">
+    <div class="task-title">E&ensp;Same word, different job</div>
+    <p class="task-instructions">Some words can be a <b>noun</b> or a <b>verb</b>. After <i>a / the / my / our</i> &rarr; <b>N</b>. After <i>I / we / to / can</i> &rarr; <b>V</b>. Write N or V.</p>
+    <div class="two-col">
+      <ol class="items">
+        <li><b>1.</b> Many people want to <u>change</u>. <span class="blank short"></span></li>
+        <li><b>2.</b> Phones can hurt our <u>sleep</u>. <span class="blank short"></span></li>
+        <li><b>3.</b> I <u>call</u> my mother every day. <span class="blank short"></span></li>
+        <li><b>4.</b> My phone has a one-hour <u>limit</u>. <span class="blank short"></span></li>
+      </ol>
+      <ol class="items">
+        <li>I see a big <u>change</u> in my son. <span class="blank short"></span></li>
+        <li>I <u>sleep</u> seven hours. <span class="blank short"></span></li>
+        <li>I have a <u>call</u> at 3:00. <span class="blank short"></span></li>
+        <li>We <u>limit</u> TikTok time. <span class="blank short"></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="task">
+    <div class="task-title">F&ensp;My phone habits</div>
+    <p class="task-instructions">Fill in the row for <b>you</b>. At home, ask 2 people (family, friends, or roommates): &ldquo;How many hours do you spend on your phone every day?&rdquo; &middot; &ldquo;Is it too much?&rdquo; &middot; &ldquo;Do you want to change?&rdquo; &middot; &ldquo;Which app do you use the most?&rdquo;</p>
+    <table class="grid survey">
+      <tr><th>Name</th><th>Hours a day</th><th>Too much?</th><th>Want to change?</th><th>Top app</th></tr>
+      <tr><td><b>Me</b></td><td></td><td>Y &nbsp; N</td><td>Y &nbsp; N</td><td></td></tr>
+      <tr><td></td><td></td><td>Y &nbsp; N</td><td>Y &nbsp; N</td><td></td></tr>
+      <tr><td></td><td></td><td>Y &nbsp; N</td><td>Y &nbsp; N</td><td></td></tr>
+    </table>
+  </section>
+
+  <section class="task">
+    <div class="task-title">G&ensp;Write about you</div>
+    <p class="task-instructions">Write 3 sentences. Then write <b>N</b>, <b>V</b>, and <b>ADJ</b> under one word in sentence 1.<br>
+      <i>Frames: I spend ___ hours on my phone every day. &middot; I am / am not like the people in the survey because ___. &middot; One idea for me is ___.</i></p>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </section>
+
+  <p class="footer-note">Finished early? Read the article again and find 3 more adjectives. Write them here: ____________ ____________ ____________</p>
+</div>
+
+<!-- ======================================================
+     PAGE 3: Teacher answer key
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="header-row"><h1>Answer Key</h1><span class="tag">Teacher copy</span></div>
+
+  <section class="task">
+    <div class="task-title">A&ensp;Guess</div>
+    <p>2. 1 in 2 (more than half)</p>
+  </section>
+
+  <section class="task">
+    <div class="task-title">B&ensp;Read for the story</div>
+    <p>1. T &nbsp;&middot;&nbsp; 2. F (one in four over 65; seven in ten under 30) &nbsp;&middot;&nbsp; 3. F (only one in four) &nbsp;&middot;&nbsp; 4. T</p>
+    <p>5. Any one: turn off notifications &middot; put the phone in another room at night &middot; use the screen time setting &middot; set a timer before TikTok</p>
+  </section>
+
+  <section class="task">
+    <div class="task-title">C&ensp;Word families</div>
+    <p>1. useful &nbsp;&middot;&nbsp; 2. helpful &nbsp;&middot;&nbsp; 3. successful</p>
+  </section>
+
+  <section class="task">
+    <div class="task-title">D&ensp;Word Detective</div>
+    <p>1. check V &nbsp;&middot;&nbsp; 2. survey N &nbsp;&middot;&nbsp; 3. they PRON &nbsp;&middot;&nbsp; 4. big ADJ &nbsp;&middot;&nbsp; 5. change V &nbsp;&middot;&nbsp; 6. useful ADJ &nbsp;&middot;&nbsp; 7. tool N &nbsp;&middot;&nbsp; 8. our PRON &nbsp;&middot;&nbsp; 9. a ART &nbsp;&middot;&nbsp; 10. steal V &nbsp;&middot;&nbsp; 11. the ART &nbsp;&middot;&nbsp; 12. sleep N</p>
+  </section>
+
+  <section class="task">
+    <div class="task-title">E&ensp;Same word, different job</div>
+    <p>Left column: 1. V &nbsp;&middot;&nbsp; 2. N &nbsp;&middot;&nbsp; 3. V &nbsp;&middot;&nbsp; 4. N</p>
+    <p>Right column: change N &nbsp;&middot;&nbsp; sleep V &nbsp;&middot;&nbsp; call N &nbsp;&middot;&nbsp; limit V</p>
+  </section>
+
+  <section class="task">
+    <div class="task-title">G&ensp;Sample sentences</div>
+    <p><i>I spend four hours on my phone every day.</i> &nbsp;(hours N, spend V; ADJ: add one, e.g. <i>my old phone</i>)</p>
+    <p><i>I am like the people in the survey because I want to change.</i></p>
+    <p><i>One idea for me is to put my phone in the kitchen at night.</i></p>
+  </section>
+
+  <section class="task">
+    <div class="task-title">Early-finisher adjectives</div>
+    <p>new &middot; alone &middot; daily &middot; big &middot; easy &middot; successful &middot; useful &middot; hard &middot; fun</p>
+  </section>
+
+  <div class="box" style="margin-top:auto;">
+    <b>How to use it:</b> Hand it out as each learner turns in the pretest. Self-paced, about 40&ndash;50 minutes. Point to the directions box so learners know the order and that it's homework if unfinished.
+    Part F rows 2&ndash;3 are meant to be done at home. On Tuesday, collect it or go over D and E together (5 min) before the warm-up.
+    Leave a copy of this key at a &ldquo;check table&rdquo; if you want fast finishers to check their own work.
+  </div>
+</div>
+
+<!-- ======================================================
+     PAGE 4: Easier article version
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="header-row"><h1>Easier Version</h1><span class="tag">for lower-level learners</span></div>
+  <p class="subtitle">Same story, present tense, shorter sentences. Give this with the regular worksheet. Learners do A and B the same way (skip B4). For D, they underline 3 nouns and circle 3 verbs in this article.</p>
+  <div class="article-box">
+    <div class="article-title">Phones: Too Much?</div>
+    <div class="article">
+      <p>Many people use their phones every day. A new survey asks adults in the United States about their phones.</p>
+      <p>About half of the adults say, &ldquo;I use my phone too much.&rdquo; Young adults say it more. Seven out of ten young adults say &ldquo;too much.&rdquo; Only one in four older adults say it.</p>
+      <p>Many people want to change. They try to use their phones less. It is not easy! Only one in four people change a lot.</p>
+      <p>A phone is a useful tool. We call our families. We find jobs. We pay bills. We learn English. But phones can steal our time. The videos never stop! Phones at night can hurt our sleep.</p>
+      <p>Here are some ideas. Turn off notifications. Put your phone in another room at night. Look at your screen time every day.</p>
+      <p>What about you? How many hours do you use your phone every day?</p>
+    </div>
+    <p class="source">Adapted from Pew Research Center, Sept. 1, 2026.</p>
+  </div>
+</div>
+
+</body>
+</html>

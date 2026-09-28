@@ -54,6 +54,22 @@ export function buildCourseMapProgressState(rows: CourseMapProgressRow[]): Cours
                 continue;
             }
 
+            if (activityId === 'parts-of-speech-game') {
+                const latest: CourseMapProgressRow = merged.updatedAt && row.updatedAt && row.updatedAt > merged.updatedAt ? row : merged;
+                const older: CourseMapProgressRow = latest === merged ? row : merged;
+                const latestData = parseCategoryData(latest.categoryData) ?? {};
+                const olderData = parseCategoryData(older.categoryData) ?? {};
+                const latestReview = latestData._partsOfSpeechReview as { version?: number; lessons?: object } | undefined;
+                const olderReview = olderData._partsOfSpeechReview as { version?: number; lessons?: object } | undefined;
+                const lessons = {
+                    ...(olderReview?.version === 1 ? olderReview.lessons : {}),
+                    ...(latestReview?.version === 1 ? latestReview.lessons : {}),
+                };
+                merged = { ...latest, status: merged.status === 'completed' || row.status === 'completed' ? 'completed' : latest.status,
+                    categoryData: JSON.stringify({ ...latestData, _partsOfSpeechReview: { version: 1, lessons } }) };
+                continue;
+            }
+
             const vocabMerged = mergeVocabProgressRecords(
                 {
                     progress: merged.status === "completed" ? 100 : 0,
@@ -104,7 +120,10 @@ export function parseGrammarReaderSlug(href?: string): string | null {
 }
 
 export function getMapActivityProgressId(activity: CourseMapActivity): string | null {
-    return activity.activityId ?? null;
+    if (activity.activityId) return activity.activityId;
+    // A canonical library activity can be linked by href without a map-only ID.
+    if (activity.href?.split('?')[0] === '/activity/parts-of-speech-game') return 'parts-of-speech-game';
+    return null;
 }
 
 export function isMapActivityActionable(activity: CourseMapActivity): boolean {
@@ -124,6 +143,17 @@ export function isMapActivityCompleted(
 
     const entry = resolveProgressEntry(progress, progressId);
     if (!entry) return false;
+
+    // Weekly lessons share the activity but have independent completion records.
+    if (progressId === 'parts-of-speech-game' && activity.href) {
+        const lesson = new URL(activity.href, 'https://class-companion.local').searchParams.get('lesson');
+        if (lesson) {
+            const review = entry.categoryData?._partsOfSpeechReview as {
+                version?: number; lessons?: Record<string, { completed?: boolean }>;
+            } | undefined;
+            return review?.version === 1 && review.lessons?.[lesson]?.completed === true;
+        }
+    }
 
     if (activity.vocabUi && entry.categoryData) {
         const modeData = entry.categoryData[activity.vocabUi] as { completed?: boolean } | undefined;

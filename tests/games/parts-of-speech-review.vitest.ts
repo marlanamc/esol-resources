@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { createElement } from 'react';
-import { REVIEW_LESSONS, reviewSentence } from '@/lib/parts-of-speech-review/content';
+import { REVIEW_LESSONS, WEEKLY_REVIEW_LESSONS, REVIEW_PHASES, reviewSentence } from '@/lib/parts-of-speech-review/content';
 import { applyReviewAttempt, scoreReviewAttempt, preserveReviewProgress, type ReviewAttempt } from '@/lib/parts-of-speech-review/progression';
+import { ReviewSentence } from '@/components/games/PartsOfSpeechGame/PartsOfSpeechReview';
+import { categoryColorClass } from '@/components/games/PartsOfSpeechGame/ReviewCategoryCue';
 import { DiagramSentence } from '@/components/games/PartsOfSpeechGame/DiagramSentence';
 
 function attempt(lessonId: ReviewAttempt['lessonId'] = 'nouns-verbs'): ReviewAttempt {
@@ -20,7 +22,7 @@ describe('Short Parts of Speech review', () => {
         expect(q.target.trim()).toBe(q.target);
         expect(q.target.length).toBeGreaterThan(0);
         expect(reviewSentence(q)).not.toMatch(/\s+[.,!?]/);
-        expect(lesson.categories).toContain(q.answer);
+        expect(q.categories ?? lesson.categories).toContain(q.answer);
         expect(q.explanation.length).toBeGreaterThan(10);
       }
     }
@@ -72,4 +74,87 @@ describe('Short Parts of Speech review', () => {
     expect(html).not.toContain('equipment .');
     expect(html).toContain('<ul');
   });
+});
+
+
+describe('Weekly Parts of Speech curriculum', () => {
+  it('schedules a light first pass through Weeks 3–7 with two familiar questions after Week 3', () => {
+    expect(WEEKLY_REVIEW_LESSONS.map(({ week }) => week)).toEqual([3, 4, 5, 6, 7]);
+    for (const { id, week } of WEEKLY_REVIEW_LESSONS) {
+      const lesson = REVIEW_LESSONS[id];
+      expect(lesson.examples).toHaveLength(2);
+      expect(lesson.questions).toHaveLength(8);
+      expect(lesson.questions.filter(q => q.review)).toHaveLength(week === 3 ? 0 : 2);
+      expect(lesson.transfer?.prompt).toBeTruthy();
+      expect(lesson.transfer?.check).toBeTruthy();
+      expect(scoreReviewAttempt(attempt(id)).correct).toBe(8);
+    }
+    expect(REVIEW_LESSONS['week-4-describing'].categories).toEqual(['Adjective', 'Article']);
+    expect(REVIEW_LESSONS['week-5-subjects'].bridge).toBe(true);
+  });
+  it('separates core lessons from optional depth across five phases, without losing older content', () => {
+    expect(REVIEW_PHASES).toHaveLength(5);
+    const ids = new Set(REVIEW_PHASES.flatMap(phase => [...phase.core, ...phase.extra, phase.checkIn]));
+    for (const id of Object.keys(REVIEW_LESSONS) as ReviewAttempt['lessonId'][]) {
+      if (id !== 'more-word-jobs') expect(ids.has(id)).toBe(true);
+      expect(scoreReviewAttempt(attempt(id)).correct).toBe(REVIEW_LESSONS[id].questions.length);
+    }
+    expect(REVIEW_PHASES[1].core).not.toContain('verb-forms');
+    expect(REVIEW_PHASES[0].core).not.toContain('determiners');
+  });
+  it('validates category choices separately for focus and familiar-review questions', () => {
+    const input = attempt('week-4-describing');
+    input.answers[6].answer = 'Adjective';
+    expect(() => scoreReviewAttempt(input)).toThrow();
+    input.answers[6].answer = 'Verb';
+    expect(scoreReviewAttempt(input).correct).toBe(7);
+    input.answers[0].answer = 'Noun';
+    expect(() => scoreReviewAttempt(input)).toThrow();
+  });
+  it('keeps the revised weekly set independent from previously saved adjective/article attempts', () => {
+    const old = applyReviewAttempt({}, attempt('adjectives-articles'), 'before');
+    expect(old.review.lessons['week-4-describing']).toBeUndefined();
+    const current = applyReviewAttempt(old.category, attempt('week-4-describing'), 'now');
+    expect(current.review.lessons['adjectives-articles']).toEqual(old.review.lessons['adjectives-articles']);
+    expect(current.review.lessons['week-4-describing']?.correct).toBe(8);
+  });
+  it('preserves the former optional lesson without treating it as Week 4 completion', () => {
+    const previous = applyReviewAttempt({}, attempt('more-word-jobs'), 'before');
+    expect(previous.review.lessons['adjectives-articles']).toBeUndefined();
+    const week4 = applyReviewAttempt(previous.category, attempt('adjectives-articles'), 'now');
+    expect(week4.review.lessons['more-word-jobs']).toEqual(previous.review.lessons['more-word-jobs']);
+    expect(week4.review.lessons['adjectives-articles']?.correct).toBe(8);
+    const later = applyReviewAttempt(week4.category, attempt('subjects'), 'later');
+    expect(later.review.lessons['adjectives-articles']).toEqual(week4.review.lessons['adjectives-articles']);
+    expect(later.review.lessons.subjects?.correct).toBe(6);
+    expect(applyReviewAttempt(later.category, attempt('subjects'), 'retry').category).toEqual(later.category);
+  });
+});
+
+it('carries two familiar examples forward from the preceding weekly lesson', () => {
+  for (let index = 1; index < WEEKLY_REVIEW_LESSONS.length; index++) {
+    const previous = REVIEW_LESSONS[WEEKLY_REVIEW_LESSONS[index - 1].id];
+    const current = REVIEW_LESSONS[WEEKLY_REVIEW_LESSONS[index].id];
+    for (const question of current.questions.filter(q => q.review)) {
+      expect([...previous.examples, ...previous.questions].some(q => reviewSentence(q) === reviewSentence(question) && q.target === question.target && q.answer === question.answer)).toBe(true);
+    }
+  }
+});
+
+it('keeps category colors off the target until the answer is revealed', () => {
+  const item = REVIEW_LESSONS['nouns-verbs'].questions[0];
+  const neutral = renderToStaticMarkup(createElement(ReviewSentence, { item }));
+  const revealed = renderToStaticMarkup(createElement(ReviewSentence, { item, reveal: true }));
+  expect(neutral).not.toContain(categoryColorClass('Noun'));
+  expect(revealed).toContain(categoryColorClass('Noun'));
+  expect(neutral).toContain('bus</mark> arrives at eight.');
+});
+
+it('keeps authored color annotations consistent with the complete transfer sentence', () => {
+  for (const lesson of Object.values(REVIEW_LESSONS)) {
+    if (lesson.transfer?.parts) {
+      expect(lesson.transfer.parts.map(part => part.text).join('')).toBe(lesson.transfer.example);
+      expect(lesson.transfer.parts.some(part => part.category)).toBe(true);
+    }
+  }
 });

@@ -1,7 +1,11 @@
+import { COURSE_MAP_UNITS } from '@/lib/course-map-data';
+import { WEEKLY_REVIEW_LESSONS } from '@/lib/parts-of-speech-review/content';
 import { describe, expect, it } from "vitest";
 import type { CourseMapUnit } from "@/lib/course-map";
 import {
     enrichCourseMapUnitsWithGrammarIdMap,
+    buildCourseMapProgressState,
+    getMapActivityProgressId,
     isMapActivityActionable,
     isMapActivityCompleted,
 } from "@/lib/course-map-progress";
@@ -173,4 +177,39 @@ describe("course map progress", () => {
             isMapActivityCompleted(placeholder, { "planned-placeholder-guide": "completed" })
         ).toBe(false);
     });
+});
+
+
+it('keeps weekly Parts of Speech completion separate on the course map', () => {
+    const week3 = { id: 'week3-pos', title: 'Week 3', activityType: 'game' as const, status: 'available' as const, activityId: 'parts-of-speech-game', href: '/activity/parts-of-speech-game?lesson=nouns-verbs' };
+    const week4 = { ...week3, id: 'week4-pos', href: '/activity/parts-of-speech-game?lesson=adjectives-articles' };
+    const progress = { 'parts-of-speech-game': { status: 'completed', categoryData: { _partsOfSpeechReview: { version: 1, lessons: { 'nouns-verbs': { completed: true } } } } } };
+    expect(isMapActivityCompleted(week3, progress)).toBe(true);
+    expect(isMapActivityCompleted(week4, progress)).toBe(false);
+    expect(isMapActivityCompleted(week4, { 'parts-of-speech-game': 'completed' })).toBe(false);
+    const both = { 'parts-of-speech-game': { status: 'completed', categoryData: { _partsOfSpeechReview: { version: 1, lessons: { 'nouns-verbs': { completed: true }, 'adjectives-articles': { completed: true } } } } } };
+    expect(isMapActivityCompleted(week4, both)).toBe(true);
+    expect(getMapActivityProgressId({ ...week4, activityId: undefined })).toBe('parts-of-speech-game');
+    expect(isMapActivityCompleted({ ...week4, activityId: undefined }, both)).toBe(true);
+});
+
+it('keeps weekly results from multiple progress rows without replacing newer lesson completion', () => {
+    const rows = [
+      { activityId: 'parts-of-speech-game', status: 'completed', updatedAt: new Date('2026-10-02'), categoryData: JSON.stringify({ _partsOfSpeechReview: { version: 1, lessons: { 'adjectives-articles': { completed: true }, 'nouns-verbs': { completed: true } } } }) },
+      { activityId: 'parts-of-speech-game', status: 'completed', updatedAt: new Date('2026-09-29'), categoryData: JSON.stringify({ _partsOfSpeechReview: { version: 1, lessons: { 'nouns-verbs': { completed: true } } } }) },
+    ];
+    expect(buildCourseMapProgressState(rows)['parts-of-speech-game'].categoryData).toEqual(JSON.parse(rows[0].categoryData));
+    expect(buildCourseMapProgressState([...rows].reverse())).toEqual(buildCourseMapProgressState(rows));
+});
+
+it('routes Weeks 3–7 to their own review and checks each completion independently', () => {
+    const weeks = COURSE_MAP_UNITS.flatMap(unit => unit.weeks);
+    for (const { week, id } of WEEKLY_REVIEW_LESSONS) {
+        const item = weeks.find(w => w.number === week)?.items.find(item => item.href === `/activity/parts-of-speech-game?lesson=${id}`);
+        expect(item).toBeDefined();
+        const activity = { ...item!, activityType: 'game' as const, status: 'available' as const };
+        const progress = { 'parts-of-speech-game': { status: 'completed', categoryData: { _partsOfSpeechReview: { version: 1, lessons: { [id]: { completed: true } } } } } };
+        expect(isMapActivityCompleted(activity, progress)).toBe(true);
+        expect(isMapActivityCompleted(activity, { 'parts-of-speech-game': { status: 'completed', categoryData: null } })).toBe(false);
+    }
 });
