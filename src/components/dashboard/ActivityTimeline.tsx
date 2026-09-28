@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Check, ChevronRight, Circle, Lock } from "lucide-react";
+import { Check, ChevronRight, Circle, Lock, Play } from "lucide-react";
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
+import { CourseMapActivityFormatChip } from "./CourseMapActivityFormatChip";
 import type { CourseMapActivityType } from "@/lib/course-map";
 
 export type TimelineStatus = "done" | "current" | "todo" | "locked";
@@ -31,6 +32,7 @@ interface ActivityTimelineProps {
   plain?: boolean;
   /** Full-width mobile course rows with explicit progress states. */
   courseMapRows?: boolean;
+  courseMapActionLabel?: "Start" | "Continue";
 }
 
 function typeToToneKey(type: string): string {
@@ -254,6 +256,7 @@ export function ActivityTimeline({
   showStartButton = true,
   plain = false,
   courseMapRows = false,
+  courseMapActionLabel = "Start",
 }: ActivityTimelineProps) {
   const isList = layout === "list";
 
@@ -276,6 +279,8 @@ export function ActivityTimeline({
               <span aria-hidden className="flex h-8 w-8 shrink-0 items-center justify-center">
                 {isDone ? (
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-success text-white"><Check size={18} strokeWidth={3} /></span>
+                ) : isCurrent ? (
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-[var(--text-on-accent)]"><Play size={16} fill="currentColor" /></span>
                 ) : isLocked ? (
                   <Lock size={22} className="text-text-muted" />
                 ) : (
@@ -283,9 +288,11 @@ export function ActivityTimeline({
                 )}
               </span>
               <span className="min-w-0 flex-1">
+                {isCurrent ? <span className="mb-1 block text-[10px] font-bold uppercase tracking-wide text-primary">{courseMapActionLabel}</span> : null}
                 <span className="block break-words text-[15px] font-semibold leading-snug text-text">{item.title}</span>
                 <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-text-muted">
-                  <span>{label}{isDone ? " · Done" : isLocked ? " · Locked" : ""}</span>
+                  <CourseMapActivityFormatChip type={item.type} vocabUi={item.vocabUi} title={item.title} />
+                  {isDone ? <span className="font-semibold">Done</span> : isLocked ? <span className="font-semibold">Locked</span> : null}
                   {isCurrent ? <span className="rounded-full bg-primary/12 px-2 py-0.5 font-bold text-primary">Next</span> : null}
                   {item.badge ? <span className="rounded-full bg-accent/25 px-2 py-0.5 font-semibold text-text">{item.badge}</span> : null}
                 </span>

@@ -425,6 +425,7 @@ export function MobileWeekCard({
                         showStartButton={false}
                         plain
                         courseMapRows
+                        courseMapActionLabel={timelineItems.some((item) => item.status === "done") ? "Continue" : "Start"}
                     />
                 );
             })()}

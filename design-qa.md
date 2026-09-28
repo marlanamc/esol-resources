@@ -37,3 +37,11 @@ Scope: updated course-map components rendered in a local interactive fixture wit
 ## Remaining limits
 
 Signed-in activity navigation, live progress writes, production font rendering, and global app navigation were not exercised in the fixture. Desktop rendering is unchanged by the opt-in mobile row variant; its scroll target behavior remains unchanged.
+
+## Follow-up: activity formats and workload reassurance
+
+- User-approved refinement: replace broad categories with one icon-and-text format chip; merge the embedded launch panel into the next list row; add “Work at your own pace. Start with one activity.” No duration or difficulty claims.
+- Evidence: output/course-map-mobile-qa/format-chips-375.png (375px mobile viewport). Browser checked at 320px: document width 320px, exactly one link for the next activity, full titles and chips wrap without overflow. Week 3 selection shows the correct Start row and destination. Browser error log empty.
+- Completed tasks remain reviewable; Next/Done/Locked stay separate from the format. The all-finished header invites review. Standalone wayfinding and desktop variants retain their existing launch behavior.
+- 49 focused render/format/date/session/launch tests passed. TypeScript and targeted lint passed. Signed-in production testing remains outside this local fixture.
+- final result: passed

@@ -180,7 +180,7 @@ export function CourseMapMobileWayfinding({
             aria-live="polite"
         >
             <div
-                className="px-4 pt-3 pb-1"
+                className={`px-4 pt-3 pb-1${embedded ? " border-b border-border-subtle" : ""}`}
                 style={{
                     background: `color-mix(in srgb, ${tone.surface} 70%, var(--dashboard-surface-start))`,
                 }}
@@ -296,9 +296,16 @@ export function CourseMapMobileWayfinding({
                         {meta.description ? <p className="m-0 text-sm leading-relaxed">{meta.description}</p> : null}
                     </div>
                 </details>
+                {embedded ? (
+                    <p className="m-0 pb-3 text-xs leading-relaxed text-text-muted">
+                        {hasLevelProgress && levelDone === levelTotal
+                            ? "All finished! You can review any activity below."
+                            : "Work at your own pace. Start with one activity."}
+                    </p>
+                ) : null}
             </div>
 
-            {currentActivity ? (
+            {!embedded && (currentActivity ? (
                 <Link
                     href={currentActivity.href}
                     className={`flex min-h-16 items-center gap-3 border-t px-4 py-3 transition-colors hover:bg-bg focus-visible:outline-none focus-visible:bg-bg focus-visible:ring-2 focus-visible:ring-primary/40${embedded ? " border-b" : ""}`}
@@ -342,7 +349,7 @@ export function CourseMapMobileWayfinding({
                         All caught up — pick anything below to keep practicing.
                     </p>
                 </div>
-            )}
+            ))}
         </div>
     );
 }
