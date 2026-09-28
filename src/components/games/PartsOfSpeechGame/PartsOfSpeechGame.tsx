@@ -9,6 +9,8 @@ import { useRouter } from 'next/navigation';
 import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
 import { ALL_POS_GROUPS } from '@/data/parts-of-speech-groups';
 import { usePartsOfSpeechGameState } from '@/hooks/usePartsOfSpeechGameState';
+import { PartsOfSpeechReview } from './PartsOfSpeechReview';
+import { REVIEW_ACTIVITY_ID } from '@/lib/parts-of-speech-review/content';
 import { WordSortGame } from './WordSortGame';
 import { WORD_SORT_ACTIVITIES } from '@/lib/word-sort/types';
 import { GroupSelectionScreen } from './GroupSelectionScreen';
@@ -26,12 +28,15 @@ interface PartsOfSpeechGameProps {
 }
 
 export function PartsOfSpeechGame(props: PartsOfSpeechGameProps) {
+  const [library, setLibrary] = useState(false);
+  const reviewFirst = props.activityId === REVIEW_ACTIVITY_ID && !props.gameContent?.courseMapPreset;
   const wordSort = props.gameContent?.wordSort ?? WORD_SORT_ACTIVITIES[props.activityId];
   if (wordSort) return <WordSortGame key={props.activityId} activityId={props.activityId} config={wordSort} title={props.gameContent?.courseMapTitle ?? 'Word Sort'} />;
-  return <DiscoveryPartsOfSpeechGame {...props} />;
+  if (reviewFirst && !library) return <MotionConfig reducedMotion="user"><PartsOfSpeechReview activityId={props.activityId} onLibrary={() => setLibrary(true)} /></MotionConfig>;
+  return <DiscoveryPartsOfSpeechGame {...props} onReview={reviewFirst ? () => setLibrary(false) : undefined} />;
 }
 
-function DiscoveryPartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGameProps) {
+function DiscoveryPartsOfSpeechGame({ activityId, gameContent, onReview }: PartsOfSpeechGameProps & { onReview?: () => void }) {
   const router = useRouter();
   const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/dashboard' });
   const contentScrollRef = useRef<HTMLDivElement | null>(null);
@@ -213,38 +218,12 @@ function DiscoveryPartsOfSpeechGame({ activityId, gameContent }: PartsOfSpeechGa
             : 'max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
         }`}
       >
-        {/* Back navigation in the upper left */}
-        {state.phase !== 'exercise' && (
-          <div className="px-3 sm:px-0 pb-3 flex items-center">
-            {isCourseMapPreset ? (
-              <button
-                type="button"
-                onClick={() => router.push(returnHref)}
-                aria-label="Back to Course Map"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-sm font-medium text-text hover:bg-bg-light dark:hover:bg-white/5 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
-              >
-                <ArrowLeft size={16} className="shrink-0" />
-                <span>Back to Course Map</span>
-              </button>
-            ) : state.phase === 'selection' ? (
-              <button
-                type="button"
-                onClick={() => router.push(returnHref)}
-                aria-label="Go back"
-                className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text transition-colors shadow-sm"
-              >
-                <ArrowLeft size={20} />
-              </button>
-            ) : state.phase === 'intro' ? (
-              <button
-                type="button"
-                onClick={quitGame}
-                aria-label="Go back"
-                className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text transition-colors shadow-sm"
-              >
-                <ArrowLeft size={20} />
-              </button>
-            ) : null}
+        {state.phase === 'selection' && (
+          <div className="pb-4">
+            <button type="button" onClick={onReview ?? (() => router.push(returnHref))}
+              className="inline-flex min-h-12 items-center gap-2 rounded-lg px-3 font-semibold text-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
+              <ArrowLeft size={18} aria-hidden="true" />{onReview ? 'Back to review' : 'Back to activities'}
+            </button>
           </div>
         )}
 

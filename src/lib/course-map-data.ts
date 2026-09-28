@@ -224,7 +224,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
         "id": "week-3",
         "number": 3,
         "title": "Parts of Speech Review",
-        "goal": "Take another week with the building blocks of English: nouns, verbs, adjectives, and more.",
+        "goal": "Review nouns and verbs in one short lesson. Other word jobs can wait until another week.",
         "items": [
           {
             "id": "vocab-sep-w4-flashcards",
@@ -288,12 +288,13 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           },
           {
             "id": "parts-of-speech-discovery",
-            "activityId": "parts-of-speech-discovery-guided",
+            "activityId": "parts-of-speech-game",
+            "href": "/activity/parts-of-speech-game?lesson=nouns-verbs",
             "slot": "required",
             "order": 6,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Parts of Speech Discovery Game"
+            "title": "Week 3: Nouns and Verbs"
           },
           {
             "id": "parts-of-speech-word-sort-nouns-review",
@@ -332,7 +333,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 10,
             "wrappedGame": false,
             "activityType": "game",
-            "title": "Full Parts of Speech Practice Library"
+            "title": "Parts of Speech Review"
           }
         ]
       }
@@ -402,16 +403,26 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "verb-quiz-1",
             "activityId": "verb-quiz-1",
             "slot": "required",
-            "order": 5,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 1: be + have"
           },
           {
+            "id": "parts-of-speech-week-4",
+            "activityId": "parts-of-speech-game",
+            "href": "/activity/parts-of-speech-game?lesson=week-4-describing",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": false,
+            "activityType": "game",
+            "title": "Week 4: Adjectives and Articles"
+          },
+          {
             "id": "all-verb-tenses-overview",
             "href": "/grammar-reader/all-verb-tenses-overview",
             "slot": "extra",
-            "order": 6,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "guide",
             "title": "All Verb Tenses Overview"
@@ -419,7 +430,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "have-you-ever-speaking",
             "slot": "extra",
-            "order": 7,
+            "order": 8,
             "wrappedGame": false,
             "activityType": "speaking",
             "title": "Conversation Practice: Telling Your Story"
@@ -427,7 +438,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
           {
             "id": "lived-worked-writing",
             "slot": "extra",
-            "order": 8,
+            "order": 9,
             "wrappedGame": false,
             "activityType": "writing",
             "title": "Short Writing: \"When I came to the U.S.\""
@@ -436,7 +447,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "ed-endings-intro",
             "activityId": "cmlkjcabs00000ezpkp32c6lz",
             "slot": "extra",
-            "order": 9,
+            "order": 10,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "-ed Endings Intro: /t/ /d/ /id/"
@@ -445,7 +456,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "ed-endings-game-extra",
             "activityId": "cmlkjcabs00000ezpkp32c6lz",
             "slot": "extra",
-            "order": 10,
+            "order": 11,
             "wrappedGame": true,
             "activityType": "pronunciation",
             "title": "-ed Endings Game"
@@ -454,7 +465,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "id": "helper-verb-repair",
             "activityId": "grammar-hospital-helper-repair-guided",
             "slot": "extra",
-            "order": 11,
+            "order": 12,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Grammar Hospital: Helper Verb Repair"
@@ -523,10 +534,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Schedule Verbs: Fill in the Blank"
           },
           {
+            "id": "parts-of-speech-week-5",
+            "activityId": "parts-of-speech-game",
+            "href": "/activity/parts-of-speech-game?lesson=week-5-subjects",
+            "slot": "required",
+            "order": 6,
+            "wrappedGame": false,
+            "activityType": "game",
+            "title": "Week 5: Subjects and Verbs"
+          },
+          {
             "id": "verb-quiz-2",
             "activityId": "verb-quiz-2",
             "slot": "required",
-            "order": 6,
+            "order": 7,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 2: do + make"
@@ -587,10 +608,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Movement Verbs: Fill in the Blank"
           },
           {
+            "id": "parts-of-speech-week-6",
+            "activityId": "parts-of-speech-game",
+            "href": "/activity/parts-of-speech-game?lesson=week-6-objects",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": false,
+            "activityType": "game",
+            "title": "Week 6: Actions and Descriptions"
+          },
+          {
             "id": "verb-quiz-3",
             "activityId": "verb-quiz-3",
             "slot": "required",
-            "order": 5,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 3: go + come"
@@ -602,7 +633,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "flashcards",
-            "order": 6,
+            "order": 7,
             "title": "Protect Yourself Verbs: Flash Cards"
           },
           {
@@ -612,7 +643,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 7,
+            "order": 8,
             "title": "Protect Yourself Verbs: Matching"
           },
           {
@@ -622,7 +653,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 8,
+            "order": 9,
             "title": "Protect Yourself Verbs: Fill in the Blank"
           }
         ],
@@ -682,10 +713,20 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "title": "Communication Verbs: Fill in the Blank"
           },
           {
+            "id": "parts-of-speech-week-7",
+            "activityId": "parts-of-speech-game",
+            "href": "/activity/parts-of-speech-game?lesson=week-7-adverbs",
+            "slot": "required",
+            "order": 5,
+            "wrappedGame": false,
+            "activityType": "game",
+            "title": "Week 7: Adverbs: How and How Often"
+          },
+          {
             "id": "verb-quiz-4",
             "activityId": "verb-quiz-4",
             "slot": "required",
-            "order": 5,
+            "order": 6,
             "wrappedGame": false,
             "activityType": "quiz",
             "title": "Verb Quiz 4: tell + say"

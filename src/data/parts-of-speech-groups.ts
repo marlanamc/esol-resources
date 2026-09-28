@@ -22,7 +22,7 @@ export const GROUP_POS_1_VERBS: POSGroup = {
   phase: 'foundation',
   prerequisite: null,
   maxRounds: 3,
-  memoryTrick: 'Not just actions! "She NEEDS help" — NEEDS is a verb. "He WANTS a job" — WANTS is a verb. If it comes after I/you/he/she/we/they, it\'s probably a verb!',
+  memoryTrick: 'Not just actions! "She NEEDS help" — NEEDS is a verb. "He WANTS a job" — WANTS is a verb. Ask what the person does, has, needs, or is. Read the whole sentence.',
   icon: '🔴',
   patterns: [
     {
@@ -588,14 +588,14 @@ export const GROUP_POS_5_SUBJECT: POSGroup = {
   id: 'pos-5-subject',
   title: 'The Subject: Who Does It?',
   shortTitle: 'Subjects',
-  pattern: 'The SUBJECT is WHO or WHAT performs the action. It comes before the verb and answers "Who does this?"',
+  pattern: 'The SUBJECT is who or what the sentence is about. In a simple statement it usually comes before the verb.',
   patternExample: 'The landlord fixed the heater. → "The landlord" is the subject.',
   colorClass: 'bg-blue-50 border-blue-400',
   difficulty: 1,
   phase: 'sentence-roles',
   prerequisite: 'pos-checkpoint-1',
   maxRounds: 4,
-  memoryTrick: 'Subject = the BOSS of the sentence. Find the verb, then ask "Who/what does this?"',
+  memoryTrick: 'Find the verb, then ask who or what the sentence is about. A subject can be a noun phrase or a pronoun.',
   icon: '👤',
   patterns: [
     {
@@ -717,7 +717,7 @@ export const GROUP_POS_6_VERB_FORMS: POSGroup = {
   id: 'pos-6-verb-forms',
   title: 'Verb Forms',
   shortTitle: 'Verb Forms',
-  pattern: 'Verbs change their form to show WHEN something happens (tense) or to ASK for help (helping verbs).',
+  pattern: 'Verbs have different forms. Helping verbs combine with a main verb to express time, possibility, and other meanings.',
   patternExample: 'She works. (simple) / She is working. (in progress) / She has worked. (completed)',
   colorClass: 'bg-red-50 border-red-400',
   difficulty: 2,
@@ -1011,7 +1011,7 @@ export const GROUP_POS_8_COMPLEMENT: POSGroup = {
   phase: 'sentence-roles',
   prerequisite: 'pos-7-object',
   maxRounds: 4,
-  memoryTrick: 'After BE / BECOME / SEEM / FEEL → what follows is a complement, not an object.',
+  memoryTrick: 'When a verb links the subject to an identity or description, that identity or description is a complement. Check how the verb is used in this sentence.',
   icon: '✅',
   patterns: [
     {
@@ -1103,7 +1103,7 @@ export const GROUP_POS_CHECKPOINT_2: POSGroup = {
   title: 'Checkpoint: Sentence Structure Review',
   shortTitle: 'Checkpoint 2',
   pattern: 'Review: Subject → Verb → Object/Complement. Every sentence has a subject and a verb!',
-  patternExample: 'The teacher (subject) gave (verb) them (object) homework (complement).',
+  patternExample: 'The teacher (subject) gave (verb) them (indirect object) homework (direct object).',
   colorClass: 'bg-yellow-50 border-yellow-400',
   difficulty: 2,
   phase: 'sentence-roles',
@@ -2481,14 +2481,14 @@ export const GROUP_POS_19_BRIDGE_COMPLETE: POSGroup = {
   id: 'pos-19-bridge-complete',
   title: 'Complete the Pattern',
   shortTitle: 'Complete Pattern',
-  pattern: 'Now put it all together! Identify the part of speech, then choose the correct verb form that follows.',
+  pattern: 'Choose a familiar sentence pattern. The particular word matters: enjoy reading and want to read use different patterns, although enjoy and want are both verbs.',
   patternExample: 'She finished ___ the form. → "finished" is a verb that takes gerund → "filling in"',
   colorClass: 'bg-gradient-to-r from-violet-50 to-red-50 border-violet-400',
   difficulty: 3,
   phase: 'application-bridge',
   prerequisite: 'pos-18-bridge-what-comes-after',
   maxRounds: 5,
-  memoryTrick: 'Step 1: What part of speech comes before the blank? Step 2: What verb form does that POS take?',
+  memoryTrick: 'Learn useful word partnerships together: enjoy doing, want to do, and without doing. A part-of-speech label alone does not tell you which pattern to use.',
   icon: '🏆',
   patterns: [
     {
@@ -2594,7 +2594,7 @@ export const GROUP_POS_CHECKPOINT_5: POSGroup = {
   title: 'Final Challenge: All Parts of Speech',
   shortTitle: 'Final Challenge',
   pattern: 'The complete review! All 8 parts of speech + how they connect to grammar patterns.',
-  patternExample: 'The (article) tired (adj) nurse (noun) carefully (adv) explained (verb) everything (noun) to them (prep+pronoun).',
+  patternExample: 'The (article) tired (adj) nurse (noun) carefully (adv) explained (verb) everything (pronoun) to them (prep+pronoun).',
   colorClass: 'bg-gradient-to-r from-yellow-50 to-amber-50 border-yellow-500',
   difficulty: 3,
   phase: 'application-bridge',

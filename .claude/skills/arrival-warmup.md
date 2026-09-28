@@ -32,15 +32,18 @@ Before building a new day's warmup:
 
 - **Check what the last few days used** (open the neighboring files in
   `print/` or `classroom/`) and deliberately pick a *different* pair of
-  task shapes. Formats already used as of Week 4: matching-grid (Wk1D1),
+  task shapes. Formats already used as of Week 5: matching-grid (Wk1D1),
   open sentence-completion (Wk1D1), fill-in-the-blank with word bank
-  (Wk1D2), find-the-errors dialogue (Wk1D2), letter-scramble (Wk2D1),
-  sort-into-3-boxes (Wk2D1, Wk4D2), riddles ("What word am I?", Wk3D1),
-  true-or-false (Wk3D1), word-order/sentence-unscramble (Wk3D2), be/have
-  fill-in-the-blank (Wk3D2), word search grid (Wk4D1), would-you-rather
-  with a reason (Wk4D1), sentence-sequencing/story-ordering (Wk4D2).
-  Still unused and available: two-truths-and-a-lie, mini crossword,
-  picture-free "odd one out," dictation, partner-interview prompts.
+  (Wk1D2), find-the-errors dialogue (Wk1D2, Wk3D2), letter-scramble
+  (Wk2D1), sort-into-boxes (Wk2D1 3 boxes, Wk5D2 do/make 2 boxes),
+  odd-one-out (Wk3D1), label-the-part-of-speech (Wk3D1), mini crossword
+  (Wk3D2), complete-the-verb-chart V1/V2/V3 (Wk4D1), rewrite-in-the-past
+  transformation (Wk4D1), circle-the-correct-form (Wk4D2), two-truths-
+  and-a-lie (Wk4D2), to-do-list checkmarks to sentences (Wk5D1),
+  write-the-question-word (Wk5D1), partner-interview prompts (Wk5D2).
+  Still unused and available: riddles ("What word am I?"), true-or-false,
+  sentence-unscramble, word search grid, would-you-rather with a reason,
+  story-ordering, dictation.
 - **Tie the format to what's pedagogically live that week when possible**
   — e.g. a parts-of-speech week suggests a sort/categorize task; a verb-
   tense week suggests an error-hunt or transformation task. This makes
@@ -123,14 +126,14 @@ Before building a new day's warmup:
   for any bordered word-pool box, `.blank` for any inline write-in line,
   and a `.bonus-line` (a bare `border-bottom` rule, no fixed width) for
   bonus/writing-prompt lines — don't reinvent those three.
-- **Word search grids** (see Week 4 Day 1): build as an HTML `<table>`
+- **Word search grids** (old Week 4 Day 1, still in git at commit 6885e638): build as an HTML `<table>`
   with one letter per `<td>`, monospace font, fixed cell width/height.
   Place the target words first (across or down), then fill every
   remaining cell with a plausible-looking filler letter — after placing
   words, re-read each filler row/column and confirm it doesn't
   accidentally spell another real word. Keep a plain-text word list
   below the grid.
-- **Sequencing tasks** (see Week 4 Day 2): give a short blank *before*
+- **Sequencing tasks** (old Week 4 Day 2, same commit): give a short blank *before*
   each lettered item (a narrow `.seq-blank`-style modifier of `.blank`,
   ~1.6-1.8em wide) for students to write the order number, and shuffle
   the displayed lettered order so it's a genuine derangement against the

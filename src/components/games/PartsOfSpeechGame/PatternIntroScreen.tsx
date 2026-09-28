@@ -77,6 +77,9 @@ export function PatternIntroScreen({
   return (
     <div className="space-y-6 max-w-2xl mx-auto pb-24 sm:pb-0">
 
+      <button type="button" onClick={onBack} className="inline-flex min-h-12 items-center gap-2 rounded-lg px-2 font-semibold text-text">
+        <ArrowLeft size={18} aria-hidden="true" /> Back to lessons
+      </button>
       {/* Badge row */}
       <div
         className="flex items-center justify-between"
@@ -338,13 +341,6 @@ export function PatternIntroScreen({
       <div
         className="hidden sm:flex gap-3 pt-2"
       >
-        <button
-          type="button"
-          onClick={onBack}
-          className="flex-none px-6 py-3 rounded-xl border border-border text-text-muted hover:text-text transition-colors font-semibold"
-        >
-          ← Back
-        </button>
         <motion.button
           type="button"
           onClick={onStartChallenge}
@@ -359,14 +355,6 @@ export function PatternIntroScreen({
 
       {/* Mobile fixed bottom bar */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between gap-3 px-4 py-3 bg-bg/95 backdrop-blur-md border-t border-border pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-        <button
-          type="button"
-          onClick={onBack}
-          className="flex items-center gap-2 px-5 py-3 rounded-xl border border-border text-text-muted hover:text-text transition-colors font-semibold min-h-[48px]"
-        >
-          <ArrowLeft size={20} />
-          Back
-        </button>
         <motion.button
           type="button"
           onClick={onStartChallenge}

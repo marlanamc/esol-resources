@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 3 Day 1 Station Cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* One .sheet = one landscape letter page. Most sheets are two cut-apart halves. */
+  .sheet {
+    width: 11in;
+    height: 8.5in;
+    display: flex;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  .half {
+    width: 50%;
+    padding: 0.35in 0.4in;
+    display: flex;
+    flex-direction: column;
+  }
+  .half + .half { border-left: 1.5px dashed #000; }
+  .full {
+    width: 100%;
+    padding: 0.3in 0.35in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .sheet { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter landscape; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid #000;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+  }
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; margin-bottom: 5px; }
+  .tag { font-size: 11px; white-space: nowrap; }
+  .subtitle { font-size: 11px; font-style: italic; margin-bottom: 10px; }
+  .small { font-size: 11px; }
+  .footer-note { margin-top: auto; padding-top: 8px; font-size: 11px; font-style: italic; }
+  .section { margin-bottom: 14px; }
+  ul.plain { list-style: none; }
+  ul.plain li { margin-bottom: 4px; }
+  ul.dots { padding-left: 1.1em; }
+  ul.dots li { margin-bottom: 3px; }
+  .box { border: 1.5px solid #000; padding: 8px 10px; }
+  .line { border-bottom: 1.5px solid #000; height: 26px; }
+  .blank { display: inline-block; border-bottom: 1.5px solid #000; width: 6em; margin: 0 2px; }
+  .blank.long { width: 11em; }
+  .blank.short { width: 3.5em; }
+
+  /* ---------- Station direction cards ---------- */
+  .station-top { display: flex; align-items: center; gap: 18px; margin-bottom: 6px; }
+  .station-top svg { width: 84px; height: 84px; flex: none; }
+  .station-num { font-size: 18px; font-weight: bold; }
+  .station-verb { font-size: 64px; font-weight: bold; line-height: 1; letter-spacing: 1px; }
+  .station-with { font-size: 18px; }
+  .goal { font-size: 22px; border-top: 2px solid #000; border-bottom: 2px solid #000; padding: 6px 0; margin: 10px 0 14px; }
+  ol.steps { list-style: none; counter-reset: s; }
+  ol.steps li {
+    counter-increment: s;
+    font-size: 26px;
+    margin-bottom: 26px;
+    padding-left: 52px;
+    position: relative;
+    line-height: 1.3;
+  }
+  ol.steps li::before {
+    content: counter(s);
+    position: absolute; left: 0; top: -2px;
+    width: 34px; height: 34px;
+    border: 2px solid #000; border-radius: 50%;
+    font-size: 18px; font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .early { margin-top: auto; border: 1.5px dashed #000; padding: 10px 14px; font-size: 18px; }
+
+  table.rotation { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  table.rotation th, table.rotation td { border: 1.5px solid #000; padding: 7px 6px; text-align: center; font-size: 14px; }
+  table.rotation th { font-size: 14px; }
+  table.rotation td.g { font-weight: bold; text-align: left; width: 34%; }
+
+  /* ---------- Talk cards ---------- */
+  .q { margin-bottom: 11px; }
+  .q-text { font-size: 18px; font-weight: bold; }
+  .q-frame { font-size: 14px; padding-left: 26px; }
+  .q-follow { font-size: 11px; font-style: italic; padding-left: 26px; }
+  .pass { border: 2px solid #000; padding: 6px 10px; font-size: 14px; margin-bottom: 12px; }
+
+  .slips { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, 1fr); width: 100%; height: 100%; }
+  .slip { border: 1.5px dashed #000; padding: 0.18in 0.25in; display: flex; flex-direction: column; gap: 6px; }
+  .slip-title { font-size: 18px; font-weight: bold; }
+  .slip .row { display: flex; align-items: flex-end; gap: 6px; font-size: 14px; }
+  .slip .row .fill { flex: 1; border-bottom: 1.5px solid #000; height: 20px; }
+
+  /* ---------- Sort cards ---------- */
+  .word-grid { display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(6, 1fr); flex: 1; }
+  .word-card {
+    border: 1.5px dashed #000;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: bold; text-align: center;
+  }
+  .word-card.own { font-size: 11px; font-weight: normal; font-style: italic; align-items: flex-end; padding-bottom: 8px; }
+
+  .pos-headers { display: grid; grid-template-columns: repeat(5, 1fr); height: 3.1in; margin-bottom: 12px; }
+  .pos-card { border: 1.5px dashed #000; padding: 10px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .pos-sym { font-size: 34px; line-height: 1; }
+  .pos-name { font-size: 22px; font-weight: bold; margin: 4px 0 2px; }
+  .pos-abbr { font-size: 18px; font-weight: bold; border: 2px solid #000; padding: 0 8px; margin-bottom: 6px; }
+  .pos-job { font-size: 14px; margin-bottom: 4px; }
+  .pos-ex { font-size: 14px; font-style: italic; }
+
+  .challenge-row { display: grid; grid-template-columns: repeat(6, 1fr); height: 1.1in; margin-bottom: 12px; }
+  .challenge-row .word-card { font-size: 20px; flex-direction: column; }
+  .challenge-row .word-card span { font-size: 11px; font-weight: normal; }
+
+  .strip { border: 1.5px dashed #000; padding: 8px 12px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 10px; }
+  .strip-step { font-size: 11px; font-weight: bold; width: 70px; flex: none; padding-top: 6px; }
+  .strip-words { display: flex; flex-wrap: wrap; gap: 8px; }
+  .w { display: flex; flex-direction: column; align-items: center; }
+  .w b { font-size: 22px; padding: 0 2px; }
+  .w i { display: block; min-width: 54px; height: 24px; border: 1.5px solid #000; font-style: normal; font-size: 14px; font-weight: bold; text-align: center; line-height: 21px; }
+
+  /* ---------- Writing sheets ---------- */
+  .frame { font-size: 14px; margin-bottom: 12px; line-height: 2; }
+  .frame .blank { width: 7.5em; }
+  .wordbox { border: 1.5px solid #000; text-align: center; font-weight: bold; font-size: 14px; padding: 5px 8px; margin-bottom: 10px; }
+  .checklist { border: 2px solid #000; padding: 6px 10px; font-size: 14px; margin-top: auto; }
+  .checklist span { margin-right: 12px; white-space: nowrap; }
+
+  /* ---------- Exit tickets ---------- */
+  .ticket-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, 1fr); width: 100%; height: 100%; }
+  .ticket { border: 1.5px dashed #000; padding: 0.18in 0.25in; display: flex; flex-direction: column; }
+  .ticket .line { height: 30px; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     SHEET 1-3: Station direction cards (cut in half, one per table)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="half">
+    <div class="station-top">
+      <svg viewBox="0 0 84 84" fill="none" stroke="#000" stroke-width="4" stroke-linejoin="round"><path d="M6 12h46v28H26l-12 10V40H6z"/><path d="M34 46v10h24l12 10V56h8V28H60"/></svg>
+      <div>
+        <div class="station-num">Station 1</div>
+        <div class="station-verb">TALK</div>
+        <div class="station-with">with our volunteer</div>
+      </div>
+    </div>
+    <div class="goal"><b>Goal:</b> Tell someone about your journey.</div>
+    <ol class="steps">
+      <li>Take a <b>Talk Card</b>.</li>
+      <li>Answer the questions. Use the <b>help sentences</b>.</li>
+      <li>Ask a question back: <i>&ldquo;And you?&rdquo;</i></li>
+      <li>Take your <b>Great Sentence</b> paper home.</li>
+    </ol>
+    <div class="early"><b>You can say &ldquo;Pass.&rdquo;</b> You never have to answer a question.</div>
+  </div>
+
+  <div class="half">
+    <div class="station-top">
+      <svg viewBox="0 0 84 84" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="42" cy="42" r="34"/><path d="M26 43l11 11 22-24"/></svg>
+      <div>
+        <div class="station-num">Station 2</div>
+        <div class="station-verb">FIX</div>
+        <div class="station-with">with the teacher</div>
+      </div>
+    </div>
+    <div class="goal"><b>Goal:</b> Use <b>I / me / my</b> and <b>a / an / the</b> correctly.</div>
+    <ol class="steps">
+      <li>Bring your writing or your warm-up.</li>
+      <li>Watch the teacher fix a sentence.</li>
+      <li>Fix a sentence <b>together</b>.</li>
+      <li>Fix one of <b>your</b> sentences <b>alone</b>.</li>
+    </ol>
+    <div class="early"><b>Finished early?</b> Find one more sentence to fix in your writing.</div>
+  </div>
+</div>
+
+<div class="sheet">
+  <div class="half">
+    <div class="station-top">
+      <svg viewBox="0 0 84 84" fill="none" stroke="#000" stroke-width="4" stroke-linejoin="round"><rect x="8" y="20" width="36" height="48" rx="4" transform="rotate(-10 26 44)"/><rect x="40" y="16" width="36" height="48" rx="4" transform="rotate(8 58 40)"/></svg>
+      <div>
+        <div class="station-num">Station 3</div>
+        <div class="station-verb">SORT</div>
+        <div class="station-with">with a partner</div>
+      </div>
+    </div>
+    <div class="goal"><b>Goal:</b> Find the job of every word.</div>
+    <ol class="steps">
+      <li>Put the 5 big cards on the table: <b>N &middot; V &middot; ADJ &middot; PRON &middot; ART</b>.</li>
+      <li>Sort the word cards under the big cards.</li>
+      <li>Read <b>Step 1</b> strip. Then label <b>Step 2</b> and <b>Step 3</b>.</li>
+      <li>Check with your partner. Then use the <b>Check Card</b>.</li>
+    </ol>
+    <div class="early"><b>Finished early?</b> Try the &#9733; Challenge cards. Same family, new job! <br><b>Please put all the cards back.</b></div>
+  </div>
+
+  <div class="half">
+    <div class="station-top">
+      <svg viewBox="0 0 84 84" fill="none" stroke="#000" stroke-width="4" stroke-linejoin="round"><path d="M16 68l4-16L56 16l12 12-36 36z"/><path d="M50 22l12 12"/><path d="M16 68h52"/></svg>
+      <div>
+        <div class="station-num">Station 4</div>
+        <div class="station-verb">WRITE</div>
+        <div class="station-with">on your own</div>
+      </div>
+    </div>
+    <div class="goal"><b>Goal:</b> Write your journey story.</div>
+    <ol class="steps">
+      <li>Choose a paper: <b>A</b>, <b>B</b>, or <b>C</b>. You choose!</li>
+      <li>Write about your journey.</li>
+      <li>Check your writing with the <b>checklist</b>.</li>
+      <li><b>Keep your paper.</b> Use it at TALK and FIX.</li>
+    </ol>
+    <div class="early"><b>Finished early?</b> Try the next paper (A &rarr; B &rarr; C).</div>
+  </div>
+</div>
+
+<div class="sheet">
+  <div class="half">
+    <div class="station-top">
+      <svg viewBox="0 0 84 84" fill="none" stroke="#000" stroke-width="4" stroke-linejoin="round"><rect x="22" y="6" width="40" height="72" rx="6"/><path d="M36 68h12"/><path d="M36 30l14 8-14 8z"/></svg>
+      <div>
+        <div class="station-num">Station 5</div>
+        <div class="station-verb">PLAY</div>
+        <div class="station-with">on Class Companion</div>
+      </div>
+    </div>
+    <div class="goal"><b>Goal:</b> Practice fast. Earn points!</div>
+    <ol class="steps">
+      <li>Open <b>Class Companion</b>. Go to <b>Week 3</b>.</li>
+      <li>Take a <b>Choice Board</b>.</li>
+      <li>Do <b>2</b> activities. <b>1</b> must be new for you.</li>
+      <li>Check the boxes on your Choice Board.</li>
+    </ol>
+    <div class="early"><b>Finished early?</b> Do a 3rd activity. Can you beat your score?</div>
+  </div>
+
+  <div class="half">
+    <div class="header-row">
+      <h1>Rotation Chart</h1>
+      <span class="tag">Week 3, Tuesday &middot; 9/29/26</span>
+    </div>
+    <p class="subtitle">Write group names on the left. Write the start time for each round. Move when the timer rings.</p>
+    <table class="rotation">
+      <tr><th>Group</th><th>1<br><span class="small">___:___</span></th><th>2<br><span class="small">___:___</span></th><th>3<br><span class="small">___:___</span></th><th>4<br><span class="small">___:___</span></th><th>5<br><span class="small">___:___</span></th></tr>
+      <tr><td class="g">A: ____________</td><td>TALK</td><td>FIX</td><td>SORT</td><td>WRITE</td><td>PLAY</td></tr>
+      <tr><td class="g">B: ____________</td><td>FIX</td><td>SORT</td><td>WRITE</td><td>PLAY</td><td>TALK</td></tr>
+      <tr><td class="g">C: ____________</td><td>SORT</td><td>WRITE</td><td>PLAY</td><td>TALK</td><td>FIX</td></tr>
+      <tr><td class="g">D: ____________</td><td>WRITE</td><td>PLAY</td><td>TALK</td><td>FIX</td><td>SORT</td></tr>
+      <tr><td class="g">E: ____________</td><td>PLAY</td><td>TALK</td><td>FIX</td><td>SORT</td><td>WRITE</td></tr>
+    </table>
+    <div class="section" style="margin-top:14px;">
+      <h2>Teacher notes</h2>
+      <ul class="dots small">
+        <li><b>12&ndash;15 min</b> per round. Give a 2-minute warning.</li>
+        <li><b>Mixed levels</b> help at TALK and SORT. <b>Similar levels</b> help at FIX.</li>
+        <li>Groups that visit WRITE before TALK will bring notes. Early TALK groups use the help sentences. Both are fine.</li>
+        <li>Groups that start at FIX have no writing yet. Use their warm-up sentences.</li>
+        <li>End with the <b>Exit Ticket</b> (last page).</li>
+      </ul>
+    </div>
+    <p class="footer-note">4C/ID map: TALK + WRITE = whole task &middot; FIX = just-in-time help &middot; SORT = worked examples &middot; PLAY = part-task practice</p>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEET 4: Volunteer guide
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="half">
+    <div class="header-row">
+      <h1>Volunteer Guide: TALK</h1>
+      <span class="tag">Week 3, Tuesday</span>
+    </div>
+    <p class="subtitle">Thank you! Your job is to get every learner talking. Talking matters more than perfect English today.</p>
+
+    <div class="section">
+      <h2>Please do</h2>
+      <ul class="dots">
+        <li><b>Wait 5 seconds</b> after you ask. Silence means thinking.</li>
+        <li><b>Point to the help sentences</b> on the Talk Card if someone is stuck.</li>
+        <li><b>Repeat it back correctly.</b> Don't stop them to correct.<br>
+          <span class="small">Learner: &ldquo;Me family relocate 2022.&rdquo; &rarr; You: &ldquo;Oh, <b>my</b> family <b>relocated in</b> 2022? Why?&rdquo;</span></li>
+        <li>Ask <b>&ldquo;Why?&rdquo;</b> and <b>&ldquo;Tell me more.&rdquo;</b></li>
+        <li><b>Share a little about you.</b> Learners like to ask you questions too.</li>
+        <li>Make sure <b>everyone talks</b>. Invite quiet learners by name.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Please don't</h2>
+      <ul class="dots">
+        <li>Correct in the middle of a sentence or finish their sentences.</li>
+        <li>Push for details. <b>Some journeys are painful.</b> &ldquo;Pass&rdquo; is always OK. Move on with a smile.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Adjust the level</h2>
+      <ul class="dots">
+        <li><b>Beginner:</b> Stay on questions 1&ndash;3. Give choices: &ldquo;Happy or tired?&rdquo;</li>
+        <li><b>Stronger:</b> Ask them to turn the Talk Card over. Use the follow-up questions.</li>
+      </ul>
+    </div>
+
+    <div class="box" style="margin-top:auto;">
+      <b>Last 2 minutes:</b> Write a <b>Great Sentence</b> slip for each learner. Copy one good thing they said. You can add one small &ldquo;Try this&rdquo; tip.
+    </div>
+  </div>
+
+  <div class="half">
+    <div class="header-row">
+      <h1>Question Ladder</h1>
+      <span class="tag">easy &rarr; harder</span>
+    </div>
+    <p class="subtitle">Start at the top. Climb as far as the learner is comfortable. <i>Italic</i> = follow-up question.</p>
+
+    <div class="q"><div class="q-text">1. Where are you from?</div><div class="q-follow">What is your city like? Is it big or small?</div></div>
+    <div class="q"><div class="q-text">2. When did you come here?</div><div class="q-follow">Did you come alone or with your family?</div></div>
+    <div class="q"><div class="q-text">3. Why did you relocate?</div><div class="q-follow">Was it a hard decision?</div></div>
+    <div class="q"><div class="q-text">4. What motivates you?</div><div class="q-follow">What goal do you want to achieve?</div></div>
+    <div class="q"><div class="q-text">5. What was difficult at first?</div><div class="q-follow">How did you overcome it? Who helped you?</div></div>
+    <div class="q"><div class="q-text">6. Where do you feel you belong?</div><div class="q-follow">What helps you feel that you belong?</div></div>
+
+    <div class="box small" style="margin-top:auto;">
+      <b>This week's words:</b> relocate &middot; motivate &middot; achieve &middot; overcome &middot; immigrate &middot; belong<br>
+      <b>Grammar focus:</b> nouns, verbs, adjectives, pronouns (I / me / my), articles (a / an / the).
+      Next week is past tense, so today just recast past tense and don't teach it.
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEET 5: Learner Talk Cards (2 per page)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="half">
+    <div class="header-row">
+      <h1>Talk Card: My Journey</h1>
+      <span class="tag">Station 1</span>
+    </div>
+    <div class="pass"><b>You can say &ldquo;Pass.&rdquo;</b> &nbsp;Ready for a challenge? Turn the card over and cover the help sentences.</div>
+
+    <div class="q"><div class="q-text">1. Where are you from?</div><div class="q-frame">I'm from ________. &nbsp;/ &nbsp;I was born in ________.</div></div>
+    <div class="q"><div class="q-text">2. When did you come here?</div><div class="q-frame">I came here in ________. &nbsp;/ &nbsp;I immigrated ___ years ago.</div></div>
+    <div class="q"><div class="q-text">3. Why did you relocate?</div><div class="q-frame">My family relocated because ________. &nbsp;/ &nbsp;I came here to ________.</div></div>
+    <div class="q"><div class="q-text">4. What motivates you?</div><div class="q-frame">My ________ motivate(s) me. &nbsp;/ &nbsp;I want to achieve ________.</div></div>
+    <div class="q"><div class="q-text">5. What was difficult at first?</div><div class="q-frame">It was difficult to ________. &nbsp;Now I ________.</div></div>
+    <div class="q"><div class="q-text">6. Where do you feel you belong?</div><div class="q-frame">I feel that I belong ________ because ________.</div></div>
+
+    <p class="footer-note">Ask back! &ldquo;And you? Where are you from?&rdquo;</p>
+  </div>
+
+  <div class="half">
+    <div class="header-row">
+      <h1>Talk Card: My Journey</h1>
+      <span class="tag">Station 1</span>
+    </div>
+    <div class="pass"><b>You can say &ldquo;Pass.&rdquo;</b> &nbsp;Ready for a challenge? Turn the card over and cover the help sentences.</div>
+
+    <div class="q"><div class="q-text">1. Where are you from?</div><div class="q-frame">I'm from ________. &nbsp;/ &nbsp;I was born in ________.</div></div>
+    <div class="q"><div class="q-text">2. When did you come here?</div><div class="q-frame">I came here in ________. &nbsp;/ &nbsp;I immigrated ___ years ago.</div></div>
+    <div class="q"><div class="q-text">3. Why did you relocate?</div><div class="q-frame">My family relocated because ________. &nbsp;/ &nbsp;I came here to ________.</div></div>
+    <div class="q"><div class="q-text">4. What motivates you?</div><div class="q-frame">My ________ motivate(s) me. &nbsp;/ &nbsp;I want to achieve ________.</div></div>
+    <div class="q"><div class="q-text">5. What was difficult at first?</div><div class="q-frame">It was difficult to ________. &nbsp;Now I ________.</div></div>
+    <div class="q"><div class="q-text">6. Where do you feel you belong?</div><div class="q-frame">I feel that I belong ________ because ________.</div></div>
+
+    <p class="footer-note">Ask back! &ldquo;And you? Where are you from?&rdquo;</p>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEET 6: Great Sentence slips (8 per page)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="slips">
+    <div class="slip"><div class="slip-title">&#9733; Great Sentence!</div><div class="row">Name:<span class="fill"></span></div><div class="row">You said:<span class="fill"></span></div><div class="row"><span class="fill"></span></div><div class="row small">Try this (optional):<span class="fill"></span></div></div>
+    <div class="slip"><div class="slip-title">&#9733; Great Sentence!</div><div class="row">Name:<span class="fill"></span></div><div class="row">You said:<span class="fill"></span></div><div class="row"><span class="fill"></span></div><div class="row small">Try this (optional):<span class="fill"></span></div></div>
+    <div class="slip"><div class="slip-title">&#9733; Great Sentence!</div><div class="row">Name:<span class="fill"></span></div><div class="row">You said:<span class="fill"></span></div><div class="row"><span class="fill"></span></div><div class="row small">Try this (optional):<span class="fill"></span></div></div>
+    <div class="slip"><div class="slip-title">&#9733; Great Sentence!</div><div class="row">Name:<span class="fill"></span></div><div class="row">You said:<span class="fill"></span></div><div class="row"><span class="fill"></span></div><div class="row small">Try this (optional):<span class="fill"></span></div></div>
+    <div class="slip"><div class="slip-title">&#9733; Great Sentence!</div><div class="row">Name:<span class="fill"></span></div><div class="row">You said:<span class="fill"></span></div><div class="row"><span class="fill"></span></div><div class="row small">Try this (optional):<span class="fill"></span></div></div>
+    <div class="slip"><div class="slip-title">&#9733; Great Sentence!</div><div class="row">Name:<span class="fill"></span></div><div class="row">You said:<span class="fill"></span></div><div class="row"><span class="fill"></span></div><div class="row small">Try this (optional):<span class="fill"></span></div></div>
+    <div class="slip"><div class="slip-title">&#9733; Great Sentence!</div><div class="row">Name:<span class="fill"></span></div><div class="row">You said:<span class="fill"></span></div><div class="row"><span class="fill"></span></div><div class="row small">Try this (optional):<span class="fill"></span></div></div>
+    <div class="slip"><div class="slip-title">&#9733; Great Sentence!</div><div class="row">Name:<span class="fill"></span></div><div class="row">You said:<span class="fill"></span></div><div class="row"><span class="fill"></span></div><div class="row small">Try this (optional):<span class="fill"></span></div></div>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEET 7: Teacher table (FIX)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="half">
+    <div class="header-row">
+      <h1>Teacher Table: FIX</h1>
+      <span class="tag">Station 2 &middot; teacher copy</span>
+    </div>
+    <p class="subtitle">Pronouns + articles. This previews Thursday's &ldquo;Find the errors&rdquo; warm-up.</p>
+
+    <div class="section">
+      <h2>Routine (about 12 min)</h2>
+      <ul class="dots">
+        <li><b>I do (2 min):</b> Think aloud on #1. &ldquo;Whose family? Mine. Before a noun, I use <b>my</b>.&rdquo;</li>
+        <li><b>We do (5 min):</b> #2&ndash;#5 on mini whiteboards. Everyone shows the answer at the same time.</li>
+        <li><b>You do (5 min):</b> Each learner finds and fixes one sentence in <b>their own</b> writing or warm-up.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Practice sentences</h2>
+      <ul class="plain">
+        <li><b>1.</b> <u>Me</u> family relocated here in 2022. &rarr; <b>My</b></li>
+        <li><b>2.</b> <u>Him</u> is my teacher. &rarr; <b>He</b></li>
+        <li><b>3.</b> I came to <u>a</u> United States five years ago. &rarr; <b>the</b></li>
+        <li><b>4.</b> She has <u>a</u> apartment in Chelsea. &rarr; <b>an</b></li>
+        <li><b>5.</b> My children motivate <u>I</u>. &rarr; <b>me</b></li>
+        <li><b>6.</b> <u>Her</u> works in a hospital. &rarr; <b>She</b></li>
+        <li><b>7.</b> <u>An</u> job helps my family. &rarr; <b>A</b></li>
+        <li><b>8.</b> I want to achieve <u>a</u> my goal. &rarr; <b>(delete a)</b></li>
+      </ul>
+      <p class="small" style="margin-top:4px;">Write the sentences <b>without</b> the underlines and answers. #6&ndash;#8 are for fast groups.</p>
+    </div>
+
+    <p class="footer-note">Watch for: which learners still mix up he/she/her? Use Thursday's warm-up to check again.</p>
+  </div>
+
+  <div class="half">
+    <div class="header-row">
+      <h1>Help Card: Who? Which?</h1>
+      <span class="tag">Station 2</span>
+    </div>
+
+    <div class="section">
+      <h2>Pronouns: where is the word?</h2>
+      <table class="rotation">
+        <tr><th>Before the verb</th><th>After the verb</th><th>Before a noun</th></tr>
+        <tr><td><b>I</b> study.</td><td>Help <b>me</b>.</td><td><b>my</b> family</td></tr>
+        <tr><td><b>he</b> works</td><td>call <b>him</b></td><td><b>his</b> job</td></tr>
+        <tr><td><b>she</b> works</td><td>call <b>her</b></td><td><b>her</b> job</td></tr>
+        <tr><td><b>we</b> study</td><td>help <b>us</b></td><td><b>our</b> class</td></tr>
+        <tr><td><b>they</b> live</td><td>visit <b>them</b></td><td><b>their</b> home</td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Articles: a, an, or the?</h2>
+      <ul class="plain">
+        <li><b>a</b> + consonant sound &rarr; <i>a job, a city, a new home</i></li>
+        <li><b>an</b> + vowel sound (a, e, i, o, u) &rarr; <i>an immigrant, an apartment, an English class</i></li>
+        <li><b>the</b> = we know which one &rarr; <i>the teacher, the bus to school</i></li>
+        <li><b>the</b> + some country names &rarr; <i>the United States</i></li>
+        <li><b>No article</b> with <i>my / his / her</i> &rarr; <i><s>a my goal</s> &rarr; my goal</i></li>
+      </ul>
+    </div>
+
+    <p class="footer-note">Keep this card. Use it for Thursday's warm-up!</p>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEET 8: Sort word cards (cut apart; cardstock recommended)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="full">
+    <div class="header-row">
+      <h1>SORT: Word Cards</h1>
+      <span class="tag">Station 3 &middot; cut apart &middot; 1 set per pair</span>
+    </div>
+    <div class="word-grid">
+      <div class="word-card">relocate</div><div class="word-card">family</div><div class="word-card">proud</div><div class="word-card">I</div><div class="word-card">a</div><div class="word-card">motivate</div>
+      <div class="word-card">city</div><div class="word-card">tired</div><div class="word-card">she</div><div class="word-card">an</div><div class="word-card">achieve</div><div class="word-card">goal</div>
+      <div class="word-card">strong</div><div class="word-card">they</div><div class="word-card">the</div><div class="word-card">overcome</div><div class="word-card">country</div><div class="word-card">new</div>
+      <div class="word-card">we</div><div class="word-card">immigrate</div><div class="word-card">job</div><div class="word-card">difficult</div><div class="word-card">me</div><div class="word-card">belong</div>
+      <div class="word-card">neighbor</div><div class="word-card">happy</div><div class="word-card">him</div><div class="word-card">speak</div><div class="word-card">children</div><div class="word-card">brave</div>
+      <div class="word-card">learn</div><div class="word-card">teacher</div><div class="word-card own">write your own word</div><div class="word-card own">write your own word</div><div class="word-card own">write your own word</div><div class="word-card own">write your own word</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEET 9: Sort header cards, challenge cards, check card
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="full">
+    <div class="header-row">
+      <h1>SORT: Big Cards + Challenge</h1>
+      <span class="tag">Station 3 &middot; cut apart</span>
+    </div>
+    <div class="pos-headers">
+      <div class="pos-card"><div class="pos-sym">&#9632;</div><div class="pos-name">Noun</div><div class="pos-abbr">N</div><div class="pos-job">a person, place, thing, or idea</div><div class="pos-ex">family, city, goal</div></div>
+      <div class="pos-card"><div class="pos-sym">&#9650;</div><div class="pos-name">Verb</div><div class="pos-abbr">V</div><div class="pos-job">an action or a state</div><div class="pos-ex">relocate, speak, belong</div></div>
+      <div class="pos-card"><div class="pos-sym">&#9679;</div><div class="pos-name">Adjective</div><div class="pos-abbr">ADJ</div><div class="pos-job">describes a noun</div><div class="pos-ex">proud, new, strong</div></div>
+      <div class="pos-card"><div class="pos-sym">&#9670;</div><div class="pos-name">Pronoun</div><div class="pos-abbr">PRON</div><div class="pos-job">takes the place of a noun</div><div class="pos-ex">I, she, they, me, my</div></div>
+      <div class="pos-card"><div class="pos-sym">&#9733;</div><div class="pos-name">Article</div><div class="pos-abbr">ART</div><div class="pos-job">comes before a noun</div><div class="pos-ex">a, an, the</div></div>
+    </div>
+
+    <h2>&#9733; Challenge: same family, new job</h2>
+    <p class="small" style="margin-bottom:6px;">Put each card next to its family word. What is the new job? Sort it!</p>
+    <div class="challenge-row">
+      <div class="word-card">motivation<span>(motivate)</span></div>
+      <div class="word-card">achievement<span>(achieve)</span></div>
+      <div class="word-card">immigrant<span>(immigrate)</span></div>
+      <div class="word-card">strength<span>(strong)</span></div>
+      <div class="word-card">pride<span>(proud)</span></div>
+      <div class="word-card">happiness<span>(happy)</span></div>
+    </div>
+
+    <div class="box small" style="margin-top:auto;">
+      <b>Check Card: Step 2 + Step 3 strips.</b> &nbsp;Try first. Then check!<br>
+      <b>2a.</b> brave = ADJ, immigrant = N &nbsp;&middot;&nbsp;
+      <b>2b.</b> children = N, motivate = V &nbsp;&middot;&nbsp;
+      <b>3a.</b> We = PRON, learn = V, new = ADJ, words = N<br>
+      <b>3b.</b> An = ART, immigrant = N, needs = V, a = ART, good = ADJ, job = N &nbsp;&middot;&nbsp;
+      <b>3c.</b> Strong = ADJ, families = N, overcome = V, difficult = ADJ, problems = N<br>
+      <b>Challenge:</b> all 6 cards are nouns (N).
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEET 10: Sort sentence strips
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="full">
+    <div class="header-row">
+      <h1>SORT: Sentence Strips</h1>
+      <span class="tag">Station 3 &middot; cut on the dashed lines</span>
+    </div>
+    <p class="subtitle">Write the job in the box under each word: N &middot; V &middot; ADJ &middot; PRON &middot; ART. Use a pencil so the next group can use the strips too, or put them in a sheet protector.</p>
+
+    <div class="strip"><div class="strip-step">STEP 1<br>Example<br>Read it.</div><div class="strip-words">
+      <div class="w"><b>My</b><i>PRON</i></div><div class="w"><b>strong</b><i>ADJ</i></div><div class="w"><b>family</b><i>N</i></div><div class="w"><b>overcame</b><i>V</i></div><div class="w"><b>a</b><i>ART</i></div><div class="w"><b>difficult</b><i>ADJ</i></div><div class="w"><b>year.</b><i>N</i></div>
+    </div></div>
+
+    <div class="strip"><div class="strip-step">STEP 2a<br>Finish it.</div><div class="strip-words">
+      <div class="w"><b>She</b><i>PRON</i></div><div class="w"><b>is</b><i>V</i></div><div class="w"><b>a</b><i>ART</i></div><div class="w"><b>brave</b><i></i></div><div class="w"><b>immigrant.</b><i></i></div>
+    </div></div>
+
+    <div class="strip"><div class="strip-step">STEP 2b<br>Finish it.</div><div class="strip-words">
+      <div class="w"><b>The</b><i>ART</i></div><div class="w"><b>children</b><i></i></div><div class="w"><b>motivate</b><i></i></div><div class="w"><b>me.</b><i>PRON</i></div>
+    </div></div>
+
+    <div class="strip"><div class="strip-step">STEP 3a<br>Do it alone.</div><div class="strip-words">
+      <div class="w"><b>We</b><i></i></div><div class="w"><b>learn</b><i></i></div><div class="w"><b>new</b><i></i></div><div class="w"><b>words.</b><i></i></div>
+    </div></div>
+
+    <div class="strip"><div class="strip-step">STEP 3b<br>Do it alone.</div><div class="strip-words">
+      <div class="w"><b>An</b><i></i></div><div class="w"><b>immigrant</b><i></i></div><div class="w"><b>needs</b><i></i></div><div class="w"><b>a</b><i></i></div><div class="w"><b>good</b><i></i></div><div class="w"><b>job.</b><i></i></div>
+    </div></div>
+
+    <div class="strip"><div class="strip-step">STEP 3c<br>Do it alone.</div><div class="strip-words">
+      <div class="w"><b>Strong</b><i></i></div><div class="w"><b>families</b><i></i></div><div class="w"><b>overcome</b><i></i></div><div class="w"><b>difficult</b><i></i></div><div class="w"><b>problems.</b><i></i></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEETS 11-13: WRITE tiers A / B / C (2 copies per page)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="half">
+    <div class="header-row"><h1>WRITE: My Journey &middot; A</h1><span class="tag">Station 4</span></div>
+    <p class="subtitle">Fill in the blanks about you. Use the word box for help.</p>
+    <div class="wordbox">happy &middot; proud &middot; tired &middot; strong &middot; my children &middot; my family &middot; a good job</div>
+    <div class="frame">
+      1. My name is <span class="blank"></span>.<br>
+      2. I am from <span class="blank"></span>.<br>
+      3. I came to <span class="blank"></span> in <span class="blank short"></span>.<br>
+      4. <span class="blank long"></span> motivate(s) me.<br>
+      5. I want to achieve <span class="blank long"></span>.<br>
+      6. In this class, I feel <span class="blank"></span>.
+    </div>
+    <p class="small" style="margin-bottom:4px;"><b>Bonus:</b> Write 1 more sentence about you.</p>
+    <div class="line"></div>
+    <div class="checklist" style="margin-top:12px;"><b>Check:</b> <span>&#9744; a noun (N)</span><span>&#9744; a verb (V)</span><span>&#9744; an adjective (ADJ)</span><br><span>&#9744; I / me / my correct</span><span>&#9744; a / an / the</span></div>
+  </div>
+  <div class="half">
+    <div class="header-row"><h1>WRITE: My Journey &middot; A</h1><span class="tag">Station 4</span></div>
+    <p class="subtitle">Fill in the blanks about you. Use the word box for help.</p>
+    <div class="wordbox">happy &middot; proud &middot; tired &middot; strong &middot; my children &middot; my family &middot; a good job</div>
+    <div class="frame">
+      1. My name is <span class="blank"></span>.<br>
+      2. I am from <span class="blank"></span>.<br>
+      3. I came to <span class="blank"></span> in <span class="blank short"></span>.<br>
+      4. <span class="blank long"></span> motivate(s) me.<br>
+      5. I want to achieve <span class="blank long"></span>.<br>
+      6. In this class, I feel <span class="blank"></span>.
+    </div>
+    <p class="small" style="margin-bottom:4px;"><b>Bonus:</b> Write 1 more sentence about you.</p>
+    <div class="line"></div>
+    <div class="checklist" style="margin-top:12px;"><b>Check:</b> <span>&#9744; a noun (N)</span><span>&#9744; a verb (V)</span><span>&#9744; an adjective (ADJ)</span><br><span>&#9744; I / me / my correct</span><span>&#9744; a / an / the</span></div>
+  </div>
+</div>
+
+<div class="sheet">
+  <div class="half">
+    <div class="header-row"><h1>WRITE: My Journey &middot; B</h1><span class="tag">Station 4</span></div>
+    <p class="subtitle">Finish each sentence. Write about you.</p>
+    <div class="wordbox">relocate &middot; motivate &middot; achieve &middot; overcome &middot; immigrate &middot; belong</div>
+    <p class="frame" style="margin-bottom:2px;">1. I am from</p><div class="line"></div>
+    <p class="frame" style="margin:6px 0 2px;">2. My family relocated because</p><div class="line"></div>
+    <p class="frame" style="margin:6px 0 2px;">3. ________ motivates me to</p><div class="line"></div>
+    <p class="frame" style="margin:6px 0 2px;">4. At first, it was difficult to</p><div class="line"></div>
+    <p class="frame" style="margin:6px 0 2px;">5. I feel that I belong</p><div class="line"></div>
+    <div class="checklist" style="margin-top:14px;"><b>Check:</b> <span>&#9744; a noun (N)</span><span>&#9744; a verb (V)</span><span>&#9744; an adjective (ADJ)</span><br><span>&#9744; I / me / my correct</span><span>&#9744; a / an / the</span></div>
+  </div>
+  <div class="half">
+    <div class="header-row"><h1>WRITE: My Journey &middot; B</h1><span class="tag">Station 4</span></div>
+    <p class="subtitle">Finish each sentence. Write about you.</p>
+    <div class="wordbox">relocate &middot; motivate &middot; achieve &middot; overcome &middot; immigrate &middot; belong</div>
+    <p class="frame" style="margin-bottom:2px;">1. I am from</p><div class="line"></div>
+    <p class="frame" style="margin:6px 0 2px;">2. My family relocated because</p><div class="line"></div>
+    <p class="frame" style="margin:6px 0 2px;">3. ________ motivates me to</p><div class="line"></div>
+    <p class="frame" style="margin:6px 0 2px;">4. At first, it was difficult to</p><div class="line"></div>
+    <p class="frame" style="margin:6px 0 2px;">5. I feel that I belong</p><div class="line"></div>
+    <div class="checklist" style="margin-top:14px;"><b>Check:</b> <span>&#9744; a noun (N)</span><span>&#9744; a verb (V)</span><span>&#9744; an adjective (ADJ)</span><br><span>&#9744; I / me / my correct</span><span>&#9744; a / an / the</span></div>
+  </div>
+</div>
+
+<div class="sheet">
+  <div class="half">
+    <div class="header-row"><h1>WRITE: My Journey &middot; C</h1><span class="tag">Station 4</span></div>
+    <p class="subtitle">Write 5 or more sentences about your journey. Use at least 3 words from the box. Underline them.</p>
+    <div class="wordbox">relocate &middot; motivate &middot; achieve &middot; overcome &middot; immigrate &middot; belong</div>
+    <p class="small" style="margin-bottom:6px;"><b>Ideas:</b> Where are you from? Why did you come? What was hard? How did you overcome it? What is your goal? Where do you belong?</p>
+    <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="checklist" style="margin-top:14px;"><b>Check:</b> <span>&#9744; 3 journey words</span><span>&#9744; nouns, verbs, adjectives</span><br><span>&#9744; I / me / my correct</span><span>&#9744; a / an / the</span></div>
+  </div>
+  <div class="half">
+    <div class="header-row"><h1>WRITE: My Journey &middot; C</h1><span class="tag">Station 4</span></div>
+    <p class="subtitle">Write 5 or more sentences about your journey. Use at least 3 words from the box. Underline them.</p>
+    <div class="wordbox">relocate &middot; motivate &middot; achieve &middot; overcome &middot; immigrate &middot; belong</div>
+    <p class="small" style="margin-bottom:6px;"><b>Ideas:</b> Where are you from? Why did you come? What was hard? How did you overcome it? What is your goal? Where do you belong?</p>
+    <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+    <div class="checklist" style="margin-top:14px;"><b>Check:</b> <span>&#9744; 3 journey words</span><span>&#9744; nouns, verbs, adjectives</span><br><span>&#9744; I / me / my correct</span><span>&#9744; a / an / the</span></div>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEET 14: PLAY choice board (2 per page)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="half">
+    <div class="header-row"><h1>PLAY: Choice Board</h1><span class="tag">Station 5</span></div>
+    <p class="subtitle">Class Companion &rarr; Week 3. Do 2 activities. 1 must be new for you. Check the box when you finish.</p>
+    <table class="rotation">
+      <tr><th style="width:12%;">Done</th><th style="text-align:left;">Activity</th><th style="width:22%;">Score</th></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Personal Journey Verbs: Flash Cards</td><td></td></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Personal Journey Verbs: Matching</td><td></td></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Personal Journey Verbs: Fill in the Blank</td><td></td></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Word Sort: Verbs</td><td></td></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Action or Description?</td><td></td></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Parts of Speech Discovery Game</td><td></td></tr>
+    </table>
+    <div class="section" style="margin-top:14px;">
+      <p style="font-size:14px; margin-bottom:4px;"><b>One new word I learned:</b></p>
+      <div class="line"></div>
+    </div>
+    <p class="footer-note">Every activity earns points and keeps your streak going!</p>
+  </div>
+  <div class="half">
+    <div class="header-row"><h1>PLAY: Choice Board</h1><span class="tag">Station 5</span></div>
+    <p class="subtitle">Class Companion &rarr; Week 3. Do 2 activities. 1 must be new for you. Check the box when you finish.</p>
+    <table class="rotation">
+      <tr><th style="width:12%;">Done</th><th style="text-align:left;">Activity</th><th style="width:22%;">Score</th></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Personal Journey Verbs: Flash Cards</td><td></td></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Personal Journey Verbs: Matching</td><td></td></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Personal Journey Verbs: Fill in the Blank</td><td></td></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Word Sort: Verbs</td><td></td></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Action or Description?</td><td></td></tr>
+      <tr><td>&#9744;</td><td style="text-align:left;">Parts of Speech Discovery Game</td><td></td></tr>
+    </table>
+    <div class="section" style="margin-top:14px;">
+      <p style="font-size:14px; margin-bottom:4px;"><b>One new word I learned:</b></p>
+      <div class="line"></div>
+    </div>
+    <p class="footer-note">Every activity earns points and keeps your streak going!</p>
+  </div>
+</div>
+
+<!-- ======================================================
+     SHEET 15: Exit tickets (8 per page)
+     ====================================================== -->
+
+<div class="sheet">
+  <div class="ticket-grid">
+    <div class="ticket"><h2>Exit Ticket &middot; 9/29</h2><p class="small">Write 1 sentence about your journey. Write <b>N</b>, <b>V</b>, <b>ADJ</b> under the words.</p><div class="line"></div><div class="line"></div><p class="small" style="margin-top:auto;">Name: ______________________</p></div>
+    <div class="ticket"><h2>Exit Ticket &middot; 9/29</h2><p class="small">Write 1 sentence about your journey. Write <b>N</b>, <b>V</b>, <b>ADJ</b> under the words.</p><div class="line"></div><div class="line"></div><p class="small" style="margin-top:auto;">Name: ______________________</p></div>
+    <div class="ticket"><h2>Exit Ticket &middot; 9/29</h2><p class="small">Write 1 sentence about your journey. Write <b>N</b>, <b>V</b>, <b>ADJ</b> under the words.</p><div class="line"></div><div class="line"></div><p class="small" style="margin-top:auto;">Name: ______________________</p></div>
+    <div class="ticket"><h2>Exit Ticket &middot; 9/29</h2><p class="small">Write 1 sentence about your journey. Write <b>N</b>, <b>V</b>, <b>ADJ</b> under the words.</p><div class="line"></div><div class="line"></div><p class="small" style="margin-top:auto;">Name: ______________________</p></div>
+    <div class="ticket"><h2>Exit Ticket &middot; 9/29</h2><p class="small">Write 1 sentence about your journey. Write <b>N</b>, <b>V</b>, <b>ADJ</b> under the words.</p><div class="line"></div><div class="line"></div><p class="small" style="margin-top:auto;">Name: ______________________</p></div>
+    <div class="ticket"><h2>Exit Ticket &middot; 9/29</h2><p class="small">Write 1 sentence about your journey. Write <b>N</b>, <b>V</b>, <b>ADJ</b> under the words.</p><div class="line"></div><div class="line"></div><p class="small" style="margin-top:auto;">Name: ______________________</p></div>
+    <div class="ticket"><h2>Exit Ticket &middot; 9/29</h2><p class="small">Write 1 sentence about your journey. Write <b>N</b>, <b>V</b>, <b>ADJ</b> under the words.</p><div class="line"></div><div class="line"></div><p class="small" style="margin-top:auto;">Name: ______________________</p></div>
+    <div class="ticket"><h2>Exit Ticket &middot; 9/29</h2><p class="small">Write 1 sentence about your journey. Write <b>N</b>, <b>V</b>, <b>ADJ</b> under the words.</p><div class="line"></div><div class="line"></div><p class="small" style="margin-top:auto;">Name: ______________________</p></div>
+  </div>
+</div>
+
+</body>
+</html>

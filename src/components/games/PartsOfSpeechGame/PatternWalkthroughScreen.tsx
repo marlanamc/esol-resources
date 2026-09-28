@@ -4,11 +4,12 @@ import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft, ArrowRight, Play, Sparkles, AlertCircle,
-  CheckCircle2, XCircle, ArrowDown, Info,
+  CheckCircle2, XCircle, Info,
 } from 'lucide-react';
 import Image from 'next/image';
 import type { POSGroup, POSRoundMode, PartOfSpeech } from '@/types/parts-of-speech';
 import { POS_COLORS, POS_LABELS } from '@/types/parts-of-speech';
+import { findStandaloneHighlightMatch } from './exercises/highlight-match';
 import { DiagramSentence } from './DiagramSentence';
 import { SpeakButton } from './SpeakButton';
 
@@ -74,39 +75,11 @@ interface PatternWalkthroughScreenProps {
   onBack: () => void;
 }
 
-// Tint every word in a sentence by looking it up in the group's patterns/photo gallery.
-function tintSentence(sentence: string, group: POSGroup): React.ReactNode[] {
-  const lookup = new Map<string, PartOfSpeech>();
-  for (const p of group.patterns) {
-    const w = p.word.trim().toLowerCase();
-    if (w) lookup.set(w, p.partOfSpeech);
-    for (const ex of p.examples) {
-      const hw = ex.highlightWord?.trim().toLowerCase();
-      if (hw) lookup.set(hw, p.partOfSpeech);
-      const bl = ex.blank?.trim().toLowerCase();
-      if (bl) lookup.set(bl, p.partOfSpeech);
-    }
-  }
-  for (const entry of group.photoGallery ?? []) {
-    lookup.set(entry.word.trim().toLowerCase(), entry.partOfSpeech);
-  }
-
-  const parts = sentence.split(/(\s+)/);
-  return parts.map((segment, i) => {
-    if (!segment.trim()) return segment;
-    const key = segment.replace(/[.,!?;:"'()]/g, '').toLowerCase();
-    const pos = lookup.get(key);
-    if (!pos) return <span key={i}>{segment}</span>;
-    return (
-      <span
-        key={i}
-        className={`inline-block rounded-md border px-1 mx-[1px] font-bold shadow-sm ${POS_COLORS[pos]}`}
-        style={{ textShadow: 'none' }}
-      >
-        {segment}
-      </span>
-    );
-  });
+// Highlight only this example's target, rather than every dictionary match.
+function tintSentence(sentence: string, target: string): React.ReactNode {
+  const match = findStandaloneHighlightMatch(sentence, target);
+  if (!match) return sentence;
+  return <>{match.before}<mark className="rounded bg-accent/30 px-1 font-bold text-text">{match.match}</mark>{match.after}</>;
 }
 
 export function PatternWalkthroughScreen({
@@ -126,7 +99,7 @@ export function PatternWalkthroughScreen({
     if (!rawHeroSentence) return '';
     const firstClause = rawHeroSentence.split(/\s*\/\s*/)[0] ?? rawHeroSentence;
     const stripped = firstClause.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
-    return stripped || firstClause.trim();
+    return stripped.replace(/\s+([.,!?;:])/g, '$1') || firstClause.trim();
   }, [rawHeroSentence]);
 
   const checkpointQuestion = useMemo(
@@ -198,7 +171,7 @@ export function PatternWalkthroughScreen({
               className="text-base sm:text-xl font-semibold leading-snug flex flex-wrap items-center gap-1.5"
               style={{ color: '#ffffff' }}
             >
-              <span>{tintSentence(heroSentence, group)}</span>
+              <span>{tintSentence(heroSentence, group.patterns[0]?.examples[0]?.highlightWord ?? group.patterns[0]?.word ?? '')}</span>
               <SpeakButton text={heroSentence} size="sm" />
             </div>
           )}
@@ -259,7 +232,7 @@ export function PatternWalkthroughScreen({
                   </div>
                   {sentence && (
                     <p className="text-sm text-text leading-relaxed">
-                      {tintSentence(sentence, group)}
+                      {tintSentence(sentence, example?.blank ?? example?.highlightWord ?? pattern.word)}
                     </p>
                   )}
                   {pattern.memoryTrick && (
@@ -308,20 +281,10 @@ export function PatternWalkthroughScreen({
                 className="rounded-2xl overflow-hidden border border-border shadow-sm"
               >
                 <div className="flex items-start gap-3 px-4 py-3 bg-error/5 border-b border-error/15">
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-error text-[#ffffff] flex items-center justify-center text-xs font-bold mt-0.5">✗</span>
                   <p className="text-sm text-error/90 font-medium">{p.commonError}</p>
                 </div>
-                <div className="flex justify-center py-1 bg-bg-light dark:bg-white/5">
-                  <ArrowDown size={14} className="text-text-muted" />
-                </div>
-                <div className="flex items-start gap-3 px-4 py-3 bg-secondary/5">
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-secondary text-[#ffffff] flex items-center justify-center text-xs font-bold mt-0.5">✓</span>
-                  <p className="text-sm text-secondary font-semibold">
-                    <span className={`inline-flex px-2 py-0.5 rounded-md text-xs font-bold border mr-2 ${POS_COLORS[p.partOfSpeech]}`}>
-                      {POS_LABELS[p.partOfSpeech]}
-                    </span>
-                    {p.word}
-                  </p>
+                <div className="px-4 py-3 bg-bg-light dark:bg-white/5">
+                  <p className="text-sm leading-relaxed text-text">{p.errorExplanation ?? `Look at how “${p.word}” is used in the sentence.`}</p>
                 </div>
               </div>
             ))}
@@ -381,13 +344,6 @@ export function PatternWalkthroughScreen({
 
       {/* ── Sticky CTA ────────────────────────────────────────────── */}
       <div className="fixed bottom-0 left-0 right-0 z-40 flex items-center gap-3 px-4 py-3 bg-bg/95 backdrop-blur-md border-t border-border pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-        <button
-          type="button"
-          onClick={onBack}
-          className="hidden sm:inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-border text-text-muted hover:text-text transition-colors font-semibold min-h-[48px]"
-        >
-          <ArrowLeft size={18} /> Back
-        </button>
         <motion.button
           type="button"
           onClick={onStartChallenge}

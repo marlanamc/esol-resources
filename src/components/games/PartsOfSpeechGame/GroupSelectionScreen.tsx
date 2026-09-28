@@ -144,7 +144,7 @@ export function GroupSelectionScreen({
         <div
           className="mt-8 mx-auto max-w-md"
         >
-          <p className="text-xs font-semibold text-text-muted mb-4 uppercase tracking-wide">For each level:</p>
+          <p className="text-xs font-semibold text-text-muted mb-4 uppercase tracking-wide">Up to five rounds per level:</p>
           <div className="grid grid-cols-5 gap-3 text-center">
             <div className="flex flex-col items-center">
               <div className="text-2xl mb-2">👀</div>
