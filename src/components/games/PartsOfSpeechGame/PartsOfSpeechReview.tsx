@@ -123,7 +123,7 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
       <div className={styles.cueRow}>{current.categories.map(category => <ReviewCategoryCue key={category} category={category} />)}</div>
       <p className="mt-2 text-text-muted">{reviewCount ? 'Two examples, six focus questions, and two familiar review questions.' : 'Two examples, then eight questions.'}</p>
       {progress.lessons[id] && <p className="mt-3 text-sm font-semibold">Completion saved. Practice again anytime.</p>}
-      <button className={`${secondary} mt-4 w-full sm:w-auto`} disabled={hasUnsaved} onClick={() => start(id)}>{progress.lessons[id] ? 'Practice' : 'Start'} Week {week}</button>
+      <button className={`${secondary} mt-4 w-full sm:w-auto`} disabled={hasUnsaved} onClick={() => start(id)}>Start practice</button>
     </section>;
   }
 
@@ -148,35 +148,35 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
         </div>
         {assignedLesson && <button className="mt-6 min-h-12 font-semibold underline underline-offset-4" onClick={() => setAssignedLesson(null)}>See all lessons</button>}
         {!assignedLesson && <>
-          <details className="mt-6">
-            <summary className="min-h-12 cursor-pointer py-3 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">Coming up in October</summary>
+          <section className="mt-8">
+            <h2 className="py-3 font-display text-2xl">Coming up in October</h2>
             <p className="text-sm leading-relaxed text-text-muted">A first pass through sentence roles and describing words. Your teacher can slow down or revisit a lesson.</p>
             <div className="mt-4">{WEEKLY_REVIEW_LESSONS.filter(lesson => lesson.week > 4).map(weekSection)}</div>
-          </details>
-          <details className="mt-4">
-            <summary className="min-h-12 cursor-pointer py-3 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">Quick foundation check-in</summary>
+          </section>
+          <section className="mt-8">
+            <h2 className="py-3 font-display text-2xl">Quick foundation check-in</h2>
             <p className="mb-4 text-sm leading-relaxed text-text-muted">Revisit basic pronouns and a, an, the. This helps you and your teacher decide what to practice. It does not unlock or block other lessons.</p>
             {lessonButton('foundation-check-in')}
-          </details>
-          <details className="mt-4">
-            <summary className="min-h-12 cursor-pointer py-3 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">Explore the five phases</summary>
+          </section>
+          <section className="mt-8">
+            <h2 className="py-3 font-display text-2xl">Explore the five phases</h2>
             <p className="mt-2 text-sm leading-relaxed text-text-muted">Choose one lesson with your teacher. You can move between phases and revisit familiar topics. Check-ins help you notice what needs practice; no passing score is required.</p>
-            {REVIEW_PHASES.map(phase => <details key={phase.title} className="mt-4 border-t border-border pt-2">
-              <summary className="min-h-12 cursor-pointer py-3 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">{phase.title}</summary>
+            {REVIEW_PHASES.map(phase => <section key={phase.title} className="mt-4 border-t border-border pt-2">
+              <h3 className="py-3 text-lg font-semibold">{phase.title}</h3>
               <p className="mb-4 text-sm leading-relaxed text-text-muted">{phase.description}</p>
               <ul className="space-y-3 pb-4">{phase.core.map(id => <li key={id}>{lessonButton(id)}</li>)}</ul>
               <p className="mb-2 text-sm font-semibold">Check-in · Revisit together</p>
               {lessonButton(phase.checkIn)}
-              {phase.extra.length > 0 && <details className="my-4">
-                <summary className="min-h-12 cursor-pointer py-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">More detail for later</summary>
+              {phase.extra.length > 0 && <section className="my-4">
+                <h4 className="py-3 text-sm font-semibold">More detail for later</h4>
                 <ul className="space-y-3">{phase.extra.map(id => <li key={id}>{lessonButton(id)}</li>)}</ul>
-              </details>}
-            </details>)}
+              </section>}
+            </section>)}
             <div className="mt-6 border-t border-border pt-4">
               <button className="min-h-12 text-sm font-semibold underline underline-offset-4 disabled:opacity-60" disabled={hasUnsaved} onClick={onLibrary}>Original practice library</button>
               <p className="text-sm text-text-muted">The earlier activities and their saved progress.</p>
             </div>
-          </details>
+          </section>
         </>}
       </main> : stage === 'bridge' ? <main>
         <p className="mb-3 text-sm font-semibold text-text-muted">From word types to sentence roles</p>
