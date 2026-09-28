@@ -41,10 +41,20 @@ describe('Short Parts of Speech review', () => {
     const unofferedWord = attempt(); unofferedWord.answers[3].answer = 'run';
     expect(() => scoreReviewAttempt(unofferedWord)).toThrow();
   });
+  it('mixes question types in every lesson a student can open', () => {
+    for (const topic of REVIEW_TOPICS) for (const id of [...topic.core, topic.check, ...topic.extra]) {
+      const kinds = new Set(REVIEW_LESSONS[id].questions.map(q => q.kind ?? 'label'));
+      expect(kinds.size, id).toBeGreaterThanOrEqual(2);
+      expect(kinds.has('label'), id).toBe(true);
+    }
+  });
   it('authors find and choose questions so each has one clear answer', () => {
     for (const lesson of Object.values(REVIEW_LESSONS)) {
       for (const q of lesson.questions) {
-        if (q.kind === 'find') expect(q.target).not.toMatch(/\s/);
+        if (q.kind === 'find') {
+          expect(q.target).not.toMatch(/\s/);
+          expect(reviewWords(q).filter(word => word.replace(/[.,!?]/g, '').toLowerCase() === q.target.toLowerCase())).toHaveLength(1);
+        }
         if (q.kind === 'choose') {
           expect(q.options).toContain(q.target);
           expect(new Set(q.options).size).toBe(q.options!.length);
