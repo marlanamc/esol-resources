@@ -1,5 +1,6 @@
 "use client";
 
+import { FlashcardExample } from "./FlashcardExample";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
@@ -271,13 +272,13 @@ export default function FlashcardCarousel({
             {/* Top Bar - Progress & Settings (+ Navigation on Desktop) */}
             <div className="flex-shrink-0 bg-[var(--color-surface-elevated)] border border-[var(--color-border-subtle)] rounded-2xl px-4 py-3 mx-2 mt-2 md:mx-0 md:mt-0 shadow-[var(--shadow-sm)]">
                 {/* Mobile: Progress row */}
-                <div className="flex items-center justify-between md:hidden">
-                    <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between gap-2 md:hidden">
+                    <div className="flex min-w-0 flex-1 items-center gap-2">
                         <ContextualBackButton  className="shrink-0" />
                         <div className="text-sm font-bold text-[var(--color-text-muted)]">
                             {studiedCards.size} / {total} studied
                         </div>
-                        <div className="h-2 w-24 bg-[var(--color-bg-light)] rounded-full overflow-hidden">
+                        <div className="h-2 min-w-4 w-24 shrink bg-[var(--color-bg-light)] rounded-full overflow-hidden">
                             <div
                                 className="h-full bg-[#8DAA91] transition-[width] duration-300"
                                 style={{ width: `${(studiedCards.size / total) * 100}%` }}
@@ -286,7 +287,7 @@ export default function FlashcardCarousel({
                     </div>
                     <button
                         onClick={() => setShowSettings(!showSettings)}
-                        className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors"
+                        className="shrink-0 p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors"
                         aria-label="Settings"
                     >
                         <SettingsIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
@@ -408,6 +409,7 @@ export default function FlashcardCarousel({
                         {/* Front Face */}
                         <div className="absolute inset-0 w-full h-full backface-hidden">
                             <CardFace
+                                term={currentCard.term}
                                 content={currentFront}
                                 variant="front"
                                 theme="light"
@@ -419,6 +421,7 @@ export default function FlashcardCarousel({
                         {/* Back Face */}
                         <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
                             <CardFace
+                                term={currentCard.term}
                                 content={currentBack}
                                 variant="back"
                                 theme="colored"
@@ -477,12 +480,14 @@ export default function FlashcardCarousel({
 // Subcomponent for Card Face to reduce duplication
 function CardFace({
     content,
+    term,
     variant,
     theme,
     onPlayTerm,
     imageUrl,
 }: {
     content: { type: string; text: string; example?: string | null };
+    term: string;
     variant: "front" | "back";
     theme: "light" | "colored";
     onPlayTerm?: (term: string) => void;
@@ -508,7 +513,7 @@ function CardFace({
 
     return (
         <div
-            className={`h-full w-full rounded-3xl flex flex-col items-center justify-center p-6 sm:p-10 md:p-12 transition-[opacity,transform] ${containerClasses}`}
+            className={`h-full w-full rounded-3xl flex flex-col items-center justify-center px-6 pt-20 pb-12 sm:px-10 md:px-12 transition-[opacity,transform] ${containerClasses}`}
             style={containerStyle}
         >
             {/* Top Label + optional audio button */}
@@ -532,32 +537,32 @@ function CardFace({
             </div>
 
             {/* Content */}
-            <div className="w-full max-w-3xl flex flex-col gap-4 sm:gap-6 items-center text-center">
+            <div tabIndex={0} role="region" aria-label={`${content.type} card content`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 w-full max-w-3xl max-h-full min-h-0 overflow-y-auto overscroll-contain break-words flex flex-col gap-4 sm:gap-6 items-center text-center">
                 {content.type === "Term" && imageUrl && (
                     <VocabWordImage src={imageUrl} alt={content.text} variant="square" />
                 )}
                 {hasBilingualDefinition ? (
                     <>
-                        <h3 className="font-display font-bold leading-tight tracking-[0.5px] text-[var(--color-text)] text-xl sm:text-3xl md:text-4xl">
+                        <h3 className="flashcard-definition m-0 font-display font-medium leading-tight tracking-[0.5px] text-[var(--color-text)] text-xl sm:text-3xl md:text-4xl">
                             {bilingualDefinition.english}
                         </h3>
-                        <div className="w-full max-w-2xl pt-4 sm:pt-5 border-t border-[var(--color-border-subtle)] text-left mt-2 sm:mt-4">
-                            <div className="flex items-start justify-between gap-4 mb-1.5">
+                        <div className="w-full max-w-2xl shrink-0 pt-6 border-t border-[var(--color-border-subtle)] text-left mt-4 sm:mt-6">
+                            <div className="flex flex-col sm:flex-row items-start justify-between gap-6 mb-0">
                                 <div>
                                     <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)] mb-1.5">
                                         Example
                                     </p>
                                     {content.example && (
-                                        <p className="text-[0.95rem] sm:text-base md:text-lg italic leading-relaxed text-[var(--color-text-muted)]/80">
-                                            &ldquo;{content.example}&rdquo;
+                                        <p className="flashcard-example m-0 text-[1.0625rem] sm:text-lg leading-relaxed text-[var(--color-text)]">
+                                            &ldquo;<FlashcardExample example={content.example} term={term} />&rdquo;
                                         </p>
                                     )}
                                 </div>
-                                <div lang="es" className="text-right shrink-0">
+                                <div lang="es" className="min-w-0 sm:text-right">
                                     <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)] mb-1.5">
                                         Español
                                     </p>
-                                    <p className="text-[0.95rem] sm:text-base md:text-lg text-[var(--color-text-muted)]/80">
+                                    <p className="flashcard-example m-0 text-[1.0625rem] sm:text-lg leading-relaxed text-[var(--color-text)]">
                                         {bilingualDefinition.spanish}
                                     </p>
                                 </div>
@@ -566,16 +571,16 @@ function CardFace({
                     </>
                 ) : (
                     <>
-                        <h3 className={`font-display font-bold leading-tight tracking-[0.5px] text-[var(--color-text)] ${isDefinitionCard ? "text-xl sm:text-3xl md:text-4xl" : "text-4xl sm:text-5xl md:text-6xl"}`}>
+                        <h3 className={`${isDefinitionCard ? "flashcard-definition font-medium" : "font-bold"} m-0 font-display leading-tight tracking-[0.5px] text-[var(--color-text)] ${isDefinitionCard ? "text-xl sm:text-3xl md:text-4xl" : "text-4xl sm:text-5xl md:text-6xl"}`}>
                             {content.text}
                         </h3>
                         {content.example && (
-                            <div className="w-full max-w-2xl pt-4 sm:pt-5 border-t border-[var(--color-border-subtle)] text-left mt-2 sm:mt-4">
+                            <div className="w-full max-w-2xl shrink-0 pt-6 border-t border-[var(--color-border-subtle)] text-left mt-4 sm:mt-6">
                                 <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
                                     Example
                                 </p>
-                                <p className="text-[0.95rem] sm:text-base md:text-lg italic leading-relaxed text-[var(--color-text-muted)]/80">
-                                    &ldquo;{content.example}&rdquo;
+                                <p className="flashcard-example m-0 text-[1.0625rem] sm:text-lg leading-relaxed text-[var(--color-text)]">
+                                    &ldquo;<FlashcardExample example={content.example} term={term} />&rdquo;
                                 </p>
                             </div>
                         )}
