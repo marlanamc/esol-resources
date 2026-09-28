@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo } from "react";
-import { ChevronRight, Play, RotateCcw } from "lucide-react";
+import { ChevronDown, ChevronRight, Play, RotateCcw } from "lucide-react";
 import type { CourseMapUnit } from "@/lib/course-map";
 import type { CurrentMapWeekMeta, WeekProgressEntry } from "@/lib/course-map-navigation";
 import { resolveWeekActivityLaunch } from "@/lib/course-map-navigation";
@@ -135,7 +135,7 @@ export function CourseMapMobileWayfinding({
                 assignment?.type,
                 assignment?.category ?? null
             ),
-            typeLabel: activityTypeLabel(
+            typeLabel: activity?.vocabUi ? "Vocab" : activityTypeLabel(
                 activity?.activityType ?? "",
                 assignment?.type,
                 assignment?.category ?? null
@@ -185,20 +185,35 @@ export function CourseMapMobileWayfinding({
                     background: `color-mix(in srgb, ${tone.surface} 70%, var(--dashboard-surface-start))`,
                 }}
             >
-                {/* The week is the headline: students read where they are first. */}
-                {weekLabel ? (
-                    <h1 className="font-display text-[20px] font-bold leading-tight text-text">
-                        {headingPrefix ? (
-                            <>
-                                <span style={{ color: tone.accent }}>{headingPrefix}</span>
-                                <span className="text-text-muted" aria-hidden>{" · "}</span>
-                            </>
-                        ) : null}
-                        {weekLabel}
+                <div className="flex items-center justify-between gap-3">
+                    <h1 className="m-0 min-w-0 font-display text-xl font-bold leading-tight" style={{ color: tone.accent }}>
+                        {headingPrefix ?? "Course map"}
+                        <span className="sr-only"> · {weekLabel}</span>
                     </h1>
-                ) : null}
+                    <div className="relative flex min-h-11 shrink-0 items-center rounded-xl border border-border-subtle bg-surface-base py-2 pl-3 pr-9 focus-within:ring-2 focus-within:ring-primary/40">
+                        <span aria-hidden className="text-sm font-bold text-text">{weekLabel}</span>
+                        <select
+                            aria-label={showUnitMonths ? "Choose a week" : "Choose a level"}
+                            value={viewedWeek ?? ""}
+                            onChange={(event) => {
+                                const week = Number(event.target.value);
+                                dispatchOpenMapWeek(week, false);
+                            }}
+                            className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                        >
+                            {units.flatMap((unit) => unit.levels.map((level) => (
+                                <option key={level.levelNumber} value={level.levelNumber}>
+                                    {formatLevelLabel(level.levelNumber, showUnitMonths)} · {level.levelTitle}
+                                    {showUnitMonths && level.levelNumber === scheduledWeek ? " · This week" : ""}
+                                    {showUnitMonths && scheduledWeek != null && level.levelNumber > scheduledWeek ? " · Coming up" : ""}
+                                </option>
+                            )))}
+                        </select>
+                        <ChevronDown size={16} aria-hidden className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-text-muted" />
+                    </div>
+                </div>
                 {meta.levelTitle ? (
-                    <p className="mt-0.5 text-[15px] font-semibold leading-tight text-text">
+                    <p className="mb-0 mt-1 text-base font-semibold leading-tight text-text">
                         {meta.levelTitle}
                     </p>
                 ) : null}
@@ -212,6 +227,10 @@ export function CourseMapMobileWayfinding({
                         <RotateCcw size={14} aria-hidden />
                         Back to this week · {formatLevelLabel(scheduledWeek, showUnitMonths)}
                     </button>
+                ) : null}
+
+                {isAheadOfSchedule && viewedWeek === (scheduledWeek ?? 0) + 1 ? (
+                    <p className="mb-0 mt-2 text-xs leading-snug text-text-muted">Class starts Tuesday · You can start now</p>
                 ) : null}
 
                 {hasLevelProgress ? (
@@ -270,11 +289,11 @@ export function CourseMapMobileWayfinding({
                         {showUnitMonths ? "Week details" : "Level details"}
                     </summary>
                     <div className="space-y-1 pb-3">
-                        <p>
+                        <p className="m-0">
                             <strong className="font-bold text-text">Unit {meta.unitNumber}: {meta.unitTitle}</strong>
                             {showUnitMonths && meta.unitMonth ? ` · ${meta.unitMonth}` : ""}
                         </p>
-                        {meta.description ? <p className="text-sm leading-relaxed">{meta.description}</p> : null}
+                        {meta.description ? <p className="m-0 text-sm leading-relaxed">{meta.description}</p> : null}
                     </div>
                 </details>
             </div>
@@ -303,7 +322,7 @@ export function CourseMapMobileWayfinding({
                                   ? "Continue"
                                   : "Start"}
                         </span>
-                        <span className="block truncate text-sm font-semibold leading-tight text-text">
+                        <span className="block whitespace-normal break-words text-sm font-semibold leading-snug text-text">
                             {currentActivity.title}
                         </span>
                         <span className="mt-0.5 block text-[11px] text-text-muted">

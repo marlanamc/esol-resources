@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Check, ChevronRight, Circle, Lock } from "lucide-react";
 import { getLearnerCategoryTone } from "@/lib/learner/theme";
 import type { CourseMapActivityType } from "@/lib/course-map";
 
@@ -28,6 +29,8 @@ interface ActivityTimelineProps {
   showStartButton?: boolean;
   /** Title + meta only — no glyph tile or current-row wash */
   plain?: boolean;
+  /** Full-width mobile course rows with explicit progress states. */
+  courseMapRows?: boolean;
 }
 
 function typeToToneKey(type: string): string {
@@ -250,6 +253,7 @@ export function ActivityTimeline({
   layout = "card",
   showStartButton = true,
   plain = false,
+  courseMapRows = false,
 }: ActivityTimelineProps) {
   const isList = layout === "list";
 
@@ -265,6 +269,43 @@ export function ActivityTimeline({
         const isCurrent = item.status === "current";
         const isDone = item.status === "done";
         const isLocked = item.status === "locked";
+
+        if (courseMapRows) {
+          const content = (
+            <>
+              <span aria-hidden className="flex h-8 w-8 shrink-0 items-center justify-center">
+                {isDone ? (
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-success text-white"><Check size={18} strokeWidth={3} /></span>
+                ) : isLocked ? (
+                  <Lock size={22} className="text-text-muted" />
+                ) : (
+                  <Circle size={28} className={isCurrent ? "text-primary" : "text-text-muted/50"} strokeWidth={isCurrent ? 2.5 : 1.5} />
+                )}
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block break-words text-[15px] font-semibold leading-snug text-text">{item.title}</span>
+                <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-text-muted">
+                  <span>{label}{isDone ? " · Done" : isLocked ? " · Locked" : ""}</span>
+                  {isCurrent ? <span className="rounded-full bg-primary/12 px-2 py-0.5 font-bold text-primary">Next</span> : null}
+                  {item.badge ? <span className="rounded-full bg-accent/25 px-2 py-0.5 font-semibold text-text">{item.badge}</span> : null}
+                </span>
+              </span>
+              {!isLocked ? <ChevronRight size={18} className="shrink-0 text-text-muted" aria-hidden /> : null}
+            </>
+          );
+          const rowClass = `flex min-h-16 items-center gap-3 px-4 py-3 ${isCurrent ? "bg-primary/5" : ""}`;
+          return (
+            <div key={item.activityId} className={last ? undefined : "border-b border-border-subtle"}>
+              {isLocked ? (
+                <div className={rowClass} aria-disabled="true">{content}</div>
+              ) : (
+                <Link href={item.href} prefetch={false} className={`${rowClass} hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary`}>
+                  {content}
+                </Link>
+              )}
+            </div>
+          );
+        }
 
         const titleStyle: React.CSSProperties = {
           fontSize: isList ? 15 : 13.5,

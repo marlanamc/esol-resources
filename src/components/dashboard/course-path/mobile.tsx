@@ -8,7 +8,7 @@ import type { CourseMapProgressState } from "@/lib/course-map-progress";
 import { CourseMapNextUpHeroCard } from "@/components/dashboard/CourseMapNextUpHeroCard";
 import { getCourseMapActivityIconEmoji } from "@/lib/course-map-hero";
 import { courseMapUnitToneStyle, getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
-import { buildMapReturnHref, isMapActivityCompleted } from "@/lib/course-map-navigation";
+import { buildMapReturnHref, isMapActivityActionable, isMapActivityCompleted } from "@/lib/course-map-navigation";
 import {
     type GuidedAssignmentInfo,
     type UnitSummary,
@@ -194,7 +194,7 @@ export function MobileUnitSection({
             {isOpen ? header : null}
 
             {isOpen && (
-                <div style={{ padding: hasOpenWeek ? "14px 16px 14px" : "0 14px 14px" }}>
+                <div>
                     {hasOpenWeek ? (
                         <>
                             {unit.weeks
@@ -215,6 +215,7 @@ export function MobileUnitSection({
                                             guidedAssignments={guidedAssignments}
                                             guidedProgress={guidedProgress}
                                             showUnitMonths={showUnitMonths}
+                                            scheduledWeek={scheduledWeek}
                                             onToggle={() => onWeekToggle(week.level.levelNumber)}
                                             onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
                                         />
@@ -238,7 +239,7 @@ export function MobileUnitSection({
                                         weeks: siblings.filter((w) => w.level.levelNumber > pivot),
                                     },
                                     {
-                                        label: "More in this unit",
+                                        label: showUnitMonths ? "This week" : "More in this unit",
                                         weeks: siblings.filter((w) => w.level.levelNumber === pivot),
                                     },
                                 ].filter((group) => group.weeks.length > 0);
@@ -246,10 +247,10 @@ export function MobileUnitSection({
                                 return groups.map((group) => (
                                     <div
                                         key={group.label}
-                                        className="border-t pt-2"
+                                        className="border-t"
                                         style={{ borderColor: "var(--border-subtle)" }}
                                     >
-                                        <p className="px-1 pb-1 text-[10px] font-bold uppercase tracking-wide text-text-muted">
+                                        <p className="m-0 px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-wide text-text-muted">
                                             {group.label}
                                         </p>
                                         {group.weeks.map((week, index) => (
@@ -273,6 +274,7 @@ export function MobileUnitSection({
                                                     guidedAssignments={guidedAssignments}
                                                     guidedProgress={guidedProgress}
                                                     showUnitMonths={showUnitMonths}
+                                                    scheduledWeek={scheduledWeek}
                                                     onToggle={() => onWeekToggle(week.level.levelNumber)}
                                                     onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
                                                 />
@@ -305,6 +307,7 @@ export function MobileUnitSection({
                                         guidedAssignments={guidedAssignments}
                                         guidedProgress={guidedProgress}
                                         showUnitMonths={showUnitMonths}
+                                        scheduledWeek={scheduledWeek}
                                         onToggle={() => onWeekToggle(week.level.levelNumber)}
                                         onToggleOptional={() => onOptionalToggle(week.level.levelNumber)}
                                     />
@@ -322,17 +325,17 @@ export function MobileWeekCard({
     week,
     isOpen,
     optionalOpen,
-    currentId,
-    currentLabel,
     guidedAssignments,
     guidedProgress,
     onToggle,
     onToggleOptional,
     showUnitMonths = true,
     showDescription = true,
+    scheduledWeek = null,
 }: {
     week: WeekSummary;
     showDescription?: boolean;
+    scheduledWeek?: number | null;
     isOpen: boolean;
     optionalOpen: boolean;
     currentId: string | null;
@@ -352,7 +355,7 @@ export function MobileWeekCard({
                 type="button"
                 onClick={onToggle}
                 aria-expanded={false}
-                className="flex w-full items-center gap-3 py-3.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                className="flex w-full items-center gap-3 px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             >
                 <span
                     className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm font-bold"
@@ -366,12 +369,15 @@ export function MobileWeekCard({
                 <span className="min-w-0 flex-1">
                     <span className="block text-xs font-bold text-[var(--unit-accent,var(--primary))]">
                         {formatLevelLabel(week.level.levelNumber, showUnitMonths)}
+                        {showUnitMonths && scheduledWeek != null && week.level.levelNumber > scheduledWeek ? " · Coming up" : ""}
                     </span>
                     <span className="block text-sm font-semibold leading-snug text-text">
                         {week.level.levelTitle}
                     </span>
                     <span className="mt-0.5 block text-xs text-text-muted">
-                        {week.requiredDone} of {week.requiredTotal} activities finished
+                        {showUnitMonths && scheduledWeek != null && week.level.levelNumber === scheduledWeek + 1
+                            ? "Class starts Tuesday · You can start now"
+                            : `${week.requiredDone}/${week.requiredTotal} finished`}
                     </span>
                 </span>
                 <ChevronRight size={18} className="shrink-0 text-text-muted" aria-hidden />
@@ -384,7 +390,7 @@ export function MobileWeekCard({
     return (
         <section
             aria-labelledby={`week-${week.level.levelNumber}-heading`}
-            className="pb-1"
+            className="pb-0"
             style={courseMapUnitToneStyle(week.unitNumber)}
         >
             <h2
@@ -395,7 +401,7 @@ export function MobileWeekCard({
                 {formatLevelLabel(week.level.levelNumber, showUnitMonths)} {week.level.levelTitle}
             </h2>
             {showDescription && focus ? (
-                <p className="mb-3 text-sm leading-relaxed text-text-muted">
+                <p className="m-0 px-4 py-3 text-sm leading-relaxed text-text-muted">
                     {focus}
                 </p>
             ) : null}
@@ -406,7 +412,9 @@ export function MobileWeekCard({
                     week.level.requiredActivities,
                     guidedProgress,
                     guidedAssignments,
-                    currentId,
+                    week.level.requiredActivities.find((activity) =>
+                        isMapActivityActionable(activity) && !isMapActivityCompleted(activity, guidedProgress)
+                    )?.id ?? null,
                     returnHref
                 );
                 return (
@@ -416,17 +424,18 @@ export function MobileWeekCard({
                         layout="list"
                         showStartButton={false}
                         plain
+                        courseMapRows
                     />
                 );
             })()}
 
             {getExtraPracticeActivities(week.level.extraPractice).length > 0 ? (
-                <div className="mt-5 border-t pt-4" style={{ borderColor: "var(--border-subtle)" }}>
+                <div className="border-t" style={{ borderColor: "var(--border-subtle)" }}>
                     <button
                         type="button"
                         onClick={onToggleOptional}
                         aria-expanded={optionalOpen}
-                        className="flex w-full items-center gap-3 text-left"
+                        className="flex min-h-16 w-full items-center gap-3 px-4 py-3 text-left"
                     >
                         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-subtle text-text-muted">
                             {optionalOpen ? <ChevronDown size={20} aria-hidden /> : <Plus size={21} aria-hidden />}
@@ -441,21 +450,19 @@ export function MobileWeekCard({
                     </button>
 
                     {optionalOpen ? (
-                        <div className="relative ml-[31px] mt-3">
-                            <div className="absolute -left-[22px] bottom-4 top-4 w-px rounded-full bg-[var(--border-subtle)]" />
-                            <div className="space-y-1">
-                                {getExtraPracticeActivities(week.level.extraPractice).map((activity) => (
-                                    <MobileActivityRow
-                                        key={activity.id}
-                                        activity={activity}
-                                        assignment={activity.activityId ? guidedAssignments[activity.activityId] : undefined}
-                                        isCompleted={isMapActivityCompleted(activity, guidedProgress)}
-                                        isCurrent={false}
-                                        currentLabel={currentLabel}
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                        <ActivityTimeline
+                            items={buildWeekTimelineItems(
+                                getExtraPracticeActivities(week.level.extraPractice),
+                                guidedProgress,
+                                guidedAssignments,
+                                null,
+                                buildMapReturnHref(week.level.levelNumber, true)
+                            )}
+                            accent={pathAccent}
+                            layout="list"
+                            showStartButton={false}
+                            courseMapRows
+                        />
                     ) : null}
                 </div>
             ) : null}

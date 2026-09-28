@@ -192,7 +192,10 @@ function GuidedCoursePath({
             setMobileOpenWeek(weekNumber);
         }
         window.requestAnimationFrame(() => {
-            scrollToMapTarget(`week-${weekNumber}`, behavior);
+            const target = !desktopLayout && !focusActivity && parentUnit
+                ? `unit-${parentUnit.unitNumber}`
+                : `week-${weekNumber}`;
+            scrollToMapTarget(target, behavior);
             if (focusActivity) {
                 setPulseCurrentActivity(true);
                 window.requestAnimationFrame(() => scrollToMapTarget("map-activity-current", behavior));
