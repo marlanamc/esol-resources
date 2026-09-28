@@ -266,12 +266,12 @@ export function CourseMapMobileWayfinding({
                 ) : null}
 
                 <details key={viewedWeek} className="text-xs text-text-muted">
-                    <summary className="min-h-11 cursor-pointer content-center rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+                    <summary className="min-h-11 cursor-pointer content-center rounded font-bold text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
                         {showUnitMonths ? "Week details" : "Level details"}
                     </summary>
                     <div className="space-y-1 pb-3">
                         <p>
-                            Unit {meta.unitNumber}: {meta.unitTitle}
+                            <strong className="font-bold text-text">Unit {meta.unitNumber}: {meta.unitTitle}</strong>
                             {showUnitMonths && meta.unitMonth ? ` · ${meta.unitMonth}` : ""}
                         </p>
                         {meta.description ? <p className="text-sm leading-relaxed">{meta.description}</p> : null}
