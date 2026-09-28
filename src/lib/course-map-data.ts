@@ -332,7 +332,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 10,
             "wrappedGame": false,
             "activityType": "game",
-            "title": "Full Parts of Speech Practice Library"
+            "title": "Parts of Speech Review"
           }
         ]
       }

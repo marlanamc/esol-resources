@@ -1,3 +1,6 @@
+import { REVIEW_ACTIVITY_ID } from '@/lib/parts-of-speech-review/content';
+import { readReviewProgress, scoreReviewAttempt, preserveReviewProgress } from '@/lib/parts-of-speech-review/progression';
+import { savePartsOfSpeechReview } from './parts-of-speech-review';
 import { WORD_SORT_ACTIVITIES } from '@/lib/word-sort/types';
 import { saveWordSortAttempt, InvalidWordSortAttempt } from './word-sort';
 import { NextResponse, type NextRequest } from "next/server";
@@ -94,6 +97,17 @@ export async function POST(request: NextRequest) {
         (result) => (result ? 1 : 0)
     );
 
+    if (body.reviewAttempt !== undefined) {
+        if (activityId !== REVIEW_ACTIVITY_ID || !activity) return apiError("Invalid review activity", 400);
+        try { scoreReviewAttempt(body.reviewAttempt); }
+        catch { return apiError("A complete, valid review attempt is required", 400); }
+        try { return await savePartsOfSpeechReview(userId, activityId, body.reviewAttempt); }
+        catch (error) {
+            logger.error("Parts of Speech review save failed", { userId, activityId, error });
+            return apiError("Progress could not be saved. Please retry.", 500);
+        }
+    }
+
     // Existing Word Sort IDs also route here before their updated content is synced.
     const wordSort = WORD_SORT_ACTIVITIES[activityId];
     if (wordSort && activity) {
@@ -176,7 +190,21 @@ export async function POST(request: NextRequest) {
         progressData.categoryData = updatedCategoryData;
     }
 
-    const record = existing
+    // Library writes share the review lock and preserve the server-owned review
+    // namespace, even when an older tab submits stale category data or a reset.
+    const record = activityId === REVIEW_ACTIVITY_ID
+        ? await prisma.$transaction(async tx => {
+            await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${`pos-review:${userId}:${activityId}`}))`;
+            const latest = await tx.activityProgress.findFirst({ where: progressWhere, orderBy: { updatedAt: 'desc' } });
+            const saved = parseExistingCategoryData(latest?.categoryData);
+            const incoming = preserveReviewProgress(saved, updatedCategoryData ? parseExistingCategoryData(updatedCategoryData) : saved);
+            const reviewCompleted = !!readReviewProgress(saved._partsOfSpeechReview).lessons['nouns-verbs'];
+            const data = { ...progressData, categoryData: JSON.stringify(incoming), ...(reviewCompleted ? { progress: 100, status: 'completed' } : {}) };
+            return latest
+                ? tx.activityProgress.update({ where: { id: latest.id }, data })
+                : tx.activityProgress.create({ data: { userId, activityId, assignmentId: assignmentKey, ...data } });
+        })
+        : existing
         ? await prisma.activityProgress.update({
               where: { id: existing.id },
               data: progressData,

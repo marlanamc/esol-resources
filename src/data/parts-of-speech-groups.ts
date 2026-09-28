@@ -22,7 +22,7 @@ export const GROUP_POS_1_VERBS: POSGroup = {
   phase: 'foundation',
   prerequisite: null,
   maxRounds: 3,
-  memoryTrick: 'Not just actions! "She NEEDS help" — NEEDS is a verb. "He WANTS a job" — WANTS is a verb. If it comes after I/you/he/she/we/they, it\'s probably a verb!',
+  memoryTrick: 'Not just actions! "She NEEDS help" — NEEDS is a verb. "He WANTS a job" — WANTS is a verb. Ask what the person does, has, needs, or is. Read the whole sentence.',
   icon: '🔴',
   patterns: [
     {
@@ -1103,7 +1103,7 @@ export const GROUP_POS_CHECKPOINT_2: POSGroup = {
   title: 'Checkpoint: Sentence Structure Review',
   shortTitle: 'Checkpoint 2',
   pattern: 'Review: Subject → Verb → Object/Complement. Every sentence has a subject and a verb!',
-  patternExample: 'The teacher (subject) gave (verb) them (object) homework (complement).',
+  patternExample: 'The teacher (subject) gave (verb) them (indirect object) homework (direct object).',
   colorClass: 'bg-yellow-50 border-yellow-400',
   difficulty: 2,
   phase: 'sentence-roles',
@@ -2594,7 +2594,7 @@ export const GROUP_POS_CHECKPOINT_5: POSGroup = {
   title: 'Final Challenge: All Parts of Speech',
   shortTitle: 'Final Challenge',
   pattern: 'The complete review! All 8 parts of speech + how they connect to grammar patterns.',
-  patternExample: 'The (article) tired (adj) nurse (noun) carefully (adv) explained (verb) everything (noun) to them (prep+pronoun).',
+  patternExample: 'The (article) tired (adj) nurse (noun) carefully (adv) explained (verb) everything (pronoun) to them (prep+pronoun).',
   colorClass: 'bg-gradient-to-r from-yellow-50 to-amber-50 border-yellow-500',
   difficulty: 3,
   phase: 'application-bridge',
