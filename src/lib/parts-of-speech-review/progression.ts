@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { REVIEW_CATEGORIES, REVIEW_LESSONS, type ReviewLessonId } from './content';
+import { REVIEW_LESSONS, reviewChoices, reviewCorrectAnswer, type ReviewLessonId } from './content';
 
 const lessonIds = Object.keys(REVIEW_LESSONS) as [ReviewLessonId, ...ReviewLessonId[]];
 
@@ -7,7 +7,7 @@ export const reviewAttemptSchema = z.object({
   version: z.literal(1),
   attemptId: z.string().uuid(),
   lessonId: z.enum(lessonIds),
-  answers: z.array(z.object({ questionId: z.string(), answer: z.enum(REVIEW_CATEGORIES) }).strict()).max(9),
+  answers: z.array(z.object({ questionId: z.string(), answer: z.string().max(60) }).strict()).max(9),
 }).strict();
 export type ReviewAttempt = z.infer<typeof reviewAttemptSchema>;
 const resultSchema = z.object({ completed: z.literal(true), correct: z.number().int().min(0).max(9), total: z.number().int().min(1).max(9), completedAt: z.string(), attemptId: z.string().uuid() });
@@ -22,10 +22,10 @@ export function scoreReviewAttempt(input: unknown) {
   const lesson = REVIEW_LESSONS[attempt.lessonId];
   const answers = new Map(attempt.answers.map(a => [a.questionId, a.answer]));
   if (answers.size !== lesson.questions.length || attempt.answers.length !== lesson.questions.length ||
-      lesson.questions.some(q => !answers.has(q.id)) || lesson.questions.some(q => !(q.categories ?? lesson.categories).includes(answers.get(q.id)!))) {
+      lesson.questions.some(q => !answers.has(q.id)) || lesson.questions.some(q => !reviewChoices(q, lesson).includes(answers.get(q.id)!))) {
     throw new Error('Complete each question once before saving this review.');
   }
-  return { attempt, correct: lesson.questions.filter(q => answers.get(q.id) === q.answer).length, total: lesson.questions.length };
+  return { attempt, correct: lesson.questions.filter(q => answers.get(q.id) === reviewCorrectAnswer(q)).length, total: lesson.questions.length };
 }
 export function applyReviewAttempt(category: Record<string, unknown>, input: unknown, now: string) {
   const { attempt, correct, total } = scoreReviewAttempt(input);
