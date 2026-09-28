@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { createElement } from 'react';
-import { REVIEW_LESSONS, WEEKLY_REVIEW_LESSONS, REVIEW_PHASES, REVIEW_TOPICS, reviewSentence } from '@/lib/parts-of-speech-review/content';
+import { REVIEW_LESSONS, WEEKLY_REVIEW_LESSONS, REVIEW_PHASES, REVIEW_TOPICS, reviewChoices, reviewCorrectAnswer, reviewSentence, reviewWords } from '@/lib/parts-of-speech-review/content';
 import { applyReviewAttempt, scoreReviewAttempt, preserveReviewProgress, type ReviewAttempt } from '@/lib/parts-of-speech-review/progression';
 import { ReviewSentence } from '@/components/games/PartsOfSpeechGame/PartsOfSpeechReview';
 import { categoryColorClass } from '@/components/games/PartsOfSpeechGame/ReviewCategoryCue';
@@ -9,7 +9,7 @@ import { DiagramSentence } from '@/components/games/PartsOfSpeechGame/DiagramSen
 
 function attempt(lessonId: ReviewAttempt['lessonId'] = 'nouns-verbs'): ReviewAttempt {
   return { version: 1, attemptId: '11111111-1111-4111-8111-111111111111', lessonId,
-    answers: REVIEW_LESSONS[lessonId].questions.map(q => ({ questionId: q.id, answer: q.answer })) };
+    answers: REVIEW_LESSONS[lessonId].questions.map(q => ({ questionId: q.id, answer: reviewCorrectAnswer(q) })) };
 }
 describe('Short Parts of Speech review', () => {
   it('covers eight mixed nouns/verbs including state verbs, and nine optional questions', () => {
@@ -27,6 +27,31 @@ describe('Short Parts of Speech review', () => {
       }
     }
   });
+  it('mixes label, find, and choose questions in Nouns and Verbs', () => {
+    const lesson = REVIEW_LESSONS['nouns-verbs'];
+    expect(new Set(lesson.questions.map(q => q.kind ?? 'label'))).toEqual(new Set(['label', 'find', 'choose']));
+    const find = lesson.questions.find(q => q.id === 'nv-2')!;
+    expect(reviewWords(find)[Number(reviewCorrectAnswer(find))]).toBe('cook');
+    const wrongWord = attempt(); wrongWord.answers[1].answer = '0';
+    expect(scoreReviewAttempt(wrongWord).correct).toBe(7);
+    const outOfRange = attempt(); outOfRange.answers[1].answer = '9';
+    expect(() => scoreReviewAttempt(outOfRange)).toThrow();
+    const wrongOption = attempt(); wrongOption.answers[3].answer = 'school';
+    expect(scoreReviewAttempt(wrongOption).correct).toBe(7);
+    const unofferedWord = attempt(); unofferedWord.answers[3].answer = 'run';
+    expect(() => scoreReviewAttempt(unofferedWord)).toThrow();
+  });
+  it('authors find and choose questions so each has one clear answer', () => {
+    for (const lesson of Object.values(REVIEW_LESSONS)) {
+      for (const q of lesson.questions) {
+        if (q.kind === 'find') expect(q.target).not.toMatch(/\s/);
+        if (q.kind === 'choose') {
+          expect(q.options).toContain(q.target);
+          expect(new Set(q.options).size).toBe(q.options!.length);
+        }
+      }
+    }
+  });
   it('scores from authored answers and rejects partial, duplicate, unknown, and wrong-category answers', () => {
     expect(scoreReviewAttempt(attempt()).correct).toBe(8);
     const wrong = attempt(); wrong.answers[0].answer = 'Verb';
@@ -41,7 +66,8 @@ describe('Short Parts of Speech review', () => {
     expect(() => scoreReviewAttempt(invalid)).toThrow();
   });
   it('finishes regardless of score and preserves library mastery', () => {
-    const input = attempt(); input.answers = input.answers.map(a => ({ ...a, answer: a.answer === 'Verb' ? 'Noun' : 'Verb' }));
+    const input = attempt(); const lesson = REVIEW_LESSONS['nouns-verbs'];
+    input.answers = lesson.questions.map(q => ({ questionId: q.id, answer: reviewChoices(q, lesson).find(choice => choice !== reviewCorrectAnswer(q))! }));
     const library = { 'pos-1-verbs': { stage: 'mastered', highestRoundPassed: 3 } };
     const result = applyReviewAttempt(library, input, '2026-09-28');
     expect(result.correct).toBe(0); expect(result.completed).toBe(true);

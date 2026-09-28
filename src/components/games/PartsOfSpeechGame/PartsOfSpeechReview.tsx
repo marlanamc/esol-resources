@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ArrowLeft, ArrowRight, CheckCircle2, Check, ChevronDown, MessageCircle } from 'lucide-react';
 import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
-import { REVIEW_LESSONS, REVIEW_TOPICS, reviewSentence, type ReviewCategory, type ReviewItem, type ReviewLessonId, type ReviewLesson } from '@/lib/parts-of-speech-review/content';
+import { REVIEW_LESSONS, REVIEW_TOPICS, reviewCorrectAnswer, reviewSentence, reviewWords, type ReviewCategory, type ReviewItem, type ReviewLessonId, type ReviewLesson } from '@/lib/parts-of-speech-review/content';
 import { readReviewProgress, type ReviewAttempt, type ReviewProgress } from '@/lib/parts-of-speech-review/progression';
 import styles from './PartsOfSpeechReview.module.css';
 import { ReviewCategoryCue, categoryColorClass } from './ReviewCategoryCue';
@@ -20,6 +20,13 @@ const HERO_WORDS: { text: string; category: ReviewCategory }[] = [
   { text: 'helps', category: 'Verb' }, { text: 'us.', category: 'Pronoun' },
 ];
 const CORE_ORDER = REVIEW_TOPICS.flatMap(topic => topic.core);
+
+function questionPrompt(item: ReviewItem, lesson: ReviewLesson) {
+  if (item.prompt) return item.prompt;
+  if (item.kind === 'find') return `Tap the ${item.answer.toLowerCase()}.`;
+  if (item.kind === 'choose') return 'Choose the word that fits.';
+  return (item.review ? 'Remember this: choose the label for the highlighted part.' : lesson.prompt) ?? 'What is the highlighted word’s job?';
+}
 
 export function ReviewSentence({ item, reveal = false }: { item: ReviewItem; reveal?: boolean }) {
   return <p className="text-xl leading-relaxed text-text sm:text-2xl">{item.before}<mark className={`${styles.target} ${reveal ? `${styles.revealed} ${categoryColorClass(item.answer)}` : ''}`}>{item.target}</mark>{item.after}</p>;
@@ -39,7 +46,7 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
   const [lessonId, setLessonId] = useState<ReviewLessonId>(assignedLesson ?? 'nouns-verbs');
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<ReviewAttempt['answers']>([]);
-  const [selection, setSelection] = useState<ReviewCategory | null>(null);
+  const [selection, setSelection] = useState<string | null>(null);
   const [revisited, setRevisited] = useState(false);
   const [missed, setMissed] = useState<ReviewItem[] | null>(null);
   const [attemptId, setAttemptId] = useState(() => assignedLesson ? crypto.randomUUID() : '');
@@ -57,8 +64,10 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
   const lesson = REVIEW_LESSONS[lessonId];
   const questions = missed ?? lesson.questions;
   const item = stage === 'example' ? lesson.examples[index] : questions[index];
-  const correct = lesson.questions.filter(q => answers.find(a => a.questionId === q.id)?.answer === q.answer).length;
-  const missedQuestions = lesson.questions.filter(q => answers.find(a => a.questionId === q.id)?.answer !== q.answer);
+  const correct = lesson.questions.filter(q => answers.find(a => a.questionId === q.id)?.answer === reviewCorrectAnswer(q)).length;
+  const missedQuestions = lesson.questions.filter(q => answers.find(a => a.questionId === q.id)?.answer !== reviewCorrectAnswer(q));
+  const kind = item?.kind ?? 'label';
+  const correctAnswer = item ? reviewCorrectAnswer(item) : '';
 
   async function load() {
     setLoadState('loading');
@@ -100,6 +109,11 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
   function start(id: ReviewLessonId) {
     setLessonId(id); setIndex(0); setAnswers([]); setSelection(null); setMissed(null);
     setRevisited(false); setAttemptId(crypto.randomUUID()); setSaveState('idle'); setStage(REVIEW_LESSONS[id].bridge ? 'bridge' : 'example');
+  }
+  function choose(answer: string) {
+    if (selection) return;
+    setSelection(answer);
+    if (!missed) setAnswers(previous => [...previous, { questionId: item.id, answer }]);
   }
   function nextQuestion() {
     if (!selection) return;
@@ -258,21 +272,39 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
         </div>
       </main> : <main>
         <p className="mb-3 text-sm font-semibold text-text-muted">{stage === 'example' ? `Example ${index + 1} of ${lesson.examples.length}` : `${missed ? 'Practice' : item.review ? 'Familiar review · Question' : 'Question'} ${index + 1} of ${questions.length}`}</p>
-        <h1 ref={heading} tabIndex={-1} className={`${styles.heading} font-display text-2xl sm:text-3xl`}>{stage === 'example' ? lesson.title : item.prompt ?? (item.review ? 'Remember this: choose the label for the highlighted part.' : lesson.prompt) ?? 'What is the highlighted word’s job?'}</h1>
+        <h1 ref={heading} tabIndex={-1} className={`${styles.heading} font-display text-2xl sm:text-3xl`}>{stage === 'example' ? lesson.title : questionPrompt(item, lesson)}</h1>
         <div className={`${styles.panel} mt-7 rounded-2xl border border-border bg-white p-5 dark:bg-[#162b3d] sm:p-7`}>
           <div className="grid grid-cols-[minmax(0,1fr)_48px] items-center gap-3">
-            <ReviewSentence item={item} reveal={stage === 'example' || selection !== null} />
-            <SpeakButton key={item.id} text={reviewSentence(item)} className="!h-[48px] !w-[48px]" />
+            {stage === 'question' && kind === 'find' ? <fieldset>
+              <legend className="sr-only">Tap the {item.answer.toLowerCase()} in this sentence</legend>
+              <p className={styles.findWords}>{reviewWords(item).map((word, wordIndex) => {
+                const value = String(wordIndex);
+                const isAnswer = selection !== null && value === correctAnswer;
+                return <button key={wordIndex} type="button" aria-pressed={selection === value} disabled={selection !== null}
+                  className={`${styles.findWord} ${isAnswer ? `${styles.revealed} ${categoryColorClass(item.answer)}` : ''} ${selection === value && !isAnswer ? styles.findMiss : ''} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary`}
+                  onClick={() => choose(value)}>{word}</button>;
+              })}</p>
+            </fieldset> : stage === 'question' && kind === 'choose' && selection === null
+              ? <p className="text-xl leading-relaxed text-text sm:text-2xl">{item.before}<span className={styles.blank}><span className="sr-only">blank</span></span>{item.after}</p>
+              : <ReviewSentence item={item} reveal={stage === 'example' || selection !== null} />}
+            {/* A choose sentence read aloud would give away the blank, so it waits for the answer. */}
+            {(kind !== 'choose' || stage === 'example' || selection !== null) && <SpeakButton key={item.id} text={reviewSentence(item)} className="!h-[48px] !w-[48px]" />}
           </div>
-          {stage === 'example' ? <div className={`${styles.feedback} ${categoryColorClass(item.answer)}`}><ReviewCategoryCue category={item.answer} /><p className="mt-2 leading-relaxed">{item.explanation}</p></div> : <fieldset className="mt-6">
+          {stage === 'example' ? <div className={`${styles.feedback} ${categoryColorClass(item.answer)}`}><ReviewCategoryCue category={item.answer} /><p className="mt-2 leading-relaxed">{item.explanation}</p></div> : kind === 'choose' ? <fieldset className="mt-6">
+            <legend className="sr-only">Choose the word for the blank</legend>
+            <div className={styles.answers}>
+              {(item.options ?? []).map(option => <button key={option} type="button" aria-pressed={selection === option} disabled={selection !== null}
+                className={`${secondary} text-lg disabled:cursor-default`} onClick={() => choose(option)}>{option}</button>)}
+            </div>
+          </fieldset> : kind === 'label' && <fieldset className="mt-6">
             <legend className="sr-only">Choose the category for {item.target}</legend>
             <div className={styles.answers}>
               {categories.map(category => <button key={category} type="button" aria-pressed={selection === category} disabled={selection !== null}
                 className={`${secondary} ${styles.categoryChoice} ${categoryColorClass(category)} disabled:cursor-default`}
-                onClick={() => { if (selection) return; setSelection(category); if (!missed) setAnswers(previous => [...previous, { questionId: item.id, answer: category }]); }}><ReviewCategoryCue category={category} compact /></button>)}
+                onClick={() => choose(category)}><ReviewCategoryCue category={category} compact /></button>)}
             </div>
           </fieldset>}
-          {stage === 'question' && <div aria-live="polite" aria-atomic="true">{selection && <div className={`${styles.feedback} ${categoryColorClass(item.answer)}`}><p className="mb-3 font-semibold">{selection === item.answer ? 'Correct.' : 'Take another look.'}</p><ReviewCategoryCue category={item.answer} /><p className="mt-2 leading-relaxed">{item.explanation}</p></div>}</div>}
+          {stage === 'question' && <div aria-live="polite" aria-atomic="true">{selection && <div className={`${styles.feedback} ${categoryColorClass(item.answer)}`}><p className="mb-3 font-semibold">{selection === correctAnswer ? 'Correct.' : 'Take another look.'}</p><ReviewCategoryCue category={item.answer} /><p className="mt-2 leading-relaxed">{item.explanation}</p></div>}</div>}
         {(stage === 'example' || selection) && <div className="mt-6 flex justify-end"><button className={`${primary} w-full sm:min-w-36 sm:w-auto`} onClick={() => {
           if (stage === 'question') nextQuestion();
           else if (index + 1 < lesson.examples.length) setIndex(index + 1);

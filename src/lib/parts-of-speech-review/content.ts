@@ -2,8 +2,13 @@ export const REVIEW_ACTIVITY_ID = 'parts-of-speech-game';
 export const REVIEW_CATEGORIES = ['Noun', 'Verb', 'Adjective', 'Pronoun', 'Article', 'Determiner', 'Subject', 'Object', 'Complement', 'Base form', 'Past form', 'Past participle', 'Helping verb', 'Main verb', 'Linking verb', 'Adverb', 'Preposition', 'Conjunction', 'Gerund', 'Infinitive'] as const;
 export type ReviewCategory = typeof REVIEW_CATEGORIES[number];
 export type ReviewLessonId = 'sentence-check-in' | 'description-check-in' | 'pattern-check-in' | 'week-4-describing' | 'week-5-subjects' | 'week-6-objects' | 'week-7-adverbs' | 'foundation-check-in' | 'nouns-verbs' | 'adjectives-articles' | 'more-word-jobs' | 'pronouns' | 'determiners' | 'subjects' | 'verb-forms' | 'verb-phrases' | 'objects' | 'complements' | 'adjective-placement' | 'adverbs' | 'adverb-placement' | 'prepositions' | 'preposition-partners' | 'conjunctions' | 'dependent-clauses' | 'gerunds' | 'verb-patterns' | 'complete-patterns' | 'foundation-review' | 'sentence-review' | 'modifier-review' | 'connector-review' | 'final-review';
+/** label: choose the highlighted part's job. find: tap the word with this job. choose: fill the blank with the word that fits. */
+export type ReviewQuestionKind = 'label' | 'find' | 'choose';
 export interface ReviewItem {
   id: string;
+  kind?: ReviewQuestionKind;
+  /** choose only: the words offered for the blank, including the target. */
+  options?: string[];
   before: string;
   target: string;
   after: string;
@@ -25,6 +30,14 @@ export interface ReviewLesson {
 }
 function item(id: string, before: string, target: string, after: string, answer: ReviewCategory, explanation: string): ReviewItem {
   return { id, before, target, after, answer, explanation };
+}
+/** Find questions: the target is one word, and the only word in the sentence with this job. */
+function find(id: string, before: string, target: string, after: string, answer: ReviewCategory, explanation: string): ReviewItem {
+  return { ...item(id, before, target, after, answer, explanation), kind: 'find' };
+}
+/** Choose questions: answer is the job the blank needs; options are the words offered. */
+function choose(id: string, before: string, target: string, after: string, answer: ReviewCategory, options: string[], explanation: string): ReviewItem {
+  return { ...item(id, before, target, after, answer, explanation), kind: 'choose', options };
 }
 export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
   "week-4-describing": {
@@ -175,13 +188,13 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
     ],
     questions: [
       item('nv-1', 'The ', 'bus', ' arrives at eight.', 'Noun', 'Bus names a thing.'),
-      item('nv-2', 'We ', 'cook', ' dinner together.', 'Verb', 'Cook tells what we do.'),
+      find('nv-2', 'We ', 'cook', ' dinner together.', 'Verb', 'Cook tells what we do.'),
       item('nv-3', 'My sister ', 'is', ' a nurse.', 'Verb', 'Is links my sister to who she is. Is is a verb, even though it does not show an action.'),
-      item('nv-4', 'The children walk to ', 'school', '.', 'Noun', 'School names a place.'),
-      item('nv-5', 'I ', 'have', ' two children.', 'Verb', 'Have expresses a relationship or possession. It is a verb.'),
-      item('nv-6', 'The ', 'doctor', ' listens carefully.', 'Noun', 'Doctor names a person.'),
+      choose('nv-4', 'The children ', 'walk', ' to school.', 'Verb', ['school', 'walk'], 'We need a verb here. Walk tells what the children do.'),
+      find('nv-5', 'I ', 'have', ' two children.', 'Verb', 'Have expresses a relationship or possession. It is a verb.'),
+      choose('nv-6', 'The ', 'doctor', ' listens carefully.', 'Noun', ['listen', 'doctor'], 'We need a noun here. Who listens? The doctor. Doctor names a person.'),
       item('nv-7', 'We ', 'need', ' more time.', 'Verb', 'Need tells what we require. It is a verb, even though you cannot see an action.'),
-      item('nv-8', 'Good ', 'health', ' is important.', 'Noun', 'Health names an idea or condition. Nouns do not always name things you can touch.'),
+      find('nv-8', 'Good ', 'health', ' is important.', 'Noun', 'Health names an idea or condition. Nouns do not always name things you can touch.'),
     ],
   },
   'adjectives-articles': {
@@ -567,6 +580,19 @@ export const REVIEW_LESSONS: Record<ReviewLessonId, ReviewLesson> = {
   },
 };
 export function reviewSentence(item: ReviewItem) { return item.before + item.target + item.after; }
+export function reviewWords(item: ReviewItem) { return reviewSentence(item).split(' '); }
+/** The answer a student must give: a category (label), a word position (find), or a word (choose). */
+export function reviewCorrectAnswer(item: ReviewItem): string {
+  if (item.kind === 'find') return String(item.before.split(' ').filter(Boolean).length);
+  if (item.kind === 'choose') return item.target;
+  return item.answer;
+}
+/** Every answer the student can pick for this question. */
+export function reviewChoices(item: ReviewItem, lesson: ReviewLesson): string[] {
+  if (item.kind === 'find') return reviewWords(item).map((_, index) => String(index));
+  if (item.kind === 'choose') return item.options ?? [];
+  return item.categories ?? lesson.categories;
+}
 
 /** A suggested first pass, not mastery deadlines or locked prerequisites. */
 export const WEEKLY_REVIEW_LESSONS = [
