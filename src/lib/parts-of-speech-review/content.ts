@@ -585,3 +585,18 @@ export const REVIEW_PHASES: { title: string; description: string; core: ReviewLe
 ];
 // Retained for consumers of the original short-lesson catalogue.
 export const LATER_REVIEW_SECTIONS = REVIEW_PHASES.map(phase => ({ title: phase.title, lessons: [...new Set([...phase.core, ...phase.extra, phase.checkIn])] }));
+
+/** Start-screen topics. Numbered only: no weeks, months, or phases, because the schedule can change. */
+export const REVIEW_TOPICS: { title: string; what: string; cues: ReviewCategory[]; core: ReviewLessonId[]; check: ReviewLessonId; extra: ReviewLessonId[] }[] = [
+  { title: 'Word basics', what: 'Nouns, verbs, pronouns, a / an / the', cues: ['Noun', 'Verb', 'Pronoun', 'Article'],
+    core: ['nouns-verbs', 'pronouns', 'week-4-describing'], check: 'foundation-check-in', extra: ['determiners', 'foundation-review'] },
+  { title: 'Building sentences', what: 'Who does it? What happens?', cues: ['Subject', 'Verb', 'Object'],
+    core: ['week-5-subjects', 'week-6-objects'], check: 'sentence-check-in',
+    extra: ['subjects', 'verb-forms', 'verb-phrases', 'objects', 'complements', 'complete-patterns', 'sentence-review'] },
+  { title: 'Adding detail', what: 'Adjectives and adverbs', cues: ['Adjective', 'Adverb'],
+    core: ['week-7-adverbs', 'adjective-placement'], check: 'description-check-in', extra: ['adverbs', 'adverb-placement', 'modifier-review'] },
+  { title: 'Connecting ideas', what: 'in, on, and, but, because', cues: ['Preposition', 'Conjunction'],
+    core: ['prepositions', 'conjunctions', 'dependent-clauses'], check: 'connector-review', extra: ['preposition-partners'] },
+  { title: 'Word partners', what: 'enjoy reading · want to read', cues: ['Gerund', 'Infinitive'],
+    core: ['gerunds', 'verb-patterns'], check: 'pattern-check-in', extra: ['final-review'] },
+];

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { createElement } from 'react';
-import { REVIEW_LESSONS, WEEKLY_REVIEW_LESSONS, REVIEW_PHASES, reviewSentence } from '@/lib/parts-of-speech-review/content';
+import { REVIEW_LESSONS, WEEKLY_REVIEW_LESSONS, REVIEW_PHASES, REVIEW_TOPICS, reviewSentence } from '@/lib/parts-of-speech-review/content';
 import { applyReviewAttempt, scoreReviewAttempt, preserveReviewProgress, type ReviewAttempt } from '@/lib/parts-of-speech-review/progression';
 import { ReviewSentence } from '@/components/games/PartsOfSpeechGame/PartsOfSpeechReview';
 import { categoryColorClass } from '@/components/games/PartsOfSpeechGame/ReviewCategoryCue';
@@ -101,6 +101,13 @@ describe('Weekly Parts of Speech curriculum', () => {
     }
     expect(REVIEW_PHASES[1].core).not.toContain('verb-forms');
     expect(REVIEW_PHASES[0].core).not.toContain('determiners');
+  });
+  it('lists every lesson once in the start-screen topics, hiding only the retired duplicates', () => {
+    const listed = REVIEW_TOPICS.flatMap(topic => [...topic.core, topic.check, ...topic.extra]);
+    expect(new Set(listed).size).toBe(listed.length);
+    const hidden = (Object.keys(REVIEW_LESSONS) as ReviewAttempt['lessonId'][]).filter(id => !listed.includes(id));
+    expect(hidden.sort()).toEqual(['adjectives-articles', 'more-word-jobs']);
+    for (const topic of REVIEW_TOPICS) expect(topic.title).not.toMatch(/week|phase|month/i);
   });
   it('validates category choices separately for focus and familiar-review questions', () => {
     const input = attempt('week-4-describing');

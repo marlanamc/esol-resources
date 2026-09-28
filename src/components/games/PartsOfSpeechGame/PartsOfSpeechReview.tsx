@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ArrowLeft, ArrowRight, CheckCircle2, Check, MessageCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Check, ChevronDown, MessageCircle } from 'lucide-react';
 import { useResolvedLearnerReturnHref } from '@/hooks/useResolvedLearnerReturnHref';
-import { REVIEW_LESSONS, WEEKLY_REVIEW_LESSONS, REVIEW_PHASES, reviewSentence, type ReviewCategory, type ReviewItem, type ReviewLessonId, type ReviewLesson } from '@/lib/parts-of-speech-review/content';
+import { REVIEW_LESSONS, REVIEW_TOPICS, reviewSentence, type ReviewCategory, type ReviewItem, type ReviewLessonId, type ReviewLesson } from '@/lib/parts-of-speech-review/content';
 import { readReviewProgress, type ReviewAttempt, type ReviewProgress } from '@/lib/parts-of-speech-review/progression';
 import styles from './PartsOfSpeechReview.module.css';
 import { ReviewCategoryCue, categoryColorClass } from './ReviewCategoryCue';
@@ -14,6 +14,13 @@ type Stage = 'start' | 'bridge' | 'example' | 'question' | 'results';
 const primary = styles.primary + ' inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-[#ffffff] hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary disabled:opacity-60';
 const secondary = styles.secondary + ' inline-flex min-h-12 items-center justify-center rounded-xl border border-border px-5 py-3 font-semibold text-text hover:bg-bg-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary';
 
+// Ungraded warm-up on the start screen; nothing here is saved.
+const HERO_WORDS: { text: string; category: ReviewCategory }[] = [
+  { text: 'The', category: 'Article' }, { text: 'teacher', category: 'Noun' },
+  { text: 'helps', category: 'Verb' }, { text: 'us.', category: 'Pronoun' },
+];
+const CORE_ORDER = REVIEW_TOPICS.flatMap(topic => topic.core);
+
 export function ReviewSentence({ item, reveal = false }: { item: ReviewItem; reveal?: boolean }) {
   return <p className="text-xl leading-relaxed text-text sm:text-2xl">{item.before}<mark className={`${styles.target} ${reveal ? `${styles.revealed} ${categoryColorClass(item.answer)}` : ''}`}>{item.target}</mark>{item.after}</p>;
 }
@@ -21,23 +28,28 @@ export function ReviewSentence({ item, reveal = false }: { item: ReviewItem; rev
 export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: string; onLibrary: () => void }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [assignedLesson, setAssignedLesson] = useState(() => {
+  const [assignedLesson] = useState(() => {
     const raw = searchParams.get('lesson');
     const requested = raw === 'adjectives-articles' ? 'week-4-describing' : raw;
-    return WEEKLY_REVIEW_LESSONS.find(lesson => lesson.id === requested)?.id ?? null;
+    return requested && Object.hasOwn(REVIEW_LESSONS, requested) ? requested as ReviewLessonId : null;
   });
   const returnHref = useResolvedLearnerReturnHref({ fallbackHref: '/dashboard' });
-  const [stage, setStage] = useState<Stage>('start');
-  const [lessonId, setLessonId] = useState<ReviewLessonId>('nouns-verbs');
+  // A course map link (?lesson=) opens that week's lesson directly; Back leads to the Word Jobs start screen.
+  const [stage, setStage] = useState<Stage>(() => assignedLesson ? (REVIEW_LESSONS[assignedLesson].bridge ? 'bridge' : 'example') : 'start');
+  const [lessonId, setLessonId] = useState<ReviewLessonId>(assignedLesson ?? 'nouns-verbs');
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<ReviewAttempt['answers']>([]);
   const [selection, setSelection] = useState<ReviewCategory | null>(null);
   const [revisited, setRevisited] = useState(false);
   const [missed, setMissed] = useState<ReviewItem[] | null>(null);
-  const [attemptId, setAttemptId] = useState('');
+  const [attemptId, setAttemptId] = useState(() => assignedLesson ? crypto.randomUUID() : '');
   const [progress, setProgress] = useState<ReviewProgress>(() => readReviewProgress(null));
   const [loadState, setLoadState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [openTopic, setOpenTopic] = useState<number | null>(null);
+  const [extraOpen, setExtraOpen] = useState<Record<number, boolean>>({});
+  const [revealedWords, setRevealedWords] = useState<Record<number, boolean>>({});
+  const [lastWord, setLastWord] = useState<number | null>(null);
   const pending = useRef<ReviewAttempt | null>(null);
   const saving = useRef(false);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -108,24 +120,11 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
     example: reviewSentence(lesson.examples[0]),
     check: 'Point to the part you practiced and explain its job. You can ask your teacher for help.',
   };
-  function lessonButton(id: ReviewLessonId) {
-    return <button className={`${secondary} w-full !justify-between gap-3 !text-left`} disabled={hasUnsaved} onClick={() => start(id)}>
-      <span>{REVIEW_LESSONS[id].title}</span><span className="shrink-0 text-sm text-text-muted">{progress.lessons[id] ? 'Saved' : 'Start'}</span>
-    </button>;
-  }
-  function weekSection({ id, week, phase }: typeof WEEKLY_REVIEW_LESSONS[number]) {
-    const current = REVIEW_LESSONS[id];
-    const reviewCount = current.questions.filter(q => q.review).length;
-    return <section key={id} className={styles.weekCard} aria-labelledby={`week-${week}-title`}>
-      <p className="text-sm font-semibold text-text-muted">Week {week} · About 10–15 minutes</p>
-      <h2 id={`week-${week}-title`} className="mt-2 font-display text-2xl">{current.title}</h2>
-      <p className="mt-2 text-sm text-text-muted">{phase}</p>
-      <div className={styles.cueRow}>{current.categories.map(category => <ReviewCategoryCue key={category} category={category} />)}</div>
-      <p className="mt-2 text-text-muted">{reviewCount ? 'Two examples, six focus questions, and two familiar review questions.' : 'Two examples, then eight questions.'}</p>
-      {progress.lessons[id] && <p className="mt-3 text-sm font-semibold">Completion saved. Practice again anytime.</p>}
-      <button className={`${secondary} mt-4 w-full sm:w-auto`} disabled={hasUnsaved} onClick={() => start(id)}>Start practice</button>
-    </section>;
-  }
+  const isSaved = (id: ReviewLessonId) => !!progress.lessons[id];
+  const nextLessonId = assignedLesson ?? CORE_ORDER.find(id => !isSaved(id)) ?? CORE_ORDER[0];
+  const nextLesson = REVIEW_LESSONS[nextLessonId];
+  // Until a student taps a topic, open the one holding their next lesson; -1 means all closed.
+  const shownTopic = openTopic ?? Math.max(0, REVIEW_TOPICS.findIndex(topic => [...topic.core, topic.check, ...topic.extra].includes(nextLessonId)));
 
   return <div ref={screen} className="fixed inset-0 z-20 overflow-y-auto bg-bg text-text">
     <div className="mx-auto max-w-2xl px-5 pb-12 pt-5 sm:px-8 sm:pt-8">
@@ -137,47 +136,91 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
       {hasUnsaved && <div role="status" className="mb-6 rounded-xl border border-border p-4 text-sm">
         {saveState === 'saving' ? 'Saving your review…' : <>Your review has not been saved. Keep this page open and retry. <button className={`${secondary} mt-2`} onClick={() => pending.current && void save(pending.current)}>Retry saving</button></>}
       </div>}
-      {stage === 'start' ? <main>
-        <p className="mb-3 text-sm font-semibold text-text-muted">A little each week</p>
-        <h1 ref={heading} tabIndex={-1} className={`${styles.heading} font-display text-3xl leading-tight sm:text-4xl`}>Parts of Speech Review</h1>
-        <p className="mt-5 text-lg leading-relaxed">Choose the week your teacher assigned. One short lesson is enough for today.</p>
-        {loadState === 'loading' && <p role="status" className="mt-5">Checking saved progress…</p>}
-        {loadState === 'error' && <p role="alert" className="mt-5">We couldn’t check saved progress. You can still practice. <button className="underline" onClick={() => void load()}>Try loading again</button></p>}
-        <div className="mt-6">
-          {WEEKLY_REVIEW_LESSONS.filter(lesson => assignedLesson ? lesson.id === assignedLesson : lesson.week <= 4).map(weekSection)}
-        </div>
-        {assignedLesson && <button className="mt-6 min-h-12 font-semibold underline underline-offset-4" onClick={() => setAssignedLesson(null)}>See all lessons</button>}
-        {!assignedLesson && <>
-          <section className="mt-8">
-            <h2 className="py-3 font-display text-2xl">Coming up in October</h2>
-            <p className="text-sm leading-relaxed text-text-muted">A first pass through sentence roles and describing words. Your teacher can slow down or revisit a lesson.</p>
-            <div className="mt-4">{WEEKLY_REVIEW_LESSONS.filter(lesson => lesson.week > 4).map(weekSection)}</div>
-          </section>
-          <section className="mt-8">
-            <h2 className="py-3 font-display text-2xl">Quick foundation check-in</h2>
-            <p className="mb-4 text-sm leading-relaxed text-text-muted">Revisit basic pronouns and a, an, the. This helps you and your teacher decide what to practice. It does not unlock or block other lessons.</p>
-            {lessonButton('foundation-check-in')}
-          </section>
-          <section className="mt-8">
-            <h2 className="py-3 font-display text-2xl">Explore the five phases</h2>
-            <p className="mt-2 text-sm leading-relaxed text-text-muted">Choose one lesson with your teacher. You can move between phases and revisit familiar topics. Check-ins help you notice what needs practice; no passing score is required.</p>
-            {REVIEW_PHASES.map(phase => <section key={phase.title} className="mt-4 border-t border-border pt-2">
-              <h3 className="py-3 text-lg font-semibold">{phase.title}</h3>
-              <p className="mb-4 text-sm leading-relaxed text-text-muted">{phase.description}</p>
-              <ul className="space-y-3 pb-4">{phase.core.map(id => <li key={id}>{lessonButton(id)}</li>)}</ul>
-              <p className="mb-2 text-sm font-semibold">Check-in · Revisit together</p>
-              {lessonButton(phase.checkIn)}
-              {phase.extra.length > 0 && <section className="my-4">
-                <h4 className="py-3 text-sm font-semibold">More detail for later</h4>
-                <ul className="space-y-3">{phase.extra.map(id => <li key={id}>{lessonButton(id)}</li>)}</ul>
-              </section>}
-            </section>)}
-            <div className="mt-6 border-t border-border pt-4">
-              <button className="min-h-12 text-sm font-semibold underline underline-offset-4 disabled:opacity-60" disabled={hasUnsaved} onClick={onLibrary}>Original practice library</button>
-              <p className="text-sm text-text-muted">The earlier activities and their saved progress.</p>
+      {stage === 'start' ? <main className={styles.startStack}>
+        {loadState === 'loading' && <p role="status">Checking saved progress…</p>}
+        {loadState === 'error' && <p role="alert">We couldn’t check saved progress. You can still practice. <button className="underline" onClick={() => void load()}>Try loading again</button></p>}
+        <section aria-labelledby="word-jobs-title">
+          <h1 id="word-jobs-title" ref={heading} tabIndex={-1} className={`${styles.heading} font-display text-4xl font-medium leading-[1.1] tracking-[-0.01em] sm:text-[44px]`}>Word Jobs</h1>
+          <p className="mt-2 text-lg leading-normal text-text">Every word has a job. Can you find it?</p>
+          <div className={`${styles.heroCard} mt-5`}>
+            <div className="grid grid-cols-[minmax(0,1fr)_48px] items-start gap-3">
+              <div className={styles.heroWords}>
+                {HERO_WORDS.map(({ text, category }, wordIndex) => {
+                  const shown = !!revealedWords[wordIndex];
+                  return <span key={text} className={styles.heroWordWrap}>
+                    <button type="button" aria-pressed={shown} aria-label={`${text.replace('.', '')}: tap to see its job`}
+                      className={`${styles.heroWord} ${categoryColorClass(category)} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary`}
+                      onClick={() => { setRevealedWords(previous => ({ ...previous, [wordIndex]: !shown })); setLastWord(shown ? null : wordIndex); }}>{text}</button>
+                    {shown && <span className={styles.miniCue}><ReviewCategoryCue category={category} /></span>}
+                  </span>;
+                })}
+              </div>
+              <SpeakButton text="The teacher helps us." className="!h-[48px] !w-[48px]" />
             </div>
-          </section>
-        </>}
+            <p aria-live="polite" className="text-sm font-semibold text-text-muted">
+              {lastWord !== null && revealedWords[lastWord] && <span className="sr-only">{HERO_WORDS[lastWord].text.replace('.', '')}: {HERO_WORDS[lastWord].category}. </span>}
+              {Object.values(revealedWords).some(Boolean) ? 'Nice. Tap another word.' : 'Tap a word to see its job.'}
+            </p>
+          </div>
+        </section>
+        <section className={styles.upNext} aria-labelledby="up-next-title">
+          <p className="text-sm font-bold tracking-[0.02em] text-primary">{assignedLesson ? 'From your teacher' : Object.keys(progress.lessons).length ? 'Up next' : 'Start here'}</p>
+          <h2 id="up-next-title" className="font-display text-[28px] font-medium leading-[1.2]">{nextLesson.title}</h2>
+          <div className="flex flex-wrap gap-2">{nextLesson.categories.map(category => <ReviewCategoryCue key={category} category={category} />)}</div>
+          <p className="text-[15px] text-text-muted">{nextLesson.questions.length} questions</p>
+          <button className={`${primary} min-h-[52px] w-full text-[17px]`} disabled={hasUnsaved} onClick={() => start(nextLessonId)}>Start <ArrowRight size={18} aria-hidden="true" /></button>
+        </section>
+        <section aria-labelledby="all-topics-title">
+          <h2 id="all-topics-title" className="mb-3 font-display text-2xl font-medium">All topics</h2>
+          <ul className="flex flex-col gap-2.5">
+            {REVIEW_TOPICS.map((topic, topicIndex) => {
+              const counted = [...topic.core, topic.check];
+              const done = counted.filter(isSaved).length;
+              const open = shownTopic === topicIndex;
+              const extra = !!extraOpen[topicIndex];
+              const numberClass = done === 0 ? styles.topicNumNone : done === counted.length ? styles.topicNumAll : styles.topicNumSome;
+              const row = (id: ReviewLessonId, label: string, dashed = false) => <li key={id}>
+                <button type="button" className={`${dashed ? styles.extraRow : styles.lessonRow} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary`} disabled={hasUnsaved} onClick={() => start(id)}>
+                  <span className={`${styles.statusDot} ${isSaved(id) ? styles.statusDone : ''}`}>{isSaved(id) && <Check size={16} strokeWidth={3} aria-hidden="true" />}</span>
+                  <span className="min-w-0">{label}</span>
+                  <span className="text-sm font-medium text-text-muted">{isSaved(id) ? 'Done' : ''}</span>
+                </button>
+              </li>;
+              return <li key={topic.title} className={styles.topic}>
+                <button type="button" aria-expanded={open} aria-controls={`topic-${topicIndex}-body`} className={`${styles.topicHeader} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-primary`}
+                  onClick={() => setOpenTopic(open ? -1 : topicIndex)}>
+                  <span className={`${styles.topicNum} ${numberClass}`} aria-hidden="true">{topicIndex + 1}</span>
+                  <span className="min-w-0 text-left">
+                    <span className="block font-display text-xl font-medium leading-[1.3]">{topic.title}</span>
+                    <span className="block text-sm text-text-muted">{topic.what}</span>
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <span className="text-sm font-semibold text-text-muted"><span className="sr-only">Done: </span>{done}/{counted.length}</span>
+                    <ChevronDown size={20} aria-hidden="true" className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+                  </span>
+                </button>
+                {open && <div id={`topic-${topicIndex}-body`} className={styles.topicBody}>
+                  <div className={`${styles.miniCue} flex flex-wrap gap-2 pb-1 pt-3`}>{topic.cues.map(category => <ReviewCategoryCue key={category} category={category} />)}</div>
+                  <ul className="flex flex-col gap-2.5">
+                    {topic.core.map(id => row(id, REVIEW_LESSONS[id].title))}
+                    {row(topic.check, 'Quick check')}
+                  </ul>
+                  {topic.extra.length > 0 && <>
+                    <button type="button" aria-expanded={extra} aria-controls={`topic-${topicIndex}-extra`} className={`${styles.extraToggle} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary`}
+                      onClick={() => setExtraOpen(previous => ({ ...previous, [topicIndex]: !extra }))}>
+                      {extra ? 'Hide extra practice' : `Extra practice (${topic.extra.length})`}
+                      <ChevronDown size={18} aria-hidden="true" className={`transition-transform duration-200 ${extra ? 'rotate-180' : ''}`} />
+                    </button>
+                    {extra && <ul id={`topic-${topicIndex}-extra`} className="flex flex-col gap-2">{topic.extra.map(id => row(id, REVIEW_LESSONS[id].title, true))}</ul>}
+                  </>}
+                </div>}
+              </li>;
+            })}
+          </ul>
+        </section>
+        <footer className="border-t border-border pt-4">
+          <button className="min-h-11 text-sm font-semibold text-text-muted underline underline-offset-4 disabled:opacity-60" disabled={hasUnsaved} onClick={onLibrary}>Original practice library</button>
+        </footer>
       </main> : stage === 'bridge' ? <main>
         <p className="mb-3 text-sm font-semibold text-text-muted">From word types to sentence roles</p>
         <h1 ref={heading} tabIndex={-1} className={`${styles.heading} font-display text-2xl sm:text-3xl`}>A word type and a sentence job</h1>
