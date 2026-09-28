@@ -156,3 +156,21 @@ describe("visibleWeekNumbers", () => {
         expect(visibleWeekNumbers(units)).toEqual([1, 2, 4]);
     });
 });
+
+
+describe("Week 3 release and classroom changeover", () => {
+    it.each([
+        ["2026-09-27T23:59:59Z", 2, false],
+        ["2026-09-28T00:00:00Z", 2, true],
+        ["2026-09-28T15:18:00Z", 2, true],
+        ["2026-09-29T03:59:59Z", 2, true],
+        ["2026-09-29T04:00:00Z", 3, true],
+    ])("at %s features Week %i", (instant, expectedWeek, week3Released) => {
+        const now = new Date(instant);
+        const teaching = buildTeachingWeeks();
+        const visibleWeeks = teaching.filter((week) => week.revealAt <= now).map((week) => week.index);
+        expect(visibleWeeks.includes(3)).toBe(week3Released);
+        expect(resolveCurrentWeek({ mode: "classroom", visibleWeeks, progressWeek: 3, now })?.weekNumber)
+            .toBe(expectedWeek);
+    });
+});

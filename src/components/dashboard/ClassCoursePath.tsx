@@ -154,11 +154,13 @@ function GuidedCoursePath({
     // redirected away.
     const defaultWeekNumber = scheduledWeek ?? currentWeek?.level.levelNumber ?? null;
     const progressWeekNumber = defaultWeekNumber;
+    const restoreSession = !showUnitMonths || scheduledWeek == null;
     const resolveOpenWeek = () =>
         resolveInitialMapOpenWeek({
             initialWeek,
             hashWeek: typeof window !== "undefined" ? parseMapWeekFromHash(window.location.hash) : null,
             progressWeek: defaultWeekNumber,
+            restoreSession,
         });
     const defaultUnitNumber =
         weekSummaries.find((week) => week.level.levelNumber === defaultWeekNumber)?.unitNumber ??
@@ -214,6 +216,11 @@ function GuidedCoursePath({
             return;
         }
 
+        if (!restoreSession) {
+            didInitialScroll.current = true;
+            return;
+        }
+
         const session = readCourseMapSessionState();
         if (session?.week) {
             didInitialScroll.current = true;
@@ -226,7 +233,7 @@ function GuidedCoursePath({
                 });
             }
         }
-    }, [focusNextActivity, initialWeek, navigateToWeek, progressWeekNumber]);
+    }, [focusNextActivity, initialWeek, navigateToWeek, progressWeekNumber, restoreSession]);
 
     useEffect(() => {
         if (pathname !== "/dashboard/map") return;

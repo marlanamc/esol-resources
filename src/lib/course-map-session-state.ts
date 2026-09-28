@@ -45,12 +45,16 @@ export function resolveInitialMapOpenWeek(options: {
     initialWeek: number | null | undefined;
     hashWeek: number | null;
     progressWeek: number | null;
+    /** Classroom entry follows the calendar, not a previous browsing session. */
+    restoreSession?: boolean;
 }): number | null {
     if (options.initialWeek != null) return options.initialWeek;
     if (options.hashWeek != null) return options.hashWeek;
 
-    const session = readCourseMapSessionState();
-    if (session?.week != null) return session.week;
+    if (options.restoreSession !== false) {
+        const session = readCourseMapSessionState();
+        if (session?.week != null) return session.week;
+    }
 
     return options.progressWeek;
 }

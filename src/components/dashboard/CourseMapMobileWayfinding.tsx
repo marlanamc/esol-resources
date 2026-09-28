@@ -9,7 +9,7 @@ import { resolveWeekActivityLaunch } from "@/lib/course-map-navigation";
 import type { CourseMapProgressState } from "@/lib/course-map-progress";
 import { useCourseMapScrollSpy } from "@/hooks/useCourseMapScrollSpy";
 import { getCourseMapUnitTone } from "@/lib/course-map-unit-colors";
-import { formatLevelLabel } from "@/components/dashboard/course-path/shared";
+import { focusText, formatLevelLabel } from "@/components/dashboard/course-path/shared";
 import { formatNextUpActivityTitle, getCourseMapActivityIconEmoji } from "@/lib/course-map-hero";
 import type { GuidedAssignmentInfo } from "@/components/dashboard/course-path/shared";
 import { dispatchOpenMapWeek, scrollToMapTarget } from "@/lib/course-map-navigation";
@@ -96,6 +96,7 @@ export function CourseMapMobileWayfinding({
             unitTitle: unit.unitTitle,
             weekNumber: resolvedWeek,
             levelTitle: level?.levelTitle ?? weekEntry?.title ?? null,
+            description: level ? focusText(level.levelTitle, level.levelGoal) : null,
             levelDone: weekEntry?.done ?? null,
             levelTotal: weekEntry?.total ?? null,
         };
@@ -179,7 +180,7 @@ export function CourseMapMobileWayfinding({
             aria-live="polite"
         >
             <div
-                className="px-4 pt-3 pb-3"
+                className="px-4 pt-3 pb-1"
                 style={{
                     background: `color-mix(in srgb, ${tone.surface} 70%, var(--dashboard-surface-start))`,
                 }}
@@ -201,12 +202,7 @@ export function CourseMapMobileWayfinding({
                         {meta.levelTitle}
                     </p>
                 ) : null}
-                <p className="mt-1 text-[11px] leading-tight text-text-muted">
-                    Unit {meta.unitNumber}: {meta.unitTitle}
-                    {showUnitMonths && meta.unitMonth ? ` · ${meta.unitMonth}` : ""}
-                </p>
-
-                {!isOnScheduledWeek && scheduledWeek != null && showUnitMonths ? (
+                {!isOnScheduledWeek && !isAheadOfSchedule && scheduledWeek != null && showUnitMonths ? (
                     <button
                         type="button"
                         onClick={backToCurrent}
@@ -219,9 +215,9 @@ export function CourseMapMobileWayfinding({
                 ) : null}
 
                 {hasLevelProgress ? (
-                    <div className="mt-2.5 flex items-center gap-2">
+                    <div className="mt-2 flex items-center gap-3">
                         <div
-                            className="relative h-2 flex-1 overflow-hidden rounded-full"
+                            className="relative h-1.5 flex-1 overflow-hidden rounded-full"
                             style={{
                                 background: "var(--bg)",
                                 border: "1px solid var(--border-subtle)",
@@ -240,11 +236,14 @@ export function CourseMapMobileWayfinding({
                                 }}
                             />
                         </div>
+                        <span className="shrink-0 text-xs font-semibold tabular-nums text-text-muted">
+                            {levelDone}/{levelTotal} finished
+                        </span>
                     </div>
                 ) : totalLevels > 0 ? (
-                    <div className="mt-2.5 flex items-center gap-2">
+                    <div className="mt-2 flex items-center gap-3">
                         <div
-                            className="relative h-2 flex-1 overflow-hidden rounded-full"
+                            className="relative h-1.5 flex-1 overflow-hidden rounded-full"
                             style={{
                                 background: "var(--bg)",
                                 border: "1px solid var(--border-subtle)",
@@ -266,11 +265,18 @@ export function CourseMapMobileWayfinding({
                     </div>
                 ) : null}
 
-                {hasLevelProgress ? (
-                    <p className="mt-1.5 text-[13px] font-semibold text-text-muted">
-                        {levelDone} of {levelTotal} activities finished
-                    </p>
-                ) : null}
+                <details key={viewedWeek} className="text-xs text-text-muted">
+                    <summary className="min-h-11 cursor-pointer content-center rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+                        {showUnitMonths ? "Week details" : "Level details"}
+                    </summary>
+                    <div className="space-y-1 pb-3">
+                        <p>
+                            Unit {meta.unitNumber}: {meta.unitTitle}
+                            {showUnitMonths && meta.unitMonth ? ` · ${meta.unitMonth}` : ""}
+                        </p>
+                        {meta.description ? <p className="text-sm leading-relaxed">{meta.description}</p> : null}
+                    </div>
+                </details>
             </div>
 
             {currentActivity ? (

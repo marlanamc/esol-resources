@@ -208,6 +208,7 @@ export function MobileUnitSection({
                                         <MobileWeekCard
                                             week={week}
                                             isOpen
+                                            showDescription={!header}
                                             optionalOpen={Boolean(openOptional[week.level.levelNumber])}
                                             currentId={currentId}
                                             currentLabel={currentLabel}
@@ -328,8 +329,10 @@ export function MobileWeekCard({
     onToggle,
     onToggleOptional,
     showUnitMonths = true,
+    showDescription = true,
 }: {
     week: WeekSummary;
+    showDescription?: boolean;
     isOpen: boolean;
     optionalOpen: boolean;
     currentId: string | null;
@@ -391,7 +394,7 @@ export function MobileWeekCard({
             >
                 {formatLevelLabel(week.level.levelNumber, showUnitMonths)} {week.level.levelTitle}
             </h2>
-            {focus ? (
+            {showDescription && focus ? (
                 <p className="mb-3 text-sm leading-relaxed text-text-muted">
                     {focus}
                 </p>
