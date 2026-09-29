@@ -247,24 +247,24 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "badge": "Review"
           },
           {
-            "id": "parts-of-speech-word-sort-review",
-            "activityId": "parts-of-speech-word-sort-guided",
-            "slot": "required",
-            "order": 2,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Word Sort: Verbs",
-            "badge": "Review"
-          },
-          {
             "id": "parts-of-speech-discovery",
             "activityId": "parts-of-speech-game",
             "href": "/activity/parts-of-speech-game?lesson=nouns-verbs",
             "slot": "required",
-            "order": 3,
+            "order": 2,
             "wrappedGame": true,
             "activityType": "game",
             "title": "Word Jobs: Nouns and Verbs"
+          },
+          {
+            "id": "parts-of-speech-word-sort-review",
+            "activityId": "parts-of-speech-word-sort-guided",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Word Sort: Verbs",
+            "badge": "Review"
           },
           {
             "id": "vocab-sep-w4-matching",
