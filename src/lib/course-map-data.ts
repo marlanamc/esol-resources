@@ -294,7 +294,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 6,
             "wrappedGame": true,
             "activityType": "game",
-            "title": "Week 3: Nouns and Verbs"
+            "title": "Word Jobs: Nouns and Verbs"
           },
           {
             "id": "parts-of-speech-word-sort-nouns-review",
@@ -333,7 +333,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "order": 10,
             "wrappedGame": false,
             "activityType": "game",
-            "title": "Parts of Speech Review"
+            "title": "Word Jobs: More Lessons"
           }
         ]
       }
