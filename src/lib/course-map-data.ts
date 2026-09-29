@@ -257,13 +257,23 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "badge": "Review"
           },
           {
+            "id": "parts-of-speech-discovery",
+            "activityId": "parts-of-speech-game",
+            "href": "/activity/parts-of-speech-game?lesson=nouns-verbs",
+            "slot": "required",
+            "order": 3,
+            "wrappedGame": true,
+            "activityType": "game",
+            "title": "Word Jobs: Nouns and Verbs"
+          },
+          {
             "id": "vocab-sep-w4-matching",
             "activityId": "vocab-sep-w4",
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "matching",
-            "order": 3,
+            "order": 4,
             "title": "Personal Journey Verbs: Matching"
           },
           {
@@ -272,7 +282,7 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "slot": "required",
             "wrappedGame": true,
             "activityType": "game",
-            "order": 4,
+            "order": 5,
             "title": "Action or Description?",
             "badge": "Review"
           },
@@ -283,18 +293,8 @@ export const COURSE_MAP_UNITS: CourseUnitDef[] = [
             "wrappedGame": true,
             "activityType": "game",
             "vocabUi": "fill-blank",
-            "order": 5,
-            "title": "Personal Journey Verbs: Fill in the Blank"
-          },
-          {
-            "id": "parts-of-speech-discovery",
-            "activityId": "parts-of-speech-game",
-            "href": "/activity/parts-of-speech-game?lesson=nouns-verbs",
-            "slot": "required",
             "order": 6,
-            "wrappedGame": true,
-            "activityType": "game",
-            "title": "Word Jobs: Nouns and Verbs"
+            "title": "Personal Journey Verbs: Fill in the Blank"
           },
           {
             "id": "parts-of-speech-word-sort-nouns-review",
