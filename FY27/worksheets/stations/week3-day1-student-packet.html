@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Week 3 Day 1 Stations Packet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* One .page = one portrait letter side. Print double-sided, flip on long edge. */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.4in 0.45in;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @media screen {
+    body { background: #e6e6e6; padding: 24px 0; }
+    .page { background: #fff; margin: 0 auto 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+  }
+
+  /* Type scale: 22 / 18 / 14 / 11 */
+  h1 { font-size: 22px; }
+  .small { font-size: 11px; }
+
+  .name-row { display: flex; gap: 18px; align-items: flex-end; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+  .name-row .fill { flex: 1; border-bottom: 2px solid #000; height: 26px; }
+  .name-row .fill.date { flex: none; width: 1.3in; font-weight: normal; font-size: 14px; text-align: center; line-height: 30px; }
+
+  .title-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 8px;
+  }
+  .done-boxes { font-size: 14px; white-space: nowrap; }
+  .done-boxes b { margin-right: 4px; }
+  .cb { display: inline-block; width: 15px; height: 15px; border: 1.5px solid #000; vertical-align: -2px; margin: 0 2px 0 8px; }
+
+  /* Word Jobs helper strip */
+  .jobs { display: grid; grid-template-columns: repeat(3, 1fr); border: 1.5px solid #000; margin-bottom: 10px; }
+  .job { padding: 5px 9px; }
+  .job + .job { border-left: 1.5px solid #000; }
+  .job-name { font-size: 14px; font-weight: bold; }
+  .job-what { font-size: 11px; }
+  .job-ex { font-size: 14px; margin-top: 2px; }
+  .mark-u { border-bottom: 2px solid #000; }
+  .mark-c { border: 2px solid #000; border-radius: 999px; padding: 0 5px; }
+  .mark-b { border: 2px solid #000; padding: 0 4px; }
+
+  /* Station blocks */
+  .station { border: 2px solid #000; padding: 7px 11px 9px; margin-bottom: 9px; }
+  .station:last-child { margin-bottom: 0; }
+  .grow { flex: 1; display: flex; flex-direction: column; }
+  .station-head { display: flex; align-items: baseline; gap: 10px; border-bottom: 1.5px solid #000; padding-bottom: 3px; margin-bottom: 6px; }
+  .station-num {
+    flex: none; width: 26px; height: 26px; border-radius: 50%; background: #000; color: #fff;
+    font-size: 14px; font-weight: bold; display: inline-flex; align-items: center; justify-content: center;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; /* keep the black circle when "Background graphics" is off */
+    align-self: center;
+  }
+  .station-title { font-size: 18px; font-weight: bold; }
+  .station-with { font-size: 14px; font-style: italic; }
+  .station-head .right { margin-left: auto; font-size: 11px; }
+
+  .q { margin-bottom: 6px; }
+  .q-text { font-size: 14px; font-weight: bold; }
+  .q-help { font-size: 14px; padding-left: 18px; }
+  .talk { font-size: 11px; font-style: italic; }
+
+  .line { border-bottom: 1.5px solid #000; height: 28px; }
+  .line.label { display: flex; align-items: flex-end; gap: 6px; font-size: 14px; border-bottom: none; }
+  .line.label .fill { flex: 1; border-bottom: 1.5px solid #000; height: 22px; }
+  .blank { display: inline-block; border-bottom: 1.5px solid #000; width: 7em; margin: 0 2px; }
+  .blank.long { width: 13em; }
+  .blank.short { width: 3.2em; }
+
+  .circle-row { font-size: 14px; padding-left: 18px; }
+  .circle-row span { margin-right: 14px; white-space: nowrap; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+
+  .app-row { font-size: 14px; margin-bottom: 6px; }
+  .app-row .cb { margin-left: 0; margin-right: 4px; }
+  .app-row .gap { display: inline-block; width: 26px; }
+
+  .frames { font-size: 14px; line-height: 2.2; }
+  .step { font-size: 14px; margin-bottom: 1px; }
+  .frames .n { display: inline-block; width: 22px; font-weight: bold; }
+  .own { display: flex; align-items: flex-end; gap: 6px; font-size: 14px; }
+  .own .n { width: 22px; font-weight: bold; flex: none; }
+  .own .fill { flex: 1; border-bottom: 1.5px solid #000; height: 30px; }
+
+  .check { border: 1.5px dashed #000; padding: 5px 9px; font-size: 14px; margin-top: 6px; }
+  .check .cb { margin-left: 0; margin-right: 4px; }
+  .check span { margin-right: 14px; white-space: nowrap; }
+
+  .rule { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid #000; margin-bottom: 8px; }
+  .rule > div { padding: 5px 9px; }
+  .rule > div + div { border-left: 1.5px solid #000; }
+  .rule .never { grid-column: 1 / -1; border-left: none; border-top: 1.5px solid #000; font-size: 11px; }
+
+  .part { font-size: 14px; font-weight: bold; margin: 6px 0 3px; }
+  .part .small { font-weight: normal; }
+  ol.items { list-style: none; counter-reset: i; font-size: 14px; line-height: 2.2; }
+  ol.items li { counter-increment: i; padding-left: 22px; position: relative; }
+  ol.items li::before { content: counter(i) "."; position: absolute; left: 0; font-weight: bold; }
+  .arrow { font-weight: bold; margin: 0 6px; }
+
+  .wordbank { border: 1.5px solid #000; text-align: center; font-weight: bold; font-size: 14px; padding: 3px 8px; margin-bottom: 4px; }
+  .wordbank span { margin: 0 10px; }
+
+  .footer-note { font-size: 11px; font-style: italic; text-align: center; margin-top: 8px; padding-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     FRONT: name, Word Jobs helper, Stations 1-3
+     ====================================================== -->
+<section class="page">
+
+  <div class="name-row">
+    Name: <span class="fill"></span>
+    Date: <span class="fill date">Tue, Sept 29</span>
+  </div>
+
+  <div class="title-row">
+    <h1>Week 3 Stations: Word Jobs</h1>
+    <div class="done-boxes"><b>Done:</b> 1<span class="cb"></span> 2<span class="cb"></span> 3<span class="cb"></span> 4<span class="cb"></span> 5<span class="cb"></span></div>
+  </div>
+
+  <div class="jobs">
+    <div class="job">
+      <div class="job-name">NOUN &nbsp;<span class="small">&rarr; <span class="mark-u">underline</span></span></div>
+      <div class="job-what">a person, place, or thing</div>
+      <div class="job-ex"><span class="mark-u">teacher</span>, <span class="mark-u">Boston</span>, <span class="mark-u">phone</span></div>
+    </div>
+    <div class="job">
+      <div class="job-name">VERB &nbsp;<span class="small">&rarr; <span class="mark-c">circle</span></span></div>
+      <div class="job-what">an action: something you DO</div>
+      <div class="job-ex"><span class="mark-c">work</span>, <span class="mark-c">eat</span>, <span class="mark-c">move</span></div>
+    </div>
+    <div class="job">
+      <div class="job-name">DESCRIPTION &nbsp;<span class="small">&rarr; <span class="mark-b">box</span></span></div>
+      <div class="job-what">how someone is. Use am / is / are.</div>
+      <div class="job-ex">I am <span class="mark-b">tired</span>. She is <span class="mark-b">happy</span>.</div>
+    </div>
+  </div>
+
+  <!-- Station 1 -->
+  <div class="station">
+    <div class="station-head">
+      <span class="station-num">1</span>
+      <span class="station-title">Talk About Speaking</span>
+      <span class="station-with">with Matt</span>
+      <span class="right">Talk first. Then write.</span>
+    </div>
+
+    <div class="q">
+      <div class="q-text">How did you feel when you spoke English with your group?</div>
+      <div class="circle-row">Circle: <span>nervous</span><span>shy</span><span>happy</span><span>comfortable</span><span>confident</span><span>tired</span><span>other: ______</span></div>
+      <div class="line label">I felt <span class="fill"></span> because <span class="fill"></span></div>
+    </div>
+
+    <div class="q" style="margin-bottom:0">
+      <div class="q-text">What helps you speak more? What can your group do?</div>
+      <div class="line label">It helps me when <span class="fill"></span></div>
+    </div>
+  </div>
+
+  <!-- Station 2 -->
+  <div class="station">
+    <div class="station-head">
+      <span class="station-num">2</span>
+      <span class="station-title">Sort the Words</span>
+      <span class="station-with">on My ESOL App &rarr; Course Map</span>
+      <span class="right">Week 3</span>
+    </div>
+
+    <div class="app-row">
+      <span class="cb"></span><b>Word Sort: Verbs</b> <span class="gap"></span>
+      <span class="cb"></span><b>Word Jobs: Nouns and Verbs</b>
+    </div>
+
+    <div class="two-col">
+      <div class="line label">3 nouns: <span class="fill"></span></div>
+      <div class="line label">3 verbs: <span class="fill"></span></div>
+    </div>
+
+    <div class="q" style="margin:6px 0 0">
+      <div class="q-text">Write 1 sentence. <span class="mark-u">Underline</span> the noun. <span class="mark-c">Circle</span> the verb.</div>
+      <div class="line"></div>
+    </div>
+  </div>
+
+  <!-- Station 3 -->
+  <div class="station grow">
+    <div class="station-head">
+      <span class="station-num">3</span>
+      <span class="station-title">Write About Me</span>
+      <span class="station-with">alone, then with a partner</span>
+      <span class="right">Do Steps A, B, and C</span>
+    </div>
+
+    <div class="step"><b>A. Write about you.</b> <span class="small">(6 min)</span></div>
+    <div class="frames">
+      <div><span class="n">1</span> My name is <span class="blank"></span>. I am from <span class="blank long"></span>.</div>
+      <div><span class="n">2</span> I moved to <span class="blank"></span> in <span class="blank short"></span>. Now I live with <span class="blank"></span>.</div>
+      <div><span class="n">3</span> In my country, I <span class="blank long"></span>. Here, I <span class="blank long"></span>.</div>
+      <div><span class="n">4</span> In English class, I am <span class="blank"></span>. <span class="blank"></span> motivates me.</div>
+    </div>
+    <div class="own"><span class="n">5</span><span class="fill"></span><span class="small"><i>no help: your job, family, or goal</i></span></div>
+    <div class="own"><span class="n">6</span><span class="fill"></span></div>
+
+    <div class="check">
+      <b>B. Check it.</b> <span class="small" style="margin-right:10px">(2 min)</span>
+      <span><span class="cb"></span><span class="mark-u">Underline</span> 3 nouns</span>
+      <span><span class="cb"></span><span class="mark-c">Circle</span> 3 verbs</span>
+      <span><span class="cb"></span><span class="mark-b">Box</span> 2 descriptions</span>
+    </div>
+
+    <div class="step" style="margin-top:7px"><b>C. Partner.</b> Read to a partner. Ask 2 questions. Write about your partner. <span class="small">(7 min)</span></div>
+    <div class="frames">
+      <div><span class="n">7</span> My partner&rsquo;s name is <span class="blank"></span>. He / She is from <span class="blank long"></span>.</div>
+      <div><span class="n">8</span> He / She <span class="blank long"></span>. <span class="small"><i>(action: add <b>-s</b>! works, lives, studies)</i></span></div>
+      <div><span class="n">9</span> He / She is <span class="blank long"></span>. <span class="small"><i>(description)</i></span></div>
+    </div>
+    <div class="own"><span class="n">10</span><span class="fill"></span></div>
+
+    <div class="small" style="margin-top:auto; padding-top:4px"><i>Finished early? Add the word &ldquo;because&rdquo; to 2 sentences. Example: I moved to Boston because my sister lives here.</i></div>
+  </div>
+
+</section>
+
+<!-- ======================================================
+     BACK: Stations 4-5
+     ====================================================== -->
+<section class="page">
+
+  <!-- Station 4 -->
+  <div class="station">
+    <div class="station-head">
+      <span class="station-num">4</span>
+      <span class="station-title">Talk with Marlie</span>
+      <span class="station-with">your teacher</span>
+      <span class="right">Marlie wants to know YOU!</span>
+    </div>
+
+    <div class="q">
+      <div class="q-text">I want to learn English because&hellip;</div>
+      <div class="line"></div>
+    </div>
+
+    <div class="q">
+      <div class="q-text">My goal this year: I want to achieve&hellip;</div>
+      <div class="line"></div>
+    </div>
+
+    <div class="q">
+      <div class="q-text">In class, I like to&hellip;</div>
+      <div class="circle-row">Circle: <span>talk</span><span>listen</span><span>read</span><span>write</span><span>use the app</span><span>work alone</span><span>work with a partner</span></div>
+    </div>
+
+    <div class="q">
+      <div class="q-text">In English, it is hard for me to&hellip;</div>
+      <div class="circle-row">Circle: <span>speak</span><span>listen</span><span>read</span><span>write</span><span>spell</span><span>use grammar</span><span>other: ______</span></div>
+    </div>
+
+    <div class="q">
+      <div class="q-text">One thing Marlie should know about me:</div>
+      <div class="line"></div>
+    </div>
+
+    <div class="q" style="margin-bottom:0">
+      <div class="q-text">My question for Marlie:</div>
+      <div class="line"></div>
+    </div>
+  </div>
+
+  <!-- Station 5 -->
+  <div class="station grow">
+    <div class="station-head">
+      <span class="station-num">5</span>
+      <span class="station-title">Action or Description?</span>
+      <span class="station-with">on My ESOL App &rarr; Home</span>
+      <span class="right">Featured for you</span>
+    </div>
+
+    <div class="app-row">
+      <span class="cb"></span><b>Play: Action or Description?</b> <span class="gap"></span> My score: <span class="blank short"></span>
+    </div>
+
+    <div class="rule">
+      <div><b>ACTION</b> &rarr; use the verb by itself.<br>She <b>works</b>. &nbsp;I <b>eat</b> lunch.</div>
+      <div><b>DESCRIPTION</b> &rarr; use am / is / are.<br>She <b>is</b> tired. &nbsp;I <b>am</b> a student.</div>
+      <div class="never"><b>Do NOT say:</b> &ldquo;She is work.&rdquo; &nbsp;&ldquo;She tired.&rdquo; &nbsp;&ldquo;I have 30 years.&rdquo; &rarr; &ldquo;I am 30 years old.&rdquo;</div>
+    </div>
+
+    <div class="part">A. Write <u>am</u>, <u>is</u>, or <u>are</u>. If it needs nothing, write <u>X</u>.</div>
+    <div class="two-col">
+      <ol class="items">
+        <li>I <span class="blank short"></span> tired today.</li>
+        <li>My sister <span class="blank short"></span> works at a bank.</li>
+        <li>They <span class="blank short"></span> from Haiti.</li>
+      </ol>
+      <ol class="items" style="counter-reset:i 3">
+        <li>He <span class="blank short"></span> 30 years old.</li>
+        <li>We <span class="blank short"></span> eat dinner at six.</li>
+        <li>My mother <span class="blank short"></span> worried about me.</li>
+      </ol>
+    </div>
+
+    <div class="part">B. Change it! Action <span class="arrow">&rarr;</span> Description. <span class="small">Use the word bank.</span></div>
+    <div class="wordbank"><span>busy</span><span>hungry</span><span>a cook</span><span>tired</span><span>a student</span></div>
+    <ol class="items">
+      <li>I work 50 hours a week. <span class="arrow">&rarr;</span> I am <span class="blank"></span>.</li>
+      <li>She cooks at a restaurant. <span class="arrow">&rarr;</span> She is <span class="blank"></span>.</li>
+      <li>He runs every morning. <span class="arrow">&rarr;</span> After he runs, he is <span class="blank"></span>.</li>
+      <li>I study English at school. <span class="arrow">&rarr;</span> I am <span class="blank"></span>.</li>
+      <li>They do not eat lunch. <span class="arrow">&rarr;</span> At 3:00, they <span class="blank short"></span> <span class="blank"></span>.</li>
+    </ol>
+
+    <div class="part">C. Your turn! Write about YOU.</div>
+    <div class="line label" style="height:32px">Action: &nbsp;I <span class="fill"></span></div>
+    <div class="line label" style="height:32px">Description: &nbsp;I am <span class="fill"></span></div>
+
+    <div class="footer-note" style="margin-top:auto">Finished early? Play the game again. Can you beat your score?</div>
+  </div>
+
+</section>
+
+</body>
+</html>
