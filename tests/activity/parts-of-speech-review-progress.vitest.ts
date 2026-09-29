@@ -1,9 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { REVIEW_LESSONS } from '@/lib/parts-of-speech-review/content';
+import { REVIEW_LESSONS, reviewChoices, reviewCorrectAnswer, type ReviewLessonId } from '@/lib/parts-of-speech-review/content';
 const db = vi.hoisted(() => ({ rows: [] as Array<Record<string, unknown>>, transaction: vi.fn(), lock: vi.fn(), writes: 0 }));
 vi.mock('@/lib/database/prisma', () => ({ prisma: { $transaction: db.transaction } }));
 import { savePartsOfSpeechReview } from '@/lib/activity/progress/parts-of-speech-review';
-function attempt() { return { version: 1, attemptId: '11111111-1111-4111-8111-111111111111', lessonId: 'nouns-verbs', answers: REVIEW_LESSONS['nouns-verbs'].questions.map(q => ({ questionId: q.id, answer: q.answer })) }; }
+function correctAnswers(lessonId: ReviewLessonId) { return REVIEW_LESSONS[lessonId].questions.map(q => ({ questionId: q.id, answer: reviewCorrectAnswer(q) })); }
+function wrongAnswers(lessonId: ReviewLessonId) { const lesson = REVIEW_LESSONS[lessonId]; return lesson.questions.map(q => ({ questionId: q.id, answer: reviewChoices(q, lesson).find(c => c !== reviewCorrectAnswer(q))! })); }
+function attempt() { return { version: 1, attemptId: '11111111-1111-4111-8111-111111111111', lessonId: 'nouns-verbs', answers: correctAnswers('nouns-verbs') }; }
 beforeEach(() => {
   vi.clearAllMocks(); db.rows = []; db.writes = 0;
   let tail = Promise.resolve();
@@ -25,7 +27,7 @@ describe('Parts of Speech review persistence', () => {
   it('preserves library records and completes even at zero correct', async () => {
     const library = { 'pos-1-verbs': { stage: 'mastered' } };
     db.rows = [{ id: 'existing', progress: 5, categoryData: JSON.stringify(library) }];
-    const input = attempt(); input.answers = input.answers.map(a => ({ ...a, answer: a.answer === 'Verb' ? 'Noun' : 'Verb' }));
+    const input = { ...attempt(), answers: wrongAnswers('nouns-verbs') };
     const response = await savePartsOfSpeechReview('student', 'parts-of-speech-game', input);
     expect(await response.json()).toMatchObject({ correct: 0, progress: 100 });
     expect(JSON.parse(db.rows[0].categoryData as string)['pos-1-verbs']).toEqual(library['pos-1-verbs']);
@@ -38,7 +40,7 @@ describe('Parts of Speech review persistence', () => {
 
 it('saves a later week independently without completing the foundation or issuing rewards', async () => {
     const lessonId = 'week-5-subjects';
-    const input = { ...attempt(), lessonId, answers: REVIEW_LESSONS[lessonId].questions.map(q => ({ questionId: q.id, answer: q.answer })) };
+    const input = { ...attempt(), lessonId, answers: correctAnswers(lessonId) };
     const response = await savePartsOfSpeechReview('student', 'parts-of-speech-game', input);
     expect(await response.json()).toMatchObject({ progress: 0, status: 'in_progress', pointsAwarded: 0, review: { lessons: { 'week-5-subjects': { completed: true, correct: 8 } } } });
     await savePartsOfSpeechReview('student', 'parts-of-speech-game', input);
