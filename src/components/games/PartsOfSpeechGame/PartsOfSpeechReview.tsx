@@ -53,6 +53,7 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
   const [progress, setProgress] = useState<ReviewProgress>(() => readReviewProgress(null));
   const [loadState, setLoadState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [pointsAwarded, setPointsAwarded] = useState(0);
   const [openTopic, setOpenTopic] = useState<number | null>(null);
   const [extraOpen, setExtraOpen] = useState<Record<number, boolean>>({});
   const [revealedWords, setRevealedWords] = useState<Record<number, boolean>>({});
@@ -101,13 +102,14 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
       if (!response.ok) throw new Error('save');
       const data = await response.json();
       setProgress(readReviewProgress(data.review));
+      setPointsAwarded(data.pointsAwarded ?? 0);
       setSaveState('saved');
       pending.current = null;
     } catch { setSaveState('error'); }
     finally { saving.current = false; }
   }
   function start(id: ReviewLessonId) {
-    setLessonId(id); setIndex(0); setAnswers([]); setSelection(null); setMissed(null);
+    setLessonId(id); setIndex(0); setAnswers([]); setSelection(null); setMissed(null); setPointsAwarded(0);
     setRevisited(false); setAttemptId(crypto.randomUUID()); setSaveState('idle'); setStage(REVIEW_LESSONS[id].bridge ? 'bridge' : 'example');
   }
   function choose(answer: string) {
@@ -255,7 +257,7 @@ export function PartsOfSpeechReview({ activityId, onLibrary }: { activityId: str
           <div className={styles.score}><strong>{correct} / {lesson.questions.length}</strong><span>correct on this review</span></div>
           <div className={styles.cueRow}>{lesson.categories.map(category => <ReviewCategoryCue key={category} category={category} />)}</div>
           {revisited && <p className="mt-3 text-sm">You revisited the missed words. Your original score stays the same.</p>}
-          {saveState === 'saved' && <p role="status" className={styles.saved}><Check size={16} aria-hidden="true" />Your completion is saved.</p>}
+          {saveState === 'saved' && <p role="status" className={styles.saved}><Check size={16} aria-hidden="true" />Your completion is saved.{pointsAwarded > 0 ? ` +${pointsAwarded} points!` : ''}</p>}
         </section>
         <section className={styles.transfer} aria-labelledby="transfer-title">
           <div className={styles.transferTitle}><MessageCircle size={24} aria-hidden="true" /><h2 id="transfer-title" className="font-display text-xl">Your turn: use it</h2></div>
