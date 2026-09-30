@@ -21,19 +21,20 @@ type AchievementDefinition = Prisma.AchievementGetPayload<Record<string, never>>
 // Achievement definitions are static seeded config that effectively never change
 // at runtime, yet checkAndAwardAchievements() runs on every activity submit.
 // Memoize them with a short TTL so we don't reload the whole table each time.
-// Always read with the base `prisma` client (never an interactive tx), since this
-// is immutable config and must not be coupled to a caller's transaction.
+// On a cache miss, use the caller's client. An award transaction can hold the
+// only production connection; a base-client query would wait for that same
+// connection and cause the entire award to time out and roll back.
 let achievementDefinitionCache: { data: AchievementDefinition[]; at: number } | null = null;
 const ACHIEVEMENT_DEFINITION_TTL_MS = 5 * 60_000;
 
-async function getAchievementDefinitions(): Promise<AchievementDefinition[]> {
+async function getAchievementDefinitions(db: DbClient): Promise<AchievementDefinition[]> {
   if (
     achievementDefinitionCache &&
     Date.now() - achievementDefinitionCache.at < ACHIEVEMENT_DEFINITION_TTL_MS
   ) {
     return achievementDefinitionCache.data;
   }
-  const data = await prisma.achievement.findMany();
+  const data = await db.achievement.findMany();
   achievementDefinitionCache = { data, at: Date.now() };
   return data;
 }
@@ -401,7 +402,7 @@ export async function checkAndAwardAchievements(userId: string, db: DbClient = p
 
     if (!user) return newlyEarned;
 
-    const allAchievements = await getAchievementDefinitions();
+    const allAchievements = await getAchievementDefinitions(db);
     const earnedAchievementIds = new Set(
       user.achievements.map((ua: { achievementId: string }) => ua.achievementId)
     );
