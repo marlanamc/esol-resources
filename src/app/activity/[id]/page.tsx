@@ -355,7 +355,8 @@ function renderImmersiveActivity(
         immersiveGameUi !== "parts-of-speech" &&
         immersiveGameUi !== "timeline-tenses" &&
         immersiveGameUi !== "emotion-spin-wheel" &&
-        immersiveGameUi !== "grammar-hospital";
+        immersiveGameUi !== "grammar-hospital" &&
+        immersiveGameUi !== "cafe-catch-up";
     return (
         <div className="min-h-screen bg-bg flex flex-col">
             {overlays}
