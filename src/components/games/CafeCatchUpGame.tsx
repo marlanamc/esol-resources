@@ -318,7 +318,7 @@ export default function CafeCatchUpGame({ activityId, content }: Props) {
                                 {content.theme}
                             </p>
                         )}
-                        <p className="text-sm text-muted-foreground/90 dark:text-gray-400 font-medium line-clamp-1">
+                        <p className="hidden sm:block text-sm text-muted-foreground/90 dark:text-gray-400 font-medium line-clamp-1">
                             Pour a question, share what you think, end with a Last Sip.
                         </p>
                     </div>
@@ -335,7 +335,7 @@ export default function CafeCatchUpGame({ activityId, content }: Props) {
                         aria-pressed={isFullscreen}
                         aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
                         title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-                        className="inline-flex items-center justify-center w-11 h-11 rounded-full border border-gray-200 dark:border-white/15 bg-white dark:bg-[#2a1f1a] text-gray-600 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-[#3a2820] hover:border-accent hover:text-gray-900 dark:hover:text-gray-100 active:scale-95 transition-all"
+                        className="hidden sm:inline-flex items-center justify-center w-11 h-11 rounded-full border border-gray-200 dark:border-white/15 bg-white dark:bg-[#2a1f1a] text-gray-600 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-[#3a2820] hover:border-accent hover:text-gray-900 dark:hover:text-gray-100 active:scale-95 transition-all"
                     >
                         {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
                     </button>
