@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, type CSSProperties } from 'react';
-import { TrophyIcon, FlameIcon, SparklesIcon } from '@/components/icons/Icons';
+import { TrophyIcon, FlameIcon, SparklesIcon, CheckCircleIcon } from '@/components/icons/Icons';
 import { Badge } from '@/components/ui';
 import { getAvatarEmoji, getColorClass } from '@/lib/avatar-constants';
 
@@ -27,6 +27,7 @@ interface LeaderboardEntry {
   lastWeekRank: number | null;
   avatar: string | null;
   avatarColor: string | null;
+  weekComplete: boolean;
 }
 
 const TROPHY_TILE_BG =
@@ -432,6 +433,16 @@ export default function LeaderboardPage() {
                             <span>{student.currentStreak} day streak</span>
                           </div>
                         )}
+                        {student.weekComplete && (
+                          <div
+                            className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold"
+                            style={{ color: 'var(--success-color)' }}
+                            title="Finished every activity in this week's course map"
+                          >
+                            <CheckCircleIcon size={14} />
+                            <span>Week done</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
@@ -554,6 +565,16 @@ export default function LeaderboardPage() {
                           <div className="flex items-center gap-1 text-sm" style={{ color: 'var(--color-primary)' }}>
                             <FlameIcon size={14} />
                             <span>{entry.currentStreak} day streak</span>
+                          </div>
+                        )}
+                        {entry.weekComplete && (
+                          <div
+                            className="flex items-center gap-1 text-sm font-semibold"
+                            style={{ color: 'var(--success-color)' }}
+                            title="Finished every activity in this week's course map"
+                          >
+                            <CheckCircleIcon size={14} />
+                            <span>Week done</span>
                           </div>
                         )}
                       </div>
