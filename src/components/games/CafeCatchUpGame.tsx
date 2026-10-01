@@ -9,6 +9,7 @@ import type {
 } from "@/types/activity";
 import { fetchActivityProgress, saveActivityProgress } from "@/lib/activityProgress";
 import { PointsToast } from "@/components/ui/PointsToast";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 
 /**
  * Café Catch-Up: a reusable speaking-discussion card-deck game.
@@ -89,6 +90,11 @@ export default function CafeCatchUpGame({ activityId, content }: Props) {
     const [reducedMotion, setReducedMotion] = useState(false);
     const [popKey, setPopKey] = useState(0); // forces re-mount for animation
     const [shakeKey, setShakeKey] = useState(0);
+
+    // Mobile swipe-to-draw
+    const touchStartX = useRef<number | null>(null);
+    const touchStartY = useRef<number | null>(null);
+    const [swipeOffset, setSwipeOffset] = useState(0);
 
     const [isCompleted, setIsCompleted] = useState(false);
     const [completingState, setCompletingState] = useState<"idle" | "saving" | "saved">("idle");
@@ -237,6 +243,32 @@ export default function CafeCatchUpGame({ activityId, content }: Props) {
         triggerPop,
     ]);
 
+    // Swipe-to-draw (mobile): drag the card either direction to pour the next question,
+    // mirroring the gesture FlashcardCarousel uses for paging.
+    const SWIPE_THRESHOLD = 50;
+    const handleTouchStart = useCallback((e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+        touchStartY.current = e.touches[0].clientY;
+    }, []);
+
+    const handleTouchMove = useCallback((e: React.TouchEvent) => {
+        if (touchStartX.current === null || touchStartY.current === null) return;
+        const deltaX = e.touches[0].clientX - touchStartX.current;
+        const deltaY = e.touches[0].clientY - touchStartY.current;
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            setSwipeOffset(deltaX);
+        }
+    }, []);
+
+    const handleTouchEnd = useCallback(() => {
+        if (Math.abs(swipeOffset) > SWIPE_THRESHOLD) {
+            handlePour();
+        }
+        touchStartX.current = null;
+        touchStartY.current = null;
+        setSwipeOffset(0);
+    }, [swipeOffset, handlePour]);
+
     // Keyboard shortcuts
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => {
@@ -273,6 +305,7 @@ export default function CafeCatchUpGame({ activityId, content }: Props) {
             {/* Theme banner */}
             <div className="px-4 sm:px-6 lg:px-8 pt-5 pb-3 flex items-center justify-between gap-3 flex-wrap">
                 <div className="flex items-center gap-2.5 min-w-0">
+                    <ContextualBackButton aria-label="Back to activities" className="flex-shrink-0" />
                     <span
                         aria-hidden="true"
                         className="flex items-center justify-center w-9 h-9 rounded-full bg-primary/12 dark:bg-primary/25 text-primary"
@@ -302,7 +335,7 @@ export default function CafeCatchUpGame({ activityId, content }: Props) {
                         aria-pressed={isFullscreen}
                         aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
                         title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-                        className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-gray-200 dark:border-white/15 bg-white dark:bg-[#2a1f1a] text-gray-600 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-[#3a2820] hover:border-accent hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                        className="inline-flex items-center justify-center w-11 h-11 rounded-full border border-gray-200 dark:border-white/15 bg-white dark:bg-[#2a1f1a] text-gray-600 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-[#3a2820] hover:border-accent hover:text-gray-900 dark:hover:text-gray-100 active:scale-95 transition-all"
                     >
                         {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
                     </button>
@@ -332,9 +365,19 @@ export default function CafeCatchUpGame({ activityId, content }: Props) {
             </div>
 
             {/* Main grid */}
-            <div className="flex-1 px-4 sm:px-6 lg:px-8 pb-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(240px,300px)] gap-5 lg:gap-7 items-start">
+            <div className="flex-1 px-4 sm:px-6 lg:px-8 pb-24 sm:pb-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(240px,300px)] gap-5 lg:gap-7 items-start">
                 {/* Card-stack column */}
-                <div className="relative">
+                <div
+                    className="relative touch-pan-y"
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                    style={
+                        swipeOffset !== 0 && !reducedMotion
+                            ? { transform: `translateX(${swipeOffset}px)` }
+                            : undefined
+                    }
+                >
                     {/* Stacked card shadow layers */}
                     {!deckEmpty && phase !== "sip" && (
                         <>
@@ -443,12 +486,12 @@ export default function CafeCatchUpGame({ activityId, content }: Props) {
                             )}
                         </div>
 
-                        {/* Controls */}
-                        <div className="flex flex-wrap gap-2.5 mt-5 items-center">
+                        {/* Controls (sm and up — mobile gets a fixed bottom bar instead, below) */}
+                        <div className="hidden sm:flex flex-wrap gap-2.5 mt-5 items-center">
                             <button
                                 type="button"
                                 onClick={handlePour}
-                                className="inline-flex items-center gap-2 rounded-full bg-primary hover:bg-primary-dark text-white font-bold px-5 py-2.5 text-sm sm:text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] hover:shadow-[0_6px_18px_rgba(176,87,64,0.34)] active:translate-y-px transition-all"
+                                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-dark text-white font-bold px-5 py-3 min-h-[44px] text-sm sm:text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] hover:shadow-[0_6px_18px_rgba(176,87,64,0.34)] active:translate-y-px active:scale-95 transition-all"
                             >
                                 <Sparkles size={16} aria-hidden="true" />
                                 Pour a question
@@ -456,7 +499,7 @@ export default function CafeCatchUpGame({ activityId, content }: Props) {
                             <button
                                 type="button"
                                 onClick={handleShuffle}
-                                className="inline-flex items-center gap-2 rounded-full border border-gray-200 dark:border-white/15 bg-white dark:bg-[#2a1f1a] hover:bg-amber-50 dark:hover:bg-[#3a2820] hover:border-accent text-gray-800 dark:text-gray-100 font-semibold px-4 py-2.5 text-sm transition-all"
+                                className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 dark:border-white/15 bg-white dark:bg-[#2a1f1a] hover:bg-amber-50 dark:hover:bg-[#3a2820] hover:border-accent text-gray-800 dark:text-gray-100 font-semibold px-4 py-3 min-h-[44px] text-sm active:scale-95 transition-all"
                             >
                                 <Shuffle size={15} aria-hidden="true" />
                                 Shuffle deck
@@ -466,7 +509,7 @@ export default function CafeCatchUpGame({ activityId, content }: Props) {
                                     type="button"
                                     onClick={handleLastSip}
                                     title="End the conversation with one closing share"
-                                    className="inline-flex items-center gap-2 rounded-full bg-secondary hover:bg-secondary-dark text-white font-semibold px-4 py-2.5 text-sm shadow-sm active:translate-y-px transition-all"
+                                    className="inline-flex items-center justify-center gap-2 rounded-full bg-secondary hover:bg-secondary-dark text-white font-semibold px-4 py-3 min-h-[44px] text-sm shadow-sm active:translate-y-px active:scale-95 transition-all"
                                 >
                                     <Coffee size={15} aria-hidden="true" />
                                     Last sip
@@ -525,6 +568,40 @@ export default function CafeCatchUpGame({ activityId, content }: Props) {
                 </aside>
             </div>
 
+            {/* Mobile-only fixed controls bar */}
+            <div
+                className="sm:hidden fixed inset-x-0 bottom-0 z-fixed bg-white/95 dark:bg-[#2a1f1a]/95 backdrop-blur-md border-t border-gray-200 dark:border-white/10 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center gap-2"
+            >
+                <button
+                    type="button"
+                    onClick={handleShuffle}
+                    aria-label="Shuffle deck"
+                    title="Shuffle deck"
+                    className="inline-flex items-center justify-center rounded-full border border-gray-200 dark:border-white/15 bg-white dark:bg-[#2a1f1a] text-gray-800 dark:text-gray-100 w-12 h-12 active:scale-95 transition-all"
+                >
+                    <Shuffle size={18} aria-hidden="true" />
+                </button>
+                <button
+                    type="button"
+                    onClick={handlePour}
+                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-primary hover:bg-primary-dark text-white font-bold px-5 py-3.5 min-h-[48px] text-base shadow-[0_4px_14px_rgba(176,87,64,0.28)] active:translate-y-px active:scale-95 transition-all"
+                >
+                    <Sparkles size={18} aria-hidden="true" />
+                    Pour a question
+                </button>
+                {sipPrompt && (
+                    <button
+                        type="button"
+                        onClick={handleLastSip}
+                        aria-label="Last sip — wrap up"
+                        title="End the conversation with one closing share"
+                        className="inline-flex items-center justify-center rounded-full bg-secondary hover:bg-secondary-dark text-white w-12 h-12 active:translate-y-px active:scale-95 transition-all"
+                    >
+                        <Coffee size={18} aria-hidden="true" />
+                    </button>
+                )}
+            </div>
+
             {/* Toast */}
             {showToast && pointsAwarded !== null && pointsAwarded > 0 && (
                 <PointsToast
@@ -576,8 +653,8 @@ function FilterChip({
             aria-pressed={active}
             className={
                 active
-                    ? "px-3 py-1.5 text-[0.78rem] font-semibold rounded-full bg-primary text-white border border-primary shadow-[0_2px_8px_rgba(176,87,64,0.22)] transition-all"
-                    : "px-3 py-1.5 text-[0.78rem] font-semibold rounded-full bg-white dark:bg-[#2a1f1a] text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-white/15 hover:bg-amber-50 dark:hover:bg-[#3a2820] hover:border-accent transition-all"
+                    ? "px-3.5 py-2 min-h-[40px] text-[0.78rem] font-semibold rounded-full bg-primary text-white border border-primary shadow-[0_2px_8px_rgba(176,87,64,0.22)] active:scale-95 transition-all"
+                    : "px-3.5 py-2 min-h-[40px] text-[0.78rem] font-semibold rounded-full bg-white dark:bg-[#2a1f1a] text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-white/15 hover:bg-amber-50 dark:hover:bg-[#3a2820] hover:border-accent active:scale-95 transition-all"
             }
         >
             {label}
