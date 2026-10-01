@@ -4,7 +4,7 @@ import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/database/prisma";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { isCatchUpPathEnabled } from "@/lib/catch-up-deadlines";
-import { isCurrentWeekComplete } from "@/lib/course-map-week";
+import { getStudentCourseMapStatus } from "@/lib/course-map-week";
 import { mapWithConcurrencyLimit } from "@/lib/shared/concurrency";
 import Link from "next/link";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
@@ -77,12 +77,12 @@ export default async function TeachClassDetailPage({ params }: Props) {
         (e) => !e.student.lastActivityDate || e.student.lastActivityDate.getTime() < cutoff()
     ).length;
 
-    // Every active student shares the same class calendar, so this is one
-    // current-week check per student rather than a full roster-wide join.
-    const weekCompleteByStudentId = new Map(
+    // One course-map status lookup per student, shared between the "this
+    // week" badge and the overall percent column below.
+    const courseMapStatusByStudentId = new Map(
         await mapWithConcurrencyLimit(activeEnrollments, 8, async (e) => [
             e.student.id,
-            await isCurrentWeekComplete({ id: e.student.id, role: "student" }),
+            await getStudentCourseMapStatus({ id: e.student.id, role: "student" }),
         ] as const)
     );
 
@@ -154,7 +154,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                 <table className="w-full">
                                     <thead>
                                         <tr style={{ background: "var(--surface-subtle)", borderBottom: "1px solid var(--border-subtle)" }}>
-                                            {["Name", "Username", "Streak", "Pts this wk", "This week", "Last active", ""].map((h) => (
+                                            {["Name", "Username", "Streak", "Pts this wk", "This week", "Course map", "Last active", ""].map((h) => (
                                                 <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--text-color-muted)" }}>
                                                     {h}
                                                 </th>
@@ -164,6 +164,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                     <tbody>
                                         {activeEnrollments.map((e) => {
                                             const silent = !e.student.lastActivityDate || e.student.lastActivityDate.getTime() < cutoff();
+                                            const courseMapStatus = courseMapStatusByStudentId.get(e.student.id);
                                             return (
                                                 <tr key={e.id} style={{ borderBottom: "1px solid var(--border-subtle)" }}>
                                                     <td className="py-3 px-4">
@@ -184,7 +185,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                                         {e.student.weeklyPoints > 0 ? `${e.student.weeklyPoints} pts` : "—"}
                                                     </td>
                                                     <td className="py-3 px-4 text-sm">
-                                                        {weekCompleteByStudentId.get(e.student.id) ? (
+                                                        {courseMapStatus?.weekComplete ? (
                                                             <span
                                                                 className="inline-flex items-center gap-1 font-semibold"
                                                                 style={{ color: "var(--success-color)" }}
@@ -192,6 +193,32 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                                             >
                                                                 <CheckCircle2 className="h-3.5 w-3.5" /> Done
                                                             </span>
+                                                        ) : (
+                                                            <span className="text-text-muted">—</span>
+                                                        )}
+                                                    </td>
+                                                    <td className="py-3 px-4 text-sm">
+                                                        {courseMapStatus && courseMapStatus.overall.total > 0 ? (
+                                                            <div
+                                                                className="flex items-center gap-2"
+                                                                title={`${courseMapStatus.overall.done} of ${courseMapStatus.overall.total} activities completed`}
+                                                            >
+                                                                <div
+                                                                    className="h-1.5 w-16 rounded-full overflow-hidden"
+                                                                    style={{ background: "var(--surface-subtle)" }}
+                                                                >
+                                                                    <div
+                                                                        className="h-full rounded-full"
+                                                                        style={{
+                                                                            width: `${courseMapStatus.overall.percent}%`,
+                                                                            background: "var(--primary)",
+                                                                        }}
+                                                                    />
+                                                                </div>
+                                                                <span className="text-xs font-semibold text-text-muted">
+                                                                    {courseMapStatus.overall.percent}%
+                                                                </span>
+                                                            </div>
                                                         ) : (
                                                             <span className="text-text-muted">—</span>
                                                         )}

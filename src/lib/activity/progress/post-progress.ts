@@ -167,6 +167,7 @@ export async function POST(request: NextRequest) {
         statusInput: statusValue,
         aggregatedProgress: categoryUpdate.aggregatedProgress,
         isPronunciationPracticeActivity,
+        existingStatus: existing?.status,
     });
 
     const progressData: {
