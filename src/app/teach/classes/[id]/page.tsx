@@ -4,6 +4,8 @@ import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/database/prisma";
 import { canUseTeacherTools, isAdmin } from "@/lib/auth/roles";
 import { isCatchUpPathEnabled } from "@/lib/catch-up-deadlines";
+import { isCurrentWeekComplete } from "@/lib/course-map-week";
+import { mapWithConcurrencyLimit } from "@/lib/shared/concurrency";
 import Link from "next/link";
 import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { FeatureToggleButton, AssignmentRequirementToggle } from "@/components/dashboard";
@@ -11,7 +13,7 @@ import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncemen
 import { RosterStudentActions } from "@/components/teach/RosterStudentActions";
 import {
     Users, Pencil, ChevronRight, BookOpen, Plus,
-    Megaphone, AlertCircle, Clock,
+    Megaphone, AlertCircle, Clock, CheckCircle2,
 } from "lucide-react";
 
 export const metadata = { title: "Class | My ESOL Class" };
@@ -74,6 +76,15 @@ export default async function TeachClassDetailPage({ params }: Props) {
     const attentionCount = activeEnrollments.filter(
         (e) => !e.student.lastActivityDate || e.student.lastActivityDate.getTime() < cutoff()
     ).length;
+
+    // Every active student shares the same class calendar, so this is one
+    // current-week check per student rather than a full roster-wide join.
+    const weekCompleteByStudentId = new Map(
+        await mapWithConcurrencyLimit(activeEnrollments, 8, async (e) => [
+            e.student.id,
+            await isCurrentWeekComplete({ id: e.student.id, role: "student" }),
+        ] as const)
+    );
 
     return (
         <div className="space-y-6">
@@ -143,7 +154,7 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                 <table className="w-full">
                                     <thead>
                                         <tr style={{ background: "var(--surface-subtle)", borderBottom: "1px solid var(--border-subtle)" }}>
-                                            {["Name", "Username", "Streak", "Pts this wk", "Last active", ""].map((h) => (
+                                            {["Name", "Username", "Streak", "Pts this wk", "This week", "Last active", ""].map((h) => (
                                                 <th key={h} className="text-left py-3 px-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--text-color-muted)" }}>
                                                     {h}
                                                 </th>
@@ -171,6 +182,19 @@ export default async function TeachClassDetailPage({ params }: Props) {
                                                     </td>
                                                     <td className="py-3 px-4 text-sm font-semibold" style={{ color: "var(--primary)" }}>
                                                         {e.student.weeklyPoints > 0 ? `${e.student.weeklyPoints} pts` : "—"}
+                                                    </td>
+                                                    <td className="py-3 px-4 text-sm">
+                                                        {weekCompleteByStudentId.get(e.student.id) ? (
+                                                            <span
+                                                                className="inline-flex items-center gap-1 font-semibold"
+                                                                style={{ color: "var(--success-color)" }}
+                                                                title="Finished every activity in this week's course map"
+                                                            >
+                                                                <CheckCircle2 className="h-3.5 w-3.5" /> Done
+                                                            </span>
+                                                        ) : (
+                                                            <span className="text-text-muted">—</span>
+                                                        )}
                                                     </td>
                                                     <td className="py-3 px-4 text-xs" style={{ color: silent ? "var(--error-color)" : "var(--text-color-muted)" }}>
                                                         {e.student.lastActivityDate

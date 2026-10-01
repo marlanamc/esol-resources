@@ -6,6 +6,8 @@ import { POINTS } from "./constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./streak-utils";
 import { buildIndependentLeaderboardUserWhere, buildLeaderboardEligibleUserWhere } from "./leaderboard-filter";
 import { addDaysToDayKey as addDaysToLearnerDayKey, getInstantForLearnerDayStart, getLearnerDayKey } from "./calendar-week";
+import { isCurrentWeekComplete } from "@/lib/course-map-week";
+import { mapWithConcurrencyLimit } from "@/lib/shared/concurrency";
 export { POINTS } from "./constants";
 export { getActivityPoints, resolveActivityGameUi, getVocabularyTypePoints } from "./activity-points";
 export {
@@ -358,6 +360,15 @@ export async function getTimeframedLeaderboard(
   // Apply limit and add rank (same rank for ties)
   const limitedRankings = studentsWithPoints.slice(0, safeLimit);
 
+  // Bounded concurrency: each check is its own course-map snapshot lookup, so
+  // keep only a handful in flight at once rather than firing them all together.
+  const weekCompleteByUserId = new Map(
+    await mapWithConcurrencyLimit(limitedRankings, 8, async (r) => [
+      r.userId,
+      await isCurrentWeekComplete({ id: r.userId, role: 'student' }),
+    ] as const)
+  );
+
   let currentRank = 1;
   return limitedRankings.map((r, idx) => {
     if (idx > 0 && r.points !== limitedRankings[idx - 1].points) {
@@ -373,6 +384,7 @@ export async function getTimeframedLeaderboard(
       rankChange: range === 'week' ? (r.lastWeekRank ? r.lastWeekRank - currentRank : null) : null,
       avatar: r.avatar,
       avatarColor: r.avatarColor,
+      weekComplete: weekCompleteByUserId.get(r.userId) ?? false,
     };
   });
 }

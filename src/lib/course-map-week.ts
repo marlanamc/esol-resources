@@ -162,6 +162,16 @@ async function loadAssignmentByActivityId(userId: string): Promise<
     return assignmentByActivityId;
 }
 
+/** Has this learner finished every actionable required activity in their current course-map week? */
+export async function isCurrentWeekComplete(
+    user: { id: string; role?: string | null },
+    options?: { now?: Date }
+): Promise<boolean> {
+    const snapshot = await buildCurrentWeekSnapshot(user, options);
+    if (!snapshot) return false;
+    return snapshot.progress.total > 0 && snapshot.progress.done >= snapshot.progress.total;
+}
+
 export interface ThisWeekPanelData {
     weekNumber: number;
     weekTitle: string;

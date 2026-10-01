@@ -47,6 +47,9 @@ export {
 // Performance logging
 export { timedQuery } from "./perf-log";
 
+// Concurrency
+export { mapWithConcurrencyLimit } from "./concurrency";
+
 // Audit logging
 export {
   auditLog,
