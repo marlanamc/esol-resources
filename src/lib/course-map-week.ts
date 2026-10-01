@@ -2,6 +2,7 @@ import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { getVisibleMap, type VisibleMapMode } from "@/lib/course-map";
 import {
+    getActionableRequiredActivities,
     isMapActivityActionable,
     isMapActivityCompleted,
     type CourseMapProgressState,
@@ -170,6 +171,37 @@ export async function isCurrentWeekComplete(
     const snapshot = await buildCurrentWeekSnapshot(user, options);
     if (!snapshot) return false;
     return snapshot.progress.total > 0 && snapshot.progress.done >= snapshot.progress.total;
+}
+
+export interface StudentCourseMapStatus {
+    /** Finished every actionable required activity in the current week. */
+    weekComplete: boolean;
+    /** Progress across every actionable required activity in the student's visible map. */
+    overall: { done: number; total: number; percent: number };
+}
+
+/**
+ * Current-week completion plus overall progress through the visible course
+ * map, from one shared snapshot load instead of two separate ones.
+ */
+export async function getStudentCourseMapStatus(
+    user: { id: string; role?: string | null },
+    options?: { now?: Date }
+): Promise<StudentCourseMapStatus | null> {
+    const snapshot = await buildCurrentWeekSnapshot(user, options);
+    if (!snapshot) return null;
+
+    const weekComplete =
+        snapshot.progress.total > 0 && snapshot.progress.done >= snapshot.progress.total;
+
+    const actionable = getActionableRequiredActivities(snapshot.units);
+    const total = actionable.length;
+    const done = actionable.filter((activity) =>
+        isMapActivityCompleted(activity, snapshot.guidedProgress)
+    ).length;
+    const percent = total > 0 ? Math.round((done / total) * 100) : 0;
+
+    return { weekComplete, overall: { done, total, percent } };
 }
 
 export interface ThisWeekPanelData {

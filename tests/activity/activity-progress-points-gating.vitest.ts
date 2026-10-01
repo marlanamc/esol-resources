@@ -62,4 +62,16 @@ describe("activity progress points gating", () => {
     expect(result.progressValue).toBe(0);
     expect(result.finalStatus).toBe("in_progress");
   });
+
+  it("reopening a completed activity does not un-complete it", () => {
+    const result = resolveFinalProgressState({
+      rawProgress: 10,
+      statusInput: "in_progress",
+      isPronunciationPracticeActivity: false,
+      existingStatus: "completed",
+    });
+
+    expect(result.progressValue).toBe(100);
+    expect(result.finalStatus).toBe("completed");
+  });
 });

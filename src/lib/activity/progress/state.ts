@@ -5,9 +5,21 @@ export function resolveFinalProgressState(params: {
     statusInput?: ActivityProgressStatus;
     aggregatedProgress?: number;
     isPronunciationPracticeActivity: boolean;
+    existingStatus?: string | null;
 }): { progressValue: number; finalStatus: ActivityProgressStatus } {
-    const { rawProgress, statusInput, aggregatedProgress, isPronunciationPracticeActivity } =
-        params;
+    const {
+        rawProgress,
+        statusInput,
+        aggregatedProgress,
+        isPronunciationPracticeActivity,
+        existingStatus,
+    } = params;
+
+    // Reopening a finished activity (e.g. to review it) shouldn't un-complete
+    // it just because the viewer reports a lower progress tick on load.
+    if (existingStatus === "completed") {
+        return { progressValue: 100, finalStatus: "completed" };
+    }
 
     let progressValue = rawProgress;
     let statusValue: ActivityProgressStatus | undefined = statusInput;

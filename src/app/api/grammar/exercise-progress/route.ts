@@ -111,7 +111,9 @@ export async function POST(request: Request) {
             where: { id: existing.id },
             data: {
                 categoryData: updatedCategoryDataStr,
-                status: "in_progress",
+                // Reopening a finished guide to redo an exercise shouldn't
+                // un-complete it.
+                ...(existing.status === "completed" ? {} : { status: "in_progress" }),
             },
         });
     } else {
