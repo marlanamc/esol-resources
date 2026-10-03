@@ -1,10 +1,10 @@
 # User Types and Transitions
 
-This document describes the different user types in Class Companion and how students transition between learning modes.
+This document describes the different user types in My ESOL App and how students transition between learning modes.
 
 ## User Roles
 
-Class Companion has the following roles:
+My ESOL App has the following roles:
 
 | Role | Database Value | Description |
 |------|---------------|-------------|

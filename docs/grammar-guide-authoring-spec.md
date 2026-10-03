@@ -1,6 +1,6 @@
 # Grammar Guide Authoring Spec
 
-How to build a new grammar guide for Class Companion. Every guide follows this structure and uses these tools. Read this before writing any content file.
+How to build a new grammar guide for My ESOL App. Every guide follows this structure and uses these tools. Read this before writing any content file.
 
 ---
 
@@ -39,7 +39,7 @@ Community centers, volunteering, and neighborhood programs are **real and valuab
 
 ## Characters and Cultural Representation
 
-Class Companion serves adult ESOL learners in East Boston — a community that is majority Latino (especially Guatemalan, Salvadoran, and Mexican), with large Haitian Creole, Brazilian Portuguese, Somali, and Vietnamese populations. The characters in every guide should reflect this **and** include common American names students will hear at work, school, and appointments.
+My ESOL App serves adult ESOL learners in East Boston — a community that is majority Latino (especially Guatemalan, Salvadoran, and Mexican), with large Haitian Creole, Brazilian Portuguese, Somali, and Vietnamese populations. The characters in every guide should reflect this **and** include common American names students will hear at work, school, and appointments.
 
 ### Name variety
 
@@ -662,7 +662,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
-    title: "Your Guide Title - Interactive Guide | Class Companion",   // ← change
+    title: "Your Guide Title - Interactive Guide | My ESOL App",   // ← change
     description: "One sentence description for SEO.",                  // ← change
 };
 

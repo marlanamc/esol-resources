@@ -1,6 +1,6 @@
 # Production Deployment Guide
 
-Complete guide for deploying Class Companion to production.
+Complete guide for deploying My ESOL App to production.
 
 ## Table of Contents
 

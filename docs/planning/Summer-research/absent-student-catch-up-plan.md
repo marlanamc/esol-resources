@@ -6,7 +6,7 @@ Adult ESOL students miss class for real reasons: work shifts, childcare, illness
 
 Next year's goal: **every absent student opens the app and finishes the required weekly path** — short enough to complete before the next class.
 
-Students are **expected to use Class Companion weekly (often daily)** and can rent a Chromebook. Catch-up is not a separate system — it is the same **This Week's Path** with a make-up deadline. Students who missed class do not need a different set of instructions after September Week 2.
+Students are **expected to use My ESOL App weekly (often daily)** and can rent a Chromebook. Catch-up is not a separate system — it is the same **This Week's Path** with a make-up deadline. Students who missed class do not need a different set of instructions after September Week 2.
 
 September onboarding (login, navigation, scavenger hunt): **[September App And Chromebook Onboarding Plan](september-app-onboarding-plan.md)**
 
@@ -157,7 +157,7 @@ Post to class announcement (and repeat in app instructions) every week. Replace 
 **Week [##]: [Topic]**
 
 If you missed class, do this before [next class day]:
-1. Open Class Companion → This Week's Path
+1. Open My ESOL App → This Week's Path
 2. Finish required items: [list 2–4 item names]
 3. Learn the 6 words: [word1], [word2], [word3], [word4], [word5], [word6]
 4. Quiz make-up deadline: [Monday 6pm / date]
@@ -173,7 +173,7 @@ Add a fixed box to every Tuesday warm-up back:
 
 ```text
 IF YOU MISSED CLASS
-1. Open Class Companion → This Week's Path
+1. Open My ESOL App → This Week's Path
 2. Finish required app tasks (due [date])
 3. Learn the 6 words + 3 verbs on the front of this sheet
 4. Quiz make-up: [date/time]

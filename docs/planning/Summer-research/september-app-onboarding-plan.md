@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Next year, students are **expected to use Class Companion weekly — often daily**. Chromebooks will be available (everyone can rent one). That means **September Unit 1** must front-load super-beginner digital literacy before any other gap topics (scams, portals, MyChart, etc.).
+Next year, students are **expected to use My ESOL App weekly — often daily**. Chromebooks will be available (everyone can rent one). That means **September Unit 1** must front-load super-beginner digital literacy before any other gap topics (scams, portals, MyChart, etc.).
 
 The goal of the first two weeks is not grammar. It is:
 
@@ -37,10 +37,10 @@ Post this in the room and on the warm-up back. Same steps every time until autom
 | 1 | Open Chromebook → log in to school Google account | "I log in to my Chromebook." |
 | 2 | Open **Chrome** (the browser) | "I open Chrome." |
 | 3 | Click the address bar → type **myesolclass.com** → Enter | "I go to my ESOL class website." |
-| 4 | Tap **Log in** | "I log in to Class Companion." |
+| 4 | Tap **Log in** | "I log in to My ESOL App." |
 | 5 | Enter **username** and **password** | "My username is ___. My password is ___." |
 | 6 | On the dashboard, find **Next Up** or **This Week's Path** | "I find today's work." |
-| 7 | When finished, log out (Week 2+) | "I log out of Class Companion." |
+| 7 | When finished, log out (Week 2+) | "I log out of My ESOL App." |
 
 **Bookmark option (Week 2):** Show students how to bookmark myesolclass.com in Chrome for one-click access.
 

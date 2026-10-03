@@ -602,7 +602,7 @@ Target time: **30–45 minutes** before the next class.
 
 ## 16. September App And Chromebook Boot Camp
 
-Students will use Class Companion **weekly — often daily**. Everyone can rent a Chromebook. Super-beginner digital literacy belongs in **September**, not scattered through the year.
+Students will use My ESOL App **weekly — often daily**. Everyone can rent a Chromebook. Super-beginner digital literacy belongs in **September**, not scattered through the year.
 
 Full plan: **[September App And Chromebook Onboarding Plan](september-app-onboarding-plan.md)**
 

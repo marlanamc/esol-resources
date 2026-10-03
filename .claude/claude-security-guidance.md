@@ -1,4 +1,4 @@
-# Class Companion — project security rules
+# My ESOL App — project security rules
 
 Codebase-specific invariants for the security-guidance plugin's review layers.
 These supplement (do not repeat) the built-in generic rules (XSS, injection, SSRF,

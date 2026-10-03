@@ -14,7 +14,7 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 **Materials**
 - [ ] Print Tuesday warm-up worksheet (2-sided if possible)
 - [ ] Print any handouts for grammar lesson
-- [ ] Queue up grammar guide on Class Companion (test that it loads)
+- [ ] Queue up grammar guide on My ESOL App (test that it loads)
 - [ ] Prepare game materials (cards, dice, timer, etc.)
 
 **Content Review**
@@ -100,7 +100,7 @@ Use this checklist each week to ensure you're ready for Tuesday and Thursday cla
 | Class objectives | `class_uploads/Class-Objectives/` |
 | Teaching schedule | `class_uploads/ESOL 3 Teaching Schedule (Jan–Jun 2026).md` |
 | Resources tracker | `class-resources-tracker.md` |
-| Grammar guides | Class Companion app |
+| Grammar guides | My ESOL App app |
 | Pronunciation focus | [School Year At A Glance — Monthly Pronunciation Focus](Summer-research/school-year-at-a-glance.md#monthly-pronunciation-focus-minimal-pair-lab) + app **Minimal Pair Lab** |
 
 ---

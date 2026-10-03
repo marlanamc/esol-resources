@@ -1,4 +1,4 @@
-# Class Companion - ESOL Learning Hub
+# My ESOL App - ESOL Learning Hub
 
 An interactive classroom companion for ESOL (English for Speakers of Other Languages) teachers and students. Features gamification, progress tracking, and a warm educational design system.
 

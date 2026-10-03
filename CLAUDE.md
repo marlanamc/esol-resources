@@ -2,7 +2,7 @@
 
 This file provides guidance to agents when working with code in this repository.
 
-Class Companion is an ESOL (English for Speakers of Other Languages) learning platform with gamification (points, streaks, achievements, leaderboards) to motivate adult learners.
+My ESOL App is an ESOL (English for Speakers of Other Languages) learning platform with gamification (points, streaks, achievements, leaderboards) to motivate adult learners.
 
 ## Commands
 - `npm run health:gate` (typecheck + lint + vitest + build) is the pre-merge check; `npm run test:critical` is the fast bundle.

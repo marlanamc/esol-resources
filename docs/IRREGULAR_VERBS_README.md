@@ -539,7 +539,7 @@ With pattern-based grouping, varied exercise types, gamified progression, and mo
 
 ## 📄 License
 
-Part of Class Companion ESOL Platform
+Part of My ESOL App Platform
 © 2026 - Educational Use
 
 ---

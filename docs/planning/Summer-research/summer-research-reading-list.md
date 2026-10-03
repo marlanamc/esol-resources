@@ -4,7 +4,7 @@
 
 This reading list supports two related projects:
 
-- redesigning the ESOL Class Companion app around Level 3 plateau learners
+- redesigning the ESOL My ESOL App app around Level 3 plateau learners
 - building evidence-backed microlearning experiences for adult professionals, including legal aid attorneys
 
 The goal is to make summer design decisions with a stronger research base: not just "this feels better," but "this matches what we know about adult learning, cognitive load, language anxiety, retrieval, task-based learning, and transfer."

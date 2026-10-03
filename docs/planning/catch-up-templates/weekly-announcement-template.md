@@ -6,7 +6,7 @@ Post to the class announcement every week. Replace bracketed fields only.
 **Week [##]: [Topic]**
 
 If you missed class, do this before [next class day]:
-1. Open Class Companion → **This Week's Path**
+1. Open My ESOL App → **This Week's Path**
 2. Finish **Required** items: [list 2–4 item names]
 3. Learn the 6 words: [word1], [word2], [word3], [word4], [word5], [word6]
 4. Quiz make-up deadline: [Monday 6pm / date]

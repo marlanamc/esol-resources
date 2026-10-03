@@ -1,6 +1,6 @@
 # Migrating from Prisma Postgres to Supabase
 
-This guide walks you through migrating your Class Companion database from Prisma Postgres to Supabase. Take your time - you can do this on a quiet weekend when you have mental bandwidth.
+This guide walks you through migrating your My ESOL App database from Prisma Postgres to Supabase. Take your time - you can do this on a quiet weekend when you have mental bandwidth.
 
 ---
 
@@ -228,4 +228,4 @@ Then import CSVs via Supabase dashboard (Table Editor → Import).
 ---
 
 *Created: February 2026*
-*For: Class Companion ESOL Platform*
+*For: My ESOL App ESOL Platform*
