@@ -143,8 +143,8 @@ export const readingEconNewsContent: InteractiveGuideContent = {
               type: "radio",
               label: "\"Unemployment Drops to Lowest Level in Two Years\"",
               options: [
-                { value: "good", label: "Good news" },
                 { value: "bad", label: "Bad news" },
+                { value: "good", label: "Good news" },
               ],
               expectedAnswer: "good",
             },
@@ -225,8 +225,8 @@ export const readingEconNewsContent: InteractiveGuideContent = {
               type: "radio",
               label: "From 2023 to 2026, the price of gas...",
               options: [
-                { value: "up", label: "went up" },
                 { value: "down", label: "went down" },
+                { value: "up", label: "went up" },
                 { value: "same", label: "stayed the same" },
               ],
               expectedAnswer: "up",
