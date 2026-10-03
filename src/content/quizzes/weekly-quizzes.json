@@ -926,125 +926,79 @@
     "estimatedMinutes": "5–10",
     "questions": [
       {
-        "id": "form-0-0",
-        "section": "forms",
-        "prompt": "think → V3 (past participle)",
-        "answers": [
-          "thought"
-        ],
-        "explanation": "V3 (past participle) of think: thought.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-0-1",
-        "section": "forms",
-        "prompt": "think → V1-s (he/she/it)",
-        "answers": [
-          "thinks"
-        ],
-        "explanation": "V1-s (he/she/it) of think: thinks.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-1-0",
-        "section": "forms",
-        "prompt": "know → V1-s (he/she/it)",
-        "answers": [
-          "knows"
-        ],
-        "explanation": "V1-s (he/she/it) of know: knows.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "form-1-1",
-        "section": "forms",
-        "prompt": "know → V-ing",
-        "answers": [
-          "knowing"
-        ],
-        "explanation": "V-ing of know: knowing.",
-        "source": "verb-conjugations"
-      },
-      {
-        "id": "apply-0",
-        "section": "apply",
-        "prompt": "If we ___ carefully, we will find a solution. (think)",
-        "answers": [
-          "think"
-        ],
-        "explanation": "If we think carefully, we will find a solution. (think)",
-        "source": "weekly-quiz-applications"
-      },
-      {
-        "id": "apply-1",
-        "section": "apply",
-        "prompt": "If she ___ the answer, she will tell us. (know)",
-        "answers": [
-          "knows"
-        ],
-        "explanation": "If she knows the answer, she will tell us. (know)",
-        "source": "weekly-quiz-applications"
-      },
-      {
-        "id": "vocab-0",
+        "id": "recap-0",
         "section": "vocabulary",
-        "prompt": "Many workers are asking for higher _____ this year.",
+        "prompt": "Which word means “to meet someone new and tell them your name”?",
         "options": [
-          "wages",
-          "prices",
-          "taxes",
-          "bills"
+          "introduce",
+          "volunteer",
+          "calculate"
         ],
         "answers": [
-          "wages"
+          "introduce"
         ],
-        "explanation": "wages: the money a worker earns for their work. Many workers are asking for higher wages this year.",
-        "source": "vocab-dec-w3"
+        "explanation": "Introduce: She introduced herself on the first day of class.",
+        "source": "sep-w1"
       },
       {
-        "id": "vocab-1",
+        "id": "recap-1",
         "section": "vocabulary",
-        "prompt": "Which word means “not having a paid job right now”?",
+        "prompt": "Which word means “to pay close attention to one thing”?",
         "options": [
-          "unemployed",
-          "prices",
-          "inflation"
+          "focus",
+          "depart",
+          "donate"
         ],
         "answers": [
-          "unemployed"
+          "focus"
         ],
-        "explanation": "unemployed: not having a paid job right now. The news said fewer people are unemployed this month.",
-        "source": "vocab-dec-w3"
+        "explanation": "Focus: Focus on one section at a time when you study.",
+        "source": "oct-learning"
       },
       {
-        "id": "grammar-0",
-        "section": "grammar",
-        "prompt": "Complete: \"At 3 p.m. tomorrow, I ___ in class.\"",
+        "id": "recap-2",
+        "section": "vocabulary",
+        "prompt": "Which word means “to leave a place to start a trip”?",
         "options": [
-          "will be sitting",
-          "am sitting",
-          "sat"
+          "arrive",
+          "depart",
+          "assist"
         ],
         "answers": [
-          "will be sitting"
+          "depart"
         ],
-        "explanation": "Future Continuous (will be + verb-ing) describes an action in progress at a future time.",
-        "source": "all-verb-tenses-overview/quiz-13"
+        "explanation": "Depart: The bus departs at 7:15 every morning.",
+        "source": "oct-w2"
       },
       {
-        "id": "grammar-1",
-        "section": "grammar",
-        "prompt": "Complete: \"If I ___ early, I will catch the train.\"",
+        "id": "recap-3",
+        "section": "vocabulary",
+        "prompt": "Which word means “to offer to do something without being paid”?",
         "options": [
-          "will leave",
-          "leave",
-          "left"
+          "volunteer",
+          "purchase",
+          "compare"
         ],
         "answers": [
-          "leave"
+          "volunteer"
         ],
-        "explanation": "In a real future conditional, the if-clause uses Present Simple, and the result clause uses will + verb.",
-        "source": "all-verb-tenses-overview/quiz-14"
+        "explanation": "Volunteer: She volunteers at the food bank every Saturday.",
+        "source": "nov-w1"
+      },
+      {
+        "id": "recap-4",
+        "section": "vocabulary",
+        "prompt": "Which word means “to plan how much money to spend”?",
+        "options": [
+          "budget",
+          "introduce",
+          "transfer"
+        ],
+        "answers": [
+          "budget"
+        ],
+        "explanation": "Budget: Budget your money so you can pay all your bills.",
+        "source": "dec-w1"
       }
     ]
   },
