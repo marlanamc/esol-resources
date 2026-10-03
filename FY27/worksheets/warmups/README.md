@@ -34,6 +34,23 @@ classroom/week[N]-day[M]-[YYYY-MM-DD].html
 Thursday). The on-page title spells out the actual weekday instead
 ("Warm-Up: Week 1, Tuesday"), not "Day 1".
 
+## Accessibility: font size floor
+
+Some students (elderly, low-vision) struggle to read small print. The
+type scale in `.claude/skills/arrival-warmup.md` is an accessibility
+**floor**, not a style choice — never generate or hand-edit a warmup
+below it:
+
+```
+classroom: 30 / 24 / 19 / 15  (h1 / task-title / body / small print)
+print:     24 / 20 / 16 / 12
+```
+
+If a page runs long, trim spacing (margins, line-height) before
+shrinking any font-size below this floor — see "Hard Requirements" in
+the skill file for how to trim safely without losing the write-in room
+students need (e.g. the margin above a find-the-errors dialogue line).
+
 ## When a new school year starts
 
 Move this whole `FY27` folder aside (e.g. `git mv FY27 FY28` for the new

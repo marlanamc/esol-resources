@@ -13,47 +13,48 @@
     font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
     color: #000;
     background: #fff;
-    font-size: 17px;
-    line-height: 1.5;
+    font-size: 19px;
+    line-height: 1.4;
   }
 
   .copy {
     max-width: 7.5in;
     margin: 0 auto;
-    padding: 0.55in 0.5in;
+    padding: 0.5in 0.5in;
   }
-  /* Type scale: 28 / 22 / 17 / 13 — each step >=1.25x the next */
+  /* Type scale: 30 / 24 / 19 / 15 — each step >=1.25x the next. Enlarged
+     from the standard template for low-vision students. */
   .header-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     border-bottom: 2px solid #000;
-    padding-bottom: 6px;
+    padding-bottom: 7px;
     margin-bottom: 12px;
   }
-  h1 { font-size: 28px; }
-  .date { font-size: 13px; font-weight: normal; white-space: nowrap; }
-  .subtitle { font-size: 13px; font-style: italic; margin-top: -6px; margin-bottom: 14px; }
+  h1 { font-size: 30px; }
+  .date { font-size: 15px; font-weight: normal; white-space: nowrap; }
+  .subtitle { font-size: 15px; font-style: italic; margin-top: -6px; margin-bottom: 14px; }
 
   /* Section gap (.task) is much larger than the item gaps inside it. */
-  .task { margin-bottom: 18px; }
-  .task-title { font-size: 22px; font-weight: bold; margin-bottom: 8px; }
-  .task-instructions { font-size: 13px; margin-bottom: 10px; }
-  .task-example { font-size: 13px; margin-bottom: 10px; }
+  .task { margin-bottom: 13px; }
+  .task-title { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+  .task-instructions { font-size: 15px; margin-bottom: 11px; }
+  .task-example { font-size: 15px; margin-bottom: 11px; }
 
   .word-bank {
     border: 1px solid #000;
     text-align: center;
     font-weight: bold;
-    font-size: 17px;
-    padding: 8px 12px;
+    font-size: 19px;
+    padding: 9px 12px;
     margin-bottom: 14px;
     letter-spacing: 0.3px;
   }
 
   .item-list { list-style: none; }
-  .item-list li { margin-bottom: 12px; }
-  .item-list li b.n { margin-right: 6px; }
+  .item-list li { margin-bottom: 8px; }
+  .item-list li b.n { margin-right: 7px; }
 
   .blank {
     display: inline-block;
@@ -66,19 +67,19 @@
   .answer-line {
     display: block;
     border-bottom: 1.5px solid #000;
-    height: 26px;
+    height: 28px;
     margin-left: 1.3em;
   }
   .bonus-line {
     border-bottom: 1.5px solid #000;
-    height: 30px;
-    margin-bottom: 6px;
+    height: 32px;
+    margin-bottom: 7px;
   }
   u { text-underline-offset: 3px; text-decoration-thickness: 1.5px; font-weight: bold; }
 
   .footer-note {
-    margin-top: 14px;
-    font-size: 13px;
+    margin-top: 10px;
+    font-size: 15px;
     font-style: italic;
   }
   @media print {
@@ -86,10 +87,7 @@
     body { background: #fff; }
   }
 
-  .verb-chart { border-collapse: collapse; width: 100%; }
-  .verb-chart th, .verb-chart td { border: 1px solid #000; padding: 3px 8px; text-align: left; width: 33%; }
-  .verb-chart th { font-size: 14px; }
-  .verb-chart tr.example td { font-style: italic; }
+  .opt { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -100,32 +98,32 @@
       </div>
       <p class="subtitle">Learning how to learn. Take your time and use your reference sheet.</p>
       <section class="task">
-        <div class="task-title">1&ensp;Complete the verb chart</div>
-        <p class="task-instructions">Write the missing forms. Use your reference sheet to check.</p>
-        <table class="verb-chart">
-          <tr><th>V1 (base)</th><th>V2 (past)</th><th>V3 (past participle)</th></tr>
-          <tr class="example"><td>study</td><td>studied</td><td>studied</td></tr>
-          <tr><td>be</td><td>was / were</td><td><span class="blank"></span></td></tr>
-          <tr><td>have</td><td><span class="blank"></span></td><td>had</td></tr>
-          <tr><td>focus</td><td><span class="blank"></span></td><td>focused</td></tr>
-          <tr><td>notice</td><td>noticed</td><td><span class="blank"></span></td></tr>
-          <tr><td>compare</td><td><span class="blank"></span></td><td>compared</td></tr>
-          <tr><td>correct</td><td>corrected</td><td><span class="blank"></span></td></tr>
-          <tr><td>remember</td><td><span class="blank"></span></td><td>remembered</td></tr>
-          <tr><td>apply</td><td>applied</td><td><span class="blank"></span></td></tr>
-        </table>
-      </section>
-      <section class="task">
-        <div class="task-title">2&ensp;Put learning into action</div>
-        <p class="task-instructions">Rewrite each sentence about yesterday. Underline the verb you changed.</p>
-        <p class="task-example"><b>Example:</b> I notice a new word. &rarr; Yesterday, I <u>noticed</u> a new word.</p>
+        <div class="task-title">1&ensp;This week's vocabulary</div>
+        <p class="task-instructions">Fill in each blank with a word from the box. Use each word once.</p>
+        <div class="word-bank">focus &nbsp;&nbsp;&nbsp; notice &nbsp;&nbsp;&nbsp; compare &nbsp;&nbsp;&nbsp; correct &nbsp;&nbsp;&nbsp; remember &nbsp;&nbsp;&nbsp; apply</div>
         <ol class="item-list">
-          <li><b class="n">1.</b> I focus on one word at a time.<span class="answer-line"></span></li>
-          <li><b class="n">2.</b> We compare our answers and correct mistakes.<span class="answer-line"></span></li>
-          <li><b class="n">3.</b> I apply a rule to help me remember it.<span class="answer-line"></span></li>
+          <li><b class="n">1.</b> Put other work away and <span class="blank"></span> on this one sentence.</li>
+          <li><b class="n">2.</b> Look closely at works. Do you <span class="blank"></span> the -s at the end?</li>
+          <li><b class="n">3.</b> Look for similarities and differences: <span class="blank"></span> these two sentences.</li>
+          <li><b class="n">4.</b> Your sentence has a mistake. Use the example to <span class="blank"></span> it.</li>
+          <li><b class="n">5.</b> Hide your notes and try to <span class="blank"></span> the verb forms from memory.</li>
+          <li><b class="n">6.</b> You learned a rule. Now <span class="blank"></span> it by using it in a new sentence.</li>
         </ol>
       </section>
-      <p class="footer-note">Finished? Try the Week 4 learning vocabulary in Class Companion to earn practice points. Quiz 1 opens Thursday, Oct. 8 at 6 p.m. Eastern.</p>
+      <section class="task">
+        <div class="task-title">2&ensp;Choose the verb form</div>
+        <p class="task-instructions">Circle the form that fits. Look for clues such as <i>yesterday</i> and <i>have</i>.</p>
+        <p class="task-example"><b>Example:</b> Yesterday, I (study / <b>studied</b>) for five minutes.</p>
+        <ol class="item-list">
+          <li><b class="n">1.</b> I (focus / focused) on one task every day.</li>
+          <li><b class="n">2.</b> Yesterday, I (notice / noticed) a new word.</li>
+          <li><b class="n">3.</b> We have (compare / compared) our answers.</li>
+          <li><b class="n">4.</b> Please (correct / corrected) this mistake.</li>
+          <li><b class="n">5.</b> Yesterday, she (remember / remembered) the rule.</li>
+          <li><b class="n">6.</b> I have (apply / applied) the rule in a new sentence.</li>
+        </ol>
+      </section>
+      <p class="footer-note">Finished? Try the Week 4 learning vocabulary in My ESOL App to earn practice points. Quiz 1 opens Thursday, Oct. 8 at 6 p.m.</p>
     </div>
 </body>
 </html>

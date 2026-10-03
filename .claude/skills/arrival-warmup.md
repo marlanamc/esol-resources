@@ -118,7 +118,8 @@ Before building a new day's warmup:
   annotation convention (circling, carets, etc.) isn't self-evident from
   the instruction line alone.
 - 5-9 items per task is typical; keep total content short enough to fit
-  one half-sheet without shrinking type below ~10px.
+  one half-sheet without shrinking type below the accessibility floor
+  (12px print / 15px classroom small print) — trim content instead.
 - **Task-specific markup is expected to change task to task** — e.g. a
   word-scramble list, a 3-column sort-into-boxes grid, or a dialogue
   block are all fine as their own CSS classes (see the Week 2 Day 1
@@ -191,7 +192,7 @@ or just leave last year's `FY26/` folder in place and start a fresh
     font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
     color: #000;
     background: #fff;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.4;
   }
 
@@ -212,10 +213,11 @@ or just leave last year's `FY26/` folder in place and start a fresh
     border-right: 1.5px dashed #000;
   }
 
-  /* Type scale: 22 / 18 / 14 / 11 — each step ~1.25x the next. Don't let
+  /* Type scale: 24 / 20 / 16 / 12 — each step ~1.25x the next. Don't let
      sizes cluster within a point of each other (that reads as flat/no
      hierarchy) — h1, task-title, body text, and small print should each
-     look like a distinct tier at a glance. */
+     look like a distinct tier at a glance. This is an accessibility floor
+     (elderly/low-vision students) — don't go smaller than this. */
   .header-row {
     display: flex;
     justify-content: space-between;
@@ -226,17 +228,17 @@ or just leave last year's `FY26/` folder in place and start a fresh
   }
 
   h1 {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .date {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: normal;
     white-space: nowrap;
   }
 
   .subtitle {
-    font-size: 11px;
+    font-size: 12px;
     margin-bottom: 10px;
   }
 
@@ -247,18 +249,18 @@ or just leave last year's `FY26/` folder in place and start a fresh
   .task { margin-bottom: 17px; }
 
   .task-title {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 5px;
   }
 
   .task-instructions {
-    font-size: 11px;
+    font-size: 12px;
     margin-bottom: 6px;
   }
 
   .task-example {
-    font-size: 11px;
+    font-size: 12px;
     margin-bottom: 6px;
   }
 
@@ -266,7 +268,7 @@ or just leave last year's `FY26/` folder in place and start a fresh
     border: 1px solid #000;
     text-align: center;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     padding: 5px 10px;
     margin-bottom: 7px;
     letter-spacing: 0.3px;
@@ -275,7 +277,7 @@ or just leave last year's `FY26/` folder in place and start a fresh
   .fill-blank-list { list-style: none; }
   .fill-blank-list li {
     margin-bottom: 6px;
-    font-size: 14px;
+    font-size: 16px;
   }
   .fill-blank-list li b { margin-right: 6px; }
 
@@ -288,7 +290,7 @@ or just leave last year's `FY26/` folder in place and start a fresh
 
   .dialogue p {
     margin-top: 12px;
-    font-size: 14px;
+    font-size: 16px;
   }
   .dialogue p:first-child { margin-top: 0; }
   .dialogue .speaker { font-weight: bold; margin-right: 6px; }
@@ -296,7 +298,7 @@ or just leave last year's `FY26/` folder in place and start a fresh
   .footer-note {
     margin-top: auto;
     padding-top: 8px;
-    font-size: 11px;
+    font-size: 12px;
   }
 
   @media print {
@@ -358,7 +360,7 @@ body {
   font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
   color: #000;
   background: #fff;
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.5;
 }
 
@@ -369,9 +371,10 @@ body {
   /* no border-right, no height: 100vh / flex column — footer just flows */
 }
 
-/* Type scale: 28 / 22 / 17 / 13 — each step >=1.25x the next, checked at
-   the smallest gap too (17/13 = 1.31, not just the bigger gaps above it).
-   Don't let sizes cluster close enough to blur into one tier. */
+/* Type scale: 30 / 24 / 19 / 15 — each step >=1.25x the next, checked at
+   the smallest gap too (19/15 = 1.27, not just the bigger gaps above it).
+   Don't let sizes cluster close enough to blur into one tier. This is an
+   accessibility floor (elderly/low-vision students) — don't go smaller. */
 .header-row {
   display: flex;
   justify-content: space-between;
@@ -380,16 +383,16 @@ body {
   padding-bottom: 7px;
   margin-bottom: 16px;
 }
-h1 { font-size: 28px; }
-.date { font-size: 13px; font-weight: normal; white-space: nowrap; }
+h1 { font-size: 30px; }
+.date { font-size: 15px; font-weight: normal; white-space: nowrap; }
 .task { margin-bottom: 18px; }
-.task-title { font-size: 22px; margin-bottom: 8px; }
-.task-instructions { font-size: 13px; margin-bottom: 10px; }
-.task-example { font-size: 13px; margin-bottom: 10px; }
-.word-bank { font-size: 17px; padding: 8px 12px; margin-bottom: 14px; }
-.fill-blank-list li { font-size: 17px; margin-bottom: 12px; }
-.dialogue p { font-size: 17px; margin-top: 17px; }
-.footer-note { margin-top: 18px; font-size: 13px; font-style: italic; }
+.task-title { font-size: 24px; margin-bottom: 8px; }
+.task-instructions { font-size: 15px; margin-bottom: 10px; }
+.task-example { font-size: 15px; margin-bottom: 10px; }
+.word-bank { font-size: 19px; padding: 8px 12px; margin-bottom: 14px; }
+.fill-blank-list li { font-size: 19px; margin-bottom: 12px; }
+.dialogue p { font-size: 19px; margin-top: 17px; }
+.footer-note { margin-top: 18px; font-size: 15px; font-style: italic; }
 
 @media print {
   @page { size: letter portrait; margin: 0; }

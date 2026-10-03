@@ -13,7 +13,7 @@
     font-family: "Atkinson Hyperlegible", Arial, Helvetica, sans-serif;
     color: #000;
     background: #fff;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.4;
   }
 
@@ -26,7 +26,7 @@
     flex-direction: column;
   }
   .copy:first-child { border-right: 1.5px dashed #000; }
-  /* Type scale: 22 / 18 / 14 / 11 — each step ~1.25x the next */
+  /* Type scale: 24 / 20 / 16 / 12 — each step ~1.25x the next */
   .header-row {
     display: flex;
     justify-content: space-between;
@@ -35,21 +35,21 @@
     padding-bottom: 6px;
     margin-bottom: 6px;
   }
-  h1 { font-size: 22px; }
-  .date { font-size: 11px; font-weight: normal; white-space: nowrap; }
-  .subtitle { font-size: 11px; font-style: italic; margin-top: -3px; margin-bottom: 8px; }
+  h1 { font-size: 24px; }
+  .date { font-size: 12px; font-weight: normal; white-space: nowrap; }
+  .subtitle { font-size: 12px; font-style: italic; margin-top: -3px; margin-bottom: 8px; }
 
   /* Section gap (.task) is much larger than the item gaps inside it. */
   .task { margin-bottom: 17px; }
-  .task-title { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
-  .task-instructions { font-size: 11px; margin-bottom: 6px; }
-  .task-example { font-size: 11px; margin-bottom: 6px; }
+  .task-title { font-size: 20px; font-weight: bold; margin-bottom: 5px; }
+  .task-instructions { font-size: 12px; margin-bottom: 6px; }
+  .task-example { font-size: 12px; margin-bottom: 6px; }
 
   .word-bank {
     border: 1px solid #000;
     text-align: center;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     padding: 5px 10px;
     margin-bottom: 7px;
     letter-spacing: 0.3px;
@@ -83,7 +83,7 @@
   .footer-note {
     margin-top: auto;
     padding-top: 8px;
-    font-size: 11px;
+    font-size: 12px;
     font-style: italic;
   }
   @media print {
@@ -92,7 +92,10 @@
     .copy { height: auto; min-height: 8.1in; }
   }
 
-  .opt { white-space: nowrap; }
+  .verb-chart { border-collapse: collapse; width: 100%; }
+  .verb-chart th, .verb-chart td { border: 1px solid #000; padding: 1px 8px; text-align: left; width: 33%; }
+  .verb-chart th { font-size: 12px; }
+  .verb-chart tr.example td { font-style: italic; }
 </style>
 </head>
 <body>
@@ -104,30 +107,32 @@
       </div>
       <p class="subtitle">Small steps, strong habits. Your reference sheet is welcome!</p>
       <section class="task">
-        <div class="task-title">1&ensp;Choose the verb form</div>
-        <p class="task-instructions">Circle the form that fits. Look for clues such as <i>yesterday</i> and <i>have</i>.</p>
-        <p class="task-example"><b>Example:</b> Yesterday, I (study / <b>studied</b>) for five minutes.</p>
-        <ol class="item-list">
-          <li><b class="n">1.</b> I (focus / focused) on one task every day.</li>
-          <li><b class="n">2.</b> Yesterday, I (notice / noticed) a new word.</li>
-          <li><b class="n">3.</b> We have (compare / compared) our answers.</li>
-          <li><b class="n">4.</b> Please (correct / corrected) this mistake.</li>
-          <li><b class="n">5.</b> Yesterday, she (remember / remembered) the rule.</li>
-          <li><b class="n">6.</b> I have (apply / applied) the rule in a new sentence.</li>
-        </ol>
+        <div class="task-title">1&ensp;Complete the verb chart</div>
+        <p class="task-instructions">Write the missing forms. Use your reference sheet to check.</p>
+        <table class="verb-chart">
+          <tr><th>V1 (base)</th><th>V2 (past)</th><th>V3 (past participle)</th></tr>
+          <tr class="example"><td>study</td><td>studied</td><td>studied</td></tr>
+          <tr><td>be</td><td>was / were</td><td></td></tr>
+          <tr><td>have</td><td></td><td>had</td></tr>
+          <tr><td>focus</td><td></td><td>focused</td></tr>
+          <tr><td>notice</td><td>noticed</td><td></td></tr>
+          <tr><td>compare</td><td></td><td>compared</td></tr>
+          <tr><td>correct</td><td>corrected</td><td></td></tr>
+          <tr><td>remember</td><td></td><td>remembered</td></tr>
+          <tr><td>apply</td><td>applied</td><td></td></tr>
+        </table>
       </section>
       <section class="task">
-        <div class="task-title">2&ensp;Notice words. Make a plan.</div>
-        <p class="task-instructions">Label each underlined word: noun, verb, or adjective. Then finish the study plan.</p>
-        <p class="task-example"><b>Example:</b> I <u>study</u> at home. &rarr; verb</p>
+        <div class="task-title">2&ensp;Put learning into action</div>
+        <p class="task-instructions">Rewrite each sentence about yesterday. Underline the verb you changed.</p>
+        <p class="task-example"><b>Example:</b> I notice a new word. &rarr; Yesterday, I <u>noticed</u> a new word.</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> I <u>correct</u> my mistakes. <span class="blank"></span></li>
-          <li><b class="n">2.</b> This is a <u>helpful</u> habit. <span class="blank"></span></li>
-          <li><b class="n">3.</b> I remember the <u>rule</u>. <span class="blank"></span></li>
-          <li><b class="n">4.</b> To practice English this week, I will &hellip;<span class="answer-line"></span></li>
+          <li><b class="n">1.</b> I focus on one word at a time.<span class="answer-line"></span></li>
+          <li><b class="n">2.</b> We compare our answers and correct mistakes.<span class="answer-line"></span></li>
+          <li><b class="n">3.</b> I apply a rule to help me remember it.<span class="answer-line"></span></li>
         </ol>
       </section>
-      <p class="footer-note">Quiz 1 opens today at 6 p.m. Eastern; we can try it together. Due Tuesday, Oct. 13 at 6 p.m. Eastern, and available afterward. Finished? Earn practice points with Week 4 vocabulary in Class Companion.</p>
+      <p class="footer-note">Quiz 1 opens today at 6 p.m.; we can try it together. Due Tuesday, Oct. 13 at 6 p.m., and available afterward. Finished? Earn practice points with Week 4 vocabulary in My ESOL App.</p>
     </div>
     <div class="copy">
       <div class="header-row">
@@ -136,30 +141,32 @@
       </div>
       <p class="subtitle">Small steps, strong habits. Your reference sheet is welcome!</p>
       <section class="task">
-        <div class="task-title">1&ensp;Choose the verb form</div>
-        <p class="task-instructions">Circle the form that fits. Look for clues such as <i>yesterday</i> and <i>have</i>.</p>
-        <p class="task-example"><b>Example:</b> Yesterday, I (study / <b>studied</b>) for five minutes.</p>
-        <ol class="item-list">
-          <li><b class="n">1.</b> I (focus / focused) on one task every day.</li>
-          <li><b class="n">2.</b> Yesterday, I (notice / noticed) a new word.</li>
-          <li><b class="n">3.</b> We have (compare / compared) our answers.</li>
-          <li><b class="n">4.</b> Please (correct / corrected) this mistake.</li>
-          <li><b class="n">5.</b> Yesterday, she (remember / remembered) the rule.</li>
-          <li><b class="n">6.</b> I have (apply / applied) the rule in a new sentence.</li>
-        </ol>
+        <div class="task-title">1&ensp;Complete the verb chart</div>
+        <p class="task-instructions">Write the missing forms. Use your reference sheet to check.</p>
+        <table class="verb-chart">
+          <tr><th>V1 (base)</th><th>V2 (past)</th><th>V3 (past participle)</th></tr>
+          <tr class="example"><td>study</td><td>studied</td><td>studied</td></tr>
+          <tr><td>be</td><td>was / were</td><td></td></tr>
+          <tr><td>have</td><td></td><td>had</td></tr>
+          <tr><td>focus</td><td></td><td>focused</td></tr>
+          <tr><td>notice</td><td>noticed</td><td></td></tr>
+          <tr><td>compare</td><td></td><td>compared</td></tr>
+          <tr><td>correct</td><td>corrected</td><td></td></tr>
+          <tr><td>remember</td><td></td><td>remembered</td></tr>
+          <tr><td>apply</td><td>applied</td><td></td></tr>
+        </table>
       </section>
       <section class="task">
-        <div class="task-title">2&ensp;Notice words. Make a plan.</div>
-        <p class="task-instructions">Label each underlined word: noun, verb, or adjective. Then finish the study plan.</p>
-        <p class="task-example"><b>Example:</b> I <u>study</u> at home. &rarr; verb</p>
+        <div class="task-title">2&ensp;Put learning into action</div>
+        <p class="task-instructions">Rewrite each sentence about yesterday. Underline the verb you changed.</p>
+        <p class="task-example"><b>Example:</b> I notice a new word. &rarr; Yesterday, I <u>noticed</u> a new word.</p>
         <ol class="item-list">
-          <li><b class="n">1.</b> I <u>correct</u> my mistakes. <span class="blank"></span></li>
-          <li><b class="n">2.</b> This is a <u>helpful</u> habit. <span class="blank"></span></li>
-          <li><b class="n">3.</b> I remember the <u>rule</u>. <span class="blank"></span></li>
-          <li><b class="n">4.</b> To practice English this week, I will &hellip;<span class="answer-line"></span></li>
+          <li><b class="n">1.</b> I focus on one word at a time.<span class="answer-line"></span></li>
+          <li><b class="n">2.</b> We compare our answers and correct mistakes.<span class="answer-line"></span></li>
+          <li><b class="n">3.</b> I apply a rule to help me remember it.<span class="answer-line"></span></li>
         </ol>
       </section>
-      <p class="footer-note">Quiz 1 opens today at 6 p.m. Eastern; we can try it together. Due Tuesday, Oct. 13 at 6 p.m. Eastern, and available afterward. Finished? Earn practice points with Week 4 vocabulary in Class Companion.</p>
+      <p class="footer-note">Quiz 1 opens today at 6 p.m.; we can try it together. Due Tuesday, Oct. 13 at 6 p.m., and available afterward. Finished? Earn practice points with Week 4 vocabulary in My ESOL App.</p>
     </div>
   </div>
 </body>
