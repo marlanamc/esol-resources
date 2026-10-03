@@ -163,6 +163,20 @@ async function loadAssignmentByActivityId(userId: string): Promise<
     return assignmentByActivityId;
 }
 
+/** Completion markers share one snapshot and the same current-week selection. */
+export async function getCurrentWeekCompletion(
+    user: { id: string; role?: string | null },
+    options?: { now?: Date }
+): Promise<{ weekComplete: boolean; weeklyQuizComplete: boolean }> {
+    const snapshot = await buildCurrentWeekSnapshot(user, options);
+    if (!snapshot) return { weekComplete: false, weeklyQuizComplete: false };
+    const quizzes = snapshot.items.filter(item => item.type === "quiz");
+    return {
+        weekComplete: snapshot.progress.total > 0 && snapshot.progress.done >= snapshot.progress.total,
+        weeklyQuizComplete: quizzes.length > 0 && quizzes.every(item => item.status === "done"),
+    };
+}
+
 /** Has this learner finished every actionable required activity in their current course-map week? */
 export async function isCurrentWeekComplete(
     user: { id: string; role?: string | null },

@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type CSSProperties } from 'react';
 import { TrophyIcon, FlameIcon, SparklesIcon, CheckCircleIcon } from '@/components/icons/Icons';
+import { WeeklyQuizBadge } from '@/components/dashboard/WeeklyQuizBadge';
 import { Badge } from '@/components/ui';
 import { getAvatarEmoji, getColorClass } from '@/lib/avatar-constants';
 
@@ -28,6 +29,7 @@ interface LeaderboardEntry {
   avatar: string | null;
   avatarColor: string | null;
   weekComplete: boolean;
+  weeklyQuizComplete: boolean;
 }
 
 const TROPHY_TILE_BG =
@@ -433,6 +435,9 @@ export default function LeaderboardPage() {
                             <span>{student.currentStreak} day streak</span>
                           </div>
                         )}
+                        {student.weeklyQuizComplete && (
+                          <div className="mt-1 flex justify-center"><WeeklyQuizBadge /></div>
+                        )}
                         {student.weekComplete && (
                           <div
                             className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold"
@@ -487,6 +492,9 @@ export default function LeaderboardPage() {
                         <p className="text-[11px] font-semibold mt-0.5" style={{ color: 'var(--success-color)' }}>
                           {student.weeklyPoints} pts
                         </p>
+                        {student.weeklyQuizComplete && (
+                          <div className="mt-1 flex justify-center"><WeeklyQuizBadge /></div>
+                        )}
                       </div>
                     </div>
                   );
@@ -567,6 +575,7 @@ export default function LeaderboardPage() {
                             <span>{entry.currentStreak} day streak</span>
                           </div>
                         )}
+                        {entry.weeklyQuizComplete && <WeeklyQuizBadge />}
                         {entry.weekComplete && (
                           <div
                             className="flex items-center gap-1 text-sm font-semibold"

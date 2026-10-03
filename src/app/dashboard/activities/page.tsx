@@ -204,7 +204,7 @@ export default async function ActivitiesPage({ searchParams }: Props) {
                             ? { deletedAt: null }
                             : !studentMode && canUseTeacherTools(session.user)
                                 ? { deletedAt: null, createdBy: userId }
-                                : { deletedAt: null, isReleased: true },
+                                : { deletedAt: null },
                     select: {
                         id: true,
                         title: true,

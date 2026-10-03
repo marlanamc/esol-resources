@@ -86,16 +86,101 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
   tableOfContents: true,
   sections: [
     {
+      id: "your-study-toolkit",
+      title: "Your toolkit: a little practice, one step at a time",
+      icon: "🧭",
+      explanation: `
+        <p>This week builds skills you will use all year: noticing word jobs, finding verb forms, checking a reference, and practicing on your own.</p>
+        <p><strong>Coming back from state testing?</strong> Start with one section. Use the contents to return to your place. You can read an example, try a few questions, and continue another day.</p>
+        <h3>Use your reference sheet</h3>
+        <p>Keep your class reference sheet beside you, or <a href="/dashboard/reference" target="_blank" rel="noopener noreferrer">open the reference page in a new tab</a>. You do not need to memorize the whole sheet.</p>
+        <ol>
+          <li><strong>Find:</strong> Choose the part that matches your question. For a sentence about now, find a present-tense example.</li>
+          <li><strong>Notice:</strong> Point to the subject, the verb, and any helper verb. Read the example aloud.</li>
+          <li><strong>Try:</strong> Change one detail to make a true sentence about yourself.</li>
+          <li><strong>Check:</strong> Compare your sentence with the example. Fix one thing and try again.</li>
+        </ol>
+        <p><strong>Try together:</strong> Read “She works.” Point to the pronoun and the verb. Change it to “I work.” What changed? Use the sheet to explain it to a partner, or say your explanation aloud if you are working alone.</p>
+      `,
+      exercises: [{
+        id: "vfo-reference-practice",
+        title: "Use an example",
+        instructions: "Try the questions, then check the example. Mistakes show you what to practice next.",
+        items: [
+          {
+            type: "radio",
+            label: "In ‘She works,’ which word is the pronoun?",
+            options: [{ value: "works", label: "works" }, { value: "she", label: "She" }],
+            expectedAnswer: "she",
+          },
+          {
+            type: "text",
+            label: "Change ‘She works’ to a sentence with I: I ___.",
+            expectedAnswers: ["work"],
+          },
+        ],
+      }],
+    },
+    {
+      id: "small-study-routine",
+      title: "Make a small English practice routine",
+      icon: "🌱",
+      explanation: `
+        <p>Try this short routine with two verbs from class. Five minutes is a useful place to start; choose a time that fits your day.</p>
+        <ol>
+          <li><strong>Look:</strong> Read the forms and one example. Say them aloud.</li>
+          <li><strong>Cover:</strong> Hide the example. Try saying or writing what you remember.</li>
+          <li><strong>Check:</strong> Look again. Correct one form, then cover it and try again.</li>
+          <li><strong>Use:</strong> Make one sentence about your life.</li>
+          <li><strong>Return:</strong> Practice those verbs again tomorrow before adding more.</li>
+        </ol>
+        <p><strong>Make your plan:</strong> “After ___, I will practice ___ for five minutes.” For example: “After dinner, I will practice <em>be</em> and <em>have</em> for five minutes.” Say your plan to a partner or write it in your notebook.</p>
+        <p><strong>If you miss class:</strong> Return to your last section, try one example, and write down one question to bring back. You can take this week in small pieces.</p>
+      `,
+      exercises: [{
+        id: "vfo-study-routine",
+        title: "Choose your next step",
+        instructions: "Choose the action that follows the practice routine above.",
+        items: [
+          {
+            type: "text",
+            label: "Complete this study plan with the base form of practice: After dinner, I will ___ English for five minutes.",
+            expectedAnswers: ["practice"],
+          },
+          {
+            type: "radio",
+            label: "You read the forms of have. What comes next?",
+            options: [
+              { value: "try", label: "Cover them and try from memory, then check." },
+              { value: "copy", label: "Copy the whole reference sheet without checking." },
+              { value: "stop", label: "Stop practicing until the quiz." },
+            ],
+            expectedAnswer: "try",
+          },
+          {
+            type: "radio",
+            label: "You notice a mistake in your verb form. What can you do?",
+            options: [
+              { value: "skip", label: "Skip the verb forever." },
+              { value: "wait", label: "Wait until every answer feels easy." },
+              { value: "retry", label: "Check the example, fix the form, and try again." },
+            ],
+            expectedAnswer: "retry",
+          },
+        ],
+      }],
+    },
+    {
       id: "five-codes",
       title: "Five codes, every week",
       icon: "📱",
       explanation: `
         ${sceneCard("sceneClassNight", "East Boston Adult Ed Center. First week of class, 6 PM.", "terracotta")}
 
-        <p style="margin: 0 0 1rem 0; line-height: 1.6">Every week you will take a <strong>verb quiz</strong> in this app. Each quiz asks about <strong>five forms</strong> of two verbs. Learn the codes now so the quizzes feel familiar, not scary.</p>
+        <p style="margin: 0 0 1rem 0; line-height: 1.6">Each weekly review quiz takes about <strong>5–10 minutes</strong>. You will recall selected forms of two or three verbs, use verbs in sentences, and answer a few vocabulary and grammar questions. Learn these five codes so you recognize whichever forms appear.</p>
 
         ${dialogue([
-          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "On the quiz you will see five codes: <strong>V1, V1-s, V-ing, V2,</strong> and <strong>V3</strong>. Same codes every week.", side: "left", tone: "sage" },
+          { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Our reference uses five codes: <strong>V1, V1-s, V-ing, V2,</strong> and <strong>V3</strong>. Same codes every week.", side: "left", tone: "sage" },
           { speaker: "Carlos", avatar: "👨🏽", text: "So I do not have to learn new labels each time?", side: "right", tone: "terracotta" },
           { speaker: "Ms. Tran", avatar: "👩‍🏫", text: "Exactly. Two verbs per quiz. V1 is often filled in for you. You type the other four.", side: "left", tone: "sage" },
           { speaker: "Fernanda", avatar: "👩🏾", text: "Like leveling up in a game. One small step at a time.", side: "right", tone: "blue" },
@@ -119,11 +204,11 @@ export const verbFormsOverviewContent: InteractiveGuideContent = {
         {
           id: "vfo-intro-1",
           title: "Know the codes",
-          instructions: "How many forms does each weekly verb quiz ask about?",
+          instructions: "How many verb form codes are on our reference?",
           items: [
             {
               type: "radio",
-              label: "How many forms per verb on the quiz?",
+              label: "How many verb form codes are on our reference?",
               options: [
                 { value: "3", label: "3 forms" },
                 { value: "5", label: "5 forms" },

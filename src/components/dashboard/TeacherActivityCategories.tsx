@@ -1,5 +1,7 @@
 'use client';
 
+import { readWeeklyQuizSchedule, formatQuizScheduleDate } from "@/lib/weekly-quiz-schedule";
+
 import React, { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab/display';
@@ -83,7 +85,7 @@ const compareByTitleDateAsc = (a: Activity, b: Activity) => {
 
 const parseVerbQuizNum = (activity: Activity): number | null => {
     const title = activity.title || '';
-    const match = title.match(/verb\s*quiz\s*(\d+)/i);
+    const match = title.match(/(?:verb|weekly)\s*quiz\s*(\d+)/i);
     if (match) return Number(match[1]);
 
     const content = parseActivityContent(activity.content || '{}');
@@ -123,6 +125,8 @@ const ActivityCard = React.memo(function ActivityCard({
 }: ActivityCardProps) {
     const [isReleasing, setIsReleasing] = React.useState(false);
     const vocabType = getVocabActivityType(activity.id);
+
+    const quizSchedule = readWeeklyQuizSchedule(activity.content);
 
     const handleRelease = async () => {
         setIsReleasing(true);
@@ -203,7 +207,13 @@ const ActivityCard = React.memo(function ActivityCard({
                                 {assigningId === activity.id ? 'Assigning...' : 'Assign'}
                             </button>
                         )}
-                        {(isQuiz || isSpeaking || isGrammarGuide) && (
+                        {quizSchedule && (
+                            <p className="max-w-xs text-sm text-text-muted">
+                                Opens {formatQuizScheduleDate(quizSchedule.opensAt)}<br />
+                                Due {formatQuizScheduleDate(quizSchedule.dueAt)} · Stays open
+                            </p>
+                        )}
+                        {!quizSchedule && (isQuiz || isSpeaking || isGrammarGuide) && (
                             <button
                                 type="button"
                                 onClick={handleRelease}

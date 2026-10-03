@@ -1,3 +1,5 @@
+import { CLASS_TIME_ZONE } from "@/data/school-calendar-2026-27";
+
 export type DashboardWelcomeMode = "classroom" | "independent";
 
 export type WelcomeHighlight = "streak" | "weekly-goal" | "rank" | "default";
@@ -8,11 +10,17 @@ export type DashboardWelcomeChip = {
     tone?: "default" | "primary" | "secondary" | "accent";
 };
 
+const greetingHourFormatter = new Intl.DateTimeFormat("en-US", {
+    timeZone: CLASS_TIME_ZONE,
+    hour: "numeric",
+    hourCycle: "h23",
+});
+
 export function getTimeOfDayGreeting(now: Date = new Date()): string {
-    const hour = now.getHours();
+    // Server hosts commonly run in UTC; greetings follow the class's local day.
+    const hour = Number(greetingHourFormatter.format(now));
     if (hour < 12) return "Good morning";
     if (hour < 17) return "Good afternoon";
-    if (hour < 21) return "Good evening";
     return "Good evening";
 }
 

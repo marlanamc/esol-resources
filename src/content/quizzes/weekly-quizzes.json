@@ -1,0 +1,4575 @@
+{
+  "verb-quiz-1": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 4,
+    "title": "Weekly Quiz 1: Foundations: Learn How to Learn",
+    "focusVerbs": [
+      "be",
+      "have"
+    ],
+    "guided": true,
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "be → V1-s (he/she/it)",
+        "answers": [
+          "is"
+        ],
+        "explanation": "V1-s (he/she/it) of be: is.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "be → V-ing",
+        "answers": [
+          "being"
+        ],
+        "explanation": "V-ing of be: being.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "have → V-ing",
+        "answers": [
+          "having"
+        ],
+        "explanation": "V-ing of have: having.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "have → V2 (past)",
+        "answers": [
+          "had"
+        ],
+        "explanation": "V2 (past) of have: had.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "She ___ ready to study. (be)",
+        "answers": [
+          "is"
+        ],
+        "explanation": "She is ready to study. (be)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "He ___ a reference sheet. (have)",
+        "answers": [
+          "has"
+        ],
+        "explanation": "He has a reference sheet. (have)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “to successfully deal with a challenge”?",
+        "options": [
+          "relocate",
+          "motivate",
+          "overcome"
+        ],
+        "answers": [
+          "overcome"
+        ],
+        "explanation": "overcome: to successfully deal with a challenge. She worked hard to overcome the language barrier.",
+        "source": "vocab-sep-w4"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "With hard work, you can _____ your goal of passing the test.",
+        "options": [
+          "motivate",
+          "immigrate",
+          "overcome",
+          "achieve"
+        ],
+        "answers": [
+          "achieve"
+        ],
+        "explanation": "achieve: to reach a goal through hard work. With practice, you can achieve your language goals.",
+        "source": "vocab-sep-w4"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "In “The helpful teacher has a book,” which word describes the teacher?",
+        "options": [
+          "teacher",
+          "helpful",
+          "has"
+        ],
+        "answers": [
+          "helpful"
+        ],
+        "explanation": "Helpful is an adjective. It describes the noun teacher.",
+        "source": "parts-of-speech-week-4"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Fix one word: “She have a notebook.” Write the complete sentence.",
+        "answers": [
+          "She has a notebook."
+        ],
+        "explanation": "With she, the present form of have is has.",
+        "source": "verb-forms-overview"
+      }
+    ]
+  },
+  "verb-quiz-2": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 5,
+    "title": "Weekly Quiz 2: Digital Habits + Community Routines",
+    "focusVerbs": [
+      "do",
+      "make"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "do → V-ing",
+        "answers": [
+          "doing"
+        ],
+        "explanation": "V-ing of do: doing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "do → V2 (past)",
+        "answers": [
+          "did"
+        ],
+        "explanation": "V2 (past) of do: did.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "make → V2 (past)",
+        "answers": [
+          "made"
+        ],
+        "explanation": "V2 (past) of make: made.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "make → V3 (past participle)",
+        "answers": [
+          "made"
+        ],
+        "explanation": "V3 (past participle) of make: made.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "I have already ___ my homework. (do)",
+        "answers": [
+          "done"
+        ],
+        "explanation": "I have already done my homework. (do)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "She has just ___ a study plan. (make)",
+        "answers": [
+          "made"
+        ],
+        "explanation": "She has just made a study plan. (make)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Click the button to _____ your homework before the deadline.",
+        "options": [
+          "access",
+          "complete",
+          "review",
+          "submit"
+        ],
+        "answers": [
+          "submit"
+        ],
+        "explanation": "submit: to send your work or information officially. Submit your answers before the timer runs out.",
+        "source": "vocab-sep-w3"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “to open or enter a file, website, or building”?",
+        "options": [
+          "access",
+          "log in",
+          "navigate"
+        ],
+        "answers": [
+          "access"
+        ],
+        "explanation": "access: to open or enter a file, website, or building. You can access your lessons from any device.",
+        "source": "vocab-sep-w3"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Nadine picked up her EBT card last week. The staff member asks if she needs it today. What does Nadine say?",
+        "options": [
+          "I have just gotten my card.",
+          "I have already gotten my card.",
+          "I haven't gotten my card yet."
+        ],
+        "answers": [
+          "I have already gotten my card."
+        ],
+        "explanation": "ALREADY means done before now. She got the card last week, not moments ago.",
+        "source": "just-already-yet/jay-q1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Carlos walked in the door 30 seconds ago. His neighbor asks where he's been. He says:",
+        "options": [
+          "I have already gotten back from the pharmacy.",
+          "I have just gotten back from the pharmacy.",
+          "I haven't gotten back from the pharmacy yet."
+        ],
+        "answers": [
+          "I have just gotten back from the pharmacy."
+        ],
+        "explanation": "JUST means very recently, moments ago. He arrived 30 seconds ago.",
+        "source": "just-already-yet/jay-q2"
+      }
+    ]
+  },
+  "verb-quiz-3": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 6,
+    "title": "Weekly Quiz 3: Getting Around: Directions + Digital Safety",
+    "focusVerbs": [
+      "go",
+      "come"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "go → V2 (past)",
+        "answers": [
+          "went"
+        ],
+        "explanation": "V2 (past) of go: went.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "go → V3 (past participle)",
+        "answers": [
+          "gone"
+        ],
+        "explanation": "V3 (past participle) of go: gone.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "come → V3 (past participle)",
+        "answers": [
+          "come"
+        ],
+        "explanation": "V3 (past participle) of come: come.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "come → V1-s (he/she/it)",
+        "answers": [
+          "comes"
+        ],
+        "explanation": "V1-s (he/she/it) of come: comes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "Yesterday, I ___ to the library. (go)",
+        "answers": [
+          "went"
+        ],
+        "explanation": "Yesterday, I went to the library. (go)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "Please ___ to the front desk. (come)",
+        "answers": [
+          "come"
+        ],
+        "explanation": "Please come to the front desk. (come)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “to go in the same direction; to use directions step by step”?",
+        "options": [
+          "follow",
+          "depart",
+          "arrive"
+        ],
+        "answers": [
+          "follow"
+        ],
+        "explanation": "follow: to go in the same direction; to use directions step by step. Follow the signs to the emergency exit.",
+        "source": "vocab-oct-w2"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "_____ the street only when the walk signal is green.",
+        "options": [
+          "follow",
+          "cross",
+          "depart",
+          "arrive"
+        ],
+        "answers": [
+          "cross"
+        ],
+        "explanation": "cross: to go from one side to the other. Cross the street at the crosswalk when the light is green.",
+        "source": "vocab-oct-w2"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "\"She don't work on Sundays.\" What is wrong with this sentence?",
+        "options": [
+          "Nothing is wrong.",
+          "Should be 'doesn't' because 'she' is third person singular.",
+          "Should be 'didn't' because it happened in the past."
+        ],
+        "answers": [
+          "Should be 'doesn't' because 'she' is third person singular."
+        ],
+        "explanation": "With he/she/it in present simple negatives, use doesn't, not don't.",
+        "source": "your-week-in-english/your-week-q3"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Rosa describes her morning commute. Put the words in order. Words: She / usually / takes / the / bus / to / work",
+        "answers": [
+          "She usually takes the bus to work"
+        ],
+        "explanation": "Usually goes before the main verb: She usually takes.",
+        "source": "your-week-in-english/your-week-qws1"
+      }
+    ]
+  },
+  "verb-quiz-4": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 7,
+    "title": "Weekly Quiz 4: Phone English + Family Connection",
+    "focusVerbs": [
+      "tell",
+      "say"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "tell → V3 (past participle)",
+        "answers": [
+          "told"
+        ],
+        "explanation": "V3 (past participle) of tell: told.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "tell → V1-s (he/she/it)",
+        "answers": [
+          "tells"
+        ],
+        "explanation": "V1-s (he/she/it) of tell: tells.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "say → V1-s (he/she/it)",
+        "answers": [
+          "says"
+        ],
+        "explanation": "V1-s (he/she/it) of say: says.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "say → V-ing",
+        "answers": [
+          "saying"
+        ],
+        "explanation": "V-ing of say: saying.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "Can you ___ me your phone number? (tell)",
+        "answers": [
+          "tell"
+        ],
+        "explanation": "Can you tell me your phone number? (tell)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "You should ___ your name clearly. (say)",
+        "answers": [
+          "say"
+        ],
+        "explanation": "You should say your name clearly. (say)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "_____ the school office if your child will be absent.",
+        "options": [
+          "respond",
+          "contact",
+          "confirm",
+          "connect"
+        ],
+        "answers": [
+          "contact"
+        ],
+        "explanation": "contact: to reach someone by phone, email, or message. Contact the school if your child will be absent.",
+        "source": "vocab-oct-w4"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “to answer or react to a message or question”?",
+        "options": [
+          "confirm",
+          "respond",
+          "contact"
+        ],
+        "answers": [
+          "respond"
+        ],
+        "explanation": "respond: to answer or react to a message or question. Please respond to the email within 24 hours.",
+        "source": "vocab-oct-w4"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "\"You don't have to use a special browser for online banking.\" What does this mean?",
+        "options": [
+          "Using a special browser is forbidden.",
+          "Using a special browser is required.",
+          "Using a special browser is optional."
+        ],
+        "answers": [
+          "Using a special browser is optional."
+        ],
+        "explanation": "'Don't have to' means it is not required. It is different from 'must not,' which means it is forbidden.",
+        "source": "can-should-must/can-should-must-q6"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Claudette is setting up her phone at the library. Which sentence is correct?",
+        "options": [
+          "She can uses the library wifi for free.",
+          "She can use the library wifi for free.",
+          "She can to use the library wifi for free."
+        ],
+        "answers": [
+          "She can use the library wifi for free."
+        ],
+        "explanation": "Modal verbs (can, should, must) are always followed by the base verb with no changes.",
+        "source": "can-should-must/can-should-must-q1"
+      }
+    ]
+  },
+  "verb-quiz-5": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 8,
+    "title": "Weekly Quiz 5: Helping + Volunteering",
+    "focusVerbs": [
+      "take",
+      "bring"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "take → V1-s (he/she/it)",
+        "answers": [
+          "takes"
+        ],
+        "explanation": "V1-s (he/she/it) of take: takes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "take → V-ing",
+        "answers": [
+          "taking"
+        ],
+        "explanation": "V-ing of take: taking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "bring → V-ing",
+        "answers": [
+          "bringing"
+        ],
+        "explanation": "V-ing of bring: bringing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "bring → V2 (past)",
+        "answers": [
+          "brought"
+        ],
+        "explanation": "V2 (past) of bring: brought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "Have you ever ___ food to a neighbor? (take)",
+        "answers": [
+          "taken"
+        ],
+        "explanation": "Have you ever taken food to a neighbor? (take)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "We have ___ extra bags for the volunteers. (bring)",
+        "answers": [
+          "brought"
+        ],
+        "explanation": "We have brought extra bags for the volunteers. (bring)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “to help or encourage someone or a cause”?",
+        "options": [
+          "assist",
+          "support",
+          "volunteer"
+        ],
+        "answers": [
+          "support"
+        ],
+        "explanation": "support: to help or encourage someone or a cause. Our community supports local families in need.",
+        "source": "vocab-nov-w1"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Everyone can _____ time or money to help the community garden.",
+        "options": [
+          "support",
+          "join",
+          "donate",
+          "contribute"
+        ],
+        "answers": [
+          "contribute"
+        ],
+        "explanation": "contribute: to give time, money, or effort to help something. Everyone can contribute in a small way to make things better.",
+        "source": "vocab-nov-w1"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Fill in the blank: \"Have you ever ___ to a city council meeting?\" (V3 of 'be')",
+        "answers": [
+          "been"
+        ],
+        "explanation": "After 'have you ever', always use V3. The V3 of 'be' is 'been'.",
+        "source": "have-you-ever/hye-qfb1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "\"Have you ever called 311?\" Omar says no. What is the best reply?",
+        "options": [
+          "No, I didn't.",
+          "No, I haven't.",
+          "No, I don't."
+        ],
+        "answers": [
+          "No, I haven't."
+        ],
+        "explanation": "Short answer for Have you ever uses haven't (not didn't or don't).",
+        "source": "have-you-ever/hye-q7"
+      }
+    ]
+  },
+  "verb-quiz-6": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 9,
+    "title": "Weekly Quiz 6: Public Meetings + Suggestions",
+    "focusVerbs": [
+      "meet",
+      "speak"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "meet → V-ing",
+        "answers": [
+          "meeting"
+        ],
+        "explanation": "V-ing of meet: meeting.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "meet → V2 (past)",
+        "answers": [
+          "met"
+        ],
+        "explanation": "V2 (past) of meet: met.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "speak → V2 (past)",
+        "answers": [
+          "spoke"
+        ],
+        "explanation": "V2 (past) of speak: spoke.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "speak → V3 (past participle)",
+        "answers": [
+          "spoken"
+        ],
+        "explanation": "V3 (past participle) of speak: spoken.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "I enjoy ___ new neighbors. (meet)",
+        "answers": [
+          "meeting"
+        ],
+        "explanation": "I enjoy meeting new neighbors. (meet)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "She is good at ___ in public. (speak)",
+        "answers": [
+          "speaking"
+        ],
+        "explanation": "She is good at speaking in public. (speak)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Most neighbors _____ with the plan to fix the streetlights.",
+        "options": [
+          "suggest",
+          "listen",
+          "recommend",
+          "agree"
+        ],
+        "answers": [
+          "agree"
+        ],
+        "explanation": "agree: to have the same opinion or say yes to something. Most people at the meeting agreed with the new plan.",
+        "source": "vocab-nov-w2"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “to pay attention to what someone is saying”?",
+        "options": [
+          "participate",
+          "suggest",
+          "listen"
+        ],
+        "answers": [
+          "listen"
+        ],
+        "explanation": "listen: to pay attention to what someone is saying. Good leaders listen to the concerns of their community.",
+        "source": "vocab-nov-w2"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Diego talks about his skills at the restaurant. Put the words in order. Words: I / am / good / at / cooking / fast",
+        "answers": [
+          "I am good at cooking fast"
+        ],
+        "explanation": "Good at + -ing. The verb after 'at' must end in -ing.",
+        "source": "what-are-you-good-at/good-at-qws1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          "Don't sign without read the contract.",
+          "Don't sign without reading the contract.",
+          "Don't sign without to read the contract."
+        ],
+        "answers": [
+          "Don't sign without reading the contract."
+        ],
+        "explanation": "'Without' is a preposition. The verb after it must be -ing: without reading.",
+        "source": "what-are-you-good-at/good-at-q7"
+      }
+    ]
+  },
+  "verb-quiz-7": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 10,
+    "title": "Weekly Quiz 7: Voting + Contacting Officials",
+    "focusVerbs": [
+      "write",
+      "send"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "write → V2 (past)",
+        "answers": [
+          "wrote"
+        ],
+        "explanation": "V2 (past) of write: wrote.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "write → V3 (past participle)",
+        "answers": [
+          "written"
+        ],
+        "explanation": "V3 (past participle) of write: written.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "send → V3 (past participle)",
+        "answers": [
+          "sent"
+        ],
+        "explanation": "V3 (past participle) of send: sent.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "send → V1-s (he/she/it)",
+        "answers": [
+          "sends"
+        ],
+        "explanation": "V1-s (he/she/it) of send: sends.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "Let’s ___ a letter to the council. (write)",
+        "answers": [
+          "write"
+        ],
+        "explanation": "Let’s write a letter to the council. (write)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "Why don’t we ___ an email? (send)",
+        "answers": [
+          "send"
+        ],
+        "explanation": "Why don’t we send an email? (send)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “to officially choose a person or option in an election”?",
+        "options": [
+          "elect",
+          "advocate",
+          "vote"
+        ],
+        "answers": [
+          "vote"
+        ],
+        "explanation": "vote: to officially choose a person or option in an election. Register and vote in your local elections.",
+        "source": "vocab-nov-w3"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "In November, voters will _____ a new mayor.",
+        "options": [
+          "vote",
+          "elect",
+          "represent",
+          "advocate"
+        ],
+        "answers": [
+          "elect"
+        ],
+        "explanation": "elect: to choose a person for a position by voting. Citizens elect leaders to represent them in government.",
+        "source": "vocab-nov-w3"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Gloria wants the whole group to act together. Which sentence fits?",
+        "options": [
+          "Let's meet in the lobby at six.",
+          "Let's to meet in the lobby at six.",
+          "Let's meeting in the lobby at six."
+        ],
+        "answers": [
+          "Let's meet in the lobby at six."
+        ],
+        "explanation": "'Let's' is always followed by the base verb with no changes.",
+        "source": "lets-make-a-suggestion/lets-make-a-suggestion-q1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Kevin tells Marta that saving the repair receipts is the right and necessary step. Which fits?",
+        "options": [
+          "You could save the repair receipts.",
+          "You should save the repair receipts.",
+          "Let's save the repair receipts."
+        ],
+        "answers": [
+          "You should save the repair receipts."
+        ],
+        "explanation": "'You should' gives stronger advice. 'You could' is a softer option, and 'Let's' suggests doing it together.",
+        "source": "lets-make-a-suggestion/lets-make-a-suggestion-q3"
+      }
+    ]
+  },
+  "verb-quiz-8": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 11,
+    "title": "Weekly Quiz 8: Community Issue Case Study",
+    "focusVerbs": [
+      "think",
+      "know"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "think → V3 (past participle)",
+        "answers": [
+          "thought"
+        ],
+        "explanation": "V3 (past participle) of think: thought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "think → V1-s (he/she/it)",
+        "answers": [
+          "thinks"
+        ],
+        "explanation": "V1-s (he/she/it) of think: thinks.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "know → V1-s (he/she/it)",
+        "answers": [
+          "knows"
+        ],
+        "explanation": "V1-s (he/she/it) of know: knows.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "know → V-ing",
+        "answers": [
+          "knowing"
+        ],
+        "explanation": "V-ing of know: knowing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "If we ___ carefully, we will find a solution. (think)",
+        "answers": [
+          "think"
+        ],
+        "explanation": "If we think carefully, we will find a solution. (think)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "If she ___ the answer, she will tell us. (know)",
+        "answers": [
+          "knows"
+        ],
+        "explanation": "If she knows the answer, she will tell us. (know)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "The city wants to _____ bus service in our area.",
+        "options": [
+          "prevent",
+          "improve",
+          "resolve",
+          "collaborate"
+        ],
+        "answers": [
+          "improve"
+        ],
+        "explanation": "improve: to make something better. The city wants to improve public transportation.",
+        "source": "vocab-nov-w4"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “to work together with others to achieve a goal”?",
+        "options": [
+          "collaborate",
+          "analyze",
+          "resolve"
+        ],
+        "answers": [
+          "collaborate"
+        ],
+        "explanation": "collaborate: to work together with others to achieve a goal. We collaborated with local businesses to start the event.",
+        "source": "vocab-nov-w4"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Fill in the blank: \"If you work late, you ___ double pay.\" (Zero Conditional: always-true job rule.)",
+        "answers": [
+          "earn"
+        ],
+        "explanation": "Zero Conditional uses If + present simple, present simple. The rule is always true at this job.",
+        "source": "zero-first-conditional/zero-first-conditional-qfb1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Jennifer plans her rent around her work schedule. Put the words in order. Words: I / will / pay / rent / if / I / work",
+        "answers": [
+          "I will pay rent if I work"
+        ],
+        "explanation": "First Conditional: if + present simple, will + base verb. The if-part never uses 'will'.",
+        "source": "zero-first-conditional/zero-first-conditional-qws1"
+      }
+    ]
+  },
+  "verb-quiz-9": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 12,
+    "title": "Weekly Quiz 9: How Long + For and Since",
+    "focusVerbs": [
+      "cost",
+      "spend"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "cost → V1-s (he/she/it)",
+        "answers": [
+          "costs"
+        ],
+        "explanation": "V1-s (he/she/it) of cost: costs.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "cost → V-ing",
+        "answers": [
+          "costing"
+        ],
+        "explanation": "V-ing of cost: costing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "spend → V-ing",
+        "answers": [
+          "spending"
+        ],
+        "explanation": "V-ing of spend: spending.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "spend → V2 (past)",
+        "answers": [
+          "spent"
+        ],
+        "explanation": "V2 (past) of spend: spent.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "The smaller package ___ less than the large one. (cost)",
+        "answers": [
+          "costs"
+        ],
+        "explanation": "The smaller package costs less than the large one. (cost)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "Last week, we ___ less on groceries. (spend)",
+        "answers": [
+          "spent"
+        ],
+        "explanation": "Last week, we spent less on groceries. (spend)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “to use money to pay for things”?",
+        "options": [
+          "spend",
+          "purchase",
+          "compare"
+        ],
+        "answers": [
+          "spend"
+        ],
+        "explanation": "spend: to use money to pay for things. Don't spend more than you earn.",
+        "source": "vocab-dec-w1"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "_____ the total cost, including tax, before you pay.",
+        "options": [
+          "budget",
+          "purchase",
+          "compare",
+          "calculate"
+        ],
+        "answers": [
+          "calculate"
+        ],
+        "explanation": "calculate: to use math to find an answer. Calculate the total cost before you decide to buy.",
+        "source": "vocab-dec-w1"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Beatriz's last day at the restaurant was Tuesday of last week. She does not work there anymore. Which sentence is correct?",
+        "options": [
+          "Beatriz has left the restaurant since last Tuesday.",
+          "Beatriz has worked at the restaurant for last Tuesday.",
+          "Beatriz left the restaurant last Tuesday."
+        ],
+        "answers": [
+          "Beatriz left the restaurant last Tuesday."
+        ],
+        "explanation": "A finished action with a specific past time (last Tuesday) needs past simple, not present perfect.",
+        "source": "how-long-for-since/hlfs-q7"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Rosa has had her phone plan since 2021. She wants to say the same thing using 'for'. It is now 2024. What does she say?",
+        "options": [
+          "I have had this plan for since three years.",
+          "I have had this plan for three years.",
+          "I have had this plan for 2021."
+        ],
+        "answers": [
+          "I have had this plan for three years."
+        ],
+        "explanation": "'For' takes a length of time, not a starting year. 2024 minus 2021 = three years.",
+        "source": "how-long-for-since/hlfs-q2"
+      }
+    ]
+  },
+  "verb-quiz-10": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 13,
+    "title": "Weekly Quiz 10: More, Less, the Most: Comparatives + Superlatives",
+    "focusVerbs": [
+      "buy",
+      "sell"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "buy → V-ing",
+        "answers": [
+          "buying"
+        ],
+        "explanation": "V-ing of buy: buying.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "buy → V2 (past)",
+        "answers": [
+          "bought"
+        ],
+        "explanation": "V2 (past) of buy: bought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "sell → V2 (past)",
+        "answers": [
+          "sold"
+        ],
+        "explanation": "V2 (past) of sell: sold.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "sell → V3 (past participle)",
+        "answers": [
+          "sold"
+        ],
+        "explanation": "V3 (past participle) of sell: sold.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "Yesterday, I ___ the cheaper phone. (buy)",
+        "answers": [
+          "bought"
+        ],
+        "explanation": "Yesterday, I bought the cheaper phone. (buy)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "This shop ___ the most affordable furniture. (sell)",
+        "answers": [
+          "sells"
+        ],
+        "explanation": "This shop sells the most affordable furniture. (sell)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "This shirt is too small. I want to _____ it for a larger size.",
+        "options": [
+          "deposit",
+          "withdraw",
+          "refund",
+          "exchange"
+        ],
+        "answers": [
+          "exchange"
+        ],
+        "explanation": "exchange: to return one item and get a different one. I want to exchange this shirt for a larger size.",
+        "source": "vocab-dec-w2"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “to get your money back after returning something”?",
+        "options": [
+          "withdraw",
+          "refund",
+          "exchange"
+        ],
+        "answers": [
+          "refund"
+        ],
+        "explanation": "refund: to get your money back after returning something. The store gave me a full refund for the broken item.",
+        "source": "vocab-dec-w2"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Kevin compares three ways to get to work. Which sentence is correct?",
+        "options": [
+          "The Blue Line is the most fastest.",
+          "The Blue Line is fastest.",
+          "The Blue Line is the fastest."
+        ],
+        "answers": [
+          "The Blue Line is the fastest."
+        ],
+        "explanation": "Superlatives need 'the' before them. Never add 'most' to an -est form.",
+        "source": "more-less-the-most/mlm-q2"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Fill in the blank: \"Plan B is ___ expensive than Plan A.\" (Long adjective comparative: don't add -er.)",
+        "answers": [
+          "more"
+        ],
+        "explanation": "Long adjectives use 'more' for comparatives. Never add -er to a long adjective like 'expensive'.",
+        "source": "more-less-the-most/mlm-qfb1"
+      }
+    ]
+  },
+  "verb-quiz-11": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 14,
+    "title": "Weekly Quiz 11: How Much / How Many: Countable + Uncountable",
+    "focusVerbs": [
+      "eat",
+      "drink"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "eat → V2 (past)",
+        "answers": [
+          "ate"
+        ],
+        "explanation": "V2 (past) of eat: ate.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "eat → V3 (past participle)",
+        "answers": [
+          "eaten"
+        ],
+        "explanation": "V3 (past participle) of eat: eaten.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "drink → V3 (past participle)",
+        "answers": [
+          "drunk"
+        ],
+        "explanation": "V3 (past participle) of drink: drunk.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "drink → V1-s (he/she/it)",
+        "answers": [
+          "drinks"
+        ],
+        "explanation": "V1-s (he/she/it) of drink: drinks.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "She ___ rice with dinner every day. (eat)",
+        "answers": [
+          "eats"
+        ],
+        "explanation": "She eats rice with dinner every day. (eat)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "Yesterday, I ___ some water after lunch. (drink)",
+        "answers": [
+          "drank"
+        ],
+        "explanation": "Yesterday, I drank some water after lunch. (drink)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “to take money out of a bank account”?",
+        "options": [
+          "refund",
+          "withdraw",
+          "exchange"
+        ],
+        "answers": [
+          "withdraw"
+        ],
+        "explanation": "withdraw: to take money out of a bank account. I need to withdraw cash from the ATM.",
+        "source": "vocab-dec-w2"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "_____ your paycheck into your bank account on payday.",
+        "options": [
+          "withdraw",
+          "deposit",
+          "charge",
+          "exchange"
+        ],
+        "answers": [
+          "deposit"
+        ],
+        "explanation": "deposit: to put money into a bank account. Deposit your check before the end of the business day.",
+        "source": "vocab-dec-w2"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Rosa checks the fridge before grocery shopping. Put the words in order. Words: How / many / eggs / do / we / have",
+        "answers": [
+          "How many eggs do we have"
+        ],
+        "explanation": "Eggs are countable, so use 'how many' and the plural form.",
+        "source": "how-much-how-many/how-much-how-many-qws1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Which sentence has an error?",
+        "options": [
+          "There is too much oil in the pan.",
+          "I have a lot of eggs at home.",
+          "She bought a few rice for dinner."
+        ],
+        "answers": [
+          "She bought a few rice for dinner."
+        ],
+        "explanation": "Rice is uncountable. You cannot say 'a few rice.' Use 'a little rice' instead.",
+        "source": "how-much-how-many/how-much-how-many-q8"
+      }
+    ]
+  },
+  "verb-quiz-12": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 15,
+    "title": "Weekly Quiz 12: Housing Basics",
+    "focusVerbs": [
+      "see",
+      "find"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "see → V3 (past participle)",
+        "answers": [
+          "seen"
+        ],
+        "explanation": "V3 (past participle) of see: seen.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "see → V1-s (he/she/it)",
+        "answers": [
+          "sees"
+        ],
+        "explanation": "V1-s (he/she/it) of see: sees.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "find → V1-s (he/she/it)",
+        "answers": [
+          "finds"
+        ],
+        "explanation": "V1-s (he/she/it) of find: finds.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "find → V-ing",
+        "answers": [
+          "finding"
+        ],
+        "explanation": "V-ing of find: finding.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "Did you ___ the apartment yesterday? (see)",
+        "answers": [
+          "see"
+        ],
+        "explanation": "Did you see the apartment yesterday? (see)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "Where did you ___ the rental listing? (find)",
+        "answers": [
+          "find"
+        ],
+        "explanation": "Where did you find the rental listing? (find)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Do I _____ for the low-income housing program?",
+        "options": [
+          "apply",
+          "qualify",
+          "rent",
+          "lease"
+        ],
+        "answers": [
+          "qualify"
+        ],
+        "explanation": "qualify: to meet the requirements needed for something. Do I qualify for the low-income housing program?",
+        "source": "vocab-jan-w1"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “to formally request something (a job, an apartment, a program)”?",
+        "options": [
+          "rent",
+          "lease",
+          "apply"
+        ],
+        "answers": [
+          "apply"
+        ],
+        "explanation": "apply: to formally request something (a job, an apartment, a program). You need to apply online for that apartment.",
+        "source": "vocab-jan-w1"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Rosa wants to ask the landlord about the nearest bus stop. Which question is correct?",
+        "options": [
+          "Where the bus stop is?",
+          "Where is the bus stop?",
+          "The bus stop is where?"
+        ],
+        "answers": [
+          "Where is the bus stop?"
+        ],
+        "explanation": "Information questions need inversion: question word + verb + subject. 'Where is the bus stop?' is correct.",
+        "source": "asking-right-questions-housing/arqh-q1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Rosa wants to ask about the price of rent. Which question word does she use?",
+        "options": [
+          "How many",
+          "How much",
+          "How long"
+        ],
+        "answers": [
+          "How much"
+        ],
+        "explanation": "'How much' asks about price or an uncountable amount. 'How many' is for countable things like bedrooms.",
+        "source": "asking-right-questions-housing/arqh-q3"
+      }
+    ]
+  },
+  "verb-quiz-13": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 16,
+    "title": "Weekly Quiz 13: Comparing Housing Options",
+    "focusVerbs": [
+      "choose",
+      "let"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "choose → V1-s (he/she/it)",
+        "answers": [
+          "chooses"
+        ],
+        "explanation": "V1-s (he/she/it) of choose: chooses.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "choose → V-ing",
+        "answers": [
+          "choosing"
+        ],
+        "explanation": "V-ing of choose: choosing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "let → V-ing",
+        "answers": [
+          "letting"
+        ],
+        "explanation": "V-ing of let: letting.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "let → V2 (past)",
+        "answers": [
+          "let"
+        ],
+        "explanation": "V2 (past) of let: let.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "We have to ___ an apartment this week. (choose)",
+        "answers": [
+          "choose"
+        ],
+        "explanation": "We have to choose an apartment this week. (choose)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "The landlord doesn’t ___ tenants smoke inside. (let)",
+        "answers": [
+          "let"
+        ],
+        "explanation": "The landlord doesn’t let tenants smoke inside. (let)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “to look at two or more things to find differences”?",
+        "options": [
+          "afford",
+          "evaluate",
+          "compare"
+        ],
+        "answers": [
+          "compare"
+        ],
+        "explanation": "compare: to look at two or more things to find differences. Compare the rent and size of each apartment.",
+        "source": "vocab-jan-w2"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "I can't _____ an apartment in that expensive neighborhood.",
+        "options": [
+          "select",
+          "own",
+          "compare",
+          "afford"
+        ],
+        "answers": [
+          "afford"
+        ],
+        "explanation": "afford: to have enough money to pay for something. I can't afford an apartment in that area.",
+        "source": "vocab-jan-w2"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Fill in the blank: \"You ___ repaint the walls. That's the landlord's job.\" (Three words: not required.)",
+        "answers": [
+          "don't have to"
+        ],
+        "explanation": "'Don't have to' means it is not your responsibility. 'Can't' would mean it is forbidden, which is different.",
+        "source": "have-to-dont-have-to-cant/have-to-dont-have-to-cant-qfb1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "The lease explains what the landlord must do before entering. Put the words in order. Words: The / landlord / has / to / give / notice",
+        "answers": [
+          "The landlord has to give notice"
+        ],
+        "explanation": "'Has to' shows the landlord is legally required to give notice before entering.",
+        "source": "have-to-dont-have-to-cant/have-to-dont-have-to-cant-qws1"
+      }
+    ]
+  },
+  "verb-quiz-14": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 17,
+    "title": "Weekly Quiz 14: Landlord Calls + Repair Requests",
+    "focusVerbs": [
+      "break",
+      "hold"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "break → V-ing",
+        "answers": [
+          "breaking"
+        ],
+        "explanation": "V-ing of break: breaking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "break → V2 (past)",
+        "answers": [
+          "broke"
+        ],
+        "explanation": "V2 (past) of break: broke.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "hold → V2 (past)",
+        "answers": [
+          "held"
+        ],
+        "explanation": "V2 (past) of hold: held.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "hold → V3 (past participle)",
+        "answers": [
+          "held"
+        ],
+        "explanation": "V3 (past participle) of hold: held.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "I need to report that the window ___ yesterday. (break)",
+        "answers": [
+          "broke"
+        ],
+        "explanation": "I need to report that the window broke yesterday. (break)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "Could you ___ the door open, please? (hold)",
+        "answers": [
+          "hold"
+        ],
+        "explanation": "Could you hold the door open, please? (hold)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "The landlord will _____ the apartment on Monday.",
+        "options": [
+          "report",
+          "request",
+          "repair",
+          "inspect"
+        ],
+        "answers": [
+          "inspect"
+        ],
+        "explanation": "inspect: to look at something carefully to check its condition. The landlord will inspect the apartment next Monday.",
+        "source": "vocab-jan-w3"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “to fix something that is broken or damaged”?",
+        "options": [
+          "repair",
+          "request",
+          "report"
+        ],
+        "answers": [
+          "repair"
+        ],
+        "explanation": "repair: to fix something that is broken or damaged. The landlord must repair the broken window within 24 hours.",
+        "source": "vocab-jan-w3"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Carlos calls about an apartment on Bremen Street. Put the words in order. Words: I / would / like / to / meet / the / landlord",
+        "answers": [
+          "I would like to meet the landlord"
+        ],
+        "explanation": "'Would like to' + base verb is the polite form. Use it for calls with landlords and offices.",
+        "source": "need-to-find-a-place-infinitives/infinitives-qws1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Which sentence is correct?",
+        "options": [
+          "I want finding an apartment near the bus.",
+          "I want to finding an apartment near the bus.",
+          "I want to find an apartment near the bus."
+        ],
+        "answers": [
+          "I want to find an apartment near the bus."
+        ],
+        "explanation": "After 'want', use 'to' + base verb. 'Finding' (-ing form) is not correct here.",
+        "source": "need-to-find-a-place-infinitives/infinitives-q2"
+      }
+    ]
+  },
+  "verb-quiz-15": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 18,
+    "title": "Weekly Quiz 15: Housing Problems + Solutions",
+    "focusVerbs": [
+      "hear",
+      "leave"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "hear → V2 (past)",
+        "answers": [
+          "heard"
+        ],
+        "explanation": "V2 (past) of hear: heard.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "hear → V3 (past participle)",
+        "answers": [
+          "heard"
+        ],
+        "explanation": "V3 (past participle) of hear: heard.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "leave → V3 (past participle)",
+        "answers": [
+          "left"
+        ],
+        "explanation": "V3 (past participle) of leave: left.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "leave → V1-s (he/she/it)",
+        "answers": [
+          "leaves"
+        ],
+        "explanation": "V1-s (he/she/it) of leave: leaves.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "I was cooking when I ___ a loud noise. (hear)",
+        "answers": [
+          "heard"
+        ],
+        "explanation": "I was cooking when I heard a loud noise. (hear)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "While I was locking the door, my neighbor ___ the building. (leave)",
+        "answers": [
+          "left"
+        ],
+        "explanation": "While I was locking the door, my neighbor left the building. (leave)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “to stop something bad from happening”?",
+        "options": [
+          "prevent",
+          "resolve",
+          "maintain"
+        ],
+        "answers": [
+          "prevent"
+        ],
+        "explanation": "prevent: to stop something bad from happening. Regular cleaning can prevent mold in the bathroom.",
+        "source": "vocab-jan-w4"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "The landlord agreed to _____ us for the plumber's bill.",
+        "options": [
+          "document",
+          "reimburse",
+          "notify",
+          "resolve"
+        ],
+        "answers": [
+          "reimburse"
+        ],
+        "explanation": "reimburse: to pay someone back for money they spent. The landlord agreed to reimburse us for the plumber's cost.",
+        "source": "vocab-jan-w4"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Lucia was mopping the floor when the pipe burst. Which action was already in progress?",
+        "options": [
+          "The pipe bursting",
+          "Lucia mopping",
+          "Both were already in progress."
+        ],
+        "answers": [
+          "Lucia mopping"
+        ],
+        "explanation": "Past continuous (was mopping) shows the background action in progress. Past simple (burst) is the event that interrupted it.",
+        "source": "it-was-happening-when/iwh-q3"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Fill in the blank: \"While Lucia ___ the landlord, the kids woke up.\" (Action in progress: past continuous.)",
+        "answers": [
+          "was calling"
+        ],
+        "explanation": "'While' introduces the action that was in progress, so past continuous (was calling) is needed. 'Called' would use past simple.",
+        "source": "it-was-happening-when/iwh-qfb1"
+      }
+    ]
+  },
+  "verb-quiz-16": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 19,
+    "title": "Weekly Quiz 16: Resume + Workplace Basics",
+    "focusVerbs": [
+      "become",
+      "lead",
+      "go"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "become → V3 (past participle)",
+        "answers": [
+          "become"
+        ],
+        "explanation": "V3 (past participle) of become: become.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "become → V1-s (he/she/it)",
+        "answers": [
+          "becomes"
+        ],
+        "explanation": "V1-s (he/she/it) of become: becomes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "lead → V1-s (he/she/it)",
+        "answers": [
+          "leads"
+        ],
+        "explanation": "V1-s (he/she/it) of lead: leads.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "lead → V-ing",
+        "answers": [
+          "leading"
+        ],
+        "explanation": "V-ing of lead: leading.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "go → V-ing",
+        "answers": [
+          "going"
+        ],
+        "explanation": "V-ing of go: going.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "Before I applied, I had ___ a team leader. (become)",
+        "answers": [
+          "become"
+        ],
+        "explanation": "Before I applied, I had become a team leader. (become)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "She had ___ two projects before her promotion. (lead)",
+        "answers": [
+          "led"
+        ],
+        "explanation": "She had led two projects before her promotion. (lead)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Check the _____ to see which days you work next week.",
+        "options": [
+          "break",
+          "schedule",
+          "team",
+          "time off"
+        ],
+        "answers": [
+          "schedule"
+        ],
+        "explanation": "schedule: your plan for the day or week. My work schedule changes every week.",
+        "source": "vocab-feb-3-5"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “a short rest from work”?",
+        "options": [
+          "time off",
+          "break",
+          "schedule"
+        ],
+        "answers": [
+          "break"
+        ],
+        "explanation": "break: a short rest from work. We take a 15-minute break at 10:00 AM.",
+        "source": "vocab-feb-3-5"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "When the manager arrived, I had already finished my tasks. What happened first?",
+        "options": [
+          "The manager arrived.",
+          "I finished my tasks.",
+          "Both happened at exactly the same time."
+        ],
+        "answers": [
+          "I finished my tasks."
+        ],
+        "explanation": "Had finished marks the earlier past action.",
+        "source": "past-perfect/past-perfect-q6"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Teresa finished her tasks before the manager arrived. Put the words in order. Words: She / had / finished / before / the / manager / arrived",
+        "answers": [
+          "She had finished before the manager arrived"
+        ],
+        "explanation": "Past Perfect (had finished) = the earlier action. Past Simple (arrived) = the later action.",
+        "source": "past-perfect/past-perfect-qws1"
+      }
+    ]
+  },
+  "verb-quiz-17": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 20,
+    "title": "Weekly Quiz 17: Workplace Rules + Must, Have To, Should",
+    "focusVerbs": [
+      "wear",
+      "keep",
+      "leave"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "wear → V1-s (he/she/it)",
+        "answers": [
+          "wears"
+        ],
+        "explanation": "V1-s (he/she/it) of wear: wears.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "wear → V-ing",
+        "answers": [
+          "wearing"
+        ],
+        "explanation": "V-ing of wear: wearing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "keep → V-ing",
+        "answers": [
+          "keeping"
+        ],
+        "explanation": "V-ing of keep: keeping.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "keep → V2 (past)",
+        "answers": [
+          "kept"
+        ],
+        "explanation": "V2 (past) of keep: kept.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "leave → V2 (past)",
+        "answers": [
+          "left"
+        ],
+        "explanation": "V2 (past) of leave: left.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "You must ___ safety shoes here. (wear)",
+        "answers": [
+          "wear"
+        ],
+        "explanation": "You must wear safety shoes here. (wear)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "Employees have to ___ the exit clear. (keep)",
+        "answers": [
+          "keep"
+        ],
+        "explanation": "Employees have to keep the exit clear. (keep)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “used to show permission or ability”?",
+        "options": [
+          "should",
+          "can",
+          "must"
+        ],
+        "answers": [
+          "can"
+        ],
+        "explanation": "can: used to show permission or ability. You can take your break after you finish this task.",
+        "source": "vocab-mar-10-12"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Safety goggles are _____ when using the machines.",
+        "options": [
+          "required",
+          "can",
+          "allowed",
+          "permission"
+        ],
+        "answers": [
+          "required"
+        ],
+        "explanation": "required: necessary; must be done. A photo ID is required to enter the building.",
+        "source": "vocab-mar-10-12"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Claudette tells Linh: 'You ___ tell your supervisor before you leave the floor.' It's not a written rule, but it's important. Which word fits?",
+        "options": [
+          "must",
+          "have to",
+          "should"
+        ],
+        "answers": [
+          "should"
+        ],
+        "explanation": "When something is strong advice from experience but not a written rule, 'should' is the right modal.",
+        "source": "must-have-to-should-at-work/must-have-to-should-at-work-q3"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Which sentence has a grammar error?",
+        "options": [
+          "He must wear a hard hat on the site.",
+          "She has to clocks in before her shift.",
+          "You should ask before swapping shifts."
+        ],
+        "answers": [
+          "She has to clocks in before her shift."
+        ],
+        "explanation": "After 'has to,' use the base verb with no -s. The correct form is 'has to clock in,' not 'has to clocks in.'",
+        "source": "must-have-to-should-at-work/must-have-to-should-at-work-q5"
+      }
+    ]
+  },
+  "verb-quiz-18": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 21,
+    "title": "Weekly Quiz 18: Second Conditional + Catch-Up",
+    "focusVerbs": [
+      "win",
+      "fly"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "win → V-ing",
+        "answers": [
+          "winning"
+        ],
+        "explanation": "V-ing of win: winning.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "win → V2 (past)",
+        "answers": [
+          "won"
+        ],
+        "explanation": "V2 (past) of win: won.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "fly → V2 (past)",
+        "answers": [
+          "flew"
+        ],
+        "explanation": "V2 (past) of fly: flew.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "fly → V3 (past participle)",
+        "answers": [
+          "flown"
+        ],
+        "explanation": "V3 (past participle) of fly: flown.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "If I ___ a free trip, I would visit my family. (win)",
+        "answers": [
+          "won"
+        ],
+        "explanation": "If I won a free trip, I would visit my family. (win)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "If she ___ to Boston, I would meet her at the airport. (fly)",
+        "answers": [
+          "flew"
+        ],
+        "explanation": "If she flew to Boston, I would meet her at the airport. (fly)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Eating at your desk is _____ if you clean up after.",
+        "options": [
+          "required",
+          "polite",
+          "prohibited",
+          "allowed"
+        ],
+        "answers": [
+          "allowed"
+        ],
+        "explanation": "allowed: permitted; okay to do. Cell phones are not allowed during the test.",
+        "source": "vocab-mar-10-12"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “protection from danger or harm”?",
+        "options": [
+          "must",
+          "should",
+          "safety"
+        ],
+        "answers": [
+          "safety"
+        ],
+        "explanation": "safety: protection from danger or harm. Safety is very important in the kitchen.",
+        "source": "vocab-mar-10-12"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Fill in the blank: \"If I ___ you, I would call the agency.\" (Giving advice: use 'were' for all subjects.)",
+        "answers": [
+          "were"
+        ],
+        "explanation": "In 'If I were you,' use 'were' for all subjects in the second conditional if-clause, not 'was' or 'am'.",
+        "source": "second-conditional-what-would-you-do/sc-qfb1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Kevin is likely to get overtime next week. Which sentence fits?",
+        "options": [
+          "If they offered me overtime, I would say yes.",
+          "If they offer me overtime, I will say yes.",
+          "If they offered me overtime, I will say yes."
+        ],
+        "answers": [
+          "If they offer me overtime, I will say yes."
+        ],
+        "explanation": "A real, likely future situation uses the first conditional: 'if + present simple, will + base verb'.",
+        "source": "second-conditional-what-would-you-do/sc-q5"
+      }
+    ]
+  },
+  "verb-quiz-19": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 22,
+    "title": "Weekly Quiz 19: Phrasal Verbs at Work + Workplace Rights",
+    "focusVerbs": [
+      "get",
+      "put",
+      "bring"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "get → V2 (past)",
+        "answers": [
+          "got"
+        ],
+        "explanation": "V2 (past) of get: got.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "get → V3 (past participle)",
+        "answers": [
+          "got"
+        ],
+        "explanation": "V3 (past participle) of get: got.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "put → V3 (past participle)",
+        "answers": [
+          "put"
+        ],
+        "explanation": "V3 (past participle) of put: put.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "put → V1-s (he/she/it)",
+        "answers": [
+          "puts"
+        ],
+        "explanation": "V1-s (he/she/it) of put: puts.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "bring → V1-s (he/she/it)",
+        "answers": [
+          "brings"
+        ],
+        "explanation": "V1-s (he/she/it) of bring: brings.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "Please ___ the boxes away after your shift. (put)",
+        "answers": [
+          "put"
+        ],
+        "explanation": "Please put the boxes away after your shift. (put)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "Yesterday, I ___ along well with the new team. (get)",
+        "answers": [
+          "got"
+        ],
+        "explanation": "Yesterday, I got along well with the new team. (get)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “to arrive at work and record your start time”?",
+        "options": [
+          "clock out",
+          "call out",
+          "clock in"
+        ],
+        "answers": [
+          "clock in"
+        ],
+        "explanation": "clock in: to arrive at work and record your start time. I always clock in when my shift starts.",
+        "source": "vocab-feb-10-12"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Please _____ when your shift ends so payroll knows your hours.",
+        "options": [
+          "clock in",
+          "clock out",
+          "call out",
+          "shift"
+        ],
+        "answers": [
+          "clock out"
+        ],
+        "explanation": "clock out: to leave work and record your end time. Please clock out when your shift ends.",
+        "source": "vocab-feb-10-12"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Claudette filled out a form at the front desk. Put the words in order. (The pronoun must go in the middle.) Words: She / filled / it / out / at / the / desk",
+        "answers": [
+          "She filled it out at the desk"
+        ],
+        "explanation": "When using a pronoun with a separable phrasal verb, it goes in the middle: filled it out, not filled out it.",
+        "source": "phrasal-verbs-at-work/phrasal-verbs-at-work-qws1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Rosa's manager says, \"Make sure you clock in before 8 AM.\" What should Rosa do?",
+        "options": [
+          "Buy a clock for the break room",
+          "Use the machine to record when her shift starts",
+          "Call her manager at 8 AM"
+        ],
+        "answers": [
+          "Use the machine to record when her shift starts"
+        ],
+        "explanation": "Clock in means to record the start of your shift using the time machine or app.",
+        "source": "phrasal-verbs-at-work/phrasal-verbs-at-work-q1"
+      }
+    ]
+  },
+  "verb-quiz-20": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 23,
+    "title": "Weekly Quiz 20: Job Applications + Interviews",
+    "focusVerbs": [
+      "understand",
+      "mean",
+      "speak"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "understand → V3 (past participle)",
+        "answers": [
+          "understood"
+        ],
+        "explanation": "V3 (past participle) of understand: understood.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "understand → V1-s (he/she/it)",
+        "answers": [
+          "understands"
+        ],
+        "explanation": "V1-s (he/she/it) of understand: understands.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "mean → V1-s (he/she/it)",
+        "answers": [
+          "means"
+        ],
+        "explanation": "V1-s (he/she/it) of mean: means.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "mean → V-ing",
+        "answers": [
+          "meaning"
+        ],
+        "explanation": "V-ing of mean: meaning.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "speak → V-ing",
+        "answers": [
+          "speaking"
+        ],
+        "explanation": "V-ing of speak: speaking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "I have ___ the safety rules since orientation. (understand)",
+        "answers": [
+          "understood"
+        ],
+        "explanation": "I have understood the safety rules since orientation. (understand)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "What does this job title ___? (mean)",
+        "answers": [
+          "mean"
+        ],
+        "explanation": "What does this job title mean? (mean)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Include a _____ explaining why you are a good fit for the job.",
+        "options": [
+          "resume",
+          "cover letter",
+          "reference",
+          "experience"
+        ],
+        "answers": [
+          "cover letter"
+        ],
+        "explanation": "cover letter: a letter explaining why you want the job. Include a cover letter explaining why you are a good fit.",
+        "source": "vocab-feb-24-26"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “a person who can speak about your work or character”?",
+        "options": [
+          "reference",
+          "experience",
+          "resume"
+        ],
+        "answers": [
+          "reference"
+        ],
+        "explanation": "reference: a person who can speak about your work or character. My former boss agreed to be a reference for me.",
+        "source": "vocab-feb-24-26"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Which sentence has a mistake?",
+        "options": [
+          "I have lived here since January.",
+          "She has worked here for two years.",
+          "He have worked here since March."
+        ],
+        "answers": [
+          "He have worked here since March."
+        ],
+        "explanation": "With he/she/it, use 'has', not 'have'. Correct form: He has worked here since March.",
+        "source": "present-perfect-how-long/pperf-how-long-q4"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Fill in the blank: \"I have worked here ___ 2022.\" (Starting point in time: for or since?)",
+        "answers": [
+          "since"
+        ],
+        "explanation": "'Since' goes with a starting point like a year, month, or date. 'For' goes with a length of time like 'two years'.",
+        "source": "present-perfect-how-long/pperf-how-long-qfb1"
+      }
+    ]
+  },
+  "verb-quiz-21": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 24,
+    "title": "Weekly Quiz 21: Career Progress + Skills",
+    "focusVerbs": [
+      "grow",
+      "build",
+      "do"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "grow → V1-s (he/she/it)",
+        "answers": [
+          "grows"
+        ],
+        "explanation": "V1-s (he/she/it) of grow: grows.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "grow → V-ing",
+        "answers": [
+          "growing"
+        ],
+        "explanation": "V-ing of grow: growing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "build → V-ing",
+        "answers": [
+          "building"
+        ],
+        "explanation": "V-ing of build: building.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "build → V2 (past)",
+        "answers": [
+          "built"
+        ],
+        "explanation": "V2 (past) of build: built.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "do → V2 (past)",
+        "answers": [
+          "did"
+        ],
+        "explanation": "V2 (past) of do: did.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "Our team has been ___ steadily this year. (grow)",
+        "answers": [
+          "growing"
+        ],
+        "explanation": "Our team has been growing steadily this year. (grow)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "I have been ___ my computer skills. (build)",
+        "answers": [
+          "building"
+        ],
+        "explanation": "I have been building my computer skills. (build)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “the most important thing”?",
+        "options": [
+          "priority",
+          "promotion",
+          "gross pay"
+        ],
+        "answers": [
+          "priority"
+        ],
+        "explanation": "priority: the most important thing. Completing this report is my top priority for today.",
+        "source": "vocab-mar-3-5"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "It is smart to save money in an _____ for unexpected costs like car repairs.",
+        "options": [
+          "deductions",
+          "gross pay",
+          "benefits",
+          "emergency fund"
+        ],
+        "answers": [
+          "emergency fund"
+        ],
+        "explanation": "emergency fund: money saved for unexpected problems. It is smart to save money in an emergency fund for unexpected costs.",
+        "source": "vocab-mar-3-5"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Which sentence has a grammar error?",
+        "options": [
+          "She has been working at the hotel for two years.",
+          "How long have you been waiting for the bus?",
+          "He have been saving money since January."
+        ],
+        "answers": [
+          "He have been saving money since January."
+        ],
+        "explanation": "With 'he,' use 'has been,' not 'have been.' The correct sentence is: He has been saving money since January.",
+        "source": "ive-been-working/ive-been-working-q6"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Jennifer asks Amara about her forklift experience at the warehouse. Put the words in order. Words: How / long / have / you / been / driving / the / forklift",
+        "answers": [
+          "How long have you been driving the forklift"
+        ],
+        "explanation": "PPC questions follow: How long + have/has + subject + been + verb-ing?",
+        "source": "ive-been-working/ive-been-working-qws1"
+      }
+    ]
+  },
+  "verb-quiz-22": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 25,
+    "title": "Weekly Quiz 22: Work Experience + Advocacy",
+    "focusVerbs": [
+      "teach",
+      "show",
+      "think"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "teach → V-ing",
+        "answers": [
+          "teaching"
+        ],
+        "explanation": "V-ing of teach: teaching.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "teach → V2 (past)",
+        "answers": [
+          "taught"
+        ],
+        "explanation": "V2 (past) of teach: taught.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "show → V2 (past)",
+        "answers": [
+          "showed"
+        ],
+        "explanation": "V2 (past) of show: showed.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "show → V3 (past participle)",
+        "answers": [
+          "shown"
+        ],
+        "explanation": "V3 (past participle) of show: shown.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "think → V3 (past participle)",
+        "answers": [
+          "thought"
+        ],
+        "explanation": "V3 (past participle) of think: thought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "She enjoys ___ new employees. (teach)",
+        "answers": [
+          "teaching"
+        ],
+        "explanation": "She enjoys teaching new employees. (teach)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "I want to ___ you my work. (show)",
+        "answers": [
+          "show"
+        ],
+        "explanation": "I want to show you my work. (show)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Workers have the _____ to a safe workplace.",
+        "options": [
+          "strict",
+          "comply",
+          "courtesy",
+          "right"
+        ],
+        "answers": [
+          "right"
+        ],
+        "explanation": "right: official approval to do something. Workers have the right to a safe workplace.",
+        "source": "vocab-mar-17-19"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “to speak up for yourself or others”?",
+        "options": [
+          "courtesy",
+          "advocate",
+          "right"
+        ],
+        "answers": [
+          "advocate"
+        ],
+        "explanation": "advocate: to speak up for yourself or others. You need to advocate for yourself if you want a raise.",
+        "source": "vocab-mar-17-19"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Elena says: 'I enjoy ___ to the guests.' Which form is correct?",
+        "options": [
+          "to talk",
+          "talking",
+          "talk"
+        ],
+        "answers": [
+          "talking"
+        ],
+        "explanation": "Enjoy always takes a gerund (verb + -ing). You cannot say 'enjoy to talk'.",
+        "source": "enjoy-doing-want-to-do/edw-q1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Elena says: 'I want ___ warehouse work.' Which form is correct?",
+        "options": [
+          "trying",
+          "to try",
+          "try"
+        ],
+        "answers": [
+          "to try"
+        ],
+        "explanation": "Want always takes an infinitive (to + verb). You cannot say 'want trying'.",
+        "source": "enjoy-doing-want-to-do/edw-q2"
+      }
+    ]
+  },
+  "verb-quiz-23": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 26,
+    "title": "Weekly Quiz 23: Passive Voice + Pay Stubs",
+    "focusVerbs": [
+      "pay",
+      "give",
+      "write"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "pay → V2 (past)",
+        "answers": [
+          "paid"
+        ],
+        "explanation": "V2 (past) of pay: paid.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "pay → V3 (past participle)",
+        "answers": [
+          "paid"
+        ],
+        "explanation": "V3 (past participle) of pay: paid.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "give → V3 (past participle)",
+        "answers": [
+          "given"
+        ],
+        "explanation": "V3 (past participle) of give: given.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "give → V1-s (he/she/it)",
+        "answers": [
+          "gives"
+        ],
+        "explanation": "V1-s (he/she/it) of give: gives.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "write → V1-s (he/she/it)",
+        "answers": [
+          "writes"
+        ],
+        "explanation": "V1-s (he/she/it) of write: writes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "Workers are ___ every Friday. (pay)",
+        "answers": [
+          "paid"
+        ],
+        "explanation": "Workers are paid every Friday. (pay)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "The instructions were ___ to every employee. (give)",
+        "answers": [
+          "given"
+        ],
+        "explanation": "The instructions were given to every employee. (give)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “a choice you make”?",
+        "options": [
+          "advice",
+          "decision",
+          "feedback"
+        ],
+        "answers": [
+          "decision"
+        ],
+        "explanation": "decision: a choice you make. We need to make a decision about the budget by tomorrow.",
+        "source": "vocab-mar-24-26"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Losing your job can be a serious _____ of violating safety rules.",
+        "options": [
+          "decision",
+          "consequence",
+          "feedback",
+          "reflect"
+        ],
+        "answers": [
+          "consequence"
+        ],
+        "explanation": "consequence: a result or effect of an action. Losing your job can be a serious consequence of violating safety rules.",
+        "source": "vocab-mar-24-26"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Fill in the blank: \"My overtime ___ not paid.\" (Overtime is singular: was or were?)",
+        "answers": [
+          "was"
+        ],
+        "explanation": "'Overtime' is singular, so the correct passive form is 'was not paid,' not 'were not paid.'",
+        "source": "passive-voice-what-was-done/pvwwd-qfb1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Which sentence has an error?",
+        "options": [
+          "My check was short last Friday.",
+          "Safety training is provided to all workers.",
+          "My overtime were not paid."
+        ],
+        "answers": [
+          "My overtime were not paid."
+        ],
+        "explanation": "'Overtime' is singular, so the correct form is 'was not paid,' not 'were not paid.'",
+        "source": "passive-voice-what-was-done/pvwwd-q5"
+      }
+    ]
+  },
+  "verb-quiz-24": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 27,
+    "title": "Weekly Quiz 24: Healthcare Basics",
+    "focusVerbs": [
+      "feel",
+      "sleep",
+      "eat"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "feel → V3 (past participle)",
+        "answers": [
+          "felt"
+        ],
+        "explanation": "V3 (past participle) of feel: felt.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "feel → V1-s (he/she/it)",
+        "answers": [
+          "feels"
+        ],
+        "explanation": "V1-s (he/she/it) of feel: feels.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "sleep → V1-s (he/she/it)",
+        "answers": [
+          "sleeps"
+        ],
+        "explanation": "V1-s (he/she/it) of sleep: sleeps.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "sleep → V-ing",
+        "answers": [
+          "sleeping"
+        ],
+        "explanation": "V-ing of sleep: sleeping.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "eat → V-ing",
+        "answers": [
+          "eating"
+        ],
+        "explanation": "V-ing of eat: eating.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "If you ___ dizzy, you should sit down. (feel)",
+        "answers": [
+          "feel"
+        ],
+        "explanation": "If you feel dizzy, you should sit down. (feel)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "You should ___ more when you are tired. (sleep)",
+        "answers": [
+          "sleep"
+        ],
+        "explanation": "You should sleep more when you are tired. (sleep)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "You should _____ eating too much sugar if you want to be healthier.",
+        "options": [
+          "quit",
+          "avoid",
+          "cough",
+          "habit"
+        ],
+        "answers": [
+          "avoid"
+        ],
+        "explanation": "avoid: to stay away from. You should avoid eating too much sugar.",
+        "source": "vocab-apr-7-9"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “to stop doing something”?",
+        "options": [
+          "cough",
+          "infected",
+          "quit"
+        ],
+        "answers": [
+          "quit"
+        ],
+        "explanation": "quit: to stop doing something. He decided to quit his job and go back to school.",
+        "source": "vocab-apr-7-9"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "The doctor gives Yolanda a strong warning about her back. Put the words in order. Words: You / had / better / rest / today",
+        "answers": [
+          "You had better rest today"
+        ],
+        "explanation": "Had better + base verb gives a strong warning. No 'to' after had better.",
+        "source": "should-shouldnt-health-advice/mq-ws1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "The nurse says: \"You ___ rest for two days.\" Which word fits best?",
+        "options": [
+          "must",
+          "should",
+          "will"
+        ],
+        "answers": [
+          "should"
+        ],
+        "explanation": "Should gives advice. It means 'this is a good idea.' Must would mean she has no choice.",
+        "source": "should-shouldnt-health-advice/mq-should-basic"
+      }
+    ]
+  },
+  "verb-quiz-25": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 28,
+    "title": "Weekly Quiz 25: Symptoms + Clinic Visits",
+    "focusVerbs": [
+      "fall",
+      "hurt",
+      "take"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "fall → V1-s (he/she/it)",
+        "answers": [
+          "falls"
+        ],
+        "explanation": "V1-s (he/she/it) of fall: falls.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "fall → V-ing",
+        "answers": [
+          "falling"
+        ],
+        "explanation": "V-ing of fall: falling.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "hurt → V-ing",
+        "answers": [
+          "hurting"
+        ],
+        "explanation": "V-ing of hurt: hurting.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "hurt → V2 (past)",
+        "answers": [
+          "hurt"
+        ],
+        "explanation": "V2 (past) of hurt: hurt.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "take → V2 (past)",
+        "answers": [
+          "took"
+        ],
+        "explanation": "V2 (past) of take: took.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "I stopped walking because I ___ yesterday. (fall)",
+        "answers": [
+          "fell"
+        ],
+        "explanation": "I stopped walking because I fell yesterday. (fall)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "My knee ___ when I bend it. (hurt)",
+        "answers": [
+          "hurts"
+        ],
+        "explanation": "My knee hurts when I bend it. (hurt)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “to get better after being sick”?",
+        "options": [
+          "improve",
+          "exercise",
+          "recover"
+        ],
+        "answers": [
+          "recover"
+        ],
+        "explanation": "recover: to get better after being sick. It took him a few weeks to fully recover from the surgery.",
+        "source": "vocab-apr-14-16"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Rest and fluids will help you _____ quickly after the flu.",
+        "options": [
+          "prevent",
+          "adjust",
+          "recover",
+          "improve"
+        ],
+        "answers": [
+          "improve"
+        ],
+        "explanation": "improve: to get better, to make progress. Rest and fluids will help you improve quickly.",
+        "source": "vocab-apr-14-16"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Marisol was working at her desk. At noon, she stopped ___ her pill. (She paused her work to take the pill.)",
+        "options": [
+          "to take",
+          "taking",
+          "took"
+        ],
+        "answers": [
+          "to take"
+        ],
+        "explanation": "'Stop to take' means pause your current activity in order to do something else. Two different actions.",
+        "source": "stop-taking-or-stop-to-take/sti-q2"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Fill in the blank: \"Carlos asks: 'Did you take your pill?' Marisol says: 'Yes, I remember ___ it at 7 AM.'\" (She is recalling a past memory.)",
+        "answers": [
+          "taking"
+        ],
+        "explanation": "'Remember taking' = recalling a past event. Something that already happened.",
+        "source": "stop-taking-or-stop-to-take/sti-fb1"
+      }
+    ]
+  },
+  "verb-quiz-26": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 29,
+    "title": "Weekly Quiz 26: The Doctor Said + Catch-Up",
+    "focusVerbs": [
+      "sit",
+      "stand"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "sit → V-ing",
+        "answers": [
+          "sitting"
+        ],
+        "explanation": "V-ing of sit: sitting.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "sit → V2 (past)",
+        "answers": [
+          "sat"
+        ],
+        "explanation": "V2 (past) of sit: sat.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "stand → V2 (past)",
+        "answers": [
+          "stood"
+        ],
+        "explanation": "V2 (past) of stand: stood.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "stand → V3 (past participle)",
+        "answers": [
+          "stood"
+        ],
+        "explanation": "V3 (past participle) of stand: stood.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "The nurse said she ___ beside me during the test. (sit: simple past)",
+        "answers": [
+          "sat"
+        ],
+        "explanation": "The nurse said she sat beside me during the test. (sit: simple past)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "The doctor said I should ___ up slowly. (stand)",
+        "answers": [
+          "stand"
+        ],
+        "explanation": "The doctor said I should stand up slowly. (stand)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Doctors say you should _____ for at least 30 minutes every day.",
+        "options": [
+          "recover",
+          "adjust",
+          "prevent",
+          "exercise"
+        ],
+        "answers": [
+          "exercise"
+        ],
+        "explanation": "exercise: to do physical activity to stay healthy. You should exercise for at least 30 minutes every day.",
+        "source": "vocab-apr-14-16"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “the way you live, your daily habits”?",
+        "options": [
+          "lifestyle",
+          "recover",
+          "improve"
+        ],
+        "answers": [
+          "lifestyle"
+        ],
+        "explanation": "lifestyle: the way you live, your daily habits. Eating healthy and exercising are part of a good lifestyle.",
+        "source": "vocab-apr-14-16"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Report this yesterday: The doctor said, “I am busy.” Complete: The doctor said that she ___ busy. Use past-tense backshift.",
+        "answers": [
+          "was"
+        ],
+        "explanation": "With past-tense backshift, am becomes was.",
+        "source": "doctor-said-reported-speech/doctor-said-q7"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Marco reports what the doctor said about Amina's inhaler. Put the words in order. Words: The / doctor / told / me / to / keep / the / inhaler / warm",
+        "answers": [
+          "The doctor told me to keep the inhaler warm"
+        ],
+        "explanation": "Commands in reported speech use told + person + to + base verb.",
+        "source": "doctor-said-reported-speech/doctor-said-ws1"
+      }
+    ]
+  },
+  "verb-quiz-27": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 30,
+    "title": "Weekly Quiz 27: Third Conditional + Pharmacy",
+    "focusVerbs": [
+      "forget",
+      "read",
+      "know"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "forget → V2 (past)",
+        "answers": [
+          "forgot"
+        ],
+        "explanation": "V2 (past) of forget: forgot.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "forget → V3 (past participle)",
+        "answers": [
+          "forgotten"
+        ],
+        "explanation": "V3 (past participle) of forget: forgotten.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "read → V3 (past participle)",
+        "answers": [
+          "read"
+        ],
+        "explanation": "V3 (past participle) of read: read.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "read → V1-s (he/she/it)",
+        "answers": [
+          "reads"
+        ],
+        "explanation": "V1-s (he/she/it) of read: reads.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "know → V1-s (he/she/it)",
+        "answers": [
+          "knows"
+        ],
+        "explanation": "V1-s (he/she/it) of know: knows.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "If I had not ___ my medicine, I would have felt better. (forget)",
+        "answers": [
+          "forgotten"
+        ],
+        "explanation": "If I had not forgotten my medicine, I would have felt better. (forget)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "If she had ___ the label, she would have noticed the warning. (read)",
+        "answers": [
+          "read"
+        ],
+        "explanation": "If she had read the label, she would have noticed the warning. (read)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “when your body temperature is too high”?",
+        "options": [
+          "fever",
+          "appointment",
+          "checkup"
+        ],
+        "answers": [
+          "fever"
+        ],
+        "explanation": "fever: when your body temperature is too high. She has a high fever and needs to rest.",
+        "source": "vocab-apr-28-30"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "The flu is very _____, so stay home from work if you are sick.",
+        "options": [
+          "contagious",
+          "fever",
+          "diagnosis",
+          "checkup"
+        ],
+        "answers": [
+          "contagious"
+        ],
+        "explanation": "contagious: can spread easily to other people. The flu is very contagious, so stay home from work.",
+        "source": "vocab-apr-28-30"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Yemi did not stretch before her shift. Now her back hurts. Which sentence matches her situation?",
+        "options": [
+          "If I stretch before work, my back won't hurt.",
+          "If I had stretched before work, my back wouldn't hurt this much.",
+          "If I stretched before work, my back wouldn't hurt."
+        ],
+        "answers": [
+          "If I had stretched before work, my back wouldn't hurt this much."
+        ],
+        "explanation": "Third conditional uses if + had + V3 for a past action that did not happen.",
+        "source": "third-conditional-what-would-have-happened/tc-q1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Which sentence is a correct third conditional?",
+        "options": [
+          "If Marco saved more, he will have bought the car.",
+          "If Marco had saved more, he would have bought the car.",
+          "If Marco has saved more, he would buy the car."
+        ],
+        "answers": [
+          "If Marco had saved more, he would have bought the car."
+        ],
+        "explanation": "Third conditional: if + had + V3, would have + V3.",
+        "source": "third-conditional-what-would-have-happened/tc-q2"
+      }
+    ]
+  },
+  "verb-quiz-28": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 31,
+    "title": "Weekly Quiz 28: I Used to + Wellness",
+    "focusVerbs": [
+      "run",
+      "ride",
+      "drink"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "run → V3 (past participle)",
+        "answers": [
+          "run"
+        ],
+        "explanation": "V3 (past participle) of run: run.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "run → V1-s (he/she/it)",
+        "answers": [
+          "runs"
+        ],
+        "explanation": "V1-s (he/she/it) of run: runs.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "ride → V1-s (he/she/it)",
+        "answers": [
+          "rides"
+        ],
+        "explanation": "V1-s (he/she/it) of ride: rides.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "ride → V-ing",
+        "answers": [
+          "riding"
+        ],
+        "explanation": "V-ing of ride: riding.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "drink → V-ing",
+        "answers": [
+          "drinking"
+        ],
+        "explanation": "V-ing of drink: drinking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "I used to ___ every morning. (run)",
+        "answers": [
+          "run"
+        ],
+        "explanation": "I used to run every morning. (run)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "Now she ___ her bike to work. (ride)",
+        "answers": [
+          "rides"
+        ],
+        "explanation": "Now she rides her bike to work. (ride)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "A cough and sore throat are common _____ of a cold.",
+        "options": [
+          "symptom",
+          "dose",
+          "chronic",
+          "nutrient"
+        ],
+        "answers": [
+          "symptom"
+        ],
+        "explanation": "symptom: a sign that something is wrong with your body. A cough and sore throat are common symptoms of a cold.",
+        "source": "vocab-may-5-7"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “how hot or cold your body is”?",
+        "options": [
+          "prescribe",
+          "temperature",
+          "symptom"
+        ],
+        "answers": [
+          "temperature"
+        ],
+        "explanation": "temperature: how hot or cold your body is. The nurse took my temperature to check for a fever.",
+        "source": "vocab-may-5-7"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Fill in the blank: \"I used to walk to work, but now I ___ two buses.\"",
+        "answers": [
+          "take"
+        ],
+        "explanation": "But now I + present simple shows the change. Used to is only for the past part.",
+        "source": "i-used-to-but-now-i/ut-fb1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Find the error: \"I used to packing PB&J in lunchboxes.\"",
+        "options": [
+          "No error.",
+          "Error: should be \"used to pack\" (base verb, not -ing).",
+          "Error: should be \"didn't use to pack\"."
+        ],
+        "answers": [
+          "Error: should be \"used to pack\" (base verb, not -ing)."
+        ],
+        "explanation": "After used to, use the base verb: pack, not packing.",
+        "source": "i-used-to-but-now-i/ut-q7"
+      }
+    ]
+  },
+  "verb-quiz-29": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 32,
+    "title": "Weekly Quiz 29: Be Used to + Still Adjusting",
+    "focusVerbs": [
+      "drive",
+      "wake",
+      "come"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "drive → V1-s (he/she/it)",
+        "answers": [
+          "drives"
+        ],
+        "explanation": "V1-s (he/she/it) of drive: drives.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "drive → V-ing",
+        "answers": [
+          "driving"
+        ],
+        "explanation": "V-ing of drive: driving.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "wake → V-ing",
+        "answers": [
+          "waking"
+        ],
+        "explanation": "V-ing of wake: waking.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "wake → V2 (past)",
+        "answers": [
+          "woke"
+        ],
+        "explanation": "V2 (past) of wake: woke.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "come → V2 (past)",
+        "answers": [
+          "came"
+        ],
+        "explanation": "V2 (past) of come: came.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "I am used to ___ in city traffic. (drive)",
+        "answers": [
+          "driving"
+        ],
+        "explanation": "I am used to driving in city traffic. (drive)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "She is getting used to ___ up early. (wake)",
+        "answers": [
+          "waking"
+        ],
+        "explanation": "She is getting used to waking up early. (wake)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “to rest and become calm”?",
+        "options": [
+          "self-care",
+          "relax",
+          "wellness"
+        ],
+        "answers": [
+          "relax"
+        ],
+        "explanation": "relax: to rest and become calm. I like to relax with a good book after work.",
+        "source": "vocab-may-12-14"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Deep breathing is one of my _____ for handling stress.",
+        "options": [
+          "wellness",
+          "balance",
+          "coping skills",
+          "self-care"
+        ],
+        "answers": [
+          "coping skills"
+        ],
+        "explanation": "coping skills: ways to handle stress or problems. Deep breathing is one of my coping skills for stress.",
+        "source": "vocab-may-12-14"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Rafael describes his double-shift routine at the hotel. Put the words in order. Words: She / is / used / to / working / two / jobs",
+        "answers": [
+          "She is used to working two jobs"
+        ],
+        "explanation": "Be used to + gerund (working) means it feels familiar or normal now.",
+        "source": "be-used-to-get-used-to/but-ws1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Rafael eats dinner at 1 AM after his shift every night. Which sentence is correct?",
+        "options": [
+          "I'm used to eat dinner very late.",
+          "I'm used to eating dinner very late.",
+          "I used to eating dinner very late."
+        ],
+        "answers": [
+          "I'm used to eating dinner very late."
+        ],
+        "explanation": "Be used to needs a gerund: eating, not eat.",
+        "source": "be-used-to-get-used-to/but-q2"
+      }
+    ]
+  },
+  "verb-quiz-30": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 33,
+    "title": "Weekly Quiz 30: All Four Conditionals + One Bad Week",
+    "focusVerbs": [
+      "lose",
+      "cut",
+      "break"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "lose → V-ing",
+        "answers": [
+          "losing"
+        ],
+        "explanation": "V-ing of lose: losing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "lose → V2 (past)",
+        "answers": [
+          "lost"
+        ],
+        "explanation": "V2 (past) of lose: lost.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "cut → V2 (past)",
+        "answers": [
+          "cut"
+        ],
+        "explanation": "V2 (past) of cut: cut.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "cut → V3 (past participle)",
+        "answers": [
+          "cut"
+        ],
+        "explanation": "V3 (past participle) of cut: cut.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "break → V3 (past participle)",
+        "answers": [
+          "broken"
+        ],
+        "explanation": "V3 (past participle) of break: broken.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "If I ___ my keys yesterday, I would have called you. (lose: use the past perfect)",
+        "answers": [
+          "had lost"
+        ],
+        "explanation": "If I had lost my keys yesterday, I would have called you. (lose: use the past perfect)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "If I ___ my finger, I will clean it. (cut)",
+        "answers": [
+          "cut"
+        ],
+        "explanation": "If I cut my finger, I will clean it. (cut)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Drink plenty of _____ when you are sick with a fever.",
+        "options": [
+          "ailment",
+          "soothe",
+          "fluids",
+          "remedy"
+        ],
+        "answers": [
+          "fluids"
+        ],
+        "explanation": "fluids: liquids you drink (water, tea, broth). Drink plenty of fluids when you are sick.",
+        "source": "vocab-may-19-21"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “a minor illness or discomfort (e.g. cold, headache)”?",
+        "options": [
+          "processed",
+          "remedy",
+          "ailment"
+        ],
+        "answers": [
+          "ailment"
+        ],
+        "explanation": "ailment: a minor illness or discomfort (e.g. cold, headache). Ginger tea is good for a stomach ailment.",
+        "source": "vocab-may-19-21"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Rachel says: 'If I earned more, I would move to a bigger apartment.' What do we know about Rachel?",
+        "options": [
+          "She earns enough and is moving soon.",
+          "She moved to a bigger apartment last year.",
+          "She does not earn enough now. The move is imaginary.",
+          "She will earn more next month for sure."
+        ],
+        "answers": [
+          "She does not earn enough now. The move is imaginary."
+        ],
+        "explanation": "Second conditional describes an imaginary situation now. The past-looking verb (earned) does not mean real past.",
+        "source": "all-four-conditionals-quick-tour/afc-q5"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Brian posts a rule in the break room. It is always true. Complete it: \"If the warehouse door stays open, the loading dock ___ (get) cold.\"",
+        "answers": [
+          "gets"
+        ],
+        "explanation": "Zero conditional: if + present simple, present simple. Used for facts and rules.",
+        "source": "all-four-conditionals-quick-tour/afc-fb1"
+      }
+    ]
+  },
+  "verb-quiz-31": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 34,
+    "title": "Weekly Quiz 31: Gerunds + Infinitives + Packed Week",
+    "focusVerbs": [
+      "begin",
+      "quit",
+      "choose"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "begin → V2 (past)",
+        "answers": [
+          "began"
+        ],
+        "explanation": "V2 (past) of begin: began.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "begin → V3 (past participle)",
+        "answers": [
+          "begun"
+        ],
+        "explanation": "V3 (past participle) of begin: begun.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "quit → V3 (past participle)",
+        "answers": [
+          "quit"
+        ],
+        "explanation": "V3 (past participle) of quit: quit.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "quit → V1-s (he/she/it)",
+        "answers": [
+          "quits"
+        ],
+        "explanation": "V1-s (he/she/it) of quit: quits.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-2-0",
+        "section": "forms",
+        "prompt": "choose → V1-s (he/she/it)",
+        "answers": [
+          "chooses"
+        ],
+        "explanation": "V1-s (he/she/it) of choose: chooses.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "We plan to ___ our new routine tomorrow. (begin)",
+        "answers": [
+          "begin"
+        ],
+        "explanation": "We plan to begin our new routine tomorrow. (begin)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "He is thinking about ___ smoking. (quit)",
+        "answers": [
+          "quitting"
+        ],
+        "explanation": "He is thinking about quitting smoking. (quit)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “improvement over time”?",
+        "options": [
+          "challenge",
+          "success",
+          "progress"
+        ],
+        "answers": [
+          "progress"
+        ],
+        "explanation": "progress: improvement over time. You are making good progress in your English class.",
+        "source": "vocab-may-26-28"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Learning a new language is a big _____.",
+        "options": [
+          "success",
+          "challenge",
+          "progress",
+          "accomplish"
+        ],
+        "answers": [
+          "challenge"
+        ],
+        "explanation": "challenge: something difficult. Learning a new language is a big challenge.",
+        "source": "vocab-may-26-28"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Find the error: \"I enjoy to work overtime.\"",
+        "options": [
+          "No error.",
+          "Error: enjoy takes -ing (enjoy working).",
+          "Error: should be enjoy to working.",
+          "Error: should be enjoy work."
+        ],
+        "answers": [
+          "Error: enjoy takes -ing (enjoy working)."
+        ],
+        "explanation": "Enjoy is a gerund verb: enjoy working, not enjoy to work.",
+        "source": "gerunds-infinitives-full-review/gifr-q7"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Marisol pauses her podcast because she has a question for the bus driver. Put the words in order. Words: I / stopped / to / ask / the / driver",
+        "answers": [
+          "I stopped to ask the driver"
+        ],
+        "explanation": "Stop + to + infinitive means pause your current activity in order to do something else.",
+        "source": "gerunds-infinitives-full-review/gifr-ws1"
+      }
+    ]
+  },
+  "verb-quiz-32": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 35,
+    "title": "Weekly Quiz 32: All the Tenses: A Year in Review",
+    "focusVerbs": [
+      "steal",
+      "freeze"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "steal → V3 (past participle)",
+        "answers": [
+          "stolen"
+        ],
+        "explanation": "V3 (past participle) of steal: stolen.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "steal → V1-s (he/she/it)",
+        "answers": [
+          "steals"
+        ],
+        "explanation": "V1-s (he/she/it) of steal: steals.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "freeze → V1-s (he/she/it)",
+        "answers": [
+          "freezes"
+        ],
+        "explanation": "V1-s (he/she/it) of freeze: freezes.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "freeze → V-ing",
+        "answers": [
+          "freezing"
+        ],
+        "explanation": "V-ing of freeze: freezing.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "Someone ___ my bike last year. (steal)",
+        "answers": [
+          "stole"
+        ],
+        "explanation": "Someone stole my bike last year. (steal)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "The water has ___ overnight. (freeze)",
+        "answers": [
+          "frozen"
+        ],
+        "explanation": "The water has frozen overnight. (freeze)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "This English class offers many opportunities for personal _____.",
+        "options": [
+          "achievement",
+          "growth",
+          "goal",
+          "commitment"
+        ],
+        "answers": [
+          "growth"
+        ],
+        "explanation": "growth: getting better over time. This job offers many opportunities for personal growth.",
+        "source": "vocab-jun-2-4"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “feeling sure of yourself”?",
+        "options": [
+          "confident",
+          "goal",
+          "achievement"
+        ],
+        "answers": [
+          "confident"
+        ],
+        "explanation": "confident: feeling sure of yourself. She feels confident that she will pass the exam.",
+        "source": "vocab-jun-2-4"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Rosa is texting the sitter at the register right now. Which sentence fits?",
+        "options": [
+          "She texts the sitter at the register.",
+          "She is texting the sitter at the register.",
+          "She has texted the sitter at the register."
+        ],
+        "answers": [
+          "She is texting the sitter at the register."
+        ],
+        "explanation": "Present continuous for an action in progress right now.",
+        "source": "all-the-tenses-year-in-review/atyr-q2"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Find the error: \"I have lived here since 2021.\"",
+        "options": [
+          "No error.",
+          "Error: should be 'lived' (past simple).",
+          "Error: should be 'am living' (present continuous)."
+        ],
+        "answers": [
+          "No error."
+        ],
+        "explanation": "Present perfect with 'since' connects a past start to now.",
+        "source": "all-the-tenses-year-in-review/atyr-q4"
+      }
+    ]
+  },
+  "verb-quiz-33": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 35,
+    "title": "Weekly Quiz 33: All the Tenses: A Year in Review",
+    "focusVerbs": [
+      "catch",
+      "fight"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "catch → V1-s (he/she/it)",
+        "answers": [
+          "catches"
+        ],
+        "explanation": "V1-s (he/she/it) of catch: catches.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "catch → V-ing",
+        "answers": [
+          "catching"
+        ],
+        "explanation": "V-ing of catch: catching.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "fight → V-ing",
+        "answers": [
+          "fighting"
+        ],
+        "explanation": "V-ing of fight: fighting.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "fight → V2 (past)",
+        "answers": [
+          "fought"
+        ],
+        "explanation": "V2 (past) of fight: fought.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "She has ___ the early bus all week. (catch)",
+        "answers": [
+          "caught"
+        ],
+        "explanation": "She has caught the early bus all week. (catch)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "They ___ for better working conditions last year. (fight)",
+        "answers": [
+          "fought"
+        ],
+        "explanation": "They fought for better working conditions last year. (fight)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "Which word means “a promise to keep doing something”?",
+        "options": [
+          "commitment",
+          "goal",
+          "achievement"
+        ],
+        "answers": [
+          "commitment"
+        ],
+        "explanation": "commitment: a promise to keep doing something. Learning English takes real commitment and practice.",
+        "source": "vocab-jun-2-4"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "I _____ all the help my teacher gave me this year.",
+        "options": [
+          "commitment",
+          "achievement",
+          "appreciate",
+          "confident"
+        ],
+        "answers": [
+          "appreciate"
+        ],
+        "explanation": "appreciate: to be thankful for something. I appreciate all the help my teacher gave me this year.",
+        "source": "vocab-jun-2-4"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Fill in the blank: \"Rosa ___ class every Tuesday and Thursday.\" (It's her regular schedule.)",
+        "answers": [
+          "takes"
+        ],
+        "explanation": "Present simple for routines and fixed schedules.",
+        "source": "all-the-tenses-year-in-review/atyr-fb1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Before Rosa applied for warehouse work, she saved for the bus pass. Which sentence fits?",
+        "options": [
+          "She had already saved for the bus pass.",
+          "She already saved for the bus pass.",
+          "She has already saved for the bus pass."
+        ],
+        "answers": [
+          "She had already saved for the bus pass."
+        ],
+        "explanation": "Past perfect for something finished before another past event.",
+        "source": "all-the-tenses-year-in-review/atyr-q6"
+      }
+    ]
+  },
+  "verb-quiz-34": {
+    "type": "weekly-quiz",
+    "version": 1,
+    "weekNumber": 35,
+    "title": "Weekly Quiz 34: All the Tenses: A Year in Review",
+    "focusVerbs": [
+      "hit",
+      "lend"
+    ],
+    "estimatedMinutes": "5–10",
+    "questions": [
+      {
+        "id": "form-0-0",
+        "section": "forms",
+        "prompt": "hit → V-ing",
+        "answers": [
+          "hitting"
+        ],
+        "explanation": "V-ing of hit: hitting.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-0-1",
+        "section": "forms",
+        "prompt": "hit → V2 (past)",
+        "answers": [
+          "hit"
+        ],
+        "explanation": "V2 (past) of hit: hit.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-0",
+        "section": "forms",
+        "prompt": "lend → V2 (past)",
+        "answers": [
+          "lent"
+        ],
+        "explanation": "V2 (past) of lend: lent.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "form-1-1",
+        "section": "forms",
+        "prompt": "lend → V3 (past participle)",
+        "answers": [
+          "lent"
+        ],
+        "explanation": "V3 (past participle) of lend: lent.",
+        "source": "verb-conjugations"
+      },
+      {
+        "id": "apply-0",
+        "section": "apply",
+        "prompt": "The ball ___ the window yesterday. (hit)",
+        "answers": [
+          "hit"
+        ],
+        "explanation": "The ball hit the window yesterday. (hit)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "apply-1",
+        "section": "apply",
+        "prompt": "Could you ___ me a pen? (lend)",
+        "answers": [
+          "lend"
+        ],
+        "explanation": "Could you lend me a pen? (lend)",
+        "source": "weekly-quiz-applications"
+      },
+      {
+        "id": "vocab-0",
+        "section": "vocabulary",
+        "prompt": "My _____ is to save enough money to buy a car next year.",
+        "options": [
+          "growth",
+          "commitment",
+          "goal",
+          "achievement"
+        ],
+        "answers": [
+          "goal"
+        ],
+        "explanation": "goal: something you want to achieve. My goal is to save enough money for a car.",
+        "source": "vocab-jun-2-4"
+      },
+      {
+        "id": "vocab-1",
+        "section": "vocabulary",
+        "prompt": "Which word means “something you did well or completed”?",
+        "options": [
+          "growth",
+          "achievement",
+          "goal"
+        ],
+        "answers": [
+          "achievement"
+        ],
+        "explanation": "achievement: something you did well or completed. Winning the award was a great achievement.",
+        "source": "vocab-jun-2-4"
+      },
+      {
+        "id": "grammar-0",
+        "section": "grammar",
+        "prompt": "Rosa plans to finish Level 3 by August. Put the words in order. Words: She / will / have / finished / Level / 3 / by / August",
+        "answers": [
+          "She will have finished Level 3 by August"
+        ],
+        "explanation": "Future perfect: will have + past participle. Used with 'by' to show something completed before a future point.",
+        "source": "all-the-tenses-year-in-review/atyr-ws1"
+      },
+      {
+        "id": "grammar-1",
+        "section": "grammar",
+        "prompt": "Rosa is texting the sitter at the register right now. Which sentence fits?",
+        "options": [
+          "She texts the sitter at the register.",
+          "She is texting the sitter at the register.",
+          "She has texted the sitter at the register."
+        ],
+        "answers": [
+          "She is texting the sitter at the register."
+        ],
+        "explanation": "Present continuous for an action in progress right now.",
+        "source": "all-the-tenses-year-in-review/atyr-q2"
+      }
+    ]
+  }
+}

@@ -6,7 +6,7 @@ import { POINTS } from "./constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./streak-utils";
 import { buildIndependentLeaderboardUserWhere, buildLeaderboardEligibleUserWhere } from "./leaderboard-filter";
 import { addDaysToDayKey as addDaysToLearnerDayKey, getInstantForLearnerDayStart, getLearnerDayKey } from "./calendar-week";
-import { isCurrentWeekComplete } from "@/lib/course-map-week";
+import { getCurrentWeekCompletion } from "@/lib/course-map-week";
 import { mapWithConcurrencyLimit } from "@/lib/shared/concurrency";
 export { POINTS } from "./constants";
 export { getActivityPoints, resolveActivityGameUi, getVocabularyTypePoints } from "./activity-points";
@@ -220,9 +220,9 @@ export async function updateStreak(userId: string, activityPoints: number, db: D
  * Points are ONLY awarded based on accuracy - no participation points
  */
 export function calculateQuizPoints(score: number | null): number {
-  if (score === null) return 0;
+  if (score === null) return POINTS.QUIZ_COMPLETION;
 
-  // Score-based points only - must earn through accuracy
+  // Every completed quiz earns effort points; accuracy can increase the award.
   if (score === 100) {
     return POINTS.QUIZ_PERFECT_SCORE; // 15 points
   } else if (score >= 90) {
@@ -233,8 +233,7 @@ export function calculateQuizPoints(score: number | null): number {
     return POINTS.QUIZ_PASSING_SCORE; // 2 points
   }
   
-  // Below 70% = 0 points - need to study more!
-  return 0;
+  return POINTS.QUIZ_COMPLETION;
 }
 
 export type LeaderboardRange = 'day' | 'week' | 'month';
@@ -362,10 +361,10 @@ export async function getTimeframedLeaderboard(
 
   // Bounded concurrency: each check is its own course-map snapshot lookup, so
   // keep only a handful in flight at once rather than firing them all together.
-  const weekCompleteByUserId = new Map(
+  const completionByUserId = new Map(
     await mapWithConcurrencyLimit(limitedRankings, 8, async (r) => [
       r.userId,
-      await isCurrentWeekComplete({ id: r.userId, role: 'student' }),
+      await getCurrentWeekCompletion({ id: r.userId, role: 'student' }),
     ] as const)
   );
 
@@ -384,7 +383,8 @@ export async function getTimeframedLeaderboard(
       rankChange: range === 'week' ? (r.lastWeekRank ? r.lastWeekRank - currentRank : null) : null,
       avatar: r.avatar,
       avatarColor: r.avatarColor,
-      weekComplete: weekCompleteByUserId.get(r.userId) ?? false,
+      weekComplete: completionByUserId.get(r.userId)?.weekComplete ?? false,
+      weeklyQuizComplete: completionByUserId.get(r.userId)?.weeklyQuizComplete ?? false,
     };
   });
 }

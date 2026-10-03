@@ -1,3 +1,5 @@
+import { getWeeklyQuizSchedule } from "@/lib/weekly-quiz-schedule";
+
 export type GuidedVerbQuizPlanItem = {
   quizNumber: number;
   activityId: string;
@@ -16,7 +18,7 @@ type QuizVerbSet = { verbs: [string, string]; reviewVerb?: string };
 // one review verb, except the catch-up Weeks 21 and 29 (Quizzes 18 and 26).
 // Quizzes 32-34 are optional extras in the final review week.
 const QUIZ_VERB_SETS: QuizVerbSet[] = [
-  { verbs: ["be", "have"] }, // W4 Verb Forms + Past Simple
+  { verbs: ["be", "have"] }, // W4 Foundations: Learn How to Learn
   { verbs: ["do", "make"] }, // W5 Routines + Questions
   { verbs: ["go", "come"] }, // W6 Directions
   { verbs: ["tell", "say"] }, // W7 Phone + Family
@@ -52,24 +54,6 @@ const QUIZ_VERB_SETS: QuizVerbSet[] = [
   { verbs: ["hit", "lend"] }, // W35 optional
 ];
 
-function addDays(date: Date, days: number): Date {
-  const copy = new Date(date);
-  copy.setDate(copy.getDate() + days);
-  return copy;
-}
-
-function formatDate(date: Date): string {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
-// Quiz 1 lands on the Friday of course Week 4 (Oct 5 - Oct 9, 2026), alongside
-// the Verb Forms guide. Weeks 1-2 are a light on-ramp and Week 3 is a Parts of
-// Speech review, so none of them has a quiz.
-const firstQuizDueDate = new Date(2026, 9, 9, 12, 0, 0, 0);
-
 export const GUIDED_VERB_QUIZ_PLAN: GuidedVerbQuizPlanItem[] = QUIZ_VERB_SETS.map(
   ({ verbs, reviewVerb }, index) => {
     const quizNumber = index + 1;
@@ -79,18 +63,13 @@ export const GUIDED_VERB_QUIZ_PLAN: GuidedVerbQuizPlanItem[] = QUIZ_VERB_SETS.ma
       verbs: reviewVerb ? [...verbs, reviewVerb] : [...verbs],
       ...(reviewVerb ? { reviewVerb } : {}),
       levelNumber: quizNumber,
-      dueDate: formatDate(addDays(firstQuizDueDate, index * 7)),
+      dueDate: getWeeklyQuizSchedule(Math.min(quizNumber + 3, 35))!.dueAt.toISOString().slice(0, 10),
     };
   }
 );
 
 export function getGuidedVerbQuizTitle(quizNumber: number): string {
-  const item = GUIDED_VERB_QUIZ_PLAN.find((quiz) => quiz.quizNumber === quizNumber);
-  if (!item) return `Verb Quiz ${quizNumber}`;
-  const newVerbs = item.verbs.filter((verb) => verb !== item.reviewVerb).join(" + ");
-  return item.reviewVerb
-    ? `Verb Quiz ${quizNumber}: ${newVerbs} · review: ${item.reviewVerb}`
-    : `Verb Quiz ${quizNumber}: ${newVerbs}`;
+  return `Weekly Quiz ${quizNumber}`;
 }
 
 export function getGuidedVerbQuizActivityId(quizNumber: number): string | null {

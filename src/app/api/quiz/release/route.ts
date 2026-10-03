@@ -1,3 +1,4 @@
+import { readWeeklyQuizSchedule } from "@/lib/weekly-quiz-schedule";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
@@ -37,6 +38,10 @@ export async function POST(request: Request) {
 
     if (!activity) {
         return ApiErrors.notFound("Activity", activityId);
+    }
+
+    if (readWeeklyQuizSchedule(activity.content)) {
+        return apiError("Weekly quizzes open automatically Thursday at 6 p.m. Eastern and stay open. Their release is managed by the course schedule.", 409);
     }
 
     await prisma.activity.update({

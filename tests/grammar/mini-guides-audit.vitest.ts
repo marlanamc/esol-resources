@@ -53,8 +53,8 @@ function preview(findings: AuditFinding[]): string {
 describe("mini guides audit (weeks 1–18)", () => {
     it("runs without throwing and audits the expected guide count", async () => {
         const result = await runMiniGuidesAudit();
-        // Removing the Week 1 app tutorial leaves 21 guides in W1–W18.
-        expect(result.guides.length).toBe(21);
+        // Week 4 past-tense work is now optional, leaving 20 required guides.
+        expect(result.guides.length).toBe(20);
         expect(result.guides.map(({ guide }) => guide.slug)).not.toContain("welcome-how-to-use-app");
     });
 

@@ -2,6 +2,7 @@ import type { LoadedGuide } from "./types";
 import type { AuditFinding } from "./types";
 import { collectGuideStrings, countWords } from "./collect-strings";
 import {
+    GUIDE_SECTION_LIMITS,
     TENSE_DIAGRAM_EXEMPT_SLUGS,
     TENSE_DIAGRAM_REQUIRED_SLUGS,
 } from "./config";
@@ -59,15 +60,16 @@ export function runMechanicalRules(guide: LoadedGuide): AuditFinding[] {
     }
 
     const sections = content.sections ?? [];
+    const sectionLimit = GUIDE_SECTION_LIMITS[slug] ?? 5;
     if (sections.length === 0) {
         findings.push(finding(slug, "no-sections", "sections", "Guide has no sections"));
-    } else if (sections.length > 5) {
+    } else if (sections.length > sectionLimit) {
         findings.push(
             finding(
                 slug,
                 "section-count",
                 "sections",
-                `Guide has ${sections.length} sections (max 5)`,
+                `Guide has ${sections.length} sections (max ${sectionLimit})`,
             ),
         );
     }

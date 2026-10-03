@@ -1,5 +1,5 @@
-import { LEARNER_DAY_TIME_ZONE } from "@/lib/daily-habits";
 import {
+  CLASS_TIME_ZONE,
   CLASS_WEEKDAYS,
   SCHOOL_CLOSURES,
   TERM_END,
@@ -40,7 +40,7 @@ export function zonedWallClockToUtc(
   month: number,
   day: number,
   hour: number,
-  timeZone: string = LEARNER_DAY_TIME_ZONE
+  timeZone: string = CLASS_TIME_ZONE
 ): Date {
   const naive = Date.UTC(year, month - 1, day, hour, 0, 0);
   const firstPass = new Date(naive - timeZoneOffsetMs(new Date(naive), timeZone));
@@ -103,7 +103,7 @@ export function buildTeachingWeeks(options: BuildTeachingWeeksOptions = {}): Tea
     classWeekdays = CLASS_WEEKDAYS,
     revealWeekday = WEEK_REVEAL_WEEKDAY,
     revealHour = WEEK_REVEAL_HOUR,
-    timeZone = LEARNER_DAY_TIME_ZONE,
+    timeZone = CLASS_TIME_ZONE,
   } = options;
 
   const meets = new Set(classWeekdays);

@@ -103,7 +103,10 @@
     "audio:minimal-pairs": "npx tsx scripts/content/generate-minimal-pairs-audio.ts",
     "audio:pronunciation-sentences": "npx tsx scripts/content/generate-pronunciation-sentence-audio.ts",
     "audio:upload:blob": "npx tsx scripts/audio/upload-audio-to-blob.ts",
-    "push:generate-vapid": "node -e \"const webpush=require('web-push');const v=webpush.generateVAPIDKeys();console.log('VAPID_PUBLIC_KEY='+v.publicKey);console.log('VAPID_PRIVATE_KEY='+v.privateKey);\""
+    "push:generate-vapid": "node -e \"const webpush=require('web-push');const v=webpush.generateVAPIDKeys();console.log('VAPID_PUBLIC_KEY='+v.publicKey);console.log('VAPID_PRIVATE_KEY='+v.privateKey);\"",
+    "quizzes:build": "node --import tsx scripts/quizzes/build-weekly-quizzes.ts",
+    "quizzes:check": "node --import tsx scripts/quizzes/build-weekly-quizzes.ts --check",
+    "quizzes:sync": "node --import tsx scripts/quizzes/sync-weekly-quizzes.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

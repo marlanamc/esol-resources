@@ -488,9 +488,9 @@ export const grammarGuides: Record<string, GrammarGuideEntry> = {
             import("@/content/grammar/used-to-would-rather").then((m) => m.usedToWouldRatherContent),
     },
     "verb-forms-overview": {
-        activityTitle: "Verb Forms: V1 → V3",
-        metaTitle: "Verb Forms: V1 → V3 - Interactive Guide | Class Companion",
-        metaDescription: "Learn the five verb form codes (V1, V1-s, V-ing, V2, V3) used on weekly verb quizzes. Quick intro before your first quiz.",
+        activityTitle: "Verb Forms + Your Study Toolkit",
+        metaTitle: "Verb Forms + Your Study Toolkit | Class Companion",
+        metaDescription: "Learn five verb form codes, use your reference sheet, and build a short study routine for weekly review quizzes.",
         loadContent: () =>
             import("@/content/grammar/verb-forms-overview").then((m) => m.verbFormsOverviewContent),
     },

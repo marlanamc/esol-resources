@@ -17,6 +17,7 @@ interface VerbQuizContainerProps {
     id: string;
     content: unknown;
     score: number | null;
+    pointsAwarded?: number;
   } | null;
 }
 
@@ -30,7 +31,9 @@ export default function VerbQuizContainer({
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submission, setSubmission] = useState<VerbQuizSubmission | null>(
-    existingSubmission?.content ? existingSubmission.content as VerbQuizSubmission : null
+    existingSubmission?.content
+      ? { ...existingSubmission.content as VerbQuizSubmission, totalPoints: existingSubmission.pointsAwarded ?? 0 }
+      : null
   );
   const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
@@ -78,15 +81,8 @@ export default function VerbQuizContainer({
 
       const totalForms = Object.keys(content.verbs).length * 4;
 
-      // Calculate points based on gamification system
-      let totalPoints = 10; // Base points for quiz completion
-      if (score === 100) {
-        totalPoints += 20; // Perfect score bonus
-      } else if (score >= 90) {
-        totalPoints += 10; // High score bonus
-      } else if (score >= 80) {
-        totalPoints += 5; // Good score bonus
-      }
+      // Only the server can confirm an award, including duplicate protection.
+      const totalPoints = 0;
 
       const submissionData: VerbQuizSubmission = {
         answers,
@@ -132,7 +128,7 @@ export default function VerbQuizContainer({
         throw new Error(responseData.error || 'Failed to submit quiz');
       }
 
-      setSubmission(submissionData);
+      setSubmission({ ...submissionData, totalPoints: responseData.points ?? 0 });
       if (responseData.points && responseData.points > 0) {
         setPointsToast({ points: responseData.points, key: Date.now() });
       }

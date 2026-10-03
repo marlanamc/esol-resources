@@ -1,3 +1,6 @@
+import { isLearnerVisibleActivity } from "@/lib/learner/visibility";
+import { gradeWeeklyQuiz } from "@/lib/weekly-quiz";
+import type { WeeklyQuizContent, WeeklyQuizSubmission } from "@/types/weekly-quiz";
 import { NextResponse, type NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/auth";
@@ -198,7 +201,9 @@ export async function POST(request: NextRequest) {
         }
         const validated = parseApiBody(ActivitySubmitBodySchema, parsedBody.body);
         if (!validated.ok) return validated.response;
-        const { activityId, content, score, assignmentId } = validated.data;
+        const { activityId, assignmentId } = validated.data;
+        let { content, score } = validated.data;
+        let weeklyQuizResult: WeeklyQuizSubmission | undefined;
 
         const userId = session.user.id;
 
@@ -215,13 +220,28 @@ export async function POST(request: NextRequest) {
                         id: activityId,
                         deletedAt: null,
                     },
-                    select: { title: true, type: true, id: true, content: true, ui: true }
+                    select: { title: true, type: true, id: true, content: true, ui: true, isReleased: true }
                 }),
             (result) => (result ? 1 : 0)
         );
 
         if (!activity) {
             return ApiErrors.notFound("Activity", activityId);
+        }
+
+        let savedContent: { type?: string } | null = null;
+        try { savedContent = JSON.parse(activity.content); } catch { /* Legacy non-JSON activities. */ }
+        if (savedContent?.type === 'weekly-quiz') {
+            if (session.user.role === 'student' && !isLearnerVisibleActivity(activity)) {
+                return apiError('This quiz is not released yet.', 403);
+            }
+            try {
+                weeklyQuizResult = gradeWeeklyQuiz(savedContent as WeeklyQuizContent, content);
+            } catch (error) {
+                return apiError(error instanceof Error ? error.message : 'Invalid quiz answers.', 400);
+            }
+            score = weeklyQuizResult.score;
+            content = weeklyQuizResult;
         }
 
         // Calculate points SERVER-SIDE based on activity type and score
@@ -259,7 +279,7 @@ export async function POST(request: NextRequest) {
                         activityId,
                         assignmentId: assignmentKey,
                     },
-                    select: { id: true, score: true },
+                    select: { id: true, score: true, pointsAwarded: true },
                 });
 
                 return {
@@ -267,6 +287,7 @@ export async function POST(request: NextRequest) {
                     duplicateFromClaim: false,
                     submissionId: existingSubmission?.id ?? null,
                     score: existingSubmission?.score ?? null,
+                    totalPointsAwarded: existingSubmission?.pointsAwarded ?? 0,
                 };
             }
 
@@ -309,6 +330,7 @@ export async function POST(request: NextRequest) {
             }
 
             let duplicateFromClaim = false;
+            let totalPointsAwarded = 0;
 
             // Award points exactly once per submission by atomically claiming pointsAwarded.
             if (calculatedPoints > 0) {
@@ -319,6 +341,7 @@ export async function POST(request: NextRequest) {
                     pointsAwarded: calculatedPoints,
                 });
                 duplicateFromClaim = !claimResult.claimed;
+                totalPointsAwarded = claimResult.existingPointsAwarded;
             }
 
             return {
@@ -326,6 +349,7 @@ export async function POST(request: NextRequest) {
                 duplicateFromClaim,
                 submissionId: submission.id,
                 score: submission.score,
+                totalPointsAwarded,
             };
         });
 
@@ -335,6 +359,7 @@ export async function POST(request: NextRequest) {
                 duplicate: true,
                 submissionId: submissionResult.submissionId,
                 score: submissionResult.score,
+                ...(weeklyQuizResult ? { weeklyQuizResult, totalPointsAwarded: submissionResult.totalPointsAwarded } : {}),
                 points: 0,
             };
             logger.info("api.activity.submit.response", {
@@ -387,6 +412,7 @@ export async function POST(request: NextRequest) {
             duplicate,
             submissionId: submissionResult.submissionId,
             score: submissionResult.score,
+            ...(weeklyQuizResult ? { weeklyQuizResult, totalPointsAwarded: submissionResult.totalPointsAwarded } : {}),
             points: duplicate ? 0 : calculatedPoints,
         };
         logger.info("api.activity.submit.response", {

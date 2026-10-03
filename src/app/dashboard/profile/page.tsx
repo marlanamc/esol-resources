@@ -366,10 +366,10 @@ export default async function ProfilePage() {
                 type: "quiz",
                 category: "quizzes",
                 deletedAt: null,
-                isReleased: true,
-                content: {
-                    contains: "\"type\":\"verb-quiz\"",
-                },
+                OR: [
+                    { content: { contains: '"type":"verb-quiz"' } },
+                    { content: { contains: '"type":"weekly-quiz"' } },
+                ],
             },
             select: {
                 id: true,
@@ -408,9 +408,10 @@ export default async function ProfilePage() {
                 activity: {
                     type: "quiz",
                     category: "quizzes",
-                    content: {
-                        contains: "\"type\":\"verb-quiz\"",
-                    },
+                    OR: [
+                        { content: { contains: '"type":"verb-quiz"' } },
+                        { content: { contains: '"type":"weekly-quiz"' } },
+                    ],
                 },
             },
             select: {
@@ -832,17 +833,17 @@ export default async function ProfilePage() {
                                     <div>
                                         <h2 className="text-xl font-bold text-text">Quiz Grades</h2>
                                         <p className="text-sm text-text-muted">
-                                            Released quizzes: {gradedVerbQuizCount}/{verbQuizGrades.length} Verb · {gradedMiniQuizCount}/{miniQuizGrades.length} Mini
+                                            Released quizzes: {gradedVerbQuizCount}/{verbQuizGrades.length} Weekly · {gradedMiniQuizCount}/{miniQuizGrades.length} Mini
                                         </p>
                                     </div>
                                 </div>
 
                                 <div className="space-y-6 max-h-[520px] overflow-y-auto pr-1">
                                     <div>
-                                        <h3 className="text-xs font-semibold uppercase tracking-wide text-text-muted mb-3">Verb Quizzes</h3>
+                                        <h3 className="text-xs font-semibold uppercase tracking-wide text-text-muted mb-3">Weekly Quizzes</h3>
                                         {verbQuizGrades.length === 0 ? (
                                             <div className="rounded-lg border border-dashed border-border/60 bg-bg/60 p-3">
-                                                <p className="text-sm text-text-muted">No released verb quizzes yet.</p>
+                                                <p className="text-sm text-text-muted">No released weekly quizzes yet.</p>
                                             </div>
                                         ) : (
                                             <div className="space-y-2">

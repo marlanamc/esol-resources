@@ -1,3 +1,4 @@
+import { readWeeklyQuizSchedule } from "@/lib/weekly-quiz-schedule";
 import { prisma } from "@/lib/database/prisma";
 import { withPrismaReadRetry } from "@/lib/database/retry";
 import { getEffectiveLearnerMode } from "@/lib/learner-preview";
@@ -162,7 +163,7 @@ export async function getVisibleMap(
             include: {
               items: {
                 orderBy: { order: "asc" },
-                include: { activity: { select: { contentKind: true } } },
+                include: { activity: { select: { contentKind: true, content: true } } },
               },
             },
           },
@@ -203,11 +204,13 @@ export async function getVisibleMap(
   // Items without an activityId (planned) are always included.
   const toActivity = (item: (typeof allUnitsRaw)[number]["weeks"][number]["items"][number]): CourseMapActivity => {
     const isMapActivity = item.activity?.contentKind === MAP;
+    const quizSchedule = readWeeklyQuizSchedule(item.activity?.content);
+    const quizLocked = !isAdmin(user) && quizSchedule && new Date() < quizSchedule.opensAt;
     return {
       id: item.id,
       title: item.title,
       activityType: item.activityType as CourseMapActivityType,
-      status: !item.activityId && !item.href ? "planned" : "available",
+      status: quizLocked ? "locked" : !item.activityId && !item.href ? "planned" : "available",
       ...(item.activityId && isMapActivity ? { activityId: item.activityId } : {}),
       ...(item.href ? { href: item.href } : {}),
       ...(item.vocabUi ? { vocabUi: item.vocabUi } : {}),

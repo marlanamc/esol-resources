@@ -22,6 +22,7 @@ import {
 import dynamic from "next/dynamic";
 import { sanitizeCss, sanitizeHtml } from "@/utils/sanitize";
 import { applyGrammarDarkClasses } from "@/utils/grammarDarkModeClasses";
+import type { WeeklyQuizContent } from "@/types/weekly-quiz";
 import { VerbQuizContent } from "@/types/verb-quiz";
 import { isSpeakingActivityContent, isCafeCatchUpContent, isTriviaGameContent, isGrammarHospitalContent } from "@/types/activity";
 import type { SpeakingActivityContent, CafeCatchUpContent, TriviaGameContent, GrammarHospitalContent } from "@/types/activity";
@@ -59,6 +60,7 @@ const CafeCatchUpGame = dynamic(() => import("../games/CafeCatchUpGame"), { load
 const TriviaGame = dynamic(() => import("../games/TriviaGame"), { loading: ActivityLoadingFallback });
 const GrammarHospitalGame = dynamic(() => import("../games/GrammarHospitalGame"), { loading: ActivityLoadingFallback });
 const ComparisonBattleGame = dynamic(() => import("../games/ComparisonBattleGame"), { loading: ActivityLoadingFallback });
+const WeeklyQuiz = dynamic(() => import("../activities/WeeklyQuiz"), { loading: ActivityLoadingFallback });
 const VerbQuizContainer = dynamic(() => import("../activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
 const VerbSpeedRoundGame = dynamic(() => import("../games/VerbSpeedRoundGame").then(m => ({ default: m.VerbSpeedRoundGame })), { loading: ActivityLoadingFallback });
 const SpeakingActivityRenderer = dynamic(() => import("../activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
@@ -81,6 +83,7 @@ interface Props {
         id: string;
         content: unknown;
         score: number | null;
+        pointsAwarded?: number;
     } | null;
     userRole?: string | null;
 }
@@ -306,7 +309,7 @@ function QuizRenderer({
     activityTitle,
     existingSubmission,
 }: {
-    content: QuizContent | VerbQuizContent;
+    content: QuizContent | VerbQuizContent | WeeklyQuizContent;
     activityId: string;
     assignmentId?: string | null;
     activityTitle?: string;
@@ -314,8 +317,13 @@ function QuizRenderer({
         id: string;
         content: unknown;
         score: number | null;
+        pointsAwarded?: number;
     } | null;
 }) {
+    if (content && typeof content === 'object' && 'type' in content && content.type === 'weekly-quiz') {
+        return <WeeklyQuiz content={content as WeeklyQuizContent} activityId={activityId} assignmentId={assignmentId} existingSubmission={existingSubmission} />;
+    }
+
     // Check if this is a verb quiz
     if (content && typeof content === 'object' && 'type' in content && content.type === 'verb-quiz') {
         return (

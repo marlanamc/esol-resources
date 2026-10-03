@@ -1,11 +1,6 @@
 "use client";
 
-function getGreeting(): string {
-    const hour = new Date().getHours();
-    if (hour < 12) return "Good morning";
-    if (hour < 17) return "Good afternoon";
-    return "Good evening";
-}
+import { getTimeOfDayGreeting } from "@/lib/dashboard/welcome-header";
 
 interface MobileStudentGreetingProps {
     userName: string;
@@ -18,7 +13,7 @@ export function MobileStudentGreeting({ userName }: MobileStudentGreetingProps) 
         <div className="px-1 pt-1 pb-0">
             <h1 className="min-w-0 font-display text-xl font-bold leading-tight tracking-[-0.01em] text-text">
                 <span className="block truncate">
-                    {getGreeting()}, {firstName}.
+                    {getTimeOfDayGreeting()}, {firstName}.
                 </span>
             </h1>
         </div>
